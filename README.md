@@ -1,3 +1,5 @@
+This fork is attempt to change target language from JavaScript to Lua.
+
 # [BuckleScript](https://bucklescript.github.io)
 
 > A JavaScript backend for [OCaml](https://ocaml.org/) focused on smooth integration and clean generated code.
