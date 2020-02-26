@@ -44,6 +44,7 @@ _esy
 
 .idea
 .DS_Store
+*.code-workspace
 
 node_modules
 oxml
