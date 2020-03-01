@@ -105,9 +105,9 @@ let string_of_binary_operator op =
   Flow_ast.Expression.Binary.(
     match op with
     | Equal -> "=="
-    | NotEqual -> "!="
-    | StrictEqual -> "==="
-    | StrictNotEqual -> "!=="
+    | NotEqual -> "~="
+    | StrictEqual -> "=="
+    | StrictNotEqual -> "~="
     | LessThan -> "<"
     | LessThanEqual -> "<="
     | GreaterThan -> ">"
