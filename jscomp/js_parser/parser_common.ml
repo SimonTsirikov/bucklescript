@@ -127,7 +127,7 @@ let identifier_name env =
       | T_PROTECTED -> "protected"
       | T_PUBLIC -> "public"
       (* NullLiteral *)
-      | T_NULL -> "null"
+      | T_NULL -> "nil"
       (* BooleanLiteral *)
       | T_TRUE -> "true"
       | T_FALSE -> "false"

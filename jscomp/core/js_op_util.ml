@@ -73,8 +73,8 @@ let op_str (op : Js_op.binop) =
   | Mod     -> "%"
 
   | Eq      -> "="
-  | Or      -> "||"
-  | And     -> "&&"
+  | Or      -> "or"
+  | And     -> "and"
   | EqEqEq  -> "=="
   | NotEqEq -> "~="
   | Lt      -> "<"

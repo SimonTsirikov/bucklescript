@@ -1782,7 +1782,7 @@ end with type t = Impl.t) = struct
         | Plus -> "+"
         | Minus -> "-"
         | Mult -> "*"
-        | Exp -> "**"
+        | Exp -> "^"
         | Div -> "/"
         | Mod -> "%"
         | BitOr -> "|"
@@ -1838,8 +1838,8 @@ end with type t = Impl.t) = struct
       )
     | loc, Logical logical -> Logical.(
         let operator = match logical.operator with
-        | Or -> "||"
-        | And -> "&&"
+        | Or -> "or"
+        | And -> "and"
         in
         node "LogicalExpression" loc [|
           "operator", string operator;
@@ -10926,7 +10926,7 @@ end = struct
               let key = match prop.key with
               | Literal (_, { Literal.value = Literal.String s; _; } ) -> s
               | Literal (_, { Literal.value = Literal.Boolean b; _; } ) -> string_of_bool b
-              | Literal (_, { Literal.value = Literal.Null; _; } ) -> "null"
+              | Literal (_, { Literal.value = Literal.Null; _; } ) -> "nil"
               | Literal (_, { Literal.value = Literal.Number f; _; } ) -> string_of_float f
               | Literal (_, { Literal.value = Literal.RegExp _; _; } ) ->
                   failwith "RegExp cannot be property key"

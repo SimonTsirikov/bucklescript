@@ -118,7 +118,7 @@ let string_of_binary_operator op =
     | Plus -> "+"
     | Minus -> "-"
     | Mult -> "*"
-    | Exp -> "**"
+    | Exp -> "^"
     | Div -> "/"
     | Mod -> "%"
     | BitOr -> "|"

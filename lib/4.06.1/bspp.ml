@@ -6624,7 +6624,7 @@ let string_of_type_directive x =
   | Dir_type_float  -> "float"
   | Dir_type_int  -> "int"
   | Dir_type_string  -> "string"
-  | Dir_type_null -> "null"
+  | Dir_type_null -> "nil"
 
 type error =
   | Illegal_character of char
