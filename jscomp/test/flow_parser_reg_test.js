@@ -287,9 +287,9 @@ function error(param) {
   } else {
     switch (param.tag | 0) {
       case --[ Assertion ]--0 :
-          return "Unexpected parser state: " + param[0];
+          return "Unexpected parser state: " .. param[0];
       case --[ UnexpectedToken ]--1 :
-          return "Unexpected token " + param[0];
+          return "Unexpected token " .. param[0];
       case --[ UnexpectedTokenWithSuggestion ]--2 :
           return Curry._2(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -311,13 +311,13 @@ function error(param) {
                           "Unexpected token `%s`. Did you mean `%s`?"
                         ]), param[0], param[1]);
       case --[ InvalidRegExpFlags ]--3 :
-          return "Invalid flags supplied to RegExp constructor '" + (param[0] + "'");
+          return "Invalid flags supplied to RegExp constructor '" .. (param[0] .. "'");
       case --[ UnknownLabel ]--4 :
-          return "Undefined label '" + (param[0] + "'");
+          return "Undefined label '" .. (param[0] .. "'");
       case --[ Redeclaration ]--5 :
-          return param[0] + (" '" + (param[1] + "' has already been declared"));
+          return param[0] .. (" '" .. (param[1] .. "' has already been declared"));
       case --[ ExpectedJSXClosingTag ]--6 :
-          return "Expected corresponding JSX closing tag for " + param[0];
+          return "Expected corresponding JSX closing tag for " .. param[0];
       case --[ DuplicateExport ]--7 :
           return Curry._1(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -1446,7 +1446,7 @@ function get_result_and_clear_state(param) {
           var match$3 = lex_token[0];
           match$1 = --[ tuple ]--[
             match$3[0],
-            "/" + (match$3[1] + ("/" + match$3[2]))
+            "/" .. (match$3[1] .. ("/" .. match$3[2]))
           ];
           break;
       case --[ T_STRING ]--1 :
@@ -1880,7 +1880,7 @@ function mk_num_singleton(number_type, num, neg) {
   if (number_type ~= 0) {
     switch (number_type - 1 | 0) {
       case --[ BINARY ]--0 :
-          value = Caml_format.caml_int_of_string("0o" + num);
+          value = Caml_format.caml_int_of_string("0o" .. num);
           break;
       case --[ LEGACY_OCTAL ]--1 :
           value = Caml_format.caml_int_of_string(num);
@@ -3311,7 +3311,7 @@ function jsx_text(env, mode, buf, raw, lexbuf) {
           var n = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos + 3 | 0, lexbuf$1.lex_curr_pos - 1 | 0);
           var s = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
           $$Buffer.add_string(raw$1, s);
-          var code = Caml_format.caml_int_of_string("0x" + n);
+          var code = Caml_format.caml_int_of_string("0x" .. n);
           List.iter((function (param) {
                   return $$Buffer.add_char(buf$1, param);
                 }), utf16to8(code));
@@ -4098,7 +4098,7 @@ function jsx_text(env, mode, buf, raw, lexbuf) {
                     return $$Buffer.add_char(buf$1, param);
                   }), utf16to8(code$2));
           } else {
-            $$Buffer.add_string(buf$1, "&" + (entity + ";"));
+            $$Buffer.add_string(buf$1, "&" .. (entity .. ";"));
           }
           return jsx_text(env$1, mode$1, buf$1, raw$1, lexbuf$1);
       case 6 :
@@ -4611,7 +4611,7 @@ function string_escape(env, buf, lexbuf) {
                 ];
       case 14 :
           var hex_code = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos + 2 | 0, lexbuf$1.lex_curr_pos - 1 | 0);
-          var code$6 = Caml_format.caml_int_of_string("0x" + hex_code);
+          var code$6 = Caml_format.caml_int_of_string("0x" .. hex_code);
           var env$2 = code$6 > 1114111 ? lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"])) : env$1;
           List.iter((function (param) {
                   return $$Buffer.add_char(buf$1, param);
@@ -8256,7 +8256,7 @@ function number(env, number_type) {
     switch (number_type - 1 | 0) {
       case --[ BINARY ]--0 :
           strict_error(env, --[ StrictOctalLiteral ]--31);
-          value$1 = Caml_format.caml_int_of_string("0o" + value);
+          value$1 = Caml_format.caml_int_of_string("0o" .. value);
           break;
       case --[ LEGACY_OCTAL ]--1 :
           value$1 = Caml_format.caml_int_of_string(value);
@@ -12333,13 +12333,13 @@ function normalize(name) {
         return name[0][1].name;
     case --[ NamespacedName ]--1 :
         var match = name[0][1];
-        return match.namespace[1].name + (":" + match.name[1].name);
+        return match.namespace[1].name .. (":" .. match.name[1].name);
     case --[ MemberExpression ]--2 :
         var match$1 = name[0][1];
         var _object = match$1._object;
         var _object$1;
         _object$1 = _object.tag ? normalize(--[ MemberExpression ]--Block.__(2, [_object[0]])) : _object[0][1].name;
-        return _object$1 + ("." + match$1.property[1].name);
+        return _object$1 .. ("." .. match$1.property[1].name);
     
   }
 }
@@ -13671,7 +13671,7 @@ function directives(env, term_fn, item_fn) {
               return 0;
             }
           }
-          var s = "Nooo: " + (token_to_string(token) + "\n");
+          var s = "Nooo: " .. (token_to_string(token) .. "\n");
           throw [
                 Caml_builtin_exceptions.failure,
                 s
@@ -16493,7 +16493,7 @@ function parse(content, options) {
   catch (raw_exn){
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == $$Error) {
-      var e = new Error(String(List.length(exn[1])) + " errors");
+      var e = new Error(String(List.length(exn[1])) .. " errors");
       e["name"] = "Parse Error";
       throw(e);
       return ({});
@@ -16515,7 +16515,7 @@ function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
-      loc + (" id " + String(test_id.contents)),
+      loc .. (" id " .. String(test_id.contents)),
       (function (param) {
           return --[ Eq ]--Block.__(0, [
                     x,

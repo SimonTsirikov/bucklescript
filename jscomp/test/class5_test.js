@@ -32,7 +32,7 @@ function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
-      loc + (" id " + String(test_id.contents)),
+      loc .. (" id " .. String(test_id.contents)),
       (function (param) {
           return --[ Eq ]--Block.__(0, [
                     x,
@@ -106,7 +106,7 @@ function printable_colored_point_init($$class) {
   var obj_init = inh[0];
   var print$1 = inh[4];
   CamlinternalOO.set_method($$class, print, (function (self$2) {
-          return "(" + (Curry._1(print$1, self$2) + (", " + (Curry._1(self$2[0][color], self$2) + ")")));
+          return "(" .. (Curry._1(print$1, self$2) .. (", " .. (Curry._1(self$2[0][color], self$2) .. ")")));
         }));
   return (function (env, self, y$1, c$2) {
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
@@ -252,7 +252,7 @@ eq("File \"class5_test.ml\", line 67, characters 5-12", --[ tuple ]--[
               return x + y | 0;
             }), 0),
       Caml_oo_curry.js3(-1010803711, 6, l$1, (function (s, x) {
-              return s + (String(x) + " ");
+              return s .. (String(x) .. " ");
             }), "")
     ]);
 

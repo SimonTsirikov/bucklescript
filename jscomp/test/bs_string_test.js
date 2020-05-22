@@ -15,7 +15,7 @@ function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
-      loc + (" id " + String(test_id.contents)),
+      loc .. (" id " .. String(test_id.contents)),
       (function (param) {
           return --[ Eq ]--Block.__(0, [
                     x,
@@ -29,7 +29,7 @@ function eq(loc, x, y) {
 }
 
 eq("File \"bs_string_test.ml\", line 11, characters 5-12", "ghso ghso g".split(" ").reduce((function (x, y) {
-            return x + ("-" + y);
+            return x .. ("-" .. y);
           }), ""), "-ghso-ghso-g");
 
 Mt.from_pair_suites("Bs_string_test", suites.contents);

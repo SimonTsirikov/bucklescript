@@ -796,7 +796,7 @@ and expression_desc cxt ~(level:int) f x : cxt  =
     P.cond_paren_group f need_paren 1 (fun _ -> 
       let cxt = expression  ~level:lft cxt f e1 in
       P.space f ;
-      P.string f "+";
+      P.string f "..";
       P.space f;
       expression  ~level:rght cxt   f e2)
   | Array (el,_) ->

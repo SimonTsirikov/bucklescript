@@ -34,7 +34,7 @@ var suites_001 = --[ :: ]--[
     "fromString",
     (function (param) {
         var contentOf = function (tag, xmlString) {
-          var param = new RegExp("<" + (tag + (">(.*?)<\\/" + (tag + ">")))).exec(xmlString);
+          var param = new RegExp("<" .. (tag .. (">(.*?)<\\/" .. (tag .. ">")))).exec(xmlString);
           if (param ~= null) {
             return Caml_option.nullable_to_opt(Caml_array.caml_array_get(param, 1));
           }

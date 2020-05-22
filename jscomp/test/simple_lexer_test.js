@@ -27,10 +27,10 @@ function __ocaml_lex_translate_rec(lexbuf, ___ocaml_lex_state) {
     var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
     switch (__ocaml_lex_state$1) {
       case 0 :
-          return "." + __ocaml_lex_translate_rec(lexbuf, 0);
+          return "." .. __ocaml_lex_translate_rec(lexbuf, 0);
       case 1 :
           var c = Caml_bytes.get(lexbuf.lex_buffer, lexbuf.lex_start_pos);
-          return Caml_bytes.bytes_to_string(Bytes.make(1, c)) + __ocaml_lex_translate_rec(lexbuf, 0);
+          return Caml_bytes.bytes_to_string(Bytes.make(1, c)) .. __ocaml_lex_translate_rec(lexbuf, 0);
       case 2 :
           return "";
       default:

@@ -20,7 +20,7 @@ function string_or_number(x) {
           console.log(ty[0] + 3);
           return true;
       case --[ JSString ]--1 :
-          console.log(ty[0] + "hei");
+          console.log(ty[0] .. "hei");
           return true;
       case --[ JSFunction ]--2 :
           console.log("Function");

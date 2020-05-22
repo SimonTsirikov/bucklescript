@@ -16,7 +16,7 @@ function $$throw(loc, x) {
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
-      loc + (" id " + String(test_id.contents)),
+      loc .. (" id " .. String(test_id.contents)),
       (function (param) {
           return --[ ThrowAny ]--Block.__(7, [x]);
         })

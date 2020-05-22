@@ -76,7 +76,7 @@ function from_pair_suites(name, suites) {
                       console.log("failed");
                       return --[ () ]--0;
                   case --[ FailWith ]--9 :
-                      console.log("failed: " + match[0]);
+                      console.log("failed: " .. match[0]);
                       return --[ () ]--0;
                   
                 }

@@ -53,7 +53,7 @@ var N0 = {
   f: N0_f
 };
 
-console.log(" hei " + (String(v) + " "));
+console.log(" hei " .. (String(v) .. " "));
 
 var a = --[ tuple ]--[
   1,
@@ -71,7 +71,7 @@ var c = [
   5
 ];
 
-console.log(" " + (String(Format.std_formatter) + (" " + (String(a) + (" " + (String(c) + " "))))));
+console.log(" " .. (String(Format.std_formatter) .. (" " .. (String(a) .. (" " .. (String(c) .. " "))))));
 
 var h = --[ :: ]--[
   1,

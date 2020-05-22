@@ -9994,7 +9994,7 @@ and __ocaml_lex_skip_hash_bang_rec lexbuf __ocaml_lex_state =
           Docstrings.register doc;
           add_docstring_comment doc;
           let docs' =
-            if Docstrings.docstring_body doc = "--[" then
+            if Docstrings.docstring_body doc = "/*" then
               match docs with
               | Initial -> Before([], [doc], [])
               | After a -> Before (a, [doc], [])

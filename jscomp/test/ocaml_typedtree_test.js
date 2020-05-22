@@ -391,9 +391,9 @@ function code_of_style(param) {
       
     }
   } else if (param.tag) {
-    return "4" + ansi_of_color(param[0]);
+    return "4" .. ansi_of_color(param[0]);
   } else {
-    return "3" + ansi_of_color(param[0]);
+    return "3" .. ansi_of_color(param[0]);
   }
 }
 
@@ -401,7 +401,7 @@ function ansi_of_style_l(l) {
   var s = l ? (
       l[1] ? $$String.concat(";", List.map(code_of_style, l)) : code_of_style(l[0])
     ) : "0";
-  return "\x1b[" + (s + "m");
+  return "\x1b[" .. (s .. "m");
 }
 
 var default_styles = {
@@ -1113,13 +1113,13 @@ function message(param) {
   } else {
     switch (param.tag | 0) {
       case --[ Deprecated ]--0 :
-          return "deprecated: " + param[0];
+          return "deprecated: " .. param[0];
       case --[ Fragile_match ]--1 :
           var s = param[0];
           if (s == "") {
             return "this pattern-matching is fragile.";
           } else {
-            return "this pattern-matching is fragile.\nIt will remain exhaustive when constructors are added to type " + (s + ".");
+            return "this pattern-matching is fragile.\nIt will remain exhaustive when constructors are added to type " .. (s .. ".");
           }
       case --[ Method_override ]--2 :
           var match = param[0];
@@ -1138,7 +1138,7 @@ function message(param) {
                           ]
                         ]);
             } else {
-              return "the method " + (lab + " is overridden.");
+              return "the method " .. (lab .. " is overridden.");
             }
           } else {
             throw [
@@ -1155,10 +1155,10 @@ function message(param) {
           if (s$1 == "") {
             return "this pattern-matching is not exhaustive.";
           } else {
-            return "this pattern-matching is not exhaustive.\nHere is an example of a value that is not matched:\n" + s$1;
+            return "this pattern-matching is not exhaustive.\nHere is an example of a value that is not matched:\n" .. s$1;
           }
       case --[ Non_closed_record_pattern ]--4 :
-          return "the following labels are not bound in this record pattern:\n" + (param[0] + "\nEither bind these labels explicitly or add '; _' to the pattern.");
+          return "the following labels are not bound in this record pattern:\n" .. (param[0] .. "\nEither bind these labels explicitly or add '; _' to the pattern.");
       case --[ Instance_variable_override ]--5 :
           var match$1 = param[0];
           if (match$1) {
@@ -1174,9 +1174,9 @@ function message(param) {
                               slist$1
                             ]
                           ]
-                        ]) + "\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)";
+                        ]) .. "\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)";
             } else {
-              return "the instance variable " + (lab$1 + " is overridden.\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)");
+              return "the instance variable " .. (lab$1 .. " is overridden.\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)");
             }
           } else {
             throw [
@@ -1189,20 +1189,20 @@ function message(param) {
                 ];
           }
       case --[ Implicit_public_methods ]--6 :
-          return "the following private methods were made public implicitly:\n " + ($$String.concat(" ", param[0]) + ".");
+          return "the following private methods were made public implicitly:\n " .. ($$String.concat(" ", param[0]) .. ".");
       case --[ Undeclared_virtual_method ]--7 :
-          return "the virtual method " + (param[0] + " is not declared.");
+          return "the virtual method " .. (param[0] .. " is not declared.");
       case --[ Not_principal ]--8 :
-          return param[0] + " is not principal.";
+          return param[0] .. " is not principal.";
       case --[ Without_principality ]--9 :
-          return param[0] + " without principality.";
+          return param[0] .. " without principality.";
       case --[ Preprocessor ]--10 :
           return param[0];
       case --[ Bad_module_name ]--11 :
-          return "bad source file name: \"" + (param[0] + "\" is not a valid module name.");
+          return "bad source file name: \"" .. (param[0] .. "\" is not a valid module name.");
       case --[ Unused_var ]--12 :
       case --[ Unused_var_strict ]--13 :
-          return "unused variable " + (param[0] + ".");
+          return "unused variable " .. (param[0] .. ".");
       case --[ Duplicate_definitions ]--14 :
           return Curry._4(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -1259,41 +1259,41 @@ function message(param) {
                           "files %s and %s both define a module named %s"
                         ]), param[1], param[2], param[0]);
       case --[ Unused_value_declaration ]--16 :
-          return "unused value " + (param[0] + ".");
+          return "unused value " .. (param[0] .. ".");
       case --[ Unused_open ]--17 :
-          return "unused open " + (param[0] + ".");
+          return "unused open " .. (param[0] .. ".");
       case --[ Unused_type_declaration ]--18 :
-          return "unused type " + (param[0] + ".");
+          return "unused type " .. (param[0] .. ".");
       case --[ Unused_for_index ]--19 :
-          return "unused for-loop index " + (param[0] + ".");
+          return "unused for-loop index " .. (param[0] .. ".");
       case --[ Unused_ancestor ]--20 :
-          return "unused ancestor variable " + (param[0] + ".");
+          return "unused ancestor variable " .. (param[0] .. ".");
       case --[ Unused_constructor ]--21 :
           var s$2 = param[0];
           if (param[1]) {
-            return "constructor " + (s$2 + " is never used to build values.\n(However, this constructor appears in patterns.)");
+            return "constructor " .. (s$2 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
           } else if (param[2]) {
-            return "constructor " + (s$2 + " is never used to build values.\nIts type is exported as a private type.");
+            return "constructor " .. (s$2 .. " is never used to build values.\nIts type is exported as a private type.");
           } else {
-            return "unused constructor " + (s$2 + ".");
+            return "unused constructor " .. (s$2 .. ".");
           }
       case --[ Unused_extension ]--22 :
           var s$3 = param[0];
           if (param[1]) {
-            return "extension constructor " + (s$3 + " is never used to build values.\n(However, this constructor appears in patterns.)");
+            return "extension constructor " .. (s$3 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
           } else if (param[2]) {
-            return "extension constructor " + (s$3 + " is never used to build values.\nIt is exported or rebound as a private extension.");
+            return "extension constructor " .. (s$3 .. " is never used to build values.\nIt is exported or rebound as a private extension.");
           } else {
-            return "unused extension constructor " + (s$3 + ".");
+            return "unused extension constructor " .. (s$3 .. ".");
           }
       case --[ Name_out_of_scope ]--23 :
           var slist$2 = param[1];
           var ty = param[0];
           if (slist$2 and !slist$2[1] and !param[2]) {
-            return slist$2[0] + (" was selected from type " + (ty + ".\nIt is not visible in the current scope, and will not \nbe selected if the type becomes unknown."));
+            return slist$2[0] .. (" was selected from type " .. (ty .. ".\nIt is not visible in the current scope, and will not \nbe selected if the type becomes unknown."));
           }
           if (param[2]) {
-            return "this record of type " + (ty + (" contains fields that are \nnot visible in the current scope: " + ($$String.concat(" ", slist$2) + ".\nThey will not be selected if the type becomes unknown.")));
+            return "this record of type " .. (ty .. (" contains fields that are \nnot visible in the current scope: " .. ($$String.concat(" ", slist$2) .. ".\nThey will not be selected if the type becomes unknown.")));
           } else {
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -1308,10 +1308,10 @@ function message(param) {
       case --[ Ambiguous_name ]--24 :
           var slist$3 = param[0];
           if (slist$3 and !slist$3[1] and !param[2]) {
-            return slist$3[0] + (" belongs to several types: " + ($$String.concat(" ", param[1]) + "\nThe first one was selected. Please disambiguate if this is wrong."));
+            return slist$3[0] .. (" belongs to several types: " .. ($$String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong."));
           }
           if (param[2]) {
-            return "these field labels belong to several types: " + ($$String.concat(" ", param[1]) + "\nThe first one was selected. Please disambiguate if this is wrong.");
+            return "these field labels belong to several types: " .. ($$String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong.");
           } else {
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -1324,9 +1324,9 @@ function message(param) {
           }
           break;
       case --[ Disambiguated_name ]--25 :
-          return "this use of " + (param[0] + " required disambiguation.");
+          return "this use of " .. (param[0] .. " required disambiguation.");
       case --[ Nonoptional_label ]--26 :
-          return "the label " + (param[0] + " is not optional.");
+          return "the label " .. (param[0] .. " is not optional.");
       case --[ Open_shadow_identifier ]--27 :
           return Curry._2(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -1420,7 +1420,7 @@ function message(param) {
                           "implicit elimination of optional argument%s %s"
                         ]), List.length(sl) == 1 ? "" : "s", $$String.concat(", ", sl));
       case --[ No_cmi_file ]--32 :
-          return "no cmi file was found in path for module " + param[0];
+          return "no cmi file was found in path for module " .. param[0];
       case --[ Bad_docstring ]--33 :
           if (param[0]) {
             return "unattached documentation comment (ignored)";
@@ -1428,11 +1428,11 @@ function message(param) {
             return "ambiguous documentation comment";
           }
       case --[ Bs_unused_attribute ]--34 :
-          return "Unused BuckleScript attribute: " + param[0];
+          return "Unused BuckleScript attribute: " .. param[0];
       case --[ Bs_ffi_warning ]--35 :
-          return "BuckleScript FFI warning: " + param[0];
+          return "BuckleScript FFI warning: " .. param[0];
       case --[ Bs_derive_warning ]--36 :
-          return "BuckleScript bs.deriving warning: " + param[0];
+          return "BuckleScript bs.deriving warning: " .. param[0];
       
     }
   }
@@ -2186,7 +2186,7 @@ function rename(i) {
 }
 
 function unique_toplevel_name(i) {
-  return i.name + ("/" + String(i.stamp));
+  return i.name .. ("/" .. String(i.stamp));
 }
 
 function equal(i1, i2) {
@@ -2583,11 +2583,11 @@ function name($staropt$star, param) {
         return param[0].name;
     case --[ Pdot ]--1 :
         var s = param[1];
-        return name(paren, param[0]) + (
-                Curry._1(paren, s) ? ".( " + (s + " )") : "." + s
+        return name(paren, param[0]) .. (
+                Curry._1(paren, s) ? ".( " .. (s .. " )") : "." .. s
               );
     case --[ Papply ]--2 :
-        return name(paren, param[0]) + ("(" + (name(paren, param[1]) + ")"));
+        return name(paren, param[0]) .. ("(" .. (name(paren, param[1]) .. ")"));
     
   }
 }
@@ -5218,7 +5218,7 @@ function prefixed_label_name(l) {
   if (is_optional(l)) {
     return l;
   } else {
-    return "~" + l;
+    return "~" .. l;
   }
 }
 
@@ -10179,7 +10179,7 @@ function find_pers_struct(checkOpt, name) {
     add_import(name);
     var filename;
     try {
-      filename = find_in_path_uncap(load_path.contents, name + ".cmi");
+      filename = find_in_path_uncap(load_path.contents, name .. ".cmi");
     }
     catch (exn$1){
       if (exn$1 == Caml_builtin_exceptions.not_found) {
@@ -13773,7 +13773,7 @@ function from_pair_suites(name, suites) {
                           console.log("failed");
                           return --[ () ]--0;
                       case --[ FailWith ]--9 :
-                          console.log("failed: " + match[0]);
+                          console.log("failed: " .. match[0]);
                           return --[ () ]--0;
                       
                     }
@@ -14072,7 +14072,7 @@ function neg_float_string(f) {
   if (f.length ~= 0 and Caml_string.get(f, 0) == --[ "-" ]--45) {
     return $$String.sub(f, 1, f.length - 1 | 0);
   } else {
-    return "-" + f;
+    return "-" .. f;
   }
 }
 
@@ -14230,7 +14230,7 @@ function array_function(str, name) {
   return {
           txt: --[ Ldot ]--Block.__(1, [
               --[ Lident ]--Block.__(0, [str]),
-              fast.contents ? "unsafe_" + name : name
+              fast.contents ? "unsafe_" .. name : name
             ]),
           loc: symbol_gloc(--[ () ]--0)
         };
@@ -15886,7 +15886,7 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcty(--[ Pcty_arrow ]--Block.__(2, [
-                    "?" + _2,
+                    "?" .. _2,
                     mkoption(_4),
                     _6
                   ]));
@@ -15896,7 +15896,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcty(--[ Pcty_arrow ]--Block.__(2, [
-                    "?" + _1,
+                    "?" .. _1,
                     mkoption(_2),
                     _4
                   ]));
@@ -16161,7 +16161,7 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
-              "?" + _3[0],
+              "?" .. _3[0],
               _4,
               _3[1]
             ];
@@ -16169,7 +16169,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
-              "?" + _2[0],
+              "?" .. _2[0],
               undefined,
               _2[1]
             ];
@@ -16179,7 +16179,7 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
-              "?" + _1,
+              "?" .. _1,
               _4,
               _3
             ];
@@ -16188,7 +16188,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
-              "?" + _1,
+              "?" .. _1,
               undefined,
               _2
             ];
@@ -16641,7 +16641,7 @@ var yyact = [
         
       }
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
-                    mkoperator("~" + name, 1),
+                    mkoperator("~" .. name, 1),
                     --[ :: ]--[
                       --[ tuple ]--[
                         "",
@@ -16684,7 +16684,7 @@ var yyact = [
         return mkexp(desc);
       }
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
-                    mkoperator("~" + name, 1),
+                    mkoperator("~" .. name, 1),
                     --[ :: ]--[
                       --[ tuple ]--[
                         "",
@@ -17434,7 +17434,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
-              "?" + _2[0],
+              "?" .. _2[0],
               _2[1]
             ];
     }),
@@ -17442,7 +17442,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
-              "?" + _1,
+              "?" .. _1,
               _2
             ];
     }),
@@ -18804,7 +18804,7 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_arrow ]--Block.__(1, [
-                    "?" + _2,
+                    "?" .. _2,
                     mkoption(_4),
                     _6
                   ]));
@@ -18814,7 +18814,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_arrow ]--Block.__(1, [
-                    "?" + _1,
+                    "?" .. _1,
                     mkoption(_2),
                     _4
                   ]));
@@ -19305,7 +19305,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[ Const_float ]--Block.__(3, ["-" + _2]);
+      return --[ Const_float ]--Block.__(3, ["-" .. _2]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
@@ -19886,7 +19886,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
       return {
-              txt: _1 + ("." + _3.txt),
+              txt: _1 .. ("." .. _3.txt),
               loc: symbol_rloc(--[ () ]--0)
             };
     }),
@@ -21257,19 +21257,19 @@ function char_for_hexadecimal_code(lexbuf, i) {
 }
 
 function cvt_int_literal(s) {
-  return -Caml_format.caml_int_of_string("-" + s) | 0;
+  return -Caml_format.caml_int_of_string("-" .. s) | 0;
 }
 
 function cvt_int32_literal(s) {
-  return -Caml_format.caml_int32_of_string("-" + $$String.sub(s, 0, s.length - 1 | 0)) | 0;
+  return -Caml_format.caml_int32_of_string("-" .. $$String.sub(s, 0, s.length - 1 | 0)) | 0;
 }
 
 function cvt_int64_literal(s) {
-  return Caml_int64.neg(Caml_format.caml_int64_of_string("-" + $$String.sub(s, 0, s.length - 1 | 0)));
+  return Caml_int64.neg(Caml_format.caml_int64_of_string("-" .. $$String.sub(s, 0, s.length - 1 | 0)));
 }
 
 function cvt_nativeint_literal(s) {
-  return -Caml_format.caml_nativeint_of_string("-" + $$String.sub(s, 0, s.length - 1 | 0));
+  return -Caml_format.caml_nativeint_of_string("-" .. $$String.sub(s, 0, s.length - 1 | 0));
 }
 
 function remove_underscores(s) {
@@ -21727,7 +21727,7 @@ function token(lexbuf) {
           var stars = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
           var match$2 = with_comment_buffer((function(stars){
               return function (lexbuf) {
-                store_string("*" + stars);
+                store_string("*" .. stars);
                 return __ocaml_lex_comment_rec(lexbuf, 132);
               }
               }(stars)), lexbuf$1);
@@ -24498,8 +24498,8 @@ function save_cmt(filename, modname, binary_annots, sourcefile, initial_env, sg)
       
     }
     if (exit == 1) {
-      Caml_sys.caml_sys_system_command(cmd + (" -cmt-add " + (filename + (
-                sourcefile ~= undefined ? ":" + sourcefile : ""
+      Caml_sys.caml_sys_system_command(cmd .. (" -cmt-add " .. (filename .. (
+                sourcefile ~= undefined ? ":" .. sourcefile : ""
               ))));
     }
     
@@ -33402,11 +33402,11 @@ function lid_of_path($staropt$star, param) {
   var sharp = $staropt$star ~= undefined ? $staropt$star : "";
   switch (param.tag | 0) {
     case --[ Pident ]--0 :
-        return --[ Lident ]--Block.__(0, [sharp + param[0].name]);
+        return --[ Lident ]--Block.__(0, [sharp .. param[0].name]);
     case --[ Pdot ]--1 :
         return --[ Ldot ]--Block.__(1, [
                   lid_of_path(undefined, param[0]),
-                  sharp + param[1]
+                  sharp .. param[1]
                 ]);
     case --[ Papply ]--2 :
         return --[ Lapply ]--Block.__(2, [
@@ -36656,7 +36656,7 @@ function type_parameter(ppf, param) {
                   "%s%s"
                 ]), match[1] ? (
                 match[0] ? "" : "-"
-              ) : "+", ty == "_" ? ty : "'" + ty);
+              ) : "+", ty == "_" ? ty : "'" .. ty);
 }
 
 function print_out_class_params(ppf, tyl) {
@@ -36786,7 +36786,7 @@ function print_out_class_type(ppf, param) {
                               ])
                           ]),
                         "@[%s%a ->@ %a@]"
-                      ]), lab ~= "" ? lab + ":" : "", print_out_type_2, param[1], print_out_class_type, param[2]);
+                      ]), lab ~= "" ? lab .. ":" : "", print_out_type_2, param[1], print_out_class_type, param[2]);
     case --[ Octy_signature ]--2 :
         var pr_param = function (ppf, param) {
           if (param ~= undefined) {
@@ -37550,7 +37550,7 @@ function print_out_sig_item(ppf, param) {
                                   --[ End_of_format ]--0
                                 ]),
                               "%s"
-                            ]), ty == "_" ? ty : "'" + ty);
+                            ]), ty == "_" ? ty : "'" .. ty);
             };
             var match = ext$1.oext_type_params;
             if (match) {
@@ -38276,7 +38276,7 @@ function print_out_type_extension(ppf, te) {
                           --[ End_of_format ]--0
                         ]),
                       "%s"
-                    ]), ty == "_" ? ty : "'" + ty);
+                    ]), ty == "_" ? ty : "'" .. ty);
     };
     var match = te.otyext_params;
     if (match) {
@@ -40301,7 +40301,7 @@ function new_name(_param) {
       name = Caml_bytes.bytes_to_string(Bytes.make(1, c));
     } else {
       var c$1 = Char.chr(97 + name_counter.contents % 26 | 0);
-      name = Caml_bytes.bytes_to_string(Bytes.make(1, c$1)) + String(name_counter.contents / 26 | 0);
+      name = Caml_bytes.bytes_to_string(Bytes.make(1, c$1)) .. String(name_counter.contents / 26 | 0);
     }
     name_counter.contents = name_counter.contents + 1 | 0;
     if (List.mem(name, named_vars.contents) or List.exists((function(name){
@@ -40349,7 +40349,7 @@ function name_of_type(t) {
           while(List.exists((function (param) {
                     return current_name.contents == param[1];
                   }), names.contents)) {
-            current_name.contents = name$1 + String(i);
+            current_name.contents = name$1 .. String(i);
             i = i + 1 | 0;
           };
           name = current_name.contents;
@@ -52382,7 +52382,7 @@ var name_counter$1 = {
 function fresh(name) {
   var current = name_counter$1.contents;
   name_counter$1.contents = name_counter$1.contents + 1 | 0;
-  return "#$" + (name + String(current));
+  return "#$" .. (name .. String(current));
 }
 
 function conv(typed) {
@@ -52883,9 +52883,9 @@ function check_deprecated(loc, attrs, s) {
                 if (match ~= undefined) {
                   var txt = match;
                   if (bs_vscode) {
-                    return prerr_warning(loc, --[ Deprecated ]--Block.__(0, [s + (" " + txt)]));
+                    return prerr_warning(loc, --[ Deprecated ]--Block.__(0, [s .. (" " .. txt)]));
                   } else {
-                    return prerr_warning(loc, --[ Deprecated ]--Block.__(0, [s + ("\n" + txt)]));
+                    return prerr_warning(loc, --[ Deprecated ]--Block.__(0, [s .. ("\n" .. txt)]));
                   }
                 } else {
                   return prerr_warning(loc, --[ Deprecated ]--Block.__(0, [s]));
@@ -53373,7 +53373,7 @@ function transl_type_param(env, styp) {
               $$Error$6,
               loc,
               empty,
-              --[ Invalid_variable_name ]--Block.__(13, ["'" + name])
+              --[ Invalid_variable_name ]--Block.__(13, ["'" .. name])
             ];
       }
       find$2(name, type_variables.contents);
@@ -53463,7 +53463,7 @@ function transl_type(env, policy, styp) {
                   $$Error$6,
                   styp.ptyp_loc,
                   env,
-                  --[ Invalid_variable_name ]--Block.__(13, ["'" + name])
+                  --[ Invalid_variable_name ]--Block.__(13, ["'" .. name])
                 ];
           }
           var ty$1;
@@ -53657,12 +53657,12 @@ function transl_type(env, policy, styp) {
                 var lid2;
                 switch (match$5.tag | 0) {
                   case --[ Lident ]--0 :
-                      lid2 = --[ Lident ]--Block.__(0, ["#" + match$5[0]]);
+                      lid2 = --[ Lident ]--Block.__(0, ["#" .. match$5[0]]);
                       break;
                   case --[ Ldot ]--1 :
                       lid2 = --[ Ldot ]--Block.__(1, [
                           match$5[0],
-                          "#" + match$5[1]
+                          "#" .. match$5[1]
                         ]);
                       break;
                   case --[ Lapply ]--2 :
@@ -54470,7 +54470,7 @@ function globalize_used_variables(env, fixed) {
                         $$Error$6,
                         loc,
                         env,
-                        --[ Unbound_type_variable ]--Block.__(0, ["'" + name])
+                        --[ Unbound_type_variable ]--Block.__(0, ["'" .. name])
                       ];
                 }
                 var v2 = new_global_var(validate_name(undefined), --[ () ]--0);
@@ -56706,7 +56706,7 @@ function disambiguate(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) {
     var tpath = match[1];
     var warn_pr = function (param) {
       var kind = type_kind == "record" ? "field" : "constructor";
-      return Curry._2(warn, lid.loc, --[ Not_principal ]--Block.__(8, ["this type-based " + (kind + " disambiguation")]));
+      return Curry._2(warn, lid.loc, --[ Not_principal ]--Block.__(8, ["this type-based " .. (kind .. " disambiguation")]));
     };
     try {
       var match$1 = disambiguate_by_type(env, tpath, scope$1);
@@ -57267,7 +57267,7 @@ function disambiguate$1(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) {
     var tpath = match[1];
     var warn_pr = function (param) {
       var kind = type_kind$1 == "record" ? "field" : "constructor";
-      return Curry._2(warn, lid.loc, --[ Not_principal ]--Block.__(8, ["this type-based " + (kind + " disambiguation")]));
+      return Curry._2(warn, lid.loc, --[ Not_principal ]--Block.__(8, ["this type-based " .. (kind .. " disambiguation")]));
     };
     try {
       var match$1 = disambiguate_by_type$1(env, tpath, scope$1);
@@ -58296,7 +58296,7 @@ function type_self_pattern(cl_num, privty, val_env, met_env, par_env, spat) {
                   }
                 ])),
           {
-            txt: "selfpat-" + cl_num,
+            txt: "selfpat-" .. cl_num,
             loc: none
           }
         ]));
@@ -59242,7 +59242,7 @@ function type_expect_(in_function, env, sexp, ty_expected) {
         } else {
           switch (match$2.tag | 0) {
             case --[ Val_ivar ]--1 :
-                var match$3 = lookup_value$1(--[ Lident ]--Block.__(0, ["self-" + match$2[1]]), env);
+                var match$3 = lookup_value$1(--[ Lident ]--Block.__(0, ["self-" .. match$2[1]]), env);
                 var match$4 = lid.txt;
                 var tmp$1;
                 switch (match$4.tag | 0) {
@@ -59271,7 +59271,7 @@ function type_expect_(in_function, env, sexp, ty_expected) {
                   ]);
                 break;
             case --[ Val_self ]--2 :
-                var match$5 = lookup_value$1(--[ Lident ]--Block.__(0, ["self-" + match$2[2]]), env);
+                var match$5 = lookup_value$1(--[ Lident ]--Block.__(0, ["self-" .. match$2[2]]), env);
                 tmp = --[ Texp_ident ]--Block.__(0, [
                     match$5[0],
                     lid,
@@ -60549,8 +60549,8 @@ function type_expect_(in_function, env, sexp, ty_expected) {
                       }
                       throw exn$6;
                     }
-                    var match$51 = lookup_value$1(--[ Lident ]--Block.__(0, ["selfpat-" + cl_num]), env);
-                    var match$52 = lookup_value$1(--[ Lident ]--Block.__(0, ["self-" + cl_num]), env);
+                    var match$51 = lookup_value$1(--[ Lident ]--Block.__(0, ["selfpat-" .. cl_num]), env);
+                    var match$52 = lookup_value$1(--[ Lident ]--Block.__(0, ["self-" .. cl_num]), env);
                     var desc$3 = match$51[1];
                     var match$53 = desc$3.val_kind;
                     if (typeof match$53 == "number") {
@@ -60761,7 +60761,7 @@ function type_expect_(in_function, env, sexp, ty_expected) {
             exit$4 = 1;
           } else if (match$60[0]) {
             var newval = type_expect(undefined, env, match[1], instance(undefined, env, desc$4.val_type));
-            var match$61 = lookup_value$1(--[ Lident ]--Block.__(0, ["self-" + match$60[1]]), env);
+            var match$61 = lookup_value$1(--[ Lident ]--Block.__(0, ["self-" .. match$60[1]]), env);
             return rue({
                         exp_desc: --[ Texp_setinstvar ]--Block.__(21, [
                             match$61[0],
@@ -66055,7 +66055,7 @@ function name_recursion(sdecl, id, decl) {
 function transl_type_decl(env, rec_flag, sdecl_list) {
   var fixed_types = List.filter(is_fixed_type)(sdecl_list);
   var sdecl_list$1 = Pervasives.$at(List.map((function (sdecl) {
-              var ptype_name_txt = sdecl.ptype_name.txt + "#row";
+              var ptype_name_txt = sdecl.ptype_name.txt .. "#row";
               var ptype_name_loc = sdecl.ptype_name.loc;
               var ptype_name = {
                 txt: ptype_name_txt,
@@ -66338,7 +66338,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) {
     if (is_fixed_type(sdecl)) {
       var match$5;
       try {
-        match$5 = lookup_type$1(--[ Lident ]--Block.__(0, [id.name + "#row"]), env);
+        match$5 = lookup_type$1(--[ Lident ]--Block.__(0, [id.name .. "#row"]), env);
       }
       catch (exn){
         if (exn == Caml_builtin_exceptions.not_found) {
@@ -67854,7 +67854,7 @@ function report_error$5(ppf, param) {
                         return explain_unbound(ppf$1, tv, match$3[0], (function (param) {
                                       return param[2];
                                     }), "method", (function (param) {
-                                      return param[0] + ": ";
+                                      return param[0] .. ": ";
                                     }));
                       }
                   case --[ Tvariant ]--8 :
@@ -67882,7 +67882,7 @@ function report_error$5(ppf, param) {
                                         }
                                       }
                                     }), "case", (function (param) {
-                                      return "`" + (param[0] + " of ");
+                                      return "`" .. (param[0] .. " of ");
                                     }));
                       }
                   default:
@@ -67896,13 +67896,13 @@ function report_error$5(ppf, param) {
             return explain_unbound(ppf, ty$4, match[0], (function (c) {
                           return newty2(100000000, --[ Ttuple ]--Block.__(2, [c.cd_args]));
                         }), "case", (function (c) {
-                          return c.cd_id.name + " of ";
+                          return c.cd_id.name .. " of ";
                         }));
           } else {
             return explain_unbound(ppf, ty$4, match[0], (function (l) {
                           return l.ld_type;
                         }), "field", (function (l) {
-                          return l.ld_id.name + ": ";
+                          return l.ld_id.name .. ": ";
                         }));
           }
       case --[ Not_open_type ]--10 :
@@ -68161,12 +68161,12 @@ function report_error$5(ppf, param) {
             var inj = param[2] ? "injective " : "";
             if (param[0]) {
               if (n) {
-                return inj + "invariant";
+                return inj .. "invariant";
               } else {
-                return inj + "covariant";
+                return inj .. "covariant";
               }
             } else if (n) {
-              return inj + "contravariant";
+              return inj .. "contravariant";
             } else if (inj == "") {
               return "unrestricted";
             } else {
@@ -69002,7 +69002,7 @@ function make_method(loc, cl_num, expr) {
                       txt: "self-*",
                       loc: loc
                     }), {
-                  txt: "self-" + cl_num,
+                  txt: "self-" .. cl_num,
                   loc: loc
                 }), expr);
 }
@@ -70800,7 +70800,7 @@ function type_classes(define_class, approx, kind, env, cls) {
                   create(cl.pci_name.txt),
                   create(cl.pci_name.txt),
                   create(cl.pci_name.txt),
-                  create("#" + cl.pci_name.txt)
+                  create("#" .. cl.pci_name.txt)
                 ];
         }), cls);
   init_def(currentstamp.contents);
@@ -72896,7 +72896,7 @@ function merge_constraint(initial_env, loc, sg, constr) {
                           type_loc: decl_row_type_loc,
                           type_attributes: --[ [] ]--0
                         };
-                        var id_row = create(s + "#row");
+                        var id_row = create(s .. "#row");
                         var initial_env$1 = add_type$1(true, id_row, decl_row, initial_env);
                         var tdecl = transl_with_constraint(initial_env$1, id, --[ Pident ]--Block.__(0, [id_row]), decl, sdecl);
                         var newdecl = tdecl.typ_type;
@@ -72976,7 +72976,7 @@ function merge_constraint(initial_env, loc, sg, constr) {
                   
                 }
                 if (exit == 2) {
-                  if (id.name == s + "#row") {
+                  if (id.name == s .. "#row") {
                     _row_id = id;
                     _sg = rem;
                     continue ;
@@ -75883,12 +75883,12 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
               simple_sg
             ];
     } else {
-      var sourceintf = chop_extension_if_any(sourcefile) + interface_suffix.contents;
+      var sourceintf = chop_extension_if_any(sourcefile) .. interface_suffix.contents;
       var mli_status = assume_no_mli.contents;
       if (mli_status == --[ Mli_na ]--0 and Caml_external_polyfill.resolve("caml_sys_file_exists")(sourceintf) or mli_status == --[ Mli_exists ]--1) {
         var intf_file;
         try {
-          intf_file = find_in_path_uncap(load_path.contents, modulename + ".cmi");
+          intf_file = find_in_path_uncap(load_path.contents, modulename .. ".cmi");
         }
         catch (exn){
           if (exn == Caml_builtin_exceptions.not_found) {
@@ -75904,7 +75904,7 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
         var dclsig = read_signature(modulename, intf_file);
         var coercion = compunit(initial_env, sourcefile, sg, intf_file, dclsig);
         force_delayed_checks(--[ () ]--0);
-        save_cmt(outputprefix + ".cmt", modulename, --[ Implementation ]--Block.__(1, [str]), sourcefile, initial_env, undefined);
+        save_cmt(outputprefix .. ".cmt", modulename, --[ Implementation ]--Block.__(1, [str]), sourcefile, initial_env, undefined);
         return --[ tuple ]--[
                 str,
                 coercion,
@@ -75951,8 +75951,8 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
         var coercion$1 = compunit(initial_env, sourcefile, sg, "(inferred signature)", simple_sg);
         force_delayed_checks(--[ () ]--0);
         if (!dont_write_files.contents) {
-          var sg$1 = save_signature(simple_sg, modulename, outputprefix + ".cmi");
-          save_cmt(outputprefix + ".cmt", modulename, --[ Implementation ]--Block.__(1, [str]), sourcefile, initial_env, sg$1);
+          var sg$1 = save_signature(simple_sg, modulename, outputprefix .. ".cmi");
+          save_cmt(outputprefix .. ".cmt", modulename, --[ Implementation ]--Block.__(1, [str]), sourcefile, initial_env, sg$1);
         }
         return --[ tuple ]--[
                 str,
@@ -75964,7 +75964,7 @@ function type_implementation_more(sourcefile, outputprefix, modulename, initial_
     }
   }
   catch (e){
-    save_cmt(outputprefix + ".cmt", modulename, --[ Partial_implementation ]--Block.__(3, [$$Array.of_list(saved_types.contents)]), sourcefile, initial_env, undefined);
+    save_cmt(outputprefix .. ".cmt", modulename, --[ Partial_implementation ]--Block.__(3, [$$Array.of_list(saved_types.contents)]), sourcefile, initial_env, undefined);
     throw e;
   }
 }
@@ -76544,7 +76544,7 @@ function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
-      loc + (" id " + String(test_id.contents)),
+      loc .. (" id " .. String(test_id.contents)),
       (function (param) {
           return --[ Eq ]--Block.__(0, [
                     x,

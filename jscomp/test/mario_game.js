@@ -30,7 +30,7 @@ function setup_sprite(loopOpt, bbox_offsetOpt, bbox_sizeOpt, img_src, max_frames
         0,
         0
       ]) ? frame_size : bbox_size;
-  var img_src$1 = "./sprites/" + img_src;
+  var img_src$1 = "./sprites/" .. img_src;
   return {
           max_frames: max_frames,
           max_ticks: max_ticks,
@@ -1463,8 +1463,8 @@ function hud(canvas, score, coins) {
   var coin_string = String(coins);
   var context = canvas.getContext("2d");
   context.font = "10px 'Press Start 2P'";
-  context.fillText("Score: " + score_string, canvas.width - 140, 18);
-  context.fillText("Coins: " + coin_string, 120, 18);
+  context.fillText("Score: " .. score_string, canvas.width - 140, 18);
+  context.fillText("Coins: " .. coin_string, 120, 18);
   return --[ () ]--0;
 }
 
@@ -3289,7 +3289,7 @@ function inc_counter(param) {
 
 function preload(param) {
   return List.map((function (img_src) {
-                var img_src$1 = "sprites/" + img_src;
+                var img_src$1 = "sprites/" .. img_src;
                 var img = document.createElement("img");
                 img.src = img_src$1;
                 img.addEventListener("load", (function (ev) {

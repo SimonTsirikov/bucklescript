@@ -1629,7 +1629,7 @@ var ksprintf_suites_000 = --[ tuple ]--[
   (function (param) {
       var f = function (fmt) {
         return Format.ksprintf((function (x) {
-                      return x + x;
+                      return x .. x;
                     }), fmt);
       };
       return --[ Eq ]--Block.__(0, [

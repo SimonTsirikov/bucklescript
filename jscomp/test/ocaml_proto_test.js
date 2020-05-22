@@ -361,7 +361,7 @@ function string_of_programmatic_error(e) {
         break;
     
   }
-  return "Programatic_error" + tmp;
+  return "Programatic_error" .. tmp;
 }
 
 var Compilation_error = Caml_exceptions.create("Ocaml_proto_test.Exception.Compilation_error");
@@ -1226,7 +1226,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return _1 + _2[1];
+      return _1 .. _2[1];
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
@@ -1717,7 +1717,7 @@ function string_of_field_type(param) {
     var param$1 = param[0];
     var match = param$1.udt_module;
     if (match ~= undefined) {
-      return match + ("." + param$1.udt_type_name);
+      return match .. ("." .. param$1.udt_type_name);
     } else {
       return param$1.udt_type_name;
     }
@@ -1731,10 +1731,10 @@ function string_of_record_field_type(param) {
     case --[ Rft_required ]--0 :
         return string_of_field_type(param[0][0]);
     case --[ Rft_optional ]--1 :
-        return string_of_field_type(param[0][0]) + " option";
+        return string_of_field_type(param[0][0]) .. " option";
     case --[ Rft_repeated_field ]--2 :
         var match = param[0];
-        return string_of_field_type(match[1]) + (" " + (
+        return string_of_field_type(match[1]) .. (" " .. (
                   match[0] ? "Pbrt.Repeated_field.t" : "list"
                 ));
     case --[ Rft_associative_field ]--3 :
@@ -1917,7 +1917,7 @@ function print(scope) {
         } else {
           _param = param[1];
           _acc = --[ :: ]--[
-            indentation_prefix(i) + match[0],
+            indentation_prefix(i) .. match[0],
             acc
           ];
           continue ;
@@ -2144,12 +2144,12 @@ function decode_field_f(field_type, pk) {
     var t = field_type[0];
     var f_name = function_name_of_user_defined("decode", t);
     if (t.udt_nested) {
-      return f_name + " (Pbrt.Decoder.nested d)";
+      return f_name .. " (Pbrt.Decoder.nested d)";
     } else {
-      return f_name + " d";
+      return f_name .. " d";
     }
   } else {
-    return decode_basic_type(field_type[0], pk) + " d";
+    return decode_basic_type(field_type[0], pk) .. " d";
   }
 }
 
@@ -2253,7 +2253,7 @@ function gen_decode_record(and_, param, sc) {
           }));
     return line$1(sc, ")");
   };
-  var mutable_record_name = r_name + "_mutable";
+  var mutable_record_name = r_name .. "_mutable";
   line$1(sc, Curry._2(Printf.sprintf(--[ Format ]--[
                 --[ String ]--Block.__(2, [
                     --[ No_padding ]--0,
@@ -3205,7 +3205,7 @@ function gen_pp_record(and_, param, sc) {
                                                                 ])
                                                             ]),
                                                           "Pbrt.Pp.pp_record_field \"%s\" %s fmt %s;"
-                                                        ]), rf_label, "pp_" + rf_field_type[0].v_name, var_name));
+                                                        ]), rf_label, "pp_" .. rf_field_type[0].v_name, var_name));
                                   
                                 }
                               }), r_fields);
@@ -3819,9 +3819,9 @@ function strong_connect(g, sccs, stack, index, v) {
                   ])
               ]),
             "[Graph]   -> stack : %s\n"
-          ]), "[" + ($$String.concat(";", List.map((function (param) {
+          ]), "[" .. ($$String.concat(";", List.map((function (param) {
                     return String(param.core.id);
-                  }), stack$2)) + "]"));
+                  }), stack$2)) .. "]"));
   if (eq_value(--[ tuple ]--[
           v.lowlink,
           v.index
@@ -4484,7 +4484,7 @@ function compile_message_p2(types, param, message) {
     } else {
       var unresolved = field_type[0];
       var type_name = unresolved.type_name;
-      endline("[pbtt] " + string_of_unresolved(unresolved));
+      endline("[pbtt] " .. string_of_unresolved(unresolved));
       var search_scopes$1 = search_scopes(unresolved.scope, unresolved.from_root);
       Curry._1(log(--[ Format ]--[
                 --[ String_literal ]--Block.__(11, [
@@ -4746,7 +4746,7 @@ function gen_type_record(mutable_, and_, param, sc) {
       return "";
     }
   };
-  var r_name$1 = mutable_$1 ? r_name + "_mutable" : r_name;
+  var r_name$1 = mutable_$1 ? r_name .. "_mutable" : r_name;
   line$1(sc, Curry._2(Printf.sprintf(--[ Format ]--[
                 --[ String ]--Block.__(2, [
                     --[ No_padding ]--0,
@@ -5604,7 +5604,7 @@ function default_value_of_field_type(field_name, field_type, field_default) {
   if (typeof field_type == "number") {
     return "()";
   } else if (field_type.tag) {
-    return function_name_of_user_defined("default", field_type[0]) + " ()";
+    return function_name_of_user_defined("default", field_type[0]) .. " ()";
   } else {
     var field_name$1 = field_name;
     var basic_type = field_type[0];
@@ -5838,7 +5838,7 @@ function gen_default_record(mutable_, and_, param, sc) {
   var r_name = param.r_name;
   var fields_default_info = List.map(record_field_default_info, param.r_fields);
   if (mutable_ ~= undefined) {
-    var rn = r_name + "_mutable";
+    var rn = r_name .. "_mutable";
     line$1(sc, Curry._3(Printf.sprintf(--[ Format ]--[
                   --[ String ]--Block.__(2, [
                       --[ No_padding ]--0,
@@ -6356,7 +6356,7 @@ function fix_ocaml_keyword_conflict(s) {
     case "when" :
     case "while" :
     case "with" :
-        return s + "_";
+        return s .. "_";
     default:
       return s;
   }
@@ -6388,7 +6388,7 @@ function module_of_file_name(file_name) {
     }
     throw exn;
   }
-  return constructor_name($$String.sub(file_name$1, 0, dot_index) + "_pb");
+  return constructor_name($$String.sub(file_name$1, 0, dot_index) .. "_pb");
 }
 
 function type_name(message_scope, name) {
@@ -7048,7 +7048,7 @@ function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
-      loc + (" id " + String(test_id.contents)),
+      loc .. (" id " .. String(test_id.contents)),
       (function (param) {
           return --[ Eq ]--Block.__(0, [
                     x,

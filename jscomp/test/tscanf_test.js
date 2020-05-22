@@ -865,7 +865,7 @@ function test10(param) {
               ]),
             "%s %s %S %s %S %s"
           ]), (function (s1, s2, s3, s4, s5, s6) {
-          return s1 + (s2 + (s3 + (s4 + (s5 + s6))));
+          return s1 .. (s2 .. (s3 .. (s4 .. (s5 .. s6))));
         }));
   if (res == "Unechaine:celle-cietcelle-la!" and unit("\"a\\\n  b\"") == "ab" and unit("\"\\\n  ab\"") == "ab" and unit("\"\n\\\n  ab\"") == "\nab" and unit("\"\n\\\n  a\nb\"") == "\na\nb" and unit("\"\n\\\n  \\\n  a\nb\"") == "\na\nb" and unit("\"\n\\\n  a\n\\\nb\\\n\"") == "\na\nb") {
     return unit("\"a\\\n  \"") == "a";
@@ -4469,7 +4469,7 @@ function test58(param) {
                 ]),
               "%s@%%%s"
             ]), (function (prim, prim$1) {
-            return prim + prim$1;
+            return prim .. prim$1;
           })) == "string1string2" and Curry._1(Scanf.sscanf("string1@string2", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
@@ -4484,7 +4484,7 @@ function test58(param) {
                 ]),
               "%[a-z0-9]@%s"
             ]), (function (prim, prim$1) {
-            return prim + prim$1;
+            return prim .. prim$1;
           })) == "string1string2") {
     return Curry._1(Scanf.sscanf("string1@%string2", --[ Format ]--[
                     --[ Scan_char_set ]--Block.__(20, [
@@ -4503,7 +4503,7 @@ function test58(param) {
                       ]),
                     "%[a-z0-9]%@%%%s"
                   ]), (function (prim, prim$1) {
-                  return prim + prim$1;
+                  return prim .. prim$1;
                 })) == "string1string2";
   } else {
     return false;

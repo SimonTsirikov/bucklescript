@@ -23,15 +23,15 @@ function f(param) {
 }
 
 function a(x) {
-  return "helloworldhello" + x;
+  return "helloworldhello" .. x;
 }
 
 function b(y, x) {
-  return y + ("helloworldhello" + x);
+  return y .. ("helloworldhello" .. x);
 }
 
 function c(x, y) {
-  return x + "hellohiuhi" + y;
+  return x .. "hellohiuhi" .. y;
 }
 
 function h(s, b) {

@@ -575,7 +575,7 @@ function std_include_flag(prefix) {
   if (no_std_include.contents) {
     return "";
   } else {
-    return prefix + Curry._1(Filename.quote, standard_library);
+    return prefix .. Curry._1(Filename.quote, standard_library);
   }
 }
 
@@ -1484,9 +1484,9 @@ function code_of_style(param) {
       
     }
   } else if (param.tag) {
-    return "4" + ansi_of_color(param[0]);
+    return "4" .. ansi_of_color(param[0]);
   } else {
-    return "3" + ansi_of_color(param[0]);
+    return "3" .. ansi_of_color(param[0]);
   }
 }
 
@@ -1494,7 +1494,7 @@ function ansi_of_style_l(l) {
   var s = l ? (
       l[1] ? $$String.concat(";", List.map(code_of_style, l)) : code_of_style(l[0])
     ) : "0";
-  return "\x1b[" + (s + "m");
+  return "\x1b[" .. (s .. "m");
 }
 
 var default_styles = {
@@ -2272,13 +2272,13 @@ function message(param) {
   } else {
     switch (param.tag | 0) {
       case --[ Deprecated ]--0 :
-          return "deprecated: " + param[0];
+          return "deprecated: " .. param[0];
       case --[ Fragile_match ]--1 :
           var s = param[0];
           if (s == "") {
             return "this pattern-matching is fragile.";
           } else {
-            return "this pattern-matching is fragile.\nIt will remain exhaustive when constructors are added to type " + (s + ".");
+            return "this pattern-matching is fragile.\nIt will remain exhaustive when constructors are added to type " .. (s .. ".");
           }
       case --[ Method_override ]--2 :
           var match = param[0];
@@ -2297,7 +2297,7 @@ function message(param) {
                           ]
                         ]);
             } else {
-              return "the method " + (lab + " is overridden.");
+              return "the method " .. (lab .. " is overridden.");
             }
           } else {
             throw [
@@ -2314,10 +2314,10 @@ function message(param) {
           if (s$1 == "") {
             return "this pattern-matching is not exhaustive.";
           } else {
-            return "this pattern-matching is not exhaustive.\nHere is an example of a value that is not matched:\n" + s$1;
+            return "this pattern-matching is not exhaustive.\nHere is an example of a value that is not matched:\n" .. s$1;
           }
       case --[ Non_closed_record_pattern ]--4 :
-          return "the following labels are not bound in this record pattern:\n" + (param[0] + "\nEither bind these labels explicitly or add '; _' to the pattern.");
+          return "the following labels are not bound in this record pattern:\n" .. (param[0] .. "\nEither bind these labels explicitly or add '; _' to the pattern.");
       case --[ Instance_variable_override ]--5 :
           var match$1 = param[0];
           if (match$1) {
@@ -2333,9 +2333,9 @@ function message(param) {
                               slist$1
                             ]
                           ]
-                        ]) + "\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)";
+                        ]) .. "\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)";
             } else {
-              return "the instance variable " + (lab$1 + " is overridden.\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)");
+              return "the instance variable " .. (lab$1 .. " is overridden.\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)");
             }
           } else {
             throw [
@@ -2348,20 +2348,20 @@ function message(param) {
                 ];
           }
       case --[ Implicit_public_methods ]--6 :
-          return "the following private methods were made public implicitly:\n " + ($$String.concat(" ", param[0]) + ".");
+          return "the following private methods were made public implicitly:\n " .. ($$String.concat(" ", param[0]) .. ".");
       case --[ Undeclared_virtual_method ]--7 :
-          return "the virtual method " + (param[0] + " is not declared.");
+          return "the virtual method " .. (param[0] .. " is not declared.");
       case --[ Not_principal ]--8 :
-          return param[0] + " is not principal.";
+          return param[0] .. " is not principal.";
       case --[ Without_principality ]--9 :
-          return param[0] + " without principality.";
+          return param[0] .. " without principality.";
       case --[ Preprocessor ]--10 :
           return param[0];
       case --[ Bad_module_name ]--11 :
-          return "bad source file name: \"" + (param[0] + "\" is not a valid module name.");
+          return "bad source file name: \"" .. (param[0] .. "\" is not a valid module name.");
       case --[ Unused_var ]--12 :
       case --[ Unused_var_strict ]--13 :
-          return "unused variable " + (param[0] + ".");
+          return "unused variable " .. (param[0] .. ".");
       case --[ Duplicate_definitions ]--14 :
           return Curry._4(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -2418,41 +2418,41 @@ function message(param) {
                           "files %s and %s both define a module named %s"
                         ]), param[1], param[2], param[0]);
       case --[ Unused_value_declaration ]--16 :
-          return "unused value " + (param[0] + ".");
+          return "unused value " .. (param[0] .. ".");
       case --[ Unused_open ]--17 :
-          return "unused open " + (param[0] + ".");
+          return "unused open " .. (param[0] .. ".");
       case --[ Unused_type_declaration ]--18 :
-          return "unused type " + (param[0] + ".");
+          return "unused type " .. (param[0] .. ".");
       case --[ Unused_for_index ]--19 :
-          return "unused for-loop index " + (param[0] + ".");
+          return "unused for-loop index " .. (param[0] .. ".");
       case --[ Unused_ancestor ]--20 :
-          return "unused ancestor variable " + (param[0] + ".");
+          return "unused ancestor variable " .. (param[0] .. ".");
       case --[ Unused_constructor ]--21 :
           var s$2 = param[0];
           if (param[1]) {
-            return "constructor " + (s$2 + " is never used to build values.\n(However, this constructor appears in patterns.)");
+            return "constructor " .. (s$2 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
           } else if (param[2]) {
-            return "constructor " + (s$2 + " is never used to build values.\nIts type is exported as a private type.");
+            return "constructor " .. (s$2 .. " is never used to build values.\nIts type is exported as a private type.");
           } else {
-            return "unused constructor " + (s$2 + ".");
+            return "unused constructor " .. (s$2 .. ".");
           }
       case --[ Unused_extension ]--22 :
           var s$3 = param[0];
           if (param[1]) {
-            return "extension constructor " + (s$3 + " is never used to build values.\n(However, this constructor appears in patterns.)");
+            return "extension constructor " .. (s$3 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
           } else if (param[2]) {
-            return "extension constructor " + (s$3 + " is never used to build values.\nIt is exported or rebound as a private extension.");
+            return "extension constructor " .. (s$3 .. " is never used to build values.\nIt is exported or rebound as a private extension.");
           } else {
-            return "unused extension constructor " + (s$3 + ".");
+            return "unused extension constructor " .. (s$3 .. ".");
           }
       case --[ Name_out_of_scope ]--23 :
           var slist$2 = param[1];
           var ty = param[0];
           if (slist$2 and !slist$2[1] and !param[2]) {
-            return slist$2[0] + (" was selected from type " + (ty + ".\nIt is not visible in the current scope, and will not \nbe selected if the type becomes unknown."));
+            return slist$2[0] .. (" was selected from type " .. (ty .. ".\nIt is not visible in the current scope, and will not \nbe selected if the type becomes unknown."));
           }
           if (param[2]) {
-            return "this record of type " + (ty + (" contains fields that are \nnot visible in the current scope: " + ($$String.concat(" ", slist$2) + ".\nThey will not be selected if the type becomes unknown.")));
+            return "this record of type " .. (ty .. (" contains fields that are \nnot visible in the current scope: " .. ($$String.concat(" ", slist$2) .. ".\nThey will not be selected if the type becomes unknown.")));
           } else {
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -2467,10 +2467,10 @@ function message(param) {
       case --[ Ambiguous_name ]--24 :
           var slist$3 = param[0];
           if (slist$3 and !slist$3[1] and !param[2]) {
-            return slist$3[0] + (" belongs to several types: " + ($$String.concat(" ", param[1]) + "\nThe first one was selected. Please disambiguate if this is wrong."));
+            return slist$3[0] .. (" belongs to several types: " .. ($$String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong."));
           }
           if (param[2]) {
-            return "these field labels belong to several types: " + ($$String.concat(" ", param[1]) + "\nThe first one was selected. Please disambiguate if this is wrong.");
+            return "these field labels belong to several types: " .. ($$String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong.");
           } else {
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -2483,9 +2483,9 @@ function message(param) {
           }
           break;
       case --[ Disambiguated_name ]--25 :
-          return "this use of " + (param[0] + " required disambiguation.");
+          return "this use of " .. (param[0] .. " required disambiguation.");
       case --[ Nonoptional_label ]--26 :
-          return "the label " + (param[0] + " is not optional.");
+          return "the label " .. (param[0] .. " is not optional.");
       case --[ Open_shadow_identifier ]--27 :
           return Curry._2(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -2579,7 +2579,7 @@ function message(param) {
                           "implicit elimination of optional argument%s %s"
                         ]), List.length(sl) == 1 ? "" : "s", $$String.concat(", ", sl));
       case --[ No_cmi_file ]--32 :
-          return "no cmi file was found in path for module " + param[0];
+          return "no cmi file was found in path for module " .. param[0];
       case --[ Bad_docstring ]--33 :
           if (param[0]) {
             return "unattached documentation comment (ignored)";
@@ -2587,11 +2587,11 @@ function message(param) {
             return "ambiguous documentation comment";
           }
       case --[ Bs_unused_attribute ]--34 :
-          return "Unused BuckleScript attribute: " + param[0];
+          return "Unused BuckleScript attribute: " .. param[0];
       case --[ Bs_ffi_warning ]--35 :
-          return "BuckleScript FFI warning: " + param[0];
+          return "BuckleScript FFI warning: " .. param[0];
       case --[ Bs_derive_warning ]--36 :
-          return "BuckleScript bs.deriving warning: " + param[0];
+          return "BuckleScript bs.deriving warning: " .. param[0];
       
     }
   }
@@ -6375,7 +6375,7 @@ function neg_float_string(f) {
   if (f.length ~= 0 and Caml_string.get(f, 0) == --[ "-" ]--45) {
     return $$String.sub(f, 1, f.length - 1 | 0);
   } else {
-    return "-" + f;
+    return "-" .. f;
   }
 }
 
@@ -6533,7 +6533,7 @@ function array_function(str, name) {
   return {
           txt: --[ Ldot ]--Block.__(1, [
               --[ Lident ]--Block.__(0, [str]),
-              fast.contents ? "unsafe_" + name : name
+              fast.contents ? "unsafe_" .. name : name
             ]),
           loc: symbol_gloc(--[ () ]--0)
         };
@@ -8189,7 +8189,7 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcty(--[ Pcty_arrow ]--Block.__(2, [
-                    "?" + _2,
+                    "?" .. _2,
                     mkoption(_4),
                     _6
                   ]));
@@ -8199,7 +8199,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcty(--[ Pcty_arrow ]--Block.__(2, [
-                    "?" + _1,
+                    "?" .. _1,
                     mkoption(_2),
                     _4
                   ]));
@@ -8464,7 +8464,7 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
-              "?" + _3[0],
+              "?" .. _3[0],
               _4,
               _3[1]
             ];
@@ -8472,7 +8472,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
-              "?" + _2[0],
+              "?" .. _2[0],
               undefined,
               _2[1]
             ];
@@ -8482,7 +8482,7 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
-              "?" + _1,
+              "?" .. _1,
               _4,
               _3
             ];
@@ -8491,7 +8491,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
-              "?" + _1,
+              "?" .. _1,
               undefined,
               _2
             ];
@@ -8944,7 +8944,7 @@ var yyact = [
         
       }
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
-                    mkoperator("~" + name, 1),
+                    mkoperator("~" .. name, 1),
                     --[ :: ]--[
                       --[ tuple ]--[
                         "",
@@ -8987,7 +8987,7 @@ var yyact = [
         return mkexp(desc);
       }
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
-                    mkoperator("~" + name, 1),
+                    mkoperator("~" .. name, 1),
                     --[ :: ]--[
                       --[ tuple ]--[
                         "",
@@ -9737,7 +9737,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
-              "?" + _2[0],
+              "?" .. _2[0],
               _2[1]
             ];
     }),
@@ -9745,7 +9745,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
-              "?" + _1,
+              "?" .. _1,
               _2
             ];
     }),
@@ -11107,7 +11107,7 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_arrow ]--Block.__(1, [
-                    "?" + _2,
+                    "?" .. _2,
                     mkoption(_4),
                     _6
                   ]));
@@ -11117,7 +11117,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_arrow ]--Block.__(1, [
-                    "?" + _1,
+                    "?" .. _1,
                     mkoption(_2),
                     _4
                   ]));
@@ -11608,7 +11608,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[ Const_float ]--Block.__(3, ["-" + _2]);
+      return --[ Const_float ]--Block.__(3, ["-" .. _2]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
@@ -12189,7 +12189,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
       return {
-              txt: _1 + ("." + _3.txt),
+              txt: _1 .. ("." .. _3.txt),
               loc: symbol_rloc(--[ () ]--0)
             };
     }),
@@ -13695,19 +13695,19 @@ function char_for_hexadecimal_code(lexbuf, i) {
 }
 
 function cvt_int_literal(s) {
-  return -Caml_format.caml_int_of_string("-" + s) | 0;
+  return -Caml_format.caml_int_of_string("-" .. s) | 0;
 }
 
 function cvt_int32_literal(s) {
-  return -Caml_format.caml_int32_of_string("-" + $$String.sub(s, 0, s.length - 1 | 0)) | 0;
+  return -Caml_format.caml_int32_of_string("-" .. $$String.sub(s, 0, s.length - 1 | 0)) | 0;
 }
 
 function cvt_int64_literal(s) {
-  return Caml_int64.neg(Caml_format.caml_int64_of_string("-" + $$String.sub(s, 0, s.length - 1 | 0)));
+  return Caml_int64.neg(Caml_format.caml_int64_of_string("-" .. $$String.sub(s, 0, s.length - 1 | 0)));
 }
 
 function cvt_nativeint_literal(s) {
-  return -Caml_format.caml_nativeint_of_string("-" + $$String.sub(s, 0, s.length - 1 | 0));
+  return -Caml_format.caml_nativeint_of_string("-" .. $$String.sub(s, 0, s.length - 1 | 0));
 }
 
 function remove_underscores(s) {
@@ -14169,7 +14169,7 @@ function token(lexbuf) {
           var stars = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
           var match$2 = with_comment_buffer((function(stars){
               return function (lexbuf) {
-                store_string("*" + stars);
+                store_string("*" .. stars);
                 return __ocaml_lex_comment_rec(lexbuf, 132);
               }
               }(stars)), lexbuf$1);

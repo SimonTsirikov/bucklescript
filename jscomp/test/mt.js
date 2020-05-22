@@ -190,7 +190,7 @@ function from_pair_suites(name, suites) {
                           console.log("failed");
                           return --[ () ]--0;
                       case --[ FailWith ]--9 :
-                          console.log("failed: " + match[0]);
+                          console.log("failed: " .. match[0]);
                           return --[ () ]--0;
                       
                     }
@@ -233,7 +233,7 @@ function eq_suites(test_id, suites, loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
-      loc + (" id " + String(test_id.contents)),
+      loc .. (" id " .. String(test_id.contents)),
       (function (param) {
           return --[ Eq ]--Block.__(0, [
                     x,
@@ -250,7 +250,7 @@ function bool_suites(test_id, suites, loc, x) {
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
-      loc + (" id " + String(test_id.contents)),
+      loc .. (" id " .. String(test_id.contents)),
       (function (param) {
           return --[ Ok ]--Block.__(4, [x]);
         })
@@ -264,7 +264,7 @@ function throw_suites(test_id, suites, loc, x) {
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
-      loc + (" id " + String(test_id.contents)),
+      loc .. (" id " .. String(test_id.contents)),
       (function (param) {
           return --[ ThrowAny ]--Block.__(7, [x]);
         })

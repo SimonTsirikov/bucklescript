@@ -74,7 +74,7 @@ function is_pos_pow(n) {
 
 function failwithf(loc, fmt) {
   return Format.ksprintf((function (s) {
-                var s$1 = loc + s;
+                var s$1 = loc .. s;
                 throw [
                       Caml_builtin_exceptions.failure,
                       s$1
@@ -149,7 +149,7 @@ function dump(r) {
     var t = r.tag | 0;
     if (is_list(r)) {
       var fields = get_list(r);
-      return "[" + ($$String.concat("; ", List.map(dump, fields)) + "]");
+      return "[" .. ($$String.concat("; ", List.map(dump, fields)) .. "]");
     } else if (t ~= 0) {
       if (t == Obj.lazy_tag) {
         return "<lazy>";
@@ -186,16 +186,16 @@ function dump(r) {
                 ]
               ];
         }
-        return "Object #" + (dump(match[1]) + (" (" + ($$String.concat(", ", List.map(dump, match[2])) + ")")));
+        return "Object #" .. (dump(match[1]) .. (" (" .. ($$String.concat(", ", List.map(dump, match[2])) .. ")")));
       } else if (t == Obj.infix_tag) {
         return "<infix>";
       } else if (t == Obj.forward_tag) {
         return "<forward>";
       } else if (t < Obj.no_scan_tag) {
         var fields$2 = get_fields(--[ [] ]--0, s);
-        return "Tag" + (String(t) + (" (" + ($$String.concat(", ", List.map(dump, fields$2)) + ")")));
+        return "Tag" .. (String(t) .. (" (" .. ($$String.concat(", ", List.map(dump, fields$2)) .. ")")));
       } else if (t == Obj.string_tag) {
-        return "\"" + ($$String.escaped(r) + "\"");
+        return "\"" .. ($$String.escaped(r) .. "\"");
       } else if (t == Obj.double_tag) {
         return Pervasives.string_of_float(r);
       } else if (t == Obj.abstract_tag) {
@@ -205,7 +205,7 @@ function dump(r) {
       } else if (t == Obj.custom_tag) {
         return "<final>";
       } else if (t == Obj.double_array_tag) {
-        return "[|" + ($$String.concat(";", $$Array.to_list($$Array.map(Pervasives.string_of_float, r))) + "|]");
+        return "[|" .. ($$String.concat(";", $$Array.to_list($$Array.map(Pervasives.string_of_float, r))) .. "|]");
       } else {
         var name = Curry._2(Printf.sprintf(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
@@ -227,11 +227,11 @@ function dump(r) {
                     ]),
                   "unknown: tag %d size %d"
                 ]), t, s);
-        return "<" + (name + ">");
+        return "<" .. (name .. ">");
       }
     } else {
       var fields$3 = get_fields(--[ [] ]--0, s);
-      return "(" + ($$String.concat(", ", List.map(dump, fields$3)) + ")");
+      return "(" .. ($$String.concat(", ", List.map(dump, fields$3)) .. ")");
     }
   }
 }

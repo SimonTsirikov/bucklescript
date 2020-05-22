@@ -34,7 +34,7 @@ function path_as_directory(x) {
   if (x == "" or Ext_string_test.ends_with(x, Filename.dir_sep)) {
     return x;
   } else {
-    return x + Filename.dir_sep;
+    return x .. Filename.dir_sep;
   }
 }
 
@@ -184,7 +184,7 @@ function node_relative_path(node_modules_shorten, file1, dep_file) {
                 ] : --[ `Dir ]--[
                   3405101,
                   absolute_path(file1[1])
-                ]) + (node_sep + Curry._1(Filename.basename, file2));
+                ]) .. (node_sep .. Curry._1(Filename.basename, file2));
   }
 }
 
@@ -389,7 +389,7 @@ if (Sys.unix) {
 } else if (Sys.win32 or false) {
   simple_convert_node_path_to_os_path = Ext_string_test.replace_slash_backward;
 } else {
-  var s = "Unknown OS : " + Sys.os_type;
+  var s = "Unknown OS : " .. Sys.os_type;
   throw [
         Caml_builtin_exceptions.failure,
         s

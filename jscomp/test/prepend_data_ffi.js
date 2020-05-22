@@ -47,7 +47,7 @@ function f(x) {
 }
 
 process.on("exit", (function (exit_code) {
-        console.log("error code: " + String(exit_code));
+        console.log("error code: " .. String(exit_code));
         return --[ () ]--0;
       }));
 

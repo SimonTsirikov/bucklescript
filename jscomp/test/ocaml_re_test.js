@@ -33,7 +33,7 @@ function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
-      loc + (" id " + String(test_id.contents)),
+      loc .. (" id " .. String(test_id.contents)),
       (function (param) {
           return --[ Eq ]--Block.__(0, [
                     x,
@@ -3024,7 +3024,7 @@ function posix_class_of_string(class_) {
     case "xdigit" :
         return xdigit;
     default:
-      var s = "Invalid pcre class: " + class_;
+      var s = "Invalid pcre class: " .. class_;
       throw [
             Caml_builtin_exceptions.invalid_argument,
             s
@@ -3786,7 +3786,7 @@ function exec(rex, pos, s) {
   return match[0];
 }
 
-var s = Caml_bytes.bytes_to_string(Bytes.make(1048575, --[ "a" ]--97)) + "b";
+var s = Caml_bytes.bytes_to_string(Bytes.make(1048575, --[ "a" ]--97)) .. "b";
 
 eq("File \"xx.ml\", line 7, characters 3-10", get(exec(compile(re(undefined, "aa?b")), undefined, s), 0), "aab");
 
