@@ -11,7 +11,7 @@ v.tl = v;
 
 var f = {
   k: (function (x, y) {
-      return x === y;
+      return x == y;
     }),
   y: "x"
 };
@@ -38,7 +38,7 @@ function uff2(f) {
 
 function uff3(f) {
   var match = f.yyyy2;
-  if (match !== undefined) {
+  if (match ~= undefined) {
     return Curry._1(match, 0);
   } else {
     return 0;
@@ -57,4 +57,4 @@ exports.uff = uff;
 exports.uff2 = uff2;
 exports.uff3 = uff3;
 exports.fx = fx;
-/*  Not a pure module */
+--[  Not a pure module ]--

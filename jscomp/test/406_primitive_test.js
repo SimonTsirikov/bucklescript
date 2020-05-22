@@ -5,7 +5,7 @@ var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -18,15 +18,15 @@ function eq(loc, x, y) {
 
 eq("File \"406_primitive_test.ml\", line 18, characters 6-13", 32, 32);
 
-var backend_type = /* Other */["BS"];
+var backend_type = --[ Other ]--["BS"];
 
-eq("File \"406_primitive_test.ml\", line 29, characters 6-13", backend_type, /* Other */["BS"]);
+eq("File \"406_primitive_test.ml\", line 29, characters 6-13", backend_type, --[ Other ]--["BS"]);
 
 function f(param) {
   var A = Caml_exceptions.create("A");
   try {
     for(var i = 0; i <= 200; ++i){
-      if (i === 10) {
+      if (i == 10) {
         throw [
               A,
               0
@@ -34,12 +34,12 @@ function f(param) {
       }
       
     }
-    return /* () */0;
+    return --[ () ]--0;
   }
   catch (raw_exn){
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] === A) {
-      return /* () */0;
+    if (exn[0] == A) {
+      return --[ () ]--0;
     } else {
       throw exn;
     }
@@ -59,4 +59,4 @@ exports.v = v;
 exports.backend_type = backend_type;
 exports.max_array_length = max_array_length;
 exports.f = f;
-/*  Not a pure module */
+--[  Not a pure module ]--

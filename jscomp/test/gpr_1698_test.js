@@ -7,19 +7,19 @@ function is_number(_expr) {
   while(true) {
     var expr = _expr;
     switch (expr.tag | 0) {
-      case /* Val */0 :
+      case --[ Val ]--0 :
           if (expr[0].tag) {
             return false;
           } else {
             return true;
           }
-      case /* Neg */1 :
+      case --[ Neg ]--1 :
           _expr = expr[0];
           continue ;
-      case /* Sum */2 :
-      case /* Pow */3 :
-      case /* Frac */4 :
-      case /* Gcd */5 :
+      case --[ Sum ]--2 :
+      case --[ Pow ]--3 :
+      case --[ Frac ]--4 :
+      case --[ Gcd ]--5 :
           return false;
       
     }
@@ -39,79 +39,79 @@ function compare(context, state, _a, _b) {
     var exit$2 = 0;
     var exit$3 = 0;
     switch (a.tag | 0) {
-      case /* Val */0 :
+      case --[ Val ]--0 :
           switch (b.tag | 0) {
-            case /* Val */0 :
+            case --[ Val ]--0 :
                 return 111;
-            case /* Neg */1 :
+            case --[ Neg ]--1 :
                 exit$3 = 5;
                 break;
-            case /* Sum */2 :
+            case --[ Sum ]--2 :
                 exit$2 = 4;
                 break;
-            case /* Frac */4 :
+            case --[ Frac ]--4 :
                 throw [
                       Caml_builtin_exceptions.assert_failure,
-                      /* tuple */[
+                      --[ tuple ]--[
                         "gpr_1698_test.ml",
                         45,
                         10
                       ]
                     ];
-            case /* Pow */3 :
-            case /* Gcd */5 :
+            case --[ Pow ]--3 :
+            case --[ Gcd ]--5 :
                 exit = 1;
                 break;
             
           }
           break;
-      case /* Neg */1 :
+      case --[ Neg ]--1 :
           _a = a[0];
           continue ;
-      case /* Sum */2 :
-      case /* Pow */3 :
+      case --[ Sum ]--2 :
+      case --[ Pow ]--3 :
           exit$3 = 5;
           break;
-      case /* Frac */4 :
+      case --[ Frac ]--4 :
           switch (b.tag | 0) {
-            case /* Val */0 :
+            case --[ Val ]--0 :
                 throw [
                       Caml_builtin_exceptions.assert_failure,
-                      /* tuple */[
+                      --[ tuple ]--[
                         "gpr_1698_test.ml",
                         45,
                         10
                       ]
                     ];
-            case /* Neg */1 :
+            case --[ Neg ]--1 :
                 exit$3 = 5;
                 break;
-            case /* Sum */2 :
+            case --[ Sum ]--2 :
                 exit$2 = 4;
                 break;
-            case /* Frac */4 :
+            case --[ Frac ]--4 :
                 na = a[0];
                 da = a[1];
                 nb = b[0];
                 db = b[1];
                 exit = 2;
                 break;
-            case /* Pow */3 :
-            case /* Gcd */5 :
+            case --[ Pow ]--3 :
+            case --[ Gcd ]--5 :
                 exit = 1;
                 break;
             
           }
           break;
-      case /* Gcd */5 :
+      case --[ Gcd ]--5 :
           switch (b.tag | 0) {
-            case /* Neg */1 :
+            case --[ Neg ]--1 :
                 exit$3 = 5;
                 break;
-            case /* Sum */2 :
+            case --[ Sum ]--2 :
                 exit$2 = 4;
                 break;
-            case /* Gcd */5 :
+            case --[ Gcd ]--5 :
                 na = a[0];
                 da = a[1];
                 nb = b[0];
@@ -124,33 +124,33 @@ function compare(context, state, _a, _b) {
           break;
       
     }
-    if (exit$3 === 5) {
-      if (b.tag === /* Neg */1) {
+    if (exit$3 == 5) {
+      if (b.tag == --[ Neg ]--1) {
         _b = b[0];
         continue ;
-      } else if (a.tag === /* Sum */2 && is_number(b)) {
+      } else if (a.tag == --[ Sum ]--2 and is_number(b)) {
         return 1;
       } else {
         exit$2 = 4;
       }
     }
-    if (exit$2 === 4) {
-      if (b.tag === /* Sum */2 && is_number(a)) {
+    if (exit$2 == 4) {
+      if (b.tag == --[ Sum ]--2 and is_number(a)) {
         return -1;
       } else {
         exit$1 = 3;
       }
     }
-    if (exit$1 === 3) {
+    if (exit$1 == 3) {
       switch (a.tag | 0) {
-        case /* Sum */2 :
+        case --[ Sum ]--2 :
             exit = 1;
             break;
-        case /* Pow */3 :
+        case --[ Pow ]--3 :
             return -1;
-        case /* Val */0 :
-        case /* Frac */4 :
-        case /* Gcd */5 :
+        case --[ Val ]--0 :
+        case --[ Frac ]--4 :
+        case --[ Gcd ]--5 :
             return 1;
         
       }
@@ -158,16 +158,16 @@ function compare(context, state, _a, _b) {
     switch (exit) {
       case 1 :
           switch (b.tag | 0) {
-            case /* Pow */3 :
+            case --[ Pow ]--3 :
                 return 1;
-            case /* Gcd */5 :
+            case --[ Gcd ]--5 :
                 return -1;
             default:
               return -1;
           }
       case 2 :
           var denom = compare(context, state, da, db);
-          if (denom === 0) {
+          if (denom == 0) {
             _b = nb;
             _a = na;
             continue ;
@@ -179,18 +179,18 @@ function compare(context, state, _a, _b) {
   };
 }
 
-var a = /* Sum */Block.__(2, [/* :: */[
-      /* Val */Block.__(0, [/* Symbol */Block.__(1, ["a"])]),
-      /* :: */[
-        /* Val */Block.__(0, [/* Natural */Block.__(0, [2])]),
-        /* [] */0
+var a = --[ Sum ]--Block.__(2, [--[ :: ]--[
+      --[ Val ]--Block.__(0, [--[ Symbol ]--Block.__(1, ["a"])]),
+      --[ :: ]--[
+        --[ Val ]--Block.__(0, [--[ Natural ]--Block.__(0, [2])]),
+        --[ [] ]--0
       ]
     ]]);
 
-var b = /* Val */Block.__(0, [/* Symbol */Block.__(1, ["x"])]);
+var b = --[ Val ]--Block.__(0, [--[ Symbol ]--Block.__(1, ["x"])]);
 
-console.log(compare(/* InSum */0, {
+console.log(compare(--[ InSum ]--0, {
           complex: true
         }, a, b));
 
-/*  Not a pure module */
+--[  Not a pure module ]--

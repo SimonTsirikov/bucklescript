@@ -34,9 +34,9 @@ function actionKey(key, a, b, c, d, e) {
       
   }
   return (function (param) {
-      return /* () */0;
+      return --[ () ]--0;
     });
 }
 
 exports.actionKey = actionKey;
-/* No side effect */
+--[ No side effect ]--

@@ -11,7 +11,7 @@ function test_js_error(param) {
   }
   catch (raw_exn){
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] === Js_exn.$$Error) {
+    if (exn[0] == Js_exn.$$Error) {
       console.log(exn[1].stack);
       return ;
     } else {
@@ -27,7 +27,7 @@ function test_js_error2(param) {
   }
   catch (raw_e){
     var e = Caml_js_exceptions.internalToOCamlException(raw_e);
-    if (e[0] === Js_exn.$$Error) {
+    if (e[0] == Js_exn.$$Error) {
       console.log(e[1].stack);
       throw e;
     } else {
@@ -43,7 +43,7 @@ function example1(param) {
   }
   catch (raw_exn){
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] === Js_exn.$$Error) {
+    if (exn[0] == Js_exn.$$Error) {
       console.log(exn[1].stack);
       return ;
     } else {
@@ -59,7 +59,7 @@ function example2(param) {
   }
   catch (raw_exn){
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] === Js_exn.$$Error) {
+    if (exn[0] == Js_exn.$$Error) {
       return ;
     } else {
       throw exn;
@@ -71,4 +71,4 @@ exports.test_js_error = test_js_error;
 exports.test_js_error2 = test_js_error2;
 exports.example1 = example1;
 exports.example2 = example2;
-/* No side effect */
+--[ No side effect ]--

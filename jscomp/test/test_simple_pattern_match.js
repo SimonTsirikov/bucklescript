@@ -7,13 +7,13 @@ var match;
 switch (Sys.os_type) {
   case "Cygwin" :
   case "Unix" :
-      match = /* tuple */[
+      match = --[ tuple ]--[
         1,
         2
       ];
       break;
   default:
-    match = /* tuple */[
+    match = --[ tuple ]--[
       3,
       4
     ];
@@ -25,4 +25,4 @@ var b = match[1];
 
 exports.a = a;
 exports.b = b;
-/* match Not a pure module */
+--[ match Not a pure module ]--

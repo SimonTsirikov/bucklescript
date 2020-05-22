@@ -19,4 +19,4 @@ var f_record = {
 
 exports.structural_obj = structural_obj;
 exports.f_record = f_record;
-/* No side effect */
+--[ No side effect ]--

@@ -591,10 +591,10 @@ CamlinternalOO.init_class($$class);
 
 var raw_object = obj_init(0);
 
-if (Caml_oo_curry.js1(291536124, 1, raw_object) !== 34) {
+if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "large_obj_test.ml",
           124,
           10
@@ -918,10 +918,10 @@ var raw_class = CamlinternalOO.make_class(shared, raw_class_init);
 
 var v = Curry._2(raw_class[0], 0, 3);
 
-if (Caml_oo_curry.js1(291536121, 2, v) !== 56) {
+if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "large_obj_test.ml",
           251,
           2
@@ -932,4 +932,4 @@ if (Caml_oo_curry.js1(291536121, 2, v) !== 56) {
 exports.raw_object = raw_object;
 exports.raw_class = raw_class;
 exports.v = v;
-/* class Not a pure module */
+--[ class Not a pure module ]--

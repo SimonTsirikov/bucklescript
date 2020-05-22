@@ -16,7 +16,7 @@ function Make(funarg) {
       return Curry._2(H.find, htbl, x);
     }
     catch (exn){
-      if (exn === Caml_builtin_exceptions.not_found) {
+      if (exn == Caml_builtin_exceptions.not_found) {
         return false;
       } else {
         throw exn;
@@ -29,7 +29,7 @@ function Make(funarg) {
     var already_processed = Curry._1(H.create, 97);
     var on_the_stack = Curry._1(H.create, 97);
     var cut_set = {
-      contents: /* [] */0
+      contents: --[ [] ]--0
     };
     var counter = {
       contents: 1
@@ -38,7 +38,7 @@ function Make(funarg) {
       if (find_default(already_processed, top)) {
         throw [
               Caml_builtin_exceptions.assert_failure,
-              /* tuple */[
+              --[ tuple ]--[
                 "gpr_405_test.ml",
                 43,
                 6
@@ -48,7 +48,7 @@ function Make(funarg) {
       if (find_default(on_the_stack, top)) {
         throw [
               Caml_builtin_exceptions.assert_failure,
-              /* tuple */[
+              --[ tuple ]--[
                 "gpr_405_test.ml",
                 44,
                 6
@@ -75,8 +75,8 @@ function Make(funarg) {
             _successors = successors[1];
             continue ;
           } else {
-            return step2(successor, /* :: */[
-                        /* tuple */[
+            return step2(successor, --[ :: ]--[
+                        --[ tuple ]--[
                           top$1,
                           successors
                         ],
@@ -84,8 +84,8 @@ function Make(funarg) {
                       ]);
           }
         } else {
-          if (Curry._2(H.find, l_labels, top$1) === Curry._2(H.find, n_labels, top$1)) {
-            cut_set.contents = /* :: */[
+          if (Curry._2(H.find, l_labels, top$1) == Curry._2(H.find, n_labels, top$1)) {
+            cut_set.contents = --[ :: ]--[
               top$1,
               cut_set.contents
             ];
@@ -112,7 +112,7 @@ function Make(funarg) {
         }
       };
     };
-    return step2(first_node, /* [] */0);
+    return step2(first_node, --[ [] ]--0);
   };
   return {
           min_cutset: min_cutset
@@ -120,4 +120,4 @@ function Make(funarg) {
 }
 
 exports.Make = Make;
-/* No side effect */
+--[ No side effect ]--

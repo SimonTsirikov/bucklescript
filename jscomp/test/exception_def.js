@@ -22,7 +22,7 @@ var XXX = Caml_exceptions.create("Exception_def.XXX");
 
 var Aa = Caml_builtin_exceptions.match_failure;
 
-var v_001 = /* tuple */[
+var v_001 = --[ tuple ]--[
   "",
   0,
   0
@@ -34,7 +34,7 @@ var v = [
 ];
 
 Printexc.register_printer((function (param) {
-        if (param[0] === A) {
+        if (param[0] == A) {
           return "A";
         }
         
@@ -54,4 +54,4 @@ exports.Ax = Ax;
 exports.XXX = XXX;
 exports.Aa = Aa;
 exports.v = v;
-/*  Not a pure module */
+--[  Not a pure module ]--

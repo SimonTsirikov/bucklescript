@@ -14,7 +14,7 @@ function even(x) {
 function bark(param) {
   return (function (x, y) {
       var o = this ;
-      console.log(/* tuple */[
+      console.log(--[ tuple ]--[
             o.length,
             o.x,
             o.y,
@@ -37,12 +37,12 @@ function f(x) {
   x.onload = (function () {
       var o = this ;
       console.log(o);
-      return /* () */0;
+      return --[ () ]--0;
     });
   return x.addEventListener("onload", (function () {
                 var o = this ;
                 console.log(o.response);
-                return /* () */0;
+                return --[ () ]--0;
               }));
 }
 
@@ -56,4 +56,4 @@ exports.bark = bark;
 exports.js_obj = js_obj;
 exports.f = f;
 exports.u = u;
-/* uux_this Not a pure module */
+--[ uux_this Not a pure module ]--

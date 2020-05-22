@@ -8,96 +8,96 @@ function date(param) {
   return new Date("1976-03-08T12:34:56.789+01:23");
 }
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "valueOf",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 195131516789,
                 new Date("1976-03-08T12:34:56.789+01:23").valueOf()
               ]);
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "make",
     (function (param) {
-        return /* Ok */Block.__(4, [new Date().getTime() > 1487223505382]);
+        return --[ Ok ]--Block.__(4, [new Date().getTime() > 1487223505382]);
       })
   ],
-  /* :: */[
-    /* tuple */[
+  --[ :: ]--[
+    --[ tuple ]--[
       "parseAsFloat",
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     Date.parse("1976-03-08T12:34:56.789+01:23"),
                     195131516789
                   ]);
         })
     ],
-    /* :: */[
-      /* tuple */[
+    --[ :: ]--[
+      --[ tuple ]--[
         "parseAsFloat_invalid",
         (function (param) {
-            return /* Ok */Block.__(4, [isNaN(Date.parse("gibberish"))]);
+            return --[ Ok ]--Block.__(4, [isNaN(Date.parse("gibberish"))]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "fromFloat",
           (function (param) {
-              return /* Eq */Block.__(0, [
+              return --[ Eq ]--Block.__(0, [
                         "1976-03-08T11:11:56.789Z",
                         new Date(195131516789).toISOString()
                       ]);
             })
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "fromString_valid",
             (function (param) {
-                return /* Eq */Block.__(0, [
+                return --[ Eq ]--Block.__(0, [
                           195131516789,
                           new Date("1976-03-08T12:34:56.789+01:23").getTime()
                         ]);
               })
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "fromString_invalid",
               (function (param) {
-                  return /* Ok */Block.__(4, [isNaN(new Date("gibberish").getTime())]);
+                  return --[ Ok ]--Block.__(4, [isNaN(new Date("gibberish").getTime())]);
                 })
             ],
-            /* :: */[
-              /* tuple */[
+            --[ :: ]--[
+              --[ tuple ]--[
                 "makeWithYM",
                 (function (param) {
                     var d = new Date(1984, 4);
-                    return /* Eq */Block.__(0, [
-                              /* tuple */[
+                    return --[ Eq ]--Block.__(0, [
+                              --[ tuple ]--[
                                 1984,
                                 4
                               ],
-                              /* tuple */[
+                              --[ tuple ]--[
                                 d.getFullYear(),
                                 d.getMonth()
                               ]
                             ]);
                   })
               ],
-              /* :: */[
-                /* tuple */[
+              --[ :: ]--[
+                --[ tuple ]--[
                   "makeWithYMD",
                   (function (param) {
                       var d = new Date(1984, 4, 6);
-                      return /* Eq */Block.__(0, [
-                                /* tuple */[
+                      return --[ Eq ]--Block.__(0, [
+                                --[ tuple ]--[
                                   1984,
                                   4,
                                   6
                                 ],
-                                /* tuple */[
+                                --[ tuple ]--[
                                   d.getFullYear(),
                                   d.getMonth(),
                                   d.getDate()
@@ -105,19 +105,19 @@ var suites_001 = /* :: */[
                               ]);
                     })
                 ],
-                /* :: */[
-                  /* tuple */[
+                --[ :: ]--[
+                  --[ tuple ]--[
                     "makeWithYMDH",
                     (function (param) {
                         var d = new Date(1984, 4, 6, 3);
-                        return /* Eq */Block.__(0, [
-                                  /* tuple */[
+                        return --[ Eq ]--Block.__(0, [
+                                  --[ tuple ]--[
                                     1984,
                                     4,
                                     6,
                                     3
                                   ],
-                                  /* tuple */[
+                                  --[ tuple ]--[
                                     d.getFullYear(),
                                     d.getMonth(),
                                     d.getDate(),
@@ -126,20 +126,20 @@ var suites_001 = /* :: */[
                                 ]);
                       })
                   ],
-                  /* :: */[
-                    /* tuple */[
+                  --[ :: ]--[
+                    --[ tuple ]--[
                       "makeWithYMDHM",
                       (function (param) {
                           var d = new Date(1984, 4, 6, 3, 59);
-                          return /* Eq */Block.__(0, [
-                                    /* tuple */[
+                          return --[ Eq ]--Block.__(0, [
+                                    --[ tuple ]--[
                                       1984,
                                       4,
                                       6,
                                       3,
                                       59
                                     ],
-                                    /* tuple */[
+                                    --[ tuple ]--[
                                       d.getFullYear(),
                                       d.getMonth(),
                                       d.getDate(),
@@ -149,13 +149,13 @@ var suites_001 = /* :: */[
                                   ]);
                         })
                     ],
-                    /* :: */[
-                      /* tuple */[
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "makeWithYMDHMS",
                         (function (param) {
                             var d = new Date(1984, 4, 6, 3, 59, 27);
-                            return /* Eq */Block.__(0, [
-                                      /* tuple */[
+                            return --[ Eq ]--Block.__(0, [
+                                      --[ tuple ]--[
                                         1984,
                                         4,
                                         6,
@@ -163,7 +163,7 @@ var suites_001 = /* :: */[
                                         59,
                                         27
                                       ],
-                                      /* tuple */[
+                                      --[ tuple ]--[
                                         d.getFullYear(),
                                         d.getMonth(),
                                         d.getDate(),
@@ -174,37 +174,37 @@ var suites_001 = /* :: */[
                                     ]);
                           })
                       ],
-                      /* :: */[
-                        /* tuple */[
+                      --[ :: ]--[
+                        --[ tuple ]--[
                           "utcWithYM",
                           (function (param) {
                               var d = Date.UTC(1984, 4);
                               var d$1 = new Date(d);
-                              return /* Eq */Block.__(0, [
-                                        /* tuple */[
+                              return --[ Eq ]--Block.__(0, [
+                                        --[ tuple ]--[
                                           1984,
                                           4
                                         ],
-                                        /* tuple */[
+                                        --[ tuple ]--[
                                           d$1.getUTCFullYear(),
                                           d$1.getUTCMonth()
                                         ]
                                       ]);
                             })
                         ],
-                        /* :: */[
-                          /* tuple */[
+                        --[ :: ]--[
+                          --[ tuple ]--[
                             "utcWithYMD",
                             (function (param) {
                                 var d = Date.UTC(1984, 4, 6);
                                 var d$1 = new Date(d);
-                                return /* Eq */Block.__(0, [
-                                          /* tuple */[
+                                return --[ Eq ]--Block.__(0, [
+                                          --[ tuple ]--[
                                             1984,
                                             4,
                                             6
                                           ],
-                                          /* tuple */[
+                                          --[ tuple ]--[
                                             d$1.getUTCFullYear(),
                                             d$1.getUTCMonth(),
                                             d$1.getUTCDate()
@@ -212,20 +212,20 @@ var suites_001 = /* :: */[
                                         ]);
                               })
                           ],
-                          /* :: */[
-                            /* tuple */[
+                          --[ :: ]--[
+                            --[ tuple ]--[
                               "utcWithYMDH",
                               (function (param) {
                                   var d = Date.UTC(1984, 4, 6, 3);
                                   var d$1 = new Date(d);
-                                  return /* Eq */Block.__(0, [
-                                            /* tuple */[
+                                  return --[ Eq ]--Block.__(0, [
+                                            --[ tuple ]--[
                                               1984,
                                               4,
                                               6,
                                               3
                                             ],
-                                            /* tuple */[
+                                            --[ tuple ]--[
                                               d$1.getUTCFullYear(),
                                               d$1.getUTCMonth(),
                                               d$1.getUTCDate(),
@@ -234,21 +234,21 @@ var suites_001 = /* :: */[
                                           ]);
                                 })
                             ],
-                            /* :: */[
-                              /* tuple */[
+                            --[ :: ]--[
+                              --[ tuple ]--[
                                 "utcWithYMDHM",
                                 (function (param) {
                                     var d = Date.UTC(1984, 4, 6, 3, 59);
                                     var d$1 = new Date(d);
-                                    return /* Eq */Block.__(0, [
-                                              /* tuple */[
+                                    return --[ Eq ]--Block.__(0, [
+                                              --[ tuple ]--[
                                                 1984,
                                                 4,
                                                 6,
                                                 3,
                                                 59
                                               ],
-                                              /* tuple */[
+                                              --[ tuple ]--[
                                                 d$1.getUTCFullYear(),
                                                 d$1.getUTCMonth(),
                                                 d$1.getUTCDate(),
@@ -258,14 +258,14 @@ var suites_001 = /* :: */[
                                             ]);
                                   })
                               ],
-                              /* :: */[
-                                /* tuple */[
+                              --[ :: ]--[
+                                --[ tuple ]--[
                                   "utcWithYMDHMS",
                                   (function (param) {
                                       var d = Date.UTC(1984, 4, 6, 3, 59, 27);
                                       var d$1 = new Date(d);
-                                      return /* Eq */Block.__(0, [
-                                                /* tuple */[
+                                      return --[ Eq ]--Block.__(0, [
+                                                --[ tuple ]--[
                                                   1984,
                                                   4,
                                                   6,
@@ -273,7 +273,7 @@ var suites_001 = /* :: */[
                                                   59,
                                                   27
                                                 ],
-                                                /* tuple */[
+                                                --[ tuple ]--[
                                                   d$1.getUTCFullYear(),
                                                   d$1.getUTCMonth(),
                                                   d$1.getUTCDate(),
@@ -284,191 +284,191 @@ var suites_001 = /* :: */[
                                               ]);
                                     })
                                 ],
-                                /* :: */[
-                                  /* tuple */[
+                                --[ :: ]--[
+                                  --[ tuple ]--[
                                     "getFullYear",
                                     (function (param) {
-                                        return /* Eq */Block.__(0, [
+                                        return --[ Eq ]--Block.__(0, [
                                                   1976,
                                                   new Date("1976-03-08T12:34:56.789+01:23").getFullYear()
                                                 ]);
                                       })
                                   ],
-                                  /* :: */[
-                                    /* tuple */[
+                                  --[ :: ]--[
+                                    --[ tuple ]--[
                                       "getMilliseconds",
                                       (function (param) {
-                                          return /* Eq */Block.__(0, [
+                                          return --[ Eq ]--Block.__(0, [
                                                     789,
                                                     new Date("1976-03-08T12:34:56.789+01:23").getMilliseconds()
                                                   ]);
                                         })
                                     ],
-                                    /* :: */[
-                                      /* tuple */[
+                                    --[ :: ]--[
+                                      --[ tuple ]--[
                                         "getSeconds",
                                         (function (param) {
-                                            return /* Eq */Block.__(0, [
+                                            return --[ Eq ]--Block.__(0, [
                                                       56,
                                                       new Date("1976-03-08T12:34:56.789+01:23").getSeconds()
                                                     ]);
                                           })
                                       ],
-                                      /* :: */[
-                                        /* tuple */[
+                                      --[ :: ]--[
+                                        --[ tuple ]--[
                                           "getTime",
                                           (function (param) {
-                                              return /* Eq */Block.__(0, [
+                                              return --[ Eq ]--Block.__(0, [
                                                         195131516789,
                                                         new Date("1976-03-08T12:34:56.789+01:23").getTime()
                                                       ]);
                                             })
                                         ],
-                                        /* :: */[
-                                          /* tuple */[
+                                        --[ :: ]--[
+                                          --[ tuple ]--[
                                             "getUTCDate",
                                             (function (param) {
-                                                return /* Eq */Block.__(0, [
+                                                return --[ Eq ]--Block.__(0, [
                                                           8,
                                                           new Date("1976-03-08T12:34:56.789+01:23").getUTCDate()
                                                         ]);
                                               })
                                           ],
-                                          /* :: */[
-                                            /* tuple */[
+                                          --[ :: ]--[
+                                            --[ tuple ]--[
                                               "getUTCDay",
                                               (function (param) {
-                                                  return /* Eq */Block.__(0, [
+                                                  return --[ Eq ]--Block.__(0, [
                                                             1,
                                                             new Date("1976-03-08T12:34:56.789+01:23").getUTCDay()
                                                           ]);
                                                 })
                                             ],
-                                            /* :: */[
-                                              /* tuple */[
+                                            --[ :: ]--[
+                                              --[ tuple ]--[
                                                 "getUTCFUllYear",
                                                 (function (param) {
-                                                    return /* Eq */Block.__(0, [
+                                                    return --[ Eq ]--Block.__(0, [
                                                               1976,
                                                               new Date("1976-03-08T12:34:56.789+01:23").getUTCFullYear()
                                                             ]);
                                                   })
                                               ],
-                                              /* :: */[
-                                                /* tuple */[
+                                              --[ :: ]--[
+                                                --[ tuple ]--[
                                                   "getUTCHours",
                                                   (function (param) {
-                                                      return /* Eq */Block.__(0, [
+                                                      return --[ Eq ]--Block.__(0, [
                                                                 11,
                                                                 new Date("1976-03-08T12:34:56.789+01:23").getUTCHours()
                                                               ]);
                                                     })
                                                 ],
-                                                /* :: */[
-                                                  /* tuple */[
+                                                --[ :: ]--[
+                                                  --[ tuple ]--[
                                                     "getUTCMilliseconds",
                                                     (function (param) {
-                                                        return /* Eq */Block.__(0, [
+                                                        return --[ Eq ]--Block.__(0, [
                                                                   789,
                                                                   new Date("1976-03-08T12:34:56.789+01:23").getUTCMilliseconds()
                                                                 ]);
                                                       })
                                                   ],
-                                                  /* :: */[
-                                                    /* tuple */[
+                                                  --[ :: ]--[
+                                                    --[ tuple ]--[
                                                       "getUTCMinutes",
                                                       (function (param) {
-                                                          return /* Eq */Block.__(0, [
+                                                          return --[ Eq ]--Block.__(0, [
                                                                     11,
                                                                     new Date("1976-03-08T12:34:56.789+01:23").getUTCMinutes()
                                                                   ]);
                                                         })
                                                     ],
-                                                    /* :: */[
-                                                      /* tuple */[
+                                                    --[ :: ]--[
+                                                      --[ tuple ]--[
                                                         "getUTCMonth",
                                                         (function (param) {
-                                                            return /* Eq */Block.__(0, [
+                                                            return --[ Eq ]--Block.__(0, [
                                                                       2,
                                                                       new Date("1976-03-08T12:34:56.789+01:23").getUTCMonth()
                                                                     ]);
                                                           })
                                                       ],
-                                                      /* :: */[
-                                                        /* tuple */[
+                                                      --[ :: ]--[
+                                                        --[ tuple ]--[
                                                           "getUTCSeconds",
                                                           (function (param) {
-                                                              return /* Eq */Block.__(0, [
+                                                              return --[ Eq ]--Block.__(0, [
                                                                         56,
                                                                         new Date("1976-03-08T12:34:56.789+01:23").getUTCSeconds()
                                                                       ]);
                                                             })
                                                         ],
-                                                        /* :: */[
-                                                          /* tuple */[
+                                                        --[ :: ]--[
+                                                          --[ tuple ]--[
                                                             "getYear",
                                                             (function (param) {
-                                                                return /* Eq */Block.__(0, [
+                                                                return --[ Eq ]--Block.__(0, [
                                                                           1976,
                                                                           new Date("1976-03-08T12:34:56.789+01:23").getFullYear()
                                                                         ]);
                                                               })
                                                           ],
-                                                          /* :: */[
-                                                            /* tuple */[
+                                                          --[ :: ]--[
+                                                            --[ tuple ]--[
                                                               "setDate",
                                                               (function (param) {
                                                                   var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                   d.setDate(12);
-                                                                  return /* Eq */Block.__(0, [
+                                                                  return --[ Eq ]--Block.__(0, [
                                                                             12,
                                                                             d.getDate()
                                                                           ]);
                                                                 })
                                                             ],
-                                                            /* :: */[
-                                                              /* tuple */[
+                                                            --[ :: ]--[
+                                                              --[ tuple ]--[
                                                                 "setFullYear",
                                                                 (function (param) {
                                                                     var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                     d.setFullYear(1986);
-                                                                    return /* Eq */Block.__(0, [
+                                                                    return --[ Eq ]--Block.__(0, [
                                                                               1986,
                                                                               d.getFullYear()
                                                                             ]);
                                                                   })
                                                               ],
-                                                              /* :: */[
-                                                                /* tuple */[
+                                                              --[ :: ]--[
+                                                                --[ tuple ]--[
                                                                   "setFullYearM",
                                                                   (function (param) {
                                                                       var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                       d.setFullYear(1986, 7);
-                                                                      return /* Eq */Block.__(0, [
-                                                                                /* tuple */[
+                                                                      return --[ Eq ]--Block.__(0, [
+                                                                                --[ tuple ]--[
                                                                                   1986,
                                                                                   7
                                                                                 ],
-                                                                                /* tuple */[
+                                                                                --[ tuple ]--[
                                                                                   d.getFullYear(),
                                                                                   d.getMonth()
                                                                                 ]
                                                                               ]);
                                                                     })
                                                                 ],
-                                                                /* :: */[
-                                                                  /* tuple */[
+                                                                --[ :: ]--[
+                                                                  --[ tuple ]--[
                                                                     "setFullYearMD",
                                                                     (function (param) {
                                                                         var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                         d.setFullYear(1986, 7, 23);
-                                                                        return /* Eq */Block.__(0, [
-                                                                                  /* tuple */[
+                                                                        return --[ Eq ]--Block.__(0, [
+                                                                                  --[ tuple ]--[
                                                                                     1986,
                                                                                     7,
                                                                                     23
                                                                                   ],
-                                                                                  /* tuple */[
+                                                                                  --[ tuple ]--[
                                                                                     d.getFullYear(),
                                                                                     d.getMonth(),
                                                                                     d.getDate()
@@ -476,49 +476,49 @@ var suites_001 = /* :: */[
                                                                                 ]);
                                                                       })
                                                                   ],
-                                                                  /* :: */[
-                                                                    /* tuple */[
+                                                                  --[ :: ]--[
+                                                                    --[ tuple ]--[
                                                                       "setHours",
                                                                       (function (param) {
                                                                           var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                           d.setHours(22);
-                                                                          return /* Eq */Block.__(0, [
+                                                                          return --[ Eq ]--Block.__(0, [
                                                                                     22,
                                                                                     d.getHours()
                                                                                   ]);
                                                                         })
                                                                     ],
-                                                                    /* :: */[
-                                                                      /* tuple */[
+                                                                    --[ :: ]--[
+                                                                      --[ tuple ]--[
                                                                         "setHoursM",
                                                                         (function (param) {
                                                                             var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                             d.setHours(22, 48);
-                                                                            return /* Eq */Block.__(0, [
-                                                                                      /* tuple */[
+                                                                            return --[ Eq ]--Block.__(0, [
+                                                                                      --[ tuple ]--[
                                                                                         22,
                                                                                         48
                                                                                       ],
-                                                                                      /* tuple */[
+                                                                                      --[ tuple ]--[
                                                                                         d.getHours(),
                                                                                         d.getMinutes()
                                                                                       ]
                                                                                     ]);
                                                                           })
                                                                       ],
-                                                                      /* :: */[
-                                                                        /* tuple */[
+                                                                      --[ :: ]--[
+                                                                        --[ tuple ]--[
                                                                           "setHoursMS",
                                                                           (function (param) {
                                                                               var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                               d.setHours(22, 48, 54);
-                                                                              return /* Eq */Block.__(0, [
-                                                                                        /* tuple */[
+                                                                              return --[ Eq ]--Block.__(0, [
+                                                                                        --[ tuple ]--[
                                                                                           22,
                                                                                           48,
                                                                                           54
                                                                                         ],
-                                                                                        /* tuple */[
+                                                                                        --[ tuple ]--[
                                                                                           d.getHours(),
                                                                                           d.getMinutes(),
                                                                                           d.getSeconds()
@@ -526,61 +526,61 @@ var suites_001 = /* :: */[
                                                                                       ]);
                                                                             })
                                                                         ],
-                                                                        /* :: */[
-                                                                          /* tuple */[
+                                                                        --[ :: ]--[
+                                                                          --[ tuple ]--[
                                                                             "setMilliseconds",
                                                                             (function (param) {
                                                                                 var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                 d.setMilliseconds(543);
-                                                                                return /* Eq */Block.__(0, [
+                                                                                return --[ Eq ]--Block.__(0, [
                                                                                           543,
                                                                                           d.getMilliseconds()
                                                                                         ]);
                                                                               })
                                                                           ],
-                                                                          /* :: */[
-                                                                            /* tuple */[
+                                                                          --[ :: ]--[
+                                                                            --[ tuple ]--[
                                                                               "setMinutes",
                                                                               (function (param) {
                                                                                   var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                   d.setMinutes(18);
-                                                                                  return /* Eq */Block.__(0, [
+                                                                                  return --[ Eq ]--Block.__(0, [
                                                                                             18,
                                                                                             d.getMinutes()
                                                                                           ]);
                                                                                 })
                                                                             ],
-                                                                            /* :: */[
-                                                                              /* tuple */[
+                                                                            --[ :: ]--[
+                                                                              --[ tuple ]--[
                                                                                 "setMinutesS",
                                                                                 (function (param) {
                                                                                     var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                     d.setMinutes(18, 42);
-                                                                                    return /* Eq */Block.__(0, [
-                                                                                              /* tuple */[
+                                                                                    return --[ Eq ]--Block.__(0, [
+                                                                                              --[ tuple ]--[
                                                                                                 18,
                                                                                                 42
                                                                                               ],
-                                                                                              /* tuple */[
+                                                                                              --[ tuple ]--[
                                                                                                 d.getMinutes(),
                                                                                                 d.getSeconds()
                                                                                               ]
                                                                                             ]);
                                                                                   })
                                                                               ],
-                                                                              /* :: */[
-                                                                                /* tuple */[
+                                                                              --[ :: ]--[
+                                                                                --[ tuple ]--[
                                                                                   "setMinutesSMs",
                                                                                   (function (param) {
                                                                                       var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                       d.setMinutes(18, 42, 311);
-                                                                                      return /* Eq */Block.__(0, [
-                                                                                                /* tuple */[
+                                                                                      return --[ Eq ]--Block.__(0, [
+                                                                                                --[ tuple ]--[
                                                                                                   18,
                                                                                                   42,
                                                                                                   311
                                                                                                 ],
-                                                                                                /* tuple */[
+                                                                                                --[ tuple ]--[
                                                                                                   d.getMinutes(),
                                                                                                   d.getSeconds(),
                                                                                                   d.getMilliseconds()
@@ -588,121 +588,121 @@ var suites_001 = /* :: */[
                                                                                               ]);
                                                                                     })
                                                                                 ],
-                                                                                /* :: */[
-                                                                                  /* tuple */[
+                                                                                --[ :: ]--[
+                                                                                  --[ tuple ]--[
                                                                                     "setMonth",
                                                                                     (function (param) {
                                                                                         var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                         d.setMonth(10);
-                                                                                        return /* Eq */Block.__(0, [
+                                                                                        return --[ Eq ]--Block.__(0, [
                                                                                                   10,
                                                                                                   d.getMonth()
                                                                                                 ]);
                                                                                       })
                                                                                   ],
-                                                                                  /* :: */[
-                                                                                    /* tuple */[
+                                                                                  --[ :: ]--[
+                                                                                    --[ tuple ]--[
                                                                                       "setMonthD",
                                                                                       (function (param) {
                                                                                           var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                           d.setMonth(10, 14);
-                                                                                          return /* Eq */Block.__(0, [
-                                                                                                    /* tuple */[
+                                                                                          return --[ Eq ]--Block.__(0, [
+                                                                                                    --[ tuple ]--[
                                                                                                       10,
                                                                                                       14
                                                                                                     ],
-                                                                                                    /* tuple */[
+                                                                                                    --[ tuple ]--[
                                                                                                       d.getMonth(),
                                                                                                       d.getDate()
                                                                                                     ]
                                                                                                   ]);
                                                                                         })
                                                                                     ],
-                                                                                    /* :: */[
-                                                                                      /* tuple */[
+                                                                                    --[ :: ]--[
+                                                                                      --[ tuple ]--[
                                                                                         "setSeconds",
                                                                                         (function (param) {
                                                                                             var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                             d.setSeconds(36);
-                                                                                            return /* Eq */Block.__(0, [
+                                                                                            return --[ Eq ]--Block.__(0, [
                                                                                                       36,
                                                                                                       d.getSeconds()
                                                                                                     ]);
                                                                                           })
                                                                                       ],
-                                                                                      /* :: */[
-                                                                                        /* tuple */[
+                                                                                      --[ :: ]--[
+                                                                                        --[ tuple ]--[
                                                                                           "setSecondsMs",
                                                                                           (function (param) {
                                                                                               var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                               d.setSeconds(36, 420);
-                                                                                              return /* Eq */Block.__(0, [
-                                                                                                        /* tuple */[
+                                                                                              return --[ Eq ]--Block.__(0, [
+                                                                                                        --[ tuple ]--[
                                                                                                           36,
                                                                                                           420
                                                                                                         ],
-                                                                                                        /* tuple */[
+                                                                                                        --[ tuple ]--[
                                                                                                           d.getSeconds(),
                                                                                                           d.getMilliseconds()
                                                                                                         ]
                                                                                                       ]);
                                                                                             })
                                                                                         ],
-                                                                                        /* :: */[
-                                                                                          /* tuple */[
+                                                                                        --[ :: ]--[
+                                                                                          --[ tuple ]--[
                                                                                             "setUTCDate",
                                                                                             (function (param) {
                                                                                                 var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                 d.setUTCDate(12);
-                                                                                                return /* Eq */Block.__(0, [
+                                                                                                return --[ Eq ]--Block.__(0, [
                                                                                                           12,
                                                                                                           d.getUTCDate()
                                                                                                         ]);
                                                                                               })
                                                                                           ],
-                                                                                          /* :: */[
-                                                                                            /* tuple */[
+                                                                                          --[ :: ]--[
+                                                                                            --[ tuple ]--[
                                                                                               "setUTCFullYear",
                                                                                               (function (param) {
                                                                                                   var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                   d.setUTCFullYear(1986);
-                                                                                                  return /* Eq */Block.__(0, [
+                                                                                                  return --[ Eq ]--Block.__(0, [
                                                                                                             1986,
                                                                                                             d.getUTCFullYear()
                                                                                                           ]);
                                                                                                 })
                                                                                             ],
-                                                                                            /* :: */[
-                                                                                              /* tuple */[
+                                                                                            --[ :: ]--[
+                                                                                              --[ tuple ]--[
                                                                                                 "setUTCFullYearM",
                                                                                                 (function (param) {
                                                                                                     var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                     d.setUTCFullYear(1986, 7);
-                                                                                                    return /* Eq */Block.__(0, [
-                                                                                                              /* tuple */[
+                                                                                                    return --[ Eq ]--Block.__(0, [
+                                                                                                              --[ tuple ]--[
                                                                                                                 1986,
                                                                                                                 7
                                                                                                               ],
-                                                                                                              /* tuple */[
+                                                                                                              --[ tuple ]--[
                                                                                                                 d.getUTCFullYear(),
                                                                                                                 d.getUTCMonth()
                                                                                                               ]
                                                                                                             ]);
                                                                                                   })
                                                                                               ],
-                                                                                              /* :: */[
-                                                                                                /* tuple */[
+                                                                                              --[ :: ]--[
+                                                                                                --[ tuple ]--[
                                                                                                   "setUTCFullYearMD",
                                                                                                   (function (param) {
                                                                                                       var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                       d.setUTCFullYear(1986, 7, 23);
-                                                                                                      return /* Eq */Block.__(0, [
-                                                                                                                /* tuple */[
+                                                                                                      return --[ Eq ]--Block.__(0, [
+                                                                                                                --[ tuple ]--[
                                                                                                                   1986,
                                                                                                                   7,
                                                                                                                   23
                                                                                                                 ],
-                                                                                                                /* tuple */[
+                                                                                                                --[ tuple ]--[
                                                                                                                   d.getUTCFullYear(),
                                                                                                                   d.getUTCMonth(),
                                                                                                                   d.getUTCDate()
@@ -710,49 +710,49 @@ var suites_001 = /* :: */[
                                                                                                               ]);
                                                                                                     })
                                                                                                 ],
-                                                                                                /* :: */[
-                                                                                                  /* tuple */[
+                                                                                                --[ :: ]--[
+                                                                                                  --[ tuple ]--[
                                                                                                     "setUTCHours",
                                                                                                     (function (param) {
                                                                                                         var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                         d.setUTCHours(22);
-                                                                                                        return /* Eq */Block.__(0, [
+                                                                                                        return --[ Eq ]--Block.__(0, [
                                                                                                                   22,
                                                                                                                   d.getUTCHours()
                                                                                                                 ]);
                                                                                                       })
                                                                                                   ],
-                                                                                                  /* :: */[
-                                                                                                    /* tuple */[
+                                                                                                  --[ :: ]--[
+                                                                                                    --[ tuple ]--[
                                                                                                       "setUTCHoursM",
                                                                                                       (function (param) {
                                                                                                           var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                           d.setUTCHours(22, 48);
-                                                                                                          return /* Eq */Block.__(0, [
-                                                                                                                    /* tuple */[
+                                                                                                          return --[ Eq ]--Block.__(0, [
+                                                                                                                    --[ tuple ]--[
                                                                                                                       22,
                                                                                                                       48
                                                                                                                     ],
-                                                                                                                    /* tuple */[
+                                                                                                                    --[ tuple ]--[
                                                                                                                       d.getUTCHours(),
                                                                                                                       d.getUTCMinutes()
                                                                                                                     ]
                                                                                                                   ]);
                                                                                                         })
                                                                                                     ],
-                                                                                                    /* :: */[
-                                                                                                      /* tuple */[
+                                                                                                    --[ :: ]--[
+                                                                                                      --[ tuple ]--[
                                                                                                         "setUTCHoursMS",
                                                                                                         (function (param) {
                                                                                                             var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                             d.setUTCHours(22, 48, 54);
-                                                                                                            return /* Eq */Block.__(0, [
-                                                                                                                      /* tuple */[
+                                                                                                            return --[ Eq ]--Block.__(0, [
+                                                                                                                      --[ tuple ]--[
                                                                                                                         22,
                                                                                                                         48,
                                                                                                                         54
                                                                                                                       ],
-                                                                                                                      /* tuple */[
+                                                                                                                      --[ tuple ]--[
                                                                                                                         d.getUTCHours(),
                                                                                                                         d.getUTCMinutes(),
                                                                                                                         d.getUTCSeconds()
@@ -760,61 +760,61 @@ var suites_001 = /* :: */[
                                                                                                                     ]);
                                                                                                           })
                                                                                                       ],
-                                                                                                      /* :: */[
-                                                                                                        /* tuple */[
+                                                                                                      --[ :: ]--[
+                                                                                                        --[ tuple ]--[
                                                                                                           "setUTCMilliseconds",
                                                                                                           (function (param) {
                                                                                                               var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                               d.setUTCMilliseconds(543);
-                                                                                                              return /* Eq */Block.__(0, [
+                                                                                                              return --[ Eq ]--Block.__(0, [
                                                                                                                         543,
                                                                                                                         d.getUTCMilliseconds()
                                                                                                                       ]);
                                                                                                             })
                                                                                                         ],
-                                                                                                        /* :: */[
-                                                                                                          /* tuple */[
+                                                                                                        --[ :: ]--[
+                                                                                                          --[ tuple ]--[
                                                                                                             "setUTCMinutes",
                                                                                                             (function (param) {
                                                                                                                 var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                 d.setUTCMinutes(18);
-                                                                                                                return /* Eq */Block.__(0, [
+                                                                                                                return --[ Eq ]--Block.__(0, [
                                                                                                                           18,
                                                                                                                           d.getUTCMinutes()
                                                                                                                         ]);
                                                                                                               })
                                                                                                           ],
-                                                                                                          /* :: */[
-                                                                                                            /* tuple */[
+                                                                                                          --[ :: ]--[
+                                                                                                            --[ tuple ]--[
                                                                                                               "setUTCMinutesS",
                                                                                                               (function (param) {
                                                                                                                   var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                   d.setUTCMinutes(18, 42);
-                                                                                                                  return /* Eq */Block.__(0, [
-                                                                                                                            /* tuple */[
+                                                                                                                  return --[ Eq ]--Block.__(0, [
+                                                                                                                            --[ tuple ]--[
                                                                                                                               18,
                                                                                                                               42
                                                                                                                             ],
-                                                                                                                            /* tuple */[
+                                                                                                                            --[ tuple ]--[
                                                                                                                               d.getUTCMinutes(),
                                                                                                                               d.getUTCSeconds()
                                                                                                                             ]
                                                                                                                           ]);
                                                                                                                 })
                                                                                                             ],
-                                                                                                            /* :: */[
-                                                                                                              /* tuple */[
+                                                                                                            --[ :: ]--[
+                                                                                                              --[ tuple ]--[
                                                                                                                 "setUTCMinutesSMs",
                                                                                                                 (function (param) {
                                                                                                                     var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                     d.setUTCMinutes(18, 42, 311);
-                                                                                                                    return /* Eq */Block.__(0, [
-                                                                                                                              /* tuple */[
+                                                                                                                    return --[ Eq ]--Block.__(0, [
+                                                                                                                              --[ tuple ]--[
                                                                                                                                 18,
                                                                                                                                 42,
                                                                                                                                 311
                                                                                                                               ],
-                                                                                                                              /* tuple */[
+                                                                                                                              --[ tuple ]--[
                                                                                                                                 d.getUTCMinutes(),
                                                                                                                                 d.getUTCSeconds(),
                                                                                                                                 d.getUTCMilliseconds()
@@ -822,137 +822,137 @@ var suites_001 = /* :: */[
                                                                                                                             ]);
                                                                                                                   })
                                                                                                               ],
-                                                                                                              /* :: */[
-                                                                                                                /* tuple */[
+                                                                                                              --[ :: ]--[
+                                                                                                                --[ tuple ]--[
                                                                                                                   "setUTCMonth",
                                                                                                                   (function (param) {
                                                                                                                       var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                       d.setUTCMonth(10);
-                                                                                                                      return /* Eq */Block.__(0, [
+                                                                                                                      return --[ Eq ]--Block.__(0, [
                                                                                                                                 10,
                                                                                                                                 d.getUTCMonth()
                                                                                                                               ]);
                                                                                                                     })
                                                                                                                 ],
-                                                                                                                /* :: */[
-                                                                                                                  /* tuple */[
+                                                                                                                --[ :: ]--[
+                                                                                                                  --[ tuple ]--[
                                                                                                                     "setUTCMonthD",
                                                                                                                     (function (param) {
                                                                                                                         var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                         d.setUTCMonth(10, 14);
-                                                                                                                        return /* Eq */Block.__(0, [
-                                                                                                                                  /* tuple */[
+                                                                                                                        return --[ Eq ]--Block.__(0, [
+                                                                                                                                  --[ tuple ]--[
                                                                                                                                     10,
                                                                                                                                     14
                                                                                                                                   ],
-                                                                                                                                  /* tuple */[
+                                                                                                                                  --[ tuple ]--[
                                                                                                                                     d.getUTCMonth(),
                                                                                                                                     d.getUTCDate()
                                                                                                                                   ]
                                                                                                                                 ]);
                                                                                                                       })
                                                                                                                   ],
-                                                                                                                  /* :: */[
-                                                                                                                    /* tuple */[
+                                                                                                                  --[ :: ]--[
+                                                                                                                    --[ tuple ]--[
                                                                                                                       "setUTCSeconds",
                                                                                                                       (function (param) {
                                                                                                                           var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                           d.setUTCSeconds(36);
-                                                                                                                          return /* Eq */Block.__(0, [
+                                                                                                                          return --[ Eq ]--Block.__(0, [
                                                                                                                                     36,
                                                                                                                                     d.getUTCSeconds()
                                                                                                                                   ]);
                                                                                                                         })
                                                                                                                     ],
-                                                                                                                    /* :: */[
-                                                                                                                      /* tuple */[
+                                                                                                                    --[ :: ]--[
+                                                                                                                      --[ tuple ]--[
                                                                                                                         "setUTCSecondsMs",
                                                                                                                         (function (param) {
                                                                                                                             var d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                             d.setUTCSeconds(36, 420);
-                                                                                                                            return /* Eq */Block.__(0, [
-                                                                                                                                      /* tuple */[
+                                                                                                                            return --[ Eq ]--Block.__(0, [
+                                                                                                                                      --[ tuple ]--[
                                                                                                                                         36,
                                                                                                                                         420
                                                                                                                                       ],
-                                                                                                                                      /* tuple */[
+                                                                                                                                      --[ tuple ]--[
                                                                                                                                         d.getUTCSeconds(),
                                                                                                                                         d.getUTCMilliseconds()
                                                                                                                                       ]
                                                                                                                                     ]);
                                                                                                                           })
                                                                                                                       ],
-                                                                                                                      /* :: */[
-                                                                                                                        /* tuple */[
+                                                                                                                      --[ :: ]--[
+                                                                                                                        --[ tuple ]--[
                                                                                                                           "toDateString",
                                                                                                                           (function (param) {
-                                                                                                                              return /* Eq */Block.__(0, [
+                                                                                                                              return --[ Eq ]--Block.__(0, [
                                                                                                                                         "Mon Mar 08 1976",
                                                                                                                                         new Date("1976-03-08T12:34:56.789+01:23").toDateString()
                                                                                                                                       ]);
                                                                                                                             })
                                                                                                                         ],
-                                                                                                                        /* :: */[
-                                                                                                                          /* tuple */[
+                                                                                                                        --[ :: ]--[
+                                                                                                                          --[ tuple ]--[
                                                                                                                             "toGMTString",
                                                                                                                             (function (param) {
-                                                                                                                                return /* Eq */Block.__(0, [
+                                                                                                                                return --[ Eq ]--Block.__(0, [
                                                                                                                                           "Mon, 08 Mar 1976 11:11:56 GMT",
                                                                                                                                           new Date("1976-03-08T12:34:56.789+01:23").toUTCString()
                                                                                                                                         ]);
                                                                                                                               })
                                                                                                                           ],
-                                                                                                                          /* :: */[
-                                                                                                                            /* tuple */[
+                                                                                                                          --[ :: ]--[
+                                                                                                                            --[ tuple ]--[
                                                                                                                               "toISOString",
                                                                                                                               (function (param) {
-                                                                                                                                  return /* Eq */Block.__(0, [
+                                                                                                                                  return --[ Eq ]--Block.__(0, [
                                                                                                                                             "1976-03-08T11:11:56.789Z",
                                                                                                                                             new Date("1976-03-08T12:34:56.789+01:23").toISOString()
                                                                                                                                           ]);
                                                                                                                                 })
                                                                                                                             ],
-                                                                                                                            /* :: */[
-                                                                                                                              /* tuple */[
+                                                                                                                            --[ :: ]--[
+                                                                                                                              --[ tuple ]--[
                                                                                                                                 "toJSON",
                                                                                                                                 (function (param) {
-                                                                                                                                    return /* Eq */Block.__(0, [
+                                                                                                                                    return --[ Eq ]--Block.__(0, [
                                                                                                                                               "1976-03-08T11:11:56.789Z",
                                                                                                                                               new Date("1976-03-08T12:34:56.789+01:23").toJSON()
                                                                                                                                             ]);
                                                                                                                                   })
                                                                                                                               ],
-                                                                                                                              /* :: */[
-                                                                                                                                /* tuple */[
+                                                                                                                              --[ :: ]--[
+                                                                                                                                --[ tuple ]--[
                                                                                                                                   "toJSONUnsafe",
                                                                                                                                   (function (param) {
-                                                                                                                                      return /* Eq */Block.__(0, [
+                                                                                                                                      return --[ Eq ]--Block.__(0, [
                                                                                                                                                 "1976-03-08T11:11:56.789Z",
                                                                                                                                                 new Date("1976-03-08T12:34:56.789+01:23").toJSON()
                                                                                                                                               ]);
                                                                                                                                     })
                                                                                                                                 ],
-                                                                                                                                /* :: */[
-                                                                                                                                  /* tuple */[
+                                                                                                                                --[ :: ]--[
+                                                                                                                                  --[ tuple ]--[
                                                                                                                                     "toUTCString",
                                                                                                                                     (function (param) {
-                                                                                                                                        return /* Eq */Block.__(0, [
+                                                                                                                                        return --[ Eq ]--Block.__(0, [
                                                                                                                                                   "Mon, 08 Mar 1976 11:11:56 GMT",
                                                                                                                                                   new Date("1976-03-08T12:34:56.789+01:23").toUTCString()
                                                                                                                                                 ]);
                                                                                                                                       })
                                                                                                                                   ],
-                                                                                                                                  /* :: */[
-                                                                                                                                    /* tuple */[
+                                                                                                                                  --[ :: ]--[
+                                                                                                                                    --[ tuple ]--[
                                                                                                                                       "eq",
                                                                                                                                       (function (param) {
                                                                                                                                           var a = new Date("2013-03-01T01:10:00");
                                                                                                                                           var b = new Date("2013-03-01T01:10:00");
                                                                                                                                           var c = new Date("2013-03-01T01:10:01");
-                                                                                                                                          return /* Ok */Block.__(4, [Caml_obj.caml_equal(a, b) && Caml_obj.caml_notequal(b, c) && Caml_obj.caml_greaterthan(c, b)]);
+                                                                                                                                          return --[ Ok ]--Block.__(4, [Caml_obj.caml_equal(a, b) and Caml_obj.caml_notequal(b, c) and Caml_obj.caml_greaterthan(c, b)]);
                                                                                                                                         })
                                                                                                                                     ],
-                                                                                                                                    /* [] */0
+                                                                                                                                    --[ [] ]--0
                                                                                                                                   ]
                                                                                                                                 ]
                                                                                                                               ]
@@ -1020,16 +1020,16 @@ var suites_001 = /* :: */[
   ]
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
 
 Mt.from_pair_suites("Js_date_test", suites);
 
-var N = /* alias */0;
+var N = --[ alias ]--0;
 
 exports.N = N;
 exports.date = date;
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

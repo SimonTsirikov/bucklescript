@@ -13,11 +13,11 @@ function sub(_tr, _k) {
     var k = _k;
     var tr = _tr;
     if (tr) {
-      if (k === 1) {
+      if (k == 1) {
         return tr[0];
       } else {
         _k = k / 2 | 0;
-        if (k % 2 === 0) {
+        if (k % 2 == 0) {
           _tr = tr[1];
           continue ;
         } else {
@@ -35,33 +35,33 @@ function update(tr, k, w) {
   if (tr) {
     var r = tr[2];
     var l = tr[1];
-    if (k === 1) {
-      return /* Br */[
+    if (k == 1) {
+      return --[ Br ]--[
               w,
               l,
               r
             ];
     } else {
       var v = tr[0];
-      if (k % 2 === 0) {
-        return /* Br */[
+      if (k % 2 == 0) {
+        return --[ Br ]--[
                 v,
                 update(l, k / 2 | 0, w),
                 r
               ];
       } else {
-        return /* Br */[
+        return --[ Br ]--[
                 v,
                 l,
                 update(r, k / 2 | 0, w)
               ];
       }
     }
-  } else if (k === 1) {
-    return /* Br */[
+  } else if (k == 1) {
+    return --[ Br ]--[
             w,
-            /* Lf */0,
-            /* Lf */0
+            --[ Lf ]--0,
+            --[ Lf ]--0
           ];
   } else {
     throw Caml_builtin_exceptions.not_found;
@@ -70,20 +70,20 @@ function update(tr, k, w) {
 
 function $$delete(tr, n) {
   if (tr) {
-    if (n === 1) {
-      return /* Lf */0;
+    if (n == 1) {
+      return --[ Lf ]--0;
     } else {
       var r = tr[2];
       var l = tr[1];
       var v = tr[0];
-      if (n % 2 === 0) {
-        return /* Br */[
+      if (n % 2 == 0) {
+        return --[ Br ]--[
                 v,
                 $$delete(l, n / 2 | 0),
                 r
               ];
       } else {
-        return /* Br */[
+        return --[ Br ]--[
                 v,
                 l,
                 $$delete(r, n / 2 | 0)
@@ -97,16 +97,16 @@ function $$delete(tr, n) {
 
 function loext(tr, w) {
   if (tr) {
-    return /* Br */[
+    return --[ Br ]--[
             w,
             loext(tr[2], tr[0]),
             tr[1]
           ];
   } else {
-    return /* Br */[
+    return --[ Br ]--[
             w,
-            /* Lf */0,
-            /* Lf */0
+            --[ Lf ]--0,
+            --[ Lf ]--0
           ];
   }
 }
@@ -115,7 +115,7 @@ function lorem(tr) {
   if (tr) {
     var l = tr[1];
     if (l) {
-      return /* Br */[
+      return --[ Br ]--[
               l[0],
               tr[2],
               lorem(l)
@@ -123,22 +123,22 @@ function lorem(tr) {
     } else if (tr[2]) {
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "flexible_array_test.ml",
               66,
               9
             ]
           ];
     } else {
-      return /* Lf */0;
+      return --[ Lf ]--0;
     }
   } else {
     throw Caml_builtin_exceptions.not_found;
   }
 }
 
-var empty = /* tuple */[
-  /* Lf */0,
+var empty = --[ tuple ]--[
+  --[ Lf ]--0,
   0
 ];
 
@@ -147,7 +147,7 @@ function length(param) {
 }
 
 function get(param, i) {
-  if (i >= 0 && i < param[1]) {
+  if (i >= 0 and i < param[1]) {
     return sub(param[0], i + 1 | 0);
   } else {
     throw [
@@ -159,8 +159,8 @@ function get(param, i) {
 
 function set(param, i, v) {
   var k = param[1];
-  if (i >= 0 && i < k) {
-    return /* tuple */[
+  if (i >= 0 and i < k) {
+    return --[ tuple ]--[
             update(param[0], i + 1 | 0, v),
             k
           ];
@@ -173,7 +173,7 @@ function set(param, i, v) {
 }
 
 function push_front(param, v) {
-  return /* tuple */[
+  return --[ tuple ]--[
           loext(param[0], v),
           param[1] + 1 | 0
         ];
@@ -182,7 +182,7 @@ function push_front(param, v) {
 function pop_front(param) {
   var k = param[1];
   if (k > 0) {
-    return /* tuple */[
+    return --[ tuple ]--[
             lorem(param[0]),
             k - 1 | 0
           ];
@@ -196,7 +196,7 @@ function pop_front(param) {
 
 function push_back(param, v) {
   var k = param[1];
-  return /* tuple */[
+  return --[ tuple ]--[
           update(param[0], k + 1 | 0, v),
           k + 1 | 0
         ];
@@ -205,7 +205,7 @@ function push_back(param, v) {
 function pop_back(param) {
   var k = param[1];
   if (k > 0) {
-    return /* tuple */[
+    return --[ tuple ]--[
             $$delete(param[0], k),
             k - 1 | 0
           ];
@@ -223,10 +223,10 @@ function pp(fmt, s) {
     v = v + (", " + String(get(s, i)));
   }
   v = v + "]";
-  return Curry._1(Format.fprintf(fmt, /* Format */[
-                  /* String */Block.__(2, [
-                      /* No_padding */0,
-                      /* End_of_format */0
+  return Curry._1(Format.fprintf(fmt, --[ Format ]--[
+                  --[ String ]--Block.__(2, [
+                      --[ No_padding ]--0,
+                      --[ End_of_format ]--0
                     ]),
                   "%s"
                 ]), v);
@@ -321,7 +321,7 @@ if (!Caml_obj.caml_equal(x, of_array([
           ]))) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "flexible_array_test.ml",
           166,
           4
@@ -348,4 +348,4 @@ exports.loext = loext;
 exports.lorem = lorem;
 exports.Int_array = Int_array;
 exports.$eq$tilde = $eq$tilde;
-/* u Not a pure module */
+--[ u Not a pure module ]--

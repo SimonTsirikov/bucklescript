@@ -6,4 +6,4 @@ function busted(a1, a2, param) {
 }
 
 exports.busted = busted;
-/* No side effect */
+--[ No side effect ]--

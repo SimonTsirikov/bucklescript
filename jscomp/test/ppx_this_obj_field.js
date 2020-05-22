@@ -4,7 +4,7 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -15,11 +15,11 @@ function eq(loc, param) {
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -27,7 +27,7 @@ function eq(loc, param) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var v5 = {
@@ -36,7 +36,7 @@ var v5 = {
   setY: (function (v) {
       var self = this ;
       self.y = 2;
-      return /* tuple */[
+      return --[ tuple ]--[
               self.y,
               v
             ];
@@ -51,7 +51,7 @@ var v5 = {
     }),
   bark: (function () {
       console.log("bark");
-      return /* () */0;
+      return --[ () ]--0;
     }),
   xz: (function () {
       return 3;
@@ -64,12 +64,12 @@ var v = {
   reset: (function () {
       var self = this ;
       self.y = 0;
-      return /* () */0;
+      return --[ () ]--0;
     }),
   incr: (function () {
       var self = this ;
       self.y = self.y + 1 | 0;
-      return /* () */0;
+      return --[ () ]--0;
     }),
   getY: (function () {
       var self = this ;
@@ -84,7 +84,7 @@ var v = {
 var u = {
   incr: (function () {
       console.log("hey");
-      return /* () */0;
+      return --[ () ]--0;
     }),
   getY: (function () {
       return 3;
@@ -94,12 +94,12 @@ var u = {
     })
 };
 
-var test_type_001 = /* :: */[
+var test_type_001 = --[ :: ]--[
   v,
-  /* [] */0
+  --[ [] ]--0
 ];
 
-var test_type = /* :: */[
+var test_type = --[ :: ]--[
   u,
   test_type_001
 ];
@@ -111,7 +111,7 @@ var z = {
   setX: (function (x) {
       var self = this ;
       self.x.contents = x;
-      return /* () */0;
+      return --[ () ]--0;
     }),
   getX: (function () {
       var self = this ;
@@ -125,17 +125,17 @@ var eventObj = {
       var self = this ;
       var a = self.events;
       a.splice(0);
-      return /* () */0;
+      return --[ () ]--0;
     }),
   push: (function (a) {
       var self = this ;
       var xs = self.events;
       xs.push(a);
-      return /* () */0;
+      return --[ () ]--0;
     }),
   needRebuild: (function () {
       var self = this ;
-      return self.events.length !== 0;
+      return self.events.length ~= 0;
     })
 };
 
@@ -148,7 +148,7 @@ var zz = {
   setX: (function (x) {
       var self = this ;
       self.x = x;
-      return /* () */0;
+      return --[ () ]--0;
     }),
   getX: (function () {
       var self = this ;
@@ -156,17 +156,17 @@ var zz = {
     })
 };
 
-var test_type2_001 = /* :: */[
+var test_type2_001 = --[ :: ]--[
   zz,
-  /* [] */0
+  --[ [] ]--0
 ];
 
-var test_type2 = /* :: */[
+var test_type2 = --[ :: ]--[
   z,
   test_type2_001
 ];
 
-eq("File \"ppx_this_obj_field.ml\", line 92, characters 5-12", /* tuple */[
+eq("File \"ppx_this_obj_field.ml\", line 92, characters 5-12", --[ tuple ]--[
       6,
       v5.say()
     ]);
@@ -183,13 +183,13 @@ var c = v.say();
 
 v.incr();
 
-eq("File \"ppx_this_obj_field.ml\", line 99, characters 5-12", /* tuple */[
-      /* tuple */[
+eq("File \"ppx_this_obj_field.ml\", line 99, characters 5-12", --[ tuple ]--[
+      --[ tuple ]--[
         3,
         4,
         5
       ],
-      /* tuple */[
+      --[ tuple ]--[
         a,
         b,
         c
@@ -202,12 +202,12 @@ z.setX(32);
 
 var bb = z.getX();
 
-eq("File \"ppx_this_obj_field.ml\", line 103, characters 5-12", /* tuple */[
-      /* tuple */[
+eq("File \"ppx_this_obj_field.ml\", line 103, characters 5-12", --[ tuple ]--[
+      --[ tuple ]--[
         3,
         32
       ],
-      /* tuple */[
+      --[ tuple ]--[
         aa,
         bb
       ]
@@ -227,4 +227,4 @@ exports.eventObj = eventObj;
 exports.test__ = test__;
 exports.zz = zz;
 exports.test_type2 = test_type2;
-/* v5 Not a pure module */
+--[ v5 Not a pure module ]--

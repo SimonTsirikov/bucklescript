@@ -4,4 +4,4 @@
 var a = 3;
 
 exports.a = a;
-/* No side effect */
+--[ No side effect ]--

@@ -25,7 +25,7 @@ for(var i = 0; i <= 1; ++i){
   Caml_array.caml_array_set(arr, i, i + 1 | 0);
 }
 
-console.log(/* tuple */[
+console.log(--[ tuple ]--[
       a,
       b,
       arr
@@ -38,4 +38,4 @@ exports.f2 = f2;
 exports.a = a;
 exports.b = b;
 exports.c = c;
-/* a Not a pure module */
+--[ a Not a pure module ]--

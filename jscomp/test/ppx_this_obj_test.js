@@ -4,7 +4,7 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -15,11 +15,11 @@ function eq(loc, param) {
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -27,7 +27,7 @@ function eq(loc, param) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var v = {
@@ -94,12 +94,12 @@ var collection = [
   v4
 ];
 
-eq("File \"ppx_this_obj_test.ml\", line 59, characters 5-12", /* tuple */[
+eq("File \"ppx_this_obj_test.ml\", line 59, characters 5-12", --[ tuple ]--[
       11,
       v.hi(3, 2)
     ]);
 
-eq("File \"ppx_this_obj_test.ml\", line 60, characters 5-12", /* tuple */[
+eq("File \"ppx_this_obj_test.ml\", line 60, characters 5-12", --[ tuple ]--[
       11,
       v2.hi(3, 2)
     ]);
@@ -114,4 +114,4 @@ exports.v2 = v2;
 exports.v3 = v3;
 exports.v4 = v4;
 exports.collection = collection;
-/* v Not a pure module */
+--[ v Not a pure module ]--

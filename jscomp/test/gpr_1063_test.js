@@ -26,4 +26,4 @@ exports.bla2 = bla2;
 exports.bla3 = bla3;
 exports.bla4 = bla4;
 exports.bla5 = bla5;
-/* No side effect */
+--[ No side effect ]--

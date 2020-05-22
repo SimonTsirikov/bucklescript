@@ -13,9 +13,9 @@ function g(param) {
   return 1;
 }
 
-var c = g(/* () */0);
+var c = g(--[ () ]--0);
 
-var d = g(/* () */0);
+var d = g(--[ () ]--0);
 
 exports.f = f;
 exports.a = a;
@@ -23,4 +23,4 @@ exports.b = b;
 exports.g = g;
 exports.c = c;
 exports.d = d;
-/* a Not a pure module */
+--[ a Not a pure module ]--

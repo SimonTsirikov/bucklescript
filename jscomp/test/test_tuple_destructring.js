@@ -21,4 +21,4 @@ exports.u = u;
 exports.h = h;
 exports.g = g;
 exports.gg = gg;
-/* No side effect */
+--[ No side effect ]--

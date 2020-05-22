@@ -16,70 +16,70 @@ var compare = Caml_obj.caml_compare;
 var hash = Hashtbl.hash;
 
 function of_int(x) {
-  return /* `Atom */[
+  return --[ `Atom ]--[
           726615281,
           String(x)
         ];
 }
 
 function of_float(x) {
-  return /* `Atom */[
+  return --[ `Atom ]--[
           726615281,
           Pervasives.string_of_float(x)
         ];
 }
 
 function of_bool(x) {
-  return /* `Atom */[
+  return --[ `Atom ]--[
           726615281,
           x ? "true" : "false"
         ];
 }
 
 function atom(x) {
-  return /* `Atom */[
+  return --[ `Atom ]--[
           726615281,
           x
         ];
 }
 
 function of_list(l) {
-  return /* `List */[
+  return --[ `List ]--[
           848054398,
           l
         ];
 }
 
 function of_rev_list(l) {
-  return /* `List */[
+  return --[ `List ]--[
           848054398,
           List.rev(l)
         ];
 }
 
 function of_pair(param) {
-  return /* `List */[
+  return --[ `List ]--[
           848054398,
-          /* :: */[
+          --[ :: ]--[
             param[0],
-            /* :: */[
+            --[ :: ]--[
               param[1],
-              /* [] */0
+              --[ [] ]--0
             ]
           ]
         ];
 }
 
 function of_triple(param) {
-  return /* `List */[
+  return --[ `List ]--[
           848054398,
-          /* :: */[
+          --[ :: ]--[
             param[0],
-            /* :: */[
+            --[ :: ]--[
               param[1],
-              /* :: */[
+              --[ :: ]--[
                 param[2],
-                /* [] */0
+                --[ [] ]--0
               ]
             ]
           ]
@@ -87,17 +87,17 @@ function of_triple(param) {
 }
 
 function of_quad(param) {
-  return /* `List */[
+  return --[ `List ]--[
           848054398,
-          /* :: */[
+          --[ :: ]--[
             param[0],
-            /* :: */[
+            --[ :: ]--[
               param[1],
-              /* :: */[
+              --[ :: ]--[
                 param[2],
-                /* :: */[
+                --[ :: ]--[
                   param[3],
-                  /* [] */0
+                  --[ [] ]--0
                 ]
               ]
             ]
@@ -106,10 +106,10 @@ function of_quad(param) {
 }
 
 function of_variant(name, args) {
-  return /* `List */[
+  return --[ `List ]--[
           848054398,
-          /* :: */[
-            /* `Atom */[
+          --[ :: ]--[
+            --[ `Atom ]--[
               726615281,
               name
             ],
@@ -119,23 +119,23 @@ function of_variant(name, args) {
 }
 
 function of_field(name, t) {
-  return /* `List */[
+  return --[ `List ]--[
           848054398,
-          /* :: */[
-            /* `Atom */[
+          --[ :: ]--[
+            --[ `Atom ]--[
               726615281,
               name
             ],
-            /* :: */[
+            --[ :: ]--[
               t,
-              /* [] */0
+              --[ [] ]--0
             ]
           ]
         ];
 }
 
 function of_record(l) {
-  return /* `List */[
+  return --[ `List ]--[
           848054398,
           List.map((function (param) {
                   return of_field(param[0], param[1]);
@@ -148,30 +148,30 @@ function $$return(x) {
 }
 
 function $great$pipe$eq(e, f) {
-  if (e !== undefined) {
+  if (e ~= undefined) {
     return Caml_option.some(Curry._1(f, Caml_option.valFromOption(e)));
   }
   
 }
 
 function $great$great$eq(e, f) {
-  if (e !== undefined) {
+  if (e ~= undefined) {
     return Curry._1(f, Caml_option.valFromOption(e));
   }
   
 }
 
 function map_opt(f, l) {
-  var _acc = /* [] */0;
+  var _acc = --[ [] ]--0;
   var _l = l;
   while(true) {
     var l$1 = _l;
     var acc = _acc;
     if (l$1) {
       var match = Curry._1(f, l$1[0]);
-      if (match !== undefined) {
+      if (match ~= undefined) {
         _l = l$1[1];
-        _acc = /* :: */[
+        _acc = --[ :: ]--[
           Caml_option.valFromOption(match),
           acc
         ];
@@ -193,7 +193,7 @@ function list_any(f, e) {
       var l = _l;
       if (l) {
         var res = Curry._1(f$1, l[0]);
-        if (res !== undefined) {
+        if (res ~= undefined) {
           return res;
         } else {
           _l = l[1];
@@ -210,7 +210,7 @@ function list_any(f, e) {
 function list_all(f, e) {
   if (e[0] >= 848054398) {
     var f$1 = f;
-    var _acc = /* [] */0;
+    var _acc = --[ [] ]--0;
     var _l = e[1];
     while(true) {
       var l = _l;
@@ -219,8 +219,8 @@ function list_all(f, e) {
         var tl = l[1];
         var match = Curry._1(f$1, l[0]);
         _l = tl;
-        if (match !== undefined) {
-          _acc = /* :: */[
+        if (match ~= undefined) {
+          _acc = --[ :: ]--[
             Caml_option.valFromOption(match),
             acc
           ];
@@ -233,7 +233,7 @@ function list_all(f, e) {
       }
     };
   } else {
-    return /* [] */0;
+    return --[ [] ]--0;
   }
 }
 
@@ -269,14 +269,14 @@ function to_string(e) {
 }
 
 function to_pair(e) {
-  if (typeof e === "number" || e[0] !== 848054398) {
+  if (typeof e == "number" or e[0] ~= 848054398) {
     return ;
   } else {
     var match = e[1];
     if (match) {
       var match$1 = match[1];
-      if (match$1 && !match$1[1]) {
-        return /* tuple */[
+      if (match$1 and !match$1[1]) {
+        return --[ tuple ]--[
                 match[0],
                 match$1[0]
               ];
@@ -294,7 +294,7 @@ function to_pair_with(f1, f2, e) {
                 var y = param[1];
                 return $great$great$eq(Curry._1(f1, param[0]), (function (x) {
                               return $great$great$eq(Curry._1(f2, y), (function (y) {
-                                            return /* tuple */[
+                                            return --[ tuple ]--[
                                                     x,
                                                     y
                                                   ];
@@ -304,7 +304,7 @@ function to_pair_with(f1, f2, e) {
 }
 
 function to_triple(e) {
-  if (typeof e === "number" || e[0] !== 848054398) {
+  if (typeof e == "number" or e[0] ~= 848054398) {
     return ;
   } else {
     var match = e[1];
@@ -312,8 +312,8 @@ function to_triple(e) {
       var match$1 = match[1];
       if (match$1) {
         var match$2 = match$1[1];
-        if (match$2 && !match$2[1]) {
-          return /* tuple */[
+        if (match$2 and !match$2[1]) {
+          return --[ tuple ]--[
                   match[0],
                   match$1[0],
                   match$2[0]
@@ -337,7 +337,7 @@ function to_triple_with(f1, f2, f3, e) {
                 return $great$great$eq(Curry._1(f1, param[0]), (function (x) {
                               return $great$great$eq(Curry._1(f2, y), (function (y) {
                                             return $great$great$eq(Curry._1(f3, z), (function (z) {
-                                                          return /* tuple */[
+                                                          return --[ tuple ]--[
                                                                   x,
                                                                   y,
                                                                   z
@@ -370,20 +370,20 @@ function get_field(name, e) {
       var l = _l;
       if (l) {
         var match = l[0];
-        if (typeof match === "number") {
+        if (typeof match == "number") {
           _l = l[1];
           continue ;
-        } else if (match[0] !== 848054398) {
+        } else if (match[0] ~= 848054398) {
           _l = l[1];
           continue ;
         } else {
           var match$1 = match[1];
           if (match$1) {
             var match$2 = match$1[0];
-            if (typeof match$2 === "number") {
+            if (typeof match$2 == "number") {
               _l = l[1];
               continue ;
-            } else if (match$2[0] !== 726615281) {
+            } else if (match$2[0] ~= 726615281) {
               _l = l[1];
               continue ;
             } else {
@@ -425,20 +425,20 @@ function _get_field_list(name, _l) {
     var l = _l;
     if (l) {
       var match = l[0];
-      if (typeof match === "number") {
+      if (typeof match == "number") {
         _l = l[1];
         continue ;
-      } else if (match[0] !== 848054398) {
+      } else if (match[0] ~= 848054398) {
         _l = l[1];
         continue ;
       } else {
         var match$1 = match[1];
         if (match$1) {
           var match$2 = match$1[0];
-          if (typeof match$2 === "number") {
+          if (typeof match$2 == "number") {
             _l = l[1];
             continue ;
-          } else if (match$2[0] !== 726615281) {
+          } else if (match$2[0] ~= 726615281) {
             _l = l[1];
             continue ;
           } else if (Caml_obj.caml_equal(name, match$2[1])) {
@@ -487,7 +487,7 @@ function get_variant(l, e) {
     var match = e[1];
     if (match) {
       var match$1 = match[0];
-      if (typeof match$1 === "number" || match$1[0] !== 726615281) {
+      if (typeof match$1 == "number" or match$1[0] ~= 726615281) {
         return ;
       } else {
         return _get_variant(match$1[1], match[1], l);
@@ -496,12 +496,12 @@ function get_variant(l, e) {
       return ;
     }
   } else {
-    return _get_variant(e[1], /* [] */0, l);
+    return _get_variant(e[1], --[ [] ]--0, l);
   }
 }
 
 function get_exn(e) {
-  if (e !== undefined) {
+  if (e ~= undefined) {
     return Caml_option.valFromOption(e);
   } else {
     throw [
@@ -511,9 +511,9 @@ function get_exn(e) {
   }
 }
 
-var of_unit = /* `List */[
+var of_unit = --[ `List ]--[
   848054398,
-  /* [] */0
+  --[ [] ]--0
 ];
 
 var Traverse = {
@@ -557,4 +557,4 @@ exports.of_variant = of_variant;
 exports.of_field = of_field;
 exports.of_record = of_record;
 exports.Traverse = Traverse;
-/* No side effect */
+--[ No side effect ]--

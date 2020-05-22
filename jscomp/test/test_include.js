@@ -22,23 +22,23 @@ var U = {
   v: Test_order.compare
 };
 
-var N = /* alias */0;
+var N = --[ alias ]--0;
 
 var v = List.length;
 
-var N0 = /* alias */0;
+var N0 = --[ alias ]--0;
 
-var N1 = /* alias */0;
+var N1 = --[ alias ]--0;
 
-var N2 = /* alias */0;
+var N2 = --[ alias ]--0;
 
-var N3 = /* alias */0;
+var N3 = --[ alias ]--0;
 
-var N4 = /* alias */0;
+var N4 = --[ alias ]--0;
 
-var N5 = /* alias */0;
+var N5 = --[ alias ]--0;
 
-var N6 = /* alias */0;
+var N6 = --[ alias ]--0;
 
 var length = List.length;
 
@@ -208,4 +208,4 @@ exports.stable_sort = stable_sort;
 exports.fast_sort = fast_sort;
 exports.sort_uniq = sort_uniq;
 exports.merge = merge;
-/* No side effect */
+--[ No side effect ]--

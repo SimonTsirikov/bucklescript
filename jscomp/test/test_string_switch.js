@@ -16,4 +16,4 @@ switch (Sys.os_type) {
 }
 
 exports.os_version = os_version;
-/* os_version Not a pure module */
+--[ os_version Not a pure module ]--

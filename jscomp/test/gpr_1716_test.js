@@ -5,7 +5,7 @@ var Block = require("../../lib/js/block.js");
 var Caml_obj = require("../../lib/js/caml_obj.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -14,11 +14,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -26,7 +26,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var a = { };
@@ -42,7 +42,7 @@ Caml_obj.caml_update_dummy(b, {
     });
 
 function is_inifite(x) {
-  return x.b.a === x;
+  return x.b.a == x;
 }
 
 eq("File \"gpr_1716_test.ml\", line 26, characters 6-13", true, is_inifite(a));
@@ -55,4 +55,4 @@ exports.eq = eq;
 exports.a = a;
 exports.b = b;
 exports.is_inifite = is_inifite;
-/*  Not a pure module */
+--[  Not a pure module ]--

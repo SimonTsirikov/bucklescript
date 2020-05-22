@@ -31,47 +31,47 @@ var u = 1;
 
 var v = true;
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "caml_bool_eq_caml_bool",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 u,
                 true
               ]);
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "js_bool_eq_js_bool",
     (function (param) {
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   v,
                   true
                 ]);
       })
   ],
-  /* :: */[
-    /* tuple */[
+  --[ :: ]--[
+    --[ tuple ]--[
       "js_bool_neq_acml_bool",
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     true,
-                    true === true
+                    true == true
                   ]);
         })
     ],
-    /* [] */0
+    --[ [] ]--0
   ]
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
 
 function ff(u) {
-  if (u === true) {
+  if (u == true) {
     return 1;
   } else {
     return 2;
@@ -79,11 +79,11 @@ function ff(u) {
 }
 
 function fi(x, y) {
-  return x === y;
+  return x == y;
 }
 
 function fb(x, y) {
-  return x === y;
+  return x == y;
 }
 
 function fadd(x, y) {
@@ -99,7 +99,7 @@ function ss(x) {
 }
 
 function bb(x) {
-  return /* tuple */[
+  return --[ tuple ]--[
           true > x,
           false,
           true,
@@ -111,7 +111,7 @@ function bb(x) {
         ];
 }
 
-var consts = /* tuple */[
+var consts = --[ tuple ]--[
   false,
   false,
   true,
@@ -147,4 +147,4 @@ exports.ss = ss;
 exports.bb = bb;
 exports.consts = consts;
 exports.bool_array = bool_array;
-/*  Not a pure module */
+--[  Not a pure module ]--

@@ -7,7 +7,7 @@ var Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
 var CamlinternalOO = require("../../lib/js/camlinternalOO.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -16,11 +16,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -28,16 +28,16 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
-var class_tables = /* Cons */[
+var class_tables = --[ Cons ]--[
   0,
   0,
   0
 ];
 
-var class_tables$1 = /* Cons */[
+var class_tables$1 = --[ Cons ]--[
   0,
   0,
   0
@@ -77,7 +77,7 @@ function step1(param) {
   return Curry._1(class_tables[0], 0);
 }
 
-var tmp = step1(/* () */0);
+var tmp = step1(--[ () ]--0);
 
 var tmp$1 = Caml_oo_curry.js1(68057958, 1, tmp);
 
@@ -92,4 +92,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.step1 = step1;
 exports.x = x;
-/* x Not a pure module */
+--[ x Not a pure module ]--

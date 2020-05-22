@@ -7,7 +7,7 @@ var Caml_int32 = require("../../lib/js/caml_int32.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -49,16 +49,16 @@ rec_cell2[1] = rec_cell2;
 
 function f2(x) {
   var rec_cell2 = [];
-  Caml_obj.caml_update_dummy(rec_cell2, /* Cons */[
-        /* content */Caml_int32.imul(x, x) - 6 | 0,
-        /* next */rec_cell2
+  Caml_obj.caml_update_dummy(rec_cell2, --[ Cons ]--[
+        --[ content ]--Caml_int32.imul(x, x) - 6 | 0,
+        --[ next ]--rec_cell2
       ]);
   return rec_cell2;
 }
 
 function hd(x) {
   if (x) {
-    return x[/* content */0];
+    return x[--[ content ]--0];
   } else {
     return 0;
   }
@@ -66,11 +66,11 @@ function hd(x) {
 
 function tl_exn(x) {
   if (x) {
-    return x[/* next */1];
+    return x[--[ next ]--1];
   } else {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "recursive_records_test.ml",
             52,
             11
@@ -93,7 +93,7 @@ rec_cell3[1] = rec_cell3;
 
 function f3(x) {
   var rec_cell3 = [];
-  Caml_obj.caml_update_dummy(rec_cell3, /* :: */[
+  Caml_obj.caml_update_dummy(rec_cell3, --[ :: ]--[
         Caml_int32.imul(x, x) - 6 | 0,
         rec_cell3
       ]);
@@ -120,4 +120,4 @@ exports.hd = hd;
 exports.tl_exn = tl_exn;
 exports.rec_cell3 = rec_cell3;
 exports.f3 = f3;
-/*  Not a pure module */
+--[  Not a pure module ]--

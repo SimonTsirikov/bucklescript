@@ -28015,7 +28015,7 @@ let string_of_type_directive x =
   | Dir_type_float  -> "float"
   | Dir_type_int  -> "int"
   | Dir_type_string  -> "string"
-  | Dir_type_null -> "nil"
+  | Dir_type_null -> "null"
 
 type error =
   | Illegal_character of char
@@ -31385,7 +31385,7 @@ and __ocaml_lex_skip_hash_bang_rec lexbuf __ocaml_lex_state =
           Docstrings.register doc;
           add_docstring_comment doc;
           let docs' =
-            if Docstrings.docstring_body doc = "/*" then
+            if Docstrings.docstring_body doc = "--[" then
               match docs with
               | Initial -> Before([], [doc], [])
               | After a -> Before (a, [doc], [])

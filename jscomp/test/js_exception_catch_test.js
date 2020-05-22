@@ -9,7 +9,7 @@ var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var counter = {
@@ -19,19 +19,19 @@ var counter = {
 function add_test(loc, test) {
   counter.contents = counter.contents + 1 | 0;
   var id = loc + (" id " + String(counter.contents));
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       id,
       test
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function eq(loc, x, y) {
   return add_test(loc, (function (param) {
-                return /* Eq */Block.__(0, [
+                return --[ Eq ]--Block.__(0, [
                           x,
                           y
                         ]);
@@ -40,13 +40,13 @@ function eq(loc, x, y) {
 
 function false_(loc) {
   return add_test(loc, (function (param) {
-                return /* Ok */Block.__(4, [false]);
+                return --[ Ok ]--Block.__(4, [false]);
               }));
 }
 
 function true_(loc) {
   return add_test(loc, (function (param) {
-                return /* Ok */Block.__(4, [true]);
+                return --[ Ok ]--Block.__(4, [true]);
               }));
 }
 
@@ -60,18 +60,18 @@ try {
 }
 catch (raw_exn){
   var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn[0] === Js_exn.$$Error) {
+  if (exn[0] == Js_exn.$$Error) {
     add_test("File \"js_exception_catch_test.ml\", line 21, characters 10-17", (function (param) {
-            return /* Ok */Block.__(4, [true]);
+            return --[ Ok ]--Block.__(4, [true]);
           }));
   } else {
     throw exn;
   }
 }
 
-if (exit === 1) {
+if (exit == 1) {
   add_test("File \"js_exception_catch_test.ml\", line 22, characters 16-23", (function (param) {
-          return /* Ok */Block.__(4, [false]);
+          return --[ Ok ]--Block.__(4, [false]);
         }));
 }
 
@@ -83,80 +83,80 @@ var C = Caml_exceptions.create("Js_exception_catch_test.C");
 
 function test(f) {
   try {
-    Curry._1(f, /* () */0);
-    return /* No_error */-465676758;
+    Curry._1(f, --[ () ]--0);
+    return --[ No_error ]---465676758;
   }
   catch (raw_e){
     var e = Caml_js_exceptions.internalToOCamlException(raw_e);
-    if (e === Caml_builtin_exceptions.not_found) {
-      return /* Not_found */-358247754;
-    } else if (e[0] === Caml_builtin_exceptions.invalid_argument) {
-      if (e[1] === "x") {
-        return /* Invalid_argument */-50278363;
+    if (e == Caml_builtin_exceptions.not_found) {
+      return --[ Not_found ]---358247754;
+    } else if (e[0] == Caml_builtin_exceptions.invalid_argument) {
+      if (e[1] == "x") {
+        return --[ Invalid_argument ]---50278363;
       } else {
-        return /* Invalid_any */545126980;
+        return --[ Invalid_any ]--545126980;
       }
-    } else if (e[0] === A) {
-      if (e[1] !== 2) {
-        return /* A_any */740357294;
+    } else if (e[0] == A) {
+      if (e[1] ~= 2) {
+        return --[ A_any ]--740357294;
       } else {
-        return /* A2 */14545;
+        return --[ A2 ]--14545;
       }
-    } else if (e === B) {
-      return /* B */66;
-    } else if (e[0] === C) {
-      if (e[1] !== 1 || e[2] !== 2) {
-        return /* C_any */-756146768;
+    } else if (e == B) {
+      return --[ B ]--66;
+    } else if (e[0] == C) {
+      if (e[1] ~= 1 or e[2] ~= 2) {
+        return --[ C_any ]---756146768;
       } else {
-        return /* C */67;
+        return --[ C ]--67;
       }
-    } else if (e[0] === Js_exn.$$Error) {
-      return /* Js_error */634022066;
+    } else if (e[0] == Js_exn.$$Error) {
+      return --[ Js_error ]--634022066;
     } else {
-      return /* Any */3257036;
+      return --[ Any ]--3257036;
     }
   }
 }
 
 eq("File \"js_exception_catch_test.ml\", line 43, characters 5-12", test((function (param) {
-            return /* () */0;
-          })), /* No_error */-465676758);
+            return --[ () ]--0;
+          })), --[ No_error ]---465676758);
 
 eq("File \"js_exception_catch_test.ml\", line 44, characters 5-12", test((function (param) {
             throw Caml_builtin_exceptions.not_found;
-          })), /* Not_found */-358247754);
+          })), --[ Not_found ]---358247754);
 
 eq("File \"js_exception_catch_test.ml\", line 45, characters 5-12", test((function (param) {
             throw [
                   Caml_builtin_exceptions.invalid_argument,
                   "x"
                 ];
-          })), /* Invalid_argument */-50278363);
+          })), --[ Invalid_argument ]---50278363);
 
 eq("File \"js_exception_catch_test.ml\", line 46, characters 5-12", test((function (param) {
             throw [
                   Caml_builtin_exceptions.invalid_argument,
                   ""
                 ];
-          })), /* Invalid_any */545126980);
+          })), --[ Invalid_any ]--545126980);
 
 eq("File \"js_exception_catch_test.ml\", line 47, characters 5-12", test((function (param) {
             throw [
                   A,
                   2
                 ];
-          })), /* A2 */14545);
+          })), --[ A2 ]--14545);
 
 eq("File \"js_exception_catch_test.ml\", line 48, characters 5-12", test((function (param) {
             throw [
                   A,
                   3
                 ];
-          })), /* A_any */740357294);
+          })), --[ A_any ]--740357294);
 
 eq("File \"js_exception_catch_test.ml\", line 49, characters 5-12", test((function (param) {
             throw B;
-          })), /* B */66);
+          })), --[ B ]--66);
 
 eq("File \"js_exception_catch_test.ml\", line 50, characters 5-12", test((function (param) {
             throw [
@@ -164,7 +164,7 @@ eq("File \"js_exception_catch_test.ml\", line 50, characters 5-12", test((functi
                   1,
                   2
                 ];
-          })), /* C */67);
+          })), --[ C ]--67);
 
 eq("File \"js_exception_catch_test.ml\", line 51, characters 5-12", test((function (param) {
             throw [
@@ -172,18 +172,18 @@ eq("File \"js_exception_catch_test.ml\", line 51, characters 5-12", test((functi
                   0,
                   2
                 ];
-          })), /* C_any */-756146768);
+          })), --[ C_any ]---756146768);
 
 eq("File \"js_exception_catch_test.ml\", line 52, characters 5-12", test((function (param) {
             throw new Error("x");
-          })), /* Js_error */634022066);
+          })), --[ Js_error ]--634022066);
 
 eq("File \"js_exception_catch_test.ml\", line 53, characters 5-12", test((function (param) {
             throw [
                   Caml_builtin_exceptions.failure,
                   "x"
                 ];
-          })), /* Any */3257036);
+          })), --[ Any ]--3257036);
 
 Mt.from_pair_suites("Js_exception_catch_test", suites.contents);
 
@@ -196,4 +196,4 @@ exports.A = A;
 exports.B = B;
 exports.C = C;
 exports.test = test;
-/*  Not a pure module */
+--[  Not a pure module ]--

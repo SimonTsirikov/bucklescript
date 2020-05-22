@@ -6,7 +6,7 @@ var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -15,11 +15,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -27,7 +27,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var y;
@@ -40,7 +40,7 @@ try {
 }
 catch (raw_exn){
   var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn[0] === Caml_builtin_exceptions.failure) {
+  if (exn[0] == Caml_builtin_exceptions.failure) {
     y = exn[1];
   } else {
     throw exn;
@@ -59,14 +59,14 @@ try {
 }
 catch (raw_exn$1){
   var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-  if (exn$1[0] === Caml_builtin_exceptions.failure) {
+  if (exn$1[0] == Caml_builtin_exceptions.failure) {
     x = exn$1[1];
   } else {
     throw exn$1;
   }
 }
 
-if (exit === 1) {
+if (exit == 1) {
   console.log("ok");
   x = undefined;
 }
@@ -82,4 +82,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.y = y;
 exports.x = x;
-/* y Not a pure module */
+--[ y Not a pure module ]--

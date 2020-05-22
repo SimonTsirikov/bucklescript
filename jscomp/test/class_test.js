@@ -26,7 +26,7 @@ function point_init($$class) {
         move,
         (function (self$1, d) {
             self$1[x] = self$1[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           })
       ]);
   return (function (env, self) {
@@ -63,7 +63,7 @@ function point2_init($$class) {
         move,
         (function (self$2, d) {
             self$2[x] = self$2[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           })
       ]);
   return (function (env, self) {
@@ -92,47 +92,47 @@ var u = {
     })
 };
 
-Mt.from_pair_suites("Class_test", /* :: */[
-      /* tuple */[
+Mt.from_pair_suites("Class_test", --[ :: ]--[
+      --[ tuple ]--[
         "File \"class_test.ml\", line 38, characters 4-11",
         (function (param) {
-            return /* Eq */Block.__(0, [
+            return --[ Eq ]--Block.__(0, [
                       zero,
                       0
                     ]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "File \"class_test.ml\", line 39, characters 4-11",
           (function (param) {
-              return /* Eq */Block.__(0, [
+              return --[ Eq ]--Block.__(0, [
                         three,
                         3
                       ]);
             })
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "File \"class_test.ml\", line 40, characters 4-11",
             (function (param) {
-                return /* Eq */Block.__(0, [
+                return --[ Eq ]--Block.__(0, [
                           one,
                           1
                         ]);
               })
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "File \"class_test.ml\", line 41, characters 4-11",
               (function (param) {
-                  return /* Eq */Block.__(0, [
+                  return --[ Eq ]--Block.__(0, [
                             two,
                             2
                           ]);
                 })
             ],
-            /* [] */0
+            --[ [] ]--0
           ]
         ]
       ]
@@ -147,4 +147,4 @@ exports.point2 = point2;
 exports.one = one;
 exports.two = two;
 exports.u = u;
-/* point Not a pure module */
+--[ point Not a pure module ]--

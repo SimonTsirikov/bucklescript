@@ -5,7 +5,7 @@ var React = require("react");
 var ReactDom = require("react-dom");
 
 function fib(n) {
-  if (n === 2 || n === 1) {
+  if (n == 2 or n == 1) {
     return 1;
   } else {
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
@@ -22,12 +22,12 @@ function sum(n) {
 
 function map(f, param) {
   if (param) {
-    return /* Cons */[
+    return --[ Cons ]--[
             Curry._1(f, param[0]),
             map(f, param[1])
           ];
   } else {
-    return /* Nil */0;
+    return --[ Nil ]--0;
   }
 }
 
@@ -52,4 +52,4 @@ exports.sum = sum;
 exports.map = map;
 exports.test_curry = test_curry;
 exports.f = f;
-/*  Not a pure module */
+--[  Not a pure module ]--

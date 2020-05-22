@@ -6,7 +6,7 @@ var Block = require("../../lib/js/block.js");
 var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -15,11 +15,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -27,19 +27,19 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var jsMapperConstantArray = [
-  /* tuple */[
+  --[ tuple ]--[
     67,
     "C"
   ],
-  /* tuple */[
+  --[ tuple ]--[
     68,
     "D"
   ],
-  /* tuple */[
+  --[ tuple ]--[
     102,
     "x"
   ]
@@ -54,33 +54,33 @@ function uFromJs(param) {
 }
 
 function eqU(x, y) {
-  return x === y;
+  return x == y;
 }
 
 function eqUOpt(x, y) {
-  if (x !== undefined) {
-    if (y !== undefined) {
-      return x === y;
+  if (x ~= undefined) {
+    if (y ~= undefined) {
+      return x == y;
     } else {
       return false;
     }
   } else {
-    return y === undefined;
+    return y == undefined;
   }
 }
 
-eq("File \"ast_js_mapper_poly_test.ml\", line 25, characters 5-12", eqUOpt(uFromJs("x"), /* f */102), true);
+eq("File \"ast_js_mapper_poly_test.ml\", line 25, characters 5-12", eqUOpt(uFromJs("x"), --[ f ]--102), true);
 
-eq("File \"ast_js_mapper_poly_test.ml\", line 26, characters 5-12", eqUOpt(uFromJs("D"), /* D */68), true);
+eq("File \"ast_js_mapper_poly_test.ml\", line 26, characters 5-12", eqUOpt(uFromJs("D"), --[ D ]--68), true);
 
-eq("File \"ast_js_mapper_poly_test.ml\", line 27, characters 5-12", eqUOpt(uFromJs("C"), /* C */67), true);
+eq("File \"ast_js_mapper_poly_test.ml\", line 27, characters 5-12", eqUOpt(uFromJs("C"), --[ C ]--67), true);
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 28, characters 5-12", eqUOpt(uFromJs("f"), undefined), true);
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 29, characters 5-12", $$Array.map(uToJs, [
-          /* D */68,
-          /* C */67,
-          /* f */102
+          --[ D ]--68,
+          --[ C ]--67,
+          --[ f ]--102
         ]), [
       "D",
       "C",
@@ -103,40 +103,40 @@ function vFromJs(param) {
 }
 
 function eqV(x, y) {
-  return x === y;
+  return x == y;
 }
 
 function eqVOpt(x, y) {
-  if (x !== undefined) {
-    if (y !== undefined) {
-      return x === y;
+  if (x ~= undefined) {
+    if (y ~= undefined) {
+      return x == y;
     } else {
       return false;
     }
   } else {
-    return y === undefined;
+    return y == undefined;
   }
 }
 
 function s(param) {
   switch (param) {
-    case /* A0 */0 :
+    case --[ A0 ]--0 :
         return "A0";
-    case /* A1 */1 :
+    case --[ A1 ]--1 :
         return "A1";
-    case /* A2 */2 :
+    case --[ A2 ]--2 :
         return "A2";
-    case /* A3 */3 :
+    case --[ A3 ]--3 :
         return "A3";
     
   }
 }
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 54, characters 5-12", $$Array.map(vToJs, [
-          /* A0 */0,
-          /* A1 */1,
-          /* A2 */2,
-          /* A3 */3
+          --[ A0 ]--0,
+          --[ A1 ]--1,
+          --[ A2 ]--2,
+          --[ A3 ]--3
         ]), [
       0,
       3,
@@ -153,12 +153,12 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 55, characters 5-12", $$Array.map(
           5,
           6
         ]), [
-      /* A0 */0,
+      --[ A0 ]--0,
       undefined,
       undefined,
-      /* A1 */1,
-      /* A2 */2,
-      /* A3 */3,
+      --[ A1 ]--1,
+      --[ A2 ]--2,
+      --[ A3 ]--3,
       undefined
     ]);
 
@@ -167,19 +167,19 @@ function v1ToJs(param) {
 }
 
 function v1FromJs(param) {
-  if (param <= 5 && 0 <= param) {
+  if (param <= 5 and 0 <= param) {
     return param - 0 | 0;
   }
   
 }
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 68, characters 5-12", $$Array.map(v1ToJs, [
-          /* B0 */0,
-          /* B1 */1,
-          /* B2 */2,
-          /* B3 */3,
-          /* B4 */4,
-          /* B5 */5
+          --[ B0 ]--0,
+          --[ B1 ]--1,
+          --[ B2 ]--2,
+          --[ B3 ]--3,
+          --[ B4 ]--4,
+          --[ B5 ]--5
         ]), [
       0,
       1,
@@ -200,12 +200,12 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 69, characters 5-12", $$Array.map(
           6
         ]), [
       undefined,
-      /* B0 */0,
-      /* B1 */1,
-      /* B2 */2,
-      /* B3 */3,
-      /* B4 */4,
-      /* B5 */5,
+      --[ B0 ]--0,
+      --[ B1 ]--1,
+      --[ B2 ]--2,
+      --[ B3 ]--3,
+      --[ B4 ]--4,
+      --[ B5 ]--5,
       undefined
     ]);
 
@@ -214,19 +214,19 @@ function v2ToJs(param) {
 }
 
 function v2FromJs(param) {
-  if (param <= 7 && 2 <= param) {
+  if (param <= 7 and 2 <= param) {
     return param - 2 | 0;
   }
   
 }
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 86, characters 5-12", $$Array.map(v2ToJs, [
-          /* C0 */0,
-          /* C1 */1,
-          /* C2 */2,
-          /* C3 */3,
-          /* C4 */4,
-          /* C5 */5
+          --[ C0 ]--0,
+          --[ C1 ]--1,
+          --[ C2 ]--2,
+          --[ C3 ]--3,
+          --[ C4 ]--4,
+          --[ C5 ]--5
         ]), [
       2,
       3,
@@ -252,12 +252,12 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 89, characters 5-12", $$Array.map(
             ], $$Array.map((function (x) {
                     return x;
                   }), [
-                  /* C0 */0,
-                  /* C1 */1,
-                  /* C2 */2,
-                  /* C3 */3,
-                  /* C4 */4,
-                  /* C5 */5
+                  --[ C0 ]--0,
+                  --[ C1 ]--1,
+                  --[ C2 ]--2,
+                  --[ C3 ]--3,
+                  --[ C4 ]--4,
+                  --[ C5 ]--5
                 ])), [undefined]));
 
 Mt.from_pair_suites("Ast_js_mapper_poly_test", suites.contents);
@@ -281,4 +281,4 @@ exports.v1FromJs = v1FromJs;
 exports.v2ToJs = v2ToJs;
 exports.v2FromJs = v2FromJs;
 exports.$plus$great = $plus$great;
-/*  Not a pure module */
+--[  Not a pure module ]--

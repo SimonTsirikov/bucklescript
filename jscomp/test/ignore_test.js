@@ -4,7 +4,7 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -13,11 +13,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -25,19 +25,19 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function f(x) {
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function ff(x) {
   console.log(x);
-  return /* () */0;
+  return --[ () ]--0;
 }
 
-eq("File \"ignore_test.ml\", line 16, characters 5-12", /* () */0, /* () */0);
+eq("File \"ignore_test.ml\", line 16, characters 5-12", --[ () ]--0, --[ () ]--0);
 
 Mt.from_pair_suites("Ignore_test", suites.contents);
 
@@ -46,4 +46,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.f = f;
 exports.ff = ff;
-/*  Not a pure module */
+--[  Not a pure module ]--

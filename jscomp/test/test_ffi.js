@@ -7,4 +7,4 @@ function v(u) {
 }
 
 exports.v = v;
-/* No side effect */
+--[ No side effect ]--

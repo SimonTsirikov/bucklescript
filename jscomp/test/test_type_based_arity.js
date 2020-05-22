@@ -18,7 +18,7 @@ function f2(g, x) {
 
 function f3(g, x) {
   Curry._1(g, x);
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function f4(g, x) {
@@ -88,4 +88,4 @@ exports.f11 = f11;
 exports.f12 = f12;
 exports.X2 = X2;
 exports.f14 = f14;
-/* No side effect */
+--[ No side effect ]--

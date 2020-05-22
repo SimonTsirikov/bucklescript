@@ -5,7 +5,7 @@ var Block = require("../../lib/js/block.js");
 var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -14,11 +14,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -26,7 +26,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function tToJs(param) {
@@ -58,15 +58,15 @@ var v1 = {
 };
 
 var jsMapperConstantArray = [
-  /* tuple */[
+  --[ tuple ]--[
     97,
     "a"
   ],
-  /* tuple */[
+  --[ tuple ]--[
     98,
     "b"
   ],
-  /* tuple */[
+  --[ tuple ]--[
     99,
     "c"
   ]
@@ -84,15 +84,15 @@ function idx(v) {
   return eq("File \"ast_abstract_test.ml\", line 32, characters 17-24", xFromJs(xToJs(v)), v);
 }
 
-var x0 = xToJs(/* a */97);
+var x0 = xToJs(--[ a ]--97);
 
-var x1 = xToJs(/* b */98);
+var x1 = xToJs(--[ b ]--98);
 
-idx(/* a */97);
+idx(--[ a ]--97);
 
-idx(/* b */98);
+idx(--[ b ]--98);
 
-idx(/* c */99);
+idx(--[ c ]--99);
 
 var jsMapperConstantArray$1 = [
   0,
@@ -112,22 +112,22 @@ function id(x) {
   return eq("File \"ast_abstract_test.ml\", line 49, characters 8-15", aFromJs(aToJs(x)), x);
 }
 
-var a0 = aToJs(/* A */0);
+var a0 = aToJs(--[ A ]--0);
 
-var a1 = aToJs(/* B */1);
+var a1 = aToJs(--[ B ]--1);
 
-id(/* A */0);
+id(--[ A ]--0);
 
-id(/* B */1);
+id(--[ B ]--1);
 
-id(/* C */2);
+id(--[ C ]--2);
 
 function bToJs(param) {
   return param + 0 | 0;
 }
 
 function bFromJs(param) {
-  if (!(param <= 3 && 0 <= param)) {
+  if (!(param <= 3 and 0 <= param)) {
     throw new Error("ASSERT FAILURE");
   }
   return param - 0 | 0;
@@ -141,20 +141,20 @@ function idb(v) {
   return eq("File \"ast_abstract_test.ml\", line 71, characters 5-12", bFromJs(v + 0 | 0), v);
 }
 
-idb(/* D0 */0);
+idb(--[ D0 ]--0);
 
-idb(/* D1 */1);
+idb(--[ D1 ]--1);
 
-idb(/* D2 */2);
+idb(--[ D2 ]--2);
 
-idb(/* D3 */3);
+idb(--[ D3 ]--3);
 
 function cToJs(param) {
   return param + 3 | 0;
 }
 
 function cFromJs(param) {
-  if (!(param <= 6 && 3 <= param)) {
+  if (!(param <= 6 and 3 <= param)) {
     throw new Error("ASSERT FAILURE");
   }
   return param - 3 | 0;
@@ -166,20 +166,20 @@ function idc(v) {
   return eq("File \"ast_abstract_test.ml\", line 83, characters 15-22", cFromJs(v + 3 | 0), v);
 }
 
-idc(/* D0 */0);
+idc(--[ D0 ]--0);
 
-idc(/* D1 */1);
+idc(--[ D1 ]--1);
 
-idc(/* D2 */2);
+idc(--[ D2 ]--2);
 
-idc(/* D3 */3);
+idc(--[ D3 ]--3);
 
 function hToJs(param) {
   return param + 0 | 0;
 }
 
 function hFromJs(param) {
-  if (!(param <= 1 && 0 <= param)) {
+  if (!(param <= 1 and 0 <= param)) {
     throw new Error("ASSERT FAILURE");
   }
   return param - 0 | 0;
@@ -190,7 +190,7 @@ function zToJs(param) {
 }
 
 function zFromJs(param) {
-  if (param <= 2 && 0 <= param) {
+  if (param <= 2 and 0 <= param) {
     return param - 0 | 0;
   }
   
@@ -198,11 +198,11 @@ function zFromJs(param) {
 
 Mt.from_pair_suites("Ast_abstract_test", suites.contents);
 
-var jsMapperEraseType = /* JsMapperEraseType */0;
+var jsMapperEraseType = --[ JsMapperEraseType ]--0;
 
-var b = /* B */1;
+var b = --[ B ]--1;
 
-var zXx = /* ZXx */2;
+var zXx = --[ ZXx ]--2;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -237,4 +237,4 @@ exports.hFromJs = hFromJs;
 exports.zXx = zXx;
 exports.zToJs = zToJs;
 exports.zFromJs = zFromJs;
-/* x0 Not a pure module */
+--[ x0 Not a pure module ]--

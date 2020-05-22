@@ -7106,7 +7106,7 @@ and __ocaml_lex_comment_rec env buf lexbuf __ocaml_lex_state =
                        (
                          let loc = loc_of_lexbuf env lexbuf in
                          let env = if is_in_comment_syntax env
-                           then unexpected_error_w_suggest env loc "*/" "*-/"
+                           then unexpected_error_w_suggest env loc "]--" "]--"
                            else env
                          in
                          env, loc

@@ -3,7 +3,7 @@
 var Mt = require("./mt.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -15,7 +15,7 @@ function eq(loc, x, y) {
 }
 
 function f(xOpt, y) {
-  var x = xOpt !== undefined ? xOpt : 3;
+  var x = xOpt ~= undefined ? xOpt : 3;
   var xOpt$1 = x + 2 | 0;
   console.log(xOpt$1);
   return xOpt$1 + y | 0;
@@ -33,4 +33,4 @@ exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.f = f;
-/*  Not a pure module */
+--[  Not a pure module ]--

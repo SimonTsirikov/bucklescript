@@ -3,19 +3,19 @@
 
 function fff(x) {
   x.height = 2;
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function ff(x, z) {
-  return /* :: */[
+  return --[ :: ]--[
           x.height,
-          /* :: */[
+          --[ :: ]--[
             z.height,
-            /* [] */0
+            --[ [] ]--0
           ]
         ];
 }
 
 exports.fff = fff;
 exports.ff = ff;
-/* No side effect */
+--[ No side effect ]--

@@ -11,16 +11,16 @@ try {
 }
 catch (raw_exn){
   var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn[0] === Caml_builtin_exceptions.invalid_argument) {
+  if (exn[0] == Caml_builtin_exceptions.invalid_argument) {
     console.log(exn[1]);
-    hh = /* "a" */97;
+    hh = --[ "a" ]--97;
   } else {
     throw exn;
   }
 }
 
-var f = /* "o" */111;
+var f = --[ "o" ]--111;
 
 exports.f = f;
 exports.hh = hh;
-/* hh Not a pure module */
+--[ hh Not a pure module ]--

@@ -4,7 +4,7 @@ var Rbset = require("./rbset.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function bench(param) {
-  var data = /* Empty */0;
+  var data = --[ Empty ]--0;
   console.time("test/bs_rbset_int_bench.ml 7");
   for(var i = 0; i <= 1000000; ++i){
     data = Rbset.add(i, data);
@@ -15,7 +15,7 @@ function bench(param) {
     if (!Rbset.mem(i$1, data)) {
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "bs_rbset_int_bench.ml",
               12,
               4
@@ -30,12 +30,12 @@ function bench(param) {
     data = Rbset.remove(i$2, data);
   }
   console.timeEnd("test/bs_rbset_int_bench.ml 14");
-  if (Rbset.cardinal(data) === 0) {
+  if (Rbset.cardinal(data) == 0) {
     return 0;
   } else {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "bs_rbset_int_bench.ml",
             17,
             2
@@ -46,15 +46,15 @@ function bench(param) {
 
 console.time("test/bs_rbset_int_bench.ml 21");
 
-bench(/* () */0);
+bench(--[ () ]--0);
 
 console.timeEnd("test/bs_rbset_int_bench.ml 21");
 
 var count = 1000000;
 
-var V = /* alias */0;
+var V = --[ alias ]--0;
 
 exports.count = count;
 exports.V = V;
 exports.bench = bench;
-/*  Not a pure module */
+--[  Not a pure module ]--

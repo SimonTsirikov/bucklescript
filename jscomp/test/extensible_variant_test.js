@@ -16,16 +16,16 @@ var N = {
 var Int$1 = Caml_exceptions.create("Extensible_variant_test.Int");
 
 function to_int(x) {
-  if (x[0] === Str) {
+  if (x[0] == Str) {
     return -1;
-  } else if (x[0] === Int) {
+  } else if (x[0] == Int) {
     return x[1];
-  } else if (x[0] === Int$1) {
+  } else if (x[0] == Int$1) {
     return x[2];
   } else {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "extensible_variant_test.ml",
             16,
             9
@@ -34,10 +34,10 @@ function to_int(x) {
   }
 }
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "test_int",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 3,
                 to_int([
                       Int,
@@ -48,11 +48,11 @@ var suites_000 = /* tuple */[
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "test_int2",
     (function (param) {
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   0,
                   to_int([
                         Int$1,
@@ -62,11 +62,11 @@ var suites_001 = /* :: */[
                 ]);
       })
   ],
-  /* :: */[
-    /* tuple */[
+  --[ :: ]--[
+    --[ tuple ]--[
       "test_string",
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     -1,
                     to_int([
                           Str,
@@ -75,11 +75,11 @@ var suites_001 = /* :: */[
                   ]);
         })
     ],
-    /* [] */0
+    --[ [] ]--0
   ]
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -91,4 +91,4 @@ exports.N = N;
 exports.Int = Int$1;
 exports.to_int = to_int;
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

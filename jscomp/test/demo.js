@@ -97,10 +97,10 @@ function ui_layout(compile, lookup, appContext) {
                               return Curry._2(lookup, env, key);
                             }));
               });
-            return /* () */0;
+            return --[ () ]--0;
           }
           catch (e){
-            return /* () */0;
+            return --[ () ]--0;
           }
         }));
   Runtime.setInterval((function () {
@@ -119,11 +119,11 @@ function ui_layout(compile, lookup, appContext) {
                           mk_titleRow(result.toFixed(2))
                         ];
                 }));
-          return /* () */0;
+          return --[ () ]--0;
         }), 100);
   return hw1;
 }
 
 exports.data = data;
 exports.ui_layout = ui_layout;
-/* @ui Not a pure module */
+--[ @ui Not a pure module ]--

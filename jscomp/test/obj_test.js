@@ -160,10 +160,10 @@ CamlinternalOO.init_class($$class$5);
 
 var vvvv = CamlinternalOO.create_object_opt(0, $$class$5);
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "single_obj",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 [
                   3,
                   32
@@ -176,11 +176,11 @@ var suites_000 = /* tuple */[
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "single_obj_cache",
     (function (param) {
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   [
                     3,
                     32
@@ -192,117 +192,117 @@ var suites_001 = /* :: */[
                 ]);
       })
   ],
-  /* :: */[
-    /* tuple */[
+  --[ :: ]--[
+    --[ tuple ]--[
       "self_obj",
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     13,
                     Caml_oo_curry.js2(616641298, 5, vv, 3)
                   ]);
         })
     ],
-    /* :: */[
-      /* tuple */[
+    --[ :: ]--[
+      --[ tuple ]--[
         "uu_id",
         (function (param) {
-            return /* Eq */Block.__(0, [
+            return --[ Eq ]--Block.__(0, [
                       "uu",
                       Caml_oo_curry.js1(23515, 6, uu)
                     ]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "uu_add",
           (function (param) {
-              return /* Eq */Block.__(0, [
+              return --[ Eq ]--Block.__(0, [
                         Caml_oo_curry.js3(4846113, 7, uuu, 1, 20),
                         21
                       ]);
             })
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "v_add",
             (function (param) {
-                return /* Eq */Block.__(0, [
+                return --[ Eq ]--Block.__(0, [
                           Caml_oo_curry.js3(4846113, 8, vvvv, 3, 7),
                           10
                         ]);
               })
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "u_id1",
               (function (param) {
-                  return /* Eq */Block.__(0, [
+                  return --[ Eq ]--Block.__(0, [
                             Caml_oo_curry.js1(5243894, 9, u),
                             3
                           ]);
                 })
             ],
-            /* :: */[
-              /* tuple */[
+            --[ :: ]--[
+              --[ tuple ]--[
                 "u_id2",
                 (function (param) {
-                    return /* Eq */Block.__(0, [
+                    return --[ Eq ]--Block.__(0, [
                               Caml_oo_curry.js1(5243895, 10, u),
                               4
                             ]);
                   })
               ],
-              /* :: */[
-                /* tuple */[
+              --[ :: ]--[
+                --[ tuple ]--[
                   "u hi",
                   (function (param) {
-                      return /* Eq */Block.__(0, [
+                      return --[ Eq ]--Block.__(0, [
                                 Caml_oo_curry.js3(23297, 11, u, 1, 2),
                                 3
                               ]);
                     })
                 ],
-                /* :: */[
-                  /* tuple */[
+                --[ :: ]--[
+                  --[ tuple ]--[
                     "u hello",
                     (function (param) {
-                        return /* Eq */Block.__(0, [
+                        return --[ Eq ]--Block.__(0, [
                                   Caml_oo_curry.js2(616641298, 12, u, 32),
                                   32
                                 ]);
                       })
                   ],
-                  /* :: */[
-                    /* tuple */[
+                  --[ :: ]--[
+                    --[ tuple ]--[
                       "v hi",
                       (function (param) {
-                          return /* Eq */Block.__(0, [
+                          return --[ Eq ]--Block.__(0, [
                                     Caml_oo_curry.js2(23297, 13, vvvv, 31),
                                     63
                                   ]);
                         })
                     ],
-                    /* :: */[
-                      /* tuple */[
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "uuu add",
                         (function (param) {
-                            return /* Eq */Block.__(0, [
+                            return --[ Eq ]--Block.__(0, [
                                       Caml_oo_curry.js3(4846113, 14, uuu, 3, 4),
                                       7
                                     ]);
                           })
                       ],
-                      /* :: */[
-                        /* tuple */[
+                      --[ :: ]--[
+                        --[ tuple ]--[
                           "v x",
                           (function (param) {
-                              return /* Eq */Block.__(0, [
+                              return --[ Eq ]--Block.__(0, [
                                         Caml_oo_curry.js1(120, 15, v),
                                         3
                                       ]);
                             })
                         ],
-                        /* [] */0
+                        --[ [] ]--0
                       ]
                     ]
                   ]
@@ -316,7 +316,7 @@ var suites_001 = /* :: */[
   ]
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -330,4 +330,4 @@ exports.uu = uu;
 exports.uuu = uuu;
 exports.vvvv = vvvv;
 exports.suites = suites;
-/* class Not a pure module */
+--[ class Not a pure module ]--

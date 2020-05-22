@@ -20,7 +20,7 @@ function assertions(param) {
   if (!bool_equal(true, true)) {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "test_bool_equal.ml",
             21,
             2
@@ -30,7 +30,7 @@ function assertions(param) {
   if (!bool_equal(false, false)) {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "test_bool_equal.ml",
             22,
             2
@@ -40,7 +40,7 @@ function assertions(param) {
   if (bool_equal(true, false)) {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "test_bool_equal.ml",
             23,
             2
@@ -50,7 +50,7 @@ function assertions(param) {
   if (bool_equal(false, true)) {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "test_bool_equal.ml",
             24,
             2
@@ -61,7 +61,7 @@ function assertions(param) {
 }
 
 function f0(x) {
-  if (x === true) {
+  if (x == true) {
     return 1;
   } else {
     return 2;
@@ -69,7 +69,7 @@ function f0(x) {
 }
 
 function f1(x) {
-  if (x !== true) {
+  if (x ~= true) {
     return 1;
   } else {
     return 2;
@@ -77,7 +77,7 @@ function f1(x) {
 }
 
 function f2(x) {
-  if (x === true) {
+  if (x == true) {
     return 1;
   } else {
     return 2;
@@ -85,7 +85,7 @@ function f2(x) {
 }
 
 function f3(x) {
-  if (x === false) {
+  if (x == false) {
     return 1;
   } else {
     return 2;
@@ -93,7 +93,7 @@ function f3(x) {
 }
 
 function f4(x) {
-  if (x !== true) {
+  if (x ~= true) {
     return 1;
   } else {
     return 2;
@@ -109,7 +109,7 @@ function f5(x) {
 }
 
 function f6(x) {
-  if (x === /* [] */0) {
+  if (x == --[ [] ]--0) {
     return 1;
   } else {
     return 2;
@@ -117,7 +117,7 @@ function f6(x) {
 }
 
 function f7(x) {
-  if (x.length !== 0) {
+  if (x.length ~= 0) {
     return 1;
   } else {
     return 2;
@@ -139,4 +139,4 @@ exports.f5 = f5;
 exports.f6 = f6;
 exports.f7 = f7;
 exports.f8 = f8;
-/* No side effect */
+--[ No side effect ]--

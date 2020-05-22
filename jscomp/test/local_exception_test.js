@@ -27,4 +27,4 @@ exports.B = B;
 exports.u = u;
 exports.D = D;
 exports.d = d;
-/* No side effect */
+--[ No side effect ]--

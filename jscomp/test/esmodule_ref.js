@@ -3,4 +3,4 @@
 
 console.log(false);
 
-/*  Not a pure module */
+--[  Not a pure module ]--

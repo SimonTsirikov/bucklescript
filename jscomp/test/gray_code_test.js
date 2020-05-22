@@ -12,7 +12,7 @@ function gray_decode(n) {
   while(true) {
     var n$1 = _n;
     var p = _p;
-    if (n$1 === 0) {
+    if (n$1 == 0) {
       return p;
     } else {
       _n = (n$1 >>> 1);
@@ -23,14 +23,14 @@ function gray_decode(n) {
 }
 
 function bool_string(len, n) {
-  var s = Bytes.make(len, /* "0" */48);
+  var s = Bytes.make(len, --[ "0" ]--48);
   var _i = len - 1 | 0;
   var _n = n;
   while(true) {
     var n$1 = _n;
     var i = _i;
-    if ((n$1 & 1) === 1) {
-      s[i] = /* "1" */49;
+    if ((n$1 & 1) == 1) {
+      s[i] = --[ "1" ]--49;
     }
     if (i <= 0) {
       return s;
@@ -56,4 +56,4 @@ exports.gray_encode = gray_encode;
 exports.gray_decode = gray_decode;
 exports.bool_string = bool_string;
 exports.next_power = next_power;
-/* No side effect */
+--[ No side effect ]--

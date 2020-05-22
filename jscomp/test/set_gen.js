@@ -11,7 +11,7 @@ function cons_enum(_s, _e) {
     var e = _e;
     var s = _s;
     if (s) {
-      _e = /* More */[
+      _e = --[ More ]--[
         s[1],
         s[2],
         e
@@ -98,7 +98,7 @@ function elements_aux(_accu, _param) {
     var accu = _accu;
     if (param) {
       _param = param[0];
-      _accu = /* :: */[
+      _accu = --[ :: ]--[
         param[1],
         elements_aux(accu, param[2])
       ];
@@ -110,7 +110,7 @@ function elements_aux(_accu, _param) {
 }
 
 function elements(s) {
-  return elements_aux(/* [] */0, s);
+  return elements_aux(--[ [] ]--0, s);
 }
 
 function iter(f, _param) {
@@ -122,7 +122,7 @@ function iter(f, _param) {
       _param = param[2];
       continue ;
     } else {
-      return /* () */0;
+      return --[ () ]--0;
     }
   };
 }
@@ -145,7 +145,7 @@ function for_all(p, _param) {
   while(true) {
     var param = _param;
     if (param) {
-      if (Curry._1(p, param[1]) && for_all(p, param[0])) {
+      if (Curry._1(p, param[1]) and for_all(p, param[0])) {
         _param = param[2];
         continue ;
       } else {
@@ -161,7 +161,7 @@ function exists(p, _param) {
   while(true) {
     var param = _param;
     if (param) {
-      if (Curry._1(p, param[1]) || exists(p, param[0])) {
+      if (Curry._1(p, param[1]) or exists(p, param[0])) {
         return true;
       } else {
         _param = param[2];
@@ -204,7 +204,7 @@ function check_height_and_diff(param) {
     var h = param[3];
     var hl = check_height_and_diff(param[0]);
     var hr = check_height_and_diff(param[2]);
-    if (h !== (max_int_2(hl, hr) + 1 | 0)) {
+    if (h ~= (max_int_2(hl, hr) + 1 | 0)) {
       throw Height_invariant_broken;
     }
     var diff = Pervasives.abs(hl - hr | 0);
@@ -219,13 +219,13 @@ function check_height_and_diff(param) {
 
 function check(tree) {
   check_height_and_diff(tree);
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function create(l, v, r) {
   var hl = l ? l[3] : 0;
   var hr = r ? r[3] : 0;
-  return /* Node */[
+  return --[ Node ]--[
           l,
           v,
           r,
@@ -248,7 +248,7 @@ function internal_bal(l, v, r) {
       } else {
         throw [
               Caml_builtin_exceptions.assert_failure,
-              /* tuple */[
+              --[ tuple ]--[
                 "set_gen.ml",
                 235,
                 19
@@ -258,7 +258,7 @@ function internal_bal(l, v, r) {
     } else {
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "set_gen.ml",
               225,
               15
@@ -277,7 +277,7 @@ function internal_bal(l, v, r) {
       } else {
         throw [
               Caml_builtin_exceptions.assert_failure,
-              /* tuple */[
+              --[ tuple ]--[
                 "set_gen.ml",
                 251,
                 19
@@ -287,7 +287,7 @@ function internal_bal(l, v, r) {
     } else {
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "set_gen.ml",
               245,
               15
@@ -295,7 +295,7 @@ function internal_bal(l, v, r) {
           ];
     }
   } else {
-    return /* Node */[
+    return --[ Node ]--[
             l,
             v,
             r,
@@ -321,10 +321,10 @@ function remove_min_elt(param) {
 }
 
 function singleton(x) {
-  return /* Node */[
-          /* Empty */0,
+  return --[ Node ]--[
+          --[ Empty ]--0,
           x,
-          /* Empty */0,
+          --[ Empty ]--0,
           1
         ];
 }
@@ -401,7 +401,7 @@ function filter(p, param) {
       return internal_concat(l$prime, r$prime);
     }
   } else {
-    return /* Empty */0;
+    return --[ Empty ]--0;
   }
 }
 
@@ -416,20 +416,20 @@ function partition(p, param) {
     var rf = match$1[1];
     var rt = match$1[0];
     if (pv) {
-      return /* tuple */[
+      return --[ tuple ]--[
               internal_join(lt, v, rt),
               internal_concat(lf, rf)
             ];
     } else {
-      return /* tuple */[
+      return --[ tuple ]--[
               internal_concat(lt, rt),
               internal_join(lf, v, rf)
             ];
     }
   } else {
-    return /* tuple */[
-            /* Empty */0,
-            /* Empty */0
+    return --[ tuple ]--[
+            --[ Empty ]--0,
+            --[ Empty ]--0
           ];
   }
 }
@@ -438,17 +438,17 @@ function of_sorted_list(l) {
   var sub = function (n, l) {
     switch (n) {
       case 0 :
-          return /* tuple */[
-                  /* Empty */0,
+          return --[ tuple ]--[
+                  --[ Empty ]--0,
                   l
                 ];
       case 1 :
           if (l) {
-            return /* tuple */[
-                    /* Node */[
-                      /* Empty */0,
+            return --[ tuple ]--[
+                    --[ Node ]--[
+                      --[ Empty ]--0,
                       l[0],
-                      /* Empty */0,
+                      --[ Empty ]--0,
                       1
                     ],
                     l[1]
@@ -459,16 +459,16 @@ function of_sorted_list(l) {
           if (l) {
             var match = l[1];
             if (match) {
-              return /* tuple */[
-                      /* Node */[
-                        /* Node */[
-                          /* Empty */0,
+              return --[ tuple ]--[
+                      --[ Node ]--[
+                        --[ Node ]--[
+                          --[ Empty ]--0,
                           l[0],
-                          /* Empty */0,
+                          --[ Empty ]--0,
                           1
                         ],
                         match[0],
-                        /* Empty */0,
+                        --[ Empty ]--0,
                         2
                       ],
                       match[1]
@@ -483,19 +483,19 @@ function of_sorted_list(l) {
             if (match$1) {
               var match$2 = match$1[1];
               if (match$2) {
-                return /* tuple */[
-                        /* Node */[
-                          /* Node */[
-                            /* Empty */0,
+                return --[ tuple ]--[
+                        --[ Node ]--[
+                          --[ Node ]--[
+                            --[ Empty ]--0,
                             l[0],
-                            /* Empty */0,
+                            --[ Empty ]--0,
                             1
                           ],
                           match$1[0],
-                          /* Node */[
-                            /* Empty */0,
+                          --[ Node ]--[
+                            --[ Empty ]--0,
                             match$2[0],
-                            /* Empty */0,
+                            --[ Empty ]--0,
                             1
                           ],
                           2
@@ -516,14 +516,14 @@ function of_sorted_list(l) {
     var l$1 = match$3[1];
     if (l$1) {
       var match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
-      return /* tuple */[
+      return --[ tuple ]--[
               create(match$3[0], l$1[0], match$4[0]),
               match$4[1]
             ];
     } else {
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "set_gen.ml",
               361,
               14
@@ -536,46 +536,46 @@ function of_sorted_list(l) {
 
 function of_sorted_array(l) {
   var sub = function (start, n, l) {
-    if (n === 0) {
-      return /* Empty */0;
-    } else if (n === 1) {
+    if (n == 0) {
+      return --[ Empty ]--0;
+    } else if (n == 1) {
       var x0 = l[start];
-      return /* Node */[
-              /* Empty */0,
+      return --[ Node ]--[
+              --[ Empty ]--0,
               x0,
-              /* Empty */0,
+              --[ Empty ]--0,
               1
             ];
-    } else if (n === 2) {
+    } else if (n == 2) {
       var x0$1 = l[start];
       var x1 = l[start + 1 | 0];
-      return /* Node */[
-              /* Node */[
-                /* Empty */0,
+      return --[ Node ]--[
+              --[ Node ]--[
+                --[ Empty ]--0,
                 x0$1,
-                /* Empty */0,
+                --[ Empty ]--0,
                 1
               ],
               x1,
-              /* Empty */0,
+              --[ Empty ]--0,
               2
             ];
-    } else if (n === 3) {
+    } else if (n == 3) {
       var x0$2 = l[start];
       var x1$1 = l[start + 1 | 0];
       var x2 = l[start + 2 | 0];
-      return /* Node */[
-              /* Node */[
-                /* Empty */0,
+      return --[ Node ]--[
+              --[ Node ]--[
+                --[ Empty ]--0,
                 x0$2,
-                /* Empty */0,
+                --[ Empty ]--0,
                 1
               ],
               x1$1,
-              /* Node */[
-                /* Empty */0,
+              --[ Node ]--[
+                --[ Empty ]--0,
                 x2,
-                /* Empty */0,
+                --[ Empty ]--0,
                 1
               ],
               2
@@ -598,75 +598,75 @@ function is_ordered(cmp, tree) {
       var r = tree[2];
       var v = tree[1];
       var match = is_ordered_min_max(tree[0]);
-      if (typeof match === "number") {
+      if (typeof match == "number") {
         if (match >= 50834029) {
           var match$1 = is_ordered_min_max(r);
-          if (typeof match$1 === "number") {
+          if (typeof match$1 == "number") {
             if (match$1 >= 50834029) {
-              return /* `V */[
+              return --[ `V ]--[
                       86,
-                      /* tuple */[
+                      --[ tuple ]--[
                         v,
                         v
                       ]
                     ];
             } else {
-              return /* No */17505;
+              return --[ No ]--17505;
             }
           } else {
             var match$2 = match$1[1];
             if (Curry._2(cmp, v, match$2[0]) < 0) {
-              return /* `V */[
+              return --[ `V ]--[
                       86,
-                      /* tuple */[
+                      --[ tuple ]--[
                         v,
                         match$2[1]
                       ]
                     ];
             } else {
-              return /* No */17505;
+              return --[ No ]--17505;
             }
           }
         } else {
-          return /* No */17505;
+          return --[ No ]--17505;
         }
       } else {
         var match$3 = match[1];
         var max_v = match$3[1];
         var min_v = match$3[0];
         var match$4 = is_ordered_min_max(r);
-        if (typeof match$4 === "number") {
-          if (match$4 >= 50834029 && Curry._2(cmp, max_v, v) < 0) {
-            return /* `V */[
+        if (typeof match$4 == "number") {
+          if (match$4 >= 50834029 and Curry._2(cmp, max_v, v) < 0) {
+            return --[ `V ]--[
                     86,
-                    /* tuple */[
+                    --[ tuple ]--[
                       min_v,
                       v
                     ]
                   ];
           } else {
-            return /* No */17505;
+            return --[ No ]--17505;
           }
         } else {
           var match$5 = match$4[1];
           if (Curry._2(cmp, max_v, match$5[0]) < 0) {
-            return /* `V */[
+            return --[ `V ]--[
                     86,
-                    /* tuple */[
+                    --[ tuple ]--[
                       min_v,
                       match$5[1]
                     ]
                   ];
           } else {
-            return /* No */17505;
+            return --[ No ]--17505;
           }
         }
       }
     } else {
-      return /* Empty */50834029;
+      return --[ Empty ]--50834029;
     }
   };
-  return is_ordered_min_max(tree) !== /* No */17505;
+  return is_ordered_min_max(tree) ~= --[ No ]--17505;
 }
 
 function invariant(cmp, t) {
@@ -681,7 +681,7 @@ function compare_aux(cmp, _e1, _e2) {
     if (e1) {
       if (e2) {
         var c = Curry._2(cmp, e1[0], e2[0]);
-        if (c !== 0) {
+        if (c ~= 0) {
           return c;
         } else {
           _e2 = cons_enum(e2[1], e2[2]);
@@ -700,10 +700,10 @@ function compare_aux(cmp, _e1, _e2) {
 }
 
 function compare(cmp, s1, s2) {
-  return compare_aux(cmp, cons_enum(s1, /* End */0), cons_enum(s2, /* End */0));
+  return compare_aux(cmp, cons_enum(s1, --[ End ]--0), cons_enum(s2, --[ End ]--0));
 }
 
-var empty = /* Empty */0;
+var empty = --[ Empty ]--0;
 
 var choose = min_elt;
 
@@ -745,4 +745,4 @@ exports.is_ordered = is_ordered;
 exports.invariant = invariant;
 exports.compare_aux = compare_aux;
 exports.compare = compare;
-/* No side effect */
+--[ No side effect ]--

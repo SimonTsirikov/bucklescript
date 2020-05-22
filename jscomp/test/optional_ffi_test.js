@@ -5,7 +5,7 @@ var Block = require("../../lib/js/block.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -16,11 +16,11 @@ function eq(loc, param) {
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -28,7 +28,7 @@ function eq(loc, param) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function hey(x, y) {
@@ -41,12 +41,12 @@ var u = hey(undefined, 3);
 
 var z = hey(5, 3);
 
-eq("File \"optional_ffi_test.ml\", line 23, characters 5-12", /* tuple */[
-      /* tuple */[
+eq("File \"optional_ffi_test.ml\", line 23, characters 5-12", --[ tuple ]--[
+      --[ tuple ]--[
         u,
         z
       ],
-      /* tuple */[
+      --[ tuple ]--[
         6,
         8
       ]
@@ -80,34 +80,34 @@ function side_effect2(x) {
 
 var v = bug_to_fix(side_effect, counter);
 
-var pair_000 = /* tuple */[
+var pair_000 = --[ tuple ]--[
   v,
   counter.contents
 ];
 
-var pair_001 = /* tuple */[
+var pair_001 = --[ tuple ]--[
   4,
   1
 ];
 
-var pair = /* tuple */[
+var pair = --[ tuple ]--[
   pair_000,
   pair_001
 ];
 
 var v2 = bug_to_fix2(side_effect2, counter2);
 
-var pair2_000 = /* tuple */[
+var pair2_000 = --[ tuple ]--[
   v2,
   counter.contents
 ];
 
-var pair2_001 = /* tuple */[
+var pair2_001 = --[ tuple ]--[
   4,
   1
 ];
 
-var pair2 = /* tuple */[
+var pair2 = --[ tuple ]--[
   pair2_000,
   pair2_001
 ];
@@ -124,7 +124,7 @@ function heystr(x, y) {
 
 var pair_001$1 = heystr("name", "4");
 
-var pair$1 = /* tuple */[
+var pair$1 = --[ tuple ]--[
   "name4",
   pair_001$1
 ];
@@ -144,4 +144,4 @@ exports.bug_to_fix = bug_to_fix;
 exports.bug_to_fix2 = bug_to_fix2;
 exports.counter2 = counter2;
 exports.side_effect2 = side_effect2;
-/*  Not a pure module */
+--[  Not a pure module ]--

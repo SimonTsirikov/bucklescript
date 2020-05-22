@@ -8,4 +8,4 @@ var AA = Caml_exceptions.create("Rebind_module.AA");
 
 exports.A = A;
 exports.AA = AA;
-/* No side effect */
+--[ No side effect ]--

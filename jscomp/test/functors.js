@@ -62,4 +62,4 @@ exports.F = F;
 exports.F1 = F1;
 exports.F2 = F2;
 exports.M = M;
-/* No side effect */
+--[ No side effect ]--

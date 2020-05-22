@@ -3,7 +3,7 @@
 var Curry = require("../../lib/js/curry.js");
 
 function fib(n) {
-  if (n === 0 || n === 1) {
+  if (n == 0 or n == 1) {
     return 1;
   } else {
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
@@ -11,7 +11,7 @@ function fib(n) {
 }
 
 function fib2(n) {
-  if (n === 2 || n === 1) {
+  if (n == 2 or n == 1) {
     return 1;
   } else {
     return fib2(n - 1 | 0) + fib2(n - 2 | 0) | 0;
@@ -35,7 +35,7 @@ for(var i$1 = 10; i$1 >= 0; --i$1){
 var sumdown = v$1;
 
 function cons(x, y) {
-  return /* Cons */[
+  return --[ Cons ]--[
           x,
           y
         ];
@@ -51,12 +51,12 @@ function length(x) {
 
 function map(f, x) {
   if (x) {
-    return /* Cons */[
+    return --[ Cons ]--[
             Curry._1(f, x[0]),
             map(f, x[1])
           ];
   } else {
-    return /* Nil */0;
+    return --[ Nil ]--0;
   }
 }
 
@@ -101,4 +101,4 @@ exports.length = length;
 exports.map = map;
 exports.f = f;
 exports.fib3 = fib3;
-/*  Not a pure module */
+--[  Not a pure module ]--

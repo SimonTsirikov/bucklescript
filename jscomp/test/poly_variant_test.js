@@ -5,7 +5,7 @@ var Fs = require("fs");
 var Block = require("../../lib/js/block.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -14,11 +14,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -26,7 +26,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function hey_string (option){
@@ -67,10 +67,10 @@ eq("File \"poly_variant_test.ml\", line 58, characters 5-12", vv, [
       4
     ]);
 
-eq("File \"poly_variant_test.ml\", line 59, characters 5-12", /* tuple */[
+eq("File \"poly_variant_test.ml\", line 59, characters 5-12", --[ tuple ]--[
       hey_int(5),
       hey_int(6)
-    ], /* tuple */[
+    ], --[ tuple ]--[
       5,
       6
     ]);
@@ -88,13 +88,13 @@ hey_string("in");
 function register(readline) {
   readline.on("line", (function (s) {
           console.log(s);
-          return /* () */0;
+          return --[ () ]--0;
         }));
   readline.on("close", (function () {
           console.log("finished");
-          return /* () */0;
+          return --[ () ]--0;
         }));
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function read(name) {
@@ -115,11 +115,11 @@ function test(readline, x) {
               
             }
           })(), x[1]);
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function p_is_int_test(x) {
-  if (typeof x === "number") {
+  if (typeof x == "number") {
     return 2;
   } else {
     return 3;
@@ -128,7 +128,7 @@ function p_is_int_test(x) {
 
 eq("File \"poly_variant_test.ml\", line 142, characters 5-12", 2, 2);
 
-eq("File \"poly_variant_test.ml\", line 143, characters 5-12", 3, p_is_int_test(/* `b */[
+eq("File \"poly_variant_test.ml\", line 143, characters 5-12", 3, p_is_int_test(--[ `b ]--[
           98,
           2
         ]));
@@ -145,7 +145,7 @@ function on2(prim, prim$1) {
               
             }
           })(), prim$1[1]);
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var readN = read$1;
@@ -158,4 +158,4 @@ exports.on2 = on2;
 exports.read = read;
 exports.readN = readN;
 exports.p_is_int_test = p_is_int_test;
-/*  Not a pure module */
+--[  Not a pure module ]--

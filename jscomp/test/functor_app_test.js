@@ -7,7 +7,7 @@ var Functor_def = require("./functor_def.js");
 var Functor_inst = require("./functor_inst.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -16,11 +16,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -28,7 +28,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var Y0 = Functor_def.Make(Functor_inst);
@@ -39,7 +39,7 @@ eq("File \"functor_app_test.ml\", line 23, characters 6-13", Curry._2(Y0.h, 1, 2
 
 eq("File \"functor_app_test.ml\", line 24, characters 6-13", Curry._2(Y1.h, 2, 3), 6);
 
-var v = Functor_def.$$return(/* () */0);
+var v = Functor_def.$$return(--[ () ]--0);
 
 eq("File \"functor_app_test.ml\", line 29, characters 6-13", v, 2);
 
@@ -51,4 +51,4 @@ exports.eq = eq;
 exports.Y0 = Y0;
 exports.Y1 = Y1;
 exports.v = v;
-/* Y0 Not a pure module */
+--[ Y0 Not a pure module ]--

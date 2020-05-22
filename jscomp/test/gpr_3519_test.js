@@ -4,4 +4,4 @@
 var Foo = { };
 
 exports.Foo = Foo;
-/* No side effect */
+--[ No side effect ]--

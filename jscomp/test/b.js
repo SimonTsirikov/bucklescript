@@ -8,4 +8,4 @@ function f(point) {
 }
 
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

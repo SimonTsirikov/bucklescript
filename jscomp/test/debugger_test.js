@@ -2,7 +2,7 @@
 
 
 function f(x, y) {
-  console.log(/* tuple */[
+  console.log(--[ tuple ]--[
         x,
         y
       ]);
@@ -20,7 +20,7 @@ function g(param) {
 function exterme_g(param) {
   f(1, 2);
   debugger;
-  var v = /* () */0;
+  var v = --[ () ]--0;
   console.log(v);
   f(1, 2);
   debugger;
@@ -30,4 +30,4 @@ function exterme_g(param) {
 exports.f = f;
 exports.g = g;
 exports.exterme_g = exterme_g;
-/* No side effect */
+--[ No side effect ]--

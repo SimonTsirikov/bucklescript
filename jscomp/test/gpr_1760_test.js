@@ -6,7 +6,7 @@ var Caml_int32 = require("../../lib/js/caml_int32.js");
 var Caml_int64 = require("../../lib/js/caml_int64.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -15,11 +15,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -27,7 +27,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var a0;
@@ -73,12 +73,12 @@ catch (exn$3){
 var a6;
 
 try {
-  Caml_int64.div(/* int64 */[
-        /* hi */0,
-        /* lo */0
-      ], /* int64 */[
-        /* hi */0,
-        /* lo */0
+  Caml_int64.div(--[ int64 ]--[
+        --[ hi ]--0,
+        --[ lo ]--0
+      ], --[ int64 ]--[
+        --[ hi ]--0,
+        --[ lo ]--0
       ]);
   a6 = 0;
 }
@@ -89,12 +89,12 @@ catch (exn$4){
 var a7;
 
 try {
-  Caml_int64.mod_(/* int64 */[
-        /* hi */0,
-        /* lo */0
-      ], /* int64 */[
-        /* hi */0,
-        /* lo */0
+  Caml_int64.mod_(--[ int64 ]--[
+        --[ hi ]--0,
+        --[ lo ]--0
+      ], --[ int64 ]--[
+        --[ hi ]--0,
+        --[ lo ]--0
       ]);
   a7 = 0;
 }
@@ -102,14 +102,14 @@ catch (exn$5){
   a7 = 1;
 }
 
-eq("File \"gpr_1760_test.ml\", line 30, characters 5-12", /* tuple */[
+eq("File \"gpr_1760_test.ml\", line 30, characters 5-12", --[ tuple ]--[
       a0,
       a1,
       a4,
       a5,
       a6,
       a7
-    ], /* tuple */[
+    ], --[ tuple ]--[
       1,
       1,
       1,
@@ -129,4 +129,4 @@ exports.a4 = a4;
 exports.a5 = a5;
 exports.a6 = a6;
 exports.a7 = a7;
-/* a0 Not a pure module */
+--[ a0 Not a pure module ]--

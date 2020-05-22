@@ -13,7 +13,7 @@ function find_package_json(_dir) {
       return dir;
     } else {
       var new_dir = Path.dirname(dir);
-      if (new_dir === dir) {
+      if (new_dir == dir) {
         throw Caml_builtin_exceptions.not_found;
       }
       _dir = new_dir;
@@ -22,12 +22,12 @@ function find_package_json(_dir) {
   };
 }
 
-var match = typeof __dirname === "undefined" ? undefined : __dirname;
+var match = typeof __dirname == "undefined" ? undefined : __dirname;
 
-if (match !== undefined) {
+if (match ~= undefined) {
   console.log(find_package_json(match));
 }
 
 exports.package_json = package_json;
 exports.find_package_json = find_package_json;
-/* match Not a pure module */
+--[ match Not a pure module ]--

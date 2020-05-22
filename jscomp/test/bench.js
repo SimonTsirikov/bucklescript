@@ -9,7 +9,7 @@ function map(f, a) {
   var f$1 = Curry.__1(f);
   var a$1 = a;
   var l = a$1.length;
-  if (l === 0) {
+  if (l == 0) {
     return [];
   } else {
     var r = Caml_array.caml_make_vect(l, f$1(a$1[0]));
@@ -23,7 +23,7 @@ function map(f, a) {
 function init(l, f) {
   var l$1 = l;
   var f$1 = Curry.__1(f);
-  if (l$1 === 0) {
+  if (l$1 == 0) {
     return [];
   } else {
     if (l$1 < 0) {
@@ -62,13 +62,13 @@ function f2(param) {
           return prim + prim$1;
         }), 0, b);
   console.log(Pervasives.string_of_float(v));
-  return /* () */0;
+  return --[ () ]--0;
 }
 
-f2(/* () */0);
+f2(--[ () ]--0);
 
 exports.map = map;
 exports.init = init;
 exports.fold_left = fold_left;
 exports.f2 = f2;
-/*  Not a pure module */
+--[  Not a pure module ]--

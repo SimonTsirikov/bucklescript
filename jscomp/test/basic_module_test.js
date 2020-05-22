@@ -11,13 +11,13 @@ var count = {
 
 function test(set) {
   count.contents = Offset.$$Set.cardinal(set) + count.contents | 0;
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 test(Curry._1(Offset.M.$$Set.singleton, "42"));
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -32,4 +32,4 @@ eq("File \"basic_module_test.ml\", line 39, characters 12-19", count.contents, 1
 
 Mt.from_pair_suites("Basic_module_test", suites.contents);
 
-/*  Not a pure module */
+--[  Not a pure module ]--

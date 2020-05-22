@@ -8,7 +8,7 @@ var Caml_bytes = require("../../lib/js/caml_bytes.js");
 var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -26,21 +26,21 @@ function escaped(s) {
     var tmp;
     if (match >= 32) {
       var switcher = match - 34 | 0;
-      tmp = switcher > 58 || switcher < 0 ? (
+      tmp = switcher > 58 or switcher < 0 ? (
           switcher >= 93 ? 4 : 1
         ) : (
-          switcher > 57 || switcher < 1 ? 2 : 1
+          switcher > 57 or switcher < 1 ? 2 : 1
         );
     } else {
       tmp = match >= 11 ? (
-          match !== 13 ? 4 : 2
+          match ~= 13 ? 4 : 2
         ) : (
           match >= 8 ? 2 : 4
         );
     }
     n = n + tmp | 0;
   }
-  if (n === s.length) {
+  if (n == s.length) {
     return Bytes.copy(s);
   } else {
     var s$prime = Caml_bytes.caml_create_bytes(n);
@@ -49,7 +49,7 @@ function escaped(s) {
       var c = s[i$1];
       var exit = 0;
       if (c >= 35) {
-        if (c !== 92) {
+        if (c ~= 92) {
           if (c >= 127) {
             exit = 1;
           } else {
@@ -69,19 +69,19 @@ function escaped(s) {
       } else {
         switch (c) {
           case 8 :
-              s$prime[n] = /* "\\" */92;
+              s$prime[n] = --[ "\\" ]--92;
               n = n + 1 | 0;
-              s$prime[n] = /* "b" */98;
+              s$prime[n] = --[ "b" ]--98;
               break;
           case 9 :
-              s$prime[n] = /* "\\" */92;
+              s$prime[n] = --[ "\\" ]--92;
               n = n + 1 | 0;
-              s$prime[n] = /* "t" */116;
+              s$prime[n] = --[ "t" ]--116;
               break;
           case 10 :
-              s$prime[n] = /* "\\" */92;
+              s$prime[n] = --[ "\\" ]--92;
               n = n + 1 | 0;
-              s$prime[n] = /* "n" */110;
+              s$prime[n] = --[ "n" ]--110;
               break;
           case 0 :
           case 1 :
@@ -96,16 +96,16 @@ function escaped(s) {
               exit = 1;
               break;
           case 13 :
-              s$prime[n] = /* "\\" */92;
+              s$prime[n] = --[ "\\" ]--92;
               n = n + 1 | 0;
-              s$prime[n] = /* "r" */114;
+              s$prime[n] = --[ "r" ]--114;
               break;
           
         }
       }
       switch (exit) {
         case 1 :
-            s$prime[n] = /* "\\" */92;
+            s$prime[n] = --[ "\\" ]--92;
             n = n + 1 | 0;
             s$prime[n] = 48 + (c / 100 | 0) | 0;
             n = n + 1 | 0;
@@ -114,7 +114,7 @@ function escaped(s) {
             s$prime[n] = 48 + c % 10 | 0;
             break;
         case 2 :
-            s$prime[n] = /* "\\" */92;
+            s$prime[n] = --[ "\\" ]--92;
             n = n + 1 | 0;
             s$prime[n] = c;
             break;
@@ -143,7 +143,7 @@ function starts_with(xs, prefix, p) {
       return true;
     }
     catch (exn){
-      if (exn === H) {
+      if (exn == H) {
         return false;
       } else {
         throw exn;
@@ -169,7 +169,7 @@ var f = Char.chr;
 var a$2 = Caml_bytes.bytes_to_string(Bytes.init(100, f));
 
 var b = Bytes.init(100, (function (i) {
-        return /* "\000" */0;
+        return --[ "\000" ]--0;
       }));
 
 Bytes.blit_string(a$2, 10, b, 5, 10);
@@ -183,4 +183,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.escaped = escaped;
 exports.starts_with = starts_with;
-/* a Not a pure module */
+--[ a Not a pure module ]--

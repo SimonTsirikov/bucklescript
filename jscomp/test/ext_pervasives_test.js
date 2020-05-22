@@ -37,7 +37,7 @@ function with_file_as_pp(filename, f) {
   return $$finally(Pervasives.open_out_bin(filename), Pervasives.close_out, (function (chan) {
                 var fmt = Format.formatter_of_out_channel(chan);
                 var v = Curry._1(f, fmt);
-                Format.pp_print_flush(fmt, /* () */0);
+                Format.pp_print_flush(fmt, --[ () ]--0);
                 return v;
               }));
 }
@@ -52,9 +52,9 @@ function is_pos_pow(n) {
       var c = _c;
       if (n$1 <= 0) {
         return -2;
-      } else if (n$1 === 1) {
+      } else if (n$1 == 1) {
         return c;
-      } else if ((n$1 & 1) === 0) {
+      } else if ((n$1 & 1) == 0) {
         _n = (n$1 >> 1);
         _c = c + 1 | 0;
         continue ;
@@ -64,7 +64,7 @@ function is_pos_pow(n) {
     };
   }
   catch (exn){
-    if (exn === E) {
+    if (exn == E) {
       return -1;
     } else {
       throw exn;
@@ -96,17 +96,17 @@ function bad_argf(fmt) {
 }
 
 function dump(r) {
-  if (typeof r === "number") {
+  if (typeof r == "number") {
     return String(r);
   } else {
     var get_fields = function (_acc, _n) {
       while(true) {
         var n = _n;
         var acc = _acc;
-        if (n !== 0) {
+        if (n ~= 0) {
           var n$1 = n - 1 | 0;
           _n = n$1;
-          _acc = /* :: */[
+          _acc = --[ :: ]--[
             r[n$1],
             acc
           ];
@@ -119,12 +119,12 @@ function dump(r) {
     var is_list = function (_r) {
       while(true) {
         var r = _r;
-        if (typeof r === "number") {
+        if (typeof r == "number") {
           return Caml_obj.caml_equal(r, 0);
         } else {
           var s = r.length;
           var t = r.tag | 0;
-          if (t === 0 && s === 2) {
+          if (t == 0 and s == 2) {
             _r = r[1];
             continue ;
           } else {
@@ -134,12 +134,12 @@ function dump(r) {
       };
     };
     var get_list = function (r) {
-      if (typeof r === "number") {
-        return /* [] */0;
+      if (typeof r == "number") {
+        return --[ [] ]--0;
       } else {
         var h = r[0];
         var t = get_list(r[1]);
-        return /* :: */[
+        return --[ :: ]--[
                 h,
                 t
               ];
@@ -150,18 +150,18 @@ function dump(r) {
     if (is_list(r)) {
       var fields = get_list(r);
       return "[" + ($$String.concat("; ", List.map(dump, fields)) + "]");
-    } else if (t !== 0) {
-      if (t === Obj.lazy_tag) {
+    } else if (t ~= 0) {
+      if (t == Obj.lazy_tag) {
         return "<lazy>";
-      } else if (t === Obj.closure_tag) {
+      } else if (t == Obj.closure_tag) {
         return "<closure>";
-      } else if (t === Obj.object_tag) {
-        var fields$1 = get_fields(/* [] */0, s);
+      } else if (t == Obj.object_tag) {
+        var fields$1 = get_fields(--[ [] ]--0, s);
         var match;
         if (fields$1) {
           var match$1 = fields$1[1];
           if (match$1) {
-            match = /* tuple */[
+            match = --[ tuple ]--[
               fields$1[0],
               match$1[0],
               match$1[1]
@@ -169,7 +169,7 @@ function dump(r) {
           } else {
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  /* tuple */[
+                  --[ tuple ]--[
                     "ext_pervasives_test.ml",
                     118,
                     15
@@ -179,7 +179,7 @@ function dump(r) {
         } else {
           throw [
                 Caml_builtin_exceptions.assert_failure,
-                /* tuple */[
+                --[ tuple ]--[
                   "ext_pervasives_test.ml",
                   118,
                   15
@@ -187,40 +187,40 @@ function dump(r) {
               ];
         }
         return "Object #" + (dump(match[1]) + (" (" + ($$String.concat(", ", List.map(dump, match[2])) + ")")));
-      } else if (t === Obj.infix_tag) {
+      } else if (t == Obj.infix_tag) {
         return "<infix>";
-      } else if (t === Obj.forward_tag) {
+      } else if (t == Obj.forward_tag) {
         return "<forward>";
       } else if (t < Obj.no_scan_tag) {
-        var fields$2 = get_fields(/* [] */0, s);
+        var fields$2 = get_fields(--[ [] ]--0, s);
         return "Tag" + (String(t) + (" (" + ($$String.concat(", ", List.map(dump, fields$2)) + ")")));
-      } else if (t === Obj.string_tag) {
+      } else if (t == Obj.string_tag) {
         return "\"" + ($$String.escaped(r) + "\"");
-      } else if (t === Obj.double_tag) {
+      } else if (t == Obj.double_tag) {
         return Pervasives.string_of_float(r);
-      } else if (t === Obj.abstract_tag) {
+      } else if (t == Obj.abstract_tag) {
         return "<abstract>";
-      } else if (t === Obj.custom_tag) {
+      } else if (t == Obj.custom_tag) {
         return "<custom>";
-      } else if (t === Obj.custom_tag) {
+      } else if (t == Obj.custom_tag) {
         return "<final>";
-      } else if (t === Obj.double_array_tag) {
+      } else if (t == Obj.double_array_tag) {
         return "[|" + ($$String.concat(";", $$Array.to_list($$Array.map(Pervasives.string_of_float, r))) + "|]");
       } else {
-        var name = Curry._2(Printf.sprintf(/* Format */[
-                  /* String_literal */Block.__(11, [
+        var name = Curry._2(Printf.sprintf(--[ Format ]--[
+                  --[ String_literal ]--Block.__(11, [
                       "unknown: tag ",
-                      /* Int */Block.__(4, [
-                          /* Int_d */0,
-                          /* No_padding */0,
-                          /* No_precision */0,
-                          /* String_literal */Block.__(11, [
+                      --[ Int ]--Block.__(4, [
+                          --[ Int_d ]--0,
+                          --[ No_padding ]--0,
+                          --[ No_precision ]--0,
+                          --[ String_literal ]--Block.__(11, [
                               " size ",
-                              /* Int */Block.__(4, [
-                                  /* Int_d */0,
-                                  /* No_padding */0,
-                                  /* No_precision */0,
-                                  /* End_of_format */0
+                              --[ Int ]--Block.__(4, [
+                                  --[ Int_d ]--0,
+                                  --[ No_padding ]--0,
+                                  --[ No_precision ]--0,
+                                  --[ End_of_format ]--0
                                 ])
                             ])
                         ])
@@ -230,7 +230,7 @@ function dump(r) {
         return "<" + (name + ">");
       }
     } else {
-      var fields$3 = get_fields(/* [] */0, s);
+      var fields$3 = get_fields(--[ [] ]--0, s);
       return "(" + ($$String.concat(", ", List.map(dump, fields$3)) + ")");
     }
   }
@@ -239,17 +239,17 @@ function dump(r) {
 var dump$1 = dump;
 
 function pp_any(fmt, v) {
-  return Curry._1(Format.fprintf(fmt, /* Format */[
-                  /* Formatting_gen */Block.__(18, [
-                      /* Open_box */Block.__(1, [/* Format */[
-                            /* End_of_format */0,
+  return Curry._1(Format.fprintf(fmt, --[ Format ]--[
+                  --[ Formatting_gen ]--Block.__(18, [
+                      --[ Open_box ]--Block.__(1, [--[ Format ]--[
+                            --[ End_of_format ]--0,
                             ""
                           ]]),
-                      /* String */Block.__(2, [
-                          /* No_padding */0,
-                          /* Formatting_lit */Block.__(17, [
-                              /* Close_box */0,
-                              /* End_of_format */0
+                      --[ String ]--Block.__(2, [
+                          --[ No_padding ]--0,
+                          --[ Formatting_lit ]--Block.__(17, [
+                              --[ Close_box ]--0,
+                              --[ End_of_format ]--0
                             ])
                         ])
                     ]),
@@ -280,4 +280,4 @@ exports.bad_argf = bad_argf;
 exports.dump = dump$1;
 exports.pp_any = pp_any;
 exports.hash_variant = hash_variant;
-/* Format Not a pure module */
+--[ Format Not a pure module ]--

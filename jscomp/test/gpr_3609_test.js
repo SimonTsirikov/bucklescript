@@ -2,7 +2,7 @@
 
 
 function func(state) {
-  if (typeof state === "number") {
+  if (typeof state == "number") {
     return 0;
   } else {
     return 0 + state[0] | 0;
@@ -10,4 +10,4 @@ function func(state) {
 }
 
 exports.func = func;
-/* No side effect */
+--[ No side effect ]--

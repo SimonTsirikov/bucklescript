@@ -9,7 +9,7 @@ var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -18,11 +18,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -30,12 +30,12 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function assert_bool(b) {
   if (b) {
-    return /* () */0;
+    return --[ () ]--0;
   } else {
     throw [
           Caml_builtin_exceptions.invalid_argument,
@@ -47,7 +47,7 @@ function assert_bool(b) {
 function fail(param) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "js_promise_basic_test.ml",
           19,
           2
@@ -58,7 +58,7 @@ function fail(param) {
 function thenTest(param) {
   var p = Promise.resolve(4);
   return p.then((function (x) {
-                return Promise.resolve(assert_bool(x === 4));
+                return Promise.resolve(assert_bool(x == 4));
               }));
 }
 
@@ -67,20 +67,20 @@ function andThenTest(param) {
   return p.then((function (param) {
                   return Promise.resolve(12);
                 })).then((function (y) {
-                return Promise.resolve(assert_bool(y === 12));
+                return Promise.resolve(assert_bool(y == 12));
               }));
 }
 
-var h = Promise.resolve(/* () */0);
+var h = Promise.resolve(--[ () ]--0);
 
 function assertIsNotFound(x) {
-  var match = Caml_exceptions.caml_is_extension(x) && x === Caml_builtin_exceptions.not_found ? 0 : undefined;
-  if (match !== undefined) {
+  var match = Caml_exceptions.caml_is_extension(x) and x == Caml_builtin_exceptions.not_found ? 0 : undefined;
+  if (match ~= undefined) {
     return h;
   } else {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "js_promise_basic_test.ml",
             36,
             9
@@ -99,7 +99,7 @@ function orResolvedTest(param) {
   return p.catch((function (param) {
                     return Promise.resolve(22);
                   })).then((function (value) {
-                  return Promise.resolve(assert_bool(value === 42));
+                  return Promise.resolve(assert_bool(value == 42));
                 })).catch(fail);
 }
 
@@ -108,7 +108,7 @@ function orRejectedTest(param) {
   return p.catch((function (param) {
                     return Promise.resolve(22);
                   })).then((function (value) {
-                  return Promise.resolve(assert_bool(value === 22));
+                  return Promise.resolve(assert_bool(value == 22));
                 })).catch(fail);
 }
 
@@ -117,7 +117,7 @@ function orElseResolvedTest(param) {
   return p.catch((function (param) {
                     return Promise.resolve(22);
                   })).then((function (value) {
-                  return Promise.resolve(assert_bool(value === 42));
+                  return Promise.resolve(assert_bool(value == 42));
                 })).catch(fail);
 }
 
@@ -126,7 +126,7 @@ function orElseRejectedResolveTest(param) {
   return p.catch((function (param) {
                     return Promise.resolve(22);
                   })).then((function (value) {
-                  return Promise.resolve(assert_bool(value === 22));
+                  return Promise.resolve(assert_bool(value == 22));
                 })).catch(fail);
 }
 
@@ -135,13 +135,13 @@ function orElseRejectedRejectTest(param) {
   return p.catch((function (param) {
                     return Promise.reject(Caml_builtin_exceptions.stack_overflow);
                   })).then(fail).catch((function (error) {
-                var match = Caml_exceptions.caml_is_extension(error) && error === Caml_builtin_exceptions.stack_overflow ? 0 : undefined;
-                if (match !== undefined) {
+                var match = Caml_exceptions.caml_is_extension(error) and error == Caml_builtin_exceptions.stack_overflow ? 0 : undefined;
+                if (match ~= undefined) {
                   return h;
                 } else {
                   throw [
                         Caml_builtin_exceptions.assert_failure,
-                        /* tuple */[
+                        --[ tuple ]--[
                           "js_promise_basic_test.ml",
                           77,
                           18
@@ -154,7 +154,7 @@ function orElseRejectedRejectTest(param) {
 function resolveTest(param) {
   var p1 = Promise.resolve(10);
   return p1.then((function (x) {
-                return Promise.resolve(assert_bool(x === 10));
+                return Promise.resolve(assert_bool(x == 10));
               }));
 }
 
@@ -166,7 +166,7 @@ function rejectTest(param) {
 function thenCatchChainResolvedTest(param) {
   var p = Promise.resolve(20);
   return p.then((function (value) {
-                  return Promise.resolve(assert_bool(value === 20));
+                  return Promise.resolve(assert_bool(value == 20));
                 })).catch(fail);
 }
 
@@ -185,9 +185,9 @@ function allResolvedTest(param) {
     p3
   ];
   return Promise.all(promises).then((function (resolved) {
-                assert_bool(Caml_array.caml_array_get(resolved, 0) === 1);
-                assert_bool(Caml_array.caml_array_get(resolved, 1) === 2);
-                assert_bool(Caml_array.caml_array_get(resolved, 2) === 3);
+                assert_bool(Caml_array.caml_array_get(resolved, 0) == 1);
+                assert_bool(Caml_array.caml_array_get(resolved, 1) == 2);
+                assert_bool(Caml_array.caml_array_get(resolved, 2) == 3);
                 return h;
               }));
 }
@@ -202,7 +202,7 @@ function allRejectTest(param) {
     p3
   ];
   return Promise.all(promises).then(fail).catch((function (error) {
-                assert_bool(error === Caml_builtin_exceptions.not_found);
+                assert_bool(error == Caml_builtin_exceptions.not_found);
                 return h;
               }));
 }
@@ -225,7 +225,7 @@ function createPromiseRejectTest(param) {
   return new Promise((function (resolve, reject) {
                   return reject(Caml_builtin_exceptions.not_found);
                 })).catch((function (error) {
-                assert_bool(error === Caml_builtin_exceptions.not_found);
+                assert_bool(error == Caml_builtin_exceptions.not_found);
                 return h;
               }));
 }
@@ -234,53 +234,53 @@ function createPromiseFulfillTest(param) {
   return new Promise((function (resolve, param) {
                     return resolve("success");
                   })).then((function (resolved) {
-                  assert_bool(resolved === "success");
+                  assert_bool(resolved == "success");
                   return h;
                 })).catch(fail);
 }
 
-thenTest(/* () */0);
+thenTest(--[ () ]--0);
 
-andThenTest(/* () */0);
+andThenTest(--[ () ]--0);
 
-catchTest(/* () */0);
+catchTest(--[ () ]--0);
 
-orResolvedTest(/* () */0);
+orResolvedTest(--[ () ]--0);
 
-orRejectedTest(/* () */0);
+orRejectedTest(--[ () ]--0);
 
-orElseResolvedTest(/* () */0);
+orElseResolvedTest(--[ () ]--0);
 
-orElseRejectedResolveTest(/* () */0);
+orElseRejectedResolveTest(--[ () ]--0);
 
-orElseRejectedRejectTest(/* () */0);
+orElseRejectedRejectTest(--[ () ]--0);
 
-thenCatchChainResolvedTest(/* () */0);
+thenCatchChainResolvedTest(--[ () ]--0);
 
-thenCatchChainRejectedTest(/* () */0);
+thenCatchChainRejectedTest(--[ () ]--0);
 
-allResolvedTest(/* () */0);
+allResolvedTest(--[ () ]--0);
 
-allRejectTest(/* () */0);
+allRejectTest(--[ () ]--0);
 
-raceTest(/* () */0);
+raceTest(--[ () ]--0);
 
-createPromiseRejectTest(/* () */0);
+createPromiseRejectTest(--[ () ]--0);
 
-createPromiseFulfillTest(/* () */0);
+createPromiseFulfillTest(--[ () ]--0);
 
-Promise.all(/* tuple */[
+Promise.all(--[ tuple ]--[
         Promise.resolve(2),
         Promise.resolve(3)
       ]).then((function (param) {
-        eq("File \"js_promise_basic_test.ml\", line 169, characters 7-14", /* tuple */[
+        eq("File \"js_promise_basic_test.ml\", line 169, characters 7-14", --[ tuple ]--[
               param[0],
               param[1]
-            ], /* tuple */[
+            ], --[ tuple ]--[
               2,
               3
             ]);
-        return Promise.resolve(/* () */0);
+        return Promise.resolve(--[ () ]--0);
       }));
 
 console.log(List.length(suites.contents));
@@ -299,27 +299,27 @@ function re(prim) {
   return Promise.resolve(prim);
 }
 
-Mt.from_promise_suites("Js_promise_basic_test", /* :: */[
-      /* tuple */[
+Mt.from_promise_suites("Js_promise_basic_test", --[ :: ]--[
+      --[ tuple ]--[
         "File \"js_promise_basic_test.ml\", line 187, characters 4-11",
         twop.then((function (x) {
-                return Promise.resolve(/* Eq */Block.__(0, [
+                return Promise.resolve(--[ Eq ]--Block.__(0, [
                               x,
                               2
                             ]));
               }))
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "File \"js_promise_basic_test.ml\", line 190, characters 4-11",
           twop.then((function (x) {
-                  return Promise.resolve(/* Neq */Block.__(1, [
+                  return Promise.resolve(--[ Neq ]--Block.__(1, [
                                 x,
                                 3
                               ]));
                 }))
         ],
-        /* [] */0
+        --[ [] ]--0
       ]
     ]);
 
@@ -350,4 +350,4 @@ exports.createPromiseFulfillTest = createPromiseFulfillTest;
 exports.twop = twop;
 exports.then_ = then_;
 exports.re = re;
-/* h Not a pure module */
+--[ h Not a pure module ]--

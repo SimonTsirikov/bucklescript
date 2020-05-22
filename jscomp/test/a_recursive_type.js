@@ -6,12 +6,12 @@ function g(x) {
   return Curry._1(x[0], x);
 }
 
-var loop = g(/* A */[g]);
+var loop = g(--[ A ]--[g]);
 
-var x = /* A */[g];
+var x = --[ A ]--[g];
 
 var non_terminate = g(x);
 
 exports.loop = loop;
 exports.non_terminate = non_terminate;
-/* loop Not a pure module */
+--[ loop Not a pure module ]--

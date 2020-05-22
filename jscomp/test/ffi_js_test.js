@@ -13,7 +13,7 @@ function $$higher_order(x){
 ;
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -24,11 +24,11 @@ function eq(loc, param) {
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -36,7 +36,7 @@ function eq(loc, param) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var int_config = {
@@ -49,34 +49,34 @@ var string_config = {
   low: "32"
 };
 
-eq("File \"ffi_js_test.ml\", line 32, characters 5-12", /* tuple */[
+eq("File \"ffi_js_test.ml\", line 32, characters 5-12", --[ tuple ]--[
       6,
       $$higher_order(1)(2, 3)
     ]);
 
-var same_type_000 = /* :: */[
+var same_type_000 = --[ :: ]--[
   int_config,
-  /* :: */[
+  --[ :: ]--[
     {
       hi: 3,
       low: 32
     },
-    /* [] */0
+    --[ [] ]--0
   ]
 ];
 
-var same_type_001 = /* :: */[
+var same_type_001 = --[ :: ]--[
   string_config,
-  /* :: */[
+  --[ :: ]--[
     {
       hi: 3,
       low: "32"
     },
-    /* [] */0
+    --[ [] ]--0
   ]
 ];
 
-var same_type = /* tuple */[
+var same_type = --[ tuple ]--[
   same_type_000,
   same_type_001
 ];
@@ -84,26 +84,26 @@ var same_type = /* tuple */[
 var v_obj = {
   hi: (function () {
       console.log("hei");
-      return /* () */0;
+      return --[ () ]--0;
     })
 };
 
-eq("File \"ffi_js_test.ml\", line 44, characters 5-12", /* tuple */[
+eq("File \"ffi_js_test.ml\", line 44, characters 5-12", --[ tuple ]--[
       Object.keys(int_config).length,
       2
     ]);
 
-eq("File \"ffi_js_test.ml\", line 45, characters 5-12", /* tuple */[
+eq("File \"ffi_js_test.ml\", line 45, characters 5-12", --[ tuple ]--[
       Object.keys(string_config).length,
       2
     ]);
 
-eq("File \"ffi_js_test.ml\", line 46, characters 5-12", /* tuple */[
+eq("File \"ffi_js_test.ml\", line 46, characters 5-12", --[ tuple ]--[
       Object.keys(v_obj).indexOf("hi_x"),
       -1
     ]);
 
-eq("File \"ffi_js_test.ml\", line 47, characters 5-12", /* tuple */[
+eq("File \"ffi_js_test.ml\", line 47, characters 5-12", --[ tuple ]--[
       Object.keys(v_obj).indexOf("hi"),
       0
     ]);
@@ -117,7 +117,7 @@ var side_effect_config = (u.contents = u.contents + 1 | 0, {
     low: 32
   });
 
-eq("File \"ffi_js_test.ml\", line 54, characters 5-12", /* tuple */[
+eq("File \"ffi_js_test.ml\", line 54, characters 5-12", --[ tuple ]--[
       u.contents,
       4
     ]);
@@ -148,16 +148,16 @@ function create_prim(param) {
 
 function ffff(x) {
   x.setGADT = 3;
-  x.setGADT2 = /* tuple */[
+  x.setGADT2 = --[ tuple ]--[
     3,
     "3"
   ];
-  x.setGADT2 = /* tuple */[
+  x.setGADT2 = --[ tuple ]--[
     "3",
     3
   ];
   var match = x[3];
-  console.log(/* tuple */[
+  console.log(--[ tuple ]--[
         match[0],
         match[1]
       ]);
@@ -166,15 +166,15 @@ function ffff(x) {
   console.log(match$1[0], match$1[1]);
   var match$2 = x[0];
   console.log(match$2[0], match$2[1]);
-  x[0] = /* tuple */[
+  x[0] = --[ tuple ]--[
     1,
     "x"
   ];
-  x[3] = /* tuple */[
+  x[3] = --[ tuple ]--[
     3,
     "x"
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 Mt.from_pair_suites("Ffi_js_test", suites.contents);
@@ -195,4 +195,4 @@ exports.vvv = vvv;
 exports.vvvv = vvvv;
 exports.create_prim = create_prim;
 exports.ffff = ffff;
-/*  Not a pure module */
+--[  Not a pure module ]--

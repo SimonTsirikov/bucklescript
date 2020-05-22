@@ -3,7 +3,7 @@
 var Mt = require("./mt.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -57,4 +57,4 @@ exports.f3 = f3;
 exports.f4 = f4;
 exports.f5 = f5;
 exports.f6 = f6;
-/*  Not a pure module */
+--[  Not a pure module ]--

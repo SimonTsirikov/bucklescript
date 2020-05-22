@@ -18,10 +18,10 @@ function finish(param) {
   var match = all_tests_ok.contents;
   if (match) {
     console.log("\nAll tests succeeded.");
-    return /* () */0;
+    return --[ () ]--0;
   } else {
     console.log("\n\n********* Test suite failed. ***********\n");
-    return /* () */0;
+    return --[ () ]--0;
   }
 }
 
@@ -39,16 +39,16 @@ function print_test_number(param) {
 
 function print_failure_test_fail(param) {
   all_tests_ok.contents = false;
-  return Pervasives.print_string(Curry._1(Printf.sprintf(/* Format */[
-                      /* String_literal */Block.__(11, [
+  return Pervasives.print_string(Curry._1(Printf.sprintf(--[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "\n********* Failure Test number ",
-                          /* Int */Block.__(4, [
-                              /* Int_i */3,
-                              /* No_padding */0,
-                              /* No_precision */0,
-                              /* String_literal */Block.__(11, [
+                          --[ Int ]--Block.__(4, [
+                              --[ Int_i ]--3,
+                              --[ No_padding ]--0,
+                              --[ No_precision ]--0,
+                              --[ String_literal ]--Block.__(11, [
                                   " incorrectly failed ***********\n",
-                                  /* End_of_format */0
+                                  --[ End_of_format ]--0
                                 ])
                             ])
                         ]),
@@ -58,16 +58,16 @@ function print_failure_test_fail(param) {
 
 function print_failure_test_succeed(param) {
   all_tests_ok.contents = false;
-  return Pervasives.print_string(Curry._1(Printf.sprintf(/* Format */[
-                      /* String_literal */Block.__(11, [
+  return Pervasives.print_string(Curry._1(Printf.sprintf(--[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "\n********* Failure Test number ",
-                          /* Int */Block.__(4, [
-                              /* Int_i */3,
-                              /* No_padding */0,
-                              /* No_precision */0,
-                              /* String_literal */Block.__(11, [
+                          --[ Int ]--Block.__(4, [
+                              --[ Int_i ]--3,
+                              --[ No_padding ]--0,
+                              --[ No_precision ]--0,
+                              --[ String_literal ]--Block.__(11, [
                                   " failed to fail ***********\n",
-                                  /* End_of_format */0
+                                  --[ End_of_format ]--0
                                 ])
                             ])
                         ]),
@@ -77,21 +77,21 @@ function print_failure_test_succeed(param) {
 
 function test(b) {
   test_num.contents = test_num.contents + 1 | 0;
-  print_test_number(/* () */0);
+  print_test_number(--[ () ]--0);
   if (b) {
     return 0;
   } else {
     all_tests_ok.contents = false;
-    return Pervasives.print_string(Curry._1(Printf.sprintf(/* Format */[
-                        /* String_literal */Block.__(11, [
+    return Pervasives.print_string(Curry._1(Printf.sprintf(--[ Format ]--[
+                        --[ String_literal ]--Block.__(11, [
                             "\n********* Test number ",
-                            /* Int */Block.__(4, [
-                                /* Int_i */3,
-                                /* No_padding */0,
-                                /* No_precision */0,
-                                /* String_literal */Block.__(11, [
+                            --[ Int ]--Block.__(4, [
+                                --[ Int_i ]--3,
+                                --[ No_padding ]--0,
+                                --[ No_precision ]--0,
+                                --[ String_literal ]--Block.__(11, [
                                     " failed ***********\n",
-                                    /* End_of_format */0
+                                    --[ End_of_format ]--0
                                   ])
                               ])
                           ]),
@@ -102,10 +102,10 @@ function test(b) {
 
 function test_raises_exc_p(pred, f, x) {
   test_num.contents = test_num.contents + 1 | 0;
-  print_test_number(/* () */0);
+  print_test_number(--[ () ]--0);
   try {
     Curry._1(f, x);
-    print_failure_test_succeed(/* () */0);
+    print_failure_test_succeed(--[ () ]--0);
     return false;
   }
   catch (raw_x){
@@ -113,7 +113,7 @@ function test_raises_exc_p(pred, f, x) {
     if (Curry._1(pred, x$1)) {
       return true;
     } else {
-      print_failure_test_fail(/* () */0);
+      print_failure_test_fail(--[ () ]--0);
       return false;
     }
   }
@@ -149,7 +149,7 @@ function failure_test(f, x, s) {
 
 function scan_failure_test(f, x) {
   return test_raises_exc_p((function (param) {
-                return param[0] === Scanf.Scan_failure;
+                return param[0] == Scanf.Scan_failure;
               }), f, x);
 }
 
@@ -159,4 +159,4 @@ exports.test_raises_some_exc = test_raises_some_exc;
 exports.test_raises_this_exc = test_raises_this_exc;
 exports.test_raises_exc_p = test_raises_exc_p;
 exports.scan_failure_test = scan_failure_test;
-/*  Not a pure module */
+--[  Not a pure module ]--

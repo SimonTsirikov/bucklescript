@@ -26,11 +26,11 @@ function f(param) {
   return v;
 }
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "acc",
   (function (param) {
-      return /* Eq */Block.__(0, [
-                f(/* () */0),
+      return --[ Eq ]--Block.__(0, [
+                f(--[ () ]--0),
                 [
                   0,
                   1,
@@ -47,18 +47,18 @@ var suites_000 = /* tuple */[
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "array_to_list",
     (function (param) {
-        return /* Eq */Block.__(0, [
-                  /* :: */[
+        return --[ Eq ]--Block.__(0, [
+                  --[ :: ]--[
                     1,
-                    /* :: */[
+                    --[ :: ]--[
                       2,
-                      /* :: */[
+                      --[ :: ]--[
                         3,
-                        /* [] */0
+                        --[ [] ]--0
                       ]
                     ]
                   ],
@@ -70,10 +70,10 @@ var suites_001 = /* :: */[
                 ]);
       })
   ],
-  /* [] */0
+  --[ [] ]--0
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -82,4 +82,4 @@ Mt.from_pair_suites("Tailcall_inline_test", suites);
 
 exports.f = f;
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

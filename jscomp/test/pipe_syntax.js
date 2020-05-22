@@ -21,7 +21,7 @@ function t3(x, f) {
 }
 
 function f(a, b, c) {
-  return /* tuple */[
+  return --[ tuple ]--[
           Curry._1(b, a),
           Curry._1(c, a)
         ];
@@ -29,7 +29,7 @@ function f(a, b, c) {
 
 function f1(a, b, c, d) {
   var __ocaml_internal_obj = Curry._1(a, b);
-  return /* tuple */[
+  return --[ tuple ]--[
           Curry._1(c, __ocaml_internal_obj),
           Curry._1(d, __ocaml_internal_obj)
         ];
@@ -51,7 +51,7 @@ function f3(a, b, c, d, e) {
 }
 
 function f4(a, b, c) {
-  return /* tuple */[
+  return --[ tuple ]--[
           Curry._2(b, a, c),
           Curry._2(b, a, c)
         ];
@@ -69,7 +69,7 @@ function f6(a) {
 }
 
 function f7(a) {
-  return /* tuple */[
+  return --[ tuple ]--[
           Caml_option.some(a),
           Caml_option.some(a),
           Caml_option.some(a)
@@ -86,7 +86,7 @@ function hi(x) {
               }));
 }
 
-var with_poly = /* `Foo */[
+var with_poly = --[ `Foo ]--[
   3505894,
   1
 ];
@@ -106,4 +106,4 @@ exports.f7 = f7;
 exports.f8 = f8;
 exports.hi = hi;
 exports.with_poly = with_poly;
-/* No side effect */
+--[ No side effect ]--

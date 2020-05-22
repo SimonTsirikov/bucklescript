@@ -6,7 +6,7 @@ var Belt_List = require("../../lib/js/belt_List.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -23,7 +23,7 @@ function b(loc, v) {
 
 function f0(x) {
   var match = x[1];
-  if (match !== undefined && match) {
+  if (match ~= undefined and match) {
     return 1;
   } else {
     return 2;
@@ -39,9 +39,9 @@ function f1(u) {
 }
 
 function f2(x, y, zOpt, param) {
-  var z = zOpt !== undefined ? zOpt : 3;
+  var z = zOpt ~= undefined ? zOpt : 3;
   console.log(x);
-  if (y !== undefined) {
+  if (y ~= undefined) {
     return y + z | 0;
   } else {
     return 0;
@@ -49,7 +49,7 @@ function f2(x, y, zOpt, param) {
 }
 
 function f3(x) {
-  if (x !== undefined) {
+  if (x ~= undefined) {
     return 1;
   } else {
     return 0;
@@ -57,7 +57,7 @@ function f3(x) {
 }
 
 function f4(x) {
-  if (x !== undefined) {
+  if (x ~= undefined) {
     return x + 1 | 0;
   } else {
     return 0;
@@ -81,7 +81,7 @@ var randomized = {
 };
 
 function create(randomOpt, param) {
-  var random = randomOpt !== undefined ? randomOpt : randomized.contents;
+  var random = randomOpt ~= undefined ? randomOpt : randomized.contents;
   if (random) {
     return 2;
   } else {
@@ -89,15 +89,15 @@ function create(randomOpt, param) {
   }
 }
 
-var ff = create(false, /* () */0);
+var ff = create(false, --[ () ]--0);
 
 function f13(xOpt, yOpt, param) {
-  var x = xOpt !== undefined ? xOpt : 3;
-  var y = yOpt !== undefined ? yOpt : 4;
+  var x = xOpt ~= undefined ? xOpt : 3;
+  var y = yOpt ~= undefined ? yOpt : 4;
   return x + y | 0;
 }
 
-var a = f13(2, undefined, /* () */0);
+var a = f13(2, undefined, --[ () ]--0);
 
 function f12(x) {
   return x;
@@ -112,13 +112,13 @@ var length_10_id = Belt_List.makeBy(10, (function (x) {
       }));
 
 function f13$1(param) {
-  return Caml_obj.caml_equal(Belt_List.take(length_10_id, 8), /* :: */[
+  return Caml_obj.caml_equal(Belt_List.take(length_10_id, 8), --[ :: ]--[
               1,
-              /* :: */[
+              --[ :: ]--[
                 2,
-                /* :: */[
+                --[ :: ]--[
                   3,
-                  /* [] */0
+                  --[ [] ]--0
                 ]
               ]
             ]);
@@ -176,9 +176,9 @@ function all_true(xs) {
 
 var xs_000 = gtx(Caml_option.some(null), Caml_option.some(undefined));
 
-var xs = /* :: */[
+var xs = --[ :: ]--[
   xs_000,
-  /* [] */0
+  --[ [] ]--0
 ];
 
 b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs, (function (x) {
@@ -187,29 +187,29 @@ b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs,
 
 var xs_000$1 = ltx(Caml_option.some(undefined), 3);
 
-var xs_001 = /* :: */[
+var xs_001 = --[ :: ]--[
   ltx(Caml_option.some(undefined), Caml_option.some(Caml_option.some(undefined))),
-  /* :: */[
+  --[ :: ]--[
     ltx(Caml_option.some(undefined), "3"),
-    /* :: */[
+    --[ :: ]--[
       ltx(Caml_option.some(undefined), true),
-      /* :: */[
+      --[ :: ]--[
         ltx(Caml_option.some(undefined), false),
-        /* :: */[
+        --[ :: ]--[
           ltx(false, true),
-          /* :: */[
+          --[ :: ]--[
             ltx(false, true),
-            /* :: */[
+            --[ :: ]--[
               ltx(undefined, Caml_option.some(undefined)),
-              /* :: */[
+              --[ :: ]--[
                 ltx(undefined, null),
-                /* :: */[
+                --[ :: ]--[
                   ltx(undefined, (function (x) {
                           return x;
                         })),
-                  /* :: */[
+                  --[ :: ]--[
                     ltx(null, 3),
-                    /* [] */0
+                    --[ [] ]--0
                   ]
                 ]
               ]
@@ -221,7 +221,7 @@ var xs_001 = /* :: */[
   ]
 ];
 
-var xs$1 = /* :: */[
+var xs$1 = --[ :: ]--[
   xs_000$1,
   xs_001
 ];
@@ -232,21 +232,21 @@ b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs$
 
 var xs_000$2 = eqx(undefined, undefined);
 
-var xs_001$1 = /* :: */[
+var xs_001$1 = --[ :: ]--[
   neqx(undefined, null),
-  /* :: */[
+  --[ :: ]--[
     eqx(Caml_option.some(undefined), Caml_option.some(undefined)),
-    /* :: */[
+    --[ :: ]--[
       eqx(Caml_option.some(Caml_option.some(undefined)), Caml_option.some(Caml_option.some(undefined))),
-      /* :: */[
+      --[ :: ]--[
         neqx(Caml_option.some(Caml_option.some(Caml_option.some(undefined))), Caml_option.some(Caml_option.some(undefined))),
-        /* [] */0
+        --[ [] ]--0
       ]
     ]
   ]
 ];
 
-var xs$2 = /* :: */[
+var xs$2 = --[ :: ]--[
   xs_000$2,
   xs_001$1
 ];
@@ -276,7 +276,7 @@ var f8 = Caml_option.some(undefined);
 
 var f9 = Caml_option.some(Caml_option.some(undefined));
 
-var N = /* alias */0;
+var N = --[ alias ]--0;
 
 var none_arg = undefined;
 
@@ -312,4 +312,4 @@ exports.eqx = eqx;
 exports.neqx = neqx;
 exports.all_true = all_true;
 exports.N0 = N0;
-/* ff Not a pure module */
+--[ ff Not a pure module ]--

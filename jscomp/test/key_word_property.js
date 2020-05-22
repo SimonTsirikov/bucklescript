@@ -15,12 +15,12 @@ function mk($$window, $$default) {
 }
 
 function mk2($$window, $$default) {
-  return /* :: */[
+  return --[ :: ]--[
           {
             window: $$window,
             default: $$default
           },
-          /* [] */0
+          --[ [] ]--0
         ];
 }
 
@@ -52,4 +52,4 @@ exports.des = des;
 exports.$$case = $$case;
 exports.test = test;
 exports.u = u;
-/* default Not a pure module */
+--[ default Not a pure module ]--

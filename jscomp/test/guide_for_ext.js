@@ -9,4 +9,4 @@ function mk(param) {
 }
 
 exports.mk = mk;
-/* No side effect */
+--[ No side effect ]--

@@ -18,7 +18,7 @@ function Test(Queue) {
     return v;
   };
   var queue_1 = function (x) {
-    var q = Curry._1(Queue.create, /* () */0);
+    var q = Curry._1(Queue.create, --[ () ]--0);
     $$Array.iter((function (x) {
             return Curry._2(Queue.add, x, q);
           }), x);
@@ -42,8 +42,8 @@ function to_array(q) {
 function queue_1(x) {
   var q = {
     length: 0,
-    first: /* Nil */0,
-    last: /* Nil */0
+    first: --[ Nil ]--0,
+    last: --[ Nil ]--0
   };
   $$Array.iter((function (x) {
           return Queue.add(x, q);
@@ -81,7 +81,7 @@ var T2 = {
   queue_1: queue_1$1
 };
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "File \"queue_test.ml\", line 26, characters 2-9",
   (function (param) {
       var x = [
@@ -90,15 +90,15 @@ var suites_000 = /* tuple */[
         5,
         2
       ];
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 x,
                 queue_1(x)
               ]);
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "File \"queue_test.ml\", line 29, characters 2-9",
     (function (param) {
         var x = [
@@ -107,16 +107,16 @@ var suites_001 = /* :: */[
           5,
           2
         ];
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   x,
                   queue_1$1(x)
                 ]);
       })
   ],
-  /* [] */0
+  --[ [] ]--0
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -127,4 +127,4 @@ exports.Test = Test;
 exports.T1 = T1;
 exports.T2 = T2;
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

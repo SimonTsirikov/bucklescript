@@ -16,12 +16,12 @@ function f1(a, b, x, y) {
 
 function f2(x) {
   console.log(x);
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function f3(x) {
   console.log(x);
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function f4(x, y) {
@@ -34,4 +34,4 @@ exports.f1 = f1;
 exports.f2 = f2;
 exports.f3 = f3;
 exports.f4 = f4;
-/* No side effect */
+--[ No side effect ]--

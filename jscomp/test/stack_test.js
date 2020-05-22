@@ -6,9 +6,9 @@ var Block = require("../../lib/js/block.js");
 var Stack = require("../../lib/js/stack.js");
 
 function to_list(v) {
-  var acc = /* [] */0;
-  while(v.c !== /* [] */0) {
-    acc = /* :: */[
+  var acc = --[ [] ]--0;
+  while(v.c ~= --[ [] ]--0) {
+    acc = --[ :: ]--[
       Stack.pop(v),
       acc
     ];
@@ -18,7 +18,7 @@ function to_list(v) {
 
 function v(param) {
   var v$1 = {
-    c: /* [] */0,
+    c: --[ [] ]--0,
     len: 0
   };
   Stack.push(3, v$1);
@@ -27,28 +27,28 @@ function v(param) {
   return to_list(v$1);
 }
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "push_test",
   (function (param) {
-      return /* Eq */Block.__(0, [
-                /* :: */[
+      return --[ Eq ]--Block.__(0, [
+                --[ :: ]--[
                   1,
-                  /* :: */[
+                  --[ :: ]--[
                     4,
-                    /* :: */[
+                    --[ :: ]--[
                       3,
-                      /* [] */0
+                      --[ [] ]--0
                     ]
                   ]
                 ],
-                v(/* () */0)
+                v(--[ () ]--0)
               ]);
     })
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
-  /* [] */0
+  --[ [] ]--0
 ];
 
 Mt.from_pair_suites("Stack_test", suites);
@@ -56,4 +56,4 @@ Mt.from_pair_suites("Stack_test", suites);
 exports.to_list = to_list;
 exports.v = v;
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

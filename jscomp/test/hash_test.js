@@ -9,7 +9,7 @@ var Mt_global = require("./mt_global.js");
 var Caml_bytes = require("../../lib/js/caml_bytes.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -86,86 +86,86 @@ var param$3 = Hashtbl.hash("xy") & 1073741823;
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 30, characters 5-12", param$3, 194127723);
 
-var param$4 = Hashtbl.hash(/* A */65) & 1073741823;
+var param$4 = Hashtbl.hash(--[ A ]--65) & 1073741823;
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 33, characters 5-12", param$4, 381663642);
 
-var param$5 = Hashtbl.hash(/* `A */[
+var param$5 = Hashtbl.hash(--[ `A ]--[
       65,
       3
     ]) & 1073741823;
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 34, characters 5-12", param$5, 294279345);
 
-var param$6 = Hashtbl.hash(/* :: */[
-      /* `A */[
+var param$6 = Hashtbl.hash(--[ :: ]--[
+      --[ `A ]--[
         65,
         3
       ],
-      /* :: */[
-        /* `B */[
+      --[ :: ]--[
+        --[ `B ]--[
           66,
           2
         ],
-        /* :: */[
-          /* `C */[
+        --[ :: ]--[
+          --[ `C ]--[
             67,
             3
           ],
-          /* [] */0
+          --[ [] ]--0
         ]
       ]
     ]) & 1073741823;
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 35, characters 5-12", param$6, 1017654909);
 
-var param$7 = Hashtbl.hash(/* :: */[
-      /* tuple */[
-        /* `A */[
+var param$7 = Hashtbl.hash(--[ :: ]--[
+      --[ tuple ]--[
+        --[ `A ]--[
           65,
           "3"
         ],
-        /* `B */[
+        --[ `B ]--[
           66,
           "2"
         ]
       ],
-      /* :: */[
-        /* tuple */[
-          /* `C */[
+      --[ :: ]--[
+        --[ tuple ]--[
+          --[ `C ]--[
             67,
             "3"
           ],
-          /* `D */[
+          --[ `D ]--[
             68,
             "4"
           ]
         ],
-        /* [] */0
+        --[ [] ]--0
       ]
     ]) & 1073741823;
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 36, characters 5-12", param$7, 81986873);
 
-var param$8 = Hashtbl.hash(/* :: */[
-      /* tuple */[
-        /* `A */[
+var param$8 = Hashtbl.hash(--[ :: ]--[
+      --[ tuple ]--[
+        --[ `A ]--[
           65,
-          /* tuple */[
+          --[ tuple ]--[
             0,
             2,
             1
           ]
         ],
-        /* `B */[
+        --[ `B ]--[
           66,
-          [/* tuple */[
+          [--[ tuple ]--[
               "x",
               "y"
             ]]
         ]
       ],
-      /* [] */0
+      --[ [] ]--0
     ]) & 1073741823;
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 39, characters 5-12", param$8, 100650590);
@@ -179,4 +179,4 @@ exports.test_strings = test_strings;
 exports.test_strings_hash_results = test_strings_hash_results;
 exports.normalize = normalize;
 exports.caml_hash = caml_hash;
-/* test_strings Not a pure module */
+--[ test_strings Not a pure module ]--

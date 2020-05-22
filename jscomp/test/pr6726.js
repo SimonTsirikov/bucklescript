@@ -14,7 +14,7 @@ var ExtUnixAll = {
 };
 
 var ExtUnix = {
-  All: /* alias */0
+  All: --[ alias ]--0
 };
 
 function test_endian_string(x) {
@@ -31,4 +31,4 @@ var Test = {
 exports.ExtUnixAll = ExtUnixAll;
 exports.ExtUnix = ExtUnix;
 exports.Test = Test;
-/* No side effect */
+--[ No side effect ]--

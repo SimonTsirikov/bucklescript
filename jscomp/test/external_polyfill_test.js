@@ -4,7 +4,7 @@ var Mt = require("./mt.js");
 var Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -30,4 +30,4 @@ exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.h = h;
-/*  Not a pure module */
+--[  Not a pure module ]--

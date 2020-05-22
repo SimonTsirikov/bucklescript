@@ -5,7 +5,7 @@ var Block = require("../../lib/js/block.js");
 var Js_vector = require("../../lib/js/js_vector.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "File \"js_array_test.ml\", line 3, characters 4-11",
   (function (param) {
       var x = [
@@ -15,20 +15,20 @@ var suites_000 = /* tuple */[
         4,
         5
       ];
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 [
                   2,
                   4
                 ],
                 (Js_vector.filterInPlace((function (x) {
-                          return x % 2 === 0;
+                          return x % 2 == 0;
                         }), x), x)
               ]);
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "File \"js_array_test.ml\", line 11, characters 4-11",
     (function (param) {
         var x = [
@@ -38,39 +38,39 @@ var suites_001 = /* :: */[
           4,
           5
         ];
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   true,
                   (Js_vector.filterInPlace((function (x) {
                             return x > 10;
-                          }), x), x.length === 0)
+                          }), x), x.length == 0)
                 ]);
       })
   ],
-  /* :: */[
-    /* tuple */[
+  --[ :: ]--[
+    --[ tuple ]--[
       "isArray_array",
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     true,
                     Array.isArray([])
                   ]);
         })
     ],
-    /* :: */[
-      /* tuple */[
+    --[ :: ]--[
+      --[ tuple ]--[
         "isArray_int",
         (function (param) {
-            return /* Eq */Block.__(0, [
+            return --[ Eq ]--Block.__(0, [
                       false,
                       Array.isArray(34)
                     ]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "length",
           (function (param) {
-              return /* Eq */Block.__(0, [
+              return --[ Eq ]--Block.__(0, [
                         3,
                         [
                           1,
@@ -80,11 +80,11 @@ var suites_001 = /* :: */[
                       ]);
             })
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "copyWithin",
             (function (param) {
-                return /* Eq */Block.__(0, [
+                return --[ Eq ]--Block.__(0, [
                           [
                             1,
                             2,
@@ -102,11 +102,11 @@ var suites_001 = /* :: */[
                         ]);
               })
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "copyWithinFrom",
               (function (param) {
-                  return /* Eq */Block.__(0, [
+                  return --[ Eq ]--Block.__(0, [
                             [
                               4,
                               5,
@@ -124,11 +124,11 @@ var suites_001 = /* :: */[
                           ]);
                 })
             ],
-            /* :: */[
-              /* tuple */[
+            --[ :: ]--[
+              --[ tuple ]--[
                 "copyWithinFromRange",
                 (function (param) {
-                    return /* Eq */Block.__(0, [
+                    return --[ Eq ]--Block.__(0, [
                               [
                                 4,
                                 2,
@@ -146,11 +146,11 @@ var suites_001 = /* :: */[
                             ]);
                   })
               ],
-              /* :: */[
-                /* tuple */[
+              --[ :: ]--[
+                --[ tuple ]--[
                   "fillInPlace",
                   (function (param) {
-                      return /* Eq */Block.__(0, [
+                      return --[ Eq ]--Block.__(0, [
                                 [
                                   4,
                                   4,
@@ -164,11 +164,11 @@ var suites_001 = /* :: */[
                               ]);
                     })
                 ],
-                /* :: */[
-                  /* tuple */[
+                --[ :: ]--[
+                  --[ tuple ]--[
                     "fillFromInPlace",
                     (function (param) {
-                        return /* Eq */Block.__(0, [
+                        return --[ Eq ]--Block.__(0, [
                                   [
                                     1,
                                     4,
@@ -182,11 +182,11 @@ var suites_001 = /* :: */[
                                 ]);
                       })
                   ],
-                  /* :: */[
-                    /* tuple */[
+                  --[ :: ]--[
+                    --[ tuple ]--[
                       "fillRangeInPlace",
                       (function (param) {
-                          return /* Eq */Block.__(0, [
+                          return --[ Eq ]--Block.__(0, [
                                     [
                                       1,
                                       4,
@@ -200,11 +200,11 @@ var suites_001 = /* :: */[
                                   ]);
                         })
                     ],
-                    /* :: */[
-                      /* tuple */[
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "pop",
                         (function (param) {
-                            return /* Eq */Block.__(0, [
+                            return --[ Eq ]--Block.__(0, [
                                       3,
                                       Caml_option.undefined_to_opt([
                                               1,
@@ -214,21 +214,21 @@ var suites_001 = /* :: */[
                                     ]);
                           })
                       ],
-                      /* :: */[
-                        /* tuple */[
+                      --[ :: ]--[
+                        --[ tuple ]--[
                           "pop - empty array",
                           (function (param) {
-                              return /* Eq */Block.__(0, [
+                              return --[ Eq ]--Block.__(0, [
                                         undefined,
                                         Caml_option.undefined_to_opt([].pop())
                                       ]);
                             })
                         ],
-                        /* :: */[
-                          /* tuple */[
+                        --[ :: ]--[
+                          --[ tuple ]--[
                             "push",
                             (function (param) {
-                                return /* Eq */Block.__(0, [
+                                return --[ Eq ]--Block.__(0, [
                                           4,
                                           [
                                               1,
@@ -238,11 +238,11 @@ var suites_001 = /* :: */[
                                         ]);
                               })
                           ],
-                          /* :: */[
-                            /* tuple */[
+                          --[ :: ]--[
+                            --[ tuple ]--[
                               "pushMany",
                               (function (param) {
-                                  return /* Eq */Block.__(0, [
+                                  return --[ Eq ]--Block.__(0, [
                                             5,
                                             [
                                                 1,
@@ -252,11 +252,11 @@ var suites_001 = /* :: */[
                                           ]);
                                 })
                             ],
-                            /* :: */[
-                              /* tuple */[
+                            --[ :: ]--[
+                              --[ tuple ]--[
                                 "reverseInPlace",
                                 (function (param) {
-                                    return /* Eq */Block.__(0, [
+                                    return --[ Eq ]--Block.__(0, [
                                               [
                                                 3,
                                                 2,
@@ -270,11 +270,11 @@ var suites_001 = /* :: */[
                                             ]);
                                   })
                               ],
-                              /* :: */[
-                                /* tuple */[
+                              --[ :: ]--[
+                                --[ tuple ]--[
                                   "shift",
                                   (function (param) {
-                                      return /* Eq */Block.__(0, [
+                                      return --[ Eq ]--Block.__(0, [
                                                 1,
                                                 Caml_option.undefined_to_opt([
                                                         1,
@@ -284,21 +284,21 @@ var suites_001 = /* :: */[
                                               ]);
                                     })
                                 ],
-                                /* :: */[
-                                  /* tuple */[
+                                --[ :: ]--[
+                                  --[ tuple ]--[
                                     "shift - empty array",
                                     (function (param) {
-                                        return /* Eq */Block.__(0, [
+                                        return --[ Eq ]--Block.__(0, [
                                                   undefined,
                                                   Caml_option.undefined_to_opt([].shift())
                                                 ]);
                                       })
                                   ],
-                                  /* :: */[
-                                    /* tuple */[
+                                  --[ :: ]--[
+                                    --[ tuple ]--[
                                       "sortInPlace",
                                       (function (param) {
-                                          return /* Eq */Block.__(0, [
+                                          return --[ Eq ]--Block.__(0, [
                                                     [
                                                       1,
                                                       2,
@@ -312,11 +312,11 @@ var suites_001 = /* :: */[
                                                   ]);
                                         })
                                     ],
-                                    /* :: */[
-                                      /* tuple */[
+                                    --[ :: ]--[
+                                      --[ tuple ]--[
                                         "sortInPlaceWith",
                                         (function (param) {
-                                            return /* Eq */Block.__(0, [
+                                            return --[ Eq ]--Block.__(0, [
                                                       [
                                                         3,
                                                         2,
@@ -332,8 +332,8 @@ var suites_001 = /* :: */[
                                                     ]);
                                           })
                                       ],
-                                      /* :: */[
-                                        /* tuple */[
+                                      --[ :: ]--[
+                                        --[ tuple ]--[
                                           "spliceInPlace",
                                           (function (param) {
                                               var arr = [
@@ -343,8 +343,8 @@ var suites_001 = /* :: */[
                                                 4
                                               ];
                                               var removed = arr.splice(2, 0, 5);
-                                              return /* Eq */Block.__(0, [
-                                                        /* tuple */[
+                                              return --[ Eq ]--Block.__(0, [
+                                                        --[ tuple ]--[
                                                           [
                                                             1,
                                                             2,
@@ -354,15 +354,15 @@ var suites_001 = /* :: */[
                                                           ],
                                                           []
                                                         ],
-                                                        /* tuple */[
+                                                        --[ tuple ]--[
                                                           arr,
                                                           removed
                                                         ]
                                                       ]);
                                             })
                                         ],
-                                        /* :: */[
-                                          /* tuple */[
+                                        --[ :: ]--[
+                                          --[ tuple ]--[
                                             "removeFromInPlace",
                                             (function (param) {
                                                 var arr = [
@@ -372,8 +372,8 @@ var suites_001 = /* :: */[
                                                   4
                                                 ];
                                                 var removed = arr.splice(2);
-                                                return /* Eq */Block.__(0, [
-                                                          /* tuple */[
+                                                return --[ Eq ]--Block.__(0, [
+                                                          --[ tuple ]--[
                                                             [
                                                               1,
                                                               2
@@ -383,15 +383,15 @@ var suites_001 = /* :: */[
                                                               4
                                                             ]
                                                           ],
-                                                          /* tuple */[
+                                                          --[ tuple ]--[
                                                             arr,
                                                             removed
                                                           ]
                                                         ]);
                                               })
                                           ],
-                                          /* :: */[
-                                            /* tuple */[
+                                          --[ :: ]--[
+                                            --[ tuple ]--[
                                               "removeCountInPlace",
                                               (function (param) {
                                                   var arr = [
@@ -401,8 +401,8 @@ var suites_001 = /* :: */[
                                                     4
                                                   ];
                                                   var removed = arr.splice(2, 1);
-                                                  return /* Eq */Block.__(0, [
-                                                            /* tuple */[
+                                                  return --[ Eq ]--Block.__(0, [
+                                                            --[ tuple ]--[
                                                               [
                                                                 1,
                                                                 2,
@@ -410,18 +410,18 @@ var suites_001 = /* :: */[
                                                               ],
                                                               [3]
                                                             ],
-                                                            /* tuple */[
+                                                            --[ tuple ]--[
                                                               arr,
                                                               removed
                                                             ]
                                                           ]);
                                                 })
                                             ],
-                                            /* :: */[
-                                              /* tuple */[
+                                            --[ :: ]--[
+                                              --[ tuple ]--[
                                                 "unshift",
                                                 (function (param) {
-                                                    return /* Eq */Block.__(0, [
+                                                    return --[ Eq ]--Block.__(0, [
                                                               4,
                                                               [
                                                                   1,
@@ -431,11 +431,11 @@ var suites_001 = /* :: */[
                                                             ]);
                                                   })
                                               ],
-                                              /* :: */[
-                                                /* tuple */[
+                                              --[ :: ]--[
+                                                --[ tuple ]--[
                                                   "unshiftMany",
                                                   (function (param) {
-                                                      return /* Eq */Block.__(0, [
+                                                      return --[ Eq ]--Block.__(0, [
                                                                 5,
                                                                 [
                                                                     1,
@@ -445,11 +445,11 @@ var suites_001 = /* :: */[
                                                               ]);
                                                     })
                                                 ],
-                                                /* :: */[
-                                                  /* tuple */[
+                                                --[ :: ]--[
+                                                  --[ tuple ]--[
                                                     "append",
                                                     (function (param) {
-                                                        return /* Eq */Block.__(0, [
+                                                        return --[ Eq ]--Block.__(0, [
                                                                   [
                                                                     1,
                                                                     2,
@@ -464,11 +464,11 @@ var suites_001 = /* :: */[
                                                                 ]);
                                                       })
                                                   ],
-                                                  /* :: */[
-                                                    /* tuple */[
+                                                  --[ :: ]--[
+                                                    --[ tuple ]--[
                                                       "concat",
                                                       (function (param) {
-                                                          return /* Eq */Block.__(0, [
+                                                          return --[ Eq ]--Block.__(0, [
                                                                     [
                                                                       1,
                                                                       2,
@@ -487,11 +487,11 @@ var suites_001 = /* :: */[
                                                                   ]);
                                                         })
                                                     ],
-                                                    /* :: */[
-                                                      /* tuple */[
+                                                    --[ :: ]--[
+                                                      --[ tuple ]--[
                                                         "concatMany",
                                                         (function (param) {
-                                                            return /* Eq */Block.__(0, [
+                                                            return --[ Eq ]--Block.__(0, [
                                                                       [
                                                                         1,
                                                                         2,
@@ -515,11 +515,11 @@ var suites_001 = /* :: */[
                                                                     ]);
                                                           })
                                                       ],
-                                                      /* :: */[
-                                                        /* tuple */[
+                                                      --[ :: ]--[
+                                                        --[ tuple ]--[
                                                           "includes",
                                                           (function (param) {
-                                                              return /* Eq */Block.__(0, [
+                                                              return --[ Eq ]--Block.__(0, [
                                                                         true,
                                                                         [
                                                                             1,
@@ -529,11 +529,11 @@ var suites_001 = /* :: */[
                                                                       ]);
                                                             })
                                                         ],
-                                                        /* :: */[
-                                                          /* tuple */[
+                                                        --[ :: ]--[
+                                                          --[ tuple ]--[
                                                             "indexOf",
                                                             (function (param) {
-                                                                return /* Eq */Block.__(0, [
+                                                                return --[ Eq ]--Block.__(0, [
                                                                           1,
                                                                           [
                                                                               1,
@@ -543,11 +543,11 @@ var suites_001 = /* :: */[
                                                                         ]);
                                                               })
                                                           ],
-                                                          /* :: */[
-                                                            /* tuple */[
+                                                          --[ :: ]--[
+                                                            --[ tuple ]--[
                                                               "indexOfFrom",
                                                               (function (param) {
-                                                                  return /* Eq */Block.__(0, [
+                                                                  return --[ Eq ]--Block.__(0, [
                                                                             3,
                                                                             [
                                                                                 1,
@@ -558,11 +558,11 @@ var suites_001 = /* :: */[
                                                                           ]);
                                                                 })
                                                             ],
-                                                            /* :: */[
-                                                              /* tuple */[
+                                                            --[ :: ]--[
+                                                              --[ tuple ]--[
                                                                 "join",
                                                                 (function (param) {
-                                                                    return /* Eq */Block.__(0, [
+                                                                    return --[ Eq ]--Block.__(0, [
                                                                               "1,2,3",
                                                                               [
                                                                                   1,
@@ -572,11 +572,11 @@ var suites_001 = /* :: */[
                                                                             ]);
                                                                   })
                                                               ],
-                                                              /* :: */[
-                                                                /* tuple */[
+                                                              --[ :: ]--[
+                                                                --[ tuple ]--[
                                                                   "joinWith",
                                                                   (function (param) {
-                                                                      return /* Eq */Block.__(0, [
+                                                                      return --[ Eq ]--Block.__(0, [
                                                                                 "1;2;3",
                                                                                 [
                                                                                     1,
@@ -586,11 +586,11 @@ var suites_001 = /* :: */[
                                                                               ]);
                                                                     })
                                                                 ],
-                                                                /* :: */[
-                                                                  /* tuple */[
+                                                                --[ :: ]--[
+                                                                  --[ tuple ]--[
                                                                     "lastIndexOf",
                                                                     (function (param) {
-                                                                        return /* Eq */Block.__(0, [
+                                                                        return --[ Eq ]--Block.__(0, [
                                                                                   1,
                                                                                   [
                                                                                       1,
@@ -600,11 +600,11 @@ var suites_001 = /* :: */[
                                                                                 ]);
                                                                       })
                                                                   ],
-                                                                  /* :: */[
-                                                                    /* tuple */[
+                                                                  --[ :: ]--[
+                                                                    --[ tuple ]--[
                                                                       "lastIndexOfFrom",
                                                                       (function (param) {
-                                                                          return /* Eq */Block.__(0, [
+                                                                          return --[ Eq ]--Block.__(0, [
                                                                                     1,
                                                                                     [
                                                                                         1,
@@ -615,11 +615,11 @@ var suites_001 = /* :: */[
                                                                                   ]);
                                                                         })
                                                                     ],
-                                                                    /* :: */[
-                                                                      /* tuple */[
+                                                                    --[ :: ]--[
+                                                                      --[ tuple ]--[
                                                                         "slice",
                                                                         (function (param) {
-                                                                            return /* Eq */Block.__(0, [
+                                                                            return --[ Eq ]--Block.__(0, [
                                                                                       [
                                                                                         2,
                                                                                         3
@@ -634,11 +634,11 @@ var suites_001 = /* :: */[
                                                                                     ]);
                                                                           })
                                                                       ],
-                                                                      /* :: */[
-                                                                        /* tuple */[
+                                                                      --[ :: ]--[
+                                                                        --[ tuple ]--[
                                                                           "copy",
                                                                           (function (param) {
-                                                                              return /* Eq */Block.__(0, [
+                                                                              return --[ Eq ]--Block.__(0, [
                                                                                         [
                                                                                           1,
                                                                                           2,
@@ -656,11 +656,11 @@ var suites_001 = /* :: */[
                                                                                       ]);
                                                                             })
                                                                         ],
-                                                                        /* :: */[
-                                                                          /* tuple */[
+                                                                        --[ :: ]--[
+                                                                          --[ tuple ]--[
                                                                             "sliceFrom",
                                                                             (function (param) {
-                                                                                return /* Eq */Block.__(0, [
+                                                                                return --[ Eq ]--Block.__(0, [
                                                                                           [
                                                                                             3,
                                                                                             4,
@@ -676,11 +676,11 @@ var suites_001 = /* :: */[
                                                                                         ]);
                                                                               })
                                                                           ],
-                                                                          /* :: */[
-                                                                            /* tuple */[
+                                                                          --[ :: ]--[
+                                                                            --[ tuple ]--[
                                                                               "toString",
                                                                               (function (param) {
-                                                                                  return /* Eq */Block.__(0, [
+                                                                                  return --[ Eq ]--Block.__(0, [
                                                                                             "1,2,3",
                                                                                             [
                                                                                                 1,
@@ -690,11 +690,11 @@ var suites_001 = /* :: */[
                                                                                           ]);
                                                                                 })
                                                                             ],
-                                                                            /* :: */[
-                                                                              /* tuple */[
+                                                                            --[ :: ]--[
+                                                                              --[ tuple ]--[
                                                                                 "toLocaleString",
                                                                                 (function (param) {
-                                                                                    return /* Eq */Block.__(0, [
+                                                                                    return --[ Eq ]--Block.__(0, [
                                                                                               "1,2,3",
                                                                                               [
                                                                                                   1,
@@ -704,11 +704,11 @@ var suites_001 = /* :: */[
                                                                                             ]);
                                                                                   })
                                                                               ],
-                                                                              /* :: */[
-                                                                                /* tuple */[
+                                                                              --[ :: ]--[
+                                                                                --[ tuple ]--[
                                                                                   "every",
                                                                                   (function (param) {
-                                                                                      return /* Eq */Block.__(0, [
+                                                                                      return --[ Eq ]--Block.__(0, [
                                                                                                 true,
                                                                                                 [
                                                                                                     1,
@@ -720,11 +720,11 @@ var suites_001 = /* :: */[
                                                                                               ]);
                                                                                     })
                                                                                 ],
-                                                                                /* :: */[
-                                                                                  /* tuple */[
+                                                                                --[ :: ]--[
+                                                                                  --[ tuple ]--[
                                                                                     "everyi",
                                                                                     (function (param) {
-                                                                                        return /* Eq */Block.__(0, [
+                                                                                        return --[ Eq ]--Block.__(0, [
                                                                                                   false,
                                                                                                   [
                                                                                                       1,
@@ -736,11 +736,11 @@ var suites_001 = /* :: */[
                                                                                                 ]);
                                                                                       })
                                                                                   ],
-                                                                                  /* :: */[
-                                                                                    /* tuple */[
+                                                                                  --[ :: ]--[
+                                                                                    --[ tuple ]--[
                                                                                       "filter",
                                                                                       (function (param) {
-                                                                                          return /* Eq */Block.__(0, [
+                                                                                          return --[ Eq ]--Block.__(0, [
                                                                                                     [
                                                                                                       2,
                                                                                                       4
@@ -751,16 +751,16 @@ var suites_001 = /* :: */[
                                                                                                         3,
                                                                                                         4
                                                                                                       ].filter((function (n) {
-                                                                                                            return n % 2 === 0;
+                                                                                                            return n % 2 == 0;
                                                                                                           }))
                                                                                                   ]);
                                                                                         })
                                                                                     ],
-                                                                                    /* :: */[
-                                                                                      /* tuple */[
+                                                                                    --[ :: ]--[
+                                                                                      --[ tuple ]--[
                                                                                         "filteri",
                                                                                         (function (param) {
-                                                                                            return /* Eq */Block.__(0, [
+                                                                                            return --[ Eq ]--Block.__(0, [
                                                                                                       [
                                                                                                         1,
                                                                                                         3
@@ -771,16 +771,16 @@ var suites_001 = /* :: */[
                                                                                                           3,
                                                                                                           4
                                                                                                         ].filter((function (param, i) {
-                                                                                                              return i % 2 === 0;
+                                                                                                              return i % 2 == 0;
                                                                                                             }))
                                                                                                     ]);
                                                                                           })
                                                                                       ],
-                                                                                      /* :: */[
-                                                                                        /* tuple */[
+                                                                                      --[ :: ]--[
+                                                                                        --[ tuple ]--[
                                                                                           "find",
                                                                                           (function (param) {
-                                                                                              return /* Eq */Block.__(0, [
+                                                                                              return --[ Eq ]--Block.__(0, [
                                                                                                         2,
                                                                                                         Caml_option.undefined_to_opt([
                                                                                                                 1,
@@ -788,16 +788,16 @@ var suites_001 = /* :: */[
                                                                                                                 3,
                                                                                                                 4
                                                                                                               ].find((function (n) {
-                                                                                                                    return n % 2 === 0;
+                                                                                                                    return n % 2 == 0;
                                                                                                                   })))
                                                                                                       ]);
                                                                                             })
                                                                                         ],
-                                                                                        /* :: */[
-                                                                                          /* tuple */[
+                                                                                        --[ :: ]--[
+                                                                                          --[ tuple ]--[
                                                                                             "find - no match",
                                                                                             (function (param) {
-                                                                                                return /* Eq */Block.__(0, [
+                                                                                                return --[ Eq ]--Block.__(0, [
                                                                                                           undefined,
                                                                                                           Caml_option.undefined_to_opt([
                                                                                                                   1,
@@ -805,16 +805,16 @@ var suites_001 = /* :: */[
                                                                                                                   3,
                                                                                                                   4
                                                                                                                 ].find((function (n) {
-                                                                                                                      return n % 2 === 5;
+                                                                                                                      return n % 2 == 5;
                                                                                                                     })))
                                                                                                         ]);
                                                                                               })
                                                                                           ],
-                                                                                          /* :: */[
-                                                                                            /* tuple */[
+                                                                                          --[ :: ]--[
+                                                                                            --[ tuple ]--[
                                                                                               "findi",
                                                                                               (function (param) {
-                                                                                                  return /* Eq */Block.__(0, [
+                                                                                                  return --[ Eq ]--Block.__(0, [
                                                                                                             1,
                                                                                                             Caml_option.undefined_to_opt([
                                                                                                                     1,
@@ -822,16 +822,16 @@ var suites_001 = /* :: */[
                                                                                                                     3,
                                                                                                                     4
                                                                                                                   ].find((function (param, i) {
-                                                                                                                        return i % 2 === 0;
+                                                                                                                        return i % 2 == 0;
                                                                                                                       })))
                                                                                                           ]);
                                                                                                 })
                                                                                             ],
-                                                                                            /* :: */[
-                                                                                              /* tuple */[
+                                                                                            --[ :: ]--[
+                                                                                              --[ tuple ]--[
                                                                                                 "findi - no match",
                                                                                                 (function (param) {
-                                                                                                    return /* Eq */Block.__(0, [
+                                                                                                    return --[ Eq ]--Block.__(0, [
                                                                                                               undefined,
                                                                                                               Caml_option.undefined_to_opt([
                                                                                                                       1,
@@ -839,16 +839,16 @@ var suites_001 = /* :: */[
                                                                                                                       3,
                                                                                                                       4
                                                                                                                     ].find((function (param, i) {
-                                                                                                                          return i % 2 === 5;
+                                                                                                                          return i % 2 == 5;
                                                                                                                         })))
                                                                                                             ]);
                                                                                                   })
                                                                                               ],
-                                                                                              /* :: */[
-                                                                                                /* tuple */[
+                                                                                              --[ :: ]--[
+                                                                                                --[ tuple ]--[
                                                                                                   "findIndex",
                                                                                                   (function (param) {
-                                                                                                      return /* Eq */Block.__(0, [
+                                                                                                      return --[ Eq ]--Block.__(0, [
                                                                                                                 1,
                                                                                                                 [
                                                                                                                     1,
@@ -856,16 +856,16 @@ var suites_001 = /* :: */[
                                                                                                                     3,
                                                                                                                     4
                                                                                                                   ].findIndex((function (n) {
-                                                                                                                        return n % 2 === 0;
+                                                                                                                        return n % 2 == 0;
                                                                                                                       }))
                                                                                                               ]);
                                                                                                     })
                                                                                                 ],
-                                                                                                /* :: */[
-                                                                                                  /* tuple */[
+                                                                                                --[ :: ]--[
+                                                                                                  --[ tuple ]--[
                                                                                                     "findIndexi",
                                                                                                     (function (param) {
-                                                                                                        return /* Eq */Block.__(0, [
+                                                                                                        return --[ Eq ]--Block.__(0, [
                                                                                                                   0,
                                                                                                                   [
                                                                                                                       1,
@@ -873,13 +873,13 @@ var suites_001 = /* :: */[
                                                                                                                       3,
                                                                                                                       4
                                                                                                                     ].findIndex((function (param, i) {
-                                                                                                                          return i % 2 === 0;
+                                                                                                                          return i % 2 == 0;
                                                                                                                         }))
                                                                                                                 ]);
                                                                                                       })
                                                                                                   ],
-                                                                                                  /* :: */[
-                                                                                                    /* tuple */[
+                                                                                                  --[ :: ]--[
+                                                                                                    --[ tuple ]--[
                                                                                                       "forEach",
                                                                                                       (function (param) {
                                                                                                           var sum = {
@@ -891,16 +891,16 @@ var suites_001 = /* :: */[
                                                                                                               3
                                                                                                             ].forEach((function (n) {
                                                                                                                   sum.contents = sum.contents + n | 0;
-                                                                                                                  return /* () */0;
+                                                                                                                  return --[ () ]--0;
                                                                                                                 }));
-                                                                                                          return /* Eq */Block.__(0, [
+                                                                                                          return --[ Eq ]--Block.__(0, [
                                                                                                                     6,
                                                                                                                     sum.contents
                                                                                                                   ]);
                                                                                                         })
                                                                                                     ],
-                                                                                                    /* :: */[
-                                                                                                      /* tuple */[
+                                                                                                    --[ :: ]--[
+                                                                                                      --[ tuple ]--[
                                                                                                         "forEachi",
                                                                                                         (function (param) {
                                                                                                             var sum = {
@@ -912,19 +912,19 @@ var suites_001 = /* :: */[
                                                                                                                 3
                                                                                                               ].forEach((function (param, i) {
                                                                                                                     sum.contents = sum.contents + i | 0;
-                                                                                                                    return /* () */0;
+                                                                                                                    return --[ () ]--0;
                                                                                                                   }));
-                                                                                                            return /* Eq */Block.__(0, [
+                                                                                                            return --[ Eq ]--Block.__(0, [
                                                                                                                       3,
                                                                                                                       sum.contents
                                                                                                                     ]);
                                                                                                           })
                                                                                                       ],
-                                                                                                      /* :: */[
-                                                                                                        /* tuple */[
+                                                                                                      --[ :: ]--[
+                                                                                                        --[ tuple ]--[
                                                                                                           "map",
                                                                                                           (function (param) {
-                                                                                                              return /* Eq */Block.__(0, [
+                                                                                                              return --[ Eq ]--Block.__(0, [
                                                                                                                         [
                                                                                                                           2,
                                                                                                                           4,
@@ -942,11 +942,11 @@ var suites_001 = /* :: */[
                                                                                                                       ]);
                                                                                                             })
                                                                                                         ],
-                                                                                                        /* :: */[
-                                                                                                          /* tuple */[
+                                                                                                        --[ :: ]--[
+                                                                                                          --[ tuple ]--[
                                                                                                             "map",
                                                                                                             (function (param) {
-                                                                                                                return /* Eq */Block.__(0, [
+                                                                                                                return --[ Eq ]--Block.__(0, [
                                                                                                                           [
                                                                                                                             0,
                                                                                                                             2,
@@ -964,11 +964,11 @@ var suites_001 = /* :: */[
                                                                                                                         ]);
                                                                                                               })
                                                                                                           ],
-                                                                                                          /* :: */[
-                                                                                                            /* tuple */[
+                                                                                                          --[ :: ]--[
+                                                                                                            --[ tuple ]--[
                                                                                                               "reduce",
                                                                                                               (function (param) {
-                                                                                                                  return /* Eq */Block.__(0, [
+                                                                                                                  return --[ Eq ]--Block.__(0, [
                                                                                                                             -10,
                                                                                                                             [
                                                                                                                                 1,
@@ -981,11 +981,11 @@ var suites_001 = /* :: */[
                                                                                                                           ]);
                                                                                                                 })
                                                                                                             ],
-                                                                                                            /* :: */[
-                                                                                                              /* tuple */[
+                                                                                                            --[ :: ]--[
+                                                                                                              --[ tuple ]--[
                                                                                                                 "reducei",
                                                                                                                 (function (param) {
-                                                                                                                    return /* Eq */Block.__(0, [
+                                                                                                                    return --[ Eq ]--Block.__(0, [
                                                                                                                               -6,
                                                                                                                               [
                                                                                                                                   1,
@@ -998,11 +998,11 @@ var suites_001 = /* :: */[
                                                                                                                             ]);
                                                                                                                   })
                                                                                                               ],
-                                                                                                              /* :: */[
-                                                                                                                /* tuple */[
+                                                                                                              --[ :: ]--[
+                                                                                                                --[ tuple ]--[
                                                                                                                   "reduceRight",
                                                                                                                   (function (param) {
-                                                                                                                      return /* Eq */Block.__(0, [
+                                                                                                                      return --[ Eq ]--Block.__(0, [
                                                                                                                                 -10,
                                                                                                                                 [
                                                                                                                                     1,
@@ -1015,11 +1015,11 @@ var suites_001 = /* :: */[
                                                                                                                               ]);
                                                                                                                     })
                                                                                                                 ],
-                                                                                                                /* :: */[
-                                                                                                                  /* tuple */[
+                                                                                                                --[ :: ]--[
+                                                                                                                  --[ tuple ]--[
                                                                                                                     "reduceRighti",
                                                                                                                     (function (param) {
-                                                                                                                        return /* Eq */Block.__(0, [
+                                                                                                                        return --[ Eq ]--Block.__(0, [
                                                                                                                                   -6,
                                                                                                                                   [
                                                                                                                                       1,
@@ -1032,11 +1032,11 @@ var suites_001 = /* :: */[
                                                                                                                                 ]);
                                                                                                                       })
                                                                                                                   ],
-                                                                                                                  /* :: */[
-                                                                                                                    /* tuple */[
+                                                                                                                  --[ :: ]--[
+                                                                                                                    --[ tuple ]--[
                                                                                                                       "some",
                                                                                                                       (function (param) {
-                                                                                                                          return /* Eq */Block.__(0, [
+                                                                                                                          return --[ Eq ]--Block.__(0, [
                                                                                                                                     false,
                                                                                                                                     [
                                                                                                                                         1,
@@ -1049,11 +1049,11 @@ var suites_001 = /* :: */[
                                                                                                                                   ]);
                                                                                                                         })
                                                                                                                     ],
-                                                                                                                    /* :: */[
-                                                                                                                      /* tuple */[
+                                                                                                                    --[ :: ]--[
+                                                                                                                      --[ tuple ]--[
                                                                                                                         "somei",
                                                                                                                         (function (param) {
-                                                                                                                            return /* Eq */Block.__(0, [
+                                                                                                                            return --[ Eq ]--Block.__(0, [
                                                                                                                                       true,
                                                                                                                                       [
                                                                                                                                           1,
@@ -1066,7 +1066,7 @@ var suites_001 = /* :: */[
                                                                                                                                     ]);
                                                                                                                           })
                                                                                                                       ],
-                                                                                                                      /* [] */0
+                                                                                                                      --[ [] ]--0
                                                                                                                     ]
                                                                                                                   ]
                                                                                                                 ]
@@ -1127,7 +1127,7 @@ var suites_001 = /* :: */[
   ]
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -1135,4 +1135,4 @@ var suites = /* :: */[
 Mt.from_pair_suites("Js_array_test", suites);
 
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

@@ -10,19 +10,19 @@ var Caml_primitive = require("../../lib/js/caml_primitive.js");
 
 function f(H) {
   var tbl = Curry._1(H.create, 17);
-  Curry._3(H.add, tbl, 1, /* "1" */49);
-  Curry._3(H.add, tbl, 2, /* "2" */50);
+  Curry._3(H.add, tbl, 1, --[ "1" ]--49);
+  Curry._3(H.add, tbl, 2, --[ "2" ]--50);
   return List.sort((function (param, param$1) {
                 return Caml_primitive.caml_int_compare(param[0], param$1[0]);
               }), Curry._3(H.fold, (function (k, v, acc) {
-                    return /* :: */[
-                            /* tuple */[
+                    return --[ :: ]--[
+                            --[ tuple ]--[
                               k,
                               v
                             ],
                             acc
                           ];
-                  }), tbl, /* [] */0));
+                  }), tbl, --[ [] ]--0));
 }
 
 function g(H, count) {
@@ -34,14 +34,14 @@ function g(H, count) {
     Curry._3(H.replace, tbl, (i$1 << 1), String(i$1));
   }
   var v = Curry._3(H.fold, (function (k, v, acc) {
-          return /* :: */[
-                  /* tuple */[
+          return --[ :: ]--[
+                  --[ tuple ]--[
                     k,
                     v
                   ],
                   acc
                 ];
-        }), tbl, /* [] */0);
+        }), tbl, --[ [] ]--0);
   return $$Array.of_list(List.sort((function (param, param$1) {
                     return Caml_primitive.caml_int_compare(param[0], param$1[0]);
                   }), v));
@@ -50,7 +50,7 @@ function g(H, count) {
 var hash = Hashtbl.hash;
 
 function equal(x, y) {
-  return x === y;
+  return x == y;
 }
 
 var Int_hash = Hashtbl.Make({
@@ -58,21 +58,21 @@ var Int_hash = Hashtbl.Make({
       hash: hash
     });
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "simple",
   (function (param) {
-      return /* Eq */Block.__(0, [
-                /* :: */[
-                  /* tuple */[
+      return --[ Eq ]--Block.__(0, [
+                --[ :: ]--[
+                  --[ tuple ]--[
                     1,
-                    /* "1" */49
+                    --[ "1" ]--49
                   ],
-                  /* :: */[
-                    /* tuple */[
+                  --[ :: ]--[
+                    --[ tuple ]--[
                       2,
-                      /* "2" */50
+                      --[ "2" ]--50
                     ],
-                    /* [] */0
+                    --[ [] ]--0
                   ]
                 ],
                 f(Int_hash)
@@ -80,13 +80,13 @@ var suites_000 = /* tuple */[
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "more_iterations",
     (function (param) {
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   $$Array.init(1001, (function (i) {
-                          return /* tuple */[
+                          return --[ tuple ]--[
                                   (i << 1),
                                   String(i)
                                 ];
@@ -95,10 +95,10 @@ var suites_001 = /* :: */[
                 ]);
       })
   ],
-  /* [] */0
+  --[ [] ]--0
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -109,4 +109,4 @@ exports.f = f;
 exports.g = g;
 exports.Int_hash = Int_hash;
 exports.suites = suites;
-/* Int_hash Not a pure module */
+--[ Int_hash Not a pure module ]--

@@ -21,4 +21,4 @@ exports.A = A;
 exports.B = B;
 exports.H = H;
 exports.A0 = A0;
-/* Exception_def Not a pure module */
+--[ Exception_def Not a pure module ]--

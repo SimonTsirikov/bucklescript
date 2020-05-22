@@ -11,21 +11,21 @@ function obj(param) {
         };
 }
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "empty",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 [],
                 Object.keys({ })
               ]);
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "get",
     (function (param) {
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   43,
                   Js_dict.get({
                         foo: 43,
@@ -34,11 +34,11 @@ var suites_001 = /* :: */[
                 ]);
       })
   ],
-  /* :: */[
-    /* tuple */[
+  --[ :: ]--[
+    --[ tuple ]--[
       "get - property not in object",
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     undefined,
                     Js_dict.get({
                           foo: 43,
@@ -47,11 +47,11 @@ var suites_001 = /* :: */[
                   ]);
         })
     ],
-    /* :: */[
-      /* tuple */[
+    --[ :: ]--[
+      --[ tuple ]--[
         "unsafe_get",
         (function (param) {
-            return /* Eq */Block.__(0, [
+            return --[ Eq ]--Block.__(0, [
                       43,
                       ({
                             foo: 43,
@@ -60,8 +60,8 @@ var suites_001 = /* :: */[
                     ]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "set",
           (function (param) {
               var o = {
@@ -69,17 +69,17 @@ var suites_001 = /* :: */[
                 bar: 86
               };
               o["foo"] = 36;
-              return /* Eq */Block.__(0, [
+              return --[ Eq ]--Block.__(0, [
                         36,
                         Js_dict.get(o, "foo")
                       ]);
             })
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "keys",
             (function (param) {
-                return /* Eq */Block.__(0, [
+                return --[ Eq ]--Block.__(0, [
                           [
                             "foo",
                             "bar"
@@ -91,17 +91,17 @@ var suites_001 = /* :: */[
                         ]);
               })
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "entries",
               (function (param) {
-                  return /* Eq */Block.__(0, [
+                  return --[ Eq ]--Block.__(0, [
                             [
-                              /* tuple */[
+                              --[ tuple ]--[
                                 "foo",
                                 43
                               ],
-                              /* tuple */[
+                              --[ tuple ]--[
                                 "bar",
                                 86
                               ]
@@ -113,11 +113,11 @@ var suites_001 = /* :: */[
                           ]);
                 })
             ],
-            /* :: */[
-              /* tuple */[
+            --[ :: ]--[
+              --[ tuple ]--[
                 "values",
                 (function (param) {
-                    return /* Eq */Block.__(0, [
+                    return --[ Eq ]--Block.__(0, [
                               [
                                 43,
                                 86
@@ -129,78 +129,78 @@ var suites_001 = /* :: */[
                             ]);
                   })
               ],
-              /* :: */[
-                /* tuple */[
+              --[ :: ]--[
+                --[ tuple ]--[
                   "fromList - []",
                   (function (param) {
-                      return /* Eq */Block.__(0, [
+                      return --[ Eq ]--Block.__(0, [
                                 { },
-                                Js_dict.fromList(/* [] */0)
+                                Js_dict.fromList(--[ [] ]--0)
                               ]);
                     })
                 ],
-                /* :: */[
-                  /* tuple */[
+                --[ :: ]--[
+                  --[ tuple ]--[
                     "fromList",
                     (function (param) {
-                        return /* Eq */Block.__(0, [
+                        return --[ Eq ]--Block.__(0, [
                                   [
-                                    /* tuple */[
+                                    --[ tuple ]--[
                                       "x",
                                       23
                                     ],
-                                    /* tuple */[
+                                    --[ tuple ]--[
                                       "y",
                                       46
                                     ]
                                   ],
-                                  Js_dict.entries(Js_dict.fromList(/* :: */[
-                                            /* tuple */[
+                                  Js_dict.entries(Js_dict.fromList(--[ :: ]--[
+                                            --[ tuple ]--[
                                               "x",
                                               23
                                             ],
-                                            /* :: */[
-                                              /* tuple */[
+                                            --[ :: ]--[
+                                              --[ tuple ]--[
                                                 "y",
                                                 46
                                               ],
-                                              /* [] */0
+                                              --[ [] ]--0
                                             ]
                                           ]))
                                 ]);
                       })
                   ],
-                  /* :: */[
-                    /* tuple */[
+                  --[ :: ]--[
+                    --[ tuple ]--[
                       "fromArray - []",
                       (function (param) {
-                          return /* Eq */Block.__(0, [
+                          return --[ Eq ]--Block.__(0, [
                                     { },
                                     Js_dict.fromArray([])
                                   ]);
                         })
                     ],
-                    /* :: */[
-                      /* tuple */[
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "fromArray",
                         (function (param) {
-                            return /* Eq */Block.__(0, [
+                            return --[ Eq ]--Block.__(0, [
                                       [
-                                        /* tuple */[
+                                        --[ tuple ]--[
                                           "x",
                                           23
                                         ],
-                                        /* tuple */[
+                                        --[ tuple ]--[
                                           "y",
                                           46
                                         ]
                                       ],
                                       Js_dict.entries(Js_dict.fromArray([
-                                                /* tuple */[
+                                                --[ tuple ]--[
                                                   "x",
                                                   23
                                                 ],
-                                                /* tuple */[
+                                                --[ tuple ]--[
                                                   "y",
                                                   46
                                                 ]
@@ -208,11 +208,11 @@ var suites_001 = /* :: */[
                                     ]);
                           })
                       ],
-                      /* :: */[
-                        /* tuple */[
+                      --[ :: ]--[
+                        --[ tuple ]--[
                           "map",
                           (function (param) {
-                              return /* Eq */Block.__(0, [
+                              return --[ Eq ]--Block.__(0, [
                                         {
                                           foo: "43",
                                           bar: "86"
@@ -226,7 +226,7 @@ var suites_001 = /* :: */[
                                       ]);
                             })
                         ],
-                        /* [] */0
+                        --[ [] ]--0
                       ]
                     ]
                   ]
@@ -240,7 +240,7 @@ var suites_001 = /* :: */[
   ]
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -249,4 +249,4 @@ Mt.from_pair_suites("Js_dict_test", suites);
 
 exports.obj = obj;
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

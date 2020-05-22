@@ -4,7 +4,7 @@ var Curry = require("../../lib/js/curry.js");
 
 function test_hi(x) {
   var match = x.hi(1, 2, 3);
-  if (match !== null) {
+  if (match ~= null) {
     console.log(match);
     return 2;
   } else {
@@ -29,11 +29,11 @@ function test_cb(x) {
 
 function f(x) {
   v(x);
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 exports.test_hi = test_hi;
 exports.test_hi__2 = test_hi__2;
 exports.test_cb = test_cb;
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

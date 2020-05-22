@@ -6,7 +6,7 @@ var Curry = require("../../lib/js/curry.js");
 var Caml_obj = require("../../lib/js/caml_obj.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -15,11 +15,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -27,7 +27,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var called = {
@@ -47,21 +47,21 @@ function g(param) {
         contents: next
       });
   console.log(String(next(0, true)));
-  return /* () */0;
+  return --[ () ]--0;
 }
 
-g(/* () */0);
+g(--[ () ]--0);
 
 var x = [];
 
 var y = [];
 
-Caml_obj.caml_update_dummy(x, /* :: */[
+Caml_obj.caml_update_dummy(x, --[ :: ]--[
       1,
       y
     ]);
 
-Caml_obj.caml_update_dummy(y, /* :: */[
+Caml_obj.caml_update_dummy(y, --[ :: ]--[
       2,
       x
     ]);
@@ -77,4 +77,4 @@ exports.called = called;
 exports.g = g;
 exports.x = x;
 exports.y = y;
-/*  Not a pure module */
+--[  Not a pure module ]--

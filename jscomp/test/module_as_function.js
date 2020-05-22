@@ -7,4 +7,4 @@ var v = Nightmare({
     });
 
 exports.v = v;
-/* v Not a pure module */
+--[ v Not a pure module ]--

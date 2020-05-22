@@ -11,7 +11,7 @@ function ff(param) {
   return "cool test hello worldnothello worldnothello";
 }
 
-var a23 = ff(/* () */0);
+var a23 = ff(--[ () ]--0);
 
 var a15 = a10;
 
@@ -23,4 +23,4 @@ exports.a21 = a21;
 exports.v = v;
 exports.a23 = a23;
 exports.ff = ff;
-/* a23 Not a pure module */
+--[ a23 Not a pure module ]--

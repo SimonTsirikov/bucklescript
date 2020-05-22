@@ -14,13 +14,13 @@ function f_js(u) {
   return u.say(32);
 }
 
-var class_tables = /* Cons */[
+var class_tables = --[ Cons ]--[
   0,
   0,
   0
 ];
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "caml_obj",
   (function (param) {
       if (!class_tables[0]) {
@@ -38,18 +38,18 @@ var suites_000 = /* tuple */[
         CamlinternalOO.init_class($$class);
         class_tables[0] = env_init;
       }
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 33,
                 f(Curry._1(class_tables[0], 0))
               ]);
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "js_obj",
     (function (param) {
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   34,
                   ({
                         say: (function (x) {
@@ -59,11 +59,11 @@ var suites_001 = /* :: */[
                 ]);
       })
   ],
-  /* :: */[
-    /* tuple */[
+  --[ :: ]--[
+    --[ tuple ]--[
       "js_obj2",
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     34,
                     ({
                           say: (function (x) {
@@ -73,21 +73,21 @@ var suites_001 = /* :: */[
                   ]);
         })
     ],
-    /* :: */[
-      /* tuple */[
+    --[ :: ]--[
+      --[ tuple ]--[
         "empty",
         (function (param) {
-            return /* Eq */Block.__(0, [
+            return --[ Eq ]--Block.__(0, [
                       0,
                       Object.keys({ }).length
                     ]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "assign",
           (function (param) {
-              return /* Eq */Block.__(0, [
+              return --[ Eq ]--Block.__(0, [
                         {
                           a: 1
                         },
@@ -97,13 +97,13 @@ var suites_001 = /* :: */[
                       ]);
             })
         ],
-        /* [] */0
+        --[ [] ]--0
       ]
     ]
   ]
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -113,4 +113,4 @@ Mt.from_pair_suites("Js_obj_test", suites);
 exports.f = f;
 exports.f_js = f_js;
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

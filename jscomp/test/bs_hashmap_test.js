@@ -11,7 +11,7 @@ var Array_data_util = require("./array_data_util.js");
 var Belt_internalBucketsType = require("../../lib/js/belt_internalBucketsType.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -27,7 +27,7 @@ function b(loc, x) {
 }
 
 function eq(x, y) {
-  return x === y;
+  return x == y;
 }
 
 var hash = Hashtbl.hash;
@@ -43,19 +43,19 @@ function add(prim, prim$1) {
 }
 
 Belt_HashMap.mergeMany(empty, [
-      /* tuple */[
+      --[ tuple ]--[
         1,
         1
       ],
-      /* tuple */[
+      --[ tuple ]--[
         2,
         3
       ],
-      /* tuple */[
+      --[ tuple ]--[
         3,
         3
       ],
-      /* tuple */[
+      --[ tuple ]--[
         2,
         2
       ]
@@ -101,17 +101,17 @@ b("File \"bs_hashmap_test.ml\", line 57, characters 4-11", Belt_Array.every(Arra
 
 Mt.from_pair_suites("Bs_hashmap_test", suites.contents);
 
-var N = /* alias */0;
+var N = --[ alias ]--0;
 
-var S = /* alias */0;
+var S = --[ alias ]--0;
 
-var I = /* alias */0;
+var I = --[ alias ]--0;
 
 var $plus$plus = Belt_Array.concat;
 
-var A = /* alias */0;
+var A = --[ alias ]--0;
 
-var So = /* alias */0;
+var So = --[ alias ]--0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -129,4 +129,4 @@ exports.$plus$plus = $plus$plus;
 exports.add = add;
 exports.A = A;
 exports.So = So;
-/* Y Not a pure module */
+--[ Y Not a pure module ]--

@@ -52,7 +52,7 @@ function f(children) {
                                   if (children$15[1]) {
                                     throw [
                                           Caml_builtin_exceptions.assert_failure,
-                                          /* tuple */[
+                                          --[ tuple ]--[
                                             "gpr_1150.ml",
                                             56,
                                             34
@@ -261,4 +261,4 @@ function f(children) {
 }
 
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

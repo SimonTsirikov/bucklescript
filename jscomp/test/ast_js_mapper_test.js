@@ -21,7 +21,7 @@ function tFromJs(param) {
 var u = tToJs({
       xx: 3,
       yy: "x",
-      zz: /* tuple */[
+      zz: --[ tuple ]--[
         1,
         2
       ]
@@ -32,7 +32,7 @@ tFromJs(u);
 tFromJs({
       xx: 3,
       yy: "2",
-      zz: /* tuple */[
+      zz: --[ tuple ]--[
         1,
         2
       ],
@@ -46,7 +46,7 @@ function searchForSureExists(xs, k) {
   while(true) {
     var i = _i;
     var match = xs$1[i];
-    if (match[0] === k$1) {
+    if (match[0] == k$1) {
       return match[1];
     } else {
       _i = i + 1 | 0;
@@ -71,19 +71,19 @@ function aFromJs(param) {
 }
 
 var jsMapperConstantArray$1 = [
-  /* tuple */[
+  --[ tuple ]--[
     21902,
     "b0"
   ],
-  /* tuple */[
+  --[ tuple ]--[
     21903,
     "b1"
   ],
-  /* tuple */[
+  --[ tuple ]--[
     21904,
     "b2"
   ],
-  /* tuple */[
+  --[ tuple ]--[
     21905,
     "b3"
   ]
@@ -97,7 +97,7 @@ function bFromJs(param) {
   return Js_mapperRt.revSearchAssert(4, jsMapperConstantArray$1, param);
 }
 
-bToJs(/* b0 */21902);
+bToJs(--[ b0 ]--21902);
 
 exports.tToJs = tToJs;
 exports.tFromJs = tFromJs;
@@ -106,4 +106,4 @@ exports.aToJs = aToJs;
 exports.aFromJs = aFromJs;
 exports.bToJs = bToJs;
 exports.bFromJs = bFromJs;
-/* u Not a pure module */
+--[ u Not a pure module ]--

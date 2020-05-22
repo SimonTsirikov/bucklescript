@@ -34,7 +34,7 @@ var shared$6 = [
 ];
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -43,11 +43,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -55,7 +55,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function point_init($$class) {
@@ -72,7 +72,7 @@ function point_init($$class) {
         move,
         (function (self$1, d) {
             self$1[x] = self$1[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           })
       ]);
   return (function (env, self, x_init$1) {
@@ -91,10 +91,10 @@ var q = Oo.copy(p);
 
 Caml_oo_curry.js2(-933174511, 1, q, 7);
 
-eq("File \"class7_test.ml\", line 22, characters 5-12", /* tuple */[
+eq("File \"class7_test.ml\", line 22, characters 5-12", --[ tuple ]--[
       55,
       62
-    ], /* tuple */[
+    ], --[ tuple ]--[
       Caml_oo_curry.js1(291546447, 2, p),
       Caml_oo_curry.js1(291546447, 3, q)
     ]);
@@ -116,7 +116,7 @@ function ref_init($$class) {
         set,
         (function (self$2, y) {
             self$2[x] = y;
-            return /* () */0;
+            return --[ () ]--0;
           })
       ]);
   return (function (env, self, x_init$1) {
@@ -139,12 +139,12 @@ function backup_init($$class) {
         (function (self$3) {
             var copy$1 = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
             self$3[copy] = Caml_option.some((copy$1[copy] = undefined, copy$1));
-            return /* () */0;
+            return --[ () ]--0;
           }),
         restore,
         (function (self$3) {
             var match = self$3[copy];
-            if (match !== undefined) {
+            if (match ~= undefined) {
               return Caml_option.valFromOption(match);
             } else {
               return self$3;
@@ -189,7 +189,7 @@ function get(_p, _n) {
   while(true) {
     var n = _n;
     var p = _p;
-    if (n === 0) {
+    if (n == 0) {
       return Caml_oo_curry.js1(5144726, 6, p);
     } else {
       _n = n - 1 | 0;
@@ -237,12 +237,12 @@ function backup2_init($$class) {
         save,
         (function (self$5) {
             self$5[copy] = Caml_option.some(Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$5)));
-            return /* () */0;
+            return --[ () ]--0;
           }),
         restore,
         (function (self$5) {
             var match = self$5[copy];
-            if (match !== undefined) {
+            if (match ~= undefined) {
               return Caml_option.valFromOption(match);
             } else {
               return self$5;
@@ -251,7 +251,7 @@ function backup2_init($$class) {
         clear,
         (function (self$5) {
             self$5[copy] = undefined;
-            return /* () */0;
+            return --[ () ]--0;
           })
       ]);
   return (function (env, self) {
@@ -366,4 +366,4 @@ exports.backup2 = backup2;
 exports.backup_ref2 = backup_ref2;
 exports.$$window = $$window;
 exports.widget = widget;
-/* point Not a pure module */
+--[ point Not a pure module ]--

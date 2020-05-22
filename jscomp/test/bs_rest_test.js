@@ -18,4 +18,4 @@ exports.v = v;
 exports.xxx = xxx;
 exports.u = u;
 exports.xx = xx;
-/*  Not a pure module */
+--[  Not a pure module ]--

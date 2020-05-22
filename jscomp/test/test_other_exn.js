@@ -12,4 +12,4 @@ var V = { };
 exports.Make = Make;
 exports.U = U;
 exports.V = V;
-/* No side effect */
+--[ No side effect ]--

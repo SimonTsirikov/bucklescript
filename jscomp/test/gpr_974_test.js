@@ -7,7 +7,7 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 if (!Caml_obj.caml_equal(Caml_option.nullable_to_opt(""), "")) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "gpr_974_test.ml",
           5,
           4
@@ -18,7 +18,7 @@ if (!Caml_obj.caml_equal(Caml_option.nullable_to_opt(""), "")) {
 if (!Caml_obj.caml_equal(Caml_option.undefined_to_opt(""), "")) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "gpr_974_test.ml",
           6,
           4
@@ -29,7 +29,7 @@ if (!Caml_obj.caml_equal(Caml_option.undefined_to_opt(""), "")) {
 if (!Caml_obj.caml_equal(Caml_option.null_to_opt(""), "")) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "gpr_974_test.ml",
           7,
           4
@@ -37,4 +37,4 @@ if (!Caml_obj.caml_equal(Caml_option.null_to_opt(""), "")) {
       ];
 }
 
-/*  Not a pure module */
+--[  Not a pure module ]--

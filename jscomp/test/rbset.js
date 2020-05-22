@@ -3,10 +3,10 @@
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function blackify(s) {
-  if (s && s[0]) {
-    return /* tuple */[
-            /* Node */[
-              /* Black */0,
+  if (s and s[0]) {
+    return --[ tuple ]--[
+            --[ Node ]--[
+              --[ Black ]--0,
               s[1],
               s[2],
               s[3]
@@ -14,7 +14,7 @@ function blackify(s) {
             false
           ];
   } else {
-    return /* tuple */[
+    return --[ tuple ]--[
             s,
             true
           ];
@@ -34,7 +34,7 @@ function mem(x, _param) {
     var param = _param;
     if (param) {
       var y = param[2];
-      if (x === y) {
+      if (x == y) {
         return true;
       } else if (x < y) {
         _param = param[1];
@@ -58,10 +58,10 @@ function balance_left(l, x, r) {
   var c;
   var z;
   var d;
-  if (l && l[0]) {
+  if (l and l[0]) {
     var a$1 = l[1];
     var exit$1 = 0;
-    if (a$1 && a$1[0]) {
+    if (a$1 and a$1[0]) {
       a = a$1[1];
       x$1 = a$1[2];
       b = a$1[3];
@@ -73,9 +73,9 @@ function balance_left(l, x, r) {
     } else {
       exit$1 = 3;
     }
-    if (exit$1 === 3) {
+    if (exit$1 == 3) {
       var match = l[3];
-      if (match && match[0]) {
+      if (match and match[0]) {
         a = a$1;
         x$1 = l[2];
         b = match[1];
@@ -94,24 +94,24 @@ function balance_left(l, x, r) {
   }
   switch (exit) {
     case 1 :
-        return /* Node */[
-                /* Black */0,
+        return --[ Node ]--[
+                --[ Black ]--0,
                 l,
                 x,
                 r
               ];
     case 2 :
-        return /* Node */[
-                /* Red */1,
-                /* Node */[
-                  /* Black */0,
+        return --[ Node ]--[
+                --[ Red ]--1,
+                --[ Node ]--[
+                  --[ Black ]--0,
                   a,
                   x$1,
                   b
                 ],
                 y,
-                /* Node */[
-                  /* Black */0,
+                --[ Node ]--[
+                  --[ Black ]--0,
                   c,
                   z,
                   d
@@ -130,10 +130,10 @@ function balance_right(l, x, r) {
   var c;
   var z;
   var d;
-  if (r && r[0]) {
+  if (r and r[0]) {
     var b$1 = r[1];
     var exit$1 = 0;
-    if (b$1 && b$1[0]) {
+    if (b$1 and b$1[0]) {
       a = l;
       x$1 = x;
       b = b$1[1];
@@ -145,9 +145,9 @@ function balance_right(l, x, r) {
     } else {
       exit$1 = 3;
     }
-    if (exit$1 === 3) {
+    if (exit$1 == 3) {
       var match = r[3];
-      if (match && match[0]) {
+      if (match and match[0]) {
         a = l;
         x$1 = x;
         b = b$1;
@@ -166,24 +166,24 @@ function balance_right(l, x, r) {
   }
   switch (exit) {
     case 1 :
-        return /* Node */[
-                /* Black */0,
+        return --[ Node ]--[
+                --[ Black ]--0,
                 l,
                 x,
                 r
               ];
     case 2 :
-        return /* Node */[
-                /* Red */1,
-                /* Node */[
-                  /* Black */0,
+        return --[ Node ]--[
+                --[ Red ]--1,
+                --[ Node ]--[
+                  --[ Black ]--0,
                   a,
                   x$1,
                   b
                 ],
                 y,
-                /* Node */[
-                  /* Black */0,
+                --[ Node ]--[
+                  --[ Black ]--0,
                   c,
                   z,
                   d
@@ -194,11 +194,11 @@ function balance_right(l, x, r) {
 }
 
 function singleton(x) {
-  return /* Node */[
-          /* Black */0,
-          /* Empty */0,
+  return --[ Node ]--[
+          --[ Black ]--0,
+          --[ Empty ]--0,
           x,
-          /* Empty */0
+          --[ Empty ]--0
         ];
 }
 
@@ -206,10 +206,10 @@ function unbalanced_left(param) {
   if (param) {
     if (param[0]) {
       var match = param[1];
-      if (match && !match[0]) {
-        return /* tuple */[
-                balance_left(/* Node */[
-                      /* Red */1,
+      if (match and !match[0]) {
+        return --[ tuple ]--[
+                balance_left(--[ Node ]--[
+                      --[ Red ]--1,
                       match[1],
                       match[2],
                       match[3]
@@ -223,14 +223,14 @@ function unbalanced_left(param) {
       if (match$1) {
         if (match$1[0]) {
           var match$2 = match$1[3];
-          if (match$2 && !match$2[0]) {
-            return /* tuple */[
-                    /* Node */[
-                      /* Black */0,
+          if (match$2 and !match$2[0]) {
+            return --[ tuple ]--[
+                    --[ Node ]--[
+                      --[ Black ]--0,
                       match$1[1],
                       match$1[2],
-                      balance_left(/* Node */[
-                            /* Red */1,
+                      balance_left(--[ Node ]--[
+                            --[ Red ]--1,
                             match$2[1],
                             match$2[2],
                             match$2[3]
@@ -241,9 +241,9 @@ function unbalanced_left(param) {
           }
           
         } else {
-          return /* tuple */[
-                  balance_left(/* Node */[
-                        /* Red */1,
+          return --[ tuple ]--[
+                  balance_left(--[ Node ]--[
+                        --[ Red ]--1,
                         match$1[1],
                         match$1[2],
                         match$1[3]
@@ -257,7 +257,7 @@ function unbalanced_left(param) {
   }
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "rbset.ml",
           57,
           9
@@ -269,10 +269,10 @@ function unbalanced_right(param) {
   if (param) {
     if (param[0]) {
       var match = param[3];
-      if (match && !match[0]) {
-        return /* tuple */[
-                balance_right(param[1], param[2], /* Node */[
-                      /* Red */1,
+      if (match and !match[0]) {
+        return --[ tuple ]--[
+                balance_right(param[1], param[2], --[ Node ]--[
+                      --[ Red ]--1,
                       match[1],
                       match[2],
                       match[3]
@@ -288,12 +288,12 @@ function unbalanced_right(param) {
         var a = param[1];
         if (match$1[0]) {
           var match$2 = match$1[1];
-          if (match$2 && !match$2[0]) {
-            return /* tuple */[
-                    /* Node */[
-                      /* Black */0,
-                      balance_right(a, x, /* Node */[
-                            /* Red */1,
+          if (match$2 and !match$2[0]) {
+            return --[ tuple ]--[
+                    --[ Node ]--[
+                      --[ Black ]--0,
+                      balance_right(a, x, --[ Node ]--[
+                            --[ Red ]--1,
                             match$2[1],
                             match$2[2],
                             match$2[3]
@@ -306,9 +306,9 @@ function unbalanced_right(param) {
           }
           
         } else {
-          return /* tuple */[
-                  balance_right(a, x, /* Node */[
-                        /* Red */1,
+          return --[ tuple ]--[
+                  balance_right(a, x, --[ Node ]--[
+                        --[ Red ]--1,
                         match$1[1],
                         match$1[2],
                         match$1[3]
@@ -322,7 +322,7 @@ function unbalanced_right(param) {
   }
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "rbset.ml",
           63,
           9
@@ -331,56 +331,56 @@ function unbalanced_right(param) {
 }
 
 function lbalance(x1, x2, x3) {
-  if (x1 && x1[0]) {
+  if (x1 and x1[0]) {
     var r = x1[3];
     var l = x1[1];
-    if (l && l[0]) {
-      return /* Node */[
-              /* Red */1,
-              /* Node */[
-                /* Black */0,
+    if (l and l[0]) {
+      return --[ Node ]--[
+              --[ Red ]--1,
+              --[ Node ]--[
+                --[ Black ]--0,
                 l[1],
                 l[2],
                 l[3]
               ],
               x1[2],
-              /* Node */[
-                /* Black */0,
+              --[ Node ]--[
+                --[ Black ]--0,
                 r,
                 x2,
                 x3
               ]
             ];
     }
-    if (r && r[0]) {
+    if (r and r[0]) {
       var y = r[2];
-      return /* Node */[
-              /* Red */1,
-              /* Node */[
-                /* Black */0,
+      return --[ Node ]--[
+              --[ Red ]--1,
+              --[ Node ]--[
+                --[ Black ]--0,
                 l,
                 y,
                 r[1]
               ],
               y,
-              /* Node */[
-                /* Black */0,
+              --[ Node ]--[
+                --[ Black ]--0,
                 r[3],
                 x2,
                 x3
               ]
             ];
     } else {
-      return /* Node */[
-              /* Black */0,
+      return --[ Node ]--[
+              --[ Black ]--0,
               x1,
               x2,
               x3
             ];
     }
   } else {
-    return /* Node */[
-            /* Black */0,
+    return --[ Node ]--[
+            --[ Black ]--0,
             x1,
             x2,
             x3
@@ -389,21 +389,21 @@ function lbalance(x1, x2, x3) {
 }
 
 function rbalance(x1, x2, x3) {
-  if (x3 && x3[0]) {
+  if (x3 and x3[0]) {
     var b = x3[1];
     var exit = 0;
-    if (b && b[0]) {
-      return /* Node */[
-              /* Red */1,
-              /* Node */[
-                /* Black */0,
+    if (b and b[0]) {
+      return --[ Node ]--[
+              --[ Red ]--1,
+              --[ Node ]--[
+                --[ Black ]--0,
                 x1,
                 x2,
                 b[1]
               ],
               b[2],
-              /* Node */[
-                /* Black */0,
+              --[ Node ]--[
+                --[ Black ]--0,
                 b[3],
                 x3[2],
                 x3[3]
@@ -412,20 +412,20 @@ function rbalance(x1, x2, x3) {
     } else {
       exit = 2;
     }
-    if (exit === 2) {
+    if (exit == 2) {
       var match = x3[3];
-      if (match && match[0]) {
-        return /* Node */[
-                /* Red */1,
-                /* Node */[
-                  /* Black */0,
+      if (match and match[0]) {
+        return --[ Node ]--[
+                --[ Red ]--1,
+                --[ Node ]--[
+                  --[ Black ]--0,
                   x1,
                   x2,
                   b
                 ],
                 x3[2],
-                /* Node */[
-                  /* Black */0,
+                --[ Node ]--[
+                  --[ Black ]--0,
                   match[1],
                   match[2],
                   match[3]
@@ -436,8 +436,8 @@ function rbalance(x1, x2, x3) {
     }
     
   }
-  return /* Node */[
-          /* Black */0,
+  return --[ Node ]--[
+          --[ Black ]--0,
           x1,
           x2,
           x3
@@ -448,21 +448,21 @@ function ins(x, s) {
   if (s) {
     if (s[0]) {
       var y = s[2];
-      if (x === y) {
+      if (x == y) {
         return s;
       } else {
         var b = s[3];
         var a = s[1];
         if (x < y) {
-          return /* Node */[
-                  /* Red */1,
+          return --[ Node ]--[
+                  --[ Red ]--1,
                   ins(x, a),
                   y,
                   b
                 ];
         } else {
-          return /* Node */[
-                  /* Red */1,
+          return --[ Node ]--[
+                  --[ Red ]--1,
                   a,
                   y,
                   ins(x, b)
@@ -471,7 +471,7 @@ function ins(x, s) {
       }
     } else {
       var y$1 = s[2];
-      if (x === y$1) {
+      if (x == y$1) {
         return s;
       } else {
         var b$1 = s[3];
@@ -484,20 +484,20 @@ function ins(x, s) {
       }
     }
   } else {
-    return /* Node */[
-            /* Red */1,
-            /* Empty */0,
+    return --[ Node ]--[
+            --[ Red ]--1,
+            --[ Empty ]--0,
             x,
-            /* Empty */0
+            --[ Empty ]--0
           ];
   }
 }
 
 function add(x, s) {
   var s$1 = ins(x, s);
-  if (s$1 && s$1[0]) {
-    return /* Node */[
-            /* Black */0,
+  if (s$1 and s$1[0]) {
+    return --[ Node ]--[
+            --[ Black ]--0,
             s$1[1],
             s$1[2],
             s$1[3]
@@ -512,7 +512,7 @@ function remove_min(param) {
     var c = param[0];
     if (c) {
       if (!param[1]) {
-        return /* tuple */[
+        return --[ tuple ]--[
                 param[3],
                 param[2],
                 false
@@ -524,9 +524,9 @@ function remove_min(param) {
       var x = param[2];
       if (match) {
         if (match[0]) {
-          return /* tuple */[
-                  /* Node */[
-                    /* Black */0,
+          return --[ tuple ]--[
+                  --[ Node ]--[
+                    --[ Black ]--0,
                     match[1],
                     match[2],
                     match[3]
@@ -537,7 +537,7 @@ function remove_min(param) {
         } else {
           throw [
                 Caml_builtin_exceptions.assert_failure,
-                /* tuple */[
+                --[ tuple ]--[
                   "rbset.ml",
                   115,
                   4
@@ -545,8 +545,8 @@ function remove_min(param) {
               ];
         }
       } else {
-        return /* tuple */[
-                /* Empty */0,
+        return --[ tuple ]--[
+                --[ Empty ]--0,
                 x,
                 true
               ];
@@ -557,7 +557,7 @@ function remove_min(param) {
     var s_001 = match$1[0];
     var s_002 = param[2];
     var s_003 = param[3];
-    var s = /* Node */[
+    var s = --[ Node ]--[
       c,
       s_001,
       s_002,
@@ -565,13 +565,13 @@ function remove_min(param) {
     ];
     if (match$1[2]) {
       var match$2 = unbalanced_right(s);
-      return /* tuple */[
+      return --[ tuple ]--[
               match$2[0],
               y,
               match$2[1]
             ];
     } else {
-      return /* tuple */[
+      return --[ tuple ]--[
               s,
               y,
               false
@@ -580,7 +580,7 @@ function remove_min(param) {
   } else {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "rbset.ml",
             115,
             4
@@ -595,12 +595,12 @@ function remove_aux(x, n) {
     var y = n[2];
     var l = n[1];
     var c = n[0];
-    if (x === y) {
+    if (x == y) {
       if (r) {
         var match = remove_min(r);
         var n_002 = match[1];
         var n_003 = match[0];
-        var n$1 = /* Node */[
+        var n$1 = --[ Node ]--[
           c,
           l,
           n_002,
@@ -609,13 +609,13 @@ function remove_aux(x, n) {
         if (match[2]) {
           return unbalanced_left(n$1);
         } else {
-          return /* tuple */[
+          return --[ tuple ]--[
                   n$1,
                   false
                 ];
         }
-      } else if (c === /* Red */1) {
-        return /* tuple */[
+      } else if (c == --[ Red ]--1) {
+        return --[ tuple ]--[
                 l,
                 false
               ];
@@ -625,7 +625,7 @@ function remove_aux(x, n) {
     } else if (x < y) {
       var match$1 = remove_aux(x, l);
       var n_001 = match$1[0];
-      var n$2 = /* Node */[
+      var n$2 = --[ Node ]--[
         c,
         n_001,
         y,
@@ -634,7 +634,7 @@ function remove_aux(x, n) {
       if (match$1[1]) {
         return unbalanced_right(n$2);
       } else {
-        return /* tuple */[
+        return --[ tuple ]--[
                 n$2,
                 false
               ];
@@ -642,7 +642,7 @@ function remove_aux(x, n) {
     } else {
       var match$2 = remove_aux(x, r);
       var n_003$1 = match$2[0];
-      var n$3 = /* Node */[
+      var n$3 = --[ Node ]--[
         c,
         l,
         y,
@@ -651,15 +651,15 @@ function remove_aux(x, n) {
       if (match$2[1]) {
         return unbalanced_left(n$3);
       } else {
-        return /* tuple */[
+        return --[ tuple ]--[
                 n$3,
                 false
               ];
       }
     }
   } else {
-    return /* tuple */[
-            /* Empty */0,
+    return --[ tuple ]--[
+            --[ Empty ]--0,
             false
           ];
   }
@@ -677,7 +677,7 @@ function cardinal(param) {
   }
 }
 
-var empty = /* Empty */0;
+var empty = --[ Empty ]--0;
 
 exports.blackify = blackify;
 exports.empty = empty;
@@ -696,4 +696,4 @@ exports.remove_min = remove_min;
 exports.remove_aux = remove_aux;
 exports.remove = remove;
 exports.cardinal = cardinal;
-/* No side effect */
+--[ No side effect ]--

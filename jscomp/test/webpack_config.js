@@ -37,37 +37,37 @@ var A = { };
 var B = { };
 
 function f(param) {
-  return /* tuple */[
+  return --[ tuple ]--[
           (function (prim) {
               List$3.ff();
-              return /* () */0;
+              return --[ () ]--0;
             }),
           (function (prim) {
               List$3.ff2();
-              return /* () */0;
+              return --[ () ]--0;
             }),
           (function (prim) {
               List$2.ff();
-              return /* () */0;
+              return --[ () ]--0;
             }),
           (function (prim) {
               List$2.ff2();
-              return /* () */0;
+              return --[ () ]--0;
             })
         ];
 }
 
 List$1.xx();
 
-List.length(/* :: */[
+List.length(--[ :: ]--[
       1,
-      /* :: */[
+      --[ :: ]--[
         2,
-        /* [] */0
+        --[ [] ]--0
       ]
     ]);
 
-List.length(/* [] */0);
+List.length(--[ [] ]--0);
 
 function ff(prim) {
   return Local.ff();
@@ -81,4 +81,4 @@ exports.A = A;
 exports.B = B;
 exports.f = f;
 exports.ff = ff;
-/* configx Not a pure module */
+--[ configx Not a pure module ]--

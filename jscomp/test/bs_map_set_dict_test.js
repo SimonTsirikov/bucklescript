@@ -12,7 +12,7 @@ var Caml_primitive = require("../../lib/js/caml_primitive.js");
 var Array_data_util = require("./array_data_util.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -101,7 +101,7 @@ function $eq$tilde(a, b) {
 }
 
 var u0 = f(Belt_Array.map(Array_data_util.randomRange(0, 39), (function (x) {
-            return /* tuple */[
+            return --[ tuple ]--[
                     x,
                     x
                   ];
@@ -110,26 +110,26 @@ var u0 = f(Belt_Array.map(Array_data_util.randomRange(0, 39), (function (x) {
 var u1 = Belt_Map.set(u0, 39, 120);
 
 b("File \"bs_map_set_dict_test.ml\", line 77, characters 4-11", Belt_Array.every2(Belt_MapDict.toArray(u0.data), Belt_Array.map(Array_data_util.range(0, 39), (function (x) {
-                return /* tuple */[
+                return --[ tuple ]--[
                         x,
                         x
                       ];
               })), (function (param, param$1) {
-            if (param[0] === param$1[0]) {
-              return param[1] === param$1[1];
+            if (param[0] == param$1[0]) {
+              return param[1] == param$1[1];
             } else {
               return false;
             }
           })));
 
 b("File \"bs_map_set_dict_test.ml\", line 82, characters 4-11", Belt_List.every2(Belt_MapDict.toList(u0.data), Belt_List.fromArray(Belt_Array.map(Array_data_util.range(0, 39), (function (x) {
-                    return /* tuple */[
+                    return --[ tuple ]--[
                             x,
                             x
                           ];
                   }))), (function (param, param$1) {
-            if (param[0] === param$1[0]) {
-              return param[1] === param$1[1];
+            if (param[0] == param$1[0]) {
+              return param[1] == param$1[1];
             } else {
               return false;
             }
@@ -140,14 +140,14 @@ eq("File \"bs_map_set_dict_test.ml\", line 87, characters 5-12", Belt_Map.get(u0
 eq("File \"bs_map_set_dict_test.ml\", line 88, characters 5-12", Belt_Map.get(u1, 39), 120);
 
 var u = f(Belt_Array.makeByAndShuffle(10000, (function (x) {
-            return /* tuple */[
+            return --[ tuple ]--[
                     x,
                     x
                   ];
           })));
 
 eq("File \"bs_map_set_dict_test.ml\", line 94, characters 4-11", Belt_Array.makeBy(10000, (function (x) {
-            return /* tuple */[
+            return --[ tuple ]--[
                     x,
                     x
                   ];
@@ -155,25 +155,25 @@ eq("File \"bs_map_set_dict_test.ml\", line 94, characters 4-11", Belt_Array.make
 
 Mt.from_pair_suites("Bs_map_set_dict_test", suites.contents);
 
-var M = /* alias */0;
+var M = --[ alias ]--0;
 
-var MI = /* alias */0;
+var MI = --[ alias ]--0;
 
-var I = /* alias */0;
+var I = --[ alias ]--0;
 
-var A = /* alias */0;
+var A = --[ alias ]--0;
 
-var L = /* alias */0;
+var L = --[ alias ]--0;
 
 var vv = Belt_MapInt.empty;
 
 var vv2 = Belt_MapInt.empty;
 
-var Md0 = /* alias */0;
+var Md0 = --[ alias ]--0;
 
-var ISet = /* alias */0;
+var ISet = --[ alias ]--0;
 
-var S0 = /* alias */0;
+var S0 = --[ alias ]--0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -197,4 +197,4 @@ exports.ISet = ISet;
 exports.S0 = S0;
 exports.f = f;
 exports.$eq$tilde = $eq$tilde;
-/* Icmp Not a pure module */
+--[ Icmp Not a pure module ]--

@@ -8,7 +8,7 @@ function v(displayName, param) {
     config: 3,
     hi: "ghos"
   };
-  if (displayName !== undefined) {
+  if (displayName ~= undefined) {
     tmp.displayName = Caml_option.valFromOption(displayName);
   }
   return tmp;
@@ -50,4 +50,4 @@ exports.u = u;
 exports.ff = ff;
 exports.fff = fff;
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

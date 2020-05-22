@@ -9,7 +9,7 @@ var result = {
 
 function log(x) {
   result.contents = x;
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var Xx = {
@@ -18,40 +18,40 @@ var Xx = {
 
 function compilerBug(a, b, c, f) {
   var exit = 0;
-  if (a !== "x") {
+  if (a ~= "x") {
     exit = 2;
   }
-  if (exit === 2) {
-    if (b !== undefined) {
-      if (b !== "x") {
+  if (exit == 2) {
+    if (b ~= undefined) {
+      if (b ~= "x") {
         if (c) {
           result.contents = "No x, c is true";
-          return /* () */0;
+          return --[ () ]--0;
         } else {
           result.contents = "No x, c is false";
-          return /* () */0;
+          return --[ () ]--0;
         }
       }
       
     } else if (c) {
       result.contents = "No x, c is true";
-      return /* () */0;
+      return --[ () ]--0;
     } else {
       result.contents = "No x, c is false";
-      return /* () */0;
+      return --[ () ]--0;
     }
   }
-  if (Curry._1(f, /* () */0)) {
+  if (Curry._1(f, --[ () ]--0)) {
     result.contents = "Some x, f returns true";
-    return /* () */0;
+    return --[ () ]--0;
   } else {
     result.contents = "Some x, f returns false";
-    return /* () */0;
+    return --[ () ]--0;
   }
 }
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -76,4 +76,4 @@ exports.compilerBug = compilerBug;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
-/*  Not a pure module */
+--[  Not a pure module ]--

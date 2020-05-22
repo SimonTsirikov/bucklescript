@@ -12,4 +12,4 @@ function f(x, y) {
 exports.h = h;
 exports.hh = hh;
 exports.f = f;
-/* h Not a pure module */
+--[ h Not a pure module ]--

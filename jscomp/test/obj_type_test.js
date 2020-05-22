@@ -6,4 +6,4 @@ function f(u) {
 }
 
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

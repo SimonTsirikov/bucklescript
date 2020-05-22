@@ -5,7 +5,7 @@ var Curry = require("../../lib/js/curry.js");
 var Caml_int32 = require("../../lib/js/caml_int32.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -34,7 +34,7 @@ Mt.from_pair_suites("Gpr_3536_test", suites.contents);
 
 var v = 5;
 
-var u = /* Some */[3];
+var u = --[ Some ]--[3];
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -43,4 +43,4 @@ exports.v = v;
 exports.X = X;
 exports.u = u;
 exports.xx = xx;
-/*  Not a pure module */
+--[  Not a pure module ]--

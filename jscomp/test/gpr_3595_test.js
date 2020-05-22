@@ -4,7 +4,7 @@ var Mt = require("./mt.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -17,10 +17,10 @@ function eq(loc, x, y) {
 
 var match = [1];
 
-if (match.length !== 1) {
+if (match.length ~= 1) {
   throw [
         Caml_builtin_exceptions.match_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "gpr_3595_test.ml",
           9,
           4
@@ -37,4 +37,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.a = a;
 exports.x = x;
-/*  Not a pure module */
+--[  Not a pure module ]--

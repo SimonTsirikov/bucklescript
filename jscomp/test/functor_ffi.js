@@ -20,7 +20,7 @@ var Int_arr = {
 };
 
 function f(v) {
-  return /* tuple */[
+  return --[ tuple ]--[
           v[0],
           Caml_option.undefined_to_opt(v[1])
         ];
@@ -29,4 +29,4 @@ function f(v) {
 exports.Make = Make;
 exports.Int_arr = Int_arr;
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

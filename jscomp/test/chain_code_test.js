@@ -4,7 +4,7 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -13,11 +13,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -25,7 +25,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function f(h) {
@@ -41,15 +41,15 @@ function f3(h, x, y) {
 }
 
 function f4(h, x, y) {
-  h.paint = /* tuple */[
+  h.paint = --[ tuple ]--[
     x,
     y
   ];
-  h.paint.draw = /* tuple */[
+  h.paint.draw = --[ tuple ]--[
     x,
     y
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 eq("File \"chain_code_test.ml\", line 28, characters 5-12", 32, ({
@@ -69,4 +69,4 @@ exports.f = f;
 exports.f2 = f2;
 exports.f3 = f3;
 exports.f4 = f4;
-/*  Not a pure module */
+--[  Not a pure module ]--

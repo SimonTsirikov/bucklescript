@@ -2,8 +2,8 @@
 
 
 function v(x) {
-  return x.c === /* [] */0;
+  return x.c == --[ [] ]--0;
 }
 
 exports.v = v;
-/* No side effect */
+--[ No side effect ]--

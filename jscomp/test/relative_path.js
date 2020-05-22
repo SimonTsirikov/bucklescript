@@ -13,4 +13,4 @@ var bar = foo;
 exports.foo = foo;
 exports.foo2 = foo2;
 exports.bar = bar;
-/* foo Not a pure module */
+--[ foo Not a pure module ]--

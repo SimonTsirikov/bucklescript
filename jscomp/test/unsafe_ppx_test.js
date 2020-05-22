@@ -30,7 +30,7 @@ function g(a) {
   regression4(3, (function (x) {
           return x;
         }));
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var max2 = Math.max;
@@ -53,47 +53,47 @@ var empty = Object.keys(3);
 
 var v = $$test(1, 2);
 
-Mt.from_pair_suites("Unsafe_ppx_test", /* :: */[
-      /* tuple */[
+Mt.from_pair_suites("Unsafe_ppx_test", --[ :: ]--[
+      --[ tuple ]--[
         "unsafe_max",
         (function (param) {
-            return /* Eq */Block.__(0, [
+            return --[ Eq ]--Block.__(0, [
                       2,
                       max(1, 2)
                     ]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "unsafe_test",
           (function (param) {
-              return /* Eq */Block.__(0, [
+              return --[ Eq ]--Block.__(0, [
                         3,
                         v
                       ]);
             })
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "unsafe_max2",
             (function (param) {
-                return /* Eq */Block.__(0, [
+                return --[ Eq ]--Block.__(0, [
                           2,
                           Math.max(1, 2)
                         ]);
               })
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "ffi_keys",
               (function (param) {
-                  return /* Eq */Block.__(0, [
+                  return --[ Eq ]--Block.__(0, [
                             ["a"],
                             Ffi_js_test.keys(({a : 3}))
                           ]);
                 })
             ],
-            /* [] */0
+            --[ [] ]--0
           ]
         ]
       ]
@@ -111,4 +111,4 @@ exports.max3 = max3;
 exports.uu = uu;
 exports.empty = empty;
 exports.v = v;
-/* max Not a pure module */
+--[ max Not a pure module ]--

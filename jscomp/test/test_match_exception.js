@@ -8,7 +8,7 @@ function f(g, x) {
     return Curry._1(g, x);
   }
   catch (exn){
-    if (exn === Caml_builtin_exceptions.not_found) {
+    if (exn == Caml_builtin_exceptions.not_found) {
       return 3;
     } else {
       throw exn;
@@ -17,4 +17,4 @@ function f(g, x) {
 }
 
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

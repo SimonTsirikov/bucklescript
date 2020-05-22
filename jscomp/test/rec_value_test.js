@@ -20,17 +20,17 @@ var b = [];
 
 var c = [];
 
-Caml_obj.caml_update_dummy(a, /* :: */[
+Caml_obj.caml_update_dummy(a, --[ :: ]--[
       2,
       b
     ]);
 
-Caml_obj.caml_update_dummy(b, /* :: */[
+Caml_obj.caml_update_dummy(b, --[ :: ]--[
       3,
       c
     ]);
 
-Caml_obj.caml_update_dummy(c, /* :: */[
+Caml_obj.caml_update_dummy(c, --[ :: ]--[
       3,
       a
     ]);
@@ -42,7 +42,7 @@ xx[0] = 1;
 xx[1] = xx;
 
 function naive(n) {
-  if (n === 0 || n === 1) {
+  if (n == 0 or n == 1) {
     return 1;
   } else {
     return (n + naive(n - 1 | 0) | 0) + naive(n - 2 | 0) | 0;
@@ -61,7 +61,7 @@ var v = {
   contents: (function (param) {
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "rec_value_test.ml",
               23,
               24
@@ -90,18 +90,18 @@ function zs(param) {
   return List.hd(xs[0]);
 }
 
-var xs_000 = /* :: */[
+var xs_000 = --[ :: ]--[
   2,
-  /* [] */0
+  --[ [] ]--0
 ];
 
-var xs = /* tuple */[
+var xs = --[ tuple ]--[
   xs_000,
   zs
 ];
 
 function fib2(n) {
-  if (n === 0 || n === 1) {
+  if (n == 0 or n == 1) {
     return 1;
   } else {
     return fib2(n - 1 | 0) + fib2(n - 2 | 0) | 0;
@@ -111,7 +111,7 @@ function fib2(n) {
 var two = 2;
 
 function fib3(n) {
-  if (n === 0 || n === 1) {
+  if (n == 0 or n == 1) {
     return 1;
   } else {
     return fib3(n - 1 | 0) + fib3(n - 2 | 0) | 0;
@@ -119,11 +119,11 @@ function fib3(n) {
 }
 
 function even(n) {
-  if (n === 0) {
+  if (n == 0) {
     return true;
   } else {
     var n$1 = n - 1 | 0;
-    if (n$1 === 1) {
+    if (n$1 == 1) {
       return true;
     } else {
       return even(n$1 - 1 | 0);
@@ -134,7 +134,7 @@ function even(n) {
 function even2(_n) {
   while(true) {
     var n = _n;
-    if (n === 0) {
+    if (n == 0) {
       return true;
     } else {
       _n = n - 1 | 0;
@@ -145,7 +145,7 @@ function even2(_n) {
 
 function lazy_v(param) {
   CamlinternalLazy.force(lazy_v);
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function sum(_acc, _n) {
@@ -162,41 +162,41 @@ function sum(_acc, _n) {
   };
 }
 
-var fake_v = /* :: */[
+var fake_v = --[ :: ]--[
   1,
-  /* :: */[
+  --[ :: ]--[
     2,
-    /* [] */0
+    --[ [] ]--0
   ]
 ];
 
-var fake_y = /* :: */[
+var fake_y = --[ :: ]--[
   2,
-  /* :: */[
+  --[ :: ]--[
     3,
-    /* [] */0
+    --[ [] ]--0
   ]
 ];
 
-var fake_z = /* :: */[
+var fake_z = --[ :: ]--[
   1,
   fake_y
 ];
 
-var fake_y2 = /* :: */[
+var fake_y2 = --[ :: ]--[
   2,
-  /* :: */[
+  --[ :: ]--[
     3,
-    /* [] */0
+    --[ [] ]--0
   ]
 ];
 
-var fake_z2_001 = /* :: */[
+var fake_z2_001 = --[ :: ]--[
   sum(0, 10),
   fake_y2
 ];
 
-var fake_z2 = /* :: */[
+var fake_z2 = --[ :: ]--[
   1,
   fake_z2_001
 ];
@@ -205,32 +205,32 @@ var rec_variant_b = [];
 
 var rec_variant_a = [];
 
-Caml_obj.caml_update_dummy(rec_variant_b, /* B */Block.__(0, [
+Caml_obj.caml_update_dummy(rec_variant_b, --[ B ]--Block.__(0, [
         "gho",
         (function (param) {
             return rec_variant_a;
           })
       ]));
 
-Caml_obj.caml_update_dummy(rec_variant_a, /* A */Block.__(1, [
+Caml_obj.caml_update_dummy(rec_variant_a, --[ A ]--Block.__(1, [
         3,
         (function (param) {
             return rec_variant_b;
           })
       ]));
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "hd",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 1,
                 List.hd(List.tl(x))
               ]);
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "mutual",
     (function (param) {
         var tmp;
@@ -241,7 +241,7 @@ var suites_001 = /* :: */[
           } else {
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  /* tuple */[
+                  --[ tuple ]--[
                     "rec_value_test.ml",
                     108,
                     2
@@ -251,73 +251,73 @@ var suites_001 = /* :: */[
         } else {
           throw [
                 Caml_builtin_exceptions.assert_failure,
-                /* tuple */[
+                --[ tuple ]--[
                   "rec_value_test.ml",
                   108,
                   2
                 ]
               ];
         }
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   3,
                   tmp
                 ]);
       })
   ],
-  /* :: */[
-    /* tuple */[
+  --[ :: ]--[
+    --[ tuple ]--[
       "rec_sum",
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     55,
                     sum(0, 10)
                   ]);
         })
     ],
-    /* :: */[
-      /* tuple */[
+    --[ :: ]--[
+      --[ tuple ]--[
         "File \"rec_value_test.ml\", line 111, characters 2-9",
         (function (param) {
-            return /* Eq */Block.__(0, [
-                      /* :: */[
+            return --[ Eq ]--Block.__(0, [
+                      --[ :: ]--[
                         1,
-                        /* :: */[
+                        --[ :: ]--[
                           2,
-                          /* [] */0
+                          --[ [] ]--0
                         ]
                       ],
                       fake_v
                     ]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "File \"rec_value_test.ml\", line 114, characters 2-9",
           (function (param) {
-              return /* Eq */Block.__(0, [
-                        /* :: */[
+              return --[ Eq ]--Block.__(0, [
+                        --[ :: ]--[
                           2,
-                          /* :: */[
+                          --[ :: ]--[
                             3,
-                            /* [] */0
+                            --[ [] ]--0
                           ]
                         ],
                         fake_y
                       ]);
             })
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "File \"rec_value_test.ml\", line 117, characters 2-9",
             (function (param) {
-                return /* Eq */Block.__(0, [
-                          /* :: */[
+                return --[ Eq ]--Block.__(0, [
+                          --[ :: ]--[
                             1,
-                            /* :: */[
+                            --[ :: ]--[
                               2,
-                              /* :: */[
+                              --[ :: ]--[
                                 3,
-                                /* [] */0
+                                --[ [] ]--0
                               ]
                             ]
                           ],
@@ -325,20 +325,20 @@ var suites_001 = /* :: */[
                         ]);
               })
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "File \"rec_value_test.ml\", line 120, characters 2-9",
               (function (param) {
-                  return /* Eq */Block.__(0, [
-                            /* :: */[
+                  return --[ Eq ]--Block.__(0, [
+                            --[ :: ]--[
                               1,
-                              /* :: */[
+                              --[ :: ]--[
                                 55,
-                                /* :: */[
+                                --[ :: ]--[
                                   2,
-                                  /* :: */[
+                                  --[ :: ]--[
                                     3,
-                                    /* [] */0
+                                    --[ [] ]--0
                                   ]
                                 ]
                               ]
@@ -347,66 +347,66 @@ var suites_001 = /* :: */[
                           ]);
                 })
             ],
-            /* :: */[
-              /* tuple */[
+            --[ :: ]--[
+              --[ tuple ]--[
                 "File \"rec_value_test.ml\", line 123, characters 2-9",
                 (function (param) {
-                    return /* Eq */Block.__(0, [
-                              /* :: */[
+                    return --[ Eq ]--Block.__(0, [
+                              --[ :: ]--[
                                 2,
-                                /* :: */[
+                                --[ :: ]--[
                                   3,
-                                  /* [] */0
+                                  --[ [] ]--0
                                 ]
                               ],
                               fake_y2
                             ]);
                   })
               ],
-              /* :: */[
-                /* tuple */[
+              --[ :: ]--[
+                --[ tuple ]--[
                   "File \"rec_value_test.ml\", line 126, characters 2-9",
                   (function (param) {
-                      return /* Eq */Block.__(0, [
+                      return --[ Eq ]--Block.__(0, [
                                 3,
                                 3
                               ]);
                     })
                 ],
-                /* :: */[
-                  /* tuple */[
+                --[ :: ]--[
+                  --[ tuple ]--[
                     "File \"rec_value_test.ml\", line 129, characters 2-9",
                     (function (param) {
                         if (rec_variant_b.tag) {
                           throw [
                                 Caml_builtin_exceptions.assert_failure,
-                                /* tuple */[
+                                --[ tuple ]--[
                                   "rec_value_test.ml",
                                   132,
                                   11
                                 ]
                               ];
                         } else {
-                          return /* Eq */Block.__(0, [
-                                    Curry._1(rec_variant_b[1], /* () */0),
+                          return --[ Eq ]--Block.__(0, [
+                                    Curry._1(rec_variant_b[1], --[ () ]--0),
                                     rec_variant_a
                                   ]);
                         }
                       })
                   ],
-                  /* :: */[
-                    /* tuple */[
+                  --[ :: ]--[
+                    --[ tuple ]--[
                       "File \"rec_value_test.ml\", line 134, characters 2-9",
                       (function (param) {
                           if (rec_variant_a.tag) {
-                            return /* Eq */Block.__(0, [
-                                      Curry._1(rec_variant_a[1], /* () */0),
+                            return --[ Eq ]--Block.__(0, [
+                                      Curry._1(rec_variant_a[1], --[ () ]--0),
                                       rec_variant_b
                                     ]);
                           } else {
                             throw [
                                   Caml_builtin_exceptions.assert_failure,
-                                  /* tuple */[
+                                  --[ tuple ]--[
                                     "rec_value_test.ml",
                                     137,
                                     11
@@ -415,7 +415,7 @@ var suites_001 = /* :: */[
                           }
                         })
                     ],
-                    /* [] */0
+                    --[ [] ]--0
                   ]
                 ]
               ]
@@ -427,7 +427,7 @@ var suites_001 = /* :: */[
   ]
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -480,4 +480,4 @@ exports.fake_minus = fake_minus;
 exports.fake_inline = fake_inline;
 exports.fake_inline_minus = fake_inline_minus;
 exports.fake_inline_inlie2 = fake_inline_inlie2;
-/* fake_z2 Not a pure module */
+--[ fake_z2 Not a pure module ]--

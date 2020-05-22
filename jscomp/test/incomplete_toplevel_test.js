@@ -3,14 +3,14 @@
 
 function f(param) {
   console.log("no inline");
-  return /* tuple */[
+  return --[ tuple ]--[
           1,
           2,
           3
         ];
 }
 
-var match = f(/* () */0);
+var match = f(--[ () ]--0);
 
 var a = match[0];
 
@@ -22,4 +22,4 @@ exports.f = f;
 exports.a = a;
 exports.b = b;
 exports.c = c;
-/* match Not a pure module */
+--[ match Not a pure module ]--

@@ -4,7 +4,7 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -13,11 +13,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -25,14 +25,14 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 (function (n) {
       return 0;
     })((function (q, y) {
         return false;
-      })) === 0;
+      })) == 0;
 
 eq("File \"gpr_1667_test.ml\", line 18, characters 7-14", 0, 0);
 
@@ -41,4 +41,4 @@ Mt.from_pair_suites("Gpr_1667_test", suites.contents);
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
-/*  Not a pure module */
+--[  Not a pure module ]--

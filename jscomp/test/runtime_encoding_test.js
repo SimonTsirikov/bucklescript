@@ -7,4 +7,4 @@ var v = [
 ];
 
 exports.v = v;
-/* No side effect */
+--[ No side effect ]--

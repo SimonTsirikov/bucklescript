@@ -5,7 +5,7 @@ var Block = require("../../lib/js/block.js");
 var Caml_format = require("../../lib/js/caml_format.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -14,11 +14,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -26,22 +26,22 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function foo(x) {
-  return Caml_format.caml_int_of_string(x) !== 3;
+  return Caml_format.caml_int_of_string(x) ~= 3;
 }
 
 function badInlining(obj) {
   var x = obj.field;
-  Caml_format.caml_int_of_string(x) !== 3;
-  return /* () */0;
+  Caml_format.caml_int_of_string(x) ~= 3;
+  return --[ () ]--0;
 }
 
 eq("File \"gpr_1728_test.ml\", line 17, characters 6-13", badInlining({
           field: "3"
-        }), /* () */0);
+        }), --[ () ]--0);
 
 eq("File \"gpr_1728_test.ml\", line 19, characters 6-13", Caml_format.caml_int_of_string("-13"), -13);
 
@@ -68,4 +68,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.foo = foo;
 exports.badInlining = badInlining;
-/*  Not a pure module */
+--[  Not a pure module ]--

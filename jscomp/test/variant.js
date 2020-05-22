@@ -8,19 +8,19 @@ var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function foo(param) {
-  if (typeof param === "number") {
-    if (param === /* A1 */0) {
+  if (typeof param == "number") {
+    if (param == --[ A1 ]--0) {
       return 1;
     } else {
       return 2;
     }
   } else {
     switch (param.tag | 0) {
-      case /* B */0 :
+      case --[ B ]--0 :
           return param[0];
-      case /* C */1 :
+      case --[ C ]--1 :
           return param[0] + param[1] | 0;
-      case /* D */2 :
+      case --[ D ]--2 :
           var match = param[0];
           return match[0] + match[1] | 0;
       
@@ -29,7 +29,7 @@ function foo(param) {
 }
 
 function fooA1(param) {
-  if (typeof param === "number" && param === 0) {
+  if (typeof param == "number" and param == 0) {
     return 1;
   } else {
     return 42;
@@ -37,7 +37,7 @@ function fooA1(param) {
 }
 
 function fooC(param) {
-  if (typeof param === "number" || param.tag !== /* C */1) {
+  if (typeof param == "number" or param.tag ~= --[ C ]--1) {
     return 42;
   } else {
     return param[0] + param[1] | 0;
@@ -68,7 +68,7 @@ var Path = {
 
 function Make(M) {
   var find = function (x) {
-    return /* () */0;
+    return --[ () ]--0;
   };
   return {
           find: find
@@ -76,7 +76,7 @@ function Make(M) {
 }
 
 function find(x) {
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var M = {
@@ -88,12 +88,12 @@ function rollback_path(subst, p) {
     return "try";
   }
   catch (exn){
-    if (exn === Caml_builtin_exceptions.not_found) {
+    if (exn == Caml_builtin_exceptions.not_found) {
       switch (p.tag | 0) {
-        case /* Pdot */1 :
+        case --[ Pdot ]--1 :
             return "Pdot";
-        case /* Pident */0 :
-        case /* Papply */2 :
+        case --[ Pident ]--0 :
+        case --[ Papply ]--2 :
             return "Pident | Papply";
         
       }
@@ -115,19 +115,19 @@ var ED = Caml_exceptions.create("Variant.ED");
 
 function fooExn(f) {
   try {
-    return Curry._1(f, /* () */0);
+    return Curry._1(f, --[ () ]--0);
   }
   catch (raw_exn){
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn === EA1) {
+    if (exn == EA1) {
       return 1;
-    } else if (exn === EA2) {
+    } else if (exn == EA2) {
       return 2;
-    } else if (exn[0] === EB) {
+    } else if (exn[0] == EB) {
       return exn[1];
-    } else if (exn[0] === EC) {
+    } else if (exn[0] == EC) {
       return exn[1] + exn[2] | 0;
-    } else if (exn[0] === ED) {
+    } else if (exn[0] == ED) {
       var match = exn[1];
       return match[0] + match[1] | 0;
     } else {
@@ -136,18 +136,18 @@ function fooExn(f) {
   }
 }
 
-var a1 = /* A1 */0;
+var a1 = --[ A1 ]--0;
 
-var a2 = /* A2 */1;
+var a2 = --[ A2 ]--1;
 
-var b = /* B */Block.__(0, [34]);
+var b = --[ B ]--Block.__(0, [34]);
 
-var c = /* C */Block.__(1, [
+var c = --[ C ]--Block.__(1, [
     4,
     2
   ]);
 
-var d = /* D */Block.__(2, [/* tuple */[
+var d = --[ D ]--Block.__(2, [--[ tuple ]--[
       4,
       2
     ]]);
@@ -171,4 +171,4 @@ exports.EB = EB;
 exports.EC = EC;
 exports.ED = ED;
 exports.fooExn = fooExn;
-/* No side effect */
+--[ No side effect ]--

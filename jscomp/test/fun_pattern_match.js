@@ -16,20 +16,20 @@ function f3(param) {
   var lhs = param.rank;
   return (function (param) {
       var rhs = param.rank;
-      if (typeof lhs === "number") {
+      if (typeof lhs == "number") {
         throw [
               Caml_builtin_exceptions.assert_failure,
-              /* tuple */[
+              --[ tuple ]--[
                 "fun_pattern_match.ml",
                 44,
                 9
               ]
             ];
       }
-      if (typeof rhs === "number") {
+      if (typeof rhs == "number") {
         throw [
               Caml_builtin_exceptions.assert_failure,
-              /* tuple */[
+              --[ tuple ]--[
                 "fun_pattern_match.ml",
                 44,
                 9
@@ -44,20 +44,20 @@ function f4(param) {
   var lhs = param.rank;
   return (function (param) {
       var rhs = param.rank;
-      if (typeof lhs === "number") {
+      if (typeof lhs == "number") {
         throw [
               Caml_builtin_exceptions.assert_failure,
-              /* tuple */[
+              --[ tuple ]--[
                 "fun_pattern_match.ml",
                 52,
                 9
               ]
             ];
       }
-      if (typeof rhs === "number") {
+      if (typeof rhs == "number") {
         throw [
               Caml_builtin_exceptions.assert_failure,
-              /* tuple */[
+              --[ tuple ]--[
                 "fun_pattern_match.ml",
                 52,
                 9
@@ -68,7 +68,7 @@ function f4(param) {
     });
 }
 
-var x = /* `A */[
+var x = --[ `A ]--[
   65,
   r
 ];
@@ -77,9 +77,9 @@ function r(param) {
   return x;
 }
 
-var match = r(/* () */0);
+var match = r(--[ () ]--0);
 
-var v = Curry._1(match[1], /* () */0);
+var v = Curry._1(match[1], --[ () ]--0);
 
 console.log(v);
 
@@ -89,4 +89,4 @@ exports.f3 = f3;
 exports.f4 = f4;
 exports.r = r;
 exports.v = v;
-/* match Not a pure module */
+--[ match Not a pure module ]--

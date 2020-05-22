@@ -19,7 +19,7 @@ var shared$2 = [
 ];
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -28,11 +28,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -40,7 +40,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function restricted_point_init($$class) {
@@ -62,7 +62,7 @@ function restricted_point_init($$class) {
         move,
         (function (self$1, d) {
             self$1[x] = self$1[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           }),
         bump,
         (function (self$1) {
@@ -122,7 +122,7 @@ function abstract_point_001($$class) {
     });
 }
 
-var abstract_point = /* class */[
+var abstract_point = --[ class ]--[
   0,
   abstract_point_001,
   0,
@@ -145,7 +145,7 @@ function point_init($$class) {
         move,
         (function (self$6, d) {
             self$6[x] = self$6[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           })
       ]);
   return (function (env, self, x_init$1) {
@@ -197,10 +197,10 @@ var colored_point = CamlinternalOO.make_class([
 
 var p$prime = Curry._3(colored_point[0], 0, 5, "red");
 
-eq("File \"class4_test.ml\", line 67, characters 5-12", /* tuple */[
+eq("File \"class4_test.ml\", line 67, characters 5-12", --[ tuple ]--[
       5,
       "red"
-    ], /* tuple */[
+    ], --[ tuple ]--[
       Caml_oo_curry.js1(291546447, 1, p$prime),
       Caml_oo_curry.js1(-899911325, 2, p$prime)
     ]);
@@ -235,4 +235,4 @@ exports.p$prime = p$prime;
 exports.get_succ_x = get_succ_x;
 exports.set_x = set_x;
 exports.incr = incr;
-/* restricted_point Not a pure module */
+--[ restricted_point Not a pure module ]--

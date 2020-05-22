@@ -6,4 +6,4 @@ function Make(M) {
 }
 
 exports.Make = Make;
-/* No side effect */
+--[ No side effect ]--

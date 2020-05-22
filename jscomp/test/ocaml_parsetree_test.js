@@ -77,34 +77,34 @@ function create_hashtable(size, init) {
 
 function ansi_of_color(param) {
   switch (param) {
-    case /* Black */0 :
+    case --[ Black ]--0 :
         return "0";
-    case /* Red */1 :
+    case --[ Red ]--1 :
         return "1";
-    case /* Green */2 :
+    case --[ Green ]--2 :
         return "2";
-    case /* Yellow */3 :
+    case --[ Yellow ]--3 :
         return "3";
-    case /* Blue */4 :
+    case --[ Blue ]--4 :
         return "4";
-    case /* Magenta */5 :
+    case --[ Magenta ]--5 :
         return "5";
-    case /* Cyan */6 :
+    case --[ Cyan ]--6 :
         return "6";
-    case /* White */7 :
+    case --[ White ]--7 :
         return "7";
     
   }
 }
 
 function code_of_style(param) {
-  if (typeof param === "number") {
+  if (typeof param == "number") {
     switch (param) {
-      case /* Bold */0 :
+      case --[ Bold ]--0 :
           return "1";
-      case /* Reset */1 :
+      case --[ Reset ]--1 :
           return "0";
-      case /* Dim */2 :
+      case --[ Dim ]--2 :
           return "2";
       
     }
@@ -123,23 +123,23 @@ function ansi_of_style_l(l) {
 }
 
 var default_styles = {
-  error: /* :: */[
-    /* Bold */0,
-    /* :: */[
-      /* FG */Block.__(0, [/* Red */1]),
-      /* [] */0
+  error: --[ :: ]--[
+    --[ Bold ]--0,
+    --[ :: ]--[
+      --[ FG ]--Block.__(0, [--[ Red ]--1]),
+      --[ [] ]--0
     ]
   ],
-  warning: /* :: */[
-    /* Bold */0,
-    /* :: */[
-      /* FG */Block.__(0, [/* Magenta */5]),
-      /* [] */0
+  warning: --[ :: ]--[
+    --[ Bold ]--0,
+    --[ :: ]--[
+      --[ FG ]--Block.__(0, [--[ Magenta ]--5]),
+      --[ [] ]--0
     ]
   ],
-  loc: /* :: */[
-    /* Bold */0,
-    /* [] */0
+  loc: --[ :: ]--[
+    --[ Bold ]--0,
+    --[ [] ]--0
   ]
 };
 
@@ -153,29 +153,29 @@ function get_styles(param) {
 
 function set_styles(s) {
   cur_styles.contents = s;
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function style_of_tag(s) {
   switch (s) {
     case "dim" :
-        return /* :: */[
-                /* Dim */2,
-                /* [] */0
+        return --[ :: ]--[
+                --[ Dim ]--2,
+                --[ [] ]--0
               ];
     case "error" :
         return cur_styles.contents.error;
     case "filename" :
-        return /* :: */[
-                /* FG */Block.__(0, [/* Cyan */6]),
-                /* [] */0
+        return --[ :: ]--[
+                --[ FG ]--Block.__(0, [--[ Cyan ]--6]),
+                --[ [] ]--0
               ];
     case "info" :
-        return /* :: */[
-                /* Bold */0,
-                /* :: */[
-                  /* FG */Block.__(0, [/* Yellow */3]),
-                  /* [] */0
+        return --[ :: ]--[
+                --[ Bold ]--0,
+                --[ :: ]--[
+                  --[ FG ]--Block.__(0, [--[ Yellow ]--3]),
+                  --[ [] ]--0
                 ]
               ];
     case "loc" :
@@ -192,7 +192,7 @@ var color_enabled = {
 };
 
 function set_color_tag_handling(ppf) {
-  var functions = Format.pp_get_formatter_tag_functions(ppf, /* () */0);
+  var functions = Format.pp_get_formatter_tag_functions(ppf, --[ () ]--0);
   var partial_arg = functions.mark_open_tag;
   var partial_arg$1 = functions.mark_close_tag;
   var functions$prime_mark_open_tag = function (param) {
@@ -207,7 +207,7 @@ function set_color_tag_handling(ppf) {
       }
     }
     catch (exn){
-      if (exn === Caml_builtin_exceptions.not_found) {
+      if (exn == Caml_builtin_exceptions.not_found) {
         return Curry._1(or_else, s);
       } else {
         throw exn;
@@ -220,16 +220,16 @@ function set_color_tag_handling(ppf) {
     try {
       style_of_tag(s);
       if (color_enabled.contents) {
-        return ansi_of_style_l(/* :: */[
-                    /* Reset */1,
-                    /* [] */0
+        return ansi_of_style_l(--[ :: ]--[
+                    --[ Reset ]--1,
+                    --[ [] ]--0
                   ]);
       } else {
         return "";
       }
     }
     catch (exn){
-      if (exn === Caml_builtin_exceptions.not_found) {
+      if (exn == Caml_builtin_exceptions.not_found) {
         return Curry._1(or_else, s);
       } else {
         throw exn;
@@ -252,15 +252,15 @@ var first = {
   contents: true
 };
 
-var formatter_l_001 = /* :: */[
+var formatter_l_001 = --[ :: ]--[
   Format.err_formatter,
-  /* :: */[
+  --[ :: ]--[
     Format.str_formatter,
-    /* [] */0
+    --[ [] ]--0
   ]
 ];
 
-var formatter_l = /* :: */[
+var formatter_l = --[ :: ]--[
   Format.std_formatter,
   formatter_l_001
 ];
@@ -271,13 +271,13 @@ function setup(o) {
     Format.set_mark_tags(true);
     List.iter(set_color_tag_handling, formatter_l);
     var tmp;
-    if (o !== undefined) {
+    if (o ~= undefined) {
       switch (o) {
-        case /* Always */1 :
+        case --[ Always ]--1 :
             tmp = true;
             break;
-        case /* Auto */0 :
-        case /* Never */2 :
+        case --[ Auto ]--0 :
+        case --[ Never ]--2 :
             tmp = false;
             break;
         
@@ -287,7 +287,7 @@ function setup(o) {
     }
     color_enabled.contents = tmp;
   }
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var Misc_Color = {
@@ -300,119 +300,119 @@ var Misc_Color = {
 };
 
 function number(param) {
-  if (typeof param === "number") {
+  if (typeof param == "number") {
     switch (param) {
-      case /* Comment_start */0 :
+      case --[ Comment_start ]--0 :
           return 1;
-      case /* Comment_not_end */1 :
+      case --[ Comment_not_end ]--1 :
           return 2;
-      case /* Partial_application */2 :
+      case --[ Partial_application ]--2 :
           return 5;
-      case /* Labels_omitted */3 :
+      case --[ Labels_omitted ]--3 :
           return 6;
-      case /* Statement_type */4 :
+      case --[ Statement_type ]--4 :
           return 10;
-      case /* Unused_match */5 :
+      case --[ Unused_match ]--5 :
           return 11;
-      case /* Unused_pat */6 :
+      case --[ Unused_pat ]--6 :
           return 12;
-      case /* Illegal_backslash */7 :
+      case --[ Illegal_backslash ]--7 :
           return 14;
-      case /* Unerasable_optional_argument */8 :
+      case --[ Unerasable_optional_argument ]--8 :
           return 16;
-      case /* Unused_argument */9 :
+      case --[ Unused_argument ]--9 :
           return 20;
-      case /* Nonreturning_statement */10 :
+      case --[ Nonreturning_statement ]--10 :
           return 21;
-      case /* Useless_record_with */11 :
+      case --[ Useless_record_with ]--11 :
           return 23;
-      case /* All_clauses_guarded */12 :
+      case --[ All_clauses_guarded ]--12 :
           return 25;
-      case /* Wildcard_arg_to_constant_constr */13 :
+      case --[ Wildcard_arg_to_constant_constr ]--13 :
           return 28;
-      case /* Eol_in_string */14 :
+      case --[ Eol_in_string ]--14 :
           return 29;
-      case /* Unused_rec_flag */15 :
+      case --[ Unused_rec_flag ]--15 :
           return 39;
-      case /* Bs_polymorphic_comparison */16 :
+      case --[ Bs_polymorphic_comparison ]--16 :
           return 102;
       
     }
   } else {
     switch (param.tag | 0) {
-      case /* Deprecated */0 :
+      case --[ Deprecated ]--0 :
           return 3;
-      case /* Fragile_match */1 :
+      case --[ Fragile_match ]--1 :
           return 4;
-      case /* Method_override */2 :
+      case --[ Method_override ]--2 :
           return 7;
-      case /* Partial_match */3 :
+      case --[ Partial_match ]--3 :
           return 8;
-      case /* Non_closed_record_pattern */4 :
+      case --[ Non_closed_record_pattern ]--4 :
           return 9;
-      case /* Instance_variable_override */5 :
+      case --[ Instance_variable_override ]--5 :
           return 13;
-      case /* Implicit_public_methods */6 :
+      case --[ Implicit_public_methods ]--6 :
           return 15;
-      case /* Undeclared_virtual_method */7 :
+      case --[ Undeclared_virtual_method ]--7 :
           return 17;
-      case /* Not_principal */8 :
+      case --[ Not_principal ]--8 :
           return 18;
-      case /* Without_principality */9 :
+      case --[ Without_principality ]--9 :
           return 19;
-      case /* Preprocessor */10 :
+      case --[ Preprocessor ]--10 :
           return 22;
-      case /* Bad_module_name */11 :
+      case --[ Bad_module_name ]--11 :
           return 24;
-      case /* Unused_var */12 :
+      case --[ Unused_var ]--12 :
           return 26;
-      case /* Unused_var_strict */13 :
+      case --[ Unused_var_strict ]--13 :
           return 27;
-      case /* Duplicate_definitions */14 :
+      case --[ Duplicate_definitions ]--14 :
           return 30;
-      case /* Multiple_definition */15 :
+      case --[ Multiple_definition ]--15 :
           return 31;
-      case /* Unused_value_declaration */16 :
+      case --[ Unused_value_declaration ]--16 :
           return 32;
-      case /* Unused_open */17 :
+      case --[ Unused_open ]--17 :
           return 33;
-      case /* Unused_type_declaration */18 :
+      case --[ Unused_type_declaration ]--18 :
           return 34;
-      case /* Unused_for_index */19 :
+      case --[ Unused_for_index ]--19 :
           return 35;
-      case /* Unused_ancestor */20 :
+      case --[ Unused_ancestor ]--20 :
           return 36;
-      case /* Unused_constructor */21 :
+      case --[ Unused_constructor ]--21 :
           return 37;
-      case /* Unused_extension */22 :
+      case --[ Unused_extension ]--22 :
           return 38;
-      case /* Name_out_of_scope */23 :
+      case --[ Name_out_of_scope ]--23 :
           return 40;
-      case /* Ambiguous_name */24 :
+      case --[ Ambiguous_name ]--24 :
           return 41;
-      case /* Disambiguated_name */25 :
+      case --[ Disambiguated_name ]--25 :
           return 42;
-      case /* Nonoptional_label */26 :
+      case --[ Nonoptional_label ]--26 :
           return 43;
-      case /* Open_shadow_identifier */27 :
+      case --[ Open_shadow_identifier ]--27 :
           return 44;
-      case /* Open_shadow_label_constructor */28 :
+      case --[ Open_shadow_label_constructor ]--28 :
           return 45;
-      case /* Bad_env_variable */29 :
+      case --[ Bad_env_variable ]--29 :
           return 46;
-      case /* Attribute_payload */30 :
+      case --[ Attribute_payload ]--30 :
           return 47;
-      case /* Eliminated_optional_arguments */31 :
+      case --[ Eliminated_optional_arguments ]--31 :
           return 48;
-      case /* No_cmi_file */32 :
+      case --[ No_cmi_file ]--32 :
           return 49;
-      case /* Bad_docstring */33 :
+      case --[ Bad_docstring ]--33 :
           return 50;
-      case /* Bs_unused_attribute */34 :
+      case --[ Bs_unused_attribute ]--34 :
           return 101;
-      case /* Bs_ffi_warning */35 :
+      case --[ Bs_ffi_warning ]--35 :
           return 103;
-      case /* Bs_derive_warning */36 :
+      case --[ Bs_derive_warning ]--36 :
           return 104;
       
     }
@@ -420,10 +420,10 @@ function number(param) {
 }
 
 function loop(i) {
-  if (i === 0) {
-    return /* [] */0;
+  if (i == 0) {
+    return --[ [] ]--0;
   } else {
-    return /* :: */[
+    return --[ :: ]--[
             i,
             loop(i - 1 | 0)
           ];
@@ -437,46 +437,46 @@ function letter(param) {
     case 97 :
         return letter_all;
     case 99 :
-        return /* :: */[
+        return --[ :: ]--[
                 1,
-                /* :: */[
+                --[ :: ]--[
                   2,
-                  /* [] */0
+                  --[ [] ]--0
                 ]
               ];
     case 100 :
-        return /* :: */[
+        return --[ :: ]--[
                 3,
-                /* [] */0
+                --[ [] ]--0
               ];
     case 101 :
-        return /* :: */[
+        return --[ :: ]--[
                 4,
-                /* [] */0
+                --[ [] ]--0
               ];
     case 102 :
-        return /* :: */[
+        return --[ :: ]--[
                 5,
-                /* [] */0
+                --[ [] ]--0
               ];
     case 107 :
-        return /* :: */[
+        return --[ :: ]--[
                 32,
-                /* :: */[
+                --[ :: ]--[
                   33,
-                  /* :: */[
+                  --[ :: ]--[
                     34,
-                    /* :: */[
+                    --[ :: ]--[
                       35,
-                      /* :: */[
+                      --[ :: ]--[
                         36,
-                        /* :: */[
+                        --[ :: ]--[
                           37,
-                          /* :: */[
+                          --[ :: ]--[
                             38,
-                            /* :: */[
+                            --[ :: ]--[
                               39,
-                              /* [] */0
+                              --[ [] ]--0
                             ]
                           ]
                         ]
@@ -486,42 +486,42 @@ function letter(param) {
                 ]
               ];
     case 108 :
-        return /* :: */[
+        return --[ :: ]--[
                 6,
-                /* [] */0
+                --[ [] ]--0
               ];
     case 109 :
-        return /* :: */[
+        return --[ :: ]--[
                 7,
-                /* [] */0
+                --[ [] ]--0
               ];
     case 112 :
-        return /* :: */[
+        return --[ :: ]--[
                 8,
-                /* [] */0
+                --[ [] ]--0
               ];
     case 114 :
-        return /* :: */[
+        return --[ :: ]--[
                 9,
-                /* [] */0
+                --[ [] ]--0
               ];
     case 115 :
-        return /* :: */[
+        return --[ :: ]--[
                 10,
-                /* [] */0
+                --[ [] ]--0
               ];
     case 117 :
-        return /* :: */[
+        return --[ :: ]--[
                 11,
-                /* :: */[
+                --[ :: ]--[
                   12,
-                  /* [] */0
+                  --[ [] ]--0
                 ]
               ];
     case 118 :
-        return /* :: */[
+        return --[ :: ]--[
                 13,
-                /* [] */0
+                --[ [] ]--0
               ];
     case 98 :
     case 103 :
@@ -533,35 +533,35 @@ function letter(param) {
     case 113 :
     case 116 :
     case 119 :
-        return /* [] */0;
+        return --[ [] ]--0;
     case 120 :
-        return /* :: */[
+        return --[ :: ]--[
                 14,
-                /* :: */[
+                --[ :: ]--[
                   15,
-                  /* :: */[
+                  --[ :: ]--[
                     16,
-                    /* :: */[
+                    --[ :: ]--[
                       17,
-                      /* :: */[
+                      --[ :: ]--[
                         18,
-                        /* :: */[
+                        --[ :: ]--[
                           19,
-                          /* :: */[
+                          --[ :: ]--[
                             20,
-                            /* :: */[
+                            --[ :: ]--[
                               21,
-                              /* :: */[
+                              --[ :: ]--[
                                 22,
-                                /* :: */[
+                                --[ :: ]--[
                                   23,
-                                  /* :: */[
+                                  --[ :: ]--[
                                     24,
-                                    /* :: */[
+                                    --[ :: ]--[
                                       25,
-                                      /* :: */[
+                                      --[ :: ]--[
                                         30,
-                                        /* [] */0
+                                        --[ [] ]--0
                                       ]
                                     ]
                                   ]
@@ -576,19 +576,19 @@ function letter(param) {
                 ]
               ];
     case 121 :
-        return /* :: */[
+        return --[ :: ]--[
                 26,
-                /* [] */0
+                --[ [] ]--0
               ];
     case 122 :
-        return /* :: */[
+        return --[ :: ]--[
                 27,
-                /* [] */0
+                --[ [] ]--0
               ];
     default:
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "warnings.ml",
               176,
               9
@@ -624,20 +624,20 @@ function parse_opt(error, active, flags, s) {
       var i = _i;
       var n = _n;
       if (i >= s.length) {
-        return /* tuple */[
+        return --[ tuple ]--[
                 i,
                 n
               ];
       } else {
         var match = Caml_string.get(s, i);
-        if (match > 57 || match < 48) {
-          return /* tuple */[
+        if (match > 57 or match < 48) {
+          return --[ tuple ]--[
                   i,
                   n
                 ];
         } else {
           _i = i + 1 | 0;
-          _n = (Caml_int32.imul(10, n) + Caml_string.get(s, i) | 0) - /* "0" */48 | 0;
+          _n = (Caml_int32.imul(10, n) + Caml_string.get(s, i) | 0) - --[ "0" ]--48 | 0;
           continue ;
         }
       }
@@ -647,7 +647,7 @@ function parse_opt(error, active, flags, s) {
     var match = get_num(0, i);
     var n1 = match[1];
     var i$1 = match[0];
-    if ((i$1 + 2 | 0) < s.length && Caml_string.get(s, i$1) === /* "." */46 && Caml_string.get(s, i$1 + 1 | 0) === /* "." */46) {
+    if ((i$1 + 2 | 0) < s.length and Caml_string.get(s, i$1) == --[ "." ]--46 and Caml_string.get(s, i$1 + 1 | 0) == --[ "." ]--46) {
       var match$1 = get_num(0, i$1 + 2 | 0);
       var n2 = match$1[1];
       if (n2 < n1) {
@@ -656,13 +656,13 @@ function parse_opt(error, active, flags, s) {
               "Ill-formed list of warnings"
             ];
       }
-      return /* tuple */[
+      return --[ tuple ]--[
               match$1[0],
               n1,
               n2
             ];
     } else {
-      return /* tuple */[
+      return --[ tuple ]--[
               i$1,
               n1,
               n1
@@ -673,7 +673,7 @@ function parse_opt(error, active, flags, s) {
     while(true) {
       var i = _i;
       if (i >= s.length) {
-        return /* () */0;
+        return --[ () ]--0;
       } else {
         var c = Caml_string.get(s, i);
         if (c >= 65) {
@@ -758,7 +758,7 @@ function parse_opt(error, active, flags, s) {
         return loop(i + 1 | 0);
       }
     } else {
-      if (match > 57 || match < 48) {
+      if (match > 57 or match < 48) {
         throw [
               Arg.Bad,
               "Ill-formed list of warnings"
@@ -782,7 +782,7 @@ function parse_options(errflag, s) {
     active: active,
     error: error
   };
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 parse_options(false, "+a-4-6-7-9-27-29-32..39-41..42-44-45-48-50-102");
@@ -790,66 +790,66 @@ parse_options(false, "+a-4-6-7-9-27-29-32..39-41..42-44-45-48-50-102");
 parse_options(true, "-a");
 
 function message(param) {
-  if (typeof param === "number") {
+  if (typeof param == "number") {
     switch (param) {
-      case /* Comment_start */0 :
+      case --[ Comment_start ]--0 :
           return "this is the start of a comment.";
-      case /* Comment_not_end */1 :
+      case --[ Comment_not_end ]--1 :
           return "this is not the end of a comment.";
-      case /* Partial_application */2 :
+      case --[ Partial_application ]--2 :
           return "this function application is partial,\nmaybe some arguments are missing.";
-      case /* Labels_omitted */3 :
+      case --[ Labels_omitted ]--3 :
           return "labels were omitted in the application of this function.";
-      case /* Statement_type */4 :
+      case --[ Statement_type ]--4 :
           return "this expression should have type unit.";
-      case /* Unused_match */5 :
+      case --[ Unused_match ]--5 :
           return "this match case is unused.";
-      case /* Unused_pat */6 :
+      case --[ Unused_pat ]--6 :
           return "this sub-pattern is unused.";
-      case /* Illegal_backslash */7 :
+      case --[ Illegal_backslash ]--7 :
           return "illegal backslash escape in string.";
-      case /* Unerasable_optional_argument */8 :
+      case --[ Unerasable_optional_argument ]--8 :
           return "this optional argument cannot be erased.";
-      case /* Unused_argument */9 :
+      case --[ Unused_argument ]--9 :
           return "this argument will not be used by the function.";
-      case /* Nonreturning_statement */10 :
+      case --[ Nonreturning_statement ]--10 :
           return "this statement never returns (or has an unsound type.)";
-      case /* Useless_record_with */11 :
+      case --[ Useless_record_with ]--11 :
           return "all the fields are explicitly listed in this record:\nthe 'with' clause is useless.";
-      case /* All_clauses_guarded */12 :
+      case --[ All_clauses_guarded ]--12 :
           return "bad style, all clauses in this pattern-matching are guarded.";
-      case /* Wildcard_arg_to_constant_constr */13 :
+      case --[ Wildcard_arg_to_constant_constr ]--13 :
           return "wildcard pattern given as argument to a constant constructor";
-      case /* Eol_in_string */14 :
+      case --[ Eol_in_string ]--14 :
           return "unescaped end-of-line in a string constant (non-portable code)";
-      case /* Unused_rec_flag */15 :
+      case --[ Unused_rec_flag ]--15 :
           return "unused rec flag.";
-      case /* Bs_polymorphic_comparison */16 :
+      case --[ Bs_polymorphic_comparison ]--16 :
           return "polymorphic comparison introduced (maybe unsafe)";
       
     }
   } else {
     switch (param.tag | 0) {
-      case /* Deprecated */0 :
+      case --[ Deprecated ]--0 :
           return "deprecated: " + param[0];
-      case /* Fragile_match */1 :
+      case --[ Fragile_match ]--1 :
           var s = param[0];
-          if (s === "") {
+          if (s == "") {
             return "this pattern-matching is fragile.";
           } else {
             return "this pattern-matching is fragile.\nIt will remain exhaustive when constructors are added to type " + (s + ".");
           }
-      case /* Method_override */2 :
+      case --[ Method_override ]--2 :
           var match = param[0];
           if (match) {
             var slist = match[1];
             var lab = match[0];
             if (slist) {
-              return $$String.concat(" ", /* :: */[
+              return $$String.concat(" ", --[ :: ]--[
                           "the following methods are overridden by the class",
-                          /* :: */[
+                          --[ :: ]--[
                             lab,
-                            /* :: */[
+                            --[ :: ]--[
                               ":\n ",
                               slist
                             ]
@@ -861,33 +861,33 @@ function message(param) {
           } else {
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  /* tuple */[
+                  --[ tuple ]--[
                     "warnings.ml",
                     283,
                     26
                   ]
                 ];
           }
-      case /* Partial_match */3 :
+      case --[ Partial_match ]--3 :
           var s$1 = param[0];
-          if (s$1 === "") {
+          if (s$1 == "") {
             return "this pattern-matching is not exhaustive.";
           } else {
             return "this pattern-matching is not exhaustive.\nHere is an example of a value that is not matched:\n" + s$1;
           }
-      case /* Non_closed_record_pattern */4 :
+      case --[ Non_closed_record_pattern ]--4 :
           return "the following labels are not bound in this record pattern:\n" + (param[0] + "\nEither bind these labels explicitly or add '; _' to the pattern.");
-      case /* Instance_variable_override */5 :
+      case --[ Instance_variable_override ]--5 :
           var match$1 = param[0];
           if (match$1) {
             var slist$1 = match$1[1];
             var lab$1 = match$1[0];
             if (slist$1) {
-              return $$String.concat(" ", /* :: */[
+              return $$String.concat(" ", --[ :: ]--[
                           "the following instance variables are overridden by the class",
-                          /* :: */[
+                          --[ :: ]--[
                             lab$1,
-                            /* :: */[
+                            --[ :: ]--[
                               ":\n ",
                               slist$1
                             ]
@@ -899,49 +899,49 @@ function message(param) {
           } else {
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  /* tuple */[
+                  --[ tuple ]--[
                     "warnings.ml",
                     303,
                     37
                   ]
                 ];
           }
-      case /* Implicit_public_methods */6 :
+      case --[ Implicit_public_methods ]--6 :
           return "the following private methods were made public implicitly:\n " + ($$String.concat(" ", param[0]) + ".");
-      case /* Undeclared_virtual_method */7 :
+      case --[ Undeclared_virtual_method ]--7 :
           return "the virtual method " + (param[0] + " is not declared.");
-      case /* Not_principal */8 :
+      case --[ Not_principal ]--8 :
           return param[0] + " is not principal.";
-      case /* Without_principality */9 :
+      case --[ Without_principality ]--9 :
           return param[0] + " without principality.";
-      case /* Preprocessor */10 :
+      case --[ Preprocessor ]--10 :
           return param[0];
-      case /* Bad_module_name */11 :
+      case --[ Bad_module_name ]--11 :
           return "bad source file name: \"" + (param[0] + "\" is not a valid module name.");
-      case /* Unused_var */12 :
-      case /* Unused_var_strict */13 :
+      case --[ Unused_var ]--12 :
+      case --[ Unused_var_strict ]--13 :
           return "unused variable " + (param[0] + ".");
-      case /* Duplicate_definitions */14 :
-          return Curry._4(Printf.sprintf(/* Format */[
-                          /* String_literal */Block.__(11, [
+      case --[ Duplicate_definitions ]--14 :
+          return Curry._4(Printf.sprintf(--[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "the ",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* Char_literal */Block.__(12, [
-                                      /* " " */32,
-                                      /* String */Block.__(2, [
-                                          /* No_padding */0,
-                                          /* String_literal */Block.__(11, [
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ Char_literal ]--Block.__(12, [
+                                      --[ " " ]--32,
+                                      --[ String ]--Block.__(2, [
+                                          --[ No_padding ]--0,
+                                          --[ String_literal ]--Block.__(11, [
                                               " is defined in both types ",
-                                              /* String */Block.__(2, [
-                                                  /* No_padding */0,
-                                                  /* String_literal */Block.__(11, [
+                                              --[ String ]--Block.__(2, [
+                                                  --[ No_padding ]--0,
+                                                  --[ String_literal ]--Block.__(11, [
                                                       " and ",
-                                                      /* String */Block.__(2, [
-                                                          /* No_padding */0,
-                                                          /* Char_literal */Block.__(12, [
-                                                              /* "." */46,
-                                                              /* End_of_format */0
+                                                      --[ String ]--Block.__(2, [
+                                                          --[ No_padding ]--0,
+                                                          --[ Char_literal ]--Block.__(12, [
+                                                              --[ "." ]--46,
+                                                              --[ End_of_format ]--0
                                                             ])
                                                         ])
                                                     ])
@@ -953,21 +953,21 @@ function message(param) {
                             ]),
                           "the %s %s is defined in both types %s and %s."
                         ]), param[0], param[1], param[2], param[3]);
-      case /* Multiple_definition */15 :
-          return Curry._3(Printf.sprintf(/* Format */[
-                          /* String_literal */Block.__(11, [
+      case --[ Multiple_definition ]--15 :
+          return Curry._3(Printf.sprintf(--[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "files ",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* String_literal */Block.__(11, [
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ String_literal ]--Block.__(11, [
                                       " and ",
-                                      /* String */Block.__(2, [
-                                          /* No_padding */0,
-                                          /* String_literal */Block.__(11, [
+                                      --[ String ]--Block.__(2, [
+                                          --[ No_padding ]--0,
+                                          --[ String_literal ]--Block.__(11, [
                                               " both define a module named ",
-                                              /* String */Block.__(2, [
-                                                  /* No_padding */0,
-                                                  /* End_of_format */0
+                                              --[ String ]--Block.__(2, [
+                                                  --[ No_padding ]--0,
+                                                  --[ End_of_format ]--0
                                                 ])
                                             ])
                                         ])
@@ -976,17 +976,17 @@ function message(param) {
                             ]),
                           "files %s and %s both define a module named %s"
                         ]), param[1], param[2], param[0]);
-      case /* Unused_value_declaration */16 :
+      case --[ Unused_value_declaration ]--16 :
           return "unused value " + (param[0] + ".");
-      case /* Unused_open */17 :
+      case --[ Unused_open ]--17 :
           return "unused open " + (param[0] + ".");
-      case /* Unused_type_declaration */18 :
+      case --[ Unused_type_declaration ]--18 :
           return "unused type " + (param[0] + ".");
-      case /* Unused_for_index */19 :
+      case --[ Unused_for_index ]--19 :
           return "unused for-loop index " + (param[0] + ".");
-      case /* Unused_ancestor */20 :
+      case --[ Unused_ancestor ]--20 :
           return "unused ancestor variable " + (param[0] + ".");
-      case /* Unused_constructor */21 :
+      case --[ Unused_constructor ]--21 :
           var s$2 = param[0];
           if (param[1]) {
             return "constructor " + (s$2 + " is never used to build values.\n(However, this constructor appears in patterns.)");
@@ -995,7 +995,7 @@ function message(param) {
           } else {
             return "unused constructor " + (s$2 + ".");
           }
-      case /* Unused_extension */22 :
+      case --[ Unused_extension ]--22 :
           var s$3 = param[0];
           if (param[1]) {
             return "extension constructor " + (s$3 + " is never used to build values.\n(However, this constructor appears in patterns.)");
@@ -1004,10 +1004,10 @@ function message(param) {
           } else {
             return "unused extension constructor " + (s$3 + ".");
           }
-      case /* Name_out_of_scope */23 :
+      case --[ Name_out_of_scope ]--23 :
           var slist$2 = param[1];
           var ty = param[0];
-          if (slist$2 && !slist$2[1] && !param[2]) {
+          if (slist$2 and !slist$2[1] and !param[2]) {
             return slist$2[0] + (" was selected from type " + (ty + ".\nIt is not visible in the current scope, and will not \nbe selected if the type becomes unknown."));
           }
           if (param[2]) {
@@ -1015,7 +1015,7 @@ function message(param) {
           } else {
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  /* tuple */[
+                  --[ tuple ]--[
                     "warnings.ml",
                     365,
                     39
@@ -1023,9 +1023,9 @@ function message(param) {
                 ];
           }
           break;
-      case /* Ambiguous_name */24 :
+      case --[ Ambiguous_name ]--24 :
           var slist$3 = param[0];
-          if (slist$3 && !slist$3[1] && !param[2]) {
+          if (slist$3 and !slist$3[1] and !param[2]) {
             return slist$3[0] + (" belongs to several types: " + ($$String.concat(" ", param[1]) + "\nThe first one was selected. Please disambiguate if this is wrong."));
           }
           if (param[2]) {
@@ -1033,7 +1033,7 @@ function message(param) {
           } else {
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  /* tuple */[
+                  --[ tuple ]--[
                     "warnings.ml",
                     374,
                     36
@@ -1041,23 +1041,23 @@ function message(param) {
                 ];
           }
           break;
-      case /* Disambiguated_name */25 :
+      case --[ Disambiguated_name ]--25 :
           return "this use of " + (param[0] + " required disambiguation.");
-      case /* Nonoptional_label */26 :
+      case --[ Nonoptional_label ]--26 :
           return "the label " + (param[0] + " is not optional.");
-      case /* Open_shadow_identifier */27 :
-          return Curry._2(Printf.sprintf(/* Format */[
-                          /* String_literal */Block.__(11, [
+      case --[ Open_shadow_identifier ]--27 :
+          return Curry._2(Printf.sprintf(--[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "this open statement shadows the ",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* String_literal */Block.__(11, [
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ String_literal ]--Block.__(11, [
                                       " identifier ",
-                                      /* String */Block.__(2, [
-                                          /* No_padding */0,
-                                          /* String_literal */Block.__(11, [
+                                      --[ String ]--Block.__(2, [
+                                          --[ No_padding ]--0,
+                                          --[ String_literal ]--Block.__(11, [
                                               " (which is later used)",
-                                              /* End_of_format */0
+                                              --[ End_of_format ]--0
                                             ])
                                         ])
                                     ])
@@ -1065,19 +1065,19 @@ function message(param) {
                             ]),
                           "this open statement shadows the %s identifier %s (which is later used)"
                         ]), param[0], param[1]);
-      case /* Open_shadow_label_constructor */28 :
-          return Curry._2(Printf.sprintf(/* Format */[
-                          /* String_literal */Block.__(11, [
+      case --[ Open_shadow_label_constructor ]--28 :
+          return Curry._2(Printf.sprintf(--[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "this open statement shadows the ",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* Char_literal */Block.__(12, [
-                                      /* " " */32,
-                                      /* String */Block.__(2, [
-                                          /* No_padding */0,
-                                          /* String_literal */Block.__(11, [
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ Char_literal ]--Block.__(12, [
+                                      --[ " " ]--32,
+                                      --[ String ]--Block.__(2, [
+                                          --[ No_padding ]--0,
+                                          --[ String_literal ]--Block.__(11, [
                                               " (which is later used)",
-                                              /* End_of_format */0
+                                              --[ End_of_format ]--0
                                             ])
                                         ])
                                     ])
@@ -1085,71 +1085,71 @@ function message(param) {
                             ]),
                           "this open statement shadows the %s %s (which is later used)"
                         ]), param[0], param[1]);
-      case /* Bad_env_variable */29 :
-          return Curry._2(Printf.sprintf(/* Format */[
-                          /* String_literal */Block.__(11, [
+      case --[ Bad_env_variable ]--29 :
+          return Curry._2(Printf.sprintf(--[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "illegal environment variable ",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* String_literal */Block.__(11, [
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ String_literal ]--Block.__(11, [
                                       " : ",
-                                      /* String */Block.__(2, [
-                                          /* No_padding */0,
-                                          /* End_of_format */0
+                                      --[ String ]--Block.__(2, [
+                                          --[ No_padding ]--0,
+                                          --[ End_of_format ]--0
                                         ])
                                     ])
                                 ])
                             ]),
                           "illegal environment variable %s : %s"
                         ]), param[0], param[1]);
-      case /* Attribute_payload */30 :
-          return Curry._2(Printf.sprintf(/* Format */[
-                          /* String_literal */Block.__(11, [
+      case --[ Attribute_payload ]--30 :
+          return Curry._2(Printf.sprintf(--[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "illegal payload for attribute '",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* String_literal */Block.__(11, [
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ String_literal ]--Block.__(11, [
                                       "'.\n",
-                                      /* String */Block.__(2, [
-                                          /* No_padding */0,
-                                          /* End_of_format */0
+                                      --[ String ]--Block.__(2, [
+                                          --[ No_padding ]--0,
+                                          --[ End_of_format ]--0
                                         ])
                                     ])
                                 ])
                             ]),
                           "illegal payload for attribute '%s'.\n%s"
                         ]), param[0], param[1]);
-      case /* Eliminated_optional_arguments */31 :
+      case --[ Eliminated_optional_arguments ]--31 :
           var sl = param[0];
-          return Curry._2(Printf.sprintf(/* Format */[
-                          /* String_literal */Block.__(11, [
+          return Curry._2(Printf.sprintf(--[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "implicit elimination of optional argument",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* Char_literal */Block.__(12, [
-                                      /* " " */32,
-                                      /* String */Block.__(2, [
-                                          /* No_padding */0,
-                                          /* End_of_format */0
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ Char_literal ]--Block.__(12, [
+                                      --[ " " ]--32,
+                                      --[ String ]--Block.__(2, [
+                                          --[ No_padding ]--0,
+                                          --[ End_of_format ]--0
                                         ])
                                     ])
                                 ])
                             ]),
                           "implicit elimination of optional argument%s %s"
-                        ]), List.length(sl) === 1 ? "" : "s", $$String.concat(", ", sl));
-      case /* No_cmi_file */32 :
+                        ]), List.length(sl) == 1 ? "" : "s", $$String.concat(", ", sl));
+      case --[ No_cmi_file ]--32 :
           return "no cmi file was found in path for module " + param[0];
-      case /* Bad_docstring */33 :
+      case --[ Bad_docstring ]--33 :
           if (param[0]) {
             return "unattached documentation comment (ignored)";
           } else {
             return "ambiguous documentation comment";
           }
-      case /* Bs_unused_attribute */34 :
+      case --[ Bs_unused_attribute ]--34 :
           return "Unused BuckleScript attribute: " + param[0];
-      case /* Bs_ffi_warning */35 :
+      case --[ Bs_ffi_warning ]--35 :
           return "BuckleScript FFI warning: " + param[0];
-      case /* Bs_derive_warning */36 :
+      case --[ Bs_derive_warning ]--36 :
           return "BuckleScript bs.deriving warning: " + param[0];
       
     }
@@ -1163,25 +1163,25 @@ var nerrors = {
 function print(ppf, w) {
   var msg = message(w);
   var num = number(w);
-  Curry._2(Format.fprintf(ppf, /* Format */[
-            /* Int */Block.__(4, [
-                /* Int_d */0,
-                /* No_padding */0,
-                /* No_precision */0,
-                /* String_literal */Block.__(11, [
+  Curry._2(Format.fprintf(ppf, --[ Format ]--[
+            --[ Int ]--Block.__(4, [
+                --[ Int_d ]--0,
+                --[ No_padding ]--0,
+                --[ No_precision ]--0,
+                --[ String_literal ]--Block.__(11, [
                     ": ",
-                    /* String */Block.__(2, [
-                        /* No_padding */0,
-                        /* End_of_format */0
+                    --[ String ]--Block.__(2, [
+                        --[ No_padding ]--0,
+                        --[ End_of_format ]--0
                       ])
                   ])
               ]),
             "%d: %s"
           ]), num, msg);
-  Format.pp_print_flush(ppf, /* () */0);
+  Format.pp_print_flush(ppf, --[ () ]--0);
   if (Caml_array.caml_array_get(current.contents.error, num)) {
     nerrors.contents = nerrors.contents + 1 | 0;
-    return /* () */0;
+    return --[ () ]--0;
   } else {
     return 0;
   }
@@ -1219,16 +1219,16 @@ function curr(lexbuf) {
 
 function symbol_rloc(param) {
   return {
-          loc_start: Parsing.symbol_start_pos(/* () */0),
-          loc_end: Parsing.symbol_end_pos(/* () */0),
+          loc_start: Parsing.symbol_start_pos(--[ () ]--0),
+          loc_end: Parsing.symbol_end_pos(--[ () ]--0),
           loc_ghost: false
         };
 }
 
 function symbol_gloc(param) {
   return {
-          loc_start: Parsing.symbol_start_pos(/* () */0),
-          loc_end: Parsing.symbol_end_pos(/* () */0),
+          loc_start: Parsing.symbol_start_pos(--[ () ]--0),
+          loc_end: Parsing.symbol_end_pos(--[ () ]--0),
           loc_ghost: true
         };
 }
@@ -1250,7 +1250,7 @@ var input_lexbuf = {
 };
 
 var status = {
-  contents: /* Uninitialised */0
+  contents: --[ Uninitialised ]--0
 };
 
 var num_loc_lines = {
@@ -1258,14 +1258,14 @@ var num_loc_lines = {
 };
 
 function highlight_terminfo(ppf, num_lines, lb, locs) {
-  Format.pp_print_flush(ppf, /* () */0);
+  Format.pp_print_flush(ppf, --[ () ]--0);
   var pos0 = -lb.lex_abs_pos | 0;
   if (pos0 < 0) {
     throw Pervasives.Exit;
   }
   var lines = num_loc_lines.contents;
   for(var i = pos0 ,i_finish = lb.lex_buffer_len - 1 | 0; i <= i_finish; ++i){
-    if (Caml_bytes.get(lb.lex_buffer, i) === /* "\n" */10) {
+    if (Caml_bytes.get(lb.lex_buffer, i) == --[ "\n" ]--10) {
       lines = lines + 1 | 0;
     }
     
@@ -1284,21 +1284,21 @@ function highlight_terminfo(ppf, num_lines, lb, locs) {
     }
     if (List.exists((function(pos){
           return function (loc) {
-            return pos === loc.loc_start.pos_cnum;
+            return pos == loc.loc_start.pos_cnum;
           }
           }(pos)), locs)) {
       Caml_external_polyfill.resolve("caml_terminfo_standout")(true);
     }
     if (List.exists((function(pos){
           return function (loc) {
-            return pos === loc.loc_end.pos_cnum;
+            return pos == loc.loc_end.pos_cnum;
           }
           }(pos)), locs)) {
       Caml_external_polyfill.resolve("caml_terminfo_standout")(false);
     }
     var c = Caml_bytes.get(lb.lex_buffer, pos + pos0 | 0);
     Pervasives.print_char(c);
-    bol = c === /* "\n" */10;
+    bol = c == --[ "\n" ]--10;
   }
   Caml_external_polyfill.resolve("caml_terminfo_standout")(false);
   Caml_external_polyfill.resolve("caml_terminfo_resume")(num_loc_lines.contents);
@@ -1314,7 +1314,7 @@ function highlight_dumb(ppf, lb, loc) {
   var line_start = 0;
   var line_end = 0;
   for(var pos = 0; pos <= end_pos; ++pos){
-    if (Caml_bytes.get(lb.lex_buffer, pos + pos0 | 0) === /* "\n" */10) {
+    if (Caml_bytes.get(lb.lex_buffer, pos + pos0 | 0) == --[ "\n" ]--10) {
       if (loc.loc_start.pos_cnum > pos) {
         line_start = line_start + 1 | 0;
       }
@@ -1325,24 +1325,24 @@ function highlight_dumb(ppf, lb, loc) {
     }
     
   }
-  Curry._2(Format.fprintf(ppf, /* Format */[
-            /* String_literal */Block.__(11, [
+  Curry._2(Format.fprintf(ppf, --[ Format ]--[
+            --[ String_literal ]--Block.__(11, [
                 "Characters ",
-                /* Int */Block.__(4, [
-                    /* Int_i */3,
-                    /* No_padding */0,
-                    /* No_precision */0,
-                    /* Char_literal */Block.__(12, [
-                        /* "-" */45,
-                        /* Int */Block.__(4, [
-                            /* Int_i */3,
-                            /* No_padding */0,
-                            /* No_precision */0,
-                            /* Char_literal */Block.__(12, [
-                                /* ":" */58,
-                                /* Formatting_lit */Block.__(17, [
-                                    /* Flush_newline */4,
-                                    /* End_of_format */0
+                --[ Int ]--Block.__(4, [
+                    --[ Int_i ]--3,
+                    --[ No_padding ]--0,
+                    --[ No_precision ]--0,
+                    --[ Char_literal ]--Block.__(12, [
+                        --[ "-" ]--45,
+                        --[ Int ]--Block.__(4, [
+                            --[ Int_i ]--3,
+                            --[ No_padding ]--0,
+                            --[ No_precision ]--0,
+                            --[ Char_literal ]--Block.__(12, [
+                                --[ ":" ]--58,
+                                --[ Formatting_lit ]--Block.__(17, [
+                                    --[ Flush_newline ]--4,
+                                    --[ End_of_format ]--0
                                   ])
                               ])
                           ])
@@ -1356,52 +1356,52 @@ function highlight_dumb(ppf, lb, loc) {
   var pos_at_bol = 0;
   for(var pos$1 = 0; pos$1 <= end_pos; ++pos$1){
     var c = Caml_bytes.get(lb.lex_buffer, pos$1 + pos0 | 0);
-    if (c !== 10) {
-      if (c !== 13) {
-        if (line === line_start && line === line_end) {
+    if (c ~= 10) {
+      if (c ~= 13) {
+        if (line == line_start and line == line_end) {
           Format.pp_print_char(ppf, c);
-        } else if (line === line_start) {
+        } else if (line == line_start) {
           if (pos$1 < loc.loc_start.pos_cnum) {
-            Format.pp_print_char(ppf, /* "." */46);
+            Format.pp_print_char(ppf, --[ "." ]--46);
           } else {
             Format.pp_print_char(ppf, c);
           }
-        } else if (line === line_end) {
+        } else if (line == line_end) {
           if (pos$1 < loc.loc_end.pos_cnum) {
             Format.pp_print_char(ppf, c);
           } else {
-            Format.pp_print_char(ppf, /* "." */46);
+            Format.pp_print_char(ppf, --[ "." ]--46);
           }
-        } else if (line > line_start && line < line_end) {
+        } else if (line > line_start and line < line_end) {
           Format.pp_print_char(ppf, c);
         }
         
       }
       
     } else {
-      if (line === line_start && line === line_end) {
-        Format.fprintf(ppf, /* Format */[
-              /* Formatting_lit */Block.__(17, [
-                  /* Flush_newline */4,
-                  /* String_literal */Block.__(11, [
+      if (line == line_start and line == line_end) {
+        Format.fprintf(ppf, --[ Format ]--[
+              --[ Formatting_lit ]--Block.__(17, [
+                  --[ Flush_newline ]--4,
+                  --[ String_literal ]--Block.__(11, [
                       "  ",
-                      /* End_of_format */0
+                      --[ End_of_format ]--0
                     ])
                 ]),
               "@.  "
             ]);
         for(var _i = pos_at_bol ,_i_finish = loc.loc_start.pos_cnum - 1 | 0; _i <= _i_finish; ++_i){
-          Format.pp_print_char(ppf, /* " " */32);
+          Format.pp_print_char(ppf, --[ " " ]--32);
         }
         for(var _i$1 = loc.loc_start.pos_cnum ,_i_finish$1 = loc.loc_end.pos_cnum - 1 | 0; _i$1 <= _i_finish$1; ++_i$1){
-          Format.pp_print_char(ppf, /* "^" */94);
+          Format.pp_print_char(ppf, --[ "^" ]--94);
         }
       }
-      if (line >= line_start && line <= line_end) {
-        Format.fprintf(ppf, /* Format */[
-              /* Formatting_lit */Block.__(17, [
-                  /* Flush_newline */4,
-                  /* End_of_format */0
+      if (line >= line_start and line <= line_end) {
+        Format.fprintf(ppf, --[ Format ]--[
+              --[ Formatting_lit ]--Block.__(17, [
+                  --[ Flush_newline ]--4,
+                  --[ End_of_format ]--0
                 ]),
               "@."
             ]);
@@ -1414,22 +1414,22 @@ function highlight_dumb(ppf, lb, loc) {
       pos_at_bol = pos$1 + 1 | 0;
     }
   }
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function highlight_locations(ppf, locs) {
   while(true) {
     var match = status.contents;
-    if (typeof match === "number") {
-      if (match !== 0) {
+    if (typeof match == "number") {
+      if (match ~= 0) {
         var match$1 = input_lexbuf.contents;
-        if (match$1 !== undefined) {
+        if (match$1 ~= undefined) {
           var norepeat;
           try {
-            norepeat = Caml_sys.caml_sys_getenv("TERM") === "norepeat";
+            norepeat = Caml_sys.caml_sys_getenv("TERM") == "norepeat";
           }
           catch (exn){
-            if (exn === Caml_builtin_exceptions.not_found) {
+            if (exn == Caml_builtin_exceptions.not_found) {
               norepeat = false;
             } else {
               throw exn;
@@ -1444,7 +1444,7 @@ function highlight_locations(ppf, locs) {
               return true;
             }
             catch (exn$1){
-              if (exn$1 === Pervasives.Exit) {
+              if (exn$1 == Pervasives.Exit) {
                 return false;
               } else {
                 throw exn$1;
@@ -1460,13 +1460,13 @@ function highlight_locations(ppf, locs) {
       }
     } else {
       var match$2 = input_lexbuf.contents;
-      if (match$2 !== undefined) {
+      if (match$2 ~= undefined) {
         try {
           highlight_terminfo(ppf, match[0], match$2, locs);
           return true;
         }
         catch (exn$2){
-          if (exn$2 === Pervasives.Exit) {
+          if (exn$2 == Pervasives.Exit) {
             return false;
           } else {
             throw exn$2;
@@ -1482,18 +1482,18 @@ function highlight_locations(ppf, locs) {
 function show_filename(file) {
   if (absname.contents) {
     var s = file;
-    var s$1 = Curry._1(Filename.is_relative, s) ? Filename.concat(Caml_sys.caml_sys_getcwd(/* () */0), s) : s;
+    var s$1 = Curry._1(Filename.is_relative, s) ? Filename.concat(Caml_sys.caml_sys_getcwd(--[ () ]--0), s) : s;
     var aux = function (_s) {
       while(true) {
         var s = _s;
         var base = Curry._1(Filename.basename, s);
         var dir = Curry._1(Filename.dirname, s);
-        if (dir === s) {
+        if (dir == s) {
           return dir;
-        } else if (base === Filename.current_dir_name) {
+        } else if (base == Filename.current_dir_name) {
           _s = dir;
           continue ;
-        } else if (base === Filename.parent_dir_name) {
+        } else if (base == Filename.parent_dir_name) {
           return Curry._1(Filename.dirname, aux(dir));
         } else {
           return Filename.concat(aux(dir), base);
@@ -1507,17 +1507,17 @@ function show_filename(file) {
 }
 
 function print_filename(ppf, file) {
-  return Curry._1(Format.fprintf(ppf, /* Format */[
-                  /* String */Block.__(2, [
-                      /* No_padding */0,
-                      /* End_of_format */0
+  return Curry._1(Format.fprintf(ppf, --[ Format ]--[
+                  --[ String ]--Block.__(2, [
+                      --[ No_padding ]--0,
+                      --[ End_of_format ]--0
                     ]),
                   "%s"
                 ]), show_filename(file));
 }
 
 function get_pos_info(pos) {
-  return /* tuple */[
+  return --[ tuple ]--[
           pos.pos_fname,
           pos.pos_lnum,
           pos.pos_cnum - pos.pos_bol | 0
@@ -1531,27 +1531,27 @@ function print_loc(ppf, loc) {
   var file = match[0];
   var startchar$1 = bs_vscode ? startchar + 1 | 0 : startchar;
   var endchar = (loc.loc_end.pos_cnum - loc.loc_start.pos_cnum | 0) + startchar$1 | 0;
-  if (file === "//toplevel//") {
-    if (highlight_locations(ppf, /* :: */[
+  if (file == "//toplevel//") {
+    if (highlight_locations(ppf, --[ :: ]--[
             loc,
-            /* [] */0
+            --[ [] ]--0
           ])) {
-      return /* () */0;
+      return --[ () ]--0;
     } else {
-      return Curry._2(Format.fprintf(ppf, /* Format */[
-                      /* String_literal */Block.__(11, [
+      return Curry._2(Format.fprintf(ppf, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "Characters ",
-                          /* Int */Block.__(4, [
-                              /* Int_i */3,
-                              /* No_padding */0,
-                              /* No_precision */0,
-                              /* Char_literal */Block.__(12, [
-                                  /* "-" */45,
-                                  /* Int */Block.__(4, [
-                                      /* Int_i */3,
-                                      /* No_padding */0,
-                                      /* No_precision */0,
-                                      /* End_of_format */0
+                          --[ Int ]--Block.__(4, [
+                              --[ Int_i ]--3,
+                              --[ No_padding ]--0,
+                              --[ No_precision ]--0,
+                              --[ Char_literal ]--Block.__(12, [
+                                  --[ "-" ]--45,
+                                  --[ Int ]--Block.__(4, [
+                                      --[ Int_i ]--3,
+                                      --[ No_padding ]--0,
+                                      --[ No_precision ]--0,
+                                      --[ End_of_format ]--0
                                     ])
                                 ])
                             ])
@@ -1560,24 +1560,24 @@ function print_loc(ppf, loc) {
                     ]), loc.loc_start.pos_cnum, loc.loc_end.pos_cnum);
     }
   } else {
-    Curry._5(Format.fprintf(ppf, /* Format */[
-              /* String */Block.__(2, [
-                  /* No_padding */0,
-                  /* Formatting_gen */Block.__(18, [
-                      /* Open_tag */Block.__(0, [/* Format */[
-                            /* String_literal */Block.__(11, [
+    Curry._5(Format.fprintf(ppf, --[ Format ]--[
+              --[ String ]--Block.__(2, [
+                  --[ No_padding ]--0,
+                  --[ Formatting_gen ]--Block.__(18, [
+                      --[ Open_tag ]--Block.__(0, [--[ Format ]--[
+                            --[ String_literal ]--Block.__(11, [
                                 "<loc>",
-                                /* End_of_format */0
+                                --[ End_of_format ]--0
                               ]),
                             "<loc>"
                           ]]),
-                      /* Alpha */Block.__(15, [/* String */Block.__(2, [
-                              /* No_padding */0,
-                              /* Int */Block.__(4, [
-                                  /* Int_i */3,
-                                  /* No_padding */0,
-                                  /* No_precision */0,
-                                  /* End_of_format */0
+                      --[ Alpha ]--Block.__(15, [--[ String ]--Block.__(2, [
+                              --[ No_padding ]--0,
+                              --[ Int ]--Block.__(4, [
+                                  --[ Int_i ]--3,
+                                  --[ No_padding ]--0,
+                                  --[ No_precision ]--0,
+                                  --[ End_of_format ]--0
                                 ])
                             ])])
                     ])
@@ -1585,20 +1585,20 @@ function print_loc(ppf, loc) {
               "%s@{<loc>%a%s%i"
             ]), "File \"", print_filename, file, "\", line ", match[1]);
     if (startchar$1 >= 0) {
-      Curry._4(Format.fprintf(ppf, /* Format */[
-                /* String */Block.__(2, [
-                    /* No_padding */0,
-                    /* Int */Block.__(4, [
-                        /* Int_i */3,
-                        /* No_padding */0,
-                        /* No_precision */0,
-                        /* String */Block.__(2, [
-                            /* No_padding */0,
-                            /* Int */Block.__(4, [
-                                /* Int_i */3,
-                                /* No_padding */0,
-                                /* No_precision */0,
-                                /* End_of_format */0
+      Curry._4(Format.fprintf(ppf, --[ Format ]--[
+                --[ String ]--Block.__(2, [
+                    --[ No_padding ]--0,
+                    --[ Int ]--Block.__(4, [
+                        --[ Int_i ]--3,
+                        --[ No_padding ]--0,
+                        --[ No_precision ]--0,
+                        --[ String ]--Block.__(2, [
+                            --[ No_padding ]--0,
+                            --[ Int ]--Block.__(4, [
+                                --[ Int_i ]--3,
+                                --[ No_padding ]--0,
+                                --[ No_precision ]--0,
+                                --[ End_of_format ]--0
                               ])
                           ])
                       ])
@@ -1606,10 +1606,10 @@ function print_loc(ppf, loc) {
                 "%s%i%s%i"
               ]), ", characters ", startchar$1, "-", endchar);
     }
-    return Format.fprintf(ppf, /* Format */[
-                /* Formatting_lit */Block.__(17, [
-                    /* Close_tag */1,
-                    /* End_of_format */0
+    return Format.fprintf(ppf, --[ Format ]--[
+                --[ Formatting_lit ]--Block.__(17, [
+                    --[ Close_tag ]--1,
+                    --[ End_of_format ]--0
                   ]),
                 "@}"
               ]);
@@ -1618,28 +1618,28 @@ function print_loc(ppf, loc) {
 
 function print$1(ppf, loc) {
   Curry._1(Misc_Color.setup, color.contents);
-  if (loc.loc_start.pos_fname === "//toplevel//" && highlight_locations(ppf, /* :: */[
+  if (loc.loc_start.pos_fname == "//toplevel//" and highlight_locations(ppf, --[ :: ]--[
           loc,
-          /* [] */0
+          --[ [] ]--0
         ])) {
-    return /* () */0;
+    return --[ () ]--0;
   } else {
-    return Curry._3(Format.fprintf(ppf, /* Format */[
-                    /* Formatting_gen */Block.__(18, [
-                        /* Open_tag */Block.__(0, [/* Format */[
-                              /* String_literal */Block.__(11, [
+    return Curry._3(Format.fprintf(ppf, --[ Format ]--[
+                    --[ Formatting_gen ]--Block.__(18, [
+                        --[ Open_tag ]--Block.__(0, [--[ Format ]--[
+                              --[ String_literal ]--Block.__(11, [
                                   "<loc>",
-                                  /* End_of_format */0
+                                  --[ End_of_format ]--0
                                 ]),
                               "<loc>"
                             ]]),
-                        /* Alpha */Block.__(15, [/* Formatting_lit */Block.__(17, [
-                                /* Close_tag */1,
-                                /* String */Block.__(2, [
-                                    /* No_padding */0,
-                                    /* Formatting_lit */Block.__(17, [
-                                        /* Flush_newline */4,
-                                        /* End_of_format */0
+                        --[ Alpha ]--Block.__(15, [--[ Formatting_lit ]--Block.__(17, [
+                                --[ Close_tag ]--1,
+                                --[ String ]--Block.__(2, [
+                                    --[ No_padding ]--0,
+                                    --[ Formatting_lit ]--Block.__(17, [
+                                        --[ Flush_newline ]--4,
+                                        --[ End_of_format ]--0
                                       ])
                                   ])
                               ])])
@@ -1655,53 +1655,53 @@ function print_error(ppf, loc) {
   print$1(ppf, loc);
   var ppf$1 = ppf;
   Curry._1(Misc_Color.setup, color.contents);
-  Curry._1(Format.fprintf(ppf$1, /* Format */[
-            /* Formatting_gen */Block.__(18, [
-                /* Open_tag */Block.__(0, [/* Format */[
-                      /* String_literal */Block.__(11, [
+  Curry._1(Format.fprintf(ppf$1, --[ Format ]--[
+            --[ Formatting_gen ]--Block.__(18, [
+                --[ Open_tag ]--Block.__(0, [--[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "<error>",
-                          /* End_of_format */0
+                          --[ End_of_format ]--0
                         ]),
                       "<error>"
                     ]]),
-                /* String */Block.__(2, [
-                    /* No_padding */0,
-                    /* Formatting_lit */Block.__(17, [
-                        /* Close_tag */1,
-                        /* Char_literal */Block.__(12, [
-                            /* ":" */58,
-                            /* End_of_format */0
+                --[ String ]--Block.__(2, [
+                    --[ No_padding ]--0,
+                    --[ Formatting_lit ]--Block.__(17, [
+                        --[ Close_tag ]--1,
+                        --[ Char_literal ]--Block.__(12, [
+                            --[ ":" ]--58,
+                            --[ End_of_format ]--0
                           ])
                       ])
                   ])
               ]),
             "@{<error>%s@}:"
           ]), error_prefix);
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function default_warning_printer(loc, ppf, w) {
   if (is_active(w)) {
     Curry._1(Misc_Color.setup, color.contents);
     print$1(ppf, loc);
-    return Curry._3(Format.fprintf(ppf, /* Format */[
-                    /* Formatting_gen */Block.__(18, [
-                        /* Open_tag */Block.__(0, [/* Format */[
-                              /* String_literal */Block.__(11, [
+    return Curry._3(Format.fprintf(ppf, --[ Format ]--[
+                    --[ Formatting_gen ]--Block.__(18, [
+                        --[ Open_tag ]--Block.__(0, [--[ Format ]--[
+                              --[ String_literal ]--Block.__(11, [
                                   "<warning>",
-                                  /* End_of_format */0
+                                  --[ End_of_format ]--0
                                 ]),
                               "<warning>"
                             ]]),
-                        /* String */Block.__(2, [
-                            /* No_padding */0,
-                            /* Formatting_lit */Block.__(17, [
-                                /* Close_tag */1,
-                                /* Char_literal */Block.__(12, [
-                                    /* " " */32,
-                                    /* Alpha */Block.__(15, [/* Formatting_lit */Block.__(17, [
-                                            /* Flush_newline */4,
-                                            /* End_of_format */0
+                        --[ String ]--Block.__(2, [
+                            --[ No_padding ]--0,
+                            --[ Formatting_lit ]--Block.__(17, [
+                                --[ Close_tag ]--1,
+                                --[ Char_literal ]--Block.__(12, [
+                                    --[ " " ]--32,
+                                    --[ Alpha ]--Block.__(15, [--[ Formatting_lit ]--Block.__(17, [
+                                            --[ Flush_newline ]--4,
+                                            --[ End_of_format ]--0
                                           ])])
                                   ])
                               ])
@@ -1729,15 +1729,15 @@ function prerr_warning(loc, w) {
   var ppf$1 = ppf;
   var f = Curry._1(warning_printer.contents, loc$1);
   var arg = w$1;
-  var out_functions = Format.pp_get_formatter_out_functions(ppf$1, /* () */0);
+  var out_functions = Format.pp_get_formatter_out_functions(ppf$1, --[ () ]--0);
   var out_string = function (str, start, len) {
     var count = function (_i, _c) {
       while(true) {
         var c = _c;
         var i = _i;
-        if (i === (start + len | 0)) {
+        if (i == (start + len | 0)) {
           return c;
-        } else if (Caml_string.get(str, i) === /* "\n" */10) {
+        } else if (Caml_string.get(str, i) == --[ "\n" ]--10) {
           _c = c + 1 | 0;
           _i = i + 1 | 0;
           continue ;
@@ -1758,7 +1758,7 @@ function prerr_warning(loc, w) {
         out_indent: out_functions.out_indent
       });
   Curry._2(f, ppf$1, arg);
-  Format.pp_print_flush(ppf$1, /* () */0);
+  Format.pp_print_flush(ppf$1, --[ () ]--0);
   return Format.pp_set_formatter_out_functions(ppf$1, out_functions);
 }
 
@@ -1767,9 +1767,9 @@ function print_phanton_error_prefix(ppf) {
 }
 
 function errorf(locOpt, subOpt, if_highlightOpt, fmt) {
-  var loc = locOpt !== undefined ? locOpt : none;
-  var sub = subOpt !== undefined ? subOpt : /* [] */0;
-  var if_highlight = if_highlightOpt !== undefined ? if_highlightOpt : "";
+  var loc = locOpt ~= undefined ? locOpt : none;
+  var sub = subOpt ~= undefined ? subOpt : --[ [] ]--0;
+  var if_highlight = if_highlightOpt ~= undefined ? if_highlightOpt : "";
   var before = print_phanton_error_prefix;
   var k = function (msg) {
     return {
@@ -1783,60 +1783,60 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) {
   var buf = $$Buffer.create(64);
   var ppf = Format.formatter_of_buffer(buf);
   Curry._1(Misc_Color.set_color_tag_handling, ppf);
-  if (before !== undefined) {
+  if (before ~= undefined) {
     Curry._1(before, ppf);
   }
   return Format.kfprintf((function (param) {
-                Format.pp_print_flush(ppf, /* () */0);
+                Format.pp_print_flush(ppf, --[ () ]--0);
                 return Curry._1(k, $$Buffer.contents(buf));
               }), ppf, fmt$1);
 }
 
 var error_of_exn = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 function register_error_of_exn(f) {
-  error_of_exn.contents = /* :: */[
+  error_of_exn.contents = --[ :: ]--[
     f,
     error_of_exn.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function error_of_printer(loc, print, x) {
-  return Curry._2(errorf(loc, undefined, undefined, /* Format */[
-                  /* Alpha */Block.__(15, [/* Formatting_lit */Block.__(17, [
-                          /* FFlush */2,
-                          /* End_of_format */0
+  return Curry._2(errorf(loc, undefined, undefined, --[ Format ]--[
+                  --[ Alpha ]--Block.__(15, [--[ Formatting_lit ]--Block.__(17, [
+                          --[ FFlush ]--2,
+                          --[ End_of_format ]--0
                         ])]),
                   "%a@?"
                 ]), print, x);
 }
 
 register_error_of_exn((function (param) {
-        if (param[0] === Caml_builtin_exceptions.sys_error) {
-          return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, /* Format */[
-                          /* String_literal */Block.__(11, [
+        if (param[0] == Caml_builtin_exceptions.sys_error) {
+          return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, --[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "I/O error: ",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* End_of_format */0
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ End_of_format ]--0
                                 ])
                             ]),
                           "I/O error: %s"
                         ]), param[1]);
-        } else if (param[0] === Errors) {
-          return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, /* Format */[
-                          /* String_literal */Block.__(11, [
+        } else if (param[0] == Errors) {
+          return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, --[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "Some fatal warnings were triggered (",
-                              /* Int */Block.__(4, [
-                                  /* Int_d */0,
-                                  /* No_padding */0,
-                                  /* No_precision */0,
-                                  /* String_literal */Block.__(11, [
+                              --[ Int ]--Block.__(4, [
+                                  --[ Int_d ]--0,
+                                  --[ No_padding ]--0,
+                                  --[ No_precision ]--0,
+                                  --[ String_literal ]--Block.__(11, [
                                       " occurrences)",
-                                      /* End_of_format */0
+                                      --[ End_of_format ]--0
                                     ])
                                 ])
                             ]),
@@ -1850,7 +1850,7 @@ register_error_of_exn((function (param) {
 var $$Error = Caml_exceptions.create("Ocaml_parsetree_test.Location.Error");
 
 register_error_of_exn((function (param) {
-        if (param[0] === $$Error) {
+        if (param[0] == $$Error) {
           return param[1];
         }
         
@@ -1858,19 +1858,19 @@ register_error_of_exn((function (param) {
 
 function last(param) {
   switch (param.tag | 0) {
-    case /* Lident */0 :
+    case --[ Lident ]--0 :
         return param[0];
-    case /* Ldot */1 :
+    case --[ Ldot ]--1 :
         return param[1];
-    case /* Lapply */2 :
+    case --[ Lapply ]--2 :
         return fatal_error("Longident.last");
     
   }
 }
 
 function assert_fail(msg) {
-  Assert.fail(/* () */0, /* () */0, msg, "");
-  return /* () */0;
+  Assert.fail(--[ () ]--0, --[ () ]--0, msg, "");
+  return --[ () ]--0;
 }
 
 function is_mocha(param) {
@@ -1879,10 +1879,10 @@ function is_mocha(param) {
     var match$1 = match[1];
     if (match$1) {
       var exec = Path.basename(match$1[0]);
-      if (exec === "mocha") {
+      if (exec == "mocha") {
         return true;
       } else {
-        return exec === "_mocha";
+        return exec == "_mocha";
       }
     } else {
       return false;
@@ -1893,127 +1893,127 @@ function is_mocha(param) {
 }
 
 function close_enough(thresholdOpt, a, b) {
-  var threshold = thresholdOpt !== undefined ? thresholdOpt : 0.0000001;
+  var threshold = thresholdOpt ~= undefined ? thresholdOpt : 0.0000001;
   return Math.abs(a - b) < threshold;
 }
 
 function from_pair_suites(name, suites) {
   var match = $$Array.to_list(Process.argv);
   if (match) {
-    if (is_mocha(/* () */0)) {
+    if (is_mocha(--[ () ]--0)) {
       describe(name, (function () {
               return List.iter((function (param) {
                             var code = param[1];
                             it(param[0], (function () {
-                                    var spec = Curry._1(code, /* () */0);
+                                    var spec = Curry._1(code, --[ () ]--0);
                                     switch (spec.tag | 0) {
-                                      case /* Eq */0 :
+                                      case --[ Eq ]--0 :
                                           Assert.deepEqual(spec[0], spec[1]);
-                                          return /* () */0;
-                                      case /* Neq */1 :
+                                          return --[ () ]--0;
+                                      case --[ Neq ]--1 :
                                           Assert.notDeepEqual(spec[0], spec[1]);
-                                          return /* () */0;
-                                      case /* StrictEq */2 :
+                                          return --[ () ]--0;
+                                      case --[ StrictEq ]--2 :
                                           Assert.strictEqual(spec[0], spec[1]);
-                                          return /* () */0;
-                                      case /* StrictNeq */3 :
+                                          return --[ () ]--0;
+                                      case --[ StrictNeq ]--3 :
                                           Assert.notStrictEqual(spec[0], spec[1]);
-                                          return /* () */0;
-                                      case /* Ok */4 :
+                                          return --[ () ]--0;
+                                      case --[ Ok ]--4 :
                                           Assert.ok(spec[0]);
-                                          return /* () */0;
-                                      case /* Approx */5 :
+                                          return --[ () ]--0;
+                                      case --[ Approx ]--5 :
                                           var b = spec[1];
                                           var a = spec[0];
                                           if (close_enough(undefined, a, b)) {
                                             return 0;
                                           } else {
                                             Assert.deepEqual(a, b);
-                                            return /* () */0;
+                                            return --[ () ]--0;
                                           }
-                                      case /* ApproxThreshold */6 :
+                                      case --[ ApproxThreshold ]--6 :
                                           var b$1 = spec[2];
                                           var a$1 = spec[1];
                                           if (close_enough(spec[0], a$1, b$1)) {
                                             return 0;
                                           } else {
                                             Assert.deepEqual(a$1, b$1);
-                                            return /* () */0;
+                                            return --[ () ]--0;
                                           }
-                                      case /* ThrowAny */7 :
+                                      case --[ ThrowAny ]--7 :
                                           Assert.throws(spec[0]);
-                                          return /* () */0;
-                                      case /* Fail */8 :
+                                          return --[ () ]--0;
+                                      case --[ Fail ]--8 :
                                           return assert_fail("failed");
-                                      case /* FailWith */9 :
+                                      case --[ FailWith ]--9 :
                                           return assert_fail(spec[0]);
                                       
                                     }
                                   }));
-                            return /* () */0;
+                            return --[ () ]--0;
                           }), suites);
             }));
-      return /* () */0;
+      return --[ () ]--0;
     } else {
       var name$1 = name;
       var suites$1 = suites;
-      console.log(/* tuple */[
+      console.log(--[ tuple ]--[
             name$1,
             "testing"
           ]);
       return List.iter((function (param) {
                     var name = param[0];
-                    var match = Curry._1(param[1], /* () */0);
+                    var match = Curry._1(param[1], --[ () ]--0);
                     switch (match.tag | 0) {
-                      case /* Eq */0 :
-                          console.log(/* tuple */[
+                      case --[ Eq ]--0 :
+                          console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "eq?",
                                 match[1]
                               ]);
-                          return /* () */0;
-                      case /* Neq */1 :
-                          console.log(/* tuple */[
+                          return --[ () ]--0;
+                      case --[ Neq ]--1 :
+                          console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "neq?",
                                 match[1]
                               ]);
-                          return /* () */0;
-                      case /* StrictEq */2 :
-                          console.log(/* tuple */[
+                          return --[ () ]--0;
+                      case --[ StrictEq ]--2 :
+                          console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "strict_eq?",
                                 match[1]
                               ]);
-                          return /* () */0;
-                      case /* StrictNeq */3 :
-                          console.log(/* tuple */[
+                          return --[ () ]--0;
+                      case --[ StrictNeq ]--3 :
+                          console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "strict_neq?",
                                 match[1]
                               ]);
-                          return /* () */0;
-                      case /* Ok */4 :
-                          console.log(/* tuple */[
+                          return --[ () ]--0;
+                      case --[ Ok ]--4 :
+                          console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "ok?"
                               ]);
-                          return /* () */0;
-                      case /* Approx */5 :
-                          console.log(/* tuple */[
+                          return --[ () ]--0;
+                      case --[ Approx ]--5 :
+                          console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "~",
                                 match[1]
                               ]);
-                          return /* () */0;
-                      case /* ApproxThreshold */6 :
-                          console.log(/* tuple */[
+                          return --[ () ]--0;
+                      case --[ ApproxThreshold ]--6 :
+                          console.log(--[ tuple ]--[
                                 name,
                                 match[1],
                                 "~",
@@ -2022,45 +2022,45 @@ function from_pair_suites(name, suites) {
                                 match[0],
                                 ")"
                               ]);
-                          return /* () */0;
-                      case /* ThrowAny */7 :
-                          return /* () */0;
-                      case /* Fail */8 :
+                          return --[ () ]--0;
+                      case --[ ThrowAny ]--7 :
+                          return --[ () ]--0;
+                      case --[ Fail ]--8 :
                           console.log("failed");
-                          return /* () */0;
-                      case /* FailWith */9 :
+                          return --[ () ]--0;
+                      case --[ FailWith ]--9 :
                           console.log("failed: " + match[0]);
-                          return /* () */0;
+                          return --[ () ]--0;
                       
                     }
                   }), suites$1);
     }
   } else {
-    return /* () */0;
+    return --[ () ]--0;
   }
 }
 
-Promise.resolve(/* () */0);
+Promise.resolve(--[ () ]--0);
 
 var docstrings = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 function warn_bad_docstrings(param) {
-  if (is_active(/* Bad_docstring */Block.__(33, [true]))) {
+  if (is_active(--[ Bad_docstring ]--Block.__(33, [true]))) {
     return List.iter((function (ds) {
                   var match = ds.ds_attached;
                   switch (match) {
-                    case /* Unattached */0 :
-                        return prerr_warning(ds.ds_loc, /* Bad_docstring */Block.__(33, [true]));
-                    case /* Info */1 :
-                        return /* () */0;
-                    case /* Docs */2 :
+                    case --[ Unattached ]--0 :
+                        return prerr_warning(ds.ds_loc, --[ Bad_docstring ]--Block.__(33, [true]));
+                    case --[ Info ]--1 :
+                        return --[ () ]--0;
+                    case --[ Docs ]--2 :
                         var match$1 = ds.ds_associated;
                         if (match$1 >= 2) {
-                          return prerr_warning(ds.ds_loc, /* Bad_docstring */Block.__(33, [false]));
+                          return prerr_warning(ds.ds_loc, --[ Bad_docstring ]--Block.__(33, [false]));
                         } else {
-                          return /* () */0;
+                          return --[ () ]--0;
                         }
                     
                   }
@@ -2074,10 +2074,10 @@ function docstring(body, loc) {
   var ds = {
     ds_body: body,
     ds_loc: loc,
-    ds_attached: /* Unattached */0,
-    ds_associated: /* Zero */0
+    ds_attached: --[ Unattached ]--0,
+    ds_associated: --[ Zero ]--0
   };
-  docstrings.contents = /* :: */[
+  docstrings.contents = --[ :: ]--[
     ds,
     docstrings.contents
   ];
@@ -2095,7 +2095,7 @@ var doc_loc = {
 };
 
 function docs_attr(ds) {
-  var exp_pexp_desc = /* Pexp_constant */Block.__(1, [/* Const_string */Block.__(2, [
+  var exp_pexp_desc = --[ Pexp_constant ]--Block.__(1, [--[ Const_string ]--Block.__(2, [
           ds.ds_body,
           undefined
         ])]);
@@ -2103,37 +2103,37 @@ function docs_attr(ds) {
   var exp = {
     pexp_desc: exp_pexp_desc,
     pexp_loc: exp_pexp_loc,
-    pexp_attributes: /* [] */0
+    pexp_attributes: --[ [] ]--0
   };
-  var item_pstr_desc = /* Pstr_eval */Block.__(0, [
+  var item_pstr_desc = --[ Pstr_eval ]--Block.__(0, [
       exp,
-      /* [] */0
+      --[ [] ]--0
     ]);
   var item_pstr_loc = exp_pexp_loc;
   var item = {
     pstr_desc: item_pstr_desc,
     pstr_loc: item_pstr_loc
   };
-  return /* tuple */[
+  return --[ tuple ]--[
           doc_loc,
-          /* PStr */Block.__(0, [/* :: */[
+          --[ PStr ]--Block.__(0, [--[ :: ]--[
                 item,
-                /* [] */0
+                --[ [] ]--0
               ]])
         ];
 }
 
 function add_docs_attrs(docs, attrs) {
   var match = docs.docs_pre;
-  var attrs$1 = match !== undefined ? /* :: */[
+  var attrs$1 = match ~= undefined ? --[ :: ]--[
       docs_attr(match),
       attrs
     ] : attrs;
   var match$1 = docs.docs_post;
-  if (match$1 !== undefined) {
-    return Pervasives.$at(attrs$1, /* :: */[
+  if (match$1 ~= undefined) {
+    return Pervasives.$at(attrs$1, --[ :: ]--[
                 docs_attr(match$1),
-                /* [] */0
+                --[ [] ]--0
               ]);
   } else {
     return attrs$1;
@@ -2141,10 +2141,10 @@ function add_docs_attrs(docs, attrs) {
 }
 
 function add_info_attrs(info, attrs) {
-  if (info !== undefined) {
-    return Pervasives.$at(attrs, /* :: */[
+  if (info ~= undefined) {
+    return Pervasives.$at(attrs, --[ :: ]--[
                 docs_attr(info),
-                /* [] */0
+                --[ [] ]--0
               ]);
   } else {
     return attrs;
@@ -2157,7 +2157,7 @@ var text_loc = {
 };
 
 function text_attr(ds) {
-  var exp_pexp_desc = /* Pexp_constant */Block.__(1, [/* Const_string */Block.__(2, [
+  var exp_pexp_desc = --[ Pexp_constant ]--Block.__(1, [--[ Const_string ]--Block.__(2, [
           ds.ds_body,
           undefined
         ])]);
@@ -2165,22 +2165,22 @@ function text_attr(ds) {
   var exp = {
     pexp_desc: exp_pexp_desc,
     pexp_loc: exp_pexp_loc,
-    pexp_attributes: /* [] */0
+    pexp_attributes: --[ [] ]--0
   };
-  var item_pstr_desc = /* Pstr_eval */Block.__(0, [
+  var item_pstr_desc = --[ Pstr_eval ]--Block.__(0, [
       exp,
-      /* [] */0
+      --[ [] ]--0
     ]);
   var item_pstr_loc = exp_pexp_loc;
   var item = {
     pstr_desc: item_pstr_desc,
     pstr_loc: item_pstr_loc
   };
-  return /* tuple */[
+  return --[ tuple ]--[
           text_loc,
-          /* PStr */Block.__(0, [/* :: */[
+          --[ PStr ]--Block.__(0, [--[ :: ]--[
                 item,
-                /* [] */0
+                --[ [] ]--0
               ]])
         ];
 }
@@ -2196,8 +2196,8 @@ function get_docstring(info, dsl) {
     if (param) {
       var ds = param[0];
       var match = ds.ds_attached;
-      if (match !== 1) {
-        ds.ds_attached = info ? /* Info */1 : /* Docs */2;
+      if (match ~= 1) {
+        ds.ds_attached = info ? --[ Info ]--1 : --[ Docs ]--2;
         return ds;
       } else {
         _param = param[1];
@@ -2210,7 +2210,7 @@ function get_docstring(info, dsl) {
 }
 
 function get_docstrings(dsl) {
-  var _acc = /* [] */0;
+  var _acc = --[ [] ]--0;
   var _param = dsl;
   while(true) {
     var param = _param;
@@ -2218,10 +2218,10 @@ function get_docstrings(dsl) {
     if (param) {
       var ds = param[0];
       var match = ds.ds_attached;
-      if (match !== 1) {
-        ds.ds_attached = /* Docs */2;
+      if (match ~= 1) {
+        ds.ds_attached = --[ Docs ]--2;
         _param = param[1];
-        _acc = /* :: */[
+        _acc = --[ :: ]--[
           ds,
           acc
         ];
@@ -2239,12 +2239,12 @@ function get_docstrings(dsl) {
 function associate_docstrings(dsl) {
   return List.iter((function (ds) {
                 var match = ds.ds_associated;
-                if (match !== 0) {
-                  ds.ds_associated = /* Many */2;
-                  return /* () */0;
+                if (match ~= 0) {
+                  ds.ds_associated = --[ Many ]--2;
+                  return --[ () ]--0;
                 } else {
-                  ds.ds_associated = /* One */1;
-                  return /* () */0;
+                  ds.ds_associated = --[ One ]--1;
+                  return --[ () ]--0;
                 }
               }), dsl);
 }
@@ -2252,7 +2252,7 @@ function associate_docstrings(dsl) {
 var pre_table = Hashtbl.create(undefined, 50);
 
 function set_pre_docstrings(pos, dsl) {
-  if (dsl !== /* [] */0) {
+  if (dsl ~= --[ [] ]--0) {
     return Hashtbl.add(pre_table, pos, dsl);
   } else {
     return 0;
@@ -2266,7 +2266,7 @@ function get_pre_docs(pos) {
     return get_docstring(false, dsl);
   }
   catch (exn){
-    if (exn === Caml_builtin_exceptions.not_found) {
+    if (exn == Caml_builtin_exceptions.not_found) {
       return ;
     } else {
       throw exn;
@@ -2279,8 +2279,8 @@ function mark_pre_docs(pos) {
     return associate_docstrings(Hashtbl.find(pre_table, pos));
   }
   catch (exn){
-    if (exn === Caml_builtin_exceptions.not_found) {
-      return /* () */0;
+    if (exn == Caml_builtin_exceptions.not_found) {
+      return --[ () ]--0;
     } else {
       throw exn;
     }
@@ -2290,7 +2290,7 @@ function mark_pre_docs(pos) {
 var post_table = Hashtbl.create(undefined, 50);
 
 function set_post_docstrings(pos, dsl) {
-  if (dsl !== /* [] */0) {
+  if (dsl ~= --[ [] ]--0) {
     return Hashtbl.add(post_table, pos, dsl);
   } else {
     return 0;
@@ -2304,7 +2304,7 @@ function get_post_docs(pos) {
     return get_docstring(false, dsl);
   }
   catch (exn){
-    if (exn === Caml_builtin_exceptions.not_found) {
+    if (exn == Caml_builtin_exceptions.not_found) {
       return ;
     } else {
       throw exn;
@@ -2317,8 +2317,8 @@ function mark_post_docs(pos) {
     return associate_docstrings(Hashtbl.find(post_table, pos));
   }
   catch (exn){
-    if (exn === Caml_builtin_exceptions.not_found) {
-      return /* () */0;
+    if (exn == Caml_builtin_exceptions.not_found) {
+      return --[ () ]--0;
     } else {
       throw exn;
     }
@@ -2331,7 +2331,7 @@ function get_info(pos) {
     return get_docstring(true, dsl);
   }
   catch (exn){
-    if (exn === Caml_builtin_exceptions.not_found) {
+    if (exn == Caml_builtin_exceptions.not_found) {
       return ;
     } else {
       throw exn;
@@ -2342,7 +2342,7 @@ function get_info(pos) {
 var floating_table = Hashtbl.create(undefined, 50);
 
 function set_floating_docstrings(pos, dsl) {
-  if (dsl !== /* [] */0) {
+  if (dsl ~= --[ [] ]--0) {
     return Hashtbl.add(floating_table, pos, dsl);
   } else {
     return 0;
@@ -2354,8 +2354,8 @@ function get_text(pos) {
     return get_docstrings(Hashtbl.find(floating_table, pos));
   }
   catch (exn){
-    if (exn === Caml_builtin_exceptions.not_found) {
-      return /* [] */0;
+    if (exn == Caml_builtin_exceptions.not_found) {
+      return --[ [] ]--0;
     } else {
       throw exn;
     }
@@ -2365,7 +2365,7 @@ function get_text(pos) {
 var pre_extra_table = Hashtbl.create(undefined, 50);
 
 function set_pre_extra_docstrings(pos, dsl) {
-  if (dsl !== /* [] */0) {
+  if (dsl ~= --[ [] ]--0) {
     return Hashtbl.add(pre_extra_table, pos, dsl);
   } else {
     return 0;
@@ -2377,8 +2377,8 @@ function get_pre_extra_text(pos) {
     return get_docstrings(Hashtbl.find(pre_extra_table, pos));
   }
   catch (exn){
-    if (exn === Caml_builtin_exceptions.not_found) {
-      return /* [] */0;
+    if (exn == Caml_builtin_exceptions.not_found) {
+      return --[ [] ]--0;
     } else {
       throw exn;
     }
@@ -2388,7 +2388,7 @@ function get_pre_extra_text(pos) {
 var post_extra_table = Hashtbl.create(undefined, 50);
 
 function set_post_extra_docstrings(pos, dsl) {
-  if (dsl !== /* [] */0) {
+  if (dsl ~= --[ [] ]--0) {
     return Hashtbl.add(post_extra_table, pos, dsl);
   } else {
     return 0;
@@ -2400,8 +2400,8 @@ function get_post_extra_text(pos) {
     return get_docstrings(Hashtbl.find(post_extra_table, pos));
   }
   catch (exn){
-    if (exn === Caml_builtin_exceptions.not_found) {
-      return /* [] */0;
+    if (exn == Caml_builtin_exceptions.not_found) {
+      return --[ [] ]--0;
     } else {
       throw exn;
     }
@@ -2410,14 +2410,14 @@ function get_post_extra_text(pos) {
 
 function symbol_docs(param) {
   return {
-          docs_pre: get_pre_docs(Parsing.symbol_start_pos(/* () */0)),
-          docs_post: get_post_docs(Parsing.symbol_end_pos(/* () */0))
+          docs_pre: get_pre_docs(Parsing.symbol_start_pos(--[ () ]--0)),
+          docs_post: get_post_docs(Parsing.symbol_end_pos(--[ () ]--0))
         };
 }
 
 function symbol_docs_lazy(param) {
-  var p1 = Parsing.symbol_start_pos(/* () */0);
-  var p2 = Parsing.symbol_end_pos(/* () */0);
+  var p1 = Parsing.symbol_start_pos(--[ () ]--0);
+  var p2 = Parsing.symbol_end_pos(--[ () ]--0);
   return Caml_obj.caml_lazy_make((function (param) {
                 return {
                         docs_pre: get_pre_docs(p1),
@@ -2427,8 +2427,8 @@ function symbol_docs_lazy(param) {
 }
 
 function mark_symbol_docs(param) {
-  mark_pre_docs(Parsing.symbol_start_pos(/* () */0));
-  return mark_post_docs(Parsing.symbol_end_pos(/* () */0));
+  mark_pre_docs(Parsing.symbol_start_pos(--[ () ]--0));
+  return mark_post_docs(Parsing.symbol_end_pos(--[ () ]--0));
 }
 
 function mark_rhs_docs(pos1, pos2) {
@@ -2437,14 +2437,14 @@ function mark_rhs_docs(pos1, pos2) {
 }
 
 function symbol_text_lazy(param) {
-  var pos = Parsing.symbol_start_pos(/* () */0);
+  var pos = Parsing.symbol_start_pos(--[ () ]--0);
   return Caml_obj.caml_lazy_make((function (param) {
                 return get_text(pos);
               }));
 }
 
 function init(param) {
-  docstrings.contents = /* [] */0;
+  docstrings.contents = --[ [] ]--0;
   Hashtbl.reset(pre_table);
   Hashtbl.reset(post_table);
   Hashtbl.reset(floating_table);
@@ -2457,8 +2457,8 @@ var default_loc = {
 };
 
 function mk(locOpt, attrsOpt, d) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
   return {
           ptyp_desc: d,
           ptyp_loc: loc,
@@ -2470,16 +2470,16 @@ function attr(d, a) {
   return {
           ptyp_desc: d.ptyp_desc,
           ptyp_loc: d.ptyp_loc,
-          ptyp_attributes: Pervasives.$at(d.ptyp_attributes, /* :: */[
+          ptyp_attributes: Pervasives.$at(d.ptyp_attributes, --[ :: ]--[
                 a,
-                /* [] */0
+                --[ [] ]--0
               ])
         };
 }
 
 function mk$1(locOpt, attrsOpt, d) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
   return {
           ppat_desc: d,
           ppat_loc: loc,
@@ -2491,16 +2491,16 @@ function attr$1(d, a) {
   return {
           ppat_desc: d.ppat_desc,
           ppat_loc: d.ppat_loc,
-          ppat_attributes: Pervasives.$at(d.ppat_attributes, /* :: */[
+          ppat_attributes: Pervasives.$at(d.ppat_attributes, --[ :: ]--[
                 a,
-                /* [] */0
+                --[ [] ]--0
               ])
         };
 }
 
 function mk$2(locOpt, attrsOpt, d) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
   return {
           pexp_desc: d,
           pexp_loc: loc,
@@ -2512,23 +2512,23 @@ function attr$2(d, a) {
   return {
           pexp_desc: d.pexp_desc,
           pexp_loc: d.pexp_loc,
-          pexp_attributes: Pervasives.$at(d.pexp_attributes, /* :: */[
+          pexp_attributes: Pervasives.$at(d.pexp_attributes, --[ :: ]--[
                 a,
-                /* [] */0
+                --[ [] ]--0
               ])
         };
 }
 
 function ident(loc, attrs, a) {
-  return mk$2(loc, attrs, /* Pexp_ident */Block.__(0, [a]));
+  return mk$2(loc, attrs, --[ Pexp_ident ]--Block.__(0, [a]));
 }
 
 function constant(loc, attrs, a) {
-  return mk$2(loc, attrs, /* Pexp_constant */Block.__(1, [a]));
+  return mk$2(loc, attrs, --[ Pexp_constant ]--Block.__(1, [a]));
 }
 
 function let_(loc, attrs, a, b, c) {
-  return mk$2(loc, attrs, /* Pexp_let */Block.__(2, [
+  return mk$2(loc, attrs, --[ Pexp_let ]--Block.__(2, [
                 a,
                 b,
                 c
@@ -2536,7 +2536,7 @@ function let_(loc, attrs, a, b, c) {
 }
 
 function fun_(loc, attrs, a, b, c, d) {
-  return mk$2(loc, attrs, /* Pexp_fun */Block.__(4, [
+  return mk$2(loc, attrs, --[ Pexp_fun ]--Block.__(4, [
                 a,
                 b,
                 c,
@@ -2545,64 +2545,64 @@ function fun_(loc, attrs, a, b, c, d) {
 }
 
 function function_(loc, attrs, a) {
-  return mk$2(loc, attrs, /* Pexp_function */Block.__(3, [a]));
+  return mk$2(loc, attrs, --[ Pexp_function ]--Block.__(3, [a]));
 }
 
 function apply(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_apply */Block.__(5, [
+  return mk$2(loc, attrs, --[ Pexp_apply ]--Block.__(5, [
                 a,
                 b
               ]));
 }
 
 function match_(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_match */Block.__(6, [
+  return mk$2(loc, attrs, --[ Pexp_match ]--Block.__(6, [
                 a,
                 b
               ]));
 }
 
 function try_(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_try */Block.__(7, [
+  return mk$2(loc, attrs, --[ Pexp_try ]--Block.__(7, [
                 a,
                 b
               ]));
 }
 
 function tuple(loc, attrs, a) {
-  return mk$2(loc, attrs, /* Pexp_tuple */Block.__(8, [a]));
+  return mk$2(loc, attrs, --[ Pexp_tuple ]--Block.__(8, [a]));
 }
 
 function construct(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_construct */Block.__(9, [
+  return mk$2(loc, attrs, --[ Pexp_construct ]--Block.__(9, [
                 a,
                 b
               ]));
 }
 
 function variant(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_variant */Block.__(10, [
+  return mk$2(loc, attrs, --[ Pexp_variant ]--Block.__(10, [
                 a,
                 b
               ]));
 }
 
 function record(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_record */Block.__(11, [
+  return mk$2(loc, attrs, --[ Pexp_record ]--Block.__(11, [
                 a,
                 b
               ]));
 }
 
 function field(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_field */Block.__(12, [
+  return mk$2(loc, attrs, --[ Pexp_field ]--Block.__(12, [
                 a,
                 b
               ]));
 }
 
 function setfield(loc, attrs, a, b, c) {
-  return mk$2(loc, attrs, /* Pexp_setfield */Block.__(13, [
+  return mk$2(loc, attrs, --[ Pexp_setfield ]--Block.__(13, [
                 a,
                 b,
                 c
@@ -2610,11 +2610,11 @@ function setfield(loc, attrs, a, b, c) {
 }
 
 function array(loc, attrs, a) {
-  return mk$2(loc, attrs, /* Pexp_array */Block.__(14, [a]));
+  return mk$2(loc, attrs, --[ Pexp_array ]--Block.__(14, [a]));
 }
 
 function ifthenelse(loc, attrs, a, b, c) {
-  return mk$2(loc, attrs, /* Pexp_ifthenelse */Block.__(15, [
+  return mk$2(loc, attrs, --[ Pexp_ifthenelse ]--Block.__(15, [
                 a,
                 b,
                 c
@@ -2622,21 +2622,21 @@ function ifthenelse(loc, attrs, a, b, c) {
 }
 
 function sequence(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_sequence */Block.__(16, [
+  return mk$2(loc, attrs, --[ Pexp_sequence ]--Block.__(16, [
                 a,
                 b
               ]));
 }
 
 function while_(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_while */Block.__(17, [
+  return mk$2(loc, attrs, --[ Pexp_while ]--Block.__(17, [
                 a,
                 b
               ]));
 }
 
 function for_(loc, attrs, a, b, c, d, e) {
-  return mk$2(loc, attrs, /* Pexp_for */Block.__(18, [
+  return mk$2(loc, attrs, --[ Pexp_for ]--Block.__(18, [
                 a,
                 b,
                 c,
@@ -2646,14 +2646,14 @@ function for_(loc, attrs, a, b, c, d, e) {
 }
 
 function constraint_(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_constraint */Block.__(19, [
+  return mk$2(loc, attrs, --[ Pexp_constraint ]--Block.__(19, [
                 a,
                 b
               ]));
 }
 
 function coerce(loc, attrs, a, b, c) {
-  return mk$2(loc, attrs, /* Pexp_coerce */Block.__(20, [
+  return mk$2(loc, attrs, --[ Pexp_coerce ]--Block.__(20, [
                 a,
                 b,
                 c
@@ -2661,29 +2661,29 @@ function coerce(loc, attrs, a, b, c) {
 }
 
 function send(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_send */Block.__(21, [
+  return mk$2(loc, attrs, --[ Pexp_send ]--Block.__(21, [
                 a,
                 b
               ]));
 }
 
 function new_(loc, attrs, a) {
-  return mk$2(loc, attrs, /* Pexp_new */Block.__(22, [a]));
+  return mk$2(loc, attrs, --[ Pexp_new ]--Block.__(22, [a]));
 }
 
 function setinstvar(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_setinstvar */Block.__(23, [
+  return mk$2(loc, attrs, --[ Pexp_setinstvar ]--Block.__(23, [
                 a,
                 b
               ]));
 }
 
 function override(loc, attrs, a) {
-  return mk$2(loc, attrs, /* Pexp_override */Block.__(24, [a]));
+  return mk$2(loc, attrs, --[ Pexp_override ]--Block.__(24, [a]));
 }
 
 function letmodule(loc, attrs, a, b, c) {
-  return mk$2(loc, attrs, /* Pexp_letmodule */Block.__(25, [
+  return mk$2(loc, attrs, --[ Pexp_letmodule ]--Block.__(25, [
                 a,
                 b,
                 c
@@ -2691,37 +2691,37 @@ function letmodule(loc, attrs, a, b, c) {
 }
 
 function assert_(loc, attrs, a) {
-  return mk$2(loc, attrs, /* Pexp_assert */Block.__(26, [a]));
+  return mk$2(loc, attrs, --[ Pexp_assert ]--Block.__(26, [a]));
 }
 
 function lazy_(loc, attrs, a) {
-  return mk$2(loc, attrs, /* Pexp_lazy */Block.__(27, [a]));
+  return mk$2(loc, attrs, --[ Pexp_lazy ]--Block.__(27, [a]));
 }
 
 function poly(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_poly */Block.__(28, [
+  return mk$2(loc, attrs, --[ Pexp_poly ]--Block.__(28, [
                 a,
                 b
               ]));
 }
 
 function object_(loc, attrs, a) {
-  return mk$2(loc, attrs, /* Pexp_object */Block.__(29, [a]));
+  return mk$2(loc, attrs, --[ Pexp_object ]--Block.__(29, [a]));
 }
 
 function newtype(loc, attrs, a, b) {
-  return mk$2(loc, attrs, /* Pexp_newtype */Block.__(30, [
+  return mk$2(loc, attrs, --[ Pexp_newtype ]--Block.__(30, [
                 a,
                 b
               ]));
 }
 
 function pack(loc, attrs, a) {
-  return mk$2(loc, attrs, /* Pexp_pack */Block.__(31, [a]));
+  return mk$2(loc, attrs, --[ Pexp_pack ]--Block.__(31, [a]));
 }
 
 function open_(loc, attrs, a, b, c) {
-  return mk$2(loc, attrs, /* Pexp_open */Block.__(32, [
+  return mk$2(loc, attrs, --[ Pexp_open ]--Block.__(32, [
                 a,
                 b,
                 c
@@ -2729,7 +2729,7 @@ function open_(loc, attrs, a, b, c) {
 }
 
 function extension(loc, attrs, a) {
-  return mk$2(loc, attrs, /* Pexp_extension */Block.__(33, [a]));
+  return mk$2(loc, attrs, --[ Pexp_extension ]--Block.__(33, [a]));
 }
 
 function $$case(lhs, guard, rhs) {
@@ -2741,8 +2741,8 @@ function $$case(lhs, guard, rhs) {
 }
 
 function mk$3(locOpt, attrsOpt, d) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
   return {
           pmty_desc: d,
           pmty_loc: loc,
@@ -2754,20 +2754,20 @@ function attr$3(d, a) {
   return {
           pmty_desc: d.pmty_desc,
           pmty_loc: d.pmty_loc,
-          pmty_attributes: Pervasives.$at(d.pmty_attributes, /* :: */[
+          pmty_attributes: Pervasives.$at(d.pmty_attributes, --[ :: ]--[
                 a,
-                /* [] */0
+                --[ [] ]--0
               ])
         };
 }
 
 function alias(loc, attrs, a) {
-  return mk$3(loc, attrs, /* Pmty_alias */Block.__(6, [a]));
+  return mk$3(loc, attrs, --[ Pmty_alias ]--Block.__(6, [a]));
 }
 
 function mk$4(locOpt, attrsOpt, d) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
   return {
           pmod_desc: d,
           pmod_loc: loc,
@@ -2779,15 +2779,15 @@ function attr$4(d, a) {
   return {
           pmod_desc: d.pmod_desc,
           pmod_loc: d.pmod_loc,
-          pmod_attributes: Pervasives.$at(d.pmod_attributes, /* :: */[
+          pmod_attributes: Pervasives.$at(d.pmod_attributes, --[ :: ]--[
                 a,
-                /* [] */0
+                --[ [] ]--0
               ])
         };
 }
 
 function mk$5(locOpt, d) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
   return {
           psig_desc: d,
           psig_loc: loc
@@ -2798,12 +2798,12 @@ function text(txt) {
   return List.map((function (ds) {
                 var a = text_attr(ds);
                 var loc = ds.ds_loc;
-                return mk$5(loc, /* Psig_attribute */Block.__(11, [a]));
+                return mk$5(loc, --[ Psig_attribute ]--Block.__(11, [a]));
               }), txt);
 }
 
 function mk$6(locOpt, d) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
   return {
           pstr_desc: d,
           pstr_loc: loc
@@ -2814,13 +2814,13 @@ function text$1(txt) {
   return List.map((function (ds) {
                 var a = text_attr(ds);
                 var loc = ds.ds_loc;
-                return mk$6(loc, /* Pstr_attribute */Block.__(13, [a]));
+                return mk$6(loc, --[ Pstr_attribute ]--Block.__(13, [a]));
               }), txt);
 }
 
 function mk$7(locOpt, attrsOpt, d) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
   return {
           pcl_desc: d,
           pcl_loc: loc,
@@ -2832,16 +2832,16 @@ function attr$5(d, a) {
   return {
           pcl_desc: d.pcl_desc,
           pcl_loc: d.pcl_loc,
-          pcl_attributes: Pervasives.$at(d.pcl_attributes, /* :: */[
+          pcl_attributes: Pervasives.$at(d.pcl_attributes, --[ :: ]--[
                 a,
-                /* [] */0
+                --[ [] ]--0
               ])
         };
 }
 
 function mk$8(locOpt, attrsOpt, d) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
   return {
           pcty_desc: d,
           pcty_loc: loc,
@@ -2853,17 +2853,17 @@ function attr$6(d, a) {
   return {
           pcty_desc: d.pcty_desc,
           pcty_loc: d.pcty_loc,
-          pcty_attributes: Pervasives.$at(d.pcty_attributes, /* :: */[
+          pcty_attributes: Pervasives.$at(d.pcty_attributes, --[ :: ]--[
                 a,
-                /* [] */0
+                --[ [] ]--0
               ])
         };
 }
 
 function mk$9(locOpt, attrsOpt, docsOpt, d) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
   return {
           pctf_desc: d,
           pctf_loc: loc,
@@ -2872,11 +2872,11 @@ function mk$9(locOpt, attrsOpt, docsOpt, d) {
 }
 
 function inherit_(loc, attrs, a) {
-  return mk$9(loc, attrs, undefined, /* Pctf_inherit */Block.__(0, [a]));
+  return mk$9(loc, attrs, undefined, --[ Pctf_inherit ]--Block.__(0, [a]));
 }
 
 function val_(loc, attrs, a, b, c, d) {
-  return mk$9(loc, attrs, undefined, /* Pctf_val */Block.__(1, [/* tuple */[
+  return mk$9(loc, attrs, undefined, --[ Pctf_val ]--Block.__(1, [--[ tuple ]--[
                   a,
                   b,
                   c,
@@ -2885,7 +2885,7 @@ function val_(loc, attrs, a, b, c, d) {
 }
 
 function method_(loc, attrs, a, b, c, d) {
-  return mk$9(loc, attrs, undefined, /* Pctf_method */Block.__(2, [/* tuple */[
+  return mk$9(loc, attrs, undefined, --[ Pctf_method ]--Block.__(2, [--[ tuple ]--[
                   a,
                   b,
                   c,
@@ -2894,18 +2894,18 @@ function method_(loc, attrs, a, b, c, d) {
 }
 
 function constraint_$1(loc, attrs, a, b) {
-  return mk$9(loc, attrs, undefined, /* Pctf_constraint */Block.__(3, [/* tuple */[
+  return mk$9(loc, attrs, undefined, --[ Pctf_constraint ]--Block.__(3, [--[ tuple ]--[
                   a,
                   b
                 ]]));
 }
 
 function extension$1(loc, attrs, a) {
-  return mk$9(loc, attrs, undefined, /* Pctf_extension */Block.__(5, [a]));
+  return mk$9(loc, attrs, undefined, --[ Pctf_extension ]--Block.__(5, [a]));
 }
 
 function attribute(loc, a) {
-  return mk$9(loc, undefined, undefined, /* Pctf_attribute */Block.__(4, [a]));
+  return mk$9(loc, undefined, undefined, --[ Pctf_attribute ]--Block.__(4, [a]));
 }
 
 function text$2(txt) {
@@ -2918,17 +2918,17 @@ function attr$7(d, a) {
   return {
           pctf_desc: d.pctf_desc,
           pctf_loc: d.pctf_loc,
-          pctf_attributes: Pervasives.$at(d.pctf_attributes, /* :: */[
+          pctf_attributes: Pervasives.$at(d.pctf_attributes, --[ :: ]--[
                 a,
-                /* [] */0
+                --[ [] ]--0
               ])
         };
 }
 
 function mk$10(locOpt, attrsOpt, docsOpt, d) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
   return {
           pcf_desc: d,
           pcf_loc: loc,
@@ -2937,7 +2937,7 @@ function mk$10(locOpt, attrsOpt, docsOpt, d) {
 }
 
 function inherit_$1(loc, attrs, a, b, c) {
-  return mk$10(loc, attrs, undefined, /* Pcf_inherit */Block.__(0, [
+  return mk$10(loc, attrs, undefined, --[ Pcf_inherit ]--Block.__(0, [
                 a,
                 b,
                 c
@@ -2945,7 +2945,7 @@ function inherit_$1(loc, attrs, a, b, c) {
 }
 
 function val_$1(loc, attrs, a, b, c) {
-  return mk$10(loc, attrs, undefined, /* Pcf_val */Block.__(1, [/* tuple */[
+  return mk$10(loc, attrs, undefined, --[ Pcf_val ]--Block.__(1, [--[ tuple ]--[
                   a,
                   b,
                   c
@@ -2953,7 +2953,7 @@ function val_$1(loc, attrs, a, b, c) {
 }
 
 function method_$1(loc, attrs, a, b, c) {
-  return mk$10(loc, attrs, undefined, /* Pcf_method */Block.__(2, [/* tuple */[
+  return mk$10(loc, attrs, undefined, --[ Pcf_method ]--Block.__(2, [--[ tuple ]--[
                   a,
                   b,
                   c
@@ -2961,22 +2961,22 @@ function method_$1(loc, attrs, a, b, c) {
 }
 
 function constraint_$2(loc, attrs, a, b) {
-  return mk$10(loc, attrs, undefined, /* Pcf_constraint */Block.__(3, [/* tuple */[
+  return mk$10(loc, attrs, undefined, --[ Pcf_constraint ]--Block.__(3, [--[ tuple ]--[
                   a,
                   b
                 ]]));
 }
 
 function initializer_(loc, attrs, a) {
-  return mk$10(loc, attrs, undefined, /* Pcf_initializer */Block.__(4, [a]));
+  return mk$10(loc, attrs, undefined, --[ Pcf_initializer ]--Block.__(4, [a]));
 }
 
 function extension$2(loc, attrs, a) {
-  return mk$10(loc, attrs, undefined, /* Pcf_extension */Block.__(6, [a]));
+  return mk$10(loc, attrs, undefined, --[ Pcf_extension ]--Block.__(6, [a]));
 }
 
 function attribute$1(loc, a) {
-  return mk$10(loc, undefined, undefined, /* Pcf_attribute */Block.__(5, [a]));
+  return mk$10(loc, undefined, undefined, --[ Pcf_attribute ]--Block.__(5, [a]));
 }
 
 function text$3(txt) {
@@ -2986,11 +2986,11 @@ function text$3(txt) {
 }
 
 function virtual_(ct) {
-  return /* Cfk_virtual */Block.__(0, [ct]);
+  return --[ Cfk_virtual ]--Block.__(0, [ct]);
 }
 
 function concrete(o, e) {
-  return /* Cfk_concrete */Block.__(1, [
+  return --[ Cfk_concrete ]--Block.__(1, [
             o,
             e
           ]);
@@ -3000,18 +3000,18 @@ function attr$8(d, a) {
   return {
           pcf_desc: d.pcf_desc,
           pcf_loc: d.pcf_loc,
-          pcf_attributes: Pervasives.$at(d.pcf_attributes, /* :: */[
+          pcf_attributes: Pervasives.$at(d.pcf_attributes, --[ :: ]--[
                 a,
-                /* [] */0
+                --[ [] ]--0
               ])
         };
 }
 
 function mk$11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
-  var prim = primOpt !== undefined ? primOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var prim = primOpt ~= undefined ? primOpt : --[ [] ]--0;
   return {
           pval_name: name,
           pval_type: typ,
@@ -3022,10 +3022,10 @@ function mk$11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) {
 }
 
 function mk$12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
-  var text = textOpt !== undefined ? textOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
   return {
           pmd_name: name,
           pmd_type: typ,
@@ -3035,10 +3035,10 @@ function mk$12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) {
 }
 
 function mk$13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
-  var text = textOpt !== undefined ? textOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
   return {
           pmtd_name: name,
           pmtd_type: typ,
@@ -3048,10 +3048,10 @@ function mk$13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) {
 }
 
 function mk$14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
-  var text = textOpt !== undefined ? textOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
   return {
           pmb_name: name,
           pmb_expr: expr,
@@ -3061,10 +3061,10 @@ function mk$14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) {
 }
 
 function mk$15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
-  var override = overrideOpt !== undefined ? overrideOpt : /* Fresh */1;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var override = overrideOpt ~= undefined ? overrideOpt : --[ Fresh ]--1;
   return {
           popen_lid: lid,
           popen_override: override,
@@ -3074,9 +3074,9 @@ function mk$15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) {
 }
 
 function mk$16(locOpt, attrsOpt, docsOpt, mexpr) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
   return {
           pincl_mod: mexpr,
           pincl_loc: loc,
@@ -3085,10 +3085,10 @@ function mk$16(locOpt, attrsOpt, docsOpt, mexpr) {
 }
 
 function mk$17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
-  var text = textOpt !== undefined ? textOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
   return {
           pvb_pat: pat,
           pvb_expr: expr,
@@ -3098,12 +3098,12 @@ function mk$17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) {
 }
 
 function mk$18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, expr) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
-  var text = textOpt !== undefined ? textOpt : /* [] */0;
-  var virt = virtOpt !== undefined ? virtOpt : /* Concrete */1;
-  var params = paramsOpt !== undefined ? paramsOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
+  var virt = virtOpt ~= undefined ? virtOpt : --[ Concrete ]--1;
+  var params = paramsOpt ~= undefined ? paramsOpt : --[ [] ]--0;
   return {
           pci_virt: virt,
           pci_params: params,
@@ -3115,14 +3115,14 @@ function mk$18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, exp
 }
 
 function mk$19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt, privOpt, manifest, name) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
-  var text = textOpt !== undefined ? textOpt : /* [] */0;
-  var params = paramsOpt !== undefined ? paramsOpt : /* [] */0;
-  var cstrs = cstrsOpt !== undefined ? cstrsOpt : /* [] */0;
-  var kind = kindOpt !== undefined ? kindOpt : /* Ptype_abstract */0;
-  var priv = privOpt !== undefined ? privOpt : /* Public */1;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
+  var params = paramsOpt ~= undefined ? paramsOpt : --[ [] ]--0;
+  var cstrs = cstrsOpt ~= undefined ? cstrsOpt : --[ [] ]--0;
+  var kind = kindOpt ~= undefined ? kindOpt : --[ Ptype_abstract ]--0;
+  var priv = privOpt ~= undefined ? privOpt : --[ Public ]--1;
   return {
           ptype_name: name,
           ptype_params: params,
@@ -3136,10 +3136,10 @@ function mk$19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt,
 }
 
 function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var info = infoOpt !== undefined ? Caml_option.valFromOption(infoOpt) : undefined;
-  var args = argsOpt !== undefined ? argsOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
+  var args = argsOpt ~= undefined ? argsOpt : --[ [] ]--0;
   return {
           pcd_name: name,
           pcd_args: args,
@@ -3150,10 +3150,10 @@ function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) {
 }
 
 function field$1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var info = infoOpt !== undefined ? Caml_option.valFromOption(infoOpt) : undefined;
-  var mut = mutOpt !== undefined ? mutOpt : /* Immutable */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
+  var mut = mutOpt ~= undefined ? mutOpt : --[ Immutable ]--0;
   return {
           pld_name: name,
           pld_mutable: mut,
@@ -3164,10 +3164,10 @@ function field$1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) {
 }
 
 function mk$20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) {
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
-  var params = paramsOpt !== undefined ? paramsOpt : /* [] */0;
-  var priv = privOpt !== undefined ? privOpt : /* Public */1;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var params = paramsOpt ~= undefined ? paramsOpt : --[ [] ]--0;
+  var priv = privOpt ~= undefined ? privOpt : --[ Public ]--1;
   return {
           ptyext_path: path,
           ptyext_params: params,
@@ -3178,14 +3178,14 @@ function mk$20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) {
 }
 
 function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
-  var info = infoOpt !== undefined ? Caml_option.valFromOption(infoOpt) : undefined;
-  var args = argsOpt !== undefined ? argsOpt : /* [] */0;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
+  var args = argsOpt ~= undefined ? argsOpt : --[ [] ]--0;
   return {
           pext_name: name,
-          pext_kind: /* Pext_decl */Block.__(0, [
+          pext_kind: --[ Pext_decl ]--Block.__(0, [
               args,
               res
             ]),
@@ -3195,13 +3195,13 @@ function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) {
 }
 
 function rebind(locOpt, attrsOpt, docsOpt, infoOpt, name, lid) {
-  var loc = locOpt !== undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt !== undefined ? attrsOpt : /* [] */0;
-  var docs = docsOpt !== undefined ? docsOpt : empty_docs;
-  var info = infoOpt !== undefined ? Caml_option.valFromOption(infoOpt) : undefined;
+  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
   return {
           pext_name: name,
-          pext_kind: /* Pext_rebind */Block.__(1, [lid]),
+          pext_kind: --[ Pext_rebind ]--Block.__(1, [lid]),
           pext_loc: loc,
           pext_attributes: add_docs_attrs(docs, add_info_attrs(info, attrs))
         };
@@ -3280,105 +3280,105 @@ var Escape_error = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Escape
 
 function prepare_error(param) {
   switch (param.tag | 0) {
-    case /* Unclosed */0 :
+    case --[ Unclosed ]--0 :
         var closing = param[3];
         var opening = param[1];
-        return Curry._1(errorf(param[2], /* :: */[
-                        Curry._1(errorf(param[0], undefined, undefined, /* Format */[
-                                  /* String_literal */Block.__(11, [
+        return Curry._1(errorf(param[2], --[ :: ]--[
+                        Curry._1(errorf(param[0], undefined, undefined, --[ Format ]--[
+                                  --[ String_literal ]--Block.__(11, [
                                       "This '",
-                                      /* String */Block.__(2, [
-                                          /* No_padding */0,
-                                          /* String_literal */Block.__(11, [
+                                      --[ String ]--Block.__(2, [
+                                          --[ No_padding ]--0,
+                                          --[ String_literal ]--Block.__(11, [
                                               "' might be unmatched",
-                                              /* End_of_format */0
+                                              --[ End_of_format ]--0
                                             ])
                                         ])
                                     ]),
                                   "This '%s' might be unmatched"
                                 ]), opening),
-                        /* [] */0
-                      ], Curry._2(Printf.sprintf(/* Format */[
-                                /* String_literal */Block.__(11, [
+                        --[ [] ]--0
+                      ], Curry._2(Printf.sprintf(--[ Format ]--[
+                                --[ String_literal ]--Block.__(11, [
                                     "Syntax error: '",
-                                    /* String */Block.__(2, [
-                                        /* No_padding */0,
-                                        /* String_literal */Block.__(11, [
+                                    --[ String ]--Block.__(2, [
+                                        --[ No_padding ]--0,
+                                        --[ String_literal ]--Block.__(11, [
                                             "' expected, the highlighted '",
-                                            /* String */Block.__(2, [
-                                                /* No_padding */0,
-                                                /* String_literal */Block.__(11, [
+                                            --[ String ]--Block.__(2, [
+                                                --[ No_padding ]--0,
+                                                --[ String_literal ]--Block.__(11, [
                                                     "' might be unmatched",
-                                                    /* End_of_format */0
+                                                    --[ End_of_format ]--0
                                                   ])
                                               ])
                                           ])
                                       ])
                                   ]),
                                 "Syntax error: '%s' expected, the highlighted '%s' might be unmatched"
-                              ]), closing, opening), /* Format */[
-                        /* String_literal */Block.__(11, [
+                              ]), closing, opening), --[ Format ]--[
+                        --[ String_literal ]--Block.__(11, [
                             "Syntax error: '",
-                            /* String */Block.__(2, [
-                                /* No_padding */0,
-                                /* String_literal */Block.__(11, [
+                            --[ String ]--Block.__(2, [
+                                --[ No_padding ]--0,
+                                --[ String_literal ]--Block.__(11, [
                                     "' expected",
-                                    /* End_of_format */0
+                                    --[ End_of_format ]--0
                                   ])
                               ])
                           ]),
                         "Syntax error: '%s' expected"
                       ]), closing);
-    case /* Expecting */1 :
-        return Curry._1(errorf(param[0], undefined, undefined, /* Format */[
-                        /* String_literal */Block.__(11, [
+    case --[ Expecting ]--1 :
+        return Curry._1(errorf(param[0], undefined, undefined, --[ Format ]--[
+                        --[ String_literal ]--Block.__(11, [
                             "Syntax error: ",
-                            /* String */Block.__(2, [
-                                /* No_padding */0,
-                                /* String_literal */Block.__(11, [
+                            --[ String ]--Block.__(2, [
+                                --[ No_padding ]--0,
+                                --[ String_literal ]--Block.__(11, [
                                     " expected.",
-                                    /* End_of_format */0
+                                    --[ End_of_format ]--0
                                   ])
                               ])
                           ]),
                         "Syntax error: %s expected."
                       ]), param[1]);
-    case /* Not_expecting */2 :
-        return Curry._1(errorf(param[0], undefined, undefined, /* Format */[
-                        /* String_literal */Block.__(11, [
+    case --[ Not_expecting ]--2 :
+        return Curry._1(errorf(param[0], undefined, undefined, --[ Format ]--[
+                        --[ String_literal ]--Block.__(11, [
                             "Syntax error: ",
-                            /* String */Block.__(2, [
-                                /* No_padding */0,
-                                /* String_literal */Block.__(11, [
+                            --[ String ]--Block.__(2, [
+                                --[ No_padding ]--0,
+                                --[ String_literal ]--Block.__(11, [
                                     " not expected.",
-                                    /* End_of_format */0
+                                    --[ End_of_format ]--0
                                   ])
                               ])
                           ]),
                         "Syntax error: %s not expected."
                       ]), param[1]);
-    case /* Applicative_path */3 :
-        return errorf(param[0], undefined, undefined, /* Format */[
-                    /* String_literal */Block.__(11, [
+    case --[ Applicative_path ]--3 :
+        return errorf(param[0], undefined, undefined, --[ Format ]--[
+                    --[ String_literal ]--Block.__(11, [
                         "Syntax error: applicative paths of the form F(X).t are not supported when the option -no-app-func is set.",
-                        /* End_of_format */0
+                        --[ End_of_format ]--0
                       ]),
                     "Syntax error: applicative paths of the form F(X).t are not supported when the option -no-app-func is set."
                   ]);
-    case /* Variable_in_scope */4 :
+    case --[ Variable_in_scope ]--4 :
         var $$var = param[1];
-        return Curry._2(errorf(param[0], undefined, undefined, /* Format */[
-                        /* String_literal */Block.__(11, [
+        return Curry._2(errorf(param[0], undefined, undefined, --[ Format ]--[
+                        --[ String_literal ]--Block.__(11, [
                             "In this scoped type, variable '",
-                            /* String */Block.__(2, [
-                                /* No_padding */0,
-                                /* String_literal */Block.__(11, [
+                            --[ String ]--Block.__(2, [
+                                --[ No_padding ]--0,
+                                --[ String_literal ]--Block.__(11, [
                                     " is reserved for the local type ",
-                                    /* String */Block.__(2, [
-                                        /* No_padding */0,
-                                        /* Char_literal */Block.__(12, [
-                                            /* "." */46,
-                                            /* End_of_format */0
+                                    --[ String ]--Block.__(2, [
+                                        --[ No_padding ]--0,
+                                        --[ Char_literal ]--Block.__(12, [
+                                            --[ "." ]--46,
+                                            --[ End_of_format ]--0
                                           ])
                                       ])
                                   ])
@@ -3386,21 +3386,21 @@ function prepare_error(param) {
                           ]),
                         "In this scoped type, variable '%s is reserved for the local type %s."
                       ]), $$var, $$var);
-    case /* Other */5 :
-        return errorf(param[0], undefined, undefined, /* Format */[
-                    /* String_literal */Block.__(11, [
+    case --[ Other ]--5 :
+        return errorf(param[0], undefined, undefined, --[ Format ]--[
+                    --[ String_literal ]--Block.__(11, [
                         "Syntax error",
-                        /* End_of_format */0
+                        --[ End_of_format ]--0
                       ]),
                     "Syntax error"
                   ]);
-    case /* Ill_formed_ast */6 :
-        return Curry._1(errorf(param[0], undefined, undefined, /* Format */[
-                        /* String_literal */Block.__(11, [
+    case --[ Ill_formed_ast ]--6 :
+        return Curry._1(errorf(param[0], undefined, undefined, --[ Format ]--[
+                        --[ String_literal ]--Block.__(11, [
                             "broken invariant in parsetree: ",
-                            /* String */Block.__(2, [
-                                /* No_padding */0,
-                                /* End_of_format */0
+                            --[ String ]--Block.__(2, [
+                                --[ No_padding ]--0,
+                                --[ End_of_format ]--0
                               ])
                           ]),
                         "broken invariant in parsetree: %s"
@@ -3410,54 +3410,54 @@ function prepare_error(param) {
 }
 
 register_error_of_exn((function (param) {
-        if (param[0] === $$Error$1) {
+        if (param[0] == $$Error$1) {
           return prepare_error(param[1]);
         }
         
       }));
 
 function mktyp(d) {
-  return mk(symbol_rloc(/* () */0), undefined, d);
+  return mk(symbol_rloc(--[ () ]--0), undefined, d);
 }
 
 function mkpat(d) {
-  return mk$1(symbol_rloc(/* () */0), undefined, d);
+  return mk$1(symbol_rloc(--[ () ]--0), undefined, d);
 }
 
 function mkexp(d) {
-  return Curry._3(Ast_helper_Exp.mk, symbol_rloc(/* () */0), undefined, d);
+  return Curry._3(Ast_helper_Exp.mk, symbol_rloc(--[ () ]--0), undefined, d);
 }
 
 function mkmty(d) {
-  return mk$3(symbol_rloc(/* () */0), undefined, d);
+  return mk$3(symbol_rloc(--[ () ]--0), undefined, d);
 }
 
 function mksig(d) {
-  return mk$5(symbol_rloc(/* () */0), d);
+  return mk$5(symbol_rloc(--[ () ]--0), d);
 }
 
 function mkmod(d) {
-  return mk$4(symbol_rloc(/* () */0), undefined, d);
+  return mk$4(symbol_rloc(--[ () ]--0), undefined, d);
 }
 
 function mkstr(d) {
-  return mk$6(symbol_rloc(/* () */0), d);
+  return mk$6(symbol_rloc(--[ () ]--0), d);
 }
 
 function mkclass(d) {
-  return mk$7(symbol_rloc(/* () */0), undefined, d);
+  return mk$7(symbol_rloc(--[ () ]--0), undefined, d);
 }
 
 function mkcty(d) {
-  return mk$8(symbol_rloc(/* () */0), undefined, d);
+  return mk$8(symbol_rloc(--[ () ]--0), undefined, d);
 }
 
 function mkctf(attrs, docs, d) {
-  return Curry._4(Ast_helper_Ctf.mk, symbol_rloc(/* () */0), attrs, docs, d);
+  return Curry._4(Ast_helper_Ctf.mk, symbol_rloc(--[ () ]--0), attrs, docs, d);
 }
 
 function mkcf(attrs, docs, d) {
-  return Curry._4(Ast_helper_Cf.mk, symbol_rloc(/* () */0), attrs, docs, d);
+  return Curry._4(Ast_helper_Cf.mk, symbol_rloc(--[ () ]--0), attrs, docs, d);
 }
 
 function mkoption(d) {
@@ -3469,17 +3469,17 @@ function mkoption(d) {
     loc_end: loc_loc_end,
     loc_ghost: true
   };
-  return mk(loc, undefined, /* Ptyp_constr */Block.__(3, [
+  return mk(loc, undefined, --[ Ptyp_constr ]--Block.__(3, [
                 {
-                  txt: /* Ldot */Block.__(1, [
-                      /* Lident */Block.__(0, ["*predef*"]),
+                  txt: --[ Ldot ]--Block.__(1, [
+                      --[ Lident ]--Block.__(0, ["*predef*"]),
                       "option"
                     ]),
                   loc: loc
                 },
-                /* :: */[
+                --[ :: ]--[
                   d,
-                  /* [] */0
+                  --[ [] ]--0
                 ]
               ]));
 }
@@ -3487,7 +3487,7 @@ function mkoption(d) {
 function reloc_pat(x) {
   return {
           ppat_desc: x.ppat_desc,
-          ppat_loc: symbol_rloc(/* () */0),
+          ppat_loc: symbol_rloc(--[ () ]--0),
           ppat_attributes: x.ppat_attributes
         };
 }
@@ -3495,59 +3495,59 @@ function reloc_pat(x) {
 function reloc_exp(x) {
   return {
           pexp_desc: x.pexp_desc,
-          pexp_loc: symbol_rloc(/* () */0),
+          pexp_loc: symbol_rloc(--[ () ]--0),
           pexp_attributes: x.pexp_attributes
         };
 }
 
 function mkoperator(name, pos) {
   var loc = rhs_loc(pos);
-  return Curry._3(Ast_helper_Exp.mk, loc, undefined, /* Pexp_ident */Block.__(0, [{
-                  txt: /* Lident */Block.__(0, [name]),
+  return Curry._3(Ast_helper_Exp.mk, loc, undefined, --[ Pexp_ident ]--Block.__(0, [{
+                  txt: --[ Lident ]--Block.__(0, [name]),
                   loc: loc
                 }]));
 }
 
 function mkpatvar(name, pos) {
-  return mk$1(rhs_loc(pos), undefined, /* Ppat_var */Block.__(0, [{
+  return mk$1(rhs_loc(pos), undefined, --[ Ppat_var ]--Block.__(0, [{
                   txt: name,
                   loc: rhs_loc(pos)
                 }]));
 }
 
 function ghexp(d) {
-  return Curry._3(Ast_helper_Exp.mk, symbol_gloc(/* () */0), undefined, d);
+  return Curry._3(Ast_helper_Exp.mk, symbol_gloc(--[ () ]--0), undefined, d);
 }
 
 function ghpat(d) {
-  return mk$1(symbol_gloc(/* () */0), undefined, d);
+  return mk$1(symbol_gloc(--[ () ]--0), undefined, d);
 }
 
 function ghtyp(d) {
-  return mk(symbol_gloc(/* () */0), undefined, d);
+  return mk(symbol_gloc(--[ () ]--0), undefined, d);
 }
 
 function mkinfix(arg1, name, arg2) {
-  return mkexp(/* Pexp_apply */Block.__(5, [
+  return mkexp(--[ Pexp_apply ]--Block.__(5, [
                 mkoperator(name, 2),
-                /* :: */[
-                  /* tuple */[
+                --[ :: ]--[
+                  --[ tuple ]--[
                     "",
                     arg1
                   ],
-                  /* :: */[
-                    /* tuple */[
+                  --[ :: ]--[
+                    --[ tuple ]--[
                       "",
                       arg2
                     ],
-                    /* [] */0
+                    --[ [] ]--0
                   ]
                 ]
               ]));
 }
 
 function neg_float_string(f) {
-  if (f.length !== 0 && Caml_string.get(f, 0) === /* "-" */45) {
+  if (f.length ~= 0 and Caml_string.get(f, 0) == --[ "-" ]--45) {
     return $$String.sub(f, 1, f.length - 1 | 0);
   } else {
     return "-" + f;
@@ -3555,9 +3555,9 @@ function neg_float_string(f) {
 }
 
 function mkexp_cons(consloc, args, loc) {
-  return Curry._3(Ast_helper_Exp.mk, loc, undefined, /* Pexp_construct */Block.__(9, [
+  return Curry._3(Ast_helper_Exp.mk, loc, undefined, --[ Pexp_construct ]--Block.__(9, [
                 {
-                  txt: /* Lident */Block.__(0, ["::"]),
+                  txt: --[ Lident ]--Block.__(0, ["::"]),
                   loc: consloc
                 },
                 args
@@ -3565,9 +3565,9 @@ function mkexp_cons(consloc, args, loc) {
 }
 
 function mkpat_cons(consloc, args, loc) {
-  return mk$1(loc, undefined, /* Ppat_construct */Block.__(5, [
+  return mk$1(loc, undefined, --[ Ppat_construct ]--Block.__(5, [
                 {
-                  txt: /* Lident */Block.__(0, ["::"]),
+                  txt: --[ Lident ]--Block.__(0, ["::"]),
                   loc: consloc
                 },
                 args
@@ -3585,11 +3585,11 @@ function mktailexp(nilloc, param) {
       loc_end: loc_loc_end,
       loc_ghost: true
     };
-    var arg = Curry._3(Ast_helper_Exp.mk, loc, undefined, /* Pexp_tuple */Block.__(8, [/* :: */[
+    var arg = Curry._3(Ast_helper_Exp.mk, loc, undefined, --[ Pexp_tuple ]--Block.__(8, [--[ :: ]--[
               e1,
-              /* :: */[
+              --[ :: ]--[
                 exp_el,
-                /* [] */0
+                --[ [] ]--0
               ]
             ]]));
     return mkexp_cons({
@@ -3605,12 +3605,12 @@ function mktailexp(nilloc, param) {
       loc_end: loc_loc_end$1,
       loc_ghost: true
     };
-    var nil_txt = /* Lident */Block.__(0, ["[]"]);
+    var nil_txt = --[ Lident ]--Block.__(0, ["[]"]);
     var nil = {
       txt: nil_txt,
       loc: loc$1
     };
-    return Curry._3(Ast_helper_Exp.mk, loc$1, undefined, /* Pexp_construct */Block.__(9, [
+    return Curry._3(Ast_helper_Exp.mk, loc$1, undefined, --[ Pexp_construct ]--Block.__(9, [
                   nil,
                   undefined
                 ]));
@@ -3628,11 +3628,11 @@ function mktailpat(nilloc, param) {
       loc_end: loc_loc_end,
       loc_ghost: true
     };
-    var arg = mk$1(loc, undefined, /* Ppat_tuple */Block.__(4, [/* :: */[
+    var arg = mk$1(loc, undefined, --[ Ppat_tuple ]--Block.__(4, [--[ :: ]--[
               p1,
-              /* :: */[
+              --[ :: ]--[
                 pat_pl,
-                /* [] */0
+                --[ [] ]--0
               ]
             ]]));
     return mkpat_cons({
@@ -3648,12 +3648,12 @@ function mktailpat(nilloc, param) {
       loc_end: loc_loc_end$1,
       loc_ghost: true
     };
-    var nil_txt = /* Lident */Block.__(0, ["[]"]);
+    var nil_txt = --[ Lident ]--Block.__(0, ["[]"]);
     var nil = {
       txt: nil_txt,
       loc: loc$1
     };
-    return mk$1(loc$1, undefined, /* Ppat_construct */Block.__(5, [
+    return mk$1(loc$1, undefined, --[ Ppat_construct ]--Block.__(5, [
                   nil,
                   undefined
                 ]));
@@ -3662,7 +3662,7 @@ function mktailpat(nilloc, param) {
 
 function mkstrexp(e, attrs) {
   return {
-          pstr_desc: /* Pstr_eval */Block.__(0, [
+          pstr_desc: --[ Pstr_eval ]--Block.__(0, [
               e,
               attrs
             ]),
@@ -3673,21 +3673,21 @@ function mkstrexp(e, attrs) {
 function mkexp_constraint(e, param) {
   var t2 = param[1];
   var t1 = param[0];
-  if (t1 !== undefined) {
-    if (t2 !== undefined) {
-      return ghexp(/* Pexp_coerce */Block.__(20, [
+  if (t1 ~= undefined) {
+    if (t2 ~= undefined) {
+      return ghexp(--[ Pexp_coerce ]--Block.__(20, [
                     e,
                     t1,
                     t2
                   ]));
     } else {
-      return ghexp(/* Pexp_constraint */Block.__(19, [
+      return ghexp(--[ Pexp_constraint ]--Block.__(19, [
                     e,
                     t1
                   ]));
     }
-  } else if (t2 !== undefined) {
-    return ghexp(/* Pexp_coerce */Block.__(20, [
+  } else if (t2 ~= undefined) {
+    return ghexp(--[ Pexp_coerce ]--Block.__(20, [
                   e,
                   t1,
                   t2
@@ -3695,7 +3695,7 @@ function mkexp_constraint(e, param) {
   } else {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "parser.mly",
             153,
             18
@@ -3706,18 +3706,18 @@ function mkexp_constraint(e, param) {
 
 function array_function(str, name) {
   return {
-          txt: /* Ldot */Block.__(1, [
-              /* Lident */Block.__(0, [str]),
+          txt: --[ Ldot ]--Block.__(1, [
+              --[ Lident ]--Block.__(0, [str]),
               fast.contents ? "unsafe_" + name : name
             ]),
-          loc: symbol_gloc(/* () */0)
+          loc: symbol_gloc(--[ () ]--0)
         };
 }
 
 function unclosed(opening_name, opening_num, closing_name, closing_num) {
   throw [
         $$Error$1,
-        /* Unclosed */Block.__(0, [
+        --[ Unclosed ]--Block.__(0, [
             rhs_loc(opening_num),
             opening_name,
             rhs_loc(closing_num),
@@ -3729,7 +3729,7 @@ function unclosed(opening_name, opening_num, closing_name, closing_num) {
 function expecting(pos, nonterm) {
   throw [
         $$Error$1,
-        /* Expecting */Block.__(1, [
+        --[ Expecting ]--Block.__(1, [
             rhs_loc(pos),
             nonterm
           ])
@@ -3739,7 +3739,7 @@ function expecting(pos, nonterm) {
 function not_expecting(pos, nonterm) {
   throw [
         $$Error$1,
-        /* Not_expecting */Block.__(2, [
+        --[ Not_expecting ]--Block.__(2, [
             rhs_loc(pos),
             nonterm
           ])
@@ -3748,32 +3748,32 @@ function not_expecting(pos, nonterm) {
 
 function bigarray_function(str, name) {
   return {
-          txt: /* Ldot */Block.__(1, [
-              /* Ldot */Block.__(1, [
-                  /* Lident */Block.__(0, ["Bigarray"]),
+          txt: --[ Ldot ]--Block.__(1, [
+              --[ Ldot ]--Block.__(1, [
+                  --[ Lident ]--Block.__(0, ["Bigarray"]),
                   str
                 ]),
               name
             ]),
-          loc: symbol_gloc(/* () */0)
+          loc: symbol_gloc(--[ () ]--0)
         };
 }
 
 function bigarray_untuplify(exp) {
   var match = exp.pexp_desc;
-  if (match.tag === /* Pexp_tuple */8) {
+  if (match.tag == --[ Pexp_tuple ]--8) {
     return match[0];
   } else {
-    return /* :: */[
+    return --[ :: ]--[
             exp,
-            /* [] */0
+            --[ [] ]--0
           ];
   }
 }
 
 function exp_of_label(lbl, pos) {
-  var rhs = /* Lident */Block.__(0, [last(lbl)]);
-  return mkexp(/* Pexp_ident */Block.__(0, [{
+  var rhs = --[ Lident ]--Block.__(0, [last(lbl)]);
+  return mkexp(--[ Pexp_ident ]--Block.__(0, [{
                   txt: rhs,
                   loc: rhs_loc(pos)
                 }]));
@@ -3781,7 +3781,7 @@ function exp_of_label(lbl, pos) {
 
 function pat_of_label(lbl, pos) {
   var rhs = last(lbl);
-  return mkpat(/* Ppat_var */Block.__(0, [{
+  return mkpat(--[ Ppat_var ]--Block.__(0, [{
                   txt: rhs,
                   loc: rhs_loc(pos)
                 }]));
@@ -3791,7 +3791,7 @@ function check_variable(vl, loc, v) {
   if (List.mem(v, vl)) {
     throw [
           $$Error$1,
-          /* Variable_in_scope */Block.__(4, [
+          --[ Variable_in_scope ]--Block.__(4, [
               loc,
               v
             ])
@@ -3805,59 +3805,59 @@ function varify_constructors(var_names, t) {
   var loop = function (t) {
     var match = t.ptyp_desc;
     var desc;
-    if (typeof match === "number") {
-      desc = /* Ptyp_any */0;
+    if (typeof match == "number") {
+      desc = --[ Ptyp_any ]--0;
     } else {
       switch (match.tag | 0) {
-        case /* Ptyp_var */0 :
+        case --[ Ptyp_var ]--0 :
             var x = match[0];
             check_variable(var_names, t.ptyp_loc, x);
-            desc = /* Ptyp_var */Block.__(0, [x]);
+            desc = --[ Ptyp_var ]--Block.__(0, [x]);
             break;
-        case /* Ptyp_arrow */1 :
-            desc = /* Ptyp_arrow */Block.__(1, [
+        case --[ Ptyp_arrow ]--1 :
+            desc = --[ Ptyp_arrow ]--Block.__(1, [
                 match[0],
                 loop(match[1]),
                 loop(match[2])
               ]);
             break;
-        case /* Ptyp_tuple */2 :
-            desc = /* Ptyp_tuple */Block.__(2, [List.map(loop, match[0])]);
+        case --[ Ptyp_tuple ]--2 :
+            desc = --[ Ptyp_tuple ]--Block.__(2, [List.map(loop, match[0])]);
             break;
-        case /* Ptyp_constr */3 :
+        case --[ Ptyp_constr ]--3 :
             var longident = match[0];
             var match$1 = longident.txt;
             var exit = 0;
             switch (match$1.tag | 0) {
-              case /* Lident */0 :
+              case --[ Lident ]--0 :
                   if (match[1]) {
                     exit = 1;
                   } else {
                     var s = match$1[0];
                     if (List.mem(s, var_names)) {
-                      desc = /* Ptyp_var */Block.__(0, [s]);
+                      desc = --[ Ptyp_var ]--Block.__(0, [s]);
                     } else {
                       exit = 1;
                     }
                   }
                   break;
-              case /* Ldot */1 :
-              case /* Lapply */2 :
+              case --[ Ldot ]--1 :
+              case --[ Lapply ]--2 :
                   exit = 1;
                   break;
               
             }
-            if (exit === 1) {
-              desc = /* Ptyp_constr */Block.__(3, [
+            if (exit == 1) {
+              desc = --[ Ptyp_constr ]--Block.__(3, [
                   longident,
                   List.map(loop, match[1])
                 ]);
             }
             break;
-        case /* Ptyp_object */4 :
-            desc = /* Ptyp_object */Block.__(4, [
+        case --[ Ptyp_object ]--4 :
+            desc = --[ Ptyp_object ]--Block.__(4, [
                 List.map((function (param) {
-                        return /* tuple */[
+                        return --[ tuple ]--[
                                 param[0],
                                 param[1],
                                 loop(param[2])
@@ -3866,53 +3866,53 @@ function varify_constructors(var_names, t) {
                 match[1]
               ]);
             break;
-        case /* Ptyp_class */5 :
-            desc = /* Ptyp_class */Block.__(5, [
+        case --[ Ptyp_class ]--5 :
+            desc = --[ Ptyp_class ]--Block.__(5, [
                 match[0],
                 List.map(loop, match[1])
               ]);
             break;
-        case /* Ptyp_alias */6 :
+        case --[ Ptyp_alias ]--6 :
             var string = match[1];
             check_variable(var_names, t.ptyp_loc, string);
-            desc = /* Ptyp_alias */Block.__(6, [
+            desc = --[ Ptyp_alias ]--Block.__(6, [
                 loop(match[0]),
                 string
               ]);
             break;
-        case /* Ptyp_variant */7 :
-            desc = /* Ptyp_variant */Block.__(7, [
+        case --[ Ptyp_variant ]--7 :
+            desc = --[ Ptyp_variant ]--Block.__(7, [
                 List.map(loop_row_field, match[0]),
                 match[1],
                 match[2]
               ]);
             break;
-        case /* Ptyp_poly */8 :
+        case --[ Ptyp_poly ]--8 :
             var string_lst = match[0];
             var partial_arg = t.ptyp_loc;
             List.iter((function (param) {
                     return check_variable(var_names, partial_arg, param);
                   }), string_lst);
-            desc = /* Ptyp_poly */Block.__(8, [
+            desc = --[ Ptyp_poly ]--Block.__(8, [
                 string_lst,
                 loop(match[1])
               ]);
             break;
-        case /* Ptyp_package */9 :
+        case --[ Ptyp_package ]--9 :
             var match$2 = match[0];
-            desc = /* Ptyp_package */Block.__(9, [/* tuple */[
+            desc = --[ Ptyp_package ]--Block.__(9, [--[ tuple ]--[
                   match$2[0],
                   List.map((function (param) {
-                          return /* tuple */[
+                          return --[ tuple ]--[
                                   param[0],
                                   loop(param[1])
                                 ];
                         }), match$2[1])
                 ]]);
             break;
-        case /* Ptyp_extension */10 :
+        case --[ Ptyp_extension ]--10 :
             var match$3 = match[0];
-            desc = /* Ptyp_extension */Block.__(10, [/* tuple */[
+            desc = --[ Ptyp_extension ]--Block.__(10, [--[ tuple ]--[
                   match$3[0],
                   match$3[1]
                 ]]);
@@ -3928,9 +3928,9 @@ function varify_constructors(var_names, t) {
   };
   var loop_row_field = function (param) {
     if (param.tag) {
-      return /* Rinherit */Block.__(1, [loop(param[0])]);
+      return --[ Rinherit ]--Block.__(1, [loop(param[0])]);
     } else {
-      return /* Rtag */Block.__(0, [
+      return --[ Rtag ]--Block.__(0, [
                 param[0],
                 param[1],
                 param[2],
@@ -3942,19 +3942,19 @@ function varify_constructors(var_names, t) {
 }
 
 function wrap_type_annotation(newtypes, core_type, body) {
-  var exp = mkexp(/* Pexp_constraint */Block.__(19, [
+  var exp = mkexp(--[ Pexp_constraint ]--Block.__(19, [
           body,
           core_type
         ]));
   var exp$1 = List.fold_right((function (newtype, exp) {
-          return mkexp(/* Pexp_newtype */Block.__(30, [
+          return mkexp(--[ Pexp_newtype ]--Block.__(30, [
                         newtype,
                         exp
                       ]));
         }), newtypes, exp);
-  return /* tuple */[
+  return --[ tuple ]--[
           exp$1,
-          ghtyp(/* Ptyp_poly */Block.__(8, [
+          ghtyp(--[ Ptyp_poly ]--Block.__(8, [
                   newtypes,
                   varify_constructors(newtypes, core_type)
                 ]))
@@ -3971,12 +3971,12 @@ function wrap_exp_attrs(body, param) {
     pexp_loc: body_pexp_loc,
     pexp_attributes: body_pexp_attributes
   };
-  if (ext !== undefined) {
-    return ghexp(/* Pexp_extension */Block.__(33, [/* tuple */[
+  if (ext ~= undefined) {
+    return ghexp(--[ Pexp_extension ]--Block.__(33, [--[ tuple ]--[
                     ext,
-                    /* PStr */Block.__(0, [/* :: */[
-                          mkstrexp(body$1, /* [] */0),
-                          /* [] */0
+                    --[ PStr ]--Block.__(0, [--[ :: ]--[
+                          mkstrexp(body$1, --[ [] ]--0),
+                          --[ [] ]--0
                         ]])
                   ]]));
   } else {
@@ -3985,9 +3985,9 @@ function wrap_exp_attrs(body, param) {
 }
 
 function text_def(pos) {
-  return /* :: */[
-          /* Ptop_def */Block.__(0, [text$1(get_text(Parsing.rhs_start_pos(pos)))]),
-          /* [] */0
+  return --[ :: ]--[
+          --[ Ptop_def ]--Block.__(0, [text$1(get_text(Parsing.rhs_start_pos(pos)))]),
+          --[ [] ]--0
         ];
 }
 
@@ -4014,10 +4014,10 @@ function add_nonrec(rf, attrs, pos) {
       txt: "nonrec",
       loc: name_loc
     };
-    return /* :: */[
-            /* tuple */[
+    return --[ :: ]--[
+            --[ tuple ]--[
               name,
-              /* PStr */Block.__(0, [/* [] */0])
+              --[ PStr ]--Block.__(0, [--[ [] ]--0])
             ],
             attrs
           ];
@@ -4029,9 +4029,9 @@ function mklb(param, attrs) {
           lb_pattern: param[0],
           lb_expression: param[1],
           lb_attributes: attrs,
-          lb_docs: symbol_docs_lazy(/* () */0),
-          lb_text: symbol_text_lazy(/* () */0),
-          lb_loc: symbol_rloc(/* () */0)
+          lb_docs: symbol_docs_lazy(--[ () ]--0),
+          lb_text: symbol_text_lazy(--[ () ]--0),
+          lb_loc: symbol_rloc(--[ () ]--0)
         };
 }
 
@@ -4181,7 +4181,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* Ptop_def */Block.__(0, [extra_text(text$1, 1, _1)]);
+      return --[ Ptop_def ]--Block.__(0, [extra_text(text$1, 1, _1)]);
     }),
   (function (__caml_parser_env) {
       return Parsing.peek_val(__caml_parser_env, 1);
@@ -4192,21 +4192,21 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), /* :: */[
+      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[ :: ]--[
                   mkstrexp(_1, _2),
-                  /* [] */0
+                  --[ [] ]--0
                 ]);
     }),
   (function (__caml_parser_env) {
       return Parsing.peek_val(__caml_parser_env, 0);
     }),
   (function (__caml_parser_env) {
-      return /* [] */0;
+      return --[ [] ]--0;
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), /* :: */[
+      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[ :: ]--[
                   _1,
                   _2
                 ]);
@@ -4216,9 +4216,9 @@ var yyact = [
       var pos = 1;
       var items = _1;
       return extra_text((function (txt) {
-                    return /* :: */[
-                            /* Ptop_def */Block.__(0, [text$1(txt)]),
-                            /* [] */0
+                    return --[ :: ]--[
+                            --[ Ptop_def ]--Block.__(0, [text$1(txt)]),
+                            --[ [] ]--0
                           ];
                   }), pos, items);
     }),
@@ -4229,16 +4229,16 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text_def(1), /* :: */[
-                  /* Ptop_def */Block.__(0, [/* :: */[
+      return Pervasives.$at(text_def(1), --[ :: ]--[
+                  --[ Ptop_def ]--Block.__(0, [--[ :: ]--[
                         mkstrexp(_1, _2),
-                        /* [] */0
+                        --[ [] ]--0
                       ]]),
                   _3
                 ]);
     }),
   (function (__caml_parser_env) {
-      return /* [] */0;
+      return --[ [] ]--0;
     }),
   (function (__caml_parser_env) {
       return text_def(1);
@@ -4248,10 +4248,10 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(2, 3);
-      return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), /* :: */[
-                      /* Ptop_def */Block.__(0, [/* :: */[
+      return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), --[ :: ]--[
+                      --[ Ptop_def ]--Block.__(0, [--[ :: ]--[
                             mkstrexp(_2, _3),
-                            /* [] */0
+                            --[ [] ]--0
                           ]]),
                       _4
                     ]));
@@ -4259,10 +4259,10 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), /* :: */[
-                      /* Ptop_def */Block.__(0, [/* :: */[
+      return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), --[ :: ]--[
+                      --[ Ptop_def ]--Block.__(0, [--[ :: ]--[
                             _2,
-                            /* [] */0
+                            --[ [] ]--0
                           ]]),
                       _3
                     ]));
@@ -4271,7 +4271,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(2, 3);
-      return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), /* :: */[
+      return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), --[ :: ]--[
                       _2,
                       _3
                     ]));
@@ -4279,10 +4279,10 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text_def(1), /* :: */[
-                  /* Ptop_def */Block.__(0, [/* :: */[
+      return Pervasives.$at(text_def(1), --[ :: ]--[
+                  --[ Ptop_def ]--Block.__(0, [--[ :: ]--[
                         _1,
-                        /* [] */0
+                        --[ [] ]--0
                       ]]),
                   _2
                 ]);
@@ -4291,7 +4291,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(1, 1);
-      return Pervasives.$at(text_def(1), /* :: */[
+      return Pervasives.$at(text_def(1), --[ :: ]--[
                   _1,
                   _2
                 ]);
@@ -4306,7 +4306,7 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 1);
     }),
   (function (__caml_parser_env) {
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: "*",
                 loc: rhs_loc(2)
@@ -4317,7 +4317,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _2,
                 loc: rhs_loc(2)
@@ -4334,28 +4334,28 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmod(/* Pmod_ident */Block.__(0, [{
+      return mkmod(--[ Pmod_ident ]--Block.__(0, [{
                       txt: _1,
                       loc: rhs_loc(1)
                     }]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(/* Pmod_structure */Block.__(1, [extra_text(text$1, 2, _2)]));
+      return mkmod(--[ Pmod_structure ]--Block.__(1, [extra_text(text$1, 2, _2)]));
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 1);
@@ -4365,7 +4365,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
       return List.fold_left((function (acc, param) {
-                    return mkmod(/* Pmod_functor */Block.__(2, [
+                    return mkmod(--[ Pmod_functor ]--Block.__(2, [
                                   param[0],
                                   param[1],
                                   acc
@@ -4375,16 +4375,16 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 3);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(/* Pmod_apply */Block.__(3, [
+      return mkmod(--[ Pmod_apply ]--Block.__(3, [
                     _1,
                     _3
                   ]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      return mkmod(/* Pmod_apply */Block.__(3, [
+      return mkmod(--[ Pmod_apply ]--Block.__(3, [
                     _1,
-                    mkmod(/* Pmod_structure */Block.__(1, [/* [] */0]))
+                    mkmod(--[ Pmod_structure ]--Block.__(1, [--[ [] ]--0]))
                   ]));
     }),
   (function (__caml_parser_env) {
@@ -4395,7 +4395,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(/* Pmod_constraint */Block.__(4, [
+      return mkmod(--[ Pmod_constraint ]--Block.__(4, [
                     _2,
                     _4
                   ]));
@@ -4414,33 +4414,33 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(/* Pmod_unpack */Block.__(5, [_3]));
+      return mkmod(--[ Pmod_unpack ]--Block.__(5, [_3]));
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 3);
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(/* Pmod_unpack */Block.__(5, [ghexp(/* Pexp_constraint */Block.__(19, [
+      return mkmod(--[ Pmod_unpack ]--Block.__(5, [ghexp(--[ Pexp_constraint ]--Block.__(19, [
                             _3,
-                            ghtyp(/* Ptyp_package */Block.__(9, [_5]))
+                            ghtyp(--[ Ptyp_package ]--Block.__(9, [_5]))
                           ]))]));
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 5);
       var _5 = Parsing.peek_val(__caml_parser_env, 3);
       var _7 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(/* Pmod_unpack */Block.__(5, [ghexp(/* Pexp_coerce */Block.__(20, [
+      return mkmod(--[ Pmod_unpack ]--Block.__(5, [ghexp(--[ Pexp_coerce ]--Block.__(20, [
                             _3,
-                            ghtyp(/* Ptyp_package */Block.__(9, [_5])),
-                            ghtyp(/* Ptyp_package */Block.__(9, [_7]))
+                            ghtyp(--[ Ptyp_package ]--Block.__(9, [_5])),
+                            ghtyp(--[ Ptyp_package ]--Block.__(9, [_7]))
                           ]))]));
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 3);
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(/* Pmod_unpack */Block.__(5, [ghexp(/* Pexp_coerce */Block.__(20, [
+      return mkmod(--[ Pmod_unpack ]--Block.__(5, [ghexp(--[ Pexp_coerce ]--Block.__(20, [
                             _3,
                             undefined,
-                            ghtyp(/* Ptyp_package */Block.__(9, [_5]))
+                            ghtyp(--[ Ptyp_package ]--Block.__(9, [_5]))
                           ]))]));
     }),
   (function (__caml_parser_env) {
@@ -4462,14 +4462,14 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmod(/* Pmod_extension */Block.__(6, [_1]));
+      return mkmod(--[ Pmod_extension ]--Block.__(6, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(1, 2);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), /* :: */[
+      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[ :: ]--[
                   mkstrexp(_1, _2),
                   _3
                 ]);
@@ -4478,7 +4478,7 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     }),
   (function (__caml_parser_env) {
-      return /* [] */0;
+      return --[ [] ]--0;
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
@@ -4487,7 +4487,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), /* :: */[
+      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[ :: ]--[
                   _1,
                   _2
                 ]);
@@ -4499,12 +4499,12 @@ var yyact = [
       var exit = 0;
       if (bindings) {
         var lb = bindings[0];
-        if (typeof lb.lb_pattern.ppat_desc === "number" && !bindings[1]) {
-          var exp = wrap_exp_attrs(lb.lb_expression, /* tuple */[
+        if (typeof lb.lb_pattern.ppat_desc == "number" and !bindings[1]) {
+          var exp = wrap_exp_attrs(lb.lb_expression, --[ tuple ]--[
                 undefined,
                 lbs.lbs_attributes
               ]);
-          str = mkstr(/* Pstr_eval */Block.__(0, [
+          str = mkstr(--[ Pstr_eval ]--Block.__(0, [
                   exp,
                   lb.lb_attributes
                 ]));
@@ -4514,11 +4514,11 @@ var yyact = [
       } else {
         exit = 1;
       }
-      if (exit === 1) {
-        if (lbs.lbs_attributes !== /* [] */0) {
+      if (exit == 1) {
+        if (lbs.lbs_attributes ~= --[ [] ]--0) {
           throw [
                 $$Error$1,
-                /* Not_expecting */Block.__(2, [
+                --[ Not_expecting ]--Block.__(2, [
                     lbs.lbs_loc,
                     "attributes"
                   ])
@@ -4527,89 +4527,89 @@ var yyact = [
         var bindings$1 = List.map((function (lb) {
                 return mk$17(lb.lb_loc, lb.lb_attributes, CamlinternalLazy.force(lb.lb_docs), CamlinternalLazy.force(lb.lb_text), lb.lb_pattern, lb.lb_expression);
               }), bindings);
-        str = mkstr(/* Pstr_value */Block.__(1, [
+        str = mkstr(--[ Pstr_value ]--Block.__(1, [
                 lbs.lbs_rec,
                 List.rev(bindings$1)
               ]));
       }
       var match = lbs.lbs_extension;
-      if (match !== undefined) {
-        var d = /* Pstr_extension */Block.__(14, [
-            /* tuple */[
+      if (match ~= undefined) {
+        var d = --[ Pstr_extension ]--Block.__(14, [
+            --[ tuple ]--[
               match,
-              /* PStr */Block.__(0, [/* :: */[
+              --[ PStr ]--Block.__(0, [--[ :: ]--[
                     str,
-                    /* [] */0
+                    --[ [] ]--0
                   ]])
             ],
-            /* [] */0
+            --[ [] ]--0
           ]);
-        return mk$6(symbol_gloc(/* () */0), d);
+        return mk$6(symbol_gloc(--[ () ]--0), d);
       } else {
         return str;
       }
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(/* Pstr_primitive */Block.__(2, [_1]));
+      return mkstr(--[ Pstr_primitive ]--Block.__(2, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(/* Pstr_type */Block.__(3, [List.rev(_1)]));
+      return mkstr(--[ Pstr_type ]--Block.__(3, [List.rev(_1)]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(/* Pstr_typext */Block.__(4, [_1]));
+      return mkstr(--[ Pstr_typext ]--Block.__(4, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(/* Pstr_exception */Block.__(5, [_1]));
+      return mkstr(--[ Pstr_exception ]--Block.__(5, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(/* Pstr_module */Block.__(6, [_1]));
+      return mkstr(--[ Pstr_module ]--Block.__(6, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(/* Pstr_recmodule */Block.__(7, [List.rev(_1)]));
+      return mkstr(--[ Pstr_recmodule ]--Block.__(7, [List.rev(_1)]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(/* Pstr_modtype */Block.__(8, [_1]));
+      return mkstr(--[ Pstr_modtype ]--Block.__(8, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(/* Pstr_open */Block.__(9, [_1]));
+      return mkstr(--[ Pstr_open ]--Block.__(9, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(/* Pstr_class */Block.__(10, [List.rev(_1)]));
+      return mkstr(--[ Pstr_class ]--Block.__(10, [List.rev(_1)]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(/* Pstr_class_type */Block.__(11, [List.rev(_1)]));
+      return mkstr(--[ Pstr_class_type ]--Block.__(11, [List.rev(_1)]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(/* Pstr_include */Block.__(12, [_1]));
+      return mkstr(--[ Pstr_include ]--Block.__(12, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkstr(/* Pstr_extension */Block.__(14, [
+      return mkstr(--[ Pstr_extension ]--Block.__(14, [
                     _1,
-                    add_docs_attrs(symbol_docs(/* () */0), _2)
+                    add_docs_attrs(symbol_docs(--[ () ]--0), _2)
                   ]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      mark_symbol_docs(/* () */0);
-      return mkstr(/* Pstr_attribute */Block.__(13, [_1]));
+      mark_symbol_docs(--[ () ]--0);
+      return mkstr(--[ Pstr_attribute ]--Block.__(13, [_1]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$16(symbol_rloc(/* () */0), _3, symbol_docs(/* () */0), _2);
+      return mk$16(symbol_rloc(--[ () ]--0), _3, symbol_docs(--[ () ]--0), _2);
     }),
   (function (__caml_parser_env) {
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -4617,7 +4617,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmod(/* Pmod_constraint */Block.__(4, [
+      return mkmod(--[ Pmod_constraint ]--Block.__(4, [
                     _4,
                     _2
                   ]));
@@ -4625,7 +4625,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmod(/* Pmod_functor */Block.__(2, [
+      return mkmod(--[ Pmod_functor ]--Block.__(2, [
                     _1[0],
                     _1[1],
                     _2
@@ -4635,22 +4635,22 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$14(symbol_rloc(/* () */0), _4, symbol_docs(/* () */0), undefined, {
+      return mk$14(symbol_rloc(--[ () ]--0), _4, symbol_docs(--[ () ]--0), undefined, {
                   txt: _2,
                   loc: rhs_loc(2)
                 }, _3);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
@@ -4659,7 +4659,7 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$14(symbol_rloc(/* () */0), _5, symbol_docs(/* () */0), undefined, {
+      return mk$14(symbol_rloc(--[ () ]--0), _5, symbol_docs(--[ () ]--0), undefined, {
                   txt: _3,
                   loc: rhs_loc(3)
                 }, _4);
@@ -4668,21 +4668,21 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$14(symbol_rloc(/* () */0), _4, symbol_docs(/* () */0), get_text(Parsing.symbol_start_pos(/* () */0)), {
+      return mk$14(symbol_rloc(--[ () ]--0), _4, symbol_docs(--[ () ]--0), get_text(Parsing.symbol_start_pos(--[ () ]--0)), {
                   txt: _2,
                   loc: rhs_loc(2)
                 }, _3);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmty(/* Pmty_ident */Block.__(0, [{
+      return mkmty(--[ Pmty_ident ]--Block.__(0, [{
                       txt: _1,
                       loc: rhs_loc(1)
                     }]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmty(/* Pmty_signature */Block.__(1, [extra_text(text, 2, _2)]));
+      return mkmty(--[ Pmty_signature ]--Block.__(1, [extra_text(text, 2, _2)]));
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 1);
@@ -4692,7 +4692,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
       return List.fold_left((function (acc, param) {
-                    return mkmty(/* Pmty_functor */Block.__(2, [
+                    return mkmty(--[ Pmty_functor ]--Block.__(2, [
                                   param[0],
                                   param[1],
                                   acc
@@ -4702,14 +4702,14 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmty(/* Pmty_with */Block.__(3, [
+      return mkmty(--[ Pmty_with ]--Block.__(3, [
                     _1,
                     List.rev(_3)
                   ]));
     }),
   (function (__caml_parser_env) {
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmty(/* Pmty_typeof */Block.__(4, [_4]));
+      return mkmty(--[ Pmty_typeof ]--Block.__(4, [_4]));
     }),
   (function (__caml_parser_env) {
       return Parsing.peek_val(__caml_parser_env, 1);
@@ -4720,7 +4720,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmty(/* Pmty_extension */Block.__(5, [_1]));
+      return mkmty(--[ Pmty_extension ]--Block.__(5, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -4728,7 +4728,7 @@ var yyact = [
       return attr$3(_1, _2);
     }),
   (function (__caml_parser_env) {
-      return /* [] */0;
+      return --[ [] ]--0;
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
@@ -4737,81 +4737,81 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text(get_text(Parsing.rhs_start_pos(1))), /* :: */[
+      return Pervasives.$at(text(get_text(Parsing.rhs_start_pos(1))), --[ :: ]--[
                   _1,
                   _2
                 ]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_value */Block.__(0, [_1]));
+      return mksig(--[ Psig_value ]--Block.__(0, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_value */Block.__(0, [_1]));
+      return mksig(--[ Psig_value ]--Block.__(0, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_type */Block.__(1, [List.rev(_1)]));
+      return mksig(--[ Psig_type ]--Block.__(1, [List.rev(_1)]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_typext */Block.__(2, [_1]));
+      return mksig(--[ Psig_typext ]--Block.__(2, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_exception */Block.__(3, [_1]));
+      return mksig(--[ Psig_exception ]--Block.__(3, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_module */Block.__(4, [_1]));
+      return mksig(--[ Psig_module ]--Block.__(4, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_module */Block.__(4, [_1]));
+      return mksig(--[ Psig_module ]--Block.__(4, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_recmodule */Block.__(5, [List.rev(_1)]));
+      return mksig(--[ Psig_recmodule ]--Block.__(5, [List.rev(_1)]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_modtype */Block.__(6, [_1]));
+      return mksig(--[ Psig_modtype ]--Block.__(6, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_open */Block.__(7, [_1]));
+      return mksig(--[ Psig_open ]--Block.__(7, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_include */Block.__(8, [_1]));
+      return mksig(--[ Psig_include ]--Block.__(8, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_class */Block.__(9, [List.rev(_1)]));
+      return mksig(--[ Psig_class ]--Block.__(9, [List.rev(_1)]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_class_type */Block.__(10, [List.rev(_1)]));
+      return mksig(--[ Psig_class_type ]--Block.__(10, [List.rev(_1)]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mksig(/* Psig_extension */Block.__(12, [
+      return mksig(--[ Psig_extension ]--Block.__(12, [
                     _1,
-                    add_docs_attrs(symbol_docs(/* () */0), _2)
+                    add_docs_attrs(symbol_docs(--[ () ]--0), _2)
                   ]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      mark_symbol_docs(/* () */0);
-      return mksig(/* Psig_attribute */Block.__(11, [_1]));
+      mark_symbol_docs(--[ () ]--0);
+      return mksig(--[ Psig_attribute ]--Block.__(11, [_1]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$15(symbol_rloc(/* () */0), _4, symbol_docs(/* () */0), _2, {
+      return mk$15(symbol_rloc(--[ () ]--0), _4, symbol_docs(--[ () ]--0), _2, {
                   txt: _3,
                   loc: rhs_loc(3)
                 });
@@ -4819,7 +4819,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$16(symbol_rloc(/* () */0), _3, symbol_docs(/* () */0), _2);
+      return mk$16(symbol_rloc(--[ () ]--0), _3, symbol_docs(--[ () ]--0), _2);
     }),
   (function (__caml_parser_env) {
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -4828,7 +4828,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 4);
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmty(/* Pmty_functor */Block.__(2, [
+      return mkmty(--[ Pmty_functor ]--Block.__(2, [
                     {
                       txt: _2,
                       loc: rhs_loc(2)
@@ -4839,7 +4839,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkmty(/* Pmty_functor */Block.__(2, [
+      return mkmty(--[ Pmty_functor ]--Block.__(2, [
                     {
                       txt: "*",
                       loc: rhs_loc(1)
@@ -4852,7 +4852,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$12(symbol_rloc(/* () */0), _4, symbol_docs(/* () */0), undefined, {
+      return mk$12(symbol_rloc(--[ () ]--0), _4, symbol_docs(--[ () ]--0), undefined, {
                   txt: _2,
                   loc: rhs_loc(2)
                 }, _3);
@@ -4861,7 +4861,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$12(symbol_rloc(/* () */0), _5, symbol_docs(/* () */0), undefined, {
+      return mk$12(symbol_rloc(--[ () ]--0), _5, symbol_docs(--[ () ]--0), undefined, {
                   txt: _2,
                   loc: rhs_loc(2)
                 }, alias(rhs_loc(4), undefined, {
@@ -4871,15 +4871,15 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
@@ -4888,7 +4888,7 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 3);
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$12(symbol_rloc(/* () */0), _6, symbol_docs(/* () */0), undefined, {
+      return mk$12(symbol_rloc(--[ () ]--0), _6, symbol_docs(--[ () ]--0), undefined, {
                   txt: _3,
                   loc: rhs_loc(3)
                 }, _5);
@@ -4897,7 +4897,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$12(symbol_rloc(/* () */0), _5, symbol_docs(/* () */0), get_text(Parsing.symbol_start_pos(/* () */0)), {
+      return mk$12(symbol_rloc(--[ () ]--0), _5, symbol_docs(--[ () ]--0), get_text(Parsing.symbol_start_pos(--[ () ]--0)), {
                   txt: _2,
                   loc: rhs_loc(2)
                 }, _4);
@@ -4912,22 +4912,22 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$13(symbol_rloc(/* () */0), _5, symbol_docs(/* () */0), undefined, _4, {
+      return mk$13(symbol_rloc(--[ () ]--0), _5, symbol_docs(--[ () ]--0), undefined, _4, {
                   txt: _3,
                   loc: rhs_loc(3)
                 });
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
@@ -4938,7 +4938,7 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$18(symbol_rloc(/* () */0), _6, symbol_docs(/* () */0), undefined, _2, _3, {
+      return mk$18(symbol_rloc(--[ () ]--0), _6, symbol_docs(--[ () ]--0), undefined, _2, _3, {
                   txt: _4,
                   loc: rhs_loc(4)
                 }, _5);
@@ -4949,7 +4949,7 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$18(symbol_rloc(/* () */0), _6, symbol_docs(/* () */0), get_text(Parsing.symbol_start_pos(/* () */0)), _2, _3, {
+      return mk$18(symbol_rloc(--[ () ]--0), _6, symbol_docs(--[ () ]--0), get_text(Parsing.symbol_start_pos(--[ () ]--0)), _2, _3, {
                   txt: _4,
                   loc: rhs_loc(4)
                 }, _5);
@@ -4960,7 +4960,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(/* Pcl_constraint */Block.__(5, [
+      return mkclass(--[ Pcl_constraint ]--Block.__(5, [
                     _4,
                     _2
                   ]));
@@ -4968,7 +4968,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(/* Pcl_fun */Block.__(2, [
+      return mkclass(--[ Pcl_fun ]--Block.__(2, [
                     _1[0],
                     _1[1],
                     _1[2],
@@ -4976,7 +4976,7 @@ var yyact = [
                   ]));
     }),
   (function (__caml_parser_env) {
-      return /* [] */0;
+      return --[ [] ]--0;
     }),
   (function (__caml_parser_env) {
       return List.rev(Parsing.peek_val(__caml_parser_env, 1));
@@ -4984,7 +4984,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(/* Pcl_fun */Block.__(2, [
+      return mkclass(--[ Pcl_fun ]--Block.__(2, [
                     _1[0],
                     _1[1],
                     _1[2],
@@ -4994,7 +4994,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(/* Pcl_fun */Block.__(2, [
+      return mkclass(--[ Pcl_fun ]--Block.__(2, [
                     _1[0],
                     _1[1],
                     _1[2],
@@ -5010,7 +5010,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(/* Pcl_apply */Block.__(3, [
+      return mkclass(--[ Pcl_apply ]--Block.__(3, [
                     _1,
                     List.rev(_2)
                   ]));
@@ -5021,10 +5021,10 @@ var yyact = [
       var lbs = _1;
       var body = _3;
       var bindings = List.map((function (lb) {
-              if (lb.lb_attributes !== /* [] */0) {
+              if (lb.lb_attributes ~= --[ [] ]--0) {
                 throw [
                       $$Error$1,
-                      /* Not_expecting */Block.__(2, [
+                      --[ Not_expecting ]--Block.__(2, [
                           lb.lb_loc,
                           "item attribute"
                         ])
@@ -5032,25 +5032,25 @@ var yyact = [
               }
               return mk$17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
             }), lbs.lbs_bindings);
-      if (lbs.lbs_extension !== undefined) {
+      if (lbs.lbs_extension ~= undefined) {
         throw [
               $$Error$1,
-              /* Not_expecting */Block.__(2, [
+              --[ Not_expecting ]--Block.__(2, [
                   lbs.lbs_loc,
                   "extension"
                 ])
             ];
       }
-      if (lbs.lbs_attributes !== /* [] */0) {
+      if (lbs.lbs_attributes ~= --[ [] ]--0) {
         throw [
               $$Error$1,
-              /* Not_expecting */Block.__(2, [
+              --[ Not_expecting ]--Block.__(2, [
                   lbs.lbs_loc,
                   "attributes"
                 ])
             ];
       }
-      return mkclass(/* Pcl_let */Block.__(4, [
+      return mkclass(--[ Pcl_let ]--Block.__(4, [
                     lbs.lbs_rec,
                     List.rev(bindings),
                     body
@@ -5063,12 +5063,12 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(/* Pcl_extension */Block.__(6, [_1]));
+      return mkclass(--[ Pcl_extension ]--Block.__(6, [_1]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(/* Pcl_constr */Block.__(0, [
+      return mkclass(--[ Pcl_constr ]--Block.__(0, [
                     {
                       txt: _4,
                       loc: rhs_loc(4)
@@ -5078,17 +5078,17 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkclass(/* Pcl_constr */Block.__(0, [
+      return mkclass(--[ Pcl_constr ]--Block.__(0, [
                     {
                       txt: _1,
                       loc: rhs_loc(1)
                     },
-                    /* [] */0
+                    --[ [] ]--0
                   ]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkclass(/* Pcl_structure */Block.__(1, [_2]));
+      return mkclass(--[ Pcl_structure ]--Block.__(1, [_2]));
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 1);
@@ -5097,7 +5097,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkclass(/* Pcl_constraint */Block.__(5, [
+      return mkclass(--[ Pcl_constraint ]--Block.__(5, [
                     _2,
                     _4
                   ]));
@@ -5128,21 +5128,21 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat(/* Ppat_constraint */Block.__(10, [
+      return mkpat(--[ Ppat_constraint ]--Block.__(10, [
                     _2,
                     _4
                   ]));
     }),
   (function (__caml_parser_env) {
-      return ghpat(/* Ppat_any */0);
+      return ghpat(--[ Ppat_any ]--0);
     }),
   (function (__caml_parser_env) {
-      return /* [] */0;
+      return --[ [] ]--0;
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(/* :: */[
+      return Pervasives.$at(--[ :: ]--[
                   _2,
                   Curry._1(Ast_helper_Cf.text, get_text(Parsing.rhs_start_pos(2)))
                 ], _1);
@@ -5152,7 +5152,7 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcf(_5, symbol_docs(/* () */0), /* Pcf_inherit */Block.__(0, [
+      return mkcf(_5, symbol_docs(--[ () ]--0), --[ Pcf_inherit ]--Block.__(0, [
                     _2,
                     _3,
                     _4
@@ -5161,32 +5161,32 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcf(_3, symbol_docs(/* () */0), /* Pcf_val */Block.__(1, [_2]));
+      return mkcf(_3, symbol_docs(--[ () ]--0), --[ Pcf_val ]--Block.__(1, [_2]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcf(_3, symbol_docs(/* () */0), /* Pcf_method */Block.__(2, [_2]));
+      return mkcf(_3, symbol_docs(--[ () ]--0), --[ Pcf_method ]--Block.__(2, [_2]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcf(_3, symbol_docs(/* () */0), /* Pcf_constraint */Block.__(3, [_2]));
+      return mkcf(_3, symbol_docs(--[ () ]--0), --[ Pcf_constraint ]--Block.__(3, [_2]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcf(_3, symbol_docs(/* () */0), /* Pcf_initializer */Block.__(4, [_2]));
+      return mkcf(_3, symbol_docs(--[ () ]--0), --[ Pcf_initializer ]--Block.__(4, [_2]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcf(_2, symbol_docs(/* () */0), /* Pcf_extension */Block.__(6, [_1]));
+      return mkcf(_2, symbol_docs(--[ () ]--0), --[ Pcf_extension ]--Block.__(6, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      mark_symbol_docs(/* () */0);
-      return mkcf(undefined, undefined, /* Pcf_attribute */Block.__(5, [_1]));
+      mark_symbol_docs(--[ () ]--0);
+      return mkcf(undefined, undefined, --[ Pcf_attribute ]--Block.__(5, [_1]));
     }),
   (function (__caml_parser_env) {
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -5198,29 +5198,29 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 5);
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      if (_1 === /* Override */0) {
+      if (_1 == --[ Override ]--0) {
         throw Escape_error;
       }
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _4,
                 loc: rhs_loc(4)
               },
-              /* Mutable */1,
-              /* Cfk_virtual */Block.__(0, [_6])
+              --[ Mutable ]--1,
+              --[ Cfk_virtual ]--Block.__(0, [_6])
             ];
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _3,
                 loc: rhs_loc(3)
               },
               _2,
-              /* Cfk_virtual */Block.__(0, [_5])
+              --[ Cfk_virtual ]--Block.__(0, [_5])
             ];
     }),
   (function (__caml_parser_env) {
@@ -5228,13 +5228,13 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _3,
                 loc: rhs_loc(3)
               },
               _2,
-              /* Cfk_concrete */Block.__(1, [
+              --[ Cfk_concrete ]--Block.__(1, [
                   _1,
                   _5
                 ])
@@ -5247,13 +5247,13 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
       var e = mkexp_constraint(_6, _4);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _3,
                 loc: rhs_loc(3)
               },
               _2,
-              /* Cfk_concrete */Block.__(1, [
+              --[ Cfk_concrete ]--Block.__(1, [
                   _1,
                   e
                 ])
@@ -5263,16 +5263,16 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 5);
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      if (_1 === /* Override */0) {
+      if (_1 == --[ Override ]--0) {
         throw Escape_error;
       }
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _4,
                 loc: rhs_loc(4)
               },
-              /* Private */0,
-              /* Cfk_virtual */Block.__(0, [_6])
+              --[ Private ]--0,
+              --[ Cfk_virtual ]--Block.__(0, [_6])
             ];
     }),
   (function (__caml_parser_env) {
@@ -5280,16 +5280,16 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      if (_1 === /* Override */0) {
+      if (_1 == --[ Override ]--0) {
         throw Escape_error;
       }
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _4,
                 loc: rhs_loc(4)
               },
               _3,
-              /* Cfk_virtual */Block.__(0, [_6])
+              --[ Cfk_virtual ]--Block.__(0, [_6])
             ];
     }),
   (function (__caml_parser_env) {
@@ -5297,15 +5297,15 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _3,
                 loc: rhs_loc(3)
               },
               _2,
-              /* Cfk_concrete */Block.__(1, [
+              --[ Cfk_concrete ]--Block.__(1, [
                   _1,
-                  ghexp(/* Pexp_poly */Block.__(28, [
+                  ghexp(--[ Pexp_poly ]--Block.__(28, [
                           _4,
                           undefined
                         ]))
@@ -5318,15 +5318,15 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 4);
       var _5 = Parsing.peek_val(__caml_parser_env, 2);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _3,
                 loc: rhs_loc(3)
               },
               _2,
-              /* Cfk_concrete */Block.__(1, [
+              --[ Cfk_concrete ]--Block.__(1, [
                   _1,
-                  ghexp(/* Pexp_poly */Block.__(28, [
+                  ghexp(--[ Pexp_poly ]--Block.__(28, [
                           _7,
                           _5
                         ]))
@@ -5341,15 +5341,15 @@ var yyact = [
       var _8 = Parsing.peek_val(__caml_parser_env, 2);
       var _10 = Parsing.peek_val(__caml_parser_env, 0);
       var match = wrap_type_annotation(_6, _8, _10);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _3,
                 loc: rhs_loc(3)
               },
               _2,
-              /* Cfk_concrete */Block.__(1, [
+              --[ Cfk_concrete ]--Block.__(1, [
                   _1,
-                  ghexp(/* Pexp_poly */Block.__(28, [
+                  ghexp(--[ Pexp_poly ]--Block.__(28, [
                           match[0],
                           match[1]
                         ]))
@@ -5363,7 +5363,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 4);
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(/* Pcty_arrow */Block.__(2, [
+      return mkcty(--[ Pcty_arrow ]--Block.__(2, [
                     "?" + _2,
                     mkoption(_4),
                     _6
@@ -5373,7 +5373,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 3);
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(/* Pcty_arrow */Block.__(2, [
+      return mkcty(--[ Pcty_arrow ]--Block.__(2, [
                     "?" + _1,
                     mkoption(_2),
                     _4
@@ -5383,7 +5383,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 4);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(/* Pcty_arrow */Block.__(2, [
+      return mkcty(--[ Pcty_arrow ]--Block.__(2, [
                     _1,
                     _3,
                     _5
@@ -5392,7 +5392,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(/* Pcty_arrow */Block.__(2, [
+      return mkcty(--[ Pcty_arrow ]--Block.__(2, [
                     "",
                     _1,
                     _3
@@ -5401,7 +5401,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(/* Pcty_constr */Block.__(0, [
+      return mkcty(--[ Pcty_constr ]--Block.__(0, [
                     {
                       txt: _4,
                       loc: rhs_loc(4)
@@ -5411,17 +5411,17 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(/* Pcty_constr */Block.__(0, [
+      return mkcty(--[ Pcty_constr ]--Block.__(0, [
                     {
                       txt: _1,
                       loc: rhs_loc(1)
                     },
-                    /* [] */0
+                    --[ [] ]--0
                   ]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkcty(/* Pcty_signature */Block.__(1, [_2]));
+      return mkcty(--[ Pcty_signature ]--Block.__(1, [_2]));
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 1);
@@ -5434,7 +5434,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkcty(/* Pcty_extension */Block.__(3, [_1]));
+      return mkcty(--[ Pcty_extension ]--Block.__(3, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -5448,15 +5448,15 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 1);
     }),
   (function (__caml_parser_env) {
-      return mktyp(/* Ptyp_any */0);
+      return mktyp(--[ Ptyp_any ]--0);
     }),
   (function (__caml_parser_env) {
-      return /* [] */0;
+      return --[ [] ]--0;
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(/* :: */[
+      return Pervasives.$at(--[ :: ]--[
                   _2,
                   Curry._1(Ast_helper_Ctf.text, get_text(Parsing.rhs_start_pos(2)))
                 ], _1);
@@ -5464,19 +5464,19 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkctf(_3, symbol_docs(/* () */0), /* Pctf_inherit */Block.__(0, [_2]));
+      return mkctf(_3, symbol_docs(--[ () ]--0), --[ Pctf_inherit ]--Block.__(0, [_2]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkctf(_3, symbol_docs(/* () */0), /* Pctf_val */Block.__(1, [_2]));
+      return mkctf(_3, symbol_docs(--[ () ]--0), --[ Pctf_val ]--Block.__(1, [_2]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 4);
       var _3 = Parsing.peek_val(__caml_parser_env, 3);
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkctf(_6, symbol_docs(/* () */0), /* Pctf_method */Block.__(2, [/* tuple */[
+      return mkctf(_6, symbol_docs(--[ () ]--0), --[ Pctf_method ]--Block.__(2, [--[ tuple ]--[
                       _3,
                       _2[0],
                       _2[1],
@@ -5486,26 +5486,26 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkctf(_3, symbol_docs(/* () */0), /* Pctf_constraint */Block.__(3, [_2]));
+      return mkctf(_3, symbol_docs(--[ () ]--0), --[ Pctf_constraint ]--Block.__(3, [_2]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkctf(_2, symbol_docs(/* () */0), /* Pctf_extension */Block.__(5, [_1]));
+      return mkctf(_2, symbol_docs(--[ () ]--0), --[ Pctf_extension ]--Block.__(5, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      mark_symbol_docs(/* () */0);
-      return mkctf(undefined, undefined, /* Pctf_attribute */Block.__(4, [_1]));
+      mark_symbol_docs(--[ () ]--0);
+      return mkctf(undefined, undefined, --[ Pctf_attribute ]--Block.__(4, [_1]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _3,
               _2,
-              /* Virtual */0,
+              --[ Virtual ]--0,
               _5
             ];
     }),
@@ -5513,9 +5513,9 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _3,
-              /* Mutable */1,
+              --[ Mutable ]--1,
               _2,
               _5
             ];
@@ -5523,41 +5523,41 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _1,
-              /* Immutable */0,
-              /* Concrete */1,
+              --[ Immutable ]--0,
+              --[ Concrete ]--1,
               _3
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _1,
               _3,
-              symbol_rloc(/* () */0)
+              symbol_rloc(--[ () ]--0)
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _1,
               _3
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
@@ -5568,7 +5568,7 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 3);
       var _6 = Parsing.peek_val(__caml_parser_env, 1);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$18(symbol_rloc(/* () */0), _7, symbol_docs(/* () */0), undefined, _2, _3, {
+      return mk$18(symbol_rloc(--[ () ]--0), _7, symbol_docs(--[ () ]--0), undefined, _2, _3, {
                   txt: _4,
                   loc: rhs_loc(4)
                 }, _6);
@@ -5579,22 +5579,22 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 3);
       var _6 = Parsing.peek_val(__caml_parser_env, 1);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$18(symbol_rloc(/* () */0), _7, symbol_docs(/* () */0), get_text(Parsing.symbol_start_pos(/* () */0)), _2, _3, {
+      return mk$18(symbol_rloc(--[ () ]--0), _7, symbol_docs(--[ () ]--0), get_text(Parsing.symbol_start_pos(--[ () ]--0)), _2, _3, {
                   txt: _4,
                   loc: rhs_loc(4)
                 }, _6);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
@@ -5605,7 +5605,7 @@ var yyact = [
       var _5 = Parsing.peek_val(__caml_parser_env, 3);
       var _7 = Parsing.peek_val(__caml_parser_env, 1);
       var _8 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$18(symbol_rloc(/* () */0), _8, symbol_docs(/* () */0), undefined, _3, _4, {
+      return mk$18(symbol_rloc(--[ () ]--0), _8, symbol_docs(--[ () ]--0), undefined, _3, _4, {
                   txt: _5,
                   loc: rhs_loc(5)
                 }, _7);
@@ -5616,7 +5616,7 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 3);
       var _6 = Parsing.peek_val(__caml_parser_env, 1);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$18(symbol_rloc(/* () */0), _7, symbol_docs(/* () */0), get_text(Parsing.symbol_start_pos(/* () */0)), _2, _3, {
+      return mk$18(symbol_rloc(--[ () ]--0), _7, symbol_docs(--[ () ]--0), get_text(Parsing.symbol_start_pos(--[ () ]--0)), _2, _3, {
                   txt: _4,
                   loc: rhs_loc(4)
                 }, _6);
@@ -5630,7 +5630,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_sequence */Block.__(16, [
+      return mkexp(--[ Pexp_sequence ]--Block.__(16, [
                     _1,
                     _3
                   ]));
@@ -5638,7 +5638,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* tuple */[
+      return --[ tuple ]--[
               "?" + _3[0],
               _4,
               _3[1]
@@ -5646,7 +5646,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               "?" + _2[0],
               undefined,
               _2[1]
@@ -5656,7 +5656,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 4);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* tuple */[
+      return --[ tuple ]--[
               "?" + _1,
               _4,
               _3
@@ -5665,7 +5665,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               "?" + _1,
               undefined,
               _2
@@ -5673,7 +5673,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* tuple */[
+      return --[ tuple ]--[
               _3[0],
               undefined,
               _3[1]
@@ -5681,7 +5681,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _2[0],
               undefined,
               _2[1]
@@ -5690,7 +5690,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _1,
               undefined,
               _2
@@ -5698,7 +5698,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               "",
               undefined,
               _1
@@ -5706,13 +5706,13 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_var */Block.__(0, [{
+      return mkpat(--[ Ppat_var ]--Block.__(0, [{
                       txt: _1,
                       loc: rhs_loc(1)
                     }]));
     }),
   (function (__caml_parser_env) {
-      return mkpat(/* Ppat_any */0);
+      return mkpat(--[ Ppat_any ]--0);
     }),
   (function (__caml_parser_env) {
       return ;
@@ -5726,9 +5726,9 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _1[0],
-              mkpat(/* Ppat_constraint */Block.__(10, [
+              mkpat(--[ Ppat_constraint ]--Block.__(10, [
                       _1[1],
                       _3
                     ]))
@@ -5736,9 +5736,9 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _1,
-              mkpat(/* Ppat_var */Block.__(0, [{
+              mkpat(--[ Ppat_var ]--Block.__(0, [{
                         txt: _1,
                         loc: rhs_loc(1)
                       }]))
@@ -5750,7 +5750,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_constraint */Block.__(10, [
+      return mkpat(--[ Ppat_constraint ]--Block.__(10, [
                     _1,
                     _3
                   ]));
@@ -5761,7 +5761,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_apply */Block.__(5, [
+      return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     _1,
                     List.rev(_2)
                   ]));
@@ -5772,10 +5772,10 @@ var yyact = [
       var lbs = _1;
       var body = _3;
       var bindings = List.map((function (lb) {
-              if (lb.lb_attributes !== /* [] */0) {
+              if (lb.lb_attributes ~= --[ [] ]--0) {
                 throw [
                       $$Error$1,
-                      /* Not_expecting */Block.__(2, [
+                      --[ Not_expecting ]--Block.__(2, [
                           lb.lb_loc,
                           "item attribute"
                         ])
@@ -5785,12 +5785,12 @@ var yyact = [
             }), lbs.lbs_bindings);
       var d_000 = lbs.lbs_rec;
       var d_001 = List.rev(bindings);
-      var d = /* Pexp_let */Block.__(2, [
+      var d = --[ Pexp_let ]--Block.__(2, [
           d_000,
           d_001,
           body
         ]);
-      return wrap_exp_attrs(mkexp(d), /* tuple */[
+      return wrap_exp_attrs(mkexp(d), --[ tuple ]--[
                   lbs.lbs_extension,
                   lbs.lbs_attributes
                 ]);
@@ -5804,7 +5804,7 @@ var yyact = [
         txt: _4,
         loc: rhs_loc(4)
       };
-      var d = /* Pexp_letmodule */Block.__(25, [
+      var d = --[ Pexp_letmodule ]--Block.__(25, [
           d_000,
           _5,
           _7
@@ -5820,7 +5820,7 @@ var yyact = [
         txt: _5,
         loc: rhs_loc(5)
       };
-      var d = /* Pexp_open */Block.__(32, [
+      var d = --[ Pexp_open ]--Block.__(32, [
           _3,
           d_001,
           _7
@@ -5831,14 +5831,14 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      var d = /* Pexp_function */Block.__(3, [List.rev(_4)]);
+      var d = --[ Pexp_function ]--Block.__(3, [List.rev(_4)]);
       return wrap_exp_attrs(mkexp(d), _2);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return wrap_exp_attrs(mkexp(/* Pexp_fun */Block.__(4, [
+      return wrap_exp_attrs(mkexp(--[ Pexp_fun ]--Block.__(4, [
                         _3[0],
                         _3[1],
                         _3[2],
@@ -5849,7 +5849,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 5);
       var _5 = Parsing.peek_val(__caml_parser_env, 2);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return wrap_exp_attrs(mkexp(/* Pexp_newtype */Block.__(30, [
+      return wrap_exp_attrs(mkexp(--[ Pexp_newtype ]--Block.__(30, [
                         _5,
                         _7
                       ])), _2);
@@ -5860,7 +5860,7 @@ var yyact = [
       Parsing.peek_val(__caml_parser_env, 1);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
       var d_001 = List.rev(_6);
-      var d = /* Pexp_match */Block.__(6, [
+      var d = --[ Pexp_match ]--Block.__(6, [
           _3,
           d_001
         ]);
@@ -5872,7 +5872,7 @@ var yyact = [
       Parsing.peek_val(__caml_parser_env, 1);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
       var d_001 = List.rev(_6);
-      var d = /* Pexp_try */Block.__(7, [
+      var d = --[ Pexp_try ]--Block.__(7, [
           _3,
           d_001
         ]);
@@ -5885,12 +5885,12 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_tuple */Block.__(8, [List.rev(_1)]));
+      return mkexp(--[ Pexp_tuple ]--Block.__(8, [List.rev(_1)]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_construct */Block.__(9, [
+      return mkexp(--[ Pexp_construct ]--Block.__(9, [
                     {
                       txt: _1,
                       loc: rhs_loc(1)
@@ -5901,7 +5901,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_variant */Block.__(10, [
+      return mkexp(--[ Pexp_variant ]--Block.__(10, [
                     _1,
                     _2
                   ]));
@@ -5911,7 +5911,7 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 4);
       var _5 = Parsing.peek_val(__caml_parser_env, 2);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return wrap_exp_attrs(mkexp(/* Pexp_ifthenelse */Block.__(15, [
+      return wrap_exp_attrs(mkexp(--[ Pexp_ifthenelse ]--Block.__(15, [
                         _3,
                         _5,
                         _7
@@ -5921,7 +5921,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return wrap_exp_attrs(mkexp(/* Pexp_ifthenelse */Block.__(15, [
+      return wrap_exp_attrs(mkexp(--[ Pexp_ifthenelse ]--Block.__(15, [
                         _3,
                         _5,
                         undefined
@@ -5931,7 +5931,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 4);
       var _3 = Parsing.peek_val(__caml_parser_env, 3);
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      return wrap_exp_attrs(mkexp(/* Pexp_while */Block.__(17, [
+      return wrap_exp_attrs(mkexp(--[ Pexp_while ]--Block.__(17, [
                         _3,
                         _5
                       ])), _2);
@@ -5943,7 +5943,7 @@ var yyact = [
       var _6 = Parsing.peek_val(__caml_parser_env, 4);
       var _7 = Parsing.peek_val(__caml_parser_env, 3);
       var _9 = Parsing.peek_val(__caml_parser_env, 1);
-      return wrap_exp_attrs(mkexp(/* Pexp_for */Block.__(18, [
+      return wrap_exp_attrs(mkexp(--[ Pexp_for ]--Block.__(18, [
                         _3,
                         _5,
                         _7,
@@ -5954,24 +5954,24 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp_cons(rhs_loc(2), ghexp(/* Pexp_tuple */Block.__(8, [/* :: */[
+      return mkexp_cons(rhs_loc(2), ghexp(--[ Pexp_tuple ]--Block.__(8, [--[ :: ]--[
                           _1,
-                          /* :: */[
+                          --[ :: ]--[
                             _3,
-                            /* [] */0
+                            --[ [] ]--0
                           ]
-                        ]])), symbol_rloc(/* () */0));
+                        ]])), symbol_rloc(--[ () ]--0));
     }),
   (function (__caml_parser_env) {
       var _5 = Parsing.peek_val(__caml_parser_env, 3);
       var _7 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp_cons(rhs_loc(2), ghexp(/* Pexp_tuple */Block.__(8, [/* :: */[
+      return mkexp_cons(rhs_loc(2), ghexp(--[ Pexp_tuple ]--Block.__(8, [--[ :: ]--[
                           _5,
-                          /* :: */[
+                          --[ :: ]--[
                             _7,
-                            /* [] */0
+                            --[ [] ]--0
                           ]
-                        ]])), symbol_rloc(/* () */0));
+                        ]])), symbol_rloc(--[ () ]--0));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
@@ -6087,17 +6087,17 @@ var yyact = [
       var exit = 0;
       switch (name) {
         case "-" :
-            if (match.tag === /* Pexp_constant */1) {
+            if (match.tag == --[ Pexp_constant ]--1) {
               var match$1 = match[0];
               switch (match$1.tag | 0) {
-                case /* Const_int */0 :
-                    return mkexp(/* Pexp_constant */Block.__(1, [/* Const_int */Block.__(0, [-match$1[0] | 0])]));
-                case /* Const_int32 */4 :
-                    return mkexp(/* Pexp_constant */Block.__(1, [/* Const_int32 */Block.__(4, [-match$1[0] | 0])]));
-                case /* Const_int64 */5 :
-                    return mkexp(/* Pexp_constant */Block.__(1, [/* Const_int64 */Block.__(5, [Caml_int64.neg(match$1[0])])]));
-                case /* Const_nativeint */6 :
-                    return mkexp(/* Pexp_constant */Block.__(1, [/* Const_nativeint */Block.__(6, [-match$1[0]])]));
+                case --[ Const_int ]--0 :
+                    return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_int ]--Block.__(0, [-match$1[0] | 0])]));
+                case --[ Const_int32 ]--4 :
+                    return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_int32 ]--Block.__(4, [-match$1[0] | 0])]));
+                case --[ Const_int64 ]--5 :
+                    return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_int64 ]--Block.__(5, [Caml_int64.neg(match$1[0])])]));
+                case --[ Const_nativeint ]--6 :
+                    return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_nativeint ]--Block.__(6, [-match$1[0]])]));
                 default:
                   exit = 2;
               }
@@ -6111,21 +6111,21 @@ var yyact = [
         default:
           
       }
-      if (exit === 2 && match.tag === /* Pexp_constant */1) {
+      if (exit == 2 and match.tag == --[ Pexp_constant ]--1) {
         var match$2 = match[0];
-        if (match$2.tag === /* Const_float */3) {
-          return mkexp(/* Pexp_constant */Block.__(1, [/* Const_float */Block.__(3, [neg_float_string(match$2[0])])]));
+        if (match$2.tag == --[ Const_float ]--3) {
+          return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_float ]--Block.__(3, [neg_float_string(match$2[0])])]));
         }
         
       }
-      return mkexp(/* Pexp_apply */Block.__(5, [
+      return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     mkoperator("~" + name, 1),
-                    /* :: */[
-                      /* tuple */[
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "",
                         arg
                       ],
-                      /* [] */0
+                      --[ [] ]--0
                     ]
                   ]));
     }),
@@ -6138,11 +6138,11 @@ var yyact = [
       var exit = 0;
       switch (name) {
         case "+" :
-            if (desc.tag === /* Pexp_constant */1) {
+            if (desc.tag == --[ Pexp_constant ]--1) {
               switch (desc[0].tag | 0) {
-                case /* Const_char */1 :
-                case /* Const_string */2 :
-                case /* Const_float */3 :
+                case --[ Const_char ]--1 :
+                case --[ Const_string ]--2 :
+                case --[ Const_float ]--3 :
                     exit = 2;
                     break;
                 default:
@@ -6158,17 +6158,17 @@ var yyact = [
         default:
           
       }
-      if (exit === 2 && desc.tag === /* Pexp_constant */1 && desc[0].tag === /* Const_float */3) {
+      if (exit == 2 and desc.tag == --[ Pexp_constant ]--1 and desc[0].tag == --[ Const_float ]--3) {
         return mkexp(desc);
       }
-      return mkexp(/* Pexp_apply */Block.__(5, [
+      return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     mkoperator("~" + name, 1),
-                    /* :: */[
-                      /* tuple */[
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "",
                         arg
                       ],
-                      /* [] */0
+                      --[ [] ]--0
                     ]
                   ]));
     }),
@@ -6176,7 +6176,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 4);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_setfield */Block.__(13, [
+      return mkexp(--[ Pexp_setfield ]--Block.__(13, [
                     _1,
                     {
                       txt: _3,
@@ -6189,24 +6189,24 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 6);
       var _4 = Parsing.peek_val(__caml_parser_env, 3);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_apply */Block.__(5, [
-                    ghexp(/* Pexp_ident */Block.__(0, [array_function("Array", "set")])),
-                    /* :: */[
-                      /* tuple */[
+      return mkexp(--[ Pexp_apply ]--Block.__(5, [
+                    ghexp(--[ Pexp_ident ]--Block.__(0, [array_function("Array", "set")])),
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "",
                         _1
                       ],
-                      /* :: */[
-                        /* tuple */[
+                      --[ :: ]--[
+                        --[ tuple ]--[
                           "",
                           _4
                         ],
-                        /* :: */[
-                          /* tuple */[
+                        --[ :: ]--[
+                          --[ tuple ]--[
                             "",
                             _7
                           ],
-                          /* [] */0
+                          --[ [] ]--0
                         ]
                       ]
                     ]
@@ -6216,24 +6216,24 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 6);
       var _4 = Parsing.peek_val(__caml_parser_env, 3);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_apply */Block.__(5, [
-                    ghexp(/* Pexp_ident */Block.__(0, [array_function("String", "set")])),
-                    /* :: */[
-                      /* tuple */[
+      return mkexp(--[ Pexp_apply ]--Block.__(5, [
+                    ghexp(--[ Pexp_ident ]--Block.__(0, [array_function("String", "set")])),
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "",
                         _1
                       ],
-                      /* :: */[
-                        /* tuple */[
+                      --[ :: ]--[
+                        --[ tuple ]--[
                           "",
                           _4
                         ],
-                        /* :: */[
-                          /* tuple */[
+                        --[ :: ]--[
+                          --[ tuple ]--[
                             "",
                             _7
                           ],
-                          /* [] */0
+                          --[ [] ]--0
                         ]
                       ]
                     ]
@@ -6256,34 +6256,34 @@ var yyact = [
           var c2 = match[0];
           if (match$1) {
             if (!match$1[1]) {
-              return mkexp(/* Pexp_apply */Block.__(5, [
-                            ghexp(/* Pexp_ident */Block.__(0, [bigarray_function("Array3", set)])),
-                            /* :: */[
-                              /* tuple */[
+              return mkexp(--[ Pexp_apply ]--Block.__(5, [
+                            ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Array3", set)])),
+                            --[ :: ]--[
+                              --[ tuple ]--[
                                 "",
                                 arr
                               ],
-                              /* :: */[
-                                /* tuple */[
+                              --[ :: ]--[
+                                --[ tuple ]--[
                                   "",
                                   c1
                                 ],
-                                /* :: */[
-                                  /* tuple */[
+                                --[ :: ]--[
+                                  --[ tuple ]--[
                                     "",
                                     c2
                                   ],
-                                  /* :: */[
-                                    /* tuple */[
+                                  --[ :: ]--[
+                                    --[ tuple ]--[
                                       "",
                                       match$1[0]
                                     ],
-                                    /* :: */[
-                                      /* tuple */[
+                                    --[ :: ]--[
+                                      --[ tuple ]--[
                                         "",
                                         newval
                                       ],
-                                      /* [] */0
+                                      --[ [] ]--0
                                     ]
                                   ]
                                 ]
@@ -6293,29 +6293,29 @@ var yyact = [
             }
             
           } else {
-            return mkexp(/* Pexp_apply */Block.__(5, [
-                          ghexp(/* Pexp_ident */Block.__(0, [bigarray_function("Array2", set)])),
-                          /* :: */[
-                            /* tuple */[
+            return mkexp(--[ Pexp_apply ]--Block.__(5, [
+                          ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Array2", set)])),
+                          --[ :: ]--[
+                            --[ tuple ]--[
                               "",
                               arr
                             ],
-                            /* :: */[
-                              /* tuple */[
+                            --[ :: ]--[
+                              --[ tuple ]--[
                                 "",
                                 c1
                               ],
-                              /* :: */[
-                                /* tuple */[
+                              --[ :: ]--[
+                                --[ tuple ]--[
                                   "",
                                   c2
                                 ],
-                                /* :: */[
-                                  /* tuple */[
+                                --[ :: ]--[
+                                  --[ tuple ]--[
                                     "",
                                     newval
                                   ],
-                                  /* [] */0
+                                  --[ [] ]--0
                                 ]
                               ]
                             ]
@@ -6323,48 +6323,48 @@ var yyact = [
                         ]));
           }
         } else {
-          return mkexp(/* Pexp_apply */Block.__(5, [
-                        ghexp(/* Pexp_ident */Block.__(0, [bigarray_function("Array1", set)])),
-                        /* :: */[
-                          /* tuple */[
+          return mkexp(--[ Pexp_apply ]--Block.__(5, [
+                        ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Array1", set)])),
+                        --[ :: ]--[
+                          --[ tuple ]--[
                             "",
                             arr
                           ],
-                          /* :: */[
-                            /* tuple */[
+                          --[ :: ]--[
+                            --[ tuple ]--[
                               "",
                               c1
                             ],
-                            /* :: */[
-                              /* tuple */[
+                            --[ :: ]--[
+                              --[ tuple ]--[
                                 "",
                                 newval
                               ],
-                              /* [] */0
+                              --[ [] ]--0
                             ]
                           ]
                         ]
                       ]));
         }
       }
-      return mkexp(/* Pexp_apply */Block.__(5, [
-                    ghexp(/* Pexp_ident */Block.__(0, [bigarray_function("Genarray", "set")])),
-                    /* :: */[
-                      /* tuple */[
+      return mkexp(--[ Pexp_apply ]--Block.__(5, [
+                    ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Genarray", "set")])),
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "",
                         arr
                       ],
-                      /* :: */[
-                        /* tuple */[
+                      --[ :: ]--[
+                        --[ tuple ]--[
                           "",
-                          ghexp(/* Pexp_array */Block.__(14, [coords]))
+                          ghexp(--[ Pexp_array ]--Block.__(14, [coords]))
                         ],
-                        /* :: */[
-                          /* tuple */[
+                        --[ :: ]--[
+                          --[ tuple ]--[
                             "",
                             newval
                           ],
-                          /* [] */0
+                          --[ [] ]--0
                         ]
                       ]
                     ]
@@ -6373,7 +6373,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_setinstvar */Block.__(23, [
+      return mkexp(--[ Pexp_setinstvar ]--Block.__(23, [
                     {
                       txt: _1,
                       loc: rhs_loc(1)
@@ -6384,17 +6384,17 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return wrap_exp_attrs(mkexp(/* Pexp_assert */Block.__(26, [_3])), _2);
+      return wrap_exp_attrs(mkexp(--[ Pexp_assert ]--Block.__(26, [_3])), _2);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return wrap_exp_attrs(mkexp(/* Pexp_lazy */Block.__(27, [_3])), _2);
+      return wrap_exp_attrs(mkexp(--[ Pexp_lazy ]--Block.__(27, [_3])), _2);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return wrap_exp_attrs(mkexp(/* Pexp_object */Block.__(29, [_3])), _2);
+      return wrap_exp_attrs(mkexp(--[ Pexp_object ]--Block.__(29, [_3])), _2);
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 2);
@@ -6408,18 +6408,18 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_ident */Block.__(0, [{
+      return mkexp(--[ Pexp_ident ]--Block.__(0, [{
                       txt: _1,
                       loc: rhs_loc(1)
                     }]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_constant */Block.__(1, [_1]));
+      return mkexp(--[ Pexp_constant ]--Block.__(1, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_construct */Block.__(9, [
+      return mkexp(--[ Pexp_construct ]--Block.__(9, [
                     {
                       txt: _1,
                       loc: rhs_loc(1)
@@ -6429,7 +6429,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_variant */Block.__(10, [
+      return mkexp(--[ Pexp_variant ]--Block.__(10, [
                     _1,
                     undefined
                   ]));
@@ -6449,10 +6449,10 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var d_000 = {
-        txt: /* Lident */Block.__(0, ["()"]),
-        loc: symbol_rloc(/* () */0)
+        txt: --[ Lident ]--Block.__(0, ["()"]),
+        loc: symbol_rloc(--[ () ]--0)
       };
-      var d = /* Pexp_construct */Block.__(9, [
+      var d = --[ Pexp_construct ]--Block.__(9, [
           d_000,
           undefined
         ]);
@@ -6471,7 +6471,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_field */Block.__(12, [
+      return mkexp(--[ Pexp_field ]--Block.__(12, [
                     _1,
                     {
                       txt: _3,
@@ -6482,8 +6482,8 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 4);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(/* Pexp_open */Block.__(32, [
-                    /* Fresh */1,
+      return mkexp(--[ Pexp_open ]--Block.__(32, [
+                    --[ Fresh ]--1,
                     {
                       txt: _1,
                       loc: rhs_loc(1)
@@ -6499,19 +6499,19 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 4);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(/* Pexp_apply */Block.__(5, [
-                    ghexp(/* Pexp_ident */Block.__(0, [array_function("Array", "get")])),
-                    /* :: */[
-                      /* tuple */[
+      return mkexp(--[ Pexp_apply ]--Block.__(5, [
+                    ghexp(--[ Pexp_ident ]--Block.__(0, [array_function("Array", "get")])),
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "",
                         _1
                       ],
-                      /* :: */[
-                        /* tuple */[
+                      --[ :: ]--[
+                        --[ tuple ]--[
                           "",
                           _4
                         ],
-                        /* [] */0
+                        --[ [] ]--0
                       ]
                     ]
                   ]));
@@ -6524,19 +6524,19 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 4);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(/* Pexp_apply */Block.__(5, [
-                    ghexp(/* Pexp_ident */Block.__(0, [array_function("String", "get")])),
-                    /* :: */[
-                      /* tuple */[
+      return mkexp(--[ Pexp_apply ]--Block.__(5, [
+                    ghexp(--[ Pexp_ident ]--Block.__(0, [array_function("String", "get")])),
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "",
                         _1
                       ],
-                      /* :: */[
-                        /* tuple */[
+                      --[ :: ]--[
+                        --[ tuple ]--[
                           "",
                           _4
                         ],
-                        /* [] */0
+                        --[ [] ]--0
                       ]
                     ]
                   ]));
@@ -6561,29 +6561,29 @@ var yyact = [
           var c2 = match[0];
           if (match$1) {
             if (!match$1[1]) {
-              return mkexp(/* Pexp_apply */Block.__(5, [
-                            ghexp(/* Pexp_ident */Block.__(0, [bigarray_function("Array3", get)])),
-                            /* :: */[
-                              /* tuple */[
+              return mkexp(--[ Pexp_apply ]--Block.__(5, [
+                            ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Array3", get)])),
+                            --[ :: ]--[
+                              --[ tuple ]--[
                                 "",
                                 arr
                               ],
-                              /* :: */[
-                                /* tuple */[
+                              --[ :: ]--[
+                                --[ tuple ]--[
                                   "",
                                   c1
                                 ],
-                                /* :: */[
-                                  /* tuple */[
+                                --[ :: ]--[
+                                  --[ tuple ]--[
                                     "",
                                     c2
                                   ],
-                                  /* :: */[
-                                    /* tuple */[
+                                  --[ :: ]--[
+                                    --[ tuple ]--[
                                       "",
                                       match$1[0]
                                     ],
-                                    /* [] */0
+                                    --[ [] ]--0
                                   ]
                                 ]
                               ]
@@ -6592,61 +6592,61 @@ var yyact = [
             }
             
           } else {
-            return mkexp(/* Pexp_apply */Block.__(5, [
-                          ghexp(/* Pexp_ident */Block.__(0, [bigarray_function("Array2", get)])),
-                          /* :: */[
-                            /* tuple */[
+            return mkexp(--[ Pexp_apply ]--Block.__(5, [
+                          ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Array2", get)])),
+                          --[ :: ]--[
+                            --[ tuple ]--[
                               "",
                               arr
                             ],
-                            /* :: */[
-                              /* tuple */[
+                            --[ :: ]--[
+                              --[ tuple ]--[
                                 "",
                                 c1
                               ],
-                              /* :: */[
-                                /* tuple */[
+                              --[ :: ]--[
+                                --[ tuple ]--[
                                   "",
                                   c2
                                 ],
-                                /* [] */0
+                                --[ [] ]--0
                               ]
                             ]
                           ]
                         ]));
           }
         } else {
-          return mkexp(/* Pexp_apply */Block.__(5, [
-                        ghexp(/* Pexp_ident */Block.__(0, [bigarray_function("Array1", get)])),
-                        /* :: */[
-                          /* tuple */[
+          return mkexp(--[ Pexp_apply ]--Block.__(5, [
+                        ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Array1", get)])),
+                        --[ :: ]--[
+                          --[ tuple ]--[
                             "",
                             arr
                           ],
-                          /* :: */[
-                            /* tuple */[
+                          --[ :: ]--[
+                            --[ tuple ]--[
                               "",
                               c1
                             ],
-                            /* [] */0
+                            --[ [] ]--0
                           ]
                         ]
                       ]));
         }
       }
-      return mkexp(/* Pexp_apply */Block.__(5, [
-                    ghexp(/* Pexp_ident */Block.__(0, [bigarray_function("Genarray", "get")])),
-                    /* :: */[
-                      /* tuple */[
+      return mkexp(--[ Pexp_apply ]--Block.__(5, [
+                    ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Genarray", "get")])),
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "",
                         arr
                       ],
-                      /* :: */[
-                        /* tuple */[
+                      --[ :: ]--[
+                        --[ tuple ]--[
                           "",
-                          ghexp(/* Pexp_array */Block.__(14, [coords]))
+                          ghexp(--[ Pexp_array ]--Block.__(14, [coords]))
                         ],
-                        /* [] */0
+                        --[ [] ]--0
                       ]
                     ]
                   ]));
@@ -6658,7 +6658,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(/* Pexp_record */Block.__(11, [
+      return mkexp(--[ Pexp_record ]--Block.__(11, [
                     _2[1],
                     _2[0]
                   ]));
@@ -6670,12 +6670,12 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 4);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var rec_exp = mkexp(/* Pexp_record */Block.__(11, [
+      var rec_exp = mkexp(--[ Pexp_record ]--Block.__(11, [
               _4[1],
               _4[0]
             ]));
-      return mkexp(/* Pexp_open */Block.__(32, [
-                    /* Fresh */1,
+      return mkexp(--[ Pexp_open ]--Block.__(32, [
+                    --[ Fresh ]--1,
                     {
                       txt: _1,
                       loc: rhs_loc(1)
@@ -6691,7 +6691,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(/* Pexp_array */Block.__(14, [List.rev(_2)]));
+      return mkexp(--[ Pexp_array ]--Block.__(14, [List.rev(_2)]));
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 2);
@@ -6699,19 +6699,19 @@ var yyact = [
       return unclosed("[|", 1, "|]", 4);
     }),
   (function (__caml_parser_env) {
-      return mkexp(/* Pexp_array */Block.__(14, [/* [] */0]));
+      return mkexp(--[ Pexp_array ]--Block.__(14, [--[ [] ]--0]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 5);
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(/* Pexp_open */Block.__(32, [
-                    /* Fresh */1,
+      return mkexp(--[ Pexp_open ]--Block.__(32, [
+                    --[ Fresh ]--1,
                     {
                       txt: _1,
                       loc: rhs_loc(1)
                     },
-                    mkexp(/* Pexp_array */Block.__(14, [List.rev(_4)]))
+                    mkexp(--[ Pexp_array ]--Block.__(14, [List.rev(_4)]))
                   ]));
     }),
   (function (__caml_parser_env) {
@@ -6735,8 +6735,8 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       var list_exp = reloc_exp(mktailexp(rhs_loc(6), List.rev(_4)));
-      return mkexp(/* Pexp_open */Block.__(32, [
-                    /* Fresh */1,
+      return mkexp(--[ Pexp_open ]--Block.__(32, [
+                    --[ Fresh ]--1,
                     {
                       txt: _1,
                       loc: rhs_loc(1)
@@ -6753,34 +6753,34 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_apply */Block.__(5, [
+      return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     mkoperator(_1, 1),
-                    /* :: */[
-                      /* tuple */[
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "",
                         _2
                       ],
-                      /* [] */0
+                      --[ [] ]--0
                     ]
                   ]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_apply */Block.__(5, [
+      return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     mkoperator("!", 1),
-                    /* :: */[
-                      /* tuple */[
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "",
                         _2
                       ],
-                      /* [] */0
+                      --[ [] ]--0
                     ]
                   ]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      var d = /* Pexp_new */Block.__(22, [{
+      var d = --[ Pexp_new ]--Block.__(22, [{
             txt: _3,
             loc: rhs_loc(3)
           }]);
@@ -6789,7 +6789,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(/* Pexp_override */Block.__(24, [List.rev(_2)]));
+      return mkexp(--[ Pexp_override ]--Block.__(24, [List.rev(_2)]));
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 2);
@@ -6797,19 +6797,19 @@ var yyact = [
       return unclosed("{<", 1, ">}", 4);
     }),
   (function (__caml_parser_env) {
-      return mkexp(/* Pexp_override */Block.__(24, [/* [] */0]));
+      return mkexp(--[ Pexp_override ]--Block.__(24, [--[ [] ]--0]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 5);
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(/* Pexp_open */Block.__(32, [
-                    /* Fresh */1,
+      return mkexp(--[ Pexp_open ]--Block.__(32, [
+                    --[ Fresh ]--1,
                     {
                       txt: _1,
                       loc: rhs_loc(1)
                     },
-                    mkexp(/* Pexp_override */Block.__(24, [List.rev(_4)]))
+                    mkexp(--[ Pexp_override ]--Block.__(24, [List.rev(_4)]))
                   ]));
     }),
   (function (__caml_parser_env) {
@@ -6821,7 +6821,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_send */Block.__(21, [
+      return mkexp(--[ Pexp_send ]--Block.__(21, [
                     _1,
                     _3
                   ]));
@@ -6834,14 +6834,14 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(/* Pexp_pack */Block.__(31, [_3]));
+      return mkexp(--[ Pexp_pack ]--Block.__(31, [_3]));
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 3);
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(/* Pexp_constraint */Block.__(19, [
-                    ghexp(/* Pexp_pack */Block.__(31, [_3])),
-                    ghtyp(/* Ptyp_package */Block.__(9, [_5]))
+      return mkexp(--[ Pexp_constraint ]--Block.__(19, [
+                    ghexp(--[ Pexp_pack ]--Block.__(31, [_3])),
+                    ghtyp(--[ Ptyp_package ]--Block.__(9, [_5]))
                   ]));
     }),
   (function (__caml_parser_env) {
@@ -6852,15 +6852,15 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 7);
       var _5 = Parsing.peek_val(__caml_parser_env, 3);
       var _7 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkexp(/* Pexp_open */Block.__(32, [
-                    /* Fresh */1,
+      return mkexp(--[ Pexp_open ]--Block.__(32, [
+                    --[ Fresh ]--1,
                     {
                       txt: _1,
                       loc: rhs_loc(1)
                     },
-                    mkexp(/* Pexp_constraint */Block.__(19, [
-                            ghexp(/* Pexp_pack */Block.__(31, [_5])),
-                            ghtyp(/* Ptyp_package */Block.__(9, [_7]))
+                    mkexp(--[ Pexp_constraint ]--Block.__(19, [
+                            ghexp(--[ Pexp_pack ]--Block.__(31, [_5])),
+                            ghtyp(--[ Ptyp_package ]--Block.__(9, [_7]))
                           ]))
                   ]));
     }),
@@ -6871,26 +6871,26 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_extension */Block.__(33, [_1]));
+      return mkexp(--[ Pexp_extension ]--Block.__(33, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               "",
               _1
             ];
@@ -6901,7 +6901,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _1,
               _2
             ];
@@ -6911,7 +6911,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               "?" + _2[0],
               _2[1]
             ];
@@ -6919,32 +6919,32 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               "?" + _1,
               _2
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _1,
-              mkexp(/* Pexp_ident */Block.__(0, [{
-                        txt: /* Lident */Block.__(0, [_1]),
+              mkexp(--[ Pexp_ident ]--Block.__(0, [{
+                        txt: --[ Lident ]--Block.__(0, [_1]),
                         loc: rhs_loc(1)
                       }]))
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
               _2
             ];
@@ -6952,7 +6952,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               mkpatvar(_1, 1),
               _2
             ];
@@ -6962,10 +6962,10 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 4);
       var _5 = Parsing.peek_val(__caml_parser_env, 2);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              ghpat(/* Ppat_constraint */Block.__(10, [
+      return --[ tuple ]--[
+              ghpat(--[ Ppat_constraint ]--Block.__(10, [
                       mkpatvar(_1, 1),
-                      ghtyp(/* Ptyp_poly */Block.__(8, [
+                      ghtyp(--[ Ptyp_poly ]--Block.__(8, [
                               List.rev(_3),
                               _5
                             ]))
@@ -6979,8 +6979,8 @@ var yyact = [
       var _6 = Parsing.peek_val(__caml_parser_env, 2);
       var _8 = Parsing.peek_val(__caml_parser_env, 0);
       var match = wrap_type_annotation(_4, _6, _8);
-      return /* tuple */[
-              ghpat(/* Ppat_constraint */Block.__(10, [
+      return --[ tuple ]--[
+              ghpat(--[ Ppat_constraint ]--Block.__(10, [
                       mkpatvar(_1, 1),
                       match[1]
                     ])),
@@ -6990,7 +6990,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _1,
               _3
             ];
@@ -6999,8 +6999,8 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 4);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              ghpat(/* Ppat_constraint */Block.__(10, [
+      return --[ tuple ]--[
+              ghpat(--[ Ppat_constraint ]--Block.__(10, [
                       _1,
                       _3
                     ])),
@@ -7016,7 +7016,7 @@ var yyact = [
       var lbs = _1;
       var lb = _2;
       return {
-              lbs_bindings: /* :: */[
+              lbs_bindings: --[ :: ]--[
                 lb,
                 lbs.lbs_bindings
               ],
@@ -7035,14 +7035,14 @@ var yyact = [
       var rf = _3;
       var lb = mklb(_4, _5);
       return {
-              lbs_bindings: /* :: */[
+              lbs_bindings: --[ :: ]--[
                 lb,
-                /* [] */0
+                --[ [] ]--0
               ],
               lbs_rec: rf,
               lbs_extension: param[0],
               lbs_attributes: param[1],
-              lbs_loc: symbol_rloc(/* () */0)
+              lbs_loc: symbol_rloc(--[ () ]--0)
             };
     }),
   (function (__caml_parser_env) {
@@ -7064,7 +7064,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return ghexp(/* Pexp_fun */Block.__(4, [
+      return ghexp(--[ Pexp_fun ]--Block.__(4, [
                     _1[0],
                     _1[1],
                     _1[2],
@@ -7074,22 +7074,22 @@ var yyact = [
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_newtype */Block.__(30, [
+      return mkexp(--[ Pexp_newtype ]--Block.__(30, [
                     _3,
                     _5
                   ]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
@@ -7111,7 +7111,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return ghexp(/* Pexp_fun */Block.__(4, [
+      return ghexp(--[ Pexp_fun ]--Block.__(4, [
                     _1[0],
                     _1[1],
                     _1[2],
@@ -7121,7 +7121,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkexp(/* Pexp_newtype */Block.__(30, [
+      return mkexp(--[ Pexp_newtype ]--Block.__(30, [
                     _3,
                     _5
                   ]));
@@ -7129,7 +7129,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
@@ -7137,55 +7137,55 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
-              /* :: */[
+              --[ :: ]--[
                 _1,
-                /* [] */0
+                --[ [] ]--0
               ]
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _1,
               _3
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               undefined,
               _1
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
               _3
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _1,
                 loc: rhs_loc(1)
@@ -7195,7 +7195,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _1,
                 loc: rhs_loc(1)
@@ -7206,23 +7206,23 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
-              /* tuple */[
+      return --[ :: ]--[
+              --[ tuple ]--[
                 {
                   txt: _1,
                   loc: rhs_loc(1)
                 },
                 _3
               ],
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 4);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
-              /* tuple */[
+      return --[ :: ]--[
+              --[ tuple ]--[
                 {
                   txt: _3,
                   loc: rhs_loc(3)
@@ -7234,22 +7234,22 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _2,
               undefined
             ];
@@ -7257,14 +7257,14 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _2,
               _4
             ];
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               undefined,
               _2
             ];
@@ -7281,7 +7281,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_alias */Block.__(1, [
+      return mkpat(--[ Ppat_alias ]--Block.__(1, [
                     _1,
                     {
                       txt: _3,
@@ -7295,12 +7295,12 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_tuple */Block.__(4, [List.rev(_1)]));
+      return mkpat(--[ Ppat_tuple ]--Block.__(4, [List.rev(_1)]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_construct */Block.__(5, [
+      return mkpat(--[ Ppat_construct ]--Block.__(5, [
                     {
                       txt: _1,
                       loc: rhs_loc(1)
@@ -7311,7 +7311,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_variant */Block.__(6, [
+      return mkpat(--[ Ppat_variant ]--Block.__(6, [
                     _1,
                     _2
                   ]));
@@ -7319,13 +7319,13 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat_cons(rhs_loc(2), ghpat(/* Ppat_tuple */Block.__(4, [/* :: */[
+      return mkpat_cons(rhs_loc(2), ghpat(--[ Ppat_tuple ]--Block.__(4, [--[ :: ]--[
                           _1,
-                          /* :: */[
+                          --[ :: ]--[
                             _3,
-                            /* [] */0
+                            --[ [] ]--0
                           ]
-                        ]])), symbol_rloc(/* () */0));
+                        ]])), symbol_rloc(--[ () ]--0));
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 2);
@@ -7334,13 +7334,13 @@ var yyact = [
   (function (__caml_parser_env) {
       var _5 = Parsing.peek_val(__caml_parser_env, 3);
       var _7 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat_cons(rhs_loc(2), ghpat(/* Ppat_tuple */Block.__(4, [/* :: */[
+      return mkpat_cons(rhs_loc(2), ghpat(--[ Ppat_tuple ]--Block.__(4, [--[ :: ]--[
                           _5,
-                          /* :: */[
+                          --[ :: ]--[
                             _7,
-                            /* [] */0
+                            --[ [] ]--0
                           ]
-                        ]])), symbol_rloc(/* () */0));
+                        ]])), symbol_rloc(--[ () ]--0));
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 3);
@@ -7350,7 +7350,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_or */Block.__(9, [
+      return mkpat(--[ Ppat_or ]--Block.__(9, [
                     _1,
                     _3
                   ]));
@@ -7361,11 +7361,11 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_lazy */Block.__(12, [_2]));
+      return mkpat(--[ Ppat_lazy ]--Block.__(12, [_2]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_exception */Block.__(14, [_2]));
+      return mkpat(--[ Ppat_exception ]--Block.__(14, [_2]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -7374,7 +7374,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_var */Block.__(0, [{
+      return mkpat(--[ Ppat_var ]--Block.__(0, [{
                       txt: _1,
                       loc: rhs_loc(1)
                     }]));
@@ -7383,23 +7383,23 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     }),
   (function (__caml_parser_env) {
-      return mkpat(/* Ppat_any */0);
+      return mkpat(--[ Ppat_any ]--0);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_constant */Block.__(2, [_1]));
+      return mkpat(--[ Ppat_constant ]--Block.__(2, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_interval */Block.__(3, [
+      return mkpat(--[ Ppat_interval ]--Block.__(3, [
                     _1,
                     _3
                   ]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_construct */Block.__(5, [
+      return mkpat(--[ Ppat_construct ]--Block.__(5, [
                     {
                       txt: _1,
                       loc: rhs_loc(1)
@@ -7409,21 +7409,21 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_variant */Block.__(6, [
+      return mkpat(--[ Ppat_variant ]--Block.__(6, [
                     _1,
                     undefined
                   ]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_type */Block.__(11, [{
+      return mkpat(--[ Ppat_type ]--Block.__(11, [{
                       txt: _2,
                       loc: rhs_loc(2)
                     }]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat(/* Ppat_record */Block.__(7, [
+      return mkpat(--[ Ppat_record ]--Block.__(7, [
                     _2[0],
                     _2[1]
                   ]));
@@ -7445,10 +7445,10 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat(/* Ppat_array */Block.__(8, [List.rev(_2)]));
+      return mkpat(--[ Ppat_array ]--Block.__(8, [List.rev(_2)]));
     }),
   (function (__caml_parser_env) {
-      return mkpat(/* Ppat_array */Block.__(8, [/* [] */0]));
+      return mkpat(--[ Ppat_array ]--Block.__(8, [--[ [] ]--0]));
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 2);
@@ -7465,7 +7465,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat(/* Ppat_constraint */Block.__(10, [
+      return mkpat(--[ Ppat_constraint ]--Block.__(10, [
                     _2,
                     _4
                   ]));
@@ -7481,7 +7481,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat(/* Ppat_unpack */Block.__(13, [{
+      return mkpat(--[ Ppat_unpack ]--Block.__(13, [{
                       txt: _3,
                       loc: rhs_loc(3)
                     }]));
@@ -7489,12 +7489,12 @@ var yyact = [
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 3);
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkpat(/* Ppat_constraint */Block.__(10, [
-                    mkpat(/* Ppat_unpack */Block.__(13, [{
+      return mkpat(--[ Ppat_constraint ]--Block.__(10, [
+                    mkpat(--[ Ppat_unpack ]--Block.__(13, [{
                               txt: _3,
                               loc: rhs_loc(3)
                             }])),
-                    ghtyp(/* Ptyp_package */Block.__(9, [_5]))
+                    ghtyp(--[ Ptyp_package ]--Block.__(9, [_5]))
                   ]));
     }),
   (function (__caml_parser_env) {
@@ -7504,12 +7504,12 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mkpat(/* Ppat_extension */Block.__(15, [_1]));
+      return mkpat(--[ Ppat_extension ]--Block.__(15, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
@@ -7517,11 +7517,11 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
-              /* :: */[
+              --[ :: ]--[
                 _1,
-                /* [] */0
+                --[ [] ]--0
               ]
             ];
     }),
@@ -7531,55 +7531,55 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              /* :: */[
+      return --[ tuple ]--[
+              --[ :: ]--[
                 _1,
-                /* [] */0
+                --[ [] ]--0
               ],
-              /* Closed */0
+              --[ Closed ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* tuple */[
-              /* :: */[
+      return --[ tuple ]--[
+              --[ :: ]--[
                 _1,
-                /* [] */0
+                --[ [] ]--0
               ],
-              /* Closed */0
+              --[ Closed ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              /* :: */[
+      return --[ tuple ]--[
+              --[ :: ]--[
                 _1,
-                /* [] */0
+                --[ [] ]--0
               ],
-              /* Open */1
+              --[ Open ]--1
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              /* :: */[
+      return --[ tuple ]--[
+              --[ :: ]--[
                 _1,
                 _3[0]
               ],
@@ -7589,7 +7589,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _1,
                 loc: rhs_loc(1)
@@ -7599,7 +7599,7 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _1,
                 loc: rhs_loc(1)
@@ -7611,22 +7611,22 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$11(symbol_rloc(/* () */0), _5, symbol_docs(/* () */0), undefined, {
+      return mk$11(symbol_rloc(--[ () ]--0), _5, symbol_docs(--[ () ]--0), undefined, {
                   txt: _2,
                   loc: rhs_loc(2)
                 }, _4);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1[0],
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1[0],
               _2
             ];
@@ -7636,22 +7636,22 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 3);
       var _6 = Parsing.peek_val(__caml_parser_env, 1);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$11(symbol_rloc(/* () */0), _7, symbol_docs(/* () */0), _6, {
+      return mk$11(symbol_rloc(--[ () ]--0), _7, symbol_docs(--[ () ]--0), _6, {
                   txt: _2,
                   loc: rhs_loc(2)
                 }, _4);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
@@ -7663,7 +7663,7 @@ var yyact = [
       var _5 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 1);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$19(symbol_rloc(/* () */0), add_nonrec(_2, _7, 2), symbol_docs(/* () */0), undefined, _3, List.rev(_6), _5[0], _5[1], _5[2], {
+      return mk$19(symbol_rloc(--[ () ]--0), add_nonrec(_2, _7, 2), symbol_docs(--[ () ]--0), undefined, _3, List.rev(_6), _5[0], _5[1], _5[2], {
                   txt: _4,
                   loc: rhs_loc(4)
                 });
@@ -7674,7 +7674,7 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$19(symbol_rloc(/* () */0), _6, symbol_docs(/* () */0), get_text(Parsing.symbol_start_pos(/* () */0)), _2, List.rev(_5), _4[0], _4[1], _4[2], {
+      return mk$19(symbol_rloc(--[ () ]--0), _6, symbol_docs(--[ () ]--0), get_text(Parsing.symbol_start_pos(--[ () ]--0)), _2, List.rev(_5), _4[0], _4[1], _4[2], {
                   txt: _3,
                   loc: rhs_loc(3)
                 });
@@ -7682,65 +7682,65 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
     }),
   (function (__caml_parser_env) {
-      return /* [] */0;
+      return --[ [] ]--0;
     }),
   (function (__caml_parser_env) {
-      return /* tuple */[
-              /* Ptype_abstract */0,
-              /* Public */1,
+      return --[ tuple ]--[
+              --[ Ptype_abstract ]--0,
+              --[ Public ]--1,
               undefined
             ];
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              /* Ptype_abstract */0,
-              /* Public */1,
+      return --[ tuple ]--[
+              --[ Ptype_abstract ]--0,
+              --[ Public ]--1,
               _2
             ];
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              /* Ptype_abstract */0,
-              /* Private */0,
+      return --[ tuple ]--[
+              --[ Ptype_abstract ]--0,
+              --[ Private ]--0,
               _3
             ];
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              /* Ptype_variant */Block.__(0, [List.rev(_2)]),
-              /* Public */1,
+      return --[ tuple ]--[
+              --[ Ptype_variant ]--Block.__(0, [List.rev(_2)]),
+              --[ Public ]--1,
               undefined
             ];
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              /* Ptype_variant */Block.__(0, [List.rev(_3)]),
-              /* Private */0,
+      return --[ tuple ]--[
+              --[ Ptype_variant ]--Block.__(0, [List.rev(_3)]),
+              --[ Private ]--0,
               undefined
             ];
     }),
   (function (__caml_parser_env) {
-      return /* tuple */[
-              /* Ptype_open */1,
-              /* Public */1,
+      return --[ tuple ]--[
+              --[ Ptype_open ]--1,
+              --[ Public ]--1,
               undefined
             ];
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* tuple */[
-              /* Ptype_record */Block.__(1, [_4]),
+      return --[ tuple ]--[
+              --[ Ptype_record ]--Block.__(1, [_4]),
               _2,
               undefined
             ];
@@ -7749,17 +7749,17 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              /* Ptype_variant */Block.__(0, [List.rev(_5)]),
+      return --[ tuple ]--[
+              --[ Ptype_variant ]--Block.__(0, [List.rev(_5)]),
               _4,
               _2
             ];
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      return /* tuple */[
-              /* Ptype_open */1,
-              /* Public */1,
+      return --[ tuple ]--[
+              --[ Ptype_open ]--1,
+              --[ Public ]--1,
               _2
             ];
     }),
@@ -7767,20 +7767,20 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 5);
       var _4 = Parsing.peek_val(__caml_parser_env, 3);
       var _6 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* tuple */[
-              /* Ptype_record */Block.__(1, [_6]),
+      return --[ tuple ]--[
+              --[ Ptype_record ]--Block.__(1, [_6]),
               _4,
               _2
             ];
     }),
   (function (__caml_parser_env) {
-      return /* [] */0;
+      return --[ [] ]--0;
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
@@ -7789,41 +7789,41 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _2,
               _1
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_var */Block.__(0, [_2]));
+      return mktyp(--[ Ptyp_var ]--Block.__(0, [_2]));
     }),
   (function (__caml_parser_env) {
-      return mktyp(/* Ptyp_any */0);
+      return mktyp(--[ Ptyp_any ]--0);
     }),
   (function (__caml_parser_env) {
-      return /* [] */0;
+      return --[ [] ]--0;
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
@@ -7832,57 +7832,57 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _2,
               _1
             ];
     }),
   (function (__caml_parser_env) {
-      return /* Invariant */2;
+      return --[ Invariant ]--2;
     }),
   (function (__caml_parser_env) {
-      return /* Covariant */0;
+      return --[ Covariant ]--0;
     }),
   (function (__caml_parser_env) {
-      return /* Contravariant */1;
+      return --[ Contravariant ]--1;
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_var */Block.__(0, [_2]));
+      return mktyp(--[ Ptyp_var ]--Block.__(0, [_2]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
@@ -7891,7 +7891,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return constructor(symbol_rloc(/* () */0), _3, Caml_option.some(get_info(Parsing.symbol_end_pos(/* () */0))), _2[0], _2[1], {
+      return constructor(symbol_rloc(--[ () ]--0), _3, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), _2[0], _2[1], {
                   txt: _1,
                   loc: rhs_loc(1)
                 });
@@ -7900,7 +7900,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return constructor(symbol_rloc(/* () */0), _4, Caml_option.some(get_info(Parsing.symbol_end_pos(/* () */0))), _3[0], _3[1], {
+      return constructor(symbol_rloc(--[ () ]--0), _4, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), _3[0], _3[1], {
                   txt: _2,
                   loc: rhs_loc(2)
                 });
@@ -7913,7 +7913,7 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return rebind(symbol_rloc(/* () */0), Pervasives.$at(_5, _6), symbol_docs(/* () */0), undefined, {
+      return rebind(symbol_rloc(--[ () ]--0), Pervasives.$at(_5, _6), symbol_docs(--[ () ]--0), undefined, {
                   txt: _2,
                   loc: rhs_loc(2)
                 }, {
@@ -7926,20 +7926,20 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return decl(symbol_rloc(/* () */0), Pervasives.$at(_4, _5), symbol_docs(/* () */0), undefined, _3[0], _3[1], {
+      return decl(symbol_rloc(--[ () ]--0), Pervasives.$at(_4, _5), symbol_docs(--[ () ]--0), undefined, _3[0], _3[1], {
                   txt: _2,
                   loc: rhs_loc(2)
                 });
     }),
   (function (__caml_parser_env) {
-      return /* tuple */[
-              /* [] */0,
+      return --[ tuple ]--[
+              --[ [] ]--0,
               undefined
             ];
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               List.rev(_2),
               undefined
             ];
@@ -7947,36 +7947,36 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               List.rev(_2),
               _4
             ];
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              /* [] */0,
+      return --[ tuple ]--[
+              --[ [] ]--0,
               _2
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
               _2
             ];
@@ -7986,7 +7986,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return field$1(symbol_rloc(/* () */0), _5, Caml_option.some(get_info(Parsing.symbol_end_pos(/* () */0))), _1, {
+      return field$1(symbol_rloc(--[ () ]--0), _5, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), _1, {
                   txt: _2,
                   loc: rhs_loc(2)
                 }, _4);
@@ -7998,8 +7998,8 @@ var yyact = [
       var _5 = Parsing.peek_val(__caml_parser_env, 2);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
       var info_before_semi = get_info(Parsing.rhs_end_pos(5));
-      var info = info_before_semi !== undefined ? info_before_semi : get_info(Parsing.symbol_end_pos(/* () */0));
-      return field$1(symbol_rloc(/* () */0), Pervasives.$at(_5, _7), Caml_option.some(info), _1, {
+      var info = info_before_semi ~= undefined ? info_before_semi : get_info(Parsing.symbol_end_pos(--[ () ]--0));
+      return field$1(symbol_rloc(--[ () ]--0), Pervasives.$at(_5, _7), Caml_option.some(info), _1, {
                   txt: _2,
                   loc: rhs_loc(2)
                 }, _4);
@@ -8011,10 +8011,10 @@ var yyact = [
       var _6 = Parsing.peek_val(__caml_parser_env, 2);
       var _7 = Parsing.peek_val(__caml_parser_env, 1);
       var _8 = Parsing.peek_val(__caml_parser_env, 0);
-      if (_2 !== /* Recursive */1) {
+      if (_2 ~= --[ Recursive ]--1) {
         not_expecting(2, "nonrec flag");
       }
-      return mk$20(_8, symbol_docs(/* () */0), _3, _6, {
+      return mk$20(_8, symbol_docs(--[ () ]--0), _3, _6, {
                   txt: _4,
                   loc: rhs_loc(4)
                 }, List.rev(_7));
@@ -8026,46 +8026,46 @@ var yyact = [
       var _6 = Parsing.peek_val(__caml_parser_env, 2);
       var _7 = Parsing.peek_val(__caml_parser_env, 1);
       var _8 = Parsing.peek_val(__caml_parser_env, 0);
-      if (_2 !== /* Recursive */1) {
+      if (_2 ~= --[ Recursive ]--1) {
         not_expecting(2, "nonrec flag");
       }
-      return mk$20(_8, symbol_docs(/* () */0), _3, _6, {
+      return mk$20(_8, symbol_docs(--[ () ]--0), _3, _6, {
                   txt: _4,
                   loc: rhs_loc(4)
                 }, List.rev(_7));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
@@ -8073,29 +8073,29 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
@@ -8104,7 +8104,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return decl(symbol_rloc(/* () */0), _3, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(/* () */0))), _2[0], _2[1], {
+      return decl(symbol_rloc(--[ () ]--0), _3, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), _2[0], _2[1], {
                   txt: _1,
                   loc: rhs_loc(1)
                 });
@@ -8113,7 +8113,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return decl(symbol_rloc(/* () */0), _4, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(/* () */0))), _3[0], _3[1], {
+      return decl(symbol_rloc(--[ () ]--0), _4, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), _3[0], _3[1], {
                   txt: _2,
                   loc: rhs_loc(2)
                 });
@@ -8122,7 +8122,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 3);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return rebind(symbol_rloc(/* () */0), _4, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(/* () */0))), {
+      return rebind(symbol_rloc(--[ () ]--0), _4, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), {
                   txt: _1,
                   loc: rhs_loc(1)
                 }, {
@@ -8134,7 +8134,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return rebind(symbol_rloc(/* () */0), _5, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(/* () */0))), {
+      return rebind(symbol_rloc(--[ () ]--0), _5, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), {
                   txt: _2,
                   loc: rhs_loc(2)
                 }, {
@@ -8144,15 +8144,15 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
@@ -8164,12 +8164,12 @@ var yyact = [
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
       var rhs = last(_3);
-      return /* Pwith_type */Block.__(0, [
+      return --[ Pwith_type ]--Block.__(0, [
                 {
                   txt: _3,
                   loc: rhs_loc(3)
                 },
-                mk$19(symbol_rloc(/* () */0), undefined, undefined, undefined, _2, List.rev(_6), undefined, _4, _5, {
+                mk$19(symbol_rloc(--[ () ]--0), undefined, undefined, undefined, _2, List.rev(_6), undefined, _4, _5, {
                       txt: rhs,
                       loc: rhs_loc(3)
                     })
@@ -8179,7 +8179,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Pwith_typesubst */Block.__(2, [mk$19(symbol_rloc(/* () */0), undefined, undefined, undefined, _2, undefined, undefined, undefined, _5, {
+      return --[ Pwith_typesubst ]--Block.__(2, [mk$19(symbol_rloc(--[ () ]--0), undefined, undefined, undefined, _2, undefined, undefined, undefined, _5, {
                       txt: _3,
                       loc: rhs_loc(3)
                     })]);
@@ -8187,7 +8187,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Pwith_module */Block.__(1, [
+      return --[ Pwith_module ]--Block.__(1, [
                 {
                   txt: _2,
                   loc: rhs_loc(2)
@@ -8201,7 +8201,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Pwith_modsubst */Block.__(3, [
+      return --[ Pwith_modsubst ]--Block.__(3, [
                 {
                   txt: _2,
                   loc: rhs_loc(2)
@@ -8213,22 +8213,22 @@ var yyact = [
               ]);
     }),
   (function (__caml_parser_env) {
-      return /* Public */1;
+      return --[ Public ]--1;
     }),
   (function (__caml_parser_env) {
-      return /* Private */0;
+      return --[ Private ]--0;
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
@@ -8239,7 +8239,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_poly */Block.__(8, [
+      return mktyp(--[ Ptyp_poly ]--Block.__(8, [
                     List.rev(_1),
                     _3
                   ]));
@@ -8250,7 +8250,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_poly */Block.__(8, [
+      return mktyp(--[ Ptyp_poly ]--Block.__(8, [
                     List.rev(_1),
                     _3
                   ]));
@@ -8269,7 +8269,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_alias */Block.__(6, [
+      return mktyp(--[ Ptyp_alias ]--Block.__(6, [
                     _1,
                     _4
                   ]));
@@ -8281,7 +8281,7 @@ var yyact = [
       var _2 = Parsing.peek_val(__caml_parser_env, 4);
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_arrow */Block.__(1, [
+      return mktyp(--[ Ptyp_arrow ]--Block.__(1, [
                     "?" + _2,
                     mkoption(_4),
                     _6
@@ -8291,7 +8291,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 3);
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_arrow */Block.__(1, [
+      return mktyp(--[ Ptyp_arrow ]--Block.__(1, [
                     "?" + _1,
                     mkoption(_2),
                     _4
@@ -8301,7 +8301,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 4);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_arrow */Block.__(1, [
+      return mktyp(--[ Ptyp_arrow ]--Block.__(1, [
                     _1,
                     _3,
                     _5
@@ -8310,7 +8310,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_arrow */Block.__(1, [
+      return mktyp(--[ Ptyp_arrow ]--Block.__(1, [
                     "",
                     _1,
                     _3
@@ -8346,39 +8346,39 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_var */Block.__(0, [_2]));
+      return mktyp(--[ Ptyp_var ]--Block.__(0, [_2]));
     }),
   (function (__caml_parser_env) {
-      return mktyp(/* Ptyp_any */0);
+      return mktyp(--[ Ptyp_any ]--0);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_constr */Block.__(3, [
+      return mktyp(--[ Ptyp_constr ]--Block.__(3, [
                     {
                       txt: _1,
                       loc: rhs_loc(1)
                     },
-                    /* [] */0
+                    --[ [] ]--0
                   ]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_constr */Block.__(3, [
+      return mktyp(--[ Ptyp_constr ]--Block.__(3, [
                     {
                       txt: _2,
                       loc: rhs_loc(2)
                     },
-                    /* :: */[
+                    --[ :: ]--[
                       _1,
-                      /* [] */0
+                      --[ [] ]--0
                     ]
                   ]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_constr */Block.__(3, [
+      return mktyp(--[ Ptyp_constr ]--Block.__(3, [
                     {
                       txt: _4,
                       loc: rhs_loc(4)
@@ -8388,45 +8388,45 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(/* Ptyp_object */Block.__(4, [
+      return mktyp(--[ Ptyp_object ]--Block.__(4, [
                     _2[0],
                     _2[1]
                   ]));
     }),
   (function (__caml_parser_env) {
-      return mktyp(/* Ptyp_object */Block.__(4, [
-                    /* [] */0,
-                    /* Closed */0
+      return mktyp(--[ Ptyp_object ]--Block.__(4, [
+                    --[ [] ]--0,
+                    --[ Closed ]--0
                   ]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_class */Block.__(5, [
+      return mktyp(--[ Ptyp_class ]--Block.__(5, [
                     {
                       txt: _2,
                       loc: rhs_loc(2)
                     },
-                    /* [] */0
+                    --[ [] ]--0
                   ]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_class */Block.__(5, [
+      return mktyp(--[ Ptyp_class ]--Block.__(5, [
                     {
                       txt: _3,
                       loc: rhs_loc(3)
                     },
-                    /* :: */[
+                    --[ :: ]--[
                       _1,
-                      /* [] */0
+                      --[ [] ]--0
                     ]
                   ]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_class */Block.__(5, [
+      return mktyp(--[ Ptyp_class ]--Block.__(5, [
                     {
                       txt: _5,
                       loc: rhs_loc(5)
@@ -8436,92 +8436,92 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(/* Ptyp_variant */Block.__(7, [
-                    /* :: */[
+      return mktyp(--[ Ptyp_variant ]--Block.__(7, [
+                    --[ :: ]--[
                       _2,
-                      /* [] */0
+                      --[ [] ]--0
                     ],
-                    /* Closed */0,
+                    --[ Closed ]--0,
                     undefined
                   ]));
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(/* Ptyp_variant */Block.__(7, [
+      return mktyp(--[ Ptyp_variant ]--Block.__(7, [
                     List.rev(_3),
-                    /* Closed */0,
+                    --[ Closed ]--0,
                     undefined
                   ]));
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(/* Ptyp_variant */Block.__(7, [
-                    /* :: */[
+      return mktyp(--[ Ptyp_variant ]--Block.__(7, [
+                    --[ :: ]--[
                       _2,
                       List.rev(_4)
                     ],
-                    /* Closed */0,
+                    --[ Closed ]--0,
                     undefined
                   ]));
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(/* Ptyp_variant */Block.__(7, [
+      return mktyp(--[ Ptyp_variant ]--Block.__(7, [
                     List.rev(_3),
-                    /* Open */1,
+                    --[ Open ]--1,
                     undefined
                   ]));
     }),
   (function (__caml_parser_env) {
-      return mktyp(/* Ptyp_variant */Block.__(7, [
-                    /* [] */0,
-                    /* Open */1,
+      return mktyp(--[ Ptyp_variant ]--Block.__(7, [
+                    --[ [] ]--0,
+                    --[ Open ]--1,
                     undefined
                   ]));
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(/* Ptyp_variant */Block.__(7, [
+      return mktyp(--[ Ptyp_variant ]--Block.__(7, [
                     List.rev(_3),
-                    /* Closed */0,
-                    /* [] */0
+                    --[ Closed ]--0,
+                    --[ [] ]--0
                   ]));
     }),
   (function (__caml_parser_env) {
       Parsing.peek_val(__caml_parser_env, 4);
       var _3 = Parsing.peek_val(__caml_parser_env, 3);
       var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(/* Ptyp_variant */Block.__(7, [
+      return mktyp(--[ Ptyp_variant ]--Block.__(7, [
                     List.rev(_3),
-                    /* Closed */0,
+                    --[ Closed ]--0,
                     List.rev(_5)
                   ]));
     }),
   (function (__caml_parser_env) {
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return mktyp(/* Ptyp_package */Block.__(9, [_3]));
+      return mktyp(--[ Ptyp_package ]--Block.__(9, [_3]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_extension */Block.__(10, [_1]));
+      return mktyp(--[ Ptyp_extension ]--Block.__(10, [_1]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _1,
                 loc: rhs_loc(1)
               },
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _1,
                 loc: rhs_loc(1)
@@ -8532,7 +8532,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               {
                 txt: _2,
                 loc: rhs_loc(2)
@@ -8542,30 +8542,30 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
               _3
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
@@ -8575,14 +8575,14 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Rinherit */Block.__(1, [_1]);
+      return --[ Rinherit ]--Block.__(1, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 4);
       var _3 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Rtag */Block.__(0, [
+      return --[ Rtag ]--Block.__(0, [
                 _1,
                 _5,
                 _3,
@@ -8592,11 +8592,11 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Rtag */Block.__(0, [
+      return --[ Rtag ]--Block.__(0, [
                 _1,
                 _2,
                 true,
-                /* [] */0
+                --[ [] ]--0
               ]);
     }),
   (function (__caml_parser_env) {
@@ -8607,30 +8607,30 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _2,
               _1
             ];
@@ -8641,7 +8641,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_tuple */Block.__(2, [/* :: */[
+      return mktyp(--[ Ptyp_tuple ]--Block.__(2, [--[ :: ]--[
                       _1,
                       List.rev(_3)
                     ]]));
@@ -8652,52 +8652,52 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mktyp(/* Ptyp_tuple */Block.__(2, [/* :: */[
+      return mktyp(--[ Ptyp_tuple ]--Block.__(2, [--[ :: ]--[
                       _1,
                       List.rev(_3)
                     ]]));
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _3,
               _1
             ];
@@ -8705,8 +8705,8 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              /* :: */[
+      return --[ tuple ]--[
+              --[ :: ]--[
                 _1,
                 _3[0]
               ],
@@ -8716,25 +8716,25 @@ var yyact = [
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
-              /* :: */[
+      return --[ tuple ]--[
+              --[ :: ]--[
                 _1,
-                /* [] */0
+                --[ [] ]--0
               ],
-              /* Closed */0
+              --[ Closed ]--0
             ];
     }),
   (function (__caml_parser_env) {
-      return /* tuple */[
-              /* [] */0,
-              /* Open */1
+      return --[ tuple ]--[
+              --[ [] ]--0,
+              --[ Open ]--1
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 3);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _1,
               _4,
               _3
@@ -8745,77 +8745,77 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_int */Block.__(0, [_1]);
+      return --[ Const_int ]--Block.__(0, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_char */Block.__(1, [_1]);
+      return --[ Const_char ]--Block.__(1, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_string */Block.__(2, [
+      return --[ Const_string ]--Block.__(2, [
                 _1[0],
                 _1[1]
               ]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_float */Block.__(3, [_1]);
+      return --[ Const_float ]--Block.__(3, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_int32 */Block.__(4, [_1]);
+      return --[ Const_int32 ]--Block.__(4, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_int64 */Block.__(5, [_1]);
+      return --[ Const_int64 ]--Block.__(5, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_nativeint */Block.__(6, [_1]);
+      return --[ Const_nativeint ]--Block.__(6, [_1]);
     }),
   (function (__caml_parser_env) {
       return Parsing.peek_val(__caml_parser_env, 0);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_int */Block.__(0, [-_2 | 0]);
+      return --[ Const_int ]--Block.__(0, [-_2 | 0]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_float */Block.__(3, ["-" + _2]);
+      return --[ Const_float ]--Block.__(3, ["-" + _2]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_int32 */Block.__(4, [-_2 | 0]);
+      return --[ Const_int32 ]--Block.__(4, [-_2 | 0]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_int64 */Block.__(5, [Caml_int64.neg(_2)]);
+      return --[ Const_int64 ]--Block.__(5, [Caml_int64.neg(_2)]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_nativeint */Block.__(6, [-_2]);
+      return --[ Const_nativeint ]--Block.__(6, [-_2]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_int */Block.__(0, [_2]);
+      return --[ Const_int ]--Block.__(0, [_2]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_float */Block.__(3, [_2]);
+      return --[ Const_float ]--Block.__(3, [_2]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_int32 */Block.__(4, [_2]);
+      return --[ Const_int32 ]--Block.__(4, [_2]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_int64 */Block.__(5, [_2]);
+      return --[ Const_int64 ]--Block.__(5, [_2]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Const_nativeint */Block.__(6, [_2]);
+      return --[ Const_nativeint ]--Block.__(6, [_2]);
     }),
   (function (__caml_parser_env) {
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -8925,12 +8925,12 @@ var yyact = [
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Lident */Block.__(0, [_1]);
+      return --[ Lident ]--Block.__(0, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ldot */Block.__(1, [
+      return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
@@ -8939,61 +8939,61 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     }),
   (function (__caml_parser_env) {
-      return /* Lident */Block.__(0, ["[]"]);
+      return --[ Lident ]--Block.__(0, ["[]"]);
     }),
   (function (__caml_parser_env) {
-      return /* Lident */Block.__(0, ["()"]);
+      return --[ Lident ]--Block.__(0, ["()"]);
     }),
   (function (__caml_parser_env) {
-      return /* Lident */Block.__(0, ["false"]);
+      return --[ Lident ]--Block.__(0, ["false"]);
     }),
   (function (__caml_parser_env) {
-      return /* Lident */Block.__(0, ["true"]);
+      return --[ Lident ]--Block.__(0, ["true"]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Lident */Block.__(0, [_1]);
+      return --[ Lident ]--Block.__(0, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ldot */Block.__(1, [
+      return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Lident */Block.__(0, [_1]);
+      return --[ Lident ]--Block.__(0, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ldot */Block.__(1, [
+      return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Lident */Block.__(0, [_1]);
+      return --[ Lident ]--Block.__(0, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ldot */Block.__(1, [
+      return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Lident */Block.__(0, [_1]);
+      return --[ Lident ]--Block.__(0, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ldot */Block.__(1, [
+      return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
@@ -9004,192 +9004,192 @@ var yyact = [
       var p1 = _1;
       var p2 = _3;
       if (applicative_functors.contents) {
-        return /* Lapply */Block.__(2, [
+        return --[ Lapply ]--Block.__(2, [
                   p1,
                   p2
                 ]);
       } else {
         throw [
               $$Error$1,
-              /* Applicative_path */Block.__(3, [symbol_rloc(/* () */0)])
+              --[ Applicative_path ]--Block.__(3, [symbol_rloc(--[ () ]--0)])
             ];
       }
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Lident */Block.__(0, [_1]);
+      return --[ Lident ]--Block.__(0, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ldot */Block.__(1, [
+      return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Lident */Block.__(0, [_1]);
+      return --[ Lident ]--Block.__(0, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ldot */Block.__(1, [
+      return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Lident */Block.__(0, [_1]);
+      return --[ Lident ]--Block.__(0, [_1]);
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ldot */Block.__(1, [
+      return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ptop_dir */Block.__(1, [
+      return --[ Ptop_dir ]--Block.__(1, [
                 _2,
-                /* Pdir_none */0
+                --[ Pdir_none ]--0
               ]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ptop_dir */Block.__(1, [
+      return --[ Ptop_dir ]--Block.__(1, [
                 _2,
-                /* Pdir_string */Block.__(0, [_3[0]])
+                --[ Pdir_string ]--Block.__(0, [_3[0]])
               ]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ptop_dir */Block.__(1, [
+      return --[ Ptop_dir ]--Block.__(1, [
                 _2,
-                /* Pdir_int */Block.__(1, [_3])
+                --[ Pdir_int ]--Block.__(1, [_3])
               ]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ptop_dir */Block.__(1, [
+      return --[ Ptop_dir ]--Block.__(1, [
                 _2,
-                /* Pdir_ident */Block.__(2, [_3])
+                --[ Pdir_ident ]--Block.__(2, [_3])
               ]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* Ptop_dir */Block.__(1, [
+      return --[ Ptop_dir ]--Block.__(1, [
                 _2,
-                /* Pdir_ident */Block.__(2, [_3])
+                --[ Pdir_ident ]--Block.__(2, [_3])
               ]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* Ptop_dir */Block.__(1, [
+      return --[ Ptop_dir ]--Block.__(1, [
                 _2,
-                /* Pdir_bool */Block.__(3, [false])
+                --[ Pdir_bool ]--Block.__(3, [false])
               ]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* Ptop_dir */Block.__(1, [
+      return --[ Ptop_dir ]--Block.__(1, [
                 _2,
-                /* Pdir_bool */Block.__(3, [true])
+                --[ Pdir_bool ]--Block.__(3, [true])
               ]);
     }),
   (function (__caml_parser_env) {
       return Parsing.peek_val(__caml_parser_env, 0);
     }),
   (function (__caml_parser_env) {
-      return /* Nonrecursive */0;
+      return --[ Nonrecursive ]--0;
     }),
   (function (__caml_parser_env) {
-      return /* Recursive */1;
+      return --[ Recursive ]--1;
     }),
   (function (__caml_parser_env) {
-      return /* Recursive */1;
+      return --[ Recursive ]--1;
     }),
   (function (__caml_parser_env) {
-      return /* Nonrecursive */0;
+      return --[ Nonrecursive ]--0;
     }),
   (function (__caml_parser_env) {
-      return /* Upto */0;
+      return --[ Upto ]--0;
     }),
   (function (__caml_parser_env) {
-      return /* Downto */1;
+      return --[ Downto ]--1;
     }),
   (function (__caml_parser_env) {
-      return /* Public */1;
+      return --[ Public ]--1;
     }),
   (function (__caml_parser_env) {
-      return /* Private */0;
+      return --[ Private ]--0;
     }),
   (function (__caml_parser_env) {
-      return /* Immutable */0;
+      return --[ Immutable ]--0;
     }),
   (function (__caml_parser_env) {
-      return /* Mutable */1;
+      return --[ Mutable ]--1;
     }),
   (function (__caml_parser_env) {
-      return /* Concrete */1;
+      return --[ Concrete ]--1;
     }),
   (function (__caml_parser_env) {
-      return /* Virtual */0;
+      return --[ Virtual ]--0;
     }),
   (function (__caml_parser_env) {
-      return /* tuple */[
-              /* Public */1,
-              /* Concrete */1
+      return --[ tuple ]--[
+              --[ Public ]--1,
+              --[ Concrete ]--1
             ];
     }),
   (function (__caml_parser_env) {
-      return /* tuple */[
-              /* Private */0,
-              /* Concrete */1
+      return --[ tuple ]--[
+              --[ Private ]--0,
+              --[ Concrete ]--1
             ];
     }),
   (function (__caml_parser_env) {
-      return /* tuple */[
-              /* Public */1,
-              /* Virtual */0
+      return --[ tuple ]--[
+              --[ Public ]--1,
+              --[ Virtual ]--0
             ];
     }),
   (function (__caml_parser_env) {
-      return /* tuple */[
-              /* Private */0,
-              /* Virtual */0
+      return --[ tuple ]--[
+              --[ Private ]--0,
+              --[ Virtual ]--0
             ];
     }),
   (function (__caml_parser_env) {
-      return /* tuple */[
-              /* Private */0,
-              /* Virtual */0
+      return --[ tuple ]--[
+              --[ Private ]--0,
+              --[ Virtual ]--0
             ];
     }),
   (function (__caml_parser_env) {
-      return /* Fresh */1;
+      return --[ Fresh ]--1;
     }),
   (function (__caml_parser_env) {
-      return /* Override */0;
+      return --[ Override ]--0;
     }),
   (function (__caml_parser_env) {
-      return /* () */0;
+      return --[ () ]--0;
     }),
   (function (__caml_parser_env) {
-      return /* () */0;
+      return --[ () ]--0;
     }),
   (function (__caml_parser_env) {
-      return /* () */0;
+      return --[ () ]--0;
     }),
   (function (__caml_parser_env) {
-      return /* () */0;
+      return --[ () ]--0;
     }),
   (function (__caml_parser_env) {
       return "-";
@@ -9357,7 +9357,7 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
       return {
               txt: _1,
-              loc: symbol_rloc(/* () */0)
+              loc: symbol_rloc(--[ () ]--0)
             };
     }),
   (function (__caml_parser_env) {
@@ -9365,13 +9365,13 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
       return {
               txt: _1 + ("." + _3.txt),
-              loc: symbol_rloc(/* () */0)
+              loc: symbol_rloc(--[ () ]--0)
             };
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* tuple */[
+      return --[ tuple ]--[
               _2,
               _3
             ];
@@ -9379,7 +9379,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* tuple */[
+      return --[ tuple ]--[
               _2,
               _3
             ];
@@ -9387,45 +9387,45 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* tuple */[
+      return --[ tuple ]--[
               _2,
               _3
             ];
     }),
   (function (__caml_parser_env) {
-      return /* [] */0;
+      return --[ [] ]--0;
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
               _2
             ];
     }),
   (function (__caml_parser_env) {
-      return /* [] */0;
+      return --[ [] ]--0;
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* :: */[
+      return --[ :: ]--[
               _1,
               _2
             ];
     }),
   (function (__caml_parser_env) {
-      return /* tuple */[
+      return --[ tuple ]--[
               undefined,
-              /* [] */0
+              --[ [] ]--0
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 1);
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               undefined,
-              /* :: */[
+              --[ :: ]--[
                 _1,
                 _2
               ]
@@ -9434,7 +9434,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* tuple */[
+      return --[ tuple ]--[
               _2,
               _3
             ];
@@ -9442,7 +9442,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* tuple */[
+      return --[ tuple ]--[
               _2,
               _3
             ];
@@ -9450,22 +9450,22 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      return /* tuple */[
+      return --[ tuple ]--[
               _2,
               _3
             ];
     }),
   (function (__caml_parser_env) {
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* PStr */Block.__(0, [_1]);
+      return --[ PStr ]--Block.__(0, [_1]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* PTyp */Block.__(1, [_2]);
+      return --[ PTyp ]--Block.__(1, [_2]);
     }),
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* PPat */Block.__(2, [
+      return --[ PPat ]--Block.__(2, [
                 _2,
                 undefined
               ]);
@@ -9473,7 +9473,7 @@ var yyact = [
   (function (__caml_parser_env) {
       var _2 = Parsing.peek_val(__caml_parser_env, 2);
       var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return /* PPat */Block.__(2, [
+      return --[ PPat ]--Block.__(2, [
                 _2,
                 _4
               ]);
@@ -9546,18 +9546,18 @@ function implementation(lexfun, lexbuf) {
 }
 
 function type_of_directive(x) {
-  if (typeof x === "number") {
-    return /* Dir_type_null */4;
+  if (typeof x == "number") {
+    return --[ Dir_type_null ]--4;
   } else {
     switch (x.tag | 0) {
-      case /* Dir_bool */0 :
-          return /* Dir_type_bool */0;
-      case /* Dir_float */1 :
-          return /* Dir_type_float */1;
-      case /* Dir_int */2 :
-          return /* Dir_type_int */2;
-      case /* Dir_string */3 :
-          return /* Dir_type_string */3;
+      case --[ Dir_bool ]--0 :
+          return --[ Dir_type_bool ]--0;
+      case --[ Dir_float ]--1 :
+          return --[ Dir_type_float ]--1;
+      case --[ Dir_int ]--2 :
+          return --[ Dir_type_int ]--2;
+      case --[ Dir_string ]--3 :
+          return --[ Dir_type_string ]--3;
       
     }
   }
@@ -9565,16 +9565,16 @@ function type_of_directive(x) {
 
 function string_of_type_directive(x) {
   switch (x) {
-    case /* Dir_type_bool */0 :
+    case --[ Dir_type_bool ]--0 :
         return "bool";
-    case /* Dir_type_float */1 :
+    case --[ Dir_type_float ]--1 :
         return "float";
-    case /* Dir_type_int */2 :
+    case --[ Dir_type_int ]--2 :
         return "int";
-    case /* Dir_type_string */3 :
+    case --[ Dir_type_string ]--3 :
         return "string";
-    case /* Dir_type_null */4 :
-        return "null";
+    case --[ Dir_type_null ]--4 :
+        return "nil";
     
   }
 }
@@ -9584,10 +9584,10 @@ var $$Error$2 = Caml_exceptions.create("Ocaml_parsetree_test.Lexer.Error");
 function assert_same_type(lexbuf, x, y) {
   var lhs = type_of_directive(x);
   var rhs = type_of_directive(y);
-  if (lhs !== rhs) {
+  if (lhs ~= rhs) {
     throw [
           $$Error$2,
-          /* Conditional_expr_expected_type */Block.__(7, [
+          --[ Conditional_expr_expected_type ]--Block.__(7, [
               lhs,
               rhs
             ]),
@@ -9599,7 +9599,7 @@ function assert_same_type(lexbuf, x, y) {
 
 var directive_built_in_values = Hashtbl.create(undefined, 51);
 
-Hashtbl.replace(directive_built_in_values, "OCAML_VERSION", /* Dir_string */Block.__(3, [Sys.ocaml_version]));
+Hashtbl.replace(directive_built_in_values, "OCAML_VERSION", --[ Dir_string ]--Block.__(3, [Sys.ocaml_version]));
 
 var tmp;
 
@@ -9608,30 +9608,30 @@ var exit = 0;
 var i;
 
 try {
-  i = $$String.rindex(Sys.ocaml_version, /* "+" */43);
+  i = $$String.rindex(Sys.ocaml_version, --[ "+" ]--43);
   exit = 1;
 }
 catch (exn$1){
-  if (exn$1 === Caml_builtin_exceptions.not_found) {
+  if (exn$1 == Caml_builtin_exceptions.not_found) {
     tmp = "";
   } else {
     throw exn$1;
   }
 }
 
-if (exit === 1) {
+if (exit == 1) {
   tmp = $$String.sub(Sys.ocaml_version, i + 1 | 0, (Sys.ocaml_version.length - i | 0) - 1 | 0);
 }
 
-var v = /* Dir_string */Block.__(3, [tmp]);
+var v = --[ Dir_string ]--Block.__(3, [tmp]);
 
 Hashtbl.replace(directive_built_in_values, "OCAML_PATCH", v);
 
-Hashtbl.replace(directive_built_in_values, "OS_TYPE", /* Dir_string */Block.__(3, [Sys.os_type]));
+Hashtbl.replace(directive_built_in_values, "OS_TYPE", --[ Dir_string ]--Block.__(3, [Sys.os_type]));
 
-Hashtbl.replace(directive_built_in_values, "BIG_ENDIAN", /* Dir_bool */Block.__(0, [Sys.big_endian]));
+Hashtbl.replace(directive_built_in_values, "BIG_ENDIAN", --[ Dir_bool ]--Block.__(0, [Sys.big_endian]));
 
-Hashtbl.replace(directive_built_in_values, "WORD_SIZE", /* Dir_int */Block.__(2, [Sys.word_size]));
+Hashtbl.replace(directive_built_in_values, "WORD_SIZE", --[ Dir_int ]--Block.__(2, [Sys.word_size]));
 
 function semantic_version_parse(str, start, last_index) {
   var aux = function (_start, _acc, last_index) {
@@ -9640,26 +9640,26 @@ function semantic_version_parse(str, start, last_index) {
       var start = _start;
       if (start <= last_index) {
         var c = str.charCodeAt(start);
-        if (c === /* "." */46) {
-          return /* tuple */[
+        if (c == --[ "." ]--46) {
+          return --[ tuple ]--[
                   acc,
                   start + 1 | 0
                 ];
         } else {
-          var v = c - /* "0" */48 | 0;
-          if (v >= 0 && v <= 9) {
+          var v = c - --[ "0" ]--48 | 0;
+          if (v >= 0 and v <= 9) {
             _acc = Caml_int32.imul(acc, 10) + v | 0;
             _start = start + 1 | 0;
             continue ;
           } else {
-            return /* tuple */[
+            return --[ tuple ]--[
                     acc,
                     start
                   ];
           }
         }
       } else {
-        return /* tuple */[
+        return --[ tuple ]--[
                 acc,
                 start
               ];
@@ -9671,8 +9671,8 @@ function semantic_version_parse(str, start, last_index) {
   var match$2 = aux(match$1[1], 0, last_index);
   var patch_end = match$2[1];
   var additional = $$String.sub(str, patch_end, (last_index - patch_end | 0) + 1 | 0);
-  return /* tuple */[
-          /* tuple */[
+  return --[ tuple ]--[
+          --[ tuple ]--[
             match[0],
             match$1[0],
             match$2[0]
@@ -9695,7 +9695,7 @@ function defined(str) {
       return false;
     }
   }
-  if (typeof val === "number") {
+  if (typeof val == "number") {
     return false;
   } else {
     return true;
@@ -9708,7 +9708,7 @@ function query(loc, str) {
     v = Hashtbl.find(directive_built_in_values, str);
   }
   catch (exn){
-    if (exn === Caml_builtin_exceptions.not_found) {
+    if (exn == Caml_builtin_exceptions.not_found) {
       var exit = 0;
       var v$1;
       try {
@@ -9716,26 +9716,26 @@ function query(loc, str) {
         exit = 2;
       }
       catch (exn$1){
-        if (exn$1 === Caml_builtin_exceptions.not_found) {
-          return /* Dir_bool */Block.__(0, [false]);
+        if (exn$1 == Caml_builtin_exceptions.not_found) {
+          return --[ Dir_bool ]--Block.__(0, [false]);
         } else {
           throw exn$1;
         }
       }
-      if (exit === 2) {
+      if (exit == 2) {
         try {
-          return /* Dir_bool */Block.__(0, [Pervasives.bool_of_string(v$1)]);
+          return --[ Dir_bool ]--Block.__(0, [Pervasives.bool_of_string(v$1)]);
         }
         catch (exn$2){
           try {
-            return /* Dir_int */Block.__(2, [Caml_format.caml_int_of_string(v$1)]);
+            return --[ Dir_int ]--Block.__(2, [Caml_format.caml_int_of_string(v$1)]);
           }
           catch (exn$3){
             try {
-              return /* Dir_float */Block.__(1, [Caml_format.caml_float_of_string(v$1)]);
+              return --[ Dir_float ]--Block.__(1, [Caml_format.caml_float_of_string(v$1)]);
             }
             catch (exn$4){
-              return /* Dir_string */Block.__(3, [v$1]);
+              return --[ Dir_string ]--Block.__(3, [v$1]);
             }
           }
         }
@@ -9745,41 +9745,41 @@ function query(loc, str) {
       throw exn;
     }
   }
-  if (typeof v === "number") {
-    return /* Dir_bool */Block.__(0, [false]);
+  if (typeof v == "number") {
+    return --[ Dir_bool ]--Block.__(0, [false]);
   } else {
     return v;
   }
 }
 
 function value_of_token(loc, t) {
-  if (typeof t === "number") {
+  if (typeof t == "number") {
     switch (t) {
-      case /* FALSE */29 :
-          return /* Dir_bool */Block.__(0, [false]);
-      case /* TRUE */91 :
-          return /* Dir_bool */Block.__(0, [true]);
+      case --[ FALSE ]--29 :
+          return --[ Dir_bool ]--Block.__(0, [false]);
+      case --[ TRUE ]--91 :
+          return --[ Dir_bool ]--Block.__(0, [true]);
       default:
         throw [
               $$Error$2,
-              /* Unexpected_token_in_conditional */4,
+              --[ Unexpected_token_in_conditional ]--4,
               loc
             ];
     }
   } else {
     switch (t.tag | 0) {
-      case /* FLOAT */1 :
-          return /* Dir_float */Block.__(1, [Caml_format.caml_float_of_string(t[0])]);
-      case /* INT */7 :
-          return /* Dir_int */Block.__(2, [t[0]]);
-      case /* STRING */16 :
-          return /* Dir_string */Block.__(3, [t[0][0]]);
-      case /* UIDENT */17 :
+      case --[ FLOAT ]--1 :
+          return --[ Dir_float ]--Block.__(1, [Caml_format.caml_float_of_string(t[0])]);
+      case --[ INT ]--7 :
+          return --[ Dir_int ]--Block.__(2, [t[0]]);
+      case --[ STRING ]--16 :
+          return --[ Dir_string ]--Block.__(3, [t[0][0]]);
+      case --[ UIDENT ]--17 :
           return query(loc, t[0]);
       default:
         throw [
               $$Error$2,
-              /* Unexpected_token_in_conditional */4,
+              --[ Unexpected_token_in_conditional ]--4,
               loc
             ];
     }
@@ -9792,32 +9792,32 @@ function directive_parse(token_with_comments, lexbuf) {
   };
   var token = function (param) {
     var v = look_ahead.contents;
-    if (v !== undefined) {
+    if (v ~= undefined) {
       look_ahead.contents = undefined;
       return v;
     } else {
-      var _param = /* () */0;
+      var _param = --[ () ]--0;
       while(true) {
         var t = Curry._1(token_with_comments, lexbuf);
-        if (typeof t === "number") {
+        if (typeof t == "number") {
           switch (t) {
-            case /* EOF */25 :
+            case --[ EOF ]--25 :
                 throw [
                       $$Error$2,
-                      /* Unterminated_if */2,
+                      --[ Unterminated_if ]--2,
                       curr(lexbuf)
                     ];
-            case /* EOL */100 :
-                _param = /* () */0;
+            case --[ EOL ]--100 :
+                _param = --[ () ]--0;
                 continue ;
             default:
               return t;
           }
         } else {
           switch (t.tag | 0) {
-            case /* COMMENT */18 :
-            case /* DOCSTRING */19 :
-                _param = /* () */0;
+            case --[ COMMENT ]--18 :
+            case --[ DOCSTRING ]--19 :
+                _param = --[ () ]--0;
                 continue ;
             default:
               return t;
@@ -9827,10 +9827,10 @@ function directive_parse(token_with_comments, lexbuf) {
     }
   };
   var push = function (e) {
-    if (look_ahead.contents !== undefined) {
+    if (look_ahead.contents ~= undefined) {
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "lexer.mll",
               312,
               4
@@ -9838,30 +9838,30 @@ function directive_parse(token_with_comments, lexbuf) {
           ];
     }
     look_ahead.contents = e;
-    return /* () */0;
+    return --[ () ]--0;
   };
   var token_op = function (calc, no, lhs) {
-    var op = token(/* () */0);
+    var op = token(--[ () ]--0);
     var exit = 0;
-    if (typeof op === "number") {
+    if (typeof op == "number") {
       switch (op) {
-        case /* EQUAL */26 :
-        case /* GREATER */34 :
-        case /* LESS */51 :
+        case --[ EQUAL ]--26 :
+        case --[ GREATER ]--34 :
+        case --[ LESS ]--51 :
             exit = 1;
             break;
         default:
           return Curry._1(no, op);
       }
-    } else if (op.tag === /* INFIXOP0 */2) {
+    } else if (op.tag == --[ INFIXOP0 ]--2) {
       switch (op[0]) {
         case "=~" :
             if (calc) {
-              if (typeof lhs !== "number" && lhs.tag === /* Dir_string */3) {
+              if (typeof lhs ~= "number" and lhs.tag == --[ Dir_string ]--3) {
                 var curr_loc = curr(lexbuf);
-                var rhs = value_of_token(curr_loc, token(/* () */0));
+                var rhs = value_of_token(curr_loc, token(--[ () ]--0));
                 var exit$1 = 0;
-                if (typeof rhs === "number" || rhs.tag !== /* Dir_string */3) {
+                if (typeof rhs == "number" or rhs.tag ~= --[ Dir_string ]--3) {
                   exit$1 = 3;
                 } else {
                   var loc = curr_loc;
@@ -9871,38 +9871,38 @@ function directive_parse(token_with_comments, lexbuf) {
                   if (last_index < 0) {
                     throw [
                           $$Error$2,
-                          /* Illegal_semver */Block.__(6, [str]),
+                          --[ Illegal_semver ]--Block.__(6, [str]),
                           loc
                         ];
                   }
                   var v = str.charCodeAt(0);
                   var match;
                   var exit$2 = 0;
-                  if (v !== 94) {
+                  if (v ~= 94) {
                     if (v >= 63) {
-                      if (v !== 126) {
+                      if (v ~= 126) {
                         exit$2 = 1;
                       } else {
-                        match = /* tuple */[
-                          /* Approximate */-617782220,
+                        match = --[ tuple ]--[
+                          --[ Approximate ]---617782220,
                           semantic_version_parse(str, 1, last_index)
                         ];
                       }
                     } else if (v >= 60) {
                       switch (v - 60 | 0) {
                         case 0 :
-                            if (last_index === 0) {
+                            if (last_index == 0) {
                               throw [
                                     $$Error$2,
-                                    /* Illegal_semver */Block.__(6, [str]),
+                                    --[ Illegal_semver ]--Block.__(6, [str]),
                                     loc
                                   ];
                             }
-                            match = str[1] === "=" ? /* tuple */[
-                                /* Le */17049,
+                            match = str[1] == "=" ? --[ tuple ]--[
+                                --[ Le ]--17049,
                                 semantic_version_parse(str, 2, last_index)
-                              ] : /* tuple */[
-                                /* Lt */17064,
+                              ] : --[ tuple ]--[
+                                --[ Lt ]--17064,
                                 semantic_version_parse(str, 1, last_index)
                               ];
                             break;
@@ -9910,18 +9910,18 @@ function directive_parse(token_with_comments, lexbuf) {
                             exit$2 = 1;
                             break;
                         case 2 :
-                            if (last_index === 0) {
+                            if (last_index == 0) {
                               throw [
                                     $$Error$2,
-                                    /* Illegal_semver */Block.__(6, [str]),
+                                    --[ Illegal_semver ]--Block.__(6, [str]),
                                     loc
                                   ];
                             }
-                            match = str[1] === "=" ? /* tuple */[
-                                /* Ge */15934,
+                            match = str[1] == "=" ? --[ tuple ]--[
+                                --[ Ge ]--15934,
                                 semantic_version_parse(str, 2, last_index)
-                              ] : /* tuple */[
-                                /* Gt */15949,
+                              ] : --[ tuple ]--[
+                                --[ Gt ]--15949,
                                 semantic_version_parse(str, 1, last_index)
                               ];
                             break;
@@ -9931,14 +9931,14 @@ function directive_parse(token_with_comments, lexbuf) {
                       exit$2 = 1;
                     }
                   } else {
-                    match = /* tuple */[
-                      /* Compatible */785637236,
+                    match = --[ tuple ]--[
+                      --[ Compatible ]--785637236,
                       semantic_version_parse(str, 1, last_index)
                     ];
                   }
-                  if (exit$2 === 1) {
-                    match = /* tuple */[
-                      /* Exact */172069535,
+                  if (exit$2 == 1) {
+                    match = --[ tuple ]--[
+                      --[ Exact ]--172069535,
                       semantic_version_parse(str, 0, last_index)
                     ];
                   }
@@ -9951,7 +9951,7 @@ function directive_parse(token_with_comments, lexbuf) {
                   if (pred >= 17049) {
                     if (pred >= 172069535) {
                       if (pred >= 785637236) {
-                        return major === l_major;
+                        return major == l_major;
                       } else {
                         return Caml_obj.caml_equal(lversion, version);
                       }
@@ -9960,11 +9960,11 @@ function directive_parse(token_with_comments, lexbuf) {
                     } else {
                       return Caml_obj.caml_lessequal(lversion, version);
                     }
-                  } else if (pred !== 15934) {
+                  } else if (pred ~= 15934) {
                     if (pred >= 15949) {
                       return Caml_obj.caml_greaterthan(lversion, version);
-                    } else if (major === l_major) {
-                      return version[1] === lversion[1];
+                    } else if (major == l_major) {
+                      return version[1] == lversion[1];
                     } else {
                       return false;
                     }
@@ -9972,11 +9972,11 @@ function directive_parse(token_with_comments, lexbuf) {
                     return Caml_obj.caml_greaterequal(lversion, version);
                   }
                 }
-                if (exit$1 === 3) {
+                if (exit$1 == 3) {
                   throw [
                         $$Error$2,
-                        /* Conditional_expr_expected_type */Block.__(7, [
-                            /* Dir_type_string */3,
+                        --[ Conditional_expr_expected_type ]--Block.__(7, [
+                            --[ Dir_type_string ]--3,
                             type_of_directive(lhs)
                           ]),
                         curr(lexbuf)
@@ -9986,8 +9986,8 @@ function directive_parse(token_with_comments, lexbuf) {
               }
               throw [
                     $$Error$2,
-                    /* Conditional_expr_expected_type */Block.__(7, [
-                        /* Dir_type_string */3,
+                    --[ Conditional_expr_expected_type ]--Block.__(7, [
+                        --[ Dir_type_string ]--3,
                         type_of_directive(lhs)
                       ]),
                     curr(lexbuf)
@@ -10007,24 +10007,24 @@ function directive_parse(token_with_comments, lexbuf) {
     } else {
       return Curry._1(no, op);
     }
-    if (exit === 1) {
+    if (exit == 1) {
       var f;
       var exit$3 = 0;
-      if (typeof op === "number") {
+      if (typeof op == "number") {
         switch (op) {
-          case /* EQUAL */26 :
+          case --[ EQUAL ]--26 :
               f = Caml_obj.caml_equal;
               break;
-          case /* GREATER */34 :
+          case --[ GREATER ]--34 :
               f = Caml_obj.caml_greaterthan;
               break;
-          case /* LESS */51 :
+          case --[ LESS ]--51 :
               f = Caml_obj.caml_lessthan;
               break;
           default:
             exit$3 = 2;
         }
-      } else if (op.tag === /* INFIXOP0 */2) {
+      } else if (op.tag == --[ INFIXOP0 ]--2) {
         switch (op[0]) {
           case "<=" :
               f = Caml_obj.caml_lessequal;
@@ -10038,10 +10038,10 @@ function directive_parse(token_with_comments, lexbuf) {
       } else {
         exit$3 = 2;
       }
-      if (exit$3 === 2) {
+      if (exit$3 == 2) {
         throw [
               Caml_builtin_exceptions.assert_failure,
-              /* tuple */[
+              --[ tuple ]--[
                 "lexer.mll",
                 331,
                 17
@@ -10049,7 +10049,7 @@ function directive_parse(token_with_comments, lexbuf) {
             ];
       }
       var curr_loc$1 = curr(lexbuf);
-      var rhs$1 = value_of_token(curr_loc$1, token(/* () */0));
+      var rhs$1 = value_of_token(curr_loc$1, token(--[ () ]--0));
       if (calc) {
         return Curry._2(f, lhs, assert_same_type(lexbuf, lhs, rhs$1));
       } else {
@@ -10059,9 +10059,9 @@ function directive_parse(token_with_comments, lexbuf) {
     
   };
   var parse_and_aux = function (calc, v) {
-    var e = token(/* () */0);
-    if (typeof e === "number" && e === 0) {
-      var calc$1 = calc && v;
+    var e = token(--[ () ]--0);
+    if (typeof e == "number" and e == 0) {
+      var calc$1 = calc and v;
       var b = parse_and_aux(calc$1, parse_relation(calc$1));
       if (v) {
         return b;
@@ -10074,9 +10074,9 @@ function directive_parse(token_with_comments, lexbuf) {
     }
   };
   var parse_or_aux = function (calc, v) {
-    var e = token(/* () */0);
-    if (typeof e === "number" && e === 8) {
-      var calc$1 = calc && !v;
+    var e = token(--[ () ]--0);
+    if (typeof e == "number" and e == 8) {
+      var calc$1 = calc and !v;
       var b = parse_or_aux(calc$1, parse_and_aux(calc$1, parse_relation(calc$1)));
       if (v) {
         return true;
@@ -10089,20 +10089,20 @@ function directive_parse(token_with_comments, lexbuf) {
     }
   };
   var parse_relation = function (calc) {
-    var curr_token = token(/* () */0);
+    var curr_token = token(--[ () ]--0);
     var curr_loc = curr(lexbuf);
-    if (typeof curr_token === "number") {
+    if (typeof curr_token == "number") {
       switch (curr_token) {
-        case /* FALSE */29 :
+        case --[ FALSE ]--29 :
             return false;
-        case /* LPAREN */54 :
+        case --[ LPAREN ]--54 :
             var v = parse_or_aux(calc, parse_and_aux(calc, parse_relation(calc)));
-            var match = token(/* () */0);
-            if (typeof match === "number") {
-              if (match !== 81) {
+            var match = token(--[ () ]--0);
+            if (typeof match == "number") {
+              if (match ~= 81) {
                 throw [
                       $$Error$2,
-                      /* Unterminated_paren_in_conditional */1,
+                      --[ Unterminated_paren_in_conditional ]--1,
                       curr(lexbuf)
                     ];
               }
@@ -10110,39 +10110,39 @@ function directive_parse(token_with_comments, lexbuf) {
             } else {
               throw [
                     $$Error$2,
-                    /* Unterminated_paren_in_conditional */1,
+                    --[ Unterminated_paren_in_conditional ]--1,
                     curr(lexbuf)
                   ];
             }
-        case /* TRUE */91 :
+        case --[ TRUE ]--91 :
             return true;
         default:
           throw [
                 $$Error$2,
-                /* Unexpected_token_in_conditional */4,
+                --[ Unexpected_token_in_conditional ]--4,
                 curr_loc
               ];
       }
     } else {
       switch (curr_token.tag | 0) {
-        case /* FLOAT */1 :
+        case --[ FLOAT ]--1 :
             return token_op(calc, (function (e) {
                           throw [
                                 $$Error$2,
-                                /* Conditional_expr_expected_type */Block.__(7, [
-                                    /* Dir_type_bool */0,
-                                    /* Dir_type_float */1
+                                --[ Conditional_expr_expected_type ]--Block.__(7, [
+                                    --[ Dir_type_bool ]--0,
+                                    --[ Dir_type_float ]--1
                                   ]),
                                 curr_loc
                               ];
-                        }), /* Dir_float */Block.__(1, [Caml_format.caml_float_of_string(curr_token[0])]));
-        case /* INT */7 :
+                        }), --[ Dir_float ]--Block.__(1, [Caml_format.caml_float_of_string(curr_token[0])]));
+        case --[ INT ]--7 :
             var v$1 = curr_token[0];
             return token_op(calc, (function (e) {
                           push(e);
-                          return v$1 !== 0;
-                        }), /* Dir_int */Block.__(2, [v$1]));
-        case /* LIDENT */11 :
+                          return v$1 ~= 0;
+                        }), --[ Dir_int ]--Block.__(2, [v$1]));
+        case --[ LIDENT ]--11 :
             var r = curr_token[0];
             switch (r) {
               case "defined" :
@@ -10151,22 +10151,22 @@ function directive_parse(token_with_comments, lexbuf) {
               default:
                 throw [
                       $$Error$2,
-                      /* Unexpected_token_in_conditional */4,
+                      --[ Unexpected_token_in_conditional ]--4,
                       curr_loc
                     ];
             }
-            var t = token(/* () */0);
+            var t = token(--[ () ]--0);
             var loc = curr(lexbuf);
-            if (typeof t === "number") {
+            if (typeof t == "number") {
               throw [
                     $$Error$2,
-                    /* Unexpected_token_in_conditional */4,
+                    --[ Unexpected_token_in_conditional ]--4,
                     loc
                   ];
-            } else if (t.tag === /* UIDENT */17) {
+            } else if (t.tag == --[ UIDENT ]--17) {
               var s = t[0];
               if (calc) {
-                if (Caml_string.get(r, 0) === /* "u" */117) {
+                if (Caml_string.get(r, 0) == --[ "u" ]--117) {
                   return !defined(s);
                 } else {
                   return defined(s);
@@ -10177,34 +10177,34 @@ function directive_parse(token_with_comments, lexbuf) {
             } else {
               throw [
                     $$Error$2,
-                    /* Unexpected_token_in_conditional */4,
+                    --[ Unexpected_token_in_conditional ]--4,
                     loc
                   ];
             }
             break;
-        case /* STRING */16 :
+        case --[ STRING ]--16 :
             return token_op(calc, (function (e) {
                           throw [
                                 $$Error$2,
-                                /* Conditional_expr_expected_type */Block.__(7, [
-                                    /* Dir_type_bool */0,
-                                    /* Dir_type_string */3
+                                --[ Conditional_expr_expected_type ]--Block.__(7, [
+                                    --[ Dir_type_bool ]--0,
+                                    --[ Dir_type_string ]--3
                                   ]),
                                 curr_loc
                               ];
-                        }), /* Dir_string */Block.__(3, [curr_token[0][0]]));
-        case /* UIDENT */17 :
+                        }), --[ Dir_string ]--Block.__(3, [curr_token[0][0]]));
+        case --[ UIDENT ]--17 :
             var value_v = query(curr_loc, curr_token[0]);
             return token_op(calc, (function (e) {
                           push(e);
-                          if (typeof value_v !== "number" && !value_v.tag) {
+                          if (typeof value_v ~= "number" and !value_v.tag) {
                             return value_v[0];
                           }
                           var ty = type_of_directive(value_v);
                           throw [
                                 $$Error$2,
-                                /* Conditional_expr_expected_type */Block.__(7, [
-                                    /* Dir_type_bool */0,
+                                --[ Conditional_expr_expected_type ]--Block.__(7, [
+                                    --[ Dir_type_bool ]--0,
                                     ty
                                   ]),
                                 curr_loc
@@ -10213,19 +10213,19 @@ function directive_parse(token_with_comments, lexbuf) {
         default:
           throw [
                 $$Error$2,
-                /* Unexpected_token_in_conditional */4,
+                --[ Unexpected_token_in_conditional ]--4,
                 curr_loc
               ];
       }
     }
   };
   var v = parse_or_aux(true, parse_and_aux(true, parse_relation(true)));
-  var match = token(/* () */0);
-  if (typeof match === "number") {
-    if (match !== 88) {
+  var match = token(--[ () ]--0);
+  if (typeof match == "number") {
+    if (match ~= 88) {
       throw [
             $$Error$2,
-            /* Expect_hash_then_in_conditional */5,
+            --[ Expect_hash_then_in_conditional ]--5,
             curr(lexbuf)
           ];
     }
@@ -10233,301 +10233,301 @@ function directive_parse(token_with_comments, lexbuf) {
   } else {
     throw [
           $$Error$2,
-          /* Expect_hash_then_in_conditional */5,
+          --[ Expect_hash_then_in_conditional ]--5,
           curr(lexbuf)
         ];
   }
 }
 
 function is_elif(i) {
-  if (typeof i === "number" || !(i.tag === /* LIDENT */11 && i[0] === "elif")) {
+  if (typeof i == "number" or !(i.tag == --[ LIDENT ]--11 and i[0] == "elif")) {
     return false;
   } else {
     return true;
   }
 }
 
-var keyword_table = create_hashtable(149, /* :: */[
-      /* tuple */[
+var keyword_table = create_hashtable(149, --[ :: ]--[
+      --[ tuple ]--[
         "and",
-        /* AND */2
+        --[ AND ]--2
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "as",
-          /* AS */3
+          --[ AS ]--3
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "assert",
-            /* ASSERT */4
+            --[ ASSERT ]--4
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "begin",
-              /* BEGIN */10
+              --[ BEGIN ]--10
             ],
-            /* :: */[
-              /* tuple */[
+            --[ :: ]--[
+              --[ tuple ]--[
                 "class",
-                /* CLASS */11
+                --[ CLASS ]--11
               ],
-              /* :: */[
-                /* tuple */[
+              --[ :: ]--[
+                --[ tuple ]--[
                   "constraint",
-                  /* CONSTRAINT */17
+                  --[ CONSTRAINT ]--17
                 ],
-                /* :: */[
-                  /* tuple */[
+                --[ :: ]--[
+                  --[ tuple ]--[
                     "do",
-                    /* DO */18
+                    --[ DO ]--18
                   ],
-                  /* :: */[
-                    /* tuple */[
+                  --[ :: ]--[
+                    --[ tuple ]--[
                       "done",
-                      /* DONE */19
+                      --[ DONE ]--19
                     ],
-                    /* :: */[
-                      /* tuple */[
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "downto",
-                        /* DOWNTO */22
+                        --[ DOWNTO ]--22
                       ],
-                      /* :: */[
-                        /* tuple */[
+                      --[ :: ]--[
+                        --[ tuple ]--[
                           "else",
-                          /* ELSE */23
+                          --[ ELSE ]--23
                         ],
-                        /* :: */[
-                          /* tuple */[
+                        --[ :: ]--[
+                          --[ tuple ]--[
                             "end",
-                            /* END */24
+                            --[ END ]--24
                           ],
-                          /* :: */[
-                            /* tuple */[
+                          --[ :: ]--[
+                            --[ tuple ]--[
                               "exception",
-                              /* EXCEPTION */27
+                              --[ EXCEPTION ]--27
                             ],
-                            /* :: */[
-                              /* tuple */[
+                            --[ :: ]--[
+                              --[ tuple ]--[
                                 "external",
-                                /* EXTERNAL */28
+                                --[ EXTERNAL ]--28
                               ],
-                              /* :: */[
-                                /* tuple */[
+                              --[ :: ]--[
+                                --[ tuple ]--[
                                   "false",
-                                  /* FALSE */29
+                                  --[ FALSE ]--29
                                 ],
-                                /* :: */[
-                                  /* tuple */[
+                                --[ :: ]--[
+                                  --[ tuple ]--[
                                     "for",
-                                    /* FOR */30
+                                    --[ FOR ]--30
                                   ],
-                                  /* :: */[
-                                    /* tuple */[
+                                  --[ :: ]--[
+                                    --[ tuple ]--[
                                       "fun",
-                                      /* FUN */31
+                                      --[ FUN ]--31
                                     ],
-                                    /* :: */[
-                                      /* tuple */[
+                                    --[ :: ]--[
+                                      --[ tuple ]--[
                                         "function",
-                                        /* FUNCTION */32
+                                        --[ FUNCTION ]--32
                                       ],
-                                      /* :: */[
-                                        /* tuple */[
+                                      --[ :: ]--[
+                                        --[ tuple ]--[
                                           "functor",
-                                          /* FUNCTOR */33
+                                          --[ FUNCTOR ]--33
                                         ],
-                                        /* :: */[
-                                          /* tuple */[
+                                        --[ :: ]--[
+                                          --[ tuple ]--[
                                             "if",
-                                            /* IF */37
+                                            --[ IF ]--37
                                           ],
-                                          /* :: */[
-                                            /* tuple */[
+                                          --[ :: ]--[
+                                            --[ tuple ]--[
                                               "in",
-                                              /* IN */38
+                                              --[ IN ]--38
                                             ],
-                                            /* :: */[
-                                              /* tuple */[
+                                            --[ :: ]--[
+                                              --[ tuple ]--[
                                                 "include",
-                                                /* INCLUDE */39
+                                                --[ INCLUDE ]--39
                                               ],
-                                              /* :: */[
-                                                /* tuple */[
+                                              --[ :: ]--[
+                                                --[ tuple ]--[
                                                   "inherit",
-                                                  /* INHERIT */40
+                                                  --[ INHERIT ]--40
                                                 ],
-                                                /* :: */[
-                                                  /* tuple */[
+                                                --[ :: ]--[
+                                                  --[ tuple ]--[
                                                     "initializer",
-                                                    /* INITIALIZER */41
+                                                    --[ INITIALIZER ]--41
                                                   ],
-                                                  /* :: */[
-                                                    /* tuple */[
+                                                  --[ :: ]--[
+                                                    --[ tuple ]--[
                                                       "lazy",
-                                                      /* LAZY */42
+                                                      --[ LAZY ]--42
                                                     ],
-                                                    /* :: */[
-                                                      /* tuple */[
+                                                    --[ :: ]--[
+                                                      --[ tuple ]--[
                                                         "let",
-                                                        /* LET */53
+                                                        --[ LET ]--53
                                                       ],
-                                                      /* :: */[
-                                                        /* tuple */[
+                                                      --[ :: ]--[
+                                                        --[ tuple ]--[
                                                           "match",
-                                                          /* MATCH */58
+                                                          --[ MATCH ]--58
                                                         ],
-                                                        /* :: */[
-                                                          /* tuple */[
+                                                        --[ :: ]--[
+                                                          --[ tuple ]--[
                                                             "method",
-                                                            /* METHOD */59
+                                                            --[ METHOD ]--59
                                                           ],
-                                                          /* :: */[
-                                                            /* tuple */[
+                                                          --[ :: ]--[
+                                                            --[ tuple ]--[
                                                               "module",
-                                                              /* MODULE */63
+                                                              --[ MODULE ]--63
                                                             ],
-                                                            /* :: */[
-                                                              /* tuple */[
+                                                            --[ :: ]--[
+                                                              --[ tuple ]--[
                                                                 "mutable",
-                                                                /* MUTABLE */64
+                                                                --[ MUTABLE ]--64
                                                               ],
-                                                              /* :: */[
-                                                                /* tuple */[
+                                                              --[ :: ]--[
+                                                                --[ tuple ]--[
                                                                   "new",
-                                                                  /* NEW */65
+                                                                  --[ NEW ]--65
                                                                 ],
-                                                                /* :: */[
-                                                                  /* tuple */[
+                                                                --[ :: ]--[
+                                                                  --[ tuple ]--[
                                                                     "nonrec",
-                                                                    /* NONREC */66
+                                                                    --[ NONREC ]--66
                                                                   ],
-                                                                  /* :: */[
-                                                                    /* tuple */[
+                                                                  --[ :: ]--[
+                                                                    --[ tuple ]--[
                                                                       "object",
-                                                                      /* OBJECT */67
+                                                                      --[ OBJECT ]--67
                                                                     ],
-                                                                    /* :: */[
-                                                                      /* tuple */[
+                                                                    --[ :: ]--[
+                                                                      --[ tuple ]--[
                                                                         "of",
-                                                                        /* OF */68
+                                                                        --[ OF ]--68
                                                                       ],
-                                                                      /* :: */[
-                                                                        /* tuple */[
+                                                                      --[ :: ]--[
+                                                                        --[ tuple ]--[
                                                                           "open",
-                                                                          /* OPEN */69
+                                                                          --[ OPEN ]--69
                                                                         ],
-                                                                        /* :: */[
-                                                                          /* tuple */[
+                                                                        --[ :: ]--[
+                                                                          --[ tuple ]--[
                                                                             "or",
-                                                                            /* OR */70
+                                                                            --[ OR ]--70
                                                                           ],
-                                                                          /* :: */[
-                                                                            /* tuple */[
+                                                                          --[ :: ]--[
+                                                                            --[ tuple ]--[
                                                                               "private",
-                                                                              /* PRIVATE */75
+                                                                              --[ PRIVATE ]--75
                                                                             ],
-                                                                            /* :: */[
-                                                                              /* tuple */[
+                                                                            --[ :: ]--[
+                                                                              --[ tuple ]--[
                                                                                 "rec",
-                                                                                /* REC */80
+                                                                                --[ REC ]--80
                                                                               ],
-                                                                              /* :: */[
-                                                                                /* tuple */[
+                                                                              --[ :: ]--[
+                                                                                --[ tuple ]--[
                                                                                   "sig",
-                                                                                  /* SIG */85
+                                                                                  --[ SIG ]--85
                                                                                 ],
-                                                                                /* :: */[
-                                                                                  /* tuple */[
+                                                                                --[ :: ]--[
+                                                                                  --[ tuple ]--[
                                                                                     "struct",
-                                                                                    /* STRUCT */87
+                                                                                    --[ STRUCT ]--87
                                                                                   ],
-                                                                                  /* :: */[
-                                                                                    /* tuple */[
+                                                                                  --[ :: ]--[
+                                                                                    --[ tuple ]--[
                                                                                       "then",
-                                                                                      /* THEN */88
+                                                                                      --[ THEN ]--88
                                                                                     ],
-                                                                                    /* :: */[
-                                                                                      /* tuple */[
+                                                                                    --[ :: ]--[
+                                                                                      --[ tuple ]--[
                                                                                         "to",
-                                                                                        /* TO */90
+                                                                                        --[ TO ]--90
                                                                                       ],
-                                                                                      /* :: */[
-                                                                                        /* tuple */[
+                                                                                      --[ :: ]--[
+                                                                                        --[ tuple ]--[
                                                                                           "true",
-                                                                                          /* TRUE */91
+                                                                                          --[ TRUE ]--91
                                                                                         ],
-                                                                                        /* :: */[
-                                                                                          /* tuple */[
+                                                                                        --[ :: ]--[
+                                                                                          --[ tuple ]--[
                                                                                             "try",
-                                                                                            /* TRY */92
+                                                                                            --[ TRY ]--92
                                                                                           ],
-                                                                                          /* :: */[
-                                                                                            /* tuple */[
+                                                                                          --[ :: ]--[
+                                                                                            --[ tuple ]--[
                                                                                               "type",
-                                                                                              /* TYPE */93
+                                                                                              --[ TYPE ]--93
                                                                                             ],
-                                                                                            /* :: */[
-                                                                                              /* tuple */[
+                                                                                            --[ :: ]--[
+                                                                                              --[ tuple ]--[
                                                                                                 "val",
-                                                                                                /* VAL */95
+                                                                                                --[ VAL ]--95
                                                                                               ],
-                                                                                              /* :: */[
-                                                                                                /* tuple */[
+                                                                                              --[ :: ]--[
+                                                                                                --[ tuple ]--[
                                                                                                   "virtual",
-                                                                                                  /* VIRTUAL */96
+                                                                                                  --[ VIRTUAL ]--96
                                                                                                 ],
-                                                                                                /* :: */[
-                                                                                                  /* tuple */[
+                                                                                                --[ :: ]--[
+                                                                                                  --[ tuple ]--[
                                                                                                     "when",
-                                                                                                    /* WHEN */97
+                                                                                                    --[ WHEN ]--97
                                                                                                   ],
-                                                                                                  /* :: */[
-                                                                                                    /* tuple */[
+                                                                                                  --[ :: ]--[
+                                                                                                    --[ tuple ]--[
                                                                                                       "while",
-                                                                                                      /* WHILE */98
+                                                                                                      --[ WHILE ]--98
                                                                                                     ],
-                                                                                                    /* :: */[
-                                                                                                      /* tuple */[
+                                                                                                    --[ :: ]--[
+                                                                                                      --[ tuple ]--[
                                                                                                         "with",
-                                                                                                        /* WITH */99
+                                                                                                        --[ WITH ]--99
                                                                                                       ],
-                                                                                                      /* :: */[
-                                                                                                        /* tuple */[
+                                                                                                      --[ :: ]--[
+                                                                                                        --[ tuple ]--[
                                                                                                           "mod",
-                                                                                                          /* INFIXOP3 */Block.__(5, ["mod"])
+                                                                                                          --[ INFIXOP3 ]--Block.__(5, ["mod"])
                                                                                                         ],
-                                                                                                        /* :: */[
-                                                                                                          /* tuple */[
+                                                                                                        --[ :: ]--[
+                                                                                                          --[ tuple ]--[
                                                                                                             "land",
-                                                                                                            /* INFIXOP3 */Block.__(5, ["land"])
+                                                                                                            --[ INFIXOP3 ]--Block.__(5, ["land"])
                                                                                                           ],
-                                                                                                          /* :: */[
-                                                                                                            /* tuple */[
+                                                                                                          --[ :: ]--[
+                                                                                                            --[ tuple ]--[
                                                                                                               "lor",
-                                                                                                              /* INFIXOP3 */Block.__(5, ["lor"])
+                                                                                                              --[ INFIXOP3 ]--Block.__(5, ["lor"])
                                                                                                             ],
-                                                                                                            /* :: */[
-                                                                                                              /* tuple */[
+                                                                                                            --[ :: ]--[
+                                                                                                              --[ tuple ]--[
                                                                                                                 "lxor",
-                                                                                                                /* INFIXOP3 */Block.__(5, ["lxor"])
+                                                                                                                --[ INFIXOP3 ]--Block.__(5, ["lxor"])
                                                                                                               ],
-                                                                                                              /* :: */[
-                                                                                                                /* tuple */[
+                                                                                                              --[ :: ]--[
+                                                                                                                --[ tuple ]--[
                                                                                                                   "lsl",
-                                                                                                                  /* INFIXOP4 */Block.__(6, ["lsl"])
+                                                                                                                  --[ INFIXOP4 ]--Block.__(6, ["lsl"])
                                                                                                                 ],
-                                                                                                                /* :: */[
-                                                                                                                  /* tuple */[
+                                                                                                                --[ :: ]--[
+                                                                                                                  --[ tuple ]--[
                                                                                                                     "lsr",
-                                                                                                                    /* INFIXOP4 */Block.__(6, ["lsr"])
+                                                                                                                    --[ INFIXOP4 ]--Block.__(6, ["lsr"])
                                                                                                                   ],
-                                                                                                                  /* :: */[
-                                                                                                                    /* tuple */[
+                                                                                                                  --[ :: ]--[
+                                                                                                                    --[ tuple ]--[
                                                                                                                       "asr",
-                                                                                                                      /* INFIXOP4 */Block.__(6, ["asr"])
+                                                                                                                      --[ INFIXOP4 ]--Block.__(6, ["asr"])
                                                                                                                     ],
-                                                                                                                    /* [] */0
+                                                                                                                    --[ [] ]--0
                                                                                                                   ]
                                                                                                                 ]
                                                                                                               ]
@@ -10598,7 +10598,7 @@ var string_index = {
 function reset_string_buffer(param) {
   string_buff.contents = initial_string_buffer;
   string_index.contents = 0;
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function store_string_char(c) {
@@ -10609,14 +10609,14 @@ function store_string_char(c) {
   }
   string_buff.contents[string_index.contents] = c;
   string_index.contents = string_index.contents + 1 | 0;
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function store_string(s) {
   for(var i = 0 ,i_finish = s.length - 1 | 0; i <= i_finish; ++i){
     store_string_char(Caml_string.get(s, i));
   }
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function get_stored_string(param) {
@@ -10630,7 +10630,7 @@ var string_start_loc = {
 };
 
 var comment_start_loc = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var is_in_string = {
@@ -10642,7 +10642,7 @@ var print_warnings = {
 };
 
 var if_then_else = {
-  contents: /* Dir_out */2
+  contents: --[ Dir_out ]--2
 };
 
 var sharp_look_ahead = {
@@ -10651,14 +10651,14 @@ var sharp_look_ahead = {
 
 function with_comment_buffer(comment, lexbuf) {
   var start_loc = curr(lexbuf);
-  comment_start_loc.contents = /* :: */[
+  comment_start_loc.contents = --[ :: ]--[
     start_loc,
-    /* [] */0
+    --[ [] ]--0
   ];
-  reset_string_buffer(/* () */0);
+  reset_string_buffer(--[ () ]--0);
   var end_loc = Curry._1(comment, lexbuf);
-  var s = get_stored_string(/* () */0);
-  reset_string_buffer(/* () */0);
+  var s = get_stored_string(--[ () ]--0);
+  reset_string_buffer(--[ () ]--0);
   var loc_loc_start = start_loc.loc_start;
   var loc_loc_end = end_loc.loc_end;
   var loc_loc_ghost = start_loc.loc_ghost;
@@ -10667,7 +10667,7 @@ function with_comment_buffer(comment, lexbuf) {
     loc_end: loc_loc_end,
     loc_ghost: loc_loc_ghost
   };
-  return /* tuple */[
+  return --[ tuple ]--[
           s,
           loc
         ];
@@ -10680,35 +10680,35 @@ function char_for_backslash(c) {
     } else {
       switch (c - 110 | 0) {
         case 0 :
-            return /* "\n" */10;
+            return --[ "\n" ]--10;
         case 4 :
-            return /* "\r" */13;
+            return --[ "\r" ]--13;
         case 1 :
         case 2 :
         case 3 :
         case 5 :
             return c;
         case 6 :
-            return /* "\t" */9;
+            return --[ "\t" ]--9;
         
       }
     }
-  } else if (c !== 98) {
+  } else if (c ~= 98) {
     return c;
   } else {
-    return /* "\b" */8;
+    return --[ "\b" ]--8;
   }
 }
 
 function char_for_decimal_code(lexbuf, i) {
   var c = (Caml_int32.imul(100, Lexing.lexeme_char(lexbuf, i) - 48 | 0) + Caml_int32.imul(10, Lexing.lexeme_char(lexbuf, i + 1 | 0) - 48 | 0) | 0) + (Lexing.lexeme_char(lexbuf, i + 2 | 0) - 48 | 0) | 0;
-  if (c < 0 || c > 255) {
-    if (comment_start_loc.contents !== /* [] */0) {
-      return /* "x" */120;
+  if (c < 0 or c > 255) {
+    if (comment_start_loc.contents ~= --[ [] ]--0) {
+      return --[ "x" ]--120;
     } else {
       throw [
             $$Error$2,
-            /* Illegal_escape */Block.__(1, [Lexing.lexeme(lexbuf)]),
+            --[ Illegal_escape ]--Block.__(1, [Lexing.lexeme(lexbuf)]),
             curr(lexbuf)
           ];
     }
@@ -10761,7 +10761,7 @@ function remove_underscores(s) {
       }
     } else {
       var c = Caml_string.get(s, src);
-      if (c !== 95) {
+      if (c ~= 95) {
         b[dst] = c;
         _dst = dst + 1 | 0;
         _src = src + 1 | 0;
@@ -10780,7 +10780,7 @@ function get_label_name(lexbuf) {
   if (Hashtbl.mem(keyword_table, name)) {
     throw [
           $$Error$2,
-          /* Keyword_as_label */Block.__(4, [name]),
+          --[ Keyword_as_label ]--Block.__(4, [name]),
           curr(lexbuf)
         ];
   }
@@ -10789,14 +10789,14 @@ function get_label_name(lexbuf) {
 
 function update_loc(lexbuf, file, line, absolute, chars) {
   var pos = lexbuf.lex_curr_p;
-  var new_file = file !== undefined ? file : pos.pos_fname;
+  var new_file = file ~= undefined ? file : pos.pos_fname;
   lexbuf.lex_curr_p = {
     pos_fname: new_file,
     pos_lnum: absolute ? line : pos.pos_lnum + line | 0,
     pos_bol: pos.pos_cnum - chars | 0,
     pos_cnum: pos.pos_cnum
   };
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var preprocessor = {
@@ -10808,80 +10808,80 @@ var escaped_newlines = {
 };
 
 var comment_list = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 function add_comment(com) {
-  comment_list.contents = /* :: */[
+  comment_list.contents = --[ :: ]--[
     com,
     comment_list.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function add_docstring_comment(ds) {
-  return add_comment(/* tuple */[
+  return add_comment(--[ tuple ]--[
               ds.ds_body,
               ds.ds_loc
             ]);
 }
 
 function report_error(ppf, param) {
-  if (typeof param === "number") {
+  if (typeof param == "number") {
     switch (param) {
-      case /* Unterminated_string */0 :
-          return Format.fprintf(ppf, /* Format */[
-                      /* String_literal */Block.__(11, [
+      case --[ Unterminated_string ]--0 :
+          return Format.fprintf(ppf, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "String literal not terminated",
-                          /* End_of_format */0
+                          --[ End_of_format ]--0
                         ]),
                       "String literal not terminated"
                     ]);
-      case /* Unterminated_paren_in_conditional */1 :
-          return Format.fprintf(ppf, /* Format */[
-                      /* String_literal */Block.__(11, [
+      case --[ Unterminated_paren_in_conditional ]--1 :
+          return Format.fprintf(ppf, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "Unterminated parens in conditional predicate",
-                          /* End_of_format */0
+                          --[ End_of_format ]--0
                         ]),
                       "Unterminated parens in conditional predicate"
                     ]);
-      case /* Unterminated_if */2 :
-          return Format.fprintf(ppf, /* Format */[
-                      /* String_literal */Block.__(11, [
+      case --[ Unterminated_if ]--2 :
+          return Format.fprintf(ppf, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "#if not terminated",
-                          /* End_of_format */0
+                          --[ End_of_format ]--0
                         ]),
                       "#if not terminated"
                     ]);
-      case /* Unterminated_else */3 :
-          return Format.fprintf(ppf, /* Format */[
-                      /* String_literal */Block.__(11, [
+      case --[ Unterminated_else ]--3 :
+          return Format.fprintf(ppf, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "#else not terminated",
-                          /* End_of_format */0
+                          --[ End_of_format ]--0
                         ]),
                       "#else not terminated"
                     ]);
-      case /* Unexpected_token_in_conditional */4 :
-          return Format.fprintf(ppf, /* Format */[
-                      /* String_literal */Block.__(11, [
+      case --[ Unexpected_token_in_conditional ]--4 :
+          return Format.fprintf(ppf, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "Unexpected token in conditional predicate",
-                          /* End_of_format */0
+                          --[ End_of_format ]--0
                         ]),
                       "Unexpected token in conditional predicate"
                     ]);
-      case /* Expect_hash_then_in_conditional */5 :
-          return Format.fprintf(ppf, /* Format */[
-                      /* String_literal */Block.__(11, [
+      case --[ Expect_hash_then_in_conditional ]--5 :
+          return Format.fprintf(ppf, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "Expect `then` after conditional predicate",
-                          /* End_of_format */0
+                          --[ End_of_format ]--0
                         ]),
                       "Expect `then` after conditional predicate"
                     ]);
-      case /* Unexpected_directive */6 :
-          return Format.fprintf(ppf, /* Format */[
-                      /* String_literal */Block.__(11, [
+      case --[ Unexpected_directive ]--6 :
+          return Format.fprintf(ppf, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "Unexpected directive",
-                          /* End_of_format */0
+                          --[ End_of_format ]--0
                         ]),
                       "Unexpected directive"
                     ]);
@@ -10889,105 +10889,105 @@ function report_error(ppf, param) {
     }
   } else {
     switch (param.tag | 0) {
-      case /* Illegal_character */0 :
-          return Curry._1(Format.fprintf(ppf, /* Format */[
-                          /* String_literal */Block.__(11, [
+      case --[ Illegal_character ]--0 :
+          return Curry._1(Format.fprintf(ppf, --[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "Illegal character (",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* Char_literal */Block.__(12, [
-                                      /* ")" */41,
-                                      /* End_of_format */0
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ Char_literal ]--Block.__(12, [
+                                      --[ ")" ]--41,
+                                      --[ End_of_format ]--0
                                     ])
                                 ])
                             ]),
                           "Illegal character (%s)"
                         ]), Char.escaped(param[0]));
-      case /* Illegal_escape */1 :
-          return Curry._1(Format.fprintf(ppf, /* Format */[
-                          /* String_literal */Block.__(11, [
+      case --[ Illegal_escape ]--1 :
+          return Curry._1(Format.fprintf(ppf, --[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "Illegal backslash escape in string or character (",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* Char_literal */Block.__(12, [
-                                      /* ")" */41,
-                                      /* End_of_format */0
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ Char_literal ]--Block.__(12, [
+                                      --[ ")" ]--41,
+                                      --[ End_of_format ]--0
                                     ])
                                 ])
                             ]),
                           "Illegal backslash escape in string or character (%s)"
                         ]), param[0]);
-      case /* Unterminated_comment */2 :
-          return Format.fprintf(ppf, /* Format */[
-                      /* String_literal */Block.__(11, [
+      case --[ Unterminated_comment ]--2 :
+          return Format.fprintf(ppf, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "Comment not terminated",
-                          /* End_of_format */0
+                          --[ End_of_format ]--0
                         ]),
                       "Comment not terminated"
                     ]);
-      case /* Unterminated_string_in_comment */3 :
-          return Curry._2(Format.fprintf(ppf, /* Format */[
-                          /* String_literal */Block.__(11, [
+      case --[ Unterminated_string_in_comment ]--3 :
+          return Curry._2(Format.fprintf(ppf, --[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "This comment contains an unterminated string literal",
-                              /* Formatting_lit */Block.__(17, [
-                                  /* Flush_newline */4,
-                                  /* Alpha */Block.__(15, [/* String_literal */Block.__(11, [
+                              --[ Formatting_lit ]--Block.__(17, [
+                                  --[ Flush_newline ]--4,
+                                  --[ Alpha ]--Block.__(15, [--[ String_literal ]--Block.__(11, [
                                           "String literal begins here",
-                                          /* End_of_format */0
+                                          --[ End_of_format ]--0
                                         ])])
                                 ])
                             ]),
                           "This comment contains an unterminated string literal@.%aString literal begins here"
                         ]), print_error, param[1]);
-      case /* Keyword_as_label */4 :
-          return Curry._1(Format.fprintf(ppf, /* Format */[
-                          /* Char_literal */Block.__(12, [
-                              /* "`" */96,
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* String_literal */Block.__(11, [
+      case --[ Keyword_as_label ]--4 :
+          return Curry._1(Format.fprintf(ppf, --[ Format ]--[
+                          --[ Char_literal ]--Block.__(12, [
+                              --[ "`" ]--96,
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ String_literal ]--Block.__(11, [
                                       "' is a keyword, it cannot be used as label name",
-                                      /* End_of_format */0
+                                      --[ End_of_format ]--0
                                     ])
                                 ])
                             ]),
                           "`%s' is a keyword, it cannot be used as label name"
                         ]), param[0]);
-      case /* Literal_overflow */5 :
-          return Curry._1(Format.fprintf(ppf, /* Format */[
-                          /* String_literal */Block.__(11, [
+      case --[ Literal_overflow ]--5 :
+          return Curry._1(Format.fprintf(ppf, --[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "Integer literal exceeds the range of representable integers of type ",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* End_of_format */0
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ End_of_format ]--0
                                 ])
                             ]),
                           "Integer literal exceeds the range of representable integers of type %s"
                         ]), param[0]);
-      case /* Illegal_semver */6 :
-          return Curry._1(Format.fprintf(ppf, /* Format */[
-                          /* String_literal */Block.__(11, [
+      case --[ Illegal_semver ]--6 :
+          return Curry._1(Format.fprintf(ppf, --[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "Illegal semantic version string ",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* End_of_format */0
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ End_of_format ]--0
                                 ])
                             ]),
                           "Illegal semantic version string %s"
                         ]), param[0]);
-      case /* Conditional_expr_expected_type */7 :
-          return Curry._2(Format.fprintf(ppf, /* Format */[
-                          /* String_literal */Block.__(11, [
+      case --[ Conditional_expr_expected_type ]--7 :
+          return Curry._2(Format.fprintf(ppf, --[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "Conditional expression type mismatch (",
-                              /* String */Block.__(2, [
-                                  /* No_padding */0,
-                                  /* Char_literal */Block.__(12, [
-                                      /* "," */44,
-                                      /* String */Block.__(2, [
-                                          /* No_padding */0,
-                                          /* Char_literal */Block.__(12, [
-                                              /* ")" */41,
-                                              /* End_of_format */0
+                              --[ String ]--Block.__(2, [
+                                  --[ No_padding ]--0,
+                                  --[ Char_literal ]--Block.__(12, [
+                                      --[ "," ]--44,
+                                      --[ String ]--Block.__(2, [
+                                          --[ No_padding ]--0,
+                                          --[ Char_literal ]--Block.__(12, [
+                                              --[ ")" ]--41,
+                                              --[ End_of_format ]--0
                                             ])
                                         ])
                                     ])
@@ -11001,7 +11001,7 @@ function report_error(ppf, param) {
 }
 
 register_error_of_exn((function (param) {
-        if (param[0] === $$Error$2) {
+        if (param[0] == $$Error$2) {
           return error_of_printer(param[2], report_error, param[1]);
         }
         
@@ -11033,7 +11033,7 @@ function token(lexbuf) {
           if (!escaped_newlines.contents) {
             throw [
                   $$Error$2,
-                  /* Illegal_character */Block.__(0, [Lexing.lexeme_char(lexbuf$1, 0)]),
+                  --[ Illegal_character ]--Block.__(0, [Lexing.lexeme_char(lexbuf$1, 0)]),
                   curr(lexbuf$1)
                 ];
           }
@@ -11041,72 +11041,72 @@ function token(lexbuf) {
           return token(lexbuf$1);
       case 1 :
           update_loc(lexbuf$1, undefined, 1, false, 0);
-          return /* EOL */100;
+          return --[ EOL ]--100;
       case 2 :
           return token(lexbuf$1);
       case 3 :
-          return /* UNDERSCORE */94;
+          return --[ UNDERSCORE ]--94;
       case 4 :
-          return /* TILDE */89;
+          return --[ TILDE ]--89;
       case 5 :
-          return /* LABEL */Block.__(10, [get_label_name(lexbuf$1)]);
+          return --[ LABEL ]--Block.__(10, [get_label_name(lexbuf$1)]);
       case 6 :
-          prerr_warning(curr(lexbuf$1), /* Deprecated */Block.__(0, ["ISO-Latin1 characters in identifiers"]));
-          return /* LABEL */Block.__(10, [get_label_name(lexbuf$1)]);
+          prerr_warning(curr(lexbuf$1), --[ Deprecated ]--Block.__(0, ["ISO-Latin1 characters in identifiers"]));
+          return --[ LABEL ]--Block.__(10, [get_label_name(lexbuf$1)]);
       case 7 :
-          return /* QUESTION */76;
+          return --[ QUESTION ]--76;
       case 8 :
-          return /* OPTLABEL */Block.__(13, [get_label_name(lexbuf$1)]);
+          return --[ OPTLABEL ]--Block.__(13, [get_label_name(lexbuf$1)]);
       case 9 :
-          prerr_warning(curr(lexbuf$1), /* Deprecated */Block.__(0, ["ISO-Latin1 characters in identifiers"]));
-          return /* OPTLABEL */Block.__(13, [get_label_name(lexbuf$1)]);
+          prerr_warning(curr(lexbuf$1), --[ Deprecated ]--Block.__(0, ["ISO-Latin1 characters in identifiers"]));
+          return --[ OPTLABEL ]--Block.__(13, [get_label_name(lexbuf$1)]);
       case 10 :
           var s = Lexing.lexeme(lexbuf$1);
           try {
             return Hashtbl.find(keyword_table, s);
           }
           catch (exn){
-            if (exn === Caml_builtin_exceptions.not_found) {
-              return /* LIDENT */Block.__(11, [s]);
+            if (exn == Caml_builtin_exceptions.not_found) {
+              return --[ LIDENT ]--Block.__(11, [s]);
             } else {
               throw exn;
             }
           }
       case 11 :
-          prerr_warning(curr(lexbuf$1), /* Deprecated */Block.__(0, ["ISO-Latin1 characters in identifiers"]));
-          return /* LIDENT */Block.__(11, [Lexing.lexeme(lexbuf$1)]);
+          prerr_warning(curr(lexbuf$1), --[ Deprecated ]--Block.__(0, ["ISO-Latin1 characters in identifiers"]));
+          return --[ LIDENT ]--Block.__(11, [Lexing.lexeme(lexbuf$1)]);
       case 12 :
-          return /* UIDENT */Block.__(17, [Lexing.lexeme(lexbuf$1)]);
+          return --[ UIDENT ]--Block.__(17, [Lexing.lexeme(lexbuf$1)]);
       case 13 :
-          prerr_warning(curr(lexbuf$1), /* Deprecated */Block.__(0, ["ISO-Latin1 characters in identifiers"]));
-          return /* UIDENT */Block.__(17, [Lexing.lexeme(lexbuf$1)]);
+          prerr_warning(curr(lexbuf$1), --[ Deprecated ]--Block.__(0, ["ISO-Latin1 characters in identifiers"]));
+          return --[ UIDENT ]--Block.__(17, [Lexing.lexeme(lexbuf$1)]);
       case 14 :
           try {
-            return /* INT */Block.__(7, [cvt_int_literal(Lexing.lexeme(lexbuf$1))]);
+            return --[ INT ]--Block.__(7, [cvt_int_literal(Lexing.lexeme(lexbuf$1))]);
           }
           catch (raw_exn){
             var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
-            if (exn$1[0] === Caml_builtin_exceptions.failure) {
+            if (exn$1[0] == Caml_builtin_exceptions.failure) {
               throw [
                     $$Error$2,
-                    /* Literal_overflow */Block.__(5, ["int"]),
+                    --[ Literal_overflow ]--Block.__(5, ["int"]),
                     curr(lexbuf$1)
                   ];
             }
             throw exn$1;
           }
       case 15 :
-          return /* FLOAT */Block.__(1, [remove_underscores(Lexing.lexeme(lexbuf$1))]);
+          return --[ FLOAT ]--Block.__(1, [remove_underscores(Lexing.lexeme(lexbuf$1))]);
       case 16 :
           try {
-            return /* INT32 */Block.__(8, [cvt_int32_literal(Lexing.lexeme(lexbuf$1))]);
+            return --[ INT32 ]--Block.__(8, [cvt_int32_literal(Lexing.lexeme(lexbuf$1))]);
           }
           catch (raw_exn$1){
             var exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-            if (exn$2[0] === Caml_builtin_exceptions.failure) {
+            if (exn$2[0] == Caml_builtin_exceptions.failure) {
               throw [
                     $$Error$2,
-                    /* Literal_overflow */Block.__(5, ["int32"]),
+                    --[ Literal_overflow ]--Block.__(5, ["int32"]),
                     curr(lexbuf$1)
                   ];
             }
@@ -11114,14 +11114,14 @@ function token(lexbuf) {
           }
       case 17 :
           try {
-            return /* INT64 */Block.__(9, [cvt_int64_literal(Lexing.lexeme(lexbuf$1))]);
+            return --[ INT64 ]--Block.__(9, [cvt_int64_literal(Lexing.lexeme(lexbuf$1))]);
           }
           catch (raw_exn$2){
             var exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
-            if (exn$3[0] === Caml_builtin_exceptions.failure) {
+            if (exn$3[0] == Caml_builtin_exceptions.failure) {
               throw [
                     $$Error$2,
-                    /* Literal_overflow */Block.__(5, ["int64"]),
+                    --[ Literal_overflow ]--Block.__(5, ["int64"]),
                     curr(lexbuf$1)
                   ];
             }
@@ -11129,33 +11129,33 @@ function token(lexbuf) {
           }
       case 18 :
           try {
-            return /* NATIVEINT */Block.__(12, [cvt_nativeint_literal(Lexing.lexeme(lexbuf$1))]);
+            return --[ NATIVEINT ]--Block.__(12, [cvt_nativeint_literal(Lexing.lexeme(lexbuf$1))]);
           }
           catch (raw_exn$3){
             var exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
-            if (exn$4[0] === Caml_builtin_exceptions.failure) {
+            if (exn$4[0] == Caml_builtin_exceptions.failure) {
               throw [
                     $$Error$2,
-                    /* Literal_overflow */Block.__(5, ["nativeint"]),
+                    --[ Literal_overflow ]--Block.__(5, ["nativeint"]),
                     curr(lexbuf$1)
                   ];
             }
             throw exn$4;
           }
       case 19 :
-          reset_string_buffer(/* () */0);
+          reset_string_buffer(--[ () ]--0);
           is_in_string.contents = true;
           var string_start = lexbuf$1.lex_start_p;
           string_start_loc.contents = curr(lexbuf$1);
           string(lexbuf$1);
           is_in_string.contents = false;
           lexbuf$1.lex_start_p = string_start;
-          return /* STRING */Block.__(16, [/* tuple */[
-                      get_stored_string(/* () */0),
+          return --[ STRING ]--Block.__(16, [--[ tuple ]--[
+                      get_stored_string(--[ () ]--0),
                       undefined
                     ]]);
       case 20 :
-          reset_string_buffer(/* () */0);
+          reset_string_buffer(--[ () ]--0);
           var delim = Lexing.lexeme(lexbuf$1);
           var delim$1 = $$String.sub(delim, 1, delim.length - 2 | 0);
           is_in_string.contents = true;
@@ -11164,38 +11164,38 @@ function token(lexbuf) {
           __ocaml_lex_quoted_string_rec(delim$1, lexbuf$1, 183);
           is_in_string.contents = false;
           lexbuf$1.lex_start_p = string_start$1;
-          return /* STRING */Block.__(16, [/* tuple */[
-                      get_stored_string(/* () */0),
+          return --[ STRING ]--Block.__(16, [--[ tuple ]--[
+                      get_stored_string(--[ () ]--0),
                       delim$1
                     ]]);
       case 21 :
           update_loc(lexbuf$1, undefined, 1, false, 1);
-          return /* CHAR */Block.__(0, [Lexing.lexeme_char(lexbuf$1, 1)]);
+          return --[ CHAR ]--Block.__(0, [Lexing.lexeme_char(lexbuf$1, 1)]);
       case 22 :
-          return /* CHAR */Block.__(0, [Lexing.lexeme_char(lexbuf$1, 1)]);
+          return --[ CHAR ]--Block.__(0, [Lexing.lexeme_char(lexbuf$1, 1)]);
       case 23 :
-          return /* CHAR */Block.__(0, [char_for_backslash(Lexing.lexeme_char(lexbuf$1, 2))]);
+          return --[ CHAR ]--Block.__(0, [char_for_backslash(Lexing.lexeme_char(lexbuf$1, 2))]);
       case 24 :
-          return /* CHAR */Block.__(0, [char_for_decimal_code(lexbuf$1, 2)]);
+          return --[ CHAR ]--Block.__(0, [char_for_decimal_code(lexbuf$1, 2)]);
       case 25 :
-          return /* CHAR */Block.__(0, [char_for_hexadecimal_code(lexbuf$1, 3)]);
+          return --[ CHAR ]--Block.__(0, [char_for_hexadecimal_code(lexbuf$1, 3)]);
       case 26 :
           var l = Lexing.lexeme(lexbuf$1);
           var esc = $$String.sub(l, 1, l.length - 1 | 0);
           throw [
                 $$Error$2,
-                /* Illegal_escape */Block.__(1, [esc]),
+                --[ Illegal_escape ]--Block.__(1, [esc]),
                 curr(lexbuf$1)
               ];
       case 27 :
           var match = with_comment_buffer(comment, lexbuf$1);
-          return /* COMMENT */Block.__(18, [/* tuple */[
+          return --[ COMMENT ]--Block.__(18, [--[ tuple ]--[
                       match[0],
                       match[1]
                     ]]);
       case 28 :
           var match$1 = with_comment_buffer(comment, lexbuf$1);
-          return /* DOCSTRING */Block.__(19, [docstring(match$1[0], match$1[1])]);
+          return --[ DOCSTRING ]--Block.__(19, [docstring(match$1[0], match$1[1])]);
       case 29 :
           var stars = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
           var match$2 = with_comment_buffer((function(stars){
@@ -11204,28 +11204,28 @@ function token(lexbuf) {
                 return __ocaml_lex_comment_rec(lexbuf, 132);
               }
               }(stars)), lexbuf$1);
-          return /* COMMENT */Block.__(18, [/* tuple */[
+          return --[ COMMENT ]--Block.__(18, [--[ tuple ]--[
                       match$2[0],
                       match$2[1]
                     ]]);
       case 30 :
           if (print_warnings.contents) {
-            prerr_warning(curr(lexbuf$1), /* Comment_start */0);
+            prerr_warning(curr(lexbuf$1), --[ Comment_start ]--0);
           }
           var match$3 = with_comment_buffer(comment, lexbuf$1);
-          return /* COMMENT */Block.__(18, [/* tuple */[
+          return --[ COMMENT ]--Block.__(18, [--[ tuple ]--[
                       match$3[0],
                       match$3[1]
                     ]]);
       case 31 :
           var stars$1 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos - 2 | 0);
-          return /* COMMENT */Block.__(18, [/* tuple */[
+          return --[ COMMENT ]--Block.__(18, [--[ tuple ]--[
                       stars$1,
                       curr(lexbuf$1)
                     ]]);
       case 32 :
           var loc = curr(lexbuf$1);
-          prerr_warning(loc, /* Comment_not_end */1);
+          prerr_warning(loc, --[ Comment_not_end ]--1);
           lexbuf$1.lex_curr_pos = lexbuf$1.lex_curr_pos - 1 | 0;
           var curpos = lexbuf$1.lex_curr_p;
           lexbuf$1.lex_curr_p = {
@@ -11234,144 +11234,144 @@ function token(lexbuf) {
             pos_bol: curpos.pos_bol,
             pos_cnum: curpos.pos_cnum - 1 | 0
           };
-          return /* STAR */86;
+          return --[ STAR ]--86;
       case 33 :
           var num = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), Caml_array.caml_array_get(lexbuf$1.lex_mem, 1));
           var name = Lexing.sub_lexeme_opt(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 3), Caml_array.caml_array_get(lexbuf$1.lex_mem, 2));
           update_loc(lexbuf$1, name, Caml_format.caml_int_of_string(num), true, 0);
           return token(lexbuf$1);
       case 34 :
-          return /* SHARP */84;
+          return --[ SHARP ]--84;
       case 35 :
-          return /* AMPERSAND */1;
+          return --[ AMPERSAND ]--1;
       case 36 :
-          return /* AMPERAMPER */0;
+          return --[ AMPERAMPER ]--0;
       case 37 :
-          return /* BACKQUOTE */5;
+          return --[ BACKQUOTE ]--5;
       case 38 :
-          return /* QUOTE */77;
+          return --[ QUOTE ]--77;
       case 39 :
-          return /* LPAREN */54;
+          return --[ LPAREN ]--54;
       case 40 :
-          return /* RPAREN */81;
+          return --[ RPAREN ]--81;
       case 41 :
-          return /* STAR */86;
+          return --[ STAR ]--86;
       case 42 :
-          return /* COMMA */16;
+          return --[ COMMA ]--16;
       case 43 :
-          return /* MINUSGREATER */62;
+          return --[ MINUSGREATER ]--62;
       case 44 :
-          return /* DOT */20;
+          return --[ DOT ]--20;
       case 45 :
-          return /* DOTDOT */21;
+          return --[ DOTDOT ]--21;
       case 46 :
-          return /* COLON */12;
+          return --[ COLON ]--12;
       case 47 :
-          return /* COLONCOLON */13;
+          return --[ COLONCOLON ]--13;
       case 48 :
-          return /* COLONEQUAL */14;
+          return --[ COLONEQUAL ]--14;
       case 49 :
-          return /* COLONGREATER */15;
+          return --[ COLONGREATER ]--15;
       case 50 :
-          return /* SEMI */82;
+          return --[ SEMI ]--82;
       case 51 :
-          return /* SEMISEMI */83;
+          return --[ SEMISEMI ]--83;
       case 52 :
-          return /* LESS */51;
+          return --[ LESS ]--51;
       case 53 :
-          return /* LESSMINUS */52;
+          return --[ LESSMINUS ]--52;
       case 54 :
-          return /* EQUAL */26;
+          return --[ EQUAL ]--26;
       case 55 :
-          return /* LBRACKET */45;
+          return --[ LBRACKET ]--45;
       case 56 :
-          return /* LBRACKETBAR */46;
+          return --[ LBRACKETBAR ]--46;
       case 57 :
-          return /* LBRACKETLESS */47;
+          return --[ LBRACKETLESS ]--47;
       case 58 :
-          return /* LBRACKETGREATER */48;
+          return --[ LBRACKETGREATER ]--48;
       case 59 :
-          return /* RBRACKET */79;
+          return --[ RBRACKET ]--79;
       case 60 :
-          return /* LBRACE */43;
+          return --[ LBRACE ]--43;
       case 61 :
-          return /* LBRACELESS */44;
+          return --[ LBRACELESS ]--44;
       case 62 :
-          return /* BAR */7;
+          return --[ BAR ]--7;
       case 63 :
-          return /* BARBAR */8;
+          return --[ BARBAR ]--8;
       case 64 :
-          return /* BARRBRACKET */9;
+          return --[ BARRBRACKET ]--9;
       case 65 :
-          return /* GREATER */34;
+          return --[ GREATER ]--34;
       case 66 :
-          return /* GREATERRBRACKET */36;
+          return --[ GREATERRBRACKET ]--36;
       case 67 :
-          return /* RBRACE */78;
+          return --[ RBRACE ]--78;
       case 68 :
-          return /* GREATERRBRACE */35;
+          return --[ GREATERRBRACE ]--35;
       case 69 :
-          return /* LBRACKETAT */55;
+          return --[ LBRACKETAT ]--55;
       case 70 :
-          return /* LBRACKETPERCENT */49;
+          return --[ LBRACKETPERCENT ]--49;
       case 71 :
-          return /* LBRACKETPERCENTPERCENT */50;
+          return --[ LBRACKETPERCENTPERCENT ]--50;
       case 72 :
-          return /* LBRACKETATAT */56;
+          return --[ LBRACKETATAT ]--56;
       case 73 :
-          return /* LBRACKETATATAT */57;
+          return --[ LBRACKETATATAT ]--57;
       case 74 :
-          return /* BANG */6;
+          return --[ BANG ]--6;
       case 75 :
-          return /* INFIXOP0 */Block.__(2, ["!="]);
+          return --[ INFIXOP0 ]--Block.__(2, ["!="]);
       case 76 :
-          return /* PLUS */72;
+          return --[ PLUS ]--72;
       case 77 :
-          return /* PLUSDOT */73;
+          return --[ PLUSDOT ]--73;
       case 78 :
-          return /* PLUSEQ */74;
+          return --[ PLUSEQ ]--74;
       case 79 :
-          return /* MINUS */60;
+          return --[ MINUS ]--60;
       case 80 :
-          return /* MINUSDOT */61;
+          return --[ MINUSDOT ]--61;
       case 81 :
       case 82 :
-          return /* PREFIXOP */Block.__(14, [Lexing.lexeme(lexbuf$1)]);
+          return --[ PREFIXOP ]--Block.__(14, [Lexing.lexeme(lexbuf$1)]);
       case 83 :
-          return /* INFIXOP0 */Block.__(2, [Lexing.lexeme(lexbuf$1)]);
+          return --[ INFIXOP0 ]--Block.__(2, [Lexing.lexeme(lexbuf$1)]);
       case 84 :
-          return /* INFIXOP1 */Block.__(3, [Lexing.lexeme(lexbuf$1)]);
+          return --[ INFIXOP1 ]--Block.__(3, [Lexing.lexeme(lexbuf$1)]);
       case 85 :
-          return /* INFIXOP2 */Block.__(4, [Lexing.lexeme(lexbuf$1)]);
+          return --[ INFIXOP2 ]--Block.__(4, [Lexing.lexeme(lexbuf$1)]);
       case 86 :
-          return /* INFIXOP4 */Block.__(6, [Lexing.lexeme(lexbuf$1)]);
+          return --[ INFIXOP4 ]--Block.__(6, [Lexing.lexeme(lexbuf$1)]);
       case 87 :
-          return /* PERCENT */71;
+          return --[ PERCENT ]--71;
       case 88 :
-          return /* INFIXOP3 */Block.__(5, [Lexing.lexeme(lexbuf$1)]);
+          return --[ INFIXOP3 ]--Block.__(5, [Lexing.lexeme(lexbuf$1)]);
       case 89 :
-          return /* SHARPOP */Block.__(15, [Lexing.lexeme(lexbuf$1)]);
+          return --[ SHARPOP ]--Block.__(15, [Lexing.lexeme(lexbuf$1)]);
       case 90 :
-          if (if_then_else.contents !== /* Dir_out */2) {
-            if (if_then_else.contents === /* Dir_if_true */0) {
+          if (if_then_else.contents ~= --[ Dir_out ]--2) {
+            if (if_then_else.contents == --[ Dir_if_true ]--0) {
               throw [
                     $$Error$2,
-                    /* Unterminated_if */2,
+                    --[ Unterminated_if ]--2,
                     curr(lexbuf$1)
                   ];
             }
             throw [
                   $$Error$2,
-                  /* Unterminated_else */3,
+                  --[ Unterminated_else ]--3,
                   curr(lexbuf$1)
                 ];
           } else {
-            return /* EOF */25;
+            return --[ EOF ]--25;
           }
       case 91 :
           throw [
                 $$Error$2,
-                /* Illegal_character */Block.__(0, [Lexing.lexeme_char(lexbuf$1, 0)]),
+                --[ Illegal_character ]--Block.__(0, [Lexing.lexeme_char(lexbuf$1, 0)]),
                 curr(lexbuf$1)
               ];
       default:
@@ -11396,14 +11396,14 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) {
           is_in_string.contents = false;
           throw [
                 $$Error$2,
-                /* Unterminated_string */0,
+                --[ Unterminated_string ]--0,
                 string_start_loc.contents
               ];
       case 2 :
           var edelim = Lexing.lexeme(lexbuf);
           var edelim$1 = $$String.sub(edelim, 1, edelim.length - 2 | 0);
-          if (delim === edelim$1) {
-            return /* () */0;
+          if (delim == edelim$1) {
+            return --[ () ]--0;
           } else {
             store_string(Lexing.lexeme(lexbuf));
             ___ocaml_lex_state = 183;
@@ -11430,7 +11430,7 @@ function string(lexbuf) {
     var __ocaml_lex_state$1 = Lexing.new_engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf$1);
     switch (__ocaml_lex_state$1) {
       case 0 :
-          return /* () */0;
+          return --[ () ]--0;
       case 1 :
           var space = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
           update_loc(lexbuf$1, undefined, 1, false, space.length);
@@ -11445,18 +11445,18 @@ function string(lexbuf) {
           store_string_char(char_for_hexadecimal_code(lexbuf$1, 2));
           return string(lexbuf$1);
       case 5 :
-          if (comment_start_loc.contents !== /* [] */0) {
+          if (comment_start_loc.contents ~= --[ [] ]--0) {
             return string(lexbuf$1);
           } else {
             var loc = curr(lexbuf$1);
-            prerr_warning(loc, /* Illegal_backslash */7);
+            prerr_warning(loc, --[ Illegal_backslash ]--7);
             store_string_char(Lexing.lexeme_char(lexbuf$1, 0));
             store_string_char(Lexing.lexeme_char(lexbuf$1, 1));
             return string(lexbuf$1);
           }
       case 6 :
-          if (comment_start_loc.contents === /* [] */0) {
-            prerr_warning(curr(lexbuf$1), /* Eol_in_string */14);
+          if (comment_start_loc.contents == --[ [] ]--0) {
+            prerr_warning(curr(lexbuf$1), --[ Eol_in_string ]--14);
           }
           update_loc(lexbuf$1, undefined, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf$1));
@@ -11465,7 +11465,7 @@ function string(lexbuf) {
           is_in_string.contents = false;
           throw [
                 $$Error$2,
-                /* Unterminated_string */0,
+                --[ Unterminated_string ]--0,
                 string_start_loc.contents
               ];
       case 8 :
@@ -11485,7 +11485,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) {
     var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
     switch (__ocaml_lex_state$1) {
       case 0 :
-          comment_start_loc.contents = /* :: */[
+          comment_start_loc.contents = --[ :: ]--[
             curr(lexbuf),
             comment_start_loc.contents
           ];
@@ -11502,13 +11502,13 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) {
               ___ocaml_lex_state = 132;
               continue ;
             } else {
-              comment_start_loc.contents = /* [] */0;
+              comment_start_loc.contents = --[ [] ]--0;
               return curr(lexbuf);
             }
           } else {
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  /* tuple */[
+                  --[ tuple ]--[
                     "lexer.mll",
                     992,
                     16
@@ -11517,26 +11517,26 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) {
           }
       case 2 :
           string_start_loc.contents = curr(lexbuf);
-          store_string_char(/* "\"" */34);
+          store_string_char(--[ "\"" ]--34);
           is_in_string.contents = true;
           try {
             string(lexbuf);
           }
           catch (raw_exn){
             var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-            if (exn[0] === $$Error$2) {
+            if (exn[0] == $$Error$2) {
               var match$1 = exn[1];
-              if (typeof match$1 === "number") {
-                if (match$1 !== 0) {
+              if (typeof match$1 == "number") {
+                if (match$1 ~= 0) {
                   throw exn;
                 }
                 var match$2 = comment_start_loc.contents;
                 if (match$2) {
                   var start = List.hd(List.rev(comment_start_loc.contents));
-                  comment_start_loc.contents = /* [] */0;
+                  comment_start_loc.contents = --[ [] ]--0;
                   throw [
                         $$Error$2,
-                        /* Unterminated_string_in_comment */Block.__(3, [
+                        --[ Unterminated_string_in_comment ]--Block.__(3, [
                             start,
                             exn[2]
                           ]),
@@ -11545,7 +11545,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) {
                 } else {
                   throw [
                         Caml_builtin_exceptions.assert_failure,
-                        /* tuple */[
+                        --[ tuple ]--[
                           "lexer.mll",
                           1006,
                           18
@@ -11560,7 +11560,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) {
             }
           }
           is_in_string.contents = false;
-          store_string_char(/* "\"" */34);
+          store_string_char(--[ "\"" ]--34);
           ___ocaml_lex_state = 132;
           continue ;
       case 3 :
@@ -11574,19 +11574,19 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) {
           }
           catch (raw_exn$1){
             var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-            if (exn$1[0] === $$Error$2) {
+            if (exn$1[0] == $$Error$2) {
               var match$3 = exn$1[1];
-              if (typeof match$3 === "number") {
-                if (match$3 !== 0) {
+              if (typeof match$3 == "number") {
+                if (match$3 ~= 0) {
                   throw exn$1;
                 }
                 var match$4 = comment_start_loc.contents;
                 if (match$4) {
                   var start$1 = List.hd(List.rev(comment_start_loc.contents));
-                  comment_start_loc.contents = /* [] */0;
+                  comment_start_loc.contents = --[ [] ]--0;
                   throw [
                         $$Error$2,
-                        /* Unterminated_string_in_comment */Block.__(3, [
+                        --[ Unterminated_string_in_comment ]--Block.__(3, [
                             start$1,
                             exn$1[2]
                           ]),
@@ -11595,7 +11595,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) {
                 } else {
                   throw [
                         Caml_builtin_exceptions.assert_failure,
-                        /* tuple */[
+                        --[ tuple ]--[
                           "lexer.mll",
                           1026,
                           18
@@ -11610,9 +11610,9 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) {
             }
           }
           is_in_string.contents = false;
-          store_string_char(/* "|" */124);
+          store_string_char(--[ "|" ]--124);
           store_string(delim$1);
-          store_string_char(/* "}" */125);
+          store_string_char(--[ "}" ]--125);
           ___ocaml_lex_state = 132;
           continue ;
       case 5 :
@@ -11624,16 +11624,16 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) {
           var match$5 = comment_start_loc.contents;
           if (match$5) {
             var start$2 = List.hd(List.rev(comment_start_loc.contents));
-            comment_start_loc.contents = /* [] */0;
+            comment_start_loc.contents = --[ [] ]--0;
             throw [
                   $$Error$2,
-                  /* Unterminated_comment */Block.__(2, [start$2]),
+                  --[ Unterminated_comment ]--Block.__(2, [start$2]),
                   match$5[0]
                 ];
           } else {
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  /* tuple */[
+                  --[ tuple ]--[
                     "lexer.mll",
                     1056,
                     16
@@ -11668,12 +11668,12 @@ function comment(lexbuf) {
 
 function at_bol(lexbuf) {
   var pos = lexbuf.lex_start_p;
-  return pos.pos_cnum === pos.pos_bol;
+  return pos.pos_cnum == pos.pos_bol;
 }
 
 function token_with_comments(lexbuf) {
   var match = preprocessor.contents;
-  if (match !== undefined) {
+  if (match ~= undefined) {
     return Curry._2(match[1], token, lexbuf);
   } else {
     return token(lexbuf);
@@ -11683,8 +11683,8 @@ function token_with_comments(lexbuf) {
 function token$1(lexbuf) {
   var post_pos = lexbuf.lex_curr_p;
   var attach = function (lines, docs, pre_pos) {
-    if (typeof docs === "number") {
-      return /* () */0;
+    if (typeof docs == "number") {
+      return --[ () ]--0;
     } else if (docs.tag) {
       var b = docs[2];
       var f = docs[1];
@@ -11717,9 +11717,9 @@ function token$1(lexbuf) {
       var docs = _docs;
       var lines = _lines;
       var tok = token_with_comments(lexbuf);
-      if (typeof tok === "number") {
+      if (typeof tok == "number") {
         switch (tok) {
-          case /* SHARP */84 :
+          case --[ SHARP ]--84 :
               if (at_bol(lexbuf)) {
                 var lexbuf$1 = lexbuf;
                 var cont = (function(lines,docs){
@@ -11729,77 +11729,77 @@ function token$1(lexbuf) {
                 }(lines,docs));
                 var look_ahead = function (token) {
                   sharp_look_ahead.contents = token;
-                  return /* SHARP */84;
+                  return --[ SHARP ]--84;
                 };
                 var if_then_else$1 = if_then_else.contents;
                 var match = token_with_comments(lexbuf$1);
-                if (typeof match === "number") {
+                if (typeof match == "number") {
                   switch (match) {
-                    case /* ELSE */23 :
-                        if (if_then_else$1 !== 0) {
+                    case --[ ELSE ]--23 :
+                        if (if_then_else$1 ~= 0) {
                           throw [
                                 $$Error$2,
-                                /* Unexpected_directive */6,
+                                --[ Unexpected_directive ]--6,
                                 curr(lexbuf$1)
                               ];
                         }
                         break;
-                    case /* END */24 :
+                    case --[ END ]--24 :
                         if (if_then_else$1 >= 2) {
                           throw [
                                 $$Error$2,
-                                /* Unexpected_directive */6,
+                                --[ Unexpected_directive ]--6,
                                 curr(lexbuf$1)
                               ];
                         }
-                        if_then_else.contents = /* Dir_out */2;
+                        if_then_else.contents = --[ Dir_out ]--2;
                         return Curry._1(cont, lexbuf$1);
-                    case /* IF */37 :
+                    case --[ IF ]--37 :
                         if (if_then_else$1 >= 2) {
                           if (directive_parse(token_with_comments, lexbuf$1)) {
-                            if_then_else.contents = /* Dir_if_true */0;
+                            if_then_else.contents = --[ Dir_if_true ]--0;
                             return Curry._1(cont, lexbuf$1);
                           } else {
-                            var _param = /* () */0;
+                            var _param = --[ () ]--0;
                             while(true) {
                               var token = token_with_comments(lexbuf$1);
-                              if (token === /* EOF */25) {
+                              if (token == --[ EOF ]--25) {
                                 throw [
                                       $$Error$2,
-                                      /* Unterminated_if */2,
+                                      --[ Unterminated_if ]--2,
                                       curr(lexbuf$1)
                                     ];
                               }
-                              if (token === /* SHARP */84 && at_bol(lexbuf$1)) {
+                              if (token == --[ SHARP ]--84 and at_bol(lexbuf$1)) {
                                 var token$1 = token_with_comments(lexbuf$1);
-                                if (typeof token$1 === "number") {
+                                if (typeof token$1 == "number") {
                                   var switcher = token$1 - 23 | 0;
-                                  if (switcher === 0 || switcher === 1) {
-                                    if (switcher !== 0) {
-                                      if_then_else.contents = /* Dir_out */2;
+                                  if (switcher == 0 or switcher == 1) {
+                                    if (switcher ~= 0) {
+                                      if_then_else.contents = --[ Dir_out ]--2;
                                       return Curry._1(cont, lexbuf$1);
                                     } else {
-                                      if_then_else.contents = /* Dir_if_false */1;
+                                      if_then_else.contents = --[ Dir_if_false ]--1;
                                       return Curry._1(cont, lexbuf$1);
                                     }
-                                  } else if (switcher === 14) {
+                                  } else if (switcher == 14) {
                                     throw [
                                           $$Error$2,
-                                          /* Unexpected_directive */6,
+                                          --[ Unexpected_directive ]--6,
                                           curr(lexbuf$1)
                                         ];
                                   }
                                   
                                 }
-                                if (is_elif(token$1) && directive_parse(token_with_comments, lexbuf$1)) {
-                                  if_then_else.contents = /* Dir_if_true */0;
+                                if (is_elif(token$1) and directive_parse(token_with_comments, lexbuf$1)) {
+                                  if_then_else.contents = --[ Dir_if_true ]--0;
                                   return Curry._1(cont, lexbuf$1);
                                 } else {
-                                  _param = /* () */0;
+                                  _param = --[ () ]--0;
                                   continue ;
                                 }
                               } else {
-                                _param = /* () */0;
+                                _param = --[ () ]--0;
                                 continue ;
                               }
                             };
@@ -11807,18 +11807,18 @@ function token$1(lexbuf) {
                         } else {
                           throw [
                                 $$Error$2,
-                                /* Unexpected_directive */6,
+                                --[ Unexpected_directive ]--6,
                                 curr(lexbuf$1)
                               ];
                         }
                     default:
                       return Curry._1(look_ahead, match);
                   }
-                } else if (match.tag === /* LIDENT */11 && match[0] === "elif") {
-                  if (if_then_else$1 !== 0) {
+                } else if (match.tag == --[ LIDENT ]--11 and match[0] == "elif") {
+                  if (if_then_else$1 ~= 0) {
                     throw [
                           $$Error$2,
-                          /* Unexpected_directive */6,
+                          --[ Unexpected_directive ]--6,
                           curr(lexbuf$1)
                         ];
                   }
@@ -11826,52 +11826,52 @@ function token$1(lexbuf) {
                 } else {
                   return Curry._1(look_ahead, match);
                 }
-                if (if_then_else$1 !== 0) {
+                if (if_then_else$1 ~= 0) {
                   return Curry._1(look_ahead, match);
                 } else {
-                  var _else_seen = match === /* ELSE */23;
+                  var _else_seen = match == --[ ELSE ]--23;
                   while(true) {
                     var else_seen = _else_seen;
                     var token$2 = token_with_comments(lexbuf$1);
-                    if (token$2 === /* EOF */25) {
+                    if (token$2 == --[ EOF ]--25) {
                       throw [
                             $$Error$2,
-                            /* Unterminated_else */3,
+                            --[ Unterminated_else ]--3,
                             curr(lexbuf$1)
                           ];
                     }
-                    if (token$2 === /* SHARP */84 && at_bol(lexbuf$1)) {
+                    if (token$2 == --[ SHARP ]--84 and at_bol(lexbuf$1)) {
                       var token$3 = token_with_comments(lexbuf$1);
-                      if (typeof token$3 === "number") {
+                      if (typeof token$3 == "number") {
                         var switcher$1 = token$3 - 23 | 0;
-                        if (switcher$1 === 0 || switcher$1 === 1) {
-                          if (switcher$1 !== 0) {
-                            if_then_else.contents = /* Dir_out */2;
+                        if (switcher$1 == 0 or switcher$1 == 1) {
+                          if (switcher$1 ~= 0) {
+                            if_then_else.contents = --[ Dir_out ]--2;
                             return Curry._1(cont, lexbuf$1);
                           } else {
                             if (else_seen) {
                               throw [
                                     $$Error$2,
-                                    /* Unexpected_directive */6,
+                                    --[ Unexpected_directive ]--6,
                                     curr(lexbuf$1)
                                   ];
                             }
                             _else_seen = true;
                             continue ;
                           }
-                        } else if (switcher$1 === 14) {
+                        } else if (switcher$1 == 14) {
                           throw [
                                 $$Error$2,
-                                /* Unexpected_directive */6,
+                                --[ Unexpected_directive ]--6,
                                 curr(lexbuf$1)
                               ];
                         }
                         
                       }
-                      if (else_seen && is_elif(token$3)) {
+                      if (else_seen and is_elif(token$3)) {
                         throw [
                               $$Error$2,
-                              /* Unexpected_directive */6,
+                              --[ Unexpected_directive ]--6,
                               curr(lexbuf$1)
                             ];
                       }
@@ -11883,8 +11883,8 @@ function token$1(lexbuf) {
                 }
               }
               break;
-          case /* EOL */100 :
-              var lines$prime = lines !== 0 ? /* BlankLine */2 : /* NewLine */1;
+          case --[ EOL ]--100 :
+              var lines$prime = lines ~= 0 ? --[ BlankLine ]--2 : --[ NewLine ]--1;
               _lines = lines$prime;
               continue ;
           default:
@@ -11892,66 +11892,66 @@ function token$1(lexbuf) {
         }
       } else {
         switch (tok.tag | 0) {
-          case /* COMMENT */18 :
+          case --[ COMMENT ]--18 :
               var match$1 = tok[0];
-              add_comment(/* tuple */[
+              add_comment(--[ tuple ]--[
                     match$1[0],
                     match$1[1]
                   ]);
-              var lines$prime$1 = lines >= 2 ? /* BlankLine */2 : /* NoLine */0;
+              var lines$prime$1 = lines >= 2 ? --[ BlankLine ]--2 : --[ NoLine ]--0;
               _lines = lines$prime$1;
               continue ;
-          case /* DOCSTRING */19 :
+          case --[ DOCSTRING ]--19 :
               var doc = tok[0];
               add_docstring_comment(doc);
               var docs$prime;
-              if (typeof docs === "number") {
-                docs$prime = lines >= 2 ? /* Before */Block.__(1, [
-                      /* [] */0,
-                      /* [] */0,
-                      /* :: */[
+              if (typeof docs == "number") {
+                docs$prime = lines >= 2 ? --[ Before ]--Block.__(1, [
+                      --[ [] ]--0,
+                      --[ [] ]--0,
+                      --[ :: ]--[
                         doc,
-                        /* [] */0
+                        --[ [] ]--0
                       ]
-                    ]) : /* After */Block.__(0, [/* :: */[
+                    ]) : --[ After ]--Block.__(0, [--[ :: ]--[
                         doc,
-                        /* [] */0
+                        --[ [] ]--0
                       ]]);
               } else if (docs.tag) {
                 var b = docs[2];
                 var f = docs[1];
                 var a = docs[0];
-                docs$prime = lines >= 2 ? /* Before */Block.__(1, [
+                docs$prime = lines >= 2 ? --[ Before ]--Block.__(1, [
                       a,
                       Pervasives.$at(b, f),
-                      /* :: */[
+                      --[ :: ]--[
                         doc,
-                        /* [] */0
+                        --[ [] ]--0
                       ]
-                    ]) : /* Before */Block.__(1, [
+                    ]) : --[ Before ]--Block.__(1, [
                       a,
                       f,
-                      /* :: */[
+                      --[ :: ]--[
                         doc,
                         b
                       ]
                     ]);
               } else {
                 var a$1 = docs[0];
-                docs$prime = lines >= 2 ? /* Before */Block.__(1, [
+                docs$prime = lines >= 2 ? --[ Before ]--Block.__(1, [
                       a$1,
-                      /* [] */0,
-                      /* :: */[
+                      --[ [] ]--0,
+                      --[ :: ]--[
                         doc,
-                        /* [] */0
+                        --[ [] ]--0
                       ]
-                    ]) : /* After */Block.__(0, [/* :: */[
+                    ]) : --[ After ]--Block.__(0, [--[ :: ]--[
                         doc,
                         a$1
                       ]]);
               }
               _docs = docs$prime;
-              _lines = /* NoLine */0;
+              _lines = --[ NoLine ]--0;
               continue ;
           default:
             
@@ -11962,25 +11962,25 @@ function token$1(lexbuf) {
     };
   };
   var match = sharp_look_ahead.contents;
-  if (match !== undefined) {
+  if (match ~= undefined) {
     sharp_look_ahead.contents = undefined;
     return match;
   } else {
-    return loop(/* NoLine */0, /* Initial */0, lexbuf);
+    return loop(--[ NoLine ]--0, --[ Initial ]--0, lexbuf);
   }
 }
 
 function init$1(param) {
   sharp_look_ahead.contents = undefined;
-  if_then_else.contents = /* Dir_out */2;
+  if_then_else.contents = --[ Dir_out ]--2;
   is_in_string.contents = false;
-  comment_start_loc.contents = /* [] */0;
-  comment_list.contents = /* [] */0;
+  comment_start_loc.contents = --[ [] ]--0;
+  comment_list.contents = --[ [] ]--0;
   var match = preprocessor.contents;
-  if (match !== undefined) {
-    return Curry._1(match[0], /* () */0);
+  if (match ~= undefined) {
+    return Curry._1(match[0], --[ () ]--0);
   } else {
-    return /* () */0;
+    return --[ () ]--0;
   }
 }
 
@@ -11988,27 +11988,27 @@ function skip_phrase(lexbuf) {
   while(true) {
     try {
       var match = token$1(lexbuf);
-      if (typeof match === "number" && !(match !== 25 && match !== 83)) {
-        return /* () */0;
+      if (typeof match == "number" and !(match ~= 25 and match ~= 83)) {
+        return --[ () ]--0;
       } else {
         return skip_phrase(lexbuf);
       }
     }
     catch (raw_exn){
       var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-      if (exn[0] === $$Error$2) {
+      if (exn[0] == $$Error$2) {
         var tmp = exn[1];
-        if (typeof tmp === "number") {
-          if (tmp === /* Unterminated_string */0) {
+        if (typeof tmp == "number") {
+          if (tmp == --[ Unterminated_string ]--0) {
             continue ;
           } else {
             throw exn;
           }
         } else {
           switch (tmp.tag | 0) {
-            case /* Illegal_character */0 :
-            case /* Unterminated_comment */2 :
-            case /* Unterminated_string_in_comment */3 :
+            case --[ Illegal_character ]--0 :
+            case --[ Unterminated_comment ]--2 :
+            case --[ Unterminated_string_in_comment ]--3 :
                 continue ;
             default:
               throw exn;
@@ -12022,8 +12022,8 @@ function skip_phrase(lexbuf) {
 }
 
 function maybe_skip_phrase(lexbuf) {
-  if (Parsing.is_current_lookahead(/* SEMISEMI */83) || Parsing.is_current_lookahead(/* EOF */25)) {
-    return /* () */0;
+  if (Parsing.is_current_lookahead(--[ SEMISEMI ]--83) or Parsing.is_current_lookahead(--[ EOF ]--25)) {
+    return --[ () ]--0;
   } else {
     return skip_phrase(lexbuf);
   }
@@ -12031,50 +12031,50 @@ function maybe_skip_phrase(lexbuf) {
 
 function wrap(parsing_fun, lexbuf) {
   try {
-    init(/* () */0);
-    init$1(/* () */0);
+    init(--[ () ]--0);
+    init$1(--[ () ]--0);
     var ast = Curry._2(parsing_fun, token$1, lexbuf);
-    Parsing.clear_parser(/* () */0);
-    warn_bad_docstrings(/* () */0);
+    Parsing.clear_parser(--[ () ]--0);
+    warn_bad_docstrings(--[ () ]--0);
     return ast;
   }
   catch (raw_err){
     var err = Caml_js_exceptions.internalToOCamlException(raw_err);
-    if (err[0] === $$Error$2) {
+    if (err[0] == $$Error$2) {
       var tmp = err[1];
-      if (typeof tmp === "number") {
+      if (typeof tmp == "number") {
         throw err;
       } else if (tmp.tag) {
         throw err;
-      } else if (input_name.contents === "//toplevel//") {
+      } else if (input_name.contents == "//toplevel//") {
         skip_phrase(lexbuf);
         throw err;
       } else {
         throw err;
       }
-    } else if (err[0] === $$Error$1) {
-      if (input_name.contents === "//toplevel//") {
+    } else if (err[0] == $$Error$1) {
+      if (input_name.contents == "//toplevel//") {
         maybe_skip_phrase(lexbuf);
         throw err;
       } else {
         throw err;
       }
-    } else if (err !== Parsing.Parse_error && err !== Escape_error) {
+    } else if (err ~= Parsing.Parse_error and err ~= Escape_error) {
       throw err;
     }
     var loc = curr(lexbuf);
-    if (input_name.contents === "//toplevel//") {
+    if (input_name.contents == "//toplevel//") {
       maybe_skip_phrase(lexbuf);
     }
     throw [
           $$Error$1,
-          /* Other */Block.__(5, [loc])
+          --[ Other ]--Block.__(5, [loc])
         ];
   }
 }
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -12083,11 +12083,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -12095,57 +12095,57 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var match = wrap(implementation, Lexing.from_string("let v str = \n  str  \n  |> Lexing.from_string \n  |> Parse.implementation\n"));
 
 if (match) {
   var match$1 = match[0].pstr_desc;
-  if (match$1.tag === /* Pstr_value */1 && !match$1[0]) {
+  if (match$1.tag == --[ Pstr_value ]--1 and !match$1[0]) {
     var match$2 = match$1[1];
     if (match$2) {
       var match$3 = match$2[0];
       var match$4 = match$3.pvb_pat;
       var match$5 = match$4.ppat_desc;
-      if (typeof match$5 === "number" || match$5.tag) {
+      if (typeof match$5 == "number" or match$5.tag) {
         eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
       } else {
         var match$6 = match$5[0];
-        if (match$6.txt === "v") {
+        if (match$6.txt == "v") {
           var match$7 = match$6.loc;
           var match$8 = match$7.loc_start;
-          if (match$8.pos_fname === "" && !(match$8.pos_lnum !== 1 || match$8.pos_bol !== 0 || match$8.pos_cnum !== 4)) {
+          if (match$8.pos_fname == "" and !(match$8.pos_lnum ~= 1 or match$8.pos_bol ~= 0 or match$8.pos_cnum ~= 4)) {
             var match$9 = match$7.loc_end;
-            if (match$9.pos_fname === "" && !(match$9.pos_lnum !== 1 || match$9.pos_bol !== 0 || match$9.pos_cnum !== 5 || match$7.loc_ghost)) {
+            if (match$9.pos_fname == "" and !(match$9.pos_lnum ~= 1 or match$9.pos_bol ~= 0 or match$9.pos_cnum ~= 5 or match$7.loc_ghost)) {
               var match$10 = match$4.ppat_loc;
               var match$11 = match$10.loc_start;
-              if (match$11.pos_fname === "" && !(match$11.pos_lnum !== 1 || match$11.pos_bol !== 0 || match$11.pos_cnum !== 4)) {
+              if (match$11.pos_fname == "" and !(match$11.pos_lnum ~= 1 or match$11.pos_bol ~= 0 or match$11.pos_cnum ~= 4)) {
                 var match$12 = match$10.loc_end;
-                if (match$12.pos_fname === "" && !(match$12.pos_lnum !== 1 || match$12.pos_bol !== 0 || match$12.pos_cnum !== 5 || match$10.loc_ghost || match$4.ppat_attributes)) {
+                if (match$12.pos_fname == "" and !(match$12.pos_lnum ~= 1 or match$12.pos_bol ~= 0 or match$12.pos_cnum ~= 5 or match$10.loc_ghost or match$4.ppat_attributes)) {
                   var match$13 = match$3.pvb_expr;
                   var match$14 = match$13.pexp_desc;
-                  if (match$14.tag === /* Pexp_fun */4 && match$14[0] === "" && match$14[1] === undefined) {
+                  if (match$14.tag == --[ Pexp_fun ]--4 and match$14[0] == "" and match$14[1] == undefined) {
                     var match$15 = match$14[2];
                     var match$16 = match$15.ppat_desc;
-                    if (typeof match$16 === "number" || match$16.tag) {
+                    if (typeof match$16 == "number" or match$16.tag) {
                       eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                     } else {
                       var match$17 = match$16[0];
-                      if (match$17.txt === "str") {
+                      if (match$17.txt == "str") {
                         var match$18 = match$17.loc;
                         var match$19 = match$18.loc_start;
-                        if (match$19.pos_fname === "" && !(match$19.pos_lnum !== 1 || match$19.pos_bol !== 0 || match$19.pos_cnum !== 6)) {
+                        if (match$19.pos_fname == "" and !(match$19.pos_lnum ~= 1 or match$19.pos_bol ~= 0 or match$19.pos_cnum ~= 6)) {
                           var match$20 = match$18.loc_end;
-                          if (match$20.pos_fname === "" && !(match$20.pos_lnum !== 1 || match$20.pos_bol !== 0 || match$20.pos_cnum !== 9 || match$18.loc_ghost)) {
+                          if (match$20.pos_fname == "" and !(match$20.pos_lnum ~= 1 or match$20.pos_bol ~= 0 or match$20.pos_cnum ~= 9 or match$18.loc_ghost)) {
                             var match$21 = match$15.ppat_loc;
                             var match$22 = match$21.loc_start;
-                            if (match$22.pos_fname === "" && !(match$22.pos_lnum !== 1 || match$22.pos_bol !== 0 || match$22.pos_cnum !== 6)) {
+                            if (match$22.pos_fname == "" and !(match$22.pos_lnum ~= 1 or match$22.pos_bol ~= 0 or match$22.pos_cnum ~= 6)) {
                               var match$23 = match$21.loc_end;
-                              if (match$23.pos_fname === "" && !(match$23.pos_lnum !== 1 || match$23.pos_bol !== 0 || match$23.pos_cnum !== 9 || match$21.loc_ghost || match$15.ppat_attributes)) {
+                              if (match$23.pos_fname == "" and !(match$23.pos_lnum ~= 1 or match$23.pos_bol ~= 0 or match$23.pos_cnum ~= 9 or match$21.loc_ghost or match$15.ppat_attributes)) {
                                 var match$24 = match$14[3];
                                 var match$25 = match$24.pexp_desc;
-                                if (match$25.tag === /* Pexp_apply */5) {
+                                if (match$25.tag == --[ Pexp_apply ]--5) {
                                   var match$26 = match$25[0];
                                   var match$27 = match$26.pexp_desc;
                                   if (match$27.tag) {
@@ -12154,25 +12154,25 @@ if (match) {
                                     var match$28 = match$27[0];
                                     var match$29 = match$28.txt;
                                     switch (match$29.tag | 0) {
-                                      case /* Lident */0 :
-                                          if (match$29[0] === "|>") {
+                                      case --[ Lident ]--0 :
+                                          if (match$29[0] == "|>") {
                                             var match$30 = match$28.loc;
                                             var match$31 = match$30.loc_start;
-                                            if (match$31.pos_fname === "" && !(match$31.pos_lnum !== 4 || match$31.pos_bol !== 46 || match$31.pos_cnum !== 48)) {
+                                            if (match$31.pos_fname == "" and !(match$31.pos_lnum ~= 4 or match$31.pos_bol ~= 46 or match$31.pos_cnum ~= 48)) {
                                               var match$32 = match$30.loc_end;
-                                              if (match$32.pos_fname === "" && !(match$32.pos_lnum !== 4 || match$32.pos_bol !== 46 || match$32.pos_cnum !== 50 || match$30.loc_ghost)) {
+                                              if (match$32.pos_fname == "" and !(match$32.pos_lnum ~= 4 or match$32.pos_bol ~= 46 or match$32.pos_cnum ~= 50 or match$30.loc_ghost)) {
                                                 var match$33 = match$26.pexp_loc;
                                                 var match$34 = match$33.loc_start;
-                                                if (match$34.pos_fname === "" && !(match$34.pos_lnum !== 4 || match$34.pos_bol !== 46 || match$34.pos_cnum !== 48)) {
+                                                if (match$34.pos_fname == "" and !(match$34.pos_lnum ~= 4 or match$34.pos_bol ~= 46 or match$34.pos_cnum ~= 48)) {
                                                   var match$35 = match$33.loc_end;
-                                                  if (match$35.pos_fname === "" && !(match$35.pos_lnum !== 4 || match$35.pos_bol !== 46 || match$35.pos_cnum !== 50 || match$33.loc_ghost || match$26.pexp_attributes)) {
+                                                  if (match$35.pos_fname == "" and !(match$35.pos_lnum ~= 4 or match$35.pos_bol ~= 46 or match$35.pos_cnum ~= 50 or match$33.loc_ghost or match$26.pexp_attributes)) {
                                                     var match$36 = match$25[1];
                                                     if (match$36) {
                                                       var match$37 = match$36[0];
-                                                      if (match$37[0] === "") {
+                                                      if (match$37[0] == "") {
                                                         var match$38 = match$37[1];
                                                         var match$39 = match$38.pexp_desc;
-                                                        if (match$39.tag === /* Pexp_apply */5) {
+                                                        if (match$39.tag == --[ Pexp_apply ]--5) {
                                                           var match$40 = match$39[0];
                                                           var match$41 = match$40.pexp_desc;
                                                           if (match$41.tag) {
@@ -12181,22 +12181,22 @@ if (match) {
                                                             var match$42 = match$41[0];
                                                             var match$43 = match$42.txt;
                                                             switch (match$43.tag | 0) {
-                                                              case /* Lident */0 :
-                                                                  if (match$43[0] === "|>") {
+                                                              case --[ Lident ]--0 :
+                                                                  if (match$43[0] == "|>") {
                                                                     var match$44 = match$42.loc;
                                                                     var match$45 = match$44.loc_start;
-                                                                    if (match$45.pos_fname === "" && !(match$45.pos_lnum !== 3 || match$45.pos_bol !== 21 || match$45.pos_cnum !== 23)) {
+                                                                    if (match$45.pos_fname == "" and !(match$45.pos_lnum ~= 3 or match$45.pos_bol ~= 21 or match$45.pos_cnum ~= 23)) {
                                                                       var match$46 = match$44.loc_end;
-                                                                      if (match$46.pos_fname === "" && !(match$46.pos_lnum !== 3 || match$46.pos_bol !== 21 || match$46.pos_cnum !== 25 || match$44.loc_ghost)) {
+                                                                      if (match$46.pos_fname == "" and !(match$46.pos_lnum ~= 3 or match$46.pos_bol ~= 21 or match$46.pos_cnum ~= 25 or match$44.loc_ghost)) {
                                                                         var match$47 = match$40.pexp_loc;
                                                                         var match$48 = match$47.loc_start;
-                                                                        if (match$48.pos_fname === "" && !(match$48.pos_lnum !== 3 || match$48.pos_bol !== 21 || match$48.pos_cnum !== 23)) {
+                                                                        if (match$48.pos_fname == "" and !(match$48.pos_lnum ~= 3 or match$48.pos_bol ~= 21 or match$48.pos_cnum ~= 23)) {
                                                                           var match$49 = match$47.loc_end;
-                                                                          if (match$49.pos_fname === "" && !(match$49.pos_lnum !== 3 || match$49.pos_bol !== 21 || match$49.pos_cnum !== 25 || match$47.loc_ghost || match$40.pexp_attributes)) {
+                                                                          if (match$49.pos_fname == "" and !(match$49.pos_lnum ~= 3 or match$49.pos_bol ~= 21 or match$49.pos_cnum ~= 25 or match$47.loc_ghost or match$40.pexp_attributes)) {
                                                                             var match$50 = match$39[1];
                                                                             if (match$50) {
                                                                               var match$51 = match$50[0];
-                                                                              if (match$51[0] === "") {
+                                                                              if (match$51[0] == "") {
                                                                                 var match$52 = match$51[1];
                                                                                 var match$53 = match$52.pexp_desc;
                                                                                 if (match$53.tag) {
@@ -12205,22 +12205,22 @@ if (match) {
                                                                                   var match$54 = match$53[0];
                                                                                   var match$55 = match$54.txt;
                                                                                   switch (match$55.tag | 0) {
-                                                                                    case /* Lident */0 :
-                                                                                        if (match$55[0] === "str") {
+                                                                                    case --[ Lident ]--0 :
+                                                                                        if (match$55[0] == "str") {
                                                                                           var match$56 = match$54.loc;
                                                                                           var match$57 = match$56.loc_start;
-                                                                                          if (match$57.pos_fname === "" && !(match$57.pos_lnum !== 2 || match$57.pos_bol !== 13 || match$57.pos_cnum !== 15)) {
+                                                                                          if (match$57.pos_fname == "" and !(match$57.pos_lnum ~= 2 or match$57.pos_bol ~= 13 or match$57.pos_cnum ~= 15)) {
                                                                                             var match$58 = match$56.loc_end;
-                                                                                            if (match$58.pos_fname === "" && !(match$58.pos_lnum !== 2 || match$58.pos_bol !== 13 || match$58.pos_cnum !== 18 || match$56.loc_ghost)) {
+                                                                                            if (match$58.pos_fname == "" and !(match$58.pos_lnum ~= 2 or match$58.pos_bol ~= 13 or match$58.pos_cnum ~= 18 or match$56.loc_ghost)) {
                                                                                               var match$59 = match$52.pexp_loc;
                                                                                               var match$60 = match$59.loc_start;
-                                                                                              if (match$60.pos_fname === "" && !(match$60.pos_lnum !== 2 || match$60.pos_bol !== 13 || match$60.pos_cnum !== 15)) {
+                                                                                              if (match$60.pos_fname == "" and !(match$60.pos_lnum ~= 2 or match$60.pos_bol ~= 13 or match$60.pos_cnum ~= 15)) {
                                                                                                 var match$61 = match$59.loc_end;
-                                                                                                if (match$61.pos_fname === "" && !(match$61.pos_lnum !== 2 || match$61.pos_bol !== 13 || match$61.pos_cnum !== 18 || match$59.loc_ghost || match$52.pexp_attributes)) {
+                                                                                                if (match$61.pos_fname == "" and !(match$61.pos_lnum ~= 2 or match$61.pos_bol ~= 13 or match$61.pos_cnum ~= 18 or match$59.loc_ghost or match$52.pexp_attributes)) {
                                                                                                   var match$62 = match$50[1];
                                                                                                   if (match$62) {
                                                                                                     var match$63 = match$62[0];
-                                                                                                    if (match$63[0] === "") {
+                                                                                                    if (match$63[0] == "") {
                                                                                                       var match$64 = match$63[1];
                                                                                                       var match$65 = match$64.pexp_desc;
                                                                                                       if (match$65.tag) {
@@ -12229,30 +12229,30 @@ if (match) {
                                                                                                         var match$66 = match$65[0];
                                                                                                         var match$67 = match$66.txt;
                                                                                                         switch (match$67.tag | 0) {
-                                                                                                          case /* Ldot */1 :
+                                                                                                          case --[ Ldot ]--1 :
                                                                                                               var match$68 = match$67[0];
                                                                                                               switch (match$68.tag | 0) {
-                                                                                                                case /* Lident */0 :
-                                                                                                                    if (match$68[0] === "Lexing" && match$67[1] === "from_string") {
+                                                                                                                case --[ Lident ]--0 :
+                                                                                                                    if (match$68[0] == "Lexing" and match$67[1] == "from_string") {
                                                                                                                       var match$69 = match$66.loc;
                                                                                                                       var match$70 = match$69.loc_start;
-                                                                                                                      if (match$70.pos_fname === "" && !(match$70.pos_lnum !== 3 || match$70.pos_bol !== 21 || match$70.pos_cnum !== 26)) {
+                                                                                                                      if (match$70.pos_fname == "" and !(match$70.pos_lnum ~= 3 or match$70.pos_bol ~= 21 or match$70.pos_cnum ~= 26)) {
                                                                                                                         var match$71 = match$69.loc_end;
-                                                                                                                        if (match$71.pos_fname === "" && !(match$71.pos_lnum !== 3 || match$71.pos_bol !== 21 || match$71.pos_cnum !== 44 || match$69.loc_ghost)) {
+                                                                                                                        if (match$71.pos_fname == "" and !(match$71.pos_lnum ~= 3 or match$71.pos_bol ~= 21 or match$71.pos_cnum ~= 44 or match$69.loc_ghost)) {
                                                                                                                           var match$72 = match$64.pexp_loc;
                                                                                                                           var match$73 = match$72.loc_start;
-                                                                                                                          if (match$73.pos_fname === "" && !(match$73.pos_lnum !== 3 || match$73.pos_bol !== 21 || match$73.pos_cnum !== 26)) {
+                                                                                                                          if (match$73.pos_fname == "" and !(match$73.pos_lnum ~= 3 or match$73.pos_bol ~= 21 or match$73.pos_cnum ~= 26)) {
                                                                                                                             var match$74 = match$72.loc_end;
-                                                                                                                            if (match$74.pos_fname === "" && !(match$74.pos_lnum !== 3 || match$74.pos_bol !== 21 || match$74.pos_cnum !== 44 || match$72.loc_ghost || match$64.pexp_attributes || match$62[1])) {
+                                                                                                                            if (match$74.pos_fname == "" and !(match$74.pos_lnum ~= 3 or match$74.pos_bol ~= 21 or match$74.pos_cnum ~= 44 or match$72.loc_ghost or match$64.pexp_attributes or match$62[1])) {
                                                                                                                               var match$75 = match$38.pexp_loc;
                                                                                                                               var match$76 = match$75.loc_start;
-                                                                                                                              if (match$76.pos_fname === "" && !(match$76.pos_lnum !== 2 || match$76.pos_bol !== 13 || match$76.pos_cnum !== 15)) {
+                                                                                                                              if (match$76.pos_fname == "" and !(match$76.pos_lnum ~= 2 or match$76.pos_bol ~= 13 or match$76.pos_cnum ~= 15)) {
                                                                                                                                 var match$77 = match$75.loc_end;
-                                                                                                                                if (match$77.pos_fname === "" && !(match$77.pos_lnum !== 3 || match$77.pos_bol !== 21 || match$77.pos_cnum !== 44 || match$75.loc_ghost || match$38.pexp_attributes)) {
+                                                                                                                                if (match$77.pos_fname == "" and !(match$77.pos_lnum ~= 3 or match$77.pos_bol ~= 21 or match$77.pos_cnum ~= 44 or match$75.loc_ghost or match$38.pexp_attributes)) {
                                                                                                                                   var match$78 = match$36[1];
                                                                                                                                   if (match$78) {
                                                                                                                                     var match$79 = match$78[0];
-                                                                                                                                    if (match$79[0] === "") {
+                                                                                                                                    if (match$79[0] == "") {
                                                                                                                                       var match$80 = match$79[1];
                                                                                                                                       var match$81 = match$80.pexp_desc;
                                                                                                                                       if (match$81.tag) {
@@ -12261,36 +12261,36 @@ if (match) {
                                                                                                                                         var match$82 = match$81[0];
                                                                                                                                         var match$83 = match$82.txt;
                                                                                                                                         switch (match$83.tag | 0) {
-                                                                                                                                          case /* Ldot */1 :
+                                                                                                                                          case --[ Ldot ]--1 :
                                                                                                                                               var match$84 = match$83[0];
                                                                                                                                               switch (match$84.tag | 0) {
-                                                                                                                                                case /* Lident */0 :
-                                                                                                                                                    if (match$84[0] === "Parse" && match$83[1] === "implementation") {
+                                                                                                                                                case --[ Lident ]--0 :
+                                                                                                                                                    if (match$84[0] == "Parse" and match$83[1] == "implementation") {
                                                                                                                                                       var match$85 = match$82.loc;
                                                                                                                                                       var match$86 = match$85.loc_start;
-                                                                                                                                                      if (match$86.pos_fname === "" && !(match$86.pos_lnum !== 4 || match$86.pos_bol !== 46 || match$86.pos_cnum !== 51)) {
+                                                                                                                                                      if (match$86.pos_fname == "" and !(match$86.pos_lnum ~= 4 or match$86.pos_bol ~= 46 or match$86.pos_cnum ~= 51)) {
                                                                                                                                                         var match$87 = match$85.loc_end;
-                                                                                                                                                        if (match$87.pos_fname === "" && !(match$87.pos_lnum !== 4 || match$87.pos_bol !== 46 || match$87.pos_cnum !== 71 || match$85.loc_ghost)) {
+                                                                                                                                                        if (match$87.pos_fname == "" and !(match$87.pos_lnum ~= 4 or match$87.pos_bol ~= 46 or match$87.pos_cnum ~= 71 or match$85.loc_ghost)) {
                                                                                                                                                           var match$88 = match$80.pexp_loc;
                                                                                                                                                           var match$89 = match$88.loc_start;
-                                                                                                                                                          if (match$89.pos_fname === "" && !(match$89.pos_lnum !== 4 || match$89.pos_bol !== 46 || match$89.pos_cnum !== 51)) {
+                                                                                                                                                          if (match$89.pos_fname == "" and !(match$89.pos_lnum ~= 4 or match$89.pos_bol ~= 46 or match$89.pos_cnum ~= 51)) {
                                                                                                                                                             var match$90 = match$88.loc_end;
-                                                                                                                                                            if (match$90.pos_fname === "" && !(match$90.pos_lnum !== 4 || match$90.pos_bol !== 46 || match$90.pos_cnum !== 71 || match$88.loc_ghost || match$80.pexp_attributes || match$78[1])) {
+                                                                                                                                                            if (match$90.pos_fname == "" and !(match$90.pos_lnum ~= 4 or match$90.pos_bol ~= 46 or match$90.pos_cnum ~= 71 or match$88.loc_ghost or match$80.pexp_attributes or match$78[1])) {
                                                                                                                                                               var match$91 = match$24.pexp_loc;
                                                                                                                                                               var match$92 = match$91.loc_start;
-                                                                                                                                                              if (match$92.pos_fname === "" && !(match$92.pos_lnum !== 2 || match$92.pos_bol !== 13 || match$92.pos_cnum !== 15)) {
+                                                                                                                                                              if (match$92.pos_fname == "" and !(match$92.pos_lnum ~= 2 or match$92.pos_bol ~= 13 or match$92.pos_cnum ~= 15)) {
                                                                                                                                                                 var match$93 = match$91.loc_end;
-                                                                                                                                                                if (match$93.pos_fname === "" && !(match$93.pos_lnum !== 4 || match$93.pos_bol !== 46 || match$93.pos_cnum !== 71 || match$91.loc_ghost || match$24.pexp_attributes)) {
+                                                                                                                                                                if (match$93.pos_fname == "" and !(match$93.pos_lnum ~= 4 or match$93.pos_bol ~= 46 or match$93.pos_cnum ~= 71 or match$91.loc_ghost or match$24.pexp_attributes)) {
                                                                                                                                                                   var match$94 = match$13.pexp_loc;
                                                                                                                                                                   var match$95 = match$94.loc_start;
-                                                                                                                                                                  if (match$95.pos_fname === "" && !(match$95.pos_lnum !== 1 || match$95.pos_bol !== 0 || match$95.pos_cnum !== 6)) {
+                                                                                                                                                                  if (match$95.pos_fname == "" and !(match$95.pos_lnum ~= 1 or match$95.pos_bol ~= 0 or match$95.pos_cnum ~= 6)) {
                                                                                                                                                                     var match$96 = match$94.loc_end;
-                                                                                                                                                                    if (match$96.pos_fname === "" && !(match$96.pos_lnum !== 4 || match$96.pos_bol !== 46 || match$96.pos_cnum !== 71 || !(match$94.loc_ghost && !(match$13.pexp_attributes || match$3.pvb_attributes)))) {
+                                                                                                                                                                    if (match$96.pos_fname == "" and !(match$96.pos_lnum ~= 4 or match$96.pos_bol ~= 46 or match$96.pos_cnum ~= 71 or !(match$94.loc_ghost and !(match$13.pexp_attributes or match$3.pvb_attributes)))) {
                                                                                                                                                                       var match$97 = match$3.pvb_loc;
                                                                                                                                                                       var match$98 = match$97.loc_start;
-                                                                                                                                                                      if (match$98.pos_fname === "" && !(match$98.pos_lnum !== 1 || match$98.pos_bol !== 0 || match$98.pos_cnum !== 0)) {
+                                                                                                                                                                      if (match$98.pos_fname == "" and !(match$98.pos_lnum ~= 1 or match$98.pos_bol ~= 0 or match$98.pos_cnum ~= 0)) {
                                                                                                                                                                         var match$99 = match$97.loc_end;
-                                                                                                                                                                        if (match$99.pos_fname === "" && !(match$99.pos_lnum !== 4 || match$99.pos_bol !== 46 || match$99.pos_cnum !== 71 || match$97.loc_ghost || match$2[1])) {
+                                                                                                                                                                        if (match$99.pos_fname == "" and !(match$99.pos_lnum ~= 4 or match$99.pos_bol ~= 46 or match$99.pos_cnum ~= 71 or match$97.loc_ghost or match$2[1])) {
                                                                                                                                                                           eq("File \"ocaml_parsetree_main_bspack.ml\", line 215, characters 10-17", true, true);
                                                                                                                                                                         } else {
                                                                                                                                                                           eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
@@ -12326,15 +12326,15 @@ if (match) {
                                                                                                                                                       eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                                                                                     }
                                                                                                                                                     break;
-                                                                                                                                                case /* Ldot */1 :
-                                                                                                                                                case /* Lapply */2 :
+                                                                                                                                                case --[ Ldot ]--1 :
+                                                                                                                                                case --[ Lapply ]--2 :
                                                                                                                                                     eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                                                                                     break;
                                                                                                                                                 
                                                                                                                                               }
                                                                                                                                               break;
-                                                                                                                                          case /* Lident */0 :
-                                                                                                                                          case /* Lapply */2 :
+                                                                                                                                          case --[ Lident ]--0 :
+                                                                                                                                          case --[ Lapply ]--2 :
                                                                                                                                               eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                                                                               break;
                                                                                                                                           
@@ -12368,15 +12368,15 @@ if (match) {
                                                                                                                       eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                                                     }
                                                                                                                     break;
-                                                                                                                case /* Ldot */1 :
-                                                                                                                case /* Lapply */2 :
+                                                                                                                case --[ Ldot ]--1 :
+                                                                                                                case --[ Lapply ]--2 :
                                                                                                                     eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                                                     break;
                                                                                                                 
                                                                                                               }
                                                                                                               break;
-                                                                                                          case /* Lident */0 :
-                                                                                                          case /* Lapply */2 :
+                                                                                                          case --[ Lident ]--0 :
+                                                                                                          case --[ Lapply ]--2 :
                                                                                                               eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                                               break;
                                                                                                           
@@ -12404,8 +12404,8 @@ if (match) {
                                                                                           eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                         }
                                                                                         break;
-                                                                                    case /* Ldot */1 :
-                                                                                    case /* Lapply */2 :
+                                                                                    case --[ Ldot ]--1 :
+                                                                                    case --[ Lapply ]--2 :
                                                                                         eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                         break;
                                                                                     
@@ -12433,8 +12433,8 @@ if (match) {
                                                                     eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                   }
                                                                   break;
-                                                              case /* Ldot */1 :
-                                                              case /* Lapply */2 :
+                                                              case --[ Ldot ]--1 :
+                                                              case --[ Lapply ]--2 :
                                                                   eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                   break;
                                                               
@@ -12465,8 +12465,8 @@ if (match) {
                                             eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                           }
                                           break;
-                                      case /* Ldot */1 :
-                                      case /* Lapply */2 :
+                                      case --[ Ldot ]--1 :
+                                      case --[ Lapply ]--2 :
                                           eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                           break;
                                       
@@ -12522,4 +12522,4 @@ if (match) {
 
 from_pair_suites("Ocaml_parsetree_test", suites.contents);
 
-/*  Not a pure module */
+--[  Not a pure module ]--

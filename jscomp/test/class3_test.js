@@ -62,7 +62,7 @@ var shared$9 = [
 ];
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -71,11 +71,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -83,7 +83,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function point_init($$class) {
@@ -100,7 +100,7 @@ function point_init($$class) {
         move,
         (function (self$1, d) {
             self$1[x] = self$1[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           })
       ]);
   return (function (env, self, x_init$1) {
@@ -137,7 +137,7 @@ function adjusted_point_init($$class) {
         move,
         (function (self$2, d) {
             self$2[x] = self$2[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           })
       ]);
   return (function (env, self, x_init$1) {
@@ -180,7 +180,7 @@ var adjusted_point2_002 = point[2];
 
 var adjusted_point2_003 = point[3];
 
-var adjusted_point2 = /* class */[
+var adjusted_point2 = --[ class ]--[
   adjusted_point2_000,
   adjusted_point2_001,
   adjusted_point2_002,
@@ -206,7 +206,7 @@ function printable_point_init($$class) {
         move,
         (function (self$4, d) {
             self$4[x] = self$4[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           }),
         print,
         (function (self$4) {
@@ -228,7 +228,7 @@ var p$1 = Curry._2(printable_point[0], 0, 7);
 eq("File \"class3_test.ml\", line 49, characters 11-18", Caml_oo_curry.js1(-930392019, 4, p$1), 7);
 
 var ints = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var $$class = CamlinternalOO.create_table(shared$9);
@@ -248,11 +248,11 @@ CamlinternalOO.set_methods($$class, [
         }),
       register,
       (function (self$5) {
-          ints.contents = /* :: */[
+          ints.contents = --[ :: ]--[
             self$5,
             ints.contents
           ];
-          return /* () */0;
+          return --[ () ]--0;
         }),
       len,
       (function (self$5) {
@@ -291,7 +291,7 @@ function printable_point2_init($$class) {
         move,
         (function (self$6, d) {
             self$6[x] = self$6[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           }),
         print,
         (function (self$6) {
@@ -336,7 +336,7 @@ function abstract_point_001($$class) {
     });
 }
 
-var abstract_point = /* class */[
+var abstract_point = --[ class ]--[
   0,
   abstract_point_001,
   0,
@@ -359,7 +359,7 @@ function vpoint_init($$class) {
         move,
         (function (self$8, d) {
             self$8[x] = self$8[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           })
       ]);
   return (function (env, self, x_init$1) {
@@ -387,14 +387,14 @@ function abstract_point2_001($$class) {
   var x = ids[1];
   CamlinternalOO.set_method($$class, move, (function (self$9, d) {
           self$9[x] = self$9[x] + d | 0;
-          return /* () */0;
+          return --[ () ]--0;
         }));
   return (function (env, self) {
       return CamlinternalOO.create_object_opt(self, $$class);
     });
 }
 
-var abstract_point2 = /* class */[
+var abstract_point2 = --[ class ]--[
   0,
   abstract_point2_001,
   0,
@@ -451,7 +451,7 @@ function restricted_point_init($$class) {
         move,
         (function (self$11, d) {
             self$11[x] = self$11[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           }),
         bump,
         (function (self$11) {
@@ -587,4 +587,4 @@ exports.point_again2 = point_again2;
 exports.hhh = hhh;
 exports.point_again3 = point_again3;
 exports.hhhh = hhhh;
-/* point Not a pure module */
+--[ point Not a pure module ]--

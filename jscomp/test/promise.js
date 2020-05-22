@@ -29,4 +29,4 @@ exports.f = f;
 exports.u = u;
 exports.uu = uu;
 exports.hh = hh;
-/* p Not a pure module */
+--[ p Not a pure module ]--

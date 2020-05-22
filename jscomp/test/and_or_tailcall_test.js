@@ -6,7 +6,7 @@ var Block = require("../../lib/js/block.js");
 function f(b, x, _n) {
   while(true) {
     var n = _n;
-    if (n > 100000 || !b) {
+    if (n > 100000 or !b) {
       return false;
     } else {
       _n = n + 1 | 0;
@@ -29,30 +29,30 @@ function or_f(b, x, _n) {
   };
 }
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "and_tail",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 false,
                 f(true, 1, 0)
               ]);
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "or_tail",
     (function (param) {
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   false,
                   or_f(false, 1, 0)
                 ]);
       })
   ],
-  /* [] */0
+  --[ [] ]--0
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -62,4 +62,4 @@ Mt.from_pair_suites("And_or_tailcall_test", suites);
 exports.f = f;
 exports.or_f = or_f;
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

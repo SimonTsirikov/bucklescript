@@ -17,8 +17,8 @@ var x3 = /ghoghos/;
 */
 
 function f(x) {
-  //eslint-disable
-  /*hgosgh */
+  --eslint-disable
+  --[hgosgh ]--
   return x;
 }
 
@@ -29,4 +29,4 @@ exports.x2 = x2;
 exports.x3 = x3;
 exports.hh = hh;
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

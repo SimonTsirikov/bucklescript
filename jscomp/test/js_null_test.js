@@ -5,61 +5,61 @@ var Block = require("../../lib/js/block.js");
 var Js_null = require("../../lib/js/js_null.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "toOption - empty",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 undefined,
                 undefined
               ]);
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "toOption - 'a",
     (function (param) {
-        return /* Eq */Block.__(0, [
-                  /* () */0,
-                  Caml_option.null_to_opt(/* () */0)
+        return --[ Eq ]--Block.__(0, [
+                  --[ () ]--0,
+                  Caml_option.null_to_opt(--[ () ]--0)
                 ]);
       })
   ],
-  /* :: */[
-    /* tuple */[
+  --[ :: ]--[
+    --[ tuple ]--[
       "return",
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     "something",
                     Caml_option.null_to_opt("something")
                   ]);
         })
     ],
-    /* :: */[
-      /* tuple */[
+    --[ :: ]--[
+      --[ tuple ]--[
         "test - empty",
         (function (param) {
-            return /* Eq */Block.__(0, [
+            return --[ Eq ]--Block.__(0, [
                       true,
                       true
                     ]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "test - 'a",
           (function (param) {
-              return /* Eq */Block.__(0, [
+              return --[ Eq ]--Block.__(0, [
                         false,
                         false
                       ]);
             })
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "bind - empty",
             (function (param) {
-                return /* StrictEq */Block.__(2, [
+                return --[ StrictEq ]--Block.__(2, [
                           null,
                           Js_null.bind(null, (function (v) {
                                   return v;
@@ -67,11 +67,11 @@ var suites_001 = /* :: */[
                         ]);
               })
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "bind - 'a",
               (function (param) {
-                  return /* StrictEq */Block.__(2, [
+                  return --[ StrictEq ]--Block.__(2, [
                             4,
                             Js_null.bind(2, (function (n) {
                                     return (n << 1);
@@ -79,8 +79,8 @@ var suites_001 = /* :: */[
                           ]);
                 })
             ],
-            /* :: */[
-              /* tuple */[
+            --[ :: ]--[
+              --[ tuple ]--[
                 "iter - empty",
                 (function (param) {
                     var hit = {
@@ -88,16 +88,16 @@ var suites_001 = /* :: */[
                     };
                     Js_null.iter(null, (function (param) {
                             hit.contents = true;
-                            return /* () */0;
+                            return --[ () ]--0;
                           }));
-                    return /* Eq */Block.__(0, [
+                    return --[ Eq ]--Block.__(0, [
                               false,
                               hit.contents
                             ]);
                   })
               ],
-              /* :: */[
-                /* tuple */[
+              --[ :: ]--[
+                --[ tuple ]--[
                   "iter - 'a",
                   (function (param) {
                       var hit = {
@@ -105,35 +105,35 @@ var suites_001 = /* :: */[
                       };
                       Js_null.iter(2, (function (v) {
                               hit.contents = v;
-                              return /* () */0;
+                              return --[ () ]--0;
                             }));
-                      return /* Eq */Block.__(0, [
+                      return --[ Eq ]--Block.__(0, [
                                 2,
                                 hit.contents
                               ]);
                     })
                 ],
-                /* :: */[
-                  /* tuple */[
+                --[ :: ]--[
+                  --[ tuple ]--[
                     "fromOption - None",
                     (function (param) {
-                        return /* Eq */Block.__(0, [
+                        return --[ Eq ]--Block.__(0, [
                                   null,
                                   Js_null.fromOption(undefined)
                                 ]);
                       })
                   ],
-                  /* :: */[
-                    /* tuple */[
+                  --[ :: ]--[
+                    --[ tuple ]--[
                       "fromOption - Some",
                       (function (param) {
-                          return /* Eq */Block.__(0, [
+                          return --[ Eq ]--Block.__(0, [
                                     2,
                                     Js_null.fromOption(2)
                                   ]);
                         })
                     ],
-                    /* [] */0
+                    --[ [] ]--0
                   ]
                 ]
               ]
@@ -145,7 +145,7 @@ var suites_001 = /* :: */[
   ]
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -153,4 +153,4 @@ var suites = /* :: */[
 Mt.from_pair_suites("Js_null_test", suites);
 
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

@@ -9,4 +9,4 @@ var v1 = {
 };
 
 exports.v1 = v1;
-/* No side effect */
+--[ No side effect ]--

@@ -9,7 +9,7 @@ var f = {
   }
 };
 
-var f2_000 = /* :: */[
+var f2_000 = --[ :: ]--[
   {
     x: {
       y: {
@@ -17,7 +17,7 @@ var f2_000 = /* :: */[
       }
     }
   },
-  /* :: */[
+  --[ :: ]--[
     {
       x: {
         y: {
@@ -25,7 +25,7 @@ var f2_000 = /* :: */[
         }
       }
     },
-    /* [] */0
+    --[ [] ]--0
   ]
 ];
 
@@ -46,7 +46,7 @@ var f2_001 = [
   }
 ];
 
-var f2 = /* tuple */[
+var f2 = --[ tuple ]--[
   f2_000,
   f2_001
 ];
@@ -71,4 +71,4 @@ exports.f_record = f_record;
 exports.f = f;
 exports.f2 = f2;
 exports.f3 = f3;
-/* No side effect */
+--[ No side effect ]--

@@ -13,9 +13,9 @@ function ff(x) {
   console.log(({
           "Content-Type": "hello"
         })["Content-Type"]);
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 exports.f = f;
 exports.ff = ff;
-/*  Not a pure module */
+--[  Not a pure module ]--

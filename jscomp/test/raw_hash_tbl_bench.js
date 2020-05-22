@@ -12,7 +12,7 @@ function bench(param) {
     if (!Hashtbl.mem(table, i$1)) {
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "raw_hash_tbl_bench.ml",
               9,
               4
@@ -24,13 +24,13 @@ function bench(param) {
   for(var i$2 = 0; i$2 <= 1000000; ++i$2){
     Hashtbl.remove(table, i$2);
   }
-  return /* () */0;
+  return --[ () ]--0;
 }
 
-bench(/* () */0);
+bench(--[ () ]--0);
 
 var count = 1000000;
 
 exports.count = count;
 exports.bench = bench;
-/*  Not a pure module */
+--[  Not a pure module ]--

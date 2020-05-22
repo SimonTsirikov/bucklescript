@@ -30,7 +30,7 @@ function _with_in(filename, f) {
   catch (raw_e){
     var e = Caml_js_exceptions.internalToOCamlException(raw_e);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
-    return /* `Error */[
+    return --[ `Error ]--[
             106380200,
             Printexc.to_string(e)
           ];
@@ -43,8 +43,8 @@ function _must_escape(s) {
       var c = s.charCodeAt(i);
       var exit = 0;
       if (c >= 42) {
-        if (c !== 59) {
-          if (c !== 92) {
+        if (c ~= 59) {
+          if (c ~= 92) {
             exit = 1;
           } else {
             throw Pervasives.Exit;
@@ -79,7 +79,7 @@ function _must_escape(s) {
         }
         exit = 1;
       }
-      if (exit === 1 && c > 127) {
+      if (exit == 1 and c > 127) {
         throw Pervasives.Exit;
       }
       
@@ -87,7 +87,7 @@ function _must_escape(s) {
     return false;
   }
   catch (exn){
-    if (exn === Pervasives.Exit) {
+    if (exn == Pervasives.Exit) {
       return true;
     } else {
       throw exn;
@@ -100,21 +100,21 @@ function to_buf(b, t) {
     var l = t[1];
     if (l) {
       if (l[1]) {
-        $$Buffer.add_char(b, /* "(" */40);
+        $$Buffer.add_char(b, --[ "(" ]--40);
         List.iteri((function (i, t$prime) {
                 if (i > 0) {
-                  $$Buffer.add_char(b, /* " " */32);
+                  $$Buffer.add_char(b, --[ " " ]--32);
                 }
                 return to_buf(b, t$prime);
               }), l);
-        return $$Buffer.add_char(b, /* ")" */41);
+        return $$Buffer.add_char(b, --[ ")" ]--41);
       } else {
-        return Curry._2(Printf.bprintf(b, /* Format */[
-                        /* Char_literal */Block.__(12, [
-                            /* "(" */40,
-                            /* Alpha */Block.__(15, [/* Char_literal */Block.__(12, [
-                                    /* ")" */41,
-                                    /* End_of_format */0
+        return Curry._2(Printf.bprintf(b, --[ Format ]--[
+                        --[ Char_literal ]--Block.__(12, [
+                            --[ "(" ]--40,
+                            --[ Alpha ]--Block.__(15, [--[ Char_literal ]--Block.__(12, [
+                                    --[ ")" ]--41,
+                                    --[ End_of_format ]--0
                                   ])])
                           ]),
                         "(%a)"
@@ -126,14 +126,14 @@ function to_buf(b, t) {
   } else {
     var s = t[1];
     if (_must_escape(s)) {
-      return Curry._1(Printf.bprintf(b, /* Format */[
-                      /* Char_literal */Block.__(12, [
-                          /* "\"" */34,
-                          /* String */Block.__(2, [
-                              /* No_padding */0,
-                              /* Char_literal */Block.__(12, [
-                                  /* "\"" */34,
-                                  /* End_of_format */0
+      return Curry._1(Printf.bprintf(b, --[ Format ]--[
+                      --[ Char_literal ]--Block.__(12, [
+                          --[ "\"" ]--34,
+                          --[ String ]--Block.__(2, [
+                              --[ No_padding ]--0,
+                              --[ Char_literal ]--Block.__(12, [
+                                  --[ "\"" ]--34,
+                                  --[ End_of_format ]--0
                                 ])
                             ])
                         ]),
@@ -156,65 +156,65 @@ function print(fmt, t) {
     var l = t[1];
     if (l) {
       if (l[1]) {
-        Format.fprintf(fmt, /* Format */[
-              /* Formatting_gen */Block.__(18, [
-                  /* Open_box */Block.__(1, [/* Format */[
-                        /* String_literal */Block.__(11, [
+        Format.fprintf(fmt, --[ Format ]--[
+              --[ Formatting_gen ]--Block.__(18, [
+                  --[ Open_box ]--Block.__(1, [--[ Format ]--[
+                        --[ String_literal ]--Block.__(11, [
                             "<hov1>",
-                            /* End_of_format */0
+                            --[ End_of_format ]--0
                           ]),
                         "<hov1>"
                       ]]),
-                  /* Char_literal */Block.__(12, [
-                      /* "(" */40,
-                      /* End_of_format */0
+                  --[ Char_literal ]--Block.__(12, [
+                      --[ "(" ]--40,
+                      --[ End_of_format ]--0
                     ])
                 ]),
               "@[<hov1>("
             ]);
         List.iteri((function (i, t$prime) {
                 if (i > 0) {
-                  Format.fprintf(fmt, /* Format */[
-                        /* Formatting_lit */Block.__(17, [
-                            /* Break */Block.__(0, [
+                  Format.fprintf(fmt, --[ Format ]--[
+                        --[ Formatting_lit ]--Block.__(17, [
+                            --[ Break ]--Block.__(0, [
                                 "@ ",
                                 1,
                                 0
                               ]),
-                            /* End_of_format */0
+                            --[ End_of_format ]--0
                           ]),
                         "@ "
                       ]);
                 }
                 return print(fmt, t$prime);
               }), l);
-        return Format.fprintf(fmt, /* Format */[
-                    /* Char_literal */Block.__(12, [
-                        /* ")" */41,
-                        /* Formatting_lit */Block.__(17, [
-                            /* Close_box */0,
-                            /* End_of_format */0
+        return Format.fprintf(fmt, --[ Format ]--[
+                    --[ Char_literal ]--Block.__(12, [
+                        --[ ")" ]--41,
+                        --[ Formatting_lit ]--Block.__(17, [
+                            --[ Close_box ]--0,
+                            --[ End_of_format ]--0
                           ])
                       ]),
                     ")@]"
                   ]);
       } else {
-        return Curry._2(Format.fprintf(fmt, /* Format */[
-                        /* Formatting_gen */Block.__(18, [
-                            /* Open_box */Block.__(1, [/* Format */[
-                                  /* String_literal */Block.__(11, [
+        return Curry._2(Format.fprintf(fmt, --[ Format ]--[
+                        --[ Formatting_gen ]--Block.__(18, [
+                            --[ Open_box ]--Block.__(1, [--[ Format ]--[
+                                  --[ String_literal ]--Block.__(11, [
                                       "<hov2>",
-                                      /* End_of_format */0
+                                      --[ End_of_format ]--0
                                     ]),
                                   "<hov2>"
                                 ]]),
-                            /* Char_literal */Block.__(12, [
-                                /* "(" */40,
-                                /* Alpha */Block.__(15, [/* Char_literal */Block.__(12, [
-                                        /* ")" */41,
-                                        /* Formatting_lit */Block.__(17, [
-                                            /* Close_box */0,
-                                            /* End_of_format */0
+                            --[ Char_literal ]--Block.__(12, [
+                                --[ "(" ]--40,
+                                --[ Alpha ]--Block.__(15, [--[ Char_literal ]--Block.__(12, [
+                                        --[ ")" ]--41,
+                                        --[ Formatting_lit ]--Block.__(17, [
+                                            --[ Close_box ]--0,
+                                            --[ End_of_format ]--0
                                           ])
                                       ])])
                               ])
@@ -228,14 +228,14 @@ function print(fmt, t) {
   } else {
     var s = t[1];
     if (_must_escape(s)) {
-      return Curry._1(Format.fprintf(fmt, /* Format */[
-                      /* Char_literal */Block.__(12, [
-                          /* "\"" */34,
-                          /* String */Block.__(2, [
-                              /* No_padding */0,
-                              /* Char_literal */Block.__(12, [
-                                  /* "\"" */34,
-                                  /* End_of_format */0
+      return Curry._1(Format.fprintf(fmt, --[ Format ]--[
+                      --[ Char_literal ]--Block.__(12, [
+                          --[ "\"" ]--34,
+                          --[ String ]--Block.__(2, [
+                              --[ No_padding ]--0,
+                              --[ Char_literal ]--Block.__(12, [
+                                  --[ "\"" ]--34,
+                                  --[ End_of_format ]--0
                                 ])
                             ])
                         ]),
@@ -252,21 +252,21 @@ function print_noindent(fmt, t) {
     var l = t[1];
     if (l) {
       if (l[1]) {
-        Format.pp_print_char(fmt, /* "(" */40);
+        Format.pp_print_char(fmt, --[ "(" ]--40);
         List.iteri((function (i, t$prime) {
                 if (i > 0) {
-                  Format.pp_print_char(fmt, /* " " */32);
+                  Format.pp_print_char(fmt, --[ " " ]--32);
                 }
                 return print_noindent(fmt, t$prime);
               }), l);
-        return Format.pp_print_char(fmt, /* ")" */41);
+        return Format.pp_print_char(fmt, --[ ")" ]--41);
       } else {
-        return Curry._2(Format.fprintf(fmt, /* Format */[
-                        /* Char_literal */Block.__(12, [
-                            /* "(" */40,
-                            /* Alpha */Block.__(15, [/* Char_literal */Block.__(12, [
-                                    /* ")" */41,
-                                    /* End_of_format */0
+        return Curry._2(Format.fprintf(fmt, --[ Format ]--[
+                        --[ Char_literal ]--Block.__(12, [
+                            --[ "(" ]--40,
+                            --[ Alpha ]--Block.__(15, [--[ Char_literal ]--Block.__(12, [
+                                    --[ ")" ]--41,
+                                    --[ End_of_format ]--0
                                   ])])
                           ]),
                         "(%a)"
@@ -278,14 +278,14 @@ function print_noindent(fmt, t) {
   } else {
     var s = t[1];
     if (_must_escape(s)) {
-      return Curry._1(Format.fprintf(fmt, /* Format */[
-                      /* Char_literal */Block.__(12, [
-                          /* "\"" */34,
-                          /* String */Block.__(2, [
-                              /* No_padding */0,
-                              /* Char_literal */Block.__(12, [
-                                  /* "\"" */34,
-                                  /* End_of_format */0
+      return Curry._1(Format.fprintf(fmt, --[ Format ]--[
+                      --[ Char_literal ]--Block.__(12, [
+                          --[ "\"" ]--34,
+                          --[ String ]--Block.__(2, [
+                              --[ No_padding ]--0,
+                              --[ Char_literal ]--Block.__(12, [
+                                  --[ "\"" ]--34,
+                                  --[ End_of_format ]--0
                                 ])
                             ])
                         ]),
@@ -300,7 +300,7 @@ function print_noindent(fmt, t) {
 function to_chan(oc, t) {
   var fmt = Format.formatter_of_out_channel(oc);
   print(fmt, t);
-  return Format.pp_print_flush(fmt, /* () */0);
+  return Format.pp_print_flush(fmt, --[ () ]--0);
 }
 
 function to_file_seq(filename, seq) {
@@ -308,7 +308,7 @@ function to_file_seq(filename, seq) {
   var f = function (oc) {
     return Curry._1(seq, (function (t) {
                   to_chan(oc, t);
-                  return Caml_io.caml_ml_output_char(oc, /* "\n" */10);
+                  return Caml_io.caml_ml_output_char(oc, --[ "\n" ]--10);
                 }));
   };
   var oc = Pervasives.open_out(filename$1);
@@ -345,7 +345,7 @@ var ID_MONAD = {
 };
 
 function make(bufsizeOpt, refill) {
-  var bufsize = bufsizeOpt !== undefined ? bufsizeOpt : 1024;
+  var bufsize = bufsizeOpt ~= undefined ? bufsizeOpt : 1024;
   var bufsize$1 = Caml_primitive.caml_int_min(bufsize > 16 ? bufsize : 16, Sys.max_string_length);
   return {
           buf: Caml_bytes.caml_create_bytes(bufsize$1),
@@ -359,8 +359,8 @@ function make(bufsizeOpt, refill) {
 }
 
 function _is_digit(c) {
-  if (/* "0" */48 <= c) {
-    return c <= /* "9" */57;
+  if (--[ "0" ]--48 <= c) {
+    return c <= --[ "9" ]--57;
   } else {
     return false;
   }
@@ -370,7 +370,7 @@ function _refill(t, k_succ, k_fail) {
   var n = Curry._3(t.refill, t.buf, 0, t.buf.length);
   t.i = 0;
   t.len = n;
-  if (n === 0) {
+  if (n == 0) {
     return Curry._1(k_fail, t);
   } else {
     return Curry._1(k_succ, t);
@@ -381,7 +381,7 @@ function _get(t) {
   if (t.i >= t.len) {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "sexpm.ml",
             152,
             4
@@ -390,7 +390,7 @@ function _get(t) {
   }
   var c = Caml_bytes.get(t.buf, t.i);
   t.i = t.i + 1 | 0;
-  if (c === /* "\n" */10) {
+  if (c == --[ "\n" ]--10) {
     t.col = 1;
     t.line = t.line + 1 | 0;
   } else {
@@ -401,22 +401,22 @@ function _get(t) {
 
 function _error(t, msg) {
   var b = $$Buffer.create(32);
-  Curry._2(Printf.bprintf(b, /* Format */[
-            /* String_literal */Block.__(11, [
+  Curry._2(Printf.bprintf(b, --[ Format ]--[
+            --[ String_literal ]--Block.__(11, [
                 "at ",
-                /* Int */Block.__(4, [
-                    /* Int_d */0,
-                    /* No_padding */0,
-                    /* No_precision */0,
-                    /* String_literal */Block.__(11, [
+                --[ Int ]--Block.__(4, [
+                    --[ Int_d ]--0,
+                    --[ No_padding ]--0,
+                    --[ No_precision ]--0,
+                    --[ String_literal ]--Block.__(11, [
                         ", ",
-                        /* Int */Block.__(4, [
-                            /* Int_d */0,
-                            /* No_padding */0,
-                            /* No_precision */0,
-                            /* String_literal */Block.__(11, [
+                        --[ Int ]--Block.__(4, [
+                            --[ Int_d ]--0,
+                            --[ No_padding ]--0,
+                            --[ No_precision ]--0,
+                            --[ String_literal ]--Block.__(11, [
                                 ": ",
-                                /* End_of_format */0
+                                --[ End_of_format ]--0
                               ])
                           ])
                       ])
@@ -426,7 +426,7 @@ function _error(t, msg) {
           ]), t.line, t.col);
   return Printf.kbprintf((function (b) {
                 var msg$prime = $$Buffer.contents(b);
-                return /* `Error */[
+                return --[ `Error ]--[
                         106380200,
                         msg$prime
                       ];
@@ -434,10 +434,10 @@ function _error(t, msg) {
 }
 
 function _error_eof(t) {
-  return _error(t, /* Format */[
-              /* String_literal */Block.__(11, [
+  return _error(t, --[ Format ]--[
+              --[ String_literal ]--Block.__(11, [
                   "unexpected end of input",
-                  /* End_of_format */0
+                  --[ End_of_format ]--0
                 ]),
               "unexpected end of input"
             ]);
@@ -445,14 +445,14 @@ function _error_eof(t) {
 
 function expr(k, t) {
   while(true) {
-    if (t.i === t.len) {
+    if (t.i == t.len) {
       return _refill(t, (function (param) {
                     return expr(k, param);
                   }), _error_eof);
     } else {
       var c = _get(t);
       if (c >= 11) {
-        if (c !== 32) {
+        if (c ~= 32) {
           return expr_starting_with(c, k, t);
         } else {
           continue ;
@@ -468,12 +468,12 @@ function expr(k, t) {
 
 function expr_starting_with(c, k, t) {
   if (c >= 42) {
-    if (c !== 59) {
-      if (c === 92) {
-        return _error(t, /* Format */[
-                    /* String_literal */Block.__(11, [
+    if (c ~= 59) {
+      if (c == 92) {
+        return _error(t, --[ Format ]--[
+                    --[ String_literal ]--Block.__(11, [
                         "unexpected '\\'",
-                        /* End_of_format */0
+                        --[ End_of_format ]--0
                       ]),
                     "unexpected '\\'"
                   ]);
@@ -490,7 +490,7 @@ function expr_starting_with(c, k, t) {
         case 0 :
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  /* tuple */[
+                  --[ tuple ]--[
                     "sexpm.ml",
                     183,
                     27
@@ -506,12 +506,12 @@ function expr_starting_with(c, k, t) {
         case 7 :
             break;
         case 8 :
-            return expr_list(/* [] */0, k, t);
+            return expr_list(--[ [] ]--0, k, t);
         case 9 :
-            return _error(t, /* Format */[
-                        /* String_literal */Block.__(11, [
+            return _error(t, --[ Format ]--[
+                        --[ String_literal ]--Block.__(11, [
                             "unexpected ')'",
-                            /* End_of_format */0
+                            --[ End_of_format ]--0
                           ]),
                         "unexpected ')'"
                       ]);
@@ -522,7 +522,7 @@ function expr_starting_with(c, k, t) {
   } else if (c >= 9) {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "sexpm.ml",
             183,
             27
@@ -535,52 +535,52 @@ function expr_starting_with(c, k, t) {
 
 function expr_list(acc, k, t) {
   while(true) {
-    if (t.i === t.len) {
+    if (t.i == t.len) {
       return _refill(t, (function (param) {
                     return expr_list(acc, k, param);
                   }), _error_eof);
     } else {
       var c = _get(t);
       var switcher = c - 9 | 0;
-      if (switcher > 23 || switcher < 0) {
-        if (switcher === 32) {
-          return Curry._2(k, undefined, /* `List */[
+      if (switcher > 23 or switcher < 0) {
+        if (switcher == 32) {
+          return Curry._2(k, undefined, --[ `List ]--[
                       848054398,
                       List.rev(acc)
                     ]);
         }
         
-      } else if (switcher > 22 || switcher < 2) {
+      } else if (switcher > 22 or switcher < 2) {
         continue ;
       }
       return expr_starting_with(c, (function (last, e) {
-                    if (last !== undefined) {
+                    if (last ~= undefined) {
                       var match = last;
-                      if (match !== 40) {
-                        if (match !== 41) {
-                          return expr_list(/* :: */[
+                      if (match ~= 40) {
+                        if (match ~= 41) {
+                          return expr_list(--[ :: ]--[
                                       e,
                                       acc
                                     ], k, t);
                         } else {
-                          return Curry._2(k, undefined, /* `List */[
+                          return Curry._2(k, undefined, --[ `List ]--[
                                       848054398,
-                                      List.rev(/* :: */[
+                                      List.rev(--[ :: ]--[
                                             e,
                                             acc
                                           ])
                                     ]);
                         }
                       } else {
-                        return expr_list(/* [] */0, (function (param, l) {
-                                      return expr_list(/* :: */[
+                        return expr_list(--[ [] ]--0, (function (param, l) {
+                                      return expr_list(--[ :: ]--[
                                                   l,
                                                   acc
                                                 ], k, t);
                                     }), t);
                       }
                     } else {
-                      return expr_list(/* :: */[
+                      return expr_list(--[ :: ]--[
                                   e,
                                   acc
                                 ], k, t);
@@ -593,7 +593,7 @@ function expr_list(acc, k, t) {
 function _return_atom(last, k, t) {
   var s = $$Buffer.contents(t.atom);
   t.atom.position = 0;
-  return Curry._2(k, last, /* `Atom */[
+  return Curry._2(k, last, --[ `Atom ]--[
               726615281,
               s
             ]);
@@ -601,7 +601,7 @@ function _return_atom(last, k, t) {
 
 function atom(k, t) {
   while(true) {
-    if (t.i === t.len) {
+    if (t.i == t.len) {
       return _refill(t, (function (param) {
                     return atom(k, param);
                   }), (function (param) {
@@ -612,13 +612,13 @@ function atom(k, t) {
       var exit = 0;
       if (c >= 35) {
         if (c >= 42) {
-          if (c !== 92) {
+          if (c ~= 92) {
             exit = 1;
           } else {
-            return _error(t, /* Format */[
-                        /* String_literal */Block.__(11, [
+            return _error(t, --[ Format ]--[
+                        --[ String_literal ]--Block.__(11, [
                             "unexpected '\\' in non-quoted string",
-                            /* End_of_format */0
+                            --[ End_of_format ]--0
                           ]),
                         "unexpected '\\' in non-quoted string"
                       ]);
@@ -636,10 +636,10 @@ function atom(k, t) {
                 exit = 1;
                 break;
             case 2 :
-                return _error(t, /* Format */[
-                            /* String_literal */Block.__(11, [
+                return _error(t, --[ Format ]--[
+                            --[ String_literal ]--Block.__(11, [
                                 "unexpected '\"' in the middle of an atom",
-                                /* End_of_format */0
+                                --[ End_of_format ]--0
                               ]),
                             "unexpected '\"' in the middle of an atom"
                           ]);
@@ -665,14 +665,14 @@ function atom(k, t) {
 
 function quoted(k, t) {
   while(true) {
-    if (t.i === t.len) {
+    if (t.i == t.len) {
       return _refill(t, (function (param) {
                     return quoted(k, param);
                   }), _error_eof);
     } else {
       var c = _get(t);
-      if (c !== 34) {
-        if (c !== 92) {
+      if (c ~= 34) {
+        if (c ~= 92) {
           $$Buffer.add_char(t.atom, c);
           continue ;
         } else {
@@ -689,7 +689,7 @@ function quoted(k, t) {
 }
 
 function escaped(k, t) {
-  if (t.i === t.len) {
+  if (t.i == t.len) {
     return _refill(t, (function (param) {
                   return escaped(k, param);
                 }), _error_eof);
@@ -699,13 +699,13 @@ function escaped(k, t) {
       if (c < 117) {
         switch (c - 92 | 0) {
           case 0 :
-              return Curry._1(k, /* "\\" */92);
+              return Curry._1(k, --[ "\\" ]--92);
           case 6 :
-              return Curry._1(k, /* "\b" */8);
+              return Curry._1(k, --[ "\b" ]--8);
           case 18 :
-              return Curry._1(k, /* "\n" */10);
+              return Curry._1(k, --[ "\n" ]--10);
           case 22 :
-              return Curry._1(k, /* "\r" */13);
+              return Curry._1(k, --[ "\r" ]--13);
           case 1 :
           case 2 :
           case 3 :
@@ -728,25 +728,25 @@ function escaped(k, t) {
           case 23 :
               break;
           case 24 :
-              return Curry._1(k, /* "\t" */9);
+              return Curry._1(k, --[ "\t" ]--9);
           
         }
       }
       
-    } else if (c === 34) {
-      return Curry._1(k, /* "\"" */34);
+    } else if (c == 34) {
+      return Curry._1(k, --[ "\"" ]--34);
     }
     if (_is_digit(c)) {
-      return read2int(c - /* "0" */48 | 0, (function (n) {
+      return read2int(c - --[ "0" ]--48 | 0, (function (n) {
                     return Curry._1(k, Char.chr(n));
                   }), t);
     } else {
-      return Curry._1(_error(t, /* Format */[
-                      /* String_literal */Block.__(11, [
+      return Curry._1(_error(t, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "unexpected escaped char '",
-                          /* Char */Block.__(0, [/* Char_literal */Block.__(12, [
-                                  /* "'" */39,
-                                  /* End_of_format */0
+                          --[ Char ]--Block.__(0, [--[ Char_literal ]--Block.__(12, [
+                                  --[ "'" ]--39,
+                                  --[ End_of_format ]--0
                                 ])])
                         ]),
                       "unexpected escaped char '%c'"
@@ -756,21 +756,21 @@ function escaped(k, t) {
 }
 
 function read2int(i, k, t) {
-  if (t.i === t.len) {
+  if (t.i == t.len) {
     return _refill(t, (function (param) {
                   return read2int(i, k, param);
                 }), _error_eof);
   } else {
     var c = _get(t);
     if (_is_digit(c)) {
-      return read1int(Caml_int32.imul(10, i) + (c - /* "0" */48 | 0) | 0, k, t);
+      return read1int(Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0, k, t);
     } else {
-      return Curry._1(_error(t, /* Format */[
-                      /* String_literal */Block.__(11, [
+      return Curry._1(_error(t, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "unexpected char '",
-                          /* Char */Block.__(0, [/* String_literal */Block.__(11, [
+                          --[ Char ]--Block.__(0, [--[ String_literal ]--Block.__(11, [
                                   "' when reading byte",
-                                  /* End_of_format */0
+                                  --[ End_of_format ]--0
                                 ])])
                         ]),
                       "unexpected char '%c' when reading byte"
@@ -780,21 +780,21 @@ function read2int(i, k, t) {
 }
 
 function read1int(i, k, t) {
-  if (t.i === t.len) {
+  if (t.i == t.len) {
     return _refill(t, (function (param) {
                   return read1int(i, k, param);
                 }), _error_eof);
   } else {
     var c = _get(t);
     if (_is_digit(c)) {
-      return Curry._1(k, Caml_int32.imul(10, i) + (c - /* "0" */48 | 0) | 0);
+      return Curry._1(k, Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0);
     } else {
-      return Curry._1(_error(t, /* Format */[
-                      /* String_literal */Block.__(11, [
+      return Curry._1(_error(t, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "unexpected char '",
-                          /* Char */Block.__(0, [/* String_literal */Block.__(11, [
+                          --[ Char ]--Block.__(0, [--[ String_literal ]--Block.__(11, [
                                   "' when reading byte",
-                                  /* End_of_format */0
+                                  --[ End_of_format ]--0
                                 ])])
                         ]),
                       "unexpected char '%c' when reading byte"
@@ -805,16 +805,16 @@ function read1int(i, k, t) {
 
 function skip_comment(k, t) {
   while(true) {
-    if (t.i === t.len) {
+    if (t.i == t.len) {
       return _refill(t, (function (param) {
                     return skip_comment(k, param);
                   }), _error_eof);
     } else {
       var match = _get(t);
-      if (match !== 10) {
+      if (match ~= 10) {
         continue ;
       } else {
-        return Curry._2(k, undefined, /* () */0);
+        return Curry._2(k, undefined, --[ () ]--0);
       }
     }
   };
@@ -822,16 +822,16 @@ function skip_comment(k, t) {
 
 function expr_or_end(k, t) {
   while(true) {
-    if (t.i === t.len) {
+    if (t.i == t.len) {
       return _refill(t, (function (param) {
                     return expr_or_end(k, param);
                   }), (function (param) {
-                    return /* End */3455931;
+                    return --[ End ]--3455931;
                   }));
     } else {
       var c = _get(t);
       if (c >= 11) {
-        if (c !== 32) {
+        if (c ~= 32) {
           return expr_starting_with(c, k, t);
         } else {
           continue ;
@@ -847,7 +847,7 @@ function expr_or_end(k, t) {
 
 function next(t) {
   return expr_or_end((function (param, x) {
-                return /* `Ok */[
+                return --[ `Ok ]--[
                         17724,
                         x
                       ];
@@ -870,8 +870,8 @@ function parse_string(s) {
   };
   var d = make(n, refill);
   var res = next(d);
-  if (typeof res === "number") {
-    return /* `Error */[
+  if (typeof res == "number") {
+    return --[ `Error ]--[
             106380200,
             "unexpected end of file"
           ];
@@ -885,8 +885,8 @@ function parse_chan(bufsize, ic) {
           return Pervasives.input(ic, param, param$1, param$2);
         }));
   var res = next(d);
-  if (typeof res === "number") {
-    return /* `Error */[
+  if (typeof res == "number") {
+    return --[ `Error ]--[
             106380200,
             "unexpected end of file"
           ];
@@ -901,7 +901,7 @@ function parse_chan_gen(bufsize, ic) {
         }));
   return (function (param) {
       var e = next(d);
-      if (typeof e === "number") {
+      if (typeof e == "number") {
         return ;
       } else {
         return e;
@@ -913,19 +913,19 @@ function parse_chan_list(bufsize, ic) {
   var d = make(bufsize, (function (param, param$1, param$2) {
           return Pervasives.input(ic, param, param$1, param$2);
         }));
-  var _acc = /* [] */0;
+  var _acc = --[ [] ]--0;
   while(true) {
     var acc = _acc;
     var e = next(d);
-    if (typeof e === "number") {
-      return /* `Ok */[
+    if (typeof e == "number") {
+      return --[ `Ok ]--[
               17724,
               List.rev(acc)
             ];
     } else if (e[0] >= 106380200) {
       return e;
     } else {
-      _acc = /* :: */[
+      _acc = --[ :: ]--[
         e[1],
         acc
       ];
@@ -949,7 +949,7 @@ function parse_file_list(filename) {
 function MakeDecode(funarg) {
   var $great$great$eq = funarg.$great$great$eq;
   var make = function (bufsizeOpt, refill) {
-    var bufsize = bufsizeOpt !== undefined ? bufsizeOpt : 1024;
+    var bufsize = bufsizeOpt ~= undefined ? bufsizeOpt : 1024;
     var bufsize$1 = Caml_primitive.caml_int_min(bufsize > 16 ? bufsize : 16, Sys.max_string_length);
     return {
             buf: Caml_bytes.caml_create_bytes(bufsize$1),
@@ -962,8 +962,8 @@ function MakeDecode(funarg) {
           };
   };
   var _is_digit = function (c) {
-    if (/* "0" */48 <= c) {
-      return c <= /* "9" */57;
+    if (--[ "0" ]--48 <= c) {
+      return c <= --[ "9" ]--57;
     } else {
       return false;
     }
@@ -972,7 +972,7 @@ function MakeDecode(funarg) {
     return Curry._2($great$great$eq, Curry._3(t.refill, t.buf, 0, t.buf.length), (function (n) {
                   t.i = 0;
                   t.len = n;
-                  if (n === 0) {
+                  if (n == 0) {
                     return Curry._1(k_fail, t);
                   } else {
                     return Curry._1(k_succ, t);
@@ -983,7 +983,7 @@ function MakeDecode(funarg) {
     if (t.i >= t.len) {
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "sexpm.ml",
               152,
               4
@@ -992,7 +992,7 @@ function MakeDecode(funarg) {
     }
     var c = Caml_bytes.get(t.buf, t.i);
     t.i = t.i + 1 | 0;
-    if (c === /* "\n" */10) {
+    if (c == --[ "\n" ]--10) {
       t.col = 1;
       t.line = t.line + 1 | 0;
     } else {
@@ -1002,22 +1002,22 @@ function MakeDecode(funarg) {
   };
   var _error = function (t, msg) {
     var b = $$Buffer.create(32);
-    Curry._2(Printf.bprintf(b, /* Format */[
-              /* String_literal */Block.__(11, [
+    Curry._2(Printf.bprintf(b, --[ Format ]--[
+              --[ String_literal ]--Block.__(11, [
                   "at ",
-                  /* Int */Block.__(4, [
-                      /* Int_d */0,
-                      /* No_padding */0,
-                      /* No_precision */0,
-                      /* String_literal */Block.__(11, [
+                  --[ Int ]--Block.__(4, [
+                      --[ Int_d ]--0,
+                      --[ No_padding ]--0,
+                      --[ No_precision ]--0,
+                      --[ String_literal ]--Block.__(11, [
                           ", ",
-                          /* Int */Block.__(4, [
-                              /* Int_d */0,
-                              /* No_padding */0,
-                              /* No_precision */0,
-                              /* String_literal */Block.__(11, [
+                          --[ Int ]--Block.__(4, [
+                              --[ Int_d ]--0,
+                              --[ No_padding ]--0,
+                              --[ No_precision ]--0,
+                              --[ String_literal ]--Block.__(11, [
                                   ": ",
-                                  /* End_of_format */0
+                                  --[ End_of_format ]--0
                                 ])
                             ])
                         ])
@@ -1027,31 +1027,31 @@ function MakeDecode(funarg) {
             ]), t.line, t.col);
     return Printf.kbprintf((function (b) {
                   var msg$prime = $$Buffer.contents(b);
-                  return Curry._1(funarg.$$return, /* `Error */[
+                  return Curry._1(funarg.$$return, --[ `Error ]--[
                               106380200,
                               msg$prime
                             ]);
                 }), b, msg);
   };
   var _error_eof = function (t) {
-    return _error(t, /* Format */[
-                /* String_literal */Block.__(11, [
+    return _error(t, --[ Format ]--[
+                --[ String_literal ]--Block.__(11, [
                     "unexpected end of input",
-                    /* End_of_format */0
+                    --[ End_of_format ]--0
                   ]),
                 "unexpected end of input"
               ]);
   };
   var expr = function (k, t) {
     while(true) {
-      if (t.i === t.len) {
+      if (t.i == t.len) {
         return _refill(t, (function (param) {
                       return expr(k, param);
                     }), _error_eof);
       } else {
         var c = _get(t);
         if (c >= 11) {
-          if (c !== 32) {
+          if (c ~= 32) {
             return expr_starting_with(c, k, t);
           } else {
             continue ;
@@ -1066,12 +1066,12 @@ function MakeDecode(funarg) {
   };
   var expr_starting_with = function (c, k, t) {
     if (c >= 42) {
-      if (c !== 59) {
-        if (c === 92) {
-          return _error(t, /* Format */[
-                      /* String_literal */Block.__(11, [
+      if (c ~= 59) {
+        if (c == 92) {
+          return _error(t, --[ Format ]--[
+                      --[ String_literal ]--Block.__(11, [
                           "unexpected '\\'",
-                          /* End_of_format */0
+                          --[ End_of_format ]--0
                         ]),
                       "unexpected '\\'"
                     ]);
@@ -1088,7 +1088,7 @@ function MakeDecode(funarg) {
           case 0 :
               throw [
                     Caml_builtin_exceptions.assert_failure,
-                    /* tuple */[
+                    --[ tuple ]--[
                       "sexpm.ml",
                       183,
                       27
@@ -1104,12 +1104,12 @@ function MakeDecode(funarg) {
           case 7 :
               break;
           case 8 :
-              return expr_list(/* [] */0, k, t);
+              return expr_list(--[ [] ]--0, k, t);
           case 9 :
-              return _error(t, /* Format */[
-                          /* String_literal */Block.__(11, [
+              return _error(t, --[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "unexpected ')'",
-                              /* End_of_format */0
+                              --[ End_of_format ]--0
                             ]),
                           "unexpected ')'"
                         ]);
@@ -1120,7 +1120,7 @@ function MakeDecode(funarg) {
     } else if (c >= 9) {
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "sexpm.ml",
               183,
               27
@@ -1132,52 +1132,52 @@ function MakeDecode(funarg) {
   };
   var expr_list = function (acc, k, t) {
     while(true) {
-      if (t.i === t.len) {
+      if (t.i == t.len) {
         return _refill(t, (function (param) {
                       return expr_list(acc, k, param);
                     }), _error_eof);
       } else {
         var c = _get(t);
         var switcher = c - 9 | 0;
-        if (switcher > 23 || switcher < 0) {
-          if (switcher === 32) {
-            return Curry._2(k, undefined, /* `List */[
+        if (switcher > 23 or switcher < 0) {
+          if (switcher == 32) {
+            return Curry._2(k, undefined, --[ `List ]--[
                         848054398,
                         List.rev(acc)
                       ]);
           }
           
-        } else if (switcher > 22 || switcher < 2) {
+        } else if (switcher > 22 or switcher < 2) {
           continue ;
         }
         return expr_starting_with(c, (function (last, e) {
-                      if (last !== undefined) {
+                      if (last ~= undefined) {
                         var match = last;
-                        if (match !== 40) {
-                          if (match !== 41) {
-                            return expr_list(/* :: */[
+                        if (match ~= 40) {
+                          if (match ~= 41) {
+                            return expr_list(--[ :: ]--[
                                         e,
                                         acc
                                       ], k, t);
                           } else {
-                            return Curry._2(k, undefined, /* `List */[
+                            return Curry._2(k, undefined, --[ `List ]--[
                                         848054398,
-                                        List.rev(/* :: */[
+                                        List.rev(--[ :: ]--[
                                               e,
                                               acc
                                             ])
                                       ]);
                           }
                         } else {
-                          return expr_list(/* [] */0, (function (param, l) {
-                                        return expr_list(/* :: */[
+                          return expr_list(--[ [] ]--0, (function (param, l) {
+                                        return expr_list(--[ :: ]--[
                                                     l,
                                                     acc
                                                   ], k, t);
                                       }), t);
                         }
                       } else {
-                        return expr_list(/* :: */[
+                        return expr_list(--[ :: ]--[
                                     e,
                                     acc
                                   ], k, t);
@@ -1189,14 +1189,14 @@ function MakeDecode(funarg) {
   var _return_atom = function (last, k, t) {
     var s = $$Buffer.contents(t.atom);
     t.atom.position = 0;
-    return Curry._2(k, last, /* `Atom */[
+    return Curry._2(k, last, --[ `Atom ]--[
                 726615281,
                 s
               ]);
   };
   var atom = function (k, t) {
     while(true) {
-      if (t.i === t.len) {
+      if (t.i == t.len) {
         return _refill(t, (function (param) {
                       return atom(k, param);
                     }), (function (param) {
@@ -1207,13 +1207,13 @@ function MakeDecode(funarg) {
         var exit = 0;
         if (c >= 35) {
           if (c >= 42) {
-            if (c !== 92) {
+            if (c ~= 92) {
               exit = 1;
             } else {
-              return _error(t, /* Format */[
-                          /* String_literal */Block.__(11, [
+              return _error(t, --[ Format ]--[
+                          --[ String_literal ]--Block.__(11, [
                               "unexpected '\\' in non-quoted string",
-                              /* End_of_format */0
+                              --[ End_of_format ]--0
                             ]),
                           "unexpected '\\' in non-quoted string"
                         ]);
@@ -1231,10 +1231,10 @@ function MakeDecode(funarg) {
                   exit = 1;
                   break;
               case 2 :
-                  return _error(t, /* Format */[
-                              /* String_literal */Block.__(11, [
+                  return _error(t, --[ Format ]--[
+                              --[ String_literal ]--Block.__(11, [
                                   "unexpected '\"' in the middle of an atom",
-                                  /* End_of_format */0
+                                  --[ End_of_format ]--0
                                 ]),
                               "unexpected '\"' in the middle of an atom"
                             ]);
@@ -1259,14 +1259,14 @@ function MakeDecode(funarg) {
   };
   var quoted = function (k, t) {
     while(true) {
-      if (t.i === t.len) {
+      if (t.i == t.len) {
         return _refill(t, (function (param) {
                       return quoted(k, param);
                     }), _error_eof);
       } else {
         var c = _get(t);
-        if (c !== 34) {
-          if (c !== 92) {
+        if (c ~= 34) {
+          if (c ~= 92) {
             $$Buffer.add_char(t.atom, c);
             continue ;
           } else {
@@ -1282,7 +1282,7 @@ function MakeDecode(funarg) {
     };
   };
   var escaped = function (k, t) {
-    if (t.i === t.len) {
+    if (t.i == t.len) {
       return _refill(t, (function (param) {
                     return escaped(k, param);
                   }), _error_eof);
@@ -1292,13 +1292,13 @@ function MakeDecode(funarg) {
         if (c < 117) {
           switch (c - 92 | 0) {
             case 0 :
-                return Curry._1(k, /* "\\" */92);
+                return Curry._1(k, --[ "\\" ]--92);
             case 6 :
-                return Curry._1(k, /* "\b" */8);
+                return Curry._1(k, --[ "\b" ]--8);
             case 18 :
-                return Curry._1(k, /* "\n" */10);
+                return Curry._1(k, --[ "\n" ]--10);
             case 22 :
-                return Curry._1(k, /* "\r" */13);
+                return Curry._1(k, --[ "\r" ]--13);
             case 1 :
             case 2 :
             case 3 :
@@ -1321,25 +1321,25 @@ function MakeDecode(funarg) {
             case 23 :
                 break;
             case 24 :
-                return Curry._1(k, /* "\t" */9);
+                return Curry._1(k, --[ "\t" ]--9);
             
           }
         }
         
-      } else if (c === 34) {
-        return Curry._1(k, /* "\"" */34);
+      } else if (c == 34) {
+        return Curry._1(k, --[ "\"" ]--34);
       }
       if (_is_digit(c)) {
-        return read2int(c - /* "0" */48 | 0, (function (n) {
+        return read2int(c - --[ "0" ]--48 | 0, (function (n) {
                       return Curry._1(k, Char.chr(n));
                     }), t);
       } else {
-        return Curry._1(_error(t, /* Format */[
-                        /* String_literal */Block.__(11, [
+        return Curry._1(_error(t, --[ Format ]--[
+                        --[ String_literal ]--Block.__(11, [
                             "unexpected escaped char '",
-                            /* Char */Block.__(0, [/* Char_literal */Block.__(12, [
-                                    /* "'" */39,
-                                    /* End_of_format */0
+                            --[ Char ]--Block.__(0, [--[ Char_literal ]--Block.__(12, [
+                                    --[ "'" ]--39,
+                                    --[ End_of_format ]--0
                                   ])])
                           ]),
                         "unexpected escaped char '%c'"
@@ -1348,21 +1348,21 @@ function MakeDecode(funarg) {
     }
   };
   var read2int = function (i, k, t) {
-    if (t.i === t.len) {
+    if (t.i == t.len) {
       return _refill(t, (function (param) {
                     return read2int(i, k, param);
                   }), _error_eof);
     } else {
       var c = _get(t);
       if (_is_digit(c)) {
-        return read1int(Caml_int32.imul(10, i) + (c - /* "0" */48 | 0) | 0, k, t);
+        return read1int(Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0, k, t);
       } else {
-        return Curry._1(_error(t, /* Format */[
-                        /* String_literal */Block.__(11, [
+        return Curry._1(_error(t, --[ Format ]--[
+                        --[ String_literal ]--Block.__(11, [
                             "unexpected char '",
-                            /* Char */Block.__(0, [/* String_literal */Block.__(11, [
+                            --[ Char ]--Block.__(0, [--[ String_literal ]--Block.__(11, [
                                     "' when reading byte",
-                                    /* End_of_format */0
+                                    --[ End_of_format ]--0
                                   ])])
                           ]),
                         "unexpected char '%c' when reading byte"
@@ -1371,21 +1371,21 @@ function MakeDecode(funarg) {
     }
   };
   var read1int = function (i, k, t) {
-    if (t.i === t.len) {
+    if (t.i == t.len) {
       return _refill(t, (function (param) {
                     return read1int(i, k, param);
                   }), _error_eof);
     } else {
       var c = _get(t);
       if (_is_digit(c)) {
-        return Curry._1(k, Caml_int32.imul(10, i) + (c - /* "0" */48 | 0) | 0);
+        return Curry._1(k, Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0);
       } else {
-        return Curry._1(_error(t, /* Format */[
-                        /* String_literal */Block.__(11, [
+        return Curry._1(_error(t, --[ Format ]--[
+                        --[ String_literal ]--Block.__(11, [
                             "unexpected char '",
-                            /* Char */Block.__(0, [/* String_literal */Block.__(11, [
+                            --[ Char ]--Block.__(0, [--[ String_literal ]--Block.__(11, [
                                     "' when reading byte",
-                                    /* End_of_format */0
+                                    --[ End_of_format ]--0
                                   ])])
                           ]),
                         "unexpected char '%c' when reading byte"
@@ -1395,32 +1395,32 @@ function MakeDecode(funarg) {
   };
   var skip_comment = function (k, t) {
     while(true) {
-      if (t.i === t.len) {
+      if (t.i == t.len) {
         return _refill(t, (function (param) {
                       return skip_comment(k, param);
                     }), _error_eof);
       } else {
         var match = _get(t);
-        if (match !== 10) {
+        if (match ~= 10) {
           continue ;
         } else {
-          return Curry._2(k, undefined, /* () */0);
+          return Curry._2(k, undefined, --[ () ]--0);
         }
       }
     };
   };
   var expr_or_end = function (k, t) {
     while(true) {
-      if (t.i === t.len) {
+      if (t.i == t.len) {
         return _refill(t, (function (param) {
                       return expr_or_end(k, param);
                     }), (function (param) {
-                      return Curry._1(funarg.$$return, /* End */3455931);
+                      return Curry._1(funarg.$$return, --[ End ]--3455931);
                     }));
       } else {
         var c = _get(t);
         if (c >= 11) {
-          if (c !== 32) {
+          if (c ~= 32) {
             return expr_starting_with(c, k, t);
           } else {
             continue ;
@@ -1435,7 +1435,7 @@ function MakeDecode(funarg) {
   };
   var next = function (t) {
     return expr_or_end((function (param, x) {
-                  return Curry._1(funarg.$$return, /* `Ok */[
+                  return Curry._1(funarg.$$return, --[ `Ok ]--[
                               17724,
                               x
                             ]);
@@ -1468,4 +1468,4 @@ exports.parse_chan_gen = parse_chan_gen;
 exports.parse_chan_list = parse_chan_list;
 exports.parse_file = parse_file;
 exports.parse_file_list = parse_file_list;
-/* Format Not a pure module */
+--[ Format Not a pure module ]--

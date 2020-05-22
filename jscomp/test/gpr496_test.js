@@ -6,7 +6,7 @@ var Curry = require("../../lib/js/curry.js");
 var Caml_primitive = require("../../lib/js/caml_primitive.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -15,11 +15,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -27,10 +27,10 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
-var expected = /* tuple */[
+var expected = --[ tuple ]--[
   false,
   false,
   true,
@@ -41,7 +41,7 @@ var expected = /* tuple */[
   0
 ];
 
-var expected2 = /* tuple */[
+var expected2 = --[ tuple ]--[
   false,
   false,
   true,
@@ -52,7 +52,7 @@ var expected2 = /* tuple */[
   0
 ];
 
-var u = /* tuple */[
+var u = --[ tuple ]--[
   false,
   false,
   true,
@@ -68,7 +68,7 @@ eq("File \"gpr496_test.ml\", line 42, characters 12-19", expected, u);
 eq("File \"gpr496_test.ml\", line 44, characters 12-19", expected, expected2);
 
 function ff(x, y) {
-  return Caml_primitive.caml_bool_min(x, Curry._1(y, /* () */0));
+  return Caml_primitive.caml_bool_min(x, Curry._1(y, --[ () ]--0));
 }
 
 eq("File \"gpr496_test.ml\", line 48, characters 5-12", true < false ? true : false, false);
@@ -82,4 +82,4 @@ exports.expected = expected;
 exports.expected2 = expected2;
 exports.u = u;
 exports.ff = ff;
-/* expected Not a pure module */
+--[ expected Not a pure module ]--

@@ -11,20 +11,20 @@ function ff(x) {
 }
 
 function fff(x) {
-  var match = /* A */Block.__(0, [x]);
+  var match = --[ A ]--Block.__(0, [x]);
   switch (match.tag | 0) {
-    case /* A */0 :
+    case --[ A ]--0 :
         return x;
-    case /* B */1 :
+    case --[ B ]--1 :
         return 1;
-    case /* C */2 :
+    case --[ C ]--2 :
         return 2;
     
   }
 }
 
 function h(x) {
-  if (x !== 66) {
+  if (x ~= 66) {
     if (x >= 67) {
       return 2;
     } else {
@@ -39,7 +39,7 @@ function hh(param) {
   return 3;
 }
 
-var g = h(/* A */65);
+var g = h(--[ A ]--65);
 
 exports.f = f;
 exports.ff = ff;
@@ -47,4 +47,4 @@ exports.fff = fff;
 exports.h = h;
 exports.hh = hh;
 exports.g = g;
-/* g Not a pure module */
+--[ g Not a pure module ]--

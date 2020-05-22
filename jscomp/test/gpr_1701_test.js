@@ -8,15 +8,15 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 var Foo = Caml_exceptions.create("Gpr_1701_test.Foo");
 
 function test(n) {
-  if (n === 0) {
+  if (n == 0) {
     throw Foo;
   }
   try {
     return test(n - 1 | 0);
   }
   catch (exn){
-    if (exn === Foo) {
-      return /* () */0;
+    if (exn == Foo) {
+      return --[ () ]--0;
     } else {
       throw exn;
     }
@@ -26,7 +26,7 @@ function test(n) {
 test(100);
 
 function read_lines(inc) {
-  var _acc = /* [] */0;
+  var _acc = --[ [] ]--0;
   while(true) {
     var acc = _acc;
     var match;
@@ -34,14 +34,14 @@ function read_lines(inc) {
       match = Pervasives.input_line(inc);
     }
     catch (exn){
-      if (exn === Caml_builtin_exceptions.end_of_file) {
+      if (exn == Caml_builtin_exceptions.end_of_file) {
         match = undefined;
       } else {
         throw exn;
       }
     }
-    if (match !== undefined) {
-      _acc = /* :: */[
+    if (match ~= undefined) {
+      _acc = --[ :: ]--[
         match,
         acc
       ];
@@ -53,7 +53,7 @@ function read_lines(inc) {
 }
 
 function read_lines2(inc) {
-  var _acc = /* [] */0;
+  var _acc = --[ [] ]--0;
   while(true) {
     var acc = _acc;
     var l;
@@ -61,13 +61,13 @@ function read_lines2(inc) {
       l = Pervasives.input_line(inc);
     }
     catch (exn){
-      if (exn === Caml_builtin_exceptions.end_of_file) {
+      if (exn == Caml_builtin_exceptions.end_of_file) {
         return List.rev(acc);
       } else {
         throw exn;
       }
     }
-    _acc = /* :: */[
+    _acc = --[ :: ]--[
       l,
       acc
     ];
@@ -79,20 +79,20 @@ function read_lines3(inc) {
   var loop = function (acc) {
     try {
       var l = Pervasives.input_line(inc);
-      return loop(/* :: */[
+      return loop(--[ :: ]--[
                   l,
                   acc
                 ]);
     }
     catch (exn){
-      if (exn === Caml_builtin_exceptions.end_of_file) {
+      if (exn == Caml_builtin_exceptions.end_of_file) {
         return List.rev(acc);
       } else {
         throw exn;
       }
     }
   };
-  return loop(/* [] */0);
+  return loop(--[ [] ]--0);
 }
 
 function fff(f, x) {
@@ -110,4 +110,4 @@ exports.read_lines = read_lines;
 exports.read_lines2 = read_lines2;
 exports.read_lines3 = read_lines3;
 exports.fff = fff;
-/*  Not a pure module */
+--[  Not a pure module ]--

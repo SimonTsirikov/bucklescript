@@ -8,4 +8,4 @@ var H = Caml_exceptions.create("Test_common.H");
 
 exports.U = U;
 exports.H = H;
-/* No side effect */
+--[ No side effect ]--

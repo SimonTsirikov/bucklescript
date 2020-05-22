@@ -27,7 +27,7 @@ function height(param) {
 function create(l, x, d, r) {
   var hl = height(l);
   var hr = height(r);
-  return /* Node */[
+  return --[ Node ]--[
           l,
           x,
           d,
@@ -84,7 +84,7 @@ function bal(l, x, d, r) {
           ];
     }
   } else {
-    return /* Node */[
+    return --[ Node ]--[
             l,
             x,
             d,
@@ -101,8 +101,8 @@ function add(x, data, compare, param) {
     var v = param[1];
     var l = param[0];
     var c = compare(x, v);
-    if (c === 0) {
-      return /* Node */[
+    if (c == 0) {
+      return --[ Node ]--[
               l,
               x,
               data,
@@ -115,11 +115,11 @@ function add(x, data, compare, param) {
       return bal(l, v, d, add(x, data, compare, r));
     }
   } else {
-    return /* Node */[
-            /* Empty */0,
+    return --[ Node ]--[
+            --[ Empty ]--0,
             x,
             data,
-            /* Empty */0,
+            --[ Empty ]--0,
             1
           ];
   }
@@ -136,7 +136,7 @@ function add$1(x, data, v) {
 function empty(v) {
   return {
           compare: v,
-          data: /* Empty */0
+          data: --[ Empty ]--0
         };
 }
 
@@ -154,12 +154,12 @@ var V1 = {
 
 var v0 = {
   compare: V0,
-  data: /* Empty */0
+  data: --[ Empty ]--0
 };
 
 var v1 = {
   compare: V1,
-  data: /* Empty */0
+  data: --[ Empty ]--0
 };
 
 var v3 = add$1(3, "a", v0);
@@ -177,4 +177,4 @@ exports.V1 = V1;
 exports.v0 = v0;
 exports.v1 = v1;
 exports.v3 = v3;
-/* v3 Not a pure module */
+--[ v3 Not a pure module ]--

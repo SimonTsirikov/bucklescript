@@ -10,7 +10,7 @@ while(console.log(String(v.contents)), v.contents = v.contents + 1 | 0, v.conten
 };
 
 function fib(n) {
-  if (n === 0 || n === 1) {
+  if (n == 0 or n == 1) {
     return 1;
   } else {
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
@@ -34,4 +34,4 @@ while((function () {
 exports.v = v;
 exports.fib = fib;
 exports.x = x;
-/*  Not a pure module */
+--[  Not a pure module ]--

@@ -8,7 +8,7 @@ var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -17,11 +17,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -29,7 +29,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var A = Caml_exceptions.create("Exception_rebound_err_test.A");
@@ -45,20 +45,20 @@ function test_js_error4(param) {
   }
   catch (raw_e){
     var e = Caml_js_exceptions.internalToOCamlException(raw_e);
-    if (e === Caml_builtin_exceptions.not_found) {
+    if (e == Caml_builtin_exceptions.not_found) {
       return 2;
-    } else if (e[0] === Caml_builtin_exceptions.invalid_argument && e[1] === "x") {
+    } else if (e[0] == Caml_builtin_exceptions.invalid_argument and e[1] == "x") {
       return 3;
     }
-    if (e[0] === A) {
-      if (e[1] !== 2) {
+    if (e[0] == A) {
+      if (e[1] ~= 2) {
         return 7;
       } else {
         return 4;
       }
-    } else if (e === B) {
+    } else if (e == B) {
       return 5;
-    } else if (e[0] === C && !(e[1] !== 1 || e[2] !== 2)) {
+    } else if (e[0] == C and !(e[1] ~= 1 or e[2] ~= 2)) {
       return 6;
     } else {
       return 7;
@@ -68,10 +68,10 @@ function test_js_error4(param) {
 
 function f(g) {
   try {
-    return Curry._1(g, /* () */0);
+    return Curry._1(g, --[ () ]--0);
   }
   catch (exn){
-    if (exn === Caml_builtin_exceptions.not_found) {
+    if (exn == Caml_builtin_exceptions.not_found) {
       return 1;
     } else {
       throw exn;
@@ -79,7 +79,7 @@ function f(g) {
   }
 }
 
-eq("File \"exception_rebound_err_test.ml\", line 24, characters 6-13", test_js_error4(/* () */0), 7);
+eq("File \"exception_rebound_err_test.ml\", line 24, characters 6-13", test_js_error4(--[ () ]--0), 7);
 
 Mt.from_pair_suites("Exception_rebound_err_test", suites.contents);
 
@@ -91,4 +91,4 @@ exports.B = B;
 exports.C = C;
 exports.test_js_error4 = test_js_error4;
 exports.f = f;
-/*  Not a pure module */
+--[  Not a pure module ]--

@@ -12,31 +12,31 @@ var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function split_by(keep_emptyOpt, is_delim, str) {
-  var keep_empty = keep_emptyOpt !== undefined ? keep_emptyOpt : false;
+  var keep_empty = keep_emptyOpt ~= undefined ? keep_emptyOpt : false;
   var len = str.length;
-  var _acc = /* [] */0;
+  var _acc = --[ [] ]--0;
   var _last_pos = len;
   var _pos = len - 1 | 0;
   while(true) {
     var pos = _pos;
     var last_pos = _last_pos;
     var acc = _acc;
-    if (pos === -1) {
-      if (last_pos === 0 && !keep_empty) {
+    if (pos == -1) {
+      if (last_pos == 0 and !keep_empty) {
         return acc;
       } else {
-        return /* :: */[
+        return --[ :: ]--[
                 $$String.sub(str, 0, last_pos),
                 acc
               ];
       }
     } else if (Curry._1(is_delim, Caml_string.get(str, pos))) {
       var new_len = (last_pos - pos | 0) - 1 | 0;
-      if (new_len !== 0 || keep_empty) {
+      if (new_len ~= 0 or keep_empty) {
         var v = $$String.sub(str, pos + 1 | 0, new_len);
         _pos = pos - 1 | 0;
         _last_pos = pos;
-        _acc = /* :: */[
+        _acc = --[ :: ]--[
           v,
           acc
         ];
@@ -60,7 +60,7 @@ function trim(s) {
           var tmp = false;
           if (i < j) {
             var u = s.charCodeAt(i);
-            tmp = u === /* "\t" */9 || u === /* "\n" */10 || u === /* " " */32;
+            tmp = u == --[ "\t" ]--9 or u == --[ "\n" ]--10 or u == --[ " " ]--32;
           }
           return tmp;
         })()) {
@@ -71,7 +71,7 @@ function trim(s) {
           var tmp = false;
           if (k >= i) {
             var u = s.charCodeAt(k);
-            tmp = u === /* "\t" */9 || u === /* "\n" */10 || u === /* " " */32;
+            tmp = u == --[ "\t" ]--9 or u == --[ "\n" ]--10 or u == --[ " " ]--32;
           }
           return tmp;
         })()) {
@@ -81,21 +81,21 @@ function trim(s) {
 }
 
 function split(keep_empty, str, on) {
-  if (str === "") {
-    return /* [] */0;
+  if (str == "") {
+    return --[ [] ]--0;
   } else {
     return split_by(keep_empty, (function (x) {
-                  return x === on;
+                  return x == on;
                 }), str);
   }
 }
 
 function quick_split_by_ws(str) {
   return split_by(false, (function (x) {
-                if (x === /* "\t" */9 || x === /* "\n" */10) {
+                if (x == --[ "\t" ]--9 or x == --[ "\n" ]--10) {
                   return true;
                 } else {
-                  return x === /* " " */32;
+                  return x == --[ " " ]--32;
                 }
               }), str);
 }
@@ -105,10 +105,10 @@ function starts_with(s, beg) {
   var s_len = s.length;
   if (beg_len <= s_len) {
     var i = 0;
-    while(i < beg_len && s[i] === beg[i]) {
+    while(i < beg_len and s[i] == beg[i]) {
       i = i + 1 | 0;
     };
-    return i === beg_len;
+    return i == beg_len;
   } else {
     return false;
   }
@@ -127,7 +127,7 @@ function ends_with_index(s, end_) {
       var j = _j;
       if (k < 0) {
         return j + 1 | 0;
-      } else if (s[j] === end_[k]) {
+      } else if (s[j] == end_[k]) {
         _k = k - 1 | 0;
         _j = j - 1 | 0;
         continue ;
@@ -184,14 +184,14 @@ function escaped(s) {
         var match = s.charCodeAt(i);
         if (match >= 32) {
           var switcher = match - 34 | 0;
-          if (switcher > 58 || switcher < 0) {
+          if (switcher > 58 or switcher < 0) {
             if (switcher >= 93) {
               return true;
             } else {
               _i = i + 1 | 0;
               continue ;
             }
-          } else if (switcher > 57 || switcher < 1) {
+          } else if (switcher > 57 or switcher < 1) {
             return true;
           } else {
             _i = i + 1 | 0;
@@ -226,7 +226,7 @@ function unsafe_for_all_range(s, _start, finish, p) {
 
 function for_all_range(s, start, finish, p) {
   var len = s.length;
-  if (start < 0 || finish >= len) {
+  if (start < 0 or finish >= len) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_string_test.for_all_range"
@@ -240,7 +240,7 @@ function for_all(p, s) {
 }
 
 function is_empty(s) {
-  return s.length === 0;
+  return s.length == 0;
 }
 
 function repeat(n, s) {
@@ -257,9 +257,9 @@ function unsafe_is_sub(sub, i, s, j, len) {
     var _k = 0;
     while(true) {
       var k = _k;
-      if (k === len) {
+      if (k == len) {
         return true;
-      } else if (sub[i + k | 0] === s[j + k | 0]) {
+      } else if (sub[i + k | 0] == s[j + k | 0]) {
         _k = k + 1 | 0;
         continue ;
       } else {
@@ -274,7 +274,7 @@ function unsafe_is_sub(sub, i, s, j, len) {
 var Local_exit = Caml_exceptions.create("Ext_string_test.Local_exit");
 
 function find(startOpt, sub, s) {
-  var start = startOpt !== undefined ? startOpt : 0;
+  var start = startOpt ~= undefined ? startOpt : 0;
   var n = sub.length;
   var s_len = s.length;
   var i = start;
@@ -288,7 +288,7 @@ function find(startOpt, sub, s) {
     return -1;
   }
   catch (exn){
-    if (exn === Local_exit) {
+    if (exn == Local_exit) {
       return i;
     } else {
       throw exn;
@@ -302,7 +302,7 @@ function contain_substring(s, sub) {
 
 function non_overlap_count(sub, s) {
   var sub_len = sub.length;
-  if (sub.length === 0) {
+  if (sub.length == 0) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_string_test.non_overlap_count"
@@ -337,7 +337,7 @@ function rfind(sub, s) {
     return -1;
   }
   catch (exn){
-    if (exn === Local_exit) {
+    if (exn == Local_exit) {
       return i;
     } else {
       throw exn;
@@ -384,10 +384,10 @@ function starts_with_and_number(s, offset, beg) {
     return -1;
   } else {
     var i = offset;
-    while(i < finish_delim && s[i] === beg[i - offset | 0]) {
+    while(i < finish_delim and s[i] == beg[i - offset | 0]) {
       i = i + 1 | 0;
     };
-    if (i === finish_delim) {
+    if (i == finish_delim) {
       return digits_of_str(s, finish_delim, 2);
     } else {
       return -1;
@@ -396,7 +396,7 @@ function starts_with_and_number(s, offset, beg) {
 }
 
 function equal(x, y) {
-  return x === y;
+  return x == y;
 }
 
 function unsafe_concat_with_length(len, sep, l) {
@@ -415,7 +415,7 @@ function unsafe_concat_with_length(len, sep, l) {
             pos.contents = pos.contents + sep_len | 0;
             Caml_bytes.caml_blit_string(s, 0, r, pos.contents, s_len);
             pos.contents = pos.contents + s_len | 0;
-            return /* () */0;
+            return --[ () ]--0;
           }), l[1]);
     return Caml_bytes.bytes_to_string(r);
   } else {
@@ -426,7 +426,7 @@ function unsafe_concat_with_length(len, sep, l) {
 function rindex_rec(s, _i, c) {
   while(true) {
     var i = _i;
-    if (i < 0 || s.charCodeAt(i) === c) {
+    if (i < 0 or s.charCodeAt(i) == c) {
       return i;
     } else {
       _i = i - 1 | 0;
@@ -440,7 +440,7 @@ function rindex_rec_opt(s, _i, c) {
     var i = _i;
     if (i < 0) {
       return ;
-    } else if (s.charCodeAt(i) === c) {
+    } else if (s.charCodeAt(i) == c) {
       return i;
     } else {
       _i = i - 1 | 0;
@@ -462,7 +462,7 @@ function is_valid_module_file(s) {
   if (len > 0) {
     var match = s.charCodeAt(0);
     if (match >= 91) {
-      if (match > 122 || match < 97) {
+      if (match > 122 or match < 97) {
         return false;
       }
       
@@ -472,15 +472,15 @@ function is_valid_module_file(s) {
     return unsafe_for_all_range(s, 1, len - 1 | 0, (function (x) {
                   if (x >= 65) {
                     var switcher = x - 91 | 0;
-                    if (switcher > 5 || switcher < 0) {
+                    if (switcher > 5 or switcher < 0) {
                       return switcher < 32;
                     } else {
-                      return switcher === 4;
+                      return switcher == 4;
                     }
                   } else if (x >= 48) {
                     return x < 58;
                   } else {
-                    return x === 39;
+                    return x == 39;
                   }
                 }));
   } else {
@@ -490,14 +490,14 @@ function is_valid_module_file(s) {
 
 function is_valid_npm_package_name(s) {
   var len = s.length;
-  if (len <= 214 && len > 0) {
+  if (len <= 214 and len > 0) {
     var match = s.charCodeAt(0);
     if (match >= 97) {
       if (match >= 123) {
         return false;
       }
       
-    } else if (match !== 64) {
+    } else if (match ~= 64) {
       return false;
     }
     return unsafe_for_all_range(s, 1, len - 1 | 0, (function (x) {
@@ -505,9 +505,9 @@ function is_valid_npm_package_name(s) {
                     if (x >= 97) {
                       return x < 123;
                     } else {
-                      return x === 95;
+                      return x == 95;
                     }
-                  } else if (x !== 45) {
+                  } else if (x ~= 45) {
                     return x >= 48;
                   } else {
                     return true;
@@ -519,27 +519,27 @@ function is_valid_npm_package_name(s) {
 }
 
 function is_valid_source_name(name) {
-  var match = check_any_suffix_case_then_chop(name, /* :: */[
+  var match = check_any_suffix_case_then_chop(name, --[ :: ]--[
         ".ml",
-        /* :: */[
+        --[ :: ]--[
           ".re",
-          /* :: */[
+          --[ :: ]--[
             ".mli",
-            /* :: */[
+            --[ :: ]--[
               ".rei",
-              /* [] */0
+              --[ [] ]--0
             ]
           ]
         ]
       ]);
-  if (match !== undefined) {
+  if (match ~= undefined) {
     if (is_valid_module_file(match)) {
-      return /* Good */0;
+      return --[ Good ]--0;
     } else {
-      return /* Invalid_module_name */1;
+      return --[ Invalid_module_name ]--1;
     }
   } else {
-    return /* Suffix_mismatch */2;
+    return --[ Suffix_mismatch ]--2;
   }
 }
 
@@ -548,7 +548,7 @@ function unsafe_no_char(x, ch, _i, last_idx) {
     var i = _i;
     if (i > last_idx) {
       return true;
-    } else if (x.charCodeAt(i) !== ch) {
+    } else if (x.charCodeAt(i) ~= ch) {
       _i = i + 1 | 0;
       continue ;
     } else {
@@ -562,7 +562,7 @@ function unsafe_no_char_idx(x, ch, _i, last_idx) {
     var i = _i;
     if (i > last_idx) {
       return -1;
-    } else if (x.charCodeAt(i) !== ch) {
+    } else if (x.charCodeAt(i) ~= ch) {
       _i = i + 1 | 0;
       continue ;
     } else {
@@ -573,7 +573,7 @@ function unsafe_no_char_idx(x, ch, _i, last_idx) {
 
 function no_char(x, ch, i, len) {
   var str_len = x.length;
-  if (i < 0 || i >= str_len || len >= str_len) {
+  if (i < 0 or i >= str_len or len >= str_len) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_string_test.no_char"
@@ -583,23 +583,23 @@ function no_char(x, ch, i, len) {
 }
 
 function no_slash(x) {
-  return unsafe_no_char(x, /* "/" */47, 0, x.length - 1 | 0);
+  return unsafe_no_char(x, --[ "/" ]--47, 0, x.length - 1 | 0);
 }
 
 function no_slash_idx(x) {
-  return unsafe_no_char_idx(x, /* "/" */47, 0, x.length - 1 | 0);
+  return unsafe_no_char_idx(x, --[ "/" ]--47, 0, x.length - 1 | 0);
 }
 
 function replace_slash_backward(x) {
   var len = x.length;
-  if (unsafe_no_char(x, /* "/" */47, 0, len - 1 | 0)) {
+  if (unsafe_no_char(x, --[ "/" ]--47, 0, len - 1 | 0)) {
     return x;
   } else {
     return $$String.map((function (x) {
-                  if (x !== 47) {
+                  if (x ~= 47) {
                     return x;
                   } else {
-                    return /* "\\" */92;
+                    return --[ "\\" ]--92;
                   }
                 }), x);
   }
@@ -607,14 +607,14 @@ function replace_slash_backward(x) {
 
 function replace_backward_slash(x) {
   var len = x.length;
-  if (unsafe_no_char(x, /* "\\" */92, 0, len - 1 | 0)) {
+  if (unsafe_no_char(x, --[ "\\" ]--92, 0, len - 1 | 0)) {
     return x;
   } else {
     return $$String.map((function (x) {
-                  if (x !== 92) {
+                  if (x ~= 92) {
                     return x;
                   } else {
-                    return /* "/" */47;
+                    return --[ "/" ]--47;
                   }
                 }), x);
   }
@@ -626,8 +626,8 @@ var single_space = " ";
 
 function concat_array(sep, s) {
   var s_len = s.length;
-  if (s_len !== 0) {
-    if (s_len !== 1) {
+  if (s_len ~= 0) {
+    if (s_len ~= 1) {
       var sep_len = sep.length;
       var len = 0;
       for(var i = 0 ,i_finish = s_len - 1 | 0; i <= i_finish; ++i){
@@ -779,4 +779,4 @@ exports.inter3 = inter3;
 exports.inter4 = inter4;
 exports.parent_dir_lit = parent_dir_lit;
 exports.current_dir_lit = current_dir_lit;
-/* Ext_bytes_test Not a pure module */
+--[ Ext_bytes_test Not a pure module ]--

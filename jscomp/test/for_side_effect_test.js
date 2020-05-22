@@ -7,7 +7,7 @@ function tst(param) {
   for(var i = (console.log("hi"), 0) ,i_finish = (console.log("hello"), 3); i <= i_finish; ++i){
     
   }
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function test2(param) {
@@ -20,19 +20,19 @@ function test2(param) {
   return v;
 }
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "for_order",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 10,
-                test2(/* () */0)
+                test2(--[ () ]--0)
               ]);
     })
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
-  /* [] */0
+  --[ [] ]--0
 ];
 
 Mt.from_pair_suites("For_side_effect_test", suites);
@@ -40,4 +40,4 @@ Mt.from_pair_suites("For_side_effect_test", suites);
 exports.tst = tst;
 exports.test2 = test2;
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

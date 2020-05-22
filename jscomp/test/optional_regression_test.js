@@ -4,7 +4,7 @@ var Mt = require("./mt.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -18,13 +18,13 @@ function eq(loc, x, y) {
 function make(s, b, i) {
   return (function (param) {
       var tmp = { };
-      if (s !== undefined) {
+      if (s ~= undefined) {
         tmp.s = Caml_option.valFromOption(s);
       }
-      if (b !== undefined) {
+      if (b ~= undefined) {
         tmp.b = Caml_option.valFromOption(b);
       }
-      if (i !== undefined) {
+      if (i ~= undefined) {
         tmp.i = Caml_option.valFromOption(i);
       }
       return tmp;
@@ -52,4 +52,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.make = make;
 exports.hh = hh;
-/*  Not a pure module */
+--[  Not a pure module ]--

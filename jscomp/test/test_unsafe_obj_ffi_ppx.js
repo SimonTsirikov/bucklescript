@@ -8,7 +8,7 @@ function f(x) {
 function h(x) {
   x.height = 3;
   x.width = 3;
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function chain(x) {
@@ -24,4 +24,4 @@ exports.f = f;
 exports.h = h;
 exports.chain = chain;
 exports.g = g;
-/* No side effect */
+--[ No side effect ]--

@@ -16,9 +16,9 @@ var hh = max2(1, 2);
 function f(x) {
   des(x, (function () {
           console.log("hei");
-          return /* () */0;
+          return --[ () ]--0;
         }));
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 exports.u = u;
@@ -26,4 +26,4 @@ exports.h = h;
 exports.max2 = max2;
 exports.hh = hh;
 exports.f = f;
-/* h Not a pure module */
+--[ h Not a pure module ]--

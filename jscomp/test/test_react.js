@@ -31,14 +31,14 @@ function f(param) {
   C$1.y();
   C.x();
   C.y();
-  return /* () */0;
+  return --[ () ]--0;
 }
 
-var v = /* () */0;
+var v = --[ () ]--0;
 
 var u = 33;
 
 exports.v = v;
 exports.u = u;
 exports.f = f;
-/*  Not a pure module */
+--[  Not a pure module ]--

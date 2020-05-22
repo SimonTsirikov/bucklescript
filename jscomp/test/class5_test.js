@@ -21,7 +21,7 @@ var shared$2 = [
 ];
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -30,11 +30,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -42,7 +42,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function printable_point_init($$class) {
@@ -64,7 +64,7 @@ function printable_point_init($$class) {
         move,
         (function (self$1, d) {
             self$1[x] = self$1[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           }),
         print,
         (function (self$1) {
@@ -146,7 +146,7 @@ function ref_init($$class) {
         set,
         (function (self$3, y) {
             self$3[x] = y;
-            return /* () */0;
+            return --[ () ]--0;
           })
       ]);
   return (function (env, self, x_init$1) {
@@ -178,7 +178,7 @@ function intlist_init($$class) {
   CamlinternalOO.set_methods($$class, [
         empty,
         (function (self$4) {
-            return self$4[l] === /* [] */0;
+            return self$4[l] == --[ [] ]--0;
           }),
         fold,
         (function (self$4, f, accu) {
@@ -194,13 +194,13 @@ function intlist_init($$class) {
 
 var intlist = CamlinternalOO.make_class(shared, intlist_init);
 
-var l = Curry._2(intlist[0], 0, /* :: */[
+var l = Curry._2(intlist[0], 0, --[ :: ]--[
       1,
-      /* :: */[
+      --[ :: ]--[
         2,
-        /* :: */[
+        --[ :: ]--[
           3,
-          /* [] */0
+          --[ [] ]--0
         ]
       ]
     ]);
@@ -217,7 +217,7 @@ function intlist2_init($$class) {
   CamlinternalOO.set_methods($$class, [
         empty,
         (function (self$5) {
-            return self$5[l] === /* [] */0;
+            return self$5[l] == --[ [] ]--0;
           }),
         fold,
         (function (self$5, f, accu) {
@@ -233,21 +233,21 @@ function intlist2_init($$class) {
 
 var intlist2 = CamlinternalOO.make_class(shared, intlist2_init);
 
-var l$1 = Curry._2(intlist2[0], 0, /* :: */[
+var l$1 = Curry._2(intlist2[0], 0, --[ :: ]--[
       1,
-      /* :: */[
+      --[ :: ]--[
         2,
-        /* :: */[
+        --[ :: ]--[
           3,
-          /* [] */0
+          --[ [] ]--0
         ]
       ]
     ]);
 
-eq("File \"class5_test.ml\", line 67, characters 5-12", /* tuple */[
+eq("File \"class5_test.ml\", line 67, characters 5-12", --[ tuple ]--[
       6,
       "1 2 3 "
-    ], /* tuple */[
+    ], --[ tuple ]--[
       Caml_oo_curry.js3(-1010803711, 5, l$1, (function (x, y) {
               return x + y | 0;
             }), 0),
@@ -270,7 +270,7 @@ function point_init($$class) {
         move,
         (function (self$6, d) {
             self$6[x] = self$6[x] + d | 0;
-            return /* () */0;
+            return --[ () ]--0;
           })
       ]);
   return (function (env, self, x_init$1) {
@@ -315,10 +315,10 @@ var a = Caml_oo_curry.js2(-335965387, 8, p$1, Curry._2(point[0], 0, 8));
 
 var b = Caml_oo_curry.js2(-335965387, 9, p$1, Curry._3(printable_colored_point[0], 0, 1, "blue"));
 
-eq("File \"class5_test.ml\", line 94, characters 5-12", /* tuple */[
+eq("File \"class5_test.ml\", line 94, characters 5-12", --[ tuple ]--[
       5,
       2
-    ], /* tuple */[
+    ], --[ tuple ]--[
       a,
       b
     ]);
@@ -340,4 +340,4 @@ exports.point = point;
 exports.distance_point = distance_point;
 exports.a = a;
 exports.b = b;
-/* printable_point Not a pure module */
+--[ printable_point Not a pure module ]--

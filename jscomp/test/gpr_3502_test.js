@@ -24,4 +24,4 @@ exports.Language = Language;
 exports.language = language;
 exports.shortName = shortName;
 exports.name = name$1;
-/* No side effect */
+--[ No side effect ]--

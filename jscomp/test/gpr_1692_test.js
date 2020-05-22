@@ -7,4 +7,4 @@
           });
       })("")("");
 
-/*  Not a pure module */
+--[  Not a pure module ]--

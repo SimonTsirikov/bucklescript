@@ -12,7 +12,7 @@ function height(param) {
 function create(l, v, r) {
   var hl = height(l);
   var hr = height(r);
-  return /* Node */[
+  return --[ Node ]--[
           l,
           v,
           r,
@@ -33,10 +33,10 @@ function bal(l, v, r) {
       } else if (lr) {
         return create(create(ll, lv, lr[0]), lr[1], create(lr[2], v, r));
       } else {
-        return /* Empty */0;
+        return --[ Empty ]--0;
       }
     } else {
-      return /* Empty */0;
+      return --[ Empty ]--0;
     }
   } else if (hr > (hl + 2 | 0)) {
     if (r) {
@@ -48,13 +48,13 @@ function bal(l, v, r) {
       } else if (rl) {
         return create(create(l, v, rl[0]), rl[1], create(rl[2], rv, rr));
       } else {
-        return /* Empty */0;
+        return --[ Empty ]--0;
       }
     } else {
-      return /* Empty */0;
+      return --[ Empty ]--0;
     }
   } else {
-    return /* Node */[
+    return --[ Node ]--[
             l,
             v,
             r,
@@ -66,7 +66,7 @@ function bal(l, v, r) {
 function compare_int(x, y) {
   if (x > y) {
     return 1;
-  } else if (x === y) {
+  } else if (x == y) {
     return 0;
   } else {
     return -1;
@@ -79,7 +79,7 @@ function add(x, t) {
     var v = t[1];
     var l = t[0];
     var c = compare_int(x, v);
-    if (c === 0) {
+    if (c == 0) {
       return t;
     } else if (c < 0) {
       return bal(add(x, l), v, r);
@@ -87,10 +87,10 @@ function add(x, t) {
       return bal(l, v, add(x, r));
     }
   } else {
-    return /* Node */[
-            /* Empty */0,
+    return --[ Node ]--[
+            --[ Empty ]--0,
             x,
-            /* Empty */0,
+            --[ Empty ]--0,
             1
           ];
   }
@@ -142,7 +142,7 @@ function remove(x, tree) {
     var v = tree[1];
     var l = tree[0];
     var c = compare_int(x, v);
-    if (c === 0) {
+    if (c == 0) {
       return internal_merge(l, r);
     } else if (c < 0) {
       return bal(remove(x, l), v, r);
@@ -150,7 +150,7 @@ function remove(x, tree) {
       return bal(l, v, remove(x, r));
     }
   } else {
-    return /* Empty */0;
+    return --[ Empty ]--0;
   }
 }
 
@@ -159,7 +159,7 @@ function mem(x, _param) {
     var param = _param;
     if (param) {
       var c = compare_int(x, param[1]);
-      if (c === 0) {
+      if (c == 0) {
         return true;
       } else {
         _param = c < 0 ? param[0] : param[2];
@@ -171,7 +171,7 @@ function mem(x, _param) {
   };
 }
 
-var v = /* Empty */0;
+var v = --[ Empty ]--0;
 
 for(var i = 0; i <= 100000; ++i){
   v = add(i, v);
@@ -204,4 +204,4 @@ exports.remove_min_elt = remove_min_elt;
 exports.internal_merge = internal_merge;
 exports.remove = remove;
 exports.mem = mem;
-/*  Not a pure module */
+--[  Not a pure module ]--

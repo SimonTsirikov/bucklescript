@@ -3,197 +3,197 @@
 var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "toExponential",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 "1.23456e+5",
                 (123456).toExponential()
               ]);
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "toExponentialWithPrecision - digits:2",
     (function (param) {
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   "1.23e+5",
                   (123456).toExponential(2)
                 ]);
       })
   ],
-  /* :: */[
-    /* tuple */[
+  --[ :: ]--[
+    --[ tuple ]--[
       "toExponentialWithPrecision - digits:4",
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     "1.2346e+5",
                     (123456).toExponential(4)
                   ]);
         })
     ],
-    /* :: */[
-      /* tuple */[
+    --[ :: ]--[
+      --[ tuple ]--[
         "toExponentialWithPrecision - digits:20",
         (function (param) {
-            return /* Eq */Block.__(0, [
+            return --[ Eq ]--Block.__(0, [
                       "0.00000000000000000000e+0",
                       (0).toExponential(20)
                     ]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "File \"js_int_test.ml\", line 12, characters 3-10",
           (function (param) {
-              return /* ThrowAny */Block.__(7, [(function (param) {
+              return --[ ThrowAny ]--Block.__(7, [(function (param) {
                             (0).toExponential(101);
-                            return /* () */0;
+                            return --[ () ]--0;
                           })]);
             })
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "toExponentialWithPrecision - digits:-1",
             (function (param) {
-                return /* ThrowAny */Block.__(7, [(function (param) {
+                return --[ ThrowAny ]--Block.__(7, [(function (param) {
                               (0).toExponential(-1);
-                              return /* () */0;
+                              return --[ () ]--0;
                             })]);
               })
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "toPrecision",
               (function (param) {
-                  return /* Eq */Block.__(0, [
+                  return --[ Eq ]--Block.__(0, [
                             "123456",
                             (123456).toPrecision()
                           ]);
                 })
             ],
-            /* :: */[
-              /* tuple */[
+            --[ :: ]--[
+              --[ tuple ]--[
                 "toPrecisionWithPrecision - digits:2",
                 (function (param) {
-                    return /* Eq */Block.__(0, [
+                    return --[ Eq ]--Block.__(0, [
                               "1.2e+5",
                               (123456).toPrecision(2)
                             ]);
                   })
               ],
-              /* :: */[
-                /* tuple */[
+              --[ :: ]--[
+                --[ tuple ]--[
                   "toPrecisionWithPrecision - digits:4",
                   (function (param) {
-                      return /* Eq */Block.__(0, [
+                      return --[ Eq ]--Block.__(0, [
                                 "1.235e+5",
                                 (123456).toPrecision(4)
                               ]);
                     })
                 ],
-                /* :: */[
-                  /* tuple */[
+                --[ :: ]--[
+                  --[ tuple ]--[
                     "toPrecisionWithPrecision - digits:20",
                     (function (param) {
-                        return /* Eq */Block.__(0, [
+                        return --[ Eq ]--Block.__(0, [
                                   "0.0000000000000000000",
                                   (0).toPrecision(20)
                                 ]);
                       })
                   ],
-                  /* :: */[
-                    /* tuple */[
+                  --[ :: ]--[
+                    --[ tuple ]--[
                       "File \"js_int_test.ml\", line 25, characters 3-10",
                       (function (param) {
-                          return /* ThrowAny */Block.__(7, [(function (param) {
+                          return --[ ThrowAny ]--Block.__(7, [(function (param) {
                                         (0).toPrecision(101);
-                                        return /* () */0;
+                                        return --[ () ]--0;
                                       })]);
                         })
                     ],
-                    /* :: */[
-                      /* tuple */[
+                    --[ :: ]--[
+                      --[ tuple ]--[
                         "toPrecisionWithPrecision - digits:-1",
                         (function (param) {
-                            return /* ThrowAny */Block.__(7, [(function (param) {
+                            return --[ ThrowAny ]--Block.__(7, [(function (param) {
                                           (0).toPrecision(-1);
-                                          return /* () */0;
+                                          return --[ () ]--0;
                                         })]);
                           })
                       ],
-                      /* :: */[
-                        /* tuple */[
+                      --[ :: ]--[
+                        --[ tuple ]--[
                           "toString",
                           (function (param) {
-                              return /* Eq */Block.__(0, [
+                              return --[ Eq ]--Block.__(0, [
                                         "123",
                                         (123).toString()
                                       ]);
                             })
                         ],
-                        /* :: */[
-                          /* tuple */[
+                        --[ :: ]--[
+                          --[ tuple ]--[
                             "toStringWithRadix - radix:2",
                             (function (param) {
-                                return /* Eq */Block.__(0, [
+                                return --[ Eq ]--Block.__(0, [
                                           "11110001001000000",
                                           (123456).toString(2)
                                         ]);
                               })
                           ],
-                          /* :: */[
-                            /* tuple */[
+                          --[ :: ]--[
+                            --[ tuple ]--[
                               "toStringWithRadix - radix:16",
                               (function (param) {
-                                  return /* Eq */Block.__(0, [
+                                  return --[ Eq ]--Block.__(0, [
                                             "1e240",
                                             (123456).toString(16)
                                           ]);
                                 })
                             ],
-                            /* :: */[
-                              /* tuple */[
+                            --[ :: ]--[
+                              --[ tuple ]--[
                                 "toStringWithRadix - radix:36",
                                 (function (param) {
-                                    return /* Eq */Block.__(0, [
+                                    return --[ Eq ]--Block.__(0, [
                                               "2n9c",
                                               (123456).toString(36)
                                             ]);
                                   })
                               ],
-                              /* :: */[
-                                /* tuple */[
+                              --[ :: ]--[
+                                --[ tuple ]--[
                                   "toStringWithRadix - radix:37",
                                   (function (param) {
-                                      return /* ThrowAny */Block.__(7, [(function (param) {
+                                      return --[ ThrowAny ]--Block.__(7, [(function (param) {
                                                     (0).toString(37);
-                                                    return /* () */0;
+                                                    return --[ () ]--0;
                                                   })]);
                                     })
                                 ],
-                                /* :: */[
-                                  /* tuple */[
+                                --[ :: ]--[
+                                  --[ tuple ]--[
                                     "toStringWithRadix - radix:1",
                                     (function (param) {
-                                        return /* ThrowAny */Block.__(7, [(function (param) {
+                                        return --[ ThrowAny ]--Block.__(7, [(function (param) {
                                                       (0).toString(1);
-                                                      return /* () */0;
+                                                      return --[ () ]--0;
                                                     })]);
                                       })
                                   ],
-                                  /* :: */[
-                                    /* tuple */[
+                                  --[ :: ]--[
+                                    --[ tuple ]--[
                                       "toStringWithRadix - radix:-1",
                                       (function (param) {
-                                          return /* ThrowAny */Block.__(7, [(function (param) {
+                                          return --[ ThrowAny ]--Block.__(7, [(function (param) {
                                                         (0).toString(-1);
-                                                        return /* () */0;
+                                                        return --[ () ]--0;
                                                       })]);
                                         })
                                     ],
-                                    /* [] */0
+                                    --[ [] ]--0
                                   ]
                                 ]
                               ]
@@ -213,7 +213,7 @@ var suites_001 = /* :: */[
   ]
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -221,4 +221,4 @@ var suites = /* :: */[
 Mt.from_pair_suites("Js_int_test", suites);
 
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

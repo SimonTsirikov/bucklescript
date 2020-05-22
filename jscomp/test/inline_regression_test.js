@@ -8,7 +8,7 @@ var Filename = require("../../lib/js/filename.js");
 var Caml_string = require("../../lib/js/caml_string.js");
 
 function generic_basename(is_dir_sep, current_dir_name, name) {
-  if (name === "") {
+  if (name == "") {
     return current_dir_name;
   } else {
     var _n = name.length - 1 | 0;
@@ -40,23 +40,23 @@ function generic_basename(is_dir_sep, current_dir_name, name) {
 
 function basename(param) {
   return generic_basename((function (s, i) {
-                return Caml_string.get(s, i) === /* "/" */47;
+                return Caml_string.get(s, i) == --[ "/" ]--47;
               }), Filename.current_dir_name, param);
 }
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "basename",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 basename("b/c/a.b"),
                 "a.b"
               ]);
     })
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
-  /* [] */0
+  --[ [] ]--0
 ];
 
 Mt.from_pair_suites("Inline_regression_test", suites);
@@ -64,4 +64,4 @@ Mt.from_pair_suites("Inline_regression_test", suites);
 exports.generic_basename = generic_basename;
 exports.basename = basename;
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

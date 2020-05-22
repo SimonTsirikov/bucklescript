@@ -18,4 +18,4 @@ exports.N = N;
 exports.N1 = N1;
 exports.h = h;
 exports.hh = hh;
-/* No side effect */
+--[ No side effect ]--

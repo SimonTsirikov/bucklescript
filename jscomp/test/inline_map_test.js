@@ -17,7 +17,7 @@ function height(param) {
 function create(l, x, d, r) {
   var hl = height(l);
   var hr = height(r);
-  return /* Node */[
+  return --[ Node ]--[
           l,
           x,
           d,
@@ -74,7 +74,7 @@ function bal(l, x, d, r) {
           ];
     }
   } else {
-    return /* Node */[
+    return --[ Node ]--[
             l,
             x,
             d,
@@ -91,8 +91,8 @@ function add(x, data, param) {
     var v = param[1];
     var l = param[0];
     var c = Caml_primitive.caml_int_compare(x, v);
-    if (c === 0) {
-      return /* Node */[
+    if (c == 0) {
+      return --[ Node ]--[
               l,
               x,
               data,
@@ -105,11 +105,11 @@ function add(x, data, param) {
       return bal(l, v, d, add(x, data, r));
     }
   } else {
-    return /* Node */[
-            /* Empty */0,
+    return --[ Node ]--[
+            --[ Empty ]--0,
             x,
             data,
-            /* Empty */0,
+            --[ Empty ]--0,
             1
           ];
   }
@@ -120,7 +120,7 @@ function find(x, _param) {
     var param = _param;
     if (param) {
       var c = Caml_primitive.caml_int_compare(x, param[1]);
-      if (c === 0) {
+      if (c == 0) {
         return param[2];
       } else {
         _param = c < 0 ? param[0] : param[3];
@@ -134,43 +134,43 @@ function find(x, _param) {
 
 var m = List.fold_left((function (acc, param) {
         return add(param[0], param[1], acc);
-      }), /* Empty */0, /* :: */[
-      /* tuple */[
+      }), --[ Empty ]--0, --[ :: ]--[
+      --[ tuple ]--[
         10,
-        /* "a" */97
+        --[ "a" ]--97
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           3,
-          /* "b" */98
+          --[ "b" ]--98
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             7,
-            /* "c" */99
+            --[ "c" ]--99
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               20,
-              /* "d" */100
+              --[ "d" ]--100
             ],
-            /* [] */0
+            --[ [] ]--0
           ]
         ]
       ]
     ]);
 
-Mt.from_pair_suites("Inline_map_test", /* :: */[
-      /* tuple */[
+Mt.from_pair_suites("Inline_map_test", --[ :: ]--[
+      --[ tuple ]--[
         "find",
         (function (param) {
-            return /* Eq */Block.__(0, [
+            return --[ Eq ]--Block.__(0, [
                       find(10, m),
-                      /* "a" */97
+                      --[ "a" ]--97
                     ]);
           })
       ],
-      /* [] */0
+      --[ [] ]--0
     ]);
 
-/* m Not a pure module */
+--[ m Not a pure module ]--

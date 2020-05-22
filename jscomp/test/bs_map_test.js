@@ -7,7 +7,7 @@ var Belt_MapInt = require("../../lib/js/belt_MapInt.js");
 var Belt_SetInt = require("../../lib/js/belt_SetInt.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -16,11 +16,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -28,21 +28,21 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function b(loc, v) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Ok */Block.__(4, [v]);
+          return --[ Ok ]--Block.__(4, [v]);
         })
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var mapOfArray = Belt_MapInt.fromArray;
@@ -54,7 +54,7 @@ function emptyMap(param) {
 }
 
 var v = Belt_Array.makeByAndShuffle(1000000, (function (i) {
-        return /* tuple */[
+        return --[ tuple ]--[
                 i,
                 i
               ];
@@ -76,11 +76,11 @@ Belt_MapInt.checkInvariantInternal(xx);
 
 Mt.from_pair_suites("Bs_map_test", suites.contents);
 
-var M = /* alias */0;
+var M = --[ alias ]--0;
 
-var N = /* alias */0;
+var N = --[ alias ]--0;
 
-var A = /* alias */0;
+var A = --[ alias ]--0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -92,4 +92,4 @@ exports.A = A;
 exports.mapOfArray = mapOfArray;
 exports.setOfArray = setOfArray;
 exports.emptyMap = emptyMap;
-/* v Not a pure module */
+--[ v Not a pure module ]--

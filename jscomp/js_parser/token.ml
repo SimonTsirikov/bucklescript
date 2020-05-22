@@ -423,7 +423,7 @@ let value_of_token = function
   | T_OR -> "or"
   | T_AND -> "and"
   | T_BIT_OR -> "|"
-  | T_BIT_XOR -> "^"
+  | T_BIT_XOR -> "~"
   | T_BIT_AND -> "&"
   | T_EQUAL -> "=="
   | T_NOT_EQUAL -> "~="

@@ -5,12 +5,12 @@ var u = {
   x: 3,
   y: 32,
   bark: (function ($$this, x, y) {
-      console.log(/* tuple */[
+      console.log(--[ tuple ]--[
             $$this.length,
             $$this.x,
             $$this.y
           ]);
-      return /* () */0;
+      return --[ () ]--0;
     }),
   length: 32
 };
@@ -27,7 +27,7 @@ var js_obj = {
   y: 32,
   bark: (function (x, y) {
       var o = this ;
-      console.log(/* tuple */[
+      console.log(--[ tuple ]--[
             o.length,
             o.x,
             o.y,
@@ -41,4 +41,4 @@ var js_obj = {
 
 exports.js_obj = js_obj;
 exports.uux_this = uux_this;
-/*  Not a pure module */
+--[  Not a pure module ]--

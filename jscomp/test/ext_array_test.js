@@ -8,15 +8,15 @@ var Caml_option = require("../../lib/js/caml_option.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function reverse_range(a, i, len) {
-  if (len === 0) {
-    return /* () */0;
+  if (len == 0) {
+    return --[ () ]--0;
   } else {
     for(var k = 0 ,k_finish = (len - 1 | 0) / 2 | 0; k <= k_finish; ++k){
       var t = a[i + k | 0];
       a[i + k | 0] = a[((i + len | 0) - 1 | 0) - k | 0];
       a[((i + len | 0) - 1 | 0) - k | 0] = t;
     }
-    return /* () */0;
+    return --[ () ]--0;
   }
 }
 
@@ -26,7 +26,7 @@ function reverse_in_place(a) {
 
 function reverse(a) {
   var b_len = a.length;
-  if (b_len === 0) {
+  if (b_len == 0) {
     return [];
   } else {
     var b = $$Array.copy(a);
@@ -62,18 +62,18 @@ function reverse_of_list(l) {
 
 function filter(f, a) {
   var arr_len = a.length;
-  var _acc = /* [] */0;
+  var _acc = --[ [] ]--0;
   var _i = 0;
   while(true) {
     var i = _i;
     var acc = _acc;
-    if (i === arr_len) {
+    if (i == arr_len) {
       return reverse_of_list(acc);
     } else {
       var v = a[i];
       if (Curry._1(f, v)) {
         _i = i + 1 | 0;
-        _acc = /* :: */[
+        _acc = --[ :: ]--[
           v,
           acc
         ];
@@ -88,19 +88,19 @@ function filter(f, a) {
 
 function filter_map(f, a) {
   var arr_len = a.length;
-  var _acc = /* [] */0;
+  var _acc = --[ [] ]--0;
   var _i = 0;
   while(true) {
     var i = _i;
     var acc = _acc;
-    if (i === arr_len) {
+    if (i == arr_len) {
       return reverse_of_list(acc);
     } else {
       var v = a[i];
       var match = Curry._1(f, v);
       _i = i + 1 | 0;
-      if (match !== undefined) {
-        _acc = /* :: */[
+      if (match ~= undefined) {
+        _acc = --[ :: ]--[
           Caml_option.valFromOption(match),
           acc
         ];
@@ -126,7 +126,7 @@ function range(from, to_) {
 
 function map2i(f, a, b) {
   var len = a.length;
-  if (len !== b.length) {
+  if (len ~= b.length) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_array_test.map2i"
@@ -146,7 +146,7 @@ function tolist_aux(a, f, _i, _res) {
     } else {
       var v = a[i];
       var match = Curry._1(f, v);
-      _res = match !== undefined ? /* :: */[
+      _res = match ~= undefined ? --[ :: ]--[
           Caml_option.valFromOption(match),
           res
         ] : res;
@@ -157,7 +157,7 @@ function tolist_aux(a, f, _i, _res) {
 }
 
 function to_list_map(f, a) {
-  return tolist_aux(a, f, a.length - 1 | 0, /* [] */0);
+  return tolist_aux(a, f, a.length - 1 | 0, --[ [] ]--0);
 }
 
 function to_list_map_acc(f, a, acc) {
@@ -194,7 +194,7 @@ function rfind_with_index(arr, cmp, v) {
   var _i = len - 1 | 0;
   while(true) {
     var i = _i;
-    if (i < 0 || Curry._2(cmp, arr[i], v)) {
+    if (i < 0 or Curry._2(cmp, arr[i], v)) {
       return i;
     } else {
       _i = i - 1 | 0;
@@ -206,11 +206,11 @@ function rfind_with_index(arr, cmp, v) {
 function rfind_and_split(arr, cmp, v) {
   var i = rfind_with_index(arr, cmp, v);
   if (i < 0) {
-    return /* No_split */-226265796;
+    return --[ No_split ]---226265796;
   } else {
-    return /* `Split */[
+    return --[ `Split ]--[
             345791162,
-            /* tuple */[
+            --[ tuple ]--[
               $$Array.sub(arr, 0, i),
               $$Array.sub(arr, i + 1 | 0, (arr.length - i | 0) - 1 | 0)
             ]
@@ -238,11 +238,11 @@ function find_with_index(arr, cmp, v) {
 function find_and_split(arr, cmp, v) {
   var i = find_with_index(arr, cmp, v);
   if (i < 0) {
-    return /* No_split */-226265796;
+    return --[ No_split ]---226265796;
   } else {
-    return /* `Split */[
+    return --[ `Split ]--[
             345791162,
-            /* tuple */[
+            --[ tuple ]--[
               $$Array.sub(arr, 0, i),
               $$Array.sub(arr, i + 1 | 0, (arr.length - i | 0) - 1 | 0)
             ]
@@ -255,7 +255,7 @@ function exists(p, a) {
   var _i = 0;
   while(true) {
     var i = _i;
-    if (i === n) {
+    if (i == n) {
       return false;
     } else if (Curry._1(p, a[i])) {
       return true;
@@ -267,7 +267,7 @@ function exists(p, a) {
 }
 
 function is_empty(arr) {
-  return arr.length === 0;
+  return arr.length == 0;
 }
 
 function unsafe_loop(_index, len, p, xs, ys) {
@@ -287,7 +287,7 @@ function unsafe_loop(_index, len, p, xs, ys) {
 function for_all2_no_exn(p, xs, ys) {
   var len_xs = xs.length;
   var len_ys = ys.length;
-  if (len_xs === len_ys) {
+  if (len_xs == len_ys) {
     return unsafe_loop(0, len_xs, p, xs, ys);
   } else {
     return false;
@@ -314,4 +314,4 @@ exports.exists = exists;
 exports.is_empty = is_empty;
 exports.unsafe_loop = unsafe_loop;
 exports.for_all2_no_exn = for_all2_no_exn;
-/* No side effect */
+--[ No side effect ]--

@@ -7,7 +7,7 @@ var Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
 var CamlinternalOO = require("../../lib/js/camlinternalOO.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -16,11 +16,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -28,10 +28,10 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
-var class_tables = /* Cons */[
+var class_tables = --[ Cons ]--[
   0,
   0,
   0
@@ -74,21 +74,21 @@ function create(param) {
   return Curry._1(class_tables[0], 0);
 }
 
-var cxt1 = create(/* () */0);
+var cxt1 = create(--[ () ]--0);
 
-var tmp = Caml_oo_curry.js2(4846113, 1, cxt1, /* () */0);
+var tmp = Caml_oo_curry.js2(4846113, 1, cxt1, --[ () ]--0);
 
-var result = Caml_oo_curry.js2(5144726, 2, tmp, /* () */0);
+var result = Caml_oo_curry.js2(5144726, 2, tmp, --[ () ]--0);
 
 eq("File \"gpr_2250_test.ml\", line 26, characters 5-12", result, 1);
 
-var cxt2 = create(/* () */0);
+var cxt2 = create(--[ () ]--0);
 
-var tmp$1 = Caml_oo_curry.js2(4846113, 3, cxt2, /* () */0);
+var tmp$1 = Caml_oo_curry.js2(4846113, 3, cxt2, --[ () ]--0);
 
-var tmp$2 = Caml_oo_curry.js2(4846113, 4, tmp$1, /* () */0);
+var tmp$2 = Caml_oo_curry.js2(4846113, 4, tmp$1, --[ () ]--0);
 
-var result2 = Caml_oo_curry.js2(5144726, 5, tmp$2, /* () */0);
+var result2 = Caml_oo_curry.js2(5144726, 5, tmp$2, --[ () ]--0);
 
 eq("File \"gpr_2250_test.ml\", line 37, characters 5-12", result2, 2);
 
@@ -102,4 +102,4 @@ exports.cxt1 = cxt1;
 exports.result = result;
 exports.cxt2 = cxt2;
 exports.result2 = result2;
-/* cxt1 Not a pure module */
+--[ cxt1 Not a pure module ]--

@@ -12,7 +12,7 @@ var Pervasives = require("../../lib/js/pervasives.js");
 var Ext_array_test = require("./ext_array_test.js");
 
 function f(x) {
-  return /* tuple */[
+  return --[ tuple ]--[
           x,
           (x >>> 1),
           (x >>> 2)
@@ -58,7 +58,7 @@ var shift_right_logical_tests_001 = [
   1
 ];
 
-var shift_right_logical_tests = /* tuple */[
+var shift_right_logical_tests = --[ tuple ]--[
   shift_right_logical_tests_000,
   shift_right_logical_tests_001
 ];
@@ -102,7 +102,7 @@ var shift_right_tests_001 = [
   -1
 ];
 
-var shift_right_tests = /* tuple */[
+var shift_right_tests = --[ tuple ]--[
   shift_right_tests_000,
   shift_right_tests_001
 ];
@@ -146,7 +146,7 @@ var shift_left_tests_001 = [
   -2147483648
 ];
 
-var shift_left_tests = /* tuple */[
+var shift_left_tests = --[ tuple ]--[
   shift_left_tests_000,
   shift_left_tests_001
 ];
@@ -154,86 +154,86 @@ var shift_left_tests = /* tuple */[
 var $star$tilde = Caml_int32.imul;
 
 var suites = {
-  contents: Pervasives.$at(/* :: */[
-        /* tuple */[
+  contents: Pervasives.$at(--[ :: ]--[
+        --[ tuple ]--[
           "File \"int32_test.ml\", line 31, characters 2-9",
           (function (param) {
-              return /* Eq */Block.__(0, [
+              return --[ Eq ]--Block.__(0, [
                         1,
                         1
                       ]);
             })
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "File \"int32_test.ml\", line 32, characters 2-9",
             (function (param) {
-                return /* Eq */Block.__(0, [
+                return --[ Eq ]--Block.__(0, [
                           -2147483647,
                           -2147483647
                         ]);
               })
           ],
-          /* [] */0
+          --[ [] ]--0
         ]
       ], Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) {
-                      return /* tuple */[
-                              Curry._1(Format.asprintf(/* Format */[
-                                        /* String_literal */Block.__(11, [
+                      return --[ tuple ]--[
+                              Curry._1(Format.asprintf(--[ Format ]--[
+                                        --[ String_literal ]--Block.__(11, [
                                             "shift_right_logical_cases ",
-                                            /* Int */Block.__(4, [
-                                                /* Int_d */0,
-                                                /* No_padding */0,
-                                                /* No_precision */0,
-                                                /* End_of_format */0
+                                            --[ Int ]--Block.__(4, [
+                                                --[ Int_d ]--0,
+                                                --[ No_padding ]--0,
+                                                --[ No_precision ]--0,
+                                                --[ End_of_format ]--0
                                               ])
                                           ]),
                                         "shift_right_logical_cases %d"
                                       ]), i),
                               (function (param) {
-                                  return /* Eq */Block.__(0, [
+                                  return --[ Eq ]--Block.__(0, [
                                             a,
                                             b
                                           ]);
                                 })
                             ];
                     }), shift_right_logical_tests_000, shift_right_logical_tests_001)), Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) {
-                          return /* tuple */[
-                                  Curry._1(Format.asprintf(/* Format */[
-                                            /* String_literal */Block.__(11, [
+                          return --[ tuple ]--[
+                                  Curry._1(Format.asprintf(--[ Format ]--[
+                                            --[ String_literal ]--Block.__(11, [
                                                 "shift_right_cases ",
-                                                /* Int */Block.__(4, [
-                                                    /* Int_d */0,
-                                                    /* No_padding */0,
-                                                    /* No_precision */0,
-                                                    /* End_of_format */0
+                                                --[ Int ]--Block.__(4, [
+                                                    --[ Int_d ]--0,
+                                                    --[ No_padding ]--0,
+                                                    --[ No_precision ]--0,
+                                                    --[ End_of_format ]--0
                                                   ])
                                               ]),
                                             "shift_right_cases %d"
                                           ]), i),
                                   (function (param) {
-                                      return /* Eq */Block.__(0, [
+                                      return --[ Eq ]--Block.__(0, [
                                                 a,
                                                 b
                                               ]);
                                     })
                                 ];
                         }), shift_right_tests_000, shift_right_tests_001)), $$Array.to_list(Ext_array_test.map2i((function (i, a, b) {
-                          return /* tuple */[
-                                  Curry._1(Format.asprintf(/* Format */[
-                                            /* String_literal */Block.__(11, [
+                          return --[ tuple ]--[
+                                  Curry._1(Format.asprintf(--[ Format ]--[
+                                            --[ String_literal ]--Block.__(11, [
                                                 "shift_left_cases ",
-                                                /* Int */Block.__(4, [
-                                                    /* Int_d */0,
-                                                    /* No_padding */0,
-                                                    /* No_precision */0,
-                                                    /* End_of_format */0
+                                                --[ Int ]--Block.__(4, [
+                                                    --[ Int_d ]--0,
+                                                    --[ No_padding ]--0,
+                                                    --[ No_precision ]--0,
+                                                    --[ End_of_format ]--0
                                                   ])
                                               ]),
                                             "shift_left_cases %d"
                                           ]), i),
                                   (function (param) {
-                                      return /* Eq */Block.__(0, [
+                                      return --[ Eq ]--Block.__(0, [
                                                 a,
                                                 b
                                               ]);
@@ -267,4 +267,4 @@ exports.$star$tilde = $star$tilde;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
-/* shift_right_logical_tests Not a pure module */
+--[ shift_right_logical_tests Not a pure module ]--

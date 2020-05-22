@@ -12,4 +12,4 @@ function test_vv(h) {
 
 exports.test_v = test_v;
 exports.test_vv = test_vv;
-/* No side effect */
+--[ No side effect ]--

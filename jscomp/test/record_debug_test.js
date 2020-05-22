@@ -55,7 +55,7 @@ var N0 = {
 
 console.log(" hei " + (String(v) + " "));
 
-var a = /* tuple */[
+var a = --[ tuple ]--[
   1,
   2,
   2,
@@ -73,28 +73,28 @@ var c = [
 
 console.log(" " + (String(Format.std_formatter) + (" " + (String(a) + (" " + (String(c) + " "))))));
 
-var h = /* :: */[
+var h = --[ :: ]--[
   1,
-  /* :: */[
+  --[ :: ]--[
     2,
-    /* :: */[
+    --[ :: ]--[
       3,
-      /* :: */[
+      --[ :: ]--[
         4,
-        /* [] */0
+        --[ [] ]--0
       ]
     ]
   ]
 ];
 
-var v2 = /* `C */[
+var v2 = --[ `C ]--[
   67,
   2
 ];
 
-var v3 = /* `C */[
+var v3 = --[ `C ]--[
   67,
-  /* tuple */[
+  --[ tuple ]--[
     2,
     3
   ]
@@ -116,4 +116,4 @@ exports.N0 = N0;
 exports.fmt = fmt;
 exports.a = a;
 exports.c = c;
-/*  Not a pure module */
+--[  Not a pure module ]--

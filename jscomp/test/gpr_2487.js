@@ -11,11 +11,11 @@ var b = Belt_Array.eq([
       2,
       3
     ], (function (prim, prim$1) {
-        return prim === prim$1;
+        return prim == prim$1;
       }));
 
-var A = /* alias */0;
+var A = --[ alias ]--0;
 
 exports.A = A;
 exports.b = b;
-/* b Not a pure module */
+--[ b Not a pure module ]--

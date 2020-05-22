@@ -2,11 +2,11 @@
 
 
 var React = {
-  $$null: /* () */0
+  $$null: --[ () ]--0
 };
 
 function make(param, param$1) {
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var Foo = {
@@ -15,4 +15,4 @@ var Foo = {
 
 exports.React = React;
 exports.Foo = Foo;
-/* No side effect */
+--[ No side effect ]--

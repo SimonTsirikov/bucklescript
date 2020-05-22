@@ -6,4 +6,4 @@ function f(obj, x, y) {
 }
 
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

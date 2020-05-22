@@ -7,4 +7,4 @@ function f(prim) {
 }
 
 exports.f = f;
-/* ./external_ppx.gen Not a pure module */
+--[ ./external_ppx.gen Not a pure module ]--

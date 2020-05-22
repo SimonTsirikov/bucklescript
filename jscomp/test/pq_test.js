@@ -9,14 +9,14 @@ function insert(queue, prio, elt) {
     var e = queue[1];
     var p = queue[0];
     if (prio <= p) {
-      return /* Node */[
+      return --[ Node ]--[
               prio,
               elt,
               insert(right, p, e),
               left
             ];
     } else {
-      return /* Node */[
+      return --[ Node ]--[
               p,
               e,
               insert(right, prio, elt),
@@ -24,11 +24,11 @@ function insert(queue, prio, elt) {
             ];
     }
   } else {
-    return /* Node */[
+    return --[ Node ]--[
             prio,
             elt,
-            /* Empty */0,
-            /* Empty */0
+            --[ Empty ]--0,
+            --[ Empty ]--0
           ];
   }
 }
@@ -44,14 +44,14 @@ function remove_top(param) {
         var rprio = right[0];
         var lprio = left[0];
         if (lprio <= rprio) {
-          return /* Node */[
+          return --[ Node ]--[
                   lprio,
                   left[1],
                   remove_top(left),
                   right
                 ];
         } else {
-          return /* Node */[
+          return --[ Node ]--[
                   rprio,
                   right[1],
                   left,
@@ -71,7 +71,7 @@ function remove_top(param) {
 
 function extract(queue) {
   if (queue) {
-    return /* tuple */[
+    return --[ tuple ]--[
             queue[0],
             queue[1],
             remove_top(queue)
@@ -82,7 +82,7 @@ function extract(queue) {
 }
 
 var PrioQueue = {
-  empty: /* Empty */0,
+  empty: --[ Empty ]--0,
   insert: insert,
   Queue_is_empty: Queue_is_empty,
   remove_top: remove_top,
@@ -90,4 +90,4 @@ var PrioQueue = {
 };
 
 exports.PrioQueue = PrioQueue;
-/* No side effect */
+--[ No side effect ]--

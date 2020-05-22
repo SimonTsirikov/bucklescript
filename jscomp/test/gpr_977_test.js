@@ -5,7 +5,7 @@ var Block = require("../../lib/js/block.js");
 var Int32 = require("../../lib/js/int32.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -14,11 +14,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -26,7 +26,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function f(x) {
@@ -70,4 +70,4 @@ exports.int32_f = int32_f;
 exports.nint32_f = nint32_f;
 exports.min_32_int = min_32_int;
 exports.u = u;
-/* u Not a pure module */
+--[ u Not a pure module ]--

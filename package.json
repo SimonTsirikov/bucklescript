@@ -42,5 +42,8 @@
     "url": "https://github.com/bucklescript/bucklescript/issues"
   },
   "homepage": "https://github.com/bucklescript/bucklescript#readme",
-  "dependencies": {}
+  "dependencies": {
+    "minimist": "^1.2.5",
+    "mnist": "^1.1.0"
+  }
 }

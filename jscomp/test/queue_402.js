@@ -16,17 +16,17 @@ function create(param) {
 function clear(q) {
   q.length = 0;
   q.tail = undefined;
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function add(x, q) {
-  if (q.length === 0) {
+  if (q.length == 0) {
     var cell = { };
     cell.content = x;
     cell.next = cell;
     q.length = 1;
     q.tail = cell;
-    return /* () */0;
+    return --[ () ]--0;
   } else {
     var tail = q.tail;
     var head = tail.next;
@@ -37,25 +37,25 @@ function add(x, q) {
     q.length = q.length + 1 | 0;
     tail.next = cell$1;
     q.tail = cell$1;
-    return /* () */0;
+    return --[ () ]--0;
   }
 }
 
 function peek(q) {
-  if (q.length === 0) {
+  if (q.length == 0) {
     throw Empty;
   }
   return q.tail.next.content;
 }
 
 function take(q) {
-  if (q.length === 0) {
+  if (q.length == 0) {
     throw Empty;
   }
   q.length = q.length - 1 | 0;
   var tail = q.tail;
   var head = tail.next;
-  if (head === tail) {
+  if (head == tail) {
     q.tail = undefined;
   } else {
     tail.next = head.next;
@@ -64,7 +64,7 @@ function take(q) {
 }
 
 function copy(q) {
-  if (q.length === 0) {
+  if (q.length == 0) {
     return {
             length: 0,
             tail: undefined
@@ -80,7 +80,7 @@ function copy(q) {
       while(true) {
         var cell = _cell;
         var prev = _prev;
-        if (cell !== tail) {
+        if (cell ~= tail) {
           var res = {
             content: cell.content,
             next: tail$prime
@@ -103,7 +103,7 @@ function copy(q) {
 }
 
 function is_empty(q) {
-  return q.length === 0;
+  return q.length == 0;
 }
 
 function length(q) {
@@ -117,7 +117,7 @@ function iter(f, q) {
     while(true) {
       var cell = _cell;
       Curry._1(f, cell.content);
-      if (cell !== tail) {
+      if (cell ~= tail) {
         _cell = cell.next;
         continue ;
       } else {
@@ -130,7 +130,7 @@ function iter(f, q) {
 }
 
 function fold(f, accu, q) {
-  if (q.length === 0) {
+  if (q.length == 0) {
     return accu;
   } else {
     var tail = q.tail;
@@ -140,7 +140,7 @@ function fold(f, accu, q) {
       var cell = _cell;
       var accu$1 = _accu;
       var accu$2 = Curry._2(f, accu$1, cell.content);
-      if (cell === tail) {
+      if (cell == tail) {
         return accu$2;
       } else {
         _cell = cell.next;
@@ -165,7 +165,7 @@ function transfer(q1, q2) {
     }
     q2.length = q2.length + length1 | 0;
     q2.tail = tail1;
-    return /* () */0;
+    return --[ () ]--0;
   } else {
     return 0;
   }
@@ -192,4 +192,4 @@ exports.length = length;
 exports.iter = iter;
 exports.fold = fold;
 exports.transfer = transfer;
-/* No side effect */
+--[ No side effect ]--

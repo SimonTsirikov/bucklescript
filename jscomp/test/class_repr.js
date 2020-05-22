@@ -52,10 +52,10 @@ var v = Curry._2(x[0], 0, 3);
 
 var u = Oo.copy(v);
 
-if (Caml_oo_curry.js1(291546447, 1, v) !== 3) {
+if (Caml_oo_curry.js1(291546447, 1, v) ~= 3) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "class_repr.ml",
           30,
           9
@@ -63,10 +63,10 @@ if (Caml_oo_curry.js1(291546447, 1, v) !== 3) {
       ];
 }
 
-if (Caml_oo_curry.js1(291546447, 2, u) !== 3) {
+if (Caml_oo_curry.js1(291546447, 2, u) ~= 3) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "class_repr.ml",
           32,
           9
@@ -106,10 +106,10 @@ var v1 = Curry._2(xx[0], 0, 3);
 
 var v2 = Caml_oo_curry.js1(-977586732, 3, v1);
 
-if (Caml_oo_curry.js1(-804710761, 4, v1) !== 3) {
+if (Caml_oo_curry.js1(-804710761, 4, v1) ~= 3) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "class_repr.ml",
           44,
           9
@@ -117,15 +117,15 @@ if (Caml_oo_curry.js1(-804710761, 4, v1) !== 3) {
       ];
 }
 
-console.log(/* tuple */[
+console.log(--[ tuple ]--[
       Caml_oo_curry.js1(-804710761, 5, v1),
       Caml_oo_curry.js1(-804710761, 6, v2)
     ]);
 
-if (Caml_oo_curry.js1(-804710761, 7, v2) !== 9) {
+if (Caml_oo_curry.js1(-804710761, 7, v2) ~= 9) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "class_repr.ml",
           52,
           9
@@ -165,10 +165,10 @@ var point = CamlinternalOO.make_class([
 
 var v$1 = Curry._1(point[0], 0);
 
-if (Caml_oo_curry.js1(590348294, 8, v$1) !== 5) {
+if (Caml_oo_curry.js1(590348294, 8, v$1) ~= 5) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "class_repr.ml",
           99,
           2
@@ -225,4 +225,4 @@ exports.v2 = v2;
 exports.point = point;
 exports.v = v$1;
 exports.xx0 = xx0;
-/* x0 Not a pure module */
+--[ x0 Not a pure module ]--

@@ -6,4 +6,4 @@ function say(x, y) {
 }
 
 exports.say = say;
-/* No side effect */
+--[ No side effect ]--

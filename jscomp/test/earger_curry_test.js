@@ -11,7 +11,7 @@ function map(f, a) {
   var f$1 = Curry.__1(f);
   var a$1 = a;
   var l = a$1.length;
-  if (l === 0) {
+  if (l == 0) {
     return [];
   } else {
     var r = Caml_array.caml_make_vect(l, f$1(a$1[0]));
@@ -25,7 +25,7 @@ function map(f, a) {
 function init(l, f) {
   var l$1 = l;
   var f$1 = Curry.__1(f);
-  if (l$1 === 0) {
+  if (l$1 == 0) {
     return [];
   } else {
     if (l$1 < 0) {
@@ -64,13 +64,13 @@ function f2(param) {
           return prim + prim$1;
         }), 0, b);
   console.log(Pervasives.string_of_float(v));
-  return /* () */0;
+  return --[ () ]--0;
 }
 
-f2(/* () */0);
+f2(--[ () ]--0);
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -79,11 +79,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -91,7 +91,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var v = {
@@ -99,18 +99,18 @@ var v = {
 };
 
 var all_v = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 function add5(a0, a1, a2, a3, a4) {
-  console.log(/* tuple */[
+  console.log(--[ tuple ]--[
         a0,
         a1,
         a2,
         a3,
         a4
       ]);
-  all_v.contents = /* :: */[
+  all_v.contents = --[ :: ]--[
     v.contents,
     all_v.contents
   ];
@@ -135,7 +135,7 @@ function g(x) {
   var u = function (param, param$1) {
     return add5(x, partial_arg$1, partial_arg, param, param$1);
   };
-  all_v.contents = /* :: */[
+  all_v.contents = --[ :: ]--[
     v.contents,
     all_v.contents
   ];
@@ -158,19 +158,19 @@ eq("File \"earger_curry_test.ml\", line 120, characters 7-14", c, 10);
 
 eq("File \"earger_curry_test.ml\", line 121, characters 7-14", d, 11);
 
-eq("File \"earger_curry_test.ml\", line 122, characters 7-14", all_v.contents, /* :: */[
+eq("File \"earger_curry_test.ml\", line 122, characters 7-14", all_v.contents, --[ :: ]--[
       8,
-      /* :: */[
+      --[ :: ]--[
         8,
-        /* :: */[
+        --[ :: ]--[
           6,
-          /* :: */[
+          --[ :: ]--[
             6,
-            /* :: */[
+            --[ :: ]--[
               4,
-              /* :: */[
+              --[ :: ]--[
                 2,
-                /* [] */0
+                --[ [] ]--0
               ]
             ]
           ]
@@ -196,4 +196,4 @@ exports.a = a;
 exports.b = b;
 exports.c = c;
 exports.d = d;
-/*  Not a pure module */
+--[  Not a pure module ]--

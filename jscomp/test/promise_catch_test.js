@@ -9,7 +9,7 @@ var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -18,11 +18,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -30,20 +30,20 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function handler(e) {
-  if (e[0] === Js_exn.$$Error) {
+  if (e[0] == Js_exn.$$Error) {
     console.log("js error");
     return Promise.resolve(0);
-  } else if (e === Caml_builtin_exceptions.not_found) {
+  } else if (e == Caml_builtin_exceptions.not_found) {
     console.log("hi");
     return Promise.resolve(0);
   } else {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "promise_catch_test.ml",
             22,
             9
@@ -54,9 +54,9 @@ function handler(e) {
 
 function myHandler(match) {
   if (Caml_exceptions.caml_is_extension(match)) {
-    if (match === Caml_builtin_exceptions.not_found) {
+    if (match == Caml_builtin_exceptions.not_found) {
       return 1;
-    } else if (match[0] === Js_exn.$$Error) {
+    } else if (match[0] == Js_exn.$$Error) {
       return 2;
     } else {
       return ;
@@ -80,14 +80,14 @@ try {
 catch (raw_e){
   var e = Caml_js_exceptions.internalToOCamlException(raw_e);
   eq("File \"promise_catch_test.ml\", line 36, characters 7-14", true, Js_option.isSomeValue((function (xxx, y) {
-              return xxx === y;
+              return xxx == y;
             }), 2, myHandler(e)));
 }
 
-if (exit === 1) {
+if (exit == 1) {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "promise_catch_test.ml",
           39,
           9
@@ -103,4 +103,4 @@ exports.eq = eq;
 exports.handler = handler;
 exports.myHandler = myHandler;
 exports.f = f;
-/*  Not a pure module */
+--[  Not a pure module ]--

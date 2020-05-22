@@ -10,7 +10,7 @@ var Belt_MutableMap = require("../../lib/js/belt_MutableMap.js");
 var Belt_internalAVLtree = require("../../lib/js/belt_internalAVLtree.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -37,7 +37,7 @@ function ff(x) {
 
 function randomRange(i, j) {
   return Belt_Array.map(Array_data_util.randomRange(i, j), (function (x) {
-                return /* tuple */[
+                return --[ tuple ]--[
                         x,
                         x
                       ];
@@ -77,13 +77,13 @@ b("File \"bs_poly_mutable_map_test.ml\", line 31, characters 6-13", Belt_Mutable
 
 Mt.from_pair_suites("Bs_poly_mutable_map_test", suites.contents);
 
-var M = /* alias */0;
+var M = --[ alias ]--0;
 
-var N = /* alias */0;
+var N = --[ alias ]--0;
 
-var A = /* alias */0;
+var A = --[ alias ]--0;
 
-var I = /* alias */0;
+var I = --[ alias ]--0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -97,4 +97,4 @@ exports.I = I;
 exports.f = f;
 exports.ff = ff;
 exports.randomRange = randomRange;
-/* Icmp Not a pure module */
+--[ Icmp Not a pure module ]--

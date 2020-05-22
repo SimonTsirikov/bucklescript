@@ -4,7 +4,7 @@ var Mt = require("./mt.js");
 var Caml_weak = require("../../lib/js/caml_weak.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -24,4 +24,4 @@ Mt.from_pair_suites("Gpr_2789_test", suites.contents);
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
-/*  Not a pure module */
+--[  Not a pure module ]--

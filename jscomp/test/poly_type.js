@@ -7,4 +7,4 @@ function f(x) {
 }
 
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

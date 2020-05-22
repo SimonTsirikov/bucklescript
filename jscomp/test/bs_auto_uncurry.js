@@ -37,28 +37,28 @@ var xs = Array.prototype.map.call([
 
 function f_0(param) {
   return hi((function () {
-                return /* () */0;
+                return --[ () ]--0;
               }));
 }
 
 function f_01(param) {
   return hi((function () {
                 console.log("x");
-                return /* () */0;
+                return --[ () ]--0;
               }));
 }
 
 function f_02(xs) {
   return hi((function () {
-                xs.contents = /* () */0;
+                xs.contents = --[ () ]--0;
                 console.log("x");
-                return /* () */0;
+                return --[ () ]--0;
               }));
 }
 
 function f_03(xs, u) {
   return hi((function () {
-                return Curry._1(u, /* () */0);
+                return Curry._1(u, --[ () ]--0);
               }));
 }
 
@@ -104,7 +104,7 @@ function h5(x) {
 }
 
 function add(x, y) {
-  console.log(/* tuple */[
+  console.log(--[ tuple ]--[
         x,
         y
       ]);
@@ -121,7 +121,7 @@ function unit_magic(param) {
   return 3;
 }
 
-var f_unit_magic = unit_magic(/* () */0);
+var f_unit_magic = unit_magic(--[ () ]--0);
 
 function hh(xs) {
   return (function (param) {
@@ -129,7 +129,7 @@ function hh(xs) {
             xs,
             param
           ]);
-      return /* () */0;
+      return --[ () ]--0;
     });
 }
 
@@ -155,4 +155,4 @@ exports.h6 = h6;
 exports.unit_magic = unit_magic;
 exports.f_unit_magic = f_unit_magic;
 exports.hh = hh;
-/* xbs Not a pure module */
+--[ xbs Not a pure module ]--

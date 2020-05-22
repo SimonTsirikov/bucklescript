@@ -5,7 +5,7 @@ var Block = require("../../lib/js/block.js");
 var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -14,16 +14,16 @@ var test_id = {
 
 function $$throw(loc, x) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* ThrowAny */Block.__(7, [x]);
+          return --[ ThrowAny ]--Block.__(7, [x]);
         })
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function aToJs(param) {
@@ -31,7 +31,7 @@ function aToJs(param) {
 }
 
 function aFromJs(param) {
-  if (!(param <= 2 && 0 <= param)) {
+  if (!(param <= 2 and 0 <= param)) {
     throw new Error("ASSERT FAILURE");
   }
   return param - 0 | 0;
@@ -52,15 +52,15 @@ function bFromJs(param) {
 }
 
 var jsMapperConstantArray$1 = [
-  /* tuple */[
+  --[ tuple ]--[
     22125,
     "c0"
   ],
-  /* tuple */[
+  --[ tuple ]--[
     22126,
     "c1"
   ],
-  /* tuple */[
+  --[ tuple ]--[
     22127,
     "c2"
   ]
@@ -76,17 +76,17 @@ function cFromJs(param) {
 
 $$throw("File \"ast_mapper_defensive_test.ml\", line 28, characters 16-23", (function (param) {
         aFromJs(3);
-        return /* () */0;
+        return --[ () ]--0;
       }));
 
 $$throw("File \"ast_mapper_defensive_test.ml\", line 29, characters 15-22", (function (param) {
         bFromJs(2);
-        return /* () */0;
+        return --[ () ]--0;
       }));
 
 $$throw("File \"ast_mapper_defensive_test.ml\", line 30, characters 15-22", (function (param) {
         cFromJs(33);
-        return /* () */0;
+        return --[ () ]--0;
       }));
 
 Mt.from_pair_suites("Ast_mapper_defensive_test", suites.contents);
@@ -100,4 +100,4 @@ exports.bToJs = bToJs;
 exports.bFromJs = bFromJs;
 exports.cToJs = cToJs;
 exports.cFromJs = cFromJs;
-/*  Not a pure module */
+--[  Not a pure module ]--

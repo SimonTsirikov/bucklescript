@@ -5,7 +5,7 @@ var Block = require("../../lib/js/block.js");
 var CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -14,11 +14,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -26,7 +26,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function f(x) {
@@ -49,4 +49,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.f = f;
 exports.u = u;
-/*  Not a pure module */
+--[  Not a pure module ]--

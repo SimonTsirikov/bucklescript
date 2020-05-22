@@ -1031,7 +1031,7 @@ and ipp_comment : 'a . P.t -> 'a  -> unit = fun   _f _comment ->
 and pp_comment f comment =
   if String.length comment > 0 then
     begin
-      P.string f "/* "; P.string f comment ; P.string f " */"
+      P.string f "--[ "; P.string f comment ; P.string f " ]--"
     end
 
 and pp_comment_option f comment  =

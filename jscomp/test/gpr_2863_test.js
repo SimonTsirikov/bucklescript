@@ -16,4 +16,4 @@ var a = 3;
 
 exports.mySet = mySet;
 exports.a = a;
-/*  Not a pure module */
+--[  Not a pure module ]--

@@ -25,13 +25,13 @@ function appf(g, x) {
   }
   catch (raw_exn){
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn === Local) {
+    if (exn == Local) {
       return 3;
-    } else if (exn === Caml_builtin_exceptions.not_found) {
+    } else if (exn == Caml_builtin_exceptions.not_found) {
       return 2;
-    } else if (exn[0] === A) {
+    } else if (exn[0] == A) {
       return 3;
-    } else if (exn[0] === B) {
+    } else if (exn[0] == B) {
       var match = exn[1];
       if (match) {
         var match$1 = match[1];
@@ -48,9 +48,9 @@ function appf(g, x) {
       } else {
         return 4;
       }
-    } else if (exn[0] === C) {
+    } else if (exn[0] == C) {
       return exn[1];
-    } else if (exn[0] === D) {
+    } else if (exn[0] == D) {
       return exn[1][0];
     } else {
       return 4;
@@ -67,7 +67,7 @@ try {
 }
 catch (raw_exn){
   var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  f = exn[0] === A ? exn[1] : 2;
+  f = exn[0] == A ? exn[1] : 2;
 }
 
 var ff;
@@ -77,7 +77,7 @@ try {
 }
 catch (raw_exn$1){
   var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-  ff = exn$1[0] === A ? exn$1[1] : 2;
+  ff = exn$1[0] == A ? exn$1[1] : 2;
 }
 
 var fff;
@@ -87,7 +87,7 @@ try {
 }
 catch (raw_exn$2){
   var exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
-  fff = exn$2[0] === A ? exn$2[1] : 2;
+  fff = exn$2[0] == A ? exn$2[1] : 2;
 }
 
 var a0;
@@ -97,12 +97,12 @@ try {
 }
 catch (raw_exn$3){
   var exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
-  if (exn$3[0] === A || exn$3[0] === Js_exn.$$Error) {
+  if (exn$3[0] == A or exn$3[0] == Js_exn.$$Error) {
     a0 = exn$3[1];
   } else {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "exception_raise_test.ml",
             102,
             9
@@ -130,18 +130,18 @@ catch (raw_e$1){
 }
 
 var suites = {
-  contents: /* :: */[
-    /* tuple */[
+  contents: --[ :: ]--[
+    --[ tuple ]--[
       "File \"exception_raise_test.ml\", line 114, characters 4-11",
       (function (param) {
-          return /* Eq */Block.__(0, [
-                    /* tuple */[
+          return --[ Eq ]--Block.__(0, [
+                    --[ tuple ]--[
                       f,
                       ff,
                       fff,
                       a0
                     ],
-                    /* tuple */[
+                    --[ tuple ]--[
                       2,
                       2,
                       2,
@@ -150,19 +150,19 @@ var suites = {
                   ]);
         })
     ],
-    /* :: */[
-      /* tuple */[
+    --[ :: ]--[
+      --[ tuple ]--[
         "File \"exception_raise_test.ml\", line 116, characters 4-11",
         (function (param) {
-            if (a1[0] === Js_exn.$$Error) {
-              return /* Eq */Block.__(0, [
+            if (a1[0] == Js_exn.$$Error) {
+              return --[ Eq ]--Block.__(0, [
                         a1[1],
                         2
                       ]);
             } else {
               throw [
                     Caml_builtin_exceptions.assert_failure,
-                    /* tuple */[
+                    --[ tuple ]--[
                       "exception_raise_test.ml",
                       119,
                       15
@@ -171,7 +171,7 @@ var suites = {
             }
           })
       ],
-      /* [] */0
+      --[ [] ]--0
     ]
   ]
 };
@@ -185,11 +185,11 @@ function eq(loc, x, y) {
 }
 
 try {
-  (function (_){throw 2}(/* () */0));
+  (function (_){throw 2}(--[ () ]--0));
 }
 catch (raw_e$2){
   var e = Caml_js_exceptions.internalToOCamlException(raw_e$2);
-  eq("File \"exception_raise_test.ml\", line 131, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e) !== undefined, true);
+  eq("File \"exception_raise_test.ml\", line 131, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e) ~= undefined, true);
 }
 
 try {
@@ -197,18 +197,18 @@ try {
 }
 catch (raw_e$3){
   var e$1 = Caml_js_exceptions.internalToOCamlException(raw_e$3);
-  eq("File \"exception_raise_test.ml\", line 138, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e$1) !== undefined, false);
+  eq("File \"exception_raise_test.ml\", line 138, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e$1) ~= undefined, false);
 }
 
 function fff0(x, g) {
   var val;
   try {
-    val = Curry._1(x, /* () */0);
+    val = Curry._1(x, --[ () ]--0);
   }
   catch (exn){
     return 1;
   }
-  return Curry._1(g, /* () */0);
+  return Curry._1(g, --[ () ]--0);
 }
 
 function input_lines(ic, _acc) {
@@ -221,7 +221,7 @@ function input_lines(ic, _acc) {
     catch (exn){
       return List.rev(acc);
     }
-    _acc = /* :: */[
+    _acc = --[ :: ]--[
       line,
       acc
     ];
@@ -250,4 +250,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.fff0 = fff0;
 exports.input_lines = input_lines;
-/* f Not a pure module */
+--[ f Not a pure module ]--

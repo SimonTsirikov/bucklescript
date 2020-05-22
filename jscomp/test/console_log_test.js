@@ -15,4 +15,4 @@ var v = Caml_obj.caml_compare;
 exports.min_int = min_int;
 exports.say = say;
 exports.v = v;
-/* No side effect */
+--[ No side effect ]--

@@ -16,7 +16,7 @@ function test(param) {
     m = Belt_MapInt.set(m, i, i);
   }
   for(var i$1 = 0; i$1 <= 999999; ++i$1){
-    should(Belt_MapInt.get(m, i$1) !== undefined);
+    should(Belt_MapInt.get(m, i$1) ~= undefined);
   }
   for(var i$2 = 0; i$2 <= 999999; ++i$2){
     m = Belt_MapInt.remove(m, i$2);
@@ -24,11 +24,11 @@ function test(param) {
   return should(Belt_MapInt.isEmpty(m));
 }
 
-test(/* () */0);
+test(--[ () ]--0);
 
-var M = /* alias */0;
+var M = --[ alias ]--0;
 
 exports.should = should;
 exports.M = M;
 exports.test = test;
-/*  Not a pure module */
+--[  Not a pure module ]--

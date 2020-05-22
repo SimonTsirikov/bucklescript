@@ -2,7 +2,7 @@
 
 
 function f(x, y) {
-  return /* tuple */[
+  return --[ tuple ]--[
           x < y,
           x <= y,
           x > y,
@@ -20,4 +20,4 @@ function ff(x, y) {
 
 exports.f = f;
 exports.ff = ff;
-/* No side effect */
+--[ No side effect ]--

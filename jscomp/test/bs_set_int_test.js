@@ -8,7 +8,7 @@ var Belt_SetInt = require("../../lib/js/belt_SetInt.js");
 var Array_data_util = require("./array_data_util.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -72,7 +72,7 @@ var i = range(100, 1500);
 b("File \"bs_set_int_test.ml\", line 36, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray(i), v));
 
 var match = Belt_SetInt.partition(v, (function (x) {
-        return x % 3 === 0;
+        return x % 3 == 0;
       }));
 
 var l = Belt_SetInt.empty;
@@ -80,7 +80,7 @@ var l = Belt_SetInt.empty;
 var r = Belt_SetInt.empty;
 
 for(var i$1 = 100; i$1 <= 1500; ++i$1){
-  if (i$1 % 3 === 0) {
+  if (i$1 % 3 == 0) {
     l = Belt_SetInt.add(l, i$1);
   } else {
     r = Belt_SetInt.add(r, i$1);
@@ -158,7 +158,7 @@ var minv = Belt_SetInt.minUndefined(v$1);
 var maxv = Belt_SetInt.maxUndefined(v$1);
 
 function approx(loc, x, y) {
-  return b(loc, x === y);
+  return b(loc, x == y);
 }
 
 eq("File \"bs_set_int_test.ml\", line 74, characters 5-12", Belt_SetInt.reduce(v$1, 0, (function (x, y) {
@@ -245,9 +245,9 @@ b("File \"bs_set_int_test.ml\", line 114, characters 4-11", Belt_SetInt.subset(d
 
 b("File \"bs_set_int_test.ml\", line 115, characters 4-11", Belt_SetInt.subset(Belt_SetInt.add(dd, 200), bb));
 
-b("File \"bs_set_int_test.ml\", line 116, characters 4-11", Belt_SetInt.add(dd, 200) === dd);
+b("File \"bs_set_int_test.ml\", line 116, characters 4-11", Belt_SetInt.add(dd, 200) == dd);
 
-b("File \"bs_set_int_test.ml\", line 117, characters 4-11", Belt_SetInt.add(dd, 0) === dd);
+b("File \"bs_set_int_test.ml\", line 117, characters 4-11", Belt_SetInt.add(dd, 0) == dd);
 
 b("File \"bs_set_int_test.ml\", line 118, characters 4-11", !Belt_SetInt.subset(Belt_SetInt.add(dd, 201), bb));
 
@@ -356,7 +356,7 @@ eq("File \"bs_set_int_test.ml\", line 168, characters 5-12", counted, 1001);
 
 b("File \"bs_set_int_test.ml\", line 169, characters 4-11", Belt_SetInt.eq(v$12, v0));
 
-b("File \"bs_set_int_test.ml\", line 170, characters 4-11", Belt_SetInt.cmp(v$12, v0) === 0);
+b("File \"bs_set_int_test.ml\", line 170, characters 4-11", Belt_SetInt.cmp(v$12, v0) == 0);
 
 b("File \"bs_set_int_test.ml\", line 171, characters 4-11", Belt_SetInt.cmp(v$12, v1) < 0);
 
@@ -372,11 +372,11 @@ eq("File \"bs_set_int_test.ml\", line 176, characters 5-12", Belt_SetInt.get(v$1
 
 Mt.from_pair_suites("Bs_set_int_test", suites.contents);
 
-var N = /* alias */0;
+var N = --[ alias ]--0;
 
-var I = /* alias */0;
+var I = --[ alias ]--0;
 
-var A = /* alias */0;
+var A = --[ alias ]--0;
 
 var ofA = Belt_SetInt.fromArray;
 
@@ -393,4 +393,4 @@ exports.ofA = ofA;
 exports.u = u;
 exports.range = range;
 exports.revRange = revRange;
-/*  Not a pure module */
+--[  Not a pure module ]--

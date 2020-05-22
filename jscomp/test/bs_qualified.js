@@ -11,7 +11,7 @@ function f(a, b, c) {
 }
 
 function f2(param) {
-  return /* tuple */[
+  return --[ tuple ]--[
           Z.a0.a1.a2.hi,
           a0.a1.a2.ho,
           Math.imul(1, 2)
@@ -49,4 +49,4 @@ function f3(x) {
 exports.f = f;
 exports.f2 = f2;
 exports.f3 = f3;
-/* X Not a pure module */
+--[ X Not a pure module ]--

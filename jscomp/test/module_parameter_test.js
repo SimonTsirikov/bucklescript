@@ -18,30 +18,30 @@ function v(x) {
   return x.length;
 }
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "const",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 1,
                 1
               ]);
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "other",
     (function (param) {
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   3,
                   3
                 ]);
       })
   ],
-  /* [] */0
+  --[ [] ]--0
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -55,4 +55,4 @@ exports.N = N;
 exports.v0 = v0;
 exports.v = v;
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

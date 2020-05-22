@@ -5,7 +5,7 @@ var Js_dict = require("../../lib/js/js_dict.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -26,7 +26,7 @@ d["foo"] = undefined;
 
 var match = Js_dict.get(d, "foo");
 
-if (match !== undefined && Caml_option.valFromOption(match) === undefined) {
+if (match ~= undefined and Caml_option.valFromOption(match) == undefined) {
   b("File \"gpr_3154_test.ml\", line 12, characters 19-26", true);
 } else {
   b("File \"gpr_3154_test.ml\", line 13, characters 11-18", false);
@@ -40,11 +40,11 @@ eq("File \"gpr_3154_test.ml\", line 18, characters 5-12", Js_dict.get(d0, "foo")
 
 Mt.from_pair_suites("Gpr_3154_test", suites.contents);
 
-var J = /* alias */0;
+var J = --[ alias ]--0;
 
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.b = b;
 exports.J = J;
-/*  Not a pure module */
+--[  Not a pure module ]--

@@ -12,7 +12,7 @@ v.contents = v.contents + 1 | 0;
 var a = v.contents;
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -21,11 +21,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -33,7 +33,7 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 eq("File \"condition_compilation_test.ml\", line 98, characters 5-12", 3, 3);
@@ -65,4 +65,4 @@ exports.ocaml_veriosn = ocaml_veriosn;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
-/*  Not a pure module */
+--[  Not a pure module ]--

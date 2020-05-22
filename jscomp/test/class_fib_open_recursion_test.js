@@ -11,7 +11,7 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 var shared = ["calc"];
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -20,11 +20,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -32,13 +32,13 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function fib_init($$class) {
   var calc = CamlinternalOO.get_method_label($$class, "calc");
   CamlinternalOO.set_method($$class, calc, (function (self$1, x) {
-          if (x === 0 || x === 1) {
+          if (x == 0 or x == 1) {
             return 1;
           } else {
             return Curry._2(self$1[0][calc], self$1, x - 1 | 0) + Curry._2(self$1[0][calc], self$1, x - 2 | 0) | 0;
@@ -63,7 +63,7 @@ function memo_fib_init($$class) {
             return Hashtbl.find(self$2[cache], x);
           }
           catch (exn){
-            if (exn === Caml_builtin_exceptions.not_found) {
+            if (exn == Caml_builtin_exceptions.not_found) {
               var v = Curry._2(calc$1, self$2, x);
               Hashtbl.add(self$2[cache], x, v);
               return v;
@@ -93,4 +93,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.fib = fib;
 exports.memo_fib = memo_fib;
-/* fib Not a pure module */
+--[ fib Not a pure module ]--

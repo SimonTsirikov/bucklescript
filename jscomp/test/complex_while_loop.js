@@ -5,7 +5,7 @@ function f(param) {
   var n = 0;
   while((function () {
           var fib = function (n) {
-            if (n === 0 || n === 1) {
+            if (n == 0 or n == 1) {
               return 1;
             } else {
               return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
@@ -16,7 +16,7 @@ function f(param) {
     console.log(String(n));
     n = n + 1 | 0;
   };
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function ff(param) {
@@ -26,9 +26,9 @@ function ff(param) {
         })()) {
     
   };
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 exports.f = f;
 exports.ff = ff;
-/* No side effect */
+--[ No side effect ]--

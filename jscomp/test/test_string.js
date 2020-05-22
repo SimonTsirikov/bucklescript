@@ -13,7 +13,7 @@ function f(param) {
     default:
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "test_string.ml",
               4,
               18
@@ -35,8 +35,8 @@ function c(x, y) {
 }
 
 function h(s, b) {
-  if (Caml_string.get(s, 0) === /* "a" */97 && Caml_bytes.get(b, 0) === /* "b" */98) {
-    return Caml_string.get(s, 1) === Caml_bytes.get(b, 2);
+  if (Caml_string.get(s, 0) == --[ "a" ]--97 and Caml_bytes.get(b, 0) == --[ "b" ]--98) {
+    return Caml_string.get(s, 1) == Caml_bytes.get(b, 2);
   } else {
     return false;
   }
@@ -50,4 +50,4 @@ exports.b = b;
 exports.c = c;
 exports.v = v;
 exports.h = h;
-/* No side effect */
+--[ No side effect ]--

@@ -6,7 +6,7 @@ var Curry = require("../../lib/js/curry.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -15,11 +15,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -27,11 +27,11 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function f1(x) {
-  if (x !== null) {
+  if (x ~= null) {
     return x + 1 | 0;
   } else {
     return 3;
@@ -39,7 +39,7 @@ function f1(x) {
 }
 
 function f2(x) {
-  if (x !== null) {
+  if (x ~= null) {
     return x + 1 | 0;
   } else {
     return 3;
@@ -48,7 +48,7 @@ function f2(x) {
 
 function f5(h, x) {
   var u = Curry._1(h, 32);
-  if (u !== null) {
+  if (u ~= null) {
     return u + 1 | 0;
   } else {
     return 3;
@@ -58,7 +58,7 @@ function f5(h, x) {
 function f4(h, x) {
   var u = Curry._1(h, 32);
   var v = 32 + x | 0;
-  if (u !== null) {
+  if (u ~= null) {
     return u + 1 | 0;
   } else {
     return 1 + v | 0;
@@ -66,7 +66,7 @@ function f4(h, x) {
 }
 
 function f6(x, y) {
-  return x === y;
+  return x == y;
 }
 
 function f7(x) {
@@ -74,8 +74,8 @@ function f7(x) {
 }
 
 function f8(x) {
-  if (x !== null) {
-    if (x !== null) {
+  if (x ~= null) {
+    if (x ~= null) {
       return 0;
     } else {
       return 1;
@@ -88,7 +88,7 @@ function f8(x) {
 var u = f8(undefined);
 
 function f9(x) {
-  if (x === null) {
+  if (x == null) {
     return ;
   } else {
     return Caml_option.some(x);
@@ -96,7 +96,7 @@ function f9(x) {
 }
 
 function f10(x) {
-  return x === null;
+  return x == null;
 }
 
 var f11 = false;
@@ -116,7 +116,7 @@ var Test_null = {
 };
 
 function f1$1(x) {
-  if (x !== undefined) {
+  if (x ~= undefined) {
     return x + 1 | 0;
   } else {
     return 3;
@@ -124,7 +124,7 @@ function f1$1(x) {
 }
 
 function f2$1(x) {
-  if (x !== undefined) {
+  if (x ~= undefined) {
     return x + 1 | 0;
   } else {
     return 3;
@@ -133,7 +133,7 @@ function f2$1(x) {
 
 function f5$1(h, x) {
   var u = Curry._1(h, 32);
-  if (u !== undefined) {
+  if (u ~= undefined) {
     return u + 1 | 0;
   } else {
     return 3;
@@ -143,7 +143,7 @@ function f5$1(h, x) {
 function f4$1(h, x) {
   var u = Curry._1(h, 32);
   var v = 32 + x | 0;
-  if (u !== undefined) {
+  if (u ~= undefined) {
     return u + 1 | 0;
   } else {
     return 1 + v | 0;
@@ -151,7 +151,7 @@ function f4$1(h, x) {
 }
 
 function f6$1(x, y) {
-  return x === y;
+  return x == y;
 }
 
 function f7$1(x) {
@@ -159,8 +159,8 @@ function f7$1(x) {
 }
 
 function f8$1(x) {
-  if (x !== undefined) {
-    if (x !== undefined) {
+  if (x ~= undefined) {
+    if (x ~= undefined) {
       return 0;
     } else {
       return 1;
@@ -173,7 +173,7 @@ function f8$1(x) {
 var u$1 = f8$1(undefined);
 
 function f9$1(x) {
-  if (x === undefined) {
+  if (x == undefined) {
     return ;
   } else {
     return Caml_option.some(x);
@@ -181,7 +181,7 @@ function f9$1(x) {
 }
 
 function f10$1(x) {
-  return x === undefined;
+  return x == undefined;
 }
 
 var f11$1 = false;
@@ -236,7 +236,7 @@ function f4$2(h, x) {
 }
 
 function f6$2(x, y) {
-  return x === y;
+  return x == y;
 }
 
 function f7$2(x) {
@@ -305,4 +305,4 @@ exports.eq = eq;
 exports.Test_null = Test_null;
 exports.Test_def = Test_def;
 exports.Test_null_def = Test_null_def;
-/* u Not a pure module */
+--[ u Not a pure module ]--

@@ -5,11 +5,11 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 
 var match = 1;
 
-if (match !== undefined) {
-  if (match !== 1) {
+if (match ~= undefined) {
+  if (match ~= 1) {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "gpr_3980_test.ml",
             16,
             10
@@ -17,11 +17,11 @@ if (match !== undefined) {
         ];
   }
   var match$1 = 1;
-  if (match$1 !== 1) {
-    if (match$1 !== 2) {
+  if (match$1 ~= 1) {
+    if (match$1 ~= 2) {
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "gpr_3980_test.ml",
               14,
               12
@@ -37,7 +37,7 @@ if (match !== undefined) {
 } else {
   throw [
         Caml_builtin_exceptions.assert_failure,
-        /* tuple */[
+        --[ tuple ]--[
           "gpr_3980_test.ml",
           16,
           10
@@ -45,4 +45,4 @@ if (match !== undefined) {
       ];
 }
 
-/*  Not a pure module */
+--[  Not a pure module ]--

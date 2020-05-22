@@ -15,7 +15,7 @@ var shared = [
 var shared$1 = ["repr"];
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -33,7 +33,7 @@ function comparable_001($$class) {
     });
 }
 
-var comparable = /* class */[
+var comparable = --[ class ]--[
   0,
   comparable_001,
   0,
@@ -122,4 +122,4 @@ exports.comparable = comparable;
 exports.money = money;
 exports.money2 = money2;
 exports.min = min;
-/* money Not a pure module */
+--[ money Not a pure module ]--

@@ -6,7 +6,7 @@ function v(u) {
   t({
         compare: $$String.compare
       });
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function u(v) {
@@ -18,4 +18,4 @@ var s = $$String;
 exports.v = v;
 exports.u = u;
 exports.s = s;
-/* No side effect */
+--[ No side effect ]--

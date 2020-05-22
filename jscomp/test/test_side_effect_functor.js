@@ -14,4 +14,4 @@ function unuse_v(param) {
 var h = unuse_v;
 
 exports.h = h;
-/*  Not a pure module */
+--[  Not a pure module ]--

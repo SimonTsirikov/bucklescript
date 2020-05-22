@@ -10,31 +10,31 @@ function $plus$colon(_f, _g) {
     if (!f.tag) {
       var n = f[0];
       if (g.tag) {
-        if (n === 0) {
+        if (n == 0) {
           return g;
         }
         
       } else {
-        return /* Int */Block.__(0, [n + g[0] | 0]);
+        return --[ Int ]--Block.__(0, [n + g[0] | 0]);
       }
     }
     switch (g.tag | 0) {
-      case /* Int */0 :
-          if (g[0] !== 0) {
-            return /* Add */Block.__(2, [
+      case --[ Int ]--0 :
+          if (g[0] ~= 0) {
+            return --[ Add ]--Block.__(2, [
                       f,
                       g
                     ]);
           } else {
             return f;
           }
-      case /* Add */2 :
+      case --[ Add ]--2 :
           _g = g[1];
           _f = $plus$colon(f, g[0]);
           continue ;
-      case /* Var */1 :
-      case /* Mul */3 :
-          return /* Add */Block.__(2, [
+      case --[ Var ]--1 :
+      case --[ Mul ]--3 :
+          return --[ Add ]--Block.__(2, [
                     f,
                     g
                   ]);
@@ -54,42 +54,42 @@ function $star$colon(_f, _g) {
     } else {
       var n = f[0];
       if (g.tag) {
-        if (n !== 0) {
+        if (n ~= 0) {
           exit$1 = 3;
         } else {
-          return /* Int */Block.__(0, [0]);
+          return --[ Int ]--Block.__(0, [0]);
         }
       } else {
-        return /* Int */Block.__(0, [Caml_int32.imul(n, g[0])]);
+        return --[ Int ]--Block.__(0, [Caml_int32.imul(n, g[0])]);
       }
     }
-    if (exit$1 === 3) {
-      if (g.tag || g[0] !== 0) {
+    if (exit$1 == 3) {
+      if (g.tag or g[0] ~= 0) {
         exit = 2;
       } else {
-        return /* Int */Block.__(0, [0]);
+        return --[ Int ]--Block.__(0, [0]);
       }
     }
-    if (exit === 2 && !f.tag && f[0] === 1) {
+    if (exit == 2 and !f.tag and f[0] == 1) {
       return g;
     }
     switch (g.tag | 0) {
-      case /* Int */0 :
-          if (g[0] !== 1) {
-            return /* Mul */Block.__(3, [
+      case --[ Int ]--0 :
+          if (g[0] ~= 1) {
+            return --[ Mul ]--Block.__(3, [
                       f,
                       g
                     ]);
           } else {
             return f;
           }
-      case /* Var */1 :
-      case /* Add */2 :
-          return /* Mul */Block.__(3, [
+      case --[ Var ]--1 :
+      case --[ Add ]--2 :
+          return --[ Mul ]--Block.__(3, [
                     f,
                     g
                   ]);
-      case /* Mul */3 :
+      case --[ Mul ]--3 :
           _g = g[1];
           _f = $star$colon(f, g[0]);
           continue ;
@@ -100,12 +100,12 @@ function $star$colon(_f, _g) {
 
 function simplify(f) {
   switch (f.tag | 0) {
-    case /* Int */0 :
-    case /* Var */1 :
+    case --[ Int ]--0 :
+    case --[ Var ]--1 :
         return f;
-    case /* Add */2 :
+    case --[ Add ]--2 :
         return $plus$colon(simplify(f[0]), simplify(f[1]));
-    case /* Mul */3 :
+    case --[ Mul ]--3 :
         return $star$colon(simplify(f[0]), simplify(f[1]));
     
   }
@@ -114,4 +114,4 @@ function simplify(f) {
 exports.$plus$colon = $plus$colon;
 exports.$star$colon = $star$colon;
 exports.simplify = simplify;
-/* No side effect */
+--[ No side effect ]--

@@ -11,7 +11,7 @@ function f(param) {
     default:
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "test_string_case.ml",
               4,
               9
@@ -21,4 +21,4 @@ function f(param) {
 }
 
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

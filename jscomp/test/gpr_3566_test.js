@@ -6,18 +6,18 @@ var Caml_obj = require("../../lib/js/caml_obj.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
 function eq_A(x, y) {
-  if (x.tag || y.tag) {
+  if (x.tag or y.tag) {
     return false;
   } else {
-    return x[0] === y[0];
+    return x[0] == y[0];
   }
 }
 
 function Test($star) {
   console.log("no inline");
-  var u = /* A */Block.__(0, [3]);
+  var u = --[ A ]--Block.__(0, [3]);
   var Block$1 = { };
-  var b = eq_A(/* A */Block.__(0, [3]), u);
+  var b = eq_A(--[ A ]--Block.__(0, [3]), u);
   return {
           u: u,
           Block: Block$1,
@@ -29,7 +29,7 @@ function Test($star) {
 function Test2($star) {
   console.log("no inline");
   var Block$1 = { };
-  var b = eq_A(/* A */Block.__(0, [3]), /* A */Block.__(0, [3]));
+  var b = eq_A(--[ A ]--Block.__(0, [3]), --[ A ]--Block.__(0, [3]));
   return {
           Block: Block$1,
           y: 32,
@@ -38,7 +38,7 @@ function Test2($star) {
 }
 
 function f(i, y) {
-  var x = /* A */Block.__(0, [i]);
+  var x = --[ A ]--Block.__(0, [i]);
   return eq_A(x, y);
 }
 
@@ -133,4 +133,4 @@ exports.Test7 = Test7;
 exports.Test8 = Test8;
 exports.Test9 = Test9;
 exports.Test10 = Test10;
-/* No side effect */
+--[ No side effect ]--

@@ -5,7 +5,7 @@ var Caml_array = require("../../lib/js/caml_array.js");
 var Caml_splice_call = require("../../lib/js/caml_splice_call.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -41,11 +41,11 @@ function dynamic(arr) {
         1,
         arr
       ]);
-  return eq("File \"splice_test.ml\", line 34, characters 5-12", a, Caml_array.caml_array_concat(/* :: */[
+  return eq("File \"splice_test.ml\", line 34, characters 5-12", a, Caml_array.caml_array_concat(--[ :: ]--[
                   [1],
-                  /* :: */[
+                  --[ :: ]--[
                     arr,
-                    /* [] */0
+                    --[ [] ]--0
                   ]
                 ]));
 }
@@ -81,11 +81,11 @@ function dynamic$1(arr) {
         1,
         arr
       ]);
-  return eq("File \"splice_test.ml\", line 56, characters 7-14", a, Caml_array.caml_array_concat(/* :: */[
+  return eq("File \"splice_test.ml\", line 56, characters 7-14", a, Caml_array.caml_array_concat(--[ :: ]--[
                   [1],
-                  /* :: */[
+                  --[ :: ]--[
                     arr,
-                    /* [] */0
+                    --[ [] ]--0
                   ]
                 ]));
 }
@@ -131,4 +131,4 @@ exports.f00 = f00;
 exports.dynamic = dynamic;
 exports.Pipe = Pipe;
 exports.f1 = f1;
-/*  Not a pure module */
+--[  Not a pure module ]--

@@ -3,7 +3,7 @@
 var Mt = require("./mt.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -17,7 +17,7 @@ function eq(loc, x, y) {
 function fake_c2(a_type, b_type) {
   switch (a_type) {
     case "number" :
-        if (b_type === "number") {
+        if (b_type == "number") {
           return 33;
         }
         break;
@@ -28,9 +28,9 @@ function fake_c2(a_type, b_type) {
     default:
       
   }
-  if (b_type === "undefined") {
+  if (b_type == "undefined") {
     return 1;
-  } else if (a_type === "number") {
+  } else if (a_type == "number") {
     return 3;
   } else {
     return 0;
@@ -45,4 +45,4 @@ exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.fake_c2 = fake_c2;
-/*  Not a pure module */
+--[  Not a pure module ]--

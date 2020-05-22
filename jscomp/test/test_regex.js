@@ -10,4 +10,4 @@ var c = v;
 exports.v = v;
 exports.r = r;
 exports.c = c;
-/* No side effect */
+--[ No side effect ]--

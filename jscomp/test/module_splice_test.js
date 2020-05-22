@@ -6,7 +6,7 @@ var JoinClasses = require("./joinClasses");
 var Caml_splice_call = require("../../lib/js/caml_splice_call.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -17,11 +17,11 @@ function eq(loc, param) {
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -29,7 +29,7 @@ function eq(loc, param) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function joinClasses(prim) {
@@ -38,7 +38,7 @@ function joinClasses(prim) {
 
 var a = JoinClasses(1, 2, 3);
 
-var pair = /* tuple */[
+var pair = --[ tuple ]--[
   a,
   6
 ];
@@ -54,4 +54,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.joinClasses = joinClasses;
 exports.a = a;
-/* a Not a pure module */
+--[ a Not a pure module ]--

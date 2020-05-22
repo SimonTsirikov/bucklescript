@@ -10,15 +10,15 @@ var N = {
 };
 
 function f1(param) {
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function f2(param, param$1) {
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function f3(param, param$1, param$2) {
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var N0 = {
@@ -28,11 +28,11 @@ var N0 = {
 };
 
 function f2$1(param, param$1) {
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function f3$1(param, param$1, param$2) {
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var N1 = {
@@ -43,4 +43,4 @@ var N1 = {
 exports.N = N;
 exports.N0 = N0;
 exports.N1 = N1;
-/* No side effect */
+--[ No side effect ]--

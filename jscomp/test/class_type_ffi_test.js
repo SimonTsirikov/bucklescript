@@ -28,7 +28,7 @@ function sum_poly(zero, add, arr) {
 
 function test_set(x) {
   x.length = 3;
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function f(x) {
@@ -98,4 +98,4 @@ exports.ff2 = ff2;
 exports.off2 = off2;
 exports.mk_f = mk_f;
 exports.omk_f = omk_f;
-/* No side effect */
+--[ No side effect ]--

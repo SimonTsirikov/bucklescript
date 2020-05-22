@@ -24,7 +24,7 @@ function should(b) {
 }
 
 var shuffledDataAdd = Belt_Array.makeByAndShuffle(1000001, (function (i) {
-        return /* tuple */[
+        return --[ tuple ]--[
                 i,
                 i
               ];
@@ -35,7 +35,7 @@ function test(param) {
   for(var j = 0; j <= 1000000; ++j){
     should(v.has(j));
   }
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function test2(param) {
@@ -43,26 +43,26 @@ function test2(param) {
   for(var j = 0; j <= 1000000; ++j){
     should(Belt_MapInt.has(v, j));
   }
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 console.time("test/imm_map_bench.ml 44");
 
-test(/* () */0);
+test(--[ () ]--0);
 
 console.timeEnd("test/imm_map_bench.ml 44");
 
 console.time("test/imm_map_bench.ml 45");
 
-test2(/* () */0);
+test2(--[ () ]--0);
 
 console.timeEnd("test/imm_map_bench.ml 45");
 
-var A = /* alias */0;
+var A = --[ alias ]--0;
 
 var count = 1000000;
 
-var M = /* alias */0;
+var M = --[ alias ]--0;
 
 exports.A = A;
 exports.empty = empty;
@@ -73,4 +73,4 @@ exports.shuffledDataAdd = shuffledDataAdd;
 exports.test = test;
 exports.M = M;
 exports.test2 = test2;
-/* empty Not a pure module */
+--[ empty Not a pure module ]--

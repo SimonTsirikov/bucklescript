@@ -10,7 +10,7 @@ function test2(v) {
 }
 
 function test(p) {
-  return /* tuple */[
+  return --[ tuple ]--[
           p.catch,
           p.then
         ];
@@ -27,4 +27,4 @@ exports.test = test;
 exports.$$case = $$case;
 exports.$$window = $$window;
 exports.$$switch = $$switch;
-/* No side effect */
+--[ No side effect ]--

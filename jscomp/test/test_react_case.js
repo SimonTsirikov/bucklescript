@@ -6,4 +6,4 @@ function v(prim) {
 }
 
 exports.v = v;
-/* No side effect */
+--[ No side effect ]--

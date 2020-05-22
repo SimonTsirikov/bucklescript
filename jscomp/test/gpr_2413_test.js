@@ -4,7 +4,7 @@ var Caml_int32 = require("../../lib/js/caml_int32.js");
 
 function f(param) {
   switch (param.tag | 0) {
-    case /* A */0 :
+    case --[ A ]--0 :
         var match = param[0];
         if (match.tag) {
           var a = match[0];
@@ -13,8 +13,8 @@ function f(param) {
           var a$1 = match[0];
           return a$1 + a$1 | 0;
         }
-    case /* B */1 :
-    case /* C */2 :
+    case --[ B ]--1 :
+    case --[ C ]--2 :
         break;
     
   }
@@ -25,7 +25,7 @@ function f(param) {
 function ff(c) {
   c.contents = c.contents + 1 | 0;
   var match = (1 + c.contents | 0) + 1 | 0;
-  if (match > 3 || match < 0) {
+  if (match > 3 or match < 0) {
     return 0;
   } else {
     return match + 1 | 0;
@@ -34,4 +34,4 @@ function ff(c) {
 
 exports.f = f;
 exports.ff = ff;
-/* No side effect */
+--[ No side effect ]--

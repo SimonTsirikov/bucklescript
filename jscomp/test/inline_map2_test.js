@@ -19,7 +19,7 @@ function Make(Ord) {
   var create = function (l, x, d, r) {
     var hl = height(l);
     var hr = height(r);
-    return /* Node */[
+    return --[ Node ]--[
             l,
             x,
             d,
@@ -28,11 +28,11 @@ function Make(Ord) {
           ];
   };
   var singleton = function (x, d) {
-    return /* Node */[
-            /* Empty */0,
+    return --[ Node ]--[
+            --[ Empty ]--0,
             x,
             d,
-            /* Empty */0,
+            --[ Empty ]--0,
             1
           ];
   };
@@ -84,7 +84,7 @@ function Make(Ord) {
             ];
       }
     } else {
-      return /* Node */[
+      return --[ Node ]--[
               l,
               x,
               d,
@@ -107,8 +107,8 @@ function Make(Ord) {
       var v = param[1];
       var l = param[0];
       var c = Curry._2(Ord.compare, x, v);
-      if (c === 0) {
-        return /* Node */[
+      if (c == 0) {
+        return --[ Node ]--[
                 l,
                 x,
                 data,
@@ -121,11 +121,11 @@ function Make(Ord) {
         return bal(l, v, d, add(x, data, r));
       }
     } else {
-      return /* Node */[
-              /* Empty */0,
+      return --[ Node ]--[
+              --[ Empty ]--0,
               x,
               data,
-              /* Empty */0,
+              --[ Empty ]--0,
               1
             ];
     }
@@ -135,7 +135,7 @@ function Make(Ord) {
       var param = _param;
       if (param) {
         var c = Curry._2(Ord.compare, x, param[1]);
-        if (c === 0) {
+        if (c == 0) {
           return param[2];
         } else {
           _param = c < 0 ? param[0] : param[3];
@@ -151,7 +151,7 @@ function Make(Ord) {
       var param = _param;
       if (param) {
         var c = Curry._2(Ord.compare, x, param[1]);
-        if (c === 0) {
+        if (c == 0) {
           return true;
         } else {
           _param = c < 0 ? param[0] : param[3];
@@ -171,7 +171,7 @@ function Make(Ord) {
           _param = l;
           continue ;
         } else {
-          return /* tuple */[
+          return --[ tuple ]--[
                   param[1],
                   param[2]
                 ];
@@ -190,7 +190,7 @@ function Make(Ord) {
           _param = r;
           continue ;
         } else {
-          return /* tuple */[
+          return --[ tuple ]--[
                   param[1],
                   param[2]
                 ];
@@ -222,7 +222,7 @@ function Make(Ord) {
       var v = param[1];
       var l = param[0];
       var c = Curry._2(Ord.compare, x, v);
-      if (c === 0) {
+      if (c == 0) {
         var t1 = l;
         var t2 = r;
         if (t1) {
@@ -241,7 +241,7 @@ function Make(Ord) {
         return bal(l, v, d, remove(x, r));
       }
     } else {
-      return /* Empty */0;
+      return --[ Empty ]--0;
     }
   };
   var iter = function (f, _param) {
@@ -253,7 +253,7 @@ function Make(Ord) {
         _param = param[3];
         continue ;
       } else {
-        return /* () */0;
+        return --[ () ]--0;
       }
     };
   };
@@ -262,7 +262,7 @@ function Make(Ord) {
       var l$prime = map(f, param[0]);
       var d$prime = Curry._1(f, param[2]);
       var r$prime = map(f, param[3]);
-      return /* Node */[
+      return --[ Node ]--[
               l$prime,
               param[1],
               d$prime,
@@ -270,7 +270,7 @@ function Make(Ord) {
               param[4]
             ];
     } else {
-      return /* Empty */0;
+      return --[ Empty ]--0;
     }
   };
   var mapi = function (f, param) {
@@ -279,7 +279,7 @@ function Make(Ord) {
       var l$prime = mapi(f, param[0]);
       var d$prime = Curry._2(f, v, param[2]);
       var r$prime = mapi(f, param[3]);
-      return /* Node */[
+      return --[ Node ]--[
               l$prime,
               v,
               d$prime,
@@ -287,7 +287,7 @@ function Make(Ord) {
               param[4]
             ];
     } else {
-      return /* Empty */0;
+      return --[ Empty ]--0;
     }
   };
   var fold = function (f, _m, _accu) {
@@ -307,7 +307,7 @@ function Make(Ord) {
     while(true) {
       var param = _param;
       if (param) {
-        if (Curry._2(p, param[1], param[2]) && for_all(p, param[0])) {
+        if (Curry._2(p, param[1], param[2]) and for_all(p, param[0])) {
           _param = param[3];
           continue ;
         } else {
@@ -322,7 +322,7 @@ function Make(Ord) {
     while(true) {
       var param = _param;
       if (param) {
-        if (Curry._2(p, param[1], param[2]) || exists(p, param[0])) {
+        if (Curry._2(p, param[1], param[2]) or exists(p, param[0])) {
           return true;
         } else {
           _param = param[3];
@@ -379,7 +379,7 @@ function Make(Ord) {
     }
   };
   var concat_or_join = function (t1, v, d, t2) {
-    if (d !== undefined) {
+    if (d ~= undefined) {
       return join(t1, v, Caml_option.valFromOption(d), t2);
     } else {
       return concat(t1, t2);
@@ -392,32 +392,32 @@ function Make(Ord) {
       var v = param[1];
       var l = param[0];
       var c = Curry._2(Ord.compare, x, v);
-      if (c === 0) {
-        return /* tuple */[
+      if (c == 0) {
+        return --[ tuple ]--[
                 l,
                 Caml_option.some(d),
                 r
               ];
       } else if (c < 0) {
         var match = split(x, l);
-        return /* tuple */[
+        return --[ tuple ]--[
                 match[0],
                 match[1],
                 join(match[2], v, d, r)
               ];
       } else {
         var match$1 = split(x, r);
-        return /* tuple */[
+        return --[ tuple ]--[
                 join(l, v, d, match$1[0]),
                 match$1[1],
                 match$1[2]
               ];
       }
     } else {
-      return /* tuple */[
-              /* Empty */0,
+      return --[ tuple ]--[
+              --[ Empty ]--0,
               undefined,
-              /* Empty */0
+              --[ Empty ]--0
             ];
     }
   };
@@ -430,7 +430,7 @@ function Make(Ord) {
       }
       
     } else if (!s2) {
-      return /* Empty */0;
+      return --[ Empty ]--0;
     }
     if (s2) {
       var v2 = s2[1];
@@ -439,7 +439,7 @@ function Make(Ord) {
     } else {
       throw [
             Caml_builtin_exceptions.assert_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "inline_map2_test.ml",
               270,
               10
@@ -460,7 +460,7 @@ function Make(Ord) {
         return concat(l$prime, r$prime);
       }
     } else {
-      return /* Empty */0;
+      return --[ Empty ]--0;
     }
   };
   var partition = function (p, param) {
@@ -475,20 +475,20 @@ function Make(Ord) {
       var rf = match$1[1];
       var rt = match$1[0];
       if (pvd) {
-        return /* tuple */[
+        return --[ tuple ]--[
                 join(lt, v, d, rt),
                 concat(lf, rf)
               ];
       } else {
-        return /* tuple */[
+        return --[ tuple ]--[
                 concat(lt, rt),
                 join(lf, v, d, rf)
               ];
       }
     } else {
-      return /* tuple */[
-              /* Empty */0,
-              /* Empty */0
+      return --[ tuple ]--[
+              --[ Empty ]--0,
+              --[ Empty ]--0
             ];
     }
   };
@@ -497,7 +497,7 @@ function Make(Ord) {
       var e = _e;
       var m = _m;
       if (m) {
-        _e = /* More */[
+        _e = --[ More ]--[
           m[1],
           m[2],
           m[3],
@@ -511,19 +511,19 @@ function Make(Ord) {
     };
   };
   var compare = function (cmp, m1, m2) {
-    var _e1 = cons_enum(m1, /* End */0);
-    var _e2 = cons_enum(m2, /* End */0);
+    var _e1 = cons_enum(m1, --[ End ]--0);
+    var _e2 = cons_enum(m2, --[ End ]--0);
     while(true) {
       var e2 = _e2;
       var e1 = _e1;
       if (e1) {
         if (e2) {
           var c = Curry._2(Ord.compare, e1[0], e2[0]);
-          if (c !== 0) {
+          if (c ~= 0) {
             return c;
           } else {
             var c$1 = Curry._2(cmp, e1[1], e2[1]);
-            if (c$1 !== 0) {
+            if (c$1 ~= 0) {
               return c$1;
             } else {
               _e2 = cons_enum(e2[2], e2[3]);
@@ -542,13 +542,13 @@ function Make(Ord) {
     };
   };
   var equal = function (cmp, m1, m2) {
-    var _e1 = cons_enum(m1, /* End */0);
-    var _e2 = cons_enum(m2, /* End */0);
+    var _e1 = cons_enum(m1, --[ End ]--0);
+    var _e2 = cons_enum(m2, --[ End ]--0);
     while(true) {
       var e2 = _e2;
       var e1 = _e1;
       if (e1) {
-        if (e2 && Curry._2(Ord.compare, e1[0], e2[0]) === 0 && Curry._2(cmp, e1[1], e2[1])) {
+        if (e2 and Curry._2(Ord.compare, e1[0], e2[0]) == 0 and Curry._2(cmp, e1[1], e2[1])) {
           _e2 = cons_enum(e2[2], e2[3]);
           _e1 = cons_enum(e1[2], e1[3]);
           continue ;
@@ -575,8 +575,8 @@ function Make(Ord) {
       var accu = _accu;
       if (param) {
         _param = param[0];
-        _accu = /* :: */[
-          /* tuple */[
+        _accu = --[ :: ]--[
+          --[ tuple ]--[
             param[1],
             param[2]
           ],
@@ -589,14 +589,14 @@ function Make(Ord) {
     };
   };
   var bindings = function (s) {
-    return bindings_aux(/* [] */0, s);
+    return bindings_aux(--[ [] ]--0, s);
   };
   return {
           height: height,
           create: create,
           singleton: singleton,
           bal: bal,
-          empty: /* Empty */0,
+          empty: --[ Empty ]--0,
           is_empty: is_empty,
           add: add,
           find: find,
@@ -641,7 +641,7 @@ function height(param) {
 function create(l, x, d, r) {
   var hl = height(l);
   var hr = height(r);
-  return /* Node */[
+  return --[ Node ]--[
           l,
           x,
           d,
@@ -651,11 +651,11 @@ function create(l, x, d, r) {
 }
 
 function singleton(x, d) {
-  return /* Node */[
-          /* Empty */0,
+  return --[ Node ]--[
+          --[ Empty ]--0,
           x,
           d,
-          /* Empty */0,
+          --[ Empty ]--0,
           1
         ];
 }
@@ -708,7 +708,7 @@ function bal(l, x, d, r) {
           ];
     }
   } else {
-    return /* Node */[
+    return --[ Node ]--[
             l,
             x,
             d,
@@ -733,8 +733,8 @@ function add(x, data, param) {
     var v = param[1];
     var l = param[0];
     var c = Caml_primitive.caml_int_compare(x, v);
-    if (c === 0) {
-      return /* Node */[
+    if (c == 0) {
+      return --[ Node ]--[
               l,
               x,
               data,
@@ -747,11 +747,11 @@ function add(x, data, param) {
       return bal(l, v, d, add(x, data, r));
     }
   } else {
-    return /* Node */[
-            /* Empty */0,
+    return --[ Node ]--[
+            --[ Empty ]--0,
             x,
             data,
-            /* Empty */0,
+            --[ Empty ]--0,
             1
           ];
   }
@@ -762,7 +762,7 @@ function find(x, _param) {
     var param = _param;
     if (param) {
       var c = Caml_primitive.caml_int_compare(x, param[1]);
-      if (c === 0) {
+      if (c == 0) {
         return param[2];
       } else {
         _param = c < 0 ? param[0] : param[3];
@@ -779,7 +779,7 @@ function mem(x, _param) {
     var param = _param;
     if (param) {
       var c = Caml_primitive.caml_int_compare(x, param[1]);
-      if (c === 0) {
+      if (c == 0) {
         return true;
       } else {
         _param = c < 0 ? param[0] : param[3];
@@ -800,7 +800,7 @@ function min_binding(_param) {
         _param = l;
         continue ;
       } else {
-        return /* tuple */[
+        return --[ tuple ]--[
                 param[1],
                 param[2]
               ];
@@ -820,7 +820,7 @@ function max_binding(_param) {
         _param = r;
         continue ;
       } else {
-        return /* tuple */[
+        return --[ tuple ]--[
                 param[1],
                 param[2]
               ];
@@ -854,7 +854,7 @@ function remove(x, param) {
     var v = param[1];
     var l = param[0];
     var c = Caml_primitive.caml_int_compare(x, v);
-    if (c === 0) {
+    if (c == 0) {
       var t1 = l;
       var t2 = r;
       if (t1) {
@@ -873,7 +873,7 @@ function remove(x, param) {
       return bal(l, v, d, remove(x, r));
     }
   } else {
-    return /* Empty */0;
+    return --[ Empty ]--0;
   }
 }
 
@@ -886,7 +886,7 @@ function iter(f, _param) {
       _param = param[3];
       continue ;
     } else {
-      return /* () */0;
+      return --[ () ]--0;
     }
   };
 }
@@ -896,7 +896,7 @@ function map(f, param) {
     var l$prime = map(f, param[0]);
     var d$prime = Curry._1(f, param[2]);
     var r$prime = map(f, param[3]);
-    return /* Node */[
+    return --[ Node ]--[
             l$prime,
             param[1],
             d$prime,
@@ -904,7 +904,7 @@ function map(f, param) {
             param[4]
           ];
   } else {
-    return /* Empty */0;
+    return --[ Empty ]--0;
   }
 }
 
@@ -914,7 +914,7 @@ function mapi(f, param) {
     var l$prime = mapi(f, param[0]);
     var d$prime = Curry._2(f, v, param[2]);
     var r$prime = mapi(f, param[3]);
-    return /* Node */[
+    return --[ Node ]--[
             l$prime,
             v,
             d$prime,
@@ -922,7 +922,7 @@ function mapi(f, param) {
             param[4]
           ];
   } else {
-    return /* Empty */0;
+    return --[ Empty ]--0;
   }
 }
 
@@ -944,7 +944,7 @@ function for_all(p, _param) {
   while(true) {
     var param = _param;
     if (param) {
-      if (Curry._2(p, param[1], param[2]) && for_all(p, param[0])) {
+      if (Curry._2(p, param[1], param[2]) and for_all(p, param[0])) {
         _param = param[3];
         continue ;
       } else {
@@ -960,7 +960,7 @@ function exists(p, _param) {
   while(true) {
     var param = _param;
     if (param) {
-      if (Curry._2(p, param[1], param[2]) || exists(p, param[0])) {
+      if (Curry._2(p, param[1], param[2]) or exists(p, param[0])) {
         return true;
       } else {
         _param = param[3];
@@ -1022,7 +1022,7 @@ function concat(t1, t2) {
 }
 
 function concat_or_join(t1, v, d, t2) {
-  if (d !== undefined) {
+  if (d ~= undefined) {
     return join(t1, v, Caml_option.valFromOption(d), t2);
   } else {
     return concat(t1, t2);
@@ -1036,32 +1036,32 @@ function split(x, param) {
     var v = param[1];
     var l = param[0];
     var c = Caml_primitive.caml_int_compare(x, v);
-    if (c === 0) {
-      return /* tuple */[
+    if (c == 0) {
+      return --[ tuple ]--[
               l,
               Caml_option.some(d),
               r
             ];
     } else if (c < 0) {
       var match = split(x, l);
-      return /* tuple */[
+      return --[ tuple ]--[
               match[0],
               match[1],
               join(match[2], v, d, r)
             ];
     } else {
       var match$1 = split(x, r);
-      return /* tuple */[
+      return --[ tuple ]--[
               join(l, v, d, match$1[0]),
               match$1[1],
               match$1[2]
             ];
     }
   } else {
-    return /* tuple */[
-            /* Empty */0,
+    return --[ tuple ]--[
+            --[ Empty ]--0,
             undefined,
-            /* Empty */0
+            --[ Empty ]--0
           ];
   }
 }
@@ -1075,7 +1075,7 @@ function merge(f, s1, s2) {
     }
     
   } else if (!s2) {
-    return /* Empty */0;
+    return --[ Empty ]--0;
   }
   if (s2) {
     var v2 = s2[1];
@@ -1084,7 +1084,7 @@ function merge(f, s1, s2) {
   } else {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "inline_map2_test.ml",
             270,
             10
@@ -1106,7 +1106,7 @@ function filter(p, param) {
       return concat(l$prime, r$prime);
     }
   } else {
-    return /* Empty */0;
+    return --[ Empty ]--0;
   }
 }
 
@@ -1122,20 +1122,20 @@ function partition(p, param) {
     var rf = match$1[1];
     var rt = match$1[0];
     if (pvd) {
-      return /* tuple */[
+      return --[ tuple ]--[
               join(lt, v, d, rt),
               concat(lf, rf)
             ];
     } else {
-      return /* tuple */[
+      return --[ tuple ]--[
               concat(lt, rt),
               join(lf, v, d, rf)
             ];
     }
   } else {
-    return /* tuple */[
-            /* Empty */0,
-            /* Empty */0
+    return --[ tuple ]--[
+            --[ Empty ]--0,
+            --[ Empty ]--0
           ];
   }
 }
@@ -1145,7 +1145,7 @@ function cons_enum(_m, _e) {
     var e = _e;
     var m = _m;
     if (m) {
-      _e = /* More */[
+      _e = --[ More ]--[
         m[1],
         m[2],
         m[3],
@@ -1160,19 +1160,19 @@ function cons_enum(_m, _e) {
 }
 
 function compare(cmp, m1, m2) {
-  var _e1 = cons_enum(m1, /* End */0);
-  var _e2 = cons_enum(m2, /* End */0);
+  var _e1 = cons_enum(m1, --[ End ]--0);
+  var _e2 = cons_enum(m2, --[ End ]--0);
   while(true) {
     var e2 = _e2;
     var e1 = _e1;
     if (e1) {
       if (e2) {
         var c = Caml_primitive.caml_int_compare(e1[0], e2[0]);
-        if (c !== 0) {
+        if (c ~= 0) {
           return c;
         } else {
           var c$1 = Curry._2(cmp, e1[1], e2[1]);
-          if (c$1 !== 0) {
+          if (c$1 ~= 0) {
             return c$1;
           } else {
             _e2 = cons_enum(e2[2], e2[3]);
@@ -1192,13 +1192,13 @@ function compare(cmp, m1, m2) {
 }
 
 function equal(cmp, m1, m2) {
-  var _e1 = cons_enum(m1, /* End */0);
-  var _e2 = cons_enum(m2, /* End */0);
+  var _e1 = cons_enum(m1, --[ End ]--0);
+  var _e2 = cons_enum(m2, --[ End ]--0);
   while(true) {
     var e2 = _e2;
     var e1 = _e1;
     if (e1) {
-      if (e2 && e1[0] === e2[0] && Curry._2(cmp, e1[1], e2[1])) {
+      if (e2 and e1[0] == e2[0] and Curry._2(cmp, e1[1], e2[1])) {
         _e2 = cons_enum(e2[2], e2[3]);
         _e1 = cons_enum(e1[2], e1[3]);
         continue ;
@@ -1227,8 +1227,8 @@ function bindings_aux(_accu, _param) {
     var accu = _accu;
     if (param) {
       _param = param[0];
-      _accu = /* :: */[
-        /* tuple */[
+      _accu = --[ :: ]--[
+        --[ tuple ]--[
           param[1],
           param[2]
         ],
@@ -1242,7 +1242,7 @@ function bindings_aux(_accu, _param) {
 }
 
 function bindings(s) {
-  return bindings_aux(/* [] */0, s);
+  return bindings_aux(--[ [] ]--0, s);
 }
 
 var IntMap = {
@@ -1250,7 +1250,7 @@ var IntMap = {
   create: create,
   singleton: singleton,
   bal: bal,
-  empty: /* Empty */0,
+  empty: --[ Empty ]--0,
   is_empty: is_empty,
   add: add,
   find: find,
@@ -1285,27 +1285,27 @@ var IntMap = {
 
 var m = List.fold_left((function (acc, param) {
         return add(param[0], param[1], acc);
-      }), /* Empty */0, /* :: */[
-      /* tuple */[
+      }), --[ Empty ]--0, --[ :: ]--[
+      --[ tuple ]--[
         10,
-        /* "a" */97
+        --[ "a" ]--97
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           3,
-          /* "b" */98
+          --[ "b" ]--98
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             7,
-            /* "c" */99
+            --[ "c" ]--99
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               20,
-              /* "d" */100
+              --[ "d" ]--100
             ],
-            /* [] */0
+            --[ [] ]--0
           ]
         ]
       ]
@@ -1322,7 +1322,7 @@ function height$1(param) {
 function create$1(l, x, d, r) {
   var hl = height$1(l);
   var hr = height$1(r);
-  return /* Node */[
+  return --[ Node ]--[
           l,
           x,
           d,
@@ -1332,11 +1332,11 @@ function create$1(l, x, d, r) {
 }
 
 function singleton$1(x, d) {
-  return /* Node */[
-          /* Empty */0,
+  return --[ Node ]--[
+          --[ Empty ]--0,
           x,
           d,
-          /* Empty */0,
+          --[ Empty ]--0,
           1
         ];
 }
@@ -1389,7 +1389,7 @@ function bal$1(l, x, d, r) {
           ];
     }
   } else {
-    return /* Node */[
+    return --[ Node ]--[
             l,
             x,
             d,
@@ -1414,8 +1414,8 @@ function add$1(x, data, param) {
     var v = param[1];
     var l = param[0];
     var c = Caml_primitive.caml_string_compare(x, v);
-    if (c === 0) {
-      return /* Node */[
+    if (c == 0) {
+      return --[ Node ]--[
               l,
               x,
               data,
@@ -1428,11 +1428,11 @@ function add$1(x, data, param) {
       return bal$1(l, v, d, add$1(x, data, r));
     }
   } else {
-    return /* Node */[
-            /* Empty */0,
+    return --[ Node ]--[
+            --[ Empty ]--0,
             x,
             data,
-            /* Empty */0,
+            --[ Empty ]--0,
             1
           ];
   }
@@ -1443,7 +1443,7 @@ function find$1(x, _param) {
     var param = _param;
     if (param) {
       var c = Caml_primitive.caml_string_compare(x, param[1]);
-      if (c === 0) {
+      if (c == 0) {
         return param[2];
       } else {
         _param = c < 0 ? param[0] : param[3];
@@ -1460,7 +1460,7 @@ function mem$1(x, _param) {
     var param = _param;
     if (param) {
       var c = Caml_primitive.caml_string_compare(x, param[1]);
-      if (c === 0) {
+      if (c == 0) {
         return true;
       } else {
         _param = c < 0 ? param[0] : param[3];
@@ -1481,7 +1481,7 @@ function min_binding$1(_param) {
         _param = l;
         continue ;
       } else {
-        return /* tuple */[
+        return --[ tuple ]--[
                 param[1],
                 param[2]
               ];
@@ -1501,7 +1501,7 @@ function max_binding$1(_param) {
         _param = r;
         continue ;
       } else {
-        return /* tuple */[
+        return --[ tuple ]--[
                 param[1],
                 param[2]
               ];
@@ -1535,7 +1535,7 @@ function remove$1(x, param) {
     var v = param[1];
     var l = param[0];
     var c = Caml_primitive.caml_string_compare(x, v);
-    if (c === 0) {
+    if (c == 0) {
       var t1 = l;
       var t2 = r;
       if (t1) {
@@ -1554,7 +1554,7 @@ function remove$1(x, param) {
       return bal$1(l, v, d, remove$1(x, r));
     }
   } else {
-    return /* Empty */0;
+    return --[ Empty ]--0;
   }
 }
 
@@ -1567,7 +1567,7 @@ function iter$1(f, _param) {
       _param = param[3];
       continue ;
     } else {
-      return /* () */0;
+      return --[ () ]--0;
     }
   };
 }
@@ -1577,7 +1577,7 @@ function map$1(f, param) {
     var l$prime = map$1(f, param[0]);
     var d$prime = Curry._1(f, param[2]);
     var r$prime = map$1(f, param[3]);
-    return /* Node */[
+    return --[ Node ]--[
             l$prime,
             param[1],
             d$prime,
@@ -1585,7 +1585,7 @@ function map$1(f, param) {
             param[4]
           ];
   } else {
-    return /* Empty */0;
+    return --[ Empty ]--0;
   }
 }
 
@@ -1595,7 +1595,7 @@ function mapi$1(f, param) {
     var l$prime = mapi$1(f, param[0]);
     var d$prime = Curry._2(f, v, param[2]);
     var r$prime = mapi$1(f, param[3]);
-    return /* Node */[
+    return --[ Node ]--[
             l$prime,
             v,
             d$prime,
@@ -1603,7 +1603,7 @@ function mapi$1(f, param) {
             param[4]
           ];
   } else {
-    return /* Empty */0;
+    return --[ Empty ]--0;
   }
 }
 
@@ -1625,7 +1625,7 @@ function for_all$1(p, _param) {
   while(true) {
     var param = _param;
     if (param) {
-      if (Curry._2(p, param[1], param[2]) && for_all$1(p, param[0])) {
+      if (Curry._2(p, param[1], param[2]) and for_all$1(p, param[0])) {
         _param = param[3];
         continue ;
       } else {
@@ -1641,7 +1641,7 @@ function exists$1(p, _param) {
   while(true) {
     var param = _param;
     if (param) {
-      if (Curry._2(p, param[1], param[2]) || exists$1(p, param[0])) {
+      if (Curry._2(p, param[1], param[2]) or exists$1(p, param[0])) {
         return true;
       } else {
         _param = param[3];
@@ -1703,7 +1703,7 @@ function concat$1(t1, t2) {
 }
 
 function concat_or_join$1(t1, v, d, t2) {
-  if (d !== undefined) {
+  if (d ~= undefined) {
     return join$1(t1, v, Caml_option.valFromOption(d), t2);
   } else {
     return concat$1(t1, t2);
@@ -1717,32 +1717,32 @@ function split$1(x, param) {
     var v = param[1];
     var l = param[0];
     var c = Caml_primitive.caml_string_compare(x, v);
-    if (c === 0) {
-      return /* tuple */[
+    if (c == 0) {
+      return --[ tuple ]--[
               l,
               Caml_option.some(d),
               r
             ];
     } else if (c < 0) {
       var match = split$1(x, l);
-      return /* tuple */[
+      return --[ tuple ]--[
               match[0],
               match[1],
               join$1(match[2], v, d, r)
             ];
     } else {
       var match$1 = split$1(x, r);
-      return /* tuple */[
+      return --[ tuple ]--[
               join$1(l, v, d, match$1[0]),
               match$1[1],
               match$1[2]
             ];
     }
   } else {
-    return /* tuple */[
-            /* Empty */0,
+    return --[ tuple ]--[
+            --[ Empty ]--0,
             undefined,
-            /* Empty */0
+            --[ Empty ]--0
           ];
   }
 }
@@ -1756,7 +1756,7 @@ function merge$1(f, s1, s2) {
     }
     
   } else if (!s2) {
-    return /* Empty */0;
+    return --[ Empty ]--0;
   }
   if (s2) {
     var v2 = s2[1];
@@ -1765,7 +1765,7 @@ function merge$1(f, s1, s2) {
   } else {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "inline_map2_test.ml",
             270,
             10
@@ -1787,7 +1787,7 @@ function filter$1(p, param) {
       return concat$1(l$prime, r$prime);
     }
   } else {
-    return /* Empty */0;
+    return --[ Empty ]--0;
   }
 }
 
@@ -1803,20 +1803,20 @@ function partition$1(p, param) {
     var rf = match$1[1];
     var rt = match$1[0];
     if (pvd) {
-      return /* tuple */[
+      return --[ tuple ]--[
               join$1(lt, v, d, rt),
               concat$1(lf, rf)
             ];
     } else {
-      return /* tuple */[
+      return --[ tuple ]--[
               concat$1(lt, rt),
               join$1(lf, v, d, rf)
             ];
     }
   } else {
-    return /* tuple */[
-            /* Empty */0,
-            /* Empty */0
+    return --[ tuple ]--[
+            --[ Empty ]--0,
+            --[ Empty ]--0
           ];
   }
 }
@@ -1826,7 +1826,7 @@ function cons_enum$1(_m, _e) {
     var e = _e;
     var m = _m;
     if (m) {
-      _e = /* More */[
+      _e = --[ More ]--[
         m[1],
         m[2],
         m[3],
@@ -1841,19 +1841,19 @@ function cons_enum$1(_m, _e) {
 }
 
 function compare$1(cmp, m1, m2) {
-  var _e1 = cons_enum$1(m1, /* End */0);
-  var _e2 = cons_enum$1(m2, /* End */0);
+  var _e1 = cons_enum$1(m1, --[ End ]--0);
+  var _e2 = cons_enum$1(m2, --[ End ]--0);
   while(true) {
     var e2 = _e2;
     var e1 = _e1;
     if (e1) {
       if (e2) {
         var c = Caml_primitive.caml_string_compare(e1[0], e2[0]);
-        if (c !== 0) {
+        if (c ~= 0) {
           return c;
         } else {
           var c$1 = Curry._2(cmp, e1[1], e2[1]);
-          if (c$1 !== 0) {
+          if (c$1 ~= 0) {
             return c$1;
           } else {
             _e2 = cons_enum$1(e2[2], e2[3]);
@@ -1873,13 +1873,13 @@ function compare$1(cmp, m1, m2) {
 }
 
 function equal$1(cmp, m1, m2) {
-  var _e1 = cons_enum$1(m1, /* End */0);
-  var _e2 = cons_enum$1(m2, /* End */0);
+  var _e1 = cons_enum$1(m1, --[ End ]--0);
+  var _e2 = cons_enum$1(m2, --[ End ]--0);
   while(true) {
     var e2 = _e2;
     var e1 = _e1;
     if (e1) {
-      if (e2 && Caml_primitive.caml_string_compare(e1[0], e2[0]) === 0 && Curry._2(cmp, e1[1], e2[1])) {
+      if (e2 and Caml_primitive.caml_string_compare(e1[0], e2[0]) == 0 and Curry._2(cmp, e1[1], e2[1])) {
         _e2 = cons_enum$1(e2[2], e2[3]);
         _e1 = cons_enum$1(e1[2], e1[3]);
         continue ;
@@ -1908,8 +1908,8 @@ function bindings_aux$1(_accu, _param) {
     var accu = _accu;
     if (param) {
       _param = param[0];
-      _accu = /* :: */[
-        /* tuple */[
+      _accu = --[ :: ]--[
+        --[ tuple ]--[
           param[1],
           param[2]
         ],
@@ -1923,7 +1923,7 @@ function bindings_aux$1(_accu, _param) {
 }
 
 function bindings$1(s) {
-  return bindings_aux$1(/* [] */0, s);
+  return bindings_aux$1(--[ [] ]--0, s);
 }
 
 var SMap = {
@@ -1931,7 +1931,7 @@ var SMap = {
   create: create$1,
   singleton: singleton$1,
   bal: bal$1,
-  empty: /* Empty */0,
+  empty: --[ Empty ]--0,
   is_empty: is_empty$1,
   add: add$1,
   find: find$1,
@@ -1966,57 +1966,57 @@ var SMap = {
 
 var s = List.fold_left((function (acc, param) {
         return add$1(param[0], param[1], acc);
-      }), /* Empty */0, /* :: */[
-      /* tuple */[
+      }), --[ Empty ]--0, --[ :: ]--[
+      --[ tuple ]--[
         "10",
-        /* "a" */97
+        --[ "a" ]--97
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "3",
-          /* "b" */98
+          --[ "b" ]--98
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "7",
-            /* "c" */99
+            --[ "c" ]--99
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "20",
-              /* "d" */100
+              --[ "d" ]--100
             ],
-            /* [] */0
+            --[ [] ]--0
           ]
         ]
       ]
     ]);
 
-Mt.from_pair_suites("Inline_map2_test", /* :: */[
-      /* tuple */[
+Mt.from_pair_suites("Inline_map2_test", --[ :: ]--[
+      --[ tuple ]--[
         "assertion1",
         (function (param) {
-            return /* Eq */Block.__(0, [
+            return --[ Eq ]--Block.__(0, [
                       find(10, m),
-                      /* "a" */97
+                      --[ "a" ]--97
                     ]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "assertion2",
           (function (param) {
-              return /* Eq */Block.__(0, [
+              return --[ Eq ]--Block.__(0, [
                         find$1("10", s),
-                        /* "a" */97
+                        --[ "a" ]--97
                       ]);
             })
         ],
-        /* [] */0
+        --[ [] ]--0
       ]
     ]);
 
-var empty = /* Empty */0;
+var empty = --[ Empty ]--0;
 
 exports.Make = Make;
 exports.IntMap = IntMap;
@@ -2024,4 +2024,4 @@ exports.empty = empty;
 exports.m = m;
 exports.SMap = SMap;
 exports.s = s;
-/* m Not a pure module */
+--[ m Not a pure module ]--

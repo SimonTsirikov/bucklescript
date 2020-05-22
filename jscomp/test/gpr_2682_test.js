@@ -23,7 +23,7 @@ function forIn (o,foo){
 
 function log(x) {
   console.log(x);
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 var N = {
@@ -34,7 +34,7 @@ forIn({
       x: 3
     }, (function (x) {
         console.log(x);
-        return /* () */0;
+        return --[ () ]--0;
       }));
 
 forIn({
@@ -42,7 +42,7 @@ forIn({
       y: 3
     }, (function (x) {
         console.log(x);
-        return /* () */0;
+        return --[ () ]--0;
       }));
 
 function f3 (){return true};
@@ -58,4 +58,4 @@ exports.forIn = forIn;
 exports.N = N;
 exports.f3 = f3;
 exports.bbbb = bbbb;
-/* v Not a pure module */
+--[ v Not a pure module ]--

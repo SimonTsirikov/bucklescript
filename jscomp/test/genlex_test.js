@@ -6,23 +6,23 @@ var Block = require("../../lib/js/block.js");
 var Genlex = require("../../lib/js/genlex.js");
 var Stream = require("../../lib/js/stream.js");
 
-var lexer = Genlex.make_lexer(/* :: */[
+var lexer = Genlex.make_lexer(--[ :: ]--[
       "+",
-      /* :: */[
+      --[ :: ]--[
         "-",
-        /* :: */[
+        --[ :: ]--[
           "*",
-          /* :: */[
+          --[ :: ]--[
             "/",
-            /* :: */[
+            --[ :: ]--[
               "let",
-              /* :: */[
+              --[ :: ]--[
                 "=",
-                /* :: */[
+                --[ :: ]--[
                   "(",
-                  /* :: */[
+                  --[ :: ]--[
                     ")",
-                    /* [] */0
+                    --[ [] ]--0
                   ]
                 ]
               ]
@@ -33,7 +33,7 @@ var lexer = Genlex.make_lexer(/* :: */[
     ]);
 
 function to_list(s) {
-  var _acc = /* [] */0;
+  var _acc = --[ [] ]--0;
   while(true) {
     var acc = _acc;
     var v;
@@ -41,13 +41,13 @@ function to_list(s) {
       v = Stream.next(s);
     }
     catch (exn){
-      if (exn === Stream.Failure) {
+      if (exn == Stream.Failure) {
         return List.rev(acc);
       } else {
         throw exn;
       }
     }
-    _acc = /* :: */[
+    _acc = --[ :: ]--[
       v,
       acc
     ];
@@ -55,25 +55,25 @@ function to_list(s) {
   };
 }
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "lexer_stream_genlex",
   (function (param) {
-      return /* Eq */Block.__(0, [
-                /* :: */[
-                  /* Int */Block.__(2, [3]),
-                  /* :: */[
-                    /* Kwd */Block.__(0, ["("]),
-                    /* :: */[
-                      /* Int */Block.__(2, [3]),
-                      /* :: */[
-                        /* Kwd */Block.__(0, ["+"]),
-                        /* :: */[
-                          /* Int */Block.__(2, [2]),
-                          /* :: */[
-                            /* Int */Block.__(2, [-1]),
-                            /* :: */[
-                              /* Kwd */Block.__(0, [")"]),
-                              /* [] */0
+      return --[ Eq ]--Block.__(0, [
+                --[ :: ]--[
+                  --[ Int ]--Block.__(2, [3]),
+                  --[ :: ]--[
+                    --[ Kwd ]--Block.__(0, ["("]),
+                    --[ :: ]--[
+                      --[ Int ]--Block.__(2, [3]),
+                      --[ :: ]--[
+                        --[ Kwd ]--Block.__(0, ["+"]),
+                        --[ :: ]--[
+                          --[ Int ]--Block.__(2, [2]),
+                          --[ :: ]--[
+                            --[ Int ]--Block.__(2, [-1]),
+                            --[ :: ]--[
+                              --[ Kwd ]--Block.__(0, [")"]),
+                              --[ [] ]--0
                             ]
                           ]
                         ]
@@ -86,9 +86,9 @@ var suites_000 = /* tuple */[
     })
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
-  /* [] */0
+  --[ [] ]--0
 ];
 
 Mt.from_pair_suites("Genlex_test", suites);
@@ -96,4 +96,4 @@ Mt.from_pair_suites("Genlex_test", suites);
 exports.lexer = lexer;
 exports.to_list = to_list;
 exports.suites = suites;
-/* lexer Not a pure module */
+--[ lexer Not a pure module ]--

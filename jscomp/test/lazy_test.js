@@ -14,14 +14,14 @@ var u = {
 
 var v = Caml_obj.caml_lazy_make((function (param) {
         u.contents = 32;
-        return /* () */0;
+        return --[ () ]--0;
       }));
 
 function lazy_test(param) {
   var h = u.contents;
   CamlinternalLazy.force(v);
   var g = u.contents;
-  return /* tuple */[
+  return --[ tuple ]--[
           h,
           g
         ];
@@ -30,15 +30,15 @@ function lazy_test(param) {
 function f(param) {
   CamlinternalLazy.force(param[0]);
   var match = param[2].contents;
-  if (match !== undefined) {
+  if (match ~= undefined) {
     CamlinternalLazy.force(param[1]);
     var match$1 = param[2].contents;
-    if (match$1 !== undefined) {
+    if (match$1 ~= undefined) {
       return 1;
     } else {
       throw [
             Caml_builtin_exceptions.match_failure,
-            /* tuple */[
+            --[ tuple ]--[
               "lazy_test.ml",
               11,
               8
@@ -56,18 +56,18 @@ var s = {
 
 var set_true = Caml_obj.caml_lazy_make((function (param) {
         s.contents = 1;
-        return /* () */0;
+        return --[ () ]--0;
       }));
 
 var set_false = Caml_obj.caml_lazy_make((function (param) {
         s.contents = undefined;
-        return /* () */0;
+        return --[ () ]--0;
       }));
 
 var h;
 
 try {
-  h = f(/* tuple */[
+  h = f(--[ tuple ]--[
         set_true,
         set_false,
         s
@@ -75,7 +75,7 @@ try {
 }
 catch (raw_exn){
   var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn[0] === Caml_builtin_exceptions.match_failure) {
+  if (exn[0] == Caml_builtin_exceptions.match_failure) {
     h = 2;
   } else {
     throw exn;
@@ -88,7 +88,7 @@ var u_v = {
 
 var u$1 = Caml_obj.caml_lazy_make((function (param) {
         u_v.contents = 2;
-        return /* () */0;
+        return --[ () ]--0;
       }));
 
 CamlinternalLazy.force(u$1);
@@ -124,81 +124,81 @@ var f008 = Caml_obj.caml_lazy_make((function (param) {
         throw Caml_builtin_exceptions.not_found;
       }));
 
-Mt.from_pair_suites("Lazy_test", /* :: */[
-      /* tuple */[
+Mt.from_pair_suites("Lazy_test", --[ :: ]--[
+      --[ tuple ]--[
         "simple",
         (function (param) {
-            return /* Eq */Block.__(0, [
-                      lazy_test(/* () */0),
-                      /* tuple */[
+            return --[ Eq ]--Block.__(0, [
+                      lazy_test(--[ () ]--0),
+                      --[ tuple ]--[
                         3,
                         32
                       ]
                     ]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "lazy_match",
           (function (param) {
-              return /* Eq */Block.__(0, [
+              return --[ Eq ]--Block.__(0, [
                         h,
                         2
                       ]);
             })
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "lazy_force",
             (function (param) {
-                return /* Eq */Block.__(0, [
+                return --[ Eq ]--Block.__(0, [
                           u_v.contents,
                           2
                         ]);
               })
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "lazy_from_fun",
               (function (param) {
-                  return /* Eq */Block.__(0, [
+                  return --[ Eq ]--Block.__(0, [
                             CamlinternalLazy.force(l_from_fun),
                             3
                           ]);
                 })
             ],
-            /* :: */[
-              /* tuple */[
+            --[ :: ]--[
+              --[ tuple ]--[
                 "lazy_from_val",
                 (function (param) {
-                    return /* Eq */Block.__(0, [
+                    return --[ Eq ]--Block.__(0, [
                               CamlinternalLazy.force(Lazy.from_val(3)),
                               3
                             ]);
                   })
               ],
-              /* :: */[
-                /* tuple */[
+              --[ :: ]--[
+                --[ tuple ]--[
                   "lazy_from_val2",
                   (function (param) {
-                      return /* Eq */Block.__(0, [
+                      return --[ Eq ]--Block.__(0, [
                                 CamlinternalLazy.force(CamlinternalLazy.force(Lazy.from_val(3))),
                                 3
                               ]);
                     })
                 ],
-                /* :: */[
-                  /* tuple */[
+                --[ :: ]--[
+                  --[ tuple ]--[
                     "lazy_from_val3",
                     (function (param) {
                         debugger;
-                        return /* Eq */Block.__(0, [
+                        return --[ Eq ]--Block.__(0, [
                                   CamlinternalLazy.force(CamlinternalLazy.force(Lazy.from_val(forward_test))),
                                   4
                                 ]);
                       })
                   ],
-                  /* [] */0
+                  --[ [] ]--0
                 ]
               ]
             ]
@@ -223,4 +223,4 @@ exports.f005 = f005;
 exports.f006 = f006;
 exports.f007 = f007;
 exports.f008 = f008;
-/* h Not a pure module */
+--[ h Not a pure module ]--

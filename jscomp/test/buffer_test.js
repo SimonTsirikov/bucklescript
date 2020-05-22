@@ -8,59 +8,59 @@ var Caml_bytes = require("../../lib/js/caml_bytes.js");
 
 var v = "gso";
 
-var suites_000 = /* tuple */[
+var suites_000 = --[ tuple ]--[
   "equal",
   (function (param) {
-      return /* Eq */Block.__(0, [
-                /* tuple */[
-                  Caml_bytes.get(Bytes.make(3, /* "a" */97), 0),
-                  Bytes.make(3, /* "a" */97)[0]
+      return --[ Eq ]--Block.__(0, [
+                --[ tuple ]--[
+                  Caml_bytes.get(Bytes.make(3, --[ "a" ]--97), 0),
+                  Bytes.make(3, --[ "a" ]--97)[0]
                 ],
-                /* tuple */[
-                  /* "a" */97,
-                  /* "a" */97
+                --[ tuple ]--[
+                  --[ "a" ]--97,
+                  --[ "a" ]--97
                 ]
               ]);
     })
 ];
 
-var suites_001 = /* :: */[
-  /* tuple */[
+var suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "equal2",
     (function (param) {
-        var u = Bytes.make(3, /* "a" */97);
-        u[0] = /* "b" */98;
-        return /* Eq */Block.__(0, [
-                  /* tuple */[
+        var u = Bytes.make(3, --[ "a" ]--97);
+        u[0] = --[ "b" ]--98;
+        return --[ Eq ]--Block.__(0, [
+                  --[ tuple ]--[
                     u[0],
-                    /* "g" */103
+                    --[ "g" ]--103
                   ],
-                  /* tuple */[
-                    /* "b" */98,
-                    /* "g" */103
+                  --[ tuple ]--[
+                    --[ "b" ]--98,
+                    --[ "g" ]--103
                   ]
                 ]);
       })
   ],
-  /* :: */[
-    /* tuple */[
+  --[ :: ]--[
+    --[ tuple ]--[
       "buffer",
       (function (param) {
           var v = $$Buffer.create(30);
           for(var i = 0; i <= 10; ++i){
             $$Buffer.add_string(v, String(i));
           }
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     $$Buffer.contents(v),
                     "012345678910"
                   ]);
         })
     ],
-    /* [] */0
+    --[ [] ]--0
   ]
 ];
 
-var suites = /* :: */[
+var suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -69,4 +69,4 @@ Mt.from_pair_suites("Buffer_test", suites);
 
 exports.v = v;
 exports.suites = suites;
-/*  Not a pure module */
+--[  Not a pure module ]--

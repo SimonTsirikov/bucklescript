@@ -7,11 +7,11 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 
 function f(match) {
   if (Caml_exceptions.caml_is_extension(match)) {
-    if (match === Caml_builtin_exceptions.not_found) {
+    if (match == Caml_builtin_exceptions.not_found) {
       return 0;
-    } else if (match[0] === Caml_builtin_exceptions.invalid_argument || match === Caml_builtin_exceptions.stack_overflow) {
+    } else if (match[0] == Caml_builtin_exceptions.invalid_argument or match == Caml_builtin_exceptions.stack_overflow) {
       return 1;
-    } else if (match[0] === Caml_builtin_exceptions.sys_error) {
+    } else if (match[0] == Caml_builtin_exceptions.sys_error) {
       return 2;
     } else {
       return ;
@@ -26,11 +26,11 @@ var B = Caml_exceptions.create("Exn_error_pattern.B");
 
 function g(match) {
   if (Caml_exceptions.caml_is_extension(match)) {
-    if (match === Caml_builtin_exceptions.not_found || match[0] === Caml_builtin_exceptions.invalid_argument) {
+    if (match == Caml_builtin_exceptions.not_found or match[0] == Caml_builtin_exceptions.invalid_argument) {
       return 0;
-    } else if (match[0] === Caml_builtin_exceptions.sys_error) {
+    } else if (match[0] == Caml_builtin_exceptions.sys_error) {
       return 2;
-    } else if (match[0] === A || match[0] === B) {
+    } else if (match[0] == A or match[0] == B) {
       return match[1];
     } else {
       return ;
@@ -40,7 +40,7 @@ function g(match) {
 }
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -85,4 +85,4 @@ exports.g = g;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
-/*  Not a pure module */
+--[  Not a pure module ]--

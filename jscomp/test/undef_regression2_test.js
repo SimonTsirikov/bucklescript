@@ -5,7 +5,7 @@ var Block = require("../../lib/js/block.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
 var suites = {
-  contents: /* [] */0
+  contents: --[ [] ]--0
 };
 
 var test_id = {
@@ -14,11 +14,11 @@ var test_id = {
 
 function eq(loc, x, y) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
@@ -26,60 +26,60 @@ function eq(loc, x, y) {
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function ok(loc, x) {
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = /* :: */[
-    /* tuple */[
+  suites.contents = --[ :: ]--[
+    --[ tuple ]--[
       loc + (" id " + String(test_id.contents)),
       (function (param) {
-          return /* Ok */Block.__(4, [x]);
+          return --[ Ok ]--Block.__(4, [x]);
         })
     ],
     suites.contents
   ];
-  return /* () */0;
+  return --[ () ]--0;
 }
 
-var match = typeof ___undefined_value === "undefined" ? undefined : ___undefined_value;
+var match = typeof ___undefined_value == "undefined" ? undefined : ___undefined_value;
 
-var a = match !== undefined ? 2 : 1;
+var a = match ~= undefined ? 2 : 1;
 
 function test(param) {
-  var match = typeof __DEV__ === "undefined" ? undefined : __DEV__;
-  if (match !== undefined) {
+  var match = typeof __DEV__ == "undefined" ? undefined : __DEV__;
+  if (match ~= undefined) {
     console.log("dev mode");
-    return /* () */0;
+    return --[ () ]--0;
   } else {
     console.log("producton mode");
-    return /* () */0;
+    return --[ () ]--0;
   }
 }
 
 function test2(param) {
-  var match = typeof __filename === "undefined" ? undefined : __filename;
-  if (match !== undefined) {
+  var match = typeof __filename == "undefined" ? undefined : __filename;
+  if (match ~= undefined) {
     console.log(match);
-    return /* () */0;
+    return --[ () ]--0;
   } else {
     console.log("non node environment");
-    return /* () */0;
+    return --[ () ]--0;
   }
 }
 
 function test3(param) {
-  if (Caml_option.undefined_to_opt(typeof __DEV__ === "undefined" ? undefined : __DEV__) === undefined) {
+  if (Caml_option.undefined_to_opt(typeof __DEV__ == "undefined" ? undefined : __DEV__) == undefined) {
     console.log("production mode");
-    return /* () */0;
+    return --[ () ]--0;
   } else {
     return 0;
   }
 }
 
 function f(x) {
-  return x === undefined;
+  return x == undefined;
 }
 
 ok("File \"undef_regression2_test.ml\", line 44, characters 5-12", a > 0);
@@ -97,4 +97,4 @@ exports.test = test;
 exports.test2 = test2;
 exports.test3 = test3;
 exports.f = f;
-/* match Not a pure module */
+--[ match Not a pure module ]--

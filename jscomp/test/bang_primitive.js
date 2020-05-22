@@ -2,18 +2,18 @@
 
 
 function test(x, y) {
-  return /* tuple */[
+  return --[ tuple ]--[
           x < y,
           x <= y,
           x > y,
           x >= y,
-          x === y,
-          x !== y
+          x == y,
+          x ~= y
         ];
 }
 
 function f(x, y) {
-  return /* tuple */[
+  return --[ tuple ]--[
           String.fromCharCode.apply(null, x),
           0
         ];
@@ -21,4 +21,4 @@ function f(x, y) {
 
 exports.test = test;
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

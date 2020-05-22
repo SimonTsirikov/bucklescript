@@ -21,4 +21,4 @@ function fff(param, param$1) {
 exports.f = f;
 exports.M = M;
 exports.fff = fff;
-/* No side effect */
+--[ No side effect ]--

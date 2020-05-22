@@ -13,4 +13,4 @@ function f(g, x) {
 
 exports.u = u;
 exports.f = f;
-/* No side effect */
+--[ No side effect ]--

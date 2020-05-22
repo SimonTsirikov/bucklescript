@@ -27,7 +27,7 @@ function starts_with(xs, prefix, p) {
       return true;
     }
     catch (exn){
-      if (exn === H) {
+      if (exn == H) {
         return false;
       } else {
         throw exn;
@@ -52,10 +52,10 @@ function is_sorted(x) {
   };
 }
 
-var array_suites_000 = /* tuple */[
+var array_suites_000 = --[ tuple ]--[
   "init",
   (function (param) {
-      return /* Eq */Block.__(0, [
+      return --[ Eq ]--Block.__(0, [
                 $$Array.init(5, (function (x) {
                         return x;
                       })),
@@ -70,39 +70,39 @@ var array_suites_000 = /* tuple */[
     })
 ];
 
-var array_suites_001 = /* :: */[
-  /* tuple */[
+var array_suites_001 = --[ :: ]--[
+  --[ tuple ]--[
     "toList",
     (function (param) {
         var aux = function (xs) {
           return List.fold_left((function (acc, param) {
-                        return /* :: */[
-                                /* tuple */[
+                        return --[ :: ]--[
+                                --[ tuple ]--[
                                   $$Array.to_list(param[0]),
                                   param[1]
                                 ],
                                 acc
                               ];
-                      }), /* [] */0, xs);
+                      }), --[ [] ]--0, xs);
         };
-        var match = List.split(aux(/* :: */[
-                  /* tuple */[
+        var match = List.split(aux(--[ :: ]--[
+                  --[ tuple ]--[
                     [],
-                    /* [] */0
+                    --[ [] ]--0
                   ],
-                  /* [] */0
+                  --[ [] ]--0
                 ]));
-        return /* Eq */Block.__(0, [
+        return --[ Eq ]--Block.__(0, [
                   match[0],
                   match[1]
                 ]);
       })
   ],
-  /* :: */[
-    /* tuple */[
+  --[ :: ]--[
+    --[ tuple ]--[
       "concat",
       (function (param) {
-          return /* Eq */Block.__(0, [
+          return --[ Eq ]--Block.__(0, [
                     [
                       0,
                       1,
@@ -111,22 +111,22 @@ var array_suites_001 = /* :: */[
                       4,
                       5
                     ],
-                    Caml_array.caml_array_concat(/* :: */[
+                    Caml_array.caml_array_concat(--[ :: ]--[
                           [
                             0,
                             1,
                             2
                           ],
-                          /* :: */[
+                          --[ :: ]--[
                             [
                               3,
                               4
                             ],
-                            /* :: */[
+                            --[ :: ]--[
                               [],
-                              /* :: */[
+                              --[ :: ]--[
                                 [5],
-                                /* [] */0
+                                --[ [] ]--0
                               ]
                             ]
                           ]
@@ -134,18 +134,18 @@ var array_suites_001 = /* :: */[
                   ]);
         })
     ],
-    /* :: */[
-      /* tuple */[
+    --[ :: ]--[
+      --[ tuple ]--[
         "make",
         (function (param) {
-            return /* Eq */Block.__(0, [
-                      /* tuple */[
-                        Caml_array.caml_make_vect(100, /* "a" */97),
+            return --[ Eq ]--Block.__(0, [
+                      --[ tuple ]--[
+                        Caml_array.caml_make_vect(100, --[ "a" ]--97),
                         Caml_array.caml_make_float_vect(100)
                       ],
-                      /* tuple */[
+                      --[ tuple ]--[
                         $$Array.init(100, (function (param) {
-                                return /* "a" */97;
+                                return --[ "a" ]--97;
                               })),
                         $$Array.init(100, (function (param) {
                                 return 0;
@@ -154,11 +154,11 @@ var array_suites_001 = /* :: */[
                     ]);
           })
       ],
-      /* :: */[
-        /* tuple */[
+      --[ :: ]--[
+        --[ tuple ]--[
           "sub",
           (function (param) {
-              return /* Eq */Block.__(0, [
+              return --[ Eq ]--Block.__(0, [
                         $$Array.sub([
                               0,
                               1,
@@ -173,8 +173,8 @@ var array_suites_001 = /* :: */[
                       ]);
             })
         ],
-        /* :: */[
-          /* tuple */[
+        --[ :: ]--[
+          --[ tuple ]--[
             "blit",
             (function (param) {
                 var u = [
@@ -186,8 +186,8 @@ var array_suites_001 = /* :: */[
                         return (x << 1);
                       }));
                 $$Array.blit(v, 1, u, 1, 2);
-                return /* Eq */Block.__(0, [
-                          /* tuple */[
+                return --[ Eq ]--Block.__(0, [
+                          --[ tuple ]--[
                             [
                               0,
                               2,
@@ -199,22 +199,22 @@ var array_suites_001 = /* :: */[
                               4
                             ]
                           ],
-                          /* tuple */[
+                          --[ tuple ]--[
                             v,
                             u
                           ]
                         ]);
               })
           ],
-          /* :: */[
-            /* tuple */[
+          --[ :: ]--[
+            --[ tuple ]--[
               "File \"array_test.ml\", line 63, characters 2-9",
               (function (param) {
                   var a0 = $$Array.init(100, (function (i) {
                           return (i << 0);
                         }));
                   $$Array.blit(a0, 10, a0, 5, 20);
-                  return /* Eq */Block.__(0, [
+                  return --[ Eq ]--Block.__(0, [
                             true,
                             starts_with(a0, [
                                   0,
@@ -242,20 +242,20 @@ var array_suites_001 = /* :: */[
                                   27,
                                   28
                                 ], (function (prim, prim$1) {
-                                    return prim === prim$1;
+                                    return prim == prim$1;
                                   }))
                           ]);
                 })
             ],
-            /* :: */[
-              /* tuple */[
+            --[ :: ]--[
+              --[ tuple ]--[
                 "File \"array_test.ml\", line 72, characters 2-9",
                 (function (param) {
                     var a0 = $$Array.init(100, (function (i) {
                             return (i << 0);
                           }));
                     $$Array.blit(a0, 5, a0, 10, 20);
-                    return /* Eq */Block.__(0, [
+                    return --[ Eq ]--Block.__(0, [
                               true,
                               starts_with(a0, [
                                     0,
@@ -285,16 +285,16 @@ var array_suites_001 = /* :: */[
                                     19,
                                     20
                                   ], (function (prim, prim$1) {
-                                      return prim === prim$1;
+                                      return prim == prim$1;
                                     }))
                             ]);
                   })
               ],
-              /* :: */[
-                /* tuple */[
+              --[ :: ]--[
+                --[ tuple ]--[
                   "make",
                   (function (param) {
-                      return /* Eq */Block.__(0, [
+                      return --[ Eq ]--Block.__(0, [
                                 Caml_array.caml_make_vect(2, 1),
                                 [
                                   1,
@@ -303,8 +303,8 @@ var array_suites_001 = /* :: */[
                               ]);
                     })
                 ],
-                /* :: */[
-                  /* tuple */[
+                --[ :: ]--[
+                  --[ tuple ]--[
                     "sort",
                     (function (param) {
                         var u = [
@@ -313,7 +313,7 @@ var array_suites_001 = /* :: */[
                           1
                         ];
                         $$Array.sort(Caml_primitive.caml_int_compare, u);
-                        return /* Eq */Block.__(0, [
+                        return --[ Eq ]--Block.__(0, [
                                   Caml_obj.caml_equal([
                                         0,
                                         1,
@@ -323,21 +323,21 @@ var array_suites_001 = /* :: */[
                                 ]);
                       })
                   ],
-                  /* :: */[
-                    /* tuple */[
+                  --[ :: ]--[
+                    --[ tuple ]--[
                       "sort_large",
                       (function (param) {
                           var v = $$Array.init(4, (function (i) {
                                   return i % 17;
                                 }));
                           $$Array.sort(Caml_primitive.caml_int_compare, v);
-                          return /* Eq */Block.__(0, [
+                          return --[ Eq ]--Block.__(0, [
                                     true,
                                     is_sorted(v)
                                   ]);
                         })
                     ],
-                    /* [] */0
+                    --[ [] ]--0
                   ]
                 ]
               ]
@@ -349,11 +349,11 @@ var array_suites_001 = /* :: */[
   ]
 ];
 
-var array_suites = /* :: */[
+var array_suites = --[ :: ]--[
   array_suites_000,
   array_suites_001
 ];
 
 Mt.from_pair_suites("Array_test", array_suites);
 
-/*  Not a pure module */
+--[  Not a pure module ]--

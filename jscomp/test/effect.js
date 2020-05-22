@@ -14,4 +14,4 @@ var c = 3;
 exports.a = a;
 exports.b = b;
 exports.c = c;
-/*  Not a pure module */
+--[  Not a pure module ]--

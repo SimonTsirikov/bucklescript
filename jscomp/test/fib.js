@@ -2,7 +2,7 @@
 
 
 function fib(n) {
-  if (n === 0 || n === 1) {
+  if (n == 0 or n == 1) {
     return 1;
   } else {
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
@@ -17,7 +17,7 @@ function fib2(n) {
     var i = _i;
     var b = _b;
     var a = _a;
-    if (n === i) {
+    if (n == i) {
       return a;
     } else {
       _i = i + 1 | 0;
@@ -42,4 +42,4 @@ function fib3(n) {
 exports.fib = fib;
 exports.fib2 = fib2;
 exports.fib3 = fib3;
-/* No side effect */
+--[ No side effect ]--

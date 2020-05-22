@@ -12,4 +12,4 @@ function v(param) {
 
 exports.f = f;
 exports.v = v;
-/* xx/foo_class Not a pure module */
+--[ xx/foo_class Not a pure module ]--

@@ -7,4 +7,4 @@ function f(prim) {
 }
 
 exports.f = f;
-/* ./gentTypeReTest.gen Not a pure module */
+--[ ./gentTypeReTest.gen Not a pure module ]--

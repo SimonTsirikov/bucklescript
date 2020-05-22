@@ -11,4 +11,4 @@ function b(a0, a1, a2, a3, a4) {
 
 exports.a = a;
 exports.b = b;
-/* No side effect */
+--[ No side effect ]--

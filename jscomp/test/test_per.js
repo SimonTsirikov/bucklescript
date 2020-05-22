@@ -59,34 +59,34 @@ function lnot(x) {
 
 var min_int = -2147483648;
 
-var infinity = Caml_int64.float_of_bits(/* int64 */[
-      /* hi */2146435072,
-      /* lo */0
+var infinity = Caml_int64.float_of_bits(--[ int64 ]--[
+      --[ hi ]--2146435072,
+      --[ lo ]--0
     ]);
 
-var neg_infinity = Caml_int64.float_of_bits(/* int64 */[
-      /* hi */-1048576,
-      /* lo */0
+var neg_infinity = Caml_int64.float_of_bits(--[ int64 ]--[
+      --[ hi ]---1048576,
+      --[ lo ]--0
     ]);
 
-var nan = Caml_int64.float_of_bits(/* int64 */[
-      /* hi */2146435072,
-      /* lo */1
+var nan = Caml_int64.float_of_bits(--[ int64 ]--[
+      --[ hi ]--2146435072,
+      --[ lo ]--1
     ]);
 
-var max_float = Caml_int64.float_of_bits(/* int64 */[
-      /* hi */2146435071,
-      /* lo */4294967295
+var max_float = Caml_int64.float_of_bits(--[ int64 ]--[
+      --[ hi ]--2146435071,
+      --[ lo ]--4294967295
     ]);
 
-var min_float = Caml_int64.float_of_bits(/* int64 */[
-      /* hi */1048576,
-      /* lo */0
+var min_float = Caml_int64.float_of_bits(--[ int64 ]--[
+      --[ hi ]--1048576,
+      --[ lo ]--0
     ]);
 
-var epsilon_float = Caml_int64.float_of_bits(/* int64 */[
-      /* hi */1018167296,
-      /* lo */0
+var epsilon_float = Caml_int64.float_of_bits(--[ int64 ]--[
+      --[ hi ]--1018167296,
+      --[ lo ]--0
     ]);
 
 function $caret(s1, s2) {
@@ -99,7 +99,7 @@ function $caret(s1, s2) {
 }
 
 function char_of_int(n) {
-  if (n < 0 || n > 255) {
+  if (n < 0 or n > 255) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "char_of_int"
@@ -150,7 +150,7 @@ function valid_float_lexem(s) {
           _i = i + 1 | 0;
           continue ;
         }
-      } else if (match !== 45) {
+      } else if (match ~= 45) {
         return s;
       } else {
         _i = i + 1 | 0;
@@ -166,7 +166,7 @@ function string_of_float(f) {
 
 function $at(l1, l2) {
   if (l1) {
-    return /* :: */[
+    return --[ :: ]--[
             l1[0],
             $at(l1[1], l2)
           ];
@@ -186,15 +186,15 @@ function open_out_gen(mode, perm, name) {
 }
 
 function open_out(name) {
-  return open_out_gen(/* :: */[
-              /* Open_wronly */1,
-              /* :: */[
-                /* Open_creat */3,
-                /* :: */[
-                  /* Open_trunc */4,
-                  /* :: */[
-                    /* Open_text */7,
-                    /* [] */0
+  return open_out_gen(--[ :: ]--[
+              --[ Open_wronly ]--1,
+              --[ :: ]--[
+                --[ Open_creat ]--3,
+                --[ :: ]--[
+                  --[ Open_trunc ]--4,
+                  --[ :: ]--[
+                    --[ Open_text ]--7,
+                    --[ [] ]--0
                   ]
                 ]
               ]
@@ -202,15 +202,15 @@ function open_out(name) {
 }
 
 function open_out_bin(name) {
-  return open_out_gen(/* :: */[
-              /* Open_wronly */1,
-              /* :: */[
-                /* Open_creat */3,
-                /* :: */[
-                  /* Open_trunc */4,
-                  /* :: */[
-                    /* Open_binary */6,
-                    /* [] */0
+  return open_out_gen(--[ :: ]--[
+              --[ Open_wronly ]--1,
+              --[ :: ]--[
+                --[ Open_creat ]--3,
+                --[ :: ]--[
+                  --[ Open_trunc ]--4,
+                  --[ :: ]--[
+                    --[ Open_binary ]--6,
+                    --[ [] ]--0
                   ]
                 ]
               ]
@@ -218,7 +218,7 @@ function open_out_bin(name) {
 }
 
 function flush_all(param) {
-  var _param = Caml_io.caml_ml_out_channels_list(/* () */0);
+  var _param = Caml_io.caml_ml_out_channels_list(--[ () ]--0);
   while(true) {
     var param$1 = _param;
     if (param$1) {
@@ -231,7 +231,7 @@ function flush_all(param) {
       _param = param$1[1];
       continue ;
     } else {
-      return /* () */0;
+      return --[ () ]--0;
     }
   };
 }
@@ -245,7 +245,7 @@ function output_string(oc, s) {
 }
 
 function output(oc, s, ofs, len) {
-  if (ofs < 0 || len < 0 || ofs > (s.length - len | 0)) {
+  if (ofs < 0 or len < 0 or ofs > (s.length - len | 0)) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "output"
@@ -255,7 +255,7 @@ function output(oc, s, ofs, len) {
 }
 
 function output_substring(oc, s, ofs, len) {
-  if (ofs < 0 || len < 0 || ofs > (s.length - len | 0)) {
+  if (ofs < 0 or len < 0 or ofs > (s.length - len | 0)) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "output_substring"
@@ -265,7 +265,7 @@ function output_substring(oc, s, ofs, len) {
 }
 
 function output_value(chan, v) {
-  return Caml_external_polyfill.resolve("caml_output_value")(chan, v, /* [] */0);
+  return Caml_external_polyfill.resolve("caml_output_value")(chan, v, --[ [] ]--0);
 }
 
 function close_out(oc) {
@@ -284,7 +284,7 @@ function close_out_noerr(oc) {
     return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
   }
   catch (exn$1){
-    return /* () */0;
+    return --[ () ]--0;
   }
 }
 
@@ -293,27 +293,27 @@ function open_in_gen(mode, perm, name) {
 }
 
 function open_in(name) {
-  return open_in_gen(/* :: */[
-              /* Open_rdonly */0,
-              /* :: */[
-                /* Open_text */7,
-                /* [] */0
+  return open_in_gen(--[ :: ]--[
+              --[ Open_rdonly ]--0,
+              --[ :: ]--[
+                --[ Open_text ]--7,
+                --[ [] ]--0
               ]
             ], 0, name);
 }
 
 function open_in_bin(name) {
-  return open_in_gen(/* :: */[
-              /* Open_rdonly */0,
-              /* :: */[
-                /* Open_binary */6,
-                /* [] */0
+  return open_in_gen(--[ :: ]--[
+              --[ Open_rdonly ]--0,
+              --[ :: ]--[
+                --[ Open_binary ]--6,
+                --[ [] ]--0
               ]
             ], 0, name);
 }
 
 function input(ic, s, ofs, len) {
-  if (ofs < 0 || len < 0 || ofs > (s.length - len | 0)) {
+  if (ofs < 0 or len < 0 or ofs > (s.length - len | 0)) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "input"
@@ -327,10 +327,10 @@ function unsafe_really_input(ic, s, _ofs, _len) {
     var len = _len;
     var ofs = _ofs;
     if (len <= 0) {
-      return /* () */0;
+      return --[ () ]--0;
     } else {
       var r = Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
-      if (r === 0) {
+      if (r == 0) {
         throw Caml_builtin_exceptions.end_of_file;
       }
       _len = len - r | 0;
@@ -341,7 +341,7 @@ function unsafe_really_input(ic, s, _ofs, _len) {
 }
 
 function really_input(ic, s, ofs, len) {
-  if (ofs < 0 || len < 0 || ofs > (s.length - len | 0)) {
+  if (ofs < 0 or len < 0 or ofs > (s.length - len | 0)) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "really_input"
@@ -373,13 +373,13 @@ function input_line(chan) {
       }
     };
   };
-  var _accu = /* [] */0;
+  var _accu = --[ [] ]--0;
   var _len = 0;
   while(true) {
     var len = _len;
     var accu = _accu;
     var n = Caml_external_polyfill.resolve("caml_ml_input_scan_line")(chan);
-    if (n === 0) {
+    if (n == 0) {
       if (accu) {
         return build_result(Caml_bytes.caml_create_bytes(len), len, accu);
       } else {
@@ -391,7 +391,7 @@ function input_line(chan) {
       Caml_external_polyfill.resolve("caml_ml_input_char")(chan);
       if (accu) {
         var len$1 = (len + n | 0) - 1 | 0;
-        return build_result(Caml_bytes.caml_create_bytes(len$1), len$1, /* :: */[
+        return build_result(Caml_bytes.caml_create_bytes(len$1), len$1, --[ :: ]--[
                     res,
                     accu
                   ]);
@@ -402,7 +402,7 @@ function input_line(chan) {
       var beg = Caml_bytes.caml_create_bytes(-n | 0);
       Caml_external_polyfill.resolve("caml_ml_input")(chan, beg, 0, -n | 0);
       _len = len - n | 0;
-      _accu = /* :: */[
+      _accu = --[ :: ]--[
         beg,
         accu
       ];
@@ -416,7 +416,7 @@ function close_in_noerr(ic) {
     return Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
   }
   catch (exn){
-    return /* () */0;
+    return --[ () ]--0;
   }
 }
 
@@ -442,12 +442,12 @@ function print_float(f) {
 
 function print_endline(s) {
   output_string(stdout, s);
-  Caml_io.caml_ml_output_char(stdout, /* "\n" */10);
+  Caml_io.caml_ml_output_char(stdout, --[ "\n" ]--10);
   return Caml_io.caml_ml_flush(stdout);
 }
 
 function print_newline(param) {
-  Caml_io.caml_ml_output_char(stdout, /* "\n" */10);
+  Caml_io.caml_ml_output_char(stdout, --[ "\n" ]--10);
   return Caml_io.caml_ml_flush(stdout);
 }
 
@@ -473,12 +473,12 @@ function prerr_float(f) {
 
 function prerr_endline(s) {
   output_string(stderr, s);
-  Caml_io.caml_ml_output_char(stderr, /* "\n" */10);
+  Caml_io.caml_ml_output_char(stderr, --[ "\n" ]--10);
   return Caml_io.caml_ml_flush(stderr);
 }
 
 function prerr_newline(param) {
-  Caml_io.caml_ml_output_char(stderr, /* "\n" */10);
+  Caml_io.caml_ml_output_char(stderr, --[ "\n" ]--10);
   return Caml_io.caml_ml_flush(stderr);
 }
 
@@ -502,7 +502,7 @@ function string_of_format(param) {
 }
 
 function $caret$caret(param, param$1) {
-  return /* Format */[
+  return --[ Format ]--[
           CamlinternalFormatBasics.concat_fmt(param[0], param$1[0]),
           $caret(param[1], $caret("%,", param$1[1]))
         ];
@@ -515,18 +515,18 @@ var exit_function = {
 function at_exit(f) {
   var g = exit_function[0];
   exit_function[0] = (function (param) {
-      Curry._1(f, /* () */0);
-      return Curry._1(g, /* () */0);
+      Curry._1(f, --[ () ]--0);
+      return Curry._1(g, --[ () ]--0);
     });
-  return /* () */0;
+  return --[ () ]--0;
 }
 
 function do_at_exit(param) {
-  return Curry._1(exit_function[0], /* () */0);
+  return Curry._1(exit_function[0], --[ () ]--0);
 }
 
 function exit(retcode) {
-  Curry._1(exit_function[0], /* () */0);
+  Curry._1(exit_function[0], --[ () ]--0);
   return Caml_sys.caml_sys_exit(retcode);
 }
 
@@ -602,4 +602,4 @@ exports.exit_function = exit_function;
 exports.at_exit = at_exit;
 exports.do_at_exit = do_at_exit;
 exports.exit = exit;
-/* No side effect */
+--[ No side effect ]--

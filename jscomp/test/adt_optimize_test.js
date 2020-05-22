@@ -12,7 +12,7 @@ function f_0(x) {
 
 function f2(param) {
   if (param >= 3) {
-    return /* T003 */3;
+    return --[ T003 ]--3;
   } else {
     return param;
   }
@@ -27,22 +27,22 @@ function f4(param) {
 }
 
 function f5(param) {
-  if (typeof param === "number") {
+  if (typeof param == "number") {
     switch (param) {
-      case /* A */0 :
+      case --[ A ]--0 :
           return 1;
-      case /* B */1 :
+      case --[ B ]--1 :
           return 3;
-      case /* F */2 :
+      case --[ F ]--2 :
           return 4;
       
     }
   } else {
     switch (param.tag | 0) {
-      case /* C */0 :
-      case /* D */1 :
+      case --[ C ]--0 :
+      case --[ D ]--1 :
           return 1;
-      case /* E */2 :
+      case --[ E ]--2 :
           return 2;
       
     }
@@ -50,7 +50,7 @@ function f5(param) {
 }
 
 function f6(param) {
-  if (typeof param === "number") {
+  if (typeof param == "number") {
     if (param >= 2) {
       return 2;
     } else {
@@ -62,23 +62,23 @@ function f6(param) {
 }
 
 function f7(param) {
-  if (typeof param === "number") {
+  if (typeof param == "number") {
     switch (param) {
-      case /* A */0 :
+      case --[ A ]--0 :
           return 1;
-      case /* B */1 :
+      case --[ B ]--1 :
           return 2;
-      case /* F */2 :
+      case --[ F ]--2 :
           return -1;
       
     }
   } else {
     switch (param.tag | 0) {
-      case /* C */0 :
+      case --[ C ]--0 :
           return 3;
-      case /* D */1 :
+      case --[ D ]--1 :
           return 4;
-      case /* E */2 :
+      case --[ E ]--2 :
           return -1;
       
     }
@@ -86,18 +86,18 @@ function f7(param) {
 }
 
 function f8(param) {
-  if (typeof param === "number") {
+  if (typeof param == "number") {
     switch (param) {
-      case /* T60 */0 :
-      case /* T61 */1 :
+      case --[ T60 ]--0 :
+      case --[ T61 ]--1 :
           return 1;
       default:
         return 3;
     }
   } else {
     switch (param.tag | 0) {
-      case /* T64 */0 :
-      case /* T65 */1 :
+      case --[ T64 ]--0 :
+      case --[ T65 ]--1 :
           return 2;
       default:
         return 3;
@@ -106,19 +106,19 @@ function f8(param) {
 }
 
 function f9(param) {
-  if (typeof param === "number") {
-    if (param === /* T63 */3) {
+  if (typeof param == "number") {
+    if (param == --[ T63 ]--3) {
       return 3;
     } else {
       return 1;
     }
   } else {
     switch (param.tag | 0) {
-      case /* T64 */0 :
-      case /* T65 */1 :
+      case --[ T64 ]--0 :
+      case --[ T65 ]--1 :
           return 2;
-      case /* T66 */2 :
-      case /* T68 */3 :
+      case --[ T66 ]--2 :
+      case --[ T68 ]--3 :
           return 3;
       
     }
@@ -126,25 +126,25 @@ function f9(param) {
 }
 
 function f10(param) {
-  if (typeof param === "number") {
+  if (typeof param == "number") {
     switch (param) {
-      case /* T60 */0 :
+      case --[ T60 ]--0 :
           return 0;
-      case /* T61 */1 :
+      case --[ T61 ]--1 :
           return 2;
-      case /* T62 */2 :
+      case --[ T62 ]--2 :
           return 4;
-      case /* T63 */3 :
+      case --[ T63 ]--3 :
           return 1;
       
     }
   } else {
     switch (param.tag | 0) {
-      case /* T64 */0 :
-      case /* T65 */1 :
+      case --[ T64 ]--0 :
+      case --[ T65 ]--1 :
           return 2;
-      case /* T66 */2 :
-      case /* T68 */3 :
+      case --[ T66 ]--2 :
+      case --[ T68 ]--3 :
           return 3;
       
     }
@@ -152,12 +152,12 @@ function f10(param) {
 }
 
 function f11(x) {
-  if (typeof x === "number") {
+  if (typeof x == "number") {
     return 2;
   } else if (x.tag) {
     throw [
           Caml_builtin_exceptions.assert_failure,
-          /* tuple */[
+          --[ tuple ]--[
             "adt_optimize_test.ml",
             191,
             9
@@ -180,4 +180,4 @@ exports.f8 = f8;
 exports.f9 = f9;
 exports.f10 = f10;
 exports.f11 = f11;
-/* No side effect */
+--[ No side effect ]--

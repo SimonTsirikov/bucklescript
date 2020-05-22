@@ -71,4 +71,4 @@ exports.v1 = v1;
 exports.v2 = v2;
 exports.v3 = v3;
 exports.v4 = v4;
-/*  Not a pure module */
+--[  Not a pure module ]--
