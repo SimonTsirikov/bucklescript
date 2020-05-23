@@ -11,11 +11,11 @@ function f(x, y) do
 end
 
 function ff(x, y) do
-  if (x < y) do
+  if (x < y) then do
     return 1;
   end else do
     return 2;
-  end
+  end end 
 end
 
 exports.f = f;

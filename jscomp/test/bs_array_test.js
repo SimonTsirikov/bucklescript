@@ -138,7 +138,7 @@ var v$1 = [
   2
 ];
 
-if (!Belt_Array.set(v$1, 0, 0)) do
+if (!Belt_Array.set(v$1, 0, 0)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -148,6 +148,7 @@ if (!Belt_Array.set(v$1, 0, 0)) do
         ]
       ];
 end
+ end 
 
 b("File \"bs_array_test.ml\", line 34, characters 4-11", Belt_Array.getExn(v$1, 0) == 0);
 
@@ -156,7 +157,7 @@ var v$2 = [
   2
 ];
 
-if (!Belt_Array.set(v$2, 1, 0)) do
+if (!Belt_Array.set(v$2, 1, 0)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -166,6 +167,7 @@ if (!Belt_Array.set(v$2, 1, 0)) do
         ]
       ];
 end
+ end 
 
 b("File \"bs_array_test.ml\", line 35, characters 4-11", Belt_Array.getExn(v$2, 1) == 0);
 
@@ -388,9 +390,10 @@ function addone(x) do
 end
 
 function makeMatrixExn(sx, sy, init) do
-  if (!(sx >= 0 and sy >= 0)) do
+  if (!(sx >= 0 and sy >= 0)) then do
     throw new Error("File \"bs_array_test.ml\", line 109, characters 4-10");
   end
+   end 
   var res = new Array(sx);
   for(var x = 0 ,x_finish = sx - 1 | 0; x <= x_finish; ++x)do
     var initY = new Array(sy);
@@ -543,10 +546,10 @@ var v1 = Belt_Array.keep(v$6, (function (x) do
       end));
 
 var v2 = Belt_Array.keepMap(v$6, (function (x) do
-        if (x % 2 == 0) do
+        if (x % 2 == 0) then do
           return x + 1 | 0;
         end
-        
+         end 
       end));
 
 eq("File \"bs_array_test.ml\", line 147, characters 5-12", v0, [

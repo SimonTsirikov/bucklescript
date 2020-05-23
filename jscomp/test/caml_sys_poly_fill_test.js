@@ -52,11 +52,11 @@ try do
   tmp = Caml_sys.caml_sys_getenv("Caml_sys_poly_fill_test");
 end
 catch (exn)do
-  if (exn == Caml_builtin_exceptions.not_found) do
+  if (exn == Caml_builtin_exceptions.not_found) then do
     tmp = "Z";
   end else do
     throw exn;
-  end
+  end end 
 end
 
 eq("File \"caml_sys_poly_fill_test.ml\", line 23, characters 5-12", "Z", tmp);

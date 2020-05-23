@@ -52,14 +52,14 @@ function advance_loop(state) do
     var match = peek_queue(state.pp_queue);
     var size = match.elem_size;
     var size$1 = int_of_size(size);
-    if (size$1 < 0 and (state.pp_right_total - state.pp_left_total | 0) < state.pp_space_left) do
+    if (size$1 < 0 and (state.pp_right_total - state.pp_left_total | 0) < state.pp_space_left) then do
       return 0;
     end else do
       take_queue(state.pp_queue);
       Curry._1(format_pp_token(state, size$1 < 0 ? 1000000010 : size$1), match.token);
       state.pp_left_total = match.length + state.pp_left_total | 0;
       continue ;
-    end
+    end end 
   end;
 end
 

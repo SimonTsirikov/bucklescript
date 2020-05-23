@@ -81,11 +81,11 @@ eq("File \"array_subtle_test.ml\", line 29, characters 5-12", --[ tuple ]--[
 
 function f(v) do
   var match = v.pop();
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     console.log("hi");
   end else do
     console.log("hi2");
-  end
+  end end 
   console.log((v.pop(), --[ () ]--0));
   return --[ () ]--0;
 end
@@ -95,12 +95,12 @@ function fff(x) do
 end
 
 function fff2(x) do
-  if (#x >= 10) do
+  if (#x >= 10) then do
     console.log("hi");
     return --[ () ]--0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function fff3(x) do
@@ -108,11 +108,11 @@ function fff3(x) do
 end
 
 function fff4(x) do
-  if (#x ~= 0) do
+  if (#x ~= 0) then do
     return 1;
   end else do
     return 2;
-  end
+  end end 
 end
 
 eq("File \"array_subtle_test.ml\", line 51, characters 6-13", --[ tuple ]--[

@@ -23,45 +23,45 @@ end
 
 function f0(x) do
   var match = x[1];
-  if (match ~= undefined and match) do
+  if (match ~= undefined and match) then do
     return 1;
   end else do
     return 2;
-  end
+  end end 
 end
 
 function f1(u) do
-  if (u) do
+  if (u) then do
     return 0;
   end else do
     return 1;
-  end
+  end end 
 end
 
 function f2(x, y, zOpt, param) do
   var z = zOpt ~= undefined ? zOpt : 3;
   console.log(x);
-  if (y ~= undefined) do
+  if (y ~= undefined) then do
     return y + z | 0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function f3(x) do
-  if (x ~= undefined) do
+  if (x ~= undefined) then do
     return 1;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function f4(x) do
-  if (x ~= undefined) do
+  if (x ~= undefined) then do
     return x + 1 | 0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function f5(a) do
@@ -82,11 +82,11 @@ end;
 
 function create(randomOpt, param) do
   var random = randomOpt ~= undefined ? randomOpt : randomized.contents;
-  if (random) do
+  if (random) then do
     return 2;
   end else do
     return 1;
-  end
+  end end 
 end
 
 var ff = create(false, --[ () ]--0);
@@ -137,35 +137,35 @@ b("File \"option_repr_test.ml\", line 98, characters 4-11", Caml_obj.caml_greate
 console.log(6, undefined);
 
 function ltx(a, b) do
-  if (Caml_obj.caml_lessthan(a, b)) do
+  if (Caml_obj.caml_lessthan(a, b)) then do
     return Caml_obj.caml_greaterthan(b, a);
   end else do
     return false;
-  end
+  end end 
 end
 
 function gtx(a, b) do
-  if (Caml_obj.caml_greaterthan(a, b)) do
+  if (Caml_obj.caml_greaterthan(a, b)) then do
     return Caml_obj.caml_lessthan(b, a);
   end else do
     return false;
-  end
+  end end 
 end
 
 function eqx(a, b) do
-  if (Caml_obj.caml_equal(a, b)) do
+  if (Caml_obj.caml_equal(a, b)) then do
     return Caml_obj.caml_equal(b, a);
   end else do
     return false;
-  end
+  end end 
 end
 
 function neqx(a, b) do
-  if (Caml_obj.caml_notequal(a, b)) do
+  if (Caml_obj.caml_notequal(a, b)) then do
     return Caml_obj.caml_notequal(b, a);
   end else do
     return false;
-  end
+  end end 
 end
 
 function all_true(xs) do

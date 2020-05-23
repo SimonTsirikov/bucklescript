@@ -9,7 +9,7 @@ function bench(param) do
     Hashtbl.add(table, i, i);
   end
   for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
-    if (!Hashtbl.mem(table, i$1)) do
+    if (!Hashtbl.mem(table, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -19,7 +19,7 @@ function bench(param) do
             ]
           ];
     end
-    
+     end 
   end
   for(var i$2 = 0; i$2 <= 1000000; ++i$2)do
     Hashtbl.remove(table, i$2);

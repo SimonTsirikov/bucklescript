@@ -144,11 +144,11 @@ function backup_init($$class) do
         restore,
         (function (self$3) do
             var match = self$3[copy];
-            if (match ~= undefined) do
+            if (match ~= undefined) then do
               return Caml_option.valFromOption(match);
             end else do
               return self$3;
-            end
+            end end 
           end)
       ]);
   return (function (env, self) do
@@ -189,13 +189,13 @@ function get(_p, _n) do
   while(true) do
     var n = _n;
     var p = _p;
-    if (n == 0) do
+    if (n == 0) then do
       return Caml_oo_curry.js1(5144726, 6, p);
     end else do
       _n = n - 1 | 0;
       _p = Caml_oo_curry.js1(-357537970, 7, p);
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -242,11 +242,11 @@ function backup2_init($$class) do
         restore,
         (function (self$5) do
             var match = self$5[copy];
-            if (match ~= undefined) do
+            if (match ~= undefined) then do
               return Caml_option.valFromOption(match);
             end else do
               return self$5;
-            end
+            end end 
           end),
         clear,
         (function (self$5) do

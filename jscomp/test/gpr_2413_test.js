@@ -6,13 +6,13 @@ function f(param) do
   switch (param.tag | 0) do
     case --[ A ]--0 :
         var match = param[0];
-        if (match.tag) do
+        if (match.tag) then do
           var a = match[0];
           return a - a | 0;
         end else do
           var a$1 = match[0];
           return a$1 + a$1 | 0;
-        end
+        end end 
     case --[ B ]--1 :
     case --[ C ]--2 :
         break;
@@ -25,11 +25,11 @@ end
 function ff(c) do
   c.contents = c.contents + 1 | 0;
   var match = (1 + c.contents | 0) + 1 | 0;
-  if (match > 3 or match < 0) do
+  if (match > 3 or match < 0) then do
     return 0;
   end else do
     return match + 1 | 0;
-  end
+  end end 
 end
 
 exports.f = f;

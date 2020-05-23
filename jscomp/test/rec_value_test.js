@@ -42,11 +42,11 @@ xx[0] = 1;
 xx[1] = xx;
 
 function naive(n) do
-  if (n == 0 or n == 1) do
+  if (n == 0 or n == 1) then do
     return 1;
   end else do
     return (n + naive(n - 1 | 0) | 0) + naive(n - 2 | 0) | 0;
-  end
+  end end 
 end
 
 var four = do
@@ -101,45 +101,45 @@ var xs = --[ tuple ]--[
 ];
 
 function fib2(n) do
-  if (n == 0 or n == 1) do
+  if (n == 0 or n == 1) then do
     return 1;
   end else do
     return fib2(n - 1 | 0) + fib2(n - 2 | 0) | 0;
-  end
+  end end 
 end
 
 var two = 2;
 
 function fib3(n) do
-  if (n == 0 or n == 1) do
+  if (n == 0 or n == 1) then do
     return 1;
   end else do
     return fib3(n - 1 | 0) + fib3(n - 2 | 0) | 0;
-  end
+  end end 
 end
 
 function even(n) do
-  if (n == 0) do
+  if (n == 0) then do
     return true;
   end else do
     var n$1 = n - 1 | 0;
-    if (n$1 == 1) do
+    if (n$1 == 1) then do
       return true;
     end else do
       return even(n$1 - 1 | 0);
-    end
-  end
+    end end 
+  end end 
 end
 
 function even2(_n) do
   while(true) do
     var n = _n;
-    if (n == 0) do
+    if (n == 0) then do
       return true;
     end else do
       _n = n - 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -152,13 +152,13 @@ function sum(_acc, _n) do
   while(true) do
     var n = _n;
     var acc = _acc;
-    if (n > 0) do
+    if (n > 0) then do
       _n = n - 1 | 0;
       _acc = acc + n | 0;
       continue ;
     end else do
       return acc;
-    end
+    end end 
   end;
 end
 
@@ -234,9 +234,9 @@ var suites_001 = --[ :: ]--[
     "mutual",
     (function (param) do
         var tmp;
-        if (a) do
+        if (a) then do
           var match = a[1];
-          if (match) do
+          if (match) then do
             tmp = match[0];
           end else do
             throw [
@@ -247,7 +247,7 @@ var suites_001 = --[ :: ]--[
                     2
                   ]
                 ];
-          end
+          end end 
         end else do
           throw [
                 Caml_builtin_exceptions.assert_failure,
@@ -257,7 +257,7 @@ var suites_001 = --[ :: ]--[
                   2
                 ]
               ];
-        end
+        end end 
         return --[ Eq ]--Block.__(0, [
                   3,
                   tmp
@@ -377,7 +377,7 @@ var suites_001 = --[ :: ]--[
                   --[ tuple ]--[
                     "File \"rec_value_test.ml\", line 129, characters 2-9",
                     (function (param) do
-                        if (rec_variant_b.tag) do
+                        if (rec_variant_b.tag) then do
                           throw [
                                 Caml_builtin_exceptions.assert_failure,
                                 --[ tuple ]--[
@@ -391,14 +391,14 @@ var suites_001 = --[ :: ]--[
                                     Curry._1(rec_variant_b[1], --[ () ]--0),
                                     rec_variant_a
                                   ]);
-                        end
+                        end end 
                       end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
                       "File \"rec_value_test.ml\", line 134, characters 2-9",
                       (function (param) do
-                          if (rec_variant_a.tag) do
+                          if (rec_variant_a.tag) then do
                             return --[ Eq ]--Block.__(0, [
                                       Curry._1(rec_variant_a[1], --[ () ]--0),
                                       rec_variant_b
@@ -412,7 +412,7 @@ var suites_001 = --[ :: ]--[
                                     11
                                   ]
                                 ];
-                          end
+                          end end 
                         end)
                     ],
                     --[ [] ]--0

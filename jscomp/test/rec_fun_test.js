@@ -38,9 +38,10 @@ function g(param) do
   var v = { };
   var next = function (i, b) do
     called.contents = called.contents + 1 | 0;
-    if (b) do
+    if (b) then do
       Curry._2(v.contents, i, false);
     end
+     end 
     return i + 1 | 0;
   end;
   Caml_obj.caml_update_dummy(v, do

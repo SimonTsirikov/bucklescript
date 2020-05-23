@@ -2,11 +2,11 @@
 
 
 function fib(n) do
-  if (n == 0 or n == 1) do
+  if (n == 0 or n == 1) then do
     return 1;
   end else do
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
-  end
+  end end 
 end
 
 function fib2(n) do
@@ -17,14 +17,14 @@ function fib2(n) do
     var i = _i;
     var b = _b;
     var a = _a;
-    if (n == i) do
+    if (n == i) then do
       return a;
     end else do
       _i = i + 1 | 0;
       _b = a + b | 0;
       _a = b;
       continue ;
-    end
+    end end 
   end;
 end
 

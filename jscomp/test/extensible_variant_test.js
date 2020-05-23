@@ -16,11 +16,11 @@ end;
 var Int$1 = Caml_exceptions.create("Extensible_variant_test.Int");
 
 function to_int(x) do
-  if (x[0] == Str) do
+  if (x[0] == Str) then do
     return -1;
-  end else if (x[0] == Int) do
+  end else if (x[0] == Int) then do
     return x[1];
-  end else if (x[0] == Int$1) do
+  end else if (x[0] == Int$1) then do
     return x[2];
   end else do
     throw [
@@ -31,7 +31,7 @@ function to_int(x) do
             9
           ]
         ];
-  end
+  end end  end  end 
 end
 
 var suites_000 = --[ tuple ]--[

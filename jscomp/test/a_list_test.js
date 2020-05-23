@@ -67,7 +67,7 @@ var suites_001 = --[ :: ]--[
                       ]
                     ],
                     Ext_list_test.flat_map((function (x) do
-                            if (x % 2 == 0) do
+                            if (x % 2 == 0) then do
                               return --[ :: ]--[
                                       0,
                                       --[ [] ]--0
@@ -80,7 +80,7 @@ var suites_001 = --[ :: ]--[
                                         --[ [] ]--0
                                       ]
                                     ];
-                            end
+                            end end 
                           end), --[ :: ]--[
                           0,
                           --[ :: ]--[

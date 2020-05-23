@@ -30,12 +30,12 @@ end
 
 function test(dom) do
   var elem = dom.getElementById("haha");
-  if (elem == null) do
+  if (elem == null) then do
     return 1;
   end else do
     console.log(elem);
     return 2;
-  end
+  end end 
 end
 
 function f(x, y) do

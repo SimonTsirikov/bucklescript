@@ -89,11 +89,11 @@ try do
   tmp = CamlinternalLazy.force(Intb.a);
 end
 catch (exn)do
-  if (exn == Lazy.Undefined) do
+  if (exn == Lazy.Undefined) then do
     tmp = -1;
   end else do
     throw exn;
-  end
+  end end 
 end
 
 eq("File \"recursive_module.ml\", line 41, characters 3-10", -1, tmp);
@@ -149,11 +149,11 @@ try do
 end
 catch (raw_exn)do
   var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn$1[0] == Caml_builtin_exceptions.undefined_recursive_module) do
+  if (exn$1[0] == Caml_builtin_exceptions.undefined_recursive_module) then do
     tmp$1 = 4;
   end else do
     throw exn$1;
-  end
+  end end 
 end
 
 eq("File \"recursive_module.ml\", line 60, characters 6-13", 4, tmp$1);

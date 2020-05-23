@@ -6,26 +6,26 @@ var Block = require("../../lib/js/block.js");
 function f(b, x, _n) do
   while(true) do
     var n = _n;
-    if (n > 100000 or !b) do
+    if (n > 100000 or !b) then do
       return false;
     end else do
       _n = n + 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
 function or_f(b, x, _n) do
   while(true) do
     var n = _n;
-    if (n > 100000) do
+    if (n > 100000) then do
       return false;
-    end else if (b) do
+    end else if (b) then do
       return true;
     end else do
       _n = n + 1 | 0;
       continue ;
-    end
+    end end  end 
   end;
 end
 

@@ -10,11 +10,11 @@ function f1(x) do
 end
 
 function f3(x) do
-  if (x ~= undefined) do
+  if (x ~= undefined) then do
     return x;
   end else do
     return --[ A ]--0;
-  end
+  end end 
 end
 
 var v0 = --[ () ]--0;

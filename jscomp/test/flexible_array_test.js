@@ -12,30 +12,30 @@ function sub(_tr, _k) do
   while(true) do
     var k = _k;
     var tr = _tr;
-    if (tr) do
-      if (k == 1) do
+    if (tr) then do
+      if (k == 1) then do
         return tr[0];
       end else do
         _k = k / 2 | 0;
-        if (k % 2 == 0) do
+        if (k % 2 == 0) then do
           _tr = tr[1];
           continue ;
         end else do
           _tr = tr[2];
           continue ;
-        end
-      end
+        end end 
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 
 function update(tr, k, w) do
-  if (tr) do
+  if (tr) then do
     var r = tr[2];
     var l = tr[1];
-    if (k == 1) do
+    if (k == 1) then do
       return --[ Br ]--[
               w,
               l,
@@ -43,7 +43,7 @@ function update(tr, k, w) do
             ];
     end else do
       var v = tr[0];
-      if (k % 2 == 0) do
+      if (k % 2 == 0) then do
         return --[ Br ]--[
                 v,
                 update(l, k / 2 | 0, w),
@@ -55,9 +55,9 @@ function update(tr, k, w) do
                 l,
                 update(r, k / 2 | 0, w)
               ];
-      end
-    end
-  end else if (k == 1) do
+      end end 
+    end end 
+  end else if (k == 1) then do
     return --[ Br ]--[
             w,
             --[ Lf ]--0,
@@ -65,18 +65,18 @@ function update(tr, k, w) do
           ];
   end else do
     throw Caml_builtin_exceptions.not_found;
-  end
+  end end  end 
 end
 
 function $$delete(tr, n) do
-  if (tr) do
-    if (n == 1) do
+  if (tr) then do
+    if (n == 1) then do
       return --[ Lf ]--0;
     end else do
       var r = tr[2];
       var l = tr[1];
       var v = tr[0];
-      if (n % 2 == 0) do
+      if (n % 2 == 0) then do
         return --[ Br ]--[
                 v,
                 $$delete(l, n / 2 | 0),
@@ -88,15 +88,15 @@ function $$delete(tr, n) do
                 l,
                 $$delete(r, n / 2 | 0)
               ];
-      end
-    end
+      end end 
+    end end 
   end else do
     throw Caml_builtin_exceptions.not_found;
-  end
+  end end 
 end
 
 function loext(tr, w) do
-  if (tr) do
+  if (tr) then do
     return --[ Br ]--[
             w,
             loext(tr[2], tr[0]),
@@ -108,19 +108,19 @@ function loext(tr, w) do
             --[ Lf ]--0,
             --[ Lf ]--0
           ];
-  end
+  end end 
 end
 
 function lorem(tr) do
-  if (tr) do
+  if (tr) then do
     var l = tr[1];
-    if (l) do
+    if (l) then do
       return --[ Br ]--[
               l[0],
               tr[2],
               lorem(l)
             ];
-    end else if (tr[2]) do
+    end else if (tr[2]) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -131,10 +131,10 @@ function lorem(tr) do
           ];
     end else do
       return --[ Lf ]--0;
-    end
+    end end  end 
   end else do
     throw Caml_builtin_exceptions.not_found;
-  end
+  end end 
 end
 
 var empty = --[ tuple ]--[
@@ -147,19 +147,19 @@ function length(param) do
 end
 
 function get(param, i) do
-  if (i >= 0 and i < param[1]) do
+  if (i >= 0 and i < param[1]) then do
     return sub(param[0], i + 1 | 0);
   end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Array.get"
         ];
-  end
+  end end 
 end
 
 function set(param, i, v) do
   var k = param[1];
-  if (i >= 0 and i < k) do
+  if (i >= 0 and i < k) then do
     return --[ tuple ]--[
             update(param[0], i + 1 | 0, v),
             k
@@ -169,7 +169,7 @@ function set(param, i, v) do
           Caml_builtin_exceptions.invalid_argument,
           "Array.set"
         ];
-  end
+  end end 
 end
 
 function push_front(param, v) do
@@ -181,7 +181,7 @@ end
 
 function pop_front(param) do
   var k = param[1];
-  if (k > 0) do
+  if (k > 0) then do
     return --[ tuple ]--[
             lorem(param[0]),
             k - 1 | 0
@@ -191,7 +191,7 @@ function pop_front(param) do
           Caml_builtin_exceptions.invalid_argument,
           "Array.pop_front"
         ];
-  end
+  end end 
 end
 
 function push_back(param, v) do
@@ -204,7 +204,7 @@ end
 
 function pop_back(param) do
   var k = param[1];
-  if (k > 0) do
+  if (k > 0) then do
     return --[ tuple ]--[
             $$delete(param[0], k),
             k - 1 | 0
@@ -214,7 +214,7 @@ function pop_back(param) do
           Caml_builtin_exceptions.invalid_argument,
           "Array.pop_back"
         ];
-  end
+  end end 
 end
 
 function pp(fmt, s) do
@@ -236,10 +236,10 @@ function filter_from(i, p, s) do
   var u = empty;
   for(var i$1 = i ,i_finish = length(s) - 1 | 0; i$1 <= i_finish; ++i$1)do
     var ele = get(s, i$1);
-    if (Curry._1(p, ele)) do
+    if (Curry._1(p, ele)) then do
       u = push_back(u, ele);
     end
-    
+     end 
   end
   return u;
 end
@@ -257,7 +257,7 @@ end
 
 function sort(s) do
   var size = length(s);
-  if (size <= 1) do
+  if (size <= 1) then do
     return s;
   end else do
     var head = get(s, 0);
@@ -268,7 +268,7 @@ function sort(s) do
                 return Caml_obj.caml_lessequal(x, head);
               end), s));
     return append(smaller, push_front(larger, head));
-  end
+  end end 
 end
 
 function of_array(arr) do
@@ -318,7 +318,7 @@ if (!Caml_obj.caml_equal(x, of_array([
             3,
             5,
             6
-          ]))) do
+          ]))) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -328,6 +328,7 @@ if (!Caml_obj.caml_equal(x, of_array([
         ]
       ];
 end
+ end 
 
 var v = $$Array.init(500, (function (i) do
         return 500 - i | 0;

@@ -35,11 +35,11 @@ function c(x, y) do
 end
 
 function h(s, b) do
-  if (Caml_string.get(s, 0) == --[ "a" ]--97 and Caml_bytes.get(b, 0) == --[ "b" ]--98) do
+  if (Caml_string.get(s, 0) == --[ "a" ]--97 and Caml_bytes.get(b, 0) == --[ "b" ]--98) then do
     return Caml_string.get(s, 1) == Caml_bytes.get(b, 2);
   end else do
     return false;
-  end
+  end end 
 end
 
 var v = 2;

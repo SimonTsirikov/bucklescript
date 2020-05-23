@@ -17,7 +17,7 @@ end
 
 var match = [1];
 
-if (#match ~= 1) do
+if (#match ~= 1) then do
   throw [
         Caml_builtin_exceptions.match_failure,
         --[ tuple ]--[
@@ -27,6 +27,7 @@ if (#match ~= 1) do
         ]
       ];
 end
+ end 
 
 var a = match[0];
 

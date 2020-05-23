@@ -6,18 +6,18 @@ var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(match) do
-  if (Caml_exceptions.caml_is_extension(match)) do
-    if (match == Caml_builtin_exceptions.not_found) do
+  if (Caml_exceptions.caml_is_extension(match)) then do
+    if (match == Caml_builtin_exceptions.not_found) then do
       return 0;
-    end else if (match[0] == Caml_builtin_exceptions.invalid_argument or match == Caml_builtin_exceptions.stack_overflow) do
+    end else if (match[0] == Caml_builtin_exceptions.invalid_argument or match == Caml_builtin_exceptions.stack_overflow) then do
       return 1;
-    end else if (match[0] == Caml_builtin_exceptions.sys_error) do
+    end else if (match[0] == Caml_builtin_exceptions.sys_error) then do
       return 2;
     end else do
       return ;
-    end
+    end end  end  end 
   end
-  
+   end 
 end
 
 var A = Caml_exceptions.create("Exn_error_pattern.A");
@@ -25,18 +25,18 @@ var A = Caml_exceptions.create("Exn_error_pattern.A");
 var B = Caml_exceptions.create("Exn_error_pattern.B");
 
 function g(match) do
-  if (Caml_exceptions.caml_is_extension(match)) do
-    if (match == Caml_builtin_exceptions.not_found or match[0] == Caml_builtin_exceptions.invalid_argument) do
+  if (Caml_exceptions.caml_is_extension(match)) then do
+    if (match == Caml_builtin_exceptions.not_found or match[0] == Caml_builtin_exceptions.invalid_argument) then do
       return 0;
-    end else if (match[0] == Caml_builtin_exceptions.sys_error) do
+    end else if (match[0] == Caml_builtin_exceptions.sys_error) then do
       return 2;
-    end else if (match[0] == A or match[0] == B) do
+    end else if (match[0] == A or match[0] == B) then do
       return match[1];
     end else do
       return ;
-    end
+    end end  end  end 
   end
-  
+   end 
 end
 
 var suites = do

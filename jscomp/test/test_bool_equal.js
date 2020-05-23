@@ -3,21 +3,21 @@
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function bool_equal(x, y) do
-  if (x) do
-    if (y) do
+  if (x) then do
+    if (y) then do
       return true;
     end else do
       return false;
-    end
-  end else if (y) do
+    end end 
+  end else if (y) then do
     return false;
   end else do
     return true;
-  end
+  end end  end 
 end
 
 function assertions(param) do
-  if (!bool_equal(true, true)) do
+  if (!bool_equal(true, true)) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -27,7 +27,8 @@ function assertions(param) do
           ]
         ];
   end
-  if (!bool_equal(false, false)) do
+   end 
+  if (!bool_equal(false, false)) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -37,7 +38,8 @@ function assertions(param) do
           ]
         ];
   end
-  if (bool_equal(true, false)) do
+   end 
+  if (bool_equal(true, false)) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -47,7 +49,8 @@ function assertions(param) do
           ]
         ];
   end
-  if (bool_equal(false, true)) do
+   end 
+  if (bool_equal(false, true)) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -57,71 +60,72 @@ function assertions(param) do
           ]
         ];
   end
+   end 
   return 0;
 end
 
 function f0(x) do
-  if (x == true) do
+  if (x == true) then do
     return 1;
   end else do
     return 2;
-  end
+  end end 
 end
 
 function f1(x) do
-  if (x ~= true) do
+  if (x ~= true) then do
     return 1;
   end else do
     return 2;
-  end
+  end end 
 end
 
 function f2(x) do
-  if (x == true) do
+  if (x == true) then do
     return 1;
   end else do
     return 2;
-  end
+  end end 
 end
 
 function f3(x) do
-  if (x == false) do
+  if (x == false) then do
     return 1;
   end else do
     return 2;
-  end
+  end end 
 end
 
 function f4(x) do
-  if (x ~= true) do
+  if (x ~= true) then do
     return 1;
   end else do
     return 2;
-  end
+  end end 
 end
 
 function f5(x) do
-  if (x) do
+  if (x) then do
     return 2;
   end else do
     return 1;
-  end
+  end end 
 end
 
 function f6(x) do
-  if (x == --[ [] ]--0) do
+  if (x == --[ [] ]--0) then do
     return 1;
   end else do
     return 2;
-  end
+  end end 
 end
 
 function f7(x) do
-  if (#x ~= 0) do
+  if (#x ~= 0) then do
     return 1;
   end else do
     return 2;
-  end
+  end end 
 end
 
 function f8(x) do

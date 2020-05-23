@@ -3,11 +3,11 @@
 var Curry = require("../../lib/js/curry.js");
 
 function f(value) do
-  if (value == null) do
+  if (value == null) then do
     return ;
   end else do
     return value;
-  end
+  end end 
 end
 
 function fxx(v) do
@@ -25,19 +25,19 @@ function fxx(v) do
 end
 
 function fxxx2(v) do
-  if (Curry._1(v, --[ () ]--0)) do
+  if (Curry._1(v, --[ () ]--0)) then do
     return 2;
   end else do
     return 1;
-  end
+  end end 
 end
 
 function fxxx3(v) do
-  if (Curry._1(v, --[ () ]--0)) do
+  if (Curry._1(v, --[ () ]--0)) then do
     return 2;
   end else do
     return 1;
-  end
+  end end 
 end
 
 exports.f = f;

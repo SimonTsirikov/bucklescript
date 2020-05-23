@@ -8,29 +8,29 @@ function tailcall(x) do
 end
 
 function non_length(x) do
-  if (x) do
+  if (x) then do
     return 1 + non_length(x[1]) | 0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function length(_acc, _x) do
   while(true) do
     var x = _x;
     var acc = _acc;
-    if (x) do
+    if (x) then do
       var tl = x[1];
-      if (tl) do
+      if (tl) then do
         return 1 + length(acc + 1 | 0, tl[1]) | 0;
       end else do
         _x = tl;
         _acc = acc + 1 | 0;
         continue ;
-      end
+      end end 
     end else do
       return acc;
-    end
+    end end 
   end;
 end
 

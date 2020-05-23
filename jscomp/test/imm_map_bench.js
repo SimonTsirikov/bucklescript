@@ -16,11 +16,11 @@ function fromArray(kvs) do
 end
 
 function should(b) do
-  if (b) do
+  if (b) then do
     return 0;
   end else do
     throw new Error("impossible");
-  end
+  end end 
 end
 
 var shuffledDataAdd = Belt_Array.makeByAndShuffle(1000001, (function (i) do

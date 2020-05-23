@@ -23,7 +23,7 @@ var class_tables = --[ Cons ]--[
 var suites_000 = --[ tuple ]--[
   "caml_obj",
   (function (param) do
-      if (!class_tables[0]) do
+      if (!class_tables[0]) then do
         var $$class = CamlinternalOO.create_table(["say"]);
         var env = CamlinternalOO.new_variable($$class, "");
         var say = CamlinternalOO.get_method_label($$class, "say");
@@ -38,6 +38,7 @@ var suites_000 = --[ tuple ]--[
         CamlinternalOO.init_class($$class);
         class_tables[0] = env_init;
       end
+       end 
       return --[ Eq ]--Block.__(0, [
                 33,
                 f(Curry._1(class_tables[0], 0))

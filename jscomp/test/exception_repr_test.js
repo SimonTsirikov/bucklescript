@@ -40,9 +40,9 @@ var Hello = Caml_exceptions.create("Exception_repr_test.Hello");
 var A = Caml_exceptions.create("Exception_repr_test.A");
 
 Printexc.register_printer((function (param) do
-        if (param == Hi) do
+        if (param == Hi) then do
           return "hey";
-        end else if (param[0] == A) do
+        end else if (param[0] == A) then do
           return Curry._1(Format.asprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "A(",
@@ -60,7 +60,7 @@ Printexc.register_printer((function (param) do
                         ]), param[1]);
         end else do
           return ;
-        end
+        end end  end 
       end));
 
 eq("File \"exception_repr_test.ml\", line 24, characters 7-14", "hey", Printexc.to_string(Hi));

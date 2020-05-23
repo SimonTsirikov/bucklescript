@@ -14,7 +14,7 @@ function test(param) do
     while(true) do
       var acc = _acc;
       var n = _n;
-      if (n == 0) do
+      if (n == 0) then do
         return Curry._1(acc, --[ () ]--0);
       end else do
         _acc = (function(n,acc)do
@@ -25,7 +25,7 @@ function test(param) do
         end(n,acc));
         _n = n - 1 | 0;
         continue ;
-      end
+      end end 
     end;
   end;
   f(10, (function (param) do

@@ -2,15 +2,15 @@
 
 
 function treeHeight(n) do
-  if (n ~= undefined) do
+  if (n ~= undefined) then do
     return n.height;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function copy(n) do
-  if (n ~= undefined) do
+  if (n ~= undefined) then do
     var match = n;
     var v = match.value;
     var h = match.height;
@@ -24,7 +24,7 @@ function copy(n) do
           end;
   end else do
     return n;
-  end
+  end end 
 end
 
 exports.treeHeight = treeHeight;

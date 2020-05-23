@@ -10,11 +10,11 @@ while(console.log(String(v.contents)), v.contents = v.contents + 1 | 0, v.conten
 end;
 
 function fib(n) do
-  if (n == 0 or n == 1) do
+  if (n == 0 or n == 1) then do
     return 1;
   end else do
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
-  end
+  end end 
 end
 
 var x = do

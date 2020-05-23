@@ -17,7 +17,7 @@ function get_tokens(lex, str) do
   while(true) do
     var acc = _acc;
     var v = Curry._1(lex, buf);
-    if (v == --[ EOF ]--7) do
+    if (v == --[ EOF ]--7) then do
       return List.rev(acc);
     end else do
       _acc = --[ :: ]--[
@@ -25,7 +25,7 @@ function get_tokens(lex, str) do
         acc
       ];
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -39,12 +39,12 @@ function from_tokens(lst) do
   end;
   return (function (param) do
       var match = l.contents;
-      if (match) do
+      if (match) then do
         l.contents = match[1];
         return match[0];
       end else do
         throw Caml_builtin_exceptions.end_of_file;
-      end
+      end end 
     end);
 end
 

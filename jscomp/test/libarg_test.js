@@ -367,11 +367,11 @@ function error(s) do
 end
 
 function check(r, v, msg) do
-  if (Caml_obj.caml_notequal(r.contents, v)) do
+  if (Caml_obj.caml_notequal(r.contents, v)) then do
     return error(msg);
   end else do
     return 0;
-  end
+  end end 
 end
 
 function test(argv) do
@@ -430,7 +430,7 @@ function test(argv) do
       ]
     ]
   ];
-  if (Caml_obj.caml_notequal(result, reference)) do
+  if (Caml_obj.caml_notequal(result, reference)) then do
     var f = function (x, y) do
       return Curry._3(Printf.printf(--[ Format ]--[
                       --[ String ]--Block.__(2, [
@@ -460,6 +460,7 @@ function test(argv) do
     end;
     List.iter2(f, result, reference);
   end
+   end 
   check(r_set, true, "Set");
   check(r_clear, false, "Clear");
   check(r_string, "bar", "Set_string");

@@ -10,29 +10,30 @@ function escaped(s) do
     var c = s[i];
     var tmp;
     var exit = 0;
-    if (c >= 14) do
-      if (c ~= 34 and c ~= 92) do
+    if (c >= 14) then do
+      if (c ~= 34 and c ~= 92) then do
         exit = 1;
       end else do
         tmp = 2;
-      end
-    end else if (c >= 11) do
-      if (c >= 13) do
+      end end 
+    end else if (c >= 11) then do
+      if (c >= 13) then do
         tmp = 2;
       end else do
         exit = 1;
-      end
-    end else if (c >= 8) do
+      end end 
+    end else if (c >= 8) then do
       tmp = 2;
     end else do
       exit = 1;
-    end
-    if (exit == 1) do
+    end end  end  end 
+    if (exit == 1) then do
       tmp = Caml_char.caml_is_printable(c) ? 1 : 4;
     end
+     end 
     n = n + tmp | 0;
   end
-  if (n == #s) do
+  if (n == #s) then do
     return Bytes.copy(s);
   end else do
     var s$prime = Caml_bytes.caml_create_bytes(n);
@@ -41,8 +42,8 @@ function escaped(s) do
       var c$1 = s[i$1];
       var exit$1 = 0;
       var switcher = c$1 - 34 | 0;
-      if (switcher > 58 or switcher < 0) do
-        if (switcher >= -20) do
+      if (switcher > 58 or switcher < 0) then do
+        if (switcher >= -20) then do
           exit$1 = 1;
         end else do
           switch (switcher + 34 | 0) do
@@ -80,16 +81,16 @@ function escaped(s) do
                 break;
             
           end
-        end
-      end else if (switcher > 57 or switcher < 1) do
+        end end 
+      end else if (switcher > 57 or switcher < 1) then do
         s$prime[n] = --[ "\\" ]--92;
         n = n + 1 | 0;
         s$prime[n] = c$1;
       end else do
         exit$1 = 1;
-      end
-      if (exit$1 == 1) do
-        if (Caml_char.caml_is_printable(c$1)) do
+      end end  end 
+      if (exit$1 == 1) then do
+        if (Caml_char.caml_is_printable(c$1)) then do
           s$prime[n] = c$1;
         end else do
           s$prime[n] = --[ "\\" ]--92;
@@ -99,12 +100,13 @@ function escaped(s) do
           s$prime[n] = 48 + (c$1 / 10 | 0) % 10 | 0;
           n = n + 1 | 0;
           s$prime[n] = 48 + c$1 % 10 | 0;
-        end
+        end end 
       end
+       end 
       n = n + 1 | 0;
     end
     return s$prime;
-  end
+  end end 
 end
 
 exports.escaped = escaped;

@@ -34,15 +34,15 @@ function bufferize(f) do
   return --[ tuple ]--[
           (function (param) do
               var match = buf.contents;
-              if (match ~= undefined) do
+              if (match ~= undefined) then do
                 buf.contents = undefined;
                 return Caml_option.valFromOption(match);
               end else do
                 return Curry._1(f, --[ () ]--0);
-              end
+              end end 
             end),
           (function (x) do
-              if (buf.contents ~= undefined) do
+              if (buf.contents ~= undefined) then do
                 throw [
                       Caml_builtin_exceptions.assert_failure,
                       --[ tuple ]--[
@@ -52,6 +52,7 @@ function bufferize(f) do
                       ]
                     ];
               end
+               end 
               buf.contents = Caml_option.some(x);
               return --[ () ]--0;
             end)
@@ -81,15 +82,15 @@ end;
 function find(s, _n) do
   while(true) do
     var n = _n;
-    if (n >= syms.contents) do
+    if (n >= syms.contents) then do
       syms.contents = syms.contents + 1 | 0;
       return n;
-    end else if (Caml_array.caml_array_get(symtab, n) == s) do
+    end else if (Caml_array.caml_array_get(symtab, n) == s) then do
       return n;
     end else do
       _n = n + 1 | 0;
       continue ;
-    end
+    end end  end 
   end;
 end
 
@@ -100,7 +101,7 @@ function addsym(s) do
 end
 
 function symstr(n) do
-  if (n >= syms.contents) do
+  if (n >= syms.contents) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -110,6 +111,7 @@ function symstr(n) do
           ]
         ];
   end
+   end 
   return Caml_array.caml_array_get(symtab, n);
 end
 
@@ -130,62 +132,62 @@ var s = Caml_bytes.caml_create_bytes(100);
 
 function getq(param) do
   var c = Curry._1(getch, --[ () ]--0);
-  if (c ~= 92 or peekch(--[ () ]--0) ~= --[ "n" ]--110) do
+  if (c ~= 92 or peekch(--[ () ]--0) ~= --[ "n" ]--110) then do
     return c;
   end else do
     Curry._1(getch, --[ () ]--0);
     return --[ "\n" ]--10;
-  end
+  end end 
 end
 
 function isid(param) do
   var switcher = param - 91 | 0;
-  if (switcher > 5 or switcher < 0) do
+  if (switcher > 5 or switcher < 0) then do
     return (switcher + 26 >>> 0) <= 57;
   end else do
     return switcher == 4;
-  end
+  end end 
 end
 
 function skip(_param) do
   while(true) do
     var ch = Curry._1(getch, --[ () ]--0);
-    if (ch >= 14) do
-      if (ch ~= 32) do
-        if (ch ~= 47 or peekch(--[ () ]--0) ~= --[ "*" ]--42) do
+    if (ch >= 14) then do
+      if (ch ~= 32) then do
+        if (ch ~= 47 or peekch(--[ () ]--0) ~= --[ "*" ]--42) then do
           return ch;
         end else do
           var _param$1 = (Curry._1(getch, --[ () ]--0), --[ () ]--0);
           while(true) do
             var match = Curry._1(getch, --[ () ]--0);
-            if (match ~= 42) do
+            if (match ~= 42) then do
               _param$1 = --[ () ]--0;
               continue ;
-            end else if (peekch(--[ () ]--0) == --[ "/" ]--47) do
+            end else if (peekch(--[ () ]--0) == --[ "/" ]--47) then do
               return skip((Curry._1(getch, --[ () ]--0), --[ () ]--0));
             end else do
               _param$1 = --[ () ]--0;
               continue ;
-            end
+            end end  end 
           end;
-        end
+        end end 
       end else do
         _param = --[ () ]--0;
         continue ;
-      end
-    end else if (ch >= 11) do
-      if (ch >= 13) do
+      end end 
+    end else if (ch >= 11) then do
+      if (ch >= 13) then do
         _param = --[ () ]--0;
         continue ;
       end else do
         return ch;
-      end
-    end else if (ch >= 9) do
+      end end 
+    end else if (ch >= 9) then do
       _param = --[ () ]--0;
       continue ;
     end else do
       return ch;
-    end
+    end end  end  end 
   end;
 end
 
@@ -195,49 +197,50 @@ function next(param) do
     match = skip(--[ () ]--0);
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.end_of_file) do
+    if (exn == Caml_builtin_exceptions.end_of_file) then do
       match = undefined;
     end else do
       throw exn;
-    end
+    end end 
   end
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     var c = match;
-    if (c ~= 34) do
-      if (c >= 48) do
-        if (c < 58) do
+    if (c ~= 34) then do
+      if (c >= 48) then do
+        if (c < 58) then do
           var _n = c - 48 | 0;
           while(true) do
             var n = _n;
             var match$1 = peekch(--[ () ]--0);
-            if (match$1 > 57 or match$1 < 48) do
+            if (match$1 > 57 or match$1 < 48) then do
               return --[ ILit ]--Block.__(1, [n]);
             end else do
               _n = (Caml_int32.imul(10, n) + Curry._1(getch, --[ () ]--0) | 0) - 48 | 0;
               continue ;
-            end
+            end end 
           end;
         end
-        
-      end else if (c == 39) do
+         end 
+      end else if (c == 39) then do
         var ch = getq(--[ () ]--0);
         var qt = Curry._1(getch, --[ () ]--0);
-        if (qt ~= --[ "'" ]--39) do
+        if (qt ~= --[ "'" ]--39) then do
           throw [
                 Caml_builtin_exceptions.failure,
                 "syntax error"
               ];
         end
+         end 
         return --[ ILit ]--Block.__(1, [ch]);
       end
-      
+       end  end 
     end else do
       var b = gpos.contents;
       var _e = gpos.contents;
       while(true) do
         var e = _e;
         var match$2 = peekch(--[ () ]--0);
-        if (match$2 ~= 34) do
+        if (match$2 ~= 34) then do
           glo[e] = getq(--[ () ]--0);
           _e = e + 1 | 0;
           continue ;
@@ -248,23 +251,23 @@ function next(param) do
                     (b + 232 | 0) + 4194304 | 0,
                     Bytes.to_string(Bytes.sub(glo, b, e - b | 0))
                   ]);
-        end
+        end end 
       end;
-    end
-    if (isid(c)) do
+    end end 
+    if (isid(c)) then do
       var _n$1 = 0;
       var _ch = c;
       while(true) do
         var ch$1 = _ch;
         var n$1 = _n$1;
         s[n$1] = ch$1;
-        if (isid(peekch(--[ () ]--0))) do
+        if (isid(peekch(--[ () ]--0))) then do
           _ch = Curry._1(getch, --[ () ]--0);
           _n$1 = n$1 + 1 | 0;
           continue ;
         end else do
           return --[ Sym ]--Block.__(3, [addsym(Bytes.to_string(Bytes.sub(s, 0, n$1 + 1 | 0)))]);
-        end
+        end end 
       end;
     end else do
       var ch$2 = c;
@@ -301,23 +304,23 @@ function next(param) do
       ];
       while(true) do
         var param$1 = _param;
-        if (param$1) do
+        if (param$1) then do
           var lop = param$1[0];
-          if (Caml_string.get(lop, 0) == ch$2 and Caml_string.get(lop, 1) == peekch(--[ () ]--0)) do
+          if (Caml_string.get(lop, 0) == ch$2 and Caml_string.get(lop, 1) == peekch(--[ () ]--0)) then do
             Curry._1(getch, --[ () ]--0);
             return --[ Op ]--Block.__(0, [lop]);
           end else do
             _param = param$1[1];
             continue ;
-          end
+          end end 
         end else do
           return --[ Op ]--Block.__(0, [Caml_bytes.bytes_to_string(Bytes.make(1, ch$2))]);
-        end
+        end end 
       end;
-    end
+    end end 
   end else do
     return --[ Op ]--Block.__(0, ["EOF!"]);
-  end
+  end end 
 end
 
 var match$1 = bufferize(next);
@@ -339,14 +342,14 @@ var opos = do
 end;
 
 function out(x) do
-  if (x ~= 0) do
+  if (x ~= 0) then do
     out(x / 256 | 0);
     obuf[opos.contents] = Char.chr(x & 255);
     opos.contents = opos.contents + 1 | 0;
     return --[ () ]--0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function le(n, x) do
@@ -363,7 +366,7 @@ function get32(l) do
 end
 
 function patch(rel, loc, n) do
-  if (n >= 0) do
+  if (n >= 0) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -373,11 +376,12 @@ function patch(rel, loc, n) do
           ]
         ];
   end
-  if (loc ~= 0) do
+   end 
+  if (loc ~= 0) then do
     var i = opos.contents;
     var loc$prime = get32(loc);
     var x = rel ? n - (loc + 4 | 0) | 0 : n;
-    if (dbg.contents) do
+    if (dbg.contents) then do
       Curry._3(Printf.eprintf(--[ Format ]--[
                 --[ String_literal ]--Block.__(11, [
                     "patching at ",
@@ -410,6 +414,7 @@ function patch(rel, loc, n) do
                 "patching at %d to %d (n=%d)\n"
               ]), loc, x, n);
     end
+     end 
     opos.contents = loc;
     le(32, x);
     patch(rel, loc$prime, n);
@@ -417,7 +422,7 @@ function patch(rel, loc, n) do
     return --[ () ]--0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function load(r, n) do
@@ -444,20 +449,20 @@ end;
 
 function push(r) do
   align.contents = align.contents + 1 | 0;
-  if (r < 8) do
+  if (r < 8) then do
     return out(80 + r | 0);
   end else do
     return out((16720 + r | 0) - 8 | 0);
-  end
+  end end 
 end
 
 function pop(r) do
   align.contents = align.contents - 1 | 0;
-  if (r < 8) do
+  if (r < 8) then do
     return out(88 + r | 0);
   end else do
     return out((16728 + r | 0) - 8 | 0);
-  end
+  end end 
 end
 
 var lval = do
@@ -469,17 +474,17 @@ end;
 
 function patchlval(param) do
   var match = lval.contents[0];
-  if (match.tag) do
+  if (match.tag) then do
     opos.contents = opos.contents - match[0] | 0;
     return --[ () ]--0;
   end else do
     obuf[opos.contents - match[0] | 0] = --[ "\141" ]--141;
     return --[ () ]--0;
-  end
+  end end 
 end
 
 function read(param) do
-  if (param) do
+  if (param) then do
     out(4722614);
     le(8, 0);
     lval.contents = --[ tuple ]--[
@@ -495,7 +500,7 @@ function read(param) do
       --[ Int ]--0
     ];
     return --[ () ]--0;
-  end
+  end end 
 end
 
 var globs = Caml_array.caml_make_vect(100, do
@@ -782,21 +787,21 @@ var tokfor = --[ Sym ]--Block.__(3, [addsym("for")]);
 var tokbreak = --[ Sym ]--Block.__(3, [addsym("break")]);
 
 function binary(stk, lvl) do
-  if (lvl == -1) do
+  if (lvl == -1) then do
     return unary(stk);
   end else do
     var lvlof = function (o) do
-      if (List.mem_assoc(o, lvls)) do
+      if (List.mem_assoc(o, lvls)) then do
         return List.assoc(o, lvls);
       end else do
         return -1;
-      end
+      end end 
     end;
     var foldtst = function (_loc) do
       while(true) do
         var loc = _loc;
         var t = Curry._1(next$1, --[ () ]--0);
-        if (t.tag or lvlof(t[0]) ~= lvl) do
+        if (t.tag or lvlof(t[0]) ~= lvl) then do
           Curry._1(unnext, t);
           return loc;
         end else do
@@ -804,41 +809,41 @@ function binary(stk, lvl) do
           binary(stk, lvl - 1 | 0);
           _loc = loc$prime;
           continue ;
-        end
+        end end 
       end;
     end;
     binary(stk, lvl - 1 | 0);
-    if (lvl < 8) do
+    if (lvl < 8) then do
       var _param = --[ () ]--0;
       while(true) do
         var t = Curry._1(next$1, --[ () ]--0);
-        if (t.tag) do
+        if (t.tag) then do
           return Curry._1(unnext, t);
         end else do
           var o = t[0];
-          if (lvlof(o) == lvl) do
+          if (lvlof(o) == lvl) then do
             push(0);
             binary(stk, lvl - 1 | 0);
             pop(1);
             var match = List.assoc(o, inss);
-            if (match.tag) do
+            if (match.tag) then do
               out(4733377);
               cmp(match[0]);
             end else do
               List.iter(out, match[0]);
-            end
+            end end 
             _param = --[ () ]--0;
             continue ;
           end else do
             return Curry._1(unnext, t);
-          end
-        end
+          end end 
+        end end 
       end;
     end else do
       var loc = foldtst(0);
       return patch(true, loc, opos.contents);
-    end
-  end
+    end end 
+  end end 
 end
 
 function unary(stk) do
@@ -858,7 +863,7 @@ function unary(stk) do
               Curry._1(next$1, --[ () ]--0);
               var t = Curry._1(next$1, --[ () ]--0);
               var match$1;
-              if (Caml_obj.caml_equal(t, tokint)) do
+              if (Caml_obj.caml_equal(t, tokint)) then do
                 match$1 = Caml_obj.caml_equal(Curry._1(next$1, --[ () ]--0), --[ Op ]--Block.__(0, ["*"])) ? --[ tuple ]--[
                     --[ Int ]--0,
                     1
@@ -866,7 +871,7 @@ function unary(stk) do
                     --[ Int ]--0,
                     5
                   ];
-              end else if (Caml_obj.caml_equal(t, tokchar)) do
+              end else if (Caml_obj.caml_equal(t, tokchar)) then do
                 match$1 = --[ tuple ]--[
                   --[ Chr ]--1,
                   2
@@ -876,7 +881,7 @@ function unary(stk) do
                       Caml_builtin_exceptions.failure,
                       "[cast] expected"
                     ];
-              end
+              end end  end 
               for(var k = 1 ,k_finish = match$1[1]; k <= k_finish; ++k)do
                 Curry._1(next$1, --[ () ]--0);
               end
@@ -909,7 +914,7 @@ function unary(stk) do
               ]
             ];
             unary(stk);
-            if (!List.mem_assoc(o, unops)) do
+            if (!List.mem_assoc(o, unops)) then do
               var s = Curry._1(Printf.sprintf(--[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "unknown operator ",
@@ -925,12 +930,13 @@ function unary(stk) do
                     s
                   ];
             end
+             end 
             out(List.assoc(o, unops));
-            if (o == "!") do
+            if (o == "!") then do
               return cmp(2);
             end else do
               return 0;
-            end
+            end end 
         end
     case --[ ILit ]--1 :
         return load(0, match[0]);
@@ -939,9 +945,9 @@ function unary(stk) do
         return le(64, match[0]);
     case --[ Sym ]--3 :
         var i = match[0];
-        if (List.mem_assoc(i, stk)) do
+        if (List.mem_assoc(i, stk)) then do
           var l = List.assoc(i, stk);
-          if (l <= -256) do
+          if (l <= -256) then do
             throw [
                   Caml_builtin_exceptions.assert_failure,
                   --[ tuple ]--[
@@ -951,6 +957,7 @@ function unary(stk) do
                   ]
                 ];
           end
+           end 
           out(4754245);
           out(l & 255);
           lval.contents = --[ tuple ]--[
@@ -967,7 +974,7 @@ function unary(stk) do
                 va: g.va
               end);
           read(--[ Int ]--0);
-        end
+        end end 
         return postfix(stk);
     
   end
@@ -975,7 +982,7 @@ end
 
 function postfix(stk) do
   var t = Curry._1(next$1, --[ () ]--0);
-  if (t.tag) do
+  if (t.tag) then do
     return Curry._1(unnext, t);
   end else do
     var op = t[0];
@@ -985,22 +992,23 @@ function postfix(stk) do
             while(true) do
               var rl = _rl;
               var l = _l;
-              if (nextis(--[ Op ]--Block.__(0, [")"]))) do
+              if (nextis(--[ Op ]--Block.__(0, [")"]))) then do
                 Curry._1(next$1, --[ () ]--0);
                 return List.iter(pop, l);
               end else do
                 expr(stk);
                 push(0);
-                if (nextis(--[ Op ]--Block.__(0, [","]))) do
+                if (nextis(--[ Op ]--Block.__(0, [","]))) then do
                   Curry._1(next$1, --[ () ]--0);
                 end
+                 end 
                 _rl = List.tl(rl);
                 _l = --[ :: ]--[
                   List.hd(rl),
                   l
                 ];
                 continue ;
-              end
+              end end 
             end;
           end;
           patchlval(--[ () ]--0);
@@ -1025,15 +1033,16 @@ function postfix(stk) do
                 ]
               ]);
           pop(0);
-          if (align.contents % 2 ~= 0) do
+          if (align.contents % 2 ~= 0) then do
             out(1216605192);
           end
+           end 
           out(65488);
-          if (align.contents % 2 ~= 0) do
+          if (align.contents % 2 ~= 0) then do
             return out(1216594952);
           end else do
             return 0;
-          end
+          end end 
       case "++" :
       case "--" :
           break;
@@ -1083,7 +1092,7 @@ function postfix(stk) do
                       ]
                     ]
                   ]));
-  end
+  end end 
 end
 
 function expr(stk) do
@@ -1091,7 +1100,7 @@ function expr(stk) do
   var _param = --[ () ]--0;
   while(true) do
     var t = Curry._1(next$1, --[ () ]--0);
-    if (t.tag or t[0] ~= "=") do
+    if (t.tag or t[0] ~= "=") then do
       return Curry._1(unnext, t);
     end else do
       patchlval(--[ () ]--0);
@@ -1099,14 +1108,14 @@ function expr(stk) do
       push(0);
       expr(stk);
       pop(1);
-      if (ty == --[ Int ]--0) do
+      if (ty == --[ Int ]--0) then do
         out(4753665);
       end else do
         out(34817);
-      end
+      end end 
       _param = --[ () ]--0;
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -1115,7 +1124,7 @@ function decl(g, _n, _stk) do
     var stk = _stk;
     var n = _n;
     var t = Curry._1(next$1, --[ () ]--0);
-    if (Caml_obj.caml_equal(t, tokint)) do
+    if (Caml_obj.caml_equal(t, tokint)) then do
       var top = stk ? stk[0][1] : 0;
       var vars = (function(top)do
       return function vars(_n, _stk) do
@@ -1125,25 +1134,26 @@ function decl(g, _n, _stk) do
           while(nextis(--[ Op ]--Block.__(0, ["*"]))) do
             Curry._1(next$1, --[ () ]--0);
           end;
-          if (nextis(--[ Op ]--Block.__(0, [";"]))) do
+          if (nextis(--[ Op ]--Block.__(0, [";"]))) then do
             return --[ tuple ]--[
                     n,
                     stk
                   ];
           end else do
             var match = Curry._1(next$1, --[ () ]--0);
-            if (match.tag == --[ Sym ]--3) do
+            if (match.tag == --[ Sym ]--3) then do
               var s = match[0];
               var n$prime = n + 1 | 0;
               var stk$prime;
-              if (g) do
+              if (g) then do
                 var glo = Caml_array.caml_array_get(globs, s);
-                if (glo.va >= 0) do
+                if (glo.va >= 0) then do
                   throw [
                         Caml_builtin_exceptions.failure,
                         "symbol defined twice"
                       ];
                 end
+                 end 
                 var va = (gpos.contents + 232 | 0) + 4194304 | 0;
                 Caml_array.caml_array_set(globs, s, do
                       loc: glo.loc,
@@ -1159,8 +1169,8 @@ function decl(g, _n, _stk) do
                   ],
                   stk
                 ];
-              end
-              if (nextis(--[ Op ]--Block.__(0, [","]))) do
+              end end 
+              if (nextis(--[ Op ]--Block.__(0, [","]))) then do
                 Curry._1(next$1, --[ () ]--0);
                 _stk = stk$prime;
                 _n = n$prime;
@@ -1170,20 +1180,20 @@ function decl(g, _n, _stk) do
                         n$prime,
                         stk$prime
                       ];
-              end
+              end end 
             end else do
               throw [
                     Caml_builtin_exceptions.failure,
                     "[var] expected in [decl]"
                   ];
-            end
-          end
+            end end 
+          end end 
         end;
       end
       end(top));
       var match = vars(0, stk);
       Curry._1(next$1, --[ () ]--0);
-      if (dbg.contents) do
+      if (dbg.contents) then do
         Curry._1(Printf.eprintf(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "end of decl (",
@@ -1200,13 +1210,14 @@ function decl(g, _n, _stk) do
                   "end of decl (%d vars)\n"
                 ]), n);
       end
+       end 
       _stk = match[1];
       _n = n + match[0] | 0;
       continue ;
     end else do
       Curry._1(unnext, t);
-      if (!g and n ~= 0) do
-        if ((n << 3) >= 256) do
+      if (!g and n ~= 0) then do
+        if ((n << 3) >= 256) then do
           throw [
                 Caml_builtin_exceptions.assert_failure,
                 --[ tuple ]--[
@@ -1216,18 +1227,21 @@ function decl(g, _n, _stk) do
                 ]
               ];
         end
+         end 
         out(4752364);
         out((n << 3));
         align.contents = align.contents + n | 0;
       end
-      if (dbg.contents and !g) do
+       end 
+      if (dbg.contents and !g) then do
         console.error("end of blk decls");
       end
+       end 
       return --[ tuple ]--[
               n,
               stk
             ];
-    end
+    end end 
   end;
 end
 
@@ -1243,12 +1257,12 @@ function stmt(brk, stk) do
     return --[ () ]--0;
   end;
   var t = Curry._1(next$1, --[ () ]--0);
-  if (Caml_obj.caml_equal(t, tokif)) do
+  if (Caml_obj.caml_equal(t, tokif)) then do
     pexpr(stk);
     var loc = test(0, 0);
     stmt(brk, stk);
     var loc$1;
-    if (nextis(tokelse)) do
+    if (nextis(tokelse)) then do
       Curry._1(next$1, --[ () ]--0);
       out(233);
       var l = opos.contents;
@@ -1258,15 +1272,15 @@ function stmt(brk, stk) do
       loc$1 = l;
     end else do
       loc$1 = loc;
-    end
+    end end 
     return patch(true, loc$1, opos.contents);
-  end else if (Caml_obj.caml_equal(t, tokwhile) or Caml_obj.caml_equal(t, tokfor)) do
+  end else if (Caml_obj.caml_equal(t, tokwhile) or Caml_obj.caml_equal(t, tokfor)) then do
     var bl = do
       contents: 0
     end;
     var ba = align.contents;
     var match;
-    if (Caml_obj.caml_equal(t, tokwhile)) do
+    if (Caml_obj.caml_equal(t, tokwhile)) then do
       var loc$2 = opos.contents;
       pexpr(stk);
       bl.contents = test(0, 0);
@@ -1276,17 +1290,18 @@ function stmt(brk, stk) do
       ];
     end else do
       Curry._1(next$1, --[ () ]--0);
-      if (!nextis(--[ Op ]--Block.__(0, [";"]))) do
+      if (!nextis(--[ Op ]--Block.__(0, [";"]))) then do
         expr(stk);
       end
+       end 
       Curry._1(next$1, --[ () ]--0);
       var top = opos.contents;
-      if (nextis(--[ Op ]--Block.__(0, [";"]))) do
+      if (nextis(--[ Op ]--Block.__(0, [";"]))) then do
         bl.contents = 0;
       end else do
         expr(stk);
         bl.contents = test(0, 0);
-      end
+      end end 
       Curry._1(next$1, --[ () ]--0);
       out(233);
       var bdy = opos.contents;
@@ -1300,7 +1315,7 @@ function stmt(brk, stk) do
         bdy,
         itr
       ];
-    end
+    end end 
     patch(true, match[0], opos.contents);
     stmt(--[ tuple ]--[
           bl,
@@ -1309,21 +1324,22 @@ function stmt(brk, stk) do
     out(233);
     le(32, (match[1] - opos.contents | 0) - 4 | 0);
     return patch(true, bl.contents, opos.contents);
-  end else if (Caml_obj.caml_equal(t, tokret)) do
-    if (!nextis(--[ Op ]--Block.__(0, [";"]))) do
+  end else if (Caml_obj.caml_equal(t, tokret)) then do
+    if (!nextis(--[ Op ]--Block.__(0, [";"]))) then do
       expr(stk);
     end
+     end 
     Curry._1(next$1, --[ () ]--0);
     out(233);
     var loc$3 = opos.contents;
     le(32, retl.contents);
     retl.contents = loc$3;
     return --[ () ]--0;
-  end else if (Caml_obj.caml_equal(t, tokbreak)) do
+  end else if (Caml_obj.caml_equal(t, tokbreak)) then do
     Curry._1(next$1, --[ () ]--0);
     var brkl = brk[0];
     var n = align.contents - brk[1] | 0;
-    if (n < 0) do
+    if (n < 0) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -1333,16 +1349,18 @@ function stmt(brk, stk) do
             ]
           ];
     end
-    if (n ~= 0) do
+     end 
+    if (n ~= 0) then do
       out(4752324);
       out((n << 3));
     end
+     end 
     out(233);
     var loc$4 = opos.contents;
     le(32, brkl.contents);
     brkl.contents = loc$4;
     return --[ () ]--0;
-  end else if (!t.tag) do
+  end else if (!t.tag) then do
     switch (t[0]) do
       case ";" :
           return --[ () ]--0;
@@ -1352,6 +1370,7 @@ function stmt(brk, stk) do
         
     end
   end
+   end  end  end  end  end 
   Curry._1(unnext, t);
   expr(stk);
   Curry._1(next$1, --[ () ]--0);
@@ -1366,35 +1385,36 @@ function block(brk, stk) do
     stmt(brk, stk$prime);
   end;
   Curry._1(next$1, --[ () ]--0);
-  if (n ~= 0) do
+  if (n ~= 0) then do
     out(4752324);
     out((n << 3));
     align.contents = align.contents - n | 0;
     return --[ () ]--0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function top(_param) do
   while(true) do
-    if (nextis(--[ Op ]--Block.__(0, ["EOF!"]))) do
+    if (nextis(--[ Op ]--Block.__(0, ["EOF!"]))) then do
       return 0;
-    end else if (nextis(tokint)) do
+    end else if (nextis(tokint)) then do
       decl(true, 0, --[ [] ]--0);
       _param = --[ () ]--0;
       continue ;
     end else do
       var match = Curry._1(next$1, --[ () ]--0);
-      if (match.tag == --[ Sym ]--3) do
+      if (match.tag == --[ Sym ]--3) then do
         var f = match[0];
         var g = Caml_array.caml_array_get(globs, f);
-        if (g.va >= 0) do
+        if (g.va >= 0) then do
           throw [
                 Caml_builtin_exceptions.failure,
                 "symbol defined twice"
               ];
         end
+         end 
         Caml_array.caml_array_set(globs, f, do
               loc: g.loc,
               va: opos.contents
@@ -1407,14 +1427,14 @@ function top(_param) do
             var match = Curry._1(next$1, --[ () ]--0);
             switch (match.tag | 0) do
               case --[ Op ]--0 :
-                  if (match[0] == ")") do
+                  if (match[0] == ")") then do
                     return stk;
                   end else do
                     throw [
                           Caml_builtin_exceptions.failure,
                           "[var] or ) expected"
                         ];
-                  end
+                  end end 
               case --[ ILit ]--1 :
               case --[ SLit ]--2 :
                   throw [
@@ -1424,9 +1444,10 @@ function top(_param) do
               case --[ Sym ]--3 :
                   var r = List.hd(regs);
                   push(r);
-                  if (nextis(--[ Op ]--Block.__(0, [","]))) do
+                  if (nextis(--[ Op ]--Block.__(0, [","]))) then do
                     Curry._1(next$1, --[ () ]--0);
                   end
+                   end 
                   var stk$prime_000 = --[ tuple ]--[
                     match[0],
                     ((-n | 0) << 3)
@@ -1478,7 +1499,7 @@ function top(_param) do
             ], stk);
         patch(true, retl.contents, opos.contents);
         out(51651);
-        if (dbg.contents) do
+        if (dbg.contents) then do
           Curry._1(Printf.eprintf(--[ Format ]--[
                     --[ String_literal ]--Block.__(11, [
                         "done with function ",
@@ -1493,6 +1514,7 @@ function top(_param) do
                     "done with function %s\n"
                   ]), symstr(f));
         end
+         end 
         _param = --[ () ]--0;
         continue ;
       end else do
@@ -1500,8 +1522,8 @@ function top(_param) do
               Caml_builtin_exceptions.failure,
               "[decl] or [fun] expected"
             ];
-      end
-    end
+      end end 
+    end end  end 
   end;
 end
 
@@ -1583,11 +1605,11 @@ function elfgen(outf) do
   var itr = function (f) do
     return symitr((function (i, s) do
                   var g = Caml_array.caml_array_get(globs, i);
-                  if (g.va < 0 and g.loc ~= 0) do
+                  if (g.va < 0 and g.loc ~= 0) then do
                     return Curry._3(f, s, #s, g.loc);
                   end else do
                     return 0;
-                  end
+                  end end 
                 end));
   end;
   var va = function (x) do
@@ -1595,13 +1617,13 @@ function elfgen(outf) do
   end;
   var patchloc = function (i, param) do
     var g = Caml_array.caml_array_get(globs, i);
-    if (g.va >= 0 and g.va < 4194304) do
+    if (g.va >= 0 and g.va < 4194304) then do
       return patch(false, g.loc, va(g.va));
-    end else if (g.va >= 0) do
+    end else if (g.va >= 0) then do
       return patch(false, g.loc, g.va);
     end else do
       return 0;
-    end
+    end end  end 
   end;
   symitr(patchloc);
   var strtab = opos.contents;
@@ -1635,7 +1657,7 @@ function elfgen(outf) do
           var genrel = function (_l) do
             while(true) do
               var l = _l;
-              if (l ~= 0) do
+              if (l ~= 0) then do
                 le(64, va(l));
                 le(64, 1 + (n$1.contents << 32) | 0);
                 le(64, 0);
@@ -1643,7 +1665,7 @@ function elfgen(outf) do
                 continue ;
               end else do
                 return 0;
-              end
+              end end 
             end;
           end;
           genrel(l);
@@ -1728,7 +1750,7 @@ function elfgen(outf) do
   elfphdr(3, (strtab + 1 | 0) + off | 0, 28, 1);
   elfphdr(1, 0, tend + off | 0, 2097152);
   elfphdr(2, dyn + off | 0, tend - dyn | 0, 8);
-  if (opos.contents ~= 232) do
+  if (opos.contents ~= 232) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -1738,6 +1760,7 @@ function elfgen(outf) do
           ]
         ];
   end
+   end 
   patch(false, 24, va(entry));
   return Pervasives.output_bytes(outf, Bytes.sub(obuf, 0, tend + off | 0));
 end
@@ -1836,11 +1859,11 @@ function main(param) do
         var _param = --[ () ]--0;
         while(true) do
           var tok = Curry._1(next$1, --[ () ]--0);
-          if (tok.tag) do
+          if (tok.tag) then do
             ppsym(tok);
             _param = --[ () ]--0;
             continue ;
-          end else if (tok[0] == "EOF!") do
+          end else if (tok[0] == "EOF!") then do
             return Printf.printf(--[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "End of input stream\n",
@@ -1852,7 +1875,7 @@ function main(param) do
             ppsym(tok);
             _param = --[ () ]--0;
             continue ;
-          end
+          end end  end 
         end;
     default:
       var oc = Pervasives.open_out("a.out");

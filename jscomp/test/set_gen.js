@@ -10,7 +10,7 @@ function cons_enum(_s, _e) do
   while(true) do
     var e = _e;
     var s = _s;
-    if (s) do
+    if (s) then do
       _e = --[ More ]--[
         s[1],
         s[2],
@@ -20,71 +20,71 @@ function cons_enum(_s, _e) do
       continue ;
     end else do
       return e;
-    end
+    end end 
   end;
 end
 
 function height(param) do
-  if (param) do
+  if (param) then do
     return param[3];
   end else do
     return 0;
-  end
+  end end 
 end
 
 function min_elt(_param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var l = param[0];
-      if (l) do
+      if (l) then do
         _param = l;
         continue ;
       end else do
         return param[1];
-      end
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 
 function max_elt(_param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var r = param[2];
-      if (r) do
+      if (r) then do
         _param = r;
         continue ;
       end else do
         return param[1];
-      end
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 
 function is_empty(param) do
-  if (param) do
+  if (param) then do
     return false;
   end else do
     return true;
-  end
+  end end 
 end
 
 function cardinal_aux(_acc, _param) do
   while(true) do
     var param = _param;
     var acc = _acc;
-    if (param) do
+    if (param) then do
       _param = param[0];
       _acc = cardinal_aux(acc + 1 | 0, param[2]);
       continue ;
     end else do
       return acc;
-    end
+    end end 
   end;
 end
 
@@ -96,7 +96,7 @@ function elements_aux(_accu, _param) do
   while(true) do
     var param = _param;
     var accu = _accu;
-    if (param) do
+    if (param) then do
       _param = param[0];
       _accu = --[ :: ]--[
         param[1],
@@ -105,7 +105,7 @@ function elements_aux(_accu, _param) do
       continue ;
     end else do
       return accu;
-    end
+    end end 
   end;
 end
 
@@ -116,14 +116,14 @@ end
 function iter(f, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       iter(f, param[0]);
       Curry._1(f, param[1]);
       _param = param[2];
       continue ;
     end else do
       return --[ () ]--0;
-    end
+    end end 
   end;
 end
 
@@ -131,68 +131,68 @@ function fold(f, _s, _accu) do
   while(true) do
     var accu = _accu;
     var s = _s;
-    if (s) do
+    if (s) then do
       _accu = Curry._2(f, s[1], fold(f, s[0], accu));
       _s = s[2];
       continue ;
     end else do
       return accu;
-    end
+    end end 
   end;
 end
 
 function for_all(p, _param) do
   while(true) do
     var param = _param;
-    if (param) do
-      if (Curry._1(p, param[1]) and for_all(p, param[0])) do
+    if (param) then do
+      if (Curry._1(p, param[1]) and for_all(p, param[0])) then do
         _param = param[2];
         continue ;
       end else do
         return false;
-      end
+      end end 
     end else do
       return true;
-    end
+    end end 
   end;
 end
 
 function exists(p, _param) do
   while(true) do
     var param = _param;
-    if (param) do
-      if (Curry._1(p, param[1]) or exists(p, param[0])) do
+    if (param) then do
+      if (Curry._1(p, param[1]) or exists(p, param[0])) then do
         return true;
       end else do
         _param = param[2];
         continue ;
-      end
+      end end 
     end else do
       return false;
-    end
+    end end 
   end;
 end
 
 function max_int3(a, b, c) do
-  if (a >= b) do
-    if (a >= c) do
+  if (a >= b) then do
+    if (a >= c) then do
       return a;
     end else do
       return c;
-    end
-  end else if (b >= c) do
+    end end 
+  end else if (b >= c) then do
     return b;
   end else do
     return c;
-  end
+  end end  end 
 end
 
 function max_int_2(a, b) do
-  if (a >= b) do
+  if (a >= b) then do
     return a;
   end else do
     return b;
-  end
+  end end 
 end
 
 var Height_invariant_broken = Caml_exceptions.create("Set_gen.Height_invariant_broken");
@@ -200,21 +200,23 @@ var Height_invariant_broken = Caml_exceptions.create("Set_gen.Height_invariant_b
 var Height_diff_borken = Caml_exceptions.create("Set_gen.Height_diff_borken");
 
 function check_height_and_diff(param) do
-  if (param) do
+  if (param) then do
     var h = param[3];
     var hl = check_height_and_diff(param[0]);
     var hr = check_height_and_diff(param[2]);
-    if (h ~= (max_int_2(hl, hr) + 1 | 0)) do
+    if (h ~= (max_int_2(hl, hr) + 1 | 0)) then do
       throw Height_invariant_broken;
     end
+     end 
     var diff = Pervasives.abs(hl - hr | 0);
-    if (diff > 2) do
+    if (diff > 2) then do
       throw Height_diff_borken;
     end
+     end 
     return h;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function check(tree) do
@@ -236,14 +238,14 @@ end
 function internal_bal(l, v, r) do
   var hl = l ? l[3] : 0;
   var hr = r ? r[3] : 0;
-  if (hl > (hr + 2 | 0)) do
-    if (l) do
+  if (hl > (hr + 2 | 0)) then do
+    if (l) then do
       var lr = l[2];
       var lv = l[1];
       var ll = l[0];
-      if (height(ll) >= height(lr)) do
+      if (height(ll) >= height(lr)) then do
         return create(ll, lv, create(lr, v, r));
-      end else if (lr) do
+      end else if (lr) then do
         return create(create(ll, lv, lr[0]), lr[1], create(lr[2], v, r));
       end else do
         throw [
@@ -254,7 +256,7 @@ function internal_bal(l, v, r) do
                 19
               ]
             ];
-      end
+      end end  end 
     end else do
       throw [
             Caml_builtin_exceptions.assert_failure,
@@ -264,15 +266,15 @@ function internal_bal(l, v, r) do
               15
             ]
           ];
-    end
-  end else if (hr > (hl + 2 | 0)) do
-    if (r) do
+    end end 
+  end else if (hr > (hl + 2 | 0)) then do
+    if (r) then do
       var rr = r[2];
       var rv = r[1];
       var rl = r[0];
-      if (height(rr) >= height(rl)) do
+      if (height(rr) >= height(rl)) then do
         return create(create(l, v, rl), rv, rr);
-      end else if (rl) do
+      end else if (rl) then do
         return create(create(l, v, rl[0]), rl[1], create(rl[2], rv, rr));
       end else do
         throw [
@@ -283,7 +285,7 @@ function internal_bal(l, v, r) do
                 19
               ]
             ];
-      end
+      end end  end 
     end else do
       throw [
             Caml_builtin_exceptions.assert_failure,
@@ -293,7 +295,7 @@ function internal_bal(l, v, r) do
               15
             ]
           ];
-    end
+    end end 
   end else do
     return --[ Node ]--[
             l,
@@ -301,23 +303,23 @@ function internal_bal(l, v, r) do
             r,
             hl >= hr ? hl + 1 | 0 : hr + 1 | 0
           ];
-  end
+  end end  end 
 end
 
 function remove_min_elt(param) do
-  if (param) do
+  if (param) then do
     var l = param[0];
-    if (l) do
+    if (l) then do
       return internal_bal(remove_min_elt(l), param[1], param[2]);
     end else do
       return param[2];
-    end
+    end end 
   end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Set.remove_min_elt"
         ];
-  end
+  end end 
 end
 
 function singleton(x) do
@@ -330,83 +332,83 @@ function singleton(x) do
 end
 
 function internal_merge(l, r) do
-  if (l) do
-    if (r) do
+  if (l) then do
+    if (r) then do
       return internal_bal(l, min_elt(r), remove_min_elt(r));
     end else do
       return l;
-    end
+    end end 
   end else do
     return r;
-  end
+  end end 
 end
 
 function add_min_element(v, param) do
-  if (param) do
+  if (param) then do
     return internal_bal(add_min_element(v, param[0]), param[1], param[2]);
   end else do
     return singleton(v);
-  end
+  end end 
 end
 
 function add_max_element(v, param) do
-  if (param) do
+  if (param) then do
     return internal_bal(param[0], param[1], add_max_element(v, param[2]));
   end else do
     return singleton(v);
-  end
+  end end 
 end
 
 function internal_join(l, v, r) do
-  if (l) do
-    if (r) do
+  if (l) then do
+    if (r) then do
       var rh = r[3];
       var lh = l[3];
-      if (lh > (rh + 2 | 0)) do
+      if (lh > (rh + 2 | 0)) then do
         return internal_bal(l[0], l[1], internal_join(l[2], v, r));
-      end else if (rh > (lh + 2 | 0)) do
+      end else if (rh > (lh + 2 | 0)) then do
         return internal_bal(internal_join(l, v, r[0]), r[1], r[2]);
       end else do
         return create(l, v, r);
-      end
+      end end  end 
     end else do
       return add_max_element(v, l);
-    end
+    end end 
   end else do
     return add_min_element(v, r);
-  end
+  end end 
 end
 
 function internal_concat(t1, t2) do
-  if (t1) do
-    if (t2) do
+  if (t1) then do
+    if (t2) then do
       return internal_join(t1, min_elt(t2), remove_min_elt(t2));
     end else do
       return t1;
-    end
+    end end 
   end else do
     return t2;
-  end
+  end end 
 end
 
 function filter(p, param) do
-  if (param) do
+  if (param) then do
     var v = param[1];
     var l$prime = filter(p, param[0]);
     var pv = Curry._1(p, v);
     var r$prime = filter(p, param[2]);
-    if (pv) do
+    if (pv) then do
       return internal_join(l$prime, v, r$prime);
     end else do
       return internal_concat(l$prime, r$prime);
-    end
+    end end 
   end else do
     return --[ Empty ]--0;
-  end
+  end end 
 end
 
 function partition(p, param) do
-  if (param) do
+  if (param) then do
     var v = param[1];
     var match = partition(p, param[0]);
     var lf = match[1];
@@ -415,7 +417,7 @@ function partition(p, param) do
     var match$1 = partition(p, param[2]);
     var rf = match$1[1];
     var rt = match$1[0];
-    if (pv) do
+    if (pv) then do
       return --[ tuple ]--[
               internal_join(lt, v, rt),
               internal_concat(lf, rf)
@@ -425,13 +427,13 @@ function partition(p, param) do
               internal_concat(lt, rt),
               internal_join(lf, v, rf)
             ];
-    end
+    end end 
   end else do
     return --[ tuple ]--[
             --[ Empty ]--0,
             --[ Empty ]--0
           ];
-  end
+  end end 
 end
 
 function of_sorted_list(l) do
@@ -443,7 +445,7 @@ function of_sorted_list(l) do
                   l
                 ];
       case 1 :
-          if (l) do
+          if (l) then do
             return --[ tuple ]--[
                     --[ Node ]--[
                       --[ Empty ]--0,
@@ -454,11 +456,12 @@ function of_sorted_list(l) do
                     l[1]
                   ];
           end
+           end 
           break;
       case 2 :
-          if (l) do
+          if (l) then do
             var match = l[1];
-            if (match) do
+            if (match) then do
               return --[ tuple ]--[
                       --[ Node ]--[
                         --[ Node ]--[
@@ -474,15 +477,16 @@ function of_sorted_list(l) do
                       match[1]
                     ];
             end
-            
+             end 
           end
+           end 
           break;
       case 3 :
-          if (l) do
+          if (l) then do
             var match$1 = l[1];
-            if (match$1) do
+            if (match$1) then do
               var match$2 = match$1[1];
-              if (match$2) do
+              if (match$2) then do
                 return --[ tuple ]--[
                         --[ Node ]--[
                           --[ Node ]--[
@@ -503,10 +507,11 @@ function of_sorted_list(l) do
                         match$2[1]
                       ];
               end
-              
+               end 
             end
-            
+             end 
           end
+           end 
           break;
       default:
         
@@ -514,7 +519,7 @@ function of_sorted_list(l) do
     var nl = n / 2 | 0;
     var match$3 = sub(nl, l);
     var l$1 = match$3[1];
-    if (l$1) do
+    if (l$1) then do
       var match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
       return --[ tuple ]--[
               create(match$3[0], l$1[0], match$4[0]),
@@ -529,16 +534,16 @@ function of_sorted_list(l) do
               14
             ]
           ];
-    end
+    end end 
   end;
   return sub(List.length(l), l)[0];
 end
 
 function of_sorted_array(l) do
   var sub = function (start, n, l) do
-    if (n == 0) do
+    if (n == 0) then do
       return --[ Empty ]--0;
-    end else if (n == 1) do
+    end else if (n == 1) then do
       var x0 = l[start];
       return --[ Node ]--[
               --[ Empty ]--0,
@@ -546,7 +551,7 @@ function of_sorted_array(l) do
               --[ Empty ]--0,
               1
             ];
-    end else if (n == 2) do
+    end else if (n == 2) then do
       var x0$1 = l[start];
       var x1 = l[start + 1 | 0];
       return --[ Node ]--[
@@ -560,7 +565,7 @@ function of_sorted_array(l) do
               --[ Empty ]--0,
               2
             ];
-    end else if (n == 3) do
+    end else if (n == 3) then do
       var x0$2 = l[start];
       var x1$1 = l[start + 1 | 0];
       var x2 = l[start + 2 | 0];
@@ -587,22 +592,22 @@ function of_sorted_array(l) do
       var v = l[mid];
       var right = sub(mid + 1 | 0, (n - nl | 0) - 1 | 0, l);
       return create(left, v, right);
-    end
+    end end  end  end  end 
   end;
   return sub(0, #l, l);
 end
 
 function is_ordered(cmp, tree) do
   var is_ordered_min_max = function (tree) do
-    if (tree) do
+    if (tree) then do
       var r = tree[2];
       var v = tree[1];
       var match = is_ordered_min_max(tree[0]);
-      if (typeof match == "number") do
-        if (match >= 50834029) do
+      if (typeof match == "number") then do
+        if (match >= 50834029) then do
           var match$1 = is_ordered_min_max(r);
-          if (typeof match$1 == "number") do
-            if (match$1 >= 50834029) do
+          if (typeof match$1 == "number") then do
+            if (match$1 >= 50834029) then do
               return --[ `V ]--[
                       86,
                       --[ tuple ]--[
@@ -612,10 +617,10 @@ function is_ordered(cmp, tree) do
                     ];
             end else do
               return --[ No ]--17505;
-            end
+            end end 
           end else do
             var match$2 = match$1[1];
-            if (Curry._2(cmp, v, match$2[0]) < 0) do
+            if (Curry._2(cmp, v, match$2[0]) < 0) then do
               return --[ `V ]--[
                       86,
                       --[ tuple ]--[
@@ -625,18 +630,18 @@ function is_ordered(cmp, tree) do
                     ];
             end else do
               return --[ No ]--17505;
-            end
-          end
+            end end 
+          end end 
         end else do
           return --[ No ]--17505;
-        end
+        end end 
       end else do
         var match$3 = match[1];
         var max_v = match$3[1];
         var min_v = match$3[0];
         var match$4 = is_ordered_min_max(r);
-        if (typeof match$4 == "number") do
-          if (match$4 >= 50834029 and Curry._2(cmp, max_v, v) < 0) do
+        if (typeof match$4 == "number") then do
+          if (match$4 >= 50834029 and Curry._2(cmp, max_v, v) < 0) then do
             return --[ `V ]--[
                     86,
                     --[ tuple ]--[
@@ -646,10 +651,10 @@ function is_ordered(cmp, tree) do
                   ];
           end else do
             return --[ No ]--17505;
-          end
+          end end 
         end else do
           var match$5 = match$4[1];
-          if (Curry._2(cmp, max_v, match$5[0]) < 0) do
+          if (Curry._2(cmp, max_v, match$5[0]) < 0) then do
             return --[ `V ]--[
                     86,
                     --[ tuple ]--[
@@ -659,12 +664,12 @@ function is_ordered(cmp, tree) do
                   ];
           end else do
             return --[ No ]--17505;
-          end
-        end
-      end
+          end end 
+        end end 
+      end end 
     end else do
       return --[ Empty ]--50834029;
-    end
+    end end 
   end;
   return is_ordered_min_max(tree) ~= --[ No ]--17505;
 end
@@ -678,24 +683,24 @@ function compare_aux(cmp, _e1, _e2) do
   while(true) do
     var e2 = _e2;
     var e1 = _e1;
-    if (e1) do
-      if (e2) do
+    if (e1) then do
+      if (e2) then do
         var c = Curry._2(cmp, e1[0], e2[0]);
-        if (c ~= 0) do
+        if (c ~= 0) then do
           return c;
         end else do
           _e2 = cons_enum(e2[1], e2[2]);
           _e1 = cons_enum(e1[1], e1[2]);
           continue ;
-        end
+        end end 
       end else do
         return 1;
-      end
-    end else if (e2) do
+      end end 
+    end else if (e2) then do
       return -1;
     end else do
       return 0;
-    end
+    end end  end 
   end;
 end
 

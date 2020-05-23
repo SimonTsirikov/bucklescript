@@ -32,11 +32,11 @@ end
 var f3 = Caml_primitive.caml_int_compare;
 
 function f4(x, y) do
-  if (x < y) do
+  if (x < y) then do
     return x;
   end else do
     return y;
-  end
+  end end 
 end
 
 var f5_min = Caml_obj.caml_min;

@@ -3,19 +3,19 @@
 var Curry = require("../../lib/js/curry.js");
 
 function fib(n) do
-  if (n == 0 or n == 1) do
+  if (n == 0 or n == 1) then do
     return 1;
   end else do
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
-  end
+  end end 
 end
 
 function fib2(n) do
-  if (n == 2 or n == 1) do
+  if (n == 2 or n == 1) then do
     return 1;
   end else do
     return fib2(n - 1 | 0) + fib2(n - 2 | 0) | 0;
-  end
+  end end 
 end
 
 var v = 0;
@@ -42,22 +42,22 @@ function cons(x, y) do
 end
 
 function length(x) do
-  if (x) do
+  if (x) then do
     return 1 + length(x[1]) | 0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function map(f, x) do
-  if (x) do
+  if (x) then do
     return --[ Cons ]--[
             Curry._1(f, x[0]),
             map(f, x[1])
           ];
   end else do
     return --[ Nil ]--0;
-  end
+  end end 
 end
 
 function f(x) do
@@ -78,14 +78,14 @@ function fib3(n) do
     var n$1 = _n;
     var b = _b;
     var a = _a;
-    if (n$1 > 0) do
+    if (n$1 > 0) then do
       _n = n$1 - 1 | 0;
       _b = a + b | 0;
       _a = b;
       continue ;
     end else do
       return a;
-    end
+    end end 
   end;
 end
 

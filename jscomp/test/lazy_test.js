@@ -30,10 +30,10 @@ end
 function f(param) do
   CamlinternalLazy.force(param[0]);
   var match = param[2].contents;
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     CamlinternalLazy.force(param[1]);
     var match$1 = param[2].contents;
-    if (match$1 ~= undefined) do
+    if (match$1 ~= undefined) then do
       return 1;
     end else do
       throw [
@@ -44,10 +44,10 @@ function f(param) do
               8
             ]
           ];
-    end
+    end end 
   end else do
     return 0;
-  end
+  end end 
 end
 
 var s = do
@@ -75,11 +75,11 @@ try do
 end
 catch (raw_exn)do
   var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn[0] == Caml_builtin_exceptions.match_failure) do
+  if (exn[0] == Caml_builtin_exceptions.match_failure) then do
     h = 2;
   end else do
     throw exn;
-  end
+  end end 
 end
 
 var u_v = do

@@ -31,9 +31,10 @@ function aToJs(param) do
 end
 
 function aFromJs(param) do
-  if (!(param <= 2 and 0 <= param)) do
+  if (!(param <= 2 and 0 <= param)) then do
     throw new Error("ASSERT FAILURE");
   end
+   end 
   return param - 0 | 0;
 end
 

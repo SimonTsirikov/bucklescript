@@ -26,23 +26,23 @@ function f(param) do
   var A = Caml_exceptions.create("A");
   try do
     for(var i = 0; i <= 200; ++i)do
-      if (i == 10) do
+      if (i == 10) then do
         throw [
               A,
               0
             ];
       end
-      
+       end 
     end
     return --[ () ]--0;
   end
   catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == A) do
+    if (exn[0] == A) then do
       return --[ () ]--0;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 

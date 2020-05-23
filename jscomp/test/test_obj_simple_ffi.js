@@ -8,9 +8,10 @@ function v(displayName, param) do
     config: 3,
     hi: "ghos"
   end;
-  if (displayName ~= undefined) do
+  if (displayName ~= undefined) then do
     tmp.displayName = Caml_option.valFromOption(displayName);
   end
+   end 
   return tmp;
 end
 

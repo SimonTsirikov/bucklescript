@@ -35,7 +35,7 @@ end
 
 var match = typeof __dirname == "undefined" ? undefined : __dirname;
 
-if (match ~= undefined) do
+if (match ~= undefined) then do
   var root = App_root_finder.find_package_json(match);
   var bsc_exe = Path.join(root, "bsc");
   var exit = 0;
@@ -56,7 +56,7 @@ if (match ~= undefined) do
           ]
         ];
   end
-  if (exit == 1) do
+  if (exit == 1) then do
     var dir = output.trim();
     var files = Fs.readdirSync(dir);
     var exists = files.indexOf("pervasives.cmi");
@@ -64,7 +64,7 @@ if (match ~= undefined) do
     var v = exists >= 0 and non_exists < 0;
     console.log(v);
   end
-  
+   end 
 end else do
   throw [
         Caml_builtin_exceptions.assert_failure,
@@ -74,7 +74,7 @@ end else do
           18
         ]
       ];
-end
+end end 
 
 Mt.from_pair_suites("Installation_test", suites.contents);
 

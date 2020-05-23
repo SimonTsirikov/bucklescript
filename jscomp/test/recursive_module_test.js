@@ -63,11 +63,11 @@ var M = Caml_module.init_mod(--[ tuple ]--[
           ]]]));
 
 function fact(n) do
-  if (n <= 1) do
+  if (n <= 1) then do
     return 1;
   end else do
     return Caml_int32.imul(n, Curry._1(M.fact, n - 1 | 0));
-  end
+  end end 
 end
 
 Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[

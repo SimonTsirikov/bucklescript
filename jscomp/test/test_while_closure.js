@@ -36,7 +36,7 @@ $$Array.iter((function (x) do
 
 console.log(String(v.contents));
 
-if (v.contents ~= 45) do
+if (v.contents ~= 45) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -46,6 +46,7 @@ if (v.contents ~= 45) do
         ]
       ];
 end
+ end 
 
 var count = 10;
 

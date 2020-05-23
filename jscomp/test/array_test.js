@@ -14,26 +14,26 @@ function starts_with(xs, prefix, p) do
   var H = Caml_exceptions.create("H");
   var len1 = #xs;
   var len2 = #prefix;
-  if (len2 > len1) do
+  if (len2 > len1) then do
     return false;
   end else do
     try do
       for(var i = 0 ,i_finish = len2 - 1 | 0; i <= i_finish; ++i)do
-        if (!Curry._2(p, Caml_array.caml_array_get(xs, i), Caml_array.caml_array_get(prefix, i))) do
+        if (!Curry._2(p, Caml_array.caml_array_get(xs, i), Caml_array.caml_array_get(prefix, i))) then do
           throw H;
         end
-        
+         end 
       end
       return true;
     end
     catch (exn)do
-      if (exn == H) do
+      if (exn == H) then do
         return false;
       end else do
         throw exn;
-      end
+      end end 
     end
-  end
+  end end 
 end
 
 function is_sorted(x) do
@@ -41,14 +41,14 @@ function is_sorted(x) do
   var _i = 0;
   while(true) do
     var i = _i;
-    if (i >= (len - 1 | 0)) do
+    if (i >= (len - 1 | 0)) then do
       return true;
-    end else if (Caml_obj.caml_lessthan(Caml_array.caml_array_get(x, i), Caml_array.caml_array_get(x, i + 1 | 0))) do
+    end else if (Caml_obj.caml_lessthan(Caml_array.caml_array_get(x, i), Caml_array.caml_array_get(x, i + 1 | 0))) then do
       _i = i + 1 | 0;
       continue ;
     end else do
       return false;
-    end
+    end end  end 
   end;
 end
 

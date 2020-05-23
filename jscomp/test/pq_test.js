@@ -3,12 +3,12 @@
 var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
 function insert(queue, prio, elt) do
-  if (queue) do
+  if (queue) then do
     var right = queue[3];
     var left = queue[2];
     var e = queue[1];
     var p = queue[0];
-    if (prio <= p) do
+    if (prio <= p) then do
       return --[ Node ]--[
               prio,
               elt,
@@ -22,7 +22,7 @@ function insert(queue, prio, elt) do
               insert(right, prio, elt),
               left
             ];
-    end
+    end end 
   end else do
     return --[ Node ]--[
             prio,
@@ -30,20 +30,20 @@ function insert(queue, prio, elt) do
             --[ Empty ]--0,
             --[ Empty ]--0
           ];
-  end
+  end end 
 end
 
 var Queue_is_empty = Caml_exceptions.create("Pq_test.PrioQueue.Queue_is_empty");
 
 function remove_top(param) do
-  if (param) do
+  if (param) then do
     var left = param[2];
-    if (param[3]) do
-      if (left) do
+    if (param[3]) then do
+      if (left) then do
         var right = param[3];
         var rprio = right[0];
         var lprio = left[0];
-        if (lprio <= rprio) do
+        if (lprio <= rprio) then do
           return --[ Node ]--[
                   lprio,
                   left[1],
@@ -57,20 +57,20 @@ function remove_top(param) do
                   left,
                   remove_top(right)
                 ];
-        end
+        end end 
       end else do
         return param[3];
-      end
+      end end 
     end else do
       return left;
-    end
+    end end 
   end else do
     throw Queue_is_empty;
-  end
+  end end 
 end
 
 function extract(queue) do
-  if (queue) do
+  if (queue) then do
     return --[ tuple ]--[
             queue[0],
             queue[1],
@@ -78,7 +78,7 @@ function extract(queue) do
           ];
   end else do
     throw Queue_is_empty;
-  end
+  end end 
 end
 
 var PrioQueue = do

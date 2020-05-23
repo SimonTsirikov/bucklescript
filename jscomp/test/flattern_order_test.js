@@ -4,26 +4,26 @@
 function even(_n) do
   while(true) do
     var n = _n;
-    if (n == 0) do
+    if (n == 0) then do
       return true;
     end else do
       _n = n - 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
 function even2(n) do
-  if (n == 0) do
+  if (n == 0) then do
     return true;
   end else do
     var n$1 = n - 1 | 0;
-    if (n$1 == 1) do
+    if (n$1 == 1) then do
       return true;
     end else do
       return even2(n$1 - 1 | 0);
-    end
-  end
+    end end 
+  end end 
 end
 
 var v = do

@@ -127,9 +127,10 @@ function bToJs(param) do
 end
 
 function bFromJs(param) do
-  if (!(param <= 3 and 0 <= param)) do
+  if (!(param <= 3 and 0 <= param)) then do
     throw new Error("ASSERT FAILURE");
   end
+   end 
   return param - 0 | 0;
 end
 
@@ -154,9 +155,10 @@ function cToJs(param) do
 end
 
 function cFromJs(param) do
-  if (!(param <= 6 and 3 <= param)) do
+  if (!(param <= 6 and 3 <= param)) then do
     throw new Error("ASSERT FAILURE");
   end
+   end 
   return param - 3 | 0;
 end
 
@@ -179,9 +181,10 @@ function hToJs(param) do
 end
 
 function hFromJs(param) do
-  if (!(param <= 1 and 0 <= param)) do
+  if (!(param <= 1 and 0 <= param)) then do
     throw new Error("ASSERT FAILURE");
   end
+   end 
   return param - 0 | 0;
 end
 
@@ -190,10 +193,10 @@ function zToJs(param) do
 end
 
 function zFromJs(param) do
-  if (param <= 2 and 0 <= param) do
+  if (param <= 2 and 0 <= param) then do
     return param - 0 | 0;
   end
-  
+   end 
 end
 
 Mt.from_pair_suites("Ast_abstract_test", suites.contents);

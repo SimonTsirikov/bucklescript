@@ -26,11 +26,11 @@ d["foo"] = undefined;
 
 var match = Js_dict.get(d, "foo");
 
-if (match ~= undefined and Caml_option.valFromOption(match) == undefined) do
+if (match ~= undefined and Caml_option.valFromOption(match) == undefined) then do
   b("File \"gpr_3154_test.ml\", line 12, characters 19-26", true);
 end else do
   b("File \"gpr_3154_test.ml\", line 13, characters 11-18", false);
-end
+end end 
 
 var d0 = { };
 

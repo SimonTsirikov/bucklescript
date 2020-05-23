@@ -11,12 +11,12 @@ function isfree(id, _param) do
           _param = param[0];
           continue ;
       case --[ Papply ]--2 :
-          if (isfree(id, param[0])) do
+          if (isfree(id, param[0])) then do
             return true;
           end else do
             _param = param[1];
             continue ;
-          end
+          end end 
       
     end
   end;

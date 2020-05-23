@@ -6,7 +6,7 @@ var Js_types = require("../../lib/js/js_types.js");
 
 function string_or_number(x) do
   var ty = Js_types.classify(x);
-  if (typeof ty == "number") do
+  if (typeof ty == "number") then do
     switch (ty) do
       case --[ JSFalse ]--0 :
       case --[ JSTrue ]--1 :
@@ -28,7 +28,7 @@ function string_or_number(x) do
       default:
         return false;
     end
-  end
+  end end 
 end
 
 var suites_000 = --[ tuple ]--[

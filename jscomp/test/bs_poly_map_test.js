@@ -44,10 +44,10 @@ end
 
 function mergeInter(s1, s2) do
   var m = Belt_Map.merge(s1, s2, (function (k, v1, v2) do
-          if (v1 ~= undefined and v2 ~= undefined) do
+          if (v1 ~= undefined and v2 ~= undefined) then do
             return --[ () ]--0;
           end
-          
+           end 
         end));
   var x = Belt_MapDict.keysToArray(m.data);
   return Belt_Set.fromArray(x, Icmp);
@@ -55,10 +55,10 @@ end
 
 function mergeUnion(s1, s2) do
   var m = Belt_Map.merge(s1, s2, (function (k, v1, v2) do
-          if (v1 ~= undefined or v2 ~= undefined) do
+          if (v1 ~= undefined or v2 ~= undefined) then do
             return --[ () ]--0;
           end
-          
+           end 
         end));
   var x = Belt_MapDict.keysToArray(m.data);
   return Belt_Set.fromArray(x, Icmp);
@@ -66,10 +66,10 @@ end
 
 function mergeDiff(s1, s2) do
   var m = Belt_Map.merge(s1, s2, (function (k, v1, v2) do
-          if (v1 ~= undefined and v2 == undefined) do
+          if (v1 ~= undefined and v2 == undefined) then do
             return --[ () ]--0;
           end
-          
+           end 
         end));
   var x = Belt_MapDict.keysToArray(m.data);
   return Belt_Set.fromArray(x, Icmp);
@@ -117,18 +117,18 @@ var a1 = Belt_Map.set(a0, 3, 33);
 var a2 = Belt_Map.remove(a1, 3);
 
 var a3 = Belt_Map.update(a2, 3, (function (k) do
-        if (k ~= undefined) do
+        if (k ~= undefined) then do
           return k + 1 | 0;
         end else do
           return 11;
-        end
+        end end 
       end));
 
 var a4 = Belt_Map.update(a2, 3, (function (k) do
-        if (k ~= undefined) do
+        if (k ~= undefined) then do
           return k + 1 | 0;
         end
-        
+         end 
       end));
 
 var a5 = Belt_Map.remove(a0, 3);
@@ -189,11 +189,11 @@ function acc(m, is) do
                 var m = a;
                 var i$1 = i;
                 return Belt_Map.update(m, i$1, (function (n) do
-                              if (n ~= undefined) do
+                              if (n ~= undefined) then do
                                 return n + 1 | 0;
                               end else do
                                 return 1;
-                              end
+                              end end 
                             end));
               end));
 end
@@ -242,11 +242,11 @@ b("File \"bs_poly_map_test.ml\", line 117, characters 4-11", Belt_Map.eq(v1, v2,
           end)));
 
 function inc(x) do
-  if (x ~= undefined) do
+  if (x ~= undefined) then do
     return x + 1 | 0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 var v3 = Belt_Map.update(v1, 10, inc);

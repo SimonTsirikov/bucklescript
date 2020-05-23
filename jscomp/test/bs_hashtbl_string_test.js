@@ -52,7 +52,7 @@ function bench(param) do
     Belt_HashMap.set(empty, i, i);
   end
   for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
-    if (!Belt_HashMap.has(empty, i$1)) do
+    if (!Belt_HashMap.has(empty, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -62,7 +62,7 @@ function bench(param) do
             ]
           ];
     end
-    
+     end 
   end
   return Belt_HashMap.logStats(empty);
 end
@@ -73,7 +73,7 @@ function bench2(m) do
     Belt_HashMap.set(empty, String(i), i);
   end
   for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
-    if (!Belt_HashMap.has(empty, String(i$1))) do
+    if (!Belt_HashMap.has(empty, String(i$1))) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -83,12 +83,12 @@ function bench2(m) do
             ]
           ];
     end
-    
+     end 
   end
   for(var i$2 = 0; i$2 <= 1000000; ++i$2)do
     Belt_HashMap.remove(empty, String(i$2));
   end
-  if (empty.size == 0) do
+  if (empty.size == 0) then do
     return 0;
   end else do
     throw [
@@ -99,7 +99,7 @@ function bench2(m) do
             2
           ]
         ];
-  end
+  end end 
 end
 
 function bench3(m) do
@@ -113,7 +113,7 @@ function bench3(m) do
     table = Belt_MapDict.set(table, String(i), i, cmp);
   end
   for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
-    if (!Belt_MapDict.has(table, String(i$1), cmp)) do
+    if (!Belt_MapDict.has(table, String(i$1), cmp)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -123,12 +123,12 @@ function bench3(m) do
             ]
           ];
     end
-    
+     end 
   end
   for(var i$2 = 0; i$2 <= 1000000; ++i$2)do
     table = Belt_MapDict.remove(table, String(i$2), cmp);
   end
-  if (Belt_MapDict.size(table) == 0) do
+  if (Belt_MapDict.size(table) == 0) then do
     return 0;
   end else do
     throw [
@@ -139,7 +139,7 @@ function bench3(m) do
             2
           ]
         ];
-  end
+  end end 
 end
 
 var Sx = Belt_Id.comparable(Caml_primitive.caml_string_compare);
@@ -150,7 +150,7 @@ function bench4(param) do
     Belt_HashMapString.set(table, String(i), i);
   end
   for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
-    if (!Belt_HashMapString.has(table, String(i$1))) do
+    if (!Belt_HashMapString.has(table, String(i$1))) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -160,12 +160,12 @@ function bench4(param) do
             ]
           ];
     end
-    
+     end 
   end
   for(var i$2 = 0; i$2 <= 1000000; ++i$2)do
     Belt_HashMapString.remove(table, String(i$2));
   end
-  if (Belt_HashMapString.isEmpty(table)) do
+  if (Belt_HashMapString.isEmpty(table)) then do
     return 0;
   end else do
     throw [
@@ -176,7 +176,7 @@ function bench4(param) do
             2
           ]
         ];
-  end
+  end end 
 end
 
 function bench5(param) do
@@ -188,7 +188,7 @@ function bench5(param) do
   console.timeEnd("test/bs_hashtbl_string_test.ml 133");
   console.time("test/bs_hashtbl_string_test.ml 137");
   for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
-    if (!Belt_HashMap.has(table, i$1)) do
+    if (!Belt_HashMap.has(table, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -198,7 +198,7 @@ function bench5(param) do
             ]
           ];
     end
-    
+     end 
   end
   console.timeEnd("test/bs_hashtbl_string_test.ml 137");
   console.time("test/bs_hashtbl_string_test.ml 141");
@@ -206,7 +206,7 @@ function bench5(param) do
     Belt_HashMap.remove(table, i$2);
   end
   console.timeEnd("test/bs_hashtbl_string_test.ml 141");
-  if (Belt_HashMap.isEmpty(table)) do
+  if (Belt_HashMap.isEmpty(table)) then do
     return 0;
   end else do
     throw [
@@ -217,7 +217,7 @@ function bench5(param) do
             2
           ]
         ];
-  end
+  end end 
 end
 
 function bench6(param) do
@@ -226,7 +226,7 @@ function bench6(param) do
     Belt_HashMapInt.set(table, i, i);
   end
   for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
-    if (!Belt_HashMapInt.has(table, i$1)) do
+    if (!Belt_HashMapInt.has(table, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -236,12 +236,12 @@ function bench6(param) do
             ]
           ];
     end
-    
+     end 
   end
   for(var i$2 = 0; i$2 <= 1000000; ++i$2)do
     Belt_HashMapInt.remove(table, i$2);
   end
-  if (table.size == 0) do
+  if (table.size == 0) then do
     return 0;
   end else do
     throw [
@@ -252,7 +252,7 @@ function bench6(param) do
             2
           ]
         ];
-  end
+  end end 
 end
 
 function bench7(param) do
@@ -262,7 +262,7 @@ function bench7(param) do
     Belt_HashSetInt.add(table, i);
   end
   for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
-    if (!Belt_HashSetInt.has(table, i$1)) do
+    if (!Belt_HashSetInt.has(table, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -272,12 +272,12 @@ function bench7(param) do
             ]
           ];
     end
-    
+     end 
   end
   for(var i$2 = 0; i$2 <= 1000000; ++i$2)do
     Belt_HashSetInt.remove(table, i$2);
   end
-  if (table.size == 0) do
+  if (table.size == 0) then do
     return 0;
   end else do
     throw [
@@ -288,7 +288,7 @@ function bench7(param) do
             2
           ]
         ];
-  end
+  end end 
 end
 
 console.time("test/bs_hashtbl_string_test.ml 203");

@@ -10,13 +10,13 @@ function f(param) do
     while(true) do
       var n = _n;
       var acc = _acc;
-      if (n > 0) do
+      if (n > 0) then do
         _n = n - 1 | 0;
         _acc = acc + n | 0;
         continue ;
       end else do
         return acc;
-      end
+      end end 
     end;
   end;
   var v = Caml_array.caml_make_vect(10, 0);

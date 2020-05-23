@@ -8,18 +8,19 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 var Foo = Caml_exceptions.create("Gpr_1701_test.Foo");
 
 function test(n) do
-  if (n == 0) do
+  if (n == 0) then do
     throw Foo;
   end
+   end 
   try do
     return test(n - 1 | 0);
   end
   catch (exn)do
-    if (exn == Foo) do
+    if (exn == Foo) then do
       return --[ () ]--0;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -34,13 +35,13 @@ function read_lines(inc) do
       match = Pervasives.input_line(inc);
     end
     catch (exn)do
-      if (exn == Caml_builtin_exceptions.end_of_file) do
+      if (exn == Caml_builtin_exceptions.end_of_file) then do
         match = undefined;
       end else do
         throw exn;
-      end
+      end end 
     end
-    if (match ~= undefined) do
+    if (match ~= undefined) then do
       _acc = --[ :: ]--[
         match,
         acc
@@ -48,7 +49,7 @@ function read_lines(inc) do
       continue ;
     end else do
       return List.rev(acc);
-    end
+    end end 
   end;
 end
 
@@ -61,11 +62,11 @@ function read_lines2(inc) do
       l = Pervasives.input_line(inc);
     end
     catch (exn)do
-      if (exn == Caml_builtin_exceptions.end_of_file) do
+      if (exn == Caml_builtin_exceptions.end_of_file) then do
         return List.rev(acc);
       end else do
         throw exn;
-      end
+      end end 
     end
     _acc = --[ :: ]--[
       l,
@@ -85,11 +86,11 @@ function read_lines3(inc) do
                 ]);
     end
     catch (exn)do
-      if (exn == Caml_builtin_exceptions.end_of_file) do
+      if (exn == Caml_builtin_exceptions.end_of_file) then do
         return List.rev(acc);
       end else do
         throw exn;
-      end
+      end end 
     end
   end;
   return loop(--[ [] ]--0);

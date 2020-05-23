@@ -25,36 +25,36 @@ function appf(g, x) do
   end
   catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn == Local) do
+    if (exn == Local) then do
       return 3;
-    end else if (exn == Caml_builtin_exceptions.not_found) do
+    end else if (exn == Caml_builtin_exceptions.not_found) then do
       return 2;
-    end else if (exn[0] == A) do
+    end else if (exn[0] == A) then do
       return 3;
-    end else if (exn[0] == B) do
+    end else if (exn[0] == B) then do
       var match = exn[1];
-      if (match) do
+      if (match) then do
         var match$1 = match[1];
-        if (match$1) do
+        if (match$1) then do
           var match$2 = match$1[1];
-          if (match$2) do
+          if (match$2) then do
             return match$2[0];
           end else do
             return 4;
-          end
+          end end 
         end else do
           return 4;
-        end
+        end end 
       end else do
         return 4;
-      end
-    end else if (exn[0] == C) do
+      end end 
+    end else if (exn[0] == C) then do
       return exn[1];
-    end else if (exn[0] == D) do
+    end else if (exn[0] == D) then do
       return exn[1][0];
     end else do
       return 4;
-    end
+    end end  end  end  end  end  end 
   end
 end
 
@@ -97,7 +97,7 @@ try do
 end
 catch (raw_exn$3)do
   var exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
-  if (exn$3[0] == A or exn$3[0] == Js_exn.$$Error) do
+  if (exn$3[0] == A or exn$3[0] == Js_exn.$$Error) then do
     a0 = exn$3[1];
   end else do
     throw [
@@ -108,7 +108,7 @@ catch (raw_exn$3)do
             9
           ]
         ];
-  end
+  end end 
 end
 
 var a1;
@@ -154,7 +154,7 @@ var suites = do
       --[ tuple ]--[
         "File \"exception_raise_test.ml\", line 116, characters 4-11",
         (function (param) do
-            if (a1[0] == Js_exn.$$Error) do
+            if (a1[0] == Js_exn.$$Error) then do
               return --[ Eq ]--Block.__(0, [
                         a1[1],
                         2
@@ -168,7 +168,7 @@ var suites = do
                       15
                     ]
                   ];
-            end
+            end end 
           end)
       ],
       --[ [] ]--0

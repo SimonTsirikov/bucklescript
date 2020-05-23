@@ -3,11 +3,11 @@
 var Belt_MapInt = require("../../lib/js/belt_MapInt.js");
 
 function should(b) do
-  if (b) do
+  if (b) then do
     return 0;
   end else do
     throw new Error("IMPOSSIBLE");
-  end
+  end end 
 end
 
 function test(param) do

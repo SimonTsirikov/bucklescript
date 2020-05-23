@@ -38,11 +38,11 @@ end
 function fib_init($$class) do
   var calc = CamlinternalOO.get_method_label($$class, "calc");
   CamlinternalOO.set_method($$class, calc, (function (self$1, x) do
-          if (x == 0 or x == 1) do
+          if (x == 0 or x == 1) then do
             return 1;
           end else do
             return Curry._2(self$1[0][calc], self$1, x - 1 | 0) + Curry._2(self$1[0][calc], self$1, x - 2 | 0) | 0;
-          end
+          end end 
         end));
   return (function (env, self) do
       return CamlinternalOO.create_object_opt(self, $$class);
@@ -63,13 +63,13 @@ function memo_fib_init($$class) do
             return Hashtbl.find(self$2[cache], x);
           end
           catch (exn)do
-            if (exn == Caml_builtin_exceptions.not_found) do
+            if (exn == Caml_builtin_exceptions.not_found) then do
               var v = Curry._2(calc$1, self$2, x);
               Hashtbl.add(self$2[cache], x, v);
               return v;
             end else do
               throw exn;
-            end
+            end end 
           end
         end));
   return (function (env, self) do

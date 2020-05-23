@@ -16,13 +16,13 @@ end;
 
 function finish(param) do
   var match = all_tests_ok.contents;
-  if (match) do
+  if (match) then do
     console.log("\nAll tests succeeded.");
     return --[ () ]--0;
   end else do
     console.log("\n\n********* Test suite failed. ***********\n");
     return --[ () ]--0;
-  end
+  end end 
 end
 
 Pervasives.at_exit(finish);
@@ -78,7 +78,7 @@ end
 function test(b) do
   test_num.contents = test_num.contents + 1 | 0;
   print_test_number(--[ () ]--0);
-  if (b) do
+  if (b) then do
     return 0;
   end else do
     all_tests_ok.contents = false;
@@ -97,7 +97,7 @@ function test(b) do
                           ]),
                         "\n********* Test number %i failed ***********\n"
                       ]), test_num.contents));
-  end
+  end end 
 end
 
 function test_raises_exc_p(pred, f, x) do
@@ -110,12 +110,12 @@ function test_raises_exc_p(pred, f, x) do
   end
   catch (raw_x)do
     var x$1 = Caml_js_exceptions.internalToOCamlException(raw_x);
-    if (Curry._1(pred, x$1)) do
+    if (Curry._1(pred, x$1)) then do
       return true;
     end else do
       print_failure_test_fail(--[ () ]--0);
       return false;
-    end
+    end end 
   end
 end
 

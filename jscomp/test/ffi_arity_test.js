@@ -6,7 +6,7 @@ var Curry = require("../../lib/js/curry.js");
 var Caml_int32 = require("../../lib/js/caml_int32.js");
 
 function f(v) do
-  if (v % 2 == 0) do
+  if (v % 2 == 0) then do
     return (function (v) do
         return Caml_int32.imul(v, v);
       end);
@@ -14,7 +14,7 @@ function f(v) do
     return (function (v) do
         return v + v | 0;
       end);
-  end
+  end end 
 end
 
 var v = [

@@ -8,7 +8,7 @@ var Caml_option = require("../../lib/js/caml_option.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function reverse_range(a, i, len) do
-  if (len == 0) do
+  if (len == 0) then do
     return --[ () ]--0;
   end else do
     for(var k = 0 ,k_finish = (len - 1 | 0) / 2 | 0; k <= k_finish; ++k)do
@@ -17,7 +17,7 @@ function reverse_range(a, i, len) do
       a[((i + len | 0) - 1 | 0) - k | 0] = t;
     end
     return --[ () ]--0;
-  end
+  end end 
 end
 
 function reverse_in_place(a) do
@@ -26,7 +26,7 @@ end
 
 function reverse(a) do
   var b_len = #a;
-  if (b_len == 0) do
+  if (b_len == 0) then do
     return [];
   end else do
     var b = $$Array.copy(a);
@@ -34,11 +34,11 @@ function reverse(a) do
       b[i] = a[(b_len - 1 | 0) - i | 0];
     end
     return b;
-  end
+  end end 
 end
 
 function reverse_of_list(l) do
-  if (l) do
+  if (l) then do
     var len = List.length(l);
     var a = Caml_array.caml_make_vect(len, l[0]);
     var _i = 0;
@@ -46,18 +46,18 @@ function reverse_of_list(l) do
     while(true) do
       var param = _param;
       var i = _i;
-      if (param) do
+      if (param) then do
         a[(len - i | 0) - 2 | 0] = param[0];
         _param = param[1];
         _i = i + 1 | 0;
         continue ;
       end else do
         return a;
-      end
+      end end 
     end;
   end else do
     return [];
-  end
+  end end 
 end
 
 function filter(f, a) do
@@ -67,11 +67,11 @@ function filter(f, a) do
   while(true) do
     var i = _i;
     var acc = _acc;
-    if (i == arr_len) do
+    if (i == arr_len) then do
       return reverse_of_list(acc);
     end else do
       var v = a[i];
-      if (Curry._1(f, v)) do
+      if (Curry._1(f, v)) then do
         _i = i + 1 | 0;
         _acc = --[ :: ]--[
           v,
@@ -81,8 +81,8 @@ function filter(f, a) do
       end else do
         _i = i + 1 | 0;
         continue ;
-      end
-    end
+      end end 
+    end end 
   end;
 end
 
@@ -93,13 +93,13 @@ function filter_map(f, a) do
   while(true) do
     var i = _i;
     var acc = _acc;
-    if (i == arr_len) do
+    if (i == arr_len) then do
       return reverse_of_list(acc);
     end else do
       var v = a[i];
       var match = Curry._1(f, v);
       _i = i + 1 | 0;
-      if (match ~= undefined) do
+      if (match ~= undefined) then do
         _acc = --[ :: ]--[
           Caml_option.valFromOption(match),
           acc
@@ -107,18 +107,19 @@ function filter_map(f, a) do
         continue ;
       end else do
         continue ;
-      end
-    end
+      end end 
+    end end 
   end;
 end
 
 function range(from, to_) do
-  if (from > to_) do
+  if (from > to_) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_array_test.range"
         ];
   end
+   end 
   return $$Array.init((to_ - from | 0) + 1 | 0, (function (i) do
                 return i + from | 0;
               end));
@@ -126,12 +127,13 @@ end
 
 function map2i(f, a, b) do
   var len = #a;
-  if (len ~= #b) do
+  if (len ~= #b) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_array_test.map2i"
         ];
   end
+   end 
   return $$Array.mapi((function (i, a) do
                 return Curry._3(f, i, a, b[i]);
               end), a);
@@ -141,7 +143,7 @@ function tolist_aux(a, f, _i, _res) do
   while(true) do
     var res = _res;
     var i = _i;
-    if (i < 0) do
+    if (i < 0) then do
       return res;
     end else do
       var v = a[i];
@@ -152,7 +154,7 @@ function tolist_aux(a, f, _i, _res) do
         ] : res;
       _i = i - 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -165,7 +167,7 @@ function to_list_map_acc(f, a, acc) do
 end
 
 function of_list_map(f, a) do
-  if (a) do
+  if (a) then do
     var tl = a[1];
     var hd = Curry._1(f, a[0]);
     var len = List.length(tl) + 1 | 0;
@@ -175,18 +177,18 @@ function of_list_map(f, a) do
     while(true) do
       var param = _param;
       var i = _i;
-      if (param) do
+      if (param) then do
         arr[i] = Curry._1(f, param[0]);
         _param = param[1];
         _i = i + 1 | 0;
         continue ;
       end else do
         return arr;
-      end
+      end end 
     end;
   end else do
     return [];
-  end
+  end end 
 end
 
 function rfind_with_index(arr, cmp, v) do
@@ -194,18 +196,18 @@ function rfind_with_index(arr, cmp, v) do
   var _i = len - 1 | 0;
   while(true) do
     var i = _i;
-    if (i < 0 or Curry._2(cmp, arr[i], v)) do
+    if (i < 0 or Curry._2(cmp, arr[i], v)) then do
       return i;
     end else do
       _i = i - 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
 function rfind_and_split(arr, cmp, v) do
   var i = rfind_with_index(arr, cmp, v);
-  if (i < 0) do
+  if (i < 0) then do
     return --[ No_split ]---226265796;
   end else do
     return --[ `Split ]--[
@@ -215,7 +217,7 @@ function rfind_and_split(arr, cmp, v) do
               $$Array.sub(arr, i + 1 | 0, (#arr - i | 0) - 1 | 0)
             ]
           ];
-  end
+  end end 
 end
 
 function find_with_index(arr, cmp, v) do
@@ -224,20 +226,20 @@ function find_with_index(arr, cmp, v) do
   var len$1 = len;
   while(true) do
     var i = _i;
-    if (i >= len$1) do
+    if (i >= len$1) then do
       return -1;
-    end else if (Curry._2(cmp, arr[i], v)) do
+    end else if (Curry._2(cmp, arr[i], v)) then do
       return i;
     end else do
       _i = i + 1 | 0;
       continue ;
-    end
+    end end  end 
   end;
 end
 
 function find_and_split(arr, cmp, v) do
   var i = find_with_index(arr, cmp, v);
-  if (i < 0) do
+  if (i < 0) then do
     return --[ No_split ]---226265796;
   end else do
     return --[ `Split ]--[
@@ -247,7 +249,7 @@ function find_and_split(arr, cmp, v) do
               $$Array.sub(arr, i + 1 | 0, (#arr - i | 0) - 1 | 0)
             ]
           ];
-  end
+  end end 
 end
 
 function exists(p, a) do
@@ -255,14 +257,14 @@ function exists(p, a) do
   var _i = 0;
   while(true) do
     var i = _i;
-    if (i == n) do
+    if (i == n) then do
       return false;
-    end else if (Curry._1(p, a[i])) do
+    end else if (Curry._1(p, a[i])) then do
       return true;
     end else do
       _i = i + 1 | 0;
       continue ;
-    end
+    end end  end 
   end;
 end
 
@@ -273,25 +275,25 @@ end
 function unsafe_loop(_index, len, p, xs, ys) do
   while(true) do
     var index = _index;
-    if (index >= len) do
+    if (index >= len) then do
       return true;
-    end else if (Curry._2(p, xs[index], ys[index])) do
+    end else if (Curry._2(p, xs[index], ys[index])) then do
       _index = index + 1 | 0;
       continue ;
     end else do
       return false;
-    end
+    end end  end 
   end;
 end
 
 function for_all2_no_exn(p, xs, ys) do
   var len_xs = #xs;
   var len_ys = #ys;
-  if (len_xs == len_ys) do
+  if (len_xs == len_ys) then do
     return unsafe_loop(0, len_xs, p, xs, ys);
   end else do
     return false;
-  end
+  end end 
 end
 
 exports.reverse_range = reverse_range;

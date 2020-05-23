@@ -40,11 +40,11 @@ function does_raise(f, q) do
     return false;
   end
   catch (exn)do
-    if (exn == Queue.Empty) do
+    if (exn == Queue.Empty) then do
       return true;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -54,7 +54,7 @@ var q = do
   last: --[ Nil ]--0
 end;
 
-if (!(to_list(q) == --[ [] ]--0 and q.length == 0)) do
+if (!(to_list(q) == --[ [] ]--0 and q.length == 0)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -64,13 +64,14 @@ if (!(to_list(q) == --[ [] ]--0 and q.length == 0)) do
         ]
       ];
 end
+ end 
 
 Queue.add(1, q);
 
 if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
           1,
           --[ [] ]--0
-        ]) and q.length == 1)) do
+        ]) and q.length == 1)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -80,6 +81,7 @@ if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
         ]
       ];
 end
+ end 
 
 Queue.add(2, q);
 
@@ -89,7 +91,7 @@ if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
             2,
             --[ [] ]--0
           ]
-        ]) and q.length == 2)) do
+        ]) and q.length == 2)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -99,6 +101,7 @@ if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
         ]
       ];
 end
+ end 
 
 Queue.add(3, q);
 
@@ -111,7 +114,7 @@ if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
               --[ [] ]--0
             ]
           ]
-        ]) and q.length == 3)) do
+        ]) and q.length == 3)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -121,6 +124,7 @@ if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
         ]
       ];
 end
+ end 
 
 Queue.add(4, q);
 
@@ -136,7 +140,7 @@ if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
               ]
             ]
           ]
-        ]) and q.length == 4)) do
+        ]) and q.length == 4)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -146,8 +150,9 @@ if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
         ]
       ];
 end
+ end 
 
-if (Queue.take(q) ~= 1) do
+if (Queue.take(q) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -157,6 +162,7 @@ if (Queue.take(q) ~= 1) do
         ]
       ];
 end
+ end 
 
 if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
           2,
@@ -167,7 +173,7 @@ if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
               --[ [] ]--0
             ]
           ]
-        ]) and q.length == 3)) do
+        ]) and q.length == 3)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -177,8 +183,9 @@ if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
         ]
       ];
 end
+ end 
 
-if (Queue.take(q) ~= 2) do
+if (Queue.take(q) ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -188,6 +195,7 @@ if (Queue.take(q) ~= 2) do
         ]
       ];
 end
+ end 
 
 if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
           3,
@@ -195,7 +203,7 @@ if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
             4,
             --[ [] ]--0
           ]
-        ]) and q.length == 2)) do
+        ]) and q.length == 2)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -205,8 +213,9 @@ if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
         ]
       ];
 end
+ end 
 
-if (Queue.take(q) ~= 3) do
+if (Queue.take(q) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -216,11 +225,12 @@ if (Queue.take(q) ~= 3) do
         ]
       ];
 end
+ end 
 
 if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
           4,
           --[ [] ]--0
-        ]) and q.length == 1)) do
+        ]) and q.length == 1)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -230,8 +240,9 @@ if (!(Caml_obj.caml_equal(to_list(q), --[ :: ]--[
         ]
       ];
 end
+ end 
 
-if (Queue.take(q) ~= 4) do
+if (Queue.take(q) ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -241,8 +252,9 @@ if (Queue.take(q) ~= 4) do
         ]
       ];
 end
+ end 
 
-if (!(to_list(q) == --[ [] ]--0 and q.length == 0)) do
+if (!(to_list(q) == --[ [] ]--0 and q.length == 0)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -252,8 +264,9 @@ if (!(to_list(q) == --[ [] ]--0 and q.length == 0)) do
         ]
       ];
 end
+ end 
 
-if (!does_raise(Queue.take, q)) do
+if (!does_raise(Queue.take, q)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -263,6 +276,7 @@ if (!does_raise(Queue.take, q)) do
         ]
       ];
 end
+ end 
 
 var q$1 = do
   length: 0,
@@ -272,7 +286,7 @@ end;
 
 Queue.add(1, q$1);
 
-if (Queue.take(q$1) ~= 1) do
+if (Queue.take(q$1) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -282,8 +296,9 @@ if (Queue.take(q$1) ~= 1) do
         ]
       ];
 end
+ end 
 
-if (!does_raise(Queue.take, q$1)) do
+if (!does_raise(Queue.take, q$1)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -293,10 +308,11 @@ if (!does_raise(Queue.take, q$1)) do
         ]
       ];
 end
+ end 
 
 Queue.add(2, q$1);
 
-if (Queue.take(q$1) ~= 2) do
+if (Queue.take(q$1) ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -306,8 +322,9 @@ if (Queue.take(q$1) ~= 2) do
         ]
       ];
 end
+ end 
 
-if (!does_raise(Queue.take, q$1)) do
+if (!does_raise(Queue.take, q$1)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -317,8 +334,9 @@ if (!does_raise(Queue.take, q$1)) do
         ]
       ];
 end
+ end 
 
-if (q$1.length ~= 0) do
+if (q$1.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -328,6 +346,7 @@ if (q$1.length ~= 0) do
         ]
       ];
 end
+ end 
 
 var q$2 = do
   length: 0,
@@ -337,7 +356,7 @@ end;
 
 Queue.add(1, q$2);
 
-if (Queue.peek(q$2) ~= 1) do
+if (Queue.peek(q$2) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -347,10 +366,11 @@ if (Queue.peek(q$2) ~= 1) do
         ]
       ];
 end
+ end 
 
 Queue.add(2, q$2);
 
-if (Queue.peek(q$2) ~= 1) do
+if (Queue.peek(q$2) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -360,10 +380,11 @@ if (Queue.peek(q$2) ~= 1) do
         ]
       ];
 end
+ end 
 
 Queue.add(3, q$2);
 
-if (Queue.peek(q$2) ~= 1) do
+if (Queue.peek(q$2) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -373,8 +394,9 @@ if (Queue.peek(q$2) ~= 1) do
         ]
       ];
 end
+ end 
 
-if (Queue.peek(q$2) ~= 1) do
+if (Queue.peek(q$2) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -384,8 +406,9 @@ if (Queue.peek(q$2) ~= 1) do
         ]
       ];
 end
+ end 
 
-if (Queue.take(q$2) ~= 1) do
+if (Queue.take(q$2) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -395,8 +418,9 @@ if (Queue.take(q$2) ~= 1) do
         ]
       ];
 end
+ end 
 
-if (Queue.peek(q$2) ~= 2) do
+if (Queue.peek(q$2) ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -406,8 +430,9 @@ if (Queue.peek(q$2) ~= 2) do
         ]
       ];
 end
+ end 
 
-if (Queue.take(q$2) ~= 2) do
+if (Queue.take(q$2) ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -417,8 +442,9 @@ if (Queue.take(q$2) ~= 2) do
         ]
       ];
 end
+ end 
 
-if (Queue.peek(q$2) ~= 3) do
+if (Queue.peek(q$2) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -428,8 +454,9 @@ if (Queue.peek(q$2) ~= 3) do
         ]
       ];
 end
+ end 
 
-if (Queue.take(q$2) ~= 3) do
+if (Queue.take(q$2) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -439,8 +466,9 @@ if (Queue.take(q$2) ~= 3) do
         ]
       ];
 end
+ end 
 
-if (!does_raise(Queue.peek, q$2)) do
+if (!does_raise(Queue.peek, q$2)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -450,8 +478,9 @@ if (!does_raise(Queue.peek, q$2)) do
         ]
       ];
 end
+ end 
 
-if (!does_raise(Queue.peek, q$2)) do
+if (!does_raise(Queue.peek, q$2)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -461,6 +490,7 @@ if (!does_raise(Queue.peek, q$2)) do
         ]
       ];
 end
+ end 
 
 var q$3 = do
   length: 0,
@@ -474,7 +504,7 @@ end
 
 Queue.clear(q$3);
 
-if (q$3.length ~= 0) do
+if (q$3.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -484,8 +514,9 @@ if (q$3.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (!does_raise(Queue.take, q$3)) do
+if (!does_raise(Queue.take, q$3)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -495,12 +526,13 @@ if (!does_raise(Queue.take, q$3)) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(q$3, do
         length: 0,
         first: --[ Nil ]--0,
         last: --[ Nil ]--0
-      end)) do
+      end)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -510,10 +542,11 @@ if (!Caml_obj.caml_equal(q$3, do
         ]
       ];
 end
+ end 
 
 Queue.add(42, q$3);
 
-if (Queue.take(q$3) ~= 42) do
+if (Queue.take(q$3) ~= 42) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -523,6 +556,7 @@ if (Queue.take(q$3) ~= 42) do
         ]
       ];
 end
+ end 
 
 var q1 = do
   length: 0,
@@ -566,7 +600,7 @@ if (!Caml_obj.caml_equal(to_list(q1), --[ :: ]--[
             ]
           ]
         ]
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -576,6 +610,7 @@ if (!Caml_obj.caml_equal(to_list(q1), --[ :: ]--[
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(to_list(q2), --[ :: ]--[
         1,
@@ -607,7 +642,7 @@ if (!Caml_obj.caml_equal(to_list(q2), --[ :: ]--[
             ]
           ]
         ]
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -617,8 +652,9 @@ if (!Caml_obj.caml_equal(to_list(q2), --[ :: ]--[
         ]
       ];
 end
+ end 
 
-if (q1.length ~= 10) do
+if (q1.length ~= 10) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -628,8 +664,9 @@ if (q1.length ~= 10) do
         ]
       ];
 end
+ end 
 
-if (q2.length ~= 10) do
+if (q2.length ~= 10) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -639,9 +676,10 @@ if (q2.length ~= 10) do
         ]
       ];
 end
+ end 
 
 for(var i$2 = 1; i$2 <= 10; ++i$2)do
-  if (Queue.take(q1) ~= i$2) do
+  if (Queue.take(q1) ~= i$2) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -651,11 +689,11 @@ for(var i$2 = 1; i$2 <= 10; ++i$2)do
           ]
         ];
   end
-  
+   end 
 end
 
 for(var i$3 = 1; i$3 <= 10; ++i$3)do
-  if (Queue.take(q2) ~= i$3) do
+  if (Queue.take(q2) ~= i$3) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -665,7 +703,7 @@ for(var i$3 = 1; i$3 <= 10; ++i$3)do
           ]
         ];
   end
-  
+   end 
 end
 
 var q$4 = do
@@ -674,7 +712,7 @@ var q$4 = do
   last: --[ Nil ]--0
 end;
 
-if (q$4.length ~= 0) do
+if (q$4.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -684,10 +722,11 @@ if (q$4.length ~= 0) do
         ]
       ];
 end
+ end 
 
 for(var i$4 = 1; i$4 <= 10; ++i$4)do
   Queue.add(i$4, q$4);
-  if (q$4.length ~= i$4) do
+  if (q$4.length ~= i$4) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -697,7 +736,8 @@ for(var i$4 = 1; i$4 <= 10; ++i$4)do
           ]
         ];
   end
-  if (q$4.length == 0) do
+   end 
+  if (q$4.length == 0) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -707,11 +747,11 @@ for(var i$4 = 1; i$4 <= 10; ++i$4)do
           ]
         ];
   end
-  
+   end 
 end
 
 for(var i$5 = 10; i$5 >= 1; --i$5)do
-  if (q$4.length ~= i$5) do
+  if (q$4.length ~= i$5) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -721,7 +761,8 @@ for(var i$5 = 10; i$5 >= 1; --i$5)do
           ]
         ];
   end
-  if (q$4.length == 0) do
+   end 
+  if (q$4.length == 0) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -731,10 +772,11 @@ for(var i$5 = 10; i$5 >= 1; --i$5)do
           ]
         ];
   end
+   end 
   Queue.take(q$4);
 end
 
-if (q$4.length ~= 0) do
+if (q$4.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -744,8 +786,9 @@ if (q$4.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (q$4.length ~= 0) do
+if (q$4.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -755,6 +798,7 @@ if (q$4.length ~= 0) do
         ]
       ];
 end
+ end 
 
 var q$5 = do
   length: 0,
@@ -771,7 +815,7 @@ var i$7 = do
 end;
 
 Queue.iter((function (j) do
-        if (i$7.contents ~= j) do
+        if (i$7.contents ~= j) then do
           throw [
                 Caml_builtin_exceptions.assert_failure,
                 --[ tuple ]--[
@@ -781,6 +825,7 @@ Queue.iter((function (j) do
                 ]
               ];
         end
+         end 
         i$7.contents = i$7.contents + 1 | 0;
         return --[ () ]--0;
       end), q$5);
@@ -797,7 +842,7 @@ var q2$1 = do
   last: --[ Nil ]--0
 end;
 
-if (q1$1.length ~= 0) do
+if (q1$1.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -807,8 +852,9 @@ if (q1$1.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (to_list(q1$1) ~= --[ [] ]--0) do
+if (to_list(q1$1) ~= --[ [] ]--0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -818,8 +864,9 @@ if (to_list(q1$1) ~= --[ [] ]--0) do
         ]
       ];
 end
+ end 
 
-if (q2$1.length ~= 0) do
+if (q2$1.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -829,8 +876,9 @@ if (q2$1.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (to_list(q2$1) ~= --[ [] ]--0) do
+if (to_list(q2$1) ~= --[ [] ]--0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -840,10 +888,11 @@ if (to_list(q2$1) ~= --[ [] ]--0) do
         ]
       ];
 end
+ end 
 
 Queue.transfer(q1$1, q2$1);
 
-if (q1$1.length ~= 0) do
+if (q1$1.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -853,8 +902,9 @@ if (q1$1.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (to_list(q1$1) ~= --[ [] ]--0) do
+if (to_list(q1$1) ~= --[ [] ]--0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -864,8 +914,9 @@ if (to_list(q1$1) ~= --[ [] ]--0) do
         ]
       ];
 end
+ end 
 
-if (q2$1.length ~= 0) do
+if (q2$1.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -875,8 +926,9 @@ if (q2$1.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (to_list(q2$1) ~= --[ [] ]--0) do
+if (to_list(q2$1) ~= --[ [] ]--0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -886,6 +938,7 @@ if (to_list(q2$1) ~= --[ [] ]--0) do
         ]
       ];
 end
+ end 
 
 var q1$2 = do
   length: 0,
@@ -903,7 +956,7 @@ for(var i$8 = 1; i$8 <= 4; ++i$8)do
   Queue.add(i$8, q1$2);
 end
 
-if (q1$2.length ~= 4) do
+if (q1$2.length ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -913,6 +966,7 @@ if (q1$2.length ~= 4) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(to_list(q1$2), --[ :: ]--[
         1,
@@ -926,7 +980,7 @@ if (!Caml_obj.caml_equal(to_list(q1$2), --[ :: ]--[
             ]
           ]
         ]
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -936,8 +990,9 @@ if (!Caml_obj.caml_equal(to_list(q1$2), --[ :: ]--[
         ]
       ];
 end
+ end 
 
-if (q2$2.length ~= 0) do
+if (q2$2.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -947,8 +1002,9 @@ if (q2$2.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (to_list(q2$2) ~= --[ [] ]--0) do
+if (to_list(q2$2) ~= --[ [] ]--0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -958,10 +1014,11 @@ if (to_list(q2$2) ~= --[ [] ]--0) do
         ]
       ];
 end
+ end 
 
 Queue.transfer(q1$2, q2$2);
 
-if (q1$2.length ~= 0) do
+if (q1$2.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -971,8 +1028,9 @@ if (q1$2.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (to_list(q1$2) ~= --[ [] ]--0) do
+if (to_list(q1$2) ~= --[ [] ]--0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -982,8 +1040,9 @@ if (to_list(q1$2) ~= --[ [] ]--0) do
         ]
       ];
 end
+ end 
 
-if (q2$2.length ~= 4) do
+if (q2$2.length ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -993,6 +1052,7 @@ if (q2$2.length ~= 4) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(to_list(q2$2), --[ :: ]--[
         1,
@@ -1006,7 +1066,7 @@ if (!Caml_obj.caml_equal(to_list(q2$2), --[ :: ]--[
             ]
           ]
         ]
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1016,6 +1076,7 @@ if (!Caml_obj.caml_equal(to_list(q2$2), --[ :: ]--[
         ]
       ];
 end
+ end 
 
 var q1$3 = do
   length: 0,
@@ -1033,7 +1094,7 @@ for(var i$9 = 5; i$9 <= 8; ++i$9)do
   Queue.add(i$9, q2$3);
 end
 
-if (q1$3.length ~= 0) do
+if (q1$3.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1043,8 +1104,9 @@ if (q1$3.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (to_list(q1$3) ~= --[ [] ]--0) do
+if (to_list(q1$3) ~= --[ [] ]--0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1054,8 +1116,9 @@ if (to_list(q1$3) ~= --[ [] ]--0) do
         ]
       ];
 end
+ end 
 
-if (q2$3.length ~= 4) do
+if (q2$3.length ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1065,6 +1128,7 @@ if (q2$3.length ~= 4) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(to_list(q2$3), --[ :: ]--[
         5,
@@ -1078,7 +1142,7 @@ if (!Caml_obj.caml_equal(to_list(q2$3), --[ :: ]--[
             ]
           ]
         ]
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1088,10 +1152,11 @@ if (!Caml_obj.caml_equal(to_list(q2$3), --[ :: ]--[
         ]
       ];
 end
+ end 
 
 Queue.transfer(q1$3, q2$3);
 
-if (q1$3.length ~= 0) do
+if (q1$3.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1101,8 +1166,9 @@ if (q1$3.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (to_list(q1$3) ~= --[ [] ]--0) do
+if (to_list(q1$3) ~= --[ [] ]--0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1112,8 +1178,9 @@ if (to_list(q1$3) ~= --[ [] ]--0) do
         ]
       ];
 end
+ end 
 
-if (q2$3.length ~= 4) do
+if (q2$3.length ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1123,6 +1190,7 @@ if (q2$3.length ~= 4) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(to_list(q2$3), --[ :: ]--[
         5,
@@ -1136,7 +1204,7 @@ if (!Caml_obj.caml_equal(to_list(q2$3), --[ :: ]--[
             ]
           ]
         ]
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1146,6 +1214,7 @@ if (!Caml_obj.caml_equal(to_list(q2$3), --[ :: ]--[
         ]
       ];
 end
+ end 
 
 var q1$4 = do
   length: 0,
@@ -1167,7 +1236,7 @@ for(var i$11 = 5; i$11 <= 8; ++i$11)do
   Queue.add(i$11, q2$4);
 end
 
-if (q1$4.length ~= 4) do
+if (q1$4.length ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1177,6 +1246,7 @@ if (q1$4.length ~= 4) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(to_list(q1$4), --[ :: ]--[
         1,
@@ -1190,7 +1260,7 @@ if (!Caml_obj.caml_equal(to_list(q1$4), --[ :: ]--[
             ]
           ]
         ]
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1200,8 +1270,9 @@ if (!Caml_obj.caml_equal(to_list(q1$4), --[ :: ]--[
         ]
       ];
 end
+ end 
 
-if (q2$4.length ~= 4) do
+if (q2$4.length ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1211,6 +1282,7 @@ if (q2$4.length ~= 4) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(to_list(q2$4), --[ :: ]--[
         5,
@@ -1224,7 +1296,7 @@ if (!Caml_obj.caml_equal(to_list(q2$4), --[ :: ]--[
             ]
           ]
         ]
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1234,10 +1306,11 @@ if (!Caml_obj.caml_equal(to_list(q2$4), --[ :: ]--[
         ]
       ];
 end
+ end 
 
 Queue.transfer(q1$4, q2$4);
 
-if (q1$4.length ~= 0) do
+if (q1$4.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1247,8 +1320,9 @@ if (q1$4.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (to_list(q1$4) ~= --[ [] ]--0) do
+if (to_list(q1$4) ~= --[ [] ]--0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1258,8 +1332,9 @@ if (to_list(q1$4) ~= --[ [] ]--0) do
         ]
       ];
 end
+ end 
 
-if (q2$4.length ~= 8) do
+if (q2$4.length ~= 8) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1269,6 +1344,7 @@ if (q2$4.length ~= 8) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(to_list(q2$4), --[ :: ]--[
         5,
@@ -1294,7 +1370,7 @@ if (!Caml_obj.caml_equal(to_list(q2$4), --[ :: ]--[
             ]
           ]
         ]
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1304,6 +1380,7 @@ if (!Caml_obj.caml_equal(to_list(q2$4), --[ :: ]--[
         ]
       ];
 end
+ end 
 
 console.log("OK");
 

@@ -111,17 +111,17 @@ var q = Curry._3(colored_point[0], 0, 4, "blue");
 function lookup_obj(obj, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var obj$prime = param[0];
-      if (Caml_obj.caml_equal(obj, obj$prime)) do
+      if (Caml_obj.caml_equal(obj, obj$prime)) then do
         return obj$prime;
       end else do
         _param = param[1];
         continue ;
-      end
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 

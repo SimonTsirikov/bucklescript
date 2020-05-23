@@ -14,26 +14,26 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 
 function split(delim, s) do
   var len = #s;
-  if (len ~= 0) do
+  if (len ~= 0) then do
     var _l = --[ [] ]--0;
     var _i = len;
     while(true) do
       var i = _i;
       var l = _l;
-      if (i ~= 0) do
+      if (i ~= 0) then do
         var i$prime;
         try do
           i$prime = $$String.rindex_from(s, i - 1 | 0, delim);
         end
         catch (exn)do
-          if (exn == Caml_builtin_exceptions.not_found) do
+          if (exn == Caml_builtin_exceptions.not_found) then do
             return --[ :: ]--[
                     $$String.sub(s, 0, i),
                     l
                   ];
           end else do
             throw exn;
-          end
+          end end 
         end
         var l_000 = $$String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
         var l$1 = --[ :: ]--[
@@ -49,19 +49,19 @@ function split(delim, s) do
         continue ;
       end else do
         return l;
-      end
+      end end 
     end;
   end else do
     return --[ [] ]--0;
-  end
+  end end 
 end
 
 function string_of_float_option(param) do
-  if (param ~= undefined) do
+  if (param ~= undefined) then do
     return Pervasives.string_of_float(param);
   end else do
     return "nan";
-  end
+  end end 
 end
 
 var Util = do
@@ -70,12 +70,12 @@ var Util = do
 end;
 
 function string_of_rank(param) do
-  if (typeof param == "number") do
-    if (param ~= 0) do
+  if (typeof param == "number") then do
+    if (param ~= 0) then do
       return "Visited";
     end else do
       return "Uninitialized";
-    end
+    end end 
   end else do
     return Curry._1(Printf.sprintf(--[ Format ]--[
                     --[ String_literal ]--Block.__(11, [
@@ -92,7 +92,7 @@ function string_of_rank(param) do
                       ]),
                     "Ranked(%i)"
                   ]), param[0]);
-  end
+  end end 
 end
 
 function find_ticker_by_name(all_tickers, ticker) do
@@ -103,21 +103,21 @@ end
 
 function print_all_composite(all_tickers) do
   return List.iter((function (param) do
-                if (param.type_) do
+                if (param.type_) then do
                   console.log(param.ticker_name);
                   return --[ () ]--0;
                 end else do
                   return --[ () ]--0;
-                end
+                end end 
               end), all_tickers);
 end
 
 function height(param) do
-  if (param) do
+  if (param) then do
     return param[--[ h ]--4];
   end else do
     return 0;
-  end
+  end end 
 end
 
 function create(l, x, d, r) do
@@ -145,50 +145,50 @@ end
 function bal(l, x, d, r) do
   var hl = l ? l[--[ h ]--4] : 0;
   var hr = r ? r[--[ h ]--4] : 0;
-  if (hl > (hr + 2 | 0)) do
-    if (l) do
+  if (hl > (hr + 2 | 0)) then do
+    if (l) then do
       var lr = l[--[ r ]--3];
       var ld = l[--[ d ]--2];
       var lv = l[--[ v ]--1];
       var ll = l[--[ l ]--0];
-      if (height(ll) >= height(lr)) do
+      if (height(ll) >= height(lr)) then do
         return create(ll, lv, ld, create(lr, x, d, r));
-      end else if (lr) do
+      end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[ l ]--0]), lr[--[ v ]--1], lr[--[ d ]--2], create(lr[--[ r ]--3], x, d, r));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
             ];
-      end
+      end end  end 
     end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
           ];
-    end
-  end else if (hr > (hl + 2 | 0)) do
-    if (r) do
+    end end 
+  end else if (hr > (hl + 2 | 0)) then do
+    if (r) then do
       var rr = r[--[ r ]--3];
       var rd = r[--[ d ]--2];
       var rv = r[--[ v ]--1];
       var rl = r[--[ l ]--0];
-      if (height(rr) >= height(rl)) do
+      if (height(rr) >= height(rl)) then do
         return create(create(l, x, d, rl), rv, rd, rr);
-      end else if (rl) do
+      end else if (rl) then do
         return create(create(l, x, d, rl[--[ l ]--0]), rl[--[ v ]--1], rl[--[ d ]--2], create(rl[--[ r ]--3], rv, rd, rr));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
             ];
-      end
+      end end  end 
     end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
           ];
-    end
+    end end 
   end else do
     return --[ Node ]--[
             --[ l ]--l,
@@ -197,26 +197,26 @@ function bal(l, x, d, r) do
             --[ r ]--r,
             --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
           ];
-  end
+  end end  end 
 end
 
 function is_empty(param) do
-  if (param) do
+  if (param) then do
     return false;
   end else do
     return true;
-  end
+  end end 
 end
 
 function add(x, data, m) do
-  if (m) do
+  if (m) then do
     var r = m[--[ r ]--3];
     var d = m[--[ d ]--2];
     var v = m[--[ v ]--1];
     var l = m[--[ l ]--0];
     var c = Caml_obj.caml_compare(x, v);
-    if (c == 0) do
-      if (d == data) do
+    if (c == 0) then do
+      if (d == data) then do
         return m;
       end else do
         return --[ Node ]--[
@@ -226,22 +226,22 @@ function add(x, data, m) do
                 --[ r ]--r,
                 --[ h ]--m[--[ h ]--4]
               ];
-      end
-    end else if (c < 0) do
+      end end 
+    end else if (c < 0) then do
       var ll = add(x, data, l);
-      if (l == ll) do
+      if (l == ll) then do
         return m;
       end else do
         return bal(ll, v, d, r);
-      end
+      end end 
     end else do
       var rr = add(x, data, r);
-      if (r == rr) do
+      if (r == rr) then do
         return m;
       end else do
         return bal(l, v, d, rr);
-      end
-    end
+      end end 
+    end end  end 
   end else do
     return --[ Node ]--[
             --[ l : Empty ]--0,
@@ -250,32 +250,32 @@ function add(x, data, m) do
             --[ r : Empty ]--0,
             --[ h ]--1
           ];
-  end
+  end end 
 end
 
 function find(x, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var c = Caml_obj.caml_compare(x, param[--[ v ]--1]);
-      if (c == 0) do
+      if (c == 0) then do
         return param[--[ d ]--2];
       end else do
         _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
         continue ;
-      end
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 
 function find_first(f, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var v = param[--[ v ]--1];
-      if (Curry._1(f, v)) do
+      if (Curry._1(f, v)) then do
         var _v0 = v;
         var _d0 = param[--[ d ]--2];
         var f$1 = f;
@@ -284,9 +284,9 @@ function find_first(f, _param) do
           var param$1 = _param$1;
           var d0 = _d0;
           var v0 = _v0;
-          if (param$1) do
+          if (param$1) then do
             var v$1 = param$1[--[ v ]--1];
-            if (Curry._1(f$1, v$1)) do
+            if (Curry._1(f$1, v$1)) then do
               _param$1 = param$1[--[ l ]--0];
               _d0 = param$1[--[ d ]--2];
               _v0 = v$1;
@@ -294,30 +294,30 @@ function find_first(f, _param) do
             end else do
               _param$1 = param$1[--[ r ]--3];
               continue ;
-            end
+            end end 
           end else do
             return --[ tuple ]--[
                     v0,
                     d0
                   ];
-          end
+          end end 
         end;
       end else do
         _param = param[--[ r ]--3];
         continue ;
-      end
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 
 function find_first_opt(f, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var v = param[--[ v ]--1];
-      if (Curry._1(f, v)) do
+      if (Curry._1(f, v)) then do
         var _v0 = v;
         var _d0 = param[--[ d ]--2];
         var f$1 = f;
@@ -326,9 +326,9 @@ function find_first_opt(f, _param) do
           var param$1 = _param$1;
           var d0 = _d0;
           var v0 = _v0;
-          if (param$1) do
+          if (param$1) then do
             var v$1 = param$1[--[ v ]--1];
-            if (Curry._1(f$1, v$1)) do
+            if (Curry._1(f$1, v$1)) then do
               _param$1 = param$1[--[ l ]--0];
               _d0 = param$1[--[ d ]--2];
               _v0 = v$1;
@@ -336,30 +336,30 @@ function find_first_opt(f, _param) do
             end else do
               _param$1 = param$1[--[ r ]--3];
               continue ;
-            end
+            end end 
           end else do
             return --[ tuple ]--[
                     v0,
                     d0
                   ];
-          end
+          end end 
         end;
       end else do
         _param = param[--[ r ]--3];
         continue ;
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
 function find_last(f, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var v = param[--[ v ]--1];
-      if (Curry._1(f, v)) do
+      if (Curry._1(f, v)) then do
         var _v0 = v;
         var _d0 = param[--[ d ]--2];
         var f$1 = f;
@@ -368,9 +368,9 @@ function find_last(f, _param) do
           var param$1 = _param$1;
           var d0 = _d0;
           var v0 = _v0;
-          if (param$1) do
+          if (param$1) then do
             var v$1 = param$1[--[ v ]--1];
-            if (Curry._1(f$1, v$1)) do
+            if (Curry._1(f$1, v$1)) then do
               _param$1 = param$1[--[ r ]--3];
               _d0 = param$1[--[ d ]--2];
               _v0 = v$1;
@@ -378,30 +378,30 @@ function find_last(f, _param) do
             end else do
               _param$1 = param$1[--[ l ]--0];
               continue ;
-            end
+            end end 
           end else do
             return --[ tuple ]--[
                     v0,
                     d0
                   ];
-          end
+          end end 
         end;
       end else do
         _param = param[--[ l ]--0];
         continue ;
-      end
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 
 function find_last_opt(f, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var v = param[--[ v ]--1];
-      if (Curry._1(f, v)) do
+      if (Curry._1(f, v)) then do
         var _v0 = v;
         var _d0 = param[--[ d ]--2];
         var f$1 = f;
@@ -410,9 +410,9 @@ function find_last_opt(f, _param) do
           var param$1 = _param$1;
           var d0 = _d0;
           var v0 = _v0;
-          if (param$1) do
+          if (param$1) then do
             var v$1 = param$1[--[ v ]--1];
-            if (Curry._1(f$1, v$1)) do
+            if (Curry._1(f$1, v$1)) then do
               _param$1 = param$1[--[ r ]--3];
               _d0 = param$1[--[ d ]--2];
               _v0 = v$1;
@@ -420,64 +420,64 @@ function find_last_opt(f, _param) do
             end else do
               _param$1 = param$1[--[ l ]--0];
               continue ;
-            end
+            end end 
           end else do
             return --[ tuple ]--[
                     v0,
                     d0
                   ];
-          end
+          end end 
         end;
       end else do
         _param = param[--[ l ]--0];
         continue ;
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
 function find_opt(x, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var c = Caml_obj.caml_compare(x, param[--[ v ]--1]);
-      if (c == 0) do
+      if (c == 0) then do
         return Caml_option.some(param[--[ d ]--2]);
       end else do
         _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
         continue ;
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
 function mem(x, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var c = Caml_obj.caml_compare(x, param[--[ v ]--1]);
-      if (c == 0) do
+      if (c == 0) then do
         return true;
       end else do
         _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
         continue ;
-      end
+      end end 
     end else do
       return false;
-    end
+    end end 
   end;
 end
 
 function min_binding(_param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var l = param[--[ l ]--0];
-      if (l) do
+      if (l) then do
         _param = l;
         continue ;
       end else do
@@ -485,19 +485,19 @@ function min_binding(_param) do
                 param[--[ v ]--1],
                 param[--[ d ]--2]
               ];
-      end
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 
 function min_binding_opt(_param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var l = param[--[ l ]--0];
-      if (l) do
+      if (l) then do
         _param = l;
         continue ;
       end else do
@@ -505,19 +505,19 @@ function min_binding_opt(_param) do
                 param[--[ v ]--1],
                 param[--[ d ]--2]
               ];
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
 function max_binding(_param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var r = param[--[ r ]--3];
-      if (r) do
+      if (r) then do
         _param = r;
         continue ;
       end else do
@@ -525,19 +525,19 @@ function max_binding(_param) do
                 param[--[ v ]--1],
                 param[--[ d ]--2]
               ];
-      end
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 
 function max_binding_opt(_param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var r = param[--[ r ]--3];
-      if (r) do
+      if (r) then do
         _param = r;
         continue ;
       end else do
@@ -545,83 +545,83 @@ function max_binding_opt(_param) do
                 param[--[ v ]--1],
                 param[--[ d ]--2]
               ];
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
 function remove_min_binding(param) do
-  if (param) do
+  if (param) then do
     var l = param[--[ l ]--0];
-    if (l) do
+    if (l) then do
       return bal(remove_min_binding(l), param[--[ v ]--1], param[--[ d ]--2], param[--[ r ]--3]);
     end else do
       return param[--[ r ]--3];
-    end
+    end end 
   end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Map.remove_min_elt"
         ];
-  end
+  end end 
 end
 
 function merge(t1, t2) do
-  if (t1) do
-    if (t2) do
+  if (t1) then do
+    if (t2) then do
       var match = min_binding(t2);
       return bal(t1, match[0], match[1], remove_min_binding(t2));
     end else do
       return t1;
-    end
+    end end 
   end else do
     return t2;
-  end
+  end end 
 end
 
 function remove(x, m) do
-  if (m) do
+  if (m) then do
     var r = m[--[ r ]--3];
     var d = m[--[ d ]--2];
     var v = m[--[ v ]--1];
     var l = m[--[ l ]--0];
     var c = Caml_obj.caml_compare(x, v);
-    if (c == 0) do
+    if (c == 0) then do
       return merge(l, r);
-    end else if (c < 0) do
+    end else if (c < 0) then do
       var ll = remove(x, l);
-      if (l == ll) do
+      if (l == ll) then do
         return m;
       end else do
         return bal(ll, v, d, r);
-      end
+      end end 
     end else do
       var rr = remove(x, r);
-      if (r == rr) do
+      if (r == rr) then do
         return m;
       end else do
         return bal(l, v, d, rr);
-      end
-    end
+      end end 
+    end end  end 
   end else do
     return --[ Empty ]--0;
-  end
+  end end 
 end
 
 function update(x, f, m) do
-  if (m) do
+  if (m) then do
     var r = m[--[ r ]--3];
     var d = m[--[ d ]--2];
     var v = m[--[ v ]--1];
     var l = m[--[ l ]--0];
     var c = Caml_obj.caml_compare(x, v);
-    if (c == 0) do
+    if (c == 0) then do
       var match = Curry._1(f, Caml_option.some(d));
-      if (match ~= undefined) do
+      if (match ~= undefined) then do
         var data = Caml_option.valFromOption(match);
-        if (d == data) do
+        if (d == data) then do
           return m;
         end else do
           return --[ Node ]--[
@@ -631,28 +631,28 @@ function update(x, f, m) do
                   --[ r ]--r,
                   --[ h ]--m[--[ h ]--4]
                 ];
-        end
+        end end 
       end else do
         return merge(l, r);
-      end
-    end else if (c < 0) do
+      end end 
+    end else if (c < 0) then do
       var ll = update(x, f, l);
-      if (l == ll) do
+      if (l == ll) then do
         return m;
       end else do
         return bal(ll, v, d, r);
-      end
+      end end 
     end else do
       var rr = update(x, f, r);
-      if (r == rr) do
+      if (r == rr) then do
         return m;
       end else do
         return bal(l, v, d, rr);
-      end
-    end
+      end end 
+    end end  end 
   end else do
     var match$1 = Curry._1(f, undefined);
-    if (match$1 ~= undefined) do
+    if (match$1 ~= undefined) then do
       return --[ Node ]--[
               --[ l : Empty ]--0,
               --[ v ]--x,
@@ -662,26 +662,26 @@ function update(x, f, m) do
             ];
     end else do
       return --[ Empty ]--0;
-    end
-  end
+    end end 
+  end end 
 end
 
 function iter(f, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       iter(f, param[--[ l ]--0]);
       Curry._2(f, param[--[ v ]--1], param[--[ d ]--2]);
       _param = param[--[ r ]--3];
       continue ;
     end else do
       return --[ () ]--0;
-    end
+    end end 
   end;
 end
 
 function map(f, param) do
-  if (param) do
+  if (param) then do
     var l$prime = map(f, param[--[ l ]--0]);
     var d$prime = Curry._1(f, param[--[ d ]--2]);
     var r$prime = map(f, param[--[ r ]--3]);
@@ -694,11 +694,11 @@ function map(f, param) do
           ];
   end else do
     return --[ Empty ]--0;
-  end
+  end end 
 end
 
 function mapi(f, param) do
-  if (param) do
+  if (param) then do
     var v = param[--[ v ]--1];
     var l$prime = mapi(f, param[--[ l ]--0]);
     var d$prime = Curry._2(f, v, param[--[ d ]--2]);
@@ -712,126 +712,126 @@ function mapi(f, param) do
           ];
   end else do
     return --[ Empty ]--0;
-  end
+  end end 
 end
 
 function fold(f, _m, _accu) do
   while(true) do
     var accu = _accu;
     var m = _m;
-    if (m) do
+    if (m) then do
       _accu = Curry._3(f, m[--[ v ]--1], m[--[ d ]--2], fold(f, m[--[ l ]--0], accu));
       _m = m[--[ r ]--3];
       continue ;
     end else do
       return accu;
-    end
+    end end 
   end;
 end
 
 function for_all(p, _param) do
   while(true) do
     var param = _param;
-    if (param) do
-      if (Curry._2(p, param[--[ v ]--1], param[--[ d ]--2]) and for_all(p, param[--[ l ]--0])) do
+    if (param) then do
+      if (Curry._2(p, param[--[ v ]--1], param[--[ d ]--2]) and for_all(p, param[--[ l ]--0])) then do
         _param = param[--[ r ]--3];
         continue ;
       end else do
         return false;
-      end
+      end end 
     end else do
       return true;
-    end
+    end end 
   end;
 end
 
 function exists(p, _param) do
   while(true) do
     var param = _param;
-    if (param) do
-      if (Curry._2(p, param[--[ v ]--1], param[--[ d ]--2]) or exists(p, param[--[ l ]--0])) do
+    if (param) then do
+      if (Curry._2(p, param[--[ v ]--1], param[--[ d ]--2]) or exists(p, param[--[ l ]--0])) then do
         return true;
       end else do
         _param = param[--[ r ]--3];
         continue ;
-      end
+      end end 
     end else do
       return false;
-    end
+    end end 
   end;
 end
 
 function add_min_binding(k, x, param) do
-  if (param) do
+  if (param) then do
     return bal(add_min_binding(k, x, param[--[ l ]--0]), param[--[ v ]--1], param[--[ d ]--2], param[--[ r ]--3]);
   end else do
     return singleton(k, x);
-  end
+  end end 
 end
 
 function add_max_binding(k, x, param) do
-  if (param) do
+  if (param) then do
     return bal(param[--[ l ]--0], param[--[ v ]--1], param[--[ d ]--2], add_max_binding(k, x, param[--[ r ]--3]));
   end else do
     return singleton(k, x);
-  end
+  end end 
 end
 
 function join(l, v, d, r) do
-  if (l) do
-    if (r) do
+  if (l) then do
+    if (r) then do
       var rh = r[--[ h ]--4];
       var lh = l[--[ h ]--4];
-      if (lh > (rh + 2 | 0)) do
+      if (lh > (rh + 2 | 0)) then do
         return bal(l[--[ l ]--0], l[--[ v ]--1], l[--[ d ]--2], join(l[--[ r ]--3], v, d, r));
-      end else if (rh > (lh + 2 | 0)) do
+      end else if (rh > (lh + 2 | 0)) then do
         return bal(join(l, v, d, r[--[ l ]--0]), r[--[ v ]--1], r[--[ d ]--2], r[--[ r ]--3]);
       end else do
         return create(l, v, d, r);
-      end
+      end end  end 
     end else do
       return add_max_binding(v, d, l);
-    end
+    end end 
   end else do
     return add_min_binding(v, d, r);
-  end
+  end end 
 end
 
 function concat(t1, t2) do
-  if (t1) do
-    if (t2) do
+  if (t1) then do
+    if (t2) then do
       var match = min_binding(t2);
       return join(t1, match[0], match[1], remove_min_binding(t2));
     end else do
       return t1;
-    end
+    end end 
   end else do
     return t2;
-  end
+  end end 
 end
 
 function concat_or_join(t1, v, d, t2) do
-  if (d ~= undefined) do
+  if (d ~= undefined) then do
     return join(t1, v, Caml_option.valFromOption(d), t2);
   end else do
     return concat(t1, t2);
-  end
+  end end 
 end
 
 function split$1(x, param) do
-  if (param) do
+  if (param) then do
     var r = param[--[ r ]--3];
     var d = param[--[ d ]--2];
     var v = param[--[ v ]--1];
     var l = param[--[ l ]--0];
     var c = Caml_obj.caml_compare(x, v);
-    if (c == 0) do
+    if (c == 0) then do
       return --[ tuple ]--[
               l,
               Caml_option.some(d),
               r
             ];
-    end else if (c < 0) do
+    end else if (c < 0) then do
       var match = split$1(x, l);
       return --[ tuple ]--[
               match[0],
@@ -845,28 +845,29 @@ function split$1(x, param) do
               match$1[1],
               match$1[2]
             ];
-    end
+    end end  end 
   end else do
     return --[ tuple ]--[
             --[ Empty ]--0,
             undefined,
             --[ Empty ]--0
           ];
-  end
+  end end 
 end
 
 function merge$1(f, s1, s2) do
-  if (s1) do
+  if (s1) then do
     var v1 = s1[--[ v ]--1];
-    if (s1[--[ h ]--4] >= height(s2)) do
+    if (s1[--[ h ]--4] >= height(s2)) then do
       var match = split$1(v1, s2);
       return concat_or_join(merge$1(f, s1[--[ l ]--0], match[0]), v1, Curry._3(f, v1, Caml_option.some(s1[--[ d ]--2]), match[1]), merge$1(f, s1[--[ r ]--3], match[2]));
     end
-    
-  end else if (!s2) do
+     end 
+  end else if (!s2) then do
     return --[ Empty ]--0;
   end
-  if (s2) do
+   end  end 
+  if (s2) then do
     var v2 = s2[--[ v ]--1];
     var match$1 = split$1(v2, s1);
     return concat_or_join(merge$1(f, match$1[0], s2[--[ l ]--0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[--[ d ]--2])), merge$1(f, match$1[2], s2[--[ r ]--3]));
@@ -879,47 +880,47 @@ function merge$1(f, s1, s2) do
             10
           ]
         ];
-  end
+  end end 
 end
 
 function union(f, s1, s2) do
-  if (s1) do
-    if (s2) do
+  if (s1) then do
+    if (s2) then do
       var d2 = s2[--[ d ]--2];
       var v2 = s2[--[ v ]--1];
       var d1 = s1[--[ d ]--2];
       var v1 = s1[--[ v ]--1];
-      if (s1[--[ h ]--4] >= s2[--[ h ]--4]) do
+      if (s1[--[ h ]--4] >= s2[--[ h ]--4]) then do
         var match = split$1(v1, s2);
         var d2$1 = match[1];
         var l = union(f, s1[--[ l ]--0], match[0]);
         var r = union(f, s1[--[ r ]--3], match[2]);
-        if (d2$1 ~= undefined) do
+        if (d2$1 ~= undefined) then do
           return concat_or_join(l, v1, Curry._3(f, v1, d1, Caml_option.valFromOption(d2$1)), r);
         end else do
           return join(l, v1, d1, r);
-        end
+        end end 
       end else do
         var match$1 = split$1(v2, s1);
         var d1$1 = match$1[1];
         var l$1 = union(f, match$1[0], s2[--[ l ]--0]);
         var r$1 = union(f, match$1[2], s2[--[ r ]--3]);
-        if (d1$1 ~= undefined) do
+        if (d1$1 ~= undefined) then do
           return concat_or_join(l$1, v2, Curry._3(f, v2, Caml_option.valFromOption(d1$1), d2), r$1);
         end else do
           return join(l$1, v2, d2, r$1);
-        end
-      end
+        end end 
+      end end 
     end else do
       return s1;
-    end
+    end end 
   end else do
     return s2;
-  end
+  end end 
 end
 
 function filter(p, m) do
-  if (m) do
+  if (m) then do
     var r = m[--[ r ]--3];
     var d = m[--[ d ]--2];
     var v = m[--[ v ]--1];
@@ -927,22 +928,22 @@ function filter(p, m) do
     var l$prime = filter(p, l);
     var pvd = Curry._2(p, v, d);
     var r$prime = filter(p, r);
-    if (pvd) do
-      if (l == l$prime and r == r$prime) do
+    if (pvd) then do
+      if (l == l$prime and r == r$prime) then do
         return m;
       end else do
         return join(l$prime, v, d, r$prime);
-      end
+      end end 
     end else do
       return concat(l$prime, r$prime);
-    end
+    end end 
   end else do
     return --[ Empty ]--0;
-  end
+  end end 
 end
 
 function partition(p, param) do
-  if (param) do
+  if (param) then do
     var d = param[--[ d ]--2];
     var v = param[--[ v ]--1];
     var match = partition(p, param[--[ l ]--0]);
@@ -952,7 +953,7 @@ function partition(p, param) do
     var match$1 = partition(p, param[--[ r ]--3]);
     var rf = match$1[1];
     var rt = match$1[0];
-    if (pvd) do
+    if (pvd) then do
       return --[ tuple ]--[
               join(lt, v, d, rt),
               concat(lf, rf)
@@ -962,20 +963,20 @@ function partition(p, param) do
               concat(lt, rt),
               join(lf, v, d, rf)
             ];
-    end
+    end end 
   end else do
     return --[ tuple ]--[
             --[ Empty ]--0,
             --[ Empty ]--0
           ];
-  end
+  end end 
 end
 
 function cons_enum(_m, _e) do
   while(true) do
     var e = _e;
     var m = _m;
-    if (m) do
+    if (m) then do
       _e = --[ More ]--[
         m[--[ v ]--1],
         m[--[ d ]--2],
@@ -986,7 +987,7 @@ function cons_enum(_m, _e) do
       continue ;
     end else do
       return e;
-    end
+    end end 
   end;
 end
 
@@ -996,29 +997,29 @@ function compare(cmp, m1, m2) do
   while(true) do
     var e2 = _e2;
     var e1 = _e1;
-    if (e1) do
-      if (e2) do
+    if (e1) then do
+      if (e2) then do
         var c = Caml_obj.caml_compare(e1[0], e2[0]);
-        if (c ~= 0) do
+        if (c ~= 0) then do
           return c;
         end else do
           var c$1 = Curry._2(cmp, e1[1], e2[1]);
-          if (c$1 ~= 0) do
+          if (c$1 ~= 0) then do
             return c$1;
           end else do
             _e2 = cons_enum(e2[2], e2[3]);
             _e1 = cons_enum(e1[2], e1[3]);
             continue ;
-          end
-        end
+          end end 
+        end end 
       end else do
         return 1;
-      end
-    end else if (e2) do
+      end end 
+    end else if (e2) then do
       return -1;
     end else do
       return 0;
-    end
+    end end  end 
   end;
 end
 
@@ -1028,35 +1029,35 @@ function equal(cmp, m1, m2) do
   while(true) do
     var e2 = _e2;
     var e1 = _e1;
-    if (e1) do
-      if (e2 and Caml_obj.caml_equal(e1[0], e2[0]) and Curry._2(cmp, e1[1], e2[1])) do
+    if (e1) then do
+      if (e2 and Caml_obj.caml_equal(e1[0], e2[0]) and Curry._2(cmp, e1[1], e2[1])) then do
         _e2 = cons_enum(e2[2], e2[3]);
         _e1 = cons_enum(e1[2], e1[3]);
         continue ;
       end else do
         return false;
-      end
-    end else if (e2) do
+      end end 
+    end else if (e2) then do
       return false;
     end else do
       return true;
-    end
+    end end  end 
   end;
 end
 
 function cardinal(param) do
-  if (param) do
+  if (param) then do
     return (cardinal(param[--[ l ]--0]) + 1 | 0) + cardinal(param[--[ r ]--3]) | 0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function bindings_aux(_accu, _param) do
   while(true) do
     var param = _param;
     var accu = _accu;
-    if (param) do
+    if (param) then do
       _param = param[--[ l ]--0];
       _accu = --[ :: ]--[
         --[ tuple ]--[
@@ -1068,7 +1069,7 @@ function bindings_aux(_accu, _param) do
       continue ;
     end else do
       return accu;
-    end
+    end end 
   end;
 end
 
@@ -1117,10 +1118,10 @@ function compute_update_sequences(all_tickers) do
   List.fold_left((function (counter, ticker) do
           var loop = function (counter, ticker) do
             var rank = ticker.rank;
-            if (typeof rank == "number" and rank == 0) do
+            if (typeof rank == "number" and rank == 0) then do
               ticker.rank = --[ Visited ]--1;
               var match = ticker.type_;
-              if (match) do
+              if (match) then do
                 var match$1 = match[0];
                 var counter$1 = loop(counter, match$1.lhs);
                 var counter$2 = loop(counter$1, match$1.rhs);
@@ -1131,15 +1132,15 @@ function compute_update_sequences(all_tickers) do
                 var counter$4 = counter + 1 | 0;
                 ticker.rank = --[ Ranked ]--[counter$4];
                 return counter$4;
-              end
+              end end 
             end else do
               return counter;
-            end
+            end end 
           end;
           return loop(counter, ticker);
         end), 0, all_tickers);
   var map = List.fold_left((function (map, ticker) do
-          if (ticker.type_) do
+          if (ticker.type_) then do
             var loop = function (_up, _map, _ticker) do
               while(true) do
                 var ticker = _ticker;
@@ -1147,7 +1148,7 @@ function compute_update_sequences(all_tickers) do
                 var up = _up;
                 var type_ = ticker.type_;
                 var ticker_name = ticker.ticker_name;
-                if (type_) do
+                if (type_) then do
                   var match = type_[0];
                   var map$1 = loop(--[ :: ]--[
                         ticker,
@@ -1163,7 +1164,7 @@ function compute_update_sequences(all_tickers) do
                 end else do
                   var l = find(ticker_name, map);
                   return add(ticker_name, Pervasives.$at(up, l), map);
-                end
+                end end 
               end;
             end;
             return loop(--[ [] ]--0, map, ticker);
@@ -1172,24 +1173,26 @@ function compute_update_sequences(all_tickers) do
                         ticker,
                         --[ [] ]--0
                       ], map);
-          end
+          end end 
         end), --[ Empty ]--0, List.rev(all_tickers));
   return fold((function (k, l, map) do
                 var l$1 = List.sort_uniq((function (lhs, rhs) do
                         var match = lhs.rank;
-                        if (typeof match == "number") do
+                        if (typeof match == "number") then do
                           throw [
                                 Caml_builtin_exceptions.failure,
                                 "All nodes should be ranked"
                               ];
                         end
+                         end 
                         var match$1 = rhs.rank;
-                        if (typeof match$1 == "number") do
+                        if (typeof match$1 == "number") then do
                           throw [
                                 Caml_builtin_exceptions.failure,
                                 "All nodes should be ranked"
                               ];
                         end
+                         end 
                         return Caml_primitive.caml_int_compare(match[0], match$1[0]);
                       end), l);
                 return add(k, l$1, map);
@@ -1200,21 +1203,21 @@ function process_quote(ticker_map, new_ticker, new_value) do
   var update_sequence = find(new_ticker, ticker_map);
   return List.iter((function (ticker) do
                 var match = ticker.type_;
-                if (match) do
+                if (match) then do
                   var match$1 = match[0];
                   var match$2 = match$1.lhs.value;
                   var match$3 = match$1.rhs.value;
                   var value;
-                  if (match$2 ~= undefined and match$3 ~= undefined) do
+                  if (match$2 ~= undefined and match$3 ~= undefined) then do
                     var y = match$3;
                     var x = match$2;
                     value = match$1.op ? x - y : x + y;
                   end else do
                     value = undefined;
-                  end
+                  end end 
                   ticker.value = value;
                   return --[ () ]--0;
-                end else if (ticker.ticker_name == new_ticker) do
+                end else if (ticker.ticker_name == new_ticker) then do
                   ticker.value = new_value;
                   return --[ () ]--0;
                 end else do
@@ -1222,7 +1225,7 @@ function process_quote(ticker_map, new_ticker, new_value) do
                         Caml_builtin_exceptions.failure,
                         "Only single Market ticker should be udpated upon a new quote"
                       ];
-                end
+                end end  end 
               end), update_sequence);
 end
 
@@ -1242,19 +1245,20 @@ function process_input_line(ticker_map, all_tickers, line) do
           end;
   end;
   var tokens = split(--[ "|" ]--124, line);
-  if (tokens) do
+  if (tokens) then do
     switch (tokens[0]) do
       case "Q" :
           var match = tokens[1];
-          if (match) do
+          if (match) then do
             var match$1 = match[1];
-            if (match$1) do
-              if (match$1[1]) do
+            if (match$1) then do
+              if (match$1[1]) then do
                 throw [
                       Caml_builtin_exceptions.failure,
                       "Invalid input line"
                     ];
               end
+               end 
               var ticker_map$1 = ticker_map ~= undefined ? Caml_option.valFromOption(ticker_map) : compute_update_sequences(all_tickers);
               var value = Caml_format.caml_float_of_string(match$1[0]);
               process_quote(ticker_map$1, match[0], value);
@@ -1267,31 +1271,32 @@ function process_input_line(ticker_map, all_tickers, line) do
                     Caml_builtin_exceptions.failure,
                     "Invalid input line"
                   ];
-            end
+            end end 
           end else do
             throw [
                   Caml_builtin_exceptions.failure,
                   "Invalid input line"
                 ];
-          end
+          end end 
       case "R" :
           var match$2 = tokens[1];
-          if (match$2) do
+          if (match$2) then do
             var match$3 = match$2[1];
-            if (match$3) do
+            if (match$3) then do
               var ticker_name = match$2[0];
               switch (match$3[0]) do
                 case "+" :
                     var match$4 = match$3[1];
-                    if (match$4) do
+                    if (match$4) then do
                       var match$5 = match$4[1];
-                      if (match$5) do
-                        if (match$5[1]) do
+                      if (match$5) then do
+                        if (match$5[1]) then do
                           throw [
                                 Caml_builtin_exceptions.failure,
                                 "Invalid input line"
                               ];
                         end
+                         end 
                         return --[ tuple ]--[
                                 --[ :: ]--[
                                   make_binary_op(ticker_name, match$4[0], match$5[0], --[ PLUS ]--0),
@@ -1304,24 +1309,25 @@ function process_input_line(ticker_map, all_tickers, line) do
                               Caml_builtin_exceptions.failure,
                               "Invalid input line"
                             ];
-                      end
+                      end end 
                     end else do
                       throw [
                             Caml_builtin_exceptions.failure,
                             "Invalid input line"
                           ];
-                    end
+                    end end 
                 case "-" :
                     var match$6 = match$3[1];
-                    if (match$6) do
+                    if (match$6) then do
                       var match$7 = match$6[1];
-                      if (match$7) do
-                        if (match$7[1]) do
+                      if (match$7) then do
+                        if (match$7[1]) then do
                           throw [
                                 Caml_builtin_exceptions.failure,
                                 "Invalid input line"
                               ];
                         end
+                         end 
                         return --[ tuple ]--[
                                 --[ :: ]--[
                                   make_binary_op(ticker_name, match$6[0], match$7[0], --[ MINUS ]--1),
@@ -1334,20 +1340,21 @@ function process_input_line(ticker_map, all_tickers, line) do
                               Caml_builtin_exceptions.failure,
                               "Invalid input line"
                             ];
-                      end
+                      end end 
                     end else do
                       throw [
                             Caml_builtin_exceptions.failure,
                             "Invalid input line"
                           ];
-                    end
+                    end end 
                 case "S" :
-                    if (match$3[1]) do
+                    if (match$3[1]) then do
                       throw [
                             Caml_builtin_exceptions.failure,
                             "Invalid input line"
                           ];
                     end
+                     end 
                     return --[ tuple ]--[
                             --[ :: ]--[
                               do
@@ -1371,13 +1378,13 @@ function process_input_line(ticker_map, all_tickers, line) do
                     Caml_builtin_exceptions.failure,
                     "Invalid input line"
                   ];
-            end
+            end end 
           end else do
             throw [
                   Caml_builtin_exceptions.failure,
                   "Invalid input line"
                 ];
-          end
+          end end 
       default:
         throw [
               Caml_builtin_exceptions.failure,
@@ -1389,7 +1396,7 @@ function process_input_line(ticker_map, all_tickers, line) do
           Caml_builtin_exceptions.failure,
           "Invalid input line"
         ];
-  end
+  end end 
 end
 
 function loop(_lines, _param) do
@@ -1397,13 +1404,13 @@ function loop(_lines, _param) do
     var param = _param;
     var lines = _lines;
     var all_tickers = param[0];
-    if (lines) do
+    if (lines) then do
       _param = process_input_line(param[1], all_tickers, lines[0]);
       _lines = lines[1];
       continue ;
     end else do
       return print_all_composite(all_tickers);
-    end
+    end end 
   end;
 end
 

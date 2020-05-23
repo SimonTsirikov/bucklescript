@@ -38,7 +38,7 @@ var class_tables = --[ Cons ]--[
 ];
 
 function create(param) do
-  if (!class_tables[0]) do
+  if (!class_tables[0]) then do
     var $$class = CamlinternalOO.create_table([
           "add",
           "get"
@@ -71,6 +71,7 @@ function create(param) do
     CamlinternalOO.init_class($$class);
     class_tables[0] = env_init;
   end
+   end 
   return Curry._1(class_tables[0], 0);
 end
 

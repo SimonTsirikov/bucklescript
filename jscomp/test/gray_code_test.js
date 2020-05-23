@@ -12,13 +12,13 @@ function gray_decode(n) do
   while(true) do
     var n$1 = _n;
     var p = _p;
-    if (n$1 == 0) do
+    if (n$1 == 0) then do
       return p;
     end else do
       _n = (n$1 >>> 1);
       _p = p ^ n$1;
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -29,16 +29,17 @@ function bool_string(len, n) do
   while(true) do
     var n$1 = _n;
     var i = _i;
-    if ((n$1 & 1) == 1) do
+    if ((n$1 & 1) == 1) then do
       s[i] = --[ "1" ]--49;
     end
-    if (i <= 0) do
+     end 
+    if (i <= 0) then do
       return s;
     end else do
       _n = (n$1 >>> 1);
       _i = i - 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 

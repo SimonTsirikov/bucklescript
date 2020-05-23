@@ -148,17 +148,17 @@ function $$return(x) do
 end
 
 function $great$pipe$eq(e, f) do
-  if (e ~= undefined) do
+  if (e ~= undefined) then do
     return Caml_option.some(Curry._1(f, Caml_option.valFromOption(e)));
   end
-  
+   end 
 end
 
 function $great$great$eq(e, f) do
-  if (e ~= undefined) do
+  if (e ~= undefined) then do
     return Curry._1(f, Caml_option.valFromOption(e));
   end
-  
+   end 
 end
 
 function map_opt(f, l) do
@@ -167,9 +167,9 @@ function map_opt(f, l) do
   while(true) do
     var l$1 = _l;
     var acc = _acc;
-    if (l$1) do
+    if (l$1) then do
       var match = Curry._1(f, l$1[0]);
-      if (match ~= undefined) do
+      if (match ~= undefined) then do
         _l = l$1[1];
         _acc = --[ :: ]--[
           Caml_option.valFromOption(match),
@@ -178,48 +178,48 @@ function map_opt(f, l) do
         continue ;
       end else do
         return ;
-      end
+      end end 
     end else do
       return List.rev(acc);
-    end
+    end end 
   end;
 end
 
 function list_any(f, e) do
-  if (e[0] >= 848054398) do
+  if (e[0] >= 848054398) then do
     var f$1 = f;
     var _l = e[1];
     while(true) do
       var l = _l;
-      if (l) do
+      if (l) then do
         var res = Curry._1(f$1, l[0]);
-        if (res ~= undefined) do
+        if (res ~= undefined) then do
           return res;
         end else do
           _l = l[1];
           continue ;
-        end
+        end end 
       end else do
         return ;
-      end
+      end end 
     end;
   end
-  
+   end 
 end
 
 function list_all(f, e) do
-  if (e[0] >= 848054398) do
+  if (e[0] >= 848054398) then do
     var f$1 = f;
     var _acc = --[ [] ]--0;
     var _l = e[1];
     while(true) do
       var l = _l;
       var acc = _acc;
-      if (l) do
+      if (l) then do
         var tl = l[1];
         var match = Curry._1(f$1, l[0]);
         _l = tl;
-        if (match ~= undefined) do
+        if (match ~= undefined) then do
           _acc = --[ :: ]--[
             Caml_option.valFromOption(match),
             acc
@@ -227,18 +227,18 @@ function list_all(f, e) do
           continue ;
         end else do
           continue ;
-        end
+        end end 
       end else do
         return List.rev(acc);
-      end
+      end end 
     end;
   end else do
     return --[ [] ]--0;
-  end
+  end end 
 end
 
 function _try_atom(e, f) do
-  if (e[0] >= 848054398) do
+  if (e[0] >= 848054398) then do
     return ;
   end else do
     try do
@@ -247,7 +247,7 @@ function _try_atom(e, f) do
     catch (exn)do
       return ;
     end
-  end
+  end end 
 end
 
 function to_int(e) do
@@ -269,24 +269,24 @@ function to_string(e) do
 end
 
 function to_pair(e) do
-  if (typeof e == "number" or e[0] ~= 848054398) do
+  if (typeof e == "number" or e[0] ~= 848054398) then do
     return ;
   end else do
     var match = e[1];
-    if (match) do
+    if (match) then do
       var match$1 = match[1];
-      if (match$1 and !match$1[1]) do
+      if (match$1 and !match$1[1]) then do
         return --[ tuple ]--[
                 match[0],
                 match$1[0]
               ];
       end else do
         return ;
-      end
+      end end 
     end else do
       return ;
-    end
-  end
+    end end 
+  end end 
 end
 
 function to_pair_with(f1, f2, e) do
@@ -304,15 +304,15 @@ function to_pair_with(f1, f2, e) do
 end
 
 function to_triple(e) do
-  if (typeof e == "number" or e[0] ~= 848054398) do
+  if (typeof e == "number" or e[0] ~= 848054398) then do
     return ;
   end else do
     var match = e[1];
-    if (match) do
+    if (match) then do
       var match$1 = match[1];
-      if (match$1) do
+      if (match$1) then do
         var match$2 = match$1[1];
-        if (match$2 and !match$2[1]) do
+        if (match$2 and !match$2[1]) then do
           return --[ tuple ]--[
                   match[0],
                   match$1[0],
@@ -320,14 +320,14 @@ function to_triple(e) do
                 ];
         end else do
           return ;
-        end
+        end end 
       end else do
         return ;
-      end
+      end end 
     end else do
       return ;
-    end
-  end
+    end end 
+  end end 
 end
 
 function to_triple_with(f1, f2, f3, e) do
@@ -349,71 +349,71 @@ function to_triple_with(f1, f2, f3, e) do
 end
 
 function to_list(e) do
-  if (e[0] >= 848054398) do
+  if (e[0] >= 848054398) then do
     return Caml_option.some(e[1]);
   end
-  
+   end 
 end
 
 function to_list_with(f, e) do
-  if (e[0] >= 848054398) do
+  if (e[0] >= 848054398) then do
     return map_opt(f, e[1]);
   end
-  
+   end 
 end
 
 function get_field(name, e) do
-  if (e[0] >= 848054398) do
+  if (e[0] >= 848054398) then do
     var name$1 = name;
     var _l = e[1];
     while(true) do
       var l = _l;
-      if (l) do
+      if (l) then do
         var match = l[0];
-        if (typeof match == "number") do
+        if (typeof match == "number") then do
           _l = l[1];
           continue ;
-        end else if (match[0] ~= 848054398) do
+        end else if (match[0] ~= 848054398) then do
           _l = l[1];
           continue ;
         end else do
           var match$1 = match[1];
-          if (match$1) do
+          if (match$1) then do
             var match$2 = match$1[0];
-            if (typeof match$2 == "number") do
+            if (typeof match$2 == "number") then do
               _l = l[1];
               continue ;
-            end else if (match$2[0] ~= 726615281) do
+            end else if (match$2[0] ~= 726615281) then do
               _l = l[1];
               continue ;
             end else do
               var match$3 = match$1[1];
-              if (match$3) do
-                if (match$3[1]) do
+              if (match$3) then do
+                if (match$3[1]) then do
                   _l = l[1];
                   continue ;
-                end else if (Caml_obj.caml_equal(name$1, match$2[1])) do
+                end else if (Caml_obj.caml_equal(name$1, match$2[1])) then do
                   return match$3[0];
                 end else do
                   _l = l[1];
                   continue ;
-                end
+                end end  end 
               end else do
                 _l = l[1];
                 continue ;
-              end
-            end
+              end end 
+            end end  end 
           end else do
             _l = l[1];
             continue ;
-          end
-        end
+          end end 
+        end end  end 
       end else do
         return ;
-      end
+      end end 
     end;
   end
-  
+   end 
 end
 
 function field(name, f, e) do
@@ -423,92 +423,92 @@ end
 function _get_field_list(name, _l) do
   while(true) do
     var l = _l;
-    if (l) do
+    if (l) then do
       var match = l[0];
-      if (typeof match == "number") do
+      if (typeof match == "number") then do
         _l = l[1];
         continue ;
-      end else if (match[0] ~= 848054398) do
+      end else if (match[0] ~= 848054398) then do
         _l = l[1];
         continue ;
       end else do
         var match$1 = match[1];
-        if (match$1) do
+        if (match$1) then do
           var match$2 = match$1[0];
-          if (typeof match$2 == "number") do
+          if (typeof match$2 == "number") then do
             _l = l[1];
             continue ;
-          end else if (match$2[0] ~= 726615281) do
+          end else if (match$2[0] ~= 726615281) then do
             _l = l[1];
             continue ;
-          end else if (Caml_obj.caml_equal(name, match$2[1])) do
+          end else if (Caml_obj.caml_equal(name, match$2[1])) then do
             return match$1[1];
           end else do
             _l = l[1];
             continue ;
-          end
+          end end  end  end 
         end else do
           _l = l[1];
           continue ;
-        end
-      end
+        end end 
+      end end  end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
 function field_list(name, f, e) do
-  if (e[0] >= 848054398) do
+  if (e[0] >= 848054398) then do
     return $great$great$eq(_get_field_list(name, e[1]), f);
   end
-  
+   end 
 end
 
 function _get_variant(s, args, _l) do
   while(true) do
     var l = _l;
-    if (l) do
+    if (l) then do
       var match = l[0];
-      if (Caml_obj.caml_equal(s, match[0])) do
+      if (Caml_obj.caml_equal(s, match[0])) then do
         return Curry._1(match[1], args);
       end else do
         _l = l[1];
         continue ;
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
 function get_variant(l, e) do
-  if (e[0] >= 848054398) do
+  if (e[0] >= 848054398) then do
     var match = e[1];
-    if (match) do
+    if (match) then do
       var match$1 = match[0];
-      if (typeof match$1 == "number" or match$1[0] ~= 726615281) do
+      if (typeof match$1 == "number" or match$1[0] ~= 726615281) then do
         return ;
       end else do
         return _get_variant(match$1[1], match[1], l);
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end else do
     return _get_variant(e[1], --[ [] ]--0, l);
-  end
+  end end 
 end
 
 function get_exn(e) do
-  if (e ~= undefined) do
+  if (e ~= undefined) then do
     return Caml_option.valFromOption(e);
   end else do
     throw [
           Caml_builtin_exceptions.failure,
           "CCSexp.Traverse.get_exn"
         ];
-  end
+  end end 
 end
 
 var of_unit = --[ `List ]--[

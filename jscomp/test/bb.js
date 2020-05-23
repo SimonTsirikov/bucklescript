@@ -3,15 +3,15 @@
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(x) do
-  if (x ~= 98) do
-    if (x >= 99) do
+  if (x ~= 98) then do
+    if (x >= 99) then do
       return "c";
     end else do
       return "a";
-    end
+    end end 
   end else do
     return "b";
-  end
+  end end 
 end
 
 function ff(x) do
@@ -56,15 +56,15 @@ function test(x) do
             ]
           ];
   end
-  if (match ~= 98) do
-    if (match >= 99) do
+  if (match ~= 98) then do
+    if (match >= 99) then do
       return "c";
     end else do
       return "a";
-    end
+    end end 
   end else do
     return "b";
-  end
+  end end 
 end
 
 var test_poly = "a";

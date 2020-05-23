@@ -34,10 +34,10 @@ function eq(loc, x, y) do
 end
 
 function handler(e) do
-  if (e[0] == Js_exn.$$Error) do
+  if (e[0] == Js_exn.$$Error) then do
     console.log("js error");
     return Promise.resolve(0);
-  end else if (e == Caml_builtin_exceptions.not_found) do
+  end else if (e == Caml_builtin_exceptions.not_found) then do
     console.log("hi");
     return Promise.resolve(0);
   end else do
@@ -49,20 +49,20 @@ function handler(e) do
             9
           ]
         ];
-  end
+  end end  end 
 end
 
 function myHandler(match) do
-  if (Caml_exceptions.caml_is_extension(match)) do
-    if (match == Caml_builtin_exceptions.not_found) do
+  if (Caml_exceptions.caml_is_extension(match)) then do
+    if (match == Caml_builtin_exceptions.not_found) then do
       return 1;
-    end else if (match[0] == Js_exn.$$Error) do
+    end else if (match[0] == Js_exn.$$Error) then do
       return 2;
     end else do
       return ;
-    end
+    end end  end 
   end
-  
+   end 
 end
 
 function f(x) do
@@ -84,7 +84,7 @@ catch (raw_e)do
             end), 2, myHandler(e)));
 end
 
-if (exit == 1) do
+if (exit == 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -94,6 +94,7 @@ if (exit == 1) do
         ]
       ];
 end
+ end 
 
 Mt.from_pair_suites("Promise_catch_test", suites.contents);
 

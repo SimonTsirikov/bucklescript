@@ -18,15 +18,18 @@ end
 function make(s, b, i) do
   return (function (param) do
       var tmp = { };
-      if (s ~= undefined) do
+      if (s ~= undefined) then do
         tmp.s = Caml_option.valFromOption(s);
       end
-      if (b ~= undefined) do
+       end 
+      if (b ~= undefined) then do
         tmp.b = Caml_option.valFromOption(b);
       end
-      if (i ~= undefined) do
+       end 
+      if (i ~= undefined) then do
         tmp.i = Caml_option.valFromOption(i);
       end
+       end 
       return tmp;
     end);
 end

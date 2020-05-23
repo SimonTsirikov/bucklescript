@@ -119,11 +119,11 @@ function test(readline, x) do
 end
 
 function p_is_int_test(x) do
-  if (typeof x == "number") do
+  if (typeof x == "number") then do
     return 2;
   end else do
     return 3;
-  end
+  end end 
 end
 
 eq("File \"poly_variant_test.ml\", line 142, characters 5-12", 2, 2);

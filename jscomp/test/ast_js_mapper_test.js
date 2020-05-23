@@ -46,12 +46,12 @@ function searchForSureExists(xs, k) do
   while(true) do
     var i = _i;
     var match = xs$1[i];
-    if (match[0] == k$1) do
+    if (match[0] == k$1) then do
       return match[1];
     end else do
       _i = i + 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 

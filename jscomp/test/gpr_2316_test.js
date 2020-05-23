@@ -40,11 +40,11 @@ try do
 end
 catch (raw_exn)do
   var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn[0] == Caml_builtin_exceptions.failure) do
+  if (exn[0] == Caml_builtin_exceptions.failure) then do
     y = exn[1];
   end else do
     throw exn;
-  end
+  end end 
 end
 
 var x;
@@ -59,17 +59,18 @@ try do
 end
 catch (raw_exn$1)do
   var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-  if (exn$1[0] == Caml_builtin_exceptions.failure) do
+  if (exn$1[0] == Caml_builtin_exceptions.failure) then do
     x = exn$1[1];
   end else do
     throw exn$1;
-  end
+  end end 
 end
 
-if (exit == 1) do
+if (exit == 1) then do
   console.log("ok");
   x = undefined;
 end
+ end 
 
 eq("File \"gpr_2316_test.ml\", line 20, characters 5-12", y, "boo");
 

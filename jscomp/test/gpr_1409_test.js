@@ -39,10 +39,10 @@ var b = do
 end;
 
 function map(f, x) do
-  if (x ~= undefined) do
+  if (x ~= undefined) then do
     return Caml_option.some(Curry._1(f, Caml_option.valFromOption(x)));
   end
-  
+   end 
 end
 
 function make(foo) do
@@ -51,9 +51,10 @@ function make(foo) do
         end), foo);
   return (function (param) do
       var tmp = { };
-      if (partial_arg ~= undefined) do
+      if (partial_arg ~= undefined) then do
         tmp.foo = Caml_option.valFromOption(partial_arg);
       end
+       end 
       return tmp;
     end);
 end
@@ -79,12 +80,14 @@ function test3(_open, xx__hi) do
   var tmp = do
     hi: 2
   end;
-  if (_open ~= undefined) do
+  if (_open ~= undefined) then do
     tmp.open = Caml_option.valFromOption(_open);
   end
-  if (xx__hi ~= undefined) do
+   end 
+  if (xx__hi ~= undefined) then do
     tmp.xx = Caml_option.valFromOption(xx__hi);
   end
+   end 
   return tmp;
 end
 
@@ -94,9 +97,10 @@ function test4(_open, xx__hi) do
     open: _open,
     hi: 2
   end;
-  if (xx__hi ~= undefined) do
+  if (xx__hi ~= undefined) then do
     tmp.xx = Caml_option.valFromOption(xx__hi);
   end
+   end 
   return tmp;
 end
 
@@ -106,13 +110,15 @@ function test5(f, x) do
     hi: 2
   end;
   var tmp$1 = Curry._1(f, x);
-  if (tmp$1 ~= undefined) do
+  if (tmp$1 ~= undefined) then do
     tmp.open = Caml_option.valFromOption(tmp$1);
   end
+   end 
   var tmp$2 = Curry._1(f, x);
-  if (tmp$2 ~= undefined) do
+  if (tmp$2 ~= undefined) then do
     tmp.xx = Caml_option.valFromOption(tmp$2);
   end
+   end 
   return tmp;
 end
 
@@ -125,13 +131,15 @@ function test6(f, x) do
     hi: 2
   end;
   var tmp$1 = (x$1.contents = x$1.contents + 1 | 0, x$1.contents);
-  if (tmp$1 ~= undefined) do
+  if (tmp$1 ~= undefined) then do
     tmp.open = Caml_option.valFromOption(tmp$1);
   end
+   end 
   var tmp$2 = f(x$1);
-  if (tmp$2 ~= undefined) do
+  if (tmp$2 ~= undefined) then do
     tmp.xx = Caml_option.valFromOption(tmp$2);
   end
+   end 
   return tmp;
 end
 

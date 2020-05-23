@@ -11,11 +11,11 @@ function f_0(x) do
 end
 
 function f2(param) do
-  if (param >= 3) do
+  if (param >= 3) then do
     return --[ T003 ]--3;
   end else do
     return param;
-  end
+  end end 
 end
 
 function f3(param) do
@@ -27,7 +27,7 @@ function f4(param) do
 end
 
 function f5(param) do
-  if (typeof param == "number") do
+  if (typeof param == "number") then do
     switch (param) do
       case --[ A ]--0 :
           return 1;
@@ -46,23 +46,23 @@ function f5(param) do
           return 2;
       
     end
-  end
+  end end 
 end
 
 function f6(param) do
-  if (typeof param == "number") do
-    if (param >= 2) do
+  if (typeof param == "number") then do
+    if (param >= 2) then do
       return 2;
     end else do
       return 0;
-    end
+    end end 
   end else do
     return 1;
-  end
+  end end 
 end
 
 function f7(param) do
-  if (typeof param == "number") do
+  if (typeof param == "number") then do
     switch (param) do
       case --[ A ]--0 :
           return 1;
@@ -82,11 +82,11 @@ function f7(param) do
           return -1;
       
     end
-  end
+  end end 
 end
 
 function f8(param) do
-  if (typeof param == "number") do
+  if (typeof param == "number") then do
     switch (param) do
       case --[ T60 ]--0 :
       case --[ T61 ]--1 :
@@ -102,16 +102,16 @@ function f8(param) do
       default:
         return 3;
     end
-  end
+  end end 
 end
 
 function f9(param) do
-  if (typeof param == "number") do
-    if (param == --[ T63 ]--3) do
+  if (typeof param == "number") then do
+    if (param == --[ T63 ]--3) then do
       return 3;
     end else do
       return 1;
-    end
+    end end 
   end else do
     switch (param.tag | 0) do
       case --[ T64 ]--0 :
@@ -122,11 +122,11 @@ function f9(param) do
           return 3;
       
     end
-  end
+  end end 
 end
 
 function f10(param) do
-  if (typeof param == "number") do
+  if (typeof param == "number") then do
     switch (param) do
       case --[ T60 ]--0 :
           return 0;
@@ -148,13 +148,13 @@ function f10(param) do
           return 3;
       
     end
-  end
+  end end 
 end
 
 function f11(x) do
-  if (typeof x == "number") do
+  if (typeof x == "number") then do
     return 2;
-  end else if (x.tag) do
+  end else if (x.tag) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -165,7 +165,7 @@ function f11(x) do
         ];
   end else do
     return 1;
-  end
+  end end  end 
 end
 
 exports.f = f;

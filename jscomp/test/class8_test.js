@@ -98,11 +98,11 @@ var money2 = CamlinternalOO.make_class([
     ], money2_init);
 
 function min(x, y) do
-  if (Caml_oo_curry.js2(5393368, 2, x, y)) do
+  if (Caml_oo_curry.js2(5393368, 2, x, y)) then do
     return x;
   end else do
     return y;
-  end
+  end end 
 end
 
 var tmp = min(Curry._2(money[0], 0, 1.0), Curry._2(money[0], 0, 3.0));

@@ -50,8 +50,8 @@ function union(_l, _l$prime) do
   while(true) do
     var l$prime = _l$prime;
     var l = _l;
-    if (l$prime) do
-      if (l) do
+    if (l$prime) then do
+      if (l) then do
         var r$prime = l$prime[1];
         var match = l$prime[0];
         var c2$prime = match[1];
@@ -60,7 +60,7 @@ function union(_l, _l$prime) do
         var match$1 = l[0];
         var c2 = match$1[1];
         var c1 = match$1[0];
-        if ((c2 + 1 | 0) < c1$prime) do
+        if ((c2 + 1 | 0) < c1$prime) then do
           return --[ :: ]--[
                   --[ tuple ]--[
                     c1,
@@ -68,7 +68,7 @@ function union(_l, _l$prime) do
                   ],
                   union(r, l$prime)
                 ];
-        end else if ((c2$prime + 1 | 0) < c1) do
+        end else if ((c2$prime + 1 | 0) < c1) then do
           return --[ :: ]--[
                   --[ tuple ]--[
                     c1$prime,
@@ -76,7 +76,7 @@ function union(_l, _l$prime) do
                   ],
                   union(l, r$prime)
                 ];
-        end else if (c2 < c2$prime) do
+        end else if (c2 < c2$prime) then do
           _l$prime = --[ :: ]--[
             --[ tuple ]--[
               c1 < c1$prime ? c1 : c1$prime,
@@ -96,13 +96,13 @@ function union(_l, _l$prime) do
             r
           ];
           continue ;
-        end
+        end end  end  end 
       end else do
         return l$prime;
-      end
+      end end 
     end else do
       return l;
-    end
+    end end 
   end;
 end
 
@@ -110,7 +110,7 @@ function inter(_l, _l$prime) do
   while(true) do
     var l$prime = _l$prime;
     var l = _l;
-    if (l$prime and l) do
+    if (l$prime and l) then do
       var r$prime = l$prime[1];
       var match = l$prime[0];
       var c2$prime = match[1];
@@ -119,13 +119,13 @@ function inter(_l, _l$prime) do
       var match$1 = l[0];
       var c2 = match$1[1];
       var c1 = match$1[0];
-      if (Caml_obj.caml_lessthan(c2, c1$prime)) do
+      if (Caml_obj.caml_lessthan(c2, c1$prime)) then do
         _l = r;
         continue ;
-      end else if (Caml_obj.caml_lessthan(c2$prime, c1)) do
+      end else if (Caml_obj.caml_lessthan(c2$prime, c1)) then do
         _l$prime = r$prime;
         continue ;
-      end else if (Caml_obj.caml_lessthan(c2, c2$prime)) do
+      end else if (Caml_obj.caml_lessthan(c2, c2$prime)) then do
         return --[ :: ]--[
                 --[ tuple ]--[
                   Caml_obj.caml_max(c1, c1$prime),
@@ -141,10 +141,10 @@ function inter(_l, _l$prime) do
                 ],
                 inter(l, r$prime)
               ];
-      end
+      end end  end  end 
     end else do
       return --[ [] ]--0;
-    end
+    end end 
   end;
 end
 
@@ -152,8 +152,8 @@ function diff(_l, _l$prime) do
   while(true) do
     var l$prime = _l$prime;
     var l = _l;
-    if (l$prime) do
-      if (l) do
+    if (l$prime) then do
+      if (l) then do
         var r$prime = l$prime[1];
         var match = l$prime[0];
         var c2$prime = match[1];
@@ -162,7 +162,7 @@ function diff(_l, _l$prime) do
         var match$1 = l[0];
         var c2 = match$1[1];
         var c1 = match$1[0];
-        if (c2 < c1$prime) do
+        if (c2 < c1$prime) then do
           return --[ :: ]--[
                   --[ tuple ]--[
                     c1,
@@ -170,7 +170,7 @@ function diff(_l, _l$prime) do
                   ],
                   diff(r, l$prime)
                 ];
-        end else if (c2$prime < c1) do
+        end else if (c2$prime < c1) then do
           _l$prime = r$prime;
           continue ;
         end else do
@@ -181,7 +181,7 @@ function diff(_l, _l$prime) do
               ],
               r
             ] : r;
-          if (c1 < c1$prime) do
+          if (c1 < c1$prime) then do
             return --[ :: ]--[
                     --[ tuple ]--[
                       c1,
@@ -193,14 +193,14 @@ function diff(_l, _l$prime) do
             _l$prime = r$prime;
             _l = r$prime$prime;
             continue ;
-          end
-        end
+          end end 
+        end end  end 
       end else do
         return --[ [] ]--0;
-      end
+      end end 
     end else do
       return l;
-    end
+    end end 
   end;
 end
 
@@ -215,7 +215,7 @@ function single(c) do
 end
 
 function seq(c, c$prime) do
-  if (Caml_obj.caml_lessequal(c, c$prime)) do
+  if (Caml_obj.caml_lessequal(c, c$prime)) then do
     return --[ :: ]--[
             --[ tuple ]--[
               c,
@@ -231,11 +231,11 @@ function seq(c, c$prime) do
             ],
             --[ [] ]--0
           ];
-  end
+  end end 
 end
 
 function offset(o, l) do
-  if (l) do
+  if (l) then do
     var match = l[0];
     return --[ :: ]--[
             --[ tuple ]--[
@@ -246,63 +246,63 @@ function offset(o, l) do
           ];
   end else do
     return --[ [] ]--0;
-  end
+  end end 
 end
 
 function mem(c, _s) do
   while(true) do
     var s = _s;
-    if (s) do
+    if (s) then do
       var match = s[0];
-      if (c <= match[1]) do
+      if (c <= match[1]) then do
         return c >= match[0];
       end else do
         _s = s[1];
         continue ;
-      end
+      end end 
     end else do
       return false;
-    end
+    end end 
   end;
 end
 
 function hash_rec(param) do
-  if (param) do
+  if (param) then do
     var match = param[0];
     return (match[0] + Caml_int32.imul(13, match[1]) | 0) + Caml_int32.imul(257, hash_rec(param[1])) | 0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function one_char(param) do
-  if (param and !param[1]) do
+  if (param and !param[1]) then do
     var match = param[0];
     var i = match[0];
-    if (Caml_obj.caml_equal(i, match[1])) do
+    if (Caml_obj.caml_equal(i, match[1])) then do
       return Caml_option.some(i);
     end else do
       return ;
-    end
+    end end 
   end
-  
+   end 
 end
 
 function compare(param, param$1) do
   var c = Caml_obj.caml_compare(param[0], param$1[0]);
-  if (c ~= 0) do
+  if (c ~= 0) then do
     return c;
   end else do
     return Caml_obj.caml_compare(param[1], param$1[1]);
-  end
+  end end 
 end
 
 function height(param) do
-  if (param) do
+  if (param) then do
     return param[--[ h ]--4];
   end else do
     return 0;
-  end
+  end end 
 end
 
 function create(l, x, d, r) do
@@ -320,50 +320,50 @@ end
 function bal(l, x, d, r) do
   var hl = l ? l[--[ h ]--4] : 0;
   var hr = r ? r[--[ h ]--4] : 0;
-  if (hl > (hr + 2 | 0)) do
-    if (l) do
+  if (hl > (hr + 2 | 0)) then do
+    if (l) then do
       var lr = l[--[ r ]--3];
       var ld = l[--[ d ]--2];
       var lv = l[--[ v ]--1];
       var ll = l[--[ l ]--0];
-      if (height(ll) >= height(lr)) do
+      if (height(ll) >= height(lr)) then do
         return create(ll, lv, ld, create(lr, x, d, r));
-      end else if (lr) do
+      end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[ l ]--0]), lr[--[ v ]--1], lr[--[ d ]--2], create(lr[--[ r ]--3], x, d, r));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
             ];
-      end
+      end end  end 
     end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
           ];
-    end
-  end else if (hr > (hl + 2 | 0)) do
-    if (r) do
+    end end 
+  end else if (hr > (hl + 2 | 0)) then do
+    if (r) then do
       var rr = r[--[ r ]--3];
       var rd = r[--[ d ]--2];
       var rv = r[--[ v ]--1];
       var rl = r[--[ l ]--0];
-      if (height(rr) >= height(rl)) do
+      if (height(rr) >= height(rl)) then do
         return create(create(l, x, d, rl), rv, rd, rr);
-      end else if (rl) do
+      end else if (rl) then do
         return create(create(l, x, d, rl[--[ l ]--0]), rl[--[ v ]--1], rl[--[ d ]--2], create(rl[--[ r ]--3], rv, rd, rr));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
             ];
-      end
+      end end  end 
     end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
           ];
-    end
+    end end 
   end else do
     return --[ Node ]--[
             --[ l ]--l,
@@ -372,18 +372,18 @@ function bal(l, x, d, r) do
             --[ r ]--r,
             --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
           ];
-  end
+  end end  end 
 end
 
 function add(x, data, m) do
-  if (m) do
+  if (m) then do
     var r = m[--[ r ]--3];
     var d = m[--[ d ]--2];
     var v = m[--[ v ]--1];
     var l = m[--[ l ]--0];
     var c = compare(x, v);
-    if (c == 0) do
-      if (d == data) do
+    if (c == 0) then do
+      if (d == data) then do
         return m;
       end else do
         return --[ Node ]--[
@@ -393,22 +393,22 @@ function add(x, data, m) do
                 --[ r ]--r,
                 --[ h ]--m[--[ h ]--4]
               ];
-      end
-    end else if (c < 0) do
+      end end 
+    end else if (c < 0) then do
       var ll = add(x, data, l);
-      if (l == ll) do
+      if (l == ll) then do
         return m;
       end else do
         return bal(ll, v, d, r);
-      end
+      end end 
     end else do
       var rr = add(x, data, r);
-      if (r == rr) do
+      if (r == rr) then do
         return m;
       end else do
         return bal(l, v, d, rr);
-      end
-    end
+      end end 
+    end end  end 
   end else do
     return --[ Node ]--[
             --[ l : Empty ]--0,
@@ -417,7 +417,7 @@ function add(x, data, m) do
             --[ r : Empty ]--0,
             --[ h ]--1
           ];
-  end
+  end end 
 end
 
 var cany = --[ :: ]--[
@@ -437,60 +437,60 @@ function $plus$plus(x, y) do
 end
 
 function from_char(param) do
-  if (param >= 170) do
-    if (param >= 187) do
+  if (param >= 170) then do
+    if (param >= 187) then do
       var switcher = param - 192 | 0;
-      if (switcher > 54 or switcher < 0) do
-        if (switcher >= 56) do
+      if (switcher > 54 or switcher < 0) then do
+        if (switcher >= 56) then do
           return 2;
         end else do
           return 4;
-        end
-      end else if (switcher ~= 23) do
+        end end 
+      end else if (switcher ~= 23) then do
         return 2;
       end else do
         return 4;
-      end
+      end end  end 
     end else do
       var switcher$1 = param - 171 | 0;
-      if (!(switcher$1 > 14 or switcher$1 < 0) and switcher$1 ~= 10) do
+      if (!(switcher$1 > 14 or switcher$1 < 0) and switcher$1 ~= 10) then do
         return 4;
       end else do
         return 2;
-      end
-    end
-  end else if (param >= 65) do
+      end end 
+    end end 
+  end else if (param >= 65) then do
     var switcher$2 = param - 91 | 0;
-    if (switcher$2 > 5 or switcher$2 < 0) do
-      if (switcher$2 >= 32) do
+    if (switcher$2 > 5 or switcher$2 < 0) then do
+      if (switcher$2 >= 32) then do
         return 4;
       end else do
         return 2;
-      end
-    end else if (switcher$2 ~= 4) do
+      end end 
+    end else if (switcher$2 ~= 4) then do
       return 4;
     end else do
       return 2;
-    end
-  end else if (param >= 48) do
-    if (param >= 58) do
+    end end  end 
+  end else if (param >= 48) then do
+    if (param >= 58) then do
       return 4;
     end else do
       return 2;
-    end
-  end else if (param ~= 10) do
+    end end 
+  end else if (param ~= 10) then do
     return 4;
   end else do
     return 12;
-  end
+  end end  end  end  end 
 end
 
 function height$1(param) do
-  if (param) do
+  if (param) then do
     return param[--[ h ]--3];
   end else do
     return 0;
-  end
+  end end 
 end
 
 function create$1(l, v, r) do
@@ -507,48 +507,48 @@ end
 function bal$1(l, v, r) do
   var hl = l ? l[--[ h ]--3] : 0;
   var hr = r ? r[--[ h ]--3] : 0;
-  if (hl > (hr + 2 | 0)) do
-    if (l) do
+  if (hl > (hr + 2 | 0)) then do
+    if (l) then do
       var lr = l[--[ r ]--2];
       var lv = l[--[ v ]--1];
       var ll = l[--[ l ]--0];
-      if (height$1(ll) >= height$1(lr)) do
+      if (height$1(ll) >= height$1(lr)) then do
         return create$1(ll, lv, create$1(lr, v, r));
-      end else if (lr) do
+      end else if (lr) then do
         return create$1(create$1(ll, lv, lr[--[ l ]--0]), lr[--[ v ]--1], create$1(lr[--[ r ]--2], v, r));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Set.bal"
             ];
-      end
+      end end  end 
     end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Set.bal"
           ];
-    end
-  end else if (hr > (hl + 2 | 0)) do
-    if (r) do
+    end end 
+  end else if (hr > (hl + 2 | 0)) then do
+    if (r) then do
       var rr = r[--[ r ]--2];
       var rv = r[--[ v ]--1];
       var rl = r[--[ l ]--0];
-      if (height$1(rr) >= height$1(rl)) do
+      if (height$1(rr) >= height$1(rl)) then do
         return create$1(create$1(l, v, rl), rv, rr);
-      end else if (rl) do
+      end else if (rl) then do
         return create$1(create$1(l, v, rl[--[ l ]--0]), rl[--[ v ]--1], create$1(rl[--[ r ]--2], rv, rr));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Set.bal"
             ];
-      end
+      end end  end 
     end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Set.bal"
           ];
-    end
+    end end 
   end else do
     return --[ Node ]--[
             --[ l ]--l,
@@ -556,32 +556,32 @@ function bal$1(l, v, r) do
             --[ r ]--r,
             --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
           ];
-  end
+  end end  end 
 end
 
 function add$1(x, t) do
-  if (t) do
+  if (t) then do
     var r = t[--[ r ]--2];
     var v = t[--[ v ]--1];
     var l = t[--[ l ]--0];
     var c = Caml_primitive.caml_int_compare(x, v);
-    if (c == 0) do
+    if (c == 0) then do
       return t;
-    end else if (c < 0) do
+    end else if (c < 0) then do
       var ll = add$1(x, l);
-      if (l == ll) do
+      if (l == ll) then do
         return t;
       end else do
         return bal$1(ll, v, r);
-      end
+      end end 
     end else do
       var rr = add$1(x, r);
-      if (r == rr) do
+      if (r == rr) then do
         return t;
       end else do
         return bal$1(l, v, rr);
-      end
-    end
+      end end 
+    end end  end 
   end else do
     return --[ Node ]--[
             --[ l : Empty ]--0,
@@ -589,7 +589,7 @@ function add$1(x, t) do
             --[ r : Empty ]--0,
             --[ h ]--1
           ];
-  end
+  end end 
 end
 
 function hash_combine(h, accu) do
@@ -607,21 +607,21 @@ function hash(m, accu) do
   while(true) do
     var accu$1 = _accu;
     var l = _l;
-    if (l) do
+    if (l) then do
       var match = l[0];
       _accu = hash_combine(match[0], hash_combine(match[1], accu$1));
       _l = l[1];
       continue ;
     end else do
       return accu$1;
-    end
+    end end 
   end;
 end
 
 function marks_set_idx(idx, marks) do
-  if (marks) do
+  if (marks) then do
     var match = marks[0];
-    if (match[1] ~= -1) do
+    if (match[1] ~= -1) then do
       return marks;
     end else do
       return --[ :: ]--[
@@ -631,10 +631,10 @@ function marks_set_idx(idx, marks) do
               ],
               marks_set_idx(idx, marks[1])
             ];
-    end
+    end end 
   end else do
     return marks;
-  end
+  end end 
 end
 
 function marks_set_idx$1(marks, idx) do
@@ -647,17 +647,17 @@ end
 function first(f, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var res = Curry._1(f, param[0]);
-      if (res ~= undefined) do
+      if (res ~= undefined) then do
         return res;
       end else do
         _param = param[1];
         continue ;
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
@@ -675,47 +675,48 @@ function mk_expr(ids, def) do
 end
 
 function cst(ids, s) do
-  if (s ? false : true) do
+  if (s ? false : true) then do
     return mk_expr(ids, --[ Alt ]--Block.__(1, [--[ [] ]--0]));
   end else do
     return mk_expr(ids, --[ Cst ]--Block.__(0, [s]));
-  end
+  end end 
 end
 
 function alt(ids, l) do
-  if (l) do
-    if (l[1]) do
+  if (l) then do
+    if (l[1]) then do
       return mk_expr(ids, --[ Alt ]--Block.__(1, [l]));
     end else do
       return l[0];
-    end
+    end end 
   end else do
     return mk_expr(ids, --[ Alt ]--Block.__(1, [--[ [] ]--0]));
-  end
+  end end 
 end
 
 function seq$1(ids, kind, x, y) do
   var match = x.def;
   var match$1 = y.def;
   var exit = 0;
-  if (typeof match == "number") do
+  if (typeof match == "number") then do
     return y;
-  end else if (match.tag == --[ Alt ]--1 and !match[0]) do
+  end else if (match.tag == --[ Alt ]--1 and !match[0]) then do
     return x;
   end else do
     exit = 2;
-  end
-  if (exit == 2) do
-    if (typeof match$1 == "number") do
-      if (kind == --[ First ]--332064784) do
+  end end  end 
+  if (exit == 2) then do
+    if (typeof match$1 == "number") then do
+      if (kind == --[ First ]--332064784) then do
         return x;
       end
-      
-    end else if (match$1.tag == --[ Alt ]--1 and !match$1[0]) do
+       end 
+    end else if (match$1.tag == --[ Alt ]--1 and !match$1[0]) then do
       return y;
     end
-    
+     end  end 
   end
+   end 
   return mk_expr(ids, --[ Seq ]--Block.__(2, [
                 kind,
                 x,
@@ -725,11 +726,11 @@ end
 
 function is_eps(expr) do
   var match = expr.def;
-  if (typeof match == "number") do
+  if (typeof match == "number") then do
     return true;
   end else do
     return false;
-  end
+  end end 
 end
 
 function rep(ids, kind, sem, x) do
@@ -749,7 +750,7 @@ end
 
 function rename(ids, x) do
   var match = x.def;
-  if (typeof match == "number") do
+  if (typeof match == "number") then do
     return mk_expr(ids, x.def);
   end else do
     switch (match.tag | 0) do
@@ -772,28 +773,28 @@ function rename(ids, x) do
       default:
         return mk_expr(ids, x.def);
     end
-  end
+  end end 
 end
 
 function equal(_l1, _l2) do
   while(true) do
     var l2 = _l2;
     var l1 = _l1;
-    if (l1) do
+    if (l1) then do
       var match = l1[0];
       switch (match.tag | 0) do
         case --[ TSeq ]--0 :
-            if (l2) do
+            if (l2) then do
               var match$1 = l2[0];
               switch (match$1.tag | 0) do
                 case --[ TSeq ]--0 :
-                    if (match[1].id == match$1[1].id and equal(match[0], match$1[0])) do
+                    if (match[1].id == match$1[1].id and equal(match[0], match$1[0])) then do
                       _l2 = l2[1];
                       _l1 = l1[1];
                       continue ;
                     end else do
                       return false;
-                    end
+                    end end 
                 case --[ TExp ]--1 :
                 case --[ TMatch ]--2 :
                     return false;
@@ -801,19 +802,19 @@ function equal(_l1, _l2) do
               end
             end else do
               return false;
-            end
+            end end 
         case --[ TExp ]--1 :
-            if (l2) do
+            if (l2) then do
               var match$2 = l2[0];
               switch (match$2.tag | 0) do
                 case --[ TExp ]--1 :
-                    if (match[1].id == match$2[1].id and Caml_obj.caml_equal(match[0], match$2[0])) do
+                    if (match[1].id == match$2[1].id and Caml_obj.caml_equal(match[0], match$2[0])) then do
                       _l2 = l2[1];
                       _l1 = l1[1];
                       continue ;
                     end else do
                       return false;
-                    end
+                    end end 
                 case --[ TSeq ]--0 :
                 case --[ TMatch ]--2 :
                     return false;
@@ -821,34 +822,34 @@ function equal(_l1, _l2) do
               end
             end else do
               return false;
-            end
+            end end 
         case --[ TMatch ]--2 :
-            if (l2) do
+            if (l2) then do
               var match$3 = l2[0];
               switch (match$3.tag | 0) do
                 case --[ TSeq ]--0 :
                 case --[ TExp ]--1 :
                     return false;
                 case --[ TMatch ]--2 :
-                    if (Caml_obj.caml_equal(match[0], match$3[0])) do
+                    if (Caml_obj.caml_equal(match[0], match$3[0])) then do
                       _l2 = l2[1];
                       _l1 = l1[1];
                       continue ;
                     end else do
                       return false;
-                    end
+                    end end 
                 
               end
             end else do
               return false;
-            end
+            end end 
         
       end
-    end else if (l2) do
+    end else if (l2) then do
       return false;
     end else do
       return true;
-    end
+    end end  end 
   end;
 end
 
@@ -856,7 +857,7 @@ function hash$1(_l, _accu) do
   while(true) do
     var accu = _accu;
     var l = _l;
-    if (l) do
+    if (l) then do
       var match = l[0];
       switch (match.tag | 0) do
         case --[ TSeq ]--0 :
@@ -875,16 +876,16 @@ function hash$1(_l, _accu) do
       end
     end else do
       return accu;
-    end
+    end end 
   end;
 end
 
 function tseq(kind, x, y, rem) do
-  if (x) do
+  if (x) then do
     var match = x[0];
     switch (match.tag | 0) do
       case --[ TExp ]--1 :
-          if (typeof match[1].def == "number" and !x[1]) do
+          if (typeof match[1].def == "number" and !x[1]) then do
             return --[ :: ]--[
                     --[ TExp ]--Block.__(1, [
                         match[0],
@@ -893,6 +894,7 @@ function tseq(kind, x, y, rem) do
                     rem
                   ];
           end
+           end 
           break;
       case --[ TSeq ]--0 :
       case --[ TMatch ]--2 :
@@ -901,7 +903,7 @@ function tseq(kind, x, y, rem) do
     end
   end else do
     return rem;
-  end
+  end end 
   return --[ :: ]--[
           --[ TSeq ]--Block.__(0, [
               x,
@@ -945,11 +947,11 @@ function create$2(cat, e) do
 end
 
 function equal$1(x, y) do
-  if (x.hash == y.hash and x.idx == y.idx and x.category == y.category) do
+  if (x.hash == y.hash and x.idx == y.idx and x.category == y.category) then do
     return equal(x.desc, y.desc);
   end else do
     return false;
-  end
+  end end 
 end
 
 function hash$3(t) do
@@ -978,11 +980,11 @@ function mark_used_indices(tbl) do
                     end
                     return List.iter((function (param) do
                                   var i = param[1];
-                                  if (i >= 0) do
+                                  if (i >= 0) then do
                                     return Caml_array.caml_array_set(tbl, i, true);
                                   end else do
                                     return 0;
-                                  end
+                                  end end 
                                 end), param[0].marks);
                   end), param);
     end);
@@ -991,12 +993,12 @@ end
 function find_free(tbl, _idx, len) do
   while(true) do
     var idx = _idx;
-    if (idx == len or !Caml_array.caml_array_get(tbl, idx)) do
+    if (idx == len or !Caml_array.caml_array_get(tbl, idx)) then do
       return idx;
     end else do
       _idx = idx + 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -1006,9 +1008,10 @@ function free_index(tbl_ref, l) do
   mark_used_indices(tbl)(l);
   var len = #tbl;
   var idx = find_free(tbl, 0, len);
-  if (idx == len) do
+  if (idx == len) then do
     tbl_ref.contents = Caml_array.caml_make_vect((len << 1), false);
   end
+   end 
   return idx;
 end
 
@@ -1027,7 +1030,7 @@ function split_at_match_rec(_l$prime, _param) do
   while(true) do
     var param = _param;
     var l$prime = _l$prime;
-    if (param) do
+    if (param) then do
       var x = param[0];
       switch (x.tag | 0) do
         case --[ TSeq ]--0 :
@@ -1054,14 +1057,14 @@ function split_at_match_rec(_l$prime, _param) do
               21
             ]
           ];
-    end
+    end end 
   end;
 end
 
 function remove_duplicates(prev, _l, y) do
   while(true) do
     var l = _l;
-    if (l) do
+    if (l) then do
       var x = l[0];
       switch (x.tag | 0) do
         case --[ TSeq ]--0 :
@@ -1074,9 +1077,9 @@ function remove_duplicates(prev, _l, y) do
                   ];
         case --[ TExp ]--1 :
             var x$2 = x[1];
-            if (typeof x$2.def == "number") do
+            if (typeof x$2.def == "number") then do
               var r = l[1];
-              if (List.memq(y.id, prev)) do
+              if (List.memq(y.id, prev)) then do
                 _l = r;
                 continue ;
               end else do
@@ -1091,10 +1094,10 @@ function remove_duplicates(prev, _l, y) do
                         ],
                         match$2[1]
                       ];
-              end
+              end end 
             end else do
               var r$1 = l[1];
-              if (List.memq(x$2.id, prev)) do
+              if (List.memq(x$2.id, prev)) then do
                 _l = r$1;
                 continue ;
               end else do
@@ -1109,8 +1112,8 @@ function remove_duplicates(prev, _l, y) do
                         ],
                         match$3[1]
                       ];
-              end
-            end
+              end end 
+            end end 
         case --[ TMatch ]--2 :
             return --[ tuple ]--[
                     --[ :: ]--[
@@ -1126,12 +1129,12 @@ function remove_duplicates(prev, _l, y) do
               --[ [] ]--0,
               prev
             ];
-    end
+    end end 
   end;
 end
 
 function set_idx(idx, param) do
-  if (param) do
+  if (param) then do
     var match = param[0];
     switch (match.tag | 0) do
       case --[ TSeq ]--0 :
@@ -1160,18 +1163,18 @@ function set_idx(idx, param) do
     end
   end else do
     return --[ [] ]--0;
-  end
+  end end 
 end
 
 function filter_marks(b, e, marks) do
   return do
           marks: List.filter((function (param) do
                     var i = param[0];
-                    if (i < b) do
+                    if (i < b) then do
                       return true;
                     end else do
                       return i > e;
-                    end
+                    end end 
                   end))(marks.marks),
           pmarks: marks.pmarks
         end;
@@ -1179,7 +1182,7 @@ end
 
 function delta_1(marks, c, next_cat, prev_cat, x, rem) do
   var match = x.def;
-  if (typeof match == "number") do
+  if (typeof match == "number") then do
     return --[ :: ]--[
             --[ TMatch ]--Block.__(2, [marks]),
             rem
@@ -1187,7 +1190,7 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
   end else do
     switch (match.tag | 0) do
       case --[ Cst ]--0 :
-          if (mem(c, match[0])) do
+          if (mem(c, match[0])) then do
             return --[ :: ]--[
                     --[ TExp ]--Block.__(1, [
                         marks,
@@ -1197,7 +1200,7 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
                   ];
           end else do
             return rem;
-          end
+          end end 
       case --[ Alt ]--1 :
           return delta_2(marks, c, next_cat, prev_cat, match[0], rem);
       case --[ Seq ]--2 :
@@ -1224,7 +1227,7 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
               marks
             ];
           var y$prime$prime = match$2[0];
-          if (match[0] >= 620821490) do
+          if (match[0] >= 620821490) then do
             return --[ :: ]--[
                     --[ TMatch ]--Block.__(2, [marks]),
                     tseq(kind, y$prime$prime, x, rem)
@@ -1234,7 +1237,7 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
                         --[ TMatch ]--Block.__(2, [match$2[1]]),
                         rem
                       ]);
-          end
+          end end 
       case --[ Mark ]--4 :
           var i = match[0];
           var marks_marks = --[ :: ]--[
@@ -1259,23 +1262,23 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
                   rem
                 ];
       case --[ Before ]--6 :
-          if (intersect(next_cat, match[0])) do
+          if (intersect(next_cat, match[0])) then do
             return --[ :: ]--[
                     --[ TMatch ]--Block.__(2, [marks]),
                     rem
                   ];
           end else do
             return rem;
-          end
+          end end 
       case --[ After ]--7 :
-          if (intersect(prev_cat, match[0])) do
+          if (intersect(prev_cat, match[0])) then do
             return --[ :: ]--[
                     --[ TMatch ]--Block.__(2, [marks]),
                     rem
                   ];
           end else do
             return rem;
-          end
+          end end 
       case --[ Pmark ]--8 :
           var marks_marks$1 = marks.marks;
           var marks_pmarks$1 = add$1(match[0], marks.pmarks);
@@ -1289,15 +1292,15 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
                 ];
       
     end
-  end
+  end end 
 end
 
 function delta_2(marks, c, next_cat, prev_cat, l, rem) do
-  if (l) do
+  if (l) then do
     return delta_1(marks, c, next_cat, prev_cat, l[0], delta_2(marks, c, next_cat, prev_cat, l[1], rem));
   end else do
     return rem;
-  end
+  end end 
 end
 
 function delta_seq(c, next_cat, prev_cat, kind, y, z, rem) do
@@ -1311,25 +1314,25 @@ function delta_seq(c, next_cat, prev_cat, kind, y, z, rem) do
             
           end
         end), y);
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     var marks = match;
-    if (kind ~= -730718166) do
-      if (kind >= 332064784) do
+    if (kind ~= -730718166) then do
+      if (kind >= 332064784) then do
         var match$1 = split_at_match_rec(--[ [] ]--0, y);
         return tseq(kind, match$1[0], z, delta_1(marks, c, next_cat, prev_cat, z, tseq(kind, match$1[1], z, rem)));
       end else do
         return delta_1(marks, c, next_cat, prev_cat, z, tseq(kind, Curry._1(remove_matches, y), z, rem));
-      end
+      end end 
     end else do
       return tseq(kind, Curry._1(remove_matches, y), z, delta_1(marks, c, next_cat, prev_cat, z, rem));
-    end
+    end end 
   end else do
     return tseq(kind, y, z, rem);
-  end
+  end end 
 end
 
 function delta_4(c, next_cat, prev_cat, l, rem) do
-  if (l) do
+  if (l) then do
     var c$1 = c;
     var next_cat$1 = next_cat;
     var prev_cat$1 = prev_cat;
@@ -1350,7 +1353,7 @@ function delta_4(c, next_cat, prev_cat, l, rem) do
     end
   end else do
     return rem;
-  end
+  end end 
 end
 
 function delta(tbl_ref, next_cat, $$char, st) do
@@ -1375,12 +1378,12 @@ end
 
 function status(s) do
   var match = s.status;
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     return match;
   end else do
     var match$1 = s.desc;
     var st;
-    if (match$1) do
+    if (match$1) then do
       var match$2 = match$1[0];
       switch (match$2.tag | 0) do
         case --[ TSeq ]--0 :
@@ -1398,10 +1401,10 @@ function status(s) do
       end
     end else do
       st = --[ Failed ]--0;
-    end
+    end end 
     s.status = st;
     return st;
-  end
+  end end 
 end
 
 var Re_automata_Category = do
@@ -1425,24 +1428,24 @@ function iter(_n, f, _v) do
   while(true) do
     var v = _v;
     var n = _n;
-    if (n == 0) do
+    if (n == 0) then do
       return v;
     end else do
       _v = Curry._1(f, v);
       _n = n - 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
 function category(re, c) do
-  if (c == -1) do
+  if (c == -1) then do
     return Re_automata_Category.inexistant;
-  end else if (c == re.lnl) do
+  end else if (c == re.lnl) then do
     return Curry._2(Re_automata_Category.$plus$plus, Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.lastnewline, Re_automata_Category.newline), Re_automata_Category.not_letter);
   end else do
     return Curry._1(Re_automata_Category.from_char, Caml_bytes.get(re.col_repr, c));
-  end
+  end end  end 
 end
 
 var dummy_next = [];
@@ -1472,24 +1475,25 @@ function find_state(re, desc) do
     return Curry._2(Re_automata_State.Table.find, re.states, desc);
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       var st = mk_state(re.ncol, desc);
       Curry._3(Re_automata_State.Table.add, re.states, desc, st);
       return st;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
 function delta$1(info, cat, c, st) do
   var desc = delta(info.re.tbl, cat, c, st.desc);
   var len = #info.positions;
-  if (desc.idx == len and len > 0) do
+  if (desc.idx == len and len > 0) then do
     var pos = info.positions;
     info.positions = Caml_array.caml_make_vect((len << 1), 0);
     $$Array.blit(pos, 0, info.positions, 0, len);
   end
+   end 
   return desc;
 end
 
@@ -1502,7 +1506,7 @@ function validate(info, s, pos, st) do
 end
 
 function loop(info, s, pos, st) do
-  if (pos < info.last) do
+  if (pos < info.last) then do
     var st$prime = Caml_array.caml_array_get(st.next, Caml_bytes.get(info.i_cols, Caml_string.get(s, pos)));
     var info$1 = info;
     var s$1 = s;
@@ -1513,9 +1517,9 @@ function loop(info, s, pos, st) do
       var st$prime$1 = _st$prime;
       var st$1 = _st;
       var pos$1 = _pos;
-      if (st$prime$1.idx >= 0) do
+      if (st$prime$1.idx >= 0) then do
         var pos$2 = pos$1 + 1 | 0;
-        if (pos$2 < info$1.last) do
+        if (pos$2 < info$1.last) then do
           var st$prime$prime = Caml_array.caml_array_get(st$prime$1.next, Caml_bytes.get(info$1.i_cols, Caml_string.get(s$1, pos$2)));
           Caml_array.caml_array_set(info$1.positions, st$prime$1.idx, pos$2);
           _st$prime = st$prime$prime;
@@ -1525,18 +1529,18 @@ function loop(info, s, pos, st) do
         end else do
           Caml_array.caml_array_set(info$1.positions, st$prime$1.idx, pos$2);
           return st$prime$1;
-        end
-      end else if (st$prime$1.idx == -3) do
+        end end 
+      end else if (st$prime$1.idx == -3) then do
         Caml_array.caml_array_set(info$1.positions, st$prime$1.real_idx, pos$1 + 1 | 0);
         return st$prime$1;
       end else do
         validate(info$1, s$1, pos$1, st$1);
         return loop(info$1, s$1, pos$1, st$1);
-      end
+      end end  end 
     end;
   end else do
     return st;
-  end
+  end end 
 end
 
 function $$final(info, st, cat) do
@@ -1544,7 +1548,7 @@ function $$final(info, st, cat) do
     return List.assq(cat, st.final);
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       var st$prime = delta$1(info, cat, -1, st);
       var res_000 = st$prime.idx;
       var res_001 = status(st$prime);
@@ -1562,7 +1566,7 @@ function $$final(info, st, cat) do
       return res;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -1571,7 +1575,7 @@ function find_initial_state(re, cat) do
     return List.assq(cat, re.initial_states);
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       var st = find_state(re, Curry._2(Re_automata_State.create, cat, re.initial));
       re.initial_states = --[ :: ]--[
         --[ tuple ]--[
@@ -1583,29 +1587,29 @@ function find_initial_state(re, cat) do
       return st;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
 function get_color(re, s, pos) do
-  if (pos < 0) do
+  if (pos < 0) then do
     return -1;
   end else do
     var slen = #s;
-    if (pos >= slen) do
+    if (pos >= slen) then do
       return -1;
-    end else if (pos == (slen - 1 | 0) and re.lnl ~= -1 and Caml_string.get(s, pos) == --[ "\n" ]--10) do
+    end else if (pos == (slen - 1 | 0) and re.lnl ~= -1 and Caml_string.get(s, pos) == --[ "\n" ]--10) then do
       return re.lnl;
     end else do
       return Caml_bytes.get(re.cols, Caml_string.get(s, pos));
-    end
-  end
+    end end  end 
+  end end 
 end
 
 function scan_str(info, s, initial_state, groups) do
   var pos = info.pos;
   var last = info.last;
-  if (last == #s and info.re.lnl ~= -1 and last > pos and Caml_string.get(s, last - 1 | 0) == --[ "\n" ]--10) do
+  if (last == #s and info.re.lnl ~= -1 and last > pos and Caml_string.get(s, last - 1 | 0) == --[ "\n" ]--10) then do
     var info$1 = do
       re: info.re,
       i_cols: info.i_cols,
@@ -1614,7 +1618,7 @@ function scan_str(info, s, initial_state, groups) do
       last: last - 1 | 0
     end;
     var st = scan_str(info$1, s, initial_state, groups);
-    if (st.idx == -3) do
+    if (st.idx == -3) then do
       return st;
     end else do
       var info$2 = info$1;
@@ -1623,15 +1627,17 @@ function scan_str(info, s, initial_state, groups) do
       var groups$1 = groups;
       while(true) do
         var st$prime = Caml_array.caml_array_get(st$1.next, info$2.re.lnl);
-        if (st$prime.idx >= 0) do
-          if (groups$1) do
+        if (st$prime.idx >= 0) then do
+          if (groups$1) then do
             Caml_array.caml_array_set(info$2.positions, st$prime.idx, pos$1 + 1 | 0);
           end
+           end 
           return st$prime;
-        end else if (st$prime.idx == -3) do
-          if (groups$1) do
+        end else if (st$prime.idx == -3) then do
+          if (groups$1) then do
             Caml_array.caml_array_set(info$2.positions, st$prime.real_idx, pos$1 + 1 | 0);
           end
+           end 
           return st$prime;
         end else do
           var c = info$2.re.lnl;
@@ -1641,10 +1647,10 @@ function scan_str(info, s, initial_state, groups) do
           var st$prime$1 = find_state(info$2.re, desc$prime);
           Caml_array.caml_array_set(st$1.next, c, st$prime$1);
           continue ;
-        end
+        end end  end 
       end;
-    end
-  end else if (groups) do
+    end end 
+  end else if (groups) then do
     return loop(info, s, pos, initial_state);
   end else do
     var info$3 = info;
@@ -1655,23 +1661,23 @@ function scan_str(info, s, initial_state, groups) do
     while(true) do
       var st$2 = _st;
       var pos$2 = _pos;
-      if (pos$2 < last$1) do
+      if (pos$2 < last$1) then do
         var st$prime$2 = Caml_array.caml_array_get(st$2.next, Caml_bytes.get(info$3.i_cols, Caml_string.get(s$1, pos$2)));
-        if (st$prime$2.idx >= 0) do
+        if (st$prime$2.idx >= 0) then do
           _st = st$prime$2;
           _pos = pos$2 + 1 | 0;
           continue ;
-        end else if (st$prime$2.idx == -3) do
+        end else if (st$prime$2.idx == -3) then do
           return st$prime$2;
         end else do
           validate(info$3, s$1, pos$2, st$2);
           continue ;
-        end
+        end end  end 
       end else do
         return st$2;
-      end
+      end end 
     end;
-  end
+  end end  end 
 end
 
 function cadd(c, s) do
@@ -1680,7 +1686,7 @@ end
 
 function trans_set(cache, cm, s) do
   var match = one_char(s);
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     return single(Caml_bytes.get(cm, match));
   end else do
     var v_000 = hash_rec(s);
@@ -1693,21 +1699,21 @@ function trans_set(cache, cm, s) do
       var _param = cache.contents;
       while(true) do
         var param = _param;
-        if (param) do
+        if (param) then do
           var c = compare(x, param[--[ v ]--1]);
-          if (c == 0) do
+          if (c == 0) then do
             return param[--[ d ]--2];
           end else do
             _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
             continue ;
-          end
+          end end 
         end else do
           throw Caml_builtin_exceptions.not_found;
-        end
+        end end 
       end;
     end
     catch (exn)do
-      if (exn == Caml_builtin_exceptions.not_found) do
+      if (exn == Caml_builtin_exceptions.not_found) then do
         var l = List.fold_right((function (param, l) do
                 return union(seq(Caml_bytes.get(cm, param[0]), Caml_bytes.get(cm, param[1])), l);
               end), s, --[ [] ]--0);
@@ -1715,15 +1721,15 @@ function trans_set(cache, cm, s) do
         return l;
       end else do
         throw exn;
-      end
+      end end 
     end
-  end
+  end end 
 end
 
 function is_charset(_param) do
   while(true) do
     var param = _param;
-    if (typeof param == "number") do
+    if (typeof param == "number") then do
       return false;
     end else do
       switch (param.tag | 0) do
@@ -1743,16 +1749,16 @@ function is_charset(_param) do
         case --[ Complement ]--12 :
             return List.for_all(is_charset, param[0]);
         case --[ Difference ]--13 :
-            if (is_charset(param[0])) do
+            if (is_charset(param[0])) then do
               _param = param[1];
               continue ;
             end else do
               return false;
-            end
+            end end 
         default:
           return false;
       end
-    end
+    end end 
   end;
 end
 
@@ -1765,14 +1771,14 @@ function split(s, cm) do
   end;
   while(true) do
     var t = _t;
-    if (t) do
+    if (t) then do
       var match = t[0];
       Curry._2(f, match[0], match[1]);
       _t = t[1];
       continue ;
     end else do
       return --[ () ]--0;
-    end
+    end end 
   end;
 end
 
@@ -1816,7 +1822,7 @@ function colorize(c, regexp) do
   var colorize$1 = function (_regexp) do
     while(true) do
       var regexp = _regexp;
-      if (typeof regexp == "number") do
+      if (typeof regexp == "number") then do
         switch (regexp) do
           case --[ Beg_of_line ]--0 :
           case --[ End_of_line ]--1 :
@@ -1869,7 +1875,7 @@ function colorize(c, regexp) do
                   ]
                 ];
         end
-      end
+      end end 
     end;
   end;
   colorize$1(regexp);
@@ -1883,9 +1889,10 @@ function flatten_cmap(cm) do
   c[0] = --[ "\000" ]--0;
   col_repr[0] = --[ "\000" ]--0;
   for(var i = 1; i <= 255; ++i)do
-    if (Caml_bytes.get(cm, i) ~= --[ "\000" ]--0) do
+    if (Caml_bytes.get(cm, i) ~= --[ "\000" ]--0) then do
       v = v + 1 | 0;
     end
+     end 
     c[i] = Char.chr(v);
     col_repr[v] = Char.chr(i);
   end
@@ -1900,179 +1907,179 @@ function equal$2(_x1, _x2) do
   while(true) do
     var x2 = _x2;
     var x1 = _x1;
-    if (typeof x1 == "number") do
+    if (typeof x1 == "number") then do
       switch (x1) do
         case --[ Beg_of_line ]--0 :
-            if (typeof x2 == "number") do
+            if (typeof x2 == "number") then do
               return x2 == 0;
             end else do
               return false;
-            end
+            end end 
         case --[ End_of_line ]--1 :
-            if (typeof x2 == "number") do
+            if (typeof x2 == "number") then do
               return x2 == 1;
             end else do
               return false;
-            end
+            end end 
         case --[ Beg_of_word ]--2 :
-            if (typeof x2 == "number") do
+            if (typeof x2 == "number") then do
               return x2 == 2;
             end else do
               return false;
-            end
+            end end 
         case --[ End_of_word ]--3 :
-            if (typeof x2 == "number") do
+            if (typeof x2 == "number") then do
               return x2 == 3;
             end else do
               return false;
-            end
+            end end 
         case --[ Not_bound ]--4 :
-            if (typeof x2 == "number") do
+            if (typeof x2 == "number") then do
               return x2 == 4;
             end else do
               return false;
-            end
+            end end 
         case --[ Beg_of_str ]--5 :
-            if (typeof x2 == "number") do
+            if (typeof x2 == "number") then do
               return x2 == 5;
             end else do
               return false;
-            end
+            end end 
         case --[ End_of_str ]--6 :
-            if (typeof x2 == "number") do
+            if (typeof x2 == "number") then do
               return x2 == 6;
             end else do
               return false;
-            end
+            end end 
         case --[ Last_end_of_line ]--7 :
-            if (typeof x2 == "number") do
+            if (typeof x2 == "number") then do
               return x2 == 7;
             end else do
               return false;
-            end
+            end end 
         case --[ Start ]--8 :
-            if (typeof x2 == "number") do
+            if (typeof x2 == "number") then do
               return x2 == 8;
             end else do
               return false;
-            end
+            end end 
         case --[ Stop ]--9 :
-            if (typeof x2 == "number") do
+            if (typeof x2 == "number") then do
               return x2 >= 9;
             end else do
               return false;
-            end
+            end end 
         
       end
     end else do
       switch (x1.tag | 0) do
         case --[ Set ]--0 :
-            if (typeof x2 == "number" or x2.tag) do
+            if (typeof x2 == "number" or x2.tag) then do
               return false;
             end else do
               return Caml_obj.caml_equal(x1[0], x2[0]);
-            end
+            end end 
         case --[ Sequence ]--1 :
-            if (typeof x2 == "number" or x2.tag ~= --[ Sequence ]--1) do
+            if (typeof x2 == "number" or x2.tag ~= --[ Sequence ]--1) then do
               return false;
             end else do
               return eq_list(x1[0], x2[0]);
-            end
+            end end 
         case --[ Alternative ]--2 :
-            if (typeof x2 == "number" or x2.tag ~= --[ Alternative ]--2) do
+            if (typeof x2 == "number" or x2.tag ~= --[ Alternative ]--2) then do
               return false;
             end else do
               return eq_list(x1[0], x2[0]);
-            end
+            end end 
         case --[ Repeat ]--3 :
-            if (typeof x2 == "number" or !(x2.tag == --[ Repeat ]--3 and x1[1] == x2[1] and Caml_obj.caml_equal(x1[2], x2[2]))) do
+            if (typeof x2 == "number" or !(x2.tag == --[ Repeat ]--3 and x1[1] == x2[1] and Caml_obj.caml_equal(x1[2], x2[2]))) then do
               return false;
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            end
+            end end 
         case --[ Sem ]--4 :
-            if (typeof x2 == "number" or !(x2.tag == --[ Sem ]--4 and x1[0] == x2[0])) do
+            if (typeof x2 == "number" or !(x2.tag == --[ Sem ]--4 and x1[0] == x2[0])) then do
               return false;
             end else do
               _x2 = x2[1];
               _x1 = x1[1];
               continue ;
-            end
+            end end 
         case --[ Sem_greedy ]--5 :
-            if (typeof x2 == "number" or !(x2.tag == --[ Sem_greedy ]--5 and x1[0] == x2[0])) do
+            if (typeof x2 == "number" or !(x2.tag == --[ Sem_greedy ]--5 and x1[0] == x2[0])) then do
               return false;
             end else do
               _x2 = x2[1];
               _x1 = x1[1];
               continue ;
-            end
+            end end 
         case --[ Group ]--6 :
             return false;
         case --[ No_group ]--7 :
-            if (typeof x2 == "number" or x2.tag ~= --[ No_group ]--7) do
+            if (typeof x2 == "number" or x2.tag ~= --[ No_group ]--7) then do
               return false;
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            end
+            end end 
         case --[ Nest ]--8 :
-            if (typeof x2 == "number" or x2.tag ~= --[ Nest ]--8) do
+            if (typeof x2 == "number" or x2.tag ~= --[ Nest ]--8) then do
               return false;
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            end
+            end end 
         case --[ Case ]--9 :
-            if (typeof x2 == "number" or x2.tag ~= --[ Case ]--9) do
+            if (typeof x2 == "number" or x2.tag ~= --[ Case ]--9) then do
               return false;
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            end
+            end end 
         case --[ No_case ]--10 :
-            if (typeof x2 == "number" or x2.tag ~= --[ No_case ]--10) do
+            if (typeof x2 == "number" or x2.tag ~= --[ No_case ]--10) then do
               return false;
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            end
+            end end 
         case --[ Intersection ]--11 :
-            if (typeof x2 == "number" or x2.tag ~= --[ Intersection ]--11) do
+            if (typeof x2 == "number" or x2.tag ~= --[ Intersection ]--11) then do
               return false;
             end else do
               return eq_list(x1[0], x2[0]);
-            end
+            end end 
         case --[ Complement ]--12 :
-            if (typeof x2 == "number" or x2.tag ~= --[ Complement ]--12) do
+            if (typeof x2 == "number" or x2.tag ~= --[ Complement ]--12) then do
               return false;
             end else do
               return eq_list(x1[0], x2[0]);
-            end
+            end end 
         case --[ Difference ]--13 :
-            if (typeof x2 == "number" or !(x2.tag == --[ Difference ]--13 and equal$2(x1[0], x2[0]))) do
+            if (typeof x2 == "number" or !(x2.tag == --[ Difference ]--13 and equal$2(x1[0], x2[0]))) then do
               return false;
             end else do
               _x2 = x2[1];
               _x1 = x1[1];
               continue ;
-            end
+            end end 
         case --[ Pmark ]--14 :
-            if (typeof x2 == "number" or !(x2.tag == --[ Pmark ]--14 and x1[0] == x2[0])) do
+            if (typeof x2 == "number" or !(x2.tag == --[ Pmark ]--14 and x1[0] == x2[0])) then do
               return false;
             end else do
               _x2 = x2[1];
               _x1 = x1[1];
               continue ;
-            end
+            end end 
         
       end
-    end
+    end end 
   end;
 end
 
@@ -2080,51 +2087,51 @@ function eq_list(_l1, _l2) do
   while(true) do
     var l2 = _l2;
     var l1 = _l1;
-    if (l1) do
-      if (l2 and equal$2(l1[0], l2[0])) do
+    if (l1) then do
+      if (l2 and equal$2(l1[0], l2[0])) then do
         _l2 = l2[1];
         _l1 = l1[1];
         continue ;
       end else do
         return false;
-      end
-    end else if (l2) do
+      end end 
+    end else if (l2) then do
       return false;
     end else do
       return true;
-    end
+    end end  end 
   end;
 end
 
 function sequence(l) do
-  if (l and !l[1]) do
+  if (l and !l[1]) then do
     return l[0];
   end else do
     return --[ Sequence ]--Block.__(1, [l]);
-  end
+  end end 
 end
 
 function merge_sequences(_param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var x = param[0];
-      if (typeof x ~= "number") do
+      if (typeof x ~= "number") then do
         switch (x.tag | 0) do
           case --[ Sequence ]--1 :
               var match = x[0];
-              if (match) do
+              if (match) then do
                 var y = match[1];
                 var x$1 = match[0];
                 var r$prime = merge_sequences(param[1]);
                 var exit = 0;
-                if (r$prime) do
+                if (r$prime) then do
                   var match$1 = r$prime[0];
-                  if (typeof match$1 == "number" or match$1.tag ~= --[ Sequence ]--1) do
+                  if (typeof match$1 == "number" or match$1.tag ~= --[ Sequence ]--1) then do
                     exit = 2;
                   end else do
                     var match$2 = match$1[0];
-                    if (match$2 and equal$2(x$1, match$2[0])) do
+                    if (match$2 and equal$2(x$1, match$2[0])) then do
                       return --[ :: ]--[
                               --[ Sequence ]--Block.__(1, [--[ :: ]--[
                                     x$1,
@@ -2143,12 +2150,12 @@ function merge_sequences(_param) do
                             ];
                     end else do
                       exit = 2;
-                    end
-                  end
+                    end end 
+                  end end 
                 end else do
                   exit = 2;
-                end
-                if (exit == 2) do
+                end end 
+                if (exit == 2) then do
                   return --[ :: ]--[
                           --[ Sequence ]--Block.__(1, [--[ :: ]--[
                                 x$1,
@@ -2157,8 +2164,9 @@ function merge_sequences(_param) do
                           r$prime
                         ];
                 end
-                
+                 end 
               end
+               end 
               break;
           case --[ Alternative ]--2 :
               _param = Pervasives.$at(x[0], param[1]);
@@ -2167,22 +2175,23 @@ function merge_sequences(_param) do
             
         end
       end
+       end 
       return --[ :: ]--[
               x,
               merge_sequences(param[1])
             ];
     end else do
       return --[ [] ]--0;
-    end
+    end end 
   end;
 end
 
 function enforce_kind(ids, kind, kind$prime, cr) do
-  if (kind ~= 332064784 or kind$prime == 332064784) do
+  if (kind ~= 332064784 or kind$prime == 332064784) then do
     return cr;
   end else do
     return seq$1(ids, kind$prime, cr, mk_expr(ids, --[ Eps ]--0));
-  end
+  end end 
 end
 
 function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _param) do
@@ -2190,7 +2199,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
     var param = _param;
     var greedy = _greedy;
     var ign_group = _ign_group;
-    if (typeof param == "number") do
+    if (typeof param == "number") then do
       switch (param) do
         case --[ Beg_of_line ]--0 :
             var c$1 = Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.inexistant, Re_automata_Category.newline);
@@ -2271,13 +2280,14 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                   ];
         case --[ Alternative ]--2 :
             var merged_sequences = merge_sequences(param[0]);
-            if (merged_sequences and !merged_sequences[1]) do
+            if (merged_sequences and !merged_sequences[1]) then do
               var match = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, merged_sequences[0]);
               return --[ tuple ]--[
                       enforce_kind(ids, kind, match[1], match[0]),
                       kind
                     ];
             end
+             end 
             return --[ tuple ]--[
                     alt(ids, List.map((function(ign_group,greedy)do
                             return function (r$prime) do
@@ -2294,7 +2304,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
             var kind$prime = match$1[1];
             var cr = match$1[0];
             var rem;
-            if (j ~= undefined) do
+            if (j ~= undefined) then do
               var f = greedy >= 620821490 ? (function(cr,kind$prime)do
                 return function (rem) do
                   return alt(ids, --[ :: ]--[
@@ -2319,7 +2329,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
               rem = iter(j - i | 0, f, mk_expr(ids, --[ Eps ]--0));
             end else do
               rem = rep(ids, greedy, kind$prime, cr);
-            end
+            end end 
             return --[ tuple ]--[
                     iter(i, (function(cr,kind$prime)do
                         return function (rem) do
@@ -2341,7 +2351,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
             continue ;
         case --[ Group ]--6 :
             var r$prime = param[0];
-            if (ign_group) do
+            if (ign_group) then do
               _param = r$prime;
               continue ;
             end else do
@@ -2352,7 +2362,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                       seq$1(ids, --[ First ]--332064784, mk_expr(ids, --[ Mark ]--Block.__(4, [p])), seq$1(ids, --[ First ]--332064784, match$3[0], mk_expr(ids, --[ Mark ]--Block.__(4, [p + 1 | 0])))),
                       match$3[1]
                     ];
-            end
+            end end 
         case --[ No_group ]--7 :
             _param = param[0];
             _ign_group = true;
@@ -2363,7 +2373,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
             var kind$prime$2 = match$4[1];
             var cr$1 = match$4[0];
             var e = pos.contents - 1 | 0;
-            if (e < b) do
+            if (e < b) then do
               return --[ tuple ]--[
                       cr$1,
                       kind$prime$2
@@ -2373,7 +2383,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                       seq$1(ids, --[ First ]--332064784, erase(ids, b, e), cr$1),
                       kind$prime$2
                     ];
-            end
+            end end 
         case --[ Pmark ]--14 :
             var match$5 = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, param[1]);
             return --[ tuple ]--[
@@ -2390,32 +2400,32 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                 ]
               ];
       end
-    end
+    end end 
   end;
 end
 
 function trans_seq(ids, kind, ign_group, ign_case, greedy, pos, cache, c, param) do
-  if (param) do
+  if (param) then do
     var rem = param[1];
     var r = param[0];
-    if (rem) do
+    if (rem) then do
       var match = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, r);
       var cr$prime = match[0];
       var cr$prime$prime = trans_seq(ids, kind, ign_group, ign_case, greedy, pos, cache, c, rem);
-      if (is_eps(cr$prime$prime)) do
+      if (is_eps(cr$prime$prime)) then do
         return cr$prime;
-      end else if (is_eps(cr$prime)) do
+      end else if (is_eps(cr$prime)) then do
         return cr$prime$prime;
       end else do
         return seq$1(ids, match[1], cr$prime, cr$prime$prime);
-      end
+      end end  end 
     end else do
       var match$1 = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, r);
       return enforce_kind(ids, kind, match$1[1], match$1[0]);
-    end
+    end end 
   end else do
     return mk_expr(ids, --[ Eps ]--0);
-  end
+  end end 
 end
 
 function case_insens(s) do
@@ -2423,7 +2433,7 @@ function case_insens(s) do
 end
 
 function as_set(param) do
-  if (typeof param == "number") do
+  if (typeof param == "number") then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -2432,7 +2442,7 @@ function as_set(param) do
             13
           ]
         ];
-  end else if (param.tag) do
+  end else if (param.tag) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -2443,14 +2453,14 @@ function as_set(param) do
         ];
   end else do
     return param[0];
-  end
+  end end  end 
 end
 
 function handle_case(_ign_case, _r) do
   while(true) do
     var r = _r;
     var ign_case = _ign_case;
-    if (typeof r == "number") do
+    if (typeof r == "number") then do
       return r;
     end else do
       switch (r.tag | 0) do
@@ -2469,13 +2479,13 @@ function handle_case(_ign_case, _r) do
                   return handle_case(ign_case, param);
                 end
                 end(ign_case)), r[0]);
-            if (is_charset(--[ Alternative ]--Block.__(2, [l$prime]))) do
+            if (is_charset(--[ Alternative ]--Block.__(2, [l$prime]))) then do
               return --[ Set ]--Block.__(0, [List.fold_left((function (s, r) do
                                 return union(s, as_set(r));
                               end), --[ [] ]--0, l$prime)]);
             end else do
               return --[ Alternative ]--Block.__(2, [l$prime]);
-            end
+            end end 
         case --[ Repeat ]--3 :
             return --[ Repeat ]--Block.__(3, [
                       handle_case(ign_case, r[0]),
@@ -2484,40 +2494,40 @@ function handle_case(_ign_case, _r) do
                     ]);
         case --[ Sem ]--4 :
             var r$prime = handle_case(ign_case, r[1]);
-            if (is_charset(r$prime)) do
+            if (is_charset(r$prime)) then do
               return r$prime;
             end else do
               return --[ Sem ]--Block.__(4, [
                         r[0],
                         r$prime
                       ]);
-            end
+            end end 
         case --[ Sem_greedy ]--5 :
             var r$prime$1 = handle_case(ign_case, r[1]);
-            if (is_charset(r$prime$1)) do
+            if (is_charset(r$prime$1)) then do
               return r$prime$1;
             end else do
               return --[ Sem_greedy ]--Block.__(5, [
                         r[0],
                         r$prime$1
                       ]);
-            end
+            end end 
         case --[ Group ]--6 :
             return --[ Group ]--Block.__(6, [handle_case(ign_case, r[0])]);
         case --[ No_group ]--7 :
             var r$prime$2 = handle_case(ign_case, r[0]);
-            if (is_charset(r$prime$2)) do
+            if (is_charset(r$prime$2)) then do
               return r$prime$2;
             end else do
               return --[ No_group ]--Block.__(7, [r$prime$2]);
-            end
+            end end 
         case --[ Nest ]--8 :
             var r$prime$3 = handle_case(ign_case, r[0]);
-            if (is_charset(r$prime$3)) do
+            if (is_charset(r$prime$3)) then do
               return r$prime$3;
             end else do
               return --[ Nest ]--Block.__(8, [r$prime$3]);
-            end
+            end end 
         case --[ Case ]--9 :
             _r = r[0];
             _ign_case = false;
@@ -2553,14 +2563,14 @@ function handle_case(_ign_case, _r) do
                     ]);
         
       end
-    end
+    end end 
   end;
 end
 
 function anchored(_param) do
   while(true) do
     var param = _param;
-    if (typeof param == "number") do
+    if (typeof param == "number") then do
       switch (param) do
         case --[ Beg_of_str ]--5 :
         case --[ Start ]--8 :
@@ -2575,12 +2585,12 @@ function anchored(_param) do
         case --[ Alternative ]--2 :
             return List.for_all(anchored, param[0]);
         case --[ Repeat ]--3 :
-            if (param[1] > 0) do
+            if (param[1] > 0) then do
               _param = param[0];
               continue ;
             end else do
               return false;
-            end
+            end end 
         case --[ Group ]--6 :
         case --[ No_group ]--7 :
         case --[ Nest ]--8 :
@@ -2596,41 +2606,43 @@ function anchored(_param) do
         default:
           return false;
       end
-    end
+    end end 
   end;
 end
 
 function alt$1(l) do
-  if (l and !l[1]) do
+  if (l and !l[1]) then do
     return l[0];
   end else do
     return --[ Alternative ]--Block.__(2, [l]);
-  end
+  end end 
 end
 
 function seq$2(l) do
-  if (l and !l[1]) do
+  if (l and !l[1]) then do
     return l[0];
   end else do
     return --[ Sequence ]--Block.__(1, [l]);
-  end
+  end end 
 end
 
 var epsilon = --[ Sequence ]--Block.__(1, [--[ [] ]--0]);
 
 function repn(r, i, j) do
-  if (i < 0) do
+  if (i < 0) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Re.repn"
         ];
   end
-  if (j ~= undefined and j < i) do
+   end 
+  if (j ~= undefined and j < i) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Re.repn"
         ];
   end
+   end 
   return --[ Repeat ]--Block.__(3, [
             r,
             i,
@@ -2648,14 +2660,14 @@ end
 
 function compl(l) do
   var r = --[ Complement ]--Block.__(12, [l]);
-  if (is_charset(r)) do
+  if (is_charset(r)) then do
     return r;
   end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Re.compl"
         ];
-  end
+  end end 
 end
 
 var any = --[ Set ]--Block.__(0, [cany]);
@@ -2899,12 +2911,13 @@ end
 function exec_internal(name, posOpt, lenOpt, groups, re, s) do
   var pos = posOpt ~= undefined ? posOpt : 0;
   var len = lenOpt ~= undefined ? lenOpt : -1;
-  if (pos < 0 or len < -1 or (pos + len | 0) > #s) do
+  if (pos < 0 or len < -1 or (pos + len | 0) > #s) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           name
         ];
   end
+   end 
   var groups$1 = groups;
   var partial = false;
   var re$1 = re;
@@ -2914,7 +2927,7 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) do
   var slen = #s$1;
   var last = len$1 == -1 ? slen : pos$1 + len$1 | 0;
   var tmp;
-  if (groups$1) do
+  if (groups$1) then do
     var n = #re$1.tbl.contents + 1 | 0;
     tmp = n <= 10 ? [
         0,
@@ -2930,7 +2943,7 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) do
       ] : Caml_array.caml_make_vect(n, 0);
   end else do
     tmp = [];
-  end
+  end end 
   var info = do
     re: re$1,
     i_cols: re$1.cols,
@@ -2942,22 +2955,23 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) do
   var initial_state = find_initial_state(re$1, initial_cat);
   var st = scan_str(info, s$1, initial_state, groups$1);
   var res;
-  if (st.idx == -3 or partial) do
+  if (st.idx == -3 or partial) then do
     res = status(st.desc);
   end else do
     var final_cat = last == slen ? Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, Re_automata_Category.inexistant) : Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, category(re$1, get_color(re$1, s$1, last)));
     var match = $$final(info, st, final_cat);
-    if (groups$1) do
+    if (groups$1) then do
       Caml_array.caml_array_set(info.positions, match[0], last + 1 | 0);
     end
+     end 
     res = match[1];
-  end
-  if (typeof res == "number") do
-    if (res ~= 0) do
+  end end 
+  if (typeof res == "number") then do
+    if (res ~= 0) then do
       return --[ Running ]--1;
     end else do
       return --[ Failed ]--0;
-    end
+    end end 
   end else do
     return --[ Match ]--[do
               s: s$1,
@@ -2966,17 +2980,19 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) do
               gpos: info.positions,
               gcount: re$1.group_count
             end];
-  end
+  end end 
 end
 
 function offset$1(t, i) do
-  if (((i << 1) + 1 | 0) >= #t.marks) do
+  if (((i << 1) + 1 | 0) >= #t.marks) then do
     throw Caml_builtin_exceptions.not_found;
   end
+   end 
   var m1 = Caml_array.caml_array_get(t.marks, (i << 1));
-  if (m1 == -1) do
+  if (m1 == -1) then do
     throw Caml_builtin_exceptions.not_found;
   end
+   end 
   var p1 = Caml_array.caml_array_get(t.gpos, m1) - 1 | 0;
   var p2 = Caml_array.caml_array_get(t.gpos, Caml_array.caml_array_get(t.marks, (i << 1) + 1 | 0)) - 1 | 0;
   return --[ tuple ]--[
@@ -3038,17 +3054,18 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
   end;
   var l = #s;
   var test = function (c) do
-    if (i.contents ~= l) do
+    if (i.contents ~= l) then do
       return Caml_string.get(s, i.contents) == c;
     end else do
       return false;
-    end
+    end end 
   end;
   var accept = function (c) do
     var r = test(c);
-    if (r) do
+    if (r) then do
       i.contents = i.contents + 1 | 0;
     end
+     end 
     return r;
   end;
   var accept_s = function (s$prime) do
@@ -3056,10 +3073,10 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
     try do
       for(var j = 0 ,j_finish = len - 1 | 0; j <= j_finish; ++j)do
         try do
-          if (Caml_string.get(s$prime, j) ~= Caml_string.get(s, i.contents + j | 0)) do
+          if (Caml_string.get(s$prime, j) ~= Caml_string.get(s, i.contents + j | 0)) then do
             throw Pervasives.Exit;
           end
-          
+           end 
         end
         catch (exn)do
           throw Pervasives.Exit;
@@ -3069,11 +3086,11 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
       return true;
     end
     catch (exn$1)do
-      if (exn$1 == Pervasives.Exit) do
+      if (exn$1 == Pervasives.Exit) then do
         return false;
       end else do
         throw exn$1;
-      end
+      end end 
     end
   end;
   var get = function (param) do
@@ -3084,7 +3101,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
   var greedy_mod = function (r) do
     var gr = accept(--[ "?" ]--63);
     var gr$1 = ungreedy ? !gr : gr;
-    if (gr$1) do
+    if (gr$1) then do
       return --[ Sem_greedy ]--Block.__(5, [
                 --[ Non_greedy ]--620821490,
                 r
@@ -3094,68 +3111,71 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                 --[ Greedy ]---904640576,
                 r
               ]);
-    end
+    end end 
   end;
   var atom = function (param) do
-    if (accept(--[ "." ]--46)) do
-      if (dotall) do
+    if (accept(--[ "." ]--46)) then do
+      if (dotall) then do
         return any;
       end else do
         return notnl;
-      end
-    end else if (accept(--[ "(" ]--40)) do
-      if (accept(--[ "?" ]--63)) do
-        if (accept(--[ ":" ]--58)) do
+      end end 
+    end else if (accept(--[ "(" ]--40)) then do
+      if (accept(--[ "?" ]--63)) then do
+        if (accept(--[ ":" ]--58)) then do
           var r = regexp$prime(branch$prime(--[ [] ]--0));
-          if (!accept(--[ ")" ]--41)) do
+          if (!accept(--[ ")" ]--41)) then do
             throw Parse_error;
           end
+           end 
           return r;
-        end else if (accept(--[ "#" ]--35)) do
+        end else if (accept(--[ "#" ]--35)) then do
           var _param = --[ () ]--0;
           while(true) do
-            if (accept(--[ ")" ]--41)) do
+            if (accept(--[ ")" ]--41)) then do
               return epsilon;
             end else do
               i.contents = i.contents + 1 | 0;
               _param = --[ () ]--0;
               continue ;
-            end
+            end end 
           end;
         end else do
           throw Parse_error;
-        end
+        end end  end 
       end else do
         var r$1 = regexp$prime(branch$prime(--[ [] ]--0));
-        if (!accept(--[ ")" ]--41)) do
+        if (!accept(--[ ")" ]--41)) then do
           throw Parse_error;
         end
+         end 
         return --[ Group ]--Block.__(6, [r$1]);
-      end
-    end else if (accept(--[ "^" ]--94)) do
-      if (multiline) do
+      end end 
+    end else if (accept(--[ "^" ]--94)) then do
+      if (multiline) then do
         return --[ Beg_of_line ]--0;
       end else do
         return --[ Beg_of_str ]--5;
-      end
-    end else if (accept(--[ "$" ]--36)) do
-      if (multiline) do
+      end end 
+    end else if (accept(--[ "$" ]--36)) then do
+      if (multiline) then do
         return --[ End_of_line ]--1;
-      end else if (dollar_endonly) do
+      end else if (dollar_endonly) then do
         return --[ Last_end_of_line ]--7;
       end else do
         return --[ End_of_str ]--6;
-      end
-    end else if (accept(--[ "[" ]--91)) do
-      if (accept(--[ "^" ]--94)) do
+      end end  end 
+    end else if (accept(--[ "[" ]--91)) then do
+      if (accept(--[ "^" ]--94)) then do
         return compl(bracket(--[ [] ]--0));
       end else do
         return alt$1(bracket(--[ [] ]--0));
-      end
-    end else if (accept(--[ "\\" ]--92)) do
-      if (i.contents == l) do
+      end end 
+    end else if (accept(--[ "\\" ]--92)) then do
+      if (i.contents == l) then do
         throw Parse_error;
       end
+       end 
       var c = get(--[ () ]--0);
       switch (c) do
         case 48 :
@@ -3288,69 +3308,73 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
           return --[ Set ]--Block.__(0, [single(c)]);
       end
     end else do
-      if (i.contents == l) do
+      if (i.contents == l) then do
         throw Parse_error;
       end
+       end 
       var c$1 = get(--[ () ]--0);
-      if (c$1 >= 64) do
-        if (c$1 ~= 92) do
-          if (c$1 ~= 123) do
+      if (c$1 >= 64) then do
+        if (c$1 ~= 92) then do
+          if (c$1 ~= 123) then do
             return --[ Set ]--Block.__(0, [single(c$1)]);
           end else do
             throw Parse_error;
-          end
+          end end 
         end else do
           throw Parse_error;
-        end
-      end else if (c$1 >= 44) do
-        if (c$1 >= 63) do
+        end end 
+      end else if (c$1 >= 44) then do
+        if (c$1 >= 63) then do
           throw Parse_error;
         end
+         end 
         return --[ Set ]--Block.__(0, [single(c$1)]);
       end else do
-        if (c$1 >= 42) do
+        if (c$1 >= 42) then do
           throw Parse_error;
         end
+         end 
         return --[ Set ]--Block.__(0, [single(c$1)]);
-      end
-    end
+      end end  end 
+    end end  end  end  end  end  end 
   end;
   var integer = function (param) do
-    if (i.contents == l) do
+    if (i.contents == l) then do
       return ;
     end else do
       var d = get(--[ () ]--0);
-      if (d > 57 or d < 48) do
+      if (d > 57 or d < 48) then do
         i.contents = i.contents - 1 | 0;
         return ;
       end else do
         var _i = d - --[ "0" ]--48 | 0;
         while(true) do
           var i$1 = _i;
-          if (i.contents == l) do
+          if (i.contents == l) then do
             return i$1;
           end else do
             var d$1 = get(--[ () ]--0);
-            if (d$1 > 57 or d$1 < 48) do
+            if (d$1 > 57 or d$1 < 48) then do
               i.contents = i.contents - 1 | 0;
               return i$1;
             end else do
               var i$prime = Caml_int32.imul(10, i$1) + (d$1 - --[ "0" ]--48 | 0) | 0;
-              if (i$prime < i$1) do
+              if (i$prime < i$1) then do
                 throw Parse_error;
               end
+               end 
               _i = i$prime;
               continue ;
-            end
-          end
+            end end 
+          end end 
         end;
-      end
-    end
+      end end 
+    end end 
   end;
   var branch$prime = function (_left) do
     while(true) do
       var left = _left;
-      if (i.contents == l or test(--[ "|" ]--124) or test(--[ ")" ]--41)) do
+      if (i.contents == l or test(--[ "|" ]--124) or test(--[ ")" ]--41)) then do
         return seq$2(List.rev(left));
       end else do
         _left = --[ :: ]--[
@@ -3358,13 +3382,13 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
           left
         ];
         continue ;
-      end
+      end end 
     end;
   end;
   var regexp$prime = function (_left) do
     while(true) do
       var left = _left;
-      if (accept(--[ "|" ]--124)) do
+      if (accept(--[ "|" ]--124)) then do
         _left = alt$1(--[ :: ]--[
               left,
               --[ :: ]--[
@@ -3375,20 +3399,20 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
         continue ;
       end else do
         return left;
-      end
+      end end 
     end;
   end;
   var bracket = function (_s) do
     while(true) do
       var s = _s;
-      if (s ~= --[ [] ]--0 and accept(--[ "]" ]--93)) do
+      if (s ~= --[ [] ]--0 and accept(--[ "]" ]--93)) then do
         return s;
       end else do
         var match = $$char(--[ () ]--0);
-        if (match[0] >= 748194550) do
+        if (match[0] >= 748194550) then do
           var c = match[1];
-          if (accept(--[ "-" ]--45)) do
-            if (accept(--[ "]" ]--93)) do
+          if (accept(--[ "-" ]--45)) then do
+            if (accept(--[ "]" ]--93)) then do
               return --[ :: ]--[
                       --[ Set ]--Block.__(0, [single(c)]),
                       --[ :: ]--[
@@ -3404,7 +3428,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                     ];
             end else do
               var match$1 = $$char(--[ () ]--0);
-              if (match$1[0] >= 748194550) do
+              if (match$1[0] >= 748194550) then do
                 _s = --[ :: ]--[
                   --[ Set ]--Block.__(0, [seq(c, match$1[1])]),
                   s
@@ -3427,35 +3451,37 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                           ]
                         ]
                       ];
-              end
-            end
+              end end 
+            end end 
           end else do
             _s = --[ :: ]--[
               --[ Set ]--Block.__(0, [single(c)]),
               s
             ];
             continue ;
-          end
+          end end 
         end else do
           _s = --[ :: ]--[
             match[1],
             s
           ];
           continue ;
-        end
-      end
+        end end 
+      end end 
     end;
   end;
   var $$char = function (param) do
-    if (i.contents == l) do
+    if (i.contents == l) then do
       throw Parse_error;
     end
+     end 
     var c = get(--[ () ]--0);
-    if (c == --[ "[" ]--91) do
-      if (accept(--[ "=" ]--61)) do
+    if (c == --[ "[" ]--91) then do
+      if (accept(--[ "=" ]--61)) then do
         throw Not_supported;
       end
-      if (accept(--[ ":" ]--58)) do
+       end 
+      if (accept(--[ ":" ]--58)) then do
         var compl$1 = accept(--[ "^" ]--94);
         var cls;
         try do
@@ -3501,14 +3527,16 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
               ]);
         end
         catch (exn)do
-          if (exn == Caml_builtin_exceptions.not_found) do
+          if (exn == Caml_builtin_exceptions.not_found) then do
             throw Parse_error;
           end
+           end 
           throw exn;
         end
-        if (!accept_s(":]")) do
+        if (!accept_s(":]")) then do
           throw Parse_error;
         end
+         end 
         var posix_class = posix_class_of_string(cls);
         var re = compl$1 ? compl(--[ :: ]--[
                 posix_class,
@@ -3518,17 +3546,20 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                 4150146,
                 re
               ];
-      end else if (accept(--[ "." ]--46)) do
-        if (i.contents == l) do
+      end else if (accept(--[ "." ]--46)) then do
+        if (i.contents == l) then do
           throw Parse_error;
         end
+         end 
         var c$1 = get(--[ () ]--0);
-        if (!accept(--[ "." ]--46)) do
+        if (!accept(--[ "." ]--46)) then do
           throw Not_supported;
         end
-        if (!accept(--[ "]" ]--93)) do
+         end 
+        if (!accept(--[ "]" ]--93)) then do
           throw Parse_error;
         end
+         end 
         return --[ `Char ]--[
                 748194550,
                 c$1
@@ -3538,11 +3569,11 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                 748194550,
                 c
               ];
-      end
-    end else if (c == --[ "\\" ]--92) do
+      end end  end 
+    end else if (c == --[ "\\" ]--92) then do
       var c$2 = get(--[ () ]--0);
-      if (c$2 >= 58) do
-        if (c$2 >= 123) do
+      if (c$2 >= 58) then do
+        if (c$2 >= 123) then do
           return --[ `Char ]--[
                   748194550,
                   c$2
@@ -3691,70 +3722,74 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                 throw Parse_error;
             
           end
-        end
+        end end 
       end else do
-        if (c$2 >= 48) do
+        if (c$2 >= 48) then do
           throw Not_supported;
         end
+         end 
         return --[ `Char ]--[
                 748194550,
                 c$2
               ];
-      end
+      end end 
     end else do
       return --[ `Char ]--[
               748194550,
               c
             ];
-    end
+    end end  end 
   end;
   var piece = function (param) do
     var r = atom(--[ () ]--0);
-    if (accept(--[ "*" ]--42)) do
+    if (accept(--[ "*" ]--42)) then do
       return greedy_mod(repn(r, 0, undefined));
-    end else if (accept(--[ "+" ]--43)) do
+    end else if (accept(--[ "+" ]--43)) then do
       return greedy_mod(repn(r, 1, undefined));
-    end else if (accept(--[ "?" ]--63)) do
+    end else if (accept(--[ "?" ]--63)) then do
       return greedy_mod(repn(r, 0, 1));
-    end else if (accept(--[ "{" ]--123)) do
+    end else if (accept(--[ "{" ]--123)) then do
       var match = integer(--[ () ]--0);
-      if (match ~= undefined) do
+      if (match ~= undefined) then do
         var i$1 = match;
         var j = accept(--[ "," ]--44) ? integer(--[ () ]--0) : i$1;
-        if (!accept(--[ "}" ]--125)) do
+        if (!accept(--[ "}" ]--125)) then do
           throw Parse_error;
         end
-        if (j ~= undefined and j < i$1) do
+         end 
+        if (j ~= undefined and j < i$1) then do
           throw Parse_error;
         end
+         end 
         return greedy_mod(repn(r, i$1, j));
       end else do
         i.contents = i.contents - 1 | 0;
         return r;
-      end
+      end end 
     end else do
       return r;
-    end
+    end end  end  end  end 
   end;
   var res = regexp$prime(branch$prime(--[ [] ]--0));
-  if (i.contents ~= l) do
+  if (i.contents ~= l) then do
     throw Parse_error;
   end
+   end 
   return res;
 end
 
 function re(flagsOpt, pat) do
   var flags = flagsOpt ~= undefined ? flagsOpt : --[ [] ]--0;
   var opts = List.map((function (param) do
-          if (param ~= 601676297) do
-            if (param >= 613575188) do
+          if (param ~= 601676297) then do
+            if (param >= 613575188) then do
               return --[ Anchored ]--616470068;
             end else do
               return --[ Multiline ]--1071952589;
-            end
+            end end 
           end else do
             return --[ Caseless ]--604571177;
-          end
+          end end 
         end), flags);
   var optsOpt = opts;
   var s = pat;
@@ -3767,11 +3802,11 @@ function re(flagsOpt, pat) do
             --[ [] ]--0
           ]
         ]) : r;
-  if (List.memq(--[ Caseless ]--604571177, opts$1)) do
+  if (List.memq(--[ Caseless ]--604571177, opts$1)) then do
     return --[ No_case ]--Block.__(10, [r$1]);
   end else do
     return r$1;
-  end
+  end end 
 end
 
 function exec(rex, pos, s) do
@@ -3780,9 +3815,10 @@ function exec(rex, pos, s) do
   var re = rex;
   var s$1 = s;
   var match = exec_internal("Re.exec", pos$1, len, true, re, s$1);
-  if (typeof match == "number") do
+  if (typeof match == "number") then do
     throw Caml_builtin_exceptions.not_found;
   end
+   end 
   return match[0];
 end
 

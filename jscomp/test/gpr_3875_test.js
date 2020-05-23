@@ -18,36 +18,38 @@ end;
 
 function compilerBug(a, b, c, f) do
   var exit = 0;
-  if (a ~= "x") do
+  if (a ~= "x") then do
     exit = 2;
   end
-  if (exit == 2) do
-    if (b ~= undefined) do
-      if (b ~= "x") do
-        if (c) do
+   end 
+  if (exit == 2) then do
+    if (b ~= undefined) then do
+      if (b ~= "x") then do
+        if (c) then do
           result.contents = "No x, c is true";
           return --[ () ]--0;
         end else do
           result.contents = "No x, c is false";
           return --[ () ]--0;
-        end
+        end end 
       end
-      
-    end else if (c) do
+       end 
+    end else if (c) then do
       result.contents = "No x, c is true";
       return --[ () ]--0;
     end else do
       result.contents = "No x, c is false";
       return --[ () ]--0;
-    end
+    end end  end 
   end
-  if (Curry._1(f, --[ () ]--0)) do
+   end 
+  if (Curry._1(f, --[ () ]--0)) then do
     result.contents = "Some x, f returns true";
     return --[ () ]--0;
   end else do
     result.contents = "Some x, f returns false";
     return --[ () ]--0;
-  end
+  end end 
 end
 
 var suites = do

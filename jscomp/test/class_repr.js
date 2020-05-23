@@ -52,7 +52,7 @@ var v = Curry._2(x[0], 0, 3);
 
 var u = Oo.copy(v);
 
-if (Caml_oo_curry.js1(291546447, 1, v) ~= 3) do
+if (Caml_oo_curry.js1(291546447, 1, v) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -62,8 +62,9 @@ if (Caml_oo_curry.js1(291546447, 1, v) ~= 3) do
         ]
       ];
 end
+ end 
 
-if (Caml_oo_curry.js1(291546447, 2, u) ~= 3) do
+if (Caml_oo_curry.js1(291546447, 2, u) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -73,6 +74,7 @@ if (Caml_oo_curry.js1(291546447, 2, u) ~= 3) do
         ]
       ];
 end
+ end 
 
 function xx_init($$class) do
   var x = CamlinternalOO.new_variable($$class, "");
@@ -106,7 +108,7 @@ var v1 = Curry._2(xx[0], 0, 3);
 
 var v2 = Caml_oo_curry.js1(-977586732, 3, v1);
 
-if (Caml_oo_curry.js1(-804710761, 4, v1) ~= 3) do
+if (Caml_oo_curry.js1(-804710761, 4, v1) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -116,13 +118,14 @@ if (Caml_oo_curry.js1(-804710761, 4, v1) ~= 3) do
         ]
       ];
 end
+ end 
 
 console.log(--[ tuple ]--[
       Caml_oo_curry.js1(-804710761, 5, v1),
       Caml_oo_curry.js1(-804710761, 6, v2)
     ]);
 
-if (Caml_oo_curry.js1(-804710761, 7, v2) ~= 9) do
+if (Caml_oo_curry.js1(-804710761, 7, v2) ~= 9) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -132,6 +135,7 @@ if (Caml_oo_curry.js1(-804710761, 7, v2) ~= 9) do
         ]
       ];
 end
+ end 
 
 function point_init($$class) do
   var ids = CamlinternalOO.new_methods_variables($$class, [
@@ -165,7 +169,7 @@ var point = CamlinternalOO.make_class([
 
 var v$1 = Curry._1(point[0], 0);
 
-if (Caml_oo_curry.js1(590348294, 8, v$1) ~= 5) do
+if (Caml_oo_curry.js1(590348294, 8, v$1) ~= 5) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -175,6 +179,7 @@ if (Caml_oo_curry.js1(590348294, 8, v$1) ~= 5) do
         ]
       ];
 end
+ end 
 
 function xx0_init($$class) do
   var x = CamlinternalOO.new_variable($$class, "");

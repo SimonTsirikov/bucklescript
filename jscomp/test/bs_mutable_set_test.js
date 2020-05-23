@@ -117,11 +117,11 @@ var bs = Belt_Array.map(Array_data_util.randomRange(500, 1499), (function (x) do
       end));
 
 var indeedRemoved = Belt_Array.reduce(bs, 0, (function (acc, x) do
-        if (x) do
+        if (x) then do
           return acc + 1 | 0;
         end else do
           return acc;
-        end
+        end end 
       end));
 
 eq("File \"bs_mutable_set_test.ml\", line 65, characters 5-12", indeedRemoved, 500);
@@ -133,11 +133,11 @@ var cs = Belt_Array.map(Array_data_util.randomRange(500, 2000), (function (x) do
       end));
 
 var indeedAded = Belt_Array.reduce(cs, 0, (function (acc, x) do
-        if (x) do
+        if (x) then do
           return acc + 1 | 0;
         end else do
           return acc;
-        end
+        end end 
       end));
 
 eq("File \"bs_mutable_set_test.ml\", line 69, characters 5-12", indeedAded, 1000);

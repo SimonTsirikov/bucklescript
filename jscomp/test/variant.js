@@ -8,12 +8,12 @@ var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function foo(param) do
-  if (typeof param == "number") do
-    if (param == --[ A1 ]--0) do
+  if (typeof param == "number") then do
+    if (param == --[ A1 ]--0) then do
       return 1;
     end else do
       return 2;
-    end
+    end end 
   end else do
     switch (param.tag | 0) do
       case --[ B ]--0 :
@@ -25,23 +25,23 @@ function foo(param) do
           return match[0] + match[1] | 0;
       
     end
-  end
+  end end 
 end
 
 function fooA1(param) do
-  if (typeof param == "number" and param == 0) do
+  if (typeof param == "number" and param == 0) then do
     return 1;
   end else do
     return 42;
-  end
+  end end 
 end
 
 function fooC(param) do
-  if (typeof param == "number" or param.tag ~= --[ C ]--1) do
+  if (typeof param == "number" or param.tag ~= --[ C ]--1) then do
     return 42;
   end else do
     return param[0] + param[1] | 0;
-  end
+  end end 
 end
 
 function switchNum(param) do
@@ -88,7 +88,7 @@ function rollback_path(subst, p) do
     return "try";
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       switch (p.tag | 0) do
         case --[ Pdot ]--1 :
             return "Pdot";
@@ -99,7 +99,7 @@ function rollback_path(subst, p) do
       end
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -119,20 +119,20 @@ function fooExn(f) do
   end
   catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn == EA1) do
+    if (exn == EA1) then do
       return 1;
-    end else if (exn == EA2) do
+    end else if (exn == EA2) then do
       return 2;
-    end else if (exn[0] == EB) do
+    end else if (exn[0] == EB) then do
       return exn[1];
-    end else if (exn[0] == EC) do
+    end else if (exn[0] == EC) then do
       return exn[1] + exn[2] | 0;
-    end else if (exn[0] == ED) do
+    end else if (exn[0] == ED) then do
       var match = exn[1];
       return match[0] + match[1] | 0;
     end else do
       throw exn;
-    end
+    end end  end  end  end  end 
   end
 end
 

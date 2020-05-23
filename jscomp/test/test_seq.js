@@ -16,17 +16,17 @@ var Stop = Caml_exceptions.create("Test_seq.Stop");
 function assoc3(x, _l) do
   while(true) do
     var l = _l;
-    if (l) do
+    if (l) then do
       var match = l[0];
-      if (Caml_obj.caml_equal(match[0], x)) do
+      if (Caml_obj.caml_equal(match[0], x)) then do
         return match[1];
       end else do
         _l = l[1];
         continue ;
-      end
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 
@@ -53,7 +53,7 @@ function add_help(speclist) do
     add1 = --[ [] ]--0;
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       add1 = --[ :: ]--[
         --[ tuple ]--[
           "-help",
@@ -64,7 +64,7 @@ function add_help(speclist) do
       ];
     end else do
       throw exn;
-    end
+    end end 
   end
   var add2;
   try do
@@ -72,7 +72,7 @@ function add_help(speclist) do
     add2 = --[ [] ]--0;
   end
   catch (exn$1)do
-    if (exn$1 == Caml_builtin_exceptions.not_found) do
+    if (exn$1 == Caml_builtin_exceptions.not_found) then do
       add2 = --[ :: ]--[
         --[ tuple ]--[
           "--help",
@@ -83,7 +83,7 @@ function add_help(speclist) do
       ];
     end else do
       throw exn$1;
-    end
+    end end 
   end
   return Pervasives.$at(speclist, Pervasives.$at(add1, add2));
 end

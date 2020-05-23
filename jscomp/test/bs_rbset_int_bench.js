@@ -12,7 +12,7 @@ function bench(param) do
   console.timeEnd("test/bs_rbset_int_bench.ml 7");
   console.time("test/bs_rbset_int_bench.ml 11");
   for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
-    if (!Rbset.mem(i$1, data)) do
+    if (!Rbset.mem(i$1, data)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -22,7 +22,7 @@ function bench(param) do
             ]
           ];
     end
-    
+     end 
   end
   console.timeEnd("test/bs_rbset_int_bench.ml 11");
   console.time("test/bs_rbset_int_bench.ml 14");
@@ -30,7 +30,7 @@ function bench(param) do
     data = Rbset.remove(i$2, data);
   end
   console.timeEnd("test/bs_rbset_int_bench.ml 14");
-  if (Rbset.cardinal(data) == 0) do
+  if (Rbset.cardinal(data) == 0) then do
     return 0;
   end else do
     throw [
@@ -41,7 +41,7 @@ function bench(param) do
             2
           ]
         ];
-  end
+  end end 
 end
 
 console.time("test/bs_rbset_int_bench.ml 21");

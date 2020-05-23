@@ -858,14 +858,14 @@ function fib(_n, _a, _b) do
     var b = _b;
     var a = _a;
     var n = _n;
-    if (n == 0) do
+    if (n == 0) then do
       return a;
     end else do
       _b = Caml_int64.add(a, b);
       _a = b;
       _n = n - 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -873,13 +873,13 @@ function fac(_n, _acc) do
   while(true) do
     var acc = _acc;
     var n = _n;
-    if (n == 0) do
+    if (n == 0) then do
       return acc;
     end else do
       _acc = Caml_int64.mul(acc, Caml_int64.of_int32(n));
       _n = n - 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -2398,11 +2398,11 @@ end
 function id(loc, x) do
   var float_value = Caml_int64.float_of_bits(x);
   var match = Pervasives.classify_float(float_value);
-  if (match >= 4) do
+  if (match >= 4) then do
     return --[ () ]--0;
   end else do
     return eq(loc, Caml_int64.bits_of_float(float_value), x);
-  end
+  end end 
 end
 
 eq("File \"int64_test.ml\", line 188, characters 5-12", Caml_int64.bits_of_float(0.3), --[ int64 ]--[

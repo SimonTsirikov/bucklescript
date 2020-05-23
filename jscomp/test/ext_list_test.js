@@ -10,10 +10,10 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 function filter_map(f, _xs) do
   while(true) do
     var xs = _xs;
-    if (xs) do
+    if (xs) then do
       var ys = xs[1];
       var match = Curry._1(f, xs[0]);
-      if (match ~= undefined) do
+      if (match ~= undefined) then do
         return --[ :: ]--[
                 Caml_option.valFromOption(match),
                 filter_map(f, ys)
@@ -21,10 +21,10 @@ function filter_map(f, _xs) do
       end else do
         _xs = ys;
         continue ;
-      end
+      end end 
     end else do
       return --[ [] ]--0;
-    end
+    end end 
   end;
 end
 
@@ -36,10 +36,10 @@ function excludes(p, l) do
     while(true) do
       var param = _param;
       var accu = _accu;
-      if (param) do
+      if (param) then do
         var l = param[1];
         var x = param[0];
-        if (Curry._1(p, x)) do
+        if (Curry._1(p, x)) then do
           excluded.contents = true;
           _param = l;
           continue ;
@@ -50,14 +50,14 @@ function excludes(p, l) do
             accu
           ];
           continue ;
-        end
+        end end 
       end else do
         return List.rev(accu);
-      end
+      end end 
     end;
   end;
   var v = aux(--[ [] ]--0, l);
-  if (excluded.contents) do
+  if (excluded.contents) then do
     return --[ tuple ]--[
             true,
             v
@@ -67,7 +67,7 @@ function excludes(p, l) do
             false,
             l
           ];
-  end
+  end end 
 end
 
 function exclude_with_fact(p, l) do
@@ -78,10 +78,10 @@ function exclude_with_fact(p, l) do
     while(true) do
       var param = _param;
       var accu = _accu;
-      if (param) do
+      if (param) then do
         var l = param[1];
         var x = param[0];
-        if (Curry._1(p, x)) do
+        if (Curry._1(p, x)) then do
           excluded.contents = Caml_option.some(x);
           _param = l;
           continue ;
@@ -92,10 +92,10 @@ function exclude_with_fact(p, l) do
             accu
           ];
           continue ;
-        end
+        end end 
       end else do
         return List.rev(accu);
-      end
+      end end 
     end;
   end;
   var v = aux(--[ [] ]--0, l);
@@ -116,14 +116,14 @@ function exclude_with_fact2(p1, p2, l) do
     while(true) do
       var param = _param;
       var accu = _accu;
-      if (param) do
+      if (param) then do
         var l = param[1];
         var x = param[0];
-        if (Curry._1(p1, x)) do
+        if (Curry._1(p1, x)) then do
           excluded1.contents = Caml_option.some(x);
           _param = l;
           continue ;
-        end else if (Curry._1(p2, x)) do
+        end else if (Curry._1(p2, x)) then do
           excluded2.contents = Caml_option.some(x);
           _param = l;
           continue ;
@@ -134,10 +134,10 @@ function exclude_with_fact2(p1, p2, l) do
             accu
           ];
           continue ;
-        end
+        end end  end 
       end else do
         return List.rev(accu);
-      end
+      end end 
     end;
   end;
   var v = aux(--[ [] ]--0, l);
@@ -152,19 +152,19 @@ function same_length(_xs, _ys) do
   while(true) do
     var ys = _ys;
     var xs = _xs;
-    if (xs) do
-      if (ys) do
+    if (xs) then do
+      if (ys) then do
         _ys = ys[1];
         _xs = xs[1];
         continue ;
       end else do
         return false;
-      end
-    end else if (ys) do
+      end end 
+    end else if (ys) then do
       return false;
     end else do
       return true;
-    end
+    end end  end 
   end;
 end
 
@@ -173,10 +173,10 @@ function filter_mapi(f, xs) do
     while(true) do
       var xs = _xs;
       var i = _i;
-      if (xs) do
+      if (xs) then do
         var ys = xs[1];
         var match = Curry._2(f, i, xs[0]);
-        if (match ~= undefined) do
+        if (match ~= undefined) then do
           return --[ :: ]--[
                   Caml_option.valFromOption(match),
                   aux(i + 1 | 0, ys)
@@ -185,10 +185,10 @@ function filter_mapi(f, xs) do
           _xs = ys;
           _i = i + 1 | 0;
           continue ;
-        end
+        end end 
       end else do
         return --[ [] ]--0;
-      end
+      end end 
     end;
   end;
   return aux(0, xs);
@@ -198,12 +198,12 @@ function filter_map2(f, _xs, _ys) do
   while(true) do
     var ys = _ys;
     var xs = _xs;
-    if (xs) do
-      if (ys) do
+    if (xs) then do
+      if (ys) then do
         var vs = ys[1];
         var us = xs[1];
         var match = Curry._2(f, xs[0], ys[0]);
-        if (match ~= undefined) do
+        if (match ~= undefined) then do
           return --[ :: ]--[
                   Caml_option.valFromOption(match),
                   filter_map2(f, us, vs)
@@ -212,21 +212,21 @@ function filter_map2(f, _xs, _ys) do
           _ys = vs;
           _xs = us;
           continue ;
-        end
+        end end 
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Ext_list_test.filter_map2"
             ];
-      end
-    end else if (ys) do
+      end end 
+    end else if (ys) then do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Ext_list_test.filter_map2"
           ];
     end else do
       return --[ [] ]--0;
-    end
+    end end  end 
   end;
 end
 
@@ -236,12 +236,12 @@ function filter_map2i(f, xs, ys) do
       var ys = _ys;
       var xs = _xs;
       var i = _i;
-      if (xs) do
-        if (ys) do
+      if (xs) then do
+        if (ys) then do
           var vs = ys[1];
           var us = xs[1];
           var match = Curry._3(f, i, xs[0], ys[0]);
-          if (match ~= undefined) do
+          if (match ~= undefined) then do
             return --[ :: ]--[
                     Caml_option.valFromOption(match),
                     aux(i + 1 | 0, us, vs)
@@ -251,21 +251,21 @@ function filter_map2i(f, xs, ys) do
             _xs = us;
             _i = i + 1 | 0;
             continue ;
-          end
+          end end 
         end else do
           throw [
                 Caml_builtin_exceptions.invalid_argument,
                 "Ext_list_test.filter_map2i"
               ];
-        end
-      end else if (ys) do
+        end end 
+      end else if (ys) then do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Ext_list_test.filter_map2i"
             ];
       end else do
         return --[ [] ]--0;
-      end
+      end end  end 
     end;
   end;
   return aux(0, xs, ys);
@@ -275,7 +275,7 @@ function rev_map_append(f, _l1, _l2) do
   while(true) do
     var l2 = _l2;
     var l1 = _l1;
-    if (l1) do
+    if (l1) then do
       _l2 = --[ :: ]--[
         Curry._1(f, l1[0]),
         l2
@@ -284,7 +284,7 @@ function rev_map_append(f, _l1, _l2) do
       continue ;
     end else do
       return l2;
-    end
+    end end 
   end;
 end
 
@@ -296,8 +296,8 @@ function flat_map2(f, lx, ly) do
     var ly$1 = _ly;
     var lx$1 = _lx;
     var acc = _acc;
-    if (lx$1) do
-      if (ly$1) do
+    if (lx$1) then do
+      if (ly$1) then do
         _ly = ly$1[1];
         _lx = lx$1[1];
         _acc = List.rev_append(Curry._2(f, lx$1[0], ly$1[0]), acc);
@@ -307,16 +307,17 @@ function flat_map2(f, lx, ly) do
               Caml_builtin_exceptions.invalid_argument,
               "Ext_list_test.flat_map2"
             ];
-      end
+      end end 
     end else do
-      if (ly$1) do
+      if (ly$1) then do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Ext_list_test.flat_map2"
             ];
       end
+       end 
       return List.rev(acc);
-    end
+    end end 
   end;
 end
 
@@ -324,13 +325,13 @@ function flat_map_aux(f, _acc, append, _lx) do
   while(true) do
     var lx = _lx;
     var acc = _acc;
-    if (lx) do
+    if (lx) then do
       _lx = lx[1];
       _acc = List.rev_append(Curry._1(f, lx[0]), acc);
       continue ;
     end else do
       return List.rev_append(acc, append);
-    end
+    end end 
   end;
 end
 
@@ -343,26 +344,27 @@ function flat_map_acc(f, append, lx) do
 end
 
 function map2_last(f, l1, l2) do
-  if (l1) do
+  if (l1) then do
     var l1$1 = l1[1];
     var u = l1[0];
-    if (!l1$1) do
-      if (l2) do
-        if (!l2[1]) do
+    if (!l1$1) then do
+      if (l2) then do
+        if (!l2[1]) then do
           return --[ :: ]--[
                   Curry._3(f, true, u, l2[0]),
                   --[ [] ]--0
                 ];
         end
-        
+         end 
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "List.map2_last"
             ];
-      end
+      end end 
     end
-    if (l2) do
+     end 
+    if (l2) then do
       var r = Curry._3(f, false, u, l2[0]);
       return --[ :: ]--[
               r,
@@ -373,22 +375,22 @@ function map2_last(f, l1, l2) do
             Caml_builtin_exceptions.invalid_argument,
             "List.map2_last"
           ];
-    end
-  end else if (l2) do
+    end end 
+  end else if (l2) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "List.map2_last"
         ];
   end else do
     return --[ [] ]--0;
-  end
+  end end  end 
 end
 
 function map_last(f, l1) do
-  if (l1) do
+  if (l1) then do
     var l1$1 = l1[1];
     var u = l1[0];
-    if (l1$1) do
+    if (l1$1) then do
       var r = Curry._2(f, false, u);
       return --[ :: ]--[
               r,
@@ -399,46 +401,48 @@ function map_last(f, l1) do
               Curry._2(f, true, u),
               --[ [] ]--0
             ];
-    end
+    end end 
   end else do
     return --[ [] ]--0;
-  end
+  end end 
 end
 
 function fold_right2_last(f, l1, l2, accu) do
-  if (l1) do
+  if (l1) then do
     var l1$1 = l1[1];
     var last1 = l1[0];
-    if (!l1$1) do
-      if (l2) do
-        if (!l2[1]) do
+    if (!l1$1) then do
+      if (l2) then do
+        if (!l2[1]) then do
           return Curry._4(f, true, last1, l2[0], accu);
         end
-        
+         end 
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "List.fold_right2"
             ];
-      end
+      end end 
     end
-    if (l2) do
+     end 
+    if (l2) then do
       return Curry._4(f, false, last1, l2[0], fold_right2_last(f, l1$1, l2[1], accu));
     end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "List.fold_right2"
           ];
-    end
+    end end 
   end else do
-    if (l2) do
+    if (l2) then do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "List.fold_right2"
           ];
     end
+     end 
     return accu;
-  end
+  end end 
 end
 
 function init(n, f) do
@@ -448,12 +452,13 @@ end
 function take(n, l) do
   var arr = $$Array.of_list(l);
   var arr_length = #arr;
-  if (arr_length < n) do
+  if (arr_length < n) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_list_test.take"
         ];
   end
+   end 
   return --[ tuple ]--[
           $$Array.to_list($$Array.sub(arr, 0, n)),
           $$Array.to_list($$Array.sub(arr, n, arr_length - n | 0))
@@ -463,7 +468,7 @@ end
 function try_take(n, l) do
   var arr = $$Array.of_list(l);
   var arr_length = #arr;
-  if (arr_length <= n) do
+  if (arr_length <= n) then do
     return --[ tuple ]--[
             l,
             arr_length,
@@ -475,24 +480,24 @@ function try_take(n, l) do
             n,
             $$Array.to_list($$Array.sub(arr, n, arr_length - n | 0))
           ];
-  end
+  end end 
 end
 
 function length_compare(_l, _n) do
   while(true) do
     var n = _n;
     var l = _l;
-    if (n < 0) do
+    if (n < 0) then do
       return --[ Gt ]--15949;
-    end else if (l) do
+    end else if (l) then do
       _n = n - 1 | 0;
       _l = l[1];
       continue ;
-    end else if (n == 0) do
+    end else if (n == 0) then do
       return --[ Eq ]--15500;
     end else do
       return --[ Lt ]--17064;
-    end
+    end end  end  end 
   end;
 end
 
@@ -500,17 +505,17 @@ function length_larger_than_n(n, _xs, _ys) do
   while(true) do
     var ys = _ys;
     var xs = _xs;
-    if (ys) do
-      if (xs) do
+    if (ys) then do
+      if (xs) then do
         _ys = ys[1];
         _xs = xs[1];
         continue ;
       end else do
         return false;
-      end
+      end end 
     end else do
       return length_compare(xs, n) == --[ Eq ]--15500;
-    end
+    end end 
   end;
 end
 
@@ -520,10 +525,10 @@ function exclude_tail(x) do
   while(true) do
     var x$1 = _x;
     var acc = _acc;
-    if (x$1) do
+    if (x$1) then do
       var ys = x$1[1];
       var x$2 = x$1[0];
-      if (ys) do
+      if (ys) then do
         _x = ys;
         _acc = --[ :: ]--[
           x$2,
@@ -535,29 +540,29 @@ function exclude_tail(x) do
                 x$2,
                 List.rev(acc)
               ];
-      end
+      end end 
     end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Ext_list_test.exclude_tail"
           ];
-    end
+    end end 
   end;
 end
 
 function group(cmp, lst) do
-  if (lst) do
+  if (lst) then do
     return aux(cmp, lst[0], group(cmp, lst[1]));
   end else do
     return --[ [] ]--0;
-  end
+  end end 
 end
 
 function aux(cmp, x, xss) do
-  if (xss) do
+  if (xss) then do
     var ys = xss[1];
     var y = xss[0];
-    if (Curry._2(cmp, x, List.hd(y))) do
+    if (Curry._2(cmp, x, List.hd(y))) then do
       return --[ :: ]--[
               --[ :: ]--[
                 x,
@@ -570,7 +575,7 @@ function aux(cmp, x, xss) do
               y,
               aux(cmp, x, ys)
             ];
-    end
+    end end 
   end else do
     return --[ :: ]--[
             --[ :: ]--[
@@ -579,7 +584,7 @@ function aux(cmp, x, xss) do
             ],
             --[ [] ]--0
           ];
-  end
+  end end 
 end
 
 function stable_group(cmp, lst) do
@@ -590,59 +595,61 @@ function drop(_n, _h) do
   while(true) do
     var h = _h;
     var n = _n;
-    if (n < 0) do
+    if (n < 0) then do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Ext_list_test.drop"
           ];
     end
-    if (n == 0) do
+     end 
+    if (n == 0) then do
       return h;
     end else do
-      if (h == --[ [] ]--0) do
+      if (h == --[ [] ]--0) then do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Ext_list_test.drop"
             ];
       end
+       end 
       _h = List.tl(h);
       _n = n - 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
 function find_first_not(p, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var a = param[0];
-      if (Curry._1(p, a)) do
+      if (Curry._1(p, a)) then do
         _param = param[1];
         continue ;
       end else do
         return Caml_option.some(a);
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
 function for_all_opt(p, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var v = Curry._1(p, param[0]);
-      if (v ~= undefined) do
+      if (v ~= undefined) then do
         return v;
       end else do
         _param = param[1];
         continue ;
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
@@ -658,7 +665,7 @@ function rev_map_acc(acc, f, l) do
   while(true) do
     var param = _param;
     var accu = _accu;
-    if (param) do
+    if (param) then do
       _param = param[1];
       _accu = --[ :: ]--[
         Curry._1(f, param[0]),
@@ -667,81 +674,81 @@ function rev_map_acc(acc, f, l) do
       continue ;
     end else do
       return accu;
-    end
+    end end 
   end;
 end
 
 function map_acc(acc, f, l) do
-  if (l) do
+  if (l) then do
     return --[ :: ]--[
             Curry._1(f, l[0]),
             map_acc(acc, f, l[1])
           ];
   end else do
     return acc;
-  end
+  end end 
 end
 
 function rev_iter(f, xs) do
-  if (xs) do
+  if (xs) then do
     rev_iter(f, xs[1]);
     return Curry._1(f, xs[0]);
   end else do
     return --[ () ]--0;
-  end
+  end end 
 end
 
 function for_all2_no_exn(p, _l1, _l2) do
   while(true) do
     var l2 = _l2;
     var l1 = _l1;
-    if (l1) do
-      if (l2 and Curry._2(p, l1[0], l2[0])) do
+    if (l1) then do
+      if (l2 and Curry._2(p, l1[0], l2[0])) then do
         _l2 = l2[1];
         _l1 = l1[1];
         continue ;
       end else do
         return false;
-      end
-    end else if (l2) do
+      end end 
+    end else if (l2) then do
       return false;
     end else do
       return true;
-    end
+    end end  end 
   end;
 end
 
 function find_no_exn(p, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var x = param[0];
-      if (Curry._1(p, x)) do
+      if (Curry._1(p, x)) then do
         return Caml_option.some(x);
       end else do
         _param = param[1];
         continue ;
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
 function find_opt(p, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var v = Curry._1(p, param[0]);
-      if (v ~= undefined) do
+      if (v ~= undefined) then do
         return v;
       end else do
         _param = param[1];
         continue ;
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
@@ -753,7 +760,7 @@ function split_map(f, xs) do
     var xs$1 = _xs;
     var cs = _cs;
     var bs = _bs;
-    if (xs$1) do
+    if (xs$1) then do
       var match = Curry._1(f, xs$1[0]);
       _xs = xs$1[1];
       _cs = --[ :: ]--[
@@ -770,13 +777,13 @@ function split_map(f, xs) do
               List.rev(bs),
               List.rev(cs)
             ];
-    end
+    end end 
   end;
 end
 
 function reduce_from_right(fn, lst) do
   var match = List.rev(lst);
-  if (match) do
+  if (match) then do
     return List.fold_left((function (x, y) do
                   return Curry._2(fn, y, x);
                 end), match[0], match[1]);
@@ -785,18 +792,18 @@ function reduce_from_right(fn, lst) do
           Caml_builtin_exceptions.invalid_argument,
           "Ext_list_test.reduce"
         ];
-  end
+  end end 
 end
 
 function reduce_from_left(fn, lst) do
-  if (lst) do
+  if (lst) then do
     return List.fold_left(fn, lst[0], lst[1]);
   end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_list_test.reduce_from_left"
         ];
-  end
+  end end 
 end
 
 function create_ref_empty(param) do
@@ -807,23 +814,23 @@ end
 
 function ref_top(x) do
   var match = x.contents;
-  if (match) do
+  if (match) then do
     return match[0];
   end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_list_test.ref_top"
         ];
-  end
+  end end 
 end
 
 function ref_empty(x) do
   var match = x.contents;
-  if (match) do
+  if (match) then do
     return false;
   end else do
     return true;
-  end
+  end end 
 end
 
 function ref_push(x, refs) do
@@ -836,7 +843,7 @@ end
 
 function ref_pop(refs) do
   var match = refs.contents;
-  if (match) do
+  if (match) then do
     refs.contents = match[1];
     return match[0];
   end else do
@@ -844,7 +851,7 @@ function ref_pop(refs) do
           Caml_builtin_exceptions.invalid_argument,
           "Ext_list_test.ref_pop"
         ];
-  end
+  end end 
 end
 
 function rev_except_last(xs) do
@@ -853,10 +860,10 @@ function rev_except_last(xs) do
   while(true) do
     var xs$1 = _xs;
     var acc = _acc;
-    if (xs$1) do
+    if (xs$1) then do
       var xs$2 = xs$1[1];
       var x = xs$1[0];
-      if (xs$2) do
+      if (xs$2) then do
         _xs = xs$2;
         _acc = --[ :: ]--[
           x,
@@ -868,13 +875,13 @@ function rev_except_last(xs) do
                 acc,
                 x
               ];
-      end
+      end end 
     end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Ext_list_test.rev_except_last"
           ];
-    end
+    end end 
   end;
 end
 
@@ -887,35 +894,35 @@ end
 function last(_xs) do
   while(true) do
     var xs = _xs;
-    if (xs) do
+    if (xs) then do
       var tl = xs[1];
-      if (tl) do
+      if (tl) then do
         _xs = tl;
         continue ;
       end else do
         return xs[0];
-      end
+      end end 
     end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Ext_list_test.last"
           ];
-    end
+    end end 
   end;
 end
 
 function assoc_by_string(def, k, _lst) do
   while(true) do
     var lst = _lst;
-    if (lst) do
+    if (lst) then do
       var match = lst[0];
-      if (match[0] == k) do
+      if (match[0] == k) then do
         return match[1];
       end else do
         _lst = lst[1];
         continue ;
-      end
-    end else if (def ~= undefined) do
+      end end 
+    end else if (def ~= undefined) then do
       return Caml_option.valFromOption(def);
     end else do
       throw [
@@ -926,22 +933,22 @@ function assoc_by_string(def, k, _lst) do
               14
             ]
           ];
-    end
+    end end  end 
   end;
 end
 
 function assoc_by_int(def, k, _lst) do
   while(true) do
     var lst = _lst;
-    if (lst) do
+    if (lst) then do
       var match = lst[0];
-      if (match[0] == k) do
+      if (match[0] == k) then do
         return match[1];
       end else do
         _lst = lst[1];
         continue ;
-      end
-    end else if (def ~= undefined) do
+      end end 
+    end else if (def ~= undefined) then do
       return Caml_option.valFromOption(def);
     end else do
       throw [
@@ -952,7 +959,7 @@ function assoc_by_int(def, k, _lst) do
               14
             ]
           ];
-    end
+    end end  end 
   end;
 end
 

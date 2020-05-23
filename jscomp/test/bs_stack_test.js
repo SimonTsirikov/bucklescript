@@ -62,18 +62,18 @@ function inOrder2(v) do
   end;
   var q = Belt_MutableQueue.make(--[ () ]--0);
   while(todo) do
-    if (cursor ~= undefined) do
+    if (cursor ~= undefined) then do
       var v$1 = cursor;
       Belt_MutableStack.push(s, v$1);
       cursor = v$1.left;
-    end else if (s.root ~= null) do
+    end else if (s.root ~= null) then do
       cursor = Belt_MutableStack.popUndefined(s);
       var current = cursor;
       Belt_MutableQueue.add(q, current.value);
       cursor = current.right;
     end else do
       todo = false;
-    end
+    end end  end 
   end;
   return --[ () ]--0;
 end

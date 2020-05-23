@@ -4,27 +4,27 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
 function f(x) do
-  if (x) do
+  if (x) then do
     return true;
   end else do
     return false;
-  end
+  end end 
 end
 
 function f2(x) do
-  if (x) do
+  if (x) then do
     return true;
   end else do
     return false;
-  end
+  end end 
 end
 
 function f4(x) do
-  if (x) do
+  if (x) then do
     return true;
   end else do
     return false;
-  end
+  end end 
 end
 
 var u = 1;
@@ -71,11 +71,11 @@ var suites = --[ :: ]--[
 ];
 
 function ff(u) do
-  if (u == true) do
+  if (u == true) then do
     return 1;
   end else do
     return 2;
-  end
+  end end 
 end
 
 function fi(x, y) do

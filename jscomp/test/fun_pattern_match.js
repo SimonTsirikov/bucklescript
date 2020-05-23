@@ -16,7 +16,7 @@ function f3(param) do
   var lhs = param.rank;
   return (function (param) do
       var rhs = param.rank;
-      if (typeof lhs == "number") do
+      if (typeof lhs == "number") then do
         throw [
               Caml_builtin_exceptions.assert_failure,
               --[ tuple ]--[
@@ -26,7 +26,8 @@ function f3(param) do
               ]
             ];
       end
-      if (typeof rhs == "number") do
+       end 
+      if (typeof rhs == "number") then do
         throw [
               Caml_builtin_exceptions.assert_failure,
               --[ tuple ]--[
@@ -36,6 +37,7 @@ function f3(param) do
               ]
             ];
       end
+       end 
       return Caml_primitive.caml_int_compare(lhs[0], rhs[0]);
     end);
 end
@@ -44,7 +46,7 @@ function f4(param) do
   var lhs = param.rank;
   return (function (param) do
       var rhs = param.rank;
-      if (typeof lhs == "number") do
+      if (typeof lhs == "number") then do
         throw [
               Caml_builtin_exceptions.assert_failure,
               --[ tuple ]--[
@@ -54,7 +56,8 @@ function f4(param) do
               ]
             ];
       end
-      if (typeof rhs == "number") do
+       end 
+      if (typeof rhs == "number") then do
         throw [
               Caml_builtin_exceptions.assert_failure,
               --[ tuple ]--[
@@ -64,6 +67,7 @@ function f4(param) do
               ]
             ];
       end
+       end 
       return Caml_primitive.caml_int_compare(lhs[0], rhs[0]);
     end);
 end

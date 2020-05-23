@@ -18,7 +18,7 @@ function parse(token) do
     last: --[ Nil ]--0
   end;
   var token$1 = function (param) do
-    if (look_ahead.length == 0) do
+    if (look_ahead.length == 0) then do
       try do
         return Curry._1(token, --[ () ]--0);
       end
@@ -27,35 +27,35 @@ function parse(token) do
       end
     end else do
       return Queue.pop(look_ahead);
-    end
+    end end 
   end;
   var parse_atom = function (param) do
     var e = token$1(--[ () ]--0);
     switch (e.tag | 0) do
       case --[ Kwd ]--0 :
-          if (e[0] == "(") do
+          if (e[0] == "(") then do
             var v = parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0)));
             var match = token$1(--[ () ]--0);
-            if (match.tag) do
+            if (match.tag) then do
               throw [
                     Parse_error,
                     "Unbalanced parens"
                   ];
-            end else if (match[0] == ")") do
+            end else if (match[0] == ")") then do
               return v;
             end else do
               throw [
                     Parse_error,
                     "Unbalanced parens"
                   ];
-            end
+            end end  end 
           end else do
             Queue.push(e, look_ahead);
             throw [
                   Parse_error,
                   "unexpected token"
                 ];
-          end
+          end end 
       case --[ Int ]--2 :
           return e[0];
       default:
@@ -68,7 +68,7 @@ function parse(token) do
   end;
   var parse_term_aux = function (e1) do
     var e = token$1(--[ () ]--0);
-    if (e.tag) do
+    if (e.tag) then do
       Queue.push(e, look_ahead);
       return e1;
     end else do
@@ -81,11 +81,11 @@ function parse(token) do
           Queue.push(e, look_ahead);
           return e1;
       end
-    end
+    end end 
   end;
   var parse_expr_aux = function (e1) do
     var e = token$1(--[ () ]--0);
-    if (e.tag) do
+    if (e.tag) then do
       Queue.push(e, look_ahead);
       return e1;
     end else do
@@ -98,7 +98,7 @@ function parse(token) do
           Queue.push(e, look_ahead);
           return e1;
       end
-    end
+    end end 
   end;
   var r = parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0)));
   return --[ tuple ]--[
@@ -146,7 +146,7 @@ function l_parse(token) do
     last: --[ Nil ]--0
   end;
   var token$1 = function (param) do
-    if (look_ahead.length == 0) do
+    if (look_ahead.length == 0) then do
       try do
         return Curry._1(token, --[ () ]--0);
       end
@@ -155,13 +155,13 @@ function l_parse(token) do
       end
     end else do
       return Queue.pop(look_ahead);
-    end
+    end end 
   end;
   var parse_f_aux = function (_a) do
     while(true) do
       var a = _a;
       var t = token$1(--[ () ]--0);
-      if (t.tag) do
+      if (t.tag) then do
         Queue.push(t, look_ahead);
         return a;
       end else do
@@ -176,35 +176,35 @@ function l_parse(token) do
             Queue.push(t, look_ahead);
             return a;
         end
-      end
+      end end 
     end;
   end;
   var parse_f = function (param) do
     var t = token$1(--[ () ]--0);
     switch (t.tag | 0) do
       case --[ Kwd ]--0 :
-          if (t[0] == "(") do
+          if (t[0] == "(") then do
             var v = parse_t_aux(parse_f_aux(parse_f(--[ () ]--0)));
             var t$1 = token$1(--[ () ]--0);
-            if (t$1.tag) do
+            if (t$1.tag) then do
               throw [
                     Parse_error,
                     "Unbalanced )"
                   ];
-            end else if (t$1[0] == ")") do
+            end else if (t$1[0] == ")") then do
               return v;
             end else do
               throw [
                     Parse_error,
                     "Unbalanced )"
                   ];
-            end
+            end end  end 
           end else do
             throw [
                   Parse_error,
                   "Unexpected token"
                 ];
-          end
+          end end 
       case --[ Int ]--2 :
           return t[0];
       default:
@@ -218,7 +218,7 @@ function l_parse(token) do
     while(true) do
       var a = _a;
       var t = token$1(--[ () ]--0);
-      if (t.tag) do
+      if (t.tag) then do
         Queue.push(t, look_ahead);
         return a;
       end else do
@@ -233,7 +233,7 @@ function l_parse(token) do
             Queue.push(t, look_ahead);
             return a;
         end
-      end
+      end end 
     end;
   end;
   var r = parse_t_aux(parse_f_aux(parse_f(--[ () ]--0)));

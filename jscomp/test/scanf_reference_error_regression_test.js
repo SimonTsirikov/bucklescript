@@ -30,7 +30,7 @@ function scan_rest(ib, accu) do
                     ]),
                   "%[]]"
                 ]), (function (param) do
-                if (param == "]") do
+                if (param == "]") then do
                   return accu;
                 end else do
                   var ib$1 = ib;
@@ -83,7 +83,7 @@ function scan_rest(ib, accu) do
                                               end
                                             end));
                               end));
-                end
+                end end 
               end));
 end
 

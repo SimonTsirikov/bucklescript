@@ -71,14 +71,14 @@ function rev_split_by_char(c, s) do
                   ]);
     end
     catch (exn)do
-      if (exn == Caml_builtin_exceptions.not_found) do
+      if (exn == Caml_builtin_exceptions.not_found) then do
         return --[ :: ]--[
                 $$String.sub(s, i, #s - i | 0),
                 l
               ];
       end else do
         throw exn;
-      end
+      end end 
     end
   end;
   return loop(0, --[ [] ]--0);
@@ -86,26 +86,26 @@ end
 
 function xsplit(delim, s) do
   var len = #s;
-  if (len ~= 0) do
+  if (len ~= 0) then do
     var _l = --[ [] ]--0;
     var _i = len;
     while(true) do
       var i = _i;
       var l = _l;
-      if (i ~= 0) do
+      if (i ~= 0) then do
         var i$prime;
         try do
           i$prime = $$String.rindex_from(s, i - 1 | 0, delim);
         end
         catch (exn)do
-          if (exn == Caml_builtin_exceptions.not_found) do
+          if (exn == Caml_builtin_exceptions.not_found) then do
             return --[ :: ]--[
                     $$String.sub(s, 0, i),
                     l
                   ];
           end else do
             throw exn;
-          end
+          end end 
         end
         var l_000 = $$String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
         var l$1 = --[ :: ]--[
@@ -121,11 +121,11 @@ function xsplit(delim, s) do
         continue ;
       end else do
         return l;
-      end
+      end end 
     end;
   end else do
     return --[ [] ]--0;
-  end
+  end end 
 end
 
 function string_of_chars(x) do

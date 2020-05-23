@@ -25,7 +25,7 @@ function err(str, f) do
 end
 
 function ierr(b, str, f) do
-  if (b) do
+  if (b) then do
     return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
                         --[ String ]--Block.__(2, [
                             --[ No_padding ]--0,
@@ -47,7 +47,7 @@ function ierr(b, str, f) do
                         ]),
                       "%s "
                     ], f))(str);
-  end
+  end end 
 end
 
 function warn(str, f) do
@@ -73,7 +73,7 @@ function warn(str, f) do
 end
 
 function iwarn(b, str, f) do
-  if (b) do
+  if (b) then do
     return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "WARN: ",
@@ -101,7 +101,7 @@ function iwarn(b, str, f) do
                         ]),
                       "WARN: %s "
                     ], f))(str);
-  end
+  end end 
 end
 
 function info(str, f) do

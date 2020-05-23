@@ -31,38 +31,38 @@ function eq(loc, x, y) do
 end
 
 function f1(x) do
-  if (x ~= null) do
+  if (x ~= null) then do
     return x + 1 | 0;
   end else do
     return 3;
-  end
+  end end 
 end
 
 function f2(x) do
-  if (x ~= null) do
+  if (x ~= null) then do
     return x + 1 | 0;
   end else do
     return 3;
-  end
+  end end 
 end
 
 function f5(h, x) do
   var u = Curry._1(h, 32);
-  if (u ~= null) do
+  if (u ~= null) then do
     return u + 1 | 0;
   end else do
     return 3;
-  end
+  end end 
 end
 
 function f4(h, x) do
   var u = Curry._1(h, 32);
   var v = 32 + x | 0;
-  if (u ~= null) do
+  if (u ~= null) then do
     return u + 1 | 0;
   end else do
     return 1 + v | 0;
-  end
+  end end 
 end
 
 function f6(x, y) do
@@ -74,25 +74,25 @@ function f7(x) do
 end
 
 function f8(x) do
-  if (x ~= null) do
-    if (x ~= null) do
+  if (x ~= null) then do
+    if (x ~= null) then do
       return 0;
     end else do
       return 1;
-    end
+    end end 
   end else do
     return 2;
-  end
+  end end 
 end
 
 var u = f8(undefined);
 
 function f9(x) do
-  if (x == null) do
+  if (x == null) then do
     return ;
   end else do
     return Caml_option.some(x);
-  end
+  end end 
 end
 
 function f10(x) do
@@ -116,38 +116,38 @@ var Test_null = do
 end;
 
 function f1$1(x) do
-  if (x ~= undefined) do
+  if (x ~= undefined) then do
     return x + 1 | 0;
   end else do
     return 3;
-  end
+  end end 
 end
 
 function f2$1(x) do
-  if (x ~= undefined) do
+  if (x ~= undefined) then do
     return x + 1 | 0;
   end else do
     return 3;
-  end
+  end end 
 end
 
 function f5$1(h, x) do
   var u = Curry._1(h, 32);
-  if (u ~= undefined) do
+  if (u ~= undefined) then do
     return u + 1 | 0;
   end else do
     return 3;
-  end
+  end end 
 end
 
 function f4$1(h, x) do
   var u = Curry._1(h, 32);
   var v = 32 + x | 0;
-  if (u ~= undefined) do
+  if (u ~= undefined) then do
     return u + 1 | 0;
   end else do
     return 1 + v | 0;
-  end
+  end end 
 end
 
 function f6$1(x, y) do
@@ -159,25 +159,25 @@ function f7$1(x) do
 end
 
 function f8$1(x) do
-  if (x ~= undefined) do
-    if (x ~= undefined) do
+  if (x ~= undefined) then do
+    if (x ~= undefined) then do
       return 0;
     end else do
       return 1;
-    end
+    end end 
   end else do
     return 2;
-  end
+  end end 
 end
 
 var u$1 = f8$1(undefined);
 
 function f9$1(x) do
-  if (x == undefined) do
+  if (x == undefined) then do
     return ;
   end else do
     return Caml_option.some(x);
-  end
+  end end 
 end
 
 function f10$1(x) do
@@ -201,38 +201,38 @@ var Test_def = do
 end;
 
 function f1$2(x) do
-  if (x == null) do
+  if (x == null) then do
     return 3;
   end else do
     return x + 1 | 0;
-  end
+  end end 
 end
 
 function f2$2(x) do
-  if (x == null) do
+  if (x == null) then do
     return 3;
   end else do
     return x + 1 | 0;
-  end
+  end end 
 end
 
 function f5$2(h, x) do
   var u = Curry._1(h, 32);
-  if (u == null) do
+  if (u == null) then do
     return 3;
   end else do
     return u + 1 | 0;
-  end
+  end end 
 end
 
 function f4$2(h, x) do
   var u = Curry._1(h, 32);
   var v = 32 + x | 0;
-  if (u == null) do
+  if (u == null) then do
     return 1 + v | 0;
   end else do
     return u + 1 | 0;
-  end
+  end end 
 end
 
 function f6$2(x, y) do
@@ -244,23 +244,23 @@ function f7$2(x) do
 end
 
 function f8$2(x) do
-  if (x == null) do
+  if (x == null) then do
     return 2;
-  end else if (x == null) do
+  end else if (x == null) then do
     return 1;
   end else do
     return 0;
-  end
+  end end  end 
 end
 
 var u$2 = f8$2(undefined);
 
 function f9$2(x) do
-  if (x == null) do
+  if (x == null) then do
     return ;
   end else do
     return Caml_option.some(x);
-  end
+  end end 
 end
 
 function f10$2(x) do

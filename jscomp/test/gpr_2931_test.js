@@ -17,9 +17,10 @@ end
 function fake_c2(a_type, b_type) do
   switch (a_type) do
     case "number" :
-        if (b_type == "number") do
+        if (b_type == "number") then do
           return 33;
         end
+         end 
         break;
     case "string" :
         return 1;
@@ -28,13 +29,13 @@ function fake_c2(a_type, b_type) do
     default:
       
   end
-  if (b_type == "undefined") do
+  if (b_type == "undefined") then do
     return 1;
-  end else if (a_type == "number") do
+  end else if (a_type == "number") then do
     return 3;
   end else do
     return 0;
-  end
+  end end  end 
 end
 
 eq("File \"gpr_2931_test.ml\", line 19, characters 6-13", 3, fake_c2("number", "xx"));

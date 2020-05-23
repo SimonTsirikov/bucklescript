@@ -3,14 +3,14 @@
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function tst01(s) do
-  if (s == "") do
+  if (s == "") then do
     return 0;
   end else do
     return 1;
-  end
+  end end 
 end
 
-if (tst01("") ~= 0) do
+if (tst01("") ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -20,8 +20,9 @@ if (tst01("") ~= 0) do
         ]
       ];
 end
+ end 
 
-if (tst01("\0\0\0\x03") ~= 1) do
+if (tst01("\0\0\0\x03") ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -31,8 +32,9 @@ if (tst01("\0\0\0\x03") ~= 1) do
         ]
       ];
 end
+ end 
 
-if (tst01("\0\0\0\0\0\0\0\x07") ~= 1) do
+if (tst01("\0\0\0\0\0\0\0\x07") ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -42,11 +44,12 @@ if (tst01("\0\0\0\0\0\0\0\x07") ~= 1) do
         ]
       ];
 end
+ end 
 
 function tst02(s) do
   var len = #s;
-  if (s == "") do
-    if (len < 0) do
+  if (s == "") then do
+    if (len < 0) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -57,9 +60,9 @@ function tst02(s) do
           ];
     end else do
       return 1;
-    end
+    end end 
   end else do
-    if (len == 0) do
+    if (len == 0) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -69,15 +72,16 @@ function tst02(s) do
             ]
           ];
     end
-    if (s == "A") do
+     end 
+    if (s == "A") then do
       return 2;
     end else do
       return 3;
-    end
-  end
+    end end 
+  end end 
 end
 
-if (tst02("") ~= 1) do
+if (tst02("") ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -87,8 +91,9 @@ if (tst02("") ~= 1) do
         ]
       ];
 end
+ end 
 
-if (tst02("A") ~= 2) do
+if (tst02("A") ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -98,8 +103,9 @@ if (tst02("A") ~= 2) do
         ]
       ];
 end
+ end 
 
-if (tst02("B") ~= 3) do
+if (tst02("B") ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -109,8 +115,9 @@ if (tst02("B") ~= 3) do
         ]
       ];
 end
+ end 
 
-if (tst02("\0\0\0\0\0\0\0\x07") ~= 3) do
+if (tst02("\0\0\0\0\0\0\0\x07") ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -120,8 +127,9 @@ if (tst02("\0\0\0\0\0\0\0\x07") ~= 3) do
         ]
       ];
 end
+ end 
 
-if (tst02("\0\0\0\x03") ~= 3) do
+if (tst02("\0\0\0\x03") ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -131,6 +139,7 @@ if (tst02("\0\0\0\x03") ~= 3) do
         ]
       ];
 end
+ end 
 
 function tst03(s) do
   switch (s) do
@@ -187,7 +196,7 @@ function tst03(s) do
   end
 end
 
-if (tst03("get_const") ~= 0) do
+if (tst03("get_const") ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -197,8 +206,9 @@ if (tst03("get_const") ~= 0) do
         ]
       ];
 end
+ end 
 
-if (tst03("set_congt") ~= -1) do
+if (tst03("set_congt") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -208,8 +218,9 @@ if (tst03("set_congt") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("get_var") ~= 1) do
+if (tst03("get_var") ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -219,8 +230,9 @@ if (tst03("get_var") ~= 1) do
         ]
       ];
 end
+ end 
 
-if (tst03("gat_ver") ~= -1) do
+if (tst03("gat_ver") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -230,8 +242,9 @@ if (tst03("gat_ver") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("get_env") ~= 2) do
+if (tst03("get_env") ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -241,8 +254,9 @@ if (tst03("get_env") ~= 2) do
         ]
       ];
 end
+ end 
 
-if (tst03("get_env") ~= 2) do
+if (tst03("get_env") ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -252,8 +266,9 @@ if (tst03("get_env") ~= 2) do
         ]
       ];
 end
+ end 
 
-if (tst03("get_meth") ~= 3) do
+if (tst03("get_meth") ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -263,8 +278,9 @@ if (tst03("get_meth") ~= 3) do
         ]
       ];
 end
+ end 
 
-if (tst03("met_geth") ~= -1) do
+if (tst03("met_geth") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -274,8 +290,9 @@ if (tst03("met_geth") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("set_var") ~= 4) do
+if (tst03("set_var") ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -285,8 +302,9 @@ if (tst03("set_var") ~= 4) do
         ]
       ];
 end
+ end 
 
-if (tst03("sev_tar") ~= -1) do
+if (tst03("sev_tar") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -296,8 +314,9 @@ if (tst03("sev_tar") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_const") ~= 5) do
+if (tst03("app_const") ~= 5) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -307,8 +326,9 @@ if (tst03("app_const") ~= 5) do
         ]
       ];
 end
+ end 
 
-if (tst03("ppa_const") ~= -1) do
+if (tst03("ppa_const") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -318,8 +338,9 @@ if (tst03("ppa_const") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_var") ~= 6) do
+if (tst03("app_var") ~= 6) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -329,8 +350,9 @@ if (tst03("app_var") ~= 6) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_var") ~= 6) do
+if (tst03("app_var") ~= 6) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -340,8 +362,9 @@ if (tst03("app_var") ~= 6) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_env") ~= 7) do
+if (tst03("app_env") ~= 7) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -351,8 +374,9 @@ if (tst03("app_env") ~= 7) do
         ]
       ];
 end
+ end 
 
-if (tst03("epp_anv") ~= -1) do
+if (tst03("epp_anv") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -362,8 +386,9 @@ if (tst03("epp_anv") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_meth") ~= 8) do
+if (tst03("app_meth") ~= 8) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -373,8 +398,9 @@ if (tst03("app_meth") ~= 8) do
         ]
       ];
 end
+ end 
 
-if (tst03("atp_meph") ~= -1) do
+if (tst03("atp_meph") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -384,8 +410,9 @@ if (tst03("atp_meph") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_const_const") ~= 9) do
+if (tst03("app_const_const") ~= 9) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -395,8 +422,9 @@ if (tst03("app_const_const") ~= 9) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_const_const") ~= 9) do
+if (tst03("app_const_const") ~= 9) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -406,8 +434,9 @@ if (tst03("app_const_const") ~= 9) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_const_var") ~= 10) do
+if (tst03("app_const_var") ~= 10) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -417,8 +446,9 @@ if (tst03("app_const_var") ~= 10) do
         ]
       ];
 end
+ end 
 
-if (tst03("atp_consp_var") ~= -1) do
+if (tst03("atp_consp_var") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -428,8 +458,9 @@ if (tst03("atp_consp_var") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_const_env") ~= 11) do
+if (tst03("app_const_env") ~= 11) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -439,8 +470,9 @@ if (tst03("app_const_env") ~= 11) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_constne_v") ~= -1) do
+if (tst03("app_constne_v") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -450,8 +482,9 @@ if (tst03("app_constne_v") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_const_meth") ~= 12) do
+if (tst03("app_const_meth") ~= 12) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -461,8 +494,9 @@ if (tst03("app_const_meth") ~= 12) do
         ]
       ];
 end
+ end 
 
-if (tst03("spp_conat_meth") ~= -1) do
+if (tst03("spp_conat_meth") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -472,8 +506,9 @@ if (tst03("spp_conat_meth") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_var_const") ~= 13) do
+if (tst03("app_var_const") ~= 13) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -483,8 +518,9 @@ if (tst03("app_var_const") ~= 13) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_va_rconst") ~= -1) do
+if (tst03("app_va_rconst") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -494,8 +530,9 @@ if (tst03("app_va_rconst") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_env_const") ~= 14) do
+if (tst03("app_env_const") ~= 14) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -505,8 +542,9 @@ if (tst03("app_env_const") ~= 14) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_env_const") ~= 14) do
+if (tst03("app_env_const") ~= 14) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -516,8 +554,9 @@ if (tst03("app_env_const") ~= 14) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_meth_const") ~= 15) do
+if (tst03("app_meth_const") ~= 15) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -527,8 +566,9 @@ if (tst03("app_meth_const") ~= 15) do
         ]
       ];
 end
+ end 
 
-if (tst03("app_teth_consm") ~= -1) do
+if (tst03("app_teth_consm") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -538,8 +578,9 @@ if (tst03("app_teth_consm") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("meth_app_const") ~= 16) do
+if (tst03("meth_app_const") ~= 16) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -549,8 +590,9 @@ if (tst03("meth_app_const") ~= 16) do
         ]
       ];
 end
+ end 
 
-if (tst03("math_epp_const") ~= -1) do
+if (tst03("math_epp_const") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -560,8 +602,9 @@ if (tst03("math_epp_const") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("meth_app_var") ~= 17) do
+if (tst03("meth_app_var") ~= 17) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -571,8 +614,9 @@ if (tst03("meth_app_var") ~= 17) do
         ]
       ];
 end
+ end 
 
-if (tst03("meth_app_var") ~= 17) do
+if (tst03("meth_app_var") ~= 17) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -582,8 +626,9 @@ if (tst03("meth_app_var") ~= 17) do
         ]
       ];
 end
+ end 
 
-if (tst03("meth_app_env") ~= 18) do
+if (tst03("meth_app_env") ~= 18) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -593,8 +638,9 @@ if (tst03("meth_app_env") ~= 18) do
         ]
       ];
 end
+ end 
 
-if (tst03("eeth_app_mnv") ~= -1) do
+if (tst03("eeth_app_mnv") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -604,8 +650,9 @@ if (tst03("eeth_app_mnv") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("meth_app_meth") ~= 19) do
+if (tst03("meth_app_meth") ~= 19) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -615,8 +662,9 @@ if (tst03("meth_app_meth") ~= 19) do
         ]
       ];
 end
+ end 
 
-if (tst03("meth_apt_meph") ~= -1) do
+if (tst03("meth_apt_meph") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -626,8 +674,9 @@ if (tst03("meth_apt_meph") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("send_const") ~= 20) do
+if (tst03("send_const") ~= 20) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -637,8 +686,9 @@ if (tst03("send_const") ~= 20) do
         ]
       ];
 end
+ end 
 
-if (tst03("tend_conss") ~= -1) do
+if (tst03("tend_conss") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -648,8 +698,9 @@ if (tst03("tend_conss") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("send_var") ~= 21) do
+if (tst03("send_var") ~= 21) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -659,8 +710,9 @@ if (tst03("send_var") ~= 21) do
         ]
       ];
 end
+ end 
 
-if (tst03("serd_van") ~= -1) do
+if (tst03("serd_van") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -670,8 +722,9 @@ if (tst03("serd_van") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("send_env") ~= 22) do
+if (tst03("send_env") ~= 22) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -681,8 +734,9 @@ if (tst03("send_env") ~= 22) do
         ]
       ];
 end
+ end 
 
-if (tst03("sen_denv") ~= -1) do
+if (tst03("sen_denv") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -692,8 +746,9 @@ if (tst03("sen_denv") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst03("send_meth") ~= 23) do
+if (tst03("send_meth") ~= 23) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -703,8 +758,9 @@ if (tst03("send_meth") ~= 23) do
         ]
       ];
 end
+ end 
 
-if (tst03("tend_mesh") ~= -1) do
+if (tst03("tend_mesh") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -714,6 +770,7 @@ if (tst03("tend_mesh") ~= -1) do
         ]
       ];
 end
+ end 
 
 function tst04(s) do
   switch (s) do
@@ -746,7 +803,7 @@ function tst04(s) do
   end
 end
 
-if (tst04("AAAAAAAA") ~= 0) do
+if (tst04("AAAAAAAA") ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -756,8 +813,9 @@ if (tst04("AAAAAAAA") ~= 0) do
         ]
       ];
 end
+ end 
 
-if (tst04("AAAAAAAAAAAAAAAA") ~= 1) do
+if (tst04("AAAAAAAAAAAAAAAA") ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -767,8 +825,9 @@ if (tst04("AAAAAAAAAAAAAAAA") ~= 1) do
         ]
       ];
 end
+ end 
 
-if (tst04("AAAAAAAAAAAAAAAAAAAAAAAA") ~= 2) do
+if (tst04("AAAAAAAAAAAAAAAAAAAAAAAA") ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -778,8 +837,9 @@ if (tst04("AAAAAAAAAAAAAAAAAAAAAAAA") ~= 2) do
         ]
       ];
 end
+ end 
 
-if (tst04("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA") ~= 3) do
+if (tst04("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA") ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -789,8 +849,9 @@ if (tst04("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA") ~= 3) do
         ]
       ];
 end
+ end 
 
-if (tst04("BBBBBBBB") ~= 4) do
+if (tst04("BBBBBBBB") ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -800,8 +861,9 @@ if (tst04("BBBBBBBB") ~= 4) do
         ]
       ];
 end
+ end 
 
-if (tst04("BBBBBBBBBBBBBBBB") ~= 5) do
+if (tst04("BBBBBBBBBBBBBBBB") ~= 5) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -811,8 +873,9 @@ if (tst04("BBBBBBBBBBBBBBBB") ~= 5) do
         ]
       ];
 end
+ end 
 
-if (tst04("BBBBBBBBBBBBBBBBBBBBBBBB") ~= 6) do
+if (tst04("BBBBBBBBBBBBBBBBBBBBBBBB") ~= 6) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -822,8 +885,9 @@ if (tst04("BBBBBBBBBBBBBBBBBBBBBBBB") ~= 6) do
         ]
       ];
 end
+ end 
 
-if (tst04("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB") ~= 7) do
+if (tst04("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB") ~= 7) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -833,8 +897,9 @@ if (tst04("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB") ~= 7) do
         ]
       ];
 end
+ end 
 
-if (tst04("CCCCCCCC") ~= 8) do
+if (tst04("CCCCCCCC") ~= 8) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -844,8 +909,9 @@ if (tst04("CCCCCCCC") ~= 8) do
         ]
       ];
 end
+ end 
 
-if (tst04("CCCCCCCCCCCCCCCC") ~= 9) do
+if (tst04("CCCCCCCCCCCCCCCC") ~= 9) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -855,8 +921,9 @@ if (tst04("CCCCCCCCCCCCCCCC") ~= 9) do
         ]
       ];
 end
+ end 
 
-if (tst04("CCCCCCCCCCCCCCCCCCCCCCCC") ~= 10) do
+if (tst04("CCCCCCCCCCCCCCCCCCCCCCCC") ~= 10) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -866,8 +933,9 @@ if (tst04("CCCCCCCCCCCCCCCCCCCCCCCC") ~= 10) do
         ]
       ];
 end
+ end 
 
-if (tst04("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC") ~= 11) do
+if (tst04("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC") ~= 11) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -877,8 +945,9 @@ if (tst04("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC") ~= 11) do
         ]
       ];
 end
+ end 
 
-if (tst04("") ~= -1) do
+if (tst04("") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -888,8 +957,9 @@ if (tst04("") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst04("DDD") ~= -1) do
+if (tst04("DDD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -899,8 +969,9 @@ if (tst04("DDD") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst04("DDDDDDD") ~= -1) do
+if (tst04("DDDDDDD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -910,8 +981,9 @@ if (tst04("DDDDDDD") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst04("AAADDDD") ~= -1) do
+if (tst04("AAADDDD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -921,8 +993,9 @@ if (tst04("AAADDDD") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst04("AAAAAAADDDDDDDD") ~= -1) do
+if (tst04("AAAAAAADDDDDDDD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -932,8 +1005,9 @@ if (tst04("AAAAAAADDDDDDDD") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst04("AAAAAAADDDD") ~= -1) do
+if (tst04("AAAAAAADDDD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -943,8 +1017,9 @@ if (tst04("AAAAAAADDDD") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst04("AAAAAAAAAAAAAAADDDD") ~= -1) do
+if (tst04("AAAAAAAAAAAAAAADDDD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -954,6 +1029,7 @@ if (tst04("AAAAAAAAAAAAAAADDDD") ~= -1) do
         ]
       ];
 end
+ end 
 
 function tst05(s) do
   switch (s) do
@@ -988,7 +1064,7 @@ function tst05(s) do
   end
 end
 
-if (tst05("AAA") ~= 0) do
+if (tst05("AAA") ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -998,8 +1074,9 @@ if (tst05("AAA") ~= 0) do
         ]
       ];
 end
+ end 
 
-if (tst05("AAAA") ~= 1) do
+if (tst05("AAAA") ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1009,8 +1086,9 @@ if (tst05("AAAA") ~= 1) do
         ]
       ];
 end
+ end 
 
-if (tst05("AAAAA") ~= 2) do
+if (tst05("AAAAA") ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1020,8 +1098,9 @@ if (tst05("AAAAA") ~= 2) do
         ]
       ];
 end
+ end 
 
-if (tst05("AAAAAA") ~= 3) do
+if (tst05("AAAAAA") ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1031,8 +1110,9 @@ if (tst05("AAAAAA") ~= 3) do
         ]
       ];
 end
+ end 
 
-if (tst05("AAAAAAA") ~= 4) do
+if (tst05("AAAAAAA") ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1042,8 +1122,9 @@ if (tst05("AAAAAAA") ~= 4) do
         ]
       ];
 end
+ end 
 
-if (tst05("AAAAAAAAAAAA") ~= 5) do
+if (tst05("AAAAAAAAAAAA") ~= 5) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1053,8 +1134,9 @@ if (tst05("AAAAAAAAAAAA") ~= 5) do
         ]
       ];
 end
+ end 
 
-if (tst05("AAAAAAAAAAAAAAAA") ~= 6) do
+if (tst05("AAAAAAAAAAAAAAAA") ~= 6) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1064,8 +1146,9 @@ if (tst05("AAAAAAAAAAAAAAAA") ~= 6) do
         ]
       ];
 end
+ end 
 
-if (tst05("AAAAAAAAAAAAAAAAAAAA") ~= 7) do
+if (tst05("AAAAAAAAAAAAAAAAAAAA") ~= 7) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1075,8 +1158,9 @@ if (tst05("AAAAAAAAAAAAAAAAAAAA") ~= 7) do
         ]
       ];
 end
+ end 
 
-if (tst05("BBB") ~= 8) do
+if (tst05("BBB") ~= 8) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1086,8 +1170,9 @@ if (tst05("BBB") ~= 8) do
         ]
       ];
 end
+ end 
 
-if (tst05("BBBB") ~= 9) do
+if (tst05("BBBB") ~= 9) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1097,8 +1182,9 @@ if (tst05("BBBB") ~= 9) do
         ]
       ];
 end
+ end 
 
-if (tst05("BBBBB") ~= 10) do
+if (tst05("BBBBB") ~= 10) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1108,8 +1194,9 @@ if (tst05("BBBBB") ~= 10) do
         ]
       ];
 end
+ end 
 
-if (tst05("BBBBBB") ~= 11) do
+if (tst05("BBBBBB") ~= 11) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1119,8 +1206,9 @@ if (tst05("BBBBBB") ~= 11) do
         ]
       ];
 end
+ end 
 
-if (tst05("BBBBBBB") ~= 12) do
+if (tst05("BBBBBBB") ~= 12) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1130,8 +1218,9 @@ if (tst05("BBBBBBB") ~= 12) do
         ]
       ];
 end
+ end 
 
-if (tst05("") ~= -1) do
+if (tst05("") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1141,8 +1230,9 @@ if (tst05("") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst05("AAD") ~= -1) do
+if (tst05("AAD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1152,8 +1242,9 @@ if (tst05("AAD") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst05("AAAD") ~= -1) do
+if (tst05("AAAD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1163,8 +1254,9 @@ if (tst05("AAAD") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst05("AAAAAAD") ~= -1) do
+if (tst05("AAAAAAD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1174,8 +1266,9 @@ if (tst05("AAAAAAD") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst05("AAAAAAAD") ~= -1) do
+if (tst05("AAAAAAAD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1185,8 +1278,9 @@ if (tst05("AAAAAAAD") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst05("BBD") ~= -1) do
+if (tst05("BBD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1196,8 +1290,9 @@ if (tst05("BBD") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst05("BBBD") ~= -1) do
+if (tst05("BBBD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1207,8 +1302,9 @@ if (tst05("BBBD") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst05("BBBBBBD") ~= -1) do
+if (tst05("BBBBBBD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1218,8 +1314,9 @@ if (tst05("BBBBBBD") ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst05("BBBBBBBD") ~= -1) do
+if (tst05("BBBBBBBD") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1229,6 +1326,7 @@ if (tst05("BBBBBBBD") ~= -1) do
         ]
       ];
 end
+ end 
 
 var s00 = "and";
 
@@ -1789,7 +1887,7 @@ function tst06(s) do
   end
 end
 
-if (tst06(s00) ~= 0) do
+if (tst06(s00) ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1799,8 +1897,9 @@ if (tst06(s00) ~= 0) do
         ]
       ];
 end
+ end 
 
-if (tst06(t00) ~= -1) do
+if (tst06(t00) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1810,8 +1909,9 @@ if (tst06(t00) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s01) ~= 1) do
+if (tst06(s01) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1821,8 +1921,9 @@ if (tst06(s01) ~= 1) do
         ]
       ];
 end
+ end 
 
-if (tst06(t01) ~= -1) do
+if (tst06(t01) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1832,8 +1933,9 @@ if (tst06(t01) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s02) ~= 2) do
+if (tst06(s02) ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1843,8 +1945,9 @@ if (tst06(s02) ~= 2) do
         ]
       ];
 end
+ end 
 
-if (tst06(t02) ~= -1) do
+if (tst06(t02) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1854,8 +1957,9 @@ if (tst06(t02) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s03) ~= 3) do
+if (tst06(s03) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1865,8 +1969,9 @@ if (tst06(s03) ~= 3) do
         ]
       ];
 end
+ end 
 
-if (tst06(t03) ~= -1) do
+if (tst06(t03) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1876,8 +1981,9 @@ if (tst06(t03) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s04) ~= 4) do
+if (tst06(s04) ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1887,8 +1993,9 @@ if (tst06(s04) ~= 4) do
         ]
       ];
 end
+ end 
 
-if (tst06(t04) ~= -1) do
+if (tst06(t04) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1898,8 +2005,9 @@ if (tst06(t04) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s05) ~= 5) do
+if (tst06(s05) ~= 5) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1909,8 +2017,9 @@ if (tst06(s05) ~= 5) do
         ]
       ];
 end
+ end 
 
-if (tst06(t05) ~= -1) do
+if (tst06(t05) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1920,8 +2029,9 @@ if (tst06(t05) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s06) ~= 6) do
+if (tst06(s06) ~= 6) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1931,8 +2041,9 @@ if (tst06(s06) ~= 6) do
         ]
       ];
 end
+ end 
 
-if (tst06(t06) ~= -1) do
+if (tst06(t06) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1942,8 +2053,9 @@ if (tst06(t06) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s07) ~= 7) do
+if (tst06(s07) ~= 7) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1953,8 +2065,9 @@ if (tst06(s07) ~= 7) do
         ]
       ];
 end
+ end 
 
-if (tst06(t07) ~= -1) do
+if (tst06(t07) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1964,8 +2077,9 @@ if (tst06(t07) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s08) ~= 8) do
+if (tst06(s08) ~= 8) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1975,8 +2089,9 @@ if (tst06(s08) ~= 8) do
         ]
       ];
 end
+ end 
 
-if (tst06(t08) ~= -1) do
+if (tst06(t08) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1986,8 +2101,9 @@ if (tst06(t08) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s09) ~= 9) do
+if (tst06(s09) ~= 9) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1997,8 +2113,9 @@ if (tst06(s09) ~= 9) do
         ]
       ];
 end
+ end 
 
-if (tst06(t09) ~= -1) do
+if (tst06(t09) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2008,8 +2125,9 @@ if (tst06(t09) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s10) ~= 10) do
+if (tst06(s10) ~= 10) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2019,8 +2137,9 @@ if (tst06(s10) ~= 10) do
         ]
       ];
 end
+ end 
 
-if (tst06(t10) ~= -1) do
+if (tst06(t10) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2030,8 +2149,9 @@ if (tst06(t10) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s11) ~= 11) do
+if (tst06(s11) ~= 11) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2041,8 +2161,9 @@ if (tst06(s11) ~= 11) do
         ]
       ];
 end
+ end 
 
-if (tst06(t11) ~= 11) do
+if (tst06(t11) ~= 11) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2052,8 +2173,9 @@ if (tst06(t11) ~= 11) do
         ]
       ];
 end
+ end 
 
-if (tst06(s12) ~= 12) do
+if (tst06(s12) ~= 12) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2063,8 +2185,9 @@ if (tst06(s12) ~= 12) do
         ]
       ];
 end
+ end 
 
-if (tst06(t12) ~= 12) do
+if (tst06(t12) ~= 12) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2074,8 +2197,9 @@ if (tst06(t12) ~= 12) do
         ]
       ];
 end
+ end 
 
-if (tst06(s13) ~= 13) do
+if (tst06(s13) ~= 13) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2085,8 +2209,9 @@ if (tst06(s13) ~= 13) do
         ]
       ];
 end
+ end 
 
-if (tst06(t13) ~= -1) do
+if (tst06(t13) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2096,8 +2221,9 @@ if (tst06(t13) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s14) ~= 14) do
+if (tst06(s14) ~= 14) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2107,8 +2233,9 @@ if (tst06(s14) ~= 14) do
         ]
       ];
 end
+ end 
 
-if (tst06(t14) ~= -1) do
+if (tst06(t14) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2118,8 +2245,9 @@ if (tst06(t14) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s15) ~= 15) do
+if (tst06(s15) ~= 15) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2129,8 +2257,9 @@ if (tst06(s15) ~= 15) do
         ]
       ];
 end
+ end 
 
-if (tst06(t15) ~= -1) do
+if (tst06(t15) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2140,8 +2269,9 @@ if (tst06(t15) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s16) ~= 16) do
+if (tst06(s16) ~= 16) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2151,8 +2281,9 @@ if (tst06(s16) ~= 16) do
         ]
       ];
 end
+ end 
 
-if (tst06(t16) ~= 16) do
+if (tst06(t16) ~= 16) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2162,8 +2293,9 @@ if (tst06(t16) ~= 16) do
         ]
       ];
 end
+ end 
 
-if (tst06(s17) ~= 17) do
+if (tst06(s17) ~= 17) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2173,8 +2305,9 @@ if (tst06(s17) ~= 17) do
         ]
       ];
 end
+ end 
 
-if (tst06(t17) ~= -1) do
+if (tst06(t17) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2184,8 +2317,9 @@ if (tst06(t17) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s18) ~= 18) do
+if (tst06(s18) ~= 18) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2195,8 +2329,9 @@ if (tst06(s18) ~= 18) do
         ]
       ];
 end
+ end 
 
-if (tst06(t18) ~= -1) do
+if (tst06(t18) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2206,8 +2341,9 @@ if (tst06(t18) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s19) ~= 19) do
+if (tst06(s19) ~= 19) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2217,8 +2353,9 @@ if (tst06(s19) ~= 19) do
         ]
       ];
 end
+ end 
 
-if (tst06(t19) ~= 19) do
+if (tst06(t19) ~= 19) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2228,8 +2365,9 @@ if (tst06(t19) ~= 19) do
         ]
       ];
 end
+ end 
 
-if (tst06(s20) ~= 20) do
+if (tst06(s20) ~= 20) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2239,8 +2377,9 @@ if (tst06(s20) ~= 20) do
         ]
       ];
 end
+ end 
 
-if (tst06(t20) ~= -1) do
+if (tst06(t20) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2250,8 +2389,9 @@ if (tst06(t20) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s21) ~= 21) do
+if (tst06(s21) ~= 21) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2261,8 +2401,9 @@ if (tst06(s21) ~= 21) do
         ]
       ];
 end
+ end 
 
-if (tst06(t21) ~= -1) do
+if (tst06(t21) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2272,8 +2413,9 @@ if (tst06(t21) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s22) ~= 22) do
+if (tst06(s22) ~= 22) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2283,8 +2425,9 @@ if (tst06(s22) ~= 22) do
         ]
       ];
 end
+ end 
 
-if (tst06(t22) ~= -1) do
+if (tst06(t22) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2294,8 +2437,9 @@ if (tst06(t22) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s23) ~= 23) do
+if (tst06(s23) ~= 23) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2305,8 +2449,9 @@ if (tst06(s23) ~= 23) do
         ]
       ];
 end
+ end 
 
-if (tst06(t23) ~= -1) do
+if (tst06(t23) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2316,8 +2461,9 @@ if (tst06(t23) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s24) ~= 24) do
+if (tst06(s24) ~= 24) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2327,8 +2473,9 @@ if (tst06(s24) ~= 24) do
         ]
       ];
 end
+ end 
 
-if (tst06(t24) ~= -1) do
+if (tst06(t24) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2338,8 +2485,9 @@ if (tst06(t24) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s25) ~= 25) do
+if (tst06(s25) ~= 25) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2349,8 +2497,9 @@ if (tst06(s25) ~= 25) do
         ]
       ];
 end
+ end 
 
-if (tst06(t25) ~= 25) do
+if (tst06(t25) ~= 25) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2360,8 +2509,9 @@ if (tst06(t25) ~= 25) do
         ]
       ];
 end
+ end 
 
-if (tst06(s26) ~= 26) do
+if (tst06(s26) ~= 26) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2371,8 +2521,9 @@ if (tst06(s26) ~= 26) do
         ]
       ];
 end
+ end 
 
-if (tst06(t26) ~= -1) do
+if (tst06(t26) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2382,8 +2533,9 @@ if (tst06(t26) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s27) ~= 27) do
+if (tst06(s27) ~= 27) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2393,8 +2545,9 @@ if (tst06(s27) ~= 27) do
         ]
       ];
 end
+ end 
 
-if (tst06(t27) ~= -1) do
+if (tst06(t27) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2404,8 +2557,9 @@ if (tst06(t27) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s28) ~= 28) do
+if (tst06(s28) ~= 28) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2415,8 +2569,9 @@ if (tst06(s28) ~= 28) do
         ]
       ];
 end
+ end 
 
-if (tst06(t28) ~= -1) do
+if (tst06(t28) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2426,8 +2581,9 @@ if (tst06(t28) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s29) ~= 29) do
+if (tst06(s29) ~= 29) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2437,8 +2593,9 @@ if (tst06(s29) ~= 29) do
         ]
       ];
 end
+ end 
 
-if (tst06(t29) ~= -1) do
+if (tst06(t29) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2448,8 +2605,9 @@ if (tst06(t29) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s30) ~= 30) do
+if (tst06(s30) ~= 30) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2459,8 +2617,9 @@ if (tst06(s30) ~= 30) do
         ]
       ];
 end
+ end 
 
-if (tst06(t30) ~= -1) do
+if (tst06(t30) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2470,8 +2629,9 @@ if (tst06(t30) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s31) ~= 31) do
+if (tst06(s31) ~= 31) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2481,8 +2641,9 @@ if (tst06(s31) ~= 31) do
         ]
       ];
 end
+ end 
 
-if (tst06(t31) ~= 31) do
+if (tst06(t31) ~= 31) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2492,8 +2653,9 @@ if (tst06(t31) ~= 31) do
         ]
       ];
 end
+ end 
 
-if (tst06(s32) ~= 32) do
+if (tst06(s32) ~= 32) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2503,8 +2665,9 @@ if (tst06(s32) ~= 32) do
         ]
       ];
 end
+ end 
 
-if (tst06(t32) ~= -1) do
+if (tst06(t32) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2514,8 +2677,9 @@ if (tst06(t32) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s33) ~= 33) do
+if (tst06(s33) ~= 33) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2525,8 +2689,9 @@ if (tst06(s33) ~= 33) do
         ]
       ];
 end
+ end 
 
-if (tst06(t33) ~= -1) do
+if (tst06(t33) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2536,8 +2701,9 @@ if (tst06(t33) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s34) ~= 34) do
+if (tst06(s34) ~= 34) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2547,8 +2713,9 @@ if (tst06(s34) ~= 34) do
         ]
       ];
 end
+ end 
 
-if (tst06(t34) ~= -1) do
+if (tst06(t34) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2558,8 +2725,9 @@ if (tst06(t34) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s35) ~= 35) do
+if (tst06(s35) ~= 35) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2569,8 +2737,9 @@ if (tst06(s35) ~= 35) do
         ]
       ];
 end
+ end 
 
-if (tst06(t35) ~= 35) do
+if (tst06(t35) ~= 35) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2580,8 +2749,9 @@ if (tst06(t35) ~= 35) do
         ]
       ];
 end
+ end 
 
-if (tst06(s36) ~= 36) do
+if (tst06(s36) ~= 36) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2591,8 +2761,9 @@ if (tst06(s36) ~= 36) do
         ]
       ];
 end
+ end 
 
-if (tst06(t36) ~= -1) do
+if (tst06(t36) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2602,8 +2773,9 @@ if (tst06(t36) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s37) ~= 37) do
+if (tst06(s37) ~= 37) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2613,8 +2785,9 @@ if (tst06(s37) ~= 37) do
         ]
       ];
 end
+ end 
 
-if (tst06(t37) ~= -1) do
+if (tst06(t37) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2624,8 +2797,9 @@ if (tst06(t37) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s38) ~= 38) do
+if (tst06(s38) ~= 38) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2635,8 +2809,9 @@ if (tst06(s38) ~= 38) do
         ]
       ];
 end
+ end 
 
-if (tst06(t38) ~= -1) do
+if (tst06(t38) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2646,8 +2821,9 @@ if (tst06(t38) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s39) ~= 39) do
+if (tst06(s39) ~= 39) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2657,8 +2833,9 @@ if (tst06(s39) ~= 39) do
         ]
       ];
 end
+ end 
 
-if (tst06(t39) ~= 39) do
+if (tst06(t39) ~= 39) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2668,8 +2845,9 @@ if (tst06(t39) ~= 39) do
         ]
       ];
 end
+ end 
 
-if (tst06(s40) ~= 40) do
+if (tst06(s40) ~= 40) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2679,8 +2857,9 @@ if (tst06(s40) ~= 40) do
         ]
       ];
 end
+ end 
 
-if (tst06(t40) ~= -1) do
+if (tst06(t40) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2690,8 +2869,9 @@ if (tst06(t40) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s41) ~= 41) do
+if (tst06(s41) ~= 41) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2701,8 +2881,9 @@ if (tst06(s41) ~= 41) do
         ]
       ];
 end
+ end 
 
-if (tst06(t41) ~= 41) do
+if (tst06(t41) ~= 41) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2712,8 +2893,9 @@ if (tst06(t41) ~= 41) do
         ]
       ];
 end
+ end 
 
-if (tst06(s42) ~= 42) do
+if (tst06(s42) ~= 42) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2723,8 +2905,9 @@ if (tst06(s42) ~= 42) do
         ]
       ];
 end
+ end 
 
-if (tst06(t42) ~= -1) do
+if (tst06(t42) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2734,8 +2917,9 @@ if (tst06(t42) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s43) ~= 43) do
+if (tst06(s43) ~= 43) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2745,8 +2929,9 @@ if (tst06(s43) ~= 43) do
         ]
       ];
 end
+ end 
 
-if (tst06(t43) ~= 43) do
+if (tst06(t43) ~= 43) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2756,8 +2941,9 @@ if (tst06(t43) ~= 43) do
         ]
       ];
 end
+ end 
 
-if (tst06(s44) ~= 44) do
+if (tst06(s44) ~= 44) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2767,8 +2953,9 @@ if (tst06(s44) ~= 44) do
         ]
       ];
 end
+ end 
 
-if (tst06(t44) ~= -1) do
+if (tst06(t44) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2778,8 +2965,9 @@ if (tst06(t44) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s45) ~= 45) do
+if (tst06(s45) ~= 45) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2789,8 +2977,9 @@ if (tst06(s45) ~= 45) do
         ]
       ];
 end
+ end 
 
-if (tst06(t45) ~= -1) do
+if (tst06(t45) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2800,8 +2989,9 @@ if (tst06(t45) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s46) ~= 46) do
+if (tst06(s46) ~= 46) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2811,8 +3001,9 @@ if (tst06(s46) ~= 46) do
         ]
       ];
 end
+ end 
 
-if (tst06(t46) ~= -1) do
+if (tst06(t46) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2822,8 +3013,9 @@ if (tst06(t46) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s47) ~= 47) do
+if (tst06(s47) ~= 47) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2833,8 +3025,9 @@ if (tst06(s47) ~= 47) do
         ]
       ];
 end
+ end 
 
-if (tst06(t47) ~= -1) do
+if (tst06(t47) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2844,8 +3037,9 @@ if (tst06(t47) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s48) ~= 48) do
+if (tst06(s48) ~= 48) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2855,8 +3049,9 @@ if (tst06(s48) ~= 48) do
         ]
       ];
 end
+ end 
 
-if (tst06(t48) ~= 48) do
+if (tst06(t48) ~= 48) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2866,8 +3061,9 @@ if (tst06(t48) ~= 48) do
         ]
       ];
 end
+ end 
 
-if (tst06(s49) ~= 49) do
+if (tst06(s49) ~= 49) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2877,8 +3073,9 @@ if (tst06(s49) ~= 49) do
         ]
       ];
 end
+ end 
 
-if (tst06(t49) ~= -1) do
+if (tst06(t49) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2888,8 +3085,9 @@ if (tst06(t49) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s50) ~= 50) do
+if (tst06(s50) ~= 50) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2899,8 +3097,9 @@ if (tst06(s50) ~= 50) do
         ]
       ];
 end
+ end 
 
-if (tst06(t50) ~= -1) do
+if (tst06(t50) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2910,8 +3109,9 @@ if (tst06(t50) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s51) ~= 51) do
+if (tst06(s51) ~= 51) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2921,8 +3121,9 @@ if (tst06(s51) ~= 51) do
         ]
       ];
 end
+ end 
 
-if (tst06(t51) ~= 51) do
+if (tst06(t51) ~= 51) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2932,8 +3133,9 @@ if (tst06(t51) ~= 51) do
         ]
       ];
 end
+ end 
 
-if (tst06(s52) ~= 52) do
+if (tst06(s52) ~= 52) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2943,8 +3145,9 @@ if (tst06(s52) ~= 52) do
         ]
       ];
 end
+ end 
 
-if (tst06(t52) ~= 52) do
+if (tst06(t52) ~= 52) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2954,8 +3157,9 @@ if (tst06(t52) ~= 52) do
         ]
       ];
 end
+ end 
 
-if (tst06(s53) ~= 53) do
+if (tst06(s53) ~= 53) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2965,8 +3169,9 @@ if (tst06(s53) ~= 53) do
         ]
       ];
 end
+ end 
 
-if (tst06(t53) ~= 53) do
+if (tst06(t53) ~= 53) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2976,8 +3181,9 @@ if (tst06(t53) ~= 53) do
         ]
       ];
 end
+ end 
 
-if (tst06(s54) ~= 54) do
+if (tst06(s54) ~= 54) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2987,8 +3193,9 @@ if (tst06(s54) ~= 54) do
         ]
       ];
 end
+ end 
 
-if (tst06(t54) ~= -1) do
+if (tst06(t54) ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -2998,8 +3205,9 @@ if (tst06(t54) ~= -1) do
         ]
       ];
 end
+ end 
 
-if (tst06(s55) ~= 55) do
+if (tst06(s55) ~= 55) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3009,8 +3217,9 @@ if (tst06(s55) ~= 55) do
         ]
       ];
 end
+ end 
 
-if (tst06(t55) ~= 55) do
+if (tst06(t55) ~= 55) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3020,8 +3229,9 @@ if (tst06(t55) ~= 55) do
         ]
       ];
 end
+ end 
 
-if (tst06(s56) ~= 56) do
+if (tst06(s56) ~= 56) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3031,8 +3241,9 @@ if (tst06(s56) ~= 56) do
         ]
       ];
 end
+ end 
 
-if (tst06(t56) ~= 56) do
+if (tst06(t56) ~= 56) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3042,8 +3253,9 @@ if (tst06(t56) ~= 56) do
         ]
       ];
 end
+ end 
 
-if (tst06(s57) ~= 57) do
+if (tst06(s57) ~= 57) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3053,8 +3265,9 @@ if (tst06(s57) ~= 57) do
         ]
       ];
 end
+ end 
 
-if (tst06(t57) ~= 57) do
+if (tst06(t57) ~= 57) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3064,8 +3277,9 @@ if (tst06(t57) ~= 57) do
         ]
       ];
 end
+ end 
 
-if (tst06(s58) ~= 58) do
+if (tst06(s58) ~= 58) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3075,8 +3289,9 @@ if (tst06(s58) ~= 58) do
         ]
       ];
 end
+ end 
 
-if (tst06(t58) ~= 58) do
+if (tst06(t58) ~= 58) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3086,8 +3301,9 @@ if (tst06(t58) ~= 58) do
         ]
       ];
 end
+ end 
 
-if (tst06(s59) ~= 59) do
+if (tst06(s59) ~= 59) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3097,8 +3313,9 @@ if (tst06(s59) ~= 59) do
         ]
       ];
 end
+ end 
 
-if (tst06(t59) ~= 59) do
+if (tst06(t59) ~= 59) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3108,8 +3325,9 @@ if (tst06(t59) ~= 59) do
         ]
       ];
 end
+ end 
 
-if (tst06(s60) ~= 60) do
+if (tst06(s60) ~= 60) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3119,8 +3337,9 @@ if (tst06(s60) ~= 60) do
         ]
       ];
 end
+ end 
 
-if (tst06(t60) ~= 60) do
+if (tst06(t60) ~= 60) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3130,8 +3349,9 @@ if (tst06(t60) ~= 60) do
         ]
       ];
 end
+ end 
 
-if (tst06(s61) ~= 61) do
+if (tst06(s61) ~= 61) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3141,8 +3361,9 @@ if (tst06(s61) ~= 61) do
         ]
       ];
 end
+ end 
 
-if (tst06(t61) ~= 61) do
+if (tst06(t61) ~= 61) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3152,8 +3373,9 @@ if (tst06(t61) ~= 61) do
         ]
       ];
 end
+ end 
 
-if (tst06(s62) ~= 62) do
+if (tst06(s62) ~= 62) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3163,8 +3385,9 @@ if (tst06(s62) ~= 62) do
         ]
       ];
 end
+ end 
 
-if (tst06(t62) ~= 62) do
+if (tst06(t62) ~= 62) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3174,8 +3397,9 @@ if (tst06(t62) ~= 62) do
         ]
       ];
 end
+ end 
 
-if (tst06(s63) ~= 63) do
+if (tst06(s63) ~= 63) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3185,8 +3409,9 @@ if (tst06(s63) ~= 63) do
         ]
       ];
 end
+ end 
 
-if (tst06(t63) ~= 63) do
+if (tst06(t63) ~= 63) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3196,8 +3421,9 @@ if (tst06(t63) ~= 63) do
         ]
       ];
 end
+ end 
 
-if (tst06(s64) ~= 64) do
+if (tst06(s64) ~= 64) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3207,8 +3433,9 @@ if (tst06(s64) ~= 64) do
         ]
       ];
 end
+ end 
 
-if (tst06(t64) ~= 64) do
+if (tst06(t64) ~= 64) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3218,8 +3445,9 @@ if (tst06(t64) ~= 64) do
         ]
       ];
 end
+ end 
 
-if (tst06(s65) ~= 65) do
+if (tst06(s65) ~= 65) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3229,8 +3457,9 @@ if (tst06(s65) ~= 65) do
         ]
       ];
 end
+ end 
 
-if (tst06(t65) ~= 65) do
+if (tst06(t65) ~= 65) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3240,8 +3469,9 @@ if (tst06(t65) ~= 65) do
         ]
       ];
 end
+ end 
 
-if (tst06(s66) ~= 66) do
+if (tst06(s66) ~= 66) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3251,8 +3481,9 @@ if (tst06(s66) ~= 66) do
         ]
       ];
 end
+ end 
 
-if (tst06(t66) ~= 66) do
+if (tst06(t66) ~= 66) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3262,8 +3493,9 @@ if (tst06(t66) ~= 66) do
         ]
       ];
 end
+ end 
 
-if (tst06(s67) ~= 67) do
+if (tst06(s67) ~= 67) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3273,8 +3505,9 @@ if (tst06(s67) ~= 67) do
         ]
       ];
 end
+ end 
 
-if (tst06(t67) ~= 67) do
+if (tst06(t67) ~= 67) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3284,8 +3517,9 @@ if (tst06(t67) ~= 67) do
         ]
       ];
 end
+ end 
 
-if (tst06(s68) ~= 68) do
+if (tst06(s68) ~= 68) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3295,8 +3529,9 @@ if (tst06(s68) ~= 68) do
         ]
       ];
 end
+ end 
 
-if (tst06(t68) ~= 68) do
+if (tst06(t68) ~= 68) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3306,8 +3541,9 @@ if (tst06(t68) ~= 68) do
         ]
       ];
 end
+ end 
 
-if (tst06(s69) ~= 69) do
+if (tst06(s69) ~= 69) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3317,8 +3553,9 @@ if (tst06(s69) ~= 69) do
         ]
       ];
 end
+ end 
 
-if (tst06(t69) ~= 69) do
+if (tst06(t69) ~= 69) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3328,8 +3565,9 @@ if (tst06(t69) ~= 69) do
         ]
       ];
 end
+ end 
 
-if (tst06(s70) ~= 70) do
+if (tst06(s70) ~= 70) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3339,8 +3577,9 @@ if (tst06(s70) ~= 70) do
         ]
       ];
 end
+ end 
 
-if (tst06(t70) ~= 70) do
+if (tst06(t70) ~= 70) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3350,8 +3589,9 @@ if (tst06(t70) ~= 70) do
         ]
       ];
 end
+ end 
 
-if (tst06(s71) ~= 71) do
+if (tst06(s71) ~= 71) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3361,8 +3601,9 @@ if (tst06(s71) ~= 71) do
         ]
       ];
 end
+ end 
 
-if (tst06(t71) ~= 71) do
+if (tst06(t71) ~= 71) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3372,8 +3613,9 @@ if (tst06(t71) ~= 71) do
         ]
       ];
 end
+ end 
 
-if (tst06(s72) ~= 72) do
+if (tst06(s72) ~= 72) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3383,8 +3625,9 @@ if (tst06(s72) ~= 72) do
         ]
       ];
 end
+ end 
 
-if (tst06(t72) ~= 72) do
+if (tst06(t72) ~= 72) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3394,8 +3637,9 @@ if (tst06(t72) ~= 72) do
         ]
       ];
 end
+ end 
 
-if (tst06(s73) ~= 73) do
+if (tst06(s73) ~= 73) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3405,8 +3649,9 @@ if (tst06(s73) ~= 73) do
         ]
       ];
 end
+ end 
 
-if (tst06(t73) ~= 73) do
+if (tst06(t73) ~= 73) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3416,8 +3661,9 @@ if (tst06(t73) ~= 73) do
         ]
       ];
 end
+ end 
 
-if (tst06(s74) ~= 74) do
+if (tst06(s74) ~= 74) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3427,8 +3673,9 @@ if (tst06(s74) ~= 74) do
         ]
       ];
 end
+ end 
 
-if (tst06(t74) ~= 74) do
+if (tst06(t74) ~= 74) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3438,8 +3685,9 @@ if (tst06(t74) ~= 74) do
         ]
       ];
 end
+ end 
 
-if (tst06(s75) ~= 75) do
+if (tst06(s75) ~= 75) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3449,8 +3697,9 @@ if (tst06(s75) ~= 75) do
         ]
       ];
 end
+ end 
 
-if (tst06(t75) ~= 75) do
+if (tst06(t75) ~= 75) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3460,8 +3709,9 @@ if (tst06(t75) ~= 75) do
         ]
       ];
 end
+ end 
 
-if (tst06(s76) ~= 76) do
+if (tst06(s76) ~= 76) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3471,8 +3721,9 @@ if (tst06(s76) ~= 76) do
         ]
       ];
 end
+ end 
 
-if (tst06(t76) ~= 76) do
+if (tst06(t76) ~= 76) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3482,8 +3733,9 @@ if (tst06(t76) ~= 76) do
         ]
       ];
 end
+ end 
 
-if (tst06(s77) ~= 77) do
+if (tst06(s77) ~= 77) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3493,8 +3745,9 @@ if (tst06(s77) ~= 77) do
         ]
       ];
 end
+ end 
 
-if (tst06(t77) ~= 77) do
+if (tst06(t77) ~= 77) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3504,8 +3757,9 @@ if (tst06(t77) ~= 77) do
         ]
       ];
 end
+ end 
 
-if (tst06(s78) ~= 78) do
+if (tst06(s78) ~= 78) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3515,8 +3769,9 @@ if (tst06(s78) ~= 78) do
         ]
       ];
 end
+ end 
 
-if (tst06(t78) ~= 78) do
+if (tst06(t78) ~= 78) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3526,8 +3781,9 @@ if (tst06(t78) ~= 78) do
         ]
       ];
 end
+ end 
 
-if (tst06(s79) ~= 79) do
+if (tst06(s79) ~= 79) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3537,8 +3793,9 @@ if (tst06(s79) ~= 79) do
         ]
       ];
 end
+ end 
 
-if (tst06(t79) ~= 79) do
+if (tst06(t79) ~= 79) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3548,8 +3805,9 @@ if (tst06(t79) ~= 79) do
         ]
       ];
 end
+ end 
 
-if (tst06(s80) ~= 80) do
+if (tst06(s80) ~= 80) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3559,8 +3817,9 @@ if (tst06(s80) ~= 80) do
         ]
       ];
 end
+ end 
 
-if (tst06(t80) ~= 80) do
+if (tst06(t80) ~= 80) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3570,8 +3829,9 @@ if (tst06(t80) ~= 80) do
         ]
       ];
 end
+ end 
 
-if (tst06(s81) ~= 81) do
+if (tst06(s81) ~= 81) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3581,8 +3841,9 @@ if (tst06(s81) ~= 81) do
         ]
       ];
 end
+ end 
 
-if (tst06(t81) ~= 81) do
+if (tst06(t81) ~= 81) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3592,8 +3853,9 @@ if (tst06(t81) ~= 81) do
         ]
       ];
 end
+ end 
 
-if (tst06(s82) ~= 82) do
+if (tst06(s82) ~= 82) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3603,8 +3865,9 @@ if (tst06(s82) ~= 82) do
         ]
       ];
 end
+ end 
 
-if (tst06(t82) ~= 82) do
+if (tst06(t82) ~= 82) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3614,8 +3877,9 @@ if (tst06(t82) ~= 82) do
         ]
       ];
 end
+ end 
 
-if (tst06(s83) ~= 83) do
+if (tst06(s83) ~= 83) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3625,8 +3889,9 @@ if (tst06(s83) ~= 83) do
         ]
       ];
 end
+ end 
 
-if (tst06(t83) ~= 83) do
+if (tst06(t83) ~= 83) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3636,8 +3901,9 @@ if (tst06(t83) ~= 83) do
         ]
       ];
 end
+ end 
 
-if (tst06(s84) ~= 84) do
+if (tst06(s84) ~= 84) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3647,8 +3913,9 @@ if (tst06(s84) ~= 84) do
         ]
       ];
 end
+ end 
 
-if (tst06(t84) ~= 84) do
+if (tst06(t84) ~= 84) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3658,8 +3925,9 @@ if (tst06(t84) ~= 84) do
         ]
       ];
 end
+ end 
 
-if (tst06(s85) ~= 85) do
+if (tst06(s85) ~= 85) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3669,8 +3937,9 @@ if (tst06(s85) ~= 85) do
         ]
       ];
 end
+ end 
 
-if (tst06(t85) ~= 85) do
+if (tst06(t85) ~= 85) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3680,8 +3949,9 @@ if (tst06(t85) ~= 85) do
         ]
       ];
 end
+ end 
 
-if (tst06(s86) ~= 86) do
+if (tst06(s86) ~= 86) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3691,8 +3961,9 @@ if (tst06(s86) ~= 86) do
         ]
       ];
 end
+ end 
 
-if (tst06(t86) ~= 86) do
+if (tst06(t86) ~= 86) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3702,8 +3973,9 @@ if (tst06(t86) ~= 86) do
         ]
       ];
 end
+ end 
 
-if (tst06(s87) ~= 87) do
+if (tst06(s87) ~= 87) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3713,8 +3985,9 @@ if (tst06(s87) ~= 87) do
         ]
       ];
 end
+ end 
 
-if (tst06(t87) ~= 87) do
+if (tst06(t87) ~= 87) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3724,8 +3997,9 @@ if (tst06(t87) ~= 87) do
         ]
       ];
 end
+ end 
 
-if (tst06(s88) ~= 88) do
+if (tst06(s88) ~= 88) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3735,8 +4009,9 @@ if (tst06(s88) ~= 88) do
         ]
       ];
 end
+ end 
 
-if (tst06(t88) ~= 88) do
+if (tst06(t88) ~= 88) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3746,8 +4021,9 @@ if (tst06(t88) ~= 88) do
         ]
       ];
 end
+ end 
 
-if (tst06(s89) ~= 89) do
+if (tst06(s89) ~= 89) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3757,8 +4033,9 @@ if (tst06(s89) ~= 89) do
         ]
       ];
 end
+ end 
 
-if (tst06(t89) ~= 89) do
+if (tst06(t89) ~= 89) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3768,8 +4045,9 @@ if (tst06(t89) ~= 89) do
         ]
       ];
 end
+ end 
 
-if (tst06(s90) ~= 90) do
+if (tst06(s90) ~= 90) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3779,8 +4057,9 @@ if (tst06(s90) ~= 90) do
         ]
       ];
 end
+ end 
 
-if (tst06(t90) ~= 90) do
+if (tst06(t90) ~= 90) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3790,8 +4069,9 @@ if (tst06(t90) ~= 90) do
         ]
       ];
 end
+ end 
 
-if (tst06(s91) ~= 91) do
+if (tst06(s91) ~= 91) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3801,8 +4081,9 @@ if (tst06(s91) ~= 91) do
         ]
       ];
 end
+ end 
 
-if (tst06(t91) ~= 91) do
+if (tst06(t91) ~= 91) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3812,8 +4093,9 @@ if (tst06(t91) ~= 91) do
         ]
       ];
 end
+ end 
 
-if (tst06("") ~= -1) do
+if (tst06("") ~= -1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -3823,6 +4105,7 @@ if (tst06("") ~= -1) do
         ]
       ];
 end
+ end 
 
 exports.tst01 = tst01;
 exports.tst02 = tst02;

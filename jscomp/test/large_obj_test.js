@@ -591,7 +591,7 @@ CamlinternalOO.init_class($$class);
 
 var raw_object = obj_init(0);
 
-if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) do
+if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -601,6 +601,7 @@ if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) do
         ]
       ];
 end
+ end 
 
 function raw_class_init($$class) do
   var value = CamlinternalOO.new_variable($$class, "");
@@ -918,7 +919,7 @@ var raw_class = CamlinternalOO.make_class(shared, raw_class_init);
 
 var v = Curry._2(raw_class[0], 0, 3);
 
-if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) do
+if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -928,6 +929,7 @@ if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) do
         ]
       ];
 end
+ end 
 
 exports.raw_object = raw_object;
 exports.raw_class = raw_class;

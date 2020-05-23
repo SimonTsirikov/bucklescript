@@ -8,11 +8,11 @@ function is_number(_expr) do
     var expr = _expr;
     switch (expr.tag | 0) do
       case --[ Val ]--0 :
-          if (expr[0].tag) do
+          if (expr[0].tag) then do
             return false;
           end else do
             return true;
-          end
+          end end 
       case --[ Neg ]--1 :
           _expr = expr[0];
           continue ;
@@ -124,24 +124,26 @@ function compare(context, state, _a, _b) do
           break;
       
     end
-    if (exit$3 == 5) do
-      if (b.tag == --[ Neg ]--1) do
+    if (exit$3 == 5) then do
+      if (b.tag == --[ Neg ]--1) then do
         _b = b[0];
         continue ;
-      end else if (a.tag == --[ Sum ]--2 and is_number(b)) do
+      end else if (a.tag == --[ Sum ]--2 and is_number(b)) then do
         return 1;
       end else do
         exit$2 = 4;
-      end
+      end end  end 
     end
-    if (exit$2 == 4) do
-      if (b.tag == --[ Sum ]--2 and is_number(a)) do
+     end 
+    if (exit$2 == 4) then do
+      if (b.tag == --[ Sum ]--2 and is_number(a)) then do
         return -1;
       end else do
         exit$1 = 3;
-      end
+      end end 
     end
-    if (exit$1 == 3) do
+     end 
+    if (exit$1 == 3) then do
       switch (a.tag | 0) do
         case --[ Sum ]--2 :
             exit = 1;
@@ -155,6 +157,7 @@ function compare(context, state, _a, _b) do
         
       end
     end
+     end 
     switch (exit) do
       case 1 :
           switch (b.tag | 0) do
@@ -167,13 +170,13 @@ function compare(context, state, _a, _b) do
           end
       case 2 :
           var denom = compare(context, state, da, db);
-          if (denom == 0) do
+          if (denom == 0) then do
             _b = nb;
             _a = na;
             continue ;
           end else do
             return denom;
-          end
+          end end 
       
     end
   end;

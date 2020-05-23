@@ -21,7 +21,7 @@ end
 
 function makeWrapper(foo, param) do
   var tmp = { };
-  if (foo ~= undefined) do
+  if (foo ~= undefined) then do
     tmp.foo = (function () do
           switch (Caml_option.valFromOption(foo)) do
             case 97 :
@@ -32,6 +32,7 @@ function makeWrapper(foo, param) do
           end
         end)();
   end
+   end 
   console.log(tmp);
   return --[ () ]--0;
 end
@@ -56,7 +57,7 @@ makeWrapper2(--[ a ]--97, --[ () ]--0);
 function makeWrapper3(foo, param) do
   console.log(2);
   var tmp = { };
-  if (foo ~= undefined) do
+  if (foo ~= undefined) then do
     tmp.foo = (function () do
           switch (Caml_option.valFromOption(foo)) do
             case 97 :
@@ -67,6 +68,7 @@ function makeWrapper3(foo, param) do
           end
         end)();
   end
+   end 
   return tmp;
 end
 
@@ -76,7 +78,7 @@ function makeWrapper4(foo, param) do
   var tmp$1 = foo > 100 ? undefined : (
       foo > 10 ? --[ b ]--98 : --[ a ]--97
     );
-  if (tmp$1 ~= undefined) do
+  if (tmp$1 ~= undefined) then do
     tmp.foo = (function () do
           switch (Caml_option.valFromOption(tmp$1)) do
             case 97 :
@@ -87,6 +89,7 @@ function makeWrapper4(foo, param) do
           end
         end)();
   end
+   end 
   return tmp;
 end
 

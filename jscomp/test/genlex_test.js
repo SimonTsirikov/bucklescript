@@ -41,11 +41,11 @@ function to_list(s) do
       v = Stream.next(s);
     end
     catch (exn)do
-      if (exn == Stream.Failure) do
+      if (exn == Stream.Failure) then do
         return List.rev(acc);
       end else do
         throw exn;
-      end
+      end end 
     end
     _acc = --[ :: ]--[
       v,

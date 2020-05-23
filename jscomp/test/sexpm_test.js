@@ -34,7 +34,7 @@ function eq(loc, param) do
 end
 
 function print_or_error(fmt, x) do
-  if (x[0] >= 106380200) do
+  if (x[0] >= 106380200) then do
     return Curry._1(Format.fprintf(fmt, --[ Format ]--[
                     --[ Formatting_gen ]--Block.__(18, [
                         --[ Open_box ]--Block.__(1, [--[ Format ]--[
@@ -77,7 +77,7 @@ function print_or_error(fmt, x) do
                       ]),
                     "@[Ok:%a@]@."
                   ]), Sexpm.print, x[1]);
-  end
+  end end 
 end
 
 var a = Sexpm.parse_string("(x x gh 3 3)");

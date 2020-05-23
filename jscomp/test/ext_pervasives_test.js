@@ -50,25 +50,25 @@ function is_pos_pow(n) do
     while(true) do
       var n$1 = _n;
       var c = _c;
-      if (n$1 <= 0) do
+      if (n$1 <= 0) then do
         return -2;
-      end else if (n$1 == 1) do
+      end else if (n$1 == 1) then do
         return c;
-      end else if ((n$1 & 1) == 0) do
+      end else if ((n$1 & 1) == 0) then do
         _n = (n$1 >> 1);
         _c = c + 1 | 0;
         continue ;
       end else do
         throw E;
-      end
+      end end  end  end 
     end;
   end
   catch (exn)do
-    if (exn == E) do
+    if (exn == E) then do
       return -1;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -96,14 +96,14 @@ function bad_argf(fmt) do
 end
 
 function dump(r) do
-  if (typeof r == "number") do
+  if (typeof r == "number") then do
     return String(r);
   end else do
     var get_fields = function (_acc, _n) do
       while(true) do
         var n = _n;
         var acc = _acc;
-        if (n ~= 0) do
+        if (n ~= 0) then do
           var n$1 = n - 1 | 0;
           _n = n$1;
           _acc = --[ :: ]--[
@@ -113,28 +113,28 @@ function dump(r) do
           continue ;
         end else do
           return acc;
-        end
+        end end 
       end;
     end;
     var is_list = function (_r) do
       while(true) do
         var r = _r;
-        if (typeof r == "number") do
+        if (typeof r == "number") then do
           return Caml_obj.caml_equal(r, 0);
         end else do
           var s = #r;
           var t = r.tag | 0;
-          if (t == 0 and s == 2) do
+          if (t == 0 and s == 2) then do
             _r = r[1];
             continue ;
           end else do
             return false;
-          end
-        end
+          end end 
+        end end 
       end;
     end;
     var get_list = function (r) do
-      if (typeof r == "number") do
+      if (typeof r == "number") then do
         return --[ [] ]--0;
       end else do
         var h = r[0];
@@ -143,24 +143,24 @@ function dump(r) do
                 h,
                 t
               ];
-      end
+      end end 
     end;
     var s = #r;
     var t = r.tag | 0;
-    if (is_list(r)) do
+    if (is_list(r)) then do
       var fields = get_list(r);
       return "[" .. ($$String.concat("; ", List.map(dump, fields)) .. "]");
-    end else if (t ~= 0) do
-      if (t == Obj.lazy_tag) do
+    end else if (t ~= 0) then do
+      if (t == Obj.lazy_tag) then do
         return "<lazy>";
-      end else if (t == Obj.closure_tag) do
+      end else if (t == Obj.closure_tag) then do
         return "<closure>";
-      end else if (t == Obj.object_tag) do
+      end else if (t == Obj.object_tag) then do
         var fields$1 = get_fields(--[ [] ]--0, s);
         var match;
-        if (fields$1) do
+        if (fields$1) then do
           var match$1 = fields$1[1];
-          if (match$1) do
+          if (match$1) then do
             match = --[ tuple ]--[
               fields$1[0],
               match$1[0],
@@ -175,7 +175,7 @@ function dump(r) do
                     15
                   ]
                 ];
-          end
+          end end 
         end else do
           throw [
                 Caml_builtin_exceptions.assert_failure,
@@ -185,26 +185,26 @@ function dump(r) do
                   15
                 ]
               ];
-        end
+        end end 
         return "Object #" .. (dump(match[1]) .. (" (" .. ($$String.concat(", ", List.map(dump, match[2])) .. ")")));
-      end else if (t == Obj.infix_tag) do
+      end else if (t == Obj.infix_tag) then do
         return "<infix>";
-      end else if (t == Obj.forward_tag) do
+      end else if (t == Obj.forward_tag) then do
         return "<forward>";
-      end else if (t < Obj.no_scan_tag) do
+      end else if (t < Obj.no_scan_tag) then do
         var fields$2 = get_fields(--[ [] ]--0, s);
         return "Tag" .. (String(t) .. (" (" .. ($$String.concat(", ", List.map(dump, fields$2)) .. ")")));
-      end else if (t == Obj.string_tag) do
+      end else if (t == Obj.string_tag) then do
         return "\"" .. ($$String.escaped(r) .. "\"");
-      end else if (t == Obj.double_tag) do
+      end else if (t == Obj.double_tag) then do
         return Pervasives.string_of_float(r);
-      end else if (t == Obj.abstract_tag) do
+      end else if (t == Obj.abstract_tag) then do
         return "<abstract>";
-      end else if (t == Obj.custom_tag) do
+      end else if (t == Obj.custom_tag) then do
         return "<custom>";
-      end else if (t == Obj.custom_tag) do
+      end else if (t == Obj.custom_tag) then do
         return "<final>";
-      end else if (t == Obj.double_array_tag) do
+      end else if (t == Obj.double_array_tag) then do
         return "[|" .. ($$String.concat(";", $$Array.to_list($$Array.map(Pervasives.string_of_float, r))) .. "|]");
       end else do
         var name = Curry._2(Printf.sprintf(--[ Format ]--[
@@ -228,12 +228,12 @@ function dump(r) do
                   "unknown: tag %d size %d"
                 ]), t, s);
         return "<" .. (name .. ">");
-      end
+      end end  end  end  end  end  end  end  end  end  end  end  end 
     end else do
       var fields$3 = get_fields(--[ [] ]--0, s);
       return "(" .. ($$String.concat(", ", List.map(dump, fields$3)) .. ")");
-    end
-  end
+    end end  end 
+  end end 
 end
 
 var dump$1 = dump;
@@ -263,11 +263,11 @@ function hash_variant(s) do
     accu = Caml_int32.imul(223, accu) + Caml_string.get(s, i) | 0;
   end
   accu = accu & 2147483647;
-  if (accu > 1073741823) do
+  if (accu > 1073741823) then do
     return accu - -2147483648 | 0;
   end else do
     return accu;
-  end
+  end end 
 end
 
 exports.$$finally = $$finally;

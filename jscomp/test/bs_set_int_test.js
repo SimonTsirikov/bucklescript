@@ -80,11 +80,11 @@ var l = Belt_SetInt.empty;
 var r = Belt_SetInt.empty;
 
 for(var i$1 = 100; i$1 <= 1500; ++i$1)do
-  if (i$1 % 3 == 0) do
+  if (i$1 % 3 == 0) then do
     l = Belt_SetInt.add(l, i$1);
   end else do
     r = Belt_SetInt.add(r, i$1);
-  end
+  end end 
 end
 
 var nl = l;
@@ -345,11 +345,11 @@ var us = Belt_Array.map(Array_data_util.randomRange(1000, 3000), (function (x) d
       end));
 
 var counted = Belt_Array.reduce(us, 0, (function (acc, x) do
-        if (x) do
+        if (x) then do
           return acc + 1 | 0;
         end else do
           return acc;
-        end
+        end end 
       end));
 
 eq("File \"bs_set_int_test.ml\", line 168, characters 5-12", counted, 1001);

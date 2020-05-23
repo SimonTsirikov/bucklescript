@@ -20,7 +20,7 @@ function clear(q) do
 end
 
 function add(x, q) do
-  if (q.length == 0) do
+  if (q.length == 0) then do
     var cell = { };
     cell.content = x;
     cell.next = cell;
@@ -38,33 +38,35 @@ function add(x, q) do
     tail.next = cell$1;
     q.tail = cell$1;
     return --[ () ]--0;
-  end
+  end end 
 end
 
 function peek(q) do
-  if (q.length == 0) do
+  if (q.length == 0) then do
     throw Empty;
   end
+   end 
   return q.tail.next.content;
 end
 
 function take(q) do
-  if (q.length == 0) do
+  if (q.length == 0) then do
     throw Empty;
   end
+   end 
   q.length = q.length - 1 | 0;
   var tail = q.tail;
   var head = tail.next;
-  if (head == tail) do
+  if (head == tail) then do
     q.tail = undefined;
   end else do
     tail.next = head.next;
-  end
+  end end 
   return head.content;
 end
 
 function copy(q) do
-  if (q.length == 0) do
+  if (q.length == 0) then do
     return do
             length: 0,
             tail: undefined
@@ -80,7 +82,7 @@ function copy(q) do
       while(true) do
         var cell = _cell;
         var prev = _prev;
-        if (cell ~= tail) do
+        if (cell ~= tail) then do
           var res = do
             content: cell.content,
             next: tail$prime
@@ -91,7 +93,7 @@ function copy(q) do
           continue ;
         end else do
           return 0;
-        end
+        end end 
       end;
     end;
     copy$1(tail$prime, tail.next);
@@ -99,7 +101,7 @@ function copy(q) do
             length: q.length,
             tail: tail$prime
           end;
-  end
+  end end 
 end
 
 function is_empty(q) do
@@ -111,26 +113,26 @@ function length(q) do
 end
 
 function iter(f, q) do
-  if (q.length > 0) do
+  if (q.length > 0) then do
     var tail = q.tail;
     var _cell = tail.next;
     while(true) do
       var cell = _cell;
       Curry._1(f, cell.content);
-      if (cell ~= tail) do
+      if (cell ~= tail) then do
         _cell = cell.next;
         continue ;
       end else do
         return 0;
-      end
+      end end 
     end;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function fold(f, accu, q) do
-  if (q.length == 0) do
+  if (q.length == 0) then do
     return accu;
   end else do
     var tail = q.tail;
@@ -140,35 +142,36 @@ function fold(f, accu, q) do
       var cell = _cell;
       var accu$1 = _accu;
       var accu$2 = Curry._2(f, accu$1, cell.content);
-      if (cell == tail) do
+      if (cell == tail) then do
         return accu$2;
       end else do
         _cell = cell.next;
         _accu = accu$2;
         continue ;
-      end
+      end end 
     end;
-  end
+  end end 
 end
 
 function transfer(q1, q2) do
   var length1 = q1.length;
-  if (length1 > 0) do
+  if (length1 > 0) then do
     var tail1 = q1.tail;
     clear(q1);
-    if (q2.length > 0) do
+    if (q2.length > 0) then do
       var tail2 = q2.tail;
       var head1 = tail1.next;
       var head2 = tail2.next;
       tail1.next = head2;
       tail2.next = head1;
     end
+     end 
     q2.length = q2.length + length1 | 0;
     q2.tail = tail1;
     return --[ () ]--0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 var push = add;

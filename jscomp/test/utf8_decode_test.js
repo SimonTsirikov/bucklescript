@@ -9,47 +9,47 @@ var Caml_bytes = require("../../lib/js/caml_bytes.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function classify(chr) do
-  if ((chr & 128) == 0) do
+  if ((chr & 128) == 0) then do
     return --[ Single ]--Block.__(0, [chr]);
-  end else if ((chr & 64) == 0) do
+  end else if ((chr & 64) == 0) then do
     return --[ Cont ]--Block.__(1, [chr & 63]);
-  end else if ((chr & 32) == 0) do
+  end else if ((chr & 32) == 0) then do
     return --[ Leading ]--Block.__(2, [
               1,
               chr & 31
             ]);
-  end else if ((chr & 16) == 0) do
+  end else if ((chr & 16) == 0) then do
     return --[ Leading ]--Block.__(2, [
               2,
               chr & 15
             ]);
-  end else if ((chr & 8) == 0) do
+  end else if ((chr & 8) == 0) then do
     return --[ Leading ]--Block.__(2, [
               3,
               chr & 7
             ]);
-  end else if ((chr & 4) == 0) do
+  end else if ((chr & 4) == 0) then do
     return --[ Leading ]--Block.__(2, [
               4,
               chr & 3
             ]);
-  end else if ((chr & 2) == 0) do
+  end else if ((chr & 2) == 0) then do
     return --[ Leading ]--Block.__(2, [
               5,
               chr & 1
             ]);
   end else do
     return --[ Invalid ]--0;
-  end
+  end end  end  end  end  end  end  end 
 end
 
 function utf8_decode(strm) do
   return Stream.slazy((function (param) do
                 var match = Stream.peek(strm);
-                if (match ~= undefined) do
+                if (match ~= undefined) then do
                   Stream.junk(strm);
                   var match$1 = classify(match);
-                  if (typeof match$1 == "number") do
+                  if (typeof match$1 == "number") then do
                     throw [
                           Stream.$$Error,
                           "Invalid byte"
@@ -68,16 +68,16 @@ function utf8_decode(strm) do
                             while(true) do
                               var c = _c;
                               var n = _n;
-                              if (n == 0) do
+                              if (n == 0) then do
                                 return c;
                               end else do
                                 var match = classify(Stream.next(strm));
-                                if (typeof match == "number") do
+                                if (typeof match == "number") then do
                                   throw [
                                         Stream.$$Error,
                                         "Continuation byte expected"
                                       ];
-                                end else if (match.tag == --[ Cont ]--1) do
+                                end else if (match.tag == --[ Cont ]--1) then do
                                   _c = (c << 6) | match[0] & 63;
                                   _n = n - 1 | 0;
                                   continue ;
@@ -86,16 +86,16 @@ function utf8_decode(strm) do
                                         Stream.$$Error,
                                         "Continuation byte expected"
                                       ];
-                                end
-                              end
+                                end end  end 
+                              end end 
                             end;
                           end;
                           return Stream.icons(follow(strm, match$1[0], match$1[1]), utf8_decode(strm));
                       
                     end
-                  end
+                  end end 
                 end
-                
+                 end 
               end));
 end
 
@@ -120,7 +120,7 @@ end
 function decode(bytes, offset) do
   var offset$1 = offset;
   var match = classify(Caml_bytes.get(bytes, offset$1));
-  if (typeof match == "number") do
+  if (typeof match == "number") then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "decode"
@@ -145,19 +145,19 @@ function decode(bytes, offset) do
             var offset$2 = _offset;
             var c = _c;
             var n = _n;
-            if (n == 0) do
+            if (n == 0) then do
               return --[ tuple ]--[
                       c,
                       offset$2
                     ];
             end else do
               var match$1 = classify(Caml_bytes.get(bytes, offset$2));
-              if (typeof match$1 == "number") do
+              if (typeof match$1 == "number") then do
                 throw [
                       Caml_builtin_exceptions.invalid_argument,
                       "decode"
                     ];
-              end else if (match$1.tag == --[ Cont ]--1) do
+              end else if (match$1.tag == --[ Cont ]--1) then do
                 _offset = offset$2 + 1 | 0;
                 _c = (c << 6) | match$1[0] & 63;
                 _n = n - 1 | 0;
@@ -167,31 +167,31 @@ function decode(bytes, offset) do
                       Caml_builtin_exceptions.invalid_argument,
                       "decode"
                     ];
-              end
-            end
+              end end  end 
+            end end 
           end;
       
     end
-  end
+  end end 
 end
 
 function eq_list(cmp, _xs, _ys) do
   while(true) do
     var ys = _ys;
     var xs = _xs;
-    if (xs) do
-      if (ys and Curry._2(cmp, xs[0], ys[0])) do
+    if (xs) then do
+      if (ys and Curry._2(cmp, xs[0], ys[0])) then do
         _ys = ys[1];
         _xs = xs[1];
         continue ;
       end else do
         return false;
-      end
-    end else if (ys) do
+      end end 
+    end else if (ys) then do
       return false;
     end else do
       return true;
-    end
+    end end  end 
   end;
 end
 

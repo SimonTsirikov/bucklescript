@@ -12,7 +12,7 @@ function bench(param) do
   console.timeEnd("test/bs_set_bench.ml 7");
   console.time("test/bs_set_bench.ml 11");
   for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
-    if (!Belt_SetInt.has(data, i$1)) do
+    if (!Belt_SetInt.has(data, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -22,7 +22,7 @@ function bench(param) do
             ]
           ];
     end
-    
+     end 
   end
   console.timeEnd("test/bs_set_bench.ml 11");
   console.time("test/bs_set_bench.ml 14");
@@ -30,7 +30,7 @@ function bench(param) do
     data = Belt_SetInt.remove(data, i$2);
   end
   console.timeEnd("test/bs_set_bench.ml 14");
-  if (Belt_SetInt.size(data) == 0) do
+  if (Belt_SetInt.size(data) == 0) then do
     return 0;
   end else do
     throw [
@@ -41,7 +41,7 @@ function bench(param) do
             2
           ]
         ];
-  end
+  end end 
 end
 
 console.time("test/bs_set_bench.ml 21");

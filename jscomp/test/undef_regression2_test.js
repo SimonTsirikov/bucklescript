@@ -49,33 +49,33 @@ var a = match ~= undefined ? 2 : 1;
 
 function test(param) do
   var match = typeof __DEV__ == "undefined" ? undefined : __DEV__;
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     console.log("dev mode");
     return --[ () ]--0;
   end else do
     console.log("producton mode");
     return --[ () ]--0;
-  end
+  end end 
 end
 
 function test2(param) do
   var match = typeof __filename == "undefined" ? undefined : __filename;
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     console.log(match);
     return --[ () ]--0;
   end else do
     console.log("non node environment");
     return --[ () ]--0;
-  end
+  end end 
 end
 
 function test3(param) do
-  if (Caml_option.undefined_to_opt(typeof __DEV__ == "undefined" ? undefined : __DEV__) == undefined) do
+  if (Caml_option.undefined_to_opt(typeof __DEV__ == "undefined" ? undefined : __DEV__) == undefined) then do
     console.log("production mode");
     return --[ () ]--0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function f(x) do

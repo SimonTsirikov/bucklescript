@@ -12,13 +12,13 @@ function f(param) do
   end;
   var n = 10;
   while(true) do
-    if (v.contents > n) do
+    if (v.contents > n) then do
       return acc.contents;
     end else do
       acc.contents = acc.contents + v.contents | 0;
       v.contents = v.contents + 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 

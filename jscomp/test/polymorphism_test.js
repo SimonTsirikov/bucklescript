@@ -2,7 +2,7 @@
 
 
 function map(f, param) do
-  if (param) do
+  if (param) then do
     var r = f(param[0]);
     return --[ :: ]--[
             r,
@@ -10,7 +10,7 @@ function map(f, param) do
           ];
   end else do
     return --[ [] ]--0;
-  end
+  end end 
 end
 
 exports.map = map;

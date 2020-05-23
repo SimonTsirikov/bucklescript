@@ -8,18 +8,18 @@ var Caml_primitive = require("../../lib/js/caml_primitive.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function split(x, tree) do
-  if (tree) do
+  if (tree) then do
     var r = tree[2];
     var v = tree[1];
     var l = tree[0];
     var c = Caml_primitive.caml_string_compare(x, v);
-    if (c == 0) do
+    if (c == 0) then do
       return --[ tuple ]--[
               l,
               true,
               r
             ];
-    end else if (c < 0) do
+    end else if (c < 0) then do
       var match = split(x, l);
       return --[ tuple ]--[
               match[0],
@@ -33,29 +33,29 @@ function split(x, tree) do
               match$1[1],
               match$1[2]
             ];
-    end
+    end end  end 
   end else do
     return --[ tuple ]--[
             --[ Empty ]--0,
             false,
             --[ Empty ]--0
           ];
-  end
+  end end 
 end
 
 function add(x, tree) do
-  if (tree) do
+  if (tree) then do
     var r = tree[2];
     var v = tree[1];
     var l = tree[0];
     var c = Caml_primitive.caml_string_compare(x, v);
-    if (c == 0) do
+    if (c == 0) then do
       return tree;
-    end else if (c < 0) do
+    end else if (c < 0) then do
       return Set_gen.internal_bal(add(x, l), v, r);
     end else do
       return Set_gen.internal_bal(l, v, add(x, r));
-    end
+    end end  end 
   end else do
     return --[ Node ]--[
             --[ Empty ]--0,
@@ -63,108 +63,108 @@ function add(x, tree) do
             --[ Empty ]--0,
             1
           ];
-  end
+  end end 
 end
 
 function union(s1, s2) do
-  if (s1) do
-    if (s2) do
+  if (s1) then do
+    if (s2) then do
       var h2 = s2[3];
       var v2 = s2[1];
       var h1 = s1[3];
       var v1 = s1[1];
-      if (h1 >= h2) do
-        if (h2 == 1) do
+      if (h1 >= h2) then do
+        if (h2 == 1) then do
           return add(v2, s1);
         end else do
           var match = split(v1, s2);
           return Set_gen.internal_join(union(s1[0], match[0]), v1, union(s1[2], match[2]));
-        end
-      end else if (h1 == 1) do
+        end end 
+      end else if (h1 == 1) then do
         return add(v1, s2);
       end else do
         var match$1 = split(v2, s1);
         return Set_gen.internal_join(union(match$1[0], s2[0]), v2, union(match$1[2], s2[2]));
-      end
+      end end  end 
     end else do
       return s1;
-    end
+    end end 
   end else do
     return s2;
-  end
+  end end 
 end
 
 function inter(s1, s2) do
-  if (s1 and s2) do
+  if (s1 and s2) then do
     var r1 = s1[2];
     var v1 = s1[1];
     var l1 = s1[0];
     var match = split(v1, s2);
     var l2 = match[0];
-    if (match[1]) do
+    if (match[1]) then do
       return Set_gen.internal_join(inter(l1, l2), v1, inter(r1, match[2]));
     end else do
       return Set_gen.internal_concat(inter(l1, l2), inter(r1, match[2]));
-    end
+    end end 
   end else do
     return --[ Empty ]--0;
-  end
+  end end 
 end
 
 function diff(s1, s2) do
-  if (s1) do
-    if (s2) do
+  if (s1) then do
+    if (s2) then do
       var r1 = s1[2];
       var v1 = s1[1];
       var l1 = s1[0];
       var match = split(v1, s2);
       var l2 = match[0];
-      if (match[1]) do
+      if (match[1]) then do
         return Set_gen.internal_concat(diff(l1, l2), diff(r1, match[2]));
       end else do
         return Set_gen.internal_join(diff(l1, l2), v1, diff(r1, match[2]));
-      end
+      end end 
     end else do
       return s1;
-    end
+    end end 
   end else do
     return --[ Empty ]--0;
-  end
+  end end 
 end
 
 function mem(x, _tree) do
   while(true) do
     var tree = _tree;
-    if (tree) do
+    if (tree) then do
       var c = Caml_primitive.caml_string_compare(x, tree[1]);
-      if (c == 0) do
+      if (c == 0) then do
         return true;
       end else do
         _tree = c < 0 ? tree[0] : tree[2];
         continue ;
-      end
+      end end 
     end else do
       return false;
-    end
+    end end 
   end;
 end
 
 function remove(x, tree) do
-  if (tree) do
+  if (tree) then do
     var r = tree[2];
     var v = tree[1];
     var l = tree[0];
     var c = Caml_primitive.caml_string_compare(x, v);
-    if (c == 0) do
+    if (c == 0) then do
       return Set_gen.internal_merge(l, r);
-    end else if (c < 0) do
+    end else if (c < 0) then do
       return Set_gen.internal_bal(remove(x, l), v, r);
     end else do
       return Set_gen.internal_bal(l, v, remove(x, r));
-    end
+    end end  end 
   end else do
     return --[ Empty ]--0;
-  end
+  end end 
 end
 
 function compare(s1, s2) do
@@ -179,106 +179,106 @@ function subset(_s1, _s2) do
   while(true) do
     var s2 = _s2;
     var s1 = _s1;
-    if (s1) do
-      if (s2) do
+    if (s1) then do
+      if (s2) then do
         var r2 = s2[2];
         var l2 = s2[0];
         var r1 = s1[2];
         var v1 = s1[1];
         var l1 = s1[0];
         var c = Caml_primitive.caml_string_compare(v1, s2[1]);
-        if (c == 0) do
-          if (subset(l1, l2)) do
+        if (c == 0) then do
+          if (subset(l1, l2)) then do
             _s2 = r2;
             _s1 = r1;
             continue ;
           end else do
             return false;
-          end
-        end else if (c < 0) do
+          end end 
+        end else if (c < 0) then do
           if (subset(--[ Node ]--[
                   l1,
                   v1,
                   --[ Empty ]--0,
                   0
-                ], l2)) do
+                ], l2)) then do
             _s1 = r1;
             continue ;
           end else do
             return false;
-          end
+          end end 
         end else if (subset(--[ Node ]--[
                 --[ Empty ]--0,
                 v1,
                 r1,
                 0
-              ], r2)) do
+              ], r2)) then do
           _s1 = l1;
           continue ;
         end else do
           return false;
-        end
+        end end  end  end 
       end else do
         return false;
-      end
+      end end 
     end else do
       return true;
-    end
+    end end 
   end;
 end
 
 function find(x, _tree) do
   while(true) do
     var tree = _tree;
-    if (tree) do
+    if (tree) then do
       var v = tree[1];
       var c = Caml_primitive.caml_string_compare(x, v);
-      if (c == 0) do
+      if (c == 0) then do
         return v;
       end else do
         _tree = c < 0 ? tree[0] : tree[2];
         continue ;
-      end
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 
 function of_list(l) do
-  if (l) do
+  if (l) then do
     var match = l[1];
     var x0 = l[0];
-    if (match) do
+    if (match) then do
       var match$1 = match[1];
       var x1 = match[0];
-      if (match$1) do
+      if (match$1) then do
         var match$2 = match$1[1];
         var x2 = match$1[0];
-        if (match$2) do
+        if (match$2) then do
           var match$3 = match$2[1];
           var x3 = match$2[0];
-          if (match$3) do
-            if (match$3[1]) do
+          if (match$3) then do
+            if (match$3[1]) then do
               return Set_gen.of_sorted_list(List.sort_uniq($$String.compare, l));
             end else do
               return add(match$3[0], add(x3, add(x2, add(x1, Set_gen.singleton(x0)))));
-            end
+            end end 
           end else do
             return add(x3, add(x2, add(x1, Set_gen.singleton(x0))));
-          end
+          end end 
         end else do
           return add(x2, add(x1, Set_gen.singleton(x0)));
-        end
+        end end 
       end else do
         return add(x1, Set_gen.singleton(x0));
-      end
+      end end 
     end else do
       return Set_gen.singleton(x0);
-    end
+    end end 
   end else do
     return --[ Empty ]--0;
-  end
+  end end 
 end
 
 function of_array(l) do

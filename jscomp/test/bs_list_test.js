@@ -2454,10 +2454,10 @@ var u0 = Belt_List.makeBy(20, (function (x) do
       end));
 
 var u1 = Belt_List.keepMap(u0, (function (x) do
-        if (x % 7 == 0) do
+        if (x % 7 == 0) then do
           return x + 1 | 0;
         end
-        
+         end 
       end));
 
 eq("File \"bs_list_test.ml\", line 344, characters 5-12", u1, --[ :: ]--[
@@ -2484,10 +2484,10 @@ b("File \"bs_list_test.ml\", line 345, characters 4-11", Caml_obj.caml_equal(Bel
                 ]
               ]
             ], (function (x) do
-                if (x % 2 == 0) do
+                if (x % 2 == 0) then do
                   return -x | 0;
                 end
-                
+                 end 
               end)), --[ :: ]--[
           -2,
           --[ :: ]--[
@@ -2509,10 +2509,10 @@ b("File \"bs_list_test.ml\", line 349, characters 4-11", Belt_List.keepMap(--[ :
             ]
           ]
         ], (function (x) do
-            if (x % 5 == 0) do
+            if (x % 5 == 0) then do
               return x;
             end
-            
+             end 
           end)) == --[ [] ]--0);
 
 Mt.from_pair_suites("Bs_list_test", suites.contents);

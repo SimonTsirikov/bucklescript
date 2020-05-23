@@ -32,7 +32,7 @@ var v1 = --[ A1 ]--Block.__(1, [--[ more : :: ]--[
     ]]);
 
 function f(x) do
-  if (x.tag) do
+  if (x.tag) then do
     return List.fold_left((function (prim, prim$1) do
                   return prim + prim$1 | 0;
                 end), 0, x[--[ more ]--0]);
@@ -40,7 +40,7 @@ function f(x) do
     return List.fold_left((function (prim, prim$1) do
                   return prim + prim$1 | 0;
                 end), x[--[ lbl ]--0], x[--[ more ]--1]);
-  end
+  end end 
 end
 
 eq("File \"inline_record_test.ml\", line 25, characters 6-13", f(v), 3);
@@ -61,7 +61,7 @@ var v3 = [
 
 var tmp;
 
-if (A0 == A0) do
+if (A0 == A0) then do
   tmp = 3;
 end else do
   throw [
@@ -72,18 +72,18 @@ end else do
           52
         ]
       ];
-end
+end end 
 
 eq("File \"inline_record_test.ml\", line 51, characters 6-13", tmp, 3);
 
 function ff(x) do
-  if (x.tag) do
+  if (x.tag) then do
     x[--[ z ]--0] = x[--[ z ]--0] + 2 | 0;
     return --[ () ]--0;
   end else do
     x[--[ x ]--0] = x[--[ x ]--0] + 1 | 0;
     return --[ () ]--0;
-  end
+  end end 
 end
 
 var v4 = --[ A0 ]--Block.__(0, [
@@ -101,7 +101,7 @@ end
 
 var tmp$1;
 
-if (v4.tag) do
+if (v4.tag) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -112,13 +112,13 @@ if (v4.tag) do
       ];
 end else do
   tmp$1 = v4[--[ x ]--0];
-end
+end end 
 
 eq("File \"inline_record_test.ml\", line 69, characters 6-13", tmp$1, 11);
 
 var tmp$2;
 
-if (v5.tag) do
+if (v5.tag) then do
   tmp$2 = v5[--[ z ]--0];
 end else do
   throw [
@@ -129,7 +129,7 @@ end else do
           48
         ]
       ];
-end
+end end 
 
 eq("File \"inline_record_test.ml\", line 71, characters 6-13", tmp$2, 22);
 
@@ -143,13 +143,13 @@ var v6 = [
 ];
 
 function ff0(x) do
-  if (x[0] == A4) do
+  if (x[0] == A4) then do
     x[--[ x ]--1] = x[--[ x ]--1] + 1 | 0;
     x[--[ z ]--3] = x[--[ z ]--3] + 1 | 0;
     return --[ () ]--0;
   end else do
     return --[ () ]--0;
-  end
+  end end 
 end
 
 for(var i$1 = 0; i$1 <= 10; ++i$1)do
@@ -158,7 +158,7 @@ end
 
 var tmp$3;
 
-if (v6[0] == A4) do
+if (v6[0] == A4) then do
   tmp$3 = v6[--[ x ]--1];
 end else do
   throw [
@@ -169,19 +169,19 @@ end else do
           49
         ]
       ];
-end
+end end 
 
 eq("File \"inline_record_test.ml\", line 87, characters 6-13", tmp$3, 11);
 
 function ff1(x) do
-  if (x) do
+  if (x) then do
     return --[ A0 ]--[
             --[ lbl ]--x[--[ lbl ]--0] + 1 | 0,
             --[ more ]--x[--[ more ]--1]
           ];
   end else do
     return --[ A1 ]--0;
-  end
+  end end 
 end
 
 Mt.from_pair_suites("Inline_record_test", suites.contents);

@@ -4,45 +4,45 @@
 function test3(_n) do
   while(true) do
     var n = _n;
-    if (n == 0) do
+    if (n == 0) then do
       return (n + 5 | 0) + 4 | 0;
     end else do
       _n = n - 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
 function test2(_n) do
   while(true) do
     var n = _n;
-    if (n == 0) do
+    if (n == 0) then do
       return test3(n) + 3 | 0;
     end else do
       _n = n - 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
 function test0(_n) do
   while(true) do
     var n = _n;
-    if (n == 0) do
+    if (n == 0) then do
       var _n$1 = n;
       while(true) do
         var n$1 = _n$1;
-        if (n$1 == 0) do
+        if (n$1 == 0) then do
           return test2(n$1) + 2 | 0;
         end else do
           _n$1 = n$1 - 1 | 0;
           continue ;
-        end
+        end end 
       end;
     end else do
       _n = n - 1 | 0;
       continue ;
-    end
+    end end 
   end;
 end
 

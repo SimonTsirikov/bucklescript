@@ -20,10 +20,10 @@ end
 var Inline_record = Caml_exceptions.create("Record_extension_test.Inline_record");
 
 function f(x) do
-  if (x[0] == Inline_record) do
+  if (x[0] == Inline_record) then do
     return x[--[ x ]--1] + Caml_format.caml_int_of_string(x[--[ y ]--2]) | 0;
   end
-  
+   end 
 end
 
 var v0 = [
@@ -35,22 +35,22 @@ var v0 = [
 eq("File \"record_extension_test.ml\", line 18, characters 6-13", f(v0), 7);
 
 function f2(x) do
-  if (typeof x == "number" or x.tag) do
+  if (typeof x == "number" or x.tag) then do
     return 0;
   end else do
     return x[--[ x ]--0];
-  end
+  end end 
 end
 
 function f2_with(x) do
-  if (typeof x == "number" or x.tag) do
+  if (typeof x == "number" or x.tag) then do
     return x;
   end else do
     return --[ C ]--Block.__(0, [
               --[ x ]--0,
               --[ y ]--x[--[ y ]--1]
             ]);
-  end
+  end end 
 end
 
 Mt.from_pair_suites("File \"record_extension_test.ml\", line 43, characters 22-29", suites.contents);

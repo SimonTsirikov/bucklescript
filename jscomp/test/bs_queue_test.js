@@ -40,7 +40,7 @@ end
 
 var q = Belt_MutableQueue.make(--[ () ]--0);
 
-if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), []) and q.length == 0)) do
+if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), []) and q.length == 0)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -50,8 +50,9 @@ if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), []) and q.length == 0)) 
         ]
       ];
 end
+ end 
 
-if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q, 1), q)), [1]) and q.length == 1)) do
+if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q, 1), q)), [1]) and q.length == 1)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -61,11 +62,12 @@ if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q, 1)
         ]
       ];
 end
+ end 
 
 if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q, 2), q)), [
           1,
           2
-        ]) and q.length == 2)) do
+        ]) and q.length == 2)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -75,12 +77,13 @@ if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q, 2)
         ]
       ];
 end
+ end 
 
 if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q, 3), q)), [
           1,
           2,
           3
-        ]) and q.length == 3)) do
+        ]) and q.length == 3)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -90,13 +93,14 @@ if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q, 3)
         ]
       ];
 end
+ end 
 
 if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q, 4), q)), [
           1,
           2,
           3,
           4
-        ]) and q.length == 4)) do
+        ]) and q.length == 4)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -106,8 +110,9 @@ if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q, 4)
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.popExn(q) ~= 1) do
+if (Belt_MutableQueue.popExn(q) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -117,12 +122,13 @@ if (Belt_MutableQueue.popExn(q) ~= 1) do
         ]
       ];
 end
+ end 
 
 if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), [
           2,
           3,
           4
-        ]) and q.length == 3)) do
+        ]) and q.length == 3)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -132,8 +138,9 @@ if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), [
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.popExn(q) ~= 2) do
+if (Belt_MutableQueue.popExn(q) ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -143,11 +150,12 @@ if (Belt_MutableQueue.popExn(q) ~= 2) do
         ]
       ];
 end
+ end 
 
 if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), [
           3,
           4
-        ]) and q.length == 2)) do
+        ]) and q.length == 2)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -157,8 +165,9 @@ if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), [
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.popExn(q) ~= 3) do
+if (Belt_MutableQueue.popExn(q) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -168,8 +177,9 @@ if (Belt_MutableQueue.popExn(q) ~= 3) do
         ]
       ];
 end
+ end 
 
-if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), [4]) and q.length == 1)) do
+if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), [4]) and q.length == 1)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -179,8 +189,9 @@ if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), [4]) and q.length == 1))
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.popExn(q) ~= 4) do
+if (Belt_MutableQueue.popExn(q) ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -190,8 +201,9 @@ if (Belt_MutableQueue.popExn(q) ~= 4) do
         ]
       ];
 end
+ end 
 
-if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), []) and q.length == 0)) do
+if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), []) and q.length == 0)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -201,8 +213,9 @@ if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), []) and q.length == 0)) 
         ]
       ];
 end
+ end 
 
-if (!does_raise(Belt_MutableQueue.popExn, q)) do
+if (!does_raise(Belt_MutableQueue.popExn, q)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -212,10 +225,11 @@ if (!does_raise(Belt_MutableQueue.popExn, q)) do
         ]
       ];
 end
+ end 
 
 var q$1 = Belt_MutableQueue.make(--[ () ]--0);
 
-if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q$1, 1), q$1)) ~= 1) do
+if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q$1, 1), q$1)) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -225,8 +239,9 @@ if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q$1, 1), q$1)) ~= 1) do
         ]
       ];
 end
+ end 
 
-if (!does_raise(Belt_MutableQueue.popExn, q$1)) do
+if (!does_raise(Belt_MutableQueue.popExn, q$1)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -236,8 +251,9 @@ if (!does_raise(Belt_MutableQueue.popExn, q$1)) do
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q$1, 2), q$1)) ~= 2) do
+if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q$1, 2), q$1)) ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -247,8 +263,9 @@ if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q$1, 2), q$1)) ~= 2) do
         ]
       ];
 end
+ end 
 
-if (!does_raise(Belt_MutableQueue.popExn, q$1)) do
+if (!does_raise(Belt_MutableQueue.popExn, q$1)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -258,8 +275,9 @@ if (!does_raise(Belt_MutableQueue.popExn, q$1)) do
         ]
       ];
 end
+ end 
 
-if (q$1.length ~= 0) do
+if (q$1.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -269,10 +287,11 @@ if (q$1.length ~= 0) do
         ]
       ];
 end
+ end 
 
 var q$2 = Belt_MutableQueue.make(--[ () ]--0);
 
-if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 1), q$2)) ~= 1) do
+if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 1), q$2)) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -282,8 +301,9 @@ if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 1), q$2)) ~= 1) do
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 2), q$2)) ~= 1) do
+if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 2), q$2)) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -293,8 +313,9 @@ if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 2), q$2)) ~= 1) do
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 3), q$2)) ~= 1) do
+if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 3), q$2)) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -304,8 +325,9 @@ if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 3), q$2)) ~= 1) do
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.peekExn(q$2) ~= 1) do
+if (Belt_MutableQueue.peekExn(q$2) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -315,8 +337,9 @@ if (Belt_MutableQueue.peekExn(q$2) ~= 1) do
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.popExn(q$2) ~= 1) do
+if (Belt_MutableQueue.popExn(q$2) ~= 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -326,8 +349,9 @@ if (Belt_MutableQueue.popExn(q$2) ~= 1) do
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.peekExn(q$2) ~= 2) do
+if (Belt_MutableQueue.peekExn(q$2) ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -337,8 +361,9 @@ if (Belt_MutableQueue.peekExn(q$2) ~= 2) do
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.popExn(q$2) ~= 2) do
+if (Belt_MutableQueue.popExn(q$2) ~= 2) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -348,8 +373,9 @@ if (Belt_MutableQueue.popExn(q$2) ~= 2) do
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.peekExn(q$2) ~= 3) do
+if (Belt_MutableQueue.peekExn(q$2) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -359,8 +385,9 @@ if (Belt_MutableQueue.peekExn(q$2) ~= 3) do
         ]
       ];
 end
+ end 
 
-if (Belt_MutableQueue.popExn(q$2) ~= 3) do
+if (Belt_MutableQueue.popExn(q$2) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -370,8 +397,9 @@ if (Belt_MutableQueue.popExn(q$2) ~= 3) do
         ]
       ];
 end
+ end 
 
-if (!does_raise(Belt_MutableQueue.peekExn, q$2)) do
+if (!does_raise(Belt_MutableQueue.peekExn, q$2)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -381,8 +409,9 @@ if (!does_raise(Belt_MutableQueue.peekExn, q$2)) do
         ]
       ];
 end
+ end 
 
-if (!does_raise(Belt_MutableQueue.peekExn, q$2)) do
+if (!does_raise(Belt_MutableQueue.peekExn, q$2)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -392,6 +421,7 @@ if (!does_raise(Belt_MutableQueue.peekExn, q$2)) do
         ]
       ];
 end
+ end 
 
 var q$3 = Belt_MutableQueue.make(--[ () ]--0);
 
@@ -401,7 +431,7 @@ end
 
 Belt_MutableQueue.clear(q$3);
 
-if (q$3.length ~= 0) do
+if (q$3.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -411,8 +441,9 @@ if (q$3.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (!does_raise(Belt_MutableQueue.popExn, q$3)) do
+if (!does_raise(Belt_MutableQueue.popExn, q$3)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -422,8 +453,9 @@ if (!does_raise(Belt_MutableQueue.popExn, q$3)) do
         ]
       ];
 end
+ end 
 
-if (!Caml_obj.caml_equal(q$3, Belt_MutableQueue.make(--[ () ]--0))) do
+if (!Caml_obj.caml_equal(q$3, Belt_MutableQueue.make(--[ () ]--0))) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -433,10 +465,11 @@ if (!Caml_obj.caml_equal(q$3, Belt_MutableQueue.make(--[ () ]--0))) do
         ]
       ];
 end
+ end 
 
 Belt_MutableQueue.add(q$3, 42);
 
-if (Belt_MutableQueue.popExn(q$3) ~= 42) do
+if (Belt_MutableQueue.popExn(q$3) ~= 42) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -446,6 +479,7 @@ if (Belt_MutableQueue.popExn(q$3) ~= 42) do
         ]
       ];
 end
+ end 
 
 var q1 = Belt_MutableQueue.make(--[ () ]--0);
 
@@ -466,7 +500,7 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1), [
         8,
         9,
         10
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -476,6 +510,7 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1), [
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2), [
         1,
@@ -488,7 +523,7 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2), [
         8,
         9,
         10
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -498,8 +533,9 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2), [
         ]
       ];
 end
+ end 
 
-if (q1.length ~= 10) do
+if (q1.length ~= 10) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -509,8 +545,9 @@ if (q1.length ~= 10) do
         ]
       ];
 end
+ end 
 
-if (q2.length ~= 10) do
+if (q2.length ~= 10) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -520,9 +557,10 @@ if (q2.length ~= 10) do
         ]
       ];
 end
+ end 
 
 for(var i$2 = 1; i$2 <= 10; ++i$2)do
-  if (Belt_MutableQueue.popExn(q1) ~= i$2) do
+  if (Belt_MutableQueue.popExn(q1) ~= i$2) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -532,11 +570,11 @@ for(var i$2 = 1; i$2 <= 10; ++i$2)do
           ]
         ];
   end
-  
+   end 
 end
 
 for(var i$3 = 1; i$3 <= 10; ++i$3)do
-  if (Belt_MutableQueue.popExn(q2) ~= i$3) do
+  if (Belt_MutableQueue.popExn(q2) ~= i$3) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -546,12 +584,12 @@ for(var i$3 = 1; i$3 <= 10; ++i$3)do
           ]
         ];
   end
-  
+   end 
 end
 
 var q$4 = Belt_MutableQueue.make(--[ () ]--0);
 
-if (q$4.length ~= 0) do
+if (q$4.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -561,10 +599,11 @@ if (q$4.length ~= 0) do
         ]
       ];
 end
+ end 
 
 for(var i$4 = 1; i$4 <= 10; ++i$4)do
   Belt_MutableQueue.add(q$4, i$4);
-  if (q$4.length ~= i$4) do
+  if (q$4.length ~= i$4) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -574,7 +613,8 @@ for(var i$4 = 1; i$4 <= 10; ++i$4)do
           ]
         ];
   end
-  if (q$4.length == 0) do
+   end 
+  if (q$4.length == 0) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -584,11 +624,11 @@ for(var i$4 = 1; i$4 <= 10; ++i$4)do
           ]
         ];
   end
-  
+   end 
 end
 
 for(var i$5 = 10; i$5 >= 1; --i$5)do
-  if (q$4.length ~= i$5) do
+  if (q$4.length ~= i$5) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -598,7 +638,8 @@ for(var i$5 = 10; i$5 >= 1; --i$5)do
           ]
         ];
   end
-  if (q$4.length == 0) do
+   end 
+  if (q$4.length == 0) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -608,10 +649,11 @@ for(var i$5 = 10; i$5 >= 1; --i$5)do
           ]
         ];
   end
+   end 
   Belt_MutableQueue.popExn(q$4);
 end
 
-if (q$4.length ~= 0) do
+if (q$4.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -621,8 +663,9 @@ if (q$4.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (q$4.length ~= 0) do
+if (q$4.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -632,6 +675,7 @@ if (q$4.length ~= 0) do
         ]
       ];
 end
+ end 
 
 var q$5 = Belt_MutableQueue.make(--[ () ]--0);
 
@@ -644,7 +688,7 @@ var i$7 = do
 end;
 
 Belt_MutableQueue.forEach(q$5, (function (j) do
-        if (i$7.contents ~= j) do
+        if (i$7.contents ~= j) then do
           throw [
                 Caml_builtin_exceptions.assert_failure,
                 --[ tuple ]--[
@@ -654,6 +698,7 @@ Belt_MutableQueue.forEach(q$5, (function (j) do
                 ]
               ];
         end
+         end 
         i$7.contents = i$7.contents + 1 | 0;
         return --[ () ]--0;
       end));
@@ -662,7 +707,7 @@ var q1$1 = Belt_MutableQueue.make(--[ () ]--0);
 
 var q2$1 = Belt_MutableQueue.make(--[ () ]--0);
 
-if (q1$1.length ~= 0) do
+if (q1$1.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -672,8 +717,9 @@ if (q1$1.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$1), [])) do
+if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$1), [])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -683,8 +729,9 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$1), [])) do
         ]
       ];
 end
+ end 
 
-if (q2$1.length ~= 0) do
+if (q2$1.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -694,8 +741,9 @@ if (q2$1.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$1), [])) do
+if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$1), [])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -705,10 +753,11 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$1), [])) do
         ]
       ];
 end
+ end 
 
 Belt_MutableQueue.transfer(q1$1, q2$1);
 
-if (q1$1.length ~= 0) do
+if (q1$1.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -718,8 +767,9 @@ if (q1$1.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$1), [])) do
+if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$1), [])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -729,8 +779,9 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$1), [])) do
         ]
       ];
 end
+ end 
 
-if (q2$1.length ~= 0) do
+if (q2$1.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -740,8 +791,9 @@ if (q2$1.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$1), [])) do
+if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$1), [])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -751,6 +803,7 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$1), [])) do
         ]
       ];
 end
+ end 
 
 var q1$2 = Belt_MutableQueue.make(--[ () ]--0);
 
@@ -760,7 +813,7 @@ for(var i$8 = 1; i$8 <= 4; ++i$8)do
   Belt_MutableQueue.add(q1$2, i$8);
 end
 
-if (q1$2.length ~= 4) do
+if (q1$2.length ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -770,13 +823,14 @@ if (q1$2.length ~= 4) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$2), [
         1,
         2,
         3,
         4
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -786,8 +840,9 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$2), [
         ]
       ];
 end
+ end 
 
-if (q2$2.length ~= 0) do
+if (q2$2.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -797,8 +852,9 @@ if (q2$2.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$2), [])) do
+if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$2), [])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -808,10 +864,11 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$2), [])) do
         ]
       ];
 end
+ end 
 
 Belt_MutableQueue.transfer(q1$2, q2$2);
 
-if (q1$2.length ~= 0) do
+if (q1$2.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -821,8 +878,9 @@ if (q1$2.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$2), [])) do
+if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$2), [])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -832,8 +890,9 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$2), [])) do
         ]
       ];
 end
+ end 
 
-if (q2$2.length ~= 4) do
+if (q2$2.length ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -843,13 +902,14 @@ if (q2$2.length ~= 4) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$2), [
         1,
         2,
         3,
         4
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -859,6 +919,7 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$2), [
         ]
       ];
 end
+ end 
 
 var q1$3 = Belt_MutableQueue.make(--[ () ]--0);
 
@@ -868,7 +929,7 @@ for(var i$9 = 5; i$9 <= 8; ++i$9)do
   Belt_MutableQueue.add(q2$3, i$9);
 end
 
-if (q1$3.length ~= 0) do
+if (q1$3.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -878,8 +939,9 @@ if (q1$3.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$3), [])) do
+if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$3), [])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -889,8 +951,9 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$3), [])) do
         ]
       ];
 end
+ end 
 
-if (q2$3.length ~= 4) do
+if (q2$3.length ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -900,13 +963,14 @@ if (q2$3.length ~= 4) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$3), [
         5,
         6,
         7,
         8
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -916,10 +980,11 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$3), [
         ]
       ];
 end
+ end 
 
 Belt_MutableQueue.transfer(q1$3, q2$3);
 
-if (q1$3.length ~= 0) do
+if (q1$3.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -929,8 +994,9 @@ if (q1$3.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$3), [])) do
+if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$3), [])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -940,8 +1006,9 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$3), [])) do
         ]
       ];
 end
+ end 
 
-if (q2$3.length ~= 4) do
+if (q2$3.length ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -951,13 +1018,14 @@ if (q2$3.length ~= 4) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$3), [
         5,
         6,
         7,
         8
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -967,6 +1035,7 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$3), [
         ]
       ];
 end
+ end 
 
 var q1$4 = Belt_MutableQueue.make(--[ () ]--0);
 
@@ -980,7 +1049,7 @@ for(var i$11 = 5; i$11 <= 8; ++i$11)do
   Belt_MutableQueue.add(q2$4, i$11);
 end
 
-if (q1$4.length ~= 4) do
+if (q1$4.length ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -990,13 +1059,14 @@ if (q1$4.length ~= 4) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$4), [
         1,
         2,
         3,
         4
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1006,8 +1076,9 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$4), [
         ]
       ];
 end
+ end 
 
-if (q2$4.length ~= 4) do
+if (q2$4.length ~= 4) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1017,13 +1088,14 @@ if (q2$4.length ~= 4) do
         ]
       ];
 end
+ end 
 
 if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$4), [
         5,
         6,
         7,
         8
-      ])) do
+      ])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1033,10 +1105,11 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$4), [
         ]
       ];
 end
+ end 
 
 Belt_MutableQueue.transfer(q1$4, q2$4);
 
-if (q1$4.length ~= 0) do
+if (q1$4.length ~= 0) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1046,8 +1119,9 @@ if (q1$4.length ~= 0) do
         ]
       ];
 end
+ end 
 
-if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$4), [])) do
+if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$4), [])) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1057,6 +1131,7 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$4), [])) do
         ]
       ];
 end
+ end 
 
 var v = [
   5,
@@ -1069,7 +1144,7 @@ var v = [
   4
 ];
 
-if (q2$4.length ~= 8) do
+if (q2$4.length ~= 8) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1079,8 +1154,9 @@ if (q2$4.length ~= 8) do
         ]
       ];
 end
+ end 
 
-if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$4), v)) do
+if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$4), v)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1090,12 +1166,13 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$4), v)) do
         ]
       ];
 end
+ end 
 
 if (Belt_MutableQueue.reduce(q2$4, 0, (function (x, y) do
           return x - y | 0;
         end)) ~= Belt_Array.reduce(v, 0, (function (x, y) do
           return x - y | 0;
-        end))) do
+        end))) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1105,6 +1182,7 @@ if (Belt_MutableQueue.reduce(q2$4, 0, (function (x, y) do
         ]
       ];
 end
+ end 
 
 console.log("OK");
 

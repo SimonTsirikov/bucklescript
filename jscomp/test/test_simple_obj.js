@@ -88,7 +88,7 @@ CamlinternalOO.init_class($$class$3);
 var v = CamlinternalOO.create_object_opt(0, $$class$3);
 
 function test(param) do
-  if (Caml_oo_curry.js1(23515, 1, uu) ~= "uu") do
+  if (Caml_oo_curry.js1(23515, 1, uu) ~= "uu") then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -98,7 +98,8 @@ function test(param) do
           ]
         ];
   end
-  if (Caml_oo_curry.js3(4846113, 2, uuu, 1, 20) ~= 21) do
+   end 
+  if (Caml_oo_curry.js3(4846113, 2, uuu, 1, 20) ~= 21) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -108,7 +109,8 @@ function test(param) do
           ]
         ];
   end
-  if (Caml_oo_curry.js3(4846113, 3, v, 3, 7) ~= 10) do
+   end 
+  if (Caml_oo_curry.js3(4846113, 3, v, 3, 7) ~= 10) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -118,7 +120,8 @@ function test(param) do
           ]
         ];
   end
-  if (Caml_oo_curry.js1(5243894, 4, u) ~= 3) do
+   end 
+  if (Caml_oo_curry.js1(5243894, 4, u) ~= 3) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -128,7 +131,8 @@ function test(param) do
           ]
         ];
   end
-  if (Caml_oo_curry.js1(5243895, 5, u) ~= 4) do
+   end 
+  if (Caml_oo_curry.js1(5243895, 5, u) ~= 4) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -138,7 +142,8 @@ function test(param) do
           ]
         ];
   end
-  if (Caml_oo_curry.js3(23297, 6, u, 1, 2) ~= 3) do
+   end 
+  if (Caml_oo_curry.js3(23297, 6, u, 1, 2) ~= 3) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -148,7 +153,8 @@ function test(param) do
           ]
         ];
   end
-  if (Caml_oo_curry.js2(616641298, 7, u, 32) == 32) do
+   end 
+  if (Caml_oo_curry.js2(616641298, 7, u, 32) == 32) then do
     return 0;
   end else do
     throw [
@@ -159,7 +165,7 @@ function test(param) do
             4
           ]
         ];
-  end
+  end end 
 end
 
 exports.u = u;

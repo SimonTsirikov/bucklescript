@@ -63,21 +63,21 @@ end
 
 function f6(b) do
   while(true) do
-    if (b) do
+    if (b) then do
       continue ;
     end else do
       return false;
-    end
+    end end 
   end;
 end
 
 function f7(b) do
   while(true) do
-    if (b) do
+    if (b) then do
       return true;
     end else do
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -85,18 +85,18 @@ function f8(_x, _y) do
   while(true) do
     var y = _y;
     var x = _x;
-    if (x > 10) do
+    if (x > 10) then do
       _y = y + 1 | 0;
       continue ;
-    end else if (x < 5) do
+    end else if (x < 5) then do
       _x = x - 1 | 0;
       continue ;
-    end else if (x > 6) do
+    end else if (x > 6) then do
       _x = x - 2 | 0;
       continue ;
     end else do
       return f8(x, y + 1 | 0) + f8(x - 1 | 0, y) | 0;
-    end
+    end end  end  end 
   end;
 end
 

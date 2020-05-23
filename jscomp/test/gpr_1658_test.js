@@ -33,11 +33,11 @@ eq("File \"gpr_1658_test.ml\", line 11, characters 7-14", null, null);
 
 var match = Js_types.classify(null);
 
-if (typeof match == "number" and match == 2) do
+if (typeof match == "number" and match == 2) then do
   eq("File \"gpr_1658_test.ml\", line 14, characters 11-18", true, true);
 end else do
   eq("File \"gpr_1658_test.ml\", line 16, characters 11-18", true, false);
-end
+end end 
 
 eq("File \"gpr_1658_test.ml\", line 17, characters 7-14", true, Js_types.test(null, --[ Null ]--1));
 

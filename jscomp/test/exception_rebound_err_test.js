@@ -45,24 +45,25 @@ function test_js_error4(param) do
   end
   catch (raw_e)do
     var e = Caml_js_exceptions.internalToOCamlException(raw_e);
-    if (e == Caml_builtin_exceptions.not_found) do
+    if (e == Caml_builtin_exceptions.not_found) then do
       return 2;
-    end else if (e[0] == Caml_builtin_exceptions.invalid_argument and e[1] == "x") do
+    end else if (e[0] == Caml_builtin_exceptions.invalid_argument and e[1] == "x") then do
       return 3;
     end
-    if (e[0] == A) do
-      if (e[1] ~= 2) do
+     end  end 
+    if (e[0] == A) then do
+      if (e[1] ~= 2) then do
         return 7;
       end else do
         return 4;
-      end
-    end else if (e == B) do
+      end end 
+    end else if (e == B) then do
       return 5;
-    end else if (e[0] == C and !(e[1] ~= 1 or e[2] ~= 2)) do
+    end else if (e[0] == C and !(e[1] ~= 1 or e[2] ~= 2)) then do
       return 6;
     end else do
       return 7;
-    end
+    end end  end  end 
   end
 end
 
@@ -71,11 +72,11 @@ function f(g) do
     return Curry._1(g, --[ () ]--0);
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return 1;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 

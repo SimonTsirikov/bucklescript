@@ -3,7 +3,7 @@
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(x) do
-  if (x > 3 or x < 1) do
+  if (x > 3 or x < 1) then do
     throw [
           Caml_builtin_exceptions.match_failure,
           --[ tuple ]--[
@@ -14,15 +14,15 @@ function f(x) do
         ];
   end else do
     return --[ "a" ]--97;
-  end
+  end end 
 end
 
 function f2(x) do
-  if (x ~= undefined) do
+  if (x ~= undefined) then do
     return 0;
   end else do
     return 1;
-  end
+  end end 
 end
 
 function f3(x) do

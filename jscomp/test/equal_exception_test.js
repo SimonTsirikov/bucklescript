@@ -10,7 +10,7 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 var v = "gso";
 
 function is_equal(param) do
-  if (Caml_bytes.get(Bytes.make(3, --[ "a" ]--97), 0) ~= --[ "a" ]--97) do
+  if (Caml_bytes.get(Bytes.make(3, --[ "a" ]--97), 0) ~= --[ "a" ]--97) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -20,7 +20,8 @@ function is_equal(param) do
           ]
         ];
   end
-  if (Bytes.make(3, --[ "a" ]--97)[0] ~= --[ "a" ]--97) do
+   end 
+  if (Bytes.make(3, --[ "a" ]--97)[0] ~= --[ "a" ]--97) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -30,9 +31,10 @@ function is_equal(param) do
           ]
         ];
   end
+   end 
   var u = Bytes.make(3, --[ "a" ]--97);
   u[0] = --[ "b" ]--98;
-  if (u[0] ~= --[ "b" ]--98) do
+  if (u[0] ~= --[ "b" ]--98) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -42,6 +44,7 @@ function is_equal(param) do
           ]
         ];
   end
+   end 
   return 0;
 end
 
@@ -50,11 +53,11 @@ function is_exception(param) do
     throw Caml_builtin_exceptions.not_found;
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return --[ () ]--0;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -69,15 +72,15 @@ function is_normal_exception(_x) do
   end
   catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == A) do
-      if (exn[1] ~= 3) do
+    if (exn[0] == A) then do
+      if (exn[1] ~= 3) then do
         throw exn;
       end else do
         return --[ () ]--0;
-      end
+      end end 
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 

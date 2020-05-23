@@ -26,9 +26,10 @@ function h0(param) do
   var tmp = do
     hi: 2
   end;
-  if (partial_arg ~= undefined) do
+  if (partial_arg ~= undefined) then do
     tmp["lo-x"] = Caml_option.valFromOption(partial_arg);
   end
+   end 
   return tmp;
 end
 
@@ -48,11 +49,11 @@ end
 
 function hh2(x) do
   var match = x["lo-x"];
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     return 1;
   end else do
     return 0;
-  end
+  end end 
 end
 
 var u = do

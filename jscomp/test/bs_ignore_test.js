@@ -19,11 +19,11 @@ function add_dyn(kind,x,y){
 ;
 
 function string_of_kind(kind) do
-  if (kind) do
+  if (kind) then do
     return "string";
   end else do
     return "float";
-  end
+  end end 
 end
 
 function add2(k, x, y) do

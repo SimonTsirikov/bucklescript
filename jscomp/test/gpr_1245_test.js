@@ -28,13 +28,13 @@ end
 
 function a0(f) do
   var u = Curry._1(f, --[ () ]--0);
-  if (u ~= null) do
+  if (u ~= null) then do
     console.log(u);
     console.log(u);
     return 1;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function a1(f) do
@@ -43,11 +43,11 @@ function a1(f) do
     return Curry._1(f, --[ () ]--0);
   end
   catch (exn)do
-    if (exn == E) do
+    if (exn == E) then do
       return 1;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 

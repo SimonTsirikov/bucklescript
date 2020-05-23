@@ -34,14 +34,14 @@ function eq(loc, x, y) do
 end
 
 function assert_bool(b) do
-  if (b) do
+  if (b) then do
     return --[ () ]--0;
   end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Assertion Failure."
         ];
-  end
+  end end 
 end
 
 function fail(param) do
@@ -75,7 +75,7 @@ var h = Promise.resolve(--[ () ]--0);
 
 function assertIsNotFound(x) do
   var match = Caml_exceptions.caml_is_extension(x) and x == Caml_builtin_exceptions.not_found ? 0 : undefined;
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     return h;
   end else do
     throw [
@@ -86,7 +86,7 @@ function assertIsNotFound(x) do
             9
           ]
         ];
-  end
+  end end 
 end
 
 function catchTest(param) do
@@ -136,7 +136,7 @@ function orElseRejectedRejectTest(param) do
                     return Promise.reject(Caml_builtin_exceptions.stack_overflow);
                   end)).then(fail).catch((function (error) do
                 var match = Caml_exceptions.caml_is_extension(error) and error == Caml_builtin_exceptions.stack_overflow ? 0 : undefined;
-                if (match ~= undefined) do
+                if (match ~= undefined) then do
                   return h;
                 end else do
                   throw [
@@ -147,7 +147,7 @@ function orElseRejectedRejectTest(param) do
                           18
                         ]
                       ];
-                end
+                end end 
               end));
 end
 

@@ -42,11 +42,11 @@ try do
   standard_library = Caml_sys.caml_sys_getenv("BSLIB");
 end
 catch (exn)do
-  if (exn == Caml_builtin_exceptions.not_found) do
+  if (exn == Caml_builtin_exceptions.not_found) then do
     standard_library = standard_library_default;
   end else do
     throw exn;
-  end
+  end end 
 end
 
 var standard_runtime = "/Users/chenglou/Github/bucklescript/vendor/ocaml/bin/ocamlrun";
@@ -572,22 +572,22 @@ var dont_write_files = do
 end;
 
 function std_include_flag(prefix) do
-  if (no_std_include.contents) do
+  if (no_std_include.contents) then do
     return "";
   end else do
     return prefix .. Curry._1(Filename.quote, standard_library);
-  end
+  end end 
 end
 
 function std_include_dir(param) do
-  if (no_std_include.contents) do
+  if (no_std_include.contents) then do
     return --[ [] ]--0;
   end else do
     return --[ :: ]--[
             standard_library,
             --[ [] ]--0
           ];
-  end
+  end end 
 end
 
 var shared = do
@@ -786,18 +786,18 @@ function try_finally(work, cleanup) do
 end
 
 function map_end(f, l1, l2) do
-  if (l1) do
+  if (l1) then do
     return --[ :: ]--[
             Curry._1(f, l1[0]),
             map_end(f, l1[1], l2)
           ];
   end else do
     return l2;
-  end
+  end end 
 end
 
 function map_left_right(f, param) do
-  if (param) do
+  if (param) then do
     var res = Curry._1(f, param[0]);
     return --[ :: ]--[
             res,
@@ -805,62 +805,62 @@ function map_left_right(f, param) do
           ];
   end else do
     return --[ [] ]--0;
-  end
+  end end 
 end
 
 function for_all2(pred, _l1, _l2) do
   while(true) do
     var l2 = _l2;
     var l1 = _l1;
-    if (l1) do
-      if (l2 and Curry._2(pred, l1[0], l2[0])) do
+    if (l1) then do
+      if (l2 and Curry._2(pred, l1[0], l2[0])) then do
         _l2 = l2[1];
         _l1 = l1[1];
         continue ;
       end else do
         return false;
-      end
-    end else if (l2) do
+      end end 
+    end else if (l2) then do
       return false;
     end else do
       return true;
-    end
+    end end  end 
   end;
 end
 
 function replicate_list(elem, n) do
-  if (n <= 0) do
+  if (n <= 0) then do
     return --[ [] ]--0;
   end else do
     return --[ :: ]--[
             elem,
             replicate_list(elem, n - 1 | 0)
           ];
-  end
+  end end 
 end
 
 function list_remove(x, param) do
-  if (param) do
+  if (param) then do
     var tl = param[1];
     var hd = param[0];
-    if (Caml_obj.caml_equal(hd, x)) do
+    if (Caml_obj.caml_equal(hd, x)) then do
       return tl;
     end else do
       return --[ :: ]--[
               hd,
               list_remove(x, tl)
             ];
-    end
+    end end 
   end else do
     return --[ [] ]--0;
-  end
+  end end 
 end
 
 function split_last(param) do
-  if (param) do
+  if (param) then do
     var tl = param[1];
     var x = param[0];
-    if (tl) do
+    if (tl) then do
       var match = split_last(tl);
       return --[ tuple ]--[
               --[ :: ]--[
@@ -874,7 +874,7 @@ function split_last(param) do
               --[ [] ]--0,
               x
             ];
-    end
+    end end 
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
@@ -884,66 +884,66 @@ function split_last(param) do
             10
           ]
         ];
-  end
+  end end 
 end
 
 function samelist(pred, _l1, _l2) do
   while(true) do
     var l2 = _l2;
     var l1 = _l1;
-    if (l1) do
-      if (l2 and Curry._2(pred, l1[0], l2[0])) do
+    if (l1) then do
+      if (l2 and Curry._2(pred, l1[0], l2[0])) then do
         _l2 = l2[1];
         _l1 = l1[1];
         continue ;
       end else do
         return false;
-      end
-    end else if (l2) do
+      end end 
+    end else if (l2) then do
       return false;
     end else do
       return true;
-    end
+    end end  end 
   end;
 end
 
 function may(f, param) do
-  if (param ~= undefined) do
+  if (param ~= undefined) then do
     return Curry._1(f, Caml_option.valFromOption(param));
   end else do
     return --[ () ]--0;
-  end
+  end end 
 end
 
 function may_map(f, param) do
-  if (param ~= undefined) do
+  if (param ~= undefined) then do
     return Caml_option.some(Curry._1(f, Caml_option.valFromOption(param)));
   end
-  
+   end 
 end
 
 function find_in_path(path, name) do
-  if (Curry._1(Filename.is_implicit, name)) do
+  if (Curry._1(Filename.is_implicit, name)) then do
     var _param = path;
     while(true) do
       var param = _param;
-      if (param) do
+      if (param) then do
         var fullname = Filename.concat(param[0], name);
-        if (Caml_external_polyfill.resolve("caml_sys_file_exists")(fullname)) do
+        if (Caml_external_polyfill.resolve("caml_sys_file_exists")(fullname)) then do
           return fullname;
         end else do
           _param = param[1];
           continue ;
-        end
+        end end 
       end else do
         throw Caml_builtin_exceptions.not_found;
-      end
+      end end 
     end;
-  end else if (Caml_external_polyfill.resolve("caml_sys_file_exists")(name)) do
+  end else if (Caml_external_polyfill.resolve("caml_sys_file_exists")(name)) then do
     return name;
   end else do
     throw Caml_builtin_exceptions.not_found;
-  end
+  end end  end 
 end
 
 function find_in_path_rel(path, name) do
@@ -952,30 +952,30 @@ function find_in_path_rel(path, name) do
       var s = _s;
       var base = Curry._1(Filename.basename, s);
       var dir = Curry._1(Filename.dirname, s);
-      if (dir == s) do
+      if (dir == s) then do
         return dir;
-      end else if (base == Filename.current_dir_name) do
+      end else if (base == Filename.current_dir_name) then do
         _s = dir;
         continue ;
       end else do
         return Filename.concat(simplify(dir), base);
-      end
+      end end  end 
     end;
   end;
   var _param = path;
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var fullname = simplify(Filename.concat(param[0], name));
-      if (Caml_external_polyfill.resolve("caml_sys_file_exists")(fullname)) do
+      if (Caml_external_polyfill.resolve("caml_sys_file_exists")(fullname)) then do
         return fullname;
       end else do
         _param = param[1];
         continue ;
-      end
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 
@@ -984,21 +984,21 @@ function find_in_path_uncap(path, name) do
   var _param = path;
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var dir = param[0];
       var fullname = Filename.concat(dir, name);
       var ufullname = Filename.concat(dir, uname);
-      if (Caml_external_polyfill.resolve("caml_sys_file_exists")(ufullname)) do
+      if (Caml_external_polyfill.resolve("caml_sys_file_exists")(ufullname)) then do
         return ufullname;
-      end else if (Caml_external_polyfill.resolve("caml_sys_file_exists")(fullname)) do
+      end else if (Caml_external_polyfill.resolve("caml_sys_file_exists")(fullname)) then do
         return fullname;
       end else do
         _param = param[1];
         continue ;
-      end
+      end end  end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 
@@ -1008,20 +1008,20 @@ function remove_file(filename) do
   end
   catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.sys_error) do
+    if (exn[0] == Caml_builtin_exceptions.sys_error) then do
       return --[ () ]--0;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
 function expand_directory(alt, s) do
-  if (#s ~= 0 and Caml_string.get(s, 0) == --[ "+" ]--43) do
+  if (#s ~= 0 and Caml_string.get(s, 0) == --[ "+" ]--43) then do
     return Filename.concat(alt, $$String.sub(s, 1, #s - 1 | 0));
   end else do
     return s;
-  end
+  end end 
 end
 
 function create_hashtable(size, init) do
@@ -1037,13 +1037,13 @@ function copy_file(ic, oc) do
   var _param = --[ () ]--0;
   while(true) do
     var n = Pervasives.input(ic, buff, 0, 4096);
-    if (n == 0) do
+    if (n == 0) then do
       return --[ () ]--0;
     end else do
       Pervasives.output(oc, buff, 0, n);
       _param = --[ () ]--0;
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -1052,17 +1052,18 @@ function copy_file_chunk(ic, oc, len) do
   var _n = len;
   while(true) do
     var n = _n;
-    if (n <= 0) do
+    if (n <= 0) then do
       return --[ () ]--0;
     end else do
       var r = Pervasives.input(ic, buff, 0, n < 4096 ? n : 4096);
-      if (r == 0) do
+      if (r == 0) then do
         throw Caml_builtin_exceptions.end_of_file;
       end
+       end 
       Pervasives.output(oc, buff, 0, r);
       _n = n - r | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -1072,30 +1073,30 @@ function string_of_file(ic) do
   var _param = --[ () ]--0;
   while(true) do
     var n = Pervasives.input(ic, buff, 0, 4096);
-    if (n == 0) do
+    if (n == 0) then do
       return $$Buffer.contents(b);
     end else do
       $$Buffer.add_subbytes(b, buff, 0, n);
       _param = --[ () ]--0;
       continue ;
-    end
+    end end 
   end;
 end
 
 function log2(n) do
-  if (n <= 1) do
+  if (n <= 1) then do
     return 0;
   end else do
     return 1 + log2((n >> 1)) | 0;
-  end
+  end end 
 end
 
 function align(n, a) do
-  if (n >= 0) do
+  if (n >= 0) then do
     return (n + a | 0) - 1 & (-a | 0);
   end else do
     return n & (-a | 0);
-  end
+  end end 
 end
 
 function no_overflow_add(a, b) do
@@ -1107,11 +1108,11 @@ function no_overflow_sub(a, b) do
 end
 
 function no_overflow_lsl(a) do
-  if ((Pervasives.min_int >> 1) <= a) do
+  if ((Pervasives.min_int >> 1) <= a) then do
     return a <= (Pervasives.max_int >> 1);
   end else do
     return false;
-  end
+  end end 
 end
 
 function chop_extension_if_any(fname) do
@@ -1120,11 +1121,11 @@ function chop_extension_if_any(fname) do
   end
   catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Caml_builtin_exceptions.invalid_argument) do
+    if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
       return fname;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -1134,18 +1135,18 @@ function chop_extensions(file) do
   try do
     var pos = $$String.index(basename, --[ "." ]--46);
     var basename$1 = $$String.sub(basename, 0, pos);
-    if (Curry._1(Filename.is_implicit, file) and dirname == Filename.current_dir_name) do
+    if (Curry._1(Filename.is_implicit, file) and dirname == Filename.current_dir_name) then do
       return basename$1;
     end else do
       return Filename.concat(dirname, basename$1);
-    end
+    end end 
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return file;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -1155,21 +1156,22 @@ function search_substring(pat, str, start) do
   while(true) do
     var j = _j;
     var i = _i;
-    if (j >= #pat) do
+    if (j >= #pat) then do
       return i;
     end else do
-      if ((i + j | 0) >= #str) do
+      if ((i + j | 0) >= #str) then do
         throw Caml_builtin_exceptions.not_found;
       end
-      if (Caml_string.get(str, i + j | 0) == Caml_string.get(pat, j)) do
+       end 
+      if (Caml_string.get(str, i + j | 0) == Caml_string.get(pat, j)) then do
         _j = j + 1 | 0;
         continue ;
       end else do
         _j = 0;
         _i = i + 1 | 0;
         continue ;
-      end
-    end
+      end end 
+    end end 
   end;
 end
 
@@ -1183,7 +1185,7 @@ function replace_substring(before, after, str) do
         next = search_substring(before, str, curr);
       end
       catch (exn)do
-        if (exn == Caml_builtin_exceptions.not_found) do
+        if (exn == Caml_builtin_exceptions.not_found) then do
           var suffix = $$String.sub(str, curr, #str - curr | 0);
           return List.rev(--[ :: ]--[
                       suffix,
@@ -1191,7 +1193,7 @@ function replace_substring(before, after, str) do
                     ]);
         end else do
           throw exn;
-        end
+        end end 
       end
       var prefix = $$String.sub(str, curr, next - curr | 0);
       _curr = next + #before | 0;
@@ -1209,31 +1211,31 @@ function rev_split_words(s) do
   var split1 = function (res, _i) do
     while(true) do
       var i = _i;
-      if (i >= #s) do
+      if (i >= #s) then do
         return res;
       end else do
         var match = Caml_string.get(s, i);
         var switcher = match - 9 | 0;
-        if (switcher > 4 or switcher < 0) do
-          if (switcher ~= 23) do
+        if (switcher > 4 or switcher < 0) then do
+          if (switcher ~= 23) then do
             return split2(res, i, i + 1 | 0);
           end else do
             _i = i + 1 | 0;
             continue ;
-          end
-        end else if (switcher == 3 or switcher == 2) do
+          end end 
+        end else if (switcher == 3 or switcher == 2) then do
           return split2(res, i, i + 1 | 0);
         end else do
           _i = i + 1 | 0;
           continue ;
-        end
-      end
+        end end  end 
+      end end 
     end;
   end;
   var split2 = function (res, i, _j) do
     while(true) do
       var j = _j;
-      if (j >= #s) do
+      if (j >= #s) then do
         return --[ :: ]--[
                 $$String.sub(s, i, j - i | 0),
                 res
@@ -1241,21 +1243,22 @@ function rev_split_words(s) do
       end else do
         var match = Caml_string.get(s, j);
         var switcher = match - 9 | 0;
-        if (switcher > 4 or switcher < 0) do
-          if (switcher ~= 23) do
+        if (switcher > 4 or switcher < 0) then do
+          if (switcher ~= 23) then do
             _j = j + 1 | 0;
             continue ;
           end
-          
-        end else if (switcher == 3 or switcher == 2) do
+           end 
+        end else if (switcher == 3 or switcher == 2) then do
           _j = j + 1 | 0;
           continue ;
         end
+         end  end 
         return split1(--[ :: ]--[
                     $$String.sub(s, i, j - i | 0),
                     res
                   ], j + 1 | 0);
-      end
+      end end 
     end;
   end;
   return split1(--[ [] ]--0, 0);
@@ -1363,7 +1366,7 @@ function edit_distance(a, b, cutoff) do
   var la = #a;
   var lb = #b;
   var cutoff$1 = Caml_primitive.caml_int_min(la > lb ? la : lb, cutoff);
-  if (Pervasives.abs(la - lb | 0) > cutoff$1) do
+  if (Pervasives.abs(la - lb | 0) > cutoff$1) then do
     return ;
   end else do
     var m = $$Array.make_matrix(la + 1 | 0, lb + 1 | 0, cutoff$1 + 1 | 0);
@@ -1383,12 +1386,12 @@ function edit_distance(a, b, cutoff) do
       end
     end
     var result = Caml_array.caml_array_get(Caml_array.caml_array_get(m, la), lb);
-    if (result > cutoff$1) do
+    if (result > cutoff$1) then do
       return ;
     end else do
       return result;
-    end
-  end
+    end end 
+  end end 
 end
 
 function split(s, c) do
@@ -1398,7 +1401,7 @@ function split(s, c) do
   while(true) do
     var to_rev = _to_rev;
     var pos = _pos;
-    if (pos == len) do
+    if (pos == len) then do
       return List.rev(--[ :: ]--[
                   "",
                   to_rev
@@ -1409,15 +1412,15 @@ function split(s, c) do
         match = $$String.index_from(s, pos, c);
       end
       catch (exn)do
-        if (exn == Caml_builtin_exceptions.not_found) do
+        if (exn == Caml_builtin_exceptions.not_found) then do
           match = undefined;
         end else do
           throw exn;
-        end
+        end end 
       end
-      if (match ~= undefined) do
+      if (match ~= undefined) then do
         var pos2 = match;
-        if (pos2 == pos) do
+        if (pos2 == pos) then do
           _to_rev = --[ :: ]--[
             "",
             to_rev
@@ -1431,14 +1434,14 @@ function split(s, c) do
           ];
           _pos = pos2 + 1 | 0;
           continue ;
-        end
+        end end 
       end else do
         return List.rev(--[ :: ]--[
                     $$String.sub(s, pos, len - pos | 0),
                     to_rev
                   ]);
-      end
-    end
+      end end 
+    end end 
   end;
 end
 
@@ -1473,7 +1476,7 @@ function ansi_of_color(param) do
 end
 
 function code_of_style(param) do
-  if (typeof param == "number") do
+  if (typeof param == "number") then do
     switch (param) do
       case --[ Bold ]--0 :
           return "1";
@@ -1483,11 +1486,11 @@ function code_of_style(param) do
           return "2";
       
     end
-  end else if (param.tag) do
+  end else if (param.tag) then do
     return "4" .. ansi_of_color(param[0]);
   end else do
     return "3" .. ansi_of_color(param[0]);
-  end
+  end end  end 
 end
 
 function ansi_of_style_l(l) do
@@ -1575,18 +1578,18 @@ function set_color_tag_handling(ppf) do
     var s = param;
     try do
       var style = style_of_tag(s);
-      if (color_enabled.contents) do
+      if (color_enabled.contents) then do
         return ansi_of_style_l(style);
       end else do
         return "";
-      end
+      end end 
     end
     catch (exn)do
-      if (exn == Caml_builtin_exceptions.not_found) do
+      if (exn == Caml_builtin_exceptions.not_found) then do
         return Curry._1(or_else, s);
       end else do
         throw exn;
-      end
+      end end 
     end
   end;
   var functions$prime_mark_close_tag = function (param) do
@@ -1594,21 +1597,21 @@ function set_color_tag_handling(ppf) do
     var s = param;
     try do
       style_of_tag(s);
-      if (color_enabled.contents) do
+      if (color_enabled.contents) then do
         return ansi_of_style_l(--[ :: ]--[
                     --[ Reset ]--1,
                     --[ [] ]--0
                   ]);
       end else do
         return "";
-      end
+      end end 
     end
     catch (exn)do
-      if (exn == Caml_builtin_exceptions.not_found) do
+      if (exn == Caml_builtin_exceptions.not_found) then do
         return Curry._1(or_else, s);
       end else do
         throw exn;
-      end
+      end end 
     end
   end;
   var functions$prime_print_open_tag = functions.print_open_tag;
@@ -1641,12 +1644,12 @@ var formatter_l = --[ :: ]--[
 ];
 
 function setup(o) do
-  if (first.contents) do
+  if (first.contents) then do
     first.contents = false;
     Format.set_mark_tags(true);
     List.iter(set_color_tag_handling, formatter_l);
     var tmp;
-    if (o ~= undefined) do
+    if (o ~= undefined) then do
       switch (o) do
         case --[ Always ]--1 :
             tmp = true;
@@ -1659,9 +1662,10 @@ function setup(o) do
       end
     end else do
       tmp = false;
-    end
+    end end 
     color_enabled.contents = tmp;
   end
+   end 
   return --[ () ]--0;
 end
 
@@ -1724,7 +1728,7 @@ end;
 var Terminfo = { };
 
 function number(param) do
-  if (typeof param == "number") do
+  if (typeof param == "number") then do
     switch (param) do
       case --[ Comment_start ]--0 :
           return 1;
@@ -1840,18 +1844,18 @@ function number(param) do
           return 104;
       
     end
-  end
+  end end 
 end
 
 function loop(i) do
-  if (i == 0) do
+  if (i == 0) then do
     return --[ [] ]--0;
   end else do
     return --[ :: ]--[
             i,
             loop(i - 1 | 0)
           ];
-  end
+  end end 
 end
 
 var letter_all = loop(104);
@@ -2060,14 +2064,14 @@ function parse_opt(error, active, flags, s) do
     while(true) do
       var i = _i;
       var n = _n;
-      if (i >= #s) do
+      if (i >= #s) then do
         return --[ tuple ]--[
                 i,
                 n
               ];
       end else do
         var match = Caml_string.get(s, i);
-        if (match > 57 or match < 48) do
+        if (match > 57 or match < 48) then do
           return --[ tuple ]--[
                   i,
                   n
@@ -2076,23 +2080,24 @@ function parse_opt(error, active, flags, s) do
           _i = i + 1 | 0;
           _n = (Caml_int32.imul(10, n) + Caml_string.get(s, i) | 0) - --[ "0" ]--48 | 0;
           continue ;
-        end
-      end
+        end end 
+      end end 
     end;
   end;
   var get_range = function (i) do
     var match = get_num(0, i);
     var n1 = match[1];
     var i$1 = match[0];
-    if ((i$1 + 2 | 0) < #s and Caml_string.get(s, i$1) == --[ "." ]--46 and Caml_string.get(s, i$1 + 1 | 0) == --[ "." ]--46) do
+    if ((i$1 + 2 | 0) < #s and Caml_string.get(s, i$1) == --[ "." ]--46 and Caml_string.get(s, i$1 + 1 | 0) == --[ "." ]--46) then do
       var match$1 = get_num(0, i$1 + 2 | 0);
       var n2 = match$1[1];
-      if (n2 < n1) do
+      if (n2 < n1) then do
         throw [
               Arg.Bad,
               "Ill-formed list of warnings"
             ];
       end
+       end 
       return --[ tuple ]--[
               match$1[0],
               n1,
@@ -2104,47 +2109,49 @@ function parse_opt(error, active, flags, s) do
               n1,
               n1
             ];
-    end
+    end end 
   end;
   var loop = function (_i) do
     while(true) do
       var i = _i;
-      if (i >= #s) do
+      if (i >= #s) then do
         return --[ () ]--0;
       end else do
         var c = Caml_string.get(s, i);
-        if (c >= 65) do
-          if (c >= 97) do
-            if (c >= 123) do
+        if (c >= 65) then do
+          if (c >= 97) then do
+            if (c >= 123) then do
               throw [
                     Arg.Bad,
                     "Ill-formed list of warnings"
                   ];
             end
+             end 
             List.iter(clear, letter(Caml_string.get(s, i)));
             _i = i + 1 | 0;
             continue ;
           end else do
-            if (c >= 91) do
+            if (c >= 91) then do
               throw [
                     Arg.Bad,
                     "Ill-formed list of warnings"
                   ];
             end
+             end 
             List.iter(set, letter(Char.lowercase(Caml_string.get(s, i))));
             _i = i + 1 | 0;
             continue ;
-          end
-        end else if (c >= 46) do
-          if (c >= 64) do
+          end end 
+        end else if (c >= 46) then do
+          if (c >= 64) then do
             return loop_letter_num(set_all, i + 1 | 0);
           end else do
             throw [
                   Arg.Bad,
                   "Ill-formed list of warnings"
                 ];
-          end
-        end else if (c >= 43) do
+          end end 
+        end else if (c >= 43) then do
           switch (c - 43 | 0) do
             case 0 :
                 return loop_letter_num(set, i + 1 | 0);
@@ -2162,51 +2169,55 @@ function parse_opt(error, active, flags, s) do
                 Arg.Bad,
                 "Ill-formed list of warnings"
               ];
-        end
-      end
+        end end  end  end 
+      end end 
     end;
   end;
   var loop_letter_num = function (myset, i) do
-    if (i >= #s) do
+    if (i >= #s) then do
       throw [
             Arg.Bad,
             "Ill-formed list of warnings"
           ];
     end
+     end 
     var match = Caml_string.get(s, i);
-    if (match >= 65) do
-      if (match >= 97) do
-        if (match >= 123) do
+    if (match >= 65) then do
+      if (match >= 97) then do
+        if (match >= 123) then do
           throw [
                 Arg.Bad,
                 "Ill-formed list of warnings"
               ];
         end
+         end 
         List.iter(myset, letter(Caml_string.get(s, i)));
         return loop(i + 1 | 0);
       end else do
-        if (match >= 91) do
+        if (match >= 91) then do
           throw [
                 Arg.Bad,
                 "Ill-formed list of warnings"
               ];
         end
+         end 
         List.iter(myset, letter(Char.lowercase(Caml_string.get(s, i))));
         return loop(i + 1 | 0);
-      end
+      end end 
     end else do
-      if (match > 57 or match < 48) do
+      if (match > 57 or match < 48) then do
         throw [
               Arg.Bad,
               "Ill-formed list of warnings"
             ];
       end
+       end 
       var match$1 = get_range(i);
       for(var n = match$1[1] ,n_finish = Caml_primitive.caml_int_min(match$1[2], 104); n <= n_finish; ++n)do
         Curry._1(myset, n);
       end
       return loop(match$1[0]);
-    end
+    end end 
   end;
   return loop(0);
 end
@@ -2231,7 +2242,7 @@ parse_options(false, defaults_w);
 parse_options(true, defaults_warn_error);
 
 function message(param) do
-  if (typeof param == "number") do
+  if (typeof param == "number") then do
     switch (param) do
       case --[ Comment_start ]--0 :
           return "this is the start of a comment.";
@@ -2275,17 +2286,17 @@ function message(param) do
           return "deprecated: " .. param[0];
       case --[ Fragile_match ]--1 :
           var s = param[0];
-          if (s == "") do
+          if (s == "") then do
             return "this pattern-matching is fragile.";
           end else do
             return "this pattern-matching is fragile.\nIt will remain exhaustive when constructors are added to type " .. (s .. ".");
-          end
+          end end 
       case --[ Method_override ]--2 :
           var match = param[0];
-          if (match) do
+          if (match) then do
             var slist = match[1];
             var lab = match[0];
-            if (slist) do
+            if (slist) then do
               return $$String.concat(" ", --[ :: ]--[
                           "the following methods are overridden by the class",
                           --[ :: ]--[
@@ -2298,7 +2309,7 @@ function message(param) do
                         ]);
             end else do
               return "the method " .. (lab .. " is overridden.");
-            end
+            end end 
           end else do
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -2308,22 +2319,22 @@ function message(param) do
                     26
                   ]
                 ];
-          end
+          end end 
       case --[ Partial_match ]--3 :
           var s$1 = param[0];
-          if (s$1 == "") do
+          if (s$1 == "") then do
             return "this pattern-matching is not exhaustive.";
           end else do
             return "this pattern-matching is not exhaustive.\nHere is an example of a value that is not matched:\n" .. s$1;
-          end
+          end end 
       case --[ Non_closed_record_pattern ]--4 :
           return "the following labels are not bound in this record pattern:\n" .. (param[0] .. "\nEither bind these labels explicitly or add '; _' to the pattern.");
       case --[ Instance_variable_override ]--5 :
           var match$1 = param[0];
-          if (match$1) do
+          if (match$1) then do
             var slist$1 = match$1[1];
             var lab$1 = match$1[0];
-            if (slist$1) do
+            if (slist$1) then do
               return $$String.concat(" ", --[ :: ]--[
                           "the following instance variables are overridden by the class",
                           --[ :: ]--[
@@ -2336,7 +2347,7 @@ function message(param) do
                         ]) .. "\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)";
             end else do
               return "the instance variable " .. (lab$1 .. " is overridden.\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)");
-            end
+            end end 
           end else do
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -2346,7 +2357,7 @@ function message(param) do
                     37
                   ]
                 ];
-          end
+          end end 
       case --[ Implicit_public_methods ]--6 :
           return "the following private methods were made public implicitly:\n " .. ($$String.concat(" ", param[0]) .. ".");
       case --[ Undeclared_virtual_method ]--7 :
@@ -2429,29 +2440,30 @@ function message(param) do
           return "unused ancestor variable " .. (param[0] .. ".");
       case --[ Unused_constructor ]--21 :
           var s$2 = param[0];
-          if (param[1]) do
+          if (param[1]) then do
             return "constructor " .. (s$2 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
-          end else if (param[2]) do
+          end else if (param[2]) then do
             return "constructor " .. (s$2 .. " is never used to build values.\nIts type is exported as a private type.");
           end else do
             return "unused constructor " .. (s$2 .. ".");
-          end
+          end end  end 
       case --[ Unused_extension ]--22 :
           var s$3 = param[0];
-          if (param[1]) do
+          if (param[1]) then do
             return "extension constructor " .. (s$3 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
-          end else if (param[2]) do
+          end else if (param[2]) then do
             return "extension constructor " .. (s$3 .. " is never used to build values.\nIt is exported or rebound as a private extension.");
           end else do
             return "unused extension constructor " .. (s$3 .. ".");
-          end
+          end end  end 
       case --[ Name_out_of_scope ]--23 :
           var slist$2 = param[1];
           var ty = param[0];
-          if (slist$2 and !slist$2[1] and !param[2]) do
+          if (slist$2 and !slist$2[1] and !param[2]) then do
             return slist$2[0] .. (" was selected from type " .. (ty .. ".\nIt is not visible in the current scope, and will not \nbe selected if the type becomes unknown."));
           end
-          if (param[2]) do
+           end 
+          if (param[2]) then do
             return "this record of type " .. (ty .. (" contains fields that are \nnot visible in the current scope: " .. ($$String.concat(" ", slist$2) .. ".\nThey will not be selected if the type becomes unknown.")));
           end else do
             throw [
@@ -2462,14 +2474,15 @@ function message(param) do
                     39
                   ]
                 ];
-          end
+          end end 
           break;
       case --[ Ambiguous_name ]--24 :
           var slist$3 = param[0];
-          if (slist$3 and !slist$3[1] and !param[2]) do
+          if (slist$3 and !slist$3[1] and !param[2]) then do
             return slist$3[0] .. (" belongs to several types: " .. ($$String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong."));
           end
-          if (param[2]) do
+           end 
+          if (param[2]) then do
             return "these field labels belong to several types: " .. ($$String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong.");
           end else do
             throw [
@@ -2480,7 +2493,7 @@ function message(param) do
                     36
                   ]
                 ];
-          end
+          end end 
           break;
       case --[ Disambiguated_name ]--25 :
           return "this use of " .. (param[0] .. " required disambiguation.");
@@ -2581,11 +2594,11 @@ function message(param) do
       case --[ No_cmi_file ]--32 :
           return "no cmi file was found in path for module " .. param[0];
       case --[ Bad_docstring ]--33 :
-          if (param[0]) do
+          if (param[0]) then do
             return "unattached documentation comment (ignored)";
           end else do
             return "ambiguous documentation comment";
-          end
+          end end 
       case --[ Bs_unused_attribute ]--34 :
           return "Unused BuckleScript attribute: " .. param[0];
       case --[ Bs_ffi_warning ]--35 :
@@ -2594,7 +2607,7 @@ function message(param) do
           return "BuckleScript bs.deriving warning: " .. param[0];
       
     end
-  end
+  end end 
 end
 
 var nerrors = do
@@ -2620,12 +2633,12 @@ function print(ppf, w) do
             "%d: %s"
           ]), num, msg);
   Format.pp_print_flush(ppf, --[ () ]--0);
-  if (Caml_array.caml_array_get(current.contents.error, num)) do
+  if (Caml_array.caml_array_get(current.contents.error, num)) then do
     nerrors.contents = nerrors.contents + 1 | 0;
     return --[ () ]--0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function super_print(message, ppf, w) do
@@ -2639,18 +2652,18 @@ function super_print(message, ppf, w) do
             "%s"
           ]), msg);
   Format.pp_print_flush(ppf, --[ () ]--0);
-  if (Caml_array.caml_array_get(current.contents.error, num)) do
+  if (Caml_array.caml_array_get(current.contents.error, num)) then do
     nerrors.contents = nerrors.contents + 1 | 0;
     return --[ () ]--0;
   end else do
     return 0;
-  end
+  end end 
 end
 
 var Errors = Caml_exceptions.create("Parser_api.Warnings.Errors");
 
 function check_fatal(param) do
-  if (nerrors.contents > 0) do
+  if (nerrors.contents > 0) then do
     var e_001 = nerrors.contents;
     var e = [
       Errors,
@@ -2660,7 +2673,7 @@ function check_fatal(param) do
     throw e;
   end else do
     return 0;
-  end
+  end end 
 end
 
 function help_warnings(param) do
@@ -2997,8 +3010,8 @@ function help_warnings(param) do
   for(var i = --[ "b" ]--98; i <= --[ "z" ]--122; ++i)do
     var c = Char.chr(i);
     var l = letter(c);
-    if (l) do
-      if (l[1]) do
+    if (l) then do
+      if (l[1]) then do
         Curry._2(Printf.printf(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "  ",
@@ -3036,9 +3049,9 @@ function help_warnings(param) do
                     ]),
                   "  %c warning %i\n"
                 ]), Char.uppercase(c), l[0]);
-      end
+      end end 
     end
-    
+     end 
   end
   return Pervasives.exit(0);
 end
@@ -3145,16 +3158,16 @@ function print_updating_num_loc_lines(ppf, f, arg) do
       while(true) do
         var c = _c;
         var i = _i;
-        if (i == (start + len | 0)) do
+        if (i == (start + len | 0)) then do
           return c;
-        end else if (Caml_string.get(str, i) == --[ "\n" ]--10) do
+        end else if (Caml_string.get(str, i) == --[ "\n" ]--10) then do
           _c = c + 1 | 0;
           _i = i + 1 | 0;
           continue ;
         end else do
           _i = i + 1 | 0;
           continue ;
-        end
+        end end  end 
       end;
     end;
     num_loc_lines.contents = num_loc_lines.contents + count(start, 0) | 0;
@@ -3175,42 +3188,47 @@ end
 function highlight_terminfo(ppf, num_lines, lb, locs) do
   Format.pp_print_flush(ppf, --[ () ]--0);
   var pos0 = -lb.lex_abs_pos | 0;
-  if (pos0 < 0) do
+  if (pos0 < 0) then do
     throw Pervasives.Exit;
   end
+   end 
   var lines = num_loc_lines.contents;
   for(var i = pos0 ,i_finish = lb.lex_buffer_len - 1 | 0; i <= i_finish; ++i)do
-    if (Caml_bytes.get(lb.lex_buffer, i) == --[ "\n" ]--10) do
+    if (Caml_bytes.get(lb.lex_buffer, i) == --[ "\n" ]--10) then do
       lines = lines + 1 | 0;
     end
-    
+     end 
   end
-  if (lines >= (num_lines - 2 | 0)) do
+  if (lines >= (num_lines - 2 | 0)) then do
     throw Pervasives.Exit;
   end
+   end 
   Caml_io.caml_ml_flush(Pervasives.stdout);
   Caml_external_polyfill.resolve("caml_terminfo_backup")(lines);
   var bol = false;
   Pervasives.print_string("# ");
   for(var pos = 0 ,pos_finish = (lb.lex_buffer_len - pos0 | 0) - 1 | 0; pos <= pos_finish; ++pos)do
-    if (bol) do
+    if (bol) then do
       Pervasives.print_string("  ");
       bol = false;
     end
+     end 
     if (List.exists((function(pos)do
           return function (loc) do
             return pos == loc.loc_start.pos_cnum;
           end
-          end(pos)), locs)) do
+          end(pos)), locs)) then do
       Caml_external_polyfill.resolve("caml_terminfo_standout")(true);
     end
+     end 
     if (List.exists((function(pos)do
           return function (loc) do
             return pos == loc.loc_end.pos_cnum;
           end
-          end(pos)), locs)) do
+          end(pos)), locs)) then do
       Caml_external_polyfill.resolve("caml_terminfo_standout")(false);
     end
+     end 
     var c = Caml_bytes.get(lb.lex_buffer, pos + pos0 | 0);
     Pervasives.print_char(c);
     bol = c == --[ "\n" ]--10;
@@ -3222,23 +3240,25 @@ end
 
 function highlight_dumb(ppf, lb, loc) do
   var pos0 = -lb.lex_abs_pos | 0;
-  if (pos0 < 0) do
+  if (pos0 < 0) then do
     throw Pervasives.Exit;
   end
+   end 
   var end_pos = (lb.lex_buffer_len - pos0 | 0) - 1 | 0;
   var line_start = 0;
   var line_end = 0;
   for(var pos = 0; pos <= end_pos; ++pos)do
-    if (Caml_bytes.get(lb.lex_buffer, pos + pos0 | 0) == --[ "\n" ]--10) do
-      if (loc.loc_start.pos_cnum > pos) do
+    if (Caml_bytes.get(lb.lex_buffer, pos + pos0 | 0) == --[ "\n" ]--10) then do
+      if (loc.loc_start.pos_cnum > pos) then do
         line_start = line_start + 1 | 0;
       end
-      if (loc.loc_end.pos_cnum > pos) do
+       end 
+      if (loc.loc_end.pos_cnum > pos) then do
         line_end = line_end + 1 | 0;
       end
-      
+       end 
     end
-    
+     end 
   end
   Curry._2(Format.fprintf(ppf, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
@@ -3271,30 +3291,30 @@ function highlight_dumb(ppf, lb, loc) do
   var pos_at_bol = 0;
   for(var pos$1 = 0; pos$1 <= end_pos; ++pos$1)do
     var c = Caml_bytes.get(lb.lex_buffer, pos$1 + pos0 | 0);
-    if (c ~= 10) do
-      if (c ~= 13) do
-        if (line == line_start and line == line_end) do
+    if (c ~= 10) then do
+      if (c ~= 13) then do
+        if (line == line_start and line == line_end) then do
           Format.pp_print_char(ppf, c);
-        end else if (line == line_start) do
-          if (pos$1 < loc.loc_start.pos_cnum) do
+        end else if (line == line_start) then do
+          if (pos$1 < loc.loc_start.pos_cnum) then do
             Format.pp_print_char(ppf, --[ "." ]--46);
           end else do
             Format.pp_print_char(ppf, c);
-          end
-        end else if (line == line_end) do
-          if (pos$1 < loc.loc_end.pos_cnum) do
+          end end 
+        end else if (line == line_end) then do
+          if (pos$1 < loc.loc_end.pos_cnum) then do
             Format.pp_print_char(ppf, c);
           end else do
             Format.pp_print_char(ppf, --[ "." ]--46);
-          end
-        end else if (line > line_start and line < line_end) do
+          end end 
+        end else if (line > line_start and line < line_end) then do
           Format.pp_print_char(ppf, c);
         end
-        
+         end  end  end  end 
       end
-      
+       end 
     end else do
-      if (line == line_start and line == line_end) do
+      if (line == line_start and line == line_end) then do
         Format.fprintf(ppf, --[ Format ]--[
               --[ Formatting_lit ]--Block.__(17, [
                   --[ Flush_newline ]--4,
@@ -3312,7 +3332,8 @@ function highlight_dumb(ppf, lb, loc) do
           Format.pp_print_char(ppf, --[ "^" ]--94);
         end
       end
-      if (line >= line_start and line <= line_end) do
+       end 
+      if (line >= line_start and line <= line_end) then do
         Format.fprintf(ppf, --[ Format ]--[
               --[ Formatting_lit ]--Block.__(17, [
                   --[ Flush_newline ]--4,
@@ -3320,14 +3341,15 @@ function highlight_dumb(ppf, lb, loc) do
                 ]),
               "@."
             ]);
-        if (pos$1 < loc.loc_end.pos_cnum) do
+        if (pos$1 < loc.loc_end.pos_cnum) then do
           Format.pp_print_string(ppf, "  ");
         end
-        
+         end 
       end
+       end 
       line = line + 1 | 0;
       pos_at_bol = pos$1 + 1 | 0;
-    end
+    end end 
   end
   return --[ () ]--0;
 end
@@ -3335,22 +3357,22 @@ end
 function highlight_locations(ppf, locs) do
   while(true) do
     var match = status.contents;
-    if (typeof match == "number") do
-      if (match ~= 0) do
+    if (typeof match == "number") then do
+      if (match ~= 0) then do
         var match$1 = input_lexbuf.contents;
-        if (match$1 ~= undefined) do
+        if (match$1 ~= undefined) then do
           var norepeat;
           try do
             norepeat = Caml_sys.caml_sys_getenv("TERM") == "norepeat";
           end
           catch (exn)do
-            if (exn == Caml_builtin_exceptions.not_found) do
+            if (exn == Caml_builtin_exceptions.not_found) then do
               norepeat = false;
             end else do
               throw exn;
-            end
+            end end 
           end
-          if (norepeat) do
+          if (norepeat) then do
             return false;
           end else do
             var loc1 = List.hd(locs);
@@ -3359,38 +3381,38 @@ function highlight_locations(ppf, locs) do
               return true;
             end
             catch (exn$1)do
-              if (exn$1 == Pervasives.Exit) do
+              if (exn$1 == Pervasives.Exit) then do
                 return false;
               end else do
                 throw exn$1;
-              end
+              end end 
             end
-          end
+          end end 
         end else do
           return false;
-        end
+        end end 
       end else do
         status.contents = Caml_external_polyfill.resolve("caml_terminfo_setup")(Pervasives.stdout);
         continue ;
-      end
+      end end 
     end else do
       var match$2 = input_lexbuf.contents;
-      if (match$2 ~= undefined) do
+      if (match$2 ~= undefined) then do
         try do
           highlight_terminfo(ppf, match[0], match$2, locs);
           return true;
         end
         catch (exn$2)do
-          if (exn$2 == Pervasives.Exit) do
+          if (exn$2 == Pervasives.Exit) then do
             return false;
           end else do
             throw exn$2;
-          end
+          end end 
         end
       end else do
         return false;
-      end
-    end
+      end end 
+    end end 
   end;
 end
 
@@ -3401,27 +3423,27 @@ function absolute_path(s) do
       var s = _s;
       var base = Curry._1(Filename.basename, s);
       var dir = Curry._1(Filename.dirname, s);
-      if (dir == s) do
+      if (dir == s) then do
         return dir;
-      end else if (base == Filename.current_dir_name) do
+      end else if (base == Filename.current_dir_name) then do
         _s = dir;
         continue ;
-      end else if (base == Filename.parent_dir_name) do
+      end else if (base == Filename.parent_dir_name) then do
         return Curry._1(Filename.dirname, aux(dir));
       end else do
         return Filename.concat(aux(dir), base);
-      end
+      end end  end  end 
     end;
   end;
   return aux(s$1);
 end
 
 function show_filename(file) do
-  if (absname.contents) do
+  if (absname.contents) then do
     return absolute_path(file);
   end else do
     return file;
-  end
+  end end 
 end
 
 function print_filename(ppf, file) do
@@ -3454,11 +3476,11 @@ function print_loc(ppf, loc) do
   var file = match[0];
   var startchar$1 = bs_vscode ? startchar + 1 | 0 : startchar;
   var endchar = (loc.loc_end.pos_cnum - loc.loc_start.pos_cnum | 0) + startchar$1 | 0;
-  if (file == "//toplevel//") do
+  if (file == "//toplevel//") then do
     if (highlight_locations(ppf, --[ :: ]--[
             loc,
             --[ [] ]--0
-          ])) do
+          ])) then do
       return --[ () ]--0;
     end else do
       return Curry._2(Format.fprintf(ppf, --[ Format ]--[
@@ -3481,7 +3503,7 @@ function print_loc(ppf, loc) do
                         ]),
                       "Characters %i-%i"
                     ]), loc.loc_start.pos_cnum, loc.loc_end.pos_cnum);
-    end
+    end end 
   end else do
     Curry._5(Format.fprintf(ppf, --[ Format ]--[
               --[ String ]--Block.__(2, [
@@ -3507,7 +3529,7 @@ function print_loc(ppf, loc) do
                 ]),
               "%s@{<loc>%a%s%i"
             ]), "File \"", print_filename, file, "\", line ", match[1]);
-    if (startchar$1 >= 0) do
+    if (startchar$1 >= 0) then do
       Curry._4(Format.fprintf(ppf, --[ Format ]--[
                 --[ String ]--Block.__(2, [
                     --[ No_padding ]--0,
@@ -3529,6 +3551,7 @@ function print_loc(ppf, loc) do
                 "%s%i%s%i"
               ]), ", characters ", startchar$1, "-", endchar);
     end
+     end 
     return Format.fprintf(ppf, --[ Format ]--[
                 --[ Formatting_lit ]--Block.__(17, [
                     --[ Close_tag ]--1,
@@ -3536,7 +3559,7 @@ function print_loc(ppf, loc) do
                   ]),
                 "@}"
               ]);
-  end
+  end end 
 end
 
 function print$1(ppf, loc) do
@@ -3544,7 +3567,7 @@ function print$1(ppf, loc) do
   if (loc.loc_start.pos_fname == "//toplevel//" and highlight_locations(ppf, --[ :: ]--[
           loc,
           --[ [] ]--0
-        ])) do
+        ])) then do
     return --[ () ]--0;
   end else do
     return Curry._3(Format.fprintf(ppf, --[ Format ]--[
@@ -3569,7 +3592,7 @@ function print$1(ppf, loc) do
                       ]),
                     "@{<loc>%a@}%s@."
                   ]), print_loc, loc, ":");
-  end
+  end end 
 end
 
 var error_prefix = "Error";
@@ -3611,7 +3634,7 @@ function print_error_cur_file(ppf, param) do
 end
 
 function default_warning_printer(loc, ppf, w) do
-  if (is_active(w)) do
+  if (is_active(w)) then do
     Curry._1(Misc_Color.setup, color.contents);
     print$1(ppf, loc);
     return Curry._3(Format.fprintf(ppf, --[ Format ]--[
@@ -3641,7 +3664,7 @@ function default_warning_printer(loc, ppf, w) do
                   ]), "Warning", print, w);
   end else do
     return 0;
-  end
+  end end 
 end
 
 var warning_printer = do
@@ -3684,9 +3707,10 @@ function pp_ksprintf(before, k, fmt) do
   var buf = $$Buffer.create(64);
   var ppf = Format.formatter_of_buffer(buf);
   Curry._1(Misc_Color.set_color_tag_handling, ppf);
-  if (before ~= undefined) do
+  if (before ~= undefined) then do
     Curry._1(before, ppf);
   end
+   end 
   return Format.kfprintf((function (param) do
                 Format.pp_print_flush(ppf, --[ () ]--0);
                 return Curry._1(k, $$Buffer.contents(buf));
@@ -3739,24 +3763,24 @@ function error_of_exn$1(exn) do
   var _param = error_of_exn.contents;
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var r = Curry._1(param[0], exn);
-      if (r ~= undefined) do
+      if (r ~= undefined) then do
         return r;
       end else do
         _param = param[1];
         continue ;
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
 function default_error_reporter(ppf, err) do
   var if_highlight = err.if_highlight;
   var highlighted;
-  if (if_highlight ~= "") do
+  if (if_highlight ~= "") then do
     var collect_locs = function (locs, param) do
       return List.fold_left(collect_locs, --[ :: ]--[
                   param.loc,
@@ -3767,8 +3791,8 @@ function default_error_reporter(ppf, err) do
     highlighted = highlight_locations(ppf, locs);
   end else do
     highlighted = false;
-  end
-  if (highlighted) do
+  end end 
+  if (highlighted) then do
     return Format.pp_print_string(ppf, if_highlight);
   end else do
     Curry._5(Format.fprintf(ppf, --[ Format ]--[
@@ -3800,7 +3824,7 @@ function default_error_reporter(ppf, err) do
                           ]),
                         "@\n@[<2>%a@]"
                       ]), default_error_reporter), err.sub);
-  end
+  end end 
 end
 
 var error_reporter = do
@@ -3826,7 +3850,7 @@ function error_of_printer_file(print, x) do
 end
 
 register_error_of_exn((function (param) do
-        if (param[0] == Caml_builtin_exceptions.sys_error) do
+        if (param[0] == Caml_builtin_exceptions.sys_error) then do
           return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, --[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "I/O error: ",
@@ -3837,7 +3861,7 @@ register_error_of_exn((function (param) do
                             ]),
                           "I/O error: %s"
                         ]), param[1]);
-        end else if (param[0] == Errors) do
+        end else if (param[0] == Errors) then do
           return Curry._1(errorf(in_file(input_name.contents), undefined, undefined, --[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "Some fatal warnings were triggered (",
@@ -3855,7 +3879,7 @@ register_error_of_exn((function (param) do
                         ]), param[1]);
         end else do
           return ;
-        end
+        end end  end 
       end));
 
 function report_exception(ppf, exn) do
@@ -3867,7 +3891,7 @@ function report_exception(ppf, exn) do
     var n = _n;
     try do
       var match = error_of_exn$1(exn$1);
-      if (match ~= undefined) do
+      if (match ~= undefined) then do
         return Curry._2(Format.fprintf(ppf$1, --[ Format ]--[
                         --[ Formatting_gen ]--Block.__(18, [
                             --[ Open_box ]--Block.__(1, [--[ Format ]--[
@@ -3886,17 +3910,17 @@ function report_exception(ppf, exn) do
                       ]), report_error, match);
       end else do
         throw exn$1;
-      end
+      end end 
     end
     catch (raw_exn)do
       var exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
-      if (n > 0) do
+      if (n > 0) then do
         _exn = exn$2;
         _n = n - 1 | 0;
         continue ;
       end else do
         throw exn$2;
-      end
+      end end 
     end
   end;
 end
@@ -3904,10 +3928,10 @@ end
 var $$Error = Caml_exceptions.create("Parser_api.Location.Error");
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error) do
+        if (param[0] == $$Error) then do
           return param[1];
         end
-        
+         end 
       end));
 
 function raise_errorf(locOpt, subOpt, if_highlightOpt) do
@@ -4024,20 +4048,20 @@ function split_at_dots(s, pos) do
           ];
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return --[ :: ]--[
               $$String.sub(s, pos, #s - pos | 0),
               --[ [] ]--0
             ];
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
 function parse(s) do
   var match = split_at_dots(s, 0);
-  if (match) do
+  if (match) then do
     return List.fold_left((function (p, s) do
                   return --[ Ldot ]--Block.__(1, [
                             p,
@@ -4046,7 +4070,7 @@ function parse(s) do
                 end), --[ Lident ]--Block.__(0, [match[0]]), match[1]);
   end else do
     return --[ Lident ]--Block.__(0, [""]);
-  end
+  end end 
 end
 
 var Longident = do
@@ -4062,7 +4086,7 @@ var docstrings = do
 end;
 
 function warn_bad_docstrings(param) do
-  if (is_active(--[ Bad_docstring ]--Block.__(33, [true]))) do
+  if (is_active(--[ Bad_docstring ]--Block.__(33, [true]))) then do
     return List.iter((function (ds) do
                   var match = ds.ds_attached;
                   switch (match) do
@@ -4072,17 +4096,17 @@ function warn_bad_docstrings(param) do
                         return --[ () ]--0;
                     case --[ Docs ]--2 :
                         var match$1 = ds.ds_associated;
-                        if (match$1 >= 2) do
+                        if (match$1 >= 2) then do
                           return prerr_warning(ds.ds_loc, --[ Bad_docstring ]--Block.__(33, [false]));
                         end else do
                           return --[ () ]--0;
-                        end
+                        end end 
                     
                   end
                 end), List.rev(docstrings.contents));
   end else do
     return 0;
-  end
+  end end 
 end
 
 function docstring(body, loc) do
@@ -4153,25 +4177,25 @@ function add_docs_attrs(docs, attrs) do
       attrs
     ] : attrs;
   var match$1 = docs.docs_post;
-  if (match$1 ~= undefined) do
+  if (match$1 ~= undefined) then do
     return Pervasives.$at(attrs$1, --[ :: ]--[
                 docs_attr(match$1),
                 --[ [] ]--0
               ]);
   end else do
     return attrs$1;
-  end
+  end end 
 end
 
 function add_info_attrs(info, attrs) do
-  if (info ~= undefined) do
+  if (info ~= undefined) then do
     return Pervasives.$at(attrs, --[ :: ]--[
                 docs_attr(info),
                 --[ [] ]--0
               ]);
   end else do
     return attrs;
-  end
+  end end 
 end
 
 var text_loc = do
@@ -4216,19 +4240,19 @@ function get_docstring(info, dsl) do
   var _param = dsl;
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var ds = param[0];
       var match = ds.ds_attached;
-      if (match ~= 1) do
+      if (match ~= 1) then do
         ds.ds_attached = info ? --[ Info ]--1 : --[ Docs ]--2;
         return ds;
       end else do
         _param = param[1];
         continue ;
-      end
+      end end 
     end else do
       return ;
-    end
+    end end 
   end;
 end
 
@@ -4238,10 +4262,10 @@ function get_docstrings(dsl) do
   while(true) do
     var param = _param;
     var acc = _acc;
-    if (param) do
+    if (param) then do
       var ds = param[0];
       var match = ds.ds_attached;
-      if (match ~= 1) do
+      if (match ~= 1) then do
         ds.ds_attached = --[ Docs ]--2;
         _param = param[1];
         _acc = --[ :: ]--[
@@ -4252,34 +4276,34 @@ function get_docstrings(dsl) do
       end else do
         _param = param[1];
         continue ;
-      end
+      end end 
     end else do
       return List.rev(acc);
-    end
+    end end 
   end;
 end
 
 function associate_docstrings(dsl) do
   return List.iter((function (ds) do
                 var match = ds.ds_associated;
-                if (match ~= 0) do
+                if (match ~= 0) then do
                   ds.ds_associated = --[ Many ]--2;
                   return --[ () ]--0;
                 end else do
                   ds.ds_associated = --[ One ]--1;
                   return --[ () ]--0;
-                end
+                end end 
               end), dsl);
 end
 
 var pre_table = Hashtbl.create(undefined, 50);
 
 function set_pre_docstrings(pos, dsl) do
-  if (dsl ~= --[ [] ]--0) do
+  if (dsl ~= --[ [] ]--0) then do
     return Hashtbl.add(pre_table, pos, dsl);
   end else do
     return 0;
-  end
+  end end 
 end
 
 function get_pre_docs(pos) do
@@ -4289,11 +4313,11 @@ function get_pre_docs(pos) do
     return get_docstring(false, dsl);
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -4302,22 +4326,22 @@ function mark_pre_docs(pos) do
     return associate_docstrings(Hashtbl.find(pre_table, pos));
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return --[ () ]--0;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
 var post_table = Hashtbl.create(undefined, 50);
 
 function set_post_docstrings(pos, dsl) do
-  if (dsl ~= --[ [] ]--0) do
+  if (dsl ~= --[ [] ]--0) then do
     return Hashtbl.add(post_table, pos, dsl);
   end else do
     return 0;
-  end
+  end end 
 end
 
 function get_post_docs(pos) do
@@ -4327,11 +4351,11 @@ function get_post_docs(pos) do
     return get_docstring(false, dsl);
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -4340,11 +4364,11 @@ function mark_post_docs(pos) do
     return associate_docstrings(Hashtbl.find(post_table, pos));
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return --[ () ]--0;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -4354,22 +4378,22 @@ function get_info(pos) do
     return get_docstring(true, dsl);
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
 var floating_table = Hashtbl.create(undefined, 50);
 
 function set_floating_docstrings(pos, dsl) do
-  if (dsl ~= --[ [] ]--0) do
+  if (dsl ~= --[ [] ]--0) then do
     return Hashtbl.add(floating_table, pos, dsl);
   end else do
     return 0;
-  end
+  end end 
 end
 
 function get_text(pos) do
@@ -4377,22 +4401,22 @@ function get_text(pos) do
     return get_docstrings(Hashtbl.find(floating_table, pos));
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return --[ [] ]--0;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
 var pre_extra_table = Hashtbl.create(undefined, 50);
 
 function set_pre_extra_docstrings(pos, dsl) do
-  if (dsl ~= --[ [] ]--0) do
+  if (dsl ~= --[ [] ]--0) then do
     return Hashtbl.add(pre_extra_table, pos, dsl);
   end else do
     return 0;
-  end
+  end end 
 end
 
 function get_pre_extra_text(pos) do
@@ -4400,22 +4424,22 @@ function get_pre_extra_text(pos) do
     return get_docstrings(Hashtbl.find(pre_extra_table, pos));
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return --[ [] ]--0;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
 var post_extra_table = Hashtbl.create(undefined, 50);
 
 function set_post_extra_docstrings(pos, dsl) do
-  if (dsl ~= --[ [] ]--0) do
+  if (dsl ~= --[ [] ]--0) then do
     return Hashtbl.add(post_extra_table, pos, dsl);
   end else do
     return 0;
-  end
+  end end 
 end
 
 function get_post_extra_text(pos) do
@@ -4423,11 +4447,11 @@ function get_post_extra_text(pos) do
     return get_docstrings(Hashtbl.find(post_extra_table, pos));
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return --[ [] ]--0;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -4685,9 +4709,10 @@ end
 
 function force_poly(t) do
   var match = t.ptyp_desc;
-  if (typeof match ~= "number" and match.tag == --[ Ptyp_poly ]--8) do
+  if (typeof match ~= "number" and match.tag == --[ Ptyp_poly ]--8) then do
     return t;
   end
+   end 
   return poly(t.ptyp_loc, undefined, --[ [] ]--0, t);
 end
 
@@ -6209,10 +6234,10 @@ function prepare_error(param) do
 end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$1) do
+        if (param[0] == $$Error$1) then do
           return prepare_error(param[1]);
         end
-        
+         end 
       end));
 
 function report_error$1(ppf, err) do
@@ -6372,11 +6397,11 @@ function mkinfix(arg1, name, arg2) do
 end
 
 function neg_float_string(f) do
-  if (#f ~= 0 and Caml_string.get(f, 0) == --[ "-" ]--45) do
+  if (#f ~= 0 and Caml_string.get(f, 0) == --[ "-" ]--45) then do
     return $$String.sub(f, 1, #f - 1 | 0);
   end else do
     return "-" .. f;
-  end
+  end end 
 end
 
 function mkexp_cons(consloc, args, loc) do
@@ -6400,7 +6425,7 @@ function mkpat_cons(consloc, args, loc) do
 end
 
 function mktailexp(nilloc, param) do
-  if (param) do
+  if (param) then do
     var e1 = param[0];
     var exp_el = mktailexp(nilloc, param[1]);
     var loc_loc_start = e1.pexp_loc.loc_start;
@@ -6439,11 +6464,11 @@ function mktailexp(nilloc, param) do
                   nil,
                   undefined
                 ]));
-  end
+  end end 
 end
 
 function mktailpat(nilloc, param) do
-  if (param) do
+  if (param) then do
     var p1 = param[0];
     var pat_pl = mktailpat(nilloc, param[1]);
     var loc_loc_start = p1.ppat_loc.loc_start;
@@ -6482,7 +6507,7 @@ function mktailpat(nilloc, param) do
                   nil,
                   undefined
                 ]));
-  end
+  end end 
 end
 
 function mkstrexp(e, attrs) do
@@ -6498,8 +6523,8 @@ end
 function mkexp_constraint(e, param) do
   var t2 = param[1];
   var t1 = param[0];
-  if (t1 ~= undefined) do
-    if (t2 ~= undefined) do
+  if (t1 ~= undefined) then do
+    if (t2 ~= undefined) then do
       return ghexp(--[ Pexp_coerce ]--Block.__(20, [
                     e,
                     t1,
@@ -6510,8 +6535,8 @@ function mkexp_constraint(e, param) do
                     e,
                     t1
                   ]));
-    end
-  end else if (t2 ~= undefined) do
+    end end 
+  end else if (t2 ~= undefined) then do
     return ghexp(--[ Pexp_coerce ]--Block.__(20, [
                   e,
                   t1,
@@ -6526,7 +6551,7 @@ function mkexp_constraint(e, param) do
             18
           ]
         ];
-  end
+  end end  end 
 end
 
 function array_function(str, name) do
@@ -6586,14 +6611,14 @@ end
 
 function bigarray_untuplify(exp) do
   var match = exp.pexp_desc;
-  if (match.tag == --[ Pexp_tuple ]--8) do
+  if (match.tag == --[ Pexp_tuple ]--8) then do
     return match[0];
   end else do
     return --[ :: ]--[
             exp,
             --[ [] ]--0
           ];
-  end
+  end end 
 end
 
 function exp_of_label(lbl, pos) do
@@ -6613,7 +6638,7 @@ function pat_of_label(lbl, pos) do
 end
 
 function check_variable(vl, loc, v) do
-  if (List.mem(v, vl)) do
+  if (List.mem(v, vl)) then do
     throw [
           $$Error$1,
           --[ Variable_in_scope ]--Block.__(4, [
@@ -6623,14 +6648,14 @@ function check_variable(vl, loc, v) do
         ];
   end else do
     return 0;
-  end
+  end end 
 end
 
 function varify_constructors(var_names, t) do
   var loop = function (t) do
     var match = t.ptyp_desc;
     var desc;
-    if (typeof match == "number") do
+    if (typeof match == "number") then do
       desc = --[ Ptyp_any ]--0;
     end else do
       switch (match.tag | 0) do
@@ -6655,16 +6680,16 @@ function varify_constructors(var_names, t) do
             var exit = 0;
             switch (match$1.tag | 0) do
               case --[ Lident ]--0 :
-                  if (match[1]) do
+                  if (match[1]) then do
                     exit = 1;
                   end else do
                     var s = match$1[0];
-                    if (List.mem(s, var_names)) do
+                    if (List.mem(s, var_names)) then do
                       desc = --[ Ptyp_var ]--Block.__(0, [s]);
                     end else do
                       exit = 1;
-                    end
-                  end
+                    end end 
+                  end end 
                   break;
               case --[ Ldot ]--1 :
               case --[ Lapply ]--2 :
@@ -6672,12 +6697,13 @@ function varify_constructors(var_names, t) do
                   break;
               
             end
-            if (exit == 1) do
+            if (exit == 1) then do
               desc = --[ Ptyp_constr ]--Block.__(3, [
                   longident,
                   List.map(loop, match[1])
                 ]);
             end
+             end 
             break;
         case --[ Ptyp_object ]--4 :
             desc = --[ Ptyp_object ]--Block.__(4, [
@@ -6744,7 +6770,7 @@ function varify_constructors(var_names, t) do
             break;
         
       end
-    end
+    end end 
     return do
             ptyp_desc: desc,
             ptyp_loc: t.ptyp_loc,
@@ -6752,7 +6778,7 @@ function varify_constructors(var_names, t) do
           end;
   end;
   var loop_row_field = function (param) do
-    if (param.tag) do
+    if (param.tag) then do
       return --[ Rinherit ]--Block.__(1, [loop(param[0])]);
     end else do
       return --[ Rtag ]--Block.__(0, [
@@ -6761,7 +6787,7 @@ function varify_constructors(var_names, t) do
                 param[2],
                 List.map(loop, param[3])
               ]);
-    end
+    end end 
   end;
   return loop(t);
 end
@@ -6796,7 +6822,7 @@ function wrap_exp_attrs(body, param) do
     pexp_loc: body_pexp_loc,
     pexp_attributes: body_pexp_attributes
   end;
-  if (ext ~= undefined) do
+  if (ext ~= undefined) then do
     return ghexp(--[ Pexp_extension ]--Block.__(33, [--[ tuple ]--[
                     ext,
                     --[ PStr ]--Block.__(0, [--[ :: ]--[
@@ -6806,7 +6832,7 @@ function wrap_exp_attrs(body, param) do
                   ]]));
   end else do
     return body$1;
-  end
+  end end 
 end
 
 function text_def(pos) do
@@ -6831,7 +6857,7 @@ function extra_csig(pos, items) do
 end
 
 function add_nonrec(rf, attrs, pos) do
-  if (rf) do
+  if (rf) then do
     return attrs;
   end else do
     var name_loc = rhs_loc(pos);
@@ -6846,7 +6872,7 @@ function add_nonrec(rf, attrs, pos) do
             ],
             attrs
           ];
-  end
+  end end 
 end
 
 function mklb(param, attrs) do
@@ -7322,9 +7348,9 @@ var yyact = [
       var bindings = lbs.lbs_bindings;
       var str;
       var exit = 0;
-      if (bindings) do
+      if (bindings) then do
         var lb = bindings[0];
-        if (typeof lb.lb_pattern.ppat_desc == "number" and !bindings[1]) do
+        if (typeof lb.lb_pattern.ppat_desc == "number" and !bindings[1]) then do
           var exp = wrap_exp_attrs(lb.lb_expression, --[ tuple ]--[
                 undefined,
                 lbs.lbs_attributes
@@ -7335,12 +7361,12 @@ var yyact = [
                 ]));
         end else do
           exit = 1;
-        end
+        end end 
       end else do
         exit = 1;
-      end
-      if (exit == 1) do
-        if (lbs.lbs_attributes ~= --[ [] ]--0) do
+      end end 
+      if (exit == 1) then do
+        if (lbs.lbs_attributes ~= --[ [] ]--0) then do
           throw [
                 $$Error$1,
                 --[ Not_expecting ]--Block.__(2, [
@@ -7349,6 +7375,7 @@ var yyact = [
                   ])
               ];
         end
+         end 
         var bindings$1 = List.map((function (lb) do
                 return mk$17(lb.lb_loc, lb.lb_attributes, CamlinternalLazy.force(lb.lb_docs), CamlinternalLazy.force(lb.lb_text), lb.lb_pattern, lb.lb_expression);
               end), bindings);
@@ -7357,8 +7384,9 @@ var yyact = [
                 List.rev(bindings$1)
               ]));
       end
+       end 
       var match = lbs.lbs_extension;
-      if (match ~= undefined) do
+      if (match ~= undefined) then do
         var d = --[ Pstr_extension ]--Block.__(14, [
             --[ tuple ]--[
               match,
@@ -7372,7 +7400,7 @@ var yyact = [
         return mk$6(symbol_gloc(--[ () ]--0), d);
       end else do
         return str;
-      end
+      end end 
     end),
   (function (__caml_parser_env) do
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
@@ -7846,7 +7874,7 @@ var yyact = [
       var lbs = _1;
       var body = _3;
       var bindings = List.map((function (lb) do
-              if (lb.lb_attributes ~= --[ [] ]--0) do
+              if (lb.lb_attributes ~= --[ [] ]--0) then do
                 throw [
                       $$Error$1,
                       --[ Not_expecting ]--Block.__(2, [
@@ -7855,9 +7883,10 @@ var yyact = [
                         ])
                     ];
               end
+               end 
               return mk$17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
             end), lbs.lbs_bindings);
-      if (lbs.lbs_extension ~= undefined) do
+      if (lbs.lbs_extension ~= undefined) then do
         throw [
               $$Error$1,
               --[ Not_expecting ]--Block.__(2, [
@@ -7866,7 +7895,8 @@ var yyact = [
                 ])
             ];
       end
-      if (lbs.lbs_attributes ~= --[ [] ]--0) do
+       end 
+      if (lbs.lbs_attributes ~= --[ [] ]--0) then do
         throw [
               $$Error$1,
               --[ Not_expecting ]--Block.__(2, [
@@ -7875,6 +7905,7 @@ var yyact = [
                 ])
             ];
       end
+       end 
       return mkclass(--[ Pcl_let ]--Block.__(4, [
                     lbs.lbs_rec,
                     List.rev(bindings),
@@ -8023,9 +8054,10 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 5);
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      if (_1 == --[ Override ]--0) do
+      if (_1 == --[ Override ]--0) then do
         throw Escape_error;
       end
+       end 
       return --[ tuple ]--[
               do
                 txt: _4,
@@ -8088,9 +8120,10 @@ var yyact = [
       var _1 = Parsing.peek_val(__caml_parser_env, 5);
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      if (_1 == --[ Override ]--0) do
+      if (_1 == --[ Override ]--0) then do
         throw Escape_error;
       end
+       end 
       return --[ tuple ]--[
               do
                 txt: _4,
@@ -8105,9 +8138,10 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 3);
       var _4 = Parsing.peek_val(__caml_parser_env, 2);
       var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      if (_1 == --[ Override ]--0) do
+      if (_1 == --[ Override ]--0) then do
         throw Escape_error;
       end
+       end 
       return --[ tuple ]--[
               do
                 txt: _4,
@@ -8597,7 +8631,7 @@ var yyact = [
       var lbs = _1;
       var body = _3;
       var bindings = List.map((function (lb) do
-              if (lb.lb_attributes ~= --[ [] ]--0) do
+              if (lb.lb_attributes ~= --[ [] ]--0) then do
                 throw [
                       $$Error$1,
                       --[ Not_expecting ]--Block.__(2, [
@@ -8606,6 +8640,7 @@ var yyact = [
                         ])
                     ];
               end
+               end 
               return mk$17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
             end), lbs.lbs_bindings);
       var d_000 = lbs.lbs_rec;
@@ -8912,7 +8947,7 @@ var yyact = [
       var exit = 0;
       switch (name) do
         case "-" :
-            if (match.tag == --[ Pexp_constant ]--1) do
+            if (match.tag == --[ Pexp_constant ]--1) then do
               var match$1 = match[0];
               switch (match$1.tag | 0) do
                 case --[ Const_int ]--0 :
@@ -8928,7 +8963,7 @@ var yyact = [
               end
             end else do
               exit = 2;
-            end
+            end end 
             break;
         case "-." :
             exit = 2;
@@ -8936,13 +8971,14 @@ var yyact = [
         default:
           
       end
-      if (exit == 2 and match.tag == --[ Pexp_constant ]--1) do
+      if (exit == 2 and match.tag == --[ Pexp_constant ]--1) then do
         var match$2 = match[0];
-        if (match$2.tag == --[ Const_float ]--3) do
+        if (match$2.tag == --[ Const_float ]--3) then do
           return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_float ]--Block.__(3, [neg_float_string(match$2[0])])]));
         end
-        
+         end 
       end
+       end 
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     mkoperator("~" .. name, 1),
                     --[ :: ]--[
@@ -8963,7 +8999,7 @@ var yyact = [
       var exit = 0;
       switch (name) do
         case "+" :
-            if (desc.tag == --[ Pexp_constant ]--1) do
+            if (desc.tag == --[ Pexp_constant ]--1) then do
               switch (desc[0].tag | 0) do
                 case --[ Const_char ]--1 :
                 case --[ Const_string ]--2 :
@@ -8975,7 +9011,7 @@ var yyact = [
               end
             end else do
               exit = 2;
-            end
+            end end 
             break;
         case "+." :
             exit = 2;
@@ -8983,9 +9019,10 @@ var yyact = [
         default:
           
       end
-      if (exit == 2 and desc.tag == --[ Pexp_constant ]--1 and desc[0].tag == --[ Const_float ]--3) do
+      if (exit == 2 and desc.tag == --[ Pexp_constant ]--1 and desc[0].tag == --[ Const_float ]--3) then do
         return mkexp(desc);
       end
+       end 
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     mkoperator("~" .. name, 1),
                     --[ :: ]--[
@@ -9073,14 +9110,14 @@ var yyact = [
       var newval = _7;
       var set = fast.contents ? "unsafe_set" : "set";
       var coords = bigarray_untuplify(arg);
-      if (coords) do
+      if (coords) then do
         var match = coords[1];
         var c1 = coords[0];
-        if (match) do
+        if (match) then do
           var match$1 = match[1];
           var c2 = match[0];
-          if (match$1) do
-            if (!match$1[1]) do
+          if (match$1) then do
+            if (!match$1[1]) then do
               return mkexp(--[ Pexp_apply ]--Block.__(5, [
                             ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Array3", set)])),
                             --[ :: ]--[
@@ -9116,7 +9153,7 @@ var yyact = [
                             ]
                           ]));
             end
-            
+             end 
           end else do
             return mkexp(--[ Pexp_apply ]--Block.__(5, [
                           ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Array2", set)])),
@@ -9146,7 +9183,7 @@ var yyact = [
                             ]
                           ]
                         ]));
-          end
+          end end 
         end else do
           return mkexp(--[ Pexp_apply ]--Block.__(5, [
                         ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Array1", set)])),
@@ -9170,8 +9207,9 @@ var yyact = [
                           ]
                         ]
                       ]));
-        end
+        end end 
       end
+       end 
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Genarray", "set")])),
                     --[ :: ]--[
@@ -9378,14 +9416,14 @@ var yyact = [
       var arg = _4;
       var get = fast.contents ? "unsafe_get" : "get";
       var coords = bigarray_untuplify(arg);
-      if (coords) do
+      if (coords) then do
         var match = coords[1];
         var c1 = coords[0];
-        if (match) do
+        if (match) then do
           var match$1 = match[1];
           var c2 = match[0];
-          if (match$1) do
-            if (!match$1[1]) do
+          if (match$1) then do
+            if (!match$1[1]) then do
               return mkexp(--[ Pexp_apply ]--Block.__(5, [
                             ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Array3", get)])),
                             --[ :: ]--[
@@ -9415,7 +9453,7 @@ var yyact = [
                             ]
                           ]));
             end
-            
+             end 
           end else do
             return mkexp(--[ Pexp_apply ]--Block.__(5, [
                           ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Array2", get)])),
@@ -9439,7 +9477,7 @@ var yyact = [
                             ]
                           ]
                         ]));
-          end
+          end end 
         end else do
           return mkexp(--[ Pexp_apply ]--Block.__(5, [
                         ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Array1", get)])),
@@ -9457,8 +9495,9 @@ var yyact = [
                           ]
                         ]
                       ]));
-        end
+        end end 
       end
+       end 
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     ghexp(--[ Pexp_ident ]--Block.__(0, [bigarray_function("Genarray", "get")])),
                     --[ :: ]--[
@@ -10836,9 +10875,10 @@ var yyact = [
       var _6 = Parsing.peek_val(__caml_parser_env, 2);
       var _7 = Parsing.peek_val(__caml_parser_env, 1);
       var _8 = Parsing.peek_val(__caml_parser_env, 0);
-      if (_2 ~= --[ Recursive ]--1) do
+      if (_2 ~= --[ Recursive ]--1) then do
         not_expecting(2, "nonrec flag");
       end
+       end 
       return mk$20(_8, symbol_docs(--[ () ]--0), _3, _6, do
                   txt: _4,
                   loc: rhs_loc(4)
@@ -10851,9 +10891,10 @@ var yyact = [
       var _6 = Parsing.peek_val(__caml_parser_env, 2);
       var _7 = Parsing.peek_val(__caml_parser_env, 1);
       var _8 = Parsing.peek_val(__caml_parser_env, 0);
-      if (_2 ~= --[ Recursive ]--1) do
+      if (_2 ~= --[ Recursive ]--1) then do
         not_expecting(2, "nonrec flag");
       end
+       end 
       return mk$20(_8, symbol_docs(--[ () ]--0), _3, _6, do
                   txt: _4,
                   loc: rhs_loc(4)
@@ -11146,28 +11187,30 @@ var yyact = [
     end),
   (function (__caml_parser_env) do
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      if (_2) do
-        if (_2[1]) do
+      if (_2) then do
+        if (_2[1]) then do
           throw Parsing.Parse_error;
         end
+         end 
         return _2[0];
       end else do
         throw Parsing.Parse_error;
-      end
+      end end 
     end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
       var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      if (_2) do
-        if (_2[1]) do
+      if (_2) then do
+        if (_2[1]) then do
           throw Parsing.Parse_error;
         end
+         end 
         return _2[0];
       end else do
         throw Parsing.Parse_error;
-      end
+      end end 
     end),
   (function (__caml_parser_env) do
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
@@ -11828,7 +11871,7 @@ var yyact = [
       var _3 = Parsing.peek_val(__caml_parser_env, 1);
       var p1 = _1;
       var p2 = _3;
-      if (applicative_functors.contents) do
+      if (applicative_functors.contents) then do
         return --[ Lapply ]--Block.__(2, [
                   p1,
                   p2
@@ -11838,7 +11881,7 @@ var yyact = [
               $$Error$1,
               --[ Applicative_path ]--Block.__(3, [symbol_rloc(--[ () ]--0)])
             ];
-      end
+      end end 
     end),
   (function (__caml_parser_env) do
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
@@ -12405,7 +12448,7 @@ var Parser = do
 end;
 
 function type_of_directive(x) do
-  if (typeof x == "number") do
+  if (typeof x == "number") then do
     return --[ Dir_type_null ]--4;
   end else do
     switch (x.tag | 0) do
@@ -12419,7 +12462,7 @@ function type_of_directive(x) do
           return --[ Dir_type_string ]--3;
       
     end
-  end
+  end end 
 end
 
 function string_of_type_directive(x) do
@@ -12443,7 +12486,7 @@ var $$Error$2 = Caml_exceptions.create("Parser_api.Lexer.Error");
 function assert_same_type(lexbuf, x, y) do
   var lhs = type_of_directive(x);
   var rhs = type_of_directive(y);
-  if (lhs ~= rhs) do
+  if (lhs ~= rhs) then do
     throw [
           $$Error$2,
           --[ Conditional_expr_expected_type ]--Block.__(7, [
@@ -12453,6 +12496,7 @@ function assert_same_type(lexbuf, x, y) do
           curr(lexbuf)
         ];
   end
+   end 
   return y;
 end
 
@@ -12487,16 +12531,17 @@ try do
   exit = 1;
 end
 catch (exn$2)do
-  if (exn$2 == Caml_builtin_exceptions.not_found) do
+  if (exn$2 == Caml_builtin_exceptions.not_found) then do
     tmp = "";
   end else do
     throw exn$2;
-  end
+  end end 
 end
 
-if (exit == 1) do
+if (exit == 1) then do
   tmp = $$String.sub(Sys.ocaml_version, i + 1 | 0, (#Sys.ocaml_version - i | 0) - 1 | 0);
 end
+ end 
 
 var v = --[ Dir_string ]--Block.__(3, [tmp]);
 
@@ -12513,16 +12558,16 @@ function semantic_version_parse(str, start, last_index) do
     while(true) do
       var acc = _acc;
       var start = _start;
-      if (start <= last_index) do
+      if (start <= last_index) then do
         var c = str.charCodeAt(start);
-        if (c == --[ "." ]--46) do
+        if (c == --[ "." ]--46) then do
           return --[ tuple ]--[
                   acc,
                   start + 1 | 0
                 ];
         end else do
           var v = c - --[ "0" ]--48 | 0;
-          if (v >= 0 and v <= 9) do
+          if (v >= 0 and v <= 9) then do
             _acc = Caml_int32.imul(acc, 10) + v | 0;
             _start = start + 1 | 0;
             continue ;
@@ -12531,14 +12576,14 @@ function semantic_version_parse(str, start, last_index) do
                     acc,
                     start
                   ];
-          end
-        end
+          end end 
+        end end 
       end else do
         return --[ tuple ]--[
                 acc,
                 start
               ];
-      end
+      end end 
     end;
   end;
   var match = aux(start, 0, last_index);
@@ -12558,36 +12603,38 @@ end
 
 function semver(loc, lhs, str) do
   var last_index = #str - 1 | 0;
-  if (last_index < 0) do
+  if (last_index < 0) then do
     throw [
           $$Error$2,
           --[ Illegal_semver ]--Block.__(6, [str]),
           loc
         ];
   end
+   end 
   var v = str.charCodeAt(0);
   var match;
   var exit = 0;
-  if (v ~= 94) do
-    if (v >= 63) do
-      if (v ~= 126) do
+  if (v ~= 94) then do
+    if (v >= 63) then do
+      if (v ~= 126) then do
         exit = 1;
       end else do
         match = --[ tuple ]--[
           --[ Approximate ]---617782220,
           semantic_version_parse(str, 1, last_index)
         ];
-      end
-    end else if (v >= 60) do
+      end end 
+    end else if (v >= 60) then do
       switch (v - 60 | 0) do
         case 0 :
-            if (last_index == 0) do
+            if (last_index == 0) then do
               throw [
                     $$Error$2,
                     --[ Illegal_semver ]--Block.__(6, [str]),
                     loc
                   ];
             end
+             end 
             match = str[1] == "=" ? --[ tuple ]--[
                 --[ Le ]--17049,
                 semantic_version_parse(str, 2, last_index)
@@ -12600,13 +12647,14 @@ function semver(loc, lhs, str) do
             exit = 1;
             break;
         case 2 :
-            if (last_index == 0) do
+            if (last_index == 0) then do
               throw [
                     $$Error$2,
                     --[ Illegal_semver ]--Block.__(6, [str]),
                     loc
                   ];
             end
+             end 
             match = str[1] == "=" ? --[ tuple ]--[
                 --[ Ge ]--15934,
                 semantic_version_parse(str, 2, last_index)
@@ -12619,52 +12667,53 @@ function semver(loc, lhs, str) do
       end
     end else do
       exit = 1;
-    end
+    end end  end 
   end else do
     match = --[ tuple ]--[
       --[ Compatible ]--785637236,
       semantic_version_parse(str, 1, last_index)
     ];
-  end
-  if (exit == 1) do
+  end end 
+  if (exit == 1) then do
     match = --[ tuple ]--[
       --[ Exact ]--172069535,
       semantic_version_parse(str, 0, last_index)
     ];
   end
+   end 
   var version = match[1][0];
   var major = version[0];
   var pred = match[0];
   var match$1 = semantic_version_parse(lhs, 0, #lhs - 1 | 0);
   var lversion = match$1[0];
   var l_major = lversion[0];
-  if (pred >= 17049) do
-    if (pred >= 172069535) do
-      if (pred >= 785637236) do
+  if (pred >= 17049) then do
+    if (pred >= 172069535) then do
+      if (pred >= 785637236) then do
         return major == l_major;
       end else do
         return Caml_obj.caml_equal(lversion, version);
-      end
-    end else if (pred >= 17064) do
+      end end 
+    end else if (pred >= 17064) then do
       return Caml_obj.caml_lessthan(lversion, version);
     end else do
       return Caml_obj.caml_lessequal(lversion, version);
-    end
-  end else if (pred ~= 15934) do
-    if (pred >= 15949) do
+    end end  end 
+  end else if (pred ~= 15934) then do
+    if (pred >= 15949) then do
       return Caml_obj.caml_greaterthan(lversion, version);
-    end else if (major == l_major) do
+    end else if (major == l_major) then do
       return version[1] == lversion[1];
     end else do
       return false;
-    end
+    end end  end 
   end else do
     return Caml_obj.caml_greaterequal(lversion, version);
-  end
+  end end  end 
 end
 
 function pp_directive_value(fmt, x) do
-  if (typeof x == "number") do
+  if (typeof x == "number") then do
     return Format.pp_print_string(fmt, "null");
   end else do
     switch (x.tag | 0) do
@@ -12684,7 +12733,7 @@ function pp_directive_value(fmt, x) do
                         ]), x[0]);
       
     end
-  end
+  end end 
 end
 
 function list_variables(fmt) do
@@ -12732,11 +12781,11 @@ function defined(str) do
       return false;
     end
   end
-  if (typeof val == "number") do
+  if (typeof val == "number") then do
     return false;
   end else do
     return true;
-  end
+  end end 
 end
 
 function query(loc, str) do
@@ -12745,7 +12794,7 @@ function query(loc, str) do
     v = Hashtbl.find(directive_built_in_values, str);
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       var exit = 0;
       var v$1;
       try do
@@ -12753,13 +12802,13 @@ function query(loc, str) do
         exit = 2;
       end
       catch (exn$1)do
-        if (exn$1 == Caml_builtin_exceptions.not_found) do
+        if (exn$1 == Caml_builtin_exceptions.not_found) then do
           return --[ Dir_bool ]--Block.__(0, [false]);
         end else do
           throw exn$1;
-        end
+        end end 
       end
-      if (exit == 2) do
+      if (exit == 2) then do
         try do
           return --[ Dir_bool ]--Block.__(0, [Pervasives.bool_of_string(v$1)]);
         end
@@ -12777,20 +12826,20 @@ function query(loc, str) do
           end
         end
       end
-      
+       end 
     end else do
       throw exn;
-    end
+    end end 
   end
-  if (typeof v == "number") do
+  if (typeof v == "number") then do
     return --[ Dir_bool ]--Block.__(0, [false]);
   end else do
     return v;
-  end
+  end end 
 end
 
 function define_key_value(key, v) do
-  if (#key ~= 0 and Char.uppercase(Caml_string.get(key, 0)) == Caml_string.get(key, 0)) do
+  if (#key ~= 0 and Char.uppercase(Caml_string.get(key, 0)) == Caml_string.get(key, 0)) then do
     var v$1;
     try do
       v$1 = --[ Dir_bool ]--Block.__(0, [Pervasives.bool_of_string(v)]);
@@ -12812,11 +12861,11 @@ function define_key_value(key, v) do
     return true;
   end else do
     return false;
-  end
+  end end 
 end
 
 function value_of_token(loc, t) do
-  if (typeof t == "number") do
+  if (typeof t == "number") then do
     switch (t) do
       case --[ FALSE ]--29 :
           return --[ Dir_bool ]--Block.__(0, [false]);
@@ -12846,7 +12895,7 @@ function value_of_token(loc, t) do
               loc
             ];
     end
-  end
+  end end 
 end
 
 function directive_parse(token_with_comments, lexbuf) do
@@ -12855,14 +12904,14 @@ function directive_parse(token_with_comments, lexbuf) do
   end;
   var token = function (param) do
     var v = look_ahead.contents;
-    if (v ~= undefined) do
+    if (v ~= undefined) then do
       look_ahead.contents = undefined;
       return v;
     end else do
       var _param = --[ () ]--0;
       while(true) do
         var t = Curry._1(token_with_comments, lexbuf);
-        if (typeof t == "number") do
+        if (typeof t == "number") then do
           switch (t) do
             case --[ EOF ]--25 :
                 throw [
@@ -12885,12 +12934,12 @@ function directive_parse(token_with_comments, lexbuf) do
             default:
               return t;
           end
-        end
+        end end 
       end;
-    end
+    end end 
   end;
   var push = function (e) do
-    if (look_ahead.contents ~= undefined) do
+    if (look_ahead.contents ~= undefined) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -12900,13 +12949,14 @@ function directive_parse(token_with_comments, lexbuf) do
             ]
           ];
     end
+     end 
     look_ahead.contents = e;
     return --[ () ]--0;
   end;
   var token_op = function (calc, no, lhs) do
     var op = token(--[ () ]--0);
     var exit = 0;
-    if (typeof op == "number") do
+    if (typeof op == "number") then do
       switch (op) do
         case --[ EQUAL ]--26 :
         case --[ GREATER ]--34 :
@@ -12916,20 +12966,20 @@ function directive_parse(token_with_comments, lexbuf) do
         default:
           return Curry._1(no, op);
       end
-    end else if (op.tag == --[ INFIXOP0 ]--2) do
+    end else if (op.tag == --[ INFIXOP0 ]--2) then do
       switch (op[0]) do
         case "=~" :
-            if (calc) do
-              if (typeof lhs ~= "number" and lhs.tag == --[ Dir_string ]--3) do
+            if (calc) then do
+              if (typeof lhs ~= "number" and lhs.tag == --[ Dir_string ]--3) then do
                 var curr_loc = curr(lexbuf);
                 var rhs = value_of_token(curr_loc, token(--[ () ]--0));
                 var exit$1 = 0;
-                if (typeof rhs == "number" or rhs.tag ~= --[ Dir_string ]--3) do
+                if (typeof rhs == "number" or rhs.tag ~= --[ Dir_string ]--3) then do
                   exit$1 = 3;
                 end else do
                   return semver(curr_loc, lhs[0], rhs[0]);
-                end
-                if (exit$1 == 3) do
+                end end 
+                if (exit$1 == 3) then do
                   throw [
                         $$Error$2,
                         --[ Conditional_expr_expected_type ]--Block.__(7, [
@@ -12939,8 +12989,9 @@ function directive_parse(token_with_comments, lexbuf) do
                         curr(lexbuf)
                       ];
                 end
-                
+                 end 
               end
+               end 
               throw [
                     $$Error$2,
                     --[ Conditional_expr_expected_type ]--Block.__(7, [
@@ -12951,7 +13002,7 @@ function directive_parse(token_with_comments, lexbuf) do
                   ];
             end else do
               return true;
-            end
+            end end 
             break;
         case "<=" :
         case "<>" :
@@ -12963,11 +13014,11 @@ function directive_parse(token_with_comments, lexbuf) do
       end
     end else do
       return Curry._1(no, op);
-    end
-    if (exit == 1) do
+    end end  end 
+    if (exit == 1) then do
       var f;
       var exit$2 = 0;
-      if (typeof op == "number") do
+      if (typeof op == "number") then do
         switch (op) do
           case --[ EQUAL ]--26 :
               f = Caml_obj.caml_equal;
@@ -12981,7 +13032,7 @@ function directive_parse(token_with_comments, lexbuf) do
           default:
             exit$2 = 2;
         end
-      end else if (op.tag == --[ INFIXOP0 ]--2) do
+      end else if (op.tag == --[ INFIXOP0 ]--2) then do
         switch (op[0]) do
           case "<=" :
               f = Caml_obj.caml_lessequal;
@@ -12994,8 +13045,8 @@ function directive_parse(token_with_comments, lexbuf) do
         end
       end else do
         exit$2 = 2;
-      end
-      if (exit$2 == 2) do
+      end end  end 
+      if (exit$2 == 2) then do
         throw [
               Caml_builtin_exceptions.assert_failure,
               --[ tuple ]--[
@@ -13005,49 +13056,51 @@ function directive_parse(token_with_comments, lexbuf) do
               ]
             ];
       end
+       end 
       var curr_loc$1 = curr(lexbuf);
       var rhs$1 = value_of_token(curr_loc$1, token(--[ () ]--0));
-      if (calc) do
+      if (calc) then do
         return Curry._2(f, lhs, assert_same_type(lexbuf, lhs, rhs$1));
       end else do
         return true;
-      end
+      end end 
     end
-    
+     end 
   end;
   var parse_and_aux = function (calc, v) do
     var e = token(--[ () ]--0);
-    if (typeof e == "number" and e == 0) do
+    if (typeof e == "number" and e == 0) then do
       var calc$1 = calc and v;
       var b = parse_and_aux(calc$1, parse_relation(calc$1));
-      if (v) do
+      if (v) then do
         return b;
       end else do
         return false;
-      end
+      end end 
     end else do
       push(e);
       return v;
-    end
+    end end 
   end;
   var parse_relation = function (calc) do
     var curr_token = token(--[ () ]--0);
     var curr_loc = curr(lexbuf);
-    if (typeof curr_token == "number") do
+    if (typeof curr_token == "number") then do
       switch (curr_token) do
         case --[ FALSE ]--29 :
             return false;
         case --[ LPAREN ]--54 :
             var v = parse_or_aux(calc, parse_and_aux(calc, parse_relation(calc)));
             var match = token(--[ () ]--0);
-            if (typeof match == "number") do
-              if (match ~= 81) do
+            if (typeof match == "number") then do
+              if (match ~= 81) then do
                 throw [
                       $$Error$2,
                       --[ Unterminated_paren_in_conditional ]--1,
                       curr(lexbuf)
                     ];
               end
+               end 
               return v;
             end else do
               throw [
@@ -13055,7 +13108,7 @@ function directive_parse(token_with_comments, lexbuf) do
                     --[ Unterminated_paren_in_conditional ]--1,
                     curr(lexbuf)
                   ];
-            end
+            end end 
         case --[ TRUE ]--91 :
             return true;
         default:
@@ -13099,30 +13152,30 @@ function directive_parse(token_with_comments, lexbuf) do
             end
             var t = token(--[ () ]--0);
             var loc = curr(lexbuf);
-            if (typeof t == "number") do
+            if (typeof t == "number") then do
               throw [
                     $$Error$2,
                     --[ Unexpected_token_in_conditional ]--4,
                     loc
                   ];
-            end else if (t.tag == --[ UIDENT ]--17) do
+            end else if (t.tag == --[ UIDENT ]--17) then do
               var s = t[0];
-              if (calc) do
-                if (Caml_string.get(r, 0) == --[ "u" ]--117) do
+              if (calc) then do
+                if (Caml_string.get(r, 0) == --[ "u" ]--117) then do
                   return !defined(s);
                 end else do
                   return defined(s);
-                end
+                end end 
               end else do
                 return true;
-              end
+              end end 
             end else do
               throw [
                     $$Error$2,
                     --[ Unexpected_token_in_conditional ]--4,
                     loc
                   ];
-            end
+            end end  end 
             break;
         case --[ STRING ]--16 :
             return token_op(calc, (function (e) do
@@ -13139,9 +13192,10 @@ function directive_parse(token_with_comments, lexbuf) do
             var value_v = query(curr_loc, curr_token[0]);
             return token_op(calc, (function (e) do
                           push(e);
-                          if (typeof value_v ~= "number" and !value_v.tag) do
+                          if (typeof value_v ~= "number" and !value_v.tag) then do
                             return value_v[0];
                           end
+                           end 
                           var ty = type_of_directive(value_v);
                           throw [
                                 $$Error$2,
@@ -13159,33 +13213,34 @@ function directive_parse(token_with_comments, lexbuf) do
                 curr_loc
               ];
       end
-    end
+    end end 
   end;
   var parse_or_aux = function (calc, v) do
     var e = token(--[ () ]--0);
-    if (typeof e == "number" and e == 8) do
+    if (typeof e == "number" and e == 8) then do
       var calc$1 = calc and !v;
       var b = parse_or_aux(calc$1, parse_and_aux(calc$1, parse_relation(calc$1)));
-      if (v) do
+      if (v) then do
         return true;
       end else do
         return b;
-      end
+      end end 
     end else do
       push(e);
       return v;
-    end
+    end end 
   end;
   var v = parse_or_aux(true, parse_and_aux(true, parse_relation(true)));
   var match = token(--[ () ]--0);
-  if (typeof match == "number") do
-    if (match ~= 88) do
+  if (typeof match == "number") then do
+    if (match ~= 88) then do
       throw [
             $$Error$2,
             --[ Expect_hash_then_in_conditional ]--5,
             curr(lexbuf)
           ];
     end
+     end 
     return v;
   end else do
     throw [
@@ -13193,15 +13248,15 @@ function directive_parse(token_with_comments, lexbuf) do
           --[ Expect_hash_then_in_conditional ]--5,
           curr(lexbuf)
         ];
-  end
+  end end 
 end
 
 function is_elif(i) do
-  if (typeof i == "number" or !(i.tag == --[ LIDENT ]--11 and i[0] == "elif")) do
+  if (typeof i == "number" or !(i.tag == --[ LIDENT ]--11 and i[0] == "elif")) then do
     return false;
   end else do
     return true;
-  end
+  end end 
 end
 
 var keyword_table = create_hashtable(149, --[ :: ]--[
@@ -13559,11 +13614,12 @@ function reset_string_buffer(param) do
 end
 
 function store_string_char(c) do
-  if (string_index.contents >= #string_buff.contents) do
+  if (string_index.contents >= #string_buff.contents) then do
     var new_buff = Caml_bytes.caml_create_bytes((#string_buff.contents << 1));
     Bytes.blit(string_buff.contents, 0, new_buff, 0, #string_buff.contents);
     string_buff.contents = new_buff;
   end
+   end 
   string_buff.contents[string_index.contents] = c;
   string_index.contents = string_index.contents + 1 | 0;
   return --[ () ]--0;
@@ -13639,8 +13695,8 @@ function with_comment_buffer(comment, lexbuf) do
 end
 
 function char_for_backslash(c) do
-  if (c >= 110) do
-    if (c >= 117) do
+  if (c >= 110) then do
+    if (c >= 117) then do
       return c;
     end else do
       switch (c - 110 | 0) do
@@ -13657,18 +13713,18 @@ function char_for_backslash(c) do
             return --[ "\t" ]--9;
         
       end
-    end
-  end else if (c ~= 98) do
+    end end 
+  end else if (c ~= 98) then do
     return c;
   end else do
     return --[ "\b" ]--8;
-  end
+  end end  end 
 end
 
 function char_for_decimal_code(lexbuf, i) do
   var c = (Caml_int32.imul(100, Lexing.lexeme_char(lexbuf, i) - 48 | 0) + Caml_int32.imul(10, Lexing.lexeme_char(lexbuf, i + 1 | 0) - 48 | 0) | 0) + (Lexing.lexeme_char(lexbuf, i + 2 | 0) - 48 | 0) | 0;
-  if (c < 0 or c > 255) do
-    if (comment_start_loc.contents ~= --[ [] ]--0) do
+  if (c < 0 or c > 255) then do
+    if (comment_start_loc.contents ~= --[ [] ]--0) then do
       return --[ "x" ]--120;
     end else do
       throw [
@@ -13676,10 +13732,10 @@ function char_for_decimal_code(lexbuf, i) do
             --[ Illegal_escape ]--Block.__(1, [Lexing.lexeme(lexbuf)]),
             curr(lexbuf)
           ];
-    end
+    end end 
   end else do
     return Char.chr(c);
-  end
+  end end 
 end
 
 function char_for_hexadecimal_code(lexbuf, i) do
@@ -13718,15 +13774,15 @@ function remove_underscores(s) do
   while(true) do
     var dst = _dst;
     var src = _src;
-    if (src >= l) do
-      if (dst >= l) do
+    if (src >= l) then do
+      if (dst >= l) then do
         return s;
       end else do
         return Bytes.sub_string(b, 0, dst);
-      end
+      end end 
     end else do
       var c = Caml_string.get(s, src);
-      if (c ~= 95) do
+      if (c ~= 95) then do
         b[dst] = c;
         _dst = dst + 1 | 0;
         _src = src + 1 | 0;
@@ -13734,21 +13790,22 @@ function remove_underscores(s) do
       end else do
         _src = src + 1 | 0;
         continue ;
-      end
-    end
+      end end 
+    end end 
   end;
 end
 
 function get_label_name(lexbuf) do
   var s = Lexing.lexeme(lexbuf);
   var name = $$String.sub(s, 1, #s - 2 | 0);
-  if (Hashtbl.mem(keyword_table, name)) do
+  if (Hashtbl.mem(keyword_table, name)) then do
     throw [
           $$Error$2,
           --[ Keyword_as_label ]--Block.__(4, [name]),
           curr(lexbuf)
         ];
   end
+   end 
   return name;
 end
 
@@ -13796,7 +13853,7 @@ function comments(param) do
 end
 
 function report_error$2(ppf, param) do
-  if (typeof param == "number") do
+  if (typeof param == "number") then do
     switch (param) do
       case --[ Unterminated_string ]--0 :
           return Format.fprintf(ppf, --[ Format ]--[
@@ -13966,14 +14023,14 @@ function report_error$2(ppf, param) do
                         ]), string_of_type_directive(param[0]), string_of_type_directive(param[1]));
       
     end
-  end
+  end end 
 end
 
 register_error_of_exn((function (param) do
-        if (param[0] == $$Error$2) do
+        if (param[0] == $$Error$2) then do
           return error_of_printer(param[2], report_error$2, param[1]);
         end
-        
+         end 
       end));
 
 var __ocaml_lex_tables = do
@@ -13999,13 +14056,14 @@ function token(lexbuf) do
     var __ocaml_lex_state$1 = Lexing.new_engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf$1);
     switch (__ocaml_lex_state$1) do
       case 0 :
-          if (!escaped_newlines.contents) do
+          if (!escaped_newlines.contents) then do
             throw [
                   $$Error$2,
                   --[ Illegal_character ]--Block.__(0, [Lexing.lexeme_char(lexbuf$1, 0)]),
                   curr(lexbuf$1)
                 ];
           end
+           end 
           update_loc(lexbuf$1, undefined, 1, false, 0);
           return token(lexbuf$1);
       case 1 :
@@ -14035,11 +14093,11 @@ function token(lexbuf) do
             return Hashtbl.find(keyword_table, s);
           end
           catch (exn)do
-            if (exn == Caml_builtin_exceptions.not_found) do
+            if (exn == Caml_builtin_exceptions.not_found) then do
               return --[ LIDENT ]--Block.__(11, [s]);
             end else do
               throw exn;
-            end
+            end end 
           end
       case 11 :
           prerr_warning(curr(lexbuf$1), --[ Deprecated ]--Block.__(0, ["ISO-Latin1 characters in identifiers"]));
@@ -14055,13 +14113,14 @@ function token(lexbuf) do
           end
           catch (raw_exn)do
             var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
-            if (exn$1[0] == Caml_builtin_exceptions.failure) do
+            if (exn$1[0] == Caml_builtin_exceptions.failure) then do
               throw [
                     $$Error$2,
                     --[ Literal_overflow ]--Block.__(5, ["int"]),
                     curr(lexbuf$1)
                   ];
             end
+             end 
             throw exn$1;
           end
       case 15 :
@@ -14072,13 +14131,14 @@ function token(lexbuf) do
           end
           catch (raw_exn$1)do
             var exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-            if (exn$2[0] == Caml_builtin_exceptions.failure) do
+            if (exn$2[0] == Caml_builtin_exceptions.failure) then do
               throw [
                     $$Error$2,
                     --[ Literal_overflow ]--Block.__(5, ["int32"]),
                     curr(lexbuf$1)
                   ];
             end
+             end 
             throw exn$2;
           end
       case 17 :
@@ -14087,13 +14147,14 @@ function token(lexbuf) do
           end
           catch (raw_exn$2)do
             var exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
-            if (exn$3[0] == Caml_builtin_exceptions.failure) do
+            if (exn$3[0] == Caml_builtin_exceptions.failure) then do
               throw [
                     $$Error$2,
                     --[ Literal_overflow ]--Block.__(5, ["int64"]),
                     curr(lexbuf$1)
                   ];
             end
+             end 
             throw exn$3;
           end
       case 18 :
@@ -14102,13 +14163,14 @@ function token(lexbuf) do
           end
           catch (raw_exn$3)do
             var exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
-            if (exn$4[0] == Caml_builtin_exceptions.failure) do
+            if (exn$4[0] == Caml_builtin_exceptions.failure) then do
               throw [
                     $$Error$2,
                     --[ Literal_overflow ]--Block.__(5, ["nativeint"]),
                     curr(lexbuf$1)
                   ];
             end
+             end 
             throw exn$4;
           end
       case 19 :
@@ -14178,9 +14240,10 @@ function token(lexbuf) do
                       match$2[1]
                     ]]);
       case 30 :
-          if (print_warnings.contents) do
+          if (print_warnings.contents) then do
             prerr_warning(curr(lexbuf$1), --[ Comment_start ]--0);
           end
+           end 
           var match$3 = with_comment_buffer(comment, lexbuf$1);
           return --[ COMMENT ]--Block.__(18, [--[ tuple ]--[
                       match$3[0],
@@ -14321,14 +14384,15 @@ function token(lexbuf) do
       case 89 :
           return --[ SHARPOP ]--Block.__(15, [Lexing.lexeme(lexbuf$1)]);
       case 90 :
-          if (if_then_else.contents ~= --[ Dir_out ]--2) do
-            if (if_then_else.contents == --[ Dir_if_true ]--0) do
+          if (if_then_else.contents ~= --[ Dir_out ]--2) then do
+            if (if_then_else.contents == --[ Dir_if_true ]--0) then do
               throw [
                     $$Error$2,
                     --[ Unterminated_if ]--2,
                     curr(lexbuf$1)
                   ];
             end
+             end 
             throw [
                   $$Error$2,
                   --[ Unterminated_else ]--3,
@@ -14336,7 +14400,7 @@ function token(lexbuf) do
                 ];
           end else do
             return --[ EOF ]--25;
-          end
+          end end 
       case 91 :
           throw [
                 $$Error$2,
@@ -14379,7 +14443,7 @@ function string(lexbuf) do
           store_string_char(char_for_hexadecimal_code(lexbuf$1, 2));
           return string(lexbuf$1);
       case 5 :
-          if (comment_start_loc.contents ~= --[ [] ]--0) do
+          if (comment_start_loc.contents ~= --[ [] ]--0) then do
             return string(lexbuf$1);
           end else do
             var loc = curr(lexbuf$1);
@@ -14387,11 +14451,12 @@ function string(lexbuf) do
             store_string_char(Lexing.lexeme_char(lexbuf$1, 0));
             store_string_char(Lexing.lexeme_char(lexbuf$1, 1));
             return string(lexbuf$1);
-          end
+          end end 
       case 6 :
-          if (comment_start_loc.contents == --[ [] ]--0) do
+          if (comment_start_loc.contents == --[ [] ]--0) then do
             prerr_warning(curr(lexbuf$1), --[ Eol_in_string ]--14);
           end
+           end 
           update_loc(lexbuf$1, undefined, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf$1));
           return string(lexbuf$1);
@@ -14428,9 +14493,9 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           continue ;
       case 1 :
           var match = comment_start_loc.contents;
-          if (match) do
+          if (match) then do
             var l = match[1];
-            if (l) do
+            if (l) then do
               comment_start_loc.contents = l;
               store_string(Lexing.lexeme(lexbuf));
               ___ocaml_lex_state = 132;
@@ -14438,7 +14503,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
             end else do
               comment_start_loc.contents = --[ [] ]--0;
               return curr(lexbuf);
-            end
+            end end 
           end else do
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -14448,7 +14513,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                     16
                   ]
                 ];
-          end
+          end end 
       case 2 :
           string_start_loc.contents = curr(lexbuf);
           store_string_char(--[ "\"" ]--34);
@@ -14458,14 +14523,15 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           end
           catch (raw_exn)do
             var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-            if (exn[0] == $$Error$2) do
+            if (exn[0] == $$Error$2) then do
               var match$1 = exn[1];
-              if (typeof match$1 == "number") do
-                if (match$1 ~= 0) do
+              if (typeof match$1 == "number") then do
+                if (match$1 ~= 0) then do
                   throw exn;
                 end
+                 end 
                 var match$2 = comment_start_loc.contents;
-                if (match$2) do
+                if (match$2) then do
                   var start = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[ [] ]--0;
                   throw [
@@ -14485,13 +14551,13 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                           18
                         ]
                       ];
-                end
+                end end 
               end else do
                 throw exn;
-              end
+              end end 
             end else do
               throw exn;
-            end
+            end end 
           end
           is_in_string.contents = false;
           store_string_char(--[ "\"" ]--34);
@@ -14508,14 +14574,15 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           end
           catch (raw_exn$1)do
             var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-            if (exn$1[0] == $$Error$2) do
+            if (exn$1[0] == $$Error$2) then do
               var match$3 = exn$1[1];
-              if (typeof match$3 == "number") do
-                if (match$3 ~= 0) do
+              if (typeof match$3 == "number") then do
+                if (match$3 ~= 0) then do
                   throw exn$1;
                 end
+                 end 
                 var match$4 = comment_start_loc.contents;
-                if (match$4) do
+                if (match$4) then do
                   var start$1 = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[ [] ]--0;
                   throw [
@@ -14535,13 +14602,13 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                           18
                         ]
                       ];
-                end
+                end end 
               end else do
                 throw exn$1;
-              end
+              end end 
             end else do
               throw exn$1;
-            end
+            end end 
           end
           is_in_string.contents = false;
           store_string_char(--[ "|" ]--124);
@@ -14556,7 +14623,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           continue ;
       case 10 :
           var match$5 = comment_start_loc.contents;
-          if (match$5) do
+          if (match$5) then do
             var start$2 = List.hd(List.rev(comment_start_loc.contents));
             comment_start_loc.contents = --[ [] ]--0;
             throw [
@@ -14573,7 +14640,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                     16
                   ]
                 ];
-          end
+          end end 
       case 11 :
           update_loc(lexbuf, undefined, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf));
@@ -14616,13 +14683,13 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
       case 2 :
           var edelim = Lexing.lexeme(lexbuf);
           var edelim$1 = $$String.sub(edelim, 1, #edelim - 2 | 0);
-          if (delim == edelim$1) do
+          if (delim == edelim$1) then do
             return --[ () ]--0;
           end else do
             store_string(Lexing.lexeme(lexbuf));
             ___ocaml_lex_state = 183;
             continue ;
-          end
+          end end 
       case 3 :
           store_string_char(Lexing.lexeme_char(lexbuf, 0));
           ___ocaml_lex_state = 183;
@@ -14663,176 +14730,184 @@ end
 
 function token_with_comments(lexbuf) do
   var match = preprocessor$1.contents;
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     return Curry._2(match[1], token, lexbuf);
   end else do
     return token(lexbuf);
-  end
+  end end 
 end
 
 function interpret_directive(lexbuf, cont, look_ahead) do
   var if_then_else$1 = if_then_else.contents;
   var match = token_with_comments(lexbuf);
-  if (typeof match == "number") do
+  if (typeof match == "number") then do
     switch (match) do
       case --[ ELSE ]--23 :
-          if (if_then_else$1 ~= 0) do
+          if (if_then_else$1 ~= 0) then do
             throw [
                   $$Error$2,
                   --[ Unexpected_directive ]--6,
                   curr(lexbuf)
                 ];
           end
+           end 
           break;
       case --[ END ]--24 :
-          if (if_then_else$1 >= 2) do
+          if (if_then_else$1 >= 2) then do
             throw [
                   $$Error$2,
                   --[ Unexpected_directive ]--6,
                   curr(lexbuf)
                 ];
           end
+           end 
           if_then_else.contents = --[ Dir_out ]--2;
           return Curry._1(cont, lexbuf);
       case --[ IF ]--37 :
-          if (if_then_else$1 >= 2) do
-            if (directive_parse(token_with_comments, lexbuf)) do
+          if (if_then_else$1 >= 2) then do
+            if (directive_parse(token_with_comments, lexbuf)) then do
               if_then_else.contents = --[ Dir_if_true ]--0;
               return Curry._1(cont, lexbuf);
             end else do
               var _param = --[ () ]--0;
               while(true) do
                 var token = token_with_comments(lexbuf);
-                if (token == --[ EOF ]--25) do
+                if (token == --[ EOF ]--25) then do
                   throw [
                         $$Error$2,
                         --[ Unterminated_if ]--2,
                         curr(lexbuf)
                       ];
                 end
-                if (token == --[ SHARP ]--84 and at_bol(lexbuf)) do
+                 end 
+                if (token == --[ SHARP ]--84 and at_bol(lexbuf)) then do
                   var token$1 = token_with_comments(lexbuf);
-                  if (typeof token$1 == "number") do
+                  if (typeof token$1 == "number") then do
                     var switcher = token$1 - 23 | 0;
-                    if (switcher == 0 or switcher == 1) do
-                      if (switcher ~= 0) do
+                    if (switcher == 0 or switcher == 1) then do
+                      if (switcher ~= 0) then do
                         if_then_else.contents = --[ Dir_out ]--2;
                         return Curry._1(cont, lexbuf);
                       end else do
                         if_then_else.contents = --[ Dir_if_false ]--1;
                         return Curry._1(cont, lexbuf);
-                      end
-                    end else if (switcher == 14) do
+                      end end 
+                    end else if (switcher == 14) then do
                       throw [
                             $$Error$2,
                             --[ Unexpected_directive ]--6,
                             curr(lexbuf)
                           ];
                     end
-                    
+                     end  end 
                   end
-                  if (is_elif(token$1) and directive_parse(token_with_comments, lexbuf)) do
+                   end 
+                  if (is_elif(token$1) and directive_parse(token_with_comments, lexbuf)) then do
                     if_then_else.contents = --[ Dir_if_true ]--0;
                     return Curry._1(cont, lexbuf);
                   end else do
                     _param = --[ () ]--0;
                     continue ;
-                  end
+                  end end 
                 end else do
                   _param = --[ () ]--0;
                   continue ;
-                end
+                end end 
               end;
-            end
+            end end 
           end else do
             throw [
                   $$Error$2,
                   --[ Unexpected_directive ]--6,
                   curr(lexbuf)
                 ];
-          end
+          end end 
       default:
         return Curry._1(look_ahead, match);
     end
-  end else if (match.tag == --[ LIDENT ]--11 and match[0] == "elif") do
-    if (if_then_else$1 ~= 0) do
+  end else if (match.tag == --[ LIDENT ]--11 and match[0] == "elif") then do
+    if (if_then_else$1 ~= 0) then do
       throw [
             $$Error$2,
             --[ Unexpected_directive ]--6,
             curr(lexbuf)
           ];
     end
-    
+     end 
   end else do
     return Curry._1(look_ahead, match);
-  end
-  if (if_then_else$1 ~= 0) do
+  end end  end 
+  if (if_then_else$1 ~= 0) then do
     return Curry._1(look_ahead, match);
   end else do
     var _else_seen = match == --[ ELSE ]--23;
     while(true) do
       var else_seen = _else_seen;
       var token$2 = token_with_comments(lexbuf);
-      if (token$2 == --[ EOF ]--25) do
+      if (token$2 == --[ EOF ]--25) then do
         throw [
               $$Error$2,
               --[ Unterminated_else ]--3,
               curr(lexbuf)
             ];
       end
-      if (token$2 == --[ SHARP ]--84 and at_bol(lexbuf)) do
+       end 
+      if (token$2 == --[ SHARP ]--84 and at_bol(lexbuf)) then do
         var token$3 = token_with_comments(lexbuf);
-        if (typeof token$3 == "number") do
+        if (typeof token$3 == "number") then do
           var switcher$1 = token$3 - 23 | 0;
-          if (switcher$1 == 0 or switcher$1 == 1) do
-            if (switcher$1 ~= 0) do
+          if (switcher$1 == 0 or switcher$1 == 1) then do
+            if (switcher$1 ~= 0) then do
               if_then_else.contents = --[ Dir_out ]--2;
               return Curry._1(cont, lexbuf);
             end else do
-              if (else_seen) do
+              if (else_seen) then do
                 throw [
                       $$Error$2,
                       --[ Unexpected_directive ]--6,
                       curr(lexbuf)
                     ];
               end
+               end 
               _else_seen = true;
               continue ;
-            end
-          end else if (switcher$1 == 14) do
+            end end 
+          end else if (switcher$1 == 14) then do
             throw [
                   $$Error$2,
                   --[ Unexpected_directive ]--6,
                   curr(lexbuf)
                 ];
           end
-          
+           end  end 
         end
-        if (else_seen and is_elif(token$3)) do
+         end 
+        if (else_seen and is_elif(token$3)) then do
           throw [
                 $$Error$2,
                 --[ Unexpected_directive ]--6,
                 curr(lexbuf)
               ];
         end
+         end 
         continue ;
       end else do
         continue ;
-      end
+      end end 
     end;
-  end
+  end end 
 end
 
 function token$1(lexbuf) do
   var post_pos = lexbuf.lex_curr_p;
   var attach = function (lines, docs, pre_pos) do
-    if (typeof docs == "number") do
+    if (typeof docs == "number") then do
       return --[ () ]--0;
-    end else if (docs.tag) do
+    end else if (docs.tag) then do
       var b = docs[2];
       var f = docs[1];
       var a = docs[0];
-      if (lines >= 2) do
+      if (lines >= 2) then do
         set_post_docstrings(post_pos, List.rev(a));
         set_post_extra_docstrings(post_pos, List.rev_append(f, List.rev(b)));
         set_floating_docstrings(pre_pos, List.rev_append(f, List.rev(b)));
@@ -14843,27 +14918,27 @@ function token$1(lexbuf) do
         set_floating_docstrings(pre_pos, List.rev(f));
         set_pre_extra_docstrings(pre_pos, List.rev(a));
         return set_pre_docstrings(pre_pos, b);
-      end
+      end end 
     end else do
       var a$1 = docs[0];
-      if (lines >= 2) do
+      if (lines >= 2) then do
         set_post_docstrings(post_pos, List.rev(a$1));
         return set_pre_extra_docstrings(pre_pos, List.rev(a$1));
       end else do
         set_post_docstrings(post_pos, List.rev(a$1));
         return set_pre_docstrings(pre_pos, a$1);
-      end
-    end
+      end end 
+    end end  end 
   end;
   var loop = function (_lines, _docs, lexbuf) do
     while(true) do
       var docs = _docs;
       var lines = _lines;
       var tok = token_with_comments(lexbuf);
-      if (typeof tok == "number") do
+      if (typeof tok == "number") then do
         switch (tok) do
           case --[ SHARP ]--84 :
-              if (at_bol(lexbuf)) do
+              if (at_bol(lexbuf)) then do
                 return interpret_directive(lexbuf, (function(lines,docs)do
                           return function (lexbuf) do
                             return loop(lines, docs, lexbuf);
@@ -14873,6 +14948,7 @@ function token$1(lexbuf) do
                               return --[ SHARP ]--84;
                             end));
               end
+               end 
               break;
           case --[ EOL ]--100 :
               var lines$prime = lines ~= 0 ? --[ BlankLine ]--2 : --[ NewLine ]--1;
@@ -14896,7 +14972,7 @@ function token$1(lexbuf) do
               var doc = tok[0];
               add_docstring_comment(doc);
               var docs$prime;
-              if (typeof docs == "number") do
+              if (typeof docs == "number") then do
                 docs$prime = lines >= 2 ? --[ Before ]--Block.__(1, [
                       --[ [] ]--0,
                       --[ [] ]--0,
@@ -14908,7 +14984,7 @@ function token$1(lexbuf) do
                         doc,
                         --[ [] ]--0
                       ]]);
-              end else if (docs.tag) do
+              end else if (docs.tag) then do
                 var b = docs[2];
                 var f = docs[1];
                 var a = docs[0];
@@ -14940,25 +15016,25 @@ function token$1(lexbuf) do
                         doc,
                         a$1
                       ]]);
-              end
+              end end  end 
               _docs = docs$prime;
               _lines = --[ NoLine ]--0;
               continue ;
           default:
             
         end
-      end
+      end end 
       attach(lines, docs, lexbuf.lex_start_p);
       return tok;
     end;
   end;
   var match = sharp_look_ahead.contents;
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     sharp_look_ahead.contents = undefined;
     return match;
   end else do
     return loop(--[ NoLine ]--0, --[ Initial ]--0, lexbuf);
-  end
+  end end 
 end
 
 function init$2(param) do
@@ -14968,21 +15044,21 @@ function init$2(param) do
   comment_start_loc.contents = --[ [] ]--0;
   comment_list.contents = --[ [] ]--0;
   var match = preprocessor$1.contents;
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     return Curry._1(match[0], --[ () ]--0);
   end else do
     return --[ () ]--0;
-  end
+  end end 
 end
 
 function filter_directive(pos, acc, lexbuf) do
   while(true) do
     var match = token_with_comments(lexbuf);
-    if (typeof match == "number") do
-      if (match ~= 25) do
-        if (match ~= 84) do
+    if (typeof match == "number") then do
+      if (match ~= 25) then do
+        if (match ~= 84) then do
           continue ;
-        end else if (at_bol(lexbuf)) do
+        end else if (at_bol(lexbuf)) then do
           var start_pos = lexbuf.lex_start_p.pos_cnum;
           return interpret_directive(lexbuf, (function(start_pos)do
                     return function (lexbuf) do
@@ -14999,7 +15075,7 @@ function filter_directive(pos, acc, lexbuf) do
                       end));
         end else do
           continue ;
-        end
+        end end  end 
       end else do
         return --[ :: ]--[
                 --[ tuple ]--[
@@ -15008,10 +15084,10 @@ function filter_directive(pos, acc, lexbuf) do
                 ],
                 acc
               ];
-      end
+      end end 
     end else do
       continue ;
-    end
+    end end 
   end;
 end
 
@@ -15054,22 +15130,22 @@ function skip_phrase(lexbuf) do
   while(true) do
     try do
       var match = token$1(lexbuf);
-      if (typeof match == "number" and !(match ~= 25 and match ~= 83)) do
+      if (typeof match == "number" and !(match ~= 25 and match ~= 83)) then do
         return --[ () ]--0;
       end else do
         return skip_phrase(lexbuf);
-      end
+      end end 
     end
     catch (raw_exn)do
       var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-      if (exn[0] == $$Error$2) do
+      if (exn[0] == $$Error$2) then do
         var tmp = exn[1];
-        if (typeof tmp == "number") do
-          if (tmp == --[ Unterminated_string ]--0) do
+        if (typeof tmp == "number") then do
+          if (tmp == --[ Unterminated_string ]--0) then do
             continue ;
           end else do
             throw exn;
-          end
+          end end 
         end else do
           switch (tmp.tag | 0) do
             case --[ Illegal_character ]--0 :
@@ -15079,20 +15155,20 @@ function skip_phrase(lexbuf) do
             default:
               throw exn;
           end
-        end
+        end end 
       end else do
         throw exn;
-      end
+      end end 
     end
   end;
 end
 
 function maybe_skip_phrase(lexbuf) do
-  if (Parsing.is_current_lookahead(--[ SEMISEMI ]--83) or Parsing.is_current_lookahead(--[ EOF ]--25)) do
+  if (Parsing.is_current_lookahead(--[ SEMISEMI ]--83) or Parsing.is_current_lookahead(--[ EOF ]--25)) then do
     return --[ () ]--0;
   end else do
     return skip_phrase(lexbuf);
-  end
+  end end 
 end
 
 function wrap(parsing_fun, lexbuf) do
@@ -15106,32 +15182,34 @@ function wrap(parsing_fun, lexbuf) do
   end
   catch (raw_err)do
     var err = Caml_js_exceptions.internalToOCamlException(raw_err);
-    if (err[0] == $$Error$2) do
+    if (err[0] == $$Error$2) then do
       var tmp = err[1];
-      if (typeof tmp == "number") do
+      if (typeof tmp == "number") then do
         throw err;
-      end else if (tmp.tag) do
+      end else if (tmp.tag) then do
         throw err;
-      end else if (input_name.contents == "//toplevel//") do
+      end else if (input_name.contents == "//toplevel//") then do
         skip_phrase(lexbuf);
         throw err;
       end else do
         throw err;
-      end
-    end else if (err[0] == $$Error$1) do
-      if (input_name.contents == "//toplevel//") do
+      end end  end  end 
+    end else if (err[0] == $$Error$1) then do
+      if (input_name.contents == "//toplevel//") then do
         maybe_skip_phrase(lexbuf);
         throw err;
       end else do
         throw err;
-      end
-    end else if (err ~= Parsing.Parse_error and err ~= Escape_error) do
+      end end 
+    end else if (err ~= Parsing.Parse_error and err ~= Escape_error) then do
       throw err;
     end
+     end  end  end 
     var loc = curr(lexbuf);
-    if (input_name.contents == "//toplevel//") do
+    if (input_name.contents == "//toplevel//") then do
       maybe_skip_phrase(lexbuf);
     end
+     end 
     throw [
           $$Error$1,
           --[ Other ]--Block.__(5, [loc])

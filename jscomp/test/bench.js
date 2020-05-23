@@ -9,7 +9,7 @@ function map(f, a) do
   var f$1 = Curry.__1(f);
   var a$1 = a;
   var l = #a$1;
-  if (l == 0) do
+  if (l == 0) then do
     return [];
   end else do
     var r = Caml_array.caml_make_vect(l, f$1(a$1[0]));
@@ -17,27 +17,28 @@ function map(f, a) do
       r[i] = f$1(a$1[i]);
     end
     return r;
-  end
+  end end 
 end
 
 function init(l, f) do
   var l$1 = l;
   var f$1 = Curry.__1(f);
-  if (l$1 == 0) do
+  if (l$1 == 0) then do
     return [];
   end else do
-    if (l$1 < 0) do
+    if (l$1 < 0) then do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Array.init"
           ];
     end
+     end 
     var res = Caml_array.caml_make_vect(l$1, f$1(0));
     for(var i = 1 ,i_finish = l$1 - 1 | 0; i <= i_finish; ++i)do
       res[i] = f$1(i);
     end
     return res;
-  end
+  end end 
 end
 
 function fold_left(f, x, a) do

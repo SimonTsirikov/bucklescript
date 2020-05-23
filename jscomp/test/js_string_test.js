@@ -302,11 +302,11 @@ var suites_001 = --[ :: ]--[
                                                             "unsafeReplaceBy0",
                                                             (function (param) do
                                                                 var replace = function (whole, offset, s) do
-                                                                  if (whole == "bar") do
+                                                                  if (whole == "bar") then do
                                                                     return "BORK";
                                                                   end else do
                                                                     return "DORK";
-                                                                  end
+                                                                  end end 
                                                                 end;
                                                                 return --[ Eq ]--Block.__(0, [
                                                                           "fooBORKDORK",
@@ -319,11 +319,11 @@ var suites_001 = --[ :: ]--[
                                                               "unsafeReplaceBy1",
                                                               (function (param) do
                                                                   var replace = function (whole, p1, offset, s) do
-                                                                    if (whole == "bar") do
+                                                                    if (whole == "bar") then do
                                                                       return "BORK";
                                                                     end else do
                                                                       return "DORK";
-                                                                    end
+                                                                    end end 
                                                                   end;
                                                                   return --[ Eq ]--Block.__(0, [
                                                                             "fooBORKDORK",
@@ -336,11 +336,11 @@ var suites_001 = --[ :: ]--[
                                                                 "unsafeReplaceBy2",
                                                                 (function (param) do
                                                                     var replace = function (whole, p1, p2, offset, s) do
-                                                                      if (whole == "bar") do
+                                                                      if (whole == "bar") then do
                                                                         return "BORK";
                                                                       end else do
                                                                         return "DORK";
-                                                                      end
+                                                                      end end 
                                                                     end;
                                                                     return --[ Eq ]--Block.__(0, [
                                                                               "fooBORKDORK",
@@ -353,11 +353,11 @@ var suites_001 = --[ :: ]--[
                                                                   "unsafeReplaceBy3",
                                                                   (function (param) do
                                                                       var replace = function (whole, p1, p2, p3, offset, s) do
-                                                                        if (whole == "bar") do
+                                                                        if (whole == "bar") then do
                                                                           return "BORK";
                                                                         end else do
                                                                           return "DORK";
-                                                                        end
+                                                                        end end 
                                                                       end;
                                                                       return --[ Eq ]--Block.__(0, [
                                                                                 "fooBORKDORK",

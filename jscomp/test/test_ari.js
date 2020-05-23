@@ -35,13 +35,13 @@ function length_aux(_len, _param) do
   while(true) do
     var param = _param;
     var len = _len;
-    if (param) do
+    if (param) then do
       _param = param[1];
       _len = len + 1 | 0;
       continue ;
     end else do
       return len;
-    end
+    end end 
   end;
 end
 

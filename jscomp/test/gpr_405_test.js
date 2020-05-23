@@ -16,11 +16,11 @@ function Make(funarg) do
       return Curry._2(H.find, htbl, x);
     end
     catch (exn)do
-      if (exn == Caml_builtin_exceptions.not_found) do
+      if (exn == Caml_builtin_exceptions.not_found) then do
         return false;
       end else do
         throw exn;
-      end
+      end end 
     end
   end;
   var min_cutset = function (gr, first_node) do
@@ -35,7 +35,7 @@ function Make(funarg) do
       contents: 1
     end;
     var step2 = function (top, rest_of_stack) do
-      if (find_default(already_processed, top)) do
+      if (find_default(already_processed, top)) then do
         throw [
               Caml_builtin_exceptions.assert_failure,
               --[ tuple ]--[
@@ -45,7 +45,8 @@ function Make(funarg) do
               ]
             ];
       end
-      if (find_default(on_the_stack, top)) do
+       end 
+      if (find_default(on_the_stack, top)) then do
         throw [
               Caml_builtin_exceptions.assert_failure,
               --[ tuple ]--[
@@ -55,6 +56,7 @@ function Make(funarg) do
               ]
             ];
       end
+       end 
       Curry._3(H.add, on_the_stack, top, true);
       Curry._3(H.add, n_labels, top, counter.contents);
       counter.contents = counter.contents + 1 | 0;
@@ -67,9 +69,9 @@ function Make(funarg) do
         var rest_of_stack$1 = _rest_of_stack;
         var top$1 = _top;
         var successors = _successors;
-        if (successors) do
+        if (successors) then do
           var successor = successors[0];
-          if (find_default(already_processed, successor)) do
+          if (find_default(already_processed, successor)) then do
             var x = find_default(on_the_stack, successor) ? Curry._2(H.find, n_labels, successor) : Curry._2(H.find, l_labels, successor);
             Curry._3(H.add, l_labels, top$1, Caml_primitive.caml_int_max(Curry._2(H.find, l_labels, top$1), x));
             _successors = successors[1];
@@ -82,22 +84,24 @@ function Make(funarg) do
                         ],
                         rest_of_stack$1
                       ]);
-          end
+          end end 
         end else do
-          if (Curry._2(H.find, l_labels, top$1) == Curry._2(H.find, n_labels, top$1)) do
+          if (Curry._2(H.find, l_labels, top$1) == Curry._2(H.find, n_labels, top$1)) then do
             cut_set.contents = --[ :: ]--[
               top$1,
               cut_set.contents
             ];
             Curry._3(H.add, l_labels, top$1, 0);
           end
-          if (Curry._2(H.find, l_labels, top$1) > Curry._2(H.find, n_labels, top$1)) do
+           end 
+          if (Curry._2(H.find, l_labels, top$1) > Curry._2(H.find, n_labels, top$1)) then do
             throw [
                   Caml_builtin_exceptions.invalid_argument,
                   "Graph.Mincut: graph not reducible"
                 ];
           end
-          if (rest_of_stack$1) do
+           end 
+          if (rest_of_stack$1) then do
             var match = rest_of_stack$1[0];
             var new_top = match[0];
             Curry._3(H.add, on_the_stack, top$1, false);
@@ -108,8 +112,8 @@ function Make(funarg) do
             continue ;
           end else do
             return cut_set.contents;
-          end
-        end
+          end end 
+        end end 
       end;
     end;
     return step2(first_node, --[ [] ]--0);

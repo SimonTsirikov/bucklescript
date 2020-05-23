@@ -115,11 +115,11 @@ b("File \"bs_map_set_dict_test.ml\", line 77, characters 4-11", Belt_Array.every
                         x
                       ];
               end)), (function (param, param$1) do
-            if (param[0] == param$1[0]) do
+            if (param[0] == param$1[0]) then do
               return param[1] == param$1[1];
             end else do
               return false;
-            end
+            end end 
           end)));
 
 b("File \"bs_map_set_dict_test.ml\", line 82, characters 4-11", Belt_List.every2(Belt_MapDict.toList(u0.data), Belt_List.fromArray(Belt_Array.map(Array_data_util.range(0, 39), (function (x) do
@@ -128,11 +128,11 @@ b("File \"bs_map_set_dict_test.ml\", line 82, characters 4-11", Belt_List.every2
                             x
                           ];
                   end))), (function (param, param$1) do
-            if (param[0] == param$1[0]) do
+            if (param[0] == param$1[0]) then do
               return param[1] == param$1[1];
             end else do
               return false;
-            end
+            end end 
           end)));
 
 eq("File \"bs_map_set_dict_test.ml\", line 87, characters 5-12", Belt_Map.get(u0, 39), 39);

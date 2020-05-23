@@ -58,15 +58,15 @@ function eqU(x, y) do
 end
 
 function eqUOpt(x, y) do
-  if (x ~= undefined) do
-    if (y ~= undefined) do
+  if (x ~= undefined) then do
+    if (y ~= undefined) then do
       return x == y;
     end else do
       return false;
-    end
+    end end 
   end else do
     return y == undefined;
-  end
+  end end 
 end
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 25, characters 5-12", eqUOpt(uFromJs("x"), --[ f ]--102), true);
@@ -107,15 +107,15 @@ function eqV(x, y) do
 end
 
 function eqVOpt(x, y) do
-  if (x ~= undefined) do
-    if (y ~= undefined) do
+  if (x ~= undefined) then do
+    if (y ~= undefined) then do
       return x == y;
     end else do
       return false;
-    end
+    end end 
   end else do
     return y == undefined;
-  end
+  end end 
 end
 
 function s(param) do
@@ -167,10 +167,10 @@ function v1ToJs(param) do
 end
 
 function v1FromJs(param) do
-  if (param <= 5 and 0 <= param) do
+  if (param <= 5 and 0 <= param) then do
     return param - 0 | 0;
   end
-  
+   end 
 end
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 68, characters 5-12", $$Array.map(v1ToJs, [
@@ -214,10 +214,10 @@ function v2ToJs(param) do
 end
 
 function v2FromJs(param) do
-  if (param <= 7 and 2 <= param) do
+  if (param <= 7 and 2 <= param) then do
     return param - 2 | 0;
   end
-  
+   end 
 end
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 86, characters 5-12", $$Array.map(v2ToJs, [

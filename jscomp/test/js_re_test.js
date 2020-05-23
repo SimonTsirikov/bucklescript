@@ -10,7 +10,7 @@ var suites_000 = --[ tuple ]--[
   (function (param) do
       var re = /(\d+)-(?:(\d+))?/g;
       var match = re.exec("3-");
-      if (match ~= null) do
+      if (match ~= null) then do
         var defined = Caml_array.caml_array_get(match, 1);
         var $$undefined = Caml_array.caml_array_get(match, 2);
         return --[ Eq ]--Block.__(0, [
@@ -25,7 +25,7 @@ var suites_000 = --[ tuple ]--[
                 ]);
       end else do
         return --[ Fail ]--Block.__(8, [--[ () ]--0]);
-      end
+      end end 
     end)
 ];
 
@@ -35,10 +35,10 @@ var suites_001 = --[ :: ]--[
     (function (param) do
         var contentOf = function (tag, xmlString) do
           var param = new RegExp("<" .. (tag .. (">(.*?)<\\/" .. (tag .. ">")))).exec(xmlString);
-          if (param ~= null) do
+          if (param ~= null) then do
             return Caml_option.nullable_to_opt(Caml_array.caml_array_get(param, 1));
           end
-          
+           end 
         end;
         return --[ Eq ]--Block.__(0, [
                   contentOf("div", "<div>Hi</div>"),
@@ -51,14 +51,14 @@ var suites_001 = --[ :: ]--[
       "exec_literal",
       (function (param) do
           var match = /[^.]+/.exec("http://xxx.domain.com");
-          if (match ~= null) do
+          if (match ~= null) then do
             return --[ Eq ]--Block.__(0, [
                       "http://xxx",
                       Caml_array.caml_array_get(match, 0)
                     ]);
           end else do
             return --[ FailWith ]--Block.__(9, ["regex should match"]);
-          end
+          end end 
         end)
     ],
     --[ :: ]--[
@@ -66,11 +66,11 @@ var suites_001 = --[ :: ]--[
         "exec_no_match",
         (function (param) do
             var match = /https:\/\/(.*)/.exec("http://xxx.domain.com");
-            if (match ~= null) do
+            if (match ~= null) then do
               return --[ FailWith ]--Block.__(9, ["regex should not match"]);
             end else do
               return --[ Ok ]--Block.__(4, [true]);
-            end
+            end end 
           end)
       ],
       --[ :: ]--[
@@ -100,14 +100,14 @@ var suites_001 = --[ :: ]--[
               "result_index",
               (function (param) do
                   var match = new RegExp("zbar").exec("foobarbazbar");
-                  if (match ~= null) do
+                  if (match ~= null) then do
                     return --[ Eq ]--Block.__(0, [
                               8,
                               match.index
                             ]);
                   end else do
                     return --[ Fail ]--Block.__(8, [--[ () ]--0]);
-                  end
+                  end end 
                 end)
             ],
             --[ :: ]--[
@@ -116,14 +116,14 @@ var suites_001 = --[ :: ]--[
                 (function (param) do
                     var input = "foobar";
                     var match = /foo/g.exec(input);
-                    if (match ~= null) do
+                    if (match ~= null) then do
                       return --[ Eq ]--Block.__(0, [
                                 input,
                                 match.input
                               ]);
                     end else do
                       return --[ Fail ]--Block.__(8, [--[ () ]--0]);
-                    end
+                    end end 
                   end)
               ],
               --[ :: ]--[

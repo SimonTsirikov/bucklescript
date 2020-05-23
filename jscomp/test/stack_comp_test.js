@@ -61,11 +61,11 @@ function does_raise(f, s) do
     return false;
   end
   catch (exn)do
-    if (exn == Stack.Empty) do
+    if (exn == Stack.Empty) then do
       return true;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 

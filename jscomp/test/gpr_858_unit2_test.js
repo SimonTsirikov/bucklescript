@@ -12,14 +12,14 @@ end;
 for(var i = 1; i <= 2; ++i)do
   var f = (function(i)do
   return function f(n, j) do
-    if (j ~= 0) do
+    if (j ~= 0) then do
       var prev = delayed.contents;
       delayed.contents = (function (param) do
           Curry._1(prev, --[ () ]--0);
           return f(((n + 1 | 0) + i | 0) - i | 0, j - 1 | 0);
         end);
       return --[ () ]--0;
-    end else if (i == n) do
+    end else if (i == n) then do
       return 0;
     end else do
       throw [
@@ -30,7 +30,7 @@ for(var i = 1; i <= 2; ++i)do
               13
             ]
           ];
-    end
+    end end  end 
   end
   end(i));
   f(0, i);

@@ -2,7 +2,7 @@
 
 
 function f9(param) do
-  if (typeof param == "number") do
+  if (typeof param == "number") then do
     switch (param) do
       case --[ T60 ]--0 :
       case --[ T61 ]--1 :
@@ -19,7 +19,7 @@ function f9(param) do
       default:
         return 3;
     end
-  end
+  end end 
 end
 
 exports.f9 = f9;

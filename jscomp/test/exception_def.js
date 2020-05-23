@@ -34,10 +34,10 @@ var v = [
 ];
 
 Printexc.register_printer((function (param) do
-        if (param[0] == A) do
+        if (param[0] == A) then do
           return "A";
         end
-        
+         end 
       end));
 
 var a = 3;

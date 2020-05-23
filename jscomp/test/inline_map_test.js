@@ -7,11 +7,11 @@ var Caml_primitive = require("../../lib/js/caml_primitive.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function height(param) do
-  if (param) do
+  if (param) then do
     return param[4];
   end else do
     return 0;
-  end
+  end end 
 end
 
 function create(l, x, d, r) do
@@ -29,50 +29,50 @@ end
 function bal(l, x, d, r) do
   var hl = l ? l[4] : 0;
   var hr = r ? r[4] : 0;
-  if (hl > (hr + 2 | 0)) do
-    if (l) do
+  if (hl > (hr + 2 | 0)) then do
+    if (l) then do
       var lr = l[3];
       var ld = l[2];
       var lv = l[1];
       var ll = l[0];
-      if (height(ll) >= height(lr)) do
+      if (height(ll) >= height(lr)) then do
         return create(ll, lv, ld, create(lr, x, d, r));
-      end else if (lr) do
+      end else if (lr) then do
         return create(create(ll, lv, ld, lr[0]), lr[1], lr[2], create(lr[3], x, d, r));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
             ];
-      end
+      end end  end 
     end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
           ];
-    end
-  end else if (hr > (hl + 2 | 0)) do
-    if (r) do
+    end end 
+  end else if (hr > (hl + 2 | 0)) then do
+    if (r) then do
       var rr = r[3];
       var rd = r[2];
       var rv = r[1];
       var rl = r[0];
-      if (height(rr) >= height(rl)) do
+      if (height(rr) >= height(rl)) then do
         return create(create(l, x, d, rl), rv, rd, rr);
-      end else if (rl) do
+      end else if (rl) then do
         return create(create(l, x, d, rl[0]), rl[1], rl[2], create(rl[3], rv, rd, rr));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
             ];
-      end
+      end end  end 
     end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
           ];
-    end
+    end end 
   end else do
     return --[ Node ]--[
             l,
@@ -81,17 +81,17 @@ function bal(l, x, d, r) do
             r,
             hl >= hr ? hl + 1 | 0 : hr + 1 | 0
           ];
-  end
+  end end  end 
 end
 
 function add(x, data, param) do
-  if (param) do
+  if (param) then do
     var r = param[3];
     var d = param[2];
     var v = param[1];
     var l = param[0];
     var c = Caml_primitive.caml_int_compare(x, v);
-    if (c == 0) do
+    if (c == 0) then do
       return --[ Node ]--[
               l,
               x,
@@ -99,11 +99,11 @@ function add(x, data, param) do
               r,
               param[4]
             ];
-    end else if (c < 0) do
+    end else if (c < 0) then do
       return bal(add(x, data, l), v, d, r);
     end else do
       return bal(l, v, d, add(x, data, r));
-    end
+    end end  end 
   end else do
     return --[ Node ]--[
             --[ Empty ]--0,
@@ -112,23 +112,23 @@ function add(x, data, param) do
             --[ Empty ]--0,
             1
           ];
-  end
+  end end 
 end
 
 function find(x, _param) do
   while(true) do
     var param = _param;
-    if (param) do
+    if (param) then do
       var c = Caml_primitive.caml_int_compare(x, param[1]);
-      if (c == 0) do
+      if (c == 0) then do
         return param[2];
       end else do
         _param = c < 0 ? param[0] : param[3];
         continue ;
-      end
+      end end 
     end else do
       throw Caml_builtin_exceptions.not_found;
-    end
+    end end 
   end;
 end
 

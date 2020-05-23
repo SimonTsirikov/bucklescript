@@ -45,12 +45,12 @@ var xxx = "a";
 var a = --[ "a" ]--97;
 
 function u(b) do
-  if (b) do
+  if (b) then do
     Pervasives.print_int(1);
     return 32;
   end else do
     return 7;
-  end
+  end end 
 end
 
 function f2(h, b, param) do
@@ -76,13 +76,13 @@ end
 var is_lazy_force = CamlinternalLazy.force;
 
 function fib(n) do
-  if (n == 0 or n == 1) do
+  if (n == 0 or n == 1) then do
     return 1;
   end else do
     var fib1 = fib(n - 1 | 0);
     var fib2 = fib(n - 2 | 0);
     return (fib1 + fib2 | 0) + 3 | 0;
-  end
+  end end 
 end
 
 var a0 = "File \"test_primitive.ml\", line 26, characters 9-16";

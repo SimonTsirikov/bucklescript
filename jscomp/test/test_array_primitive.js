@@ -12,22 +12,24 @@ function caml_array_sub(x, offset, len) do
 end
 
 function caml_array_set(xs, index, newval) do
-  if (index < 0 or index >= #xs) do
+  if (index < 0 or index >= #xs) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "index out of bounds"
         ];
   end
+   end 
   return Caml_array.caml_array_set(xs, index, newval);
 end
 
 function caml_array_get(xs, index) do
-  if (index < 0 or index >= #xs) do
+  if (index < 0 or index >= #xs) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "index out of bounds"
         ];
   end
+   end 
   return Caml_array.caml_array_get(xs, index);
 end
 

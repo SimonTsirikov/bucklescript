@@ -24,15 +24,15 @@ function fff(x) do
 end
 
 function h(x) do
-  if (x ~= 66) do
-    if (x >= 67) do
+  if (x ~= 66) then do
+    if (x >= 67) then do
       return 2;
     end else do
       return 0;
-    end
+    end end 
   end else do
     return 1;
-  end
+  end end 
 end
 
 function hh(param) do

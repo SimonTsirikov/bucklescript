@@ -42,18 +42,18 @@ function _must_escape(s) do
     for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
       var c = s.charCodeAt(i);
       var exit = 0;
-      if (c >= 42) do
-        if (c ~= 59) do
-          if (c ~= 92) do
+      if (c >= 42) then do
+        if (c ~= 59) then do
+          if (c ~= 92) then do
             exit = 1;
           end else do
             throw Pervasives.Exit;
-          end
+          end end 
         end else do
           throw Pervasives.Exit;
-        end
-      end else if (c >= 11) do
-        if (c >= 32) do
+        end end 
+      end else if (c >= 11) then do
+        if (c >= 32) then do
           switch (c - 32 | 0) do
             case 1 :
             case 3 :
@@ -72,39 +72,41 @@ function _must_escape(s) do
           end
         end else do
           exit = 1;
-        end
+        end end 
       end else do
-        if (c >= 9) do
+        if (c >= 9) then do
           throw Pervasives.Exit;
         end
+         end 
         exit = 1;
-      end
-      if (exit == 1 and c > 127) do
+      end end  end 
+      if (exit == 1 and c > 127) then do
         throw Pervasives.Exit;
       end
-      
+       end 
     end
     return false;
   end
   catch (exn)do
-    if (exn == Pervasives.Exit) do
+    if (exn == Pervasives.Exit) then do
       return true;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
 function to_buf(b, t) do
-  if (t[0] >= 848054398) do
+  if (t[0] >= 848054398) then do
     var l = t[1];
-    if (l) do
-      if (l[1]) do
+    if (l) then do
+      if (l[1]) then do
         $$Buffer.add_char(b, --[ "(" ]--40);
         List.iteri((function (i, t$prime) do
-                if (i > 0) do
+                if (i > 0) then do
                   $$Buffer.add_char(b, --[ " " ]--32);
                 end
+                 end 
                 return to_buf(b, t$prime);
               end), l);
         return $$Buffer.add_char(b, --[ ")" ]--41);
@@ -119,13 +121,13 @@ function to_buf(b, t) do
                           ]),
                         "(%a)"
                       ]), to_buf, l[0]);
-      end
+      end end 
     end else do
       return $$Buffer.add_string(b, "()");
-    end
+    end end 
   end else do
     var s = t[1];
-    if (_must_escape(s)) do
+    if (_must_escape(s)) then do
       return Curry._1(Printf.bprintf(b, --[ Format ]--[
                       --[ Char_literal ]--Block.__(12, [
                           --[ "\"" ]--34,
@@ -141,8 +143,8 @@ function to_buf(b, t) do
                     ]), $$String.escaped(s));
     end else do
       return $$Buffer.add_string(b, s);
-    end
-  end
+    end end 
+  end end 
 end
 
 function to_string(t) do
@@ -152,10 +154,10 @@ function to_string(t) do
 end
 
 function print(fmt, t) do
-  if (t[0] >= 848054398) do
+  if (t[0] >= 848054398) then do
     var l = t[1];
-    if (l) do
-      if (l[1]) do
+    if (l) then do
+      if (l[1]) then do
         Format.fprintf(fmt, --[ Format ]--[
               --[ Formatting_gen ]--Block.__(18, [
                   --[ Open_box ]--Block.__(1, [--[ Format ]--[
@@ -173,7 +175,7 @@ function print(fmt, t) do
               "@[<hov1>("
             ]);
         List.iteri((function (i, t$prime) do
-                if (i > 0) do
+                if (i > 0) then do
                   Format.fprintf(fmt, --[ Format ]--[
                         --[ Formatting_lit ]--Block.__(17, [
                             --[ Break ]--Block.__(0, [
@@ -186,6 +188,7 @@ function print(fmt, t) do
                         "@ "
                       ]);
                 end
+                 end 
                 return print(fmt, t$prime);
               end), l);
         return Format.fprintf(fmt, --[ Format ]--[
@@ -221,13 +224,13 @@ function print(fmt, t) do
                           ]),
                         "@[<hov2>(%a)@]"
                       ]), print, l[0]);
-      end
+      end end 
     end else do
       return Format.pp_print_string(fmt, "()");
-    end
+    end end 
   end else do
     var s = t[1];
-    if (_must_escape(s)) do
+    if (_must_escape(s)) then do
       return Curry._1(Format.fprintf(fmt, --[ Format ]--[
                       --[ Char_literal ]--Block.__(12, [
                           --[ "\"" ]--34,
@@ -243,20 +246,21 @@ function print(fmt, t) do
                     ]), $$String.escaped(s));
     end else do
       return Format.pp_print_string(fmt, s);
-    end
-  end
+    end end 
+  end end 
 end
 
 function print_noindent(fmt, t) do
-  if (t[0] >= 848054398) do
+  if (t[0] >= 848054398) then do
     var l = t[1];
-    if (l) do
-      if (l[1]) do
+    if (l) then do
+      if (l[1]) then do
         Format.pp_print_char(fmt, --[ "(" ]--40);
         List.iteri((function (i, t$prime) do
-                if (i > 0) do
+                if (i > 0) then do
                   Format.pp_print_char(fmt, --[ " " ]--32);
                 end
+                 end 
                 return print_noindent(fmt, t$prime);
               end), l);
         return Format.pp_print_char(fmt, --[ ")" ]--41);
@@ -271,13 +275,13 @@ function print_noindent(fmt, t) do
                           ]),
                         "(%a)"
                       ]), print_noindent, l[0]);
-      end
+      end end 
     end else do
       return Format.pp_print_string(fmt, "()");
-    end
+    end end 
   end else do
     var s = t[1];
-    if (_must_escape(s)) do
+    if (_must_escape(s)) then do
       return Curry._1(Format.fprintf(fmt, --[ Format ]--[
                       --[ Char_literal ]--Block.__(12, [
                           --[ "\"" ]--34,
@@ -293,8 +297,8 @@ function print_noindent(fmt, t) do
                     ]), $$String.escaped(s));
     end else do
       return Format.pp_print_string(fmt, s);
-    end
-  end
+    end end 
+  end end 
 end
 
 function to_chan(oc, t) do
@@ -359,26 +363,26 @@ function make(bufsizeOpt, refill) do
 end
 
 function _is_digit(c) do
-  if (--[ "0" ]--48 <= c) do
+  if (--[ "0" ]--48 <= c) then do
     return c <= --[ "9" ]--57;
   end else do
     return false;
-  end
+  end end 
 end
 
 function _refill(t, k_succ, k_fail) do
   var n = Curry._3(t.refill, t.buf, 0, #t.buf);
   t.i = 0;
   t.len = n;
-  if (n == 0) do
+  if (n == 0) then do
     return Curry._1(k_fail, t);
   end else do
     return Curry._1(k_succ, t);
-  end
+  end end 
 end
 
 function _get(t) do
-  if (t.i >= t.len) do
+  if (t.i >= t.len) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -388,14 +392,15 @@ function _get(t) do
           ]
         ];
   end
+   end 
   var c = Caml_bytes.get(t.buf, t.i);
   t.i = t.i + 1 | 0;
-  if (c == --[ "\n" ]--10) do
+  if (c == --[ "\n" ]--10) then do
     t.col = 1;
     t.line = t.line + 1 | 0;
   end else do
     t.col = t.col + 1 | 0;
-  end
+  end end 
   return c;
 end
 
@@ -445,31 +450,31 @@ end
 
 function expr(k, t) do
   while(true) do
-    if (t.i == t.len) do
+    if (t.i == t.len) then do
       return _refill(t, (function (param) do
                     return expr(k, param);
                   end), _error_eof);
     end else do
       var c = _get(t);
-      if (c >= 11) do
-        if (c ~= 32) do
+      if (c >= 11) then do
+        if (c ~= 32) then do
           return expr_starting_with(c, k, t);
         end else do
           continue ;
-        end
-      end else if (c >= 9) do
+        end end 
+      end else if (c >= 9) then do
         continue ;
       end else do
         return expr_starting_with(c, k, t);
-      end
-    end
+      end end  end 
+    end end 
   end;
 end
 
 function expr_starting_with(c, k, t) do
-  if (c >= 42) do
-    if (c ~= 59) do
-      if (c == 92) do
+  if (c >= 42) then do
+    if (c ~= 59) then do
+      if (c == 92) then do
         return _error(t, --[ Format ]--[
                     --[ String_literal ]--Block.__(11, [
                         "unexpected '\\'",
@@ -478,14 +483,14 @@ function expr_starting_with(c, k, t) do
                     "unexpected '\\'"
                   ]);
       end
-      
+       end 
     end else do
       return skip_comment((function (param, param$1) do
                     return expr(k, t);
                   end), t);
-    end
-  end else if (c >= 11) do
-    if (c >= 32) do
+    end end 
+  end else if (c >= 11) then do
+    if (c >= 32) then do
       switch (c - 32 | 0) do
         case 0 :
             throw [
@@ -518,8 +523,8 @@ function expr_starting_with(c, k, t) do
         
       end
     end
-    
-  end else if (c >= 9) do
+     end 
+  end else if (c >= 9) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -529,35 +534,37 @@ function expr_starting_with(c, k, t) do
           ]
         ];
   end
+   end  end  end 
   $$Buffer.add_char(t.atom, c);
   return atom(k, t);
 end
 
 function expr_list(acc, k, t) do
   while(true) do
-    if (t.i == t.len) do
+    if (t.i == t.len) then do
       return _refill(t, (function (param) do
                     return expr_list(acc, k, param);
                   end), _error_eof);
     end else do
       var c = _get(t);
       var switcher = c - 9 | 0;
-      if (switcher > 23 or switcher < 0) do
-        if (switcher == 32) do
+      if (switcher > 23 or switcher < 0) then do
+        if (switcher == 32) then do
           return Curry._2(k, undefined, --[ `List ]--[
                       848054398,
                       List.rev(acc)
                     ]);
         end
-        
-      end else if (switcher > 22 or switcher < 2) do
+         end 
+      end else if (switcher > 22 or switcher < 2) then do
         continue ;
       end
+       end  end 
       return expr_starting_with(c, (function (last, e) do
-                    if (last ~= undefined) do
+                    if (last ~= undefined) then do
                       var match = last;
-                      if (match ~= 40) do
-                        if (match ~= 41) do
+                      if (match ~= 40) then do
+                        if (match ~= 41) then do
                           return expr_list(--[ :: ]--[
                                       e,
                                       acc
@@ -570,7 +577,7 @@ function expr_list(acc, k, t) do
                                             acc
                                           ])
                                     ]);
-                        end
+                        end end 
                       end else do
                         return expr_list(--[ [] ]--0, (function (param, l) do
                                       return expr_list(--[ :: ]--[
@@ -578,15 +585,15 @@ function expr_list(acc, k, t) do
                                                   acc
                                                 ], k, t);
                                     end), t);
-                      end
+                      end end 
                     end else do
                       return expr_list(--[ :: ]--[
                                   e,
                                   acc
                                 ], k, t);
-                    end
+                    end end 
                   end), t);
-    end
+    end end 
   end;
 end
 
@@ -601,7 +608,7 @@ end
 
 function atom(k, t) do
   while(true) do
-    if (t.i == t.len) do
+    if (t.i == t.len) then do
       return _refill(t, (function (param) do
                     return atom(k, param);
                   end), (function (param) do
@@ -610,9 +617,9 @@ function atom(k, t) do
     end else do
       var c = _get(t);
       var exit = 0;
-      if (c >= 35) do
-        if (c >= 42) do
-          if (c ~= 92) do
+      if (c >= 35) then do
+        if (c >= 42) then do
+          if (c ~= 92) then do
             exit = 1;
           end else do
             return _error(t, --[ Format ]--[
@@ -622,12 +629,12 @@ function atom(k, t) do
                           ]),
                         "unexpected '\\' in non-quoted string"
                       ]);
-          end
+          end end 
         end else do
           exit = c >= 40 ? 2 : 1;
-        end
-      end else if (c >= 11) do
-        if (c >= 32) do
+        end end 
+      end else if (c >= 11) then do
+        if (c >= 32) then do
           switch (c - 32 | 0) do
             case 0 :
                 exit = 2;
@@ -647,10 +654,10 @@ function atom(k, t) do
           end
         end else do
           exit = 1;
-        end
+        end end 
       end else do
         exit = c >= 9 ? 2 : 1;
-      end
+      end end  end 
       switch (exit) do
         case 1 :
             $$Buffer.add_char(t.atom, c);
@@ -659,20 +666,20 @@ function atom(k, t) do
             return _return_atom(c, k, t);
         
       end
-    end
+    end end 
   end;
 end
 
 function quoted(k, t) do
   while(true) do
-    if (t.i == t.len) do
+    if (t.i == t.len) then do
       return _refill(t, (function (param) do
                     return quoted(k, param);
                   end), _error_eof);
     end else do
       var c = _get(t);
-      if (c ~= 34) do
-        if (c ~= 92) do
+      if (c ~= 34) then do
+        if (c ~= 92) then do
           $$Buffer.add_char(t.atom, c);
           continue ;
         end else do
@@ -680,23 +687,23 @@ function quoted(k, t) do
                         $$Buffer.add_char(t.atom, c);
                         return quoted(k, t);
                       end), t);
-        end
+        end end 
       end else do
         return _return_atom(undefined, k, t);
-      end
-    end
+      end end 
+    end end 
   end;
 end
 
 function escaped(k, t) do
-  if (t.i == t.len) do
+  if (t.i == t.len) then do
     return _refill(t, (function (param) do
                   return escaped(k, param);
                 end), _error_eof);
   end else do
     var c = _get(t);
-    if (c >= 92) do
-      if (c < 117) do
+    if (c >= 92) then do
+      if (c < 117) then do
         switch (c - 92 | 0) do
           case 0 :
               return Curry._1(k, --[ "\\" ]--92);
@@ -732,11 +739,12 @@ function escaped(k, t) do
           
         end
       end
-      
-    end else if (c == 34) do
+       end 
+    end else if (c == 34) then do
       return Curry._1(k, --[ "\"" ]--34);
     end
-    if (_is_digit(c)) do
+     end  end 
+    if (_is_digit(c)) then do
       return read2int(c - --[ "0" ]--48 | 0, (function (n) do
                     return Curry._1(k, Char.chr(n));
                   end), t);
@@ -751,18 +759,18 @@ function escaped(k, t) do
                         ]),
                       "unexpected escaped char '%c'"
                     ]), c);
-    end
-  end
+    end end 
+  end end 
 end
 
 function read2int(i, k, t) do
-  if (t.i == t.len) do
+  if (t.i == t.len) then do
     return _refill(t, (function (param) do
                   return read2int(i, k, param);
                 end), _error_eof);
   end else do
     var c = _get(t);
-    if (_is_digit(c)) do
+    if (_is_digit(c)) then do
       return read1int(Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0, k, t);
     end else do
       return Curry._1(_error(t, --[ Format ]--[
@@ -775,18 +783,18 @@ function read2int(i, k, t) do
                         ]),
                       "unexpected char '%c' when reading byte"
                     ]), c);
-    end
-  end
+    end end 
+  end end 
 end
 
 function read1int(i, k, t) do
-  if (t.i == t.len) do
+  if (t.i == t.len) then do
     return _refill(t, (function (param) do
                   return read1int(i, k, param);
                 end), _error_eof);
   end else do
     var c = _get(t);
-    if (_is_digit(c)) do
+    if (_is_digit(c)) then do
       return Curry._1(k, Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0);
     end else do
       return Curry._1(_error(t, --[ Format ]--[
@@ -799,30 +807,30 @@ function read1int(i, k, t) do
                         ]),
                       "unexpected char '%c' when reading byte"
                     ]), c);
-    end
-  end
+    end end 
+  end end 
 end
 
 function skip_comment(k, t) do
   while(true) do
-    if (t.i == t.len) do
+    if (t.i == t.len) then do
       return _refill(t, (function (param) do
                     return skip_comment(k, param);
                   end), _error_eof);
     end else do
       var match = _get(t);
-      if (match ~= 10) do
+      if (match ~= 10) then do
         continue ;
       end else do
         return Curry._2(k, undefined, --[ () ]--0);
-      end
-    end
+      end end 
+    end end 
   end;
 end
 
 function expr_or_end(k, t) do
   while(true) do
-    if (t.i == t.len) do
+    if (t.i == t.len) then do
       return _refill(t, (function (param) do
                     return expr_or_end(k, param);
                   end), (function (param) do
@@ -830,18 +838,18 @@ function expr_or_end(k, t) do
                   end));
     end else do
       var c = _get(t);
-      if (c >= 11) do
-        if (c ~= 32) do
+      if (c >= 11) then do
+        if (c ~= 32) then do
           return expr_starting_with(c, k, t);
         end else do
           continue ;
-        end
-      end else if (c >= 9) do
+        end end 
+      end else if (c >= 9) then do
         continue ;
       end else do
         return expr_starting_with(c, k, t);
-      end
-    end
+      end end  end 
+    end end 
   end;
 end
 
@@ -860,24 +868,24 @@ function parse_string(s) do
     contents: false
   end;
   var refill = function (bytes, i, _len) do
-    if (stop.contents) do
+    if (stop.contents) then do
       return 0;
     end else do
       stop.contents = true;
       Bytes.blit_string(s, 0, bytes, i, n);
       return n;
-    end
+    end end 
   end;
   var d = make(n, refill);
   var res = next(d);
-  if (typeof res == "number") do
+  if (typeof res == "number") then do
     return --[ `Error ]--[
             106380200,
             "unexpected end of file"
           ];
   end else do
     return res;
-  end
+  end end 
 end
 
 function parse_chan(bufsize, ic) do
@@ -885,14 +893,14 @@ function parse_chan(bufsize, ic) do
           return Pervasives.input(ic, param, param$1, param$2);
         end));
   var res = next(d);
-  if (typeof res == "number") do
+  if (typeof res == "number") then do
     return --[ `Error ]--[
             106380200,
             "unexpected end of file"
           ];
   end else do
     return res;
-  end
+  end end 
 end
 
 function parse_chan_gen(bufsize, ic) do
@@ -901,11 +909,11 @@ function parse_chan_gen(bufsize, ic) do
         end));
   return (function (param) do
       var e = next(d);
-      if (typeof e == "number") do
+      if (typeof e == "number") then do
         return ;
       end else do
         return e;
-      end
+      end end 
     end);
 end
 
@@ -917,12 +925,12 @@ function parse_chan_list(bufsize, ic) do
   while(true) do
     var acc = _acc;
     var e = next(d);
-    if (typeof e == "number") do
+    if (typeof e == "number") then do
       return --[ `Ok ]--[
               17724,
               List.rev(acc)
             ];
-    end else if (e[0] >= 106380200) do
+    end else if (e[0] >= 106380200) then do
       return e;
     end else do
       _acc = --[ :: ]--[
@@ -930,7 +938,7 @@ function parse_chan_list(bufsize, ic) do
         acc
       ];
       continue ;
-    end
+    end end  end 
   end;
 end
 
@@ -962,25 +970,25 @@ function MakeDecode(funarg) do
           end;
   end;
   var _is_digit = function (c) do
-    if (--[ "0" ]--48 <= c) do
+    if (--[ "0" ]--48 <= c) then do
       return c <= --[ "9" ]--57;
     end else do
       return false;
-    end
+    end end 
   end;
   var _refill = function (t, k_succ, k_fail) do
     return Curry._2($great$great$eq, Curry._3(t.refill, t.buf, 0, #t.buf), (function (n) do
                   t.i = 0;
                   t.len = n;
-                  if (n == 0) do
+                  if (n == 0) then do
                     return Curry._1(k_fail, t);
                   end else do
                     return Curry._1(k_succ, t);
-                  end
+                  end end 
                 end));
   end;
   var _get = function (t) do
-    if (t.i >= t.len) do
+    if (t.i >= t.len) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -990,14 +998,15 @@ function MakeDecode(funarg) do
             ]
           ];
     end
+     end 
     var c = Caml_bytes.get(t.buf, t.i);
     t.i = t.i + 1 | 0;
-    if (c == --[ "\n" ]--10) do
+    if (c == --[ "\n" ]--10) then do
       t.col = 1;
       t.line = t.line + 1 | 0;
     end else do
       t.col = t.col + 1 | 0;
-    end
+    end end 
     return c;
   end;
   var _error = function (t, msg) do
@@ -1044,30 +1053,30 @@ function MakeDecode(funarg) do
   end;
   var expr = function (k, t) do
     while(true) do
-      if (t.i == t.len) do
+      if (t.i == t.len) then do
         return _refill(t, (function (param) do
                       return expr(k, param);
                     end), _error_eof);
       end else do
         var c = _get(t);
-        if (c >= 11) do
-          if (c ~= 32) do
+        if (c >= 11) then do
+          if (c ~= 32) then do
             return expr_starting_with(c, k, t);
           end else do
             continue ;
-          end
-        end else if (c >= 9) do
+          end end 
+        end else if (c >= 9) then do
           continue ;
         end else do
           return expr_starting_with(c, k, t);
-        end
-      end
+        end end  end 
+      end end 
     end;
   end;
   var expr_starting_with = function (c, k, t) do
-    if (c >= 42) do
-      if (c ~= 59) do
-        if (c == 92) do
+    if (c >= 42) then do
+      if (c ~= 59) then do
+        if (c == 92) then do
           return _error(t, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "unexpected '\\'",
@@ -1076,14 +1085,14 @@ function MakeDecode(funarg) do
                       "unexpected '\\'"
                     ]);
         end
-        
+         end 
       end else do
         return skip_comment((function (param, param$1) do
                       return expr(k, t);
                     end), t);
-      end
-    end else if (c >= 11) do
-      if (c >= 32) do
+      end end 
+    end else if (c >= 11) then do
+      if (c >= 32) then do
         switch (c - 32 | 0) do
           case 0 :
               throw [
@@ -1116,8 +1125,8 @@ function MakeDecode(funarg) do
           
         end
       end
-      
-    end else if (c >= 9) do
+       end 
+    end else if (c >= 9) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -1127,34 +1136,36 @@ function MakeDecode(funarg) do
             ]
           ];
     end
+     end  end  end 
     $$Buffer.add_char(t.atom, c);
     return atom(k, t);
   end;
   var expr_list = function (acc, k, t) do
     while(true) do
-      if (t.i == t.len) do
+      if (t.i == t.len) then do
         return _refill(t, (function (param) do
                       return expr_list(acc, k, param);
                     end), _error_eof);
       end else do
         var c = _get(t);
         var switcher = c - 9 | 0;
-        if (switcher > 23 or switcher < 0) do
-          if (switcher == 32) do
+        if (switcher > 23 or switcher < 0) then do
+          if (switcher == 32) then do
             return Curry._2(k, undefined, --[ `List ]--[
                         848054398,
                         List.rev(acc)
                       ]);
           end
-          
-        end else if (switcher > 22 or switcher < 2) do
+           end 
+        end else if (switcher > 22 or switcher < 2) then do
           continue ;
         end
+         end  end 
         return expr_starting_with(c, (function (last, e) do
-                      if (last ~= undefined) do
+                      if (last ~= undefined) then do
                         var match = last;
-                        if (match ~= 40) do
-                          if (match ~= 41) do
+                        if (match ~= 40) then do
+                          if (match ~= 41) then do
                             return expr_list(--[ :: ]--[
                                         e,
                                         acc
@@ -1167,7 +1178,7 @@ function MakeDecode(funarg) do
                                               acc
                                             ])
                                       ]);
-                          end
+                          end end 
                         end else do
                           return expr_list(--[ [] ]--0, (function (param, l) do
                                         return expr_list(--[ :: ]--[
@@ -1175,15 +1186,15 @@ function MakeDecode(funarg) do
                                                     acc
                                                   ], k, t);
                                       end), t);
-                        end
+                        end end 
                       end else do
                         return expr_list(--[ :: ]--[
                                     e,
                                     acc
                                   ], k, t);
-                      end
+                      end end 
                     end), t);
-      end
+      end end 
     end;
   end;
   var _return_atom = function (last, k, t) do
@@ -1196,7 +1207,7 @@ function MakeDecode(funarg) do
   end;
   var atom = function (k, t) do
     while(true) do
-      if (t.i == t.len) do
+      if (t.i == t.len) then do
         return _refill(t, (function (param) do
                       return atom(k, param);
                     end), (function (param) do
@@ -1205,9 +1216,9 @@ function MakeDecode(funarg) do
       end else do
         var c = _get(t);
         var exit = 0;
-        if (c >= 35) do
-          if (c >= 42) do
-            if (c ~= 92) do
+        if (c >= 35) then do
+          if (c >= 42) then do
+            if (c ~= 92) then do
               exit = 1;
             end else do
               return _error(t, --[ Format ]--[
@@ -1217,12 +1228,12 @@ function MakeDecode(funarg) do
                             ]),
                           "unexpected '\\' in non-quoted string"
                         ]);
-            end
+            end end 
           end else do
             exit = c >= 40 ? 2 : 1;
-          end
-        end else if (c >= 11) do
-          if (c >= 32) do
+          end end 
+        end else if (c >= 11) then do
+          if (c >= 32) then do
             switch (c - 32 | 0) do
               case 0 :
                   exit = 2;
@@ -1242,10 +1253,10 @@ function MakeDecode(funarg) do
             end
           end else do
             exit = 1;
-          end
+          end end 
         end else do
           exit = c >= 9 ? 2 : 1;
-        end
+        end end  end 
         switch (exit) do
           case 1 :
               $$Buffer.add_char(t.atom, c);
@@ -1254,19 +1265,19 @@ function MakeDecode(funarg) do
               return _return_atom(c, k, t);
           
         end
-      end
+      end end 
     end;
   end;
   var quoted = function (k, t) do
     while(true) do
-      if (t.i == t.len) do
+      if (t.i == t.len) then do
         return _refill(t, (function (param) do
                       return quoted(k, param);
                     end), _error_eof);
       end else do
         var c = _get(t);
-        if (c ~= 34) do
-          if (c ~= 92) do
+        if (c ~= 34) then do
+          if (c ~= 92) then do
             $$Buffer.add_char(t.atom, c);
             continue ;
           end else do
@@ -1274,22 +1285,22 @@ function MakeDecode(funarg) do
                           $$Buffer.add_char(t.atom, c);
                           return quoted(k, t);
                         end), t);
-          end
+          end end 
         end else do
           return _return_atom(undefined, k, t);
-        end
-      end
+        end end 
+      end end 
     end;
   end;
   var escaped = function (k, t) do
-    if (t.i == t.len) do
+    if (t.i == t.len) then do
       return _refill(t, (function (param) do
                     return escaped(k, param);
                   end), _error_eof);
     end else do
       var c = _get(t);
-      if (c >= 92) do
-        if (c < 117) do
+      if (c >= 92) then do
+        if (c < 117) then do
           switch (c - 92 | 0) do
             case 0 :
                 return Curry._1(k, --[ "\\" ]--92);
@@ -1325,11 +1336,12 @@ function MakeDecode(funarg) do
             
           end
         end
-        
-      end else if (c == 34) do
+         end 
+      end else if (c == 34) then do
         return Curry._1(k, --[ "\"" ]--34);
       end
-      if (_is_digit(c)) do
+       end  end 
+      if (_is_digit(c)) then do
         return read2int(c - --[ "0" ]--48 | 0, (function (n) do
                       return Curry._1(k, Char.chr(n));
                     end), t);
@@ -1344,17 +1356,17 @@ function MakeDecode(funarg) do
                           ]),
                         "unexpected escaped char '%c'"
                       ]), c);
-      end
-    end
+      end end 
+    end end 
   end;
   var read2int = function (i, k, t) do
-    if (t.i == t.len) do
+    if (t.i == t.len) then do
       return _refill(t, (function (param) do
                     return read2int(i, k, param);
                   end), _error_eof);
     end else do
       var c = _get(t);
-      if (_is_digit(c)) do
+      if (_is_digit(c)) then do
         return read1int(Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0, k, t);
       end else do
         return Curry._1(_error(t, --[ Format ]--[
@@ -1367,17 +1379,17 @@ function MakeDecode(funarg) do
                           ]),
                         "unexpected char '%c' when reading byte"
                       ]), c);
-      end
-    end
+      end end 
+    end end 
   end;
   var read1int = function (i, k, t) do
-    if (t.i == t.len) do
+    if (t.i == t.len) then do
       return _refill(t, (function (param) do
                     return read1int(i, k, param);
                   end), _error_eof);
     end else do
       var c = _get(t);
-      if (_is_digit(c)) do
+      if (_is_digit(c)) then do
         return Curry._1(k, Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0);
       end else do
         return Curry._1(_error(t, --[ Format ]--[
@@ -1390,28 +1402,28 @@ function MakeDecode(funarg) do
                           ]),
                         "unexpected char '%c' when reading byte"
                       ]), c);
-      end
-    end
+      end end 
+    end end 
   end;
   var skip_comment = function (k, t) do
     while(true) do
-      if (t.i == t.len) do
+      if (t.i == t.len) then do
         return _refill(t, (function (param) do
                       return skip_comment(k, param);
                     end), _error_eof);
       end else do
         var match = _get(t);
-        if (match ~= 10) do
+        if (match ~= 10) then do
           continue ;
         end else do
           return Curry._2(k, undefined, --[ () ]--0);
-        end
-      end
+        end end 
+      end end 
     end;
   end;
   var expr_or_end = function (k, t) do
     while(true) do
-      if (t.i == t.len) do
+      if (t.i == t.len) then do
         return _refill(t, (function (param) do
                       return expr_or_end(k, param);
                     end), (function (param) do
@@ -1419,18 +1431,18 @@ function MakeDecode(funarg) do
                     end));
       end else do
         var c = _get(t);
-        if (c >= 11) do
-          if (c ~= 32) do
+        if (c >= 11) then do
+          if (c ~= 32) then do
             return expr_starting_with(c, k, t);
           end else do
             continue ;
-          end
-        end else if (c >= 9) do
+          end end 
+        end else if (c >= 9) then do
           continue ;
         end else do
           return expr_starting_with(c, k, t);
-        end
-      end
+        end end  end 
+      end end 
     end;
   end;
   var next = function (t) do

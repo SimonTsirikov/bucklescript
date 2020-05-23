@@ -30,7 +30,7 @@ $$Array.iter((function (x) do
         return Curry._1(x, --[ () ]--0);
       end), u);
 
-if (v.contents ~= 45) do
+if (v.contents ~= 45) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -40,6 +40,7 @@ if (v.contents ~= 45) do
         ]
       ];
 end
+ end 
 
 exports.v = v;
 exports.f = f;

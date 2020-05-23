@@ -185,13 +185,13 @@ var param$3 = [
 ];
 
 var param$4 = $$Array.map((function (x) do
-        if (x > 0) do
+        if (x > 0) then do
           return 1;
-        end else if (x < 0) do
+        end else if (x < 0) then do
           return -1;
         end else do
           return 0;
-        end
+        end end  end 
       end), $$Array.map((function (param) do
             return Caml_primitive.caml_float_compare(param[0], param[1]);
           end), [

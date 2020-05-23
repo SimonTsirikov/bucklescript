@@ -5,13 +5,13 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 
 function f0(x) do
   var tmp;
-  if (x > 3) do
+  if (x > 3) then do
     tmp = (function (x) do
         return x + 1 | 0;
       end);
   end else do
     throw Caml_builtin_exceptions.not_found;
-  end
+  end end 
   return tmp(3);
 end
 

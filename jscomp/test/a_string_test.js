@@ -77,11 +77,11 @@ var suites_001 = --[ :: ]--[
                         List.filter((function (s) do
                                   return s ~= "";
                                 end))(Ext_string_test.split_by(undefined, (function (x) do
-                                    if (x == --[ " " ]--32) do
+                                    if (x == --[ " " ]--32) then do
                                       return true;
                                     end else do
                                       return x == --[ "\t" ]--9;
-                                    end
+                                    end end 
                                   end), "h hgso hgso \t hi")),
                         --[ :: ]--[
                           "h",

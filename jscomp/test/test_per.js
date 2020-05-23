@@ -30,27 +30,27 @@ end
 var Exit = Caml_exceptions.create("Test_per.Exit");
 
 function min(x, y) do
-  if (Caml_obj.caml_lessequal(x, y)) do
+  if (Caml_obj.caml_lessequal(x, y)) then do
     return x;
   end else do
     return y;
-  end
+  end end 
 end
 
 function max(x, y) do
-  if (Caml_obj.caml_greaterequal(x, y)) do
+  if (Caml_obj.caml_greaterequal(x, y)) then do
     return x;
   end else do
     return y;
-  end
+  end end 
 end
 
 function abs(x) do
-  if (x >= 0) do
+  if (x >= 0) then do
     return x;
   end else do
     return -x | 0;
-  end
+  end end 
 end
 
 function lnot(x) do
@@ -99,21 +99,22 @@ function $caret(s1, s2) do
 end
 
 function char_of_int(n) do
-  if (n < 0 or n > 255) do
+  if (n < 0 or n > 255) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "char_of_int"
         ];
   end
+   end 
   return n;
 end
 
 function string_of_bool(b) do
-  if (b) do
+  if (b) then do
     return "true";
   end else do
     return "false";
-  end
+  end end 
 end
 
 function bool_of_string(param) do
@@ -139,24 +140,24 @@ function valid_float_lexem(s) do
   var _i = 0;
   while(true) do
     var i = _i;
-    if (i >= l) do
+    if (i >= l) then do
       return $caret(s, ".");
     end else do
       var match = Caml_string.get(s, i);
-      if (match >= 48) do
-        if (match >= 58) do
+      if (match >= 48) then do
+        if (match >= 58) then do
           return s;
         end else do
           _i = i + 1 | 0;
           continue ;
-        end
-      end else if (match ~= 45) do
+        end end 
+      end else if (match ~= 45) then do
         return s;
       end else do
         _i = i + 1 | 0;
         continue ;
-      end
-    end
+      end end  end 
+    end end 
   end;
 end
 
@@ -165,14 +166,14 @@ function string_of_float(f) do
 end
 
 function $at(l1, l2) do
-  if (l1) do
+  if (l1) then do
     return --[ :: ]--[
             l1[0],
             $at(l1[1], l2)
           ];
   end else do
     return l2;
-  end
+  end end 
 end
 
 var stdin = Caml_io.stdin;
@@ -221,7 +222,7 @@ function flush_all(param) do
   var _param = Caml_io.caml_ml_out_channels_list(--[ () ]--0);
   while(true) do
     var param$1 = _param;
-    if (param$1) do
+    if (param$1) then do
       try do
         Caml_io.caml_ml_flush(param$1[0]);
       end
@@ -232,7 +233,7 @@ function flush_all(param) do
       continue ;
     end else do
       return --[ () ]--0;
-    end
+    end end 
   end;
 end
 
@@ -245,22 +246,24 @@ function output_string(oc, s) do
 end
 
 function output(oc, s, ofs, len) do
-  if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) do
+  if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "output"
         ];
   end
+   end 
   return Caml_io.caml_ml_output(oc, s, ofs, len);
 end
 
 function output_substring(oc, s, ofs, len) do
-  if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) do
+  if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "output_substring"
         ];
   end
+   end 
   return Caml_io.caml_ml_output(oc, s, ofs, len);
 end
 
@@ -313,12 +316,13 @@ function open_in_bin(name) do
 end
 
 function input(ic, s, ofs, len) do
-  if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) do
+  if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "input"
         ];
   end
+   end 
   return Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
 end
 
@@ -326,27 +330,29 @@ function unsafe_really_input(ic, s, _ofs, _len) do
   while(true) do
     var len = _len;
     var ofs = _ofs;
-    if (len <= 0) do
+    if (len <= 0) then do
       return --[ () ]--0;
     end else do
       var r = Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
-      if (r == 0) do
+      if (r == 0) then do
         throw Caml_builtin_exceptions.end_of_file;
       end
+       end 
       _len = len - r | 0;
       _ofs = ofs + r | 0;
       continue ;
-    end
+    end end 
   end;
 end
 
 function really_input(ic, s, ofs, len) do
-  if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) do
+  if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "really_input"
         ];
   end
+   end 
   return unsafe_really_input(ic, s, ofs, len);
 end
 
@@ -361,7 +367,7 @@ function input_line(chan) do
     while(true) do
       var param = _param;
       var pos = _pos;
-      if (param) do
+      if (param) then do
         var hd = param[0];
         var len = #hd;
         Caml_bytes.caml_blit_string(hd, 0, buf, pos - len | 0, len);
@@ -370,7 +376,7 @@ function input_line(chan) do
         continue ;
       end else do
         return buf;
-      end
+      end end 
     end;
   end;
   var _accu = --[ [] ]--0;
@@ -379,17 +385,17 @@ function input_line(chan) do
     var len = _len;
     var accu = _accu;
     var n = Caml_external_polyfill.resolve("caml_ml_input_scan_line")(chan);
-    if (n == 0) do
-      if (accu) do
+    if (n == 0) then do
+      if (accu) then do
         return build_result(Caml_bytes.caml_create_bytes(len), len, accu);
       end else do
         throw Caml_builtin_exceptions.end_of_file;
-      end
-    end else if (n > 0) do
+      end end 
+    end else if (n > 0) then do
       var res = Caml_bytes.caml_create_bytes(n - 1 | 0);
       Caml_external_polyfill.resolve("caml_ml_input")(chan, res, 0, n - 1 | 0);
       Caml_external_polyfill.resolve("caml_ml_input_char")(chan);
-      if (accu) do
+      if (accu) then do
         var len$1 = (len + n | 0) - 1 | 0;
         return build_result(Caml_bytes.caml_create_bytes(len$1), len$1, --[ :: ]--[
                     res,
@@ -397,7 +403,7 @@ function input_line(chan) do
                   ]);
       end else do
         return res;
-      end
+      end end 
     end else do
       var beg = Caml_bytes.caml_create_bytes(-n | 0);
       Caml_external_polyfill.resolve("caml_ml_input")(chan, beg, 0, -n | 0);
@@ -407,7 +413,7 @@ function input_line(chan) do
         accu
       ];
       continue ;
-    end
+    end end  end 
   end;
 end
 

@@ -56,21 +56,21 @@ end
 function cmp(param, param$1) do
   var ph = param$1[1];
   var nh = param[1];
-  if (Caml_obj.caml_lessthan(nh, ph)) do
+  if (Caml_obj.caml_lessthan(nh, ph)) then do
     return -1;
-  end else if (Caml_obj.caml_greaterthan(nh, ph)) do
+  end else if (Caml_obj.caml_greaterthan(nh, ph)) then do
     return 1;
   end else do
     var pl = param$1[0];
     var nl = param[0];
-    if (Caml_obj.caml_lessthan(nl, pl)) do
+    if (Caml_obj.caml_lessthan(nl, pl)) then do
       return -1;
-    end else if (Caml_obj.caml_greaterthan(nl, pl)) do
+    end else if (Caml_obj.caml_greaterthan(nl, pl)) then do
       return 1;
     end else do
       return 0;
-    end
-  end
+    end end  end 
+  end end  end 
 end
 
 function x2(p) do
@@ -95,7 +95,7 @@ var buf = $$Buffer.create(5000);
 function pr(param) do
   var nh = param[1];
   var nl = param[0];
-  if (Caml_int64.compare(nh, n0) == 0) do
+  if (Caml_int64.compare(nh, n0) == 0) then do
     return Curry._1(Printf.bprintf(buf, --[ Format ]--[
                     --[ Int64 ]--Block.__(7, [
                         --[ Int_d ]--0,
@@ -129,7 +129,7 @@ function pr(param) do
                       ]),
                     "%Ld%018Ld\n"
                   ]), nh, nl);
-  end
+  end end 
 end
 
 function map(f, l) do
@@ -151,12 +151,12 @@ function merge(cmp, l1, l2) do
                 var ll1 = match[1];
                 var x1 = match[0];
                 var c = Curry._2(cmp, x1, x2);
-                if (c == 0) do
+                if (c == 0) then do
                   return --[ Cons ]--[
                           x1,
                           merge(cmp, ll1, ll2)
                         ];
-                end else if (c < 0) do
+                end else if (c < 0) then do
                   return --[ Cons ]--[
                           x1,
                           merge(cmp, ll1, l2)
@@ -166,7 +166,7 @@ function merge(cmp, l1, l2) do
                           x2,
                           merge(cmp, l1, ll2)
                         ];
-                end
+                end end  end 
               end));
 end
 
@@ -175,21 +175,22 @@ function iter_interval(f, _l, _param) do
     var param = _param;
     var l = _l;
     var stop = param[1];
-    if (stop == 0) do
+    if (stop == 0) then do
       return --[ () ]--0;
     end else do
       var start = param[0];
       var match = CamlinternalLazy.force(l);
-      if (start <= 0) do
+      if (start <= 0) then do
         Curry._1(f, match[0]);
       end
+       end 
       _param = --[ tuple ]--[
         start - 1 | 0,
         stop - 1 | 0
       ];
       _l = match[1];
       continue ;
-    end
+    end end 
   end;
 end
 

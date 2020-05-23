@@ -60,20 +60,21 @@ try do
 end
 catch (raw_exn)do
   var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn[0] == Js_exn.$$Error) do
+  if (exn[0] == Js_exn.$$Error) then do
     add_test("File \"js_exception_catch_test.ml\", line 21, characters 10-17", (function (param) do
             return --[ Ok ]--Block.__(4, [true]);
           end));
   end else do
     throw exn;
-  end
+  end end 
 end
 
-if (exit == 1) do
+if (exit == 1) then do
   add_test("File \"js_exception_catch_test.ml\", line 22, characters 16-23", (function (param) do
           return --[ Ok ]--Block.__(4, [false]);
         end));
 end
+ end 
 
 var A = Caml_exceptions.create("Js_exception_catch_test.A");
 
@@ -88,33 +89,33 @@ function test(f) do
   end
   catch (raw_e)do
     var e = Caml_js_exceptions.internalToOCamlException(raw_e);
-    if (e == Caml_builtin_exceptions.not_found) do
+    if (e == Caml_builtin_exceptions.not_found) then do
       return --[ Not_found ]---358247754;
-    end else if (e[0] == Caml_builtin_exceptions.invalid_argument) do
-      if (e[1] == "x") do
+    end else if (e[0] == Caml_builtin_exceptions.invalid_argument) then do
+      if (e[1] == "x") then do
         return --[ Invalid_argument ]---50278363;
       end else do
         return --[ Invalid_any ]--545126980;
-      end
-    end else if (e[0] == A) do
-      if (e[1] ~= 2) do
+      end end 
+    end else if (e[0] == A) then do
+      if (e[1] ~= 2) then do
         return --[ A_any ]--740357294;
       end else do
         return --[ A2 ]--14545;
-      end
-    end else if (e == B) do
+      end end 
+    end else if (e == B) then do
       return --[ B ]--66;
-    end else if (e[0] == C) do
-      if (e[1] ~= 1 or e[2] ~= 2) do
+    end else if (e[0] == C) then do
+      if (e[1] ~= 1 or e[2] ~= 2) then do
         return --[ C_any ]---756146768;
       end else do
         return --[ C ]--67;
-      end
-    end else if (e[0] == Js_exn.$$Error) do
+      end end 
+    end else if (e[0] == Js_exn.$$Error) then do
       return --[ Js_error ]--634022066;
     end else do
       return --[ Any ]--3257036;
-    end
+    end end  end  end  end  end  end 
   end
 end
 

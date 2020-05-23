@@ -48,7 +48,7 @@ var pathobj = Path.parse(current_dir_name);
 
 var match$2 = typeof module == "undefined" ? undefined : module;
 
-if (match$2 ~= undefined) do
+if (match$2 ~= undefined) then do
   console.log(--[ tuple ]--[
         match$2.id,
         match$2.paths
@@ -58,6 +58,7 @@ if (match$2 ~= undefined) do
         "test"
       ]);
 end
+ end 
 
 Mt.from_pair_suites("Fs_test", suites.contents);
 

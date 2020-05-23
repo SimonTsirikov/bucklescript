@@ -11,7 +11,7 @@ function f(param) do
 end
 
 function assert_f(x) do
-  if (x <= 3) do
+  if (x <= 3) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -21,6 +21,7 @@ function assert_f(x) do
           ]
         ];
   end
+   end 
   return 3;
 end
 
@@ -44,11 +45,11 @@ function test_not_found(f, param) do
     return Curry._1(f, --[ () ]--0);
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return 2;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 
@@ -58,12 +59,12 @@ function test_js_error2(param) do
   end
   catch (raw_e)do
     var e = Caml_js_exceptions.internalToOCamlException(raw_e);
-    if (e[0] == Js_exn.$$Error) do
+    if (e[0] == Js_exn.$$Error) then do
       console.log(e[1].stack);
       throw e;
     end else do
       throw e;
-    end
+    end end 
   end
 end
 

@@ -22,21 +22,23 @@ var oppHeroes = --[ :: ]--[
 
 var huntGrootCondition = false;
 
-if (List.length(--[ [] ]--0) > 0) do
+if (List.length(--[ [] ]--0) > 0) then do
   var x = List.filter((function (h) do
             return List.hd(--[ [] ]--0) <= 1000;
           end))(oppHeroes);
   huntGrootCondition = List.length(x) == 0;
 end
+ end 
 
 var huntGrootCondition2 = true;
 
-if (List.length(--[ [] ]--0) < 0) do
+if (List.length(--[ [] ]--0) < 0) then do
   var x$1 = List.filter((function (h) do
             return List.hd(--[ [] ]--0) <= 1000;
           end))(oppHeroes);
   huntGrootCondition2 = List.length(x$1) == 0;
 end
+ end 
 
 eq("File \"gpr_2608_test.ml\", line 23, characters 5-12", huntGrootCondition, false);
 

@@ -34,13 +34,13 @@ function f2(x) do
   var v = 0;
   var y;
   v = 1;
-  if (x.tag) do
+  if (x.tag) then do
     var z = 33;
     y = z + 4 | 0;
   end else do
     var z$1 = 33;
     y = z$1 + 3 | 0;
-  end
+  end end 
   return y + 32 | 0;
 end
 

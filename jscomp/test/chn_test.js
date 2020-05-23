@@ -38,7 +38,7 @@ console.log("\x3f\u003f\b\t\n\v\f\r\0\"\'");
 function convert(s) do
   return $$Array.to_list(Array.from(s, (function (x) do
                     var match = x.codePointAt(0);
-                    if (match ~= undefined) do
+                    if (match ~= undefined) then do
                       return match;
                     end else do
                       throw [
@@ -49,7 +49,7 @@ function convert(s) do
                               18
                             ]
                           ];
-                    end
+                    end end 
                   end)));
 end
 

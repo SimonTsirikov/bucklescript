@@ -11,12 +11,12 @@ function test_js_error(param) do
   end
   catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Js_exn.$$Error) do
+    if (exn[0] == Js_exn.$$Error) then do
       console.log(exn[1].stack);
       return ;
     end else do
       throw exn;
-    end
+    end end 
   end
   return Caml_option.some(e);
 end
@@ -27,12 +27,12 @@ function test_js_error2(param) do
   end
   catch (raw_e)do
     var e = Caml_js_exceptions.internalToOCamlException(raw_e);
-    if (e[0] == Js_exn.$$Error) do
+    if (e[0] == Js_exn.$$Error) then do
       console.log(e[1].stack);
       throw e;
     end else do
       throw e;
-    end
+    end end 
   end
 end
 
@@ -43,12 +43,12 @@ function example1(param) do
   end
   catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Js_exn.$$Error) do
+    if (exn[0] == Js_exn.$$Error) then do
       console.log(exn[1].stack);
       return ;
     end else do
       throw exn;
-    end
+    end end 
   end
   return Caml_option.some(v);
 end
@@ -59,11 +59,11 @@ function example2(param) do
   end
   catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Js_exn.$$Error) do
+    if (exn[0] == Js_exn.$$Error) then do
       return ;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 

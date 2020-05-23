@@ -1087,11 +1087,14 @@ and statement_desc top cxt f (s : J.statement_desc) : cxt =
     P.space f;
     let cxt = P.paren_group f 1 (fun _ -> expression ~level:0 cxt f e) in
     P.space f;
+    P.string f L.then_;
+    P.space f;
     let cxt = block cxt f s1 in
-    (match s2 with
+    (let cxt_ = (match s2 with
      | []
      | [{statement_desc = (Block [] | Exp {expression_desc = Var _;} ); }]
-       -> P.newline f; cxt
+       -> P.newline f; 
+       cxt
      | [{statement_desc = If _} as nest]
      | [{statement_desc = Block [ {statement_desc = If _ ; _} as nest] ; _}]
        ->
@@ -1103,7 +1106,12 @@ and statement_desc top cxt f (s : J.statement_desc) : cxt =
        P.space f;
        P.string f L.else_;
        P.space f ;
-       block  cxt f s2)
+       block  cxt f s2) in 
+    P.space f;
+    P.string f L.end_;
+    P.space f;
+    cxt_)
+
   | While (label, e, s, _env) ->  (*  FIXME: print scope as well *)
     begin
       (match label with

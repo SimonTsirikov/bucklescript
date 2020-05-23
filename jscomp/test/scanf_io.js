@@ -97,7 +97,7 @@ function get_lines(fname) do
   end
   catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Scanf.Scan_failure) do
+    if (exn[0] == Scanf.Scan_failure) then do
       var s = Curry._2(Printf.sprintf(--[ Format ]--[
                 --[ String_literal ]--Block.__(11, [
                     "in file ",
@@ -118,7 +118,7 @@ function get_lines(fname) do
             Caml_builtin_exceptions.failure,
             s
           ];
-    end else if (exn == Caml_builtin_exceptions.end_of_file) do
+    end else if (exn == Caml_builtin_exceptions.end_of_file) then do
       var s$1 = Curry._1(Printf.sprintf(--[ Format ]--[
                 --[ String_literal ]--Block.__(11, [
                     "in file ",
@@ -138,7 +138,7 @@ function get_lines(fname) do
           ];
     end else do
       throw exn;
-    end
+    end end  end 
   end
 end
 
@@ -170,11 +170,11 @@ function add_digest_ib(ob, ib) do
     return --[ () ]--0;
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.end_of_file) do
+    if (exn == Caml_builtin_exceptions.end_of_file) then do
       return --[ () ]--0;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 

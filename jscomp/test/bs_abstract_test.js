@@ -38,11 +38,11 @@ end
 
 function uff3(f) do
   var match = f.yyyy2;
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     return Curry._1(match, 0);
   end else do
     return 0;
-  end
+  end end 
 end
 
 function fx(v) do

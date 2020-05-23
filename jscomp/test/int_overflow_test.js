@@ -11,11 +11,11 @@ function hash_variant(s) do
   for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
     accu = Caml_int32.imul(223, accu) + Caml_string.get(s, i) & 2147483647;
   end
-  if (accu > 1073741823) do
+  if (accu > 1073741823) then do
     return accu - -2147483648 | 0;
   end else do
     return accu;
-  end
+  end end 
 end
 
 function hash_variant2(s) do
@@ -24,19 +24,19 @@ function hash_variant2(s) do
     accu = Caml_int32.imul(223, accu) + Caml_string.get(s, i) | 0;
   end
   accu = accu & 2147483647;
-  if (accu > 1073741823) do
+  if (accu > 1073741823) then do
     return accu - -2147483648 | 0;
   end else do
     return accu;
-  end
+  end end 
 end
 
 function fib(n) do
-  if (n ~= 0 and n ~= 1) do
+  if (n ~= 0 and n ~= 1) then do
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
   end else do
     return 1;
-  end
+  end end 
 end
 
 Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[

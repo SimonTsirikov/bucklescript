@@ -6,11 +6,11 @@ var Caml_obj = require("../../lib/js/caml_obj.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
 function eq_A(x, y) do
-  if (x.tag or y.tag) do
+  if (x.tag or y.tag) then do
     return false;
   end else do
     return x[0] == y[0];
-  end
+  end end 
 end
 
 function Test($star) do

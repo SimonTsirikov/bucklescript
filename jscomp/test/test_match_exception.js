@@ -8,11 +8,11 @@ function f(g, x) do
     return Curry._1(g, x);
   end
   catch (exn)do
-    if (exn == Caml_builtin_exceptions.not_found) do
+    if (exn == Caml_builtin_exceptions.not_found) then do
       return 3;
     end else do
       throw exn;
-    end
+    end end 
   end
 end
 

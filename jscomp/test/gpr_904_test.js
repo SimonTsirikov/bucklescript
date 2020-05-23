@@ -29,11 +29,11 @@ function eq(loc, x, y) do
 end
 
 function check_healty(check) do
-  if (!check.a and !check.b) do
+  if (!check.a and !check.b) then do
     return !check.c;
   end else do
     return false;
-  end
+  end end 
 end
 
 function basic_not(x) do
@@ -41,11 +41,11 @@ function basic_not(x) do
 end
 
 function f(check) do
-  if (check.x) do
+  if (check.x) then do
     return check.y;
   end else do
     return false;
-  end
+  end end 
 end
 
 eq("File \"gpr_904_test.ml\", line 23, characters 5-12", f(do

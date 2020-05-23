@@ -5,17 +5,17 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 
 function test(dom) do
   var elem = dom.getElementById("haha");
-  if (elem ~= null) do
+  if (elem ~= null) then do
     console.log(elem);
     return 2;
   end else do
     return 1;
-  end
+  end end 
 end
 
 function f_undefined(xs, i) do
   var match = xs[i];
-  if (match ~= undefined) do
+  if (match ~= undefined) then do
     return match;
   end else do
     throw [
@@ -26,27 +26,27 @@ function f_undefined(xs, i) do
             14
           ]
         ];
-  end
+  end end 
 end
 
 function f_escaped_not(xs, i) do
   var x = xs[i];
   console.log("hei");
-  if (x ~= undefined) do
+  if (x ~= undefined) then do
     return x;
   end else do
     return 1;
-  end
+  end end 
 end
 
 function f_escaped_1(xs, i) do
   var x = xs[i];
   return (function (param) do
-      if (x ~= undefined) do
+      if (x ~= undefined) then do
         return x;
       end else do
         return 1;
-      end
+      end end 
     end);
 end
 
@@ -57,7 +57,7 @@ end
 
 function f_null(xs, i) do
   var match = xs[i];
-  if (match ~= null) do
+  if (match ~= null) then do
     return match;
   end else do
     throw [
@@ -68,12 +68,12 @@ function f_null(xs, i) do
             14
           ]
         ];
-  end
+  end end 
 end
 
 function f_null_undefined(xs, i) do
   var match = xs[i];
-  if (match == null) do
+  if (match == null) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -84,7 +84,7 @@ function f_null_undefined(xs, i) do
         ];
   end else do
     return match;
-  end
+  end end 
 end
 
 exports.test = test;

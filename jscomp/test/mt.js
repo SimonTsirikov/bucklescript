@@ -15,26 +15,26 @@ end
 
 function is_mocha(param) do
   var match = $$Array.to_list(Process.argv);
-  if (match) do
+  if (match) then do
     var match$1 = match[1];
-    if (match$1) do
+    if (match$1) then do
       var exec = Path.basename(match$1[0]);
-      if (exec == "mocha") do
+      if (exec == "mocha") then do
         return true;
       end else do
         return exec == "_mocha";
-      end
+      end end 
     end else do
       return false;
-    end
+    end end 
   end else do
     return false;
-  end
+  end end 
 end
 
 function from_suites(name, suite) do
   var match = $$Array.to_list(Process.argv);
-  if (match and is_mocha(--[ () ]--0)) do
+  if (match and is_mocha(--[ () ]--0)) then do
     describe(name, (function () do
             return List.iter((function (param) do
                           var partial_arg = param[1];
@@ -47,7 +47,7 @@ function from_suites(name, suite) do
     return --[ () ]--0;
   end else do
     return --[ () ]--0;
-  end
+  end end 
 end
 
 function close_enough(thresholdOpt, a, b) do
@@ -75,21 +75,21 @@ function handleCode(spec) do
     case --[ Approx ]--5 :
         var b = spec[1];
         var a = spec[0];
-        if (close_enough(undefined, a, b)) do
+        if (close_enough(undefined, a, b)) then do
           return 0;
         end else do
           Assert.deepEqual(a, b);
           return --[ () ]--0;
-        end
+        end end 
     case --[ ApproxThreshold ]--6 :
         var b$1 = spec[2];
         var a$1 = spec[1];
-        if (close_enough(spec[0], a$1, b$1)) do
+        if (close_enough(spec[0], a$1, b$1)) then do
           return 0;
         end else do
           Assert.deepEqual(a$1, b$1);
           return --[ () ]--0;
-        end
+        end end 
     case --[ ThrowAny ]--7 :
         Assert.throws(spec[0]);
         return --[ () ]--0;
@@ -103,8 +103,8 @@ end
 
 function from_pair_suites(name, suites) do
   var match = $$Array.to_list(Process.argv);
-  if (match) do
-    if (is_mocha(--[ () ]--0)) do
+  if (match) then do
+    if (is_mocha(--[ () ]--0)) then do
       describe(name, (function () do
               return List.iter((function (param) do
                             var code = param[1];
@@ -195,18 +195,18 @@ function from_pair_suites(name, suites) do
                       
                     end
                   end), suites$1);
-    end
+    end end 
   end else do
     return --[ () ]--0;
-  end
+  end end 
 end
 
 var val_unit = Promise.resolve(--[ () ]--0);
 
 function from_promise_suites(name, suites) do
   var match = $$Array.to_list(Process.argv);
-  if (match) do
-    if (is_mocha(--[ () ]--0)) do
+  if (match) then do
+    if (is_mocha(--[ () ]--0)) then do
       describe(name, (function () do
               return List.iter((function (param) do
                             var code = param[1];
@@ -223,10 +223,10 @@ function from_promise_suites(name, suites) do
     end else do
       console.log("promise suites");
       return --[ () ]--0;
-    end
+    end end 
   end else do
     return --[ () ]--0;
-  end
+  end end 
 end
 
 function eq_suites(test_id, suites, loc, x, y) do
