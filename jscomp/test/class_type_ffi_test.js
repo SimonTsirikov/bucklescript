@@ -2,54 +2,54 @@
 
 var Curry = require("../../lib/js/curry.js");
 
-function sum_float_array(arr) {
+function sum_float_array(arr) do
   var v = 0;
-  for(var i = 0 ,i_finish = arr.length - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = arr.length - 1 | 0; i <= i_finish; ++i)do
     v = v + arr.case(i);
-  }
+  end
   return v;
-}
+end
 
-function sum_int_array(arr) {
+function sum_int_array(arr) do
   var v = 0;
-  for(var i = 0 ,i_finish = arr.length - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = arr.length - 1 | 0; i <= i_finish; ++i)do
     v = v + arr.case(i) | 0;
-  }
+  end
   return v;
-}
+end
 
-function sum_poly(zero, add, arr) {
+function sum_poly(zero, add, arr) do
   var v = zero;
-  for(var i = 0 ,i_finish = arr.length - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = arr.length - 1 | 0; i <= i_finish; ++i)do
     v = add(v, arr.case(i));
-  }
+  end
   return v;
-}
+end
 
-function test_set(x) {
+function test_set(x) do
   x.length = 3;
   return --[ () ]--0;
-}
+end
 
-function f(x) {
+function f(x) do
   x.bark("he");
   return x.fight();
-}
+end
 
-function ff(fn, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) {
+function ff(fn, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) do
   return fn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
-}
+end
 
-function ff2(fn, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) {
+function ff2(fn, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
   return fn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
-}
+end
 
-function off2(o, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) {
+function off2(o, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
   return o.huge_method(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
-}
+end
 
-function mk_f(param) {
-  return (function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) {
+function mk_f(param) do
+  return (function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
       return Curry.app(a0, [
                   a1,
                   a2,
@@ -64,12 +64,12 @@ function mk_f(param) {
                   a11,
                   a12
                 ]);
-    });
-}
+    end);
+end
 
-function omk_f(param) {
-  return {
-          huge_methdo: (function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) {
+function omk_f(param) do
+  return do
+          huge_methdo: (function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
               return Curry.app(a0, [
                           a1,
                           a2,
@@ -84,9 +84,9 @@ function omk_f(param) {
                           a11,
                           a12
                         ]);
-            })
-        };
-}
+            end)
+        end;
+end
 
 exports.sum_float_array = sum_float_array;
 exports.sum_int_array = sum_int_array;

@@ -4,39 +4,39 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 var $$String = require("../../lib/js/string.js");
 
-function u(v) {
+function u(v) do
   return v;
-}
+end
 
 var s = $$String;
 
-var N = {
+var N = do
   s: s
-};
+end;
 
-function v(x) {
+function v(x) do
   return #x;
-}
+end
 
 var suites_000 = --[ tuple ]--[
   "const",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 1,
                 1
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "other",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   3,
                   3
                 ]);
-      })
+      end)
   ],
   --[ [] ]--0
 ];

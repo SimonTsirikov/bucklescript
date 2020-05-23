@@ -6,24 +6,24 @@ var Block = require("../../lib/js/block.js");
 
 var empty_backtrace = --[ obj_block ]--Block.__(Obj.abstract_tag, []);
 
-function is_block(x) {
+function is_block(x) do
   return typeof x ~= "number";
-}
+end
 
 var suites_000 = --[ tuple ]--[
   "is_block_test1",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 false,
                 false
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "is_block_test2",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   true,
                   typeof --[ :: ]--[
@@ -31,27 +31,27 @@ var suites_001 = --[ :: ]--[
                     --[ [] ]--0
                   ] ~= "number"
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "is_block_test3",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     true,
                     true
                   ]);
-        })
+        end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
         "is_block_test4",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       false,
                       false
                     ]);
-          })
+          end)
       ],
       --[ [] ]--0
     ]

@@ -2,31 +2,31 @@
 
 var Curry = require("../../lib/js/curry.js");
 
-function f_add2(a, b, x, y) {
+function f_add2(a, b, x, y) do
   return add(Curry._1(b, y), Curry._1(a, x));
-}
+end
 
-function f(a, b, x, y) {
+function f(a, b, x, y) do
   return Curry._1(a, x) + Curry._1(b, y) | 0;
-}
+end
 
-function f1(a, b, x, y) {
+function f1(a, b, x, y) do
   return add(Curry._1(a, x), Curry._1(b, y));
-}
+end
 
-function f2(x) {
+function f2(x) do
   console.log(x);
   return --[ () ]--0;
-}
+end
 
-function f3(x) {
+function f3(x) do
   console.log(x);
   return --[ () ]--0;
-}
+end
 
-function f4(x, y) {
+function f4(x, y) do
   return add(y, x);
-}
+end
 
 exports.f_add2 = f_add2;
 exports.f = f;

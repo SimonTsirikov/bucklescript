@@ -41,24 +41,24 @@ xx[0] = 1;
 
 xx[1] = xx;
 
-function naive(n) {
-  if (n == 0 or n == 1) {
+function naive(n) do
+  if (n == 0 or n == 1) do
     return 1;
-  } else {
+  end else do
     return (n + naive(n - 1 | 0) | 0) + naive(n - 2 | 0) | 0;
-  }
-}
+  end
+end
 
-var four = {
+var four = do
   contents: 2
-};
+end;
 
-var three = {
+var three = do
   contents: 3
-};
+end;
 
-var v = {
-  contents: (function (param) {
+var v = do
+  contents: (function (param) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -67,11 +67,11 @@ var v = {
               24
             ]
           ];
-    })
-};
+    end)
+end;
 
-function fib(n) {
-  switch (n) {
+function fib(n) do
+  switch (n) do
     case 0 :
         return four.contents;
     case 1 :
@@ -83,12 +83,12 @@ function fib(n) {
         return 1;
     default:
       return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
-  }
-}
+  end
+end
 
-function zs(param) {
+function zs(param) do
   return List.hd(xs[0]);
-}
+end
 
 var xs_000 = --[ :: ]--[
   2,
@@ -100,67 +100,67 @@ var xs = --[ tuple ]--[
   zs
 ];
 
-function fib2(n) {
-  if (n == 0 or n == 1) {
+function fib2(n) do
+  if (n == 0 or n == 1) do
     return 1;
-  } else {
+  end else do
     return fib2(n - 1 | 0) + fib2(n - 2 | 0) | 0;
-  }
-}
+  end
+end
 
 var two = 2;
 
-function fib3(n) {
-  if (n == 0 or n == 1) {
+function fib3(n) do
+  if (n == 0 or n == 1) do
     return 1;
-  } else {
+  end else do
     return fib3(n - 1 | 0) + fib3(n - 2 | 0) | 0;
-  }
-}
+  end
+end
 
-function even(n) {
-  if (n == 0) {
+function even(n) do
+  if (n == 0) do
     return true;
-  } else {
+  end else do
     var n$1 = n - 1 | 0;
-    if (n$1 == 1) {
+    if (n$1 == 1) do
       return true;
-    } else {
+    end else do
       return even(n$1 - 1 | 0);
-    }
-  }
-}
+    end
+  end
+end
 
-function even2(_n) {
-  while(true) {
+function even2(_n) do
+  while(true) do
     var n = _n;
-    if (n == 0) {
+    if (n == 0) do
       return true;
-    } else {
+    end else do
       _n = n - 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function lazy_v(param) {
+function lazy_v(param) do
   CamlinternalLazy.force(lazy_v);
   return --[ () ]--0;
-}
+end
 
-function sum(_acc, _n) {
-  while(true) {
+function sum(_acc, _n) do
+  while(true) do
     var n = _n;
     var acc = _acc;
-    if (n > 0) {
+    if (n > 0) do
       _n = n - 1 | 0;
       _acc = acc + n | 0;
       continue ;
-    } else {
+    end else do
       return acc;
-    }
-  };
-}
+    end
+  end;
+end
 
 var fake_v = --[ :: ]--[
   1,
@@ -207,38 +207,38 @@ var rec_variant_a = [];
 
 Caml_obj.caml_update_dummy(rec_variant_b, --[ B ]--Block.__(0, [
         "gho",
-        (function (param) {
+        (function (param) do
             return rec_variant_a;
-          })
+          end)
       ]));
 
 Caml_obj.caml_update_dummy(rec_variant_a, --[ A ]--Block.__(1, [
         3,
-        (function (param) {
+        (function (param) do
             return rec_variant_b;
-          })
+          end)
       ]));
 
 var suites_000 = --[ tuple ]--[
   "hd",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 1,
                 List.hd(List.tl(x))
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "mutual",
-    (function (param) {
+    (function (param) do
         var tmp;
-        if (a) {
+        if (a) do
           var match = a[1];
-          if (match) {
+          if (match) do
             tmp = match[0];
-          } else {
+          end else do
             throw [
                   Caml_builtin_exceptions.assert_failure,
                   --[ tuple ]--[
@@ -247,8 +247,8 @@ var suites_001 = --[ :: ]--[
                     2
                   ]
                 ];
-          }
-        } else {
+          end
+        end else do
           throw [
                 Caml_builtin_exceptions.assert_failure,
                 --[ tuple ]--[
@@ -257,27 +257,27 @@ var suites_001 = --[ :: ]--[
                   2
                 ]
               ];
-        }
+        end
         return --[ Eq ]--Block.__(0, [
                   3,
                   tmp
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "rec_sum",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     55,
                     sum(0, 10)
                   ]);
-        })
+        end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
         "File \"rec_value_test.ml\", line 111, characters 2-9",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       --[ :: ]--[
                         1,
@@ -288,12 +288,12 @@ var suites_001 = --[ :: ]--[
                       ],
                       fake_v
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "File \"rec_value_test.ml\", line 114, characters 2-9",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         --[ :: ]--[
                           2,
@@ -304,12 +304,12 @@ var suites_001 = --[ :: ]--[
                         ],
                         fake_y
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "File \"rec_value_test.ml\", line 117, characters 2-9",
-            (function (param) {
+            (function (param) do
                 return --[ Eq ]--Block.__(0, [
                           --[ :: ]--[
                             1,
@@ -323,12 +323,12 @@ var suites_001 = --[ :: ]--[
                           ],
                           fake_z
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "File \"rec_value_test.ml\", line 120, characters 2-9",
-              (function (param) {
+              (function (param) do
                   return --[ Eq ]--Block.__(0, [
                             --[ :: ]--[
                               1,
@@ -345,12 +345,12 @@ var suites_001 = --[ :: ]--[
                             ],
                             fake_z2
                           ]);
-                })
+                end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
                 "File \"rec_value_test.ml\", line 123, characters 2-9",
-                (function (param) {
+                (function (param) do
                     return --[ Eq ]--Block.__(0, [
                               --[ :: ]--[
                                 2,
@@ -361,23 +361,23 @@ var suites_001 = --[ :: ]--[
                               ],
                               fake_y2
                             ]);
-                  })
+                  end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
                   "File \"rec_value_test.ml\", line 126, characters 2-9",
-                  (function (param) {
+                  (function (param) do
                       return --[ Eq ]--Block.__(0, [
                                 3,
                                 3
                               ]);
-                    })
+                    end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
                     "File \"rec_value_test.ml\", line 129, characters 2-9",
-                    (function (param) {
-                        if (rec_variant_b.tag) {
+                    (function (param) do
+                        if (rec_variant_b.tag) do
                           throw [
                                 Caml_builtin_exceptions.assert_failure,
                                 --[ tuple ]--[
@@ -386,24 +386,24 @@ var suites_001 = --[ :: ]--[
                                   11
                                 ]
                               ];
-                        } else {
+                        end else do
                           return --[ Eq ]--Block.__(0, [
                                     Curry._1(rec_variant_b[1], --[ () ]--0),
                                     rec_variant_a
                                   ]);
-                        }
-                      })
+                        end
+                      end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
                       "File \"rec_value_test.ml\", line 134, characters 2-9",
-                      (function (param) {
-                          if (rec_variant_a.tag) {
+                      (function (param) do
+                          if (rec_variant_a.tag) do
                             return --[ Eq ]--Block.__(0, [
                                       Curry._1(rec_variant_a[1], --[ () ]--0),
                                       rec_variant_b
                                     ]);
-                          } else {
+                          end else do
                             throw [
                                   Caml_builtin_exceptions.assert_failure,
                                   --[ tuple ]--[
@@ -412,8 +412,8 @@ var suites_001 = --[ :: ]--[
                                     11
                                   ]
                                 ];
-                          }
-                        })
+                          end
+                        end)
                     ],
                     --[ [] ]--0
                   ]
@@ -432,16 +432,16 @@ var suites = --[ :: ]--[
   suites_001
 ];
 
-function fake_minus(n) {
+function fake_minus(n) do
   console.log(n);
   return n + 1 | 0;
-}
+end
 
 var fake_odd = fake_minus;
 
-function fake_inline_minus(n) {
+function fake_inline_minus(n) do
   return n + 1 | 0;
-}
+end
 
 var fake_inline = fake_inline_minus;
 

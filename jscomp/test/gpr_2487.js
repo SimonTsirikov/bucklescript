@@ -10,9 +10,9 @@ var b = Belt_Array.eq([
       1,
       2,
       3
-    ], (function (prim, prim$1) {
+    ], (function (prim, prim$1) do
         return prim == prim$1;
-      }));
+      end));
 
 var A = --[ alias ]--0;
 

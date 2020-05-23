@@ -5,50 +5,50 @@ var Block = require("../../lib/js/block.js");
 var Curry = require("../../lib/js/curry.js");
 var Caml_obj = require("../../lib/js/caml_obj.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-var called = {
+var called = do
   contents: 0
-};
+end;
 
-function g(param) {
+function g(param) do
   var v = { };
-  var next = function (i, b) {
+  var next = function (i, b) do
     called.contents = called.contents + 1 | 0;
-    if (b) {
+    if (b) do
       Curry._2(v.contents, i, false);
-    }
+    end
     return i + 1 | 0;
-  };
-  Caml_obj.caml_update_dummy(v, {
+  end;
+  Caml_obj.caml_update_dummy(v, do
         contents: next
-      });
+      end);
   console.log(String(next(0, true)));
   return --[ () ]--0;
-}
+end
 
 g(--[ () ]--0);
 

@@ -401,88 +401,88 @@ var field99 = ids[119];
 
 CamlinternalOO.set_methods($$class, [
       get0,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field0] + 0 | 0;
-        }),
+        end),
       get1,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field1] + 1 | 0;
-        }),
+        end),
       get2,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field2] + 2 | 0;
-        }),
+        end),
       get3,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field3] + 3 | 0;
-        }),
+        end),
       get4,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field4] + 4 | 0;
-        }),
+        end),
       get5,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field5] + 5 | 0;
-        }),
+        end),
       get6,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field6] + 6 | 0;
-        }),
+        end),
       get7,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field7] + 7 | 0;
-        }),
+        end),
       get8,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field8] + 8 | 0;
-        }),
+        end),
       get9,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field9] + 9 | 0;
-        }),
+        end),
       get10,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field10] + 10 | 0;
-        }),
+        end),
       get11,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field11] + 11 | 0;
-        }),
+        end),
       get12,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field12] + 12 | 0;
-        }),
+        end),
       get13,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field13] + 13 | 0;
-        }),
+        end),
       get14,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field14] + 14 | 0;
-        }),
+        end),
       get15,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field15] + 15 | 0;
-        }),
+        end),
       get16,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field16] + 16 | 0;
-        }),
+        end),
       get17,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field17] + 17 | 0;
-        }),
+        end),
       get18,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field18] + 18 | 0;
-        }),
+        end),
       get19,
-      (function (self$1) {
+      (function (self$1) do
           return self$1[field19] + 19 | 0;
-        })
+        end)
     ]);
 
-function obj_init(env) {
+function obj_init(env) do
   var self = CamlinternalOO.create_object_opt(0, $$class);
   self[field0] = 0;
   self[field1] = 1;
@@ -585,13 +585,13 @@ function obj_init(env) {
   self[field98] = 98;
   self[field99] = 99;
   return self;
-}
+end
 
 CamlinternalOO.init_class($$class);
 
 var raw_object = obj_init(0);
 
-if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) {
+if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -600,9 +600,9 @@ if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) {
           10
         ]
       ];
-}
+end
 
-function raw_class_init($$class) {
+function raw_class_init($$class) do
   var value = CamlinternalOO.new_variable($$class, "");
   var ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared$2);
   var get9 = ids[0];
@@ -727,87 +727,87 @@ function raw_class_init($$class) {
   var field99 = ids[119];
   CamlinternalOO.set_methods($$class, [
         get0,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field0] + 0 | 0;
-          }),
+          end),
         get1,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field1] + 1 | 0;
-          }),
+          end),
         get2,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field2] + 2 | 0;
-          }),
+          end),
         get3,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field3] + 3 | 0;
-          }),
+          end),
         get4,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field4] + 4 | 0;
-          }),
+          end),
         get5,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field5] + 5 | 0;
-          }),
+          end),
         get6,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field6] + 6 | 0;
-          }),
+          end),
         get7,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field7] + 7 | 0;
-          }),
+          end),
         get8,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field8] + 8 | 0;
-          }),
+          end),
         get9,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field9] + 9 | 0;
-          }),
+          end),
         get10,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field10] + 10 | 0;
-          }),
+          end),
         get11,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field11] + 11 | 0;
-          }),
+          end),
         get12,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field12] + 12 | 0;
-          }),
+          end),
         get13,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field13] + 13 | 0;
-          }),
+          end),
         get14,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field14] + 14 | 0;
-          }),
+          end),
         get15,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field15] + 15 | 0;
-          }),
+          end),
         get16,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field16] + 16 | 0;
-          }),
+          end),
         get17,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field17] + 17 | 0;
-          }),
+          end),
         get18,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field18] + 18 | 0;
-          }),
+          end),
         get19,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[field19] + 19 | 0;
-          })
+          end)
       ]);
-  return (function (env, self, value$1) {
+  return (function (env, self, value$1) do
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[value] = value$1;
       self$1[field0] = 0;
@@ -911,14 +911,14 @@ function raw_class_init($$class) {
       self$1[field98] = Caml_int32.imul(98, value$1);
       self$1[field99] = Caml_int32.imul(99, value$1);
       return self$1;
-    });
-}
+    end);
+end
 
 var raw_class = CamlinternalOO.make_class(shared, raw_class_init);
 
 var v = Curry._2(raw_class[0], 0, 3);
 
-if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) {
+if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -927,7 +927,7 @@ if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) {
           2
         ]
       ];
-}
+end
 
 exports.raw_object = raw_object;
 exports.raw_class = raw_class;

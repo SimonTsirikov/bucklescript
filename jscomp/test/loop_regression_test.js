@@ -3,33 +3,33 @@
 var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
-function f(param) {
-  var v = {
+function f(param) do
+  var v = do
     contents: 0
-  };
-  var acc = {
+  end;
+  var acc = do
     contents: 0
-  };
+  end;
   var n = 10;
-  while(true) {
-    if (v.contents > n) {
+  while(true) do
+    if (v.contents > n) do
       return acc.contents;
-    } else {
+    end else do
       acc.contents = acc.contents + v.contents | 0;
       v.contents = v.contents + 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
 var suites_000 = --[ tuple ]--[
   "sum",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 55,
                 f(--[ () ]--0)
               ]);
-    })
+    end)
 ];
 
 var suites = --[ :: ]--[

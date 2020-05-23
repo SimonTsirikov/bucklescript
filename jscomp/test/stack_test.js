@@ -5,31 +5,31 @@ var List = require("../../lib/js/list.js");
 var Block = require("../../lib/js/block.js");
 var Stack = require("../../lib/js/stack.js");
 
-function to_list(v) {
+function to_list(v) do
   var acc = --[ [] ]--0;
-  while(v.c ~= --[ [] ]--0) {
+  while(v.c ~= --[ [] ]--0) do
     acc = --[ :: ]--[
       Stack.pop(v),
       acc
     ];
-  };
+  end;
   return List.rev(acc);
-}
+end
 
-function v(param) {
-  var v$1 = {
+function v(param) do
+  var v$1 = do
     c: --[ [] ]--0,
     len: 0
-  };
+  end;
   Stack.push(3, v$1);
   Stack.push(4, v$1);
   Stack.push(1, v$1);
   return to_list(v$1);
-}
+end
 
 var suites_000 = --[ tuple ]--[
   "push_test",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 --[ :: ]--[
                   1,
@@ -43,7 +43,7 @@ var suites_000 = --[ tuple ]--[
                 ],
                 v(--[ () ]--0)
               ]);
-    })
+    end)
 ];
 
 var suites = --[ :: ]--[

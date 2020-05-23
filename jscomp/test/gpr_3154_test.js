@@ -4,21 +4,21 @@ var Mt = require("./mt.js");
 var Js_dict = require("../../lib/js/js_dict.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, x) {
+function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-}
+end
 
 var d = { };
 
@@ -26,11 +26,11 @@ d["foo"] = undefined;
 
 var match = Js_dict.get(d, "foo");
 
-if (match ~= undefined and Caml_option.valFromOption(match) == undefined) {
+if (match ~= undefined and Caml_option.valFromOption(match) == undefined) do
   b("File \"gpr_3154_test.ml\", line 12, characters 19-26", true);
-} else {
+end else do
   b("File \"gpr_3154_test.ml\", line 13, characters 11-18", false);
-}
+end
 
 var d0 = { };
 

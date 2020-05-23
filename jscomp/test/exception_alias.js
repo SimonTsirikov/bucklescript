@@ -13,7 +13,7 @@ var b = List.length(--[ :: ]--[
       ]
     ]);
 
-var List$1 = {
+var List$1 = do
   compare_lengths: List.compare_lengths,
   compare_length_with: List.compare_length_with,
   cons: List.cons,
@@ -67,7 +67,7 @@ var List$1 = {
   merge: List.merge,
   b: b,
   length: 3
-};
+end;
 
 var a1 = a0;
 

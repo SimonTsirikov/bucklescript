@@ -2,22 +2,22 @@
 
 var $$Node = require("../../lib/js/node.js");
 
-function f(str) {
+function f(str) do
   var match = $$Node.test(str);
-  if (match[0]) {
+  if (match[0]) do
     console.log(--[ tuple ]--[
           "buffer",
           Buffer.isBuffer(match[1])
         ]);
     return --[ () ]--0;
-  } else {
+  end else do
     console.log(--[ tuple ]--[
           "string",
           match[1]
         ]);
     return --[ () ]--0;
-  }
-}
+  end
+end
 
 f("xx");
 

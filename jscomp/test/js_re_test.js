@@ -7,10 +7,10 @@ var Caml_option = require("../../lib/js/caml_option.js");
 
 var suites_000 = --[ tuple ]--[
   "captures",
-  (function (param) {
+  (function (param) do
       var re = /(\d+)-(?:(\d+))?/g;
       var match = re.exec("3-");
-      if (match ~= null) {
+      if (match ~= null) do
         var defined = Caml_array.caml_array_get(match, 1);
         var $$undefined = Caml_array.caml_array_get(match, 2);
         return --[ Eq ]--Block.__(0, [
@@ -23,155 +23,155 @@ var suites_000 = --[ tuple ]--[
                     $$undefined
                   ]
                 ]);
-      } else {
+      end else do
         return --[ Fail ]--Block.__(8, [--[ () ]--0]);
-      }
-    })
+      end
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "fromString",
-    (function (param) {
-        var contentOf = function (tag, xmlString) {
+    (function (param) do
+        var contentOf = function (tag, xmlString) do
           var param = new RegExp("<" .. (tag .. (">(.*?)<\\/" .. (tag .. ">")))).exec(xmlString);
-          if (param ~= null) {
+          if (param ~= null) do
             return Caml_option.nullable_to_opt(Caml_array.caml_array_get(param, 1));
-          }
+          end
           
-        };
+        end;
         return --[ Eq ]--Block.__(0, [
                   contentOf("div", "<div>Hi</div>"),
                   "Hi"
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "exec_literal",
-      (function (param) {
+      (function (param) do
           var match = /[^.]+/.exec("http://xxx.domain.com");
-          if (match ~= null) {
+          if (match ~= null) do
             return --[ Eq ]--Block.__(0, [
                       "http://xxx",
                       Caml_array.caml_array_get(match, 0)
                     ]);
-          } else {
+          end else do
             return --[ FailWith ]--Block.__(9, ["regex should match"]);
-          }
-        })
+          end
+        end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
         "exec_no_match",
-        (function (param) {
+        (function (param) do
             var match = /https:\/\/(.*)/.exec("http://xxx.domain.com");
-            if (match ~= null) {
+            if (match ~= null) do
               return --[ FailWith ]--Block.__(9, ["regex should not match"]);
-            } else {
+            end else do
               return --[ Ok ]--Block.__(4, [true]);
-            }
-          })
+            end
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "test_str",
-          (function (param) {
+          (function (param) do
               var res = new RegExp("foo").test("#foo#");
               return --[ Eq ]--Block.__(0, [
                         true,
                         res
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "fromStringWithFlags",
-            (function (param) {
+            (function (param) do
                 var res = new RegExp("foo", "g");
                 return --[ Eq ]--Block.__(0, [
                           true,
                           res.global
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "result_index",
-              (function (param) {
+              (function (param) do
                   var match = new RegExp("zbar").exec("foobarbazbar");
-                  if (match ~= null) {
+                  if (match ~= null) do
                     return --[ Eq ]--Block.__(0, [
                               8,
                               match.index
                             ]);
-                  } else {
+                  end else do
                     return --[ Fail ]--Block.__(8, [--[ () ]--0]);
-                  }
-                })
+                  end
+                end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
                 "result_input",
-                (function (param) {
+                (function (param) do
                     var input = "foobar";
                     var match = /foo/g.exec(input);
-                    if (match ~= null) {
+                    if (match ~= null) do
                       return --[ Eq ]--Block.__(0, [
                                 input,
                                 match.input
                               ]);
-                    } else {
+                    end else do
                       return --[ Fail ]--Block.__(8, [--[ () ]--0]);
-                    }
-                  })
+                    end
+                  end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
                   "t_flags",
-                  (function (param) {
+                  (function (param) do
                       return --[ Eq ]--Block.__(0, [
                                 "gi",
                                 /./ig.flags
                               ]);
-                    })
+                    end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
                     "t_global",
-                    (function (param) {
+                    (function (param) do
                         return --[ Eq ]--Block.__(0, [
                                   true,
                                   /./ig.global
                                 ]);
-                      })
+                      end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
                       "t_ignoreCase",
-                      (function (param) {
+                      (function (param) do
                           return --[ Eq ]--Block.__(0, [
                                     true,
                                     /./ig.ignoreCase
                                   ]);
-                        })
+                        end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
                         "t_lastIndex",
-                        (function (param) {
+                        (function (param) do
                             var re = /na/g;
                             re.exec("banana");
                             return --[ Eq ]--Block.__(0, [
                                       4,
                                       re.lastIndex
                                     ]);
-                          })
+                          end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
                           "t_setLastIndex",
-                          (function (param) {
+                          (function (param) do
                               var re = /na/g;
                               var before = re.lastIndex;
                               re.lastIndex = 42;
@@ -186,47 +186,47 @@ var suites_001 = --[ :: ]--[
                                           after
                                         ]
                                       ]);
-                            })
+                            end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
                             "t_multiline",
-                            (function (param) {
+                            (function (param) do
                                 return --[ Eq ]--Block.__(0, [
                                           false,
                                           /./ig.multiline
                                         ]);
-                              })
+                              end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
                               "t_source",
-                              (function (param) {
+                              (function (param) do
                                   return --[ Eq ]--Block.__(0, [
                                             "f.+o",
                                             /f.+o/ig.source
                                           ]);
-                                })
+                                end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
                                 "t_sticky",
-                                (function (param) {
+                                (function (param) do
                                     return --[ Eq ]--Block.__(0, [
                                               true,
                                               /./yg.sticky
                                             ]);
-                                  })
+                                  end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
                                   "t_unicode",
-                                  (function (param) {
+                                  (function (param) do
                                       return --[ Eq ]--Block.__(0, [
                                                 false,
                                                 /./yg.unicode
                                               ]);
-                                    })
+                                    end)
                                 ],
                                 --[ [] ]--0
                               ]

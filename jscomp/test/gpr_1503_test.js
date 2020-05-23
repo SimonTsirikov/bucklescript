@@ -5,34 +5,34 @@ var Block = require("../../lib/js/block.js");
 var Int64 = require("../../lib/js/int64.js");
 var Caml_format = require("../../lib/js/caml_format.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function id(x) {
+function id(x) do
   return Caml_format.caml_int64_of_string(Caml_format.caml_int64_format("%d", x));
-}
+end
 
 var i = --[ int64 ]--[
   --[ hi ]--2074848171,

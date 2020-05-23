@@ -3,17 +3,17 @@
 var Mt = require("./mt.js");
 var Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
 require('../../lib/js/caml_external_polyfill.js').register("caml_fancy_add", function(x,y){
   return + ((""+x ) + (""+y))

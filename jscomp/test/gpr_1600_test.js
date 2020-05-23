@@ -1,36 +1,36 @@
 'use strict';
 
 
-var obj = {
-  hi: (function (x) {
+var obj = do
+  hi: (function (x) do
       console.log(x);
       return --[ () ]--0;
-    })
-};
+    end)
+end;
 
-var eventObj = {
+var eventObj = do
   events: [],
-  empty: (function () {
+  empty: (function () do
       return --[ () ]--0;
-    }),
-  push: (function (a) {
+    end),
+  push: (function (a) do
       var self = this ;
       self.events[0] = a;
       return --[ () ]--0;
-    }),
-  needRebuild: (function () {
+    end),
+  needRebuild: (function () do
       var self = this ;
       return #self.events ~= 0;
-    }),
-  currentEvents: (function () {
+    end),
+  currentEvents: (function () do
       var self = this ;
       return self.events;
-    })
-};
+    end)
+end;
 
-function f(param) {
+function f(param) do
   return eventObj;
-}
+end
 
 exports.obj = obj;
 exports.eventObj = eventObj;

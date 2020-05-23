@@ -26,8 +26,8 @@ var tscanf_data_file_lines = --[ :: ]--[
   --[ [] ]--0
 ];
 
-function create_tscanf_data(ob, lines) {
-  var add_line = function (param) {
+function create_tscanf_data(ob, lines) do
+  var add_line = function (param) do
     $$Buffer.add_string(ob, Curry._1(Printf.sprintf(--[ Format ]--[
                   --[ Caml_string ]--Block.__(3, [
                       --[ No_padding ]--0,
@@ -44,26 +44,26 @@ function create_tscanf_data(ob, lines) {
                   "%S"
                 ]), param[1]));
     return $$Buffer.add_string(ob, ";\n");
-  };
+  end;
   return List.iter(add_line, lines);
-}
+end
 
-function write_tscanf_data_file(fname, lines) {
+function write_tscanf_data_file(fname, lines) do
   var oc = Pervasives.open_out(fname);
   var ob = $$Buffer.create(42);
   create_tscanf_data(ob, lines);
   $$Buffer.output_buffer(oc, ob);
   Caml_io.caml_ml_flush(oc);
   return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
-}
+end
 
-function get_lines(fname) {
+function get_lines(fname) do
   var ib = Scanf.Scanning.from_file(fname);
-  var l = {
+  var l = do
     contents: --[ [] ]--0
-  };
-  try {
-    while(!Scanf.Scanning.end_of_input(ib)) {
+  end;
+  try do
+    while(!Scanf.Scanning.end_of_input(ib)) do
       Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                 --[ Char_literal ]--Block.__(12, [
                     --[ " " ]--32,
@@ -82,7 +82,7 @@ function get_lines(fname) {
                       ])
                   ]),
                 " %S -> %S; "
-              ]), (function (x, y) {
+              ]), (function (x, y) do
               l.contents = --[ :: ]--[
                 --[ tuple ]--[
                   x,
@@ -91,13 +91,13 @@ function get_lines(fname) {
                 l.contents
               ];
               return --[ () ]--0;
-            }));
-    };
+            end));
+    end;
     return List.rev(l.contents);
-  }
-  catch (raw_exn){
+  end
+  catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Scanf.Scan_failure) {
+    if (exn[0] == Scanf.Scan_failure) do
       var s = Curry._2(Printf.sprintf(--[ Format ]--[
                 --[ String_literal ]--Block.__(11, [
                     "in file ",
@@ -118,7 +118,7 @@ function get_lines(fname) {
             Caml_builtin_exceptions.failure,
             s
           ];
-    } else if (exn == Caml_builtin_exceptions.end_of_file) {
+    end else if (exn == Caml_builtin_exceptions.end_of_file) do
       var s$1 = Curry._1(Printf.sprintf(--[ Format ]--[
                 --[ String_literal ]--Block.__(11, [
                     "in file ",
@@ -136,14 +136,14 @@ function get_lines(fname) {
             Caml_builtin_exceptions.failure,
             s$1
           ];
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
-function add_digest_ib(ob, ib) {
-  var scan_line = function (ib, f) {
+function add_digest_ib(ob, ib) do
+  var scan_line = function (ib, f) do
     return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                     --[ Scan_char_set ]--Block.__(20, [
                         undefined,
@@ -155,41 +155,41 @@ function add_digest_ib(ob, ib) {
                       ]),
                     "%[^\n\r]\n"
                   ]), f);
-  };
-  var output_line_digest = function (s) {
+  end;
+  var output_line_digest = function (s) do
     $$Buffer.add_string(ob, s);
     $$Buffer.add_char(ob, --[ "#" ]--35);
     var s$1 = Digest.to_hex(Digest.string(s));
     $$Buffer.add_string(ob, Caml_bytes.bytes_to_string(Bytes.uppercase(Caml_bytes.bytes_of_string(s$1))));
     return $$Buffer.add_char(ob, --[ "\n" ]--10);
-  };
-  try {
-    while(true) {
+  end;
+  try do
+    while(true) do
       scan_line(ib, output_line_digest);
-    };
+    end;
     return --[ () ]--0;
-  }
-  catch (exn){
-    if (exn == Caml_builtin_exceptions.end_of_file) {
+  end
+  catch (exn)do
+    if (exn == Caml_builtin_exceptions.end_of_file) do
       return --[ () ]--0;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
-function digest_file(fname) {
+function digest_file(fname) do
   var ib = Scanf.Scanning.from_file(fname);
   var ob = $$Buffer.create(42);
   add_digest_ib(ob, ib);
   return $$Buffer.contents(ob);
-}
+end
 
-function test54(param) {
+function test54(param) do
   return Caml_obj.caml_equal(get_lines(tscanf_data_file), tscanf_data_file_lines);
-}
+end
 
-function test55(param) {
+function test55(param) do
   var ob = $$Buffer.create(42);
   create_tscanf_data(ob, tscanf_data_file_lines);
   var s = $$Buffer.contents(ob);
@@ -198,7 +198,7 @@ function test55(param) {
   add_digest_ib(ob, ib);
   var tscanf_data_file_lines_digest = $$Buffer.contents(ob);
   return digest_file(tscanf_data_file) == tscanf_data_file_lines_digest;
-}
+end
 
 exports.tscanf_data_file = tscanf_data_file;
 exports.tscanf_data_file_lines = tscanf_data_file_lines;

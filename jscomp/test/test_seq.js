@@ -13,47 +13,47 @@ var Help = Caml_exceptions.create("Test_seq.Help");
 
 var Stop = Caml_exceptions.create("Test_seq.Stop");
 
-function assoc3(x, _l) {
-  while(true) {
+function assoc3(x, _l) do
+  while(true) do
     var l = _l;
-    if (l) {
+    if (l) do
       var match = l[0];
-      if (Caml_obj.caml_equal(match[0], x)) {
+      if (Caml_obj.caml_equal(match[0], x)) do
         return match[1];
-      } else {
+      end else do
         _l = l[1];
         continue ;
-      }
-    } else {
+      end
+    end else do
       throw Caml_builtin_exceptions.not_found;
-    }
-  };
-}
+    end
+  end;
+end
 
-function help_action(param) {
+function help_action(param) do
   throw [
         Stop,
         --[ Unknown ]--Block.__(0, ["-help"])
       ];
-}
+end
 
-function v(speclist) {
+function v(speclist) do
   assoc3("-help", speclist);
   return --[ [] ]--0;
-}
+end
 
-function f(g, speclist) {
+function f(g, speclist) do
   return Curry._1(g, assoc3("-help", speclist));
-}
+end
 
-function add_help(speclist) {
+function add_help(speclist) do
   var add1;
-  try {
+  try do
     assoc3("-help", speclist);
     add1 = --[ [] ]--0;
-  }
-  catch (exn){
-    if (exn == Caml_builtin_exceptions.not_found) {
+  end
+  catch (exn)do
+    if (exn == Caml_builtin_exceptions.not_found) do
       add1 = --[ :: ]--[
         --[ tuple ]--[
           "-help",
@@ -62,17 +62,17 @@ function add_help(speclist) {
         ],
         --[ [] ]--0
       ];
-    } else {
+    end else do
       throw exn;
-    }
-  }
+    end
+  end
   var add2;
-  try {
+  try do
     assoc3("--help", speclist);
     add2 = --[ [] ]--0;
-  }
-  catch (exn$1){
-    if (exn$1 == Caml_builtin_exceptions.not_found) {
+  end
+  catch (exn$1)do
+    if (exn$1 == Caml_builtin_exceptions.not_found) do
       add2 = --[ :: ]--[
         --[ tuple ]--[
           "--help",
@@ -81,12 +81,12 @@ function add_help(speclist) {
         ],
         --[ [] ]--0
       ];
-    } else {
+    end else do
       throw exn$1;
-    }
-  }
+    end
+  end
   return Pervasives.$at(speclist, Pervasives.$at(add1, add2));
-}
+end
 
 exports.Bad = Bad;
 exports.Help = Help;

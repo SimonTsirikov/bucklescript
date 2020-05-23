@@ -6,52 +6,52 @@ var Int64 = require("../../lib/js/int64.js");
 var Caml_int64 = require("../../lib/js/caml_int64.js");
 var Pervasives = require("../../lib/js/pervasives.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function f(x) {
+function f(x) do
   Pervasives.print_string("f");
   return x;
-}
+end
 
-function g(x) {
+function g(x) do
   return Caml_int64.or_(x, (Pervasives.print_string("f"), x));
-}
+end
 
-var v = {
+var v = do
   contents: 0
-};
+end;
 
-function f2(x) {
+function f2(x) do
   v.contents = v.contents + 1 | 0;
   return x;
-}
+end
 
-function g2(x) {
+function g2(x) do
   return Caml_int64.or_(x, (v.contents = v.contents + 1 | 0, x));
-}
+end
 
 var a = Caml_int64.or_(Int64.one, (v.contents = v.contents + 1 | 0, Int64.one));
 

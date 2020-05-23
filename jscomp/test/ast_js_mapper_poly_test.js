@@ -5,30 +5,30 @@ var $$Array = require("../../lib/js/array.js");
 var Block = require("../../lib/js/block.js");
 var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 var jsMapperConstantArray = [
   --[ tuple ]--[
@@ -45,29 +45,29 @@ var jsMapperConstantArray = [
   ]
 ];
 
-function uToJs(param) {
+function uToJs(param) do
   return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray);
-}
+end
 
-function uFromJs(param) {
+function uFromJs(param) do
   return Js_mapperRt.revSearch(3, jsMapperConstantArray, param);
-}
+end
 
-function eqU(x, y) {
+function eqU(x, y) do
   return x == y;
-}
+end
 
-function eqUOpt(x, y) {
-  if (x ~= undefined) {
-    if (y ~= undefined) {
+function eqUOpt(x, y) do
+  if (x ~= undefined) do
+    if (y ~= undefined) do
       return x == y;
-    } else {
+    end else do
       return false;
-    }
-  } else {
+    end
+  end else do
     return y == undefined;
-  }
-}
+  end
+end
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 25, characters 5-12", eqUOpt(uFromJs("x"), --[ f ]--102), true);
 
@@ -94,32 +94,32 @@ var jsMapperConstantArray$1 = [
   5
 ];
 
-function vToJs(param) {
+function vToJs(param) do
   return jsMapperConstantArray$1[param];
-}
+end
 
-function vFromJs(param) {
+function vFromJs(param) do
   return Js_mapperRt.fromInt(4, jsMapperConstantArray$1, param);
-}
+end
 
-function eqV(x, y) {
+function eqV(x, y) do
   return x == y;
-}
+end
 
-function eqVOpt(x, y) {
-  if (x ~= undefined) {
-    if (y ~= undefined) {
+function eqVOpt(x, y) do
+  if (x ~= undefined) do
+    if (y ~= undefined) do
       return x == y;
-    } else {
+    end else do
       return false;
-    }
-  } else {
+    end
+  end else do
     return y == undefined;
-  }
-}
+  end
+end
 
-function s(param) {
-  switch (param) {
+function s(param) do
+  switch (param) do
     case --[ A0 ]--0 :
         return "A0";
     case --[ A1 ]--1 :
@@ -129,8 +129,8 @@ function s(param) {
     case --[ A3 ]--3 :
         return "A3";
     
-  }
-}
+  end
+end
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 54, characters 5-12", $$Array.map(vToJs, [
           --[ A0 ]--0,
@@ -162,16 +162,16 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 55, characters 5-12", $$Array.map(
       undefined
     ]);
 
-function v1ToJs(param) {
+function v1ToJs(param) do
   return param + 0 | 0;
-}
+end
 
-function v1FromJs(param) {
-  if (param <= 5 and 0 <= param) {
+function v1FromJs(param) do
+  if (param <= 5 and 0 <= param) do
     return param - 0 | 0;
-  }
+  end
   
-}
+end
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 68, characters 5-12", $$Array.map(v1ToJs, [
           --[ B0 ]--0,
@@ -209,16 +209,16 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 69, characters 5-12", $$Array.map(
       undefined
     ]);
 
-function v2ToJs(param) {
+function v2ToJs(param) do
   return param + 2 | 0;
-}
+end
 
-function v2FromJs(param) {
-  if (param <= 7 and 2 <= param) {
+function v2FromJs(param) do
+  if (param <= 7 and 2 <= param) do
     return param - 2 | 0;
-  }
+  end
   
-}
+end
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 86, characters 5-12", $$Array.map(v2ToJs, [
           --[ C0 ]--0,
@@ -249,9 +249,9 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 89, characters 5-12", $$Array.map(
         ]), $$Array.append($$Array.append([
               undefined,
               undefined
-            ], $$Array.map((function (x) {
+            ], $$Array.map((function (x) do
                     return x;
-                  }), [
+                  end), [
                   --[ C0 ]--0,
                   --[ C1 ]--1,
                   --[ C2 ]--2,

@@ -5,34 +5,34 @@ var $$Array = require("../../lib/js/array.js");
 var Block = require("../../lib/js/block.js");
 var Ext_filename_test = require("./ext_filename_test.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function test(param, param$1) {
+function test(param, param$1) do
   return Ext_filename_test.node_relative_path(true, param, param$1);
-}
+end
 
 eq("File \"a_filename_test.ml\", line 10, characters 5-12", --[ tuple ]--[
       Ext_filename_test.combine("/tmp", "subdir/file.txt"),

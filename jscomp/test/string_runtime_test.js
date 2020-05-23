@@ -9,29 +9,29 @@ var Caml_bytes = require("../../lib/js/caml_bytes.js");
 
 var suites_000 = --[ tuple ]--[
   "caml_is_printable",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 Caml_char.caml_is_printable(--[ "a" ]--97),
                 true
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "caml_string_of_bytes",
-    (function (param) {
-        var match = List.split(List.map((function (x) {
+    (function (param) do
+        var match = List.split(List.map((function (x) do
                     var len = x;
                     var b = Caml_bytes.caml_create_bytes(1000);
                     Caml_bytes.caml_fill_bytes(b, 0, len, --[ "c" ]--99);
                     return --[ tuple ]--[
                             Caml_bytes.bytes_to_string(b),
-                            Caml_bytes.bytes_to_string(Bytes.init(len, (function (param) {
+                            Caml_bytes.bytes_to_string(Bytes.init(len, (function (param) do
                                         return --[ "c" ]--99;
-                                      })))
+                                      end)))
                           ];
-                  }), --[ :: ]--[
+                  end), --[ :: ]--[
                   1000,
                   --[ :: ]--[
                     1024,
@@ -57,7 +57,7 @@ var suites_001 = --[ :: ]--[
                   match[0],
                   match[1]
                 ]);
-      })
+      end)
   ],
   --[ [] ]--0
 ];

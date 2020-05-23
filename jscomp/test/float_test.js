@@ -11,25 +11,25 @@ var Caml_int64 = require("../../lib/js/caml_int64.js");
 var Pervasives = require("../../lib/js/pervasives.js");
 var Caml_primitive = require("../../lib/js/caml_primitive.js");
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-function eq(loc) {
-  return (function (param, param$1) {
+function eq(loc) do
+  return (function (param, param$1) do
       return Mt_global.collect_eq(test_id, suites, loc, param, param$1);
-    });
-}
+    end);
+end
 
-function approx(loc) {
-  return (function (param, param$1) {
+function approx(loc) do
+  return (function (param, param$1) do
       return Mt_global.collect_approx(test_id, suites, loc, param, param$1);
-    });
-}
+    end);
+end
 
 var epsilon_float = Caml_int64.float_of_bits(--[ int64 ]--[
       --[ hi ]--1018167296,
@@ -122,8 +122,8 @@ var results = $$Array.append([
       ]
     ]);
 
-function from_pairs(ps) {
-  return $$Array.to_list($$Array.mapi((function (i, param) {
+function from_pairs(ps) do
+  return $$Array.to_list($$Array.mapi((function (i, param) do
                     var b = param[1];
                     var a = param[0];
                     return --[ tuple ]--[
@@ -139,15 +139,15 @@ function from_pairs(ps) {
                                         ]),
                                       "pair %d"
                                     ]), i),
-                            (function (param) {
+                            (function (param) do
                                 return --[ Approx ]--Block.__(5, [
                                           a,
                                           b
                                         ]);
-                              })
+                              end)
                           ];
-                  }), ps));
-}
+                  end), ps));
+end
 
 var float_compare = Caml_primitive.caml_float_compare;
 
@@ -184,17 +184,17 @@ var param$3 = [
   1
 ];
 
-var param$4 = $$Array.map((function (x) {
-        if (x > 0) {
+var param$4 = $$Array.map((function (x) do
+        if (x > 0) do
           return 1;
-        } else if (x < 0) {
+        end else if (x < 0) do
           return -1;
-        } else {
+        end else do
           return 0;
-        }
-      }), $$Array.map((function (param) {
+        end
+      end), $$Array.map((function (param) do
             return Caml_primitive.caml_float_compare(param[0], param[1]);
-          }), [
+          end), [
           --[ tuple ]--[
             1,
             3
@@ -244,42 +244,42 @@ var a = match$4[0];
 Mt.from_pair_suites("Float_test", Pervasives.$at(--[ :: ]--[
           --[ tuple ]--[
             "mod_float",
-            (function (param) {
+            (function (param) do
                 return --[ Approx ]--Block.__(5, [
                           3.2 % 0.5,
                           0.200000000000000178
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "modf_float1",
-              (function (param) {
+              (function (param) do
                   return --[ Approx ]--Block.__(5, [
                             a,
                             0.299999999999997158
                           ]);
-                })
+                end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
                 "modf_float2",
-                (function (param) {
+                (function (param) do
                     return --[ Approx ]--Block.__(5, [
                               b,
                               32
                             ]);
-                  })
+                  end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
                   "int_of_float",
-                  (function (param) {
+                  (function (param) do
                       return --[ Eq ]--Block.__(0, [
                                 3,
                                 3
                               ]);
-                    })
+                    end)
                 ],
                 --[ [] ]--0
               ]

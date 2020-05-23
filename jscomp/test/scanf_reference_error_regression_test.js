@@ -9,19 +9,19 @@ var Printf = require("../../lib/js/printf.js");
 var Mt_global = require("./mt_global.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(f, param) {
+function eq(f, param) do
   return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
-}
+end
 
-function scan_rest(ib, accu) {
+function scan_rest(ib, accu) do
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ Scan_char_set ]--Block.__(20, [
                       undefined,
@@ -29,10 +29,10 @@ function scan_rest(ib, accu) {
                       --[ End_of_format ]--0
                     ]),
                   "%[]]"
-                ]), (function (param) {
-                if (param == "]") {
+                ]), (function (param) do
+                if (param == "]") do
                   return accu;
-                } else {
+                end else do
                   var ib$1 = ib;
                   var accu$1 = accu;
                   return Curry._1(Scanf.bscanf(ib$1, --[ Format ]--[
@@ -49,7 +49,7 @@ function scan_rest(ib, accu) {
                                         ])
                                     ]),
                                   " %i "
-                                ]), (function (i) {
+                                ]), (function (i) do
                                 var ib$2 = ib$1;
                                 var accu$2 = --[ :: ]--[
                                   i,
@@ -62,8 +62,8 @@ function scan_rest(ib, accu) {
                                                     --[ End_of_format ]--0
                                                   ]),
                                                 "%1[];]"
-                                              ]), (function (param) {
-                                              switch (param) {
+                                              ]), (function (param) do
+                                              switch (param) do
                                                 case ";" :
                                                     return scan_rest(ib$2, accu$2);
                                                 case "]" :
@@ -80,14 +80,14 @@ function scan_rest(ib, accu) {
                                                         Caml_builtin_exceptions.failure,
                                                         s
                                                       ];
-                                              }
-                                            }));
-                              }));
-                }
-              }));
-}
+                                              end
+                                            end));
+                              end));
+                end
+              end));
+end
 
-function scan_int_list(ib) {
+function scan_int_list(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 " [ ",
@@ -96,7 +96,7 @@ function scan_int_list(ib) {
             " [ "
           ]), --[ () ]--0);
   return List.rev(scan_rest(ib, --[ [] ]--0));
-}
+end
 
 eq("File \"scanf_reference_error_regression_test.ml\", line 36, characters 5-12", --[ tuple ]--[
       scan_int_list(Scanf.Scanning.from_string("[]")),

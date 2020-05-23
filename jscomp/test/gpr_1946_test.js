@@ -1,27 +1,27 @@
 'use strict';
 
 
-var x = ({
+var x = (do
     x: 3,
     y: 4
-  }).x;
+  end).x;
 
-({
+(do
     x: 3,
     y: 4
-  }).x;
+  end).x;
 
-var zz = ({
+var zz = (do
     "5": 3
-  })["5"];
+  end)["5"];
 
-({
+(do
     "5": 3
-  })["5"];
+  end)["5"];
 
-console.log(({
+console.log((do
           "5": 3
-        }).tag | 0);
+        end).tag | 0);
 
 exports.x = x;
 exports.zz = zz;

@@ -10,75 +10,75 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 
 var shared = ["calc"];
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function fib_init($$class) {
+function fib_init($$class) do
   var calc = CamlinternalOO.get_method_label($$class, "calc");
-  CamlinternalOO.set_method($$class, calc, (function (self$1, x) {
-          if (x == 0 or x == 1) {
+  CamlinternalOO.set_method($$class, calc, (function (self$1, x) do
+          if (x == 0 or x == 1) do
             return 1;
-          } else {
+          end else do
             return Curry._2(self$1[0][calc], self$1, x - 1 | 0) + Curry._2(self$1[0][calc], self$1, x - 2 | 0) | 0;
-          }
-        }));
-  return (function (env, self) {
+          end
+        end));
+  return (function (env, self) do
       return CamlinternalOO.create_object_opt(self, $$class);
-    });
-}
+    end);
+end
 
 var fib = CamlinternalOO.make_class(shared, fib_init);
 
-function memo_fib_init($$class) {
+function memo_fib_init($$class) do
   var ids = CamlinternalOO.new_methods_variables($$class, shared, ["cache"]);
   var calc = ids[0];
   var cache = ids[1];
   var inh = CamlinternalOO.inherits($$class, 0, 0, shared, fib, true);
   var obj_init = inh[0];
   var calc$1 = inh[1];
-  CamlinternalOO.set_method($$class, calc, (function (self$2, x) {
-          try {
+  CamlinternalOO.set_method($$class, calc, (function (self$2, x) do
+          try do
             return Hashtbl.find(self$2[cache], x);
-          }
-          catch (exn){
-            if (exn == Caml_builtin_exceptions.not_found) {
+          end
+          catch (exn)do
+            if (exn == Caml_builtin_exceptions.not_found) do
               var v = Curry._2(calc$1, self$2, x);
               Hashtbl.add(self$2[cache], x, v);
               return v;
-            } else {
+            end else do
               throw exn;
-            }
-          }
-        }));
-  return (function (env, self) {
+            end
+          end
+        end));
+  return (function (env, self) do
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[cache] = Hashtbl.create(undefined, 31);
       Curry._1(obj_init, self$1);
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    });
-}
+    end);
+end
 
 var memo_fib = CamlinternalOO.make_class(shared, memo_fib_init);
 

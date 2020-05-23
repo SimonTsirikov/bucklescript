@@ -3,96 +3,96 @@
 var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, param) {
+function eq(loc, param) do
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-var v5 = {
+var v5 = do
   x: 3,
   y: 3,
-  setY: (function (v) {
+  setY: (function (v) do
       var self = this ;
       self.y = 2;
       return --[ tuple ]--[
               self.y,
               v
             ];
-    }),
-  say: (function () {
+    end),
+  say: (function () do
       var self = this ;
       return self.x + self.y | 0;
-    }),
-  hihi: (function (u) {
+    end),
+  hihi: (function (u) do
       var self = this ;
       return self.x + self.say() | 0;
-    }),
-  bark: (function () {
+    end),
+  bark: (function () do
       console.log("bark");
       return --[ () ]--0;
-    }),
-  xz: (function () {
+    end),
+  xz: (function () do
       return 3;
-    })
-};
+    end)
+end;
 
-var v = {
+var v = do
   x: 3,
   y: 0,
-  reset: (function () {
+  reset: (function () do
       var self = this ;
       self.y = 0;
       return --[ () ]--0;
-    }),
-  incr: (function () {
+    end),
+  incr: (function () do
       var self = this ;
       self.y = self.y + 1 | 0;
       return --[ () ]--0;
-    }),
-  getY: (function () {
+    end),
+  getY: (function () do
       var self = this ;
       return self.y;
-    }),
-  say: (function () {
+    end),
+  say: (function () do
       var self = this ;
       return self.x + self.y | 0;
-    })
-};
+    end)
+end;
 
-var u = {
-  incr: (function () {
+var u = do
+  incr: (function () do
       console.log("hey");
       return --[ () ]--0;
-    }),
-  getY: (function () {
+    end),
+  getY: (function () do
       return 3;
-    }),
-  say: (function () {
+    end),
+  say: (function () do
       return 7;
-    })
-};
+    end)
+end;
 
 var test_type_001 = --[ :: ]--[
   v,
@@ -104,57 +104,57 @@ var test_type = --[ :: ]--[
   test_type_001
 ];
 
-var z = {
-  x: {
+var z = do
+  x: do
     contents: 3
-  },
-  setX: (function (x) {
+  end,
+  setX: (function (x) do
       var self = this ;
       self.x.contents = x;
       return --[ () ]--0;
-    }),
-  getX: (function () {
+    end),
+  getX: (function () do
       var self = this ;
       return self.x.contents;
-    })
-};
+    end)
+end;
 
-var eventObj = {
+var eventObj = do
   events: [],
-  empty: (function () {
+  empty: (function () do
       var self = this ;
       var a = self.events;
       a.splice(0);
       return --[ () ]--0;
-    }),
-  push: (function (a) {
+    end),
+  push: (function (a) do
       var self = this ;
       var xs = self.events;
       xs.push(a);
       return --[ () ]--0;
-    }),
-  needRebuild: (function () {
+    end),
+  needRebuild: (function () do
       var self = this ;
       return #self.events ~= 0;
-    })
-};
+    end)
+end;
 
-function test__(x) {
+function test__(x) do
   return eventObj.push(x);
-}
+end
 
-var zz = {
+var zz = do
   x: 3,
-  setX: (function (x) {
+  setX: (function (x) do
       var self = this ;
       self.x = x;
       return --[ () ]--0;
-    }),
-  getX: (function () {
+    end),
+  getX: (function () do
       var self = this ;
       return self.x;
-    })
-};
+    end)
+end;
 
 var test_type2_001 = --[ :: ]--[
   zz,

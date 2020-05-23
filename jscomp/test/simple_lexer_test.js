@@ -7,7 +7,7 @@ var Curry = require("../../lib/js/curry.js");
 var Lexing = require("../../lib/js/lexing.js");
 var Caml_bytes = require("../../lib/js/caml_bytes.js");
 
-var __ocaml_lex_tables = {
+var __ocaml_lex_tables = do
   lex_base: "\0\0\xfd\xff\xfe\xff\0\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\x04\0\x01\0\x04\0\x03\0\0\0\x06\0\0\0\xff\xff",
   lex_backtrk: "\xff\xff\xff\xff\xff\xff\x01\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
   lex_default: "\x02\0\0\0\0\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\0\0",
@@ -19,13 +19,13 @@ var __ocaml_lex_tables = {
   lex_trans_code: "",
   lex_check_code: "",
   lex_code: ""
-};
+end;
 
-function __ocaml_lex_translate_rec(lexbuf, ___ocaml_lex_state) {
-  while(true) {
+function __ocaml_lex_translate_rec(lexbuf, ___ocaml_lex_state) do
+  while(true) do
     var __ocaml_lex_state = ___ocaml_lex_state;
     var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    switch (__ocaml_lex_state$1) {
+    switch (__ocaml_lex_state$1) do
       case 0 :
           return "." .. __ocaml_lex_translate_rec(lexbuf, 0);
       case 1 :
@@ -37,22 +37,22 @@ function __ocaml_lex_translate_rec(lexbuf, ___ocaml_lex_state) {
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
         continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function translate(lexbuf) {
+function translate(lexbuf) do
   return __ocaml_lex_translate_rec(lexbuf, 0);
-}
+end
 
 var suites_000 = --[ tuple ]--[
   "translate",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 __ocaml_lex_translate_rec(Lexing.from_string("-- current_directory --"), 0),
                 "-- . --"
               ]);
-    })
+    end)
 ];
 
 var suites = --[ :: ]--[

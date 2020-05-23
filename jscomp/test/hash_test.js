@@ -8,24 +8,24 @@ var Hashtbl = require("../../lib/js/hashtbl.js");
 var Mt_global = require("./mt_global.js");
 var Caml_bytes = require("../../lib/js/caml_bytes.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(f) {
-  return (function (param, param$1) {
+function eq(f) do
+  return (function (param, param$1) do
       return Mt_global.collect_eq(test_id, suites, f, param, param$1);
-    });
-}
+    end);
+end
 
-var test_strings = $$Array.init(32, (function (i) {
+var test_strings = $$Array.init(32, (function (i) do
         var c = Char.chr(i);
         return Caml_bytes.bytes_to_string(Bytes.make(i, c));
-      }));
+      end));
 
 var test_strings_hash_results = [
   0,
@@ -62,13 +62,13 @@ var test_strings_hash_results = [
   831138595
 ];
 
-function normalize(x) {
+function normalize(x) do
   return x & 1073741823;
-}
+end
 
-function caml_hash(x) {
+function caml_hash(x) do
   return Hashtbl.hash(x) & 1073741823;
-}
+end
 
 var param = $$Array.map(caml_hash, test_strings);
 

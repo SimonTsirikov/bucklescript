@@ -26,8 +26,8 @@ var int32_pairs = [
   ]
 ];
 
-function from_pairs(pair) {
-  return List.concat($$Array.to_list($$Array.mapi((function (i, param) {
+function from_pairs(pair) do
+  return List.concat($$Array.to_list($$Array.mapi((function (i, param) do
                         var f = param[1];
                         var i32 = param[0];
                         return --[ :: ]--[
@@ -44,12 +44,12 @@ function from_pairs(pair) {
                                               ]),
                                             "int32_float_of_bits %d"
                                           ]), i),
-                                  (function (param) {
+                                  (function (param) do
                                       return --[ Eq ]--Block.__(0, [
                                                 Caml_float.caml_int32_float_of_bits(i32),
                                                 f
                                               ]);
-                                    })
+                                    end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -65,38 +65,38 @@ function from_pairs(pair) {
                                                 ]),
                                               "int32_bits_of_float %d"
                                             ]), i),
-                                    (function (param) {
+                                    (function (param) do
                                         return --[ Eq ]--Block.__(0, [
                                                   Caml_float.caml_int32_bits_of_float(f),
                                                   i32
                                                 ]);
-                                      })
+                                      end)
                                   ],
                                   --[ [] ]--0
                                 ]
                               ];
-                      }), int32_pairs)));
-}
+                      end), int32_pairs)));
+end
 
 var suites = Pervasives.$at(--[ :: ]--[
       --[ tuple ]--[
         "one",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       Caml_int64.bits_of_float(1.0),
                       one_float
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "two",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         Caml_int64.float_of_bits(one_float),
                         1.0
                       ]);
-            })
+            end)
         ],
         --[ [] ]--0
       ]

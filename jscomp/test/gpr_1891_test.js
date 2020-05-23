@@ -2,49 +2,49 @@
 
 var Curry = require("../../lib/js/curry.js");
 
-function foo(x) {
-  if (typeof x == "number" or x[0] ~= 3505894 or x[1] ~= 3) {
+function foo(x) do
+  if (typeof x == "number" or x[0] ~= 3505894 or x[1] ~= 3) do
     console.log("2");
     return --[ () ]--0;
-  } else {
+  end else do
     console.log("1");
     return --[ () ]--0;
-  }
-}
+  end
+end
 
-function foo2(x) {
-  if (typeof x == "number" or x[0] ~= 3505894 or x[1] ~= 3) {
+function foo2(x) do
+  if (typeof x == "number" or x[0] ~= 3505894 or x[1] ~= 3) do
     return "xxx";
-  } else {
+  end else do
     return "xxxx";
-  }
-}
+  end
+end
 
-function foo3(x) {
-  if (typeof x == "number" or x[0] ~= 3505894 or x[1] ~= 3) {
+function foo3(x) do
+  if (typeof x == "number" or x[0] ~= 3505894 or x[1] ~= 3) do
     return 2;
-  } else {
+  end else do
     return 1;
-  }
-}
+  end
+end
 
-function foo4(x, h) {
-  if (typeof x == "number" or x[0] ~= 3505894 or x[1] ~= 3) {
+function foo4(x, h) do
+  if (typeof x == "number" or x[0] ~= 3505894 or x[1] ~= 3) do
     return --[ () ]--0;
-  } else {
+  end else do
     return Curry._1(h, --[ () ]--0);
-  }
-}
+  end
+end
 
-function foo5(x) {
-  if (typeof x == "number" or x[0] ~= 3505894 or x[1] ~= 3) {
+function foo5(x) do
+  if (typeof x == "number" or x[0] ~= 3505894 or x[1] ~= 3) do
     console.log("x");
     return --[ () ]--0;
-  } else {
+  end else do
     console.log("hi");
     return --[ () ]--0;
-  }
-}
+  end
+end
 
 exports.foo = foo;
 exports.foo2 = foo2;

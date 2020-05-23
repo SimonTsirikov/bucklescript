@@ -1,7 +1,7 @@
 'use strict';
 
 
-function small_float_array(x) {
+function small_float_array(x) do
   return --[ tuple ]--[
           [
             1,
@@ -10,9 +10,9 @@ function small_float_array(x) {
           ],
           x
         ];
-}
+end
 
-function longer_float_array(x) {
+function longer_float_array(x) do
   return --[ tuple ]--[
           [
             1,
@@ -58,7 +58,7 @@ function longer_float_array(x) {
           ],
           x
         ];
-}
+end
 
 exports.small_float_array = small_float_array;
 exports.longer_float_array = longer_float_array;

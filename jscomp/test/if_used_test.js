@@ -8,7 +8,7 @@ var shared = [
   "get_x"
 ];
 
-function point_init($$class) {
+function point_init($$class) do
   var x_init = CamlinternalOO.new_variable($$class, "");
   var ids = CamlinternalOO.new_methods_variables($$class, shared, ["x"]);
   var move = ids[0];
@@ -16,22 +16,22 @@ function point_init($$class) {
   var x = ids[2];
   CamlinternalOO.set_methods($$class, [
         get_x,
-        (function (self$1) {
+        (function (self$1) do
             return self$1[x];
-          }),
+          end),
         move,
-        (function (self$1, d) {
+        (function (self$1, d) do
             self$1[x] = self$1[x] + d | 0;
             return --[ () ]--0;
-          })
+          end)
       ]);
-  return (function (env, self, x_init$1) {
+  return (function (env, self, x_init$1) do
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x_init] = x_init$1;
       self$1[x] = x_init$1;
       return self$1;
-    });
-}
+    end);
+end
 
 var point = CamlinternalOO.make_class(shared, point_init);
 

@@ -9,8 +9,8 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 
 var v = "gso";
 
-function is_equal(param) {
-  if (Caml_bytes.get(Bytes.make(3, --[ "a" ]--97), 0) ~= --[ "a" ]--97) {
+function is_equal(param) do
+  if (Caml_bytes.get(Bytes.make(3, --[ "a" ]--97), 0) ~= --[ "a" ]--97) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -19,8 +19,8 @@ function is_equal(param) {
             4
           ]
         ];
-  }
-  if (Bytes.make(3, --[ "a" ]--97)[0] ~= --[ "a" ]--97) {
+  end
+  if (Bytes.make(3, --[ "a" ]--97)[0] ~= --[ "a" ]--97) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -29,10 +29,10 @@ function is_equal(param) {
             4
           ]
         ];
-  }
+  end
   var u = Bytes.make(3, --[ "a" ]--97);
   u[0] = --[ "b" ]--98;
-  if (u[0] ~= --[ "b" ]--98) {
+  if (u[0] ~= --[ "b" ]--98) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -41,55 +41,55 @@ function is_equal(param) {
             4
           ]
         ];
-  }
+  end
   return 0;
-}
+end
 
-function is_exception(param) {
-  try {
+function is_exception(param) do
+  try do
     throw Caml_builtin_exceptions.not_found;
-  }
-  catch (exn){
-    if (exn == Caml_builtin_exceptions.not_found) {
+  end
+  catch (exn)do
+    if (exn == Caml_builtin_exceptions.not_found) do
       return --[ () ]--0;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
-function is_normal_exception(_x) {
+function is_normal_exception(_x) do
   var A = Caml_exceptions.create("A");
   var v = [
     A,
     3
   ];
-  try {
+  try do
     throw v;
-  }
-  catch (raw_exn){
+  end
+  catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == A) {
-      if (exn[1] ~= 3) {
+    if (exn[0] == A) do
+      if (exn[1] ~= 3) do
         throw exn;
-      } else {
+      end else do
         return --[ () ]--0;
-      }
-    } else {
+      end
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
-function is_arbitrary_exception(param) {
+function is_arbitrary_exception(param) do
   var A = Caml_exceptions.create("A");
-  try {
+  try do
     throw A;
-  }
-  catch (exn){
+  end
+  catch (exn)do
     return --[ () ]--0;
-  }
-}
+  end
+end
 
 var suites_000 = --[ tuple ]--[
   "is_equal",

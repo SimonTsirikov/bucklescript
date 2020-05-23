@@ -1,13 +1,13 @@
 'use strict';
 
 
-function f1(x) {
+function f1(x) do
   return x(--[ () ]--0);
-}
+end
 
-function f2(x, y) {
+function f2(x, y) do
   return x(y, --[ () ]--0);
-}
+end
 
 exports.f1 = f1;
 exports.f2 = f2;

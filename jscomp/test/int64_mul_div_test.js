@@ -11,7 +11,7 @@ var Caml_int64 = require("../../lib/js/caml_int64.js");
 var Pervasives = require("../../lib/js/pervasives.js");
 var Caml_format = require("../../lib/js/caml_format.js");
 
-function commutative_mul(result, a, b) {
+function commutative_mul(result, a, b) do
   return --[ Eq ]--Block.__(0, [
             --[ tuple ]--[
               result,
@@ -22,7 +22,7 @@ function commutative_mul(result, a, b) {
               Caml_int64.mul(b, a)
             ]
           ]);
-}
+end
 
 var pairs = [
   --[ tuple ]--[
@@ -307,8 +307,8 @@ var pairs = [
   ]
 ];
 
-function from_pairs(prefix, pairs) {
-  return $$Array.to_list($$Array.mapi((function (i, param) {
+function from_pairs(prefix, pairs) do
+  return $$Array.to_list($$Array.mapi((function (i, param) do
                     var b = param[2];
                     var a = param[1];
                     var result = param[0];
@@ -328,12 +328,12 @@ function from_pairs(prefix, pairs) {
                                         ]),
                                       "%s_%d"
                                     ]), prefix, i),
-                            (function (param) {
+                            (function (param) do
                                 return commutative_mul(result, a, b);
-                              })
+                              end)
                           ];
-                  }), pairs));
-}
+                  end), pairs));
+end
 
 var small_pairs = [
   --[ tuple ]--[
@@ -1584,8 +1584,8 @@ var simple_divs = [
   ]
 ];
 
-function from(xs) {
-  return List.mapi((function (i, param) {
+function from(xs) do
+  return List.mapi((function (i, param) do
                 var d = param[3];
                 var c = param[2];
                 var b = param[1];
@@ -1601,7 +1601,7 @@ function from(xs) {
                                     ]),
                                   "small_divs %L"
                                 ]), i),
-                        (function (param) {
+                        (function (param) do
                             return --[ Eq ]--Block.__(0, [
                                       --[ tuple ]--[
                                         c,
@@ -1612,10 +1612,10 @@ function from(xs) {
                                         Caml_int64.mod_(a, b)
                                       ]
                                     ]);
-                          })
+                          end)
                       ];
-              }), $$Array.to_list(xs));
-}
+              end), $$Array.to_list(xs));
+end
 
 var to_string = [--[ tuple ]--[
     --[ int64 ]--[
@@ -1661,8 +1661,8 @@ var int64_compare_tests = [
   ]
 ];
 
-function from_compare(xs) {
-  return List.mapi((function (i, param) {
+function from_compare(xs) do
+  return List.mapi((function (i, param) do
                 var c = param[2];
                 var b = param[1];
                 var a = param[0];
@@ -1677,18 +1677,18 @@ function from_compare(xs) {
                                     ]),
                                   "int64_compare %L"
                                 ]), i),
-                        (function (param) {
+                        (function (param) do
                             return --[ Eq ]--Block.__(0, [
                                       c,
                                       Caml_int64.compare(a, b)
                                     ]);
-                          })
+                          end)
                       ];
-              }), $$Array.to_list(xs));
-}
+              end), $$Array.to_list(xs));
+end
 
-function from_to_string(xs) {
-  return List.mapi((function (i, param) {
+function from_to_string(xs) do
+  return List.mapi((function (i, param) do
                 var str_a = param[1];
                 var a = param[0];
                 return --[ tuple ]--[
@@ -1702,17 +1702,17 @@ function from_to_string(xs) {
                                     ]),
                                   "to_string %L"
                                 ]), i),
-                        (function (param) {
+                        (function (param) do
                             return --[ Eq ]--Block.__(0, [
                                       str_a,
                                       Caml_format.caml_int64_format("%d", a)
                                     ]);
-                          })
+                          end)
                       ];
-              }), $$Array.to_list(xs));
-}
+              end), $$Array.to_list(xs));
+end
 
-Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pairs), Pervasives.$at(from_pairs("small", small_pairs), Pervasives.$at(List.mapi((function (i, param) {
+Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pairs), Pervasives.$at(from_pairs("small", small_pairs), Pervasives.$at(List.mapi((function (i, param) do
                         var f = param[1];
                         var i64 = param[0];
                         return --[ tuple ]--[
@@ -1728,14 +1728,14 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                             ]),
                                           "to_float_%d"
                                         ]), i),
-                                (function (param) {
+                                (function (param) do
                                     return --[ Eq ]--Block.__(0, [
                                               Caml_int64.to_float(i64),
                                               f
                                             ]);
-                                  })
+                                  end)
                               ];
-                      }), $$Array.to_list(to_floats)), Pervasives.$at(List.mapi((function (i, param) {
+                      end), $$Array.to_list(to_floats)), Pervasives.$at(List.mapi((function (i, param) do
                             var i64 = param[1];
                             var f = param[0];
                             return --[ tuple ]--[
@@ -1751,30 +1751,30 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                                 ]),
                                               "of_float_%d"
                                             ]), i),
-                                    (function (param) {
+                                    (function (param) do
                                         return --[ Eq ]--Block.__(0, [
                                                   Caml_int64.of_float(f),
                                                   i64
                                                 ]);
-                                      })
+                                      end)
                                   ];
-                          }), $$Array.to_list(of_float_pairs)), Pervasives.$at(--[ :: ]--[
+                          end), $$Array.to_list(of_float_pairs)), Pervasives.$at(--[ :: ]--[
                           --[ tuple ]--[
                             "compare_check_complete",
-                            (function (param) {
+                            (function (param) do
                                 return --[ Eq ]--Block.__(0, [
-                                          $$Array.map((function (param) {
+                                          $$Array.map((function (param) do
                                                   return true;
-                                                }), check_complete_compare),
+                                                end), check_complete_compare),
                                           check_complete_compare
                                         ]);
-                              })
+                              end)
                           ],
                           --[ [] ]--0
                         ], Pervasives.$at(from(simple_divs), Pervasives.$at(from_compare(int64_compare_tests), --[ :: ]--[
                                   --[ tuple ]--[
                                     "div_rem_0",
-                                    (function (param) {
+                                    (function (param) do
                                         return --[ Eq ]--Block.__(0, [
                                                   --[ int64 ]--[
                                                     --[ hi ]--0,
@@ -1785,12 +1785,12 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                                     --[ lo ]--0
                                                   ]
                                                 ]);
-                                      })
+                                      end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
                                       "div_rem_1",
-                                      (function (param) {
+                                      (function (param) do
                                           return --[ Eq ]--Block.__(0, [
                                                     --[ int64 ]--[
                                                       --[ hi ]---1,
@@ -1801,17 +1801,17 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                                       --[ lo ]--4294967295
                                                     ]
                                                   ]);
-                                        })
+                                        end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
                                         "File \"int64_mul_div_test.ml\", line 214, characters 5-12",
-                                        (function (param) {
+                                        (function (param) do
                                             return --[ Eq ]--Block.__(0, [
                                                       Caml_int64.to_float(Int64.max_int),
                                                       9.22337203685477581e+18
                                                     ]);
-                                          })
+                                          end)
                                       ],
                                       --[ [] ]--0
                                     ]

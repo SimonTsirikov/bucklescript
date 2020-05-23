@@ -7,29 +7,29 @@ var Belt_Array = require("../../lib/js/belt_Array.js");
 var Belt_SetInt = require("../../lib/js/belt_SetInt.js");
 var Array_data_util = require("./array_data_util.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, v) {
+function b(loc, v) do
   return Mt.bool_suites(test_id, suites, loc, v);
-}
+end
 
-function $eq$tilde(s, i) {
+function $eq$tilde(s, i) do
   return Belt_SetInt.eq(Belt_SetInt.fromArray(i), s);
-}
+end
 
-function $eq$star(a, b) {
+function $eq$star(a, b) do
   return Belt_SetInt.eq(Belt_SetInt.fromArray(a), Belt_SetInt.fromArray(b));
-}
+end
 
 b("File \"bs_set_int_test.ml\", line 17, characters 4-11", $eq$star([
           1,
@@ -53,17 +53,17 @@ var u = Belt_SetInt.intersect(Belt_SetInt.fromArray([
 
 b("File \"bs_set_int_test.ml\", line 23, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray([3]), u));
 
-function range(i, j) {
-  return $$Array.init((j - i | 0) + 1 | 0, (function (k) {
+function range(i, j) do
+  return $$Array.init((j - i | 0) + 1 | 0, (function (k) do
                 return k + i | 0;
-              }));
-}
+              end));
+end
 
-function revRange(i, j) {
-  return $$Array.of_list(List.rev($$Array.to_list($$Array.init((j - i | 0) + 1 | 0, (function (k) {
+function revRange(i, j) do
+  return $$Array.of_list(List.rev($$Array.to_list($$Array.init((j - i | 0) + 1 | 0, (function (k) do
                             return k + i | 0;
-                          })))));
-}
+                          end)))));
+end
 
 var v = Belt_SetInt.fromArray($$Array.append(range(100, 1000), revRange(400, 1500)));
 
@@ -71,21 +71,21 @@ var i = range(100, 1500);
 
 b("File \"bs_set_int_test.ml\", line 36, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray(i), v));
 
-var match = Belt_SetInt.partition(v, (function (x) {
+var match = Belt_SetInt.partition(v, (function (x) do
         return x % 3 == 0;
-      }));
+      end));
 
 var l = Belt_SetInt.empty;
 
 var r = Belt_SetInt.empty;
 
-for(var i$1 = 100; i$1 <= 1500; ++i$1){
-  if (i$1 % 3 == 0) {
+for(var i$1 = 100; i$1 <= 1500; ++i$1)do
+  if (i$1 % 3 == 0) do
     l = Belt_SetInt.add(l, i$1);
-  } else {
+  end else do
     r = Belt_SetInt.add(r, i$1);
-  }
-}
+  end
+end
 
 var nl = l;
 
@@ -157,15 +157,15 @@ var minv = Belt_SetInt.minUndefined(v$1);
 
 var maxv = Belt_SetInt.maxUndefined(v$1);
 
-function approx(loc, x, y) {
+function approx(loc, x, y) do
   return b(loc, x == y);
-}
+end
 
-eq("File \"bs_set_int_test.ml\", line 74, characters 5-12", Belt_SetInt.reduce(v$1, 0, (function (x, y) {
+eq("File \"bs_set_int_test.ml\", line 74, characters 5-12", Belt_SetInt.reduce(v$1, 0, (function (x, y) do
             return x + y | 0;
-          })), Belt_Array.reduce(ss, 0, (function (prim, prim$1) {
+          end)), Belt_Array.reduce(ss, 0, (function (prim, prim$1) do
             return prim + prim$1 | 0;
-          })));
+          end)));
 
 approx("File \"bs_set_int_test.ml\", line 75, characters 9-16", -1, minv);
 
@@ -215,9 +215,9 @@ var v$10 = Belt_SetInt.remove(v$9, 1);
 
 b("File \"bs_set_int_test.ml\", line 95, characters 4-11", Belt_SetInt.isEmpty(v$10));
 
-var v$11 = Belt_Array.makeByAndShuffle(1000000, (function (i) {
+var v$11 = Belt_Array.makeByAndShuffle(1000000, (function (i) do
         return i;
-      }));
+      end));
 
 var u$1 = Belt_SetInt.fromArray(v$11);
 
@@ -340,17 +340,17 @@ var v3 = Belt_SetInt.removeMany(v2, [
       2001
     ]);
 
-var us = Belt_Array.map(Array_data_util.randomRange(1000, 3000), (function (x) {
+var us = Belt_Array.map(Array_data_util.randomRange(1000, 3000), (function (x) do
         return Belt_SetInt.has(v$12, x);
-      }));
+      end));
 
-var counted = Belt_Array.reduce(us, 0, (function (acc, x) {
-        if (x) {
+var counted = Belt_Array.reduce(us, 0, (function (acc, x) do
+        if (x) do
           return acc + 1 | 0;
-        } else {
+        end else do
           return acc;
-        }
-      }));
+        end
+      end));
 
 eq("File \"bs_set_int_test.ml\", line 168, characters 5-12", counted, 1001);
 

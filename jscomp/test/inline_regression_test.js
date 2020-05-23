@@ -7,51 +7,51 @@ var $$String = require("../../lib/js/string.js");
 var Filename = require("../../lib/js/filename.js");
 var Caml_string = require("../../lib/js/caml_string.js");
 
-function generic_basename(is_dir_sep, current_dir_name, name) {
-  if (name == "") {
+function generic_basename(is_dir_sep, current_dir_name, name) do
+  if (name == "") do
     return current_dir_name;
-  } else {
+  end else do
     var _n = #name - 1 | 0;
-    while(true) {
+    while(true) do
       var n = _n;
-      if (n < 0) {
+      if (n < 0) do
         return $$String.sub(name, 0, 1);
-      } else if (Curry._2(is_dir_sep, name, n)) {
+      end else if (Curry._2(is_dir_sep, name, n)) do
         _n = n - 1 | 0;
         continue ;
-      } else {
+      end else do
         var _n$1 = n;
         var p = n + 1 | 0;
-        while(true) {
+        while(true) do
           var n$1 = _n$1;
-          if (n$1 < 0) {
+          if (n$1 < 0) do
             return $$String.sub(name, 0, p);
-          } else if (Curry._2(is_dir_sep, name, n$1)) {
+          end else if (Curry._2(is_dir_sep, name, n$1)) do
             return $$String.sub(name, n$1 + 1 | 0, (p - n$1 | 0) - 1 | 0);
-          } else {
+          end else do
             _n$1 = n$1 - 1 | 0;
             continue ;
-          }
-        };
-      }
-    };
-  }
-}
+          end
+        end;
+      end
+    end;
+  end
+end
 
-function basename(param) {
-  return generic_basename((function (s, i) {
+function basename(param) do
+  return generic_basename((function (s, i) do
                 return Caml_string.get(s, i) == --[ "/" ]--47;
-              }), Filename.current_dir_name, param);
-}
+              end), Filename.current_dir_name, param);
+end
 
 var suites_000 = --[ tuple ]--[
   "basename",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 basename("b/c/a.b"),
                 "a.b"
               ]);
-    })
+    end)
 ];
 
 var suites = --[ :: ]--[

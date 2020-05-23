@@ -20,30 +20,30 @@ var Caml_string = require("../../lib/js/caml_string.js");
 var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(f, param) {
+function eq(f, param) do
   return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
-}
+end
 
-function test(loc, b) {
+function test(loc, b) do
   return eq(loc, --[ tuple ]--[
               b,
               true
             ]);
-}
+end
 
-function id(x) {
+function id(x) do
   return x;
-}
+end
 
-function test0(param) {
+function test0(param) do
   return ((((Curry._2(Scanf.sscanf("", --[ Format ]--[
                           --[ End_of_format ]--0,
                           ""
@@ -83,11 +83,11 @@ function test0(param) {
                     ]),
                   " %d"
                 ]), id) | 0;
-}
+end
 
 test("File \"tscanf_test.ml\", line 42, characters 5-12", test0(--[ () ]--0) == 21);
 
-function test1(param) {
+function test1(param) do
   return (((Curry._1(Scanf.sscanf("1", --[ Format ]--[
                         --[ Int ]--Block.__(4, [
                             --[ Int_d ]--0,
@@ -144,11 +144,11 @@ function test1(param) {
                     ]),
                   " %da"
                 ]), id) | 0;
-}
+end
 
 test("File \"tscanf_test.ml\", line 54, characters 5-12", test1(--[ () ]--0) == 5);
 
-function test2(param) {
+function test2(param) do
   return (Curry._1(Scanf.sscanf("123", --[ Format ]--[
                     --[ Int ]--Block.__(4, [
                         --[ Int_i ]--3,
@@ -186,11 +186,11 @@ function test2(param) {
                     ]),
                   " %1da"
                 ]), id) | 0;
-}
+end
 
 test("File \"tscanf_test.ml\", line 63, characters 5-12", test2(--[ () ]--0) == 259);
 
-function test3(param) {
+function test3(param) do
   return ((Curry._1(Scanf.sscanf("0xff", --[ Format ]--[
                       --[ Int ]--Block.__(4, [
                           --[ Int_i ]--3,
@@ -242,11 +242,11 @@ function test3(param) {
                     ]),
                   " %1da"
                 ]), id) | 0;
-}
+end
 
 test("File \"tscanf_test.ml\", line 73, characters 5-12", test3(--[ () ]--0) == -214);
 
-function test4(param) {
+function test4(param) do
   if (Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
@@ -255,9 +255,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == 1.0;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-1"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -265,9 +265,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == -1.0;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+1"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -275,9 +275,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == 1.0;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1."), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1."), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -285,9 +285,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == 1.0;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string(".1"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string(".1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -295,9 +295,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == 0.1;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-.1"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-.1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -305,9 +305,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == -0.1;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+.1"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+.1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -315,9 +315,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == 0.1;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+1."), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+1."), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -325,9 +325,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == 1.0;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-1."), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-1."), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -335,9 +335,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == -1.0;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0 1. 1.3"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0 1. 1.3"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -361,9 +361,9 @@ function test4(param) {
                     ])
                 ]),
               "%f %f %f"
-            ]), (function (b0, b1, b2) {
+            ]), (function (b0, b1, b2) do
             return b0 == 0.0 and b1 == 1.0 ? b2 == 1.3 : false;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0.113"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0.113"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ Lit_padding ]--Block.__(0, [
@@ -374,9 +374,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%4f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == 0.11;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0.113"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0.113"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ Lit_padding ]--Block.__(0, [
@@ -387,9 +387,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%5f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == 0.113;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("000.113"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("000.113"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ Lit_padding ]--Block.__(0, [
@@ -400,9 +400,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%15f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == 0.113;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+000.113"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+000.113"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ Lit_padding ]--Block.__(0, [
@@ -413,9 +413,9 @@ function test4(param) {
                   --[ End_of_format ]--0
                 ]),
               "%15f"
-            ]), (function (b0) {
+            ]), (function (b0) do
             return b0 == 0.113;
-          }))) {
+          end))) do
     return Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-000.113"), --[ Format ]--[
                     --[ Float ]--Block.__(8, [
                         --[ Float_f ]--0,
@@ -427,17 +427,17 @@ function test4(param) {
                         --[ End_of_format ]--0
                       ]),
                     "%15f"
-                  ]), (function (b0) {
+                  ]), (function (b0) do
                   return b0 == -0.113;
-                }));
-  } else {
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 110, characters 5-12", test4(--[ () ]--0));
 
-function test5(param) {
+function test5(param) do
   if (Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1e1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_e ]--3,
@@ -446,9 +446,9 @@ function test5(param) {
                   --[ End_of_format ]--0
                 ]),
               "%e"
-            ]), (function (b) {
+            ]), (function (b) do
             return b == 10.0;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1e+1"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1e+1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_e ]--3,
                   --[ No_padding ]--0,
@@ -456,9 +456,9 @@ function test5(param) {
                   --[ End_of_format ]--0
                 ]),
               "%e"
-            ]), (function (b) {
+            ]), (function (b) do
             return b == 10.0;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("10e-1"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("10e-1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_e ]--3,
                   --[ No_padding ]--0,
@@ -466,9 +466,9 @@ function test5(param) {
                   --[ End_of_format ]--0
                 ]),
               "%e"
-            ]), (function (b) {
+            ]), (function (b) do
             return b == 1.0;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("10.e-1"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("10.e-1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_e ]--3,
                   --[ No_padding ]--0,
@@ -476,9 +476,9 @@ function test5(param) {
                   --[ End_of_format ]--0
                 ]),
               "%e"
-            ]), (function (b) {
+            ]), (function (b) do
             return b == 1.0;
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1e1 1.e+1 1.3e-1"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1e1 1.e+1 1.3e-1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_e ]--3,
                   --[ No_padding ]--0,
@@ -502,9 +502,9 @@ function test5(param) {
                     ])
                 ]),
               "%e %e %e"
-            ]), (function (b1, b2, b3) {
+            ]), (function (b1, b2, b3) do
             return b1 == 10.0 and b2 == b1 ? b3 == 0.13 : false;
-          }))) {
+          end))) do
     return Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1 1.1 0e+1 1.3e-1"), --[ Format ]--[
                     --[ Float ]--Block.__(8, [
                         --[ Float_g ]--9,
@@ -537,21 +537,21 @@ function test5(param) {
                           ])
                       ]),
                     "%g %g %g %g"
-                  ]), (function (b1, b2, b3, b4) {
-                  if (b1 == 1.0 and b2 == 1.1 and b3 == 0.0) {
+                  ]), (function (b1, b2, b3, b4) do
+                  if (b1 == 1.0 and b2 == 1.1 and b3 == 0.0) do
                     return b4 == 0.13;
-                  } else {
+                  end else do
                     return false;
-                  }
-                }));
-  } else {
+                  end
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 133, characters 5-12", test5(--[ () ]--0));
 
-function test6(param) {
+function test6(param) do
   if (Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("truetrue"), --[ Format ]--[
               --[ Bool ]--Block.__(9, [
                   --[ No_padding ]--0,
@@ -561,7 +561,7 @@ function test6(param) {
                     ])
                 ]),
               "%B%B"
-            ]), (function (b1, b2) {
+            ]), (function (b1, b2) do
             return Caml_obj.caml_equal(--[ tuple ]--[
                         b1,
                         b2
@@ -569,7 +569,7 @@ function test6(param) {
                         true,
                         true
                       ]);
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("truefalse"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("truefalse"), --[ Format ]--[
               --[ Bool ]--Block.__(9, [
                   --[ No_padding ]--0,
                   --[ Bool ]--Block.__(9, [
@@ -578,7 +578,7 @@ function test6(param) {
                     ])
                 ]),
               "%B%B"
-            ]), (function (b1, b2) {
+            ]), (function (b1, b2) do
             return Caml_obj.caml_equal(--[ tuple ]--[
                         b1,
                         b2
@@ -586,7 +586,7 @@ function test6(param) {
                         true,
                         false
                       ]);
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("falsetrue"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("falsetrue"), --[ Format ]--[
               --[ Bool ]--Block.__(9, [
                   --[ No_padding ]--0,
                   --[ Bool ]--Block.__(9, [
@@ -595,7 +595,7 @@ function test6(param) {
                     ])
                 ]),
               "%B%B"
-            ]), (function (b1, b2) {
+            ]), (function (b1, b2) do
             return Caml_obj.caml_equal(--[ tuple ]--[
                         b1,
                         b2
@@ -603,7 +603,7 @@ function test6(param) {
                         false,
                         true
                       ]);
-          })) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("falsefalse"), --[ Format ]--[
+          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("falsefalse"), --[ Format ]--[
               --[ Bool ]--Block.__(9, [
                   --[ No_padding ]--0,
                   --[ Bool ]--Block.__(9, [
@@ -612,7 +612,7 @@ function test6(param) {
                     ])
                 ]),
               "%B%B"
-            ]), (function (b1, b2) {
+            ]), (function (b1, b2) do
             return Caml_obj.caml_equal(--[ tuple ]--[
                         b1,
                         b2
@@ -620,7 +620,7 @@ function test6(param) {
                         false,
                         false
                       ]);
-          }))) {
+          end))) do
     return Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("true false"), --[ Format ]--[
                     --[ Bool ]--Block.__(9, [
                         --[ No_padding ]--0,
@@ -633,7 +633,7 @@ function test6(param) {
                           ])
                       ]),
                     "%B %B"
-                  ]), (function (b1, b2) {
+                  ]), (function (b1, b2) do
                   return Caml_obj.caml_equal(--[ tuple ]--[
                               b1,
                               b2
@@ -641,15 +641,15 @@ function test6(param) {
                               true,
                               false
                             ]);
-                }));
-  } else {
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 150, characters 5-12", test6(--[ () ]--0));
 
-function test7(param) {
+function test7(param) do
   if (Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("'a' '\n' '\t' '\0' ' '"), --[ Format ]--[
               --[ Caml_char ]--Block.__(1, [--[ Char_literal ]--Block.__(12, [
                       --[ " " ]--32,
@@ -665,9 +665,9 @@ function test7(param) {
                             ])])
                     ])]),
               "%C %C %C %C %C"
-            ]), (function (c1, c2, c3, c4, c5) {
+            ]), (function (c1, c2, c3, c4, c5) do
             return c1 == --[ "a" ]--97 and c2 == --[ "\n" ]--10 and c3 == --[ "\t" ]--9 and c4 == --[ "\000" ]--0 ? c5 == --[ " " ]--32 : false;
-          }))) {
+          end))) do
     return Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("a \n \t \0  b"), --[ Format ]--[
                     --[ Char ]--Block.__(0, [--[ Char_literal ]--Block.__(12, [
                             --[ " " ]--32,
@@ -680,21 +680,21 @@ function test7(param) {
                                   ])])
                           ])]),
                     "%c %c %c "
-                  ]), (function (c1, c2, c3) {
-                  if (c1 == --[ "a" ]--97 and c2 == --[ "\000" ]--0) {
+                  ]), (function (c1, c2, c3) do
+                  if (c1 == --[ "a" ]--97 and c2 == --[ "\000" ]--0) do
                     return c3 == --[ "b" ]--98;
-                  } else {
+                  end else do
                     return false;
-                  }
-                }));
-  } else {
+                  end
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 168, characters 5-12", test7(--[ () ]--0));
 
-function verify_read(c) {
+function verify_read(c) do
   var s = Curry._1(Printf.sprintf(--[ Format ]--[
             --[ Caml_char ]--Block.__(1, [--[ End_of_format ]--0]),
             "%C"
@@ -703,9 +703,9 @@ function verify_read(c) {
   if (Curry._1(Scanf.bscanf(ib, --[ Format ]--[
               --[ Caml_char ]--Block.__(1, [--[ End_of_format ]--0]),
               "%C"
-            ]), id) == c) {
+            ]), id) == c) do
     return 0;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -714,23 +714,23 @@ function verify_read(c) {
             2
           ]
         ];
-  }
-}
+  end
+end
 
-function verify_scan_Chars(param) {
-  for(var i = 0; i <= 255; ++i){
+function verify_scan_Chars(param) do
+  for(var i = 0; i <= 255; ++i)do
     verify_read(Pervasives.char_of_int(i));
-  }
+  end
   return --[ () ]--0;
-}
+end
 
-function test8(param) {
+function test8(param) do
   return verify_scan_Chars(--[ () ]--0) == --[ () ]--0;
-}
+end
 
 test("File \"tscanf_test.ml\", line 183, characters 5-12", verify_scan_Chars(--[ () ]--0) == --[ () ]--0);
 
-function unit(fmt, s) {
+function unit(fmt, s) do
   var ib = Scanf.Scanning.from_string(Curry._1(Printf.sprintf(--[ Format ]--[
                 --[ Caml_string ]--Block.__(3, [
                     --[ No_padding ]--0,
@@ -739,11 +739,11 @@ function unit(fmt, s) {
                 "%S"
               ]), s));
   return Curry._1(Scanf.bscanf(ib, fmt), id);
-}
+end
 
-function test_fmt(fmt, s) {
+function test_fmt(fmt, s) do
   return unit(fmt, s) == s;
-}
+end
 
 var test9_string = "\xef\xbb\xbf";
 
@@ -755,70 +755,70 @@ var partial_arg = --[ Format ]--[
   "%S"
 ];
 
-function test_S(param) {
+function test_S(param) do
   return test_fmt(partial_arg, param);
-}
+end
 
-function test9(param) {
+function test9(param) do
   if (test_S("poi") and test_S("a\"b") and test_S("a\nb") and test_S("a\nb") and test_S("a\\\nb \\\nc\n\\\nb") and test_S("a\\\n\\\n\\\nb \\\nc\n\\\nb") and test_S("\xef") and test_S("\\xef") and Curry._1(Scanf.sscanf("\"\\xef\"", --[ Format ]--[
               --[ Caml_string ]--Block.__(3, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
                 ]),
               "%S"
-            ]), (function (s) {
+            ]), (function (s) do
             return s;
-          })) == "\xef" and Curry._1(Scanf.sscanf("\"\\xef\\xbb\\xbf\"", --[ Format ]--[
+          end)) == "\xef" and Curry._1(Scanf.sscanf("\"\\xef\\xbb\\xbf\"", --[ Format ]--[
               --[ Caml_string ]--Block.__(3, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
                 ]),
               "%S"
-            ]), (function (s) {
+            ]), (function (s) do
             return s;
-          })) == test9_string and Curry._1(Scanf.sscanf("\"\\xef\\xbb\\xbf\"", --[ Format ]--[
+          end)) == test9_string and Curry._1(Scanf.sscanf("\"\\xef\\xbb\\xbf\"", --[ Format ]--[
               --[ Caml_string ]--Block.__(3, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
                 ]),
               "%S"
-            ]), (function (s) {
+            ]), (function (s) do
             return s;
-          })) == "\xef\xbb\xbf" and Curry._1(Scanf.sscanf("\"\xef\xbb\xbf\"", --[ Format ]--[
+          end)) == "\xef\xbb\xbf" and Curry._1(Scanf.sscanf("\"\xef\xbb\xbf\"", --[ Format ]--[
               --[ Caml_string ]--Block.__(3, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
                 ]),
               "%S"
-            ]), (function (s) {
+            ]), (function (s) do
             return s;
-          })) == test9_string and Curry._1(Scanf.sscanf("\"\\\\xef\\\\xbb\\\\xbf\"", --[ Format ]--[
+          end)) == test9_string and Curry._1(Scanf.sscanf("\"\\\\xef\\\\xbb\\\\xbf\"", --[ Format ]--[
               --[ Caml_string ]--Block.__(3, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
                 ]),
               "%S"
-            ]), (function (s) {
+            ]), (function (s) do
             return s;
-          })) == "\\xef\\xbb\\xbf") {
+          end)) == "\\xef\\xbb\\xbf") do
     return Curry._1(Scanf.sscanf("\" \"", --[ Format ]--[
                     --[ Caml_string ]--Block.__(3, [
                         --[ No_padding ]--0,
                         --[ End_of_format ]--0
                       ]),
                     "%S"
-                  ]), (function (s) {
+                  ]), (function (s) do
                   return s;
-                })) == " ";
-  } else {
+                end)) == " ";
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 230, characters 5-12", test9(--[ () ]--0));
 
-function test10(param) {
-  var unit = function (s) {
+function test10(param) do
+  var unit = function (s) do
     var ib = Scanf.Scanning.from_string(s);
     return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                     --[ Caml_string ]--Block.__(3, [
@@ -827,7 +827,7 @@ function test10(param) {
                       ]),
                     "%S"
                   ]), id);
-  };
+  end;
   var res = Curry._1(Scanf.sscanf("Une chaine: \"celle-ci\" et \"celle-la\"!", --[ Format ]--[
             --[ String ]--Block.__(2, [
                 --[ No_padding ]--0,
@@ -864,19 +864,19 @@ function test10(param) {
                   ])
               ]),
             "%s %s %S %s %S %s"
-          ]), (function (s1, s2, s3, s4, s5, s6) {
+          ]), (function (s1, s2, s3, s4, s5, s6) do
           return s1 .. (s2 .. (s3 .. (s4 .. (s5 .. s6))));
-        }));
-  if (res == "Unechaine:celle-cietcelle-la!" and unit("\"a\\\n  b\"") == "ab" and unit("\"\\\n  ab\"") == "ab" and unit("\"\n\\\n  ab\"") == "\nab" and unit("\"\n\\\n  a\nb\"") == "\na\nb" and unit("\"\n\\\n  \\\n  a\nb\"") == "\na\nb" and unit("\"\n\\\n  a\n\\\nb\\\n\"") == "\na\nb") {
+        end));
+  if (res == "Unechaine:celle-cietcelle-la!" and unit("\"a\\\n  b\"") == "ab" and unit("\"\\\n  ab\"") == "ab" and unit("\"\n\\\n  ab\"") == "\nab" and unit("\"\n\\\n  a\nb\"") == "\na\nb" and unit("\"\n\\\n  \\\n  a\nb\"") == "\na\nb" and unit("\"\n\\\n  a\n\\\nb\\\n\"") == "\na\nb") do
     return unit("\"a\\\n  \"") == "a";
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 254, characters 5-12", test10(--[ () ]--0));
 
-function test11(param) {
+function test11(param) do
   if (Curry._1(Scanf.sscanf("Pierre\tWeis\t70", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -895,9 +895,9 @@ function test11(param) {
                     ])
                 ]),
               "%s %s %s"
-            ]), (function (prenom, nom, poids) {
+            ]), (function (prenom, nom, poids) do
             return prenom == "Pierre" and nom == "Weis" ? Caml_format.caml_int_of_string(poids) == 70 : false;
-          })) and Curry._1(Scanf.sscanf("Jean-Luc\tde Leage\t68", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Jean-Luc\tde Leage\t68", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\xff\xfd\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
@@ -919,9 +919,9 @@ function test11(param) {
                     ])
                 ]),
               "%[^\t] %[^\t] %d"
-            ]), (function (prenom, nom, poids) {
+            ]), (function (prenom, nom, poids) do
             return prenom == "Jean-Luc" and nom == "de Leage" ? poids == 68 : false;
-          }))) {
+          end))) do
     return Curry._1(Scanf.sscanf("Daniel\tde Rauglaudre\t66", --[ Format ]--[
                     --[ String ]--Block.__(2, [
                         --[ No_padding ]--0,
@@ -948,36 +948,36 @@ function test11(param) {
                           ])
                       ]),
                     "%s@\t %s@\t %d"
-                  ]), (function (prenom, nom, poids) {
-                  if (prenom == "Daniel" and nom == "de Rauglaudre") {
+                  ]), (function (prenom, nom, poids) do
+                  if (prenom == "Daniel" and nom == "de Rauglaudre") do
                     return poids == 66;
-                  } else {
+                  end else do
                     return false;
-                  }
-                }));
-  } else {
+                  end
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function test110(param) {
+function test110(param) do
   if (Curry._2(Scanf.sscanf("", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ End_of_format ]--0
                 ]),
               " "
-            ]), (function (x) {
+            ]), (function (x) do
             return x;
-          }), "") == "" and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end), "") == "" and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
                 ]),
               "%s"
-            ]), (function (x) {
+            ]), (function (x) do
             return x == "";
-          })) and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ String ]--Block.__(2, [
@@ -986,9 +986,9 @@ function test110(param) {
                     ])
                 ]),
               "%s%s"
-            ]), (function (x, y) {
+            ]), (function (x, y) do
             return x == "" ? y == "" : false;
-          })) and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Char_literal ]--Block.__(12, [
@@ -997,9 +997,9 @@ function test110(param) {
                     ])
                 ]),
               "%s "
-            ]), (function (x) {
+            ]), (function (x) do
             return x == "";
-          })) and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ String ]--Block.__(2, [
@@ -1008,9 +1008,9 @@ function test110(param) {
                     ])
                 ]),
               " %s"
-            ]), (function (x) {
+            ]), (function (x) do
             return x == "";
-          })) and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ String ]--Block.__(2, [
@@ -1022,18 +1022,18 @@ function test110(param) {
                     ])
                 ]),
               " %s "
-            ]), (function (x) {
+            ]), (function (x) do
             return x == "";
-          })) and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\xff\xfb\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
                   --[ End_of_format ]--0
                 ]),
               "%[^\n]"
-            ]), (function (x) {
+            ]), (function (x) do
             return x == "";
-          })) and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\xff\xfb\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
@@ -1043,17 +1043,17 @@ function test110(param) {
                     ])
                 ]),
               "%[^\n] "
-            ]), (function (x) {
+            ]), (function (x) do
             return x == "";
-          })) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
                 ]),
               "%s"
-            ]), (function (x) {
+            ]), (function (x) do
             return x == "";
-          })) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ String ]--Block.__(2, [
@@ -1062,9 +1062,9 @@ function test110(param) {
                     ])
                 ]),
               "%s%s"
-            ]), (function (x, y) {
+            ]), (function (x, y) do
             return x == "" ? y == "" : false;
-          })) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ String ]--Block.__(2, [
@@ -1076,9 +1076,9 @@ function test110(param) {
                     ])
                 ]),
               " %s "
-            ]), (function (x) {
+            ]), (function (x) do
             return x == "";
-          })) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ String ]--Block.__(2, [
@@ -1093,9 +1093,9 @@ function test110(param) {
                     ])
                 ]),
               " %s %s"
-            ]), (function (x, y) {
+            ]), (function (x, y) do
             return x == "" ? x == y : false;
-          })) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ String ]--Block.__(2, [
@@ -1114,9 +1114,9 @@ function test110(param) {
                     ])
                 ]),
               " %s@ %s"
-            ]), (function (x, y) {
+            ]), (function (x, y) do
             return x == "" ? x == y : false;
-          })) and Curry._1(Scanf.sscanf(" poi !", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf(" poi !", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ String ]--Block.__(2, [
@@ -1138,9 +1138,9 @@ function test110(param) {
                     ])
                 ]),
               " %s@ %s@."
-            ]), (function (x, y) {
+            ]), (function (x, y) do
             return x == "poi" ? y == "!" : false;
-          }))) {
+          end))) do
     return Curry._1(Scanf.sscanf(" poi !", --[ Format ]--[
                     --[ String ]--Block.__(2, [
                         --[ No_padding ]--0,
@@ -1160,19 +1160,19 @@ function test110(param) {
                           ])
                       ]),
                     "%s@ %s@."
-                  ]), (function (x, y) {
-                  if (x == "") {
+                  ]), (function (x, y) do
+                  if (x == "") do
                     return y == "poi !";
-                  } else {
+                  end else do
                     return false;
-                  }
-                }));
-  } else {
+                  end
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function test111(param) {
+function test111(param) do
   return Curry._1(Scanf.sscanf("", --[ Format ]--[
                   --[ Scan_char_set ]--Block.__(20, [
                       undefined,
@@ -1183,18 +1183,18 @@ function test111(param) {
                         ])
                     ]),
                   "%[^\n]@\n"
-                ]), (function (x) {
+                ]), (function (x) do
                 return x == "";
-              }));
-}
+              end));
+end
 
 test("File \"tscanf_test.ml\", line 293, characters 5-12", test11(--[ () ]--0) and test110(--[ () ]--0) and test111(--[ () ]--0));
 
-function ib(param) {
+function ib(param) do
   return Scanf.Scanning.from_string("[1;2;3;4; ]");
-}
+end
 
-function f(ib) {
+function f(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 " [",
@@ -1216,7 +1216,7 @@ function f(ib) {
                         ])
                     ]),
                   " %i;"
-                ]), (function (i) {
+                ]), (function (i) do
                 return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                                 --[ Char_literal ]--Block.__(12, [
                                     --[ " " ]--32,
@@ -1231,7 +1231,7 @@ function f(ib) {
                                       ])
                                   ]),
                                 " %i;"
-                              ]), (function (j) {
+                              ]), (function (j) do
                               return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                                               --[ Char_literal ]--Block.__(12, [
                                                   --[ " " ]--32,
@@ -1246,7 +1246,7 @@ function f(ib) {
                                                     ])
                                                 ]),
                                               " %i;"
-                                            ]), (function (k) {
+                                            ]), (function (k) do
                                             return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                                                             --[ Char_literal ]--Block.__(12, [
                                                                 --[ " " ]--32,
@@ -1261,7 +1261,7 @@ function f(ib) {
                                                                   ])
                                                               ]),
                                                             " %i;"
-                                                          ]), (function (l) {
+                                                          ]), (function (l) do
                                                           Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                                                                     --[ String_literal ]--Block.__(11, [
                                                                         " ]",
@@ -1282,13 +1282,13 @@ function f(ib) {
                                                                     ]
                                                                   ]
                                                                 ];
-                                                        }));
-                                          }));
-                            }));
-              }));
-}
+                                                        end));
+                                          end));
+                            end));
+              end));
+end
 
-function test12(param) {
+function test12(param) do
   return Caml_obj.caml_equal(f(Scanf.Scanning.from_string("[1;2;3;4; ]")), --[ :: ]--[
               1,
               --[ :: ]--[
@@ -1302,12 +1302,12 @@ function test12(param) {
                 ]
               ]
             ]);
-}
+end
 
 test("File \"tscanf_test.ml\", line 311, characters 5-12", test12(--[ () ]--0));
 
-function scan_elems(ib, accu) {
-  try {
+function scan_elems(ib, accu) do
+  try do
     return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                     --[ Char_literal ]--Block.__(12, [
                         --[ " " ]--32,
@@ -1322,19 +1322,19 @@ function scan_elems(ib, accu) {
                           ])
                       ]),
                     " %i;"
-                  ]), (function (i) {
+                  ]), (function (i) do
                   return scan_elems(ib, --[ :: ]--[
                               i,
                               accu
                             ]);
-                }));
-  }
-  catch (exn){
+                end));
+  end
+  catch (exn)do
     return accu;
-  }
-}
+  end
+end
 
-function g(ib) {
+function g(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 "[ ",
@@ -1343,9 +1343,9 @@ function g(ib) {
             "[ "
           ]), --[ () ]--0);
   return List.rev(scan_elems(ib, --[ [] ]--0));
-}
+end
 
-function test13(param) {
+function test13(param) do
   return Caml_obj.caml_equal(g(Scanf.Scanning.from_string("[1;2;3;4; ]")), --[ :: ]--[
               1,
               --[ :: ]--[
@@ -1359,11 +1359,11 @@ function test13(param) {
                 ]
               ]
             ]);
-}
+end
 
 test("File \"tscanf_test.ml\", line 324, characters 5-12", test13(--[ () ]--0));
 
-function scan_int_list(ib) {
+function scan_int_list(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 "[ ",
@@ -1380,9 +1380,9 @@ function scan_int_list(ib) {
             " ]"
           ]), --[ () ]--0);
   return List.rev(accu);
-}
+end
 
-function test14(param) {
+function test14(param) do
   return Caml_obj.caml_equal(scan_int_list(Scanf.Scanning.from_string("[1;2;3;4; ]")), --[ :: ]--[
               1,
               --[ :: ]--[
@@ -1396,11 +1396,11 @@ function test14(param) {
                 ]
               ]
             ]);
-}
+end
 
 test("File \"tscanf_test.ml\", line 337, characters 5-12", test14(--[ () ]--0));
 
-function scan_elems$1(ib, accu) {
+function scan_elems$1(ib, accu) do
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ Char_literal ]--Block.__(12, [
                       --[ " " ]--32,
@@ -1415,28 +1415,28 @@ function scan_elems$1(ib, accu) {
                         ])
                     ]),
                   " %i %c"
-                ]), (function (i, c) {
-                if (c ~= 59) {
-                  if (c ~= 93) {
+                ]), (function (i, c) do
+                if (c ~= 59) do
+                  if (c ~= 93) do
                     throw [
                           Caml_builtin_exceptions.failure,
                           "scan_elems"
                         ];
-                  }
+                  end
                   return List.rev(--[ :: ]--[
                               i,
                               accu
                             ]);
-                } else {
+                end else do
                   return scan_elems$1(ib, --[ :: ]--[
                               i,
                               accu
                             ]);
-                }
-              }));
-}
+                end
+              end));
+end
 
-function scan_int_list$1(ib) {
+function scan_int_list$1(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 "[ ",
@@ -1445,9 +1445,9 @@ function scan_int_list$1(ib) {
             "[ "
           ]), --[ () ]--0);
   return scan_elems$1(ib, --[ [] ]--0);
-}
+end
 
-function test15(param) {
+function test15(param) do
   return Caml_obj.caml_equal(scan_int_list$1(Scanf.Scanning.from_string("[1;2;3;4]")), --[ :: ]--[
               1,
               --[ :: ]--[
@@ -1461,12 +1461,12 @@ function test15(param) {
                 ]
               ]
             ]);
-}
+end
 
 test("File \"tscanf_test.ml\", line 357, characters 5-12", test15(--[ () ]--0));
 
-function scan_elems$2(ib, accu) {
-  try {
+function scan_elems$2(ib, accu) do
+  try do
     return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                     --[ Char ]--Block.__(0, [--[ Char_literal ]--Block.__(12, [
                             --[ " " ]--32,
@@ -1478,17 +1478,17 @@ function scan_elems$2(ib, accu) {
                               ])
                           ])]),
                     "%c %i"
-                  ]), (function (c, i) {
-                  if (c >= 91) {
-                    if (c < 94) {
-                      switch (c - 91 | 0) {
+                  ]), (function (c, i) do
+                  if (c >= 91) do
+                    if (c < 94) do
+                      switch (c - 91 | 0) do
                         case 0 :
-                            if (accu == --[ [] ]--0) {
+                            if (accu == --[ [] ]--0) do
                               return scan_elems$2(ib, --[ :: ]--[
                                           i,
                                           accu
                                         ]);
-                            }
+                            end
                             break;
                         case 1 :
                             break;
@@ -1498,25 +1498,25 @@ function scan_elems$2(ib, accu) {
                                         accu
                                       ]);
                         
-                      }
-                    }
+                      end
+                    end
                     
-                  } else if (c == 59) {
+                  end else if (c == 59) do
                     return scan_elems$2(ib, --[ :: ]--[
                                 i,
                                 accu
                               ]);
-                  }
+                  end
                   console.log(Caml_bytes.bytes_to_string(Bytes.make(1, c)));
                   throw [
                         Caml_builtin_exceptions.failure,
                         "scan_elems"
                       ];
-                }));
-  }
-  catch (raw_exn){
+                end));
+  end
+  catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Scanf.Scan_failure) {
+    if (exn[0] == Scanf.Scan_failure) do
       Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                 --[ Char_literal ]--Block.__(12, [
                     --[ "]" ]--93,
@@ -1525,15 +1525,15 @@ function scan_elems$2(ib, accu) {
                 "]"
               ]), --[ () ]--0);
       return accu;
-    } else if (exn == Caml_builtin_exceptions.end_of_file) {
+    end else if (exn == Caml_builtin_exceptions.end_of_file) do
       return accu;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
-function test16(param) {
+function test16(param) do
   if (Caml_obj.caml_equal(scan_elems$2(Scanf.Scanning.from_string("[]"), --[ [] ]--0), List.rev(--[ [] ]--0)) and Caml_obj.caml_equal(scan_elems$2(Scanf.Scanning.from_string("[1;2;3;4]"), --[ [] ]--0), List.rev(--[ :: ]--[
               1,
               --[ :: ]--[
@@ -1558,7 +1558,7 @@ function test16(param) {
                   ]
                 ]
               ]
-            ]))) {
+            ]))) do
     return Caml_obj.caml_equal(scan_elems$2(Scanf.Scanning.from_string("[1;2;3;4"), --[ [] ]--0), List.rev(--[ :: ]--[
                     1,
                     --[ :: ]--[
@@ -1572,14 +1572,14 @@ function test16(param) {
                       ]
                     ]
                   ]));
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 383, characters 5-12", test16(--[ () ]--0));
 
-function scan_elems$3(ib, accu) {
+function scan_elems$3(ib, accu) do
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ Char_literal ]--Block.__(12, [
                       --[ " " ]--32,
@@ -1595,8 +1595,8 @@ function scan_elems$3(ib, accu) {
                         ])
                     ]),
                   " %i%[]; \t\n\r]"
-                ]), (function (i, s) {
-                switch (s) {
+                ]), (function (i, s) do
+                switch (s) do
                   case ";" :
                       return scan_elems$3(ib, --[ :: ]--[
                                   i,
@@ -1612,11 +1612,11 @@ function scan_elems$3(ib, accu) {
                                 i,
                                 accu
                               ]);
-                }
-              }));
-}
+                end
+              end));
+end
 
-function scan_int_list$2(ib) {
+function scan_int_list$2(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 " [",
@@ -1625,9 +1625,9 @@ function scan_int_list$2(ib) {
             " ["
           ]), --[ () ]--0);
   return scan_elems$3(ib, --[ [] ]--0);
-}
+end
 
-function test17(param) {
+function test17(param) do
   if (Caml_obj.caml_equal(scan_int_list$2(Scanf.Scanning.from_string("[1;2;3;4]")), --[ :: ]--[
           1,
           --[ :: ]--[
@@ -1652,7 +1652,7 @@ function test17(param) {
               ]
             ]
           ]
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(scan_int_list$2(Scanf.Scanning.from_string("[1;2;3;4 5]")), --[ :: ]--[
                 1,
                 --[ :: ]--[
@@ -1666,14 +1666,14 @@ function test17(param) {
                   ]
                 ]
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 406, characters 5-12", test17(--[ () ]--0));
 
-function scan_rest(ib, accu) {
+function scan_rest(ib, accu) do
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ Char_literal ]--Block.__(12, [
                       --[ " " ]--32,
@@ -1683,16 +1683,16 @@ function scan_rest(ib, accu) {
                             ])])
                     ]),
                   " %c "
-                ]), (function (c) {
-                if (c ~= 59) {
-                  if (c ~= 93) {
+                ]), (function (c) do
+                if (c ~= 59) do
+                  if (c ~= 93) do
                     throw [
                           Caml_builtin_exceptions.failure,
                           "scan_rest"
                         ];
-                  }
+                  end
                   return accu;
-                } else {
+                end else do
                   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                                   --[ Scan_char_set ]--Block.__(20, [
                                       undefined,
@@ -1700,10 +1700,10 @@ function scan_rest(ib, accu) {
                                       --[ End_of_format ]--0
                                     ]),
                                   "%[]]"
-                                ]), (function (param) {
-                                if (param == "]") {
+                                ]), (function (param) do
+                                if (param == "]") do
                                   return accu;
-                                } else {
+                                end else do
                                   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                                                   --[ Char_literal ]--Block.__(12, [
                                                       --[ " " ]--32,
@@ -1718,19 +1718,19 @@ function scan_rest(ib, accu) {
                                                         ])
                                                     ]),
                                                   " %i "
-                                                ]), (function (i) {
+                                                ]), (function (i) do
                                                 return scan_rest(ib, --[ :: ]--[
                                                             i,
                                                             accu
                                                           ]);
-                                              }));
-                                }
-                              }));
-                }
-              }));
-}
+                                              end));
+                                end
+                              end));
+                end
+              end));
+end
 
-function scan_elems$4(ib, accu) {
+function scan_elems$4(ib, accu) do
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ Char_literal ]--Block.__(12, [
                       --[ " " ]--32,
@@ -1740,14 +1740,14 @@ function scan_elems$4(ib, accu) {
                             ])])
                     ]),
                   " %c "
-                ]), (function (c) {
-                if (c ~= 91) {
+                ]), (function (c) do
+                if (c ~= 91) do
                   throw [
                         Caml_builtin_exceptions.failure,
                         "scan_elems"
                       ];
-                }
-                if (accu == --[ [] ]--0) {
+                end
+                if (accu == --[ [] ]--0) do
                   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                                   --[ Scan_char_set ]--Block.__(20, [
                                       undefined,
@@ -1755,10 +1755,10 @@ function scan_elems$4(ib, accu) {
                                       --[ End_of_format ]--0
                                     ]),
                                   "%[]]"
-                                ]), (function (param) {
-                                if (param == "]") {
+                                ]), (function (param) do
+                                if (param == "]") do
                                   return accu;
-                                } else {
+                                end else do
                                   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                                                   --[ Char_literal ]--Block.__(12, [
                                                       --[ " " ]--32,
@@ -1773,32 +1773,32 @@ function scan_elems$4(ib, accu) {
                                                         ])
                                                     ]),
                                                   " %i "
-                                                ]), (function (i) {
+                                                ]), (function (i) do
                                                 return scan_rest(ib, --[ :: ]--[
                                                             i,
                                                             accu
                                                           ]);
-                                              }));
-                                }
-                              }));
-                } else {
+                                              end));
+                                end
+                              end));
+                end else do
                   throw [
                         Caml_builtin_exceptions.failure,
                         "scan_elems"
                       ];
-                }
-              }));
-}
+                end
+              end));
+end
 
-function scan_int_list$3(ib) {
+function scan_int_list$3(ib) do
   return List.rev(scan_elems$4(ib, --[ [] ]--0));
-}
+end
 
-function test18(param) {
+function test18(param) do
   var ib = Scanf.Scanning.from_string("[]");
-  if (List.rev(scan_elems$4(ib, --[ [] ]--0)) == --[ [] ]--0) {
+  if (List.rev(scan_elems$4(ib, --[ [] ]--0)) == --[ [] ]--0) do
     var ib$1 = Scanf.Scanning.from_string("[ ]");
-    if (List.rev(scan_elems$4(ib$1, --[ [] ]--0)) == --[ [] ]--0) {
+    if (List.rev(scan_elems$4(ib$1, --[ [] ]--0)) == --[ [] ]--0) do
       var ib$2 = Scanf.Scanning.from_string("[1;2;3;4]");
       if (Caml_obj.caml_equal(List.rev(scan_elems$4(ib$2, --[ [] ]--0)), --[ :: ]--[
               1,
@@ -1812,7 +1812,7 @@ function test18(param) {
                   ]
                 ]
               ]
-            ])) {
+            ])) do
         var ib$3 = Scanf.Scanning.from_string("[1;2;3;4; ]");
         return Caml_obj.caml_equal(List.rev(scan_elems$4(ib$3, --[ [] ]--0)), --[ :: ]--[
                     1,
@@ -1827,38 +1827,38 @@ function test18(param) {
                       ]
                     ]
                   ]);
-      } else {
+      end else do
         return false;
-      }
-    } else {
+      end
+    end else do
       return false;
-    }
-  } else {
+    end
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 446, characters 5-12", test18(--[ () ]--0));
 
-function test19(param) {
+function test19(param) do
   return Testing.failure_test(scan_int_list$3, Scanf.Scanning.from_string("[1;2;3;4 5]"), "scan_rest");
-}
+end
 
 test19(--[ () ]--0);
 
-function test20(param) {
+function test20(param) do
   return Testing.scan_failure_test(scan_int_list$3, Scanf.Scanning.from_string("[1;2;3;4;; 5]"));
-}
+end
 
 test20(--[ () ]--0);
 
-function test21(param) {
+function test21(param) do
   return Testing.scan_failure_test(scan_int_list$3, Scanf.Scanning.from_string("[1;2;3;4;;"));
-}
+end
 
 test21(--[ () ]--0);
 
-function scan_rest$1(ib, accu) {
+function scan_rest$1(ib, accu) do
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ Scan_char_set ]--Block.__(20, [
                       undefined,
@@ -1866,10 +1866,10 @@ function scan_rest$1(ib, accu) {
                       --[ End_of_format ]--0
                     ]),
                   "%[]]"
-                ]), (function (param) {
-                if (param == "]") {
+                ]), (function (param) do
+                if (param == "]") do
                   return accu;
-                } else {
+                end else do
                   var ib$1 = ib;
                   var accu$1 = accu;
                   return Curry._1(Scanf.bscanf(ib$1, --[ Format ]--[
@@ -1886,7 +1886,7 @@ function scan_rest$1(ib, accu) {
                                         ])
                                     ]),
                                   " %i "
-                                ]), (function (i) {
+                                ]), (function (i) do
                                 var ib$2 = ib$1;
                                 var accu$2 = --[ :: ]--[
                                   i,
@@ -1899,8 +1899,8 @@ function scan_rest$1(ib, accu) {
                                                     --[ End_of_format ]--0
                                                   ]),
                                                 "%1[];]"
-                                              ]), (function (param) {
-                                              switch (param) {
+                                              ]), (function (param) do
+                                              switch (param) do
                                                 case ";" :
                                                     return scan_rest$1(ib$2, accu$2);
                                                 case "]" :
@@ -1917,14 +1917,14 @@ function scan_rest$1(ib, accu) {
                                                         Caml_builtin_exceptions.failure,
                                                         s
                                                       ];
-                                              }
-                                            }));
-                              }));
-                }
-              }));
-}
+                                              end
+                                            end));
+                              end));
+                end
+              end));
+end
 
-function scan_int_list$4(ib) {
+function scan_int_list$4(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 " [ ",
@@ -1933,9 +1933,9 @@ function scan_int_list$4(ib) {
             " [ "
           ]), --[ () ]--0);
   return List.rev(scan_rest$1(ib, --[ [] ]--0));
-}
+end
 
-function test22(param) {
+function test22(param) do
   if (scan_int_list$4(Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and scan_int_list$4(Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(scan_int_list$4(Scanf.Scanning.from_string("[1]")), --[ :: ]--[
           1,
           --[ [] ]--0
@@ -1951,7 +1951,7 @@ function test22(param) {
               ]
             ]
           ]
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(scan_int_list$4(Scanf.Scanning.from_string("[1;2;3;4;]")), --[ :: ]--[
                 1,
                 --[ :: ]--[
@@ -1965,38 +1965,38 @@ function test22(param) {
                   ]
                 ]
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 506, characters 5-12", test22(--[ () ]--0));
 
-function scan_elems$5(ib, scan_elem, accu) {
-  try {
-    return Curry._2(scan_elem, ib, (function (i, s) {
+function scan_elems$5(ib, scan_elem, accu) do
+  try do
+    return Curry._2(scan_elem, ib, (function (i, s) do
                   var accu$1 = --[ :: ]--[
                     i,
                     accu
                   ];
-                  if (s == "") {
+                  if (s == "") do
                     return accu$1;
-                  } else {
+                  end else do
                     return scan_elems$5(ib, scan_elem, accu$1);
-                  }
-                }));
-  }
-  catch (raw_exn){
+                  end
+                end));
+  end
+  catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Scanf.Scan_failure) {
+    if (exn[0] == Scanf.Scan_failure) do
       return accu;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
-function scan_list(scan_elem, ib) {
+function scan_list(scan_elem, ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 "[ ",
@@ -2013,9 +2013,9 @@ function scan_list(scan_elem, ib) {
             " ]"
           ]), --[ () ]--0);
   return List.rev(accu);
-}
+end
 
-function scan_int_elem(ib) {
+function scan_int_elem(ib) do
   return Scanf.bscanf(ib, --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
@@ -2035,13 +2035,13 @@ function scan_int_elem(ib) {
                 ]),
               " %i %1[;]"
             ]);
-}
+end
 
-function scan_int_list$5(param) {
+function scan_int_list$5(param) do
   return scan_list(scan_int_elem, param);
-}
+end
 
-function test23(param) {
+function test23(param) do
   if (scan_list(scan_int_elem, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and scan_list(scan_int_elem, Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(scan_list(scan_int_elem, Scanf.Scanning.from_string("[1]")), --[ :: ]--[
           1,
           --[ [] ]--0
@@ -2057,7 +2057,7 @@ function test23(param) {
               ]
             ]
           ]
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(scan_list(scan_int_elem, Scanf.Scanning.from_string("[1;2;3;4;]")), --[ :: ]--[
                 1,
                 --[ :: ]--[
@@ -2071,32 +2071,32 @@ function test23(param) {
                   ]
                 ]
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 562, characters 5-12", test23(--[ () ]--0));
 
-function test24(param) {
+function test24(param) do
   return Testing.scan_failure_test(scan_int_list$5, Scanf.Scanning.from_string("[1;2;3;4 5]"));
-}
+end
 
-function test25(param) {
+function test25(param) do
   return Testing.scan_failure_test(scan_int_list$5, Scanf.Scanning.from_string("[1;2;3;4;;"));
-}
+end
 
-function test26(param) {
+function test26(param) do
   return Testing.scan_failure_test(scan_int_list$5, Scanf.Scanning.from_string("[1;2;3;4;; 5]"));
-}
+end
 
-function test27(param) {
+function test27(param) do
   return Testing.scan_failure_test(scan_int_list$5, Scanf.Scanning.from_string("[1;2;3;4;; 23]"));
-}
+end
 
 test24(--[ () ]--0) and test25(--[ () ]--0) and test26(--[ () ]--0) and test27(--[ () ]--0);
 
-function scan_string_elem(ib) {
+function scan_string_elem(ib) do
   return Scanf.bscanf(ib, --[ Format ]--[
               --[ String_literal ]--Block.__(11, [
                   " \"",
@@ -2117,9 +2117,9 @@ function scan_string_elem(ib) {
                 ]),
               " \"%s@\" %1[;]"
             ]);
-}
+end
 
-function scan_String_elem(ib) {
+function scan_String_elem(ib) do
   return Scanf.bscanf(ib, --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
@@ -2137,13 +2137,13 @@ function scan_String_elem(ib) {
                 ]),
               " %S %1[;]"
             ]);
-}
+end
 
-function scan_String_list(param) {
+function scan_String_list(param) do
   return scan_list(scan_String_elem, param);
-}
+end
 
-function test28(param) {
+function test28(param) do
   if (scan_list(scan_string_elem, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and Caml_obj.caml_equal(scan_list(scan_string_elem, Scanf.Scanning.from_string("[\"Le\"]")), --[ :: ]--[
           "Le",
           --[ [] ]--0
@@ -2186,7 +2186,7 @@ function test28(param) {
               ]
             ]
           ]
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(scan_String_list(Scanf.Scanning.from_string("[\"Le\";\"langage\";\"Objective\";\"Caml\"; ]")), --[ :: ]--[
                 "Le",
                 --[ :: ]--[
@@ -2200,30 +2200,30 @@ function test28(param) {
                   ]
                 ]
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 609, characters 5-12", test28(--[ () ]--0));
 
-function scan_elems$6(ib, scan_elem, accu) {
-  return Curry._3(scan_elem, ib, (function (i, s) {
+function scan_elems$6(ib, scan_elem, accu) do
+  return Curry._3(scan_elem, ib, (function (i, s) do
                 var accu$1 = --[ :: ]--[
                   i,
                   accu
                 ];
-                if (s == "") {
+                if (s == "") do
                   return accu$1;
-                } else {
+                end else do
                   return scan_elems$6(ib, scan_elem, accu$1);
-                }
-              }), (function (ib, exc) {
+                end
+              end), (function (ib, exc) do
                 return accu;
-              }));
-}
+              end));
+end
 
-function scan_list$1(scan_elem, ib) {
+function scan_list$1(scan_elem, ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 "[ ",
@@ -2240,9 +2240,9 @@ function scan_list$1(scan_elem, ib) {
             " ]"
           ]), --[ () ]--0);
   return List.rev(accu);
-}
+end
 
-function scan_int_elem$1(ib, f, ek) {
+function scan_int_elem$1(ib, f, ek) do
   return Curry._1(Scanf.kscanf(ib, ek, --[ Format ]--[
                   --[ Char_literal ]--Block.__(12, [
                       --[ " " ]--32,
@@ -2262,9 +2262,9 @@ function scan_int_elem$1(ib, f, ek) {
                     ]),
                   " %i %1[;]"
                 ]), f);
-}
+end
 
-function test29(param) {
+function test29(param) do
   if (scan_list$1(scan_int_elem$1, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and scan_list$1(scan_int_elem$1, Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(scan_list$1(scan_int_elem$1, Scanf.Scanning.from_string("[1]")), --[ :: ]--[
           1,
           --[ [] ]--0
@@ -2280,7 +2280,7 @@ function test29(param) {
               ]
             ]
           ]
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(scan_list$1(scan_int_elem$1, Scanf.Scanning.from_string("[1;2;3;4;]")), --[ :: ]--[
                 1,
                 --[ :: ]--[
@@ -2294,14 +2294,14 @@ function test29(param) {
                   ]
                 ]
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 639, characters 5-12", test29(--[ () ]--0));
 
-function scan_string_elem$1(ib, f, ek) {
+function scan_string_elem$1(ib, f, ek) do
   return Curry._1(Scanf.kscanf(ib, ek, --[ Format ]--[
                   --[ Char_literal ]--Block.__(12, [
                       --[ " " ]--32,
@@ -2319,9 +2319,9 @@ function scan_string_elem$1(ib, f, ek) {
                     ]),
                   " %S %1[;]"
                 ]), f);
-}
+end
 
-function test30(param) {
+function test30(param) do
   if (scan_list$1(scan_string_elem$1, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and scan_list$1(scan_string_elem$1, Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(scan_list$1(scan_string_elem$1, Scanf.Scanning.from_string("[ \"1\" ]")), --[ :: ]--[
           "1",
           --[ [] ]--0
@@ -2337,7 +2337,7 @@ function test30(param) {
               ]
             ]
           ]
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(scan_list$1(scan_string_elem$1, Scanf.Scanning.from_string("[\"1\"; \"2\"; \"3\"; \"4\";]")), --[ :: ]--[
                 "1",
                 --[ :: ]--[
@@ -2351,26 +2351,26 @@ function test30(param) {
                   ]
                 ]
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 656, characters 5-12", test30(--[ () ]--0));
 
-function scan_elem(fmt, ib, f, ek) {
+function scan_elem(fmt, ib, f, ek) do
   return Curry._1(Scanf.kscanf(ib, ek, fmt), f);
-}
+end
 
-function scan_elems$7(ib, scan_elem, accu) {
-  return Curry._3(scan_elem, ib, (function (i) {
+function scan_elems$7(ib, scan_elem, accu) do
+  return Curry._3(scan_elem, ib, (function (i) do
                 var accu$1 = --[ :: ]--[
                   i,
                   accu
                 ];
-                return Curry._1(Scanf.kscanf(ib, (function (ib, exc) {
+                return Curry._1(Scanf.kscanf(ib, (function (ib, exc) do
                                   return accu$1;
-                                }), --[ Format ]--[
+                                end), --[ Format ]--[
                                 --[ Char_literal ]--Block.__(12, [
                                     --[ " " ]--32,
                                     --[ Scan_char_set ]--Block.__(20, [
@@ -2380,19 +2380,19 @@ function scan_elems$7(ib, scan_elem, accu) {
                                       ])
                                   ]),
                                 " %1[;]"
-                              ]), (function (s) {
-                              if (s == "") {
+                              ]), (function (s) do
+                              if (s == "") do
                                 return accu$1;
-                              } else {
+                              end else do
                                 return scan_elems$7(ib, scan_elem, accu$1);
-                              }
-                            }));
-              }), (function (ib, exc) {
+                              end
+                            end));
+              end), (function (ib, exc) do
                 return accu;
-              }));
-}
+              end));
+end
 
-function scan_list$2(scan_elem, ib) {
+function scan_list$2(scan_elem, ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 "[ ",
@@ -2409,7 +2409,7 @@ function scan_list$2(scan_elem, ib) {
             " ]"
           ]), --[ () ]--0);
   return List.rev(accu);
-}
+end
 
 var partial_arg$1 = --[ Format ]--[
   --[ Char_literal ]--Block.__(12, [
@@ -2424,13 +2424,13 @@ var partial_arg$1 = --[ Format ]--[
   " %i"
 ];
 
-function partial_arg$2(param, param$1, param$2) {
+function partial_arg$2(param, param$1, param$2) do
   return scan_elem(partial_arg$1, param, param$1, param$2);
-}
+end
 
-function scan_int_list$6(param) {
+function scan_int_list$6(param) do
   return scan_list$2(partial_arg$2, param);
-}
+end
 
 var partial_arg$3 = --[ Format ]--[
   --[ Char_literal ]--Block.__(12, [
@@ -2443,15 +2443,15 @@ var partial_arg$3 = --[ Format ]--[
   " %S"
 ];
 
-function partial_arg$4(param, param$1, param$2) {
+function partial_arg$4(param, param$1, param$2) do
   return scan_elem(partial_arg$3, param, param$1, param$2);
-}
+end
 
-function scan_string_list(param) {
+function scan_string_list(param) do
   return scan_list$2(partial_arg$4, param);
-}
+end
 
-function test31(param) {
+function test31(param) do
   if (Curry._1(scan_int_list$6, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and Curry._1(scan_int_list$6, Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(Curry._1(scan_int_list$6, Scanf.Scanning.from_string("[1]")), --[ :: ]--[
           1,
           --[ [] ]--0
@@ -2467,7 +2467,7 @@ function test31(param) {
               ]
             ]
           ]
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(Curry._1(scan_int_list$6, Scanf.Scanning.from_string("[1;2;3;4;]")), --[ :: ]--[
                 1,
                 --[ :: ]--[
@@ -2481,14 +2481,14 @@ function test31(param) {
                   ]
                 ]
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 714, characters 5-12", test31(--[ () ]--0));
 
-function test32(param) {
+function test32(param) do
   if (Curry._1(scan_string_list, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and Curry._1(scan_string_list, Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(Curry._1(scan_string_list, Scanf.Scanning.from_string("[ \"1\" ]")), --[ :: ]--[
           "1",
           --[ [] ]--0
@@ -2504,7 +2504,7 @@ function test32(param) {
               ]
             ]
           ]
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(Curry._1(scan_string_list, Scanf.Scanning.from_string("[\"1\"; \"2\"; \"3\"; \"4\";]")), --[ :: ]--[
                 "1",
                 --[ :: ]--[
@@ -2518,17 +2518,17 @@ function test32(param) {
                   ]
                 ]
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 728, characters 5-12", test32(--[ () ]--0));
 
-function scan_elems$8(ib, scan_elem_fmt, accu) {
-  return Curry._1(Scanf.kscanf(ib, (function (ib, exc) {
+function scan_elems$8(ib, scan_elem_fmt, accu) do
+  return Curry._1(Scanf.kscanf(ib, (function (ib, exc) do
                     return accu;
-                  }), scan_elem_fmt), (function (i) {
+                  end), scan_elem_fmt), (function (i) do
                 var accu$1 = --[ :: ]--[
                   i,
                   accu
@@ -2546,17 +2546,17 @@ function scan_elems$8(ib, scan_elem_fmt, accu) {
                                       ])
                                   ]),
                                 " %1[;] "
-                              ]), (function (param) {
-                              if (param == "") {
+                              ]), (function (param) do
+                              if (param == "") do
                                 return accu$1;
-                              } else {
+                              end else do
                                 return scan_elems$8(ib, scan_elem_fmt, accu$1);
-                              }
-                            }));
-              }));
-}
+                              end
+                            end));
+              end));
+end
 
-function scan_list$3(scan_elem_fmt, ib) {
+function scan_list$3(scan_elem_fmt, ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 "[ ",
@@ -2573,7 +2573,7 @@ function scan_list$3(scan_elem_fmt, ib) {
             " ]"
           ]), --[ () ]--0);
   return List.rev(accu);
-}
+end
 
 var partial_arg$5 = --[ Format ]--[
   --[ Int ]--Block.__(4, [
@@ -2585,9 +2585,9 @@ var partial_arg$5 = --[ Format ]--[
   "%i"
 ];
 
-function scan_int_list$7(param) {
+function scan_int_list$7(param) do
   return scan_list$3(partial_arg$5, param);
-}
+end
 
 var partial_arg$6 = --[ Format ]--[
   --[ Caml_string ]--Block.__(3, [
@@ -2597,11 +2597,11 @@ var partial_arg$6 = --[ Format ]--[
   "%S"
 ];
 
-function scan_string_list$1(param) {
+function scan_string_list$1(param) do
   return scan_list$3(partial_arg$6, param);
-}
+end
 
-function test33(param) {
+function test33(param) do
   if (Curry._1(scan_int_list$7, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and Curry._1(scan_int_list$7, Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(Curry._1(scan_int_list$7, Scanf.Scanning.from_string("[ 1 ]")), --[ :: ]--[
           1,
           --[ [] ]--0
@@ -2617,7 +2617,7 @@ function test33(param) {
               ]
             ]
           ]
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(Curry._1(scan_int_list$7, Scanf.Scanning.from_string("[1;2;3;4;]")), --[ :: ]--[
                 1,
                 --[ :: ]--[
@@ -2631,14 +2631,14 @@ function test33(param) {
                   ]
                 ]
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 773, characters 5-12", test33(--[ () ]--0));
 
-function test34(param) {
+function test34(param) do
   if (Curry._1(scan_string_list$1, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and Curry._1(scan_string_list$1, Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(Curry._1(scan_string_list$1, Scanf.Scanning.from_string("[ \"1\" ]")), --[ :: ]--[
           "1",
           --[ [] ]--0
@@ -2654,7 +2654,7 @@ function test34(param) {
               ]
             ]
           ]
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(Curry._1(scan_string_list$1, Scanf.Scanning.from_string("[\"1\"; \"2\"; \"3\"; \"4\";]")), --[ :: ]--[
                 "1",
                 --[ :: ]--[
@@ -2668,21 +2668,21 @@ function test34(param) {
                   ]
                 ]
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 787, characters 5-12", test34(--[ () ]--0));
 
-function scan_elems$9(scan_elem, accu, ib) {
-  return Curry._2(Scanf.kscanf(ib, (function (ib, exc) {
+function scan_elems$9(scan_elem, accu, ib) do
+  return Curry._2(Scanf.kscanf(ib, (function (ib, exc) do
                     return accu;
-                  }), --[ Format ]--[
+                  end), --[ Format ]--[
                   --[ Reader ]--Block.__(19, [--[ End_of_format ]--0]),
                   "%r"
-                ]), (function (ib) {
-                return Curry._2(scan_elem, ib, (function (elem) {
+                ]), (function (ib) do
+                return Curry._2(scan_elem, ib, (function (elem) do
                               var accu$1 = --[ :: ]--[
                                 elem,
                                 accu
@@ -2700,20 +2700,20 @@ function scan_elems$9(scan_elem, accu, ib) {
                                                     ])
                                                 ]),
                                               " %1[;] "
-                                            ]), (function (param) {
-                                            if (param == "") {
+                                            ]), (function (param) do
+                                            if (param == "") do
                                               return accu$1;
-                                            } else {
+                                            end else do
                                               return scan_elems$9(scan_elem, accu$1, ib);
-                                            }
-                                          }));
-                            }));
-              }), (function (l) {
+                                            end
+                                          end));
+                            end));
+              end), (function (l) do
                 return l;
-              }));
-}
+              end));
+end
 
-function scan_list$4(scan_elem, ib) {
+function scan_list$4(scan_elem, ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 "[ ",
@@ -2730,9 +2730,9 @@ function scan_list$4(scan_elem, ib) {
             " ]"
           ]), --[ () ]--0);
   return List.rev(accu);
-}
+end
 
-function scan_float(ib) {
+function scan_float(ib) do
   return Scanf.bscanf(ib, --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
@@ -2742,10 +2742,10 @@ function scan_float(ib) {
                 ]),
               "%f"
             ]);
-}
+end
 
-function scan_int_list$8(param) {
-  return scan_list$4((function (ib) {
+function scan_int_list$8(param) do
+  return scan_list$4((function (ib) do
                 return Scanf.bscanf(ib, --[ Format ]--[
                             --[ Int ]--Block.__(4, [
                                 --[ Int_i ]--3,
@@ -2755,11 +2755,11 @@ function scan_int_list$8(param) {
                               ]),
                             "%i"
                           ]);
-              }), param);
-}
+              end), param);
+end
 
-function scan_string_list$2(param) {
-  return scan_list$4((function (ib) {
+function scan_string_list$2(param) do
+  return scan_list$4((function (ib) do
                 return Scanf.bscanf(ib, --[ Format ]--[
                             --[ Caml_string ]--Block.__(3, [
                                 --[ No_padding ]--0,
@@ -2767,11 +2767,11 @@ function scan_string_list$2(param) {
                               ]),
                             "%S"
                           ]);
-              }), param);
-}
+              end), param);
+end
 
-function scan_bool_list(param) {
-  return scan_list$4((function (ib) {
+function scan_bool_list(param) do
+  return scan_list$4((function (ib) do
                 return Scanf.bscanf(ib, --[ Format ]--[
                             --[ Bool ]--Block.__(9, [
                                 --[ No_padding ]--0,
@@ -2779,25 +2779,25 @@ function scan_bool_list(param) {
                               ]),
                             "%B"
                           ]);
-              }), param);
-}
+              end), param);
+end
 
-function scan_char_list(param) {
-  return scan_list$4((function (ib) {
+function scan_char_list(param) do
+  return scan_list$4((function (ib) do
                 return Scanf.bscanf(ib, --[ Format ]--[
                             --[ Caml_char ]--Block.__(1, [--[ End_of_format ]--0]),
                             "%C"
                           ]);
-              }), param);
-}
+              end), param);
+end
 
-function scan_float_list_list(param) {
-  return scan_list$4((function (ib, k) {
+function scan_float_list_list(param) do
+  return scan_list$4((function (ib, k) do
                 return Curry._1(k, scan_list$4(scan_float, ib));
-              }), param);
-}
+              end), param);
+end
 
-function test340(param) {
+function test340(param) do
   return Caml_obj.caml_equal(scan_float_list_list(Scanf.Scanning.from_string("[[1.0] ; []; [2.0; 3; 5.0; 6.];]")), --[ :: ]--[
               --[ :: ]--[
                 1,
@@ -2823,46 +2823,46 @@ function test340(param) {
                 ]
               ]
             ]);
-}
+end
 
-function scan_list_list(scan_elems, ib) {
-  return scan_list$4((function (ib, k) {
+function scan_list_list(scan_elems, ib) do
+  return scan_list$4((function (ib, k) do
                 return Curry._1(k, Curry._1(scan_elems, ib));
-              }), ib);
-}
+              end), ib);
+end
 
-function scan_float_item(ib, k) {
-  return Curry._1(k, Curry._1(scan_float(ib), (function (x) {
+function scan_float_item(ib, k) do
+  return Curry._1(k, Curry._1(scan_float(ib), (function (x) do
                     return x;
-                  })));
-}
+                  end)));
+end
 
-function scan_float_list(ib, k) {
+function scan_float_list(ib, k) do
   return Curry._1(k, scan_list$4(scan_float_item, ib));
-}
+end
 
-function scan_float_list_list$1(ib, k) {
+function scan_float_list_list$1(ib, k) do
   return Curry._1(k, scan_list$4(scan_float_list, ib));
-}
+end
 
-function test35(param) {
+function test35(param) do
   if (Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ Scan_get_counter ]--Block.__(21, [
                   --[ Token_counter ]--2,
                   --[ End_of_format ]--0
                 ]),
               "%N"
-            ]), (function (x) {
+            ]), (function (x) do
             return x;
-          })) == 0 and Curry._1(Scanf.sscanf("456", --[ Format ]--[
+          end)) == 0 and Curry._1(Scanf.sscanf("456", --[ Format ]--[
               --[ Scan_get_counter ]--Block.__(21, [
                   --[ Token_counter ]--2,
                   --[ End_of_format ]--0
                 ]),
               "%N"
-            ]), (function (x) {
+            ]), (function (x) do
             return x;
-          })) == 0 and Caml_obj.caml_equal(Curry._1(Scanf.sscanf("456", --[ Format ]--[
+          end)) == 0 and Caml_obj.caml_equal(Curry._1(Scanf.sscanf("456", --[ Format ]--[
                   --[ Int ]--Block.__(4, [
                       --[ Int_d ]--0,
                       --[ No_padding ]--0,
@@ -2873,15 +2873,15 @@ function test35(param) {
                         ])
                     ]),
                   "%d%N"
-                ]), (function (x, y) {
+                ]), (function (x, y) do
                 return --[ tuple ]--[
                         x,
                         y
                       ];
-              })), --[ tuple ]--[
+              end)), --[ tuple ]--[
           456,
           1
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(Curry._1(Scanf.sscanf(" ", --[ Format ]--[
                         --[ Scan_get_counter ]--Block.__(21, [
                             --[ Token_counter ]--2,
@@ -2894,28 +2894,28 @@ function test35(param) {
                               ])
                           ]),
                         "%N%s%N"
-                      ]), (function (x, s, y) {
+                      ]), (function (x, s, y) do
                       return --[ tuple ]--[
                               x,
                               s,
                               y
                             ];
-                    })), --[ tuple ]--[
+                    end)), --[ tuple ]--[
                 0,
                 "",
                 1
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 940, characters 5-12", test340(--[ () ]--0) and test35(--[ () ]--0));
 
-function read_elems(read_elem, accu, ib) {
-  return Curry._2(Scanf.kscanf(ib, (function (ib, exc) {
+function read_elems(read_elem, accu, ib) do
+  return Curry._2(Scanf.kscanf(ib, (function (ib, exc) do
                     return accu;
-                  }), --[ Format ]--[
+                  end), --[ Format ]--[
                   --[ Reader ]--Block.__(19, [--[ Char_literal ]--Block.__(12, [
                           --[ " " ]--32,
                           --[ Scan_char_set ]--Block.__(20, [
@@ -2928,21 +2928,21 @@ function read_elems(read_elem, accu, ib) {
                             ])
                         ])]),
                   "%r %1[;] "
-                ]), Curry._1(read_elem, (function (elem) {
+                ]), Curry._1(read_elem, (function (elem) do
                     return --[ :: ]--[
                             elem,
                             accu
                           ];
-                  })), (function (accu, s) {
-                if (s == "") {
+                  end)), (function (accu, s) do
+                if (s == "") do
                   return accu;
-                } else {
+                end else do
                   return read_elems(read_elem, accu, ib);
-                }
-              }));
-}
+                end
+              end));
+end
 
-function read_list(read_elem, ib) {
+function read_list(read_elem, ib) do
   return Curry._2(Scanf.bscanf(ib, --[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "[ ",
@@ -2952,41 +2952,41 @@ function read_list(read_elem, ib) {
                             ])])
                     ]),
                   "[ %r ]"
-                ]), (function (param) {
+                ]), (function (param) do
                 return read_elems(read_elem, --[ [] ]--0, param);
-              }), List.rev);
-}
+              end), List.rev);
+end
 
-function make_read_elem(fmt, f, ib) {
+function make_read_elem(fmt, f, ib) do
   return Curry._1(Scanf.bscanf(ib, fmt), f);
-}
+end
 
-function scan_List(fmt) {
-  return (function (param) {
-      return read_list((function (param, param$1) {
+function scan_List(fmt) do
+  return (function (param) do
+      return read_list((function (param, param$1) do
                     return Curry._1(Scanf.bscanf(param$1, fmt), param);
-                  }), param);
-    });
-}
+                  end), param);
+    end);
+end
 
-function test36(param) {
+function test36(param) do
   if (Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ Scan_get_counter ]--Block.__(21, [
                   --[ Char_counter ]--1,
                   --[ End_of_format ]--0
                 ]),
               "%n"
-            ]), (function (x) {
+            ]), (function (x) do
             return x;
-          })) == 0 and Curry._1(Scanf.sscanf("456", --[ Format ]--[
+          end)) == 0 and Curry._1(Scanf.sscanf("456", --[ Format ]--[
               --[ Scan_get_counter ]--Block.__(21, [
                   --[ Char_counter ]--1,
                   --[ End_of_format ]--0
                 ]),
               "%n"
-            ]), (function (x) {
+            ]), (function (x) do
             return x;
-          })) == 0 and Caml_obj.caml_equal(Curry._1(Scanf.sscanf("456", --[ Format ]--[
+          end)) == 0 and Caml_obj.caml_equal(Curry._1(Scanf.sscanf("456", --[ Format ]--[
                   --[ Int ]--Block.__(4, [
                       --[ Int_d ]--0,
                       --[ No_padding ]--0,
@@ -2997,15 +2997,15 @@ function test36(param) {
                         ])
                     ]),
                   "%d%n"
-                ]), (function (x, y) {
+                ]), (function (x, y) do
                 return --[ tuple ]--[
                         x,
                         y
                       ];
-              })), --[ tuple ]--[
+              end)), --[ tuple ]--[
           456,
           3
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(Curry._1(Scanf.sscanf(" ", --[ Format ]--[
                         --[ Scan_get_counter ]--Block.__(21, [
                             --[ Char_counter ]--1,
@@ -3018,48 +3018,48 @@ function test36(param) {
                               ])
                           ]),
                         "%n%s%n"
-                      ]), (function (x, s, y) {
+                      ]), (function (x, s, y) do
                       return --[ tuple ]--[
                               x,
                               s,
                               y
                             ];
-                    })), --[ tuple ]--[
+                    end)), --[ tuple ]--[
                 0,
                 "",
                 0
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 995, characters 5-12", test36(--[ () ]--0));
 
-function test37(param) {
+function test37(param) do
   if (Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ End_of_format ]--0,
               ""
             ]), true) and Curry._2(Scanf.sscanf("", --[ Format ]--[
               --[ End_of_format ]--0,
               ""
-            ]), (function (x) {
+            ]), (function (x) do
             return x;
-          }), 1) == 1) {
+          end), 1) == 1) do
     return Curry._2(Scanf.sscanf("123", --[ Format ]--[
                     --[ End_of_format ]--0,
                     ""
-                  ]), (function (x) {
+                  ]), (function (x) do
                   return x;
-                }), 1) == 1;
-  } else {
+                end), 1) == 1;
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1005, characters 5-12", test37(--[ () ]--0));
 
-function test38(param) {
+function test38(param) do
   if (Curry._1(Scanf.sscanf("a", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ "a" ]--97,
@@ -3099,7 +3099,7 @@ function test38(param) {
                   --[ Flush ]--Block.__(10, [--[ End_of_format ]--0])
                 ]),
               " %!"
-            ]), true)) {
+            ]), true)) do
     return Curry._1(Scanf.sscanf("", --[ Format ]--[
                     --[ Char_literal ]--Block.__(12, [
                         --[ " " ]--32,
@@ -3107,32 +3107,32 @@ function test38(param) {
                       ]),
                     " %!%!"
                   ]), true);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1020, characters 5-12", test38(--[ () ]--0));
 
-function test39(param) {
-  var is_empty_buff = function (ib) {
-    if (Scanf.Scanning.beginning_of_input(ib)) {
+function test39(param) do
+  var is_empty_buff = function (ib) do
+    if (Scanf.Scanning.beginning_of_input(ib)) do
       return Scanf.Scanning.end_of_input(ib);
-    } else {
+    end else do
       return false;
-    }
-  };
+    end
+  end;
   var ib = Scanf.Scanning.from_string("");
-  if (is_empty_buff(ib)) {
+  if (is_empty_buff(ib)) do
     return is_empty_buff(ib);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1036, characters 5-12", test39(--[ () ]--0));
 
-function test40(param) {
+function test40(param) do
   var ib = Scanf.Scanning.from_string("cba");
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ Scan_char_set ]--Block.__(20, [
@@ -3144,18 +3144,18 @@ function test40(param) {
                         ])
                     ]),
                   "%[^ab]%s%!"
-                ]), (function (s1, s2) {
-                if (s1 == "c") {
+                ]), (function (s1, s2) do
+                if (s1 == "c") do
                   return s2 == "ba";
-                } else {
+                end else do
                   return false;
-                }
-              }));
-}
+                end
+              end));
+end
 
 test("File \"tscanf_test.ml\", line 1046, characters 5-12", test40(--[ () ]--0));
 
-function test41(param) {
+function test41(param) do
   var ib = Scanf.Scanning.from_string("cba");
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ Scan_char_set ]--Block.__(20, [
@@ -3168,18 +3168,18 @@ function test41(param) {
                         ])
                     ]),
                   "%[^abc]%[cba]%!"
-                ]), (function (s1, s2) {
-                if (s1 == "") {
+                ]), (function (s1, s2) do
+                if (s1 == "") do
                   return s2 == "cba";
-                } else {
+                end else do
                   return false;
-                }
-              }));
-}
+                end
+              end));
+end
 
 test("File \"tscanf_test.ml\", line 1055, characters 5-12", test41(--[ () ]--0));
 
-function test42(param) {
+function test42(param) do
   var s = "defcbaaghi";
   var ib = Scanf.Scanning.from_string(s);
   if (Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -3196,13 +3196,13 @@ function test42(param) {
                     ])
                 ]),
               "%[^abc]%[abc]%s%!"
-            ]), (function (s1, s2, s3) {
-            if (s1 == "def" and s2 == "cbaa") {
+            ]), (function (s1, s2, s3) do
+            if (s1 == "def" and s2 == "cbaa") do
               return s3 == "ghi";
-            } else {
+            end else do
               return false;
-            }
-          }))) {
+            end
+          end))) do
     var ib$1 = Scanf.Scanning.from_string(s);
     return Curry._1(Scanf.bscanf(ib$1, --[ Format ]--[
                     --[ String ]--Block.__(2, [
@@ -3213,19 +3213,19 @@ function test42(param) {
                           ])
                       ]),
                     "%s@\t"
-                  ]), (function (s) {
+                  ]), (function (s) do
                   return s == "defcbaaghi";
-                }));
-  } else {
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1067, characters 5-12", test42(--[ () ]--0));
 
 var ib$1 = Scanf.Scanning.from_string("");
 
-function test43(param) {
+function test43(param) do
   return Curry._1(Scanf.bscanf(ib$1, --[ Format ]--[
                   --[ Int ]--Block.__(4, [
                       --[ Int_i ]--3,
@@ -3234,12 +3234,12 @@ function test43(param) {
                       --[ Flush ]--Block.__(10, [--[ End_of_format ]--0])
                     ]),
                   "%i%!"
-                ]), (function (i) {
+                ]), (function (i) do
                 return i;
-              }));
-}
+              end));
+end
 
-function test44(param) {
+function test44(param) do
   return Curry._1(Scanf.bscanf(ib$1, --[ Format ]--[
                   --[ Flush ]--Block.__(10, [--[ Int ]--Block.__(4, [
                           --[ Int_i ]--3,
@@ -3248,14 +3248,14 @@ function test44(param) {
                           --[ End_of_format ]--0
                         ])]),
                   "%!%i"
-                ]), (function (i) {
+                ]), (function (i) do
                 return i;
-              }));
-}
+              end));
+end
 
 Testing.test_raises_this_exc(Caml_builtin_exceptions.end_of_file)(test43, --[ () ]--0) and Testing.test_raises_this_exc(Caml_builtin_exceptions.end_of_file)(test44, --[ () ]--0);
 
-function test45(param) {
+function test45(param) do
   var ib = Scanf.Scanning.from_string("12.2");
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ Scan_char_set ]--Block.__(20, [
@@ -3274,18 +3274,18 @@ function test45(param) {
                         ])
                     ]),
                   "%[0-9].%[0-9]%s%!"
-                ]), (function (s1, s2, s3) {
-                if (s1 == "12" and s2 == "2") {
+                ]), (function (s1, s2, s3) do
+                if (s1 == "12" and s2 == "2") do
                   return s3 == "";
-                } else {
+                end else do
                   return false;
-                }
-              }));
-}
+                end
+              end));
+end
 
 test("File \"tscanf_test.ml\", line 1090, characters 5-12", test45(--[ () ]--0));
 
-function test46(param) {
+function test46(param) do
   return Curry._3(Printf.sprintf(--[ Format ]--[
                   --[ Int ]--Block.__(4, [
                       --[ Int_i ]--3,
@@ -3314,9 +3314,9 @@ function test46(param) {
                 ]),
               "spells one, %s"
             ], "in english");
-}
+end
 
-function test47(param) {
+function test47(param) do
   return Curry._3(Printf.sprintf(--[ Format ]--[
                   --[ Int ]--Block.__(4, [
                       --[ Int_i ]--3,
@@ -3351,16 +3351,16 @@ function test47(param) {
                 ]),
               "spells one %s"
             ], "in english");
-}
+end
 
 test("File \"tscanf_test.ml\", line 1104, characters 5-12", test46(--[ () ]--0) == "1 spells one, in english.");
 
 test("File \"tscanf_test.ml\", line 1106, characters 5-12", test47(--[ () ]--0) == "1 %s, in english.");
 
-function test48(param) {
-  var test_meta_read = function (s, fmt, efmt) {
+function test48(param) do
+  var test_meta_read = function (s, fmt, efmt) do
     return Caml_obj.caml_equal(Scanf.format_from_string(s, fmt), efmt);
-  };
+  end;
   var fmt = --[ Format ]--[
     --[ Int ]--Block.__(4, [
         --[ Int_i ]--3,
@@ -3407,7 +3407,7 @@ function test48(param) {
                     ])
                 ]),
               "%i %{%d%}%s %!"
-            ]), (function (i, f, s) {
+            ]), (function (i, f, s) do
             if (i == 12 and Caml_obj.caml_equal(f, --[ Format ]--[
                     --[ Int ]--Block.__(4, [
                         --[ Int_i ]--3,
@@ -3416,13 +3416,13 @@ function test48(param) {
                         --[ End_of_format ]--0
                       ]),
                     "%i"
-                  ])) {
+                  ])) do
               return s == "89";
-            } else {
+            end else do
               return false;
-            }
-          }))) {
-    var k = function (s) {
+            end
+          end))) do
+    var k = function (s) do
       return Curry._1(Scanf.sscanf(s, --[ Format ]--[
                       --[ Format_subst ]--Block.__(14, [
                           undefined,
@@ -3430,12 +3430,12 @@ function test48(param) {
                           --[ End_of_format ]--0
                         ]),
                       "%(%f%)"
-                    ]), (function (_fmt, i) {
+                    ]), (function (_fmt, i) do
                     return i;
-                  }));
-    };
-    if (k("\" : %1f\": 987654321") == 9.0 and k("\" : %2f\": 987654321") == 98.0 and k("\" : %3f\": 9.87654321") == 9.8 and k("\" : %4f\": 9.87654321") == 9.87) {
-      var h = function (s) {
+                  end));
+    end;
+    if (k("\" : %1f\": 987654321") == 9.0 and k("\" : %2f\": 987654321") == 98.0 and k("\" : %3f\": 9.87654321") == 9.8 and k("\" : %4f\": 9.87654321") == 9.87) do
+      var h = function (s) do
         return Curry._1(Scanf.sscanf(s, --[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "Read integers with ",
@@ -3446,12 +3446,12 @@ function test48(param) {
                               ])
                           ]),
                         "Read integers with %(%i%)"
-                      ]), (function (_fmt, i) {
+                      ]), (function (_fmt, i) do
                       return i;
-                    }));
-      };
-      if (h("Read integers with \"%1d\"987654321") == 9 and h("Read integers with \"%2d\"987654321") == 98 and h("Read integers with \"%3u\"987654321") == 987 and h("Read integers with \"%4x\"987654321") == 39030) {
-        var i = function (s) {
+                    end));
+      end;
+      if (h("Read integers with \"%1d\"987654321") == 9 and h("Read integers with \"%2d\"987654321") == 98 and h("Read integers with \"%3u\"987654321") == 987 and h("Read integers with \"%4x\"987654321") == 39030) do
+        var i = function (s) do
           return Curry._1(Scanf.sscanf(s, --[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "with ",
@@ -3462,13 +3462,13 @@ function test48(param) {
                                 ])
                             ]),
                           "with %(%i %s%)"
-                        ]), (function (_fmt, amount, currency) {
+                        ]), (function (_fmt, amount, currency) do
                         return --[ tuple ]--[
                                 amount,
                                 currency
                               ];
-                      }));
-        };
+                      end));
+        end;
         if (Caml_obj.caml_equal(i("with \" : %d %s\" :        21 euros"), --[ tuple ]--[
                 21,
                 "euros"
@@ -3481,8 +3481,8 @@ function test48(param) {
               ]) and Caml_obj.caml_equal(i("with \" : %x %s\" :       321 yens"), --[ tuple ]--[
                 801,
                 "yens"
-              ])) {
-          var j = function (s) {
+              ])) do
+          var j = function (s) do
             return Curry._1(Scanf.sscanf(s, --[ Format ]--[
                             --[ String_literal ]--Block.__(11, [
                                 "with ",
@@ -3493,13 +3493,13 @@ function test48(param) {
                                   ])
                               ]),
                             "with %(%i %_s %s%)"
-                          ]), (function (_fmt, amount, currency) {
+                          ]), (function (_fmt, amount, currency) do
                           return --[ tuple ]--[
                                   amount,
                                   currency
                                 ];
-                        }));
-          };
+                        end));
+          end;
           if (Caml_obj.caml_equal(j("with \" : %1d %_s %s\" : 987654321 euros"), --[ tuple ]--[
                   9,
                   "euros"
@@ -3509,31 +3509,31 @@ function test48(param) {
                 ]) and Caml_obj.caml_equal(j("with \" : %3u %_s %s\" : 987654321 pounds"), --[ tuple ]--[
                   987,
                   "pounds"
-                ])) {
+                ])) do
             return Caml_obj.caml_equal(j("with \" : %4x %_s %s\" : 987654321 yens"), --[ tuple ]--[
                         39030,
                         "yens"
                       ]);
-          } else {
+          end else do
             return false;
-          }
-        } else {
+          end
+        end else do
           return false;
-        }
-      } else {
+        end
+      end else do
         return false;
-      }
-    } else {
+      end
+    end else do
       return false;
-    }
-  } else {
+    end
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1157, characters 5-12", test48(--[ () ]--0));
 
-function test49(param) {
+function test49(param) do
   if (Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
@@ -3541,9 +3541,9 @@ function test49(param) {
                   --[ End_of_format ]--0
                 ]),
               "%[\\]"
-            ]), (function (s) {
+            ]), (function (s) do
             return s == "";
-          })) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0\0\0\0\0\0\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3553,9 +3553,9 @@ function test49(param) {
                     ])
                 ]),
               "%[\\]%s"
-            ]), (function (s, t) {
+            ]), (function (s, t) do
             return s == "" ? t == "as" : false;
-          })) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0\0\0\0\0\0\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3565,27 +3565,27 @@ function test49(param) {
                     ])
                 ]),
               "%[\\]%s%!"
-            ]), (function (s, t) {
+            ]), (function (s, t) do
             return s == "" ? t == "as" : false;
-          })) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0@\0\0\0\0\0\0\x02\0\0\x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[ End_of_format ]--0
                 ]),
               "%[a..z]"
-            ]), (function (s) {
+            ]), (function (s) do
             return s == "a";
-          })) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0\0\0\0\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[ End_of_format ]--0
                 ]),
               "%[a-z]"
-            ]), (function (s) {
+            ]), (function (s) do
             return s == "as";
-          })) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0@\0\0\0\0\0\0\x02\0\0\x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3595,9 +3595,9 @@ function test49(param) {
                     ])
                 ]),
               "%[a..z]%s"
-            ]), (function (s, t) {
+            ]), (function (s, t) do
             return s == "a" ? t == "s" : false;
-          })) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0\0\0\0\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3607,18 +3607,18 @@ function test49(param) {
                     ])
                 ]),
               "%[a-z]%s"
-            ]), (function (s, t) {
+            ]), (function (s, t) do
             return s == "as" ? t == "" : false;
-          })) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0 \0\0\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
                   --[ End_of_format ]--0
                 ]),
               "%[-a-z]"
-            ]), (function (s) {
+            ]), (function (s) do
             return s == "-as";
-          })) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0 \0\0\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3628,9 +3628,9 @@ function test49(param) {
                     ])
                 ]),
               "%[-a-z]@s"
-            ]), (function (s) {
+            ]), (function (s) do
             return s == "-a";
-          })) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ "-" ]--45,
                   --[ Scan_char_set ]--Block.__(20, [
@@ -3643,9 +3643,9 @@ function test49(param) {
                     ])
                 ]),
               "-%[a]@s"
-            ]), (function (s) {
+            ]), (function (s) do
             return s == "a";
-          })) and Curry._1(Scanf.sscanf("-asb", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("-asb", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ "-" ]--45,
                   --[ Scan_char_set ]--Block.__(20, [
@@ -3661,9 +3661,9 @@ function test49(param) {
                     ])
                 ]),
               "-%[a]@sb%!"
-            ]), (function (s) {
+            ]), (function (s) do
             return s == "a";
-          }))) {
+          end))) do
     return Curry._1(Scanf.sscanf("-asb", --[ Format ]--[
                     --[ Char_literal ]--Block.__(12, [
                         --[ "-" ]--45,
@@ -3680,42 +3680,42 @@ function test49(param) {
                           ])
                       ]),
                     "-%[a]@s%s"
-                  ]), (function (s, t) {
-                  if (s == "a") {
+                  ]), (function (s, t) do
+                  if (s == "a") do
                     return t == "b";
-                  } else {
+                  end else do
                     return false;
-                  }
-                }));
-  } else {
+                  end
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1176, characters 5-12", test49(--[ () ]--0));
 
-function next_char(ob, param) {
+function next_char(ob, param) do
   var s = $$Buffer.contents(ob);
   var len = #s;
-  if (len == 0) {
+  if (len == 0) do
     throw Caml_builtin_exceptions.end_of_file;
-  }
+  end
   var c = Caml_string.get(s, 0);
   ob.position = 0;
   $$Buffer.add_string(ob, $$String.sub(s, 1, len - 1 | 0));
   return c;
-}
+end
 
-function send_string(ob, s) {
+function send_string(ob, s) do
   $$Buffer.add_string(ob, s);
   return $$Buffer.add_char(ob, --[ "\n" ]--10);
-}
+end
 
-function send_int(ob, i) {
+function send_int(ob, i) do
   return send_string(ob, String(i));
-}
+end
 
-function writer(ib, ob) {
+function writer(ib, ob) do
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ String ]--Block.__(2, [
                       --[ No_padding ]--0,
@@ -3725,8 +3725,8 @@ function writer(ib, ob) {
                         ])
                     ]),
                   "%s\n"
-                ]), (function (s) {
-                switch (s) {
+                ]), (function (s) do
+                switch (s) do
                   case "start" :
                       send_string(ob, "Hello World!");
                       return reader(ib, ob);
@@ -3739,27 +3739,27 @@ function writer(ib, ob) {
                                           --[ End_of_format ]--0
                                         ]),
                                       "%i"
-                                    ]), (function (i) {
+                                    ]), (function (i) do
                                     return i;
-                                  }));
+                                  end));
                   default:
                     var i = Caml_format.caml_int_of_string(s);
                     send_string(ob, String(i));
                     return reader(ib, ob);
-                }
-              }));
-}
+                end
+              end));
+end
 
-var count = {
+var count = do
   contents: 0
-};
+end;
 
-function reader(ib, ob) {
-  if (Scanf.Scanning.beginning_of_input(ib)) {
+function reader(ib, ob) do
+  if (Scanf.Scanning.beginning_of_input(ib)) do
     count.contents = 0;
     send_string(ob, "start");
     return writer(ib, ob);
-  } else {
+  end else do
     return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                     --[ Scan_char_set ]--Block.__(20, [
                         undefined,
@@ -3770,40 +3770,40 @@ function reader(ib, ob) {
                           ])
                       ]),
                     "%[^\n]\n"
-                  ]), (function (s) {
-                  if (s == "stop") {
+                  ]), (function (s) do
+                  if (s == "stop") do
                     send_string(ob, "stop");
                     return writer(ib, ob);
-                  } else {
+                  end else do
                     var l = #s;
                     count.contents = l + count.contents | 0;
-                    if (count.contents >= 100) {
+                    if (count.contents >= 100) do
                       send_string(ob, "stop");
                       send_string(ob, String(count.contents));
-                    } else {
+                    end else do
                       send_string(ob, String(l));
-                    }
+                    end
                     return writer(ib, ob);
-                  }
-                }));
-  }
-}
+                  end
+                end));
+  end
+end
 
-function go(param) {
+function go(param) do
   var ob = $$Buffer.create(17);
-  var ib = Scanf.Scanning.from_function((function (param) {
+  var ib = Scanf.Scanning.from_function((function (param) do
           return next_char(ob, param);
-        }));
+        end));
   return reader(ib, ob);
-}
+end
 
-function test50(param) {
+function test50(param) do
   return go(--[ () ]--0) == 100;
-}
+end
 
 test("File \"tscanf_test.ml\", line 1228, characters 5-12", go(--[ () ]--0) == 100);
 
-function test51(param) {
+function test51(param) do
   if (Curry._1(Scanf.sscanf("Hello", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -3831,9 +3831,9 @@ function test51(param) {
                     ])
                 ]),
               "%s%s\n"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "" : false;
-          })) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Char_literal ]--Block.__(12, [
@@ -3845,9 +3845,9 @@ function test51(param) {
                     ])
                 ]),
               "%s\n%s%!"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "World" : false;
-          })) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Char_literal ]--Block.__(12, [
@@ -3859,9 +3859,9 @@ function test51(param) {
                     ])
                 ]),
               "%s\n%s"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "World!" : false;
-          })) and Curry._1(Scanf.sscanf("Hello\n", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello\n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Formatting_lit ]--Block.__(17, [
@@ -3873,9 +3873,9 @@ function test51(param) {
                     ])
                 ]),
               "%s@\n%s"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "" : false;
-          }))) {
+          end))) do
     return Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
                     --[ String ]--Block.__(2, [
                         --[ No_padding ]--0,
@@ -3888,21 +3888,21 @@ function test51(param) {
                           ])
                       ]),
                     "%s@\n%s"
-                  ]), (function (s1, s2) {
-                  if (s1 == "Hello ") {
+                  ]), (function (s1, s2) do
+                  if (s1 == "Hello ") do
                     return s2 == "";
-                  } else {
+                  end else do
                     return false;
-                  }
-                }));
-  } else {
+                  end
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1248, characters 5-12", test51(--[ () ]--0));
 
-function test52(param) {
+function test52(param) do
   if (Curry._1(Scanf.sscanf("Hello\n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -3933,9 +3933,9 @@ function test52(param) {
                     ])
                 ]),
               "%s%s@\n"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "" : false;
-          })) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Formatting_lit ]--Block.__(17, [
@@ -3947,9 +3947,9 @@ function test52(param) {
                     ])
                 ]),
               "%s@\n%s%!"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "World" : false;
-          })) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Formatting_lit ]--Block.__(17, [
@@ -3964,9 +3964,9 @@ function test52(param) {
                     ])
                 ]),
               "%s@\n%s@\n"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "World!" : false;
-          })) and Curry._1(Scanf.sscanf("Hello\n", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello\n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Formatting_lit ]--Block.__(17, [
@@ -3978,9 +3978,9 @@ function test52(param) {
                     ])
                 ]),
               "%s@\n%s"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "" : false;
-          })) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ String ]--Block.__(2, [
@@ -3992,9 +3992,9 @@ function test52(param) {
                     ])
                 ]),
               "%s%s@\n"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == " " : false;
-          })) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ String ]--Block.__(2, [
@@ -4012,9 +4012,9 @@ function test52(param) {
                     ])
                 ]),
               "%s%s%_1[ ]\n"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "" : false;
-          })) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Ignored_param ]--Block.__(23, [
@@ -4032,9 +4032,9 @@ function test52(param) {
                     ])
                 ]),
               "%s%_1[ ]%s\n"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "" : false;
-          })) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Char_literal ]--Block.__(12, [
@@ -4046,9 +4046,9 @@ function test52(param) {
                     ])
                 ]),
               "%s\n%s%!"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "World" : false;
-          })) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Char_literal ]--Block.__(12, [
@@ -4060,9 +4060,9 @@ function test52(param) {
                     ])
                 ]),
               "%s\n%s%!"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "World!" : false;
-          })) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Char_literal ]--Block.__(12, [
@@ -4077,9 +4077,9 @@ function test52(param) {
                     ])
                 ]),
               "%s\n%s@!%!"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "World" : false;
-          })) and Curry._1(Scanf.sscanf("Hello{foo}", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("Hello{foo}", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Formatting_gen ]--Block.__(18, [
@@ -4094,9 +4094,9 @@ function test52(param) {
                     ])
                 ]),
               "%s@{%s"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "Hello" ? s2 == "foo}" : false;
-          }))) {
+          end))) do
     return Curry._1(Scanf.sscanf("Hello[foo]", --[ Format ]--[
                     --[ String ]--Block.__(2, [
                         --[ No_padding ]--0,
@@ -4112,21 +4112,21 @@ function test52(param) {
                           ])
                       ]),
                     "%s@[%s"
-                  ]), (function (s1, s2) {
-                  if (s1 == "Hello") {
+                  ]), (function (s1, s2) do
+                  if (s1 == "Hello") do
                     return s2 == "foo]";
-                  } else {
+                  end else do
                     return false;
-                  }
-                }));
-  } else {
+                  end
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1286, characters 5-12", test52(--[ () ]--0));
 
-function test53(param) {
+function test53(param) do
   if (Curry._1(Scanf.sscanf("123", --[ Format ]--[
               --[ Nativeint ]--Block.__(6, [
                   --[ Int_d ]--0,
@@ -4143,9 +4143,9 @@ function test53(param) {
                   --[ End_of_format ]--0
                 ]),
               "%nd"
-            ]), (function (i) {
+            ]), (function (i) do
             return i - 1 == 123;
-          })) and Curry._1(Scanf.sscanf("123", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("123", --[ Format ]--[
               --[ Int32 ]--Block.__(5, [
                   --[ Int_d ]--0,
                   --[ No_padding ]--0,
@@ -4161,9 +4161,9 @@ function test53(param) {
                   --[ End_of_format ]--0
                 ]),
               "%ld"
-            ]), (function (i) {
+            ]), (function (i) do
             return (i + 1 | 0) == 125;
-          })) and Caml_int64.eq(Curry._1(Scanf.sscanf("123", --[ Format ]--[
+          end)) and Caml_int64.eq(Curry._1(Scanf.sscanf("123", --[ Format ]--[
                   --[ Int64 ]--Block.__(7, [
                       --[ Int_d ]--0,
                       --[ No_padding ]--0,
@@ -4174,7 +4174,7 @@ function test53(param) {
                 ]), id), --[ int64 ]--[
           --[ hi ]--0,
           --[ lo ]--123
-        ])) {
+        ])) do
     return Curry._1(Scanf.sscanf("124", --[ Format ]--[
                     --[ Int64 ]--Block.__(7, [
                         --[ Int_d ]--0,
@@ -4183,7 +4183,7 @@ function test53(param) {
                         --[ End_of_format ]--0
                       ]),
                     "%Ld"
-                  ]), (function (i) {
+                  ]), (function (i) do
                   return Caml_int64.eq(Caml_int64.sub(i, --[ int64 ]--[
                                   --[ hi ]--0,
                                   --[ lo ]--1
@@ -4191,16 +4191,16 @@ function test53(param) {
                               --[ hi ]--0,
                               --[ lo ]--123
                             ]);
-                }));
-  } else {
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1301, characters 5-12", test53(--[ () ]--0));
 
-function test56(param) {
-  var g = function (s) {
+function test56(param) do
+  var g = function (s) do
     return Curry._1(Scanf.sscanf(s, --[ Format ]--[
                     --[ Int ]--Block.__(4, [
                         --[ Int_d ]--0,
@@ -4212,35 +4212,35 @@ function test56(param) {
                           ])
                       ]),
                     "%d%n"
-                  ]), (function (i, n) {
+                  ]), (function (i, n) do
                   return --[ tuple ]--[
                           i,
                           n
                         ];
-                }));
-  };
+                end));
+  end;
   if (Caml_obj.caml_equal(g("99"), --[ tuple ]--[
           99,
           2
         ]) and Caml_obj.caml_equal(g("99 syntaxes all in a row"), --[ tuple ]--[
           99,
           2
-        ])) {
+        ])) do
     return Caml_obj.caml_equal(g("-20 degrees Celsius"), --[ tuple ]--[
                 -20,
                 3
               ]);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1316, characters 5-12", test56(--[ () ]--0));
 
-function test57(param) {
-  var test_format_scan = function (s, fmt, efmt) {
+function test57(param) do
+  var test_format_scan = function (s, fmt, efmt) do
     return Caml_obj.caml_equal(Scanf.format_from_string(s, fmt), efmt);
-  };
+  end;
   if (test_format_scan(" %i ", --[ Format ]--[
           --[ Int ]--Block.__(4, [
               --[ Int_i ]--3,
@@ -4399,7 +4399,7 @@ function test57(param) {
                 ])
             ]),
           "Read an int %i then a string \"%s\"."
-        ])) {
+        ])) do
     return Curry._1(Scanf.sscanf("12 \"%i\"89 ", --[ Format ]--[
                     --[ Int ]--Block.__(4, [
                         --[ Int_i ]--3,
@@ -4421,7 +4421,7 @@ function test57(param) {
                           ])
                       ]),
                     "%i %{%d%}%s %!"
-                  ]), (function (i, f, s) {
+                  ]), (function (i, f, s) do
                   if (i == 12 and Caml_obj.caml_equal(f, --[ Format ]--[
                           --[ Int ]--Block.__(4, [
                               --[ Int_i ]--3,
@@ -4430,20 +4430,20 @@ function test57(param) {
                               --[ End_of_format ]--0
                             ]),
                           "%i"
-                        ])) {
+                        ])) do
                     return s == "89";
-                  } else {
+                  end else do
                     return false;
-                  }
-                }));
-  } else {
+                  end
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1357, characters 5-12", test57(--[ () ]--0));
 
-function test58(param) {
+function test58(param) do
   if (Curry._1(Scanf.sscanf("string1%string2", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -4468,9 +4468,9 @@ function test58(param) {
                     ])
                 ]),
               "%s@%%%s"
-            ]), (function (prim, prim$1) {
+            ]), (function (prim, prim$1) do
             return prim .. prim$1;
-          })) == "string1string2" and Curry._1(Scanf.sscanf("string1@string2", --[ Format ]--[
+          end)) == "string1string2" and Curry._1(Scanf.sscanf("string1@string2", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0\0\xff\x03\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -4483,9 +4483,9 @@ function test58(param) {
                     ])
                 ]),
               "%[a-z0-9]@%s"
-            ]), (function (prim, prim$1) {
+            ]), (function (prim, prim$1) do
             return prim .. prim$1;
-          })) == "string1string2") {
+          end)) == "string1string2") do
     return Curry._1(Scanf.sscanf("string1@%string2", --[ Format ]--[
                     --[ Scan_char_set ]--Block.__(20, [
                         undefined,
@@ -4502,28 +4502,28 @@ function test58(param) {
                           ])
                       ]),
                     "%[a-z0-9]%@%%%s"
-                  ]), (function (prim, prim$1) {
+                  ]), (function (prim, prim$1) do
                   return prim .. prim$1;
-                })) == "string1string2";
-  } else {
+                end)) == "string1string2";
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1367, characters 5-12", test58(--[ () ]--0));
 
 test("File \"tscanf_test.ml\", line 1371, characters 14-21", true);
 
-function test60(param) {
+function test60(param) do
   if (Curry._1(Scanf.sscanf("abc", --[ Format ]--[
               --[ Scan_next_char ]--Block.__(22, [--[ Scan_next_char ]--Block.__(22, [--[ Char ]--Block.__(0, [--[ Scan_get_counter ]--Block.__(21, [
                               --[ Char_counter ]--1,
                               --[ End_of_format ]--0
                             ])])])]),
               "%0c%0c%c%n"
-            ]), (function (c1, c2, c3, n) {
+            ]), (function (c1, c2, c3, n) do
             return c1 == --[ "a" ]--97 and c2 == --[ "a" ]--97 and c3 == --[ "a" ]--97 ? n == 1 : false;
-          })) and Curry._1(Scanf.sscanf("abc", --[ Format ]--[
+          end)) and Curry._1(Scanf.sscanf("abc", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ Lit_padding ]--Block.__(0, [
                       --[ Right ]--1,
@@ -4535,9 +4535,9 @@ function test60(param) {
                     ])
                 ]),
               "%0s%s"
-            ]), (function (s1, s2) {
+            ]), (function (s1, s2) do
             return s1 == "" ? s2 == "abc" : false;
-          }))) {
+          end))) do
     return Curry._1(Scanf.sscanf("abc", --[ Format ]--[
                     --[ String ]--Block.__(2, [
                         --[ Lit_padding ]--Block.__(0, [
@@ -4550,17 +4550,17 @@ function test60(param) {
                           ])
                       ]),
                     "%1s%s"
-                  ]), (function (s1, s2) {
-                  if (s1 == "a") {
+                  ]), (function (s1, s2) do
+                  if (s1 == "a") do
                     return s2 == "bc";
-                  } else {
+                  end else do
                     return false;
-                  }
-                }));
-  } else {
+                  end
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
 test("File \"tscanf_test.ml\", line 1414, characters 5-12", test60(--[ () ]--0));
 

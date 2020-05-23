@@ -13,28 +13,28 @@ var shared$1 = [
   "get_x"
 ];
 
-function point_init($$class) {
+function point_init($$class) do
   var ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared);
   var move = ids[0];
   var get_x = ids[1];
   var x = ids[2];
   CamlinternalOO.set_methods($$class, [
         get_x,
-        (function (self$1) {
+        (function (self$1) do
             return self$1[x];
-          }),
+          end),
         move,
-        (function (self$1, d) {
+        (function (self$1, d) do
             self$1[x] = self$1[x] + d | 0;
             return --[ () ]--0;
-          })
+          end)
       ]);
-  return (function (env, self) {
+  return (function (env, self) do
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x] = 0;
       return self$1;
-    });
-}
+    end);
+end
 
 var point = CamlinternalOO.make_class(shared$1, point_init);
 
@@ -46,33 +46,33 @@ Caml_oo_curry.js2(-933174511, 2, p, 3);
 
 var three = Caml_oo_curry.js1(291546447, 3, p);
 
-var x0 = {
+var x0 = do
   contents: 0
-};
+end;
 
-function point2_init($$class) {
+function point2_init($$class) do
   var ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared);
   var move = ids[0];
   var get_x = ids[1];
   var x = ids[2];
   CamlinternalOO.set_methods($$class, [
         get_x,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[x];
-          }),
+          end),
         move,
-        (function (self$2, d) {
+        (function (self$2, d) do
             self$2[x] = self$2[x] + d | 0;
             return --[ () ]--0;
-          })
+          end)
       ]);
-  return (function (env, self) {
+  return (function (env, self) do
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
       x0.contents = x0.contents + 1 | 0;
       self$1[x] = x0.contents;
       return self$1;
-    });
-}
+    end);
+end
 
 var point2 = CamlinternalOO.make_class(shared$1, point2_init);
 
@@ -84,53 +84,53 @@ var tmp$1 = Curry._1(point2[0], 0);
 
 var two = Caml_oo_curry.js1(291546447, 5, tmp$1);
 
-var u = {
+var u = do
   x: 3,
-  getX: (function () {
+  getX: (function () do
       var self = this ;
       return self.x;
-    })
-};
+    end)
+end;
 
 Mt.from_pair_suites("Class_test", --[ :: ]--[
       --[ tuple ]--[
         "File \"class_test.ml\", line 38, characters 4-11",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       zero,
                       0
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "File \"class_test.ml\", line 39, characters 4-11",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         three,
                         3
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "File \"class_test.ml\", line 40, characters 4-11",
-            (function (param) {
+            (function (param) do
                 return --[ Eq ]--Block.__(0, [
                           one,
                           1
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "File \"class_test.ml\", line 41, characters 4-11",
-              (function (param) {
+              (function (param) do
                   return --[ Eq ]--Block.__(0, [
                             two,
                             2
                           ]);
-                })
+                end)
             ],
             --[ [] ]--0
           ]

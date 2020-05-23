@@ -10,29 +10,29 @@ var bb = Caml_obj.caml_equal_undefined;
 
 var cc = Caml_obj.caml_equal_nullable;
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, x) {
+function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-}
+end
 
-function f(param) {
+function f(param) do
   return ;
-}
+end
 
-function shouldBeNull(param) {
+function shouldBeNull(param) do
   return null;
-}
+end
 
 b("File \"equal_box_test.ml\", line 24, characters 4-11", 3 ~= null);
 

@@ -1,7 +1,7 @@
 'use strict';
 
 
-var a = {
+var a = do
   x: 3,
   y: --[ :: ]--[
     1,
@@ -13,7 +13,7 @@ var a = {
       ]
     ]
   ]
-};
+end;
 
 exports.a = a;
 --[ No side effect ]--

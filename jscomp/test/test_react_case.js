@@ -1,9 +1,9 @@
 'use strict';
 
 
-function v(prim) {
+function v(prim) do
   return { };
-}
+end
 
 exports.v = v;
 --[ No side effect ]--

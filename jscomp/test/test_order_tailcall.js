@@ -1,18 +1,18 @@
 'use strict';
 
 
-function f(_x, _y) {
-  while(true) {
+function f(_x, _y) do
+  while(true) do
     var y = _y;
     var x = _x;
     _y = x;
     _x = y;
     continue ;
-  };
-}
+  end;
+end
 
-function f1(_x, _y, _z) {
-  while(true) {
+function f1(_x, _y, _z) do
+  while(true) do
     var z = _z;
     var y = _y;
     var x = _x;
@@ -21,84 +21,84 @@ function f1(_x, _y, _z) {
     _y = z;
     _x = y;
     continue ;
-  };
-}
+  end;
+end
 
-function f2(x, _y) {
-  while(true) {
+function f2(x, _y) do
+  while(true) do
     var y = _y;
     _y = y + 10 | 0;
     continue ;
-  };
-}
+  end;
+end
 
-function f3(_x, _y) {
-  while(true) {
+function f3(_x, _y) do
+  while(true) do
     var y = _y;
     var x = _x;
     _y = x + 10 | 0;
     _x = y;
     continue ;
-  };
-}
+  end;
+end
 
-function f4(_x, _y) {
-  while(true) {
+function f4(_x, _y) do
+  while(true) do
     var y = _y;
     var x = _x;
     _y = y + x | 0;
     _x = x + 10 | 0;
     continue ;
-  };
-}
+  end;
+end
 
-function f5(_x, _y, z) {
-  while(true) {
+function f5(_x, _y, z) do
+  while(true) do
     var y = _y;
     _y = z + 20 | 0;
     _x = y + 10 | 0;
     continue ;
-  };
-}
+  end;
+end
 
-function f6(b) {
-  while(true) {
-    if (b) {
+function f6(b) do
+  while(true) do
+    if (b) do
       continue ;
-    } else {
+    end else do
       return false;
-    }
-  };
-}
+    end
+  end;
+end
 
-function f7(b) {
-  while(true) {
-    if (b) {
+function f7(b) do
+  while(true) do
+    if (b) do
       return true;
-    } else {
+    end else do
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function f8(_x, _y) {
-  while(true) {
+function f8(_x, _y) do
+  while(true) do
     var y = _y;
     var x = _x;
-    if (x > 10) {
+    if (x > 10) do
       _y = y + 1 | 0;
       continue ;
-    } else if (x < 5) {
+    end else if (x < 5) do
       _x = x - 1 | 0;
       continue ;
-    } else if (x > 6) {
+    end else if (x > 6) do
       _x = x - 2 | 0;
       continue ;
-    } else {
+    end else do
       return f8(x, y + 1 | 0) + f8(x - 1 | 0, y) | 0;
-    }
-  };
-}
+    end
+  end;
+end
 
 exports.f = f;
 exports.f1 = f1;

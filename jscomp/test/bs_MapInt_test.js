@@ -2,27 +2,27 @@
 
 var Belt_MapInt = require("../../lib/js/belt_MapInt.js");
 
-function should(b) {
-  if (b) {
+function should(b) do
+  if (b) do
     return 0;
-  } else {
+  end else do
     throw new Error("IMPOSSIBLE");
-  }
-}
+  end
+end
 
-function test(param) {
+function test(param) do
   var m = Belt_MapInt.empty;
-  for(var i = 0; i <= 999999; ++i){
+  for(var i = 0; i <= 999999; ++i)do
     m = Belt_MapInt.set(m, i, i);
-  }
-  for(var i$1 = 0; i$1 <= 999999; ++i$1){
+  end
+  for(var i$1 = 0; i$1 <= 999999; ++i$1)do
     should(Belt_MapInt.get(m, i$1) ~= undefined);
-  }
-  for(var i$2 = 0; i$2 <= 999999; ++i$2){
+  end
+  for(var i$2 = 0; i$2 <= 999999; ++i$2)do
     m = Belt_MapInt.remove(m, i$2);
-  }
+  end
   return should(Belt_MapInt.isEmpty(m));
-}
+end
 
 test(--[ () ]--0);
 

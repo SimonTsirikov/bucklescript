@@ -12,23 +12,23 @@ var s = Caml_builtin_exceptions.end_of_file;
 
 var suites_000 = --[ tuple ]--[
   "not_found_equal",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 u,
                 v
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "not_found_not_equal_end_of_file",
-    (function (param) {
+    (function (param) do
         return --[ Neq ]--Block.__(1, [
                   u,
                   s
                 ]);
-      })
+      end)
   ],
   --[ [] ]--0
 ];

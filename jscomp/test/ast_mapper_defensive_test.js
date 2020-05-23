@@ -4,38 +4,38 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function $$throw(loc, x) {
+function $$throw(loc, x) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ ThrowAny ]--Block.__(7, [x]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function aToJs(param) {
+function aToJs(param) do
   return param + 0 | 0;
-}
+end
 
-function aFromJs(param) {
-  if (!(param <= 2 and 0 <= param)) {
+function aFromJs(param) do
+  if (!(param <= 2 and 0 <= param)) do
     throw new Error("ASSERT FAILURE");
-  }
+  end
   return param - 0 | 0;
-}
+end
 
 var jsMapperConstantArray = [
   0,
@@ -43,13 +43,13 @@ var jsMapperConstantArray = [
   4
 ];
 
-function bToJs(param) {
+function bToJs(param) do
   return jsMapperConstantArray[param];
-}
+end
 
-function bFromJs(param) {
+function bFromJs(param) do
   return Js_mapperRt.fromIntAssert(3, jsMapperConstantArray, param);
-}
+end
 
 var jsMapperConstantArray$1 = [
   --[ tuple ]--[
@@ -66,28 +66,28 @@ var jsMapperConstantArray$1 = [
   ]
 ];
 
-function cToJs(param) {
+function cToJs(param) do
   return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$1);
-}
+end
 
-function cFromJs(param) {
+function cFromJs(param) do
   return Js_mapperRt.revSearchAssert(3, jsMapperConstantArray$1, param);
-}
+end
 
-$$throw("File \"ast_mapper_defensive_test.ml\", line 28, characters 16-23", (function (param) {
+$$throw("File \"ast_mapper_defensive_test.ml\", line 28, characters 16-23", (function (param) do
         aFromJs(3);
         return --[ () ]--0;
-      }));
+      end));
 
-$$throw("File \"ast_mapper_defensive_test.ml\", line 29, characters 15-22", (function (param) {
+$$throw("File \"ast_mapper_defensive_test.ml\", line 29, characters 15-22", (function (param) do
         bFromJs(2);
         return --[ () ]--0;
-      }));
+      end));
 
-$$throw("File \"ast_mapper_defensive_test.ml\", line 30, characters 15-22", (function (param) {
+$$throw("File \"ast_mapper_defensive_test.ml\", line 30, characters 15-22", (function (param) do
         cFromJs(33);
         return --[ () ]--0;
-      }));
+      end));
 
 Mt.from_pair_suites("Ast_mapper_defensive_test", suites.contents);
 

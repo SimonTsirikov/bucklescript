@@ -8,30 +8,30 @@ var Printexc = require("../../lib/js/printexc.js");
 var Exception_def = require("./exception_def.js");
 var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 var Hi = Caml_exceptions.create("Exception_repr_test.Hi");
 
@@ -39,10 +39,10 @@ var Hello = Caml_exceptions.create("Exception_repr_test.Hello");
 
 var A = Caml_exceptions.create("Exception_repr_test.A");
 
-Printexc.register_printer((function (param) {
-        if (param == Hi) {
+Printexc.register_printer((function (param) do
+        if (param == Hi) do
           return "hey";
-        } else if (param[0] == A) {
+        end else if (param[0] == A) do
           return Curry._1(Format.asprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "A(",
@@ -58,10 +58,10 @@ Printexc.register_printer((function (param) {
                             ]),
                           "A(%d)"
                         ]), param[1]);
-        } else {
+        end else do
           return ;
-        }
-      }));
+        end
+      end));
 
 eq("File \"exception_repr_test.ml\", line 24, characters 7-14", "hey", Printexc.to_string(Hi));
 

@@ -8,43 +8,43 @@ var Caml_array = require("../../lib/js/caml_array.js");
 var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function assert_bool(b) {
-  if (b) {
+function assert_bool(b) do
+  if (b) do
     return --[ () ]--0;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Assertion Failure."
         ];
-  }
-}
+  end
+end
 
-function fail(param) {
+function fail(param) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -53,31 +53,31 @@ function fail(param) {
           2
         ]
       ];
-}
+end
 
-function thenTest(param) {
+function thenTest(param) do
   var p = Promise.resolve(4);
-  return p.then((function (x) {
+  return p.then((function (x) do
                 return Promise.resolve(assert_bool(x == 4));
-              }));
-}
+              end));
+end
 
-function andThenTest(param) {
+function andThenTest(param) do
   var p = Promise.resolve(6);
-  return p.then((function (param) {
+  return p.then((function (param) do
                   return Promise.resolve(12);
-                })).then((function (y) {
+                end)).then((function (y) do
                 return Promise.resolve(assert_bool(y == 12));
-              }));
-}
+              end));
+end
 
 var h = Promise.resolve(--[ () ]--0);
 
-function assertIsNotFound(x) {
+function assertIsNotFound(x) do
   var match = Caml_exceptions.caml_is_extension(x) and x == Caml_builtin_exceptions.not_found ? 0 : undefined;
-  if (match ~= undefined) {
+  if (match ~= undefined) do
     return h;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -86,59 +86,59 @@ function assertIsNotFound(x) {
             9
           ]
         ];
-  }
-}
+  end
+end
 
-function catchTest(param) {
+function catchTest(param) do
   var p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.then(fail).catch(assertIsNotFound);
-}
+end
 
-function orResolvedTest(param) {
+function orResolvedTest(param) do
   var p = Promise.resolve(42);
-  return p.catch((function (param) {
+  return p.catch((function (param) do
                     return Promise.resolve(22);
-                  })).then((function (value) {
+                  end)).then((function (value) do
                   return Promise.resolve(assert_bool(value == 42));
-                })).catch(fail);
-}
+                end)).catch(fail);
+end
 
-function orRejectedTest(param) {
+function orRejectedTest(param) do
   var p = Promise.reject(Caml_builtin_exceptions.not_found);
-  return p.catch((function (param) {
+  return p.catch((function (param) do
                     return Promise.resolve(22);
-                  })).then((function (value) {
+                  end)).then((function (value) do
                   return Promise.resolve(assert_bool(value == 22));
-                })).catch(fail);
-}
+                end)).catch(fail);
+end
 
-function orElseResolvedTest(param) {
+function orElseResolvedTest(param) do
   var p = Promise.resolve(42);
-  return p.catch((function (param) {
+  return p.catch((function (param) do
                     return Promise.resolve(22);
-                  })).then((function (value) {
+                  end)).then((function (value) do
                   return Promise.resolve(assert_bool(value == 42));
-                })).catch(fail);
-}
+                end)).catch(fail);
+end
 
-function orElseRejectedResolveTest(param) {
+function orElseRejectedResolveTest(param) do
   var p = Promise.reject(Caml_builtin_exceptions.not_found);
-  return p.catch((function (param) {
+  return p.catch((function (param) do
                     return Promise.resolve(22);
-                  })).then((function (value) {
+                  end)).then((function (value) do
                   return Promise.resolve(assert_bool(value == 22));
-                })).catch(fail);
-}
+                end)).catch(fail);
+end
 
-function orElseRejectedRejectTest(param) {
+function orElseRejectedRejectTest(param) do
   var p = Promise.reject(Caml_builtin_exceptions.not_found);
-  return p.catch((function (param) {
+  return p.catch((function (param) do
                     return Promise.reject(Caml_builtin_exceptions.stack_overflow);
-                  })).then(fail).catch((function (error) {
+                  end)).then(fail).catch((function (error) do
                 var match = Caml_exceptions.caml_is_extension(error) and error == Caml_builtin_exceptions.stack_overflow ? 0 : undefined;
-                if (match ~= undefined) {
+                if (match ~= undefined) do
                   return h;
-                } else {
+                end else do
                   throw [
                         Caml_builtin_exceptions.assert_failure,
                         --[ tuple ]--[
@@ -147,35 +147,35 @@ function orElseRejectedRejectTest(param) {
                           18
                         ]
                       ];
-                }
-              }));
-}
+                end
+              end));
+end
 
-function resolveTest(param) {
+function resolveTest(param) do
   var p1 = Promise.resolve(10);
-  return p1.then((function (x) {
+  return p1.then((function (x) do
                 return Promise.resolve(assert_bool(x == 10));
-              }));
-}
+              end));
+end
 
-function rejectTest(param) {
+function rejectTest(param) do
   var p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.catch(assertIsNotFound);
-}
+end
 
-function thenCatchChainResolvedTest(param) {
+function thenCatchChainResolvedTest(param) do
   var p = Promise.resolve(20);
-  return p.then((function (value) {
+  return p.then((function (value) do
                   return Promise.resolve(assert_bool(value == 20));
-                })).catch(fail);
-}
+                end)).catch(fail);
+end
 
-function thenCatchChainRejectedTest(param) {
+function thenCatchChainRejectedTest(param) do
   var p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.then(fail).catch(assertIsNotFound);
-}
+end
 
-function allResolvedTest(param) {
+function allResolvedTest(param) do
   var p1 = Promise.resolve(1);
   var p2 = Promise.resolve(2);
   var p3 = Promise.resolve(3);
@@ -184,15 +184,15 @@ function allResolvedTest(param) {
     p2,
     p3
   ];
-  return Promise.all(promises).then((function (resolved) {
+  return Promise.all(promises).then((function (resolved) do
                 assert_bool(Caml_array.caml_array_get(resolved, 0) == 1);
                 assert_bool(Caml_array.caml_array_get(resolved, 1) == 2);
                 assert_bool(Caml_array.caml_array_get(resolved, 2) == 3);
                 return h;
-              }));
-}
+              end));
+end
 
-function allRejectTest(param) {
+function allRejectTest(param) do
   var p1 = Promise.resolve(1);
   var p2 = Promise.resolve(3);
   var p3 = Promise.reject(Caml_builtin_exceptions.not_found);
@@ -201,13 +201,13 @@ function allRejectTest(param) {
     p2,
     p3
   ];
-  return Promise.all(promises).then(fail).catch((function (error) {
+  return Promise.all(promises).then(fail).catch((function (error) do
                 assert_bool(error == Caml_builtin_exceptions.not_found);
                 return h;
-              }));
-}
+              end));
+end
 
-function raceTest(param) {
+function raceTest(param) do
   var p1 = Promise.resolve("first");
   var p2 = Promise.resolve("second");
   var p3 = Promise.resolve("third");
@@ -216,28 +216,28 @@ function raceTest(param) {
     p2,
     p3
   ];
-  return Promise.race(promises).then((function (resolved) {
+  return Promise.race(promises).then((function (resolved) do
                   return h;
-                })).catch(fail);
-}
+                end)).catch(fail);
+end
 
-function createPromiseRejectTest(param) {
-  return new Promise((function (resolve, reject) {
+function createPromiseRejectTest(param) do
+  return new Promise((function (resolve, reject) do
                   return reject(Caml_builtin_exceptions.not_found);
-                })).catch((function (error) {
+                end)).catch((function (error) do
                 assert_bool(error == Caml_builtin_exceptions.not_found);
                 return h;
-              }));
-}
+              end));
+end
 
-function createPromiseFulfillTest(param) {
-  return new Promise((function (resolve, param) {
+function createPromiseFulfillTest(param) do
+  return new Promise((function (resolve, param) do
                     return resolve("success");
-                  })).then((function (resolved) {
+                  end)).then((function (resolved) do
                   assert_bool(resolved == "success");
                   return h;
-                })).catch(fail);
-}
+                end)).catch(fail);
+end
 
 thenTest(--[ () ]--0);
 
@@ -272,7 +272,7 @@ createPromiseFulfillTest(--[ () ]--0);
 Promise.all(--[ tuple ]--[
         Promise.resolve(2),
         Promise.resolve(3)
-      ]).then((function (param) {
+      ]).then((function (param) do
         eq("File \"js_promise_basic_test.ml\", line 169, characters 7-14", --[ tuple ]--[
               param[0],
               param[1]
@@ -281,7 +281,7 @@ Promise.all(--[ tuple ]--[
               3
             ]);
         return Promise.resolve(--[ () ]--0);
-      }));
+      end));
 
 console.log(List.length(suites.contents));
 
@@ -291,33 +291,33 @@ Mt.from_pair_suites("Js_promise_basic_test", suites.contents);
 
 var twop = Promise.resolve(2);
 
-function then_(prim, prim$1) {
+function then_(prim, prim$1) do
   return prim$1.then(Curry.__1(prim));
-}
+end
 
-function re(prim) {
+function re(prim) do
   return Promise.resolve(prim);
-}
+end
 
 Mt.from_promise_suites("Js_promise_basic_test", --[ :: ]--[
       --[ tuple ]--[
         "File \"js_promise_basic_test.ml\", line 187, characters 4-11",
-        twop.then((function (x) {
+        twop.then((function (x) do
                 return Promise.resolve(--[ Eq ]--Block.__(0, [
                               x,
                               2
                             ]));
-              }))
+              end))
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "File \"js_promise_basic_test.ml\", line 190, characters 4-11",
-          twop.then((function (x) {
+          twop.then((function (x) do
                   return Promise.resolve(--[ Neq ]--Block.__(1, [
                                 x,
                                 3
                               ]));
-                }))
+                end))
         ],
         --[ [] ]--0
       ]

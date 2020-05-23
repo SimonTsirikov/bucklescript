@@ -5,36 +5,36 @@ var Block = require("../../lib/js/block.js");
 var JoinClasses = require("./joinClasses");
 var Caml_splice_call = require("../../lib/js/caml_splice_call.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, param) {
+function eq(loc, param) do
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function joinClasses(prim) {
+function joinClasses(prim) do
   return Caml_splice_call.spliceApply(JoinClasses, [prim]);
-}
+end
 
 var a = JoinClasses(1, 2, 3);
 

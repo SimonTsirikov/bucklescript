@@ -4,7 +4,7 @@ var Caml_obj = require("../../lib/js/caml_obj.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-if (!Caml_obj.caml_equal(Caml_option.nullable_to_opt(""), "")) {
+if (!Caml_obj.caml_equal(Caml_option.nullable_to_opt(""), "")) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -13,9 +13,9 @@ if (!Caml_obj.caml_equal(Caml_option.nullable_to_opt(""), "")) {
           4
         ]
       ];
-}
+end
 
-if (!Caml_obj.caml_equal(Caml_option.undefined_to_opt(""), "")) {
+if (!Caml_obj.caml_equal(Caml_option.undefined_to_opt(""), "")) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -24,9 +24,9 @@ if (!Caml_obj.caml_equal(Caml_option.undefined_to_opt(""), "")) {
           4
         ]
       ];
-}
+end
 
-if (!Caml_obj.caml_equal(Caml_option.null_to_opt(""), "")) {
+if (!Caml_obj.caml_equal(Caml_option.null_to_opt(""), "")) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -35,6 +35,6 @@ if (!Caml_obj.caml_equal(Caml_option.null_to_opt(""), "")) {
           4
         ]
       ];
-}
+end
 
 --[  Not a pure module ]--

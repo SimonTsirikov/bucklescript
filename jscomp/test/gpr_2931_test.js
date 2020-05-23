@@ -2,24 +2,24 @@
 
 var Mt = require("./mt.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function fake_c2(a_type, b_type) {
-  switch (a_type) {
+function fake_c2(a_type, b_type) do
+  switch (a_type) do
     case "number" :
-        if (b_type == "number") {
+        if (b_type == "number") do
           return 33;
-        }
+        end
         break;
     case "string" :
         return 1;
@@ -27,15 +27,15 @@ function fake_c2(a_type, b_type) {
         return -1;
     default:
       
-  }
-  if (b_type == "undefined") {
+  end
+  if (b_type == "undefined") do
     return 1;
-  } else if (a_type == "number") {
+  end else if (a_type == "number") do
     return 3;
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
 eq("File \"gpr_2931_test.ml\", line 19, characters 6-13", 3, fake_c2("number", "xx"));
 

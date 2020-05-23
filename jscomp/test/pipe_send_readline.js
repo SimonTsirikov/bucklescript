@@ -1,23 +1,23 @@
 'use strict';
 
 
-function u(rl) {
-  return rl.on("line", (function (x) {
+function u(rl) do
+  return rl.on("line", (function (x) do
                   console.log(x);
                   return --[ () ]--0;
-                })).on("close", (function () {
+                end)).on("close", (function () do
                 console.log("finished");
                 return --[ () ]--0;
-              }));
-}
+              end));
+end
 
-function xx(h) {
+function xx(h) do
   return h.send("x").hi;
-}
+end
 
-function yy(h) {
+function yy(h) do
   return h.send("x");
-}
+end
 
 exports.u = u;
 exports.xx = xx;

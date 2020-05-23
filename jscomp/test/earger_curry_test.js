@@ -7,102 +7,102 @@ var Caml_array = require("../../lib/js/caml_array.js");
 var Pervasives = require("../../lib/js/pervasives.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function map(f, a) {
+function map(f, a) do
   var f$1 = Curry.__1(f);
   var a$1 = a;
   var l = #a$1;
-  if (l == 0) {
+  if (l == 0) do
     return [];
-  } else {
+  end else do
     var r = Caml_array.caml_make_vect(l, f$1(a$1[0]));
-    for(var i = 1 ,i_finish = l - 1 | 0; i <= i_finish; ++i){
+    for(var i = 1 ,i_finish = l - 1 | 0; i <= i_finish; ++i)do
       r[i] = f$1(a$1[i]);
-    }
+    end
     return r;
-  }
-}
+  end
+end
 
-function init(l, f) {
+function init(l, f) do
   var l$1 = l;
   var f$1 = Curry.__1(f);
-  if (l$1 == 0) {
+  if (l$1 == 0) do
     return [];
-  } else {
-    if (l$1 < 0) {
+  end else do
+    if (l$1 < 0) do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Array.init"
           ];
-    }
+    end
     var res = Caml_array.caml_make_vect(l$1, f$1(0));
-    for(var i = 1 ,i_finish = l$1 - 1 | 0; i <= i_finish; ++i){
+    for(var i = 1 ,i_finish = l$1 - 1 | 0; i <= i_finish; ++i)do
       res[i] = f$1(i);
-    }
+    end
     return res;
-  }
-}
+  end
+end
 
-function fold_left(f, x, a) {
+function fold_left(f, x, a) do
   var f$1 = Curry.__2(f);
   var x$1 = x;
   var a$1 = a;
   var r = x$1;
-  for(var i = 0 ,i_finish = #a$1 - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = #a$1 - 1 | 0; i <= i_finish; ++i)do
     r = f$1(r, a$1[i]);
-  }
+  end
   return r;
-}
+end
 
-function f2(param) {
-  var arr = init(30000000, (function (i) {
+function f2(param) do
+  var arr = init(30000000, (function (i) do
           return i;
-        }));
-  var b = map((function (i) {
+        end));
+  var b = map((function (i) do
           return i + i - 1;
-        }), arr);
-  var v = fold_left((function (prim, prim$1) {
+        end), arr);
+  var v = fold_left((function (prim, prim$1) do
           return prim + prim$1;
-        }), 0, b);
+        end), 0, b);
   console.log(Pervasives.string_of_float(v));
   return --[ () ]--0;
-}
+end
 
 f2(--[ () ]--0);
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-var v = {
+var v = do
   contents: 0
-};
+end;
 
-var all_v = {
+var all_v = do
   contents: --[ [] ]--0
-};
+end;
 
-function add5(a0, a1, a2, a3, a4) {
+function add5(a0, a1, a2, a3, a4) do
   console.log(--[ tuple ]--[
         a0,
         a1,
@@ -115,32 +115,32 @@ function add5(a0, a1, a2, a3, a4) {
     all_v.contents
   ];
   return (((a0 + a1 | 0) + a2 | 0) + a3 | 0) + a4 | 0;
-}
+end
 
-function f(x) {
+function f(x) do
   v.contents = v.contents + 1 | 0;
   var partial_arg = 2;
   v.contents = v.contents + 1 | 0;
   var partial_arg$1 = 1;
-  return (function (param, param$1) {
+  return (function (param, param$1) do
       return add5(x, partial_arg$1, partial_arg, param, param$1);
-    });
-}
+    end);
+end
 
-function g(x) {
+function g(x) do
   v.contents = v.contents + 1 | 0;
   var partial_arg = 2;
   v.contents = v.contents + 1 | 0;
   var partial_arg$1 = 1;
-  var u = function (param, param$1) {
+  var u = function (param, param$1) do
     return add5(x, partial_arg$1, partial_arg, param, param$1);
-  };
+  end;
   all_v.contents = --[ :: ]--[
     v.contents,
     all_v.contents
   ];
   return u;
-}
+end
 
 var a = f(0)(3, 4);
 

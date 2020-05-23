@@ -26,13 +26,13 @@ var hello = ids[1];
 
 CamlinternalOO.set_methods($$class, [
       hi,
-      (function (self$1, x, y) {
+      (function (self$1, x, y) do
           return x + y | 0;
-        }),
+        end),
       hello,
-      (function (self$1, z) {
+      (function (self$1, z) do
           return Curry._3(self$1[0][hi], self$1, 10, z);
-        })
+        end)
     ]);
 
 CamlinternalOO.init_class($$class);
@@ -55,13 +55,13 @@ var x = ids$1[1];
 
 CamlinternalOO.set_methods($$class$1, [
       x,
-      (function (self$2) {
+      (function (self$2) do
           return 3;
-        }),
+        end),
       y,
-      (function (self$2) {
+      (function (self$2) do
           return 32;
-        })
+        end)
     ]);
 
 CamlinternalOO.init_class($$class$1);
@@ -92,21 +92,21 @@ var hello$1 = ids$2[3];
 
 CamlinternalOO.set_methods($$class$2, [
       hi$1,
-      (function (self$3, v, z) {
+      (function (self$3, v, z) do
           return v + z | 0;
-        }),
+        end),
       id1,
-      (function (self$3) {
+      (function (self$3) do
           return 3;
-        }),
+        end),
       id2,
-      (function (self$3) {
+      (function (self$3) do
           return 4;
-        }),
+        end),
       hello$1,
-      (function (self$3, v) {
+      (function (self$3, v) do
           return v;
-        })
+        end)
     ]);
 
 CamlinternalOO.init_class($$class$2);
@@ -117,9 +117,9 @@ var $$class$3 = CamlinternalOO.create_table(["id"]);
 
 var id = CamlinternalOO.get_method_label($$class$3, "id");
 
-CamlinternalOO.set_method($$class$3, id, (function (self$4) {
+CamlinternalOO.set_method($$class$3, id, (function (self$4) do
         return "uu";
-      }));
+      end));
 
 CamlinternalOO.init_class($$class$3);
 
@@ -129,9 +129,9 @@ var $$class$4 = CamlinternalOO.create_table(["add"]);
 
 var add = CamlinternalOO.get_method_label($$class$4, "add");
 
-CamlinternalOO.set_method($$class$4, add, (function (self$5, x, y) {
+CamlinternalOO.set_method($$class$4, add, (function (self$5, x, y) do
         return x + y | 0;
-      }));
+      end));
 
 CamlinternalOO.init_class($$class$4);
 
@@ -147,13 +147,13 @@ var add$1 = ids$3[1];
 
 CamlinternalOO.set_methods($$class$5, [
       add$1,
-      (function (self$6, x, y) {
+      (function (self$6, x, y) do
           return x + y | 0;
-        }),
+        end),
       hi$2,
-      (function (self$6, x) {
+      (function (self$6, x) do
           return Curry._3(self$6[0][add$1], self$6, x, 32);
-        })
+        end)
     ]);
 
 CamlinternalOO.init_class($$class$5);
@@ -162,7 +162,7 @@ var vvvv = CamlinternalOO.create_object_opt(0, $$class$5);
 
 var suites_000 = --[ tuple ]--[
   "single_obj",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 [
                   3,
@@ -173,13 +173,13 @@ var suites_000 = --[ tuple ]--[
                   Caml_oo_curry.js1(121, 2, v)
                 ]
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "single_obj_cache",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   [
                     3,
@@ -190,117 +190,117 @@ var suites_001 = --[ :: ]--[
                     Caml_oo_curry.js1(121, 4, v)
                   ]
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "self_obj",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     13,
                     Caml_oo_curry.js2(616641298, 5, vv, 3)
                   ]);
-        })
+        end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
         "uu_id",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       "uu",
                       Caml_oo_curry.js1(23515, 6, uu)
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "uu_add",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         Caml_oo_curry.js3(4846113, 7, uuu, 1, 20),
                         21
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "v_add",
-            (function (param) {
+            (function (param) do
                 return --[ Eq ]--Block.__(0, [
                           Caml_oo_curry.js3(4846113, 8, vvvv, 3, 7),
                           10
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "u_id1",
-              (function (param) {
+              (function (param) do
                   return --[ Eq ]--Block.__(0, [
                             Caml_oo_curry.js1(5243894, 9, u),
                             3
                           ]);
-                })
+                end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
                 "u_id2",
-                (function (param) {
+                (function (param) do
                     return --[ Eq ]--Block.__(0, [
                               Caml_oo_curry.js1(5243895, 10, u),
                               4
                             ]);
-                  })
+                  end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
                   "u hi",
-                  (function (param) {
+                  (function (param) do
                       return --[ Eq ]--Block.__(0, [
                                 Caml_oo_curry.js3(23297, 11, u, 1, 2),
                                 3
                               ]);
-                    })
+                    end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
                     "u hello",
-                    (function (param) {
+                    (function (param) do
                         return --[ Eq ]--Block.__(0, [
                                   Caml_oo_curry.js2(616641298, 12, u, 32),
                                   32
                                 ]);
-                      })
+                      end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
                       "v hi",
-                      (function (param) {
+                      (function (param) do
                           return --[ Eq ]--Block.__(0, [
                                     Caml_oo_curry.js2(23297, 13, vvvv, 31),
                                     63
                                   ]);
-                        })
+                        end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
                         "uuu add",
-                        (function (param) {
+                        (function (param) do
                             return --[ Eq ]--Block.__(0, [
                                       Caml_oo_curry.js3(4846113, 14, uuu, 3, 4),
                                       7
                                     ]);
-                          })
+                          end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
                           "v x",
-                          (function (param) {
+                          (function (param) do
                               return --[ Eq ]--Block.__(0, [
                                         Caml_oo_curry.js1(120, 15, v),
                                         3
                                       ]);
-                            })
+                            end)
                         ],
                         --[ [] ]--0
                       ]

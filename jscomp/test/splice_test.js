@@ -4,25 +4,25 @@ var Mt = require("./mt.js");
 var Caml_array = require("../../lib/js/caml_array.js");
 var Caml_splice_call = require("../../lib/js/caml_splice_call.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
 var Caml_splice_call$1 = { };
 
 Math.max(1);
 
-function f00(a, b) {
+function f00(a, b) do
   return a.send(b);
-}
+end
 
 var a = [];
 
@@ -35,7 +35,7 @@ eq("File \"splice_test.ml\", line 29, characters 5-12", a, [
       4
     ]);
 
-function dynamic(arr) {
+function dynamic(arr) do
   var a = [];
   Caml_splice_call.spliceObjApply(a, "push", [
         1,
@@ -48,7 +48,7 @@ function dynamic(arr) {
                     --[ [] ]--0
                   ]
                 ]));
-}
+end
 
 dynamic([
       2,
@@ -75,7 +75,7 @@ eq("File \"splice_test.ml\", line 51, characters 7-14", a$1, [
       4
     ]);
 
-function dynamic$1(arr) {
+function dynamic$1(arr) do
   var a = [];
   Caml_splice_call.spliceObjApply(a, "push", [
         1,
@@ -88,7 +88,7 @@ function dynamic$1(arr) {
                     --[ [] ]--0
                   ]
                 ]));
-}
+end
 
 dynamic$1([
       2,
@@ -104,16 +104,16 @@ dynamic$1([
       3
     ]);
 
-var Pipe = {
+var Pipe = do
   dynamic: dynamic$1
-};
+end;
 
-function f1(c) {
+function f1(c) do
   return Caml_splice_call.spliceApply(Math.max, [
               1,
               c
             ]);
-}
+end
 
 eq("File \"splice_test.ml\", line 67, characters 6-13", Math.max(1, 2, 3), 3);
 

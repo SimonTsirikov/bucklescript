@@ -3,31 +3,31 @@
 var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
-function tst(param) {
-  for(var i = (console.log("hi"), 0) ,i_finish = (console.log("hello"), 3); i <= i_finish; ++i){
+function tst(param) do
+  for(var i = (console.log("hi"), 0) ,i_finish = (console.log("hello"), 3); i <= i_finish; ++i)do
     
-  }
+  end
   return --[ () ]--0;
-}
+end
 
-function test2(param) {
+function test2(param) do
   var v = 0;
   v = 3;
   v = 10;
-  for(var i = 0; i <= 1; ++i){
+  for(var i = 0; i <= 1; ++i)do
     
-  }
+  end
   return v;
-}
+end
 
 var suites_000 = --[ tuple ]--[
   "for_order",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 10,
                 test2(--[ () ]--0)
               ]);
-    })
+    end)
 ];
 
 var suites = --[ :: ]--[

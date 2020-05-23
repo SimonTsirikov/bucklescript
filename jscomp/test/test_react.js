@@ -13,15 +13,15 @@ doc.getElementById("haha");
 
 console.log(32);
 
-ReactDom.render(React.createClass({
-          render: (function (param) {
-              return React.DOM.div({
+ReactDom.render(React.createClass(do
+          render: (function (param) do
+              return React.DOM.div(do
                           alt: "pic"
-                        }, React.DOM.h1(undefined, "hello react"), React.DOM.h2(undefined, "type safe!"), React.DOM.h3(undefined, "type safe!"));
-            })
-        }), document.getElementById("hi"));
+                        end, React.DOM.h1(undefined, "hello react"), React.DOM.h2(undefined, "type safe!"), React.DOM.h3(undefined, "type safe!"));
+            end)
+        end), document.getElementById("hi"));
 
-function f(param) {
+function f(param) do
   Xxx();
   Xxx.xx();
   Xxx.xxx();
@@ -32,7 +32,7 @@ function f(param) {
   C.x();
   C.y();
   return --[ () ]--0;
-}
+end
 
 var v = --[ () ]--0;
 

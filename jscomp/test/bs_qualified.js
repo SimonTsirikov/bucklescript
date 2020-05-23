@@ -5,20 +5,20 @@ var Z = require("z");
 var Vscode = require("vscode");
 var GlMatrix = require("gl-matrix");
 
-function f(a, b, c) {
+function f(a, b, c) do
   Vscode.commands.executeCommands("hi", a, b, c);
   return process.env;
-}
+end
 
-function f2(param) {
+function f2(param) do
   return --[ tuple ]--[
           Z.a0.a1.a2.hi,
           a0.a1.a2.ho,
           Math.imul(1, 2)
         ];
-}
+end
 
-function f3(x) {
+function f3(x) do
   new (global.Buffer)(20);
   new (global.a0.a1.a2.Buffer)(20);
   new (ZZ.global.a0.a1.a2.Buffer)(100);
@@ -44,7 +44,7 @@ function f3(x) {
   x.a0.a1.psend2(0);
   x.a0.a1.psend3(0);
   return GlMatrix.mat4.create();
-}
+end
 
 exports.f = f;
 exports.f2 = f2;

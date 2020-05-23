@@ -30,21 +30,21 @@ var hello = ids[3];
 
 CamlinternalOO.set_methods($$class, [
       hi,
-      (function (self$1, v, z) {
+      (function (self$1, v, z) do
           return v + z | 0;
-        }),
+        end),
       id1,
-      (function (self$1) {
+      (function (self$1) do
           return 3;
-        }),
+        end),
       id2,
-      (function (self$1) {
+      (function (self$1) do
           return 4;
-        }),
+        end),
       hello,
-      (function (self$1, v) {
+      (function (self$1, v) do
           return v;
-        })
+        end)
     ]);
 
 CamlinternalOO.init_class($$class);
@@ -55,9 +55,9 @@ var $$class$1 = CamlinternalOO.create_table(["id"]);
 
 var id = CamlinternalOO.get_method_label($$class$1, "id");
 
-CamlinternalOO.set_method($$class$1, id, (function (self$2) {
+CamlinternalOO.set_method($$class$1, id, (function (self$2) do
         return "uu";
-      }));
+      end));
 
 CamlinternalOO.init_class($$class$1);
 
@@ -67,9 +67,9 @@ var $$class$2 = CamlinternalOO.create_table(shared);
 
 var add = CamlinternalOO.get_method_label($$class$2, "add");
 
-CamlinternalOO.set_method($$class$2, add, (function (self$3, x, y) {
+CamlinternalOO.set_method($$class$2, add, (function (self$3, x, y) do
         return x + y | 0;
-      }));
+      end));
 
 CamlinternalOO.init_class($$class$2);
 
@@ -79,16 +79,16 @@ var $$class$3 = CamlinternalOO.create_table(shared);
 
 var add$1 = CamlinternalOO.get_method_label($$class$3, "add");
 
-CamlinternalOO.set_method($$class$3, add$1, (function (self$4, x, y) {
+CamlinternalOO.set_method($$class$3, add$1, (function (self$4, x, y) do
         return x + y | 0;
-      }));
+      end));
 
 CamlinternalOO.init_class($$class$3);
 
 var v = CamlinternalOO.create_object_opt(0, $$class$3);
 
-function test(param) {
-  if (Caml_oo_curry.js1(23515, 1, uu) ~= "uu") {
+function test(param) do
+  if (Caml_oo_curry.js1(23515, 1, uu) ~= "uu") do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -97,8 +97,8 @@ function test(param) {
             4
           ]
         ];
-  }
-  if (Caml_oo_curry.js3(4846113, 2, uuu, 1, 20) ~= 21) {
+  end
+  if (Caml_oo_curry.js3(4846113, 2, uuu, 1, 20) ~= 21) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -107,8 +107,8 @@ function test(param) {
             4
           ]
         ];
-  }
-  if (Caml_oo_curry.js3(4846113, 3, v, 3, 7) ~= 10) {
+  end
+  if (Caml_oo_curry.js3(4846113, 3, v, 3, 7) ~= 10) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -117,8 +117,8 @@ function test(param) {
             4
           ]
         ];
-  }
-  if (Caml_oo_curry.js1(5243894, 4, u) ~= 3) {
+  end
+  if (Caml_oo_curry.js1(5243894, 4, u) ~= 3) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -127,8 +127,8 @@ function test(param) {
             4
           ]
         ];
-  }
-  if (Caml_oo_curry.js1(5243895, 5, u) ~= 4) {
+  end
+  if (Caml_oo_curry.js1(5243895, 5, u) ~= 4) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -137,8 +137,8 @@ function test(param) {
             4
           ]
         ];
-  }
-  if (Caml_oo_curry.js3(23297, 6, u, 1, 2) ~= 3) {
+  end
+  if (Caml_oo_curry.js3(23297, 6, u, 1, 2) ~= 3) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -147,10 +147,10 @@ function test(param) {
             4
           ]
         ];
-  }
-  if (Caml_oo_curry.js2(616641298, 7, u, 32) == 32) {
+  end
+  if (Caml_oo_curry.js2(616641298, 7, u, 32) == 32) do
     return 0;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -159,8 +159,8 @@ function test(param) {
             4
           ]
         ];
-  }
-}
+  end
+end
 
 exports.u = u;
 exports.uu = uu;

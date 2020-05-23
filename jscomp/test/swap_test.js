@@ -852,7 +852,7 @@ var tests_64 = [
   ]
 ];
 
-var suites_16 = List.map((function (param) {
+var suites_16 = List.map((function (param) do
         var b = param[1];
         var a = param[0];
         return --[ tuple ]--[
@@ -868,16 +868,16 @@ var suites_16 = List.map((function (param) {
                             ]),
                           "swap16 %d"
                         ]), a),
-                (function (param) {
+                (function (param) do
                     return --[ Eq ]--Block.__(0, [
                               Caml_int32.caml_bswap16(a),
                               b
                             ]);
-                  })
+                  end)
               ];
-      }), $$Array.to_list(tests_16));
+      end), $$Array.to_list(tests_16));
 
-var suites_32 = List.map((function (param) {
+var suites_32 = List.map((function (param) do
         var b = param[1];
         var a = param[0];
         return --[ tuple ]--[
@@ -893,16 +893,16 @@ var suites_32 = List.map((function (param) {
                             ]),
                           "swap32 %d"
                         ]), a),
-                (function (param) {
+                (function (param) do
                     return --[ Eq ]--Block.__(0, [
                               Caml_int32.caml_int32_bswap(a),
                               b
                             ]);
-                  })
+                  end)
               ];
-      }), $$Array.to_list(tests_32));
+      end), $$Array.to_list(tests_32));
 
-var suites_64 = List.map((function (param) {
+var suites_64 = List.map((function (param) do
         var b = param[1];
         var a = param[0];
         return --[ tuple ]--[
@@ -918,14 +918,14 @@ var suites_64 = List.map((function (param) {
                             ]),
                           "swap64 %d"
                         ]), Caml_int64.to_int32(a)),
-                (function (param) {
+                (function (param) do
                     return --[ Eq ]--Block.__(0, [
                               Caml_int64.swap(a),
                               b
                             ]);
-                  })
+                  end)
               ];
-      }), $$Array.to_list(tests_64));
+      end), $$Array.to_list(tests_64));
 
 var d16_000 = --[ Format ]--[
   --[ Int ]--Block.__(4, [
@@ -985,10 +985,10 @@ var d32 = --[ tuple ]--[
   d32_002
 ];
 
-function f(s, param) {
+function f(s, param) do
   var swap = param[1];
   var x = param[0];
-  return $$Array.to_list($$Array.mapi((function (i, param) {
+  return $$Array.to_list($$Array.mapi((function (i, param) do
                     var b = param[1];
                     var a = param[0];
                     return --[ tuple ]--[
@@ -1007,15 +1007,15 @@ function f(s, param) {
                                         ]),
                                       "%s %i"
                                     ]), s, i),
-                            (function (param) {
+                            (function (param) do
                                 return --[ Eq ]--Block.__(0, [
                                           Curry._1(Format.asprintf(x), Curry._1(swap, a)),
                                           b
                                         ]);
-                              })
+                              end)
                           ];
-                  }), param[2]));
-}
+                  end), param[2]));
+end
 
 Mt.from_pair_suites("Swap_test", Pervasives.$at(suites_16, Pervasives.$at(suites_32, Pervasives.$at(suites_64, Pervasives.$at(f("d16", d16), f("d32", d32))))));
 

@@ -2,18 +2,18 @@
 
 var Fs = require("fs");
 
-function test(path) {
-  Fs.watch(path, {
+function test(path) do
+  Fs.watch(path, do
             recursive: true
-          }).on("change", (function ($$event, string_buffer) {
+          end).on("change", (function ($$event, string_buffer) do
             console.log(--[ tuple ]--[
                   $$event,
                   string_buffer
                 ]);
             return --[ () ]--0;
-          })).close();
+          end)).close();
   return --[ () ]--0;
-}
+end
 
 exports.test = test;
 --[ fs Not a pure module ]--

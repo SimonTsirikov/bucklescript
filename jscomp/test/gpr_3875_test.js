@@ -3,68 +3,68 @@
 var Mt = require("./mt.js");
 var Curry = require("../../lib/js/curry.js");
 
-var result = {
+var result = do
   contents: ""
-};
+end;
 
-function log(x) {
+function log(x) do
   result.contents = x;
   return --[ () ]--0;
-}
+end
 
-var Xx = {
+var Xx = do
   log: log
-};
+end;
 
-function compilerBug(a, b, c, f) {
+function compilerBug(a, b, c, f) do
   var exit = 0;
-  if (a ~= "x") {
+  if (a ~= "x") do
     exit = 2;
-  }
-  if (exit == 2) {
-    if (b ~= undefined) {
-      if (b ~= "x") {
-        if (c) {
+  end
+  if (exit == 2) do
+    if (b ~= undefined) do
+      if (b ~= "x") do
+        if (c) do
           result.contents = "No x, c is true";
           return --[ () ]--0;
-        } else {
+        end else do
           result.contents = "No x, c is false";
           return --[ () ]--0;
-        }
-      }
+        end
+      end
       
-    } else if (c) {
+    end else if (c) do
       result.contents = "No x, c is true";
       return --[ () ]--0;
-    } else {
+    end else do
       result.contents = "No x, c is false";
       return --[ () ]--0;
-    }
-  }
-  if (Curry._1(f, --[ () ]--0)) {
+    end
+  end
+  if (Curry._1(f, --[ () ]--0)) do
     result.contents = "Some x, f returns true";
     return --[ () ]--0;
-  } else {
+  end else do
     result.contents = "Some x, f returns false";
     return --[ () ]--0;
-  }
-}
+  end
+end
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-compilerBug("x", undefined, true, (function (param) {
+compilerBug("x", undefined, true, (function (param) do
         return true;
-      }));
+      end));
 
 eq("File \"gpr_3875_test.ml\", line 36, characters 5-12", result.contents, "Some x, f returns true");
 

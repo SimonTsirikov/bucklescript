@@ -8,36 +8,36 @@ var Belt_HashSetInt = require("../../lib/js/belt_HashSetInt.js");
 var Belt_SortArrayInt = require("../../lib/js/belt_SortArrayInt.js");
 var Belt_internalBucketsType = require("../../lib/js/belt_internalBucketsType.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, x) {
+function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-}
+end
 
-function add(x, y) {
+function add(x, y) do
   return x + y | 0;
-}
+end
 
-function sum2(h) {
-  var v = {
+function sum2(h) do
+  var v = do
     contents: 0
-  };
-  Belt_HashSetInt.forEach(h, (function (x) {
+  end;
+  Belt_HashSetInt.forEach(h, (function (x) do
           v.contents = v.contents + x | 0;
           return --[ () ]--0;
-        }));
+        end));
   return v.contents;
-}
+end
 
 var u = Belt_Array.concat(Array_data_util.randomRange(30, 100), Array_data_util.randomRange(40, 120));
 
@@ -61,15 +61,15 @@ Belt_HashSetInt.mergeMany(v$1, u$1);
 
 eq("File \"bs_hashset_int_test.ml\", line 30, characters 5-12", v$1.size, 100001);
 
-for(var i = 0; i <= 1000; ++i){
+for(var i = 0; i <= 1000; ++i)do
   Belt_HashSetInt.remove(v$1, i);
-}
+end
 
 eq("File \"bs_hashset_int_test.ml\", line 34, characters 5-12", v$1.size, 99000);
 
-for(var i$1 = 0; i$1 <= 2000; ++i$1){
+for(var i$1 = 0; i$1 <= 2000; ++i$1)do
   Belt_HashSetInt.remove(v$1, i$1);
-}
+end
 
 eq("File \"bs_hashset_int_test.ml\", line 38, characters 5-12", v$1.size, 98000);
 
@@ -79,13 +79,13 @@ var u1 = Belt_HashSetInt.copy(u0);
 
 eq("File \"bs_hashset_int_test.ml\", line 46, characters 5-12", Belt_HashSetInt.toArray(u0), Belt_HashSetInt.toArray(u1));
 
-for(var i$2 = 0; i$2 <= 2000; ++i$2){
+for(var i$2 = 0; i$2 <= 2000; ++i$2)do
   Belt_HashSetInt.remove(u1, i$2);
-}
+end
 
-for(var i$3 = 0; i$3 <= 1000; ++i$3){
+for(var i$3 = 0; i$3 <= 1000; ++i$3)do
   Belt_HashSetInt.remove(u0, i$3);
-}
+end
 
 var v0 = Belt_Array.concat(Array_data_util.range(0, 1000), Belt_HashSetInt.toArray(u0));
 

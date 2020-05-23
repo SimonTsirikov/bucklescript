@@ -4,68 +4,68 @@ var Js_exn = require("../../lib/js/js_exn.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 
-function test_js_error(param) {
+function test_js_error(param) do
   var e;
-  try {
+  try do
     e = JSON.parse(" {\"x\" : }");
-  }
-  catch (raw_exn){
+  end
+  catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Js_exn.$$Error) {
+    if (exn[0] == Js_exn.$$Error) do
       console.log(exn[1].stack);
       return ;
-    } else {
+    end else do
       throw exn;
-    }
-  }
+    end
+  end
   return Caml_option.some(e);
-}
+end
 
-function test_js_error2(param) {
-  try {
+function test_js_error2(param) do
+  try do
     return JSON.parse(" {\"x\" : }");
-  }
-  catch (raw_e){
+  end
+  catch (raw_e)do
     var e = Caml_js_exceptions.internalToOCamlException(raw_e);
-    if (e[0] == Js_exn.$$Error) {
+    if (e[0] == Js_exn.$$Error) do
       console.log(e[1].stack);
       throw e;
-    } else {
+    end else do
       throw e;
-    }
-  }
-}
+    end
+  end
+end
 
-function example1(param) {
+function example1(param) do
   var v;
-  try {
+  try do
     v = JSON.parse(" {\"x\"  }");
-  }
-  catch (raw_exn){
+  end
+  catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Js_exn.$$Error) {
+    if (exn[0] == Js_exn.$$Error) do
       console.log(exn[1].stack);
       return ;
-    } else {
+    end else do
       throw exn;
-    }
-  }
+    end
+  end
   return Caml_option.some(v);
-}
+end
 
-function example2(param) {
-  try {
+function example2(param) do
+  try do
     return Caml_option.some(JSON.parse(" {\"x\"}"));
-  }
-  catch (raw_exn){
+  end
+  catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn[0] == Js_exn.$$Error) {
+    if (exn[0] == Js_exn.$$Error) do
       return ;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
 exports.test_js_error = test_js_error;
 exports.test_js_error2 = test_js_error2;

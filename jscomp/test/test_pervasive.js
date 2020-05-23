@@ -3,7 +3,7 @@
 var List = require("../../lib/js/list.js");
 var Pervasives = require("../../lib/js/pervasives.js");
 
-var Pervasives$1 = {
+var Pervasives$1 = do
   length: List.length,
   compare_lengths: List.compare_lengths,
   compare_length_with: List.compare_length_with,
@@ -141,83 +141,83 @@ var Pervasives$1 = {
   valid_float_lexem: Pervasives.valid_float_lexem,
   unsafe_really_input: Pervasives.unsafe_really_input,
   do_at_exit: Pervasives.do_at_exit
-};
+end;
 
-function a0(prim) {
+function a0(prim) do
   return Math.abs(prim);
-}
+end
 
-function a1(prim) {
+function a1(prim) do
   return Math.acos(prim);
-}
+end
 
-function a2(prim) {
+function a2(prim) do
   return Math.tan(prim);
-}
+end
 
-function a3(prim) {
+function a3(prim) do
   return Math.tanh(prim);
-}
+end
 
-function a4(prim) {
+function a4(prim) do
   return Math.asin(prim);
-}
+end
 
-function a5(prim, prim$1) {
+function a5(prim, prim$1) do
   return Math.atan2(prim, prim$1);
-}
+end
 
-function a6(prim) {
+function a6(prim) do
   return Math.atan(prim);
-}
+end
 
-function a7(prim) {
+function a7(prim) do
   return Math.ceil(prim);
-}
+end
 
-function a8(prim) {
+function a8(prim) do
   return Math.cos(prim);
-}
+end
 
-function a9(prim) {
+function a9(prim) do
   return Math.cosh(prim);
-}
+end
 
-function a10(prim) {
+function a10(prim) do
   return Math.exp(prim);
-}
+end
 
-function a11(prim) {
+function a11(prim) do
   return Math.sin(prim);
-}
+end
 
-function a12(prim) {
+function a12(prim) do
   return Math.sinh(prim);
-}
+end
 
-function a13(prim) {
+function a13(prim) do
   return Math.sqrt(prim);
-}
+end
 
-function a14(prim) {
+function a14(prim) do
   return Math.floor(prim);
-}
+end
 
-function a15(prim) {
+function a15(prim) do
   return Math.log(prim);
-}
+end
 
-function a16(prim) {
+function a16(prim) do
   return Math.log10(prim);
-}
+end
 
-function a17(prim) {
+function a17(prim) do
   return Math.log1p(prim);
-}
+end
 
-function a18(prim, prim$1) {
+function a18(prim, prim$1) do
   return Math.pow(prim, prim$1);
-}
+end
 
 var f = Pervasives.$at;
 

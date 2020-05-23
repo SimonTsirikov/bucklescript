@@ -5,113 +5,113 @@ var Caml_obj = require("../../lib/js/caml_obj.js");
 var Belt_List = require("../../lib/js/belt_List.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, v) {
+function b(loc, v) do
   return Mt.bool_suites(test_id, suites, loc, v);
-}
+end
 
-function f0(x) {
+function f0(x) do
   var match = x[1];
-  if (match ~= undefined and match) {
+  if (match ~= undefined and match) do
     return 1;
-  } else {
+  end else do
     return 2;
-  }
-}
+  end
+end
 
-function f1(u) {
-  if (u) {
+function f1(u) do
+  if (u) do
     return 0;
-  } else {
+  end else do
     return 1;
-  }
-}
+  end
+end
 
-function f2(x, y, zOpt, param) {
+function f2(x, y, zOpt, param) do
   var z = zOpt ~= undefined ? zOpt : 3;
   console.log(x);
-  if (y ~= undefined) {
+  if (y ~= undefined) do
     return y + z | 0;
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function f3(x) {
-  if (x ~= undefined) {
+function f3(x) do
+  if (x ~= undefined) do
     return 1;
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function f4(x) {
-  if (x ~= undefined) {
+function f4(x) do
+  if (x ~= undefined) do
     return x + 1 | 0;
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function f5(a) {
+function f5(a) do
   return false;
-}
+end
 
-function f6(a) {
+function f6(a) do
   return true;
-}
+end
 
 var f10 = Caml_option.some(Caml_option.some(Caml_option.some(Caml_option.some(undefined))));
 
 var f11 = Caml_option.some(f10);
 
-var randomized = {
+var randomized = do
   contents: false
-};
+end;
 
-function create(randomOpt, param) {
+function create(randomOpt, param) do
   var random = randomOpt ~= undefined ? randomOpt : randomized.contents;
-  if (random) {
+  if (random) do
     return 2;
-  } else {
+  end else do
     return 1;
-  }
-}
+  end
+end
 
 var ff = create(false, --[ () ]--0);
 
-function f13(xOpt, yOpt, param) {
+function f13(xOpt, yOpt, param) do
   var x = xOpt ~= undefined ? xOpt : 3;
   var y = yOpt ~= undefined ? yOpt : 4;
   return x + y | 0;
-}
+end
 
 var a = f13(2, undefined, --[ () ]--0);
 
-function f12(x) {
+function f12(x) do
   return x;
-}
+end
 
-var length_8_id = Belt_List.makeBy(8, (function (x) {
+var length_8_id = Belt_List.makeBy(8, (function (x) do
         return x;
-      }));
+      end));
 
-var length_10_id = Belt_List.makeBy(10, (function (x) {
+var length_10_id = Belt_List.makeBy(10, (function (x) do
         return x;
-      }));
+      end));
 
-function f13$1(param) {
+function f13$1(param) do
   return Caml_obj.caml_equal(Belt_List.take(length_10_id, 8), --[ :: ]--[
               1,
               --[ :: ]--[
@@ -122,7 +122,7 @@ function f13$1(param) {
                 ]
               ]
             ]);
-}
+end
 
 b("File \"option_repr_test.ml\", line 94, characters 4-11", Caml_obj.caml_lessthan(undefined, null));
 
@@ -136,43 +136,43 @@ b("File \"option_repr_test.ml\", line 98, characters 4-11", Caml_obj.caml_greate
 
 console.log(6, undefined);
 
-function ltx(a, b) {
-  if (Caml_obj.caml_lessthan(a, b)) {
+function ltx(a, b) do
+  if (Caml_obj.caml_lessthan(a, b)) do
     return Caml_obj.caml_greaterthan(b, a);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function gtx(a, b) {
-  if (Caml_obj.caml_greaterthan(a, b)) {
+function gtx(a, b) do
+  if (Caml_obj.caml_greaterthan(a, b)) do
     return Caml_obj.caml_lessthan(b, a);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function eqx(a, b) {
-  if (Caml_obj.caml_equal(a, b)) {
+function eqx(a, b) do
+  if (Caml_obj.caml_equal(a, b)) do
     return Caml_obj.caml_equal(b, a);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function neqx(a, b) {
-  if (Caml_obj.caml_notequal(a, b)) {
+function neqx(a, b) do
+  if (Caml_obj.caml_notequal(a, b)) do
     return Caml_obj.caml_notequal(b, a);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function all_true(xs) {
-  return Belt_List.every(xs, (function (x) {
+function all_true(xs) do
+  return Belt_List.every(xs, (function (x) do
                 return x;
-              }));
-}
+              end));
+end
 
 var xs_000 = gtx(Caml_option.some(null), Caml_option.some(undefined));
 
@@ -181,9 +181,9 @@ var xs = --[ :: ]--[
   --[ [] ]--0
 ];
 
-b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs, (function (x) {
+b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs, (function (x) do
             return x;
-          })));
+          end)));
 
 var xs_000$1 = ltx(Caml_option.some(undefined), 3);
 
@@ -204,9 +204,9 @@ var xs_001 = --[ :: ]--[
               --[ :: ]--[
                 ltx(undefined, null),
                 --[ :: ]--[
-                  ltx(undefined, (function (x) {
+                  ltx(undefined, (function (x) do
                           return x;
-                        })),
+                        end)),
                   --[ :: ]--[
                     ltx(null, 3),
                     --[ [] ]--0
@@ -226,9 +226,9 @@ var xs$1 = --[ :: ]--[
   xs_001
 ];
 
-b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs$1, (function (x) {
+b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs$1, (function (x) do
             return x;
-          })));
+          end)));
 
 var xs_000$2 = eqx(undefined, undefined);
 
@@ -251,22 +251,22 @@ var xs$2 = --[ :: ]--[
   xs_001$1
 ];
 
-b("File \"option_repr_test.ml\", line 143, characters 5-12", Belt_List.every(xs$2, (function (x) {
+b("File \"option_repr_test.ml\", line 143, characters 5-12", Belt_List.every(xs$2, (function (x) do
             return x;
-          })));
+          end)));
 
-function v(x) {
+function v(x) do
   return x;
-}
+end
 
-function v0(x) {
+function v0(x) do
   return x;
-}
+end
 
-var N0 = {
+var N0 = do
   v: v,
   v0: v0
-};
+end;
 
 Mt.from_pair_suites("Option_repr_test", suites.contents);
 

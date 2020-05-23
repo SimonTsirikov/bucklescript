@@ -8,45 +8,45 @@ var Child_process = require("child_process");
 var App_root_finder = require("./app_root_finder.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 var match = typeof __dirname == "undefined" ? undefined : __dirname;
 
-if (match ~= undefined) {
+if (match ~= undefined) do
   var root = App_root_finder.find_package_json(match);
   var bsc_exe = Path.join(root, "bsc");
   var exit = 0;
   var output;
-  try {
-    output = Child_process.execSync(bsc_exe .. " -where ", {
+  try do
+    output = Child_process.execSync(bsc_exe .. " -where ", do
           encoding: "utf8"
-        });
+        end);
     exit = 1;
-  }
-  catch (e){
+  end
+  catch (e)do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -55,17 +55,17 @@ if (match ~= undefined) {
             8
           ]
         ];
-  }
-  if (exit == 1) {
+  end
+  if (exit == 1) do
     var dir = output.trim();
     var files = Fs.readdirSync(dir);
     var exists = files.indexOf("pervasives.cmi");
     var non_exists = files.indexOf("pervasive.cmi");
     var v = exists >= 0 and non_exists < 0;
     console.log(v);
-  }
+  end
   
-} else {
+end else do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -74,7 +74,7 @@ if (match ~= undefined) {
           18
         ]
       ];
-}
+end
 
 Mt.from_pair_suites("Installation_test", suites.contents);
 

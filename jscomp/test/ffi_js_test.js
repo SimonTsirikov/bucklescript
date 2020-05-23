@@ -12,42 +12,42 @@ function $$higher_order(x){
   }
 ;
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, param) {
+function eq(loc, param) do
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-var int_config = {
+var int_config = do
   hi: 3,
   low: 32
-};
+end;
 
-var string_config = {
+var string_config = do
   hi: 3,
   low: "32"
-};
+end;
 
 eq("File \"ffi_js_test.ml\", line 32, characters 5-12", --[ tuple ]--[
       6,
@@ -57,10 +57,10 @@ eq("File \"ffi_js_test.ml\", line 32, characters 5-12", --[ tuple ]--[
 var same_type_000 = --[ :: ]--[
   int_config,
   --[ :: ]--[
-    {
+    do
       hi: 3,
       low: 32
-    },
+    end,
     --[ [] ]--0
   ]
 ];
@@ -68,10 +68,10 @@ var same_type_000 = --[ :: ]--[
 var same_type_001 = --[ :: ]--[
   string_config,
   --[ :: ]--[
-    {
+    do
       hi: 3,
       low: "32"
-    },
+    end,
     --[ [] ]--0
   ]
 ];
@@ -81,12 +81,12 @@ var same_type = --[ tuple ]--[
   same_type_001
 ];
 
-var v_obj = {
-  hi: (function () {
+var v_obj = do
+  hi: (function () do
       console.log("hei");
       return --[ () ]--0;
-    })
-};
+    end)
+end;
 
 eq("File \"ffi_js_test.ml\", line 44, characters 5-12", --[ tuple ]--[
       #Object.keys(int_config),
@@ -108,45 +108,45 @@ eq("File \"ffi_js_test.ml\", line 47, characters 5-12", --[ tuple ]--[
       0
     ]);
 
-var u = {
+var u = do
   contents: 3
-};
+end;
 
-var side_effect_config = (u.contents = u.contents + 1 | 0, {
+var side_effect_config = (u.contents = u.contents + 1 | 0, do
     hi: 3,
     low: 32
-  });
+  end);
 
 eq("File \"ffi_js_test.ml\", line 54, characters 5-12", --[ tuple ]--[
       u.contents,
       4
     ]);
 
-function vv(z) {
+function vv(z) do
   return z.hh();
-}
+end
 
-function v(z) {
+function v(z) do
   return z.ff();
-}
+end
 
-function vvv(z) {
+function vvv(z) do
   return z.ff_pipe();
-}
+end
 
-function vvvv(z) {
+function vvvv(z) do
   return z.ff_pipe2();
-}
+end
 
-function create_prim(param) {
-  return {
+function create_prim(param) do
+  return do
           "x'": 3,
           "x''": 3,
           "x''''": 2
-        };
-}
+        end;
+end
 
-function ffff(x) {
+function ffff(x) do
   x.setGADT = 3;
   x.setGADT2 = --[ tuple ]--[
     3,
@@ -175,7 +175,7 @@ function ffff(x) {
     "x"
   ];
   return --[ () ]--0;
-}
+end
 
 Mt.from_pair_suites("Ffi_js_test", suites.contents);
 

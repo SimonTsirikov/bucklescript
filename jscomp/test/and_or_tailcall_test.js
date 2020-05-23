@@ -3,51 +3,51 @@
 var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
-function f(b, x, _n) {
-  while(true) {
+function f(b, x, _n) do
+  while(true) do
     var n = _n;
-    if (n > 100000 or !b) {
+    if (n > 100000 or !b) do
       return false;
-    } else {
+    end else do
       _n = n + 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function or_f(b, x, _n) {
-  while(true) {
+function or_f(b, x, _n) do
+  while(true) do
     var n = _n;
-    if (n > 100000) {
+    if (n > 100000) do
       return false;
-    } else if (b) {
+    end else if (b) do
       return true;
-    } else {
+    end else do
       _n = n + 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
 var suites_000 = --[ tuple ]--[
   "and_tail",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 false,
                 f(true, 1, 0)
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "or_tail",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   false,
                   or_f(false, 1, 0)
                 ]);
-      })
+      end)
   ],
   --[ [] ]--0
 ];

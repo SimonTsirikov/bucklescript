@@ -4,9 +4,9 @@ var FileJs = require("./File.js");
 
 var foo = FileJs.foo;
 
-function foo2(prim) {
+function foo2(prim) do
   return FileJs.foo2(prim);
-}
+end
 
 var bar = foo;
 

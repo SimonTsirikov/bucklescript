@@ -4,32 +4,32 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 var Caml_array = require("../../lib/js/caml_array.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, param) {
+function eq(loc, param) do
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 var v = [
   1,
@@ -70,50 +70,50 @@ eq("File \"array_subtle_test.ml\", line 23, characters 5-12", --[ tuple ]--[
       Caml_array.caml_array_get(v, 2)
     ]);
 
-while(v.length > 0) {
+while(v.length > 0) do
   v.pop();
-};
+end;
 
 eq("File \"array_subtle_test.ml\", line 29, characters 5-12", --[ tuple ]--[
       0,
       v.length
     ]);
 
-function f(v) {
+function f(v) do
   var match = v.pop();
-  if (match ~= undefined) {
+  if (match ~= undefined) do
     console.log("hi");
-  } else {
+  end else do
     console.log("hi2");
-  }
+  end
   console.log((v.pop(), --[ () ]--0));
   return --[ () ]--0;
-}
+end
 
-function fff(x) {
+function fff(x) do
   return true;
-}
+end
 
-function fff2(x) {
-  if (#x >= 10) {
+function fff2(x) do
+  if (#x >= 10) do
     console.log("hi");
     return --[ () ]--0;
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function fff3(x) {
+function fff3(x) do
   return 1;
-}
+end
 
-function fff4(x) {
-  if (#x ~= 0) {
+function fff4(x) do
+  if (#x ~= 0) do
     return 1;
-  } else {
+  end else do
     return 2;
-  }
-}
+  end
+end
 
 eq("File \"array_subtle_test.ml\", line 51, characters 6-13", --[ tuple ]--[
       fff3([]),

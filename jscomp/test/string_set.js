@@ -7,290 +7,290 @@ var Set_gen = require("./set_gen.js");
 var Caml_primitive = require("../../lib/js/caml_primitive.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function split(x, tree) {
-  if (tree) {
+function split(x, tree) do
+  if (tree) do
     var r = tree[2];
     var v = tree[1];
     var l = tree[0];
     var c = Caml_primitive.caml_string_compare(x, v);
-    if (c == 0) {
+    if (c == 0) do
       return --[ tuple ]--[
               l,
               true,
               r
             ];
-    } else if (c < 0) {
+    end else if (c < 0) do
       var match = split(x, l);
       return --[ tuple ]--[
               match[0],
               match[1],
               Set_gen.internal_join(match[2], v, r)
             ];
-    } else {
+    end else do
       var match$1 = split(x, r);
       return --[ tuple ]--[
               Set_gen.internal_join(l, v, match$1[0]),
               match$1[1],
               match$1[2]
             ];
-    }
-  } else {
+    end
+  end else do
     return --[ tuple ]--[
             --[ Empty ]--0,
             false,
             --[ Empty ]--0
           ];
-  }
-}
+  end
+end
 
-function add(x, tree) {
-  if (tree) {
+function add(x, tree) do
+  if (tree) do
     var r = tree[2];
     var v = tree[1];
     var l = tree[0];
     var c = Caml_primitive.caml_string_compare(x, v);
-    if (c == 0) {
+    if (c == 0) do
       return tree;
-    } else if (c < 0) {
+    end else if (c < 0) do
       return Set_gen.internal_bal(add(x, l), v, r);
-    } else {
+    end else do
       return Set_gen.internal_bal(l, v, add(x, r));
-    }
-  } else {
+    end
+  end else do
     return --[ Node ]--[
             --[ Empty ]--0,
             x,
             --[ Empty ]--0,
             1
           ];
-  }
-}
+  end
+end
 
-function union(s1, s2) {
-  if (s1) {
-    if (s2) {
+function union(s1, s2) do
+  if (s1) do
+    if (s2) do
       var h2 = s2[3];
       var v2 = s2[1];
       var h1 = s1[3];
       var v1 = s1[1];
-      if (h1 >= h2) {
-        if (h2 == 1) {
+      if (h1 >= h2) do
+        if (h2 == 1) do
           return add(v2, s1);
-        } else {
+        end else do
           var match = split(v1, s2);
           return Set_gen.internal_join(union(s1[0], match[0]), v1, union(s1[2], match[2]));
-        }
-      } else if (h1 == 1) {
+        end
+      end else if (h1 == 1) do
         return add(v1, s2);
-      } else {
+      end else do
         var match$1 = split(v2, s1);
         return Set_gen.internal_join(union(match$1[0], s2[0]), v2, union(match$1[2], s2[2]));
-      }
-    } else {
+      end
+    end else do
       return s1;
-    }
-  } else {
+    end
+  end else do
     return s2;
-  }
-}
+  end
+end
 
-function inter(s1, s2) {
-  if (s1 and s2) {
+function inter(s1, s2) do
+  if (s1 and s2) do
     var r1 = s1[2];
     var v1 = s1[1];
     var l1 = s1[0];
     var match = split(v1, s2);
     var l2 = match[0];
-    if (match[1]) {
+    if (match[1]) do
       return Set_gen.internal_join(inter(l1, l2), v1, inter(r1, match[2]));
-    } else {
+    end else do
       return Set_gen.internal_concat(inter(l1, l2), inter(r1, match[2]));
-    }
-  } else {
+    end
+  end else do
     return --[ Empty ]--0;
-  }
-}
+  end
+end
 
-function diff(s1, s2) {
-  if (s1) {
-    if (s2) {
+function diff(s1, s2) do
+  if (s1) do
+    if (s2) do
       var r1 = s1[2];
       var v1 = s1[1];
       var l1 = s1[0];
       var match = split(v1, s2);
       var l2 = match[0];
-      if (match[1]) {
+      if (match[1]) do
         return Set_gen.internal_concat(diff(l1, l2), diff(r1, match[2]));
-      } else {
+      end else do
         return Set_gen.internal_join(diff(l1, l2), v1, diff(r1, match[2]));
-      }
-    } else {
+      end
+    end else do
       return s1;
-    }
-  } else {
+    end
+  end else do
     return --[ Empty ]--0;
-  }
-}
+  end
+end
 
-function mem(x, _tree) {
-  while(true) {
+function mem(x, _tree) do
+  while(true) do
     var tree = _tree;
-    if (tree) {
+    if (tree) do
       var c = Caml_primitive.caml_string_compare(x, tree[1]);
-      if (c == 0) {
+      if (c == 0) do
         return true;
-      } else {
+      end else do
         _tree = c < 0 ? tree[0] : tree[2];
         continue ;
-      }
-    } else {
+      end
+    end else do
       return false;
-    }
-  };
-}
+    end
+  end;
+end
 
-function remove(x, tree) {
-  if (tree) {
+function remove(x, tree) do
+  if (tree) do
     var r = tree[2];
     var v = tree[1];
     var l = tree[0];
     var c = Caml_primitive.caml_string_compare(x, v);
-    if (c == 0) {
+    if (c == 0) do
       return Set_gen.internal_merge(l, r);
-    } else if (c < 0) {
+    end else if (c < 0) do
       return Set_gen.internal_bal(remove(x, l), v, r);
-    } else {
+    end else do
       return Set_gen.internal_bal(l, v, remove(x, r));
-    }
-  } else {
+    end
+  end else do
     return --[ Empty ]--0;
-  }
-}
+  end
+end
 
-function compare(s1, s2) {
+function compare(s1, s2) do
   return Set_gen.compare($$String.compare, s1, s2);
-}
+end
 
-function equal(s1, s2) {
+function equal(s1, s2) do
   return Set_gen.compare($$String.compare, s1, s2) == 0;
-}
+end
 
-function subset(_s1, _s2) {
-  while(true) {
+function subset(_s1, _s2) do
+  while(true) do
     var s2 = _s2;
     var s1 = _s1;
-    if (s1) {
-      if (s2) {
+    if (s1) do
+      if (s2) do
         var r2 = s2[2];
         var l2 = s2[0];
         var r1 = s1[2];
         var v1 = s1[1];
         var l1 = s1[0];
         var c = Caml_primitive.caml_string_compare(v1, s2[1]);
-        if (c == 0) {
-          if (subset(l1, l2)) {
+        if (c == 0) do
+          if (subset(l1, l2)) do
             _s2 = r2;
             _s1 = r1;
             continue ;
-          } else {
+          end else do
             return false;
-          }
-        } else if (c < 0) {
+          end
+        end else if (c < 0) do
           if (subset(--[ Node ]--[
                   l1,
                   v1,
                   --[ Empty ]--0,
                   0
-                ], l2)) {
+                ], l2)) do
             _s1 = r1;
             continue ;
-          } else {
+          end else do
             return false;
-          }
-        } else if (subset(--[ Node ]--[
+          end
+        end else if (subset(--[ Node ]--[
                 --[ Empty ]--0,
                 v1,
                 r1,
                 0
-              ], r2)) {
+              ], r2)) do
           _s1 = l1;
           continue ;
-        } else {
+        end else do
           return false;
-        }
-      } else {
+        end
+      end else do
         return false;
-      }
-    } else {
+      end
+    end else do
       return true;
-    }
-  };
-}
+    end
+  end;
+end
 
-function find(x, _tree) {
-  while(true) {
+function find(x, _tree) do
+  while(true) do
     var tree = _tree;
-    if (tree) {
+    if (tree) do
       var v = tree[1];
       var c = Caml_primitive.caml_string_compare(x, v);
-      if (c == 0) {
+      if (c == 0) do
         return v;
-      } else {
+      end else do
         _tree = c < 0 ? tree[0] : tree[2];
         continue ;
-      }
-    } else {
+      end
+    end else do
       throw Caml_builtin_exceptions.not_found;
-    }
-  };
-}
+    end
+  end;
+end
 
-function of_list(l) {
-  if (l) {
+function of_list(l) do
+  if (l) do
     var match = l[1];
     var x0 = l[0];
-    if (match) {
+    if (match) do
       var match$1 = match[1];
       var x1 = match[0];
-      if (match$1) {
+      if (match$1) do
         var match$2 = match$1[1];
         var x2 = match$1[0];
-        if (match$2) {
+        if (match$2) do
           var match$3 = match$2[1];
           var x3 = match$2[0];
-          if (match$3) {
-            if (match$3[1]) {
+          if (match$3) do
+            if (match$3[1]) do
               return Set_gen.of_sorted_list(List.sort_uniq($$String.compare, l));
-            } else {
+            end else do
               return add(match$3[0], add(x3, add(x2, add(x1, Set_gen.singleton(x0)))));
-            }
-          } else {
+            end
+          end else do
             return add(x3, add(x2, add(x1, Set_gen.singleton(x0))));
-          }
-        } else {
+          end
+        end else do
           return add(x2, add(x1, Set_gen.singleton(x0)));
-        }
-      } else {
+        end
+      end else do
         return add(x1, Set_gen.singleton(x0));
-      }
-    } else {
+      end
+    end else do
       return Set_gen.singleton(x0);
-    }
-  } else {
+    end
+  end else do
     return --[ Empty ]--0;
-  }
-}
+  end
+end
 
-function of_array(l) {
-  return $$Array.fold_left((function (acc, x) {
+function of_array(l) do
+  return $$Array.fold_left((function (acc, x) do
                 return add(x, acc);
-              }), --[ Empty ]--0, l);
-}
+              end), --[ Empty ]--0, l);
+end
 
-function invariant(t) {
+function invariant(t) do
   Set_gen.check(t);
   return Set_gen.is_ordered($$String.compare, t);
-}
+end
 
 var compare_elt = $$String.compare;
 

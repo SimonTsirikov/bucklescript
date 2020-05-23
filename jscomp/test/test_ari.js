@@ -5,45 +5,45 @@ var VV = require("VV");
 var List = require("../../lib/js/list.js");
 var Curry = require("../../lib/js/curry.js");
 
-function f(x) {
-  return (function (param) {
+function f(x) do
+  return (function (param) do
       return x + param | 0;
-    });
-}
+    end);
+end
 
-function f1(x, y) {
+function f1(x, y) do
   return x + y | 0;
-}
+end
 
-function f3(g, x) {
+function f3(g, x) do
   return Curry._1(g, x);
-}
+end
 
-function f2(param) {
+function f2(param) do
   return 3 + param | 0;
-}
+end
 
 var g = 7;
 
-function ff(param) {
+function ff(param) do
   return U.test_primit(3, param);
-}
+end
 
 var fff = VV.test_primit2(3);
 
-function length_aux(_len, _param) {
-  while(true) {
+function length_aux(_len, _param) do
+  while(true) do
     var param = _param;
     var len = _len;
-    if (param) {
+    if (param) do
       _param = param[1];
       _len = len + 1 | 0;
       continue ;
-    } else {
+    end else do
       return len;
-    }
-  };
-}
+    end
+  end;
+end
 
 var length = List.length;
 

@@ -3,15 +3,15 @@
 var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var counter = {
+var counter = do
   contents: 0
-};
+end;
 
-function add_test(loc, test) {
+function add_test(loc, test) do
   counter.contents = counter.contents + 1 | 0;
   var id = loc .. (" id " .. String(counter.contents));
   suites.contents = --[ :: ]--[
@@ -22,16 +22,16 @@ function add_test(loc, test) {
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function eq(loc, x, y) {
-  return add_test(loc, (function (param) {
+function eq(loc, x, y) do
+  return add_test(loc, (function (param) do
                 return --[ Eq ]--Block.__(0, [
                           x,
                           y
                         ]);
-              }));
-}
+              end));
+end
 
 eq("File \"js_cast_test.ml\", line 13, characters 12-19", true, 1);
 

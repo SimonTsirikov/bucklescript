@@ -1,13 +1,13 @@
 'use strict';
 
 
-var List = {
+var List = do
   u: 3
-};
+end;
 
-var X = {
+var X = do
   List: List
-};
+end;
 
 var Hashtbl = --[ alias ]--0;
 

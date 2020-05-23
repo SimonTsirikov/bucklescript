@@ -1,15 +1,15 @@
 'use strict';
 
 
-var v = {
-  x: (function () {
+var v = do
+  x: (function () do
       return 3;
-    }),
-  say: (function (x) {
+    end),
+  say: (function (x) do
       var self = this ;
       return self.x() + x | 0;
-    })
-};
+    end)
+end;
 
 var u = v.x() + v.say(3) | 0;
 

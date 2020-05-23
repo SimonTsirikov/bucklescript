@@ -1,10 +1,10 @@
 'use strict';
 
 
-function f(param) {
+function f(param) do
   console.log("hey");
   return --[ () ]--0;
-}
+end
 
 exports.f = f;
 --[ No side effect ]--

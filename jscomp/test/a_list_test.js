@@ -6,7 +6,7 @@ var Ext_list_test = require("./ext_list_test.js");
 
 var suites_000 = --[ tuple ]--[
   "drop",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 Ext_list_test.drop(3, --[ :: ]--[
                       0,
@@ -20,13 +20,13 @@ var suites_000 = --[ tuple ]--[
                     ]),
                 --[ [] ]--0
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "drop1",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   Ext_list_test.drop(2, --[ :: ]--[
                         0,
@@ -43,12 +43,12 @@ var suites_001 = --[ :: ]--[
                     --[ [] ]--0
                   ]
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "flat_map",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     --[ :: ]--[
                       0,
@@ -66,13 +66,13 @@ var suites_001 = --[ :: ]--[
                         ]
                       ]
                     ],
-                    Ext_list_test.flat_map((function (x) {
-                            if (x % 2 == 0) {
+                    Ext_list_test.flat_map((function (x) do
+                            if (x % 2 == 0) do
                               return --[ :: ]--[
                                       0,
                                       --[ [] ]--0
                                     ];
-                            } else {
+                            end else do
                               return --[ :: ]--[
                                       1,
                                       --[ :: ]--[
@@ -80,8 +80,8 @@ var suites_001 = --[ :: ]--[
                                         --[ [] ]--0
                                       ]
                                     ];
-                            }
-                          }), --[ :: ]--[
+                            end
+                          end), --[ :: ]--[
                           0,
                           --[ :: ]--[
                             0,
@@ -95,7 +95,7 @@ var suites_001 = --[ :: ]--[
                           ]
                         ])
                   ]);
-        })
+        end)
     ],
     --[ [] ]--0
   ]

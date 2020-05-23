@@ -2,30 +2,30 @@
 
 var Mt = require("./mt.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
 function foo(a){return a()}
 ;
 
-function fn(param) {
+function fn(param) do
   console.log("hi");
   return 1;
-}
+end
 
-eq("File \"gpr_3492_test.ml\", line 14, characters 6-13", foo((function () {
+eq("File \"gpr_3492_test.ml\", line 14, characters 6-13", foo((function () do
             console.log("hi");
             return 1;
-          })), 1);
+          end)), 1);
 
 Mt.from_pair_suites("gpr_3492_test.ml", suites.contents);
 

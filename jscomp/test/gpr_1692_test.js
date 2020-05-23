@@ -1,10 +1,10 @@
 'use strict';
 
 
-(function (x) {
-        return (function (f) {
+(function (x) do
+        return (function (f) do
             return 0;
-          });
-      })("")("");
+          end);
+      end)("")("");
 
 --[  Not a pure module ]--

@@ -1,9 +1,9 @@
 'use strict';
 
 
-function ff(x) {
+function ff(x) do
   var a;
-  switch (x) {
+  switch (x) do
     case "0" :
     case "1" :
     case "2" :
@@ -20,37 +20,37 @@ function ff(x) {
         break;
     default:
       a = 8;
-  }
+  end
   return a + 3 | 0;
-}
+end
 
-function f(x) {
+function f(x) do
   var y;
   y = x.tag ? 4 : 3;
   return y + 32 | 0;
-}
+end
 
-function f2(x) {
+function f2(x) do
   var v = 0;
   var y;
   v = 1;
-  if (x.tag) {
+  if (x.tag) do
     var z = 33;
     y = z + 4 | 0;
-  } else {
+  end else do
     var z$1 = 33;
     y = z$1 + 3 | 0;
-  }
+  end
   return y + 32 | 0;
-}
+end
 
-function f3(x) {
+function f3(x) do
   var v = 0;
   var y;
   v = 1;
   y = x.tag ? 4 : 3;
   return y + 32 | 0;
-}
+end
 
 exports.ff = ff;
 exports.f = f;

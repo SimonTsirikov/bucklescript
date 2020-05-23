@@ -3,92 +3,92 @@
 var Mt = require("./mt.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, b$1) {
+function b(loc, b$1) do
   return Mt.bool_suites(test_id, suites, loc, b$1);
-}
+end
 
-function makeWrapper(foo, param) {
+function makeWrapper(foo, param) do
   var tmp = { };
-  if (foo ~= undefined) {
-    tmp.foo = (function () {
-          switch (Caml_option.valFromOption(foo)) {
+  if (foo ~= undefined) do
+    tmp.foo = (function () do
+          switch (Caml_option.valFromOption(foo)) do
             case 97 :
                 return "a";
             case 98 :
                 return "b";
             
-          }
-        })();
-  }
+          end
+        end)();
+  end
   console.log(tmp);
   return --[ () ]--0;
-}
+end
 
-function makeWrapper2(foo, param) {
-  console.log({
-        foo: (function () {
-              switch (foo) {
+function makeWrapper2(foo, param) do
+  console.log(do
+        foo: (function () do
+              switch (foo) do
                 case 97 :
                     return "a";
                 case 98 :
                     return "b";
                 
-              }
-            })()
-      });
+              end
+            end)()
+      end);
   return --[ () ]--0;
-}
+end
 
 makeWrapper2(--[ a ]--97, --[ () ]--0);
 
-function makeWrapper3(foo, param) {
+function makeWrapper3(foo, param) do
   console.log(2);
   var tmp = { };
-  if (foo ~= undefined) {
-    tmp.foo = (function () {
-          switch (Caml_option.valFromOption(foo)) {
+  if (foo ~= undefined) do
+    tmp.foo = (function () do
+          switch (Caml_option.valFromOption(foo)) do
             case 97 :
                 return "a";
             case 98 :
                 return "b";
             
-          }
-        })();
-  }
+          end
+        end)();
+  end
   return tmp;
-}
+end
 
-function makeWrapper4(foo, param) {
+function makeWrapper4(foo, param) do
   console.log(2);
   var tmp = { };
   var tmp$1 = foo > 100 ? undefined : (
       foo > 10 ? --[ b ]--98 : --[ a ]--97
     );
-  if (tmp$1 ~= undefined) {
-    tmp.foo = (function () {
-          switch (Caml_option.valFromOption(tmp$1)) {
+  if (tmp$1 ~= undefined) do
+    tmp.foo = (function () do
+          switch (Caml_option.valFromOption(tmp$1)) do
             case 97 :
                 return "a";
             case 98 :
                 return "b";
             
-          }
-        })();
-  }
+          end
+        end)();
+  end
   return tmp;
-}
+end
 
 b("File \"gpr_2503_test.ml\", line 31, characters 5-12", "a" == makeWrapper3(--[ a ]--97, --[ () ]--0).foo);
 

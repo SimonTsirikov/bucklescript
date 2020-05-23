@@ -1,38 +1,38 @@
 'use strict';
 
 
-function f(x) {
-  return {
+function f(x) do
+  return do
           THIS_IS_NOT_EXPRESSIBLE_IN_BUCKLE: x
-        };
-}
+        end;
+end
 
-function set(x) {
+function set(x) do
   x.THIS_IS_NOT_EXPRESSIBLE_IN_BUCKLE = 3;
   return (x.THIS_IS_NOT_EXPRESSIBLE_IN_BUCKLE << 1);
-}
+end
 
-function f1(u) {
+function f1(u) do
   return u.x.x.x.y;
-}
+end
 
-function f2(x) {
+function f2(x) do
   x["x'"] = x["x'"] + 3 | 0;
-  return {
+  return do
           "x'": x["x'"] + 3 | 0
-        };
-}
+        end;
+end
 
-function f3(x) {
+function f3(x) do
   x.in = x.in + 3 | 0;
-  return {
+  return do
           in: x.in + 3 | 0
-        };
-}
+        end;
+end
 
-function f4(param) {
+function f4(param) do
   return (((param.EXACT_MAPPING_TO_JS_LABEL + param.EXACT_2 | 0) + param.z.hello | 0) << 1);
-}
+end
 
 exports.f = f;
 exports.set = set;

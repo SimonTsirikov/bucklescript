@@ -15,11 +15,11 @@ var Point = Caml_module.init_mod(--[ tuple ]--[
 Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
             --[ Function ]--0,
             "add"
-          ]]]), Point, {
-      add: (function (prim, prim$1) {
+          ]]]), Point, do
+      add: (function (prim, prim$1) do
           return prim.add(prim$1);
-        })
-    });
+        end)
+    end);
 
 var CRS = --[ () ]--0;
 

@@ -2,17 +2,17 @@
 
 var Block = require("../../lib/js/block.js");
 
-function f(x) {
+function f(x) do
   return x;
-}
+end
 
-function ff(x) {
+function ff(x) do
   return x;
-}
+end
 
-function fff(x) {
+function fff(x) do
   var match = --[ A ]--Block.__(0, [x]);
-  switch (match.tag | 0) {
+  switch (match.tag | 0) do
     case --[ A ]--0 :
         return x;
     case --[ B ]--1 :
@@ -20,24 +20,24 @@ function fff(x) {
     case --[ C ]--2 :
         return 2;
     
-  }
-}
+  end
+end
 
-function h(x) {
-  if (x ~= 66) {
-    if (x >= 67) {
+function h(x) do
+  if (x ~= 66) do
+    if (x >= 67) do
       return 2;
-    } else {
+    end else do
       return 0;
-    }
-  } else {
+    end
+  end else do
     return 1;
-  }
-}
+  end
+end
 
-function hh(param) {
+function hh(param) do
   return 3;
-}
+end
 
 var g = h(--[ A ]--65);
 

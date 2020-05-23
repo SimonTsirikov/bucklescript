@@ -4,40 +4,40 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 var Js_types = require("../../lib/js/js_types.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 eq("File \"gpr_1658_test.ml\", line 11, characters 7-14", null, null);
 
 var match = Js_types.classify(null);
 
-if (typeof match == "number" and match == 2) {
+if (typeof match == "number" and match == 2) do
   eq("File \"gpr_1658_test.ml\", line 14, characters 11-18", true, true);
-} else {
+end else do
   eq("File \"gpr_1658_test.ml\", line 16, characters 11-18", true, false);
-}
+end
 
 eq("File \"gpr_1658_test.ml\", line 17, characters 7-14", true, Js_types.test(null, --[ Null ]--1));
 

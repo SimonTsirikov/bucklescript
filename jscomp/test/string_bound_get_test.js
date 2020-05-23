@@ -7,21 +7,21 @@ var v = "ghos";
 
 var u_a = --[ "g" ]--103;
 
-function u_b(param) {
+function u_b(param) do
   return Caml_string.get(v, -1);
-}
+end
 
-function u_d(param) {
+function u_d(param) do
   return Caml_string.get("ghos", -1);
-}
+end
 
 var u_e = Caml_bytes.caml_create_bytes(32);
 
 var u_f = Caml_bytes.get(u_e, 0);
 
-function u_g(param) {
+function u_g(param) do
   return Caml_bytes.get(u_e, -1);
-}
+end
 
 var u_c = --[ "g" ]--103;
 

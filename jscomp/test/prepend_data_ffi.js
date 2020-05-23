@@ -1,35 +1,35 @@
 'use strict';
 
 
-var v1 = {
+var v1 = do
   stdio: "inherit",
   v: 3
-};
+end;
 
-var v2 = {
+var v2 = do
   stdio: 1,
   v: 2
-};
+end;
 
-process.on("exit", (function (exit_code) {
+process.on("exit", (function (exit_code) do
         return String(exit_code);
-      }));
+      end));
 
-process.on(1, (function (param) {
+process.on(1, (function (param) do
         return --[ () ]--0;
-      }));
+      end));
 
-process.on((function (i) {
+process.on((function (i) do
         return String(i);
-      }), "exit");
+      end), "exit");
 
-process.on((function (i) {
+process.on((function (i) do
         return String(i);
-      }), 1);
+      end), 1);
 
 xx(3, 3, "xxx", "a", "b");
 
-function f(x) {
+function f(x) do
   x.xx(110, [
         1,
         2,
@@ -44,25 +44,25 @@ function f(x) {
   x.xx(113, 3, "xxx", 0, "b", 1, 2, 3, 4, 5);
   x.xx(114, 3, true, false, ("你好"), (["你好",1,2,3]), ([{ "arr" : ["你好",1,2,3], "encoding" : "utf8"}]), ([{ "arr" : ["你好",1,2,3], "encoding" : "utf8"}]), "xxx", 0, "yyy", "b", 1, 2, 3, 4, 5);
   return --[ () ]--0;
-}
+end
 
-process.on("exit", (function (exit_code) {
+process.on("exit", (function (exit_code) do
         console.log("error code: " .. String(exit_code));
         return --[ () ]--0;
-      }));
+      end));
 
-function register(p) {
-  p.on("exit", (function (i) {
+function register(p) do
+  p.on("exit", (function (i) do
           console.log(i);
           return --[ () ]--0;
-        }));
+        end));
   return --[ () ]--0;
-}
+end
 
-var config = {
+var config = do
   stdio: "inherit",
   cwd: "."
-};
+end;
 
 exports.v1 = v1;
 exports.v2 = v2;

@@ -3,29 +3,29 @@
 var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
-function f(x) {
-  if (x) {
+function f(x) do
+  if (x) do
     return true;
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function f2(x) {
-  if (x) {
+function f2(x) do
+  if (x) do
     return true;
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function f4(x) {
-  if (x) {
+function f4(x) do
+  if (x) do
     return true;
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
 var u = 1;
 
@@ -33,33 +33,33 @@ var v = true;
 
 var suites_000 = --[ tuple ]--[
   "caml_bool_eq_caml_bool",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 u,
                 true
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "js_bool_eq_js_bool",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   v,
                   true
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "js_bool_neq_acml_bool",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     true,
                     true == true
                   ]);
-        })
+        end)
     ],
     --[ [] ]--0
   ]
@@ -70,35 +70,35 @@ var suites = --[ :: ]--[
   suites_001
 ];
 
-function ff(u) {
-  if (u == true) {
+function ff(u) do
+  if (u == true) do
     return 1;
-  } else {
+  end else do
     return 2;
-  }
-}
+  end
+end
 
-function fi(x, y) {
+function fi(x, y) do
   return x == y;
-}
+end
 
-function fb(x, y) {
+function fb(x, y) do
   return x == y;
-}
+end
 
-function fadd(x, y) {
+function fadd(x, y) do
   return x + y | 0;
-}
+end
 
-function ffadd(x, y) {
+function ffadd(x, y) do
   return x + y;
-}
+end
 
-function ss(x) {
+function ss(x) do
   return "xx" > x;
-}
+end
 
-function bb(x) {
+function bb(x) do
   return --[ tuple ]--[
           true > x,
           false,
@@ -109,7 +109,7 @@ function bb(x) {
           false >= x,
           true
         ];
-}
+end
 
 var consts = --[ tuple ]--[
   false,

@@ -2,44 +2,44 @@
 
 var Block = require("../../lib/js/block.js");
 
-function u_x(param) {
+function u_x(param) do
   return param.u_x;
-}
+end
 
-function b_x(param) {
+function b_x(param) do
   return param.b_x;
-}
+end
 
-function c_x(param) {
+function c_x(param) do
   return param.c_x;
-}
+end
 
-function d_int(param_0) {
+function d_int(param_0) do
   return --[ D_int ]--Block.__(0, [param_0]);
-}
+end
 
-function d_tuple(param_0, param_1) {
+function d_tuple(param_0, param_1) do
   return --[ D_tuple ]--Block.__(1, [
             param_0,
             param_1
           ]);
-}
+end
 
-function newContent(param_0) {
+function newContent(param_0) do
   return --[ NewContent ]--Block.__(2, [param_0]);
-}
+end
 
-function d_tweak(param_0) {
+function d_tweak(param_0) do
   return --[ D_tweak ]--Block.__(3, [param_0]);
-}
+end
 
-function u_X(param) {
+function u_X(param) do
   return param.u_X;
-}
+end
 
-function d(param) {
+function d(param) do
   return param.d;
-}
+end
 
 var v = --[ D_int ]--Block.__(0, [3]);
 
@@ -68,13 +68,13 @@ var h = --[ :: ]--[
   h_001
 ];
 
-function xx(param_0) {
+function xx(param_0) do
   return --[ Xx ]--[param_0];
-}
+end
 
-function a(param_0) {
+function a(param_0) do
   return --[ A ]--[param_0];
-}
+end
 
 var d_empty = --[ D_empty ]--0;
 

@@ -3,16 +3,16 @@
 var Block = require("../../lib/js/block.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function is_number(_expr) {
-  while(true) {
+function is_number(_expr) do
+  while(true) do
     var expr = _expr;
-    switch (expr.tag | 0) {
+    switch (expr.tag | 0) do
       case --[ Val ]--0 :
-          if (expr[0].tag) {
+          if (expr[0].tag) do
             return false;
-          } else {
+          end else do
             return true;
-          }
+          end
       case --[ Neg ]--1 :
           _expr = expr[0];
           continue ;
@@ -22,12 +22,12 @@ function is_number(_expr) {
       case --[ Gcd ]--5 :
           return false;
       
-    }
-  };
-}
+    end
+  end;
+end
 
-function compare(context, state, _a, _b) {
-  while(true) {
+function compare(context, state, _a, _b) do
+  while(true) do
     var b = _b;
     var a = _a;
     var exit = 0;
@@ -38,9 +38,9 @@ function compare(context, state, _a, _b) {
     var exit$1 = 0;
     var exit$2 = 0;
     var exit$3 = 0;
-    switch (a.tag | 0) {
+    switch (a.tag | 0) do
       case --[ Val ]--0 :
-          switch (b.tag | 0) {
+          switch (b.tag | 0) do
             case --[ Val ]--0 :
                 return 111;
             case --[ Neg ]--1 :
@@ -63,7 +63,7 @@ function compare(context, state, _a, _b) {
                 exit = 1;
                 break;
             
-          }
+          end
           break;
       case --[ Neg ]--1 :
           _a = a[0];
@@ -73,7 +73,7 @@ function compare(context, state, _a, _b) {
           exit$3 = 5;
           break;
       case --[ Frac ]--4 :
-          switch (b.tag | 0) {
+          switch (b.tag | 0) do
             case --[ Val ]--0 :
                 throw [
                       Caml_builtin_exceptions.assert_failure,
@@ -101,10 +101,10 @@ function compare(context, state, _a, _b) {
                 exit = 1;
                 break;
             
-          }
+          end
           break;
       case --[ Gcd ]--5 :
-          switch (b.tag | 0) {
+          switch (b.tag | 0) do
             case --[ Neg ]--1 :
                 exit$3 = 5;
                 break;
@@ -120,29 +120,29 @@ function compare(context, state, _a, _b) {
                 break;
             default:
               exit$1 = 3;
-          }
+          end
           break;
       
-    }
-    if (exit$3 == 5) {
-      if (b.tag == --[ Neg ]--1) {
+    end
+    if (exit$3 == 5) do
+      if (b.tag == --[ Neg ]--1) do
         _b = b[0];
         continue ;
-      } else if (a.tag == --[ Sum ]--2 and is_number(b)) {
+      end else if (a.tag == --[ Sum ]--2 and is_number(b)) do
         return 1;
-      } else {
+      end else do
         exit$2 = 4;
-      }
-    }
-    if (exit$2 == 4) {
-      if (b.tag == --[ Sum ]--2 and is_number(a)) {
+      end
+    end
+    if (exit$2 == 4) do
+      if (b.tag == --[ Sum ]--2 and is_number(a)) do
         return -1;
-      } else {
+      end else do
         exit$1 = 3;
-      }
-    }
-    if (exit$1 == 3) {
-      switch (a.tag | 0) {
+      end
+    end
+    if (exit$1 == 3) do
+      switch (a.tag | 0) do
         case --[ Sum ]--2 :
             exit = 1;
             break;
@@ -153,31 +153,31 @@ function compare(context, state, _a, _b) {
         case --[ Gcd ]--5 :
             return 1;
         
-      }
-    }
-    switch (exit) {
+      end
+    end
+    switch (exit) do
       case 1 :
-          switch (b.tag | 0) {
+          switch (b.tag | 0) do
             case --[ Pow ]--3 :
                 return 1;
             case --[ Gcd ]--5 :
                 return -1;
             default:
               return -1;
-          }
+          end
       case 2 :
           var denom = compare(context, state, da, db);
-          if (denom == 0) {
+          if (denom == 0) do
             _b = nb;
             _a = na;
             continue ;
-          } else {
+          end else do
             return denom;
-          }
+          end
       
-    }
-  };
-}
+    end
+  end;
+end
 
 var a = --[ Sum ]--Block.__(2, [--[ :: ]--[
       --[ Val ]--Block.__(0, [--[ Symbol ]--Block.__(1, ["a"])]),
@@ -189,8 +189,8 @@ var a = --[ Sum ]--Block.__(2, [--[ :: ]--[
 
 var b = --[ Val ]--Block.__(0, [--[ Symbol ]--Block.__(1, ["x"])]);
 
-console.log(compare(--[ InSum ]--0, {
+console.log(compare(--[ InSum ]--0, do
           complex: true
-        }, a, b));
+        end, a, b));
 
 --[  Not a pure module ]--

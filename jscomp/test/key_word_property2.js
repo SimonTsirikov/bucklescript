@@ -2,19 +2,19 @@
 
 var Export_keyword = require("./export_keyword.js");
 
-function test2(v) {
-  return {
+function test2(v) do
+  return do
           open: v.open,
           window: v.window
-        };
-}
+        end;
+end
 
-function test(p) {
+function test(p) do
   return --[ tuple ]--[
           p.catch,
           p.then
         ];
-}
+end
 
 var $$case = Export_keyword.$$case;
 

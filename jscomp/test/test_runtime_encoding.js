@@ -2,49 +2,49 @@
 
 var Caml_array = require("../../lib/js/caml_array.js");
 
-function g(x) {
+function g(x) do
   return [
           3,
           x
         ];
-}
+end
 
-function ff(v, u) {
-  return {
+function ff(v, u) do
+  return do
           v: v,
           u: u
-        };
-}
+        end;
+end
 
-function fff(vv, uu) {
-  return {
+function fff(vv, uu) do
+  return do
           vv: vv,
           uu: uu
-        };
-}
+        end;
+end
 
-function a(x) {
+function a(x) do
   return Caml_array.caml_array_get(x, 0);
-}
+end
 
-function aa(x) {
+function aa(x) do
   return Caml_array.caml_array_get(x, 0);
-}
+end
 
-function aaa(x) {
+function aaa(x) do
   return x.v;
-}
+end
 
-function aaaa(x) {
+function aaaa(x) do
   return x.vv;
-}
+end
 
-function f(x) {
-  for(var i = 0; i <= 10; ++i){
+function f(x) do
+  for(var i = 0; i <= 10; ++i)do
     Caml_array.caml_array_set(x, i, i);
-  }
+  end
   return --[ () ]--0;
-}
+end
 
 exports.g = g;
 exports.ff = ff;

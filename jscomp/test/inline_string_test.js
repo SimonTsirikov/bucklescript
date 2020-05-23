@@ -5,13 +5,13 @@ console.log("list");
 
 console.log("list");
 
-function f(param) {
-  if (param ~= undefined) {
+function f(param) do
+  if (param ~= undefined) do
     return "Some";
-  } else {
+  end else do
     return "None";
-  }
-}
+  end
+end
 
 console.log(--[ tuple ]--[
       f(3),

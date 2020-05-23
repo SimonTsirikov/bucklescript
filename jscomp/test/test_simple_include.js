@@ -2,25 +2,25 @@
 
 var $$Array = require("../../lib/js/array.js");
 
-var v = {
+var v = do
   contents: 32
-};
+end;
 
 v.contents = 0;
 
-var N = {
+var N = do
   a: 3,
   v: v
-};
+end;
 
-var v$1 = {
+var v$1 = do
   contents: 32
-};
+end;
 
-var NN = {
+var NN = do
   a: 3,
   v: v$1
-};
+end;
 
 var make_float = $$Array.make_float;
 

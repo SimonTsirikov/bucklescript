@@ -4,58 +4,58 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function tToJs(param) {
-  return {
+function tToJs(param) do
+  return do
           x: param.x,
           y: param.y,
           z: param.z
-        };
-}
+        end;
+end
 
-function tFromJs(param) {
-  return {
+function tFromJs(param) do
+  return do
           x: param.x,
           y: param.y,
           z: param.z
-        };
-}
+        end;
+end
 
-var v0 = {
+var v0 = do
   x: 3,
   y: false,
   z: false
-};
+end;
 
-var v1 = {
+var v1 = do
   x: 3,
   y: false,
   z: ""
-};
+end;
 
 var jsMapperConstantArray = [
   --[ tuple ]--[
@@ -72,17 +72,17 @@ var jsMapperConstantArray = [
   ]
 ];
 
-function xToJs(param) {
+function xToJs(param) do
   return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray);
-}
+end
 
-function xFromJs(param) {
+function xFromJs(param) do
   return Js_mapperRt.revSearchAssert(3, jsMapperConstantArray, param);
-}
+end
 
-function idx(v) {
+function idx(v) do
   return eq("File \"ast_abstract_test.ml\", line 32, characters 17-24", xFromJs(xToJs(v)), v);
-}
+end
 
 var x0 = xToJs(--[ a ]--97);
 
@@ -100,17 +100,17 @@ var jsMapperConstantArray$1 = [
   4
 ];
 
-function aToJs(param) {
+function aToJs(param) do
   return jsMapperConstantArray$1[param];
-}
+end
 
-function aFromJs(param) {
+function aFromJs(param) do
   return Js_mapperRt.fromIntAssert(3, jsMapperConstantArray$1, param);
-}
+end
 
-function id(x) {
+function id(x) do
   return eq("File \"ast_abstract_test.ml\", line 49, characters 8-15", aFromJs(aToJs(x)), x);
-}
+end
 
 var a0 = aToJs(--[ A ]--0);
 
@@ -122,24 +122,24 @@ id(--[ B ]--1);
 
 id(--[ C ]--2);
 
-function bToJs(param) {
+function bToJs(param) do
   return param + 0 | 0;
-}
+end
 
-function bFromJs(param) {
-  if (!(param <= 3 and 0 <= param)) {
+function bFromJs(param) do
+  if (!(param <= 3 and 0 <= param)) do
     throw new Error("ASSERT FAILURE");
-  }
+  end
   return param - 0 | 0;
-}
+end
 
 var b0 = 0;
 
 var b1 = 1;
 
-function idb(v) {
+function idb(v) do
   return eq("File \"ast_abstract_test.ml\", line 71, characters 5-12", bFromJs(v + 0 | 0), v);
-}
+end
 
 idb(--[ D0 ]--0);
 
@@ -149,22 +149,22 @@ idb(--[ D2 ]--2);
 
 idb(--[ D3 ]--3);
 
-function cToJs(param) {
+function cToJs(param) do
   return param + 3 | 0;
-}
+end
 
-function cFromJs(param) {
-  if (!(param <= 6 and 3 <= param)) {
+function cFromJs(param) do
+  if (!(param <= 6 and 3 <= param)) do
     throw new Error("ASSERT FAILURE");
-  }
+  end
   return param - 3 | 0;
-}
+end
 
 var c0 = 3;
 
-function idc(v) {
+function idc(v) do
   return eq("File \"ast_abstract_test.ml\", line 83, characters 15-22", cFromJs(v + 3 | 0), v);
-}
+end
 
 idc(--[ D0 ]--0);
 
@@ -174,27 +174,27 @@ idc(--[ D2 ]--2);
 
 idc(--[ D3 ]--3);
 
-function hToJs(param) {
+function hToJs(param) do
   return param + 0 | 0;
-}
+end
 
-function hFromJs(param) {
-  if (!(param <= 1 and 0 <= param)) {
+function hFromJs(param) do
+  if (!(param <= 1 and 0 <= param)) do
     throw new Error("ASSERT FAILURE");
-  }
+  end
   return param - 0 | 0;
-}
+end
 
-function zToJs(param) {
+function zToJs(param) do
   return param + 0 | 0;
-}
+end
 
-function zFromJs(param) {
-  if (param <= 2 and 0 <= param) {
+function zFromJs(param) do
+  if (param <= 2 and 0 <= param) do
     return param - 0 | 0;
-  }
+  end
   
-}
+end
 
 Mt.from_pair_suites("Ast_abstract_test", suites.contents);
 

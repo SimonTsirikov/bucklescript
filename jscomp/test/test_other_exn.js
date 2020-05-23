@@ -1,9 +1,9 @@
 'use strict';
 
 
-function Make($star) {
+function Make($star) do
   return { };
-}
+end
 
 var U = { };
 

@@ -2,19 +2,19 @@
 
 var Belt_Array = require("../../lib/js/belt_Array.js");
 
-function range(i, j) {
-  return Belt_Array.makeBy((j - i | 0) + 1 | 0, (function (k) {
+function range(i, j) do
+  return Belt_Array.makeBy((j - i | 0) + 1 | 0, (function (k) do
                 return k + i | 0;
-              }));
-}
+              end));
+end
 
-function randomRange(i, j) {
-  var v = Belt_Array.makeBy((j - i | 0) + 1 | 0, (function (k) {
+function randomRange(i, j) do
+  var v = Belt_Array.makeBy((j - i | 0) + 1 | 0, (function (k) do
           return k + i | 0;
-        }));
+        end));
   Belt_Array.shuffleInPlace(v);
   return v;
-}
+end
 
 var A = --[ alias ]--0;
 

@@ -7,263 +7,263 @@ var Curry = require("../../lib/js/curry.js");
 var Caml_array = require("../../lib/js/caml_array.js");
 var Caml_int32 = require("../../lib/js/caml_int32.js");
 
-function for_3(x) {
-  var v = {
+function for_3(x) do
+  var v = do
     contents: 0
-  };
-  var arr = $$Array.map((function (param, param$1) {
+  end;
+  var arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
-        }), x);
-  for(var i = 0 ,i_finish = #x - 1 | 0; i <= i_finish; ++i){
+        end), x);
+  for(var i = 0 ,i_finish = #x - 1 | 0; i <= i_finish; ++i)do
     var j = (i << 1);
-    Caml_array.caml_array_set(arr, i, (function(j){
-        return function (param) {
+    Caml_array.caml_array_set(arr, i, (function(j)do
+        return function (param) do
           v.contents = v.contents + j | 0;
           return --[ () ]--0;
-        }
-        }(j)));
-  }
-  $$Array.iter((function (x) {
+        end
+        end(j)));
+  end
+  $$Array.iter((function (x) do
           return Curry._1(x, --[ () ]--0);
-        }), arr);
+        end), arr);
   return v.contents;
-}
+end
 
-function for_4(x) {
-  var v = {
+function for_4(x) do
+  var v = do
     contents: 0
-  };
-  var arr = $$Array.map((function (param, param$1) {
+  end;
+  var arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
-        }), x);
-  for(var i = 0 ,i_finish = #x - 1 | 0; i <= i_finish; ++i){
+        end), x);
+  for(var i = 0 ,i_finish = #x - 1 | 0; i <= i_finish; ++i)do
     var j = (i << 1);
     var k = (j << 1);
-    Caml_array.caml_array_set(arr, i, (function(k){
-        return function (param) {
+    Caml_array.caml_array_set(arr, i, (function(k)do
+        return function (param) do
           v.contents = v.contents + k | 0;
           return --[ () ]--0;
-        }
-        }(k)));
-  }
-  $$Array.iter((function (x) {
+        end
+        end(k)));
+  end
+  $$Array.iter((function (x) do
           return Curry._1(x, --[ () ]--0);
-        }), arr);
+        end), arr);
   return v.contents;
-}
+end
 
-function for_5(x, u) {
-  var v = {
+function for_5(x, u) do
+  var v = do
     contents: 0
-  };
-  var arr = $$Array.map((function (param, param$1) {
+  end;
+  var arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
-        }), x);
-  for(var i = 0 ,i_finish = #x - 1 | 0; i <= i_finish; ++i){
+        end), x);
+  for(var i = 0 ,i_finish = #x - 1 | 0; i <= i_finish; ++i)do
     var k = Caml_int32.imul((u << 1), u);
-    Caml_array.caml_array_set(arr, i, (function(k){
-        return function (param) {
+    Caml_array.caml_array_set(arr, i, (function(k)do
+        return function (param) do
           v.contents = v.contents + k | 0;
           return --[ () ]--0;
-        }
-        }(k)));
-  }
-  $$Array.iter((function (x) {
+        end
+        end(k)));
+  end
+  $$Array.iter((function (x) do
           return Curry._1(x, --[ () ]--0);
-        }), arr);
+        end), arr);
   return v.contents;
-}
+end
 
-function for_6(x, u) {
-  var v = {
+function for_6(x, u) do
+  var v = do
     contents: 0
-  };
-  var arr = $$Array.map((function (param, param$1) {
+  end;
+  var arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
-        }), x);
-  var v4 = {
+        end), x);
+  var v4 = do
     contents: 0
-  };
-  var v5 = {
+  end;
+  var v5 = do
     contents: 0
-  };
+  end;
   var inspect_3 = -1;
   v4.contents = v4.contents + 1 | 0;
-  for(var j = 0; j <= 1; ++j){
+  for(var j = 0; j <= 1; ++j)do
     v5.contents = v5.contents + 1 | 0;
-    var v2 = {
+    var v2 = do
       contents: 0
-    };
-    (function(v2){
-    for(var i = 0 ,i_finish = #x - 1 | 0; i <= i_finish; ++i){
+    end;
+    (function(v2)do
+    for(var i = 0 ,i_finish = #x - 1 | 0; i <= i_finish; ++i)do
       var k = Caml_int32.imul((u << 1), u);
       var h = (v5.contents << 1);
       v2.contents = v2.contents + 1 | 0;
-      Caml_array.caml_array_set(arr, i, (function(k,h){
-          return function (param) {
+      Caml_array.caml_array_set(arr, i, (function(k,h)do
+          return function (param) do
             v.contents = (((((v.contents + k | 0) + v2.contents | 0) + v4.contents | 0) + v5.contents | 0) + h | 0) + u | 0;
             return --[ () ]--0;
-          }
-          }(k,h)));
-    }
-    }(v2));
+          end
+          end(k,h)));
+    end
+    end(v2));
     inspect_3 = v2.contents;
-  }
-  $$Array.iter((function (x) {
+  end
+  $$Array.iter((function (x) do
           return Curry._1(x, --[ () ]--0);
-        }), arr);
+        end), arr);
   return [
           v.contents,
           v4.contents,
           v5.contents,
           inspect_3
         ];
-}
+end
 
-function for_7(param) {
-  var v = {
+function for_7(param) do
+  var v = do
     contents: 0
-  };
-  var arr = Caml_array.caml_make_vect(21, (function (param) {
+  end;
+  var arr = Caml_array.caml_make_vect(21, (function (param) do
           return --[ () ]--0;
-        }));
-  for(var i = 0; i <= 6; ++i){
-    (function(i){
-    for(var j = 0; j <= 2; ++j){
-      Caml_array.caml_array_set(arr, Caml_int32.imul(i, 3) + j | 0, (function(j){
-          return function (param) {
+        end));
+  for(var i = 0; i <= 6; ++i)do
+    (function(i)do
+    for(var j = 0; j <= 2; ++j)do
+      Caml_array.caml_array_set(arr, Caml_int32.imul(i, 3) + j | 0, (function(j)do
+          return function (param) do
             v.contents = (v.contents + i | 0) + j | 0;
             return --[ () ]--0;
-          }
-          }(j)));
-    }
-    }(i));
-  }
-  $$Array.iter((function (f) {
+          end
+          end(j)));
+    end
+    end(i));
+  end
+  $$Array.iter((function (f) do
           return Curry._1(f, --[ () ]--0);
-        }), arr);
+        end), arr);
   return v.contents;
-}
+end
 
-function for_8(param) {
-  var v = {
+function for_8(param) do
+  var v = do
     contents: 0
-  };
-  var arr = Caml_array.caml_make_vect(21, (function (param) {
+  end;
+  var arr = Caml_array.caml_make_vect(21, (function (param) do
           return --[ () ]--0;
-        }));
-  for(var i = 0; i <= 6; ++i){
+        end));
+  for(var i = 0; i <= 6; ++i)do
     var k = (i << 1);
-    (function(i,k){
-    for(var j = 0; j <= 2; ++j){
+    (function(i,k)do
+    for(var j = 0; j <= 2; ++j)do
       var h = i + j | 0;
-      Caml_array.caml_array_set(arr, Caml_int32.imul(i, 3) + j | 0, (function(j,h){
-          return function (param) {
+      Caml_array.caml_array_set(arr, Caml_int32.imul(i, 3) + j | 0, (function(j,h)do
+          return function (param) do
             v.contents = (((v.contents + i | 0) + j | 0) + h | 0) + k | 0;
             return --[ () ]--0;
-          }
-          }(j,h)));
-    }
-    }(i,k));
-  }
-  $$Array.iter((function (f) {
+          end
+          end(j,h)));
+    end
+    end(i,k));
+  end
+  $$Array.iter((function (f) do
           return Curry._1(f, --[ () ]--0);
-        }), arr);
+        end), arr);
   return v.contents;
-}
+end
 
-function for_9(param) {
-  var v = {
+function for_9(param) do
+  var v = do
     contents: --[ [] ]--0
-  };
-  var collect = function (x) {
+  end;
+  var collect = function (x) do
     v.contents = --[ :: ]--[
       x,
       v.contents
     ];
     return --[ () ]--0;
-  };
-  var vv = {
+  end;
+  var vv = do
     contents: 0
-  };
-  var vv2 = {
+  end;
+  var vv2 = do
     contents: 0
-  };
-  var arr = Caml_array.caml_make_vect(4, (function (param) {
+  end;
+  var arr = Caml_array.caml_make_vect(4, (function (param) do
           return --[ () ]--0;
-        }));
-  var arr2 = Caml_array.caml_make_vect(2, (function (param) {
+        end));
+  var arr2 = Caml_array.caml_make_vect(2, (function (param) do
           return --[ () ]--0;
-        }));
-  for(var i = 0; i <= 1; ++i){
-    var v$1 = {
+        end));
+  for(var i = 0; i <= 1; ++i)do
+    var v$1 = do
       contents: 0
-    };
+    end;
     v$1.contents = v$1.contents + i | 0;
-    (function(v$1){
-    for(var j = 0; j <= 1; ++j){
+    (function(v$1)do
+    for(var j = 0; j <= 1; ++j)do
       v$1.contents = v$1.contents + 1 | 0;
       collect(v$1.contents);
-      Caml_array.caml_array_set(arr, (i << 1) + j | 0, (function (param) {
+      Caml_array.caml_array_set(arr, (i << 1) + j | 0, (function (param) do
               vv.contents = vv.contents + v$1.contents | 0;
               return --[ () ]--0;
-            }));
-    }
-    }(v$1));
-    Caml_array.caml_array_set(arr2, i, (function(v$1){
-        return function (param) {
+            end));
+    end
+    end(v$1));
+    Caml_array.caml_array_set(arr2, i, (function(v$1)do
+        return function (param) do
           vv2.contents = vv2.contents + v$1.contents | 0;
           return --[ () ]--0;
-        }
-        }(v$1)));
-  }
-  $$Array.iter((function (f) {
+        end
+        end(v$1)));
+  end
+  $$Array.iter((function (f) do
           return Curry._1(f, --[ () ]--0);
-        }), arr);
-  $$Array.iter((function (f) {
+        end), arr);
+  $$Array.iter((function (f) do
           return Curry._1(f, --[ () ]--0);
-        }), arr2);
+        end), arr2);
   return [--[ tuple ]--[
             vv.contents,
             $$Array.of_list(List.rev(v.contents)),
             vv2.contents
           ]];
-}
+end
 
 var suites_000 = --[ tuple ]--[
   "for_loop_test_3",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 90,
                 for_3(Caml_array.caml_make_vect(10, 2))
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "for_loop_test_4",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   180,
                   for_4(Caml_array.caml_make_vect(10, 2))
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "for_loop_test_5",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     2420,
                     for_5(Caml_array.caml_make_vect(10, 2), 11)
                   ]);
-        })
+        end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
         "for_loop_test_6",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       [
                         30,
@@ -273,32 +273,32 @@ var suites_001 = --[ :: ]--[
                       ],
                       for_6(Caml_array.caml_make_vect(3, 0), 0)
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "for_loop_test_7",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         84,
                         for_7(--[ () ]--0)
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "for_loop_test_8",
-            (function (param) {
+            (function (param) do
                 return --[ Eq ]--Block.__(0, [
                           294,
                           for_8(--[ () ]--0)
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "for_loop_test_9",
-              (function (param) {
+              (function (param) do
                   return --[ Eq ]--Block.__(0, [
                             [--[ tuple ]--[
                                 10,
@@ -312,7 +312,7 @@ var suites_001 = --[ :: ]--[
                               ]],
                             for_9(--[ () ]--0)
                           ]);
-                })
+                end)
             ],
             --[ [] ]--0
           ]

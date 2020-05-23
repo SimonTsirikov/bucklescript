@@ -6,15 +6,15 @@ var Complex = require("../../lib/js/complex.js");
 
 var suites_000 = --[ tuple ]--[
   "basic_add",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
-                {
+                do
                   re: 2,
                   im: 2
-                },
+                end,
                 Complex.add(Complex.add(Complex.add(Complex.one, Complex.one), Complex.i), Complex.i)
               ]);
-    })
+    end)
 ];
 
 var suites = --[ :: ]--[

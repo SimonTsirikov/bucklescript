@@ -1,55 +1,55 @@
 'use strict';
 
 
-function hi2(xx, yy, zz) {
+function hi2(xx, yy, zz) do
   return "\n" .. (String(xx) .. (" " .. (String(yy) .. ("\n\n" .. (String(zz) .. "\n")))));
-}
+end
 
-function hi(a0, b0, xx, yy, zz) {
+function hi(a0, b0, xx, yy, zz) do
   return "\n零一二三四五六七八九 " .. (String(a0) .. ("\n零一二三四五六七八九 123456789 " .. (String(b0) .. ("\n测试一段中文 " .. (String(xx) .. (", " .. (String(yy) .. ("\n" .. (String(zz) .. "\n\n")))))))));
-}
+end
 
-function a3(world) {
+function a3(world) do
   return "Hello \\" .. (String(world) .. "");
-}
+end
 
-function a5(x) {
+function a5(x) do
   return "" .. (String(x) .. "");
-}
+end
 
-function a6(x) {
+function a6(x) do
   return "" .. (String(x) .. "");
-}
+end
 
-function a7(x0, x3, x5) {
+function a7(x0, x3, x5) do
   return "\\" .. (String(x0) .. (",\$x1,\\\$x2,\\\\" .. (String(x3) .. (", \\\\\$x4,\\\\\\" .. (String(x5) .. "")))));
-}
+end
 
-function ffff(a_1, a_2) {
+function ffff(a_1, a_2) do
   return " hello " .. (String(a_1) .. (", wlecome to " .. (String(a_2) .. "  ")));
-}
+end
 
-function f(x, y) {
+function f(x, y) do
   var sum = x + y | 0;
   console.log(" " .. (String(x) .. (" + " .. (String(y) .. (" = " .. (String(sum) .. " "))))));
   return --[ () ]--0;
-}
+end
 
 var world = "世界";
 
 var hello_world = "你好，" .. (String(world) .. "");
 
-function test1(x0) {
+function test1(x0) do
   return "你好，" .. (String(x0) .. "");
-}
+end
 
-function test3(_xg) {
+function test3(_xg) do
   return "你好，" .. (String(_xg) .. "");
-}
+end
 
-function test5(x) {
+function test5(x) do
   return "" .. (String(x) .. "");
-}
+end
 
 var b = "test";
 

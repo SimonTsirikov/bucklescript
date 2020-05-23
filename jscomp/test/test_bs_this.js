@@ -1,18 +1,18 @@
 'use strict';
 
 
-function uux_this(x, y) {
+function uux_this(x, y) do
   var o = this ;
   return (o.length + x | 0) + y | 0;
-}
+end
 
-function even(x) {
+function even(x) do
   var o = this ;
   return x + o | 0;
-}
+end
 
-function bark(param) {
-  return (function (x, y) {
+function bark(param) do
+  return (function (x, y) do
       var o = this ;
       console.log(--[ tuple ]--[
             o.length,
@@ -22,33 +22,33 @@ function bark(param) {
             y
           ]);
       return x + y | 0;
-    });
-}
+    end);
+end
 
-var js_obj = {
-  bark: (function (x, y) {
+var js_obj = do
+  bark: (function (x, y) do
       var o = this ;
       console.log(o);
       return x + y | 0;
-    })
-};
+    end)
+end;
 
-function f(x) {
-  x.onload = (function () {
+function f(x) do
+  x.onload = (function () do
       var o = this ;
       console.log(o);
       return --[ () ]--0;
-    });
-  return x.addEventListener("onload", (function () {
+    end);
+  return x.addEventListener("onload", (function () do
                 var o = this ;
                 console.log(o.response);
                 return --[ () ]--0;
-              }));
-}
+              end));
+end
 
-function u(x) {
+function u(x) do
   return x;
-}
+end
 
 exports.uux_this = uux_this;
 exports.even = even;

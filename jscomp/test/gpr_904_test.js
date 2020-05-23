@@ -3,61 +3,61 @@
 var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function check_healty(check) {
-  if (!check.a and !check.b) {
+function check_healty(check) do
+  if (!check.a and !check.b) do
     return !check.c;
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function basic_not(x) {
+function basic_not(x) do
   return !x;
-}
+end
 
-function f(check) {
-  if (check.x) {
+function f(check) do
+  if (check.x) do
     return check.y;
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
-eq("File \"gpr_904_test.ml\", line 23, characters 5-12", f({
+eq("File \"gpr_904_test.ml\", line 23, characters 5-12", f(do
           x: true,
           y: false
-        }), false);
+        end), false);
 
-eq("File \"gpr_904_test.ml\", line 26, characters 5-12", check_healty({
+eq("File \"gpr_904_test.ml\", line 26, characters 5-12", check_healty(do
           a: false,
           b: false,
           c: true
-        }), false);
+        end), false);
 
 Mt.from_pair_suites("Gpr_904_test", suites.contents);
 

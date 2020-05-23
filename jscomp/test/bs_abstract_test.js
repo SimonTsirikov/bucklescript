@@ -2,52 +2,52 @@
 
 var Curry = require("../../lib/js/curry.js");
 
-var v = {
+var v = do
   hd: 3,
   tl: null
-};
+end;
 
 v.tl = v;
 
-var f = {
-  k: (function (x, y) {
+var f = do
+  k: (function (x, y) do
       return x == y;
-    }),
+    end),
   y: "x"
-};
+end;
 
-function uf(u) {
+function uf(u) do
   return Curry._1(u.y0, 1);
-}
+end
 
-function uf1(u) {
+function uf1(u) do
   return Curry._1(u.y1, 1);
-}
+end
 
-function uf2(u) {
+function uf2(u) do
   return Curry._2(u.y1, 1, 2);
-}
+end
 
-function uff(f) {
+function uff(f) do
   return f.yyyy(1);
-}
+end
 
-function uff2(f) {
+function uff2(f) do
   return f.yyyy1(1, 2);
-}
+end
 
-function uff3(f) {
+function uff3(f) do
   var match = f.yyyy2;
-  if (match ~= undefined) {
+  if (match ~= undefined) do
     return Curry._1(match, 0);
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function fx(v) {
+function fx(v) do
   return v.x;
-}
+end
 
 exports.f = f;
 exports.uf = uf;

@@ -4,83 +4,83 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function ok(loc, x) {
+function ok(loc, x) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Ok ]--Block.__(4, [x]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 var match = typeof ___undefined_value == "undefined" ? undefined : ___undefined_value;
 
 var a = match ~= undefined ? 2 : 1;
 
-function test(param) {
+function test(param) do
   var match = typeof __DEV__ == "undefined" ? undefined : __DEV__;
-  if (match ~= undefined) {
+  if (match ~= undefined) do
     console.log("dev mode");
     return --[ () ]--0;
-  } else {
+  end else do
     console.log("producton mode");
     return --[ () ]--0;
-  }
-}
+  end
+end
 
-function test2(param) {
+function test2(param) do
   var match = typeof __filename == "undefined" ? undefined : __filename;
-  if (match ~= undefined) {
+  if (match ~= undefined) do
     console.log(match);
     return --[ () ]--0;
-  } else {
+  end else do
     console.log("non node environment");
     return --[ () ]--0;
-  }
-}
+  end
+end
 
-function test3(param) {
-  if (Caml_option.undefined_to_opt(typeof __DEV__ == "undefined" ? undefined : __DEV__) == undefined) {
+function test3(param) do
+  if (Caml_option.undefined_to_opt(typeof __DEV__ == "undefined" ? undefined : __DEV__) == undefined) do
     console.log("production mode");
     return --[ () ]--0;
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function f(x) {
+function f(x) do
   return x == undefined;
-}
+end
 
 ok("File \"undef_regression2_test.ml\", line 44, characters 5-12", a > 0);
 

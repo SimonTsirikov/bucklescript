@@ -4,23 +4,23 @@ var List = require("../../lib/js/list.js");
 var $$String = require("../../lib/js/string.js");
 var Test_order = require("./test_order.js");
 
-function Make(U) {
+function Make(U) do
   var compare = U.compare;
-  return {
+  return do
           compare: compare,
           v: compare
-        };
-}
+        end;
+end
 
-var X = {
+var X = do
   compare: $$String.compare,
   v: $$String.compare
-};
+end;
 
-var U = {
+var U = do
   compare: Test_order.compare,
   v: Test_order.compare
-};
+end;
 
 var N = --[ alias ]--0;
 

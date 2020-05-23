@@ -5,11 +5,11 @@ var Curry = require("../../lib/js/curry.js");
 var $$String = require("../../lib/js/string.js");
 var MoreLabels = require("../../lib/js/moreLabels.js");
 
-function f(x) {
+function f(x) do
   return x;
-}
+end
 
-var XX = {
+var XX = do
   make_float: $$Array.make_float,
   init: $$Array.init,
   make_matrix: $$Array.make_matrix,
@@ -39,7 +39,7 @@ var XX = {
   fast_sort: $$Array.fast_sort,
   Floatarray: $$Array.Floatarray,
   f: f
-};
+end;
 
 var u = [$$String];
 

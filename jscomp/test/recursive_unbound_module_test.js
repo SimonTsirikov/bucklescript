@@ -3,17 +3,17 @@
 var Block = require("../../lib/js/block.js");
 var Caml_module = require("../../lib/js/caml_module.js");
 
-function Make(X) {
-  var f = function (param) {
+function Make(X) do
+  var f = function (param) do
     return --[ () ]--0;
-  };
-  var M = {
+  end;
+  var M = do
     f: f
-  };
-  return {
+  end;
+  return do
           M: M
-        };
-}
+        end;
+end
 
 var B = Caml_module.init_mod(--[ tuple ]--[
       "recursive_unbound_module_test.ml",
@@ -27,13 +27,13 @@ var B = Caml_module.init_mod(--[ tuple ]--[
             "M"
           ]]]));
 
-function f(param) {
+function f(param) do
   return --[ () ]--0;
-}
+end
 
-var M = {
+var M = do
   f: f
-};
+end;
 
 Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
             --[ Module ]--Block.__(0, [[--[ tuple ]--[
@@ -41,9 +41,9 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
                     "f"
                   ]]]),
             "M"
-          ]]]), B, {
+          ]]]), B, do
       M: M
-    });
+    end);
 
 var A = --[ () ]--0;
 

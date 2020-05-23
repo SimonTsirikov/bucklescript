@@ -50,10 +50,10 @@ console.log(6, undefined);
 
 console.log(7, Caml_option.option_get_unwrap((console.log("trace"), undefined)));
 
-function dyn_log3(prim, prim$1, prim$2) {
+function dyn_log3(prim, prim$1, prim$2) do
   console.log(prim[1], prim$1 ~= undefined ? Caml_option.valFromOption(prim$1)[1] : undefined);
   return --[ () ]--0;
-}
+end
 
 dyn_log3(--[ `Int ]--[
       3654863,
@@ -65,33 +65,33 @@ dyn_log3(--[ `Int ]--[
 
 console.log("foo");
 
-console.log({
+console.log(do
       foo: 1
-    });
+    end);
 
-function dyn_log4(prim) {
+function dyn_log4(prim) do
   console.log(prim[1]);
   return --[ () ]--0;
-}
+end
 
-console.log({
+console.log(do
       foo: 2
-    });
+    end);
 
-function f(x) {
+function f(x) do
   console.log(x[1]);
   return --[ () ]--0;
-}
+end
 
-function ff0(x, p) {
+function ff0(x, p) do
   console.log(x ~= undefined ? Caml_option.valFromOption(x)[1] : undefined, p);
   return --[ () ]--0;
-}
+end
 
-function ff1(x, p) {
+function ff1(x, p) do
   console.log(Caml_option.option_get_unwrap(Curry._1(x, --[ () ]--0)), p);
   return --[ () ]--0;
-}
+end
 
 var none_arg = undefined;
 

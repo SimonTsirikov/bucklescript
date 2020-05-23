@@ -5,43 +5,43 @@ var List = require("../../lib/js/list.js");
 var Block = require("../../lib/js/block.js");
 var Curry = require("../../lib/js/curry.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-var v = {
+var v = do
   contents: 0
-};
+end;
 
-function Make(U) {
+function Make(U) do
   v.contents = v.contents + 1 | 0;
   v.contents = v.contents + 1 | 0;
   v.contents = v.contents + 1 | 0;
   return U;
-}
+end
 
-function f(param) {
+function f(param) do
   v.contents = v.contents + 1 | 0;
   v.contents = v.contents + 1 | 0;
   v.contents = v.contents + 1 | 0;
@@ -49,7 +49,7 @@ function f(param) {
   v.contents = v.contents + 1 | 0;
   v.contents = v.contents + 1 | 0;
   return List;
-}
+end
 
 eq("File \"global_module_alias_test.ml\", line 51, characters 5-12", List.length(--[ :: ]--[
           1,
@@ -87,7 +87,7 @@ var H = List;
 
 eq("File \"global_module_alias_test.ml\", line 57, characters 5-12", v.contents, 12);
 
-function g(param) {
+function g(param) do
   return List.length(--[ :: ]--[
               1,
               --[ :: ]--[
@@ -101,14 +101,14 @@ function g(param) {
                 ]
               ]
             ]);
-}
+end
 
-function xx(param) {
+function xx(param) do
   v.contents = v.contents + 1 | 0;
   v.contents = v.contents + 1 | 0;
   v.contents = v.contents + 1 | 0;
   return List;
-}
+end
 
 eq("File \"global_module_alias_test.ml\", line 86, characters 5-12", g(--[ () ]--0), 4);
 

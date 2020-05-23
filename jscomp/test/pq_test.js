@@ -2,92 +2,92 @@
 
 var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-function insert(queue, prio, elt) {
-  if (queue) {
+function insert(queue, prio, elt) do
+  if (queue) do
     var right = queue[3];
     var left = queue[2];
     var e = queue[1];
     var p = queue[0];
-    if (prio <= p) {
+    if (prio <= p) do
       return --[ Node ]--[
               prio,
               elt,
               insert(right, p, e),
               left
             ];
-    } else {
+    end else do
       return --[ Node ]--[
               p,
               e,
               insert(right, prio, elt),
               left
             ];
-    }
-  } else {
+    end
+  end else do
     return --[ Node ]--[
             prio,
             elt,
             --[ Empty ]--0,
             --[ Empty ]--0
           ];
-  }
-}
+  end
+end
 
 var Queue_is_empty = Caml_exceptions.create("Pq_test.PrioQueue.Queue_is_empty");
 
-function remove_top(param) {
-  if (param) {
+function remove_top(param) do
+  if (param) do
     var left = param[2];
-    if (param[3]) {
-      if (left) {
+    if (param[3]) do
+      if (left) do
         var right = param[3];
         var rprio = right[0];
         var lprio = left[0];
-        if (lprio <= rprio) {
+        if (lprio <= rprio) do
           return --[ Node ]--[
                   lprio,
                   left[1],
                   remove_top(left),
                   right
                 ];
-        } else {
+        end else do
           return --[ Node ]--[
                   rprio,
                   right[1],
                   left,
                   remove_top(right)
                 ];
-        }
-      } else {
+        end
+      end else do
         return param[3];
-      }
-    } else {
+      end
+    end else do
       return left;
-    }
-  } else {
+    end
+  end else do
     throw Queue_is_empty;
-  }
-}
+  end
+end
 
-function extract(queue) {
-  if (queue) {
+function extract(queue) do
+  if (queue) do
     return --[ tuple ]--[
             queue[0],
             queue[1],
             remove_top(queue)
           ];
-  } else {
+  end else do
     throw Queue_is_empty;
-  }
-}
+  end
+end
 
-var PrioQueue = {
+var PrioQueue = do
   empty: --[ Empty ]--0,
   insert: insert,
   Queue_is_empty: Queue_is_empty,
   remove_top: remove_top,
   extract: extract
-};
+end;
 
 exports.PrioQueue = PrioQueue;
 --[ No side effect ]--

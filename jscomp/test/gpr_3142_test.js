@@ -3,17 +3,17 @@
 var Mt = require("./mt.js");
 var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
 var jsMapperConstantArray = [
   --[ tuple ]--[
@@ -34,13 +34,13 @@ var jsMapperConstantArray = [
   ]
 ];
 
-function tToJs(param) {
+function tToJs(param) do
   return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray);
-}
+end
 
-function tFromJs(param) {
+function tFromJs(param) do
   return Js_mapperRt.revSearch(4, jsMapperConstantArray, param);
-}
+end
 
 eq("File \"gpr_3142_test.ml\", line 25, characters 6-13", tToJs(--[ a ]--97), "x");
 

@@ -5,51 +5,51 @@ var Block = require("../../lib/js/block.js");
 var Curry = require("../../lib/js/curry.js");
 var Gpr_1423_nav = require("./gpr_1423_nav.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function foo(f) {
+function foo(f) do
   console.log(Curry._2(f, "a1", --[ () ]--0));
   return --[ () ]--0;
-}
+end
 
-foo((function (param) {
-        return (function (param$1) {
+foo((function (param) do
+        return (function (param$1) do
             return Gpr_1423_nav.busted(param, "a2", param$1);
-          });
-      }));
+          end);
+      end));
 
-function foo2(f) {
+function foo2(f) do
   return Curry._2(f, "a1", --[ () ]--0);
-}
+end
 
-eq("File \"gpr_1423_app_test.ml\", line 18, characters 7-14", Curry._1((function (param) {
-              return (function (param$1) {
+eq("File \"gpr_1423_app_test.ml\", line 18, characters 7-14", Curry._1((function (param) do
+              return (function (param$1) do
                   return Gpr_1423_nav.busted(param, "a2", param$1);
-                });
-            })("a1"), --[ () ]--0), "a1a2");
+                end);
+            end)("a1"), --[ () ]--0), "a1a2");
 
 Mt.from_pair_suites("Gpr_1423_app_test", suites.contents);
 

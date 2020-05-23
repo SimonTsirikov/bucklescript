@@ -19,7 +19,7 @@ var regression3 = Math.max;
 
 var regression4 = Math.max;
 
-function g(a) {
+function g(a) do
   var regression = (function(x,y){
    return ""
 });
@@ -27,27 +27,27 @@ function g(a) {
   regression(a, Pervasives.failwith);
   Curry._2(regression2, 3, 2);
   regression3(3, 2);
-  regression4(3, (function (x) {
+  regression4(3, (function (x) do
           return x;
-        }));
+        end));
   return --[ () ]--0;
-}
+end
 
 var max2 = Math.max;
 
-function umax(a, b) {
+function umax(a, b) do
   return max2(a, b);
-}
+end
 
-function u(h) {
+function u(h) do
   return max2(3, h);
-}
+end
 
 var max3 = Math.max;
 
-function uu(h) {
+function uu(h) do
   return max2(3, h);
-}
+end
 
 var empty = Object.keys(3);
 
@@ -56,42 +56,42 @@ var v = $$test(1, 2);
 Mt.from_pair_suites("Unsafe_ppx_test", --[ :: ]--[
       --[ tuple ]--[
         "unsafe_max",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       2,
                       max(1, 2)
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "unsafe_test",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         3,
                         v
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "unsafe_max2",
-            (function (param) {
+            (function (param) do
                 return --[ Eq ]--Block.__(0, [
                           2,
                           Math.max(1, 2)
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "ffi_keys",
-              (function (param) {
+              (function (param) do
                   return --[ Eq ]--Block.__(0, [
                             ["a"],
                             Ffi_js_test.keys(({a : 3}))
                           ]);
-                })
+                end)
             ],
             --[ [] ]--0
           ]

@@ -2,17 +2,17 @@
 
 var Curry = require("../../lib/js/curry.js");
 
-function f(value) {
-  if (value == null) {
+function f(value) do
+  if (value == null) do
     return ;
-  } else {
+  end else do
     return value;
-  }
-}
+  end
+end
 
-function fxx(v) {
+function fxx(v) do
   var match = Curry._1(v, --[ () ]--0);
-  switch (match) {
+  switch (match) do
     case 1 :
         return --[ "a" ]--97;
     case 2 :
@@ -21,24 +21,24 @@ function fxx(v) {
         return --[ "c" ]--99;
     default:
       return --[ "d" ]--100;
-  }
-}
+  end
+end
 
-function fxxx2(v) {
-  if (Curry._1(v, --[ () ]--0)) {
+function fxxx2(v) do
+  if (Curry._1(v, --[ () ]--0)) do
     return 2;
-  } else {
+  end else do
     return 1;
-  }
-}
+  end
+end
 
-function fxxx3(v) {
-  if (Curry._1(v, --[ () ]--0)) {
+function fxxx3(v) do
+  if (Curry._1(v, --[ () ]--0)) do
     return 2;
-  } else {
+  end else do
     return 1;
-  }
-}
+  end
+end
 
 exports.f = f;
 exports.fxx = fxx;

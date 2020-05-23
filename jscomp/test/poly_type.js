@@ -1,10 +1,10 @@
 'use strict';
 
 
-function f(x) {
+function f(x) do
   x.pushState(3, "x");
   return x.pushState(undefined, "x");
-}
+end
 
 exports.f = f;
 --[ No side effect ]--

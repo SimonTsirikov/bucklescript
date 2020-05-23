@@ -21,37 +21,37 @@ var Caml_primitive = require("../../lib/js/caml_primitive.js");
 var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function union(_l, _l$prime) {
-  while(true) {
+function union(_l, _l$prime) do
+  while(true) do
     var l$prime = _l$prime;
     var l = _l;
-    if (l$prime) {
-      if (l) {
+    if (l$prime) do
+      if (l) do
         var r$prime = l$prime[1];
         var match = l$prime[0];
         var c2$prime = match[1];
@@ -60,7 +60,7 @@ function union(_l, _l$prime) {
         var match$1 = l[0];
         var c2 = match$1[1];
         var c1 = match$1[0];
-        if ((c2 + 1 | 0) < c1$prime) {
+        if ((c2 + 1 | 0) < c1$prime) do
           return --[ :: ]--[
                   --[ tuple ]--[
                     c1,
@@ -68,7 +68,7 @@ function union(_l, _l$prime) {
                   ],
                   union(r, l$prime)
                 ];
-        } else if ((c2$prime + 1 | 0) < c1) {
+        end else if ((c2$prime + 1 | 0) < c1) do
           return --[ :: ]--[
                   --[ tuple ]--[
                     c1$prime,
@@ -76,7 +76,7 @@ function union(_l, _l$prime) {
                   ],
                   union(l, r$prime)
                 ];
-        } else if (c2 < c2$prime) {
+        end else if (c2 < c2$prime) do
           _l$prime = --[ :: ]--[
             --[ tuple ]--[
               c1 < c1$prime ? c1 : c1$prime,
@@ -86,7 +86,7 @@ function union(_l, _l$prime) {
           ];
           _l = r;
           continue ;
-        } else {
+        end else do
           _l$prime = r$prime;
           _l = --[ :: ]--[
             --[ tuple ]--[
@@ -96,21 +96,21 @@ function union(_l, _l$prime) {
             r
           ];
           continue ;
-        }
-      } else {
+        end
+      end else do
         return l$prime;
-      }
-    } else {
+      end
+    end else do
       return l;
-    }
-  };
-}
+    end
+  end;
+end
 
-function inter(_l, _l$prime) {
-  while(true) {
+function inter(_l, _l$prime) do
+  while(true) do
     var l$prime = _l$prime;
     var l = _l;
-    if (l$prime and l) {
+    if (l$prime and l) do
       var r$prime = l$prime[1];
       var match = l$prime[0];
       var c2$prime = match[1];
@@ -119,13 +119,13 @@ function inter(_l, _l$prime) {
       var match$1 = l[0];
       var c2 = match$1[1];
       var c1 = match$1[0];
-      if (Caml_obj.caml_lessthan(c2, c1$prime)) {
+      if (Caml_obj.caml_lessthan(c2, c1$prime)) do
         _l = r;
         continue ;
-      } else if (Caml_obj.caml_lessthan(c2$prime, c1)) {
+      end else if (Caml_obj.caml_lessthan(c2$prime, c1)) do
         _l$prime = r$prime;
         continue ;
-      } else if (Caml_obj.caml_lessthan(c2, c2$prime)) {
+      end else if (Caml_obj.caml_lessthan(c2, c2$prime)) do
         return --[ :: ]--[
                 --[ tuple ]--[
                   Caml_obj.caml_max(c1, c1$prime),
@@ -133,7 +133,7 @@ function inter(_l, _l$prime) {
                 ],
                 inter(r, l$prime)
               ];
-      } else {
+      end else do
         return --[ :: ]--[
                 --[ tuple ]--[
                   Caml_obj.caml_max(c1, c1$prime),
@@ -141,19 +141,19 @@ function inter(_l, _l$prime) {
                 ],
                 inter(l, r$prime)
               ];
-      }
-    } else {
+      end
+    end else do
       return --[ [] ]--0;
-    }
-  };
-}
+    end
+  end;
+end
 
-function diff(_l, _l$prime) {
-  while(true) {
+function diff(_l, _l$prime) do
+  while(true) do
     var l$prime = _l$prime;
     var l = _l;
-    if (l$prime) {
-      if (l) {
+    if (l$prime) do
+      if (l) do
         var r$prime = l$prime[1];
         var match = l$prime[0];
         var c2$prime = match[1];
@@ -162,7 +162,7 @@ function diff(_l, _l$prime) {
         var match$1 = l[0];
         var c2 = match$1[1];
         var c1 = match$1[0];
-        if (c2 < c1$prime) {
+        if (c2 < c1$prime) do
           return --[ :: ]--[
                   --[ tuple ]--[
                     c1,
@@ -170,10 +170,10 @@ function diff(_l, _l$prime) {
                   ],
                   diff(r, l$prime)
                 ];
-        } else if (c2$prime < c1) {
+        end else if (c2$prime < c1) do
           _l$prime = r$prime;
           continue ;
-        } else {
+        end else do
           var r$prime$prime = c2$prime < c2 ? --[ :: ]--[
               --[ tuple ]--[
                 c2$prime + 1 | 0,
@@ -181,7 +181,7 @@ function diff(_l, _l$prime) {
               ],
               r
             ] : r;
-          if (c1 < c1$prime) {
+          if (c1 < c1$prime) do
             return --[ :: ]--[
                     --[ tuple ]--[
                       c1,
@@ -189,22 +189,22 @@ function diff(_l, _l$prime) {
                     ],
                     diff(r$prime$prime, r$prime)
                   ];
-          } else {
+          end else do
             _l$prime = r$prime;
             _l = r$prime$prime;
             continue ;
-          }
-        }
-      } else {
+          end
+        end
+      end else do
         return --[ [] ]--0;
-      }
-    } else {
+      end
+    end else do
       return l;
-    }
-  };
-}
+    end
+  end;
+end
 
-function single(c) {
+function single(c) do
   return --[ :: ]--[
           --[ tuple ]--[
             c,
@@ -212,10 +212,10 @@ function single(c) {
           ],
           --[ [] ]--0
         ];
-}
+end
 
-function seq(c, c$prime) {
-  if (Caml_obj.caml_lessequal(c, c$prime)) {
+function seq(c, c$prime) do
+  if (Caml_obj.caml_lessequal(c, c$prime)) do
     return --[ :: ]--[
             --[ tuple ]--[
               c,
@@ -223,7 +223,7 @@ function seq(c, c$prime) {
             ],
             --[ [] ]--0
           ];
-  } else {
+  end else do
     return --[ :: ]--[
             --[ tuple ]--[
               c$prime,
@@ -231,11 +231,11 @@ function seq(c, c$prime) {
             ],
             --[ [] ]--0
           ];
-  }
-}
+  end
+end
 
-function offset(o, l) {
-  if (l) {
+function offset(o, l) do
+  if (l) do
     var match = l[0];
     return --[ :: ]--[
             --[ tuple ]--[
@@ -244,68 +244,68 @@ function offset(o, l) {
             ],
             offset(o, l[1])
           ];
-  } else {
+  end else do
     return --[ [] ]--0;
-  }
-}
+  end
+end
 
-function mem(c, _s) {
-  while(true) {
+function mem(c, _s) do
+  while(true) do
     var s = _s;
-    if (s) {
+    if (s) do
       var match = s[0];
-      if (c <= match[1]) {
+      if (c <= match[1]) do
         return c >= match[0];
-      } else {
+      end else do
         _s = s[1];
         continue ;
-      }
-    } else {
+      end
+    end else do
       return false;
-    }
-  };
-}
+    end
+  end;
+end
 
-function hash_rec(param) {
-  if (param) {
+function hash_rec(param) do
+  if (param) do
     var match = param[0];
     return (match[0] + Caml_int32.imul(13, match[1]) | 0) + Caml_int32.imul(257, hash_rec(param[1])) | 0;
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function one_char(param) {
-  if (param and !param[1]) {
+function one_char(param) do
+  if (param and !param[1]) do
     var match = param[0];
     var i = match[0];
-    if (Caml_obj.caml_equal(i, match[1])) {
+    if (Caml_obj.caml_equal(i, match[1])) do
       return Caml_option.some(i);
-    } else {
+    end else do
       return ;
-    }
-  }
+    end
+  end
   
-}
+end
 
-function compare(param, param$1) {
+function compare(param, param$1) do
   var c = Caml_obj.caml_compare(param[0], param$1[0]);
-  if (c ~= 0) {
+  if (c ~= 0) do
     return c;
-  } else {
+  end else do
     return Caml_obj.caml_compare(param[1], param$1[1]);
-  }
-}
+  end
+end
 
-function height(param) {
-  if (param) {
+function height(param) do
+  if (param) do
     return param[--[ h ]--4];
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function create(l, x, d, r) {
+function create(l, x, d, r) do
   var hl = height(l);
   var hr = height(r);
   return --[ Node ]--[
@@ -315,56 +315,56 @@ function create(l, x, d, r) {
           --[ r ]--r,
           --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
         ];
-}
+end
 
-function bal(l, x, d, r) {
+function bal(l, x, d, r) do
   var hl = l ? l[--[ h ]--4] : 0;
   var hr = r ? r[--[ h ]--4] : 0;
-  if (hl > (hr + 2 | 0)) {
-    if (l) {
+  if (hl > (hr + 2 | 0)) do
+    if (l) do
       var lr = l[--[ r ]--3];
       var ld = l[--[ d ]--2];
       var lv = l[--[ v ]--1];
       var ll = l[--[ l ]--0];
-      if (height(ll) >= height(lr)) {
+      if (height(ll) >= height(lr)) do
         return create(ll, lv, ld, create(lr, x, d, r));
-      } else if (lr) {
+      end else if (lr) do
         return create(create(ll, lv, ld, lr[--[ l ]--0]), lr[--[ v ]--1], lr[--[ d ]--2], create(lr[--[ r ]--3], x, d, r));
-      } else {
+      end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
             ];
-      }
-    } else {
+      end
+    end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
           ];
-    }
-  } else if (hr > (hl + 2 | 0)) {
-    if (r) {
+    end
+  end else if (hr > (hl + 2 | 0)) do
+    if (r) do
       var rr = r[--[ r ]--3];
       var rd = r[--[ d ]--2];
       var rv = r[--[ v ]--1];
       var rl = r[--[ l ]--0];
-      if (height(rr) >= height(rl)) {
+      if (height(rr) >= height(rl)) do
         return create(create(l, x, d, rl), rv, rd, rr);
-      } else if (rl) {
+      end else if (rl) do
         return create(create(l, x, d, rl[--[ l ]--0]), rl[--[ v ]--1], rl[--[ d ]--2], create(rl[--[ r ]--3], rv, rd, rr));
-      } else {
+      end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Map.bal"
             ];
-      }
-    } else {
+      end
+    end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Map.bal"
           ];
-    }
-  } else {
+    end
+  end else do
     return --[ Node ]--[
             --[ l ]--l,
             --[ v ]--x,
@@ -372,20 +372,20 @@ function bal(l, x, d, r) {
             --[ r ]--r,
             --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
           ];
-  }
-}
+  end
+end
 
-function add(x, data, m) {
-  if (m) {
+function add(x, data, m) do
+  if (m) do
     var r = m[--[ r ]--3];
     var d = m[--[ d ]--2];
     var v = m[--[ v ]--1];
     var l = m[--[ l ]--0];
     var c = compare(x, v);
-    if (c == 0) {
-      if (d == data) {
+    if (c == 0) do
+      if (d == data) do
         return m;
-      } else {
+      end else do
         return --[ Node ]--[
                 --[ l ]--l,
                 --[ v ]--x,
@@ -393,23 +393,23 @@ function add(x, data, m) {
                 --[ r ]--r,
                 --[ h ]--m[--[ h ]--4]
               ];
-      }
-    } else if (c < 0) {
+      end
+    end else if (c < 0) do
       var ll = add(x, data, l);
-      if (l == ll) {
+      if (l == ll) do
         return m;
-      } else {
+      end else do
         return bal(ll, v, d, r);
-      }
-    } else {
+      end
+    end else do
       var rr = add(x, data, r);
-      if (r == rr) {
+      if (r == rr) do
         return m;
-      } else {
+      end else do
         return bal(l, v, d, rr);
-      }
-    }
-  } else {
+      end
+    end
+  end else do
     return --[ Node ]--[
             --[ l : Empty ]--0,
             --[ v ]--x,
@@ -417,8 +417,8 @@ function add(x, data, m) {
             --[ r : Empty ]--0,
             --[ h ]--1
           ];
-  }
-}
+  end
+end
 
 var cany = --[ :: ]--[
   --[ tuple ]--[
@@ -428,72 +428,72 @@ var cany = --[ :: ]--[
   --[ [] ]--0
 ];
 
-function intersect(x, y) {
+function intersect(x, y) do
   return (x & y) ~= 0;
-}
+end
 
-function $plus$plus(x, y) {
+function $plus$plus(x, y) do
   return x | y;
-}
+end
 
-function from_char(param) {
-  if (param >= 170) {
-    if (param >= 187) {
+function from_char(param) do
+  if (param >= 170) do
+    if (param >= 187) do
       var switcher = param - 192 | 0;
-      if (switcher > 54 or switcher < 0) {
-        if (switcher >= 56) {
+      if (switcher > 54 or switcher < 0) do
+        if (switcher >= 56) do
           return 2;
-        } else {
+        end else do
           return 4;
-        }
-      } else if (switcher ~= 23) {
+        end
+      end else if (switcher ~= 23) do
         return 2;
-      } else {
+      end else do
         return 4;
-      }
-    } else {
+      end
+    end else do
       var switcher$1 = param - 171 | 0;
-      if (!(switcher$1 > 14 or switcher$1 < 0) and switcher$1 ~= 10) {
+      if (!(switcher$1 > 14 or switcher$1 < 0) and switcher$1 ~= 10) do
         return 4;
-      } else {
+      end else do
         return 2;
-      }
-    }
-  } else if (param >= 65) {
+      end
+    end
+  end else if (param >= 65) do
     var switcher$2 = param - 91 | 0;
-    if (switcher$2 > 5 or switcher$2 < 0) {
-      if (switcher$2 >= 32) {
+    if (switcher$2 > 5 or switcher$2 < 0) do
+      if (switcher$2 >= 32) do
         return 4;
-      } else {
+      end else do
         return 2;
-      }
-    } else if (switcher$2 ~= 4) {
+      end
+    end else if (switcher$2 ~= 4) do
       return 4;
-    } else {
+    end else do
       return 2;
-    }
-  } else if (param >= 48) {
-    if (param >= 58) {
+    end
+  end else if (param >= 48) do
+    if (param >= 58) do
       return 4;
-    } else {
+    end else do
       return 2;
-    }
-  } else if (param ~= 10) {
+    end
+  end else if (param ~= 10) do
     return 4;
-  } else {
+  end else do
     return 12;
-  }
-}
+  end
+end
 
-function height$1(param) {
-  if (param) {
+function height$1(param) do
+  if (param) do
     return param[--[ h ]--3];
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function create$1(l, v, r) {
+function create$1(l, v, r) do
   var hl = l ? l[--[ h ]--3] : 0;
   var hr = r ? r[--[ h ]--3] : 0;
   return --[ Node ]--[
@@ -502,128 +502,128 @@ function create$1(l, v, r) {
           --[ r ]--r,
           --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
         ];
-}
+end
 
-function bal$1(l, v, r) {
+function bal$1(l, v, r) do
   var hl = l ? l[--[ h ]--3] : 0;
   var hr = r ? r[--[ h ]--3] : 0;
-  if (hl > (hr + 2 | 0)) {
-    if (l) {
+  if (hl > (hr + 2 | 0)) do
+    if (l) do
       var lr = l[--[ r ]--2];
       var lv = l[--[ v ]--1];
       var ll = l[--[ l ]--0];
-      if (height$1(ll) >= height$1(lr)) {
+      if (height$1(ll) >= height$1(lr)) do
         return create$1(ll, lv, create$1(lr, v, r));
-      } else if (lr) {
+      end else if (lr) do
         return create$1(create$1(ll, lv, lr[--[ l ]--0]), lr[--[ v ]--1], create$1(lr[--[ r ]--2], v, r));
-      } else {
+      end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Set.bal"
             ];
-      }
-    } else {
+      end
+    end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Set.bal"
           ];
-    }
-  } else if (hr > (hl + 2 | 0)) {
-    if (r) {
+    end
+  end else if (hr > (hl + 2 | 0)) do
+    if (r) do
       var rr = r[--[ r ]--2];
       var rv = r[--[ v ]--1];
       var rl = r[--[ l ]--0];
-      if (height$1(rr) >= height$1(rl)) {
+      if (height$1(rr) >= height$1(rl)) do
         return create$1(create$1(l, v, rl), rv, rr);
-      } else if (rl) {
+      end else if (rl) do
         return create$1(create$1(l, v, rl[--[ l ]--0]), rl[--[ v ]--1], create$1(rl[--[ r ]--2], rv, rr));
-      } else {
+      end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Set.bal"
             ];
-      }
-    } else {
+      end
+    end else do
       throw [
             Caml_builtin_exceptions.invalid_argument,
             "Set.bal"
           ];
-    }
-  } else {
+    end
+  end else do
     return --[ Node ]--[
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
             --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
           ];
-  }
-}
+  end
+end
 
-function add$1(x, t) {
-  if (t) {
+function add$1(x, t) do
+  if (t) do
     var r = t[--[ r ]--2];
     var v = t[--[ v ]--1];
     var l = t[--[ l ]--0];
     var c = Caml_primitive.caml_int_compare(x, v);
-    if (c == 0) {
+    if (c == 0) do
       return t;
-    } else if (c < 0) {
+    end else if (c < 0) do
       var ll = add$1(x, l);
-      if (l == ll) {
+      if (l == ll) do
         return t;
-      } else {
+      end else do
         return bal$1(ll, v, r);
-      }
-    } else {
+      end
+    end else do
       var rr = add$1(x, r);
-      if (r == rr) {
+      if (r == rr) do
         return t;
-      } else {
+      end else do
         return bal$1(l, v, rr);
-      }
-    }
-  } else {
+      end
+    end
+  end else do
     return --[ Node ]--[
             --[ l : Empty ]--0,
             --[ v ]--x,
             --[ r : Empty ]--0,
             --[ h ]--1
           ];
-  }
-}
+  end
+end
 
-function hash_combine(h, accu) {
+function hash_combine(h, accu) do
   return Caml_int32.imul(accu, 65599) + h | 0;
-}
+end
 
-var empty = {
+var empty = do
   marks: --[ [] ]--0,
   pmarks: --[ Empty ]--0
-};
+end;
 
-function hash(m, accu) {
+function hash(m, accu) do
   var _l = m.marks;
   var _accu = hash_combine(Hashtbl.hash(m.pmarks), accu);
-  while(true) {
+  while(true) do
     var accu$1 = _accu;
     var l = _l;
-    if (l) {
+    if (l) do
       var match = l[0];
       _accu = hash_combine(match[0], hash_combine(match[1], accu$1));
       _l = l[1];
       continue ;
-    } else {
+    end else do
       return accu$1;
-    }
-  };
-}
+    end
+  end;
+end
 
-function marks_set_idx(idx, marks) {
-  if (marks) {
+function marks_set_idx(idx, marks) do
+  if (marks) do
     var match = marks[0];
-    if (match[1] ~= -1) {
+    if (match[1] ~= -1) do
       return marks;
-    } else {
+    end else do
       return --[ :: ]--[
               --[ tuple ]--[
                 match[0],
@@ -631,132 +631,132 @@ function marks_set_idx(idx, marks) {
               ],
               marks_set_idx(idx, marks[1])
             ];
-    }
-  } else {
+    end
+  end else do
     return marks;
-  }
-}
+  end
+end
 
-function marks_set_idx$1(marks, idx) {
-  return {
+function marks_set_idx$1(marks, idx) do
+  return do
           marks: marks_set_idx(idx, marks.marks),
           pmarks: marks.pmarks
-        };
-}
+        end;
+end
 
-function first(f, _param) {
-  while(true) {
+function first(f, _param) do
+  while(true) do
     var param = _param;
-    if (param) {
+    if (param) do
       var res = Curry._1(f, param[0]);
-      if (res ~= undefined) {
+      if (res ~= undefined) do
         return res;
-      } else {
+      end else do
         _param = param[1];
         continue ;
-      }
-    } else {
+      end
+    end else do
       return ;
-    }
-  };
-}
+    end
+  end;
+end
 
-var eps_expr = {
+var eps_expr = do
   id: 0,
   def: --[ Eps ]--0
-};
+end;
 
-function mk_expr(ids, def) {
+function mk_expr(ids, def) do
   ids.contents = ids.contents + 1 | 0;
-  return {
+  return do
           id: ids.contents,
           def: def
-        };
-}
+        end;
+end
 
-function cst(ids, s) {
-  if (s ? false : true) {
+function cst(ids, s) do
+  if (s ? false : true) do
     return mk_expr(ids, --[ Alt ]--Block.__(1, [--[ [] ]--0]));
-  } else {
+  end else do
     return mk_expr(ids, --[ Cst ]--Block.__(0, [s]));
-  }
-}
+  end
+end
 
-function alt(ids, l) {
-  if (l) {
-    if (l[1]) {
+function alt(ids, l) do
+  if (l) do
+    if (l[1]) do
       return mk_expr(ids, --[ Alt ]--Block.__(1, [l]));
-    } else {
+    end else do
       return l[0];
-    }
-  } else {
+    end
+  end else do
     return mk_expr(ids, --[ Alt ]--Block.__(1, [--[ [] ]--0]));
-  }
-}
+  end
+end
 
-function seq$1(ids, kind, x, y) {
+function seq$1(ids, kind, x, y) do
   var match = x.def;
   var match$1 = y.def;
   var exit = 0;
-  if (typeof match == "number") {
+  if (typeof match == "number") do
     return y;
-  } else if (match.tag == --[ Alt ]--1 and !match[0]) {
+  end else if (match.tag == --[ Alt ]--1 and !match[0]) do
     return x;
-  } else {
+  end else do
     exit = 2;
-  }
-  if (exit == 2) {
-    if (typeof match$1 == "number") {
-      if (kind == --[ First ]--332064784) {
+  end
+  if (exit == 2) do
+    if (typeof match$1 == "number") do
+      if (kind == --[ First ]--332064784) do
         return x;
-      }
+      end
       
-    } else if (match$1.tag == --[ Alt ]--1 and !match$1[0]) {
+    end else if (match$1.tag == --[ Alt ]--1 and !match$1[0]) do
       return y;
-    }
+    end
     
-  }
+  end
   return mk_expr(ids, --[ Seq ]--Block.__(2, [
                 kind,
                 x,
                 y
               ]));
-}
+end
 
-function is_eps(expr) {
+function is_eps(expr) do
   var match = expr.def;
-  if (typeof match == "number") {
+  if (typeof match == "number") do
     return true;
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function rep(ids, kind, sem, x) {
+function rep(ids, kind, sem, x) do
   return mk_expr(ids, --[ Rep ]--Block.__(3, [
                 kind,
                 sem,
                 x
               ]));
-}
+end
 
-function erase(ids, m, m$prime) {
+function erase(ids, m, m$prime) do
   return mk_expr(ids, --[ Erase ]--Block.__(5, [
                 m,
                 m$prime
               ]));
-}
+end
 
-function rename(ids, x) {
+function rename(ids, x) do
   var match = x.def;
-  if (typeof match == "number") {
+  if (typeof match == "number") do
     return mk_expr(ids, x.def);
-  } else {
-    switch (match.tag | 0) {
+  end else do
+    switch (match.tag | 0) do
       case --[ Alt ]--1 :
-          return mk_expr(ids, --[ Alt ]--Block.__(1, [List.map((function (param) {
+          return mk_expr(ids, --[ Alt ]--Block.__(1, [List.map((function (param) do
                                 return rename(ids, param);
-                              }), match[0])]));
+                              end), match[0])]));
       case --[ Seq ]--2 :
           return mk_expr(ids, --[ Seq ]--Block.__(2, [
                         match[0],
@@ -771,94 +771,94 @@ function rename(ids, x) {
                       ]));
       default:
         return mk_expr(ids, x.def);
-    }
-  }
-}
+    end
+  end
+end
 
-function equal(_l1, _l2) {
-  while(true) {
+function equal(_l1, _l2) do
+  while(true) do
     var l2 = _l2;
     var l1 = _l1;
-    if (l1) {
+    if (l1) do
       var match = l1[0];
-      switch (match.tag | 0) {
+      switch (match.tag | 0) do
         case --[ TSeq ]--0 :
-            if (l2) {
+            if (l2) do
               var match$1 = l2[0];
-              switch (match$1.tag | 0) {
+              switch (match$1.tag | 0) do
                 case --[ TSeq ]--0 :
-                    if (match[1].id == match$1[1].id and equal(match[0], match$1[0])) {
+                    if (match[1].id == match$1[1].id and equal(match[0], match$1[0])) do
                       _l2 = l2[1];
                       _l1 = l1[1];
                       continue ;
-                    } else {
+                    end else do
                       return false;
-                    }
+                    end
                 case --[ TExp ]--1 :
                 case --[ TMatch ]--2 :
                     return false;
                 
-              }
-            } else {
+              end
+            end else do
               return false;
-            }
+            end
         case --[ TExp ]--1 :
-            if (l2) {
+            if (l2) do
               var match$2 = l2[0];
-              switch (match$2.tag | 0) {
+              switch (match$2.tag | 0) do
                 case --[ TExp ]--1 :
-                    if (match[1].id == match$2[1].id and Caml_obj.caml_equal(match[0], match$2[0])) {
+                    if (match[1].id == match$2[1].id and Caml_obj.caml_equal(match[0], match$2[0])) do
                       _l2 = l2[1];
                       _l1 = l1[1];
                       continue ;
-                    } else {
+                    end else do
                       return false;
-                    }
+                    end
                 case --[ TSeq ]--0 :
                 case --[ TMatch ]--2 :
                     return false;
                 
-              }
-            } else {
+              end
+            end else do
               return false;
-            }
+            end
         case --[ TMatch ]--2 :
-            if (l2) {
+            if (l2) do
               var match$3 = l2[0];
-              switch (match$3.tag | 0) {
+              switch (match$3.tag | 0) do
                 case --[ TSeq ]--0 :
                 case --[ TExp ]--1 :
                     return false;
                 case --[ TMatch ]--2 :
-                    if (Caml_obj.caml_equal(match[0], match$3[0])) {
+                    if (Caml_obj.caml_equal(match[0], match$3[0])) do
                       _l2 = l2[1];
                       _l1 = l1[1];
                       continue ;
-                    } else {
+                    end else do
                       return false;
-                    }
+                    end
                 
-              }
-            } else {
+              end
+            end else do
               return false;
-            }
+            end
         
-      }
-    } else if (l2) {
+      end
+    end else if (l2) do
       return false;
-    } else {
+    end else do
       return true;
-    }
-  };
-}
+    end
+  end;
+end
 
-function hash$1(_l, _accu) {
-  while(true) {
+function hash$1(_l, _accu) do
+  while(true) do
     var accu = _accu;
     var l = _l;
-    if (l) {
+    if (l) do
       var match = l[0];
-      switch (match.tag | 0) {
+      switch (match.tag | 0) do
         case --[ TSeq ]--0 :
             _accu = hash_combine(388635598, hash_combine(match[1].id, hash$1(match[0], accu)));
             _l = l[1];
@@ -872,19 +872,19 @@ function hash$1(_l, _accu) {
             _l = l[1];
             continue ;
         
-      }
-    } else {
+      end
+    end else do
       return accu;
-    }
-  };
-}
+    end
+  end;
+end
 
-function tseq(kind, x, y, rem) {
-  if (x) {
+function tseq(kind, x, y, rem) do
+  if (x) do
     var match = x[0];
-    switch (match.tag | 0) {
+    switch (match.tag | 0) do
       case --[ TExp ]--1 :
-          if (typeof match[1].def == "number" and !x[1]) {
+          if (typeof match[1].def == "number" and !x[1]) do
             return --[ :: ]--[
                     --[ TExp ]--Block.__(1, [
                         match[0],
@@ -892,16 +892,16 @@ function tseq(kind, x, y, rem) {
                       ]),
                     rem
                   ];
-          }
+          end
           break;
       case --[ TSeq ]--0 :
       case --[ TMatch ]--2 :
           break;
       
-    }
-  } else {
+    end
+  end else do
     return rem;
-  }
+  end
   return --[ :: ]--[
           --[ TSeq ]--Block.__(0, [
               x,
@@ -910,31 +910,31 @@ function tseq(kind, x, y, rem) {
             ]),
           rem
         ];
-}
+end
 
-var dummy = {
+var dummy = do
   idx: -1,
   category: -1,
   desc: --[ [] ]--0,
   status: undefined,
   hash: -1
-};
+end;
 
-function hash$2(idx, cat, desc) {
+function hash$2(idx, cat, desc) do
   return hash$1(desc, hash_combine(idx, hash_combine(cat, 0))) & 1073741823;
-}
+end
 
-function mk(idx, cat, desc) {
-  return {
+function mk(idx, cat, desc) do
+  return do
           idx: idx,
           category: cat,
           desc: desc,
           status: undefined,
           hash: hash$2(idx, cat, desc)
-        };
-}
+        end;
+end
 
-function create$2(cat, e) {
+function create$2(cat, e) do
   return mk(0, cat, --[ :: ]--[
               --[ TExp ]--Block.__(1, [
                   empty,
@@ -942,94 +942,94 @@ function create$2(cat, e) {
                 ]),
               --[ [] ]--0
             ]);
-}
+end
 
-function equal$1(x, y) {
-  if (x.hash == y.hash and x.idx == y.idx and x.category == y.category) {
+function equal$1(x, y) do
+  if (x.hash == y.hash and x.idx == y.idx and x.category == y.category) do
     return equal(x.desc, y.desc);
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function hash$3(t) {
+function hash$3(t) do
   return t.hash;
-}
+end
 
-var Table = Hashtbl.Make({
+var Table = Hashtbl.Make(do
       equal: equal$1,
       hash: hash$3
-    });
+    end);
 
-function reset_table(a) {
+function reset_table(a) do
   return $$Array.fill(a, 0, #a, false);
-}
+end
 
-function mark_used_indices(tbl) {
-  return (function (param) {
-      return List.iter((function (param) {
-                    switch (param.tag | 0) {
+function mark_used_indices(tbl) do
+  return (function (param) do
+      return List.iter((function (param) do
+                    switch (param.tag | 0) do
                       case --[ TSeq ]--0 :
                           return mark_used_indices(tbl)(param[0]);
                       case --[ TExp ]--1 :
                       case --[ TMatch ]--2 :
                           break;
                       
-                    }
-                    return List.iter((function (param) {
+                    end
+                    return List.iter((function (param) do
                                   var i = param[1];
-                                  if (i >= 0) {
+                                  if (i >= 0) do
                                     return Caml_array.caml_array_set(tbl, i, true);
-                                  } else {
+                                  end else do
                                     return 0;
-                                  }
-                                }), param[0].marks);
-                  }), param);
-    });
-}
+                                  end
+                                end), param[0].marks);
+                  end), param);
+    end);
+end
 
-function find_free(tbl, _idx, len) {
-  while(true) {
+function find_free(tbl, _idx, len) do
+  while(true) do
     var idx = _idx;
-    if (idx == len or !Caml_array.caml_array_get(tbl, idx)) {
+    if (idx == len or !Caml_array.caml_array_get(tbl, idx)) do
       return idx;
-    } else {
+    end else do
       _idx = idx + 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function free_index(tbl_ref, l) {
+function free_index(tbl_ref, l) do
   var tbl = tbl_ref.contents;
   reset_table(tbl);
   mark_used_indices(tbl)(l);
   var len = #tbl;
   var idx = find_free(tbl, 0, len);
-  if (idx == len) {
+  if (idx == len) do
     tbl_ref.contents = Caml_array.caml_make_vect((len << 1), false);
-  }
+  end
   return idx;
-}
+end
 
-var remove_matches = List.filter((function (param) {
-        switch (param.tag | 0) {
+var remove_matches = List.filter((function (param) do
+        switch (param.tag | 0) do
           case --[ TSeq ]--0 :
           case --[ TExp ]--1 :
               return true;
           case --[ TMatch ]--2 :
               return false;
           
-        }
-      }));
+        end
+      end));
 
-function split_at_match_rec(_l$prime, _param) {
-  while(true) {
+function split_at_match_rec(_l$prime, _param) do
+  while(true) do
     var param = _param;
     var l$prime = _l$prime;
-    if (param) {
+    if (param) do
       var x = param[0];
-      switch (x.tag | 0) {
+      switch (x.tag | 0) do
         case --[ TSeq ]--0 :
         case --[ TExp ]--1 :
             _param = param[1];
@@ -1044,8 +1044,8 @@ function split_at_match_rec(_l$prime, _param) {
                     Curry._1(remove_matches, param[1])
                   ];
         
-      }
-    } else {
+      end
+    end else do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -1054,16 +1054,16 @@ function split_at_match_rec(_l$prime, _param) {
               21
             ]
           ];
-    }
-  };
-}
+    end
+  end;
+end
 
-function remove_duplicates(prev, _l, y) {
-  while(true) {
+function remove_duplicates(prev, _l, y) do
+  while(true) do
     var l = _l;
-    if (l) {
+    if (l) do
       var x = l[0];
-      switch (x.tag | 0) {
+      switch (x.tag | 0) do
         case --[ TSeq ]--0 :
             var x$1 = x[1];
             var match = remove_duplicates(prev, x[0], x$1);
@@ -1074,12 +1074,12 @@ function remove_duplicates(prev, _l, y) {
                   ];
         case --[ TExp ]--1 :
             var x$2 = x[1];
-            if (typeof x$2.def == "number") {
+            if (typeof x$2.def == "number") do
               var r = l[1];
-              if (List.memq(y.id, prev)) {
+              if (List.memq(y.id, prev)) do
                 _l = r;
                 continue ;
-              } else {
+              end else do
                 var match$2 = remove_duplicates(--[ :: ]--[
                       y.id,
                       prev
@@ -1091,13 +1091,13 @@ function remove_duplicates(prev, _l, y) {
                         ],
                         match$2[1]
                       ];
-              }
-            } else {
+              end
+            end else do
               var r$1 = l[1];
-              if (List.memq(x$2.id, prev)) {
+              if (List.memq(x$2.id, prev)) do
                 _l = r$1;
                 continue ;
-              } else {
+              end else do
                 var match$3 = remove_duplicates(--[ :: ]--[
                       x$2.id,
                       prev
@@ -1109,8 +1109,8 @@ function remove_duplicates(prev, _l, y) {
                         ],
                         match$3[1]
                       ];
-              }
-            }
+              end
+            end
         case --[ TMatch ]--2 :
             return --[ tuple ]--[
                     --[ :: ]--[
@@ -1120,20 +1120,20 @@ function remove_duplicates(prev, _l, y) {
                     prev
                   ];
         
-      }
-    } else {
+      end
+    end else do
       return --[ tuple ]--[
               --[ [] ]--0,
               prev
             ];
-    }
-  };
-}
+    end
+  end;
+end
 
-function set_idx(idx, param) {
-  if (param) {
+function set_idx(idx, param) do
+  if (param) do
     var match = param[0];
-    switch (match.tag | 0) {
+    switch (match.tag | 0) do
       case --[ TSeq ]--0 :
           return --[ :: ]--[
                   --[ TSeq ]--Block.__(0, [
@@ -1157,37 +1157,37 @@ function set_idx(idx, param) {
                   set_idx(idx, param[1])
                 ];
       
-    }
-  } else {
+    end
+  end else do
     return --[ [] ]--0;
-  }
-}
+  end
+end
 
-function filter_marks(b, e, marks) {
-  return {
-          marks: List.filter((function (param) {
+function filter_marks(b, e, marks) do
+  return do
+          marks: List.filter((function (param) do
                     var i = param[0];
-                    if (i < b) {
+                    if (i < b) do
                       return true;
-                    } else {
+                    end else do
                       return i > e;
-                    }
-                  }))(marks.marks),
+                    end
+                  end))(marks.marks),
           pmarks: marks.pmarks
-        };
-}
+        end;
+end
 
-function delta_1(marks, c, next_cat, prev_cat, x, rem) {
+function delta_1(marks, c, next_cat, prev_cat, x, rem) do
   var match = x.def;
-  if (typeof match == "number") {
+  if (typeof match == "number") do
     return --[ :: ]--[
             --[ TMatch ]--Block.__(2, [marks]),
             rem
           ];
-  } else {
-    switch (match.tag | 0) {
+  end else do
+    switch (match.tag | 0) do
       case --[ Cst ]--0 :
-          if (mem(c, match[0])) {
+          if (mem(c, match[0])) do
             return --[ :: ]--[
                     --[ TExp ]--Block.__(1, [
                         marks,
@@ -1195,9 +1195,9 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) {
                       ]),
                     rem
                   ];
-          } else {
+          end else do
             return rem;
-          }
+          end
       case --[ Alt ]--1 :
           return delta_2(marks, c, next_cat, prev_cat, match[0], rem);
       case --[ Seq ]--2 :
@@ -1206,16 +1206,16 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) {
       case --[ Rep ]--3 :
           var kind = match[1];
           var y$prime$1 = delta_1(marks, c, next_cat, prev_cat, match[2], --[ [] ]--0);
-          var match$1 = first((function (param) {
-                  switch (param.tag | 0) {
+          var match$1 = first((function (param) do
+                  switch (param.tag | 0) do
                     case --[ TSeq ]--0 :
                     case --[ TExp ]--1 :
                         return ;
                     case --[ TMatch ]--2 :
                         return param[0];
                     
-                  }
-                }), y$prime$1);
+                  end
+                end), y$prime$1);
           var match$2 = match$1 ~= undefined ? --[ tuple ]--[
               Curry._1(remove_matches, y$prime$1),
               match$1
@@ -1224,17 +1224,17 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) {
               marks
             ];
           var y$prime$prime = match$2[0];
-          if (match[0] >= 620821490) {
+          if (match[0] >= 620821490) do
             return --[ :: ]--[
                     --[ TMatch ]--Block.__(2, [marks]),
                     tseq(kind, y$prime$prime, x, rem)
                   ];
-          } else {
+          end else do
             return tseq(kind, y$prime$prime, x, --[ :: ]--[
                         --[ TMatch ]--Block.__(2, [match$2[1]]),
                         rem
                       ]);
-          }
+          end
       case --[ Mark ]--4 :
           var i = match[0];
           var marks_marks = --[ :: ]--[
@@ -1245,10 +1245,10 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) {
             List.remove_assq(i, marks.marks)
           ];
           var marks_pmarks = marks.pmarks;
-          var marks$1 = {
+          var marks$1 = do
             marks: marks_marks,
             pmarks: marks_pmarks
-          };
+          end;
           return --[ :: ]--[
                   --[ TMatch ]--Block.__(2, [marks$1]),
                   rem
@@ -1259,83 +1259,83 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) {
                   rem
                 ];
       case --[ Before ]--6 :
-          if (intersect(next_cat, match[0])) {
+          if (intersect(next_cat, match[0])) do
             return --[ :: ]--[
                     --[ TMatch ]--Block.__(2, [marks]),
                     rem
                   ];
-          } else {
+          end else do
             return rem;
-          }
+          end
       case --[ After ]--7 :
-          if (intersect(prev_cat, match[0])) {
+          if (intersect(prev_cat, match[0])) do
             return --[ :: ]--[
                     --[ TMatch ]--Block.__(2, [marks]),
                     rem
                   ];
-          } else {
+          end else do
             return rem;
-          }
+          end
       case --[ Pmark ]--8 :
           var marks_marks$1 = marks.marks;
           var marks_pmarks$1 = add$1(match[0], marks.pmarks);
-          var marks$2 = {
+          var marks$2 = do
             marks: marks_marks$1,
             pmarks: marks_pmarks$1
-          };
+          end;
           return --[ :: ]--[
                   --[ TMatch ]--Block.__(2, [marks$2]),
                   rem
                 ];
       
-    }
-  }
-}
+    end
+  end
+end
 
-function delta_2(marks, c, next_cat, prev_cat, l, rem) {
-  if (l) {
+function delta_2(marks, c, next_cat, prev_cat, l, rem) do
+  if (l) do
     return delta_1(marks, c, next_cat, prev_cat, l[0], delta_2(marks, c, next_cat, prev_cat, l[1], rem));
-  } else {
+  end else do
     return rem;
-  }
-}
+  end
+end
 
-function delta_seq(c, next_cat, prev_cat, kind, y, z, rem) {
-  var match = first((function (param) {
-          switch (param.tag | 0) {
+function delta_seq(c, next_cat, prev_cat, kind, y, z, rem) do
+  var match = first((function (param) do
+          switch (param.tag | 0) do
             case --[ TSeq ]--0 :
             case --[ TExp ]--1 :
                 return ;
             case --[ TMatch ]--2 :
                 return param[0];
             
-          }
-        }), y);
-  if (match ~= undefined) {
+          end
+        end), y);
+  if (match ~= undefined) do
     var marks = match;
-    if (kind ~= -730718166) {
-      if (kind >= 332064784) {
+    if (kind ~= -730718166) do
+      if (kind >= 332064784) do
         var match$1 = split_at_match_rec(--[ [] ]--0, y);
         return tseq(kind, match$1[0], z, delta_1(marks, c, next_cat, prev_cat, z, tseq(kind, match$1[1], z, rem)));
-      } else {
+      end else do
         return delta_1(marks, c, next_cat, prev_cat, z, tseq(kind, Curry._1(remove_matches, y), z, rem));
-      }
-    } else {
+      end
+    end else do
       return tseq(kind, Curry._1(remove_matches, y), z, delta_1(marks, c, next_cat, prev_cat, z, rem));
-    }
-  } else {
+    end
+  end else do
     return tseq(kind, y, z, rem);
-  }
-}
+  end
+end
 
-function delta_4(c, next_cat, prev_cat, l, rem) {
-  if (l) {
+function delta_4(c, next_cat, prev_cat, l, rem) do
+  if (l) do
     var c$1 = c;
     var next_cat$1 = next_cat;
     var prev_cat$1 = prev_cat;
     var x = l[0];
     var rem$1 = delta_4(c, next_cat, prev_cat, l[1], rem);
-    switch (x.tag | 0) {
+    switch (x.tag | 0) do
       case --[ TSeq ]--0 :
           var y$prime = delta_4(c$1, next_cat$1, prev_cat$1, x[0], --[ [] ]--0);
           return delta_seq(c$1, next_cat$1, prev_cat$1, x[2], y$prime, x[1], rem$1);
@@ -1347,42 +1347,42 @@ function delta_4(c, next_cat, prev_cat, l, rem) {
                   rem$1
                 ];
       
-    }
-  } else {
+    end
+  end else do
     return rem;
-  }
-}
+  end
+end
 
-function delta(tbl_ref, next_cat, $$char, st) {
+function delta(tbl_ref, next_cat, $$char, st) do
   var prev_cat = st.category;
   var match = remove_duplicates(--[ [] ]--0, delta_4($$char, next_cat, prev_cat, st.desc, --[ [] ]--0), eps_expr);
   var expr$prime = match[0];
   var idx = free_index(tbl_ref, expr$prime);
   var expr$prime$prime = set_idx(idx, expr$prime);
   return mk(idx, next_cat, expr$prime$prime);
-}
+end
 
-function flatten_match(m) {
-  var ma = List.fold_left((function (ma, param) {
+function flatten_match(m) do
+  var ma = List.fold_left((function (ma, param) do
           return Caml_primitive.caml_int_max(ma, param[0]);
-        }), -1, m);
+        end), -1, m);
   var res = Caml_array.caml_make_vect(ma + 1 | 0, -1);
-  List.iter((function (param) {
+  List.iter((function (param) do
           return Caml_array.caml_array_set(res, param[0], param[1]);
-        }), m);
+        end), m);
   return res;
-}
+end
 
-function status(s) {
+function status(s) do
   var match = s.status;
-  if (match ~= undefined) {
+  if (match ~= undefined) do
     return match;
-  } else {
+  end else do
     var match$1 = s.desc;
     var st;
-    if (match$1) {
+    if (match$1) do
       var match$2 = match$1[0];
-      switch (match$2.tag | 0) {
+      switch (match$2.tag | 0) do
         case --[ TSeq ]--0 :
         case --[ TExp ]--1 :
             st = --[ Running ]--1;
@@ -1395,16 +1395,16 @@ function status(s) {
             ];
             break;
         
-      }
-    } else {
+      end
+    end else do
       st = --[ Failed ]--0;
-    }
+    end
     s.status = st;
     return st;
-  }
-}
+  end
+end
 
-var Re_automata_Category = {
+var Re_automata_Category = do
   $plus$plus: $plus$plus,
   from_char: from_char,
   inexistant: 1,
@@ -1413,138 +1413,138 @@ var Re_automata_Category = {
   newline: 8,
   lastnewline: 16,
   search_boundary: 32
-};
+end;
 
-var Re_automata_State = {
+var Re_automata_State = do
   dummy: dummy,
   create: create$2,
   Table: Table
-};
+end;
 
-function iter(_n, f, _v) {
-  while(true) {
+function iter(_n, f, _v) do
+  while(true) do
     var v = _v;
     var n = _n;
-    if (n == 0) {
+    if (n == 0) do
       return v;
-    } else {
+    end else do
       _v = Curry._1(f, v);
       _n = n - 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function category(re, c) {
-  if (c == -1) {
+function category(re, c) do
+  if (c == -1) do
     return Re_automata_Category.inexistant;
-  } else if (c == re.lnl) {
+  end else if (c == re.lnl) do
     return Curry._2(Re_automata_Category.$plus$plus, Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.lastnewline, Re_automata_Category.newline), Re_automata_Category.not_letter);
-  } else {
+  end else do
     return Curry._1(Re_automata_Category.from_char, Caml_bytes.get(re.col_repr, c));
-  }
-}
+  end
+end
 
 var dummy_next = [];
 
-var unknown_state = {
+var unknown_state = do
   idx: -2,
   real_idx: 0,
   next: dummy_next,
   final: --[ [] ]--0,
   desc: Re_automata_State.dummy
-};
+end;
 
-function mk_state(ncol, desc) {
+function mk_state(ncol, desc) do
   var match = status(desc);
   var break_state = typeof match == "number" ? match == 0 : true;
-  return {
+  return do
           idx: break_state ? -3 : desc.idx,
           real_idx: desc.idx,
           next: break_state ? dummy_next : Caml_array.caml_make_vect(ncol, unknown_state),
           final: --[ [] ]--0,
           desc: desc
-        };
-}
+        end;
+end
 
-function find_state(re, desc) {
-  try {
+function find_state(re, desc) do
+  try do
     return Curry._2(Re_automata_State.Table.find, re.states, desc);
-  }
-  catch (exn){
-    if (exn == Caml_builtin_exceptions.not_found) {
+  end
+  catch (exn)do
+    if (exn == Caml_builtin_exceptions.not_found) do
       var st = mk_state(re.ncol, desc);
       Curry._3(Re_automata_State.Table.add, re.states, desc, st);
       return st;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
-function delta$1(info, cat, c, st) {
+function delta$1(info, cat, c, st) do
   var desc = delta(info.re.tbl, cat, c, st.desc);
   var len = #info.positions;
-  if (desc.idx == len and len > 0) {
+  if (desc.idx == len and len > 0) do
     var pos = info.positions;
     info.positions = Caml_array.caml_make_vect((len << 1), 0);
     $$Array.blit(pos, 0, info.positions, 0, len);
-  }
+  end
   return desc;
-}
+end
 
-function validate(info, s, pos, st) {
+function validate(info, s, pos, st) do
   var c = Caml_bytes.get(info.i_cols, Caml_string.get(s, pos));
   var cat = category(info.re, c);
   var desc$prime = delta$1(info, cat, c, st);
   var st$prime = find_state(info.re, desc$prime);
   return Caml_array.caml_array_set(st.next, c, st$prime);
-}
+end
 
-function loop(info, s, pos, st) {
-  if (pos < info.last) {
+function loop(info, s, pos, st) do
+  if (pos < info.last) do
     var st$prime = Caml_array.caml_array_get(st.next, Caml_bytes.get(info.i_cols, Caml_string.get(s, pos)));
     var info$1 = info;
     var s$1 = s;
     var _pos = pos;
     var _st = st;
     var _st$prime = st$prime;
-    while(true) {
+    while(true) do
       var st$prime$1 = _st$prime;
       var st$1 = _st;
       var pos$1 = _pos;
-      if (st$prime$1.idx >= 0) {
+      if (st$prime$1.idx >= 0) do
         var pos$2 = pos$1 + 1 | 0;
-        if (pos$2 < info$1.last) {
+        if (pos$2 < info$1.last) do
           var st$prime$prime = Caml_array.caml_array_get(st$prime$1.next, Caml_bytes.get(info$1.i_cols, Caml_string.get(s$1, pos$2)));
           Caml_array.caml_array_set(info$1.positions, st$prime$1.idx, pos$2);
           _st$prime = st$prime$prime;
           _st = st$prime$1;
           _pos = pos$2;
           continue ;
-        } else {
+        end else do
           Caml_array.caml_array_set(info$1.positions, st$prime$1.idx, pos$2);
           return st$prime$1;
-        }
-      } else if (st$prime$1.idx == -3) {
+        end
+      end else if (st$prime$1.idx == -3) do
         Caml_array.caml_array_set(info$1.positions, st$prime$1.real_idx, pos$1 + 1 | 0);
         return st$prime$1;
-      } else {
+      end else do
         validate(info$1, s$1, pos$1, st$1);
         return loop(info$1, s$1, pos$1, st$1);
-      }
-    };
-  } else {
+      end
+    end;
+  end else do
     return st;
-  }
-}
+  end
+end
 
-function $$final(info, st, cat) {
-  try {
+function $$final(info, st, cat) do
+  try do
     return List.assq(cat, st.final);
-  }
-  catch (exn){
-    if (exn == Caml_builtin_exceptions.not_found) {
+  end
+  catch (exn)do
+    if (exn == Caml_builtin_exceptions.not_found) do
       var st$prime = delta$1(info, cat, -1, st);
       var res_000 = st$prime.idx;
       var res_001 = status(st$prime);
@@ -1560,18 +1560,18 @@ function $$final(info, st, cat) {
         st.final
       ];
       return res;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
-function find_initial_state(re, cat) {
-  try {
+function find_initial_state(re, cat) do
+  try do
     return List.assq(cat, re.initial_states);
-  }
-  catch (exn){
-    if (exn == Caml_builtin_exceptions.not_found) {
+  end
+  catch (exn)do
+    if (exn == Caml_builtin_exceptions.not_found) do
       var st = find_state(re, Curry._2(Re_automata_State.create, cat, re.initial));
       re.initial_states = --[ :: ]--[
         --[ tuple ]--[
@@ -1581,59 +1581,59 @@ function find_initial_state(re, cat) {
         re.initial_states
       ];
       return st;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
-function get_color(re, s, pos) {
-  if (pos < 0) {
+function get_color(re, s, pos) do
+  if (pos < 0) do
     return -1;
-  } else {
+  end else do
     var slen = #s;
-    if (pos >= slen) {
+    if (pos >= slen) do
       return -1;
-    } else if (pos == (slen - 1 | 0) and re.lnl ~= -1 and Caml_string.get(s, pos) == --[ "\n" ]--10) {
+    end else if (pos == (slen - 1 | 0) and re.lnl ~= -1 and Caml_string.get(s, pos) == --[ "\n" ]--10) do
       return re.lnl;
-    } else {
+    end else do
       return Caml_bytes.get(re.cols, Caml_string.get(s, pos));
-    }
-  }
-}
+    end
+  end
+end
 
-function scan_str(info, s, initial_state, groups) {
+function scan_str(info, s, initial_state, groups) do
   var pos = info.pos;
   var last = info.last;
-  if (last == #s and info.re.lnl ~= -1 and last > pos and Caml_string.get(s, last - 1 | 0) == --[ "\n" ]--10) {
-    var info$1 = {
+  if (last == #s and info.re.lnl ~= -1 and last > pos and Caml_string.get(s, last - 1 | 0) == --[ "\n" ]--10) do
+    var info$1 = do
       re: info.re,
       i_cols: info.i_cols,
       positions: info.positions,
       pos: info.pos,
       last: last - 1 | 0
-    };
+    end;
     var st = scan_str(info$1, s, initial_state, groups);
-    if (st.idx == -3) {
+    if (st.idx == -3) do
       return st;
-    } else {
+    end else do
       var info$2 = info$1;
       var pos$1 = last - 1 | 0;
       var st$1 = st;
       var groups$1 = groups;
-      while(true) {
+      while(true) do
         var st$prime = Caml_array.caml_array_get(st$1.next, info$2.re.lnl);
-        if (st$prime.idx >= 0) {
-          if (groups$1) {
+        if (st$prime.idx >= 0) do
+          if (groups$1) do
             Caml_array.caml_array_set(info$2.positions, st$prime.idx, pos$1 + 1 | 0);
-          }
+          end
           return st$prime;
-        } else if (st$prime.idx == -3) {
-          if (groups$1) {
+        end else if (st$prime.idx == -3) do
+          if (groups$1) do
             Caml_array.caml_array_set(info$2.positions, st$prime.real_idx, pos$1 + 1 | 0);
-          }
+          end
           return st$prime;
-        } else {
+        end else do
           var c = info$2.re.lnl;
           var real_c = Caml_bytes.get(info$2.i_cols, --[ "\n" ]--10);
           var cat = category(info$2.re, c);
@@ -1641,92 +1641,92 @@ function scan_str(info, s, initial_state, groups) {
           var st$prime$1 = find_state(info$2.re, desc$prime);
           Caml_array.caml_array_set(st$1.next, c, st$prime$1);
           continue ;
-        }
-      };
-    }
-  } else if (groups) {
+        end
+      end;
+    end
+  end else if (groups) do
     return loop(info, s, pos, initial_state);
-  } else {
+  end else do
     var info$3 = info;
     var s$1 = s;
     var _pos = pos;
     var last$1 = last;
     var _st = initial_state;
-    while(true) {
+    while(true) do
       var st$2 = _st;
       var pos$2 = _pos;
-      if (pos$2 < last$1) {
+      if (pos$2 < last$1) do
         var st$prime$2 = Caml_array.caml_array_get(st$2.next, Caml_bytes.get(info$3.i_cols, Caml_string.get(s$1, pos$2)));
-        if (st$prime$2.idx >= 0) {
+        if (st$prime$2.idx >= 0) do
           _st = st$prime$2;
           _pos = pos$2 + 1 | 0;
           continue ;
-        } else if (st$prime$2.idx == -3) {
+        end else if (st$prime$2.idx == -3) do
           return st$prime$2;
-        } else {
+        end else do
           validate(info$3, s$1, pos$2, st$2);
           continue ;
-        }
-      } else {
+        end
+      end else do
         return st$2;
-      }
-    };
-  }
-}
+      end
+    end;
+  end
+end
 
-function cadd(c, s) {
+function cadd(c, s) do
   return union(single(c), s);
-}
+end
 
-function trans_set(cache, cm, s) {
+function trans_set(cache, cm, s) do
   var match = one_char(s);
-  if (match ~= undefined) {
+  if (match ~= undefined) do
     return single(Caml_bytes.get(cm, match));
-  } else {
+  end else do
     var v_000 = hash_rec(s);
     var v = --[ tuple ]--[
       v_000,
       s
     ];
-    try {
+    try do
       var x = v;
       var _param = cache.contents;
-      while(true) {
+      while(true) do
         var param = _param;
-        if (param) {
+        if (param) do
           var c = compare(x, param[--[ v ]--1]);
-          if (c == 0) {
+          if (c == 0) do
             return param[--[ d ]--2];
-          } else {
+          end else do
             _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
             continue ;
-          }
-        } else {
+          end
+        end else do
           throw Caml_builtin_exceptions.not_found;
-        }
-      };
-    }
-    catch (exn){
-      if (exn == Caml_builtin_exceptions.not_found) {
-        var l = List.fold_right((function (param, l) {
+        end
+      end;
+    end
+    catch (exn)do
+      if (exn == Caml_builtin_exceptions.not_found) do
+        var l = List.fold_right((function (param, l) do
                 return union(seq(Caml_bytes.get(cm, param[0]), Caml_bytes.get(cm, param[1])), l);
-              }), s, --[ [] ]--0);
+              end), s, --[ [] ]--0);
         cache.contents = add(v, l, cache.contents);
         return l;
-      } else {
+      end else do
         throw exn;
-      }
-    }
-  }
-}
+      end
+    end
+  end
+end
 
-function is_charset(_param) {
-  while(true) {
+function is_charset(_param) do
+  while(true) do
     var param = _param;
-    if (typeof param == "number") {
+    if (typeof param == "number") do
       return false;
-    } else {
-      switch (param.tag | 0) {
+    end else do
+      switch (param.tag | 0) do
         case --[ Set ]--0 :
             return true;
         case --[ Sem ]--4 :
@@ -1743,38 +1743,38 @@ function is_charset(_param) {
         case --[ Complement ]--12 :
             return List.for_all(is_charset, param[0]);
         case --[ Difference ]--13 :
-            if (is_charset(param[0])) {
+            if (is_charset(param[0])) do
               _param = param[1];
               continue ;
-            } else {
+            end else do
               return false;
-            }
+            end
         default:
           return false;
-      }
-    }
-  };
-}
+      end
+    end
+  end;
+end
 
-function split(s, cm) {
+function split(s, cm) do
   var _t = s;
-  var f = function (i, j) {
+  var f = function (i, j) do
     cm[i] = --[ "\001" ]--1;
     cm[j + 1 | 0] = --[ "\001" ]--1;
     return --[ () ]--0;
-  };
-  while(true) {
+  end;
+  while(true) do
     var t = _t;
-    if (t) {
+    if (t) do
       var match = t[0];
       Curry._2(f, match[0], match[1]);
       _t = t[1];
       continue ;
-    } else {
+    end else do
       return --[ () ]--0;
-    }
-  };
-}
+    end
+  end;
+end
 
 var cupper = union(seq(--[ "A" ]--65, --[ "Z" ]--90), union(seq(--[ "\192" ]--192, --[ "\214" ]--214), seq(--[ "\216" ]--216, --[ "\222" ]--222)));
 
@@ -1809,15 +1809,15 @@ var cword = union(--[ :: ]--[
       --[ [] ]--0
     ], calnum);
 
-function colorize(c, regexp) {
-  var lnl = {
+function colorize(c, regexp) do
+  var lnl = do
     contents: false
-  };
-  var colorize$1 = function (_regexp) {
-    while(true) {
+  end;
+  var colorize$1 = function (_regexp) do
+    while(true) do
       var regexp = _regexp;
-      if (typeof regexp == "number") {
-        switch (regexp) {
+      if (typeof regexp == "number") do
+        switch (regexp) do
           case --[ Beg_of_line ]--0 :
           case --[ End_of_line ]--1 :
               return split(--[ :: ]--[
@@ -1840,9 +1840,9 @@ function colorize(c, regexp) {
           case --[ Stop ]--9 :
               return --[ () ]--0;
           
-        }
-      } else {
-        switch (regexp.tag | 0) {
+        end
+      end else do
+        switch (regexp.tag | 0) do
           case --[ Set ]--0 :
               return split(regexp[0], c);
           case --[ Sequence ]--1 :
@@ -1868,263 +1868,263 @@ function colorize(c, regexp) {
                     35
                   ]
                 ];
-        }
-      }
-    };
-  };
+        end
+      end
+    end;
+  end;
   colorize$1(regexp);
   return lnl.contents;
-}
+end
 
-function flatten_cmap(cm) {
+function flatten_cmap(cm) do
   var c = Caml_bytes.caml_create_bytes(256);
   var col_repr = Caml_bytes.caml_create_bytes(256);
   var v = 0;
   c[0] = --[ "\000" ]--0;
   col_repr[0] = --[ "\000" ]--0;
-  for(var i = 1; i <= 255; ++i){
-    if (Caml_bytes.get(cm, i) ~= --[ "\000" ]--0) {
+  for(var i = 1; i <= 255; ++i)do
+    if (Caml_bytes.get(cm, i) ~= --[ "\000" ]--0) do
       v = v + 1 | 0;
-    }
+    end
     c[i] = Char.chr(v);
     col_repr[v] = Char.chr(i);
-  }
+  end
   return --[ tuple ]--[
           c,
           Bytes.sub(col_repr, 0, v + 1 | 0),
           v + 1 | 0
         ];
-}
+end
 
-function equal$2(_x1, _x2) {
-  while(true) {
+function equal$2(_x1, _x2) do
+  while(true) do
     var x2 = _x2;
     var x1 = _x1;
-    if (typeof x1 == "number") {
-      switch (x1) {
+    if (typeof x1 == "number") do
+      switch (x1) do
         case --[ Beg_of_line ]--0 :
-            if (typeof x2 == "number") {
+            if (typeof x2 == "number") do
               return x2 == 0;
-            } else {
+            end else do
               return false;
-            }
+            end
         case --[ End_of_line ]--1 :
-            if (typeof x2 == "number") {
+            if (typeof x2 == "number") do
               return x2 == 1;
-            } else {
+            end else do
               return false;
-            }
+            end
         case --[ Beg_of_word ]--2 :
-            if (typeof x2 == "number") {
+            if (typeof x2 == "number") do
               return x2 == 2;
-            } else {
+            end else do
               return false;
-            }
+            end
         case --[ End_of_word ]--3 :
-            if (typeof x2 == "number") {
+            if (typeof x2 == "number") do
               return x2 == 3;
-            } else {
+            end else do
               return false;
-            }
+            end
         case --[ Not_bound ]--4 :
-            if (typeof x2 == "number") {
+            if (typeof x2 == "number") do
               return x2 == 4;
-            } else {
+            end else do
               return false;
-            }
+            end
         case --[ Beg_of_str ]--5 :
-            if (typeof x2 == "number") {
+            if (typeof x2 == "number") do
               return x2 == 5;
-            } else {
+            end else do
               return false;
-            }
+            end
         case --[ End_of_str ]--6 :
-            if (typeof x2 == "number") {
+            if (typeof x2 == "number") do
               return x2 == 6;
-            } else {
+            end else do
               return false;
-            }
+            end
         case --[ Last_end_of_line ]--7 :
-            if (typeof x2 == "number") {
+            if (typeof x2 == "number") do
               return x2 == 7;
-            } else {
+            end else do
               return false;
-            }
+            end
         case --[ Start ]--8 :
-            if (typeof x2 == "number") {
+            if (typeof x2 == "number") do
               return x2 == 8;
-            } else {
+            end else do
               return false;
-            }
+            end
         case --[ Stop ]--9 :
-            if (typeof x2 == "number") {
+            if (typeof x2 == "number") do
               return x2 >= 9;
-            } else {
+            end else do
               return false;
-            }
+            end
         
-      }
-    } else {
-      switch (x1.tag | 0) {
+      end
+    end else do
+      switch (x1.tag | 0) do
         case --[ Set ]--0 :
-            if (typeof x2 == "number" or x2.tag) {
+            if (typeof x2 == "number" or x2.tag) do
               return false;
-            } else {
+            end else do
               return Caml_obj.caml_equal(x1[0], x2[0]);
-            }
+            end
         case --[ Sequence ]--1 :
-            if (typeof x2 == "number" or x2.tag ~= --[ Sequence ]--1) {
+            if (typeof x2 == "number" or x2.tag ~= --[ Sequence ]--1) do
               return false;
-            } else {
+            end else do
               return eq_list(x1[0], x2[0]);
-            }
+            end
         case --[ Alternative ]--2 :
-            if (typeof x2 == "number" or x2.tag ~= --[ Alternative ]--2) {
+            if (typeof x2 == "number" or x2.tag ~= --[ Alternative ]--2) do
               return false;
-            } else {
+            end else do
               return eq_list(x1[0], x2[0]);
-            }
+            end
         case --[ Repeat ]--3 :
-            if (typeof x2 == "number" or !(x2.tag == --[ Repeat ]--3 and x1[1] == x2[1] and Caml_obj.caml_equal(x1[2], x2[2]))) {
+            if (typeof x2 == "number" or !(x2.tag == --[ Repeat ]--3 and x1[1] == x2[1] and Caml_obj.caml_equal(x1[2], x2[2]))) do
               return false;
-            } else {
+            end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            }
+            end
         case --[ Sem ]--4 :
-            if (typeof x2 == "number" or !(x2.tag == --[ Sem ]--4 and x1[0] == x2[0])) {
+            if (typeof x2 == "number" or !(x2.tag == --[ Sem ]--4 and x1[0] == x2[0])) do
               return false;
-            } else {
+            end else do
               _x2 = x2[1];
               _x1 = x1[1];
               continue ;
-            }
+            end
         case --[ Sem_greedy ]--5 :
-            if (typeof x2 == "number" or !(x2.tag == --[ Sem_greedy ]--5 and x1[0] == x2[0])) {
+            if (typeof x2 == "number" or !(x2.tag == --[ Sem_greedy ]--5 and x1[0] == x2[0])) do
               return false;
-            } else {
+            end else do
               _x2 = x2[1];
               _x1 = x1[1];
               continue ;
-            }
+            end
         case --[ Group ]--6 :
             return false;
         case --[ No_group ]--7 :
-            if (typeof x2 == "number" or x2.tag ~= --[ No_group ]--7) {
+            if (typeof x2 == "number" or x2.tag ~= --[ No_group ]--7) do
               return false;
-            } else {
+            end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            }
+            end
         case --[ Nest ]--8 :
-            if (typeof x2 == "number" or x2.tag ~= --[ Nest ]--8) {
+            if (typeof x2 == "number" or x2.tag ~= --[ Nest ]--8) do
               return false;
-            } else {
+            end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            }
+            end
         case --[ Case ]--9 :
-            if (typeof x2 == "number" or x2.tag ~= --[ Case ]--9) {
+            if (typeof x2 == "number" or x2.tag ~= --[ Case ]--9) do
               return false;
-            } else {
+            end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            }
+            end
         case --[ No_case ]--10 :
-            if (typeof x2 == "number" or x2.tag ~= --[ No_case ]--10) {
+            if (typeof x2 == "number" or x2.tag ~= --[ No_case ]--10) do
               return false;
-            } else {
+            end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            }
+            end
         case --[ Intersection ]--11 :
-            if (typeof x2 == "number" or x2.tag ~= --[ Intersection ]--11) {
+            if (typeof x2 == "number" or x2.tag ~= --[ Intersection ]--11) do
               return false;
-            } else {
+            end else do
               return eq_list(x1[0], x2[0]);
-            }
+            end
         case --[ Complement ]--12 :
-            if (typeof x2 == "number" or x2.tag ~= --[ Complement ]--12) {
+            if (typeof x2 == "number" or x2.tag ~= --[ Complement ]--12) do
               return false;
-            } else {
+            end else do
               return eq_list(x1[0], x2[0]);
-            }
+            end
         case --[ Difference ]--13 :
-            if (typeof x2 == "number" or !(x2.tag == --[ Difference ]--13 and equal$2(x1[0], x2[0]))) {
+            if (typeof x2 == "number" or !(x2.tag == --[ Difference ]--13 and equal$2(x1[0], x2[0]))) do
               return false;
-            } else {
+            end else do
               _x2 = x2[1];
               _x1 = x1[1];
               continue ;
-            }
+            end
         case --[ Pmark ]--14 :
-            if (typeof x2 == "number" or !(x2.tag == --[ Pmark ]--14 and x1[0] == x2[0])) {
+            if (typeof x2 == "number" or !(x2.tag == --[ Pmark ]--14 and x1[0] == x2[0])) do
               return false;
-            } else {
+            end else do
               _x2 = x2[1];
               _x1 = x1[1];
               continue ;
-            }
+            end
         
-      }
-    }
-  };
-}
+      end
+    end
+  end;
+end
 
-function eq_list(_l1, _l2) {
-  while(true) {
+function eq_list(_l1, _l2) do
+  while(true) do
     var l2 = _l2;
     var l1 = _l1;
-    if (l1) {
-      if (l2 and equal$2(l1[0], l2[0])) {
+    if (l1) do
+      if (l2 and equal$2(l1[0], l2[0])) do
         _l2 = l2[1];
         _l1 = l1[1];
         continue ;
-      } else {
+      end else do
         return false;
-      }
-    } else if (l2) {
+      end
+    end else if (l2) do
       return false;
-    } else {
+    end else do
       return true;
-    }
-  };
-}
+    end
+  end;
+end
 
-function sequence(l) {
-  if (l and !l[1]) {
+function sequence(l) do
+  if (l and !l[1]) do
     return l[0];
-  } else {
+  end else do
     return --[ Sequence ]--Block.__(1, [l]);
-  }
-}
+  end
+end
 
-function merge_sequences(_param) {
-  while(true) {
+function merge_sequences(_param) do
+  while(true) do
     var param = _param;
-    if (param) {
+    if (param) do
       var x = param[0];
-      if (typeof x ~= "number") {
-        switch (x.tag | 0) {
+      if (typeof x ~= "number") do
+        switch (x.tag | 0) do
           case --[ Sequence ]--1 :
               var match = x[0];
-              if (match) {
+              if (match) do
                 var y = match[1];
                 var x$1 = match[0];
                 var r$prime = merge_sequences(param[1]);
                 var exit = 0;
-                if (r$prime) {
+                if (r$prime) do
                   var match$1 = r$prime[0];
-                  if (typeof match$1 == "number" or match$1.tag ~= --[ Sequence ]--1) {
+                  if (typeof match$1 == "number" or match$1.tag ~= --[ Sequence ]--1) do
                     exit = 2;
-                  } else {
+                  end else do
                     var match$2 = match$1[0];
-                    if (match$2 and equal$2(x$1, match$2[0])) {
+                    if (match$2 and equal$2(x$1, match$2[0])) do
                       return --[ :: ]--[
                               --[ Sequence ]--Block.__(1, [--[ :: ]--[
                                     x$1,
@@ -2141,14 +2141,14 @@ function merge_sequences(_param) {
                                   ]]),
                               r$prime[1]
                             ];
-                    } else {
+                    end else do
                       exit = 2;
-                    }
-                  }
-                } else {
+                    end
+                  end
+                end else do
                   exit = 2;
-                }
-                if (exit == 2) {
+                end
+                if (exit == 2) do
                   return --[ :: ]--[
                           --[ Sequence ]--Block.__(1, [--[ :: ]--[
                                 x$1,
@@ -2156,42 +2156,42 @@ function merge_sequences(_param) {
                               ]]),
                           r$prime
                         ];
-                }
+                end
                 
-              }
+              end
               break;
           case --[ Alternative ]--2 :
               _param = Pervasives.$at(x[0], param[1]);
               continue ;
           default:
             
-        }
-      }
+        end
+      end
       return --[ :: ]--[
               x,
               merge_sequences(param[1])
             ];
-    } else {
+    end else do
       return --[ [] ]--0;
-    }
-  };
-}
+    end
+  end;
+end
 
-function enforce_kind(ids, kind, kind$prime, cr) {
-  if (kind ~= 332064784 or kind$prime == 332064784) {
+function enforce_kind(ids, kind, kind$prime, cr) do
+  if (kind ~= 332064784 or kind$prime == 332064784) do
     return cr;
-  } else {
+  end else do
     return seq$1(ids, kind$prime, cr, mk_expr(ids, --[ Eps ]--0));
-  }
-}
+  end
+end
 
-function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _param) {
-  while(true) {
+function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _param) do
+  while(true) do
     var param = _param;
     var greedy = _greedy;
     var ign_group = _ign_group;
-    if (typeof param == "number") {
-      switch (param) {
+    if (typeof param == "number") do
+      switch (param) do
         case --[ Beg_of_line ]--0 :
             var c$1 = Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.inexistant, Re_automata_Category.newline);
             return --[ tuple ]--[
@@ -2256,9 +2256,9 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                     kind
                   ];
         
-      }
-    } else {
-      switch (param.tag | 0) {
+      end
+    end else do
+      switch (param.tag | 0) do
         case --[ Set ]--0 :
             return --[ tuple ]--[
                     cst(ids, trans_set(cache, c, param[0])),
@@ -2271,20 +2271,20 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                   ];
         case --[ Alternative ]--2 :
             var merged_sequences = merge_sequences(param[0]);
-            if (merged_sequences and !merged_sequences[1]) {
+            if (merged_sequences and !merged_sequences[1]) do
               var match = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, merged_sequences[0]);
               return --[ tuple ]--[
                       enforce_kind(ids, kind, match[1], match[0]),
                       kind
                     ];
-            }
+            end
             return --[ tuple ]--[
-                    alt(ids, List.map((function(ign_group,greedy){
-                            return function (r$prime) {
+                    alt(ids, List.map((function(ign_group,greedy)do
+                            return function (r$prime) do
                               var match = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, r$prime);
                               return enforce_kind(ids, kind, match[1], match[0]);
-                            }
-                            }(ign_group,greedy)), merged_sequences)),
+                            end
+                            end(ign_group,greedy)), merged_sequences)),
                     kind
                   ];
         case --[ Repeat ]--3 :
@@ -2294,9 +2294,9 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
             var kind$prime = match$1[1];
             var cr = match$1[0];
             var rem;
-            if (j ~= undefined) {
-              var f = greedy >= 620821490 ? (function(cr,kind$prime){
-                return function (rem) {
+            if (j ~= undefined) do
+              var f = greedy >= 620821490 ? (function(cr,kind$prime)do
+                return function (rem) do
                   return alt(ids, --[ :: ]--[
                               mk_expr(ids, --[ Eps ]--0),
                               --[ :: ]--[
@@ -2304,9 +2304,9 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                                 --[ [] ]--0
                               ]
                             ]);
-                }
-                }(cr,kind$prime)) : (function(cr,kind$prime){
-                return function (rem) {
+                end
+                end(cr,kind$prime)) : (function(cr,kind$prime)do
+                return function (rem) do
                   return alt(ids, --[ :: ]--[
                               seq$1(ids, kind$prime, rename(ids, cr), rem),
                               --[ :: ]--[
@@ -2314,18 +2314,18 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                                 --[ [] ]--0
                               ]
                             ]);
-                }
-                }(cr,kind$prime));
+                end
+                end(cr,kind$prime));
               rem = iter(j - i | 0, f, mk_expr(ids, --[ Eps ]--0));
-            } else {
+            end else do
               rem = rep(ids, greedy, kind$prime, cr);
-            }
+            end
             return --[ tuple ]--[
-                    iter(i, (function(cr,kind$prime){
-                        return function (rem) {
+                    iter(i, (function(cr,kind$prime)do
+                        return function (rem) do
                           return seq$1(ids, kind$prime, rename(ids, cr), rem);
-                        }
-                        }(cr,kind$prime)), rem),
+                        end
+                        end(cr,kind$prime)), rem),
                     kind
                   ];
         case --[ Sem ]--4 :
@@ -2341,10 +2341,10 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
             continue ;
         case --[ Group ]--6 :
             var r$prime = param[0];
-            if (ign_group) {
+            if (ign_group) do
               _param = r$prime;
               continue ;
-            } else {
+            end else do
               var p = pos.contents;
               pos.contents = pos.contents + 2 | 0;
               var match$3 = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, r$prime);
@@ -2352,7 +2352,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                       seq$1(ids, --[ First ]--332064784, mk_expr(ids, --[ Mark ]--Block.__(4, [p])), seq$1(ids, --[ First ]--332064784, match$3[0], mk_expr(ids, --[ Mark ]--Block.__(4, [p + 1 | 0])))),
                       match$3[1]
                     ];
-            }
+            end
         case --[ No_group ]--7 :
             _param = param[0];
             _ign_group = true;
@@ -2363,17 +2363,17 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
             var kind$prime$2 = match$4[1];
             var cr$1 = match$4[0];
             var e = pos.contents - 1 | 0;
-            if (e < b) {
+            if (e < b) do
               return --[ tuple ]--[
                       cr$1,
                       kind$prime$2
                     ];
-            } else {
+            end else do
               return --[ tuple ]--[
                       seq$1(ids, --[ First ]--332064784, erase(ids, b, e), cr$1),
                       kind$prime$2
                     ];
-            }
+            end
         case --[ Pmark ]--14 :
             var match$5 = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, param[1]);
             return --[ tuple ]--[
@@ -2389,41 +2389,41 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                   4
                 ]
               ];
-      }
-    }
-  };
-}
+      end
+    end
+  end;
+end
 
-function trans_seq(ids, kind, ign_group, ign_case, greedy, pos, cache, c, param) {
-  if (param) {
+function trans_seq(ids, kind, ign_group, ign_case, greedy, pos, cache, c, param) do
+  if (param) do
     var rem = param[1];
     var r = param[0];
-    if (rem) {
+    if (rem) do
       var match = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, r);
       var cr$prime = match[0];
       var cr$prime$prime = trans_seq(ids, kind, ign_group, ign_case, greedy, pos, cache, c, rem);
-      if (is_eps(cr$prime$prime)) {
+      if (is_eps(cr$prime$prime)) do
         return cr$prime;
-      } else if (is_eps(cr$prime)) {
+      end else if (is_eps(cr$prime)) do
         return cr$prime$prime;
-      } else {
+      end else do
         return seq$1(ids, match[1], cr$prime, cr$prime$prime);
-      }
-    } else {
+      end
+    end else do
       var match$1 = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, r);
       return enforce_kind(ids, kind, match$1[1], match$1[0]);
-    }
-  } else {
+    end
+  end else do
     return mk_expr(ids, --[ Eps ]--0);
-  }
-}
+  end
+end
 
-function case_insens(s) {
+function case_insens(s) do
   return union(s, union(offset(32, inter(s, cupper)), offset(-32, inter(s, clower))));
-}
+end
 
-function as_set(param) {
-  if (typeof param == "number") {
+function as_set(param) do
+  if (typeof param == "number") do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -2432,7 +2432,7 @@ function as_set(param) {
             13
           ]
         ];
-  } else if (param.tag) {
+  end else if (param.tag) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -2441,41 +2441,41 @@ function as_set(param) {
             13
           ]
         ];
-  } else {
+  end else do
     return param[0];
-  }
-}
+  end
+end
 
-function handle_case(_ign_case, _r) {
-  while(true) {
+function handle_case(_ign_case, _r) do
+  while(true) do
     var r = _r;
     var ign_case = _ign_case;
-    if (typeof r == "number") {
+    if (typeof r == "number") do
       return r;
-    } else {
-      switch (r.tag | 0) {
+    end else do
+      switch (r.tag | 0) do
         case --[ Set ]--0 :
             var s = r[0];
             return --[ Set ]--Block.__(0, [ign_case ? case_insens(s) : s]);
         case --[ Sequence ]--1 :
-            return --[ Sequence ]--Block.__(1, [List.map((function(ign_case){
-                          return function (param) {
+            return --[ Sequence ]--Block.__(1, [List.map((function(ign_case)do
+                          return function (param) do
                             return handle_case(ign_case, param);
-                          }
-                          }(ign_case)), r[0])]);
+                          end
+                          end(ign_case)), r[0])]);
         case --[ Alternative ]--2 :
-            var l$prime = List.map((function(ign_case){
-                return function (param) {
+            var l$prime = List.map((function(ign_case)do
+                return function (param) do
                   return handle_case(ign_case, param);
-                }
-                }(ign_case)), r[0]);
-            if (is_charset(--[ Alternative ]--Block.__(2, [l$prime]))) {
-              return --[ Set ]--Block.__(0, [List.fold_left((function (s, r) {
+                end
+                end(ign_case)), r[0]);
+            if (is_charset(--[ Alternative ]--Block.__(2, [l$prime]))) do
+              return --[ Set ]--Block.__(0, [List.fold_left((function (s, r) do
                                 return union(s, as_set(r));
-                              }), --[ [] ]--0, l$prime)]);
-            } else {
+                              end), --[ [] ]--0, l$prime)]);
+            end else do
               return --[ Alternative ]--Block.__(2, [l$prime]);
-            }
+            end
         case --[ Repeat ]--3 :
             return --[ Repeat ]--Block.__(3, [
                       handle_case(ign_case, r[0]),
@@ -2484,40 +2484,40 @@ function handle_case(_ign_case, _r) {
                     ]);
         case --[ Sem ]--4 :
             var r$prime = handle_case(ign_case, r[1]);
-            if (is_charset(r$prime)) {
+            if (is_charset(r$prime)) do
               return r$prime;
-            } else {
+            end else do
               return --[ Sem ]--Block.__(4, [
                         r[0],
                         r$prime
                       ]);
-            }
+            end
         case --[ Sem_greedy ]--5 :
             var r$prime$1 = handle_case(ign_case, r[1]);
-            if (is_charset(r$prime$1)) {
+            if (is_charset(r$prime$1)) do
               return r$prime$1;
-            } else {
+            end else do
               return --[ Sem_greedy ]--Block.__(5, [
                         r[0],
                         r$prime$1
                       ]);
-            }
+            end
         case --[ Group ]--6 :
             return --[ Group ]--Block.__(6, [handle_case(ign_case, r[0])]);
         case --[ No_group ]--7 :
             var r$prime$2 = handle_case(ign_case, r[0]);
-            if (is_charset(r$prime$2)) {
+            if (is_charset(r$prime$2)) do
               return r$prime$2;
-            } else {
+            end else do
               return --[ No_group ]--Block.__(7, [r$prime$2]);
-            }
+            end
         case --[ Nest ]--8 :
             var r$prime$3 = handle_case(ign_case, r[0]);
-            if (is_charset(r$prime$3)) {
+            if (is_charset(r$prime$3)) do
               return r$prime$3;
-            } else {
+            end else do
               return --[ Nest ]--Block.__(8, [r$prime$3]);
-            }
+            end
         case --[ Case ]--9 :
             _r = r[0];
             _ign_case = false;
@@ -2527,23 +2527,23 @@ function handle_case(_ign_case, _r) {
             _ign_case = true;
             continue ;
         case --[ Intersection ]--11 :
-            var l$prime$1 = List.map((function(ign_case){
-                return function (r) {
+            var l$prime$1 = List.map((function(ign_case)do
+                return function (r) do
                   return handle_case(ign_case, r);
-                }
-                }(ign_case)), r[0]);
-            return --[ Set ]--Block.__(0, [List.fold_left((function (s, r) {
+                end
+                end(ign_case)), r[0]);
+            return --[ Set ]--Block.__(0, [List.fold_left((function (s, r) do
                               return inter(s, as_set(r));
-                            }), cany, l$prime$1)]);
+                            end), cany, l$prime$1)]);
         case --[ Complement ]--12 :
-            var l$prime$2 = List.map((function(ign_case){
-                return function (r) {
+            var l$prime$2 = List.map((function(ign_case)do
+                return function (r) do
                   return handle_case(ign_case, r);
-                }
-                }(ign_case)), r[0]);
-            return --[ Set ]--Block.__(0, [diff(cany, List.fold_left((function (s, r) {
+                end
+                end(ign_case)), r[0]);
+            return --[ Set ]--Block.__(0, [diff(cany, List.fold_left((function (s, r) do
                                   return union(s, as_set(r));
-                                }), --[ [] ]--0, l$prime$2))]);
+                                end), --[ [] ]--0, l$prime$2))]);
         case --[ Difference ]--13 :
             return --[ Set ]--Block.__(0, [inter(as_set(handle_case(ign_case, r[0])), diff(cany, as_set(handle_case(ign_case, r[1]))))]);
         case --[ Pmark ]--14 :
@@ -2552,35 +2552,35 @@ function handle_case(_ign_case, _r) {
                       handle_case(ign_case, r[1])
                     ]);
         
-      }
-    }
-  };
-}
+      end
+    end
+  end;
+end
 
-function anchored(_param) {
-  while(true) {
+function anchored(_param) do
+  while(true) do
     var param = _param;
-    if (typeof param == "number") {
-      switch (param) {
+    if (typeof param == "number") do
+      switch (param) do
         case --[ Beg_of_str ]--5 :
         case --[ Start ]--8 :
             return true;
         default:
           return false;
-      }
-    } else {
-      switch (param.tag | 0) {
+      end
+    end else do
+      switch (param.tag | 0) do
         case --[ Sequence ]--1 :
             return List.exists(anchored, param[0]);
         case --[ Alternative ]--2 :
             return List.for_all(anchored, param[0]);
         case --[ Repeat ]--3 :
-            if (param[1] > 0) {
+            if (param[1] > 0) do
               _param = param[0];
               continue ;
-            } else {
+            end else do
               return false;
-            }
+            end
         case --[ Group ]--6 :
         case --[ No_group ]--7 :
         case --[ Nest ]--8 :
@@ -2595,68 +2595,68 @@ function anchored(_param) {
             continue ;
         default:
           return false;
-      }
-    }
-  };
-}
+      end
+    end
+  end;
+end
 
-function alt$1(l) {
-  if (l and !l[1]) {
+function alt$1(l) do
+  if (l and !l[1]) do
     return l[0];
-  } else {
+  end else do
     return --[ Alternative ]--Block.__(2, [l]);
-  }
-}
+  end
+end
 
-function seq$2(l) {
-  if (l and !l[1]) {
+function seq$2(l) do
+  if (l and !l[1]) do
     return l[0];
-  } else {
+  end else do
     return --[ Sequence ]--Block.__(1, [l]);
-  }
-}
+  end
+end
 
 var epsilon = --[ Sequence ]--Block.__(1, [--[ [] ]--0]);
 
-function repn(r, i, j) {
-  if (i < 0) {
+function repn(r, i, j) do
+  if (i < 0) do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Re.repn"
         ];
-  }
-  if (j ~= undefined and j < i) {
+  end
+  if (j ~= undefined and j < i) do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Re.repn"
         ];
-  }
+  end
   return --[ Repeat ]--Block.__(3, [
             r,
             i,
             j
           ]);
-}
+end
 
-function set(str) {
+function set(str) do
   var s = --[ [] ]--0;
-  for(var i = 0 ,i_finish = #str - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = #str - 1 | 0; i <= i_finish; ++i)do
     s = union(single(Caml_string.get(str, i)), s);
-  }
+  end
   return --[ Set ]--Block.__(0, [s]);
-}
+end
 
-function compl(l) {
+function compl(l) do
   var r = --[ Complement ]--Block.__(12, [l]);
-  if (is_charset(r)) {
+  if (is_charset(r)) do
     return r;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Re.compl"
         ];
-  }
-}
+  end
+end
 
 var any = --[ Set ]--Block.__(0, [cany]);
 
@@ -2846,7 +2846,7 @@ var xdigit = alt$1(--[ :: ]--[
       ]
     ]);
 
-function compile(r) {
+function compile(r) do
   var regexp = anchored(r) ? --[ Group ]--Block.__(6, [r]) : seq$2(--[ :: ]--[
           --[ Sem ]--Block.__(4, [
               --[ Shortest ]---1034406550,
@@ -2865,15 +2865,15 @@ function compile(r) {
   var col = match[0];
   var lnl = need_lnl ? ncol : -1;
   var ncol$1 = need_lnl ? ncol + 1 | 0 : ncol;
-  var ids = {
+  var ids = do
     contents: 0
-  };
-  var pos = {
+  end;
+  var pos = do
     contents: 0
-  };
-  var match$1 = translate(ids, --[ First ]--332064784, false, false, --[ Greedy ]---904640576, pos, {
+  end;
+  var match$1 = translate(ids, --[ First ]--332064784, false, false, --[ Greedy ]---904640576, pos, do
         contents: --[ Empty ]--0
-      }, col, regexp$1);
+      end, col, regexp$1);
   var r$1 = enforce_kind(ids, --[ First ]--332064784, match$1[1], match$1[0]);
   var init = r$1;
   var cols = col;
@@ -2881,30 +2881,30 @@ function compile(r) {
   var ncol$2 = ncol$1;
   var lnl$1 = lnl;
   var group_count = pos.contents / 2 | 0;
-  return {
+  return do
           initial: init,
           initial_states: --[ [] ]--0,
           cols: cols,
           col_repr: col_repr,
           ncol: ncol$2,
           lnl: lnl$1,
-          tbl: {
+          tbl: do
             contents: [false]
-          },
+          end,
           states: Curry._1(Re_automata_State.Table.create, 97),
           group_count: group_count
-        };
-}
+        end;
+end
 
-function exec_internal(name, posOpt, lenOpt, groups, re, s) {
+function exec_internal(name, posOpt, lenOpt, groups, re, s) do
   var pos = posOpt ~= undefined ? posOpt : 0;
   var len = lenOpt ~= undefined ? lenOpt : -1;
-  if (pos < 0 or len < -1 or (pos + len | 0) > #s) {
+  if (pos < 0 or len < -1 or (pos + len | 0) > #s) do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           name
         ];
-  }
+  end
   var groups$1 = groups;
   var partial = false;
   var re$1 = re;
@@ -2914,7 +2914,7 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) {
   var slen = #s$1;
   var last = len$1 == -1 ? slen : pos$1 + len$1 | 0;
   var tmp;
-  if (groups$1) {
+  if (groups$1) do
     var n = #re$1.tbl.contents + 1 | 0;
     tmp = n <= 10 ? [
         0,
@@ -2928,75 +2928,75 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) {
         0,
         0
       ] : Caml_array.caml_make_vect(n, 0);
-  } else {
+  end else do
     tmp = [];
-  }
-  var info = {
+  end
+  var info = do
     re: re$1,
     i_cols: re$1.cols,
     positions: tmp,
     pos: pos$1,
     last: last
-  };
+  end;
   var initial_cat = pos$1 == 0 ? Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, Re_automata_Category.inexistant) : Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, category(re$1, get_color(re$1, s$1, pos$1 - 1 | 0)));
   var initial_state = find_initial_state(re$1, initial_cat);
   var st = scan_str(info, s$1, initial_state, groups$1);
   var res;
-  if (st.idx == -3 or partial) {
+  if (st.idx == -3 or partial) do
     res = status(st.desc);
-  } else {
+  end else do
     var final_cat = last == slen ? Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, Re_automata_Category.inexistant) : Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, category(re$1, get_color(re$1, s$1, last)));
     var match = $$final(info, st, final_cat);
-    if (groups$1) {
+    if (groups$1) do
       Caml_array.caml_array_set(info.positions, match[0], last + 1 | 0);
-    }
+    end
     res = match[1];
-  }
-  if (typeof res == "number") {
-    if (res ~= 0) {
+  end
+  if (typeof res == "number") do
+    if (res ~= 0) do
       return --[ Running ]--1;
-    } else {
+    end else do
       return --[ Failed ]--0;
-    }
-  } else {
-    return --[ Match ]--[{
+    end
+  end else do
+    return --[ Match ]--[do
               s: s$1,
               marks: res[0],
               pmarks: res[1],
               gpos: info.positions,
               gcount: re$1.group_count
-            }];
-  }
-}
+            end];
+  end
+end
 
-function offset$1(t, i) {
-  if (((i << 1) + 1 | 0) >= #t.marks) {
+function offset$1(t, i) do
+  if (((i << 1) + 1 | 0) >= #t.marks) do
     throw Caml_builtin_exceptions.not_found;
-  }
+  end
   var m1 = Caml_array.caml_array_get(t.marks, (i << 1));
-  if (m1 == -1) {
+  if (m1 == -1) do
     throw Caml_builtin_exceptions.not_found;
-  }
+  end
   var p1 = Caml_array.caml_array_get(t.gpos, m1) - 1 | 0;
   var p2 = Caml_array.caml_array_get(t.gpos, Caml_array.caml_array_get(t.marks, (i << 1) + 1 | 0)) - 1 | 0;
   return --[ tuple ]--[
           p1,
           p2
         ];
-}
+end
 
-function get(t, i) {
+function get(t, i) do
   var match = offset$1(t, i);
   var p1 = match[0];
   return $$String.sub(t.s, p1, match[1] - p1 | 0);
-}
+end
 
 var Parse_error = Caml_exceptions.create("Parse_error");
 
 var Not_supported = Caml_exceptions.create("Not_supported");
 
-function posix_class_of_string(class_) {
-  switch (class_) {
+function posix_class_of_string(class_) do
+  switch (class_) do
     case "alnum" :
         return alnum;
     case "ascii" :
@@ -3029,135 +3029,135 @@ function posix_class_of_string(class_) {
             Caml_builtin_exceptions.invalid_argument,
             s
           ];
-  }
-}
+  end
+end
 
-function parse(multiline, dollar_endonly, dotall, ungreedy, s) {
-  var i = {
+function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
+  var i = do
     contents: 0
-  };
+  end;
   var l = #s;
-  var test = function (c) {
-    if (i.contents ~= l) {
+  var test = function (c) do
+    if (i.contents ~= l) do
       return Caml_string.get(s, i.contents) == c;
-    } else {
+    end else do
       return false;
-    }
-  };
-  var accept = function (c) {
+    end
+  end;
+  var accept = function (c) do
     var r = test(c);
-    if (r) {
+    if (r) do
       i.contents = i.contents + 1 | 0;
-    }
+    end
     return r;
-  };
-  var accept_s = function (s$prime) {
+  end;
+  var accept_s = function (s$prime) do
     var len = #s$prime;
-    try {
-      for(var j = 0 ,j_finish = len - 1 | 0; j <= j_finish; ++j){
-        try {
-          if (Caml_string.get(s$prime, j) ~= Caml_string.get(s, i.contents + j | 0)) {
+    try do
+      for(var j = 0 ,j_finish = len - 1 | 0; j <= j_finish; ++j)do
+        try do
+          if (Caml_string.get(s$prime, j) ~= Caml_string.get(s, i.contents + j | 0)) do
             throw Pervasives.Exit;
-          }
+          end
           
-        }
-        catch (exn){
+        end
+        catch (exn)do
           throw Pervasives.Exit;
-        }
-      }
+        end
+      end
       i.contents = i.contents + len | 0;
       return true;
-    }
-    catch (exn$1){
-      if (exn$1 == Pervasives.Exit) {
+    end
+    catch (exn$1)do
+      if (exn$1 == Pervasives.Exit) do
         return false;
-      } else {
+      end else do
         throw exn$1;
-      }
-    }
-  };
-  var get = function (param) {
+      end
+    end
+  end;
+  var get = function (param) do
     var r = Caml_string.get(s, i.contents);
     i.contents = i.contents + 1 | 0;
     return r;
-  };
-  var greedy_mod = function (r) {
+  end;
+  var greedy_mod = function (r) do
     var gr = accept(--[ "?" ]--63);
     var gr$1 = ungreedy ? !gr : gr;
-    if (gr$1) {
+    if (gr$1) do
       return --[ Sem_greedy ]--Block.__(5, [
                 --[ Non_greedy ]--620821490,
                 r
               ]);
-    } else {
+    end else do
       return --[ Sem_greedy ]--Block.__(5, [
                 --[ Greedy ]---904640576,
                 r
               ]);
-    }
-  };
-  var atom = function (param) {
-    if (accept(--[ "." ]--46)) {
-      if (dotall) {
+    end
+  end;
+  var atom = function (param) do
+    if (accept(--[ "." ]--46)) do
+      if (dotall) do
         return any;
-      } else {
+      end else do
         return notnl;
-      }
-    } else if (accept(--[ "(" ]--40)) {
-      if (accept(--[ "?" ]--63)) {
-        if (accept(--[ ":" ]--58)) {
+      end
+    end else if (accept(--[ "(" ]--40)) do
+      if (accept(--[ "?" ]--63)) do
+        if (accept(--[ ":" ]--58)) do
           var r = regexp$prime(branch$prime(--[ [] ]--0));
-          if (!accept(--[ ")" ]--41)) {
+          if (!accept(--[ ")" ]--41)) do
             throw Parse_error;
-          }
+          end
           return r;
-        } else if (accept(--[ "#" ]--35)) {
+        end else if (accept(--[ "#" ]--35)) do
           var _param = --[ () ]--0;
-          while(true) {
-            if (accept(--[ ")" ]--41)) {
+          while(true) do
+            if (accept(--[ ")" ]--41)) do
               return epsilon;
-            } else {
+            end else do
               i.contents = i.contents + 1 | 0;
               _param = --[ () ]--0;
               continue ;
-            }
-          };
-        } else {
+            end
+          end;
+        end else do
           throw Parse_error;
-        }
-      } else {
+        end
+      end else do
         var r$1 = regexp$prime(branch$prime(--[ [] ]--0));
-        if (!accept(--[ ")" ]--41)) {
+        if (!accept(--[ ")" ]--41)) do
           throw Parse_error;
-        }
+        end
         return --[ Group ]--Block.__(6, [r$1]);
-      }
-    } else if (accept(--[ "^" ]--94)) {
-      if (multiline) {
+      end
+    end else if (accept(--[ "^" ]--94)) do
+      if (multiline) do
         return --[ Beg_of_line ]--0;
-      } else {
+      end else do
         return --[ Beg_of_str ]--5;
-      }
-    } else if (accept(--[ "$" ]--36)) {
-      if (multiline) {
+      end
+    end else if (accept(--[ "$" ]--36)) do
+      if (multiline) do
         return --[ End_of_line ]--1;
-      } else if (dollar_endonly) {
+      end else if (dollar_endonly) do
         return --[ Last_end_of_line ]--7;
-      } else {
+      end else do
         return --[ End_of_str ]--6;
-      }
-    } else if (accept(--[ "[" ]--91)) {
-      if (accept(--[ "^" ]--94)) {
+      end
+    end else if (accept(--[ "[" ]--91)) do
+      if (accept(--[ "^" ]--94)) do
         return compl(bracket(--[ [] ]--0));
-      } else {
+      end else do
         return alt$1(bracket(--[ [] ]--0));
-      }
-    } else if (accept(--[ "\\" ]--92)) {
-      if (i.contents == l) {
+      end
+    end else if (accept(--[ "\\" ]--92)) do
+      if (i.contents == l) do
         throw Parse_error;
-      }
+      end
       var c = get(--[ () ]--0);
-      switch (c) {
+      switch (c) do
         case 48 :
         case 49 :
         case 50 :
@@ -3286,85 +3286,85 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) {
             return --[ End_of_str ]--6;
         default:
           return --[ Set ]--Block.__(0, [single(c)]);
-      }
-    } else {
-      if (i.contents == l) {
+      end
+    end else do
+      if (i.contents == l) do
         throw Parse_error;
-      }
+      end
       var c$1 = get(--[ () ]--0);
-      if (c$1 >= 64) {
-        if (c$1 ~= 92) {
-          if (c$1 ~= 123) {
+      if (c$1 >= 64) do
+        if (c$1 ~= 92) do
+          if (c$1 ~= 123) do
             return --[ Set ]--Block.__(0, [single(c$1)]);
-          } else {
+          end else do
             throw Parse_error;
-          }
-        } else {
+          end
+        end else do
           throw Parse_error;
-        }
-      } else if (c$1 >= 44) {
-        if (c$1 >= 63) {
+        end
+      end else if (c$1 >= 44) do
+        if (c$1 >= 63) do
           throw Parse_error;
-        }
+        end
         return --[ Set ]--Block.__(0, [single(c$1)]);
-      } else {
-        if (c$1 >= 42) {
+      end else do
+        if (c$1 >= 42) do
           throw Parse_error;
-        }
+        end
         return --[ Set ]--Block.__(0, [single(c$1)]);
-      }
-    }
-  };
-  var integer = function (param) {
-    if (i.contents == l) {
+      end
+    end
+  end;
+  var integer = function (param) do
+    if (i.contents == l) do
       return ;
-    } else {
+    end else do
       var d = get(--[ () ]--0);
-      if (d > 57 or d < 48) {
+      if (d > 57 or d < 48) do
         i.contents = i.contents - 1 | 0;
         return ;
-      } else {
+      end else do
         var _i = d - --[ "0" ]--48 | 0;
-        while(true) {
+        while(true) do
           var i$1 = _i;
-          if (i.contents == l) {
+          if (i.contents == l) do
             return i$1;
-          } else {
+          end else do
             var d$1 = get(--[ () ]--0);
-            if (d$1 > 57 or d$1 < 48) {
+            if (d$1 > 57 or d$1 < 48) do
               i.contents = i.contents - 1 | 0;
               return i$1;
-            } else {
+            end else do
               var i$prime = Caml_int32.imul(10, i$1) + (d$1 - --[ "0" ]--48 | 0) | 0;
-              if (i$prime < i$1) {
+              if (i$prime < i$1) do
                 throw Parse_error;
-              }
+              end
               _i = i$prime;
               continue ;
-            }
-          }
-        };
-      }
-    }
-  };
-  var branch$prime = function (_left) {
-    while(true) {
+            end
+          end
+        end;
+      end
+    end
+  end;
+  var branch$prime = function (_left) do
+    while(true) do
       var left = _left;
-      if (i.contents == l or test(--[ "|" ]--124) or test(--[ ")" ]--41)) {
+      if (i.contents == l or test(--[ "|" ]--124) or test(--[ ")" ]--41)) do
         return seq$2(List.rev(left));
-      } else {
+      end else do
         _left = --[ :: ]--[
           piece(--[ () ]--0),
           left
         ];
         continue ;
-      }
-    };
-  };
-  var regexp$prime = function (_left) {
-    while(true) {
+      end
+    end;
+  end;
+  var regexp$prime = function (_left) do
+    while(true) do
       var left = _left;
-      if (accept(--[ "|" ]--124)) {
+      if (accept(--[ "|" ]--124)) do
         _left = alt$1(--[ :: ]--[
               left,
               --[ :: ]--[
@@ -3373,22 +3373,22 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) {
               ]
             ]);
         continue ;
-      } else {
+      end else do
         return left;
-      }
-    };
-  };
-  var bracket = function (_s) {
-    while(true) {
+      end
+    end;
+  end;
+  var bracket = function (_s) do
+    while(true) do
       var s = _s;
-      if (s ~= --[ [] ]--0 and accept(--[ "]" ]--93)) {
+      if (s ~= --[ [] ]--0 and accept(--[ "]" ]--93)) do
         return s;
-      } else {
+      end else do
         var match = $$char(--[ () ]--0);
-        if (match[0] >= 748194550) {
+        if (match[0] >= 748194550) do
           var c = match[1];
-          if (accept(--[ "-" ]--45)) {
-            if (accept(--[ "]" ]--93)) {
+          if (accept(--[ "-" ]--45)) do
+            if (accept(--[ "]" ]--93)) do
               return --[ :: ]--[
                       --[ Set ]--Block.__(0, [single(c)]),
                       --[ :: ]--[
@@ -3402,15 +3402,15 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) {
                         s
                       ]
                     ];
-            } else {
+            end else do
               var match$1 = $$char(--[ () ]--0);
-              if (match$1[0] >= 748194550) {
+              if (match$1[0] >= 748194550) do
                 _s = --[ :: ]--[
                   --[ Set ]--Block.__(0, [seq(c, match$1[1])]),
                   s
                 ];
                 continue ;
-              } else {
+              end else do
                 return --[ :: ]--[
                         --[ Set ]--Block.__(0, [single(c)]),
                         --[ :: ]--[
@@ -3427,38 +3427,38 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) {
                           ]
                         ]
                       ];
-              }
-            }
-          } else {
+              end
+            end
+          end else do
             _s = --[ :: ]--[
               --[ Set ]--Block.__(0, [single(c)]),
               s
             ];
             continue ;
-          }
-        } else {
+          end
+        end else do
           _s = --[ :: ]--[
             match[1],
             s
           ];
           continue ;
-        }
-      }
-    };
-  };
-  var $$char = function (param) {
-    if (i.contents == l) {
+        end
+      end
+    end;
+  end;
+  var $$char = function (param) do
+    if (i.contents == l) do
       throw Parse_error;
-    }
+    end
     var c = get(--[ () ]--0);
-    if (c == --[ "[" ]--91) {
-      if (accept(--[ "=" ]--61)) {
+    if (c == --[ "[" ]--91) do
+      if (accept(--[ "=" ]--61)) do
         throw Not_supported;
-      }
-      if (accept(--[ ":" ]--58)) {
+      end
+      if (accept(--[ ":" ]--58)) do
         var compl$1 = accept(--[ "^" ]--94);
         var cls;
-        try {
+        try do
           cls = List.find(accept_s, --[ :: ]--[
                 "alnum",
                 --[ :: ]--[
@@ -3499,16 +3499,16 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) {
                   ]
                 ]
               ]);
-        }
-        catch (exn){
-          if (exn == Caml_builtin_exceptions.not_found) {
+        end
+        catch (exn)do
+          if (exn == Caml_builtin_exceptions.not_found) do
             throw Parse_error;
-          }
+          end
           throw exn;
-        }
-        if (!accept_s(":]")) {
+        end
+        if (!accept_s(":]")) do
           throw Parse_error;
-        }
+        end
         var posix_class = posix_class_of_string(cls);
         var re = compl$1 ? compl(--[ :: ]--[
                 posix_class,
@@ -3518,37 +3518,37 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) {
                 4150146,
                 re
               ];
-      } else if (accept(--[ "." ]--46)) {
-        if (i.contents == l) {
+      end else if (accept(--[ "." ]--46)) do
+        if (i.contents == l) do
           throw Parse_error;
-        }
+        end
         var c$1 = get(--[ () ]--0);
-        if (!accept(--[ "." ]--46)) {
+        if (!accept(--[ "." ]--46)) do
           throw Not_supported;
-        }
-        if (!accept(--[ "]" ]--93)) {
+        end
+        if (!accept(--[ "]" ]--93)) do
           throw Parse_error;
-        }
+        end
         return --[ `Char ]--[
                 748194550,
                 c$1
               ];
-      } else {
+      end else do
         return --[ `Char ]--[
                 748194550,
                 c
               ];
-      }
-    } else if (c == --[ "\\" ]--92) {
+      end
+    end else if (c == --[ "\\" ]--92) do
       var c$2 = get(--[ () ]--0);
-      if (c$2 >= 58) {
-        if (c$2 >= 123) {
+      if (c$2 >= 58) do
+        if (c$2 >= 123) do
           return --[ `Char ]--[
                   748194550,
                   c$2
                 ];
-        } else {
-          switch (c$2 - 58 | 0) {
+        end else do
+          switch (c$2 - 58 | 0) do
             case 10 :
                 return --[ `Set ]--[
                         4150146,
@@ -3690,72 +3690,72 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) {
             case 64 :
                 throw Parse_error;
             
-          }
-        }
-      } else {
-        if (c$2 >= 48) {
+          end
+        end
+      end else do
+        if (c$2 >= 48) do
           throw Not_supported;
-        }
+        end
         return --[ `Char ]--[
                 748194550,
                 c$2
               ];
-      }
-    } else {
+      end
+    end else do
       return --[ `Char ]--[
               748194550,
               c
             ];
-    }
-  };
-  var piece = function (param) {
+    end
+  end;
+  var piece = function (param) do
     var r = atom(--[ () ]--0);
-    if (accept(--[ "*" ]--42)) {
+    if (accept(--[ "*" ]--42)) do
       return greedy_mod(repn(r, 0, undefined));
-    } else if (accept(--[ "+" ]--43)) {
+    end else if (accept(--[ "+" ]--43)) do
       return greedy_mod(repn(r, 1, undefined));
-    } else if (accept(--[ "?" ]--63)) {
+    end else if (accept(--[ "?" ]--63)) do
       return greedy_mod(repn(r, 0, 1));
-    } else if (accept(--[ "{" ]--123)) {
+    end else if (accept(--[ "{" ]--123)) do
       var match = integer(--[ () ]--0);
-      if (match ~= undefined) {
+      if (match ~= undefined) do
         var i$1 = match;
         var j = accept(--[ "," ]--44) ? integer(--[ () ]--0) : i$1;
-        if (!accept(--[ "}" ]--125)) {
+        if (!accept(--[ "}" ]--125)) do
           throw Parse_error;
-        }
-        if (j ~= undefined and j < i$1) {
+        end
+        if (j ~= undefined and j < i$1) do
           throw Parse_error;
-        }
+        end
         return greedy_mod(repn(r, i$1, j));
-      } else {
+      end else do
         i.contents = i.contents - 1 | 0;
         return r;
-      }
-    } else {
+      end
+    end else do
       return r;
-    }
-  };
+    end
+  end;
   var res = regexp$prime(branch$prime(--[ [] ]--0));
-  if (i.contents ~= l) {
+  if (i.contents ~= l) do
     throw Parse_error;
-  }
+  end
   return res;
-}
+end
 
-function re(flagsOpt, pat) {
+function re(flagsOpt, pat) do
   var flags = flagsOpt ~= undefined ? flagsOpt : --[ [] ]--0;
-  var opts = List.map((function (param) {
-          if (param ~= 601676297) {
-            if (param >= 613575188) {
+  var opts = List.map((function (param) do
+          if (param ~= 601676297) do
+            if (param >= 613575188) do
               return --[ Anchored ]--616470068;
-            } else {
+            end else do
               return --[ Multiline ]--1071952589;
-            }
-          } else {
+            end
+          end else do
             return --[ Caseless ]--604571177;
-          }
-        }), flags);
+          end
+        end), flags);
   var optsOpt = opts;
   var s = pat;
   var opts$1 = optsOpt ~= undefined ? optsOpt : --[ [] ]--0;
@@ -3767,24 +3767,24 @@ function re(flagsOpt, pat) {
             --[ [] ]--0
           ]
         ]) : r;
-  if (List.memq(--[ Caseless ]--604571177, opts$1)) {
+  if (List.memq(--[ Caseless ]--604571177, opts$1)) do
     return --[ No_case ]--Block.__(10, [r$1]);
-  } else {
+  end else do
     return r$1;
-  }
-}
+  end
+end
 
-function exec(rex, pos, s) {
+function exec(rex, pos, s) do
   var pos$1 = pos;
   var len = undefined;
   var re = rex;
   var s$1 = s;
   var match = exec_internal("Re.exec", pos$1, len, true, re, s$1);
-  if (typeof match == "number") {
+  if (typeof match == "number") do
     throw Caml_builtin_exceptions.not_found;
-  }
+  end
   return match[0];
-}
+end
 
 var s = Caml_bytes.bytes_to_string(Bytes.make(1048575, --[ "a" ]--97)) .. "b";
 

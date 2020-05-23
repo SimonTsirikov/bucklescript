@@ -1,13 +1,13 @@
 'use strict';
 
 
-function f(x) {
+function f(x) do
   return x;
-}
+end
 
-var U = {
+var U = do
   f: f
-};
+end;
 
 var v = --[ H ]--[--[ OT ]--0];
 

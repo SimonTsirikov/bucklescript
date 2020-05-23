@@ -3,32 +3,32 @@
 var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function f(x) {
+function f(x) do
   return --[ tuple ]--[
           x["003"],
           x["50"],
@@ -38,9 +38,9 @@ function f(x) {
           x["50x'"],
           x["x'"]
         ];
-}
+end
 
-var v = f({
+var v = f(do
       "003": 0,
       "50": 1,
       "50x": 2,
@@ -48,7 +48,7 @@ var v = f({
       __50x: 4,
       "50x'": 5,
       "x'": 6
-    });
+    end);
 
 eq("File \"gpr_1943_test.ml\", line 30, characters 6-13", --[ tuple ]--[
       0,

@@ -10,55 +10,55 @@ var Caml_array = require("../../lib/js/caml_array.js");
 var Caml_primitive = require("../../lib/js/caml_primitive.js");
 var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-function starts_with(xs, prefix, p) {
+function starts_with(xs, prefix, p) do
   var H = Caml_exceptions.create("H");
   var len1 = #xs;
   var len2 = #prefix;
-  if (len2 > len1) {
+  if (len2 > len1) do
     return false;
-  } else {
-    try {
-      for(var i = 0 ,i_finish = len2 - 1 | 0; i <= i_finish; ++i){
-        if (!Curry._2(p, Caml_array.caml_array_get(xs, i), Caml_array.caml_array_get(prefix, i))) {
+  end else do
+    try do
+      for(var i = 0 ,i_finish = len2 - 1 | 0; i <= i_finish; ++i)do
+        if (!Curry._2(p, Caml_array.caml_array_get(xs, i), Caml_array.caml_array_get(prefix, i))) do
           throw H;
-        }
+        end
         
-      }
+      end
       return true;
-    }
-    catch (exn){
-      if (exn == H) {
+    end
+    catch (exn)do
+      if (exn == H) do
         return false;
-      } else {
+      end else do
         throw exn;
-      }
-    }
-  }
-}
+      end
+    end
+  end
+end
 
-function is_sorted(x) {
+function is_sorted(x) do
   var len = #x;
   var _i = 0;
-  while(true) {
+  while(true) do
     var i = _i;
-    if (i >= (len - 1 | 0)) {
+    if (i >= (len - 1 | 0)) do
       return true;
-    } else if (Caml_obj.caml_lessthan(Caml_array.caml_array_get(x, i), Caml_array.caml_array_get(x, i + 1 | 0))) {
+    end else if (Caml_obj.caml_lessthan(Caml_array.caml_array_get(x, i), Caml_array.caml_array_get(x, i + 1 | 0))) do
       _i = i + 1 | 0;
       continue ;
-    } else {
+    end else do
       return false;
-    }
-  };
-}
+    end
+  end;
+end
 
 var array_suites_000 = --[ tuple ]--[
   "init",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
-                $$Array.init(5, (function (x) {
+                $$Array.init(5, (function (x) do
                         return x;
-                      })),
+                      end)),
                 [
                   0,
                   1,
@@ -67,15 +67,15 @@ var array_suites_000 = --[ tuple ]--[
                   4
                 ]
               ]);
-    })
+    end)
 ];
 
 var array_suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "toList",
-    (function (param) {
-        var aux = function (xs) {
-          return List.fold_left((function (acc, param) {
+    (function (param) do
+        var aux = function (xs) do
+          return List.fold_left((function (acc, param) do
                         return --[ :: ]--[
                                 --[ tuple ]--[
                                   $$Array.to_list(param[0]),
@@ -83,8 +83,8 @@ var array_suites_001 = --[ :: ]--[
                                 ],
                                 acc
                               ];
-                      }), --[ [] ]--0, xs);
-        };
+                      end), --[ [] ]--0, xs);
+        end;
         var match = List.split(aux(--[ :: ]--[
                   --[ tuple ]--[
                     [],
@@ -96,12 +96,12 @@ var array_suites_001 = --[ :: ]--[
                   match[0],
                   match[1]
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "concat",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     [
                       0,
@@ -132,32 +132,32 @@ var array_suites_001 = --[ :: ]--[
                           ]
                         ])
                   ]);
-        })
+        end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
         "make",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       --[ tuple ]--[
                         Caml_array.caml_make_vect(100, --[ "a" ]--97),
                         Caml_array.caml_make_float_vect(100)
                       ],
                       --[ tuple ]--[
-                        $$Array.init(100, (function (param) {
+                        $$Array.init(100, (function (param) do
                                 return --[ "a" ]--97;
-                              })),
-                        $$Array.init(100, (function (param) {
+                              end)),
+                        $$Array.init(100, (function (param) do
                                 return 0;
-                              }))
+                              end))
                       ]
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "sub",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         $$Array.sub([
                               0,
@@ -171,20 +171,20 @@ var array_suites_001 = --[ :: ]--[
                           3
                         ]
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "blit",
-            (function (param) {
+            (function (param) do
                 var u = [
                   100,
                   0,
                   0
                 ];
-                var v = $$Array.init(3, (function (x) {
+                var v = $$Array.init(3, (function (x) do
                         return (x << 1);
-                      }));
+                      end));
                 $$Array.blit(v, 1, u, 1, 2);
                 return --[ Eq ]--Block.__(0, [
                           --[ tuple ]--[
@@ -204,15 +204,15 @@ var array_suites_001 = --[ :: ]--[
                             u
                           ]
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "File \"array_test.ml\", line 63, characters 2-9",
-              (function (param) {
-                  var a0 = $$Array.init(100, (function (i) {
+              (function (param) do
+                  var a0 = $$Array.init(100, (function (i) do
                           return (i << 0);
-                        }));
+                        end));
                   $$Array.blit(a0, 10, a0, 5, 20);
                   return --[ Eq ]--Block.__(0, [
                             true,
@@ -241,19 +241,19 @@ var array_suites_001 = --[ :: ]--[
                                   26,
                                   27,
                                   28
-                                ], (function (prim, prim$1) {
+                                ], (function (prim, prim$1) do
                                     return prim == prim$1;
-                                  }))
+                                  end))
                           ]);
-                })
+                end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
                 "File \"array_test.ml\", line 72, characters 2-9",
-                (function (param) {
-                    var a0 = $$Array.init(100, (function (i) {
+                (function (param) do
+                    var a0 = $$Array.init(100, (function (i) do
                             return (i << 0);
-                          }));
+                          end));
                     $$Array.blit(a0, 5, a0, 10, 20);
                     return --[ Eq ]--Block.__(0, [
                               true,
@@ -284,16 +284,16 @@ var array_suites_001 = --[ :: ]--[
                                     18,
                                     19,
                                     20
-                                  ], (function (prim, prim$1) {
+                                  ], (function (prim, prim$1) do
                                       return prim == prim$1;
-                                    }))
+                                    end))
                             ]);
-                  })
+                  end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
                   "make",
-                  (function (param) {
+                  (function (param) do
                       return --[ Eq ]--Block.__(0, [
                                 Caml_array.caml_make_vect(2, 1),
                                 [
@@ -301,12 +301,12 @@ var array_suites_001 = --[ :: ]--[
                                   1
                                 ]
                               ]);
-                    })
+                    end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
                     "sort",
-                    (function (param) {
+                    (function (param) do
                         var u = [
                           3,
                           0,
@@ -321,21 +321,21 @@ var array_suites_001 = --[ :: ]--[
                                       ], u),
                                   true
                                 ]);
-                      })
+                      end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
                       "sort_large",
-                      (function (param) {
-                          var v = $$Array.init(4, (function (i) {
+                      (function (param) do
+                          var v = $$Array.init(4, (function (i) do
                                   return i % 17;
-                                }));
+                                end));
                           $$Array.sort(Caml_primitive.caml_int_compare, v);
                           return --[ Eq ]--Block.__(0, [
                                     true,
                                     is_sorted(v)
                                   ]);
-                        })
+                        end)
                     ],
                     --[ [] ]--0
                   ]

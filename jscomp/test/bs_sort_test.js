@@ -8,52 +8,52 @@ var Caml_primitive = require("../../lib/js/caml_primitive.js");
 var Array_data_util = require("./array_data_util.js");
 var Belt_SortArrayInt = require("../../lib/js/belt_SortArrayInt.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, x) {
+function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-}
+end
 
-function cmp(x, y) {
+function cmp(x, y) do
   return x - y | 0;
-}
+end
 
-function unions(xs, ys) {
+function unions(xs, ys) do
   var lenX = #xs;
   var lenY = #ys;
   var o = new Array(lenX + lenY | 0);
   var v = Belt_SortArray.union(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
   return o;
-}
+end
 
-function inters(xs, ys) {
+function inters(xs, ys) do
   var lenX = #xs;
   var lenY = #ys;
   var o = new Array(lenX);
   var v = Belt_SortArray.intersect(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
   return o;
-}
+end
 
-function diffs(xs, ys) {
+function diffs(xs, ys) do
   var lenX = #xs;
   var lenY = #ys;
   var o = new Array(lenX);
   var v = Belt_SortArray.diff(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
   return o;
-}
+end
 
 eq("File \"bs_sort_test.ml\", line 32, characters 5-12", unions(Array_data_util.range(1, 10), Array_data_util.range(3, 13)), Array_data_util.range(1, 13));
 
@@ -91,17 +91,17 @@ eq("File \"bs_sort_test.ml\", line 48, characters 5-12", diffs(Array_data_util.r
       2
     ]);
 
-b("File \"bs_sort_test.ml\", line 50, characters 4-11", Belt_Range.every(0, 200, (function (i) {
+b("File \"bs_sort_test.ml\", line 50, characters 4-11", Belt_Range.every(0, 200, (function (i) do
             var v = Array_data_util.randomRange(0, i);
             Belt_SortArray.stableSortInPlaceBy(v, cmp);
             return Belt_SortArray.isSorted(v, cmp);
-          })));
+          end)));
 
-b("File \"bs_sort_test.ml\", line 56, characters 4-11", Belt_Range.every(0, 200, (function (i) {
+b("File \"bs_sort_test.ml\", line 56, characters 4-11", Belt_Range.every(0, 200, (function (i) do
             var v = Array_data_util.randomRange(0, i);
             Belt_SortArray.stableSortInPlaceBy(v, cmp);
             return Belt_SortArray.isSorted(v, cmp);
-          })));
+          end)));
 
 b("File \"bs_sort_test.ml\", line 62, characters 4-11", Belt_SortArray.isSorted([], cmp));
 
@@ -162,9 +162,9 @@ var u$1 = [
   ]
 ];
 
-eq("File \"bs_sort_test.ml\", line 90, characters 5-12", Belt_SortArray.stableSortBy(u$1, (function (param, param$1) {
+eq("File \"bs_sort_test.ml\", line 90, characters 5-12", Belt_SortArray.stableSortBy(u$1, (function (param, param$1) do
             return param[0] - param$1[0] | 0;
-          })), [
+          end)), [
       --[ tuple ]--[
         1,
         "a"
@@ -198,9 +198,9 @@ var u$2 = [
   ]
 ];
 
-eq("File \"bs_sort_test.ml\", line 96, characters 5-12", Belt_SortArray.stableSortBy(u$2, (function (param, param$1) {
+eq("File \"bs_sort_test.ml\", line 96, characters 5-12", Belt_SortArray.stableSortBy(u$2, (function (param, param$1) do
             return param[0] - param$1[0] | 0;
-          })), [
+          end)), [
       --[ tuple ]--[
         1,
         "b"
@@ -246,9 +246,9 @@ var u$3 = [
   ]
 ];
 
-eq("File \"bs_sort_test.ml\", line 102, characters 5-12", Belt_SortArray.stableSortBy(u$3, (function (param, param$1) {
+eq("File \"bs_sort_test.ml\", line 102, characters 5-12", Belt_SortArray.stableSortBy(u$3, (function (param, param$1) do
             return param[0] - param$1[0] | 0;
-          })), [
+          end)), [
       --[ tuple ]--[
         1,
         "c"
@@ -334,13 +334,13 @@ eq("File \"bs_sort_test.ml\", line 116, characters 5-12", Belt_SortArray.binaryS
 
 var aa = Array_data_util.range(0, 1000);
 
-b("File \"bs_sort_test.ml\", line 118, characters 4-11", Belt_Range.every(0, 1000, (function (i) {
+b("File \"bs_sort_test.ml\", line 118, characters 4-11", Belt_Range.every(0, 1000, (function (i) do
             return Belt_SortArray.binarySearchBy(aa, i, cmp) == i;
-          })));
+          end)));
 
-var cc = Belt_Array.map(Array_data_util.range(0, 2000), (function (x) {
+var cc = Belt_Array.map(Array_data_util.range(0, 2000), (function (x) do
         return (x << 1);
-      }));
+      end));
 
 eq("File \"bs_sort_test.ml\", line 123, characters 5-12", Belt_SortArray.binarySearchBy(cc, 5000, cmp) ^ -1, 2001);
 
@@ -350,13 +350,13 @@ eq("File \"bs_sort_test.ml\", line 125, characters 5-12", Belt_SortArray.binaryS
 
 eq("File \"bs_sort_test.ml\", line 127, characters 5-12", Belt_SortArray.binarySearchBy(cc, 1, cmp) ^ -1, 1);
 
-b("File \"bs_sort_test.ml\", line 128, characters 4-11", Belt_Range.every(0, 1999, (function (i) {
+b("File \"bs_sort_test.ml\", line 128, characters 4-11", Belt_Range.every(0, 1999, (function (i) do
             return (Belt_SortArray.binarySearchBy(cc, (i << 1) + 1 | 0, cmp) ^ -1) == (i + 1 | 0);
-          })));
+          end)));
 
-function lt(x, y) {
+function lt(x, y) do
   return x < y;
-}
+end
 
 eq("File \"bs_sort_test.ml\", line 135, characters 5-12", Belt_SortArray.strictlySortedLength([], lt), 0);
 

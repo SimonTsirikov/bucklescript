@@ -1,20 +1,20 @@
 'use strict';
 
 
-var f = {
+var f = do
   "Content-Type": 3
-};
+end;
 
 console.log(f["Content-Type"]);
 
-function ff(x) {
+function ff(x) do
   x.Hi;
   x["Content-Type"] = "hello";
-  console.log(({
+  console.log((do
           "Content-Type": "hello"
-        })["Content-Type"]);
+        end)["Content-Type"]);
   return --[ () ]--0;
-}
+end
 
 exports.f = f;
 exports.ff = ff;

@@ -6,13 +6,13 @@ var Curry = require("../../lib/js/curry.js");
 var Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
 var CamlinternalOO = require("../../lib/js/camlinternalOO.js");
 
-function f(u) {
+function f(u) do
   return Caml_oo_curry.js2(5740587, 1, u, 32);
-}
+end
 
-function f_js(u) {
+function f_js(u) do
   return u.say(32);
-}
+end
 
 var class_tables = --[ Cons ]--[
   0,
@@ -22,80 +22,80 @@ var class_tables = --[ Cons ]--[
 
 var suites_000 = --[ tuple ]--[
   "caml_obj",
-  (function (param) {
-      if (!class_tables[0]) {
+  (function (param) do
+      if (!class_tables[0]) do
         var $$class = CamlinternalOO.create_table(["say"]);
         var env = CamlinternalOO.new_variable($$class, "");
         var say = CamlinternalOO.get_method_label($$class, "say");
-        CamlinternalOO.set_method($$class, say, (function (self$1, x) {
+        CamlinternalOO.set_method($$class, say, (function (self$1, x) do
                 return 1 + x | 0;
-              }));
-        var env_init = function (env$1) {
+              end));
+        var env_init = function (env$1) do
           var self = CamlinternalOO.create_object_opt(0, $$class);
           self[env] = env$1;
           return self;
-        };
+        end;
         CamlinternalOO.init_class($$class);
         class_tables[0] = env_init;
-      }
+      end
       return --[ Eq ]--Block.__(0, [
                 33,
                 f(Curry._1(class_tables[0], 0))
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "js_obj",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   34,
-                  ({
-                        say: (function (x) {
+                  (do
+                        say: (function (x) do
                             return x + 2 | 0;
-                          })
-                      }).say(32)
+                          end)
+                      end).say(32)
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "js_obj2",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     34,
-                    ({
-                          say: (function (x) {
+                    (do
+                          say: (function (x) do
                               return x + 2 | 0;
-                            })
-                        }).say(32)
+                            end)
+                        end).say(32)
                   ]);
-        })
+        end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
         "empty",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       0,
                       #Object.keys({ })
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "assign",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
-                        {
+                        do
                           a: 1
-                        },
-                        Object.assign({ }, {
+                        end,
+                        Object.assign({ }, do
                               a: 1
-                            })
+                            end)
                       ]);
-            })
+            end)
         ],
         --[ [] ]--0
       ]

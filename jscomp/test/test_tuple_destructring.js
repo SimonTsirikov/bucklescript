@@ -1,9 +1,9 @@
 'use strict';
 
 
-var N = {
+var N = do
   b: 3
-};
+end;
 
 var v = 3;
 

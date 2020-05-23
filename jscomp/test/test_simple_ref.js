@@ -2,30 +2,30 @@
 
 var Curry = require("../../lib/js/curry.js");
 
-var v = {
+var v = do
   contents: 0
-};
+end;
 
-function gen(param) {
+function gen(param) do
   v.contents = v.contents + 1 | 0;
   return v.contents;
-}
+end
 
-var h = {
+var h = do
   contents: 0
-};
+end;
 
 var a = 0;
 
-var c = {
+var c = do
   contents: 0
-};
+end;
 
 var not_real_escape = a;
 
-function real_escape(f, v) {
+function real_escape(f, v) do
   return Curry._1(f, c);
-}
+end
 
 var u = h;
 

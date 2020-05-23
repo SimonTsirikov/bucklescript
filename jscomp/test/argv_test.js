@@ -3,19 +3,19 @@
 var Arg = require("../../lib/js/arg.js");
 var Block = require("../../lib/js/block.js");
 
-function anno_fun(arg) {
+function anno_fun(arg) do
   return --[ () ]--0;
-}
+end
 
 var usage_msg = "Usage:\n";
 
-var compile = {
+var compile = do
   contents: false
-};
+end;
 
-var test = {
+var test = do
   contents: true
-};
+end;
 
 var arg_spec_000 = --[ tuple ]--[
   "-c",

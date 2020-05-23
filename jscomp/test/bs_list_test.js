@@ -7,63 +7,63 @@ var Belt_Array = require("../../lib/js/belt_Array.js");
 var Caml_int32 = require("../../lib/js/caml_int32.js");
 var Caml_primitive = require("../../lib/js/caml_primitive.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, x) {
+function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-}
+end
 
-function $$throw(loc, x) {
+function $$throw(loc, x) do
   return Mt.throw_suites(test_id, suites, loc, x);
-}
+end
 
-function sum(xs) {
-  var v = {
+function sum(xs) do
+  var v = do
     contents: 0
-  };
-  Belt_List.forEach(xs, (function (x) {
+  end;
+  Belt_List.forEach(xs, (function (x) do
           v.contents = v.contents + x | 0;
           return --[ () ]--0;
-        }));
+        end));
   return v.contents;
-}
+end
 
-function sum2(xs, ys) {
-  var v = {
+function sum2(xs, ys) do
+  var v = do
     contents: 0
-  };
-  Belt_List.forEach2(xs, ys, (function (x, y) {
+  end;
+  Belt_List.forEach2(xs, ys, (function (x, y) do
           v.contents = (v.contents + x | 0) + y | 0;
           return --[ () ]--0;
-        }));
+        end));
   return v.contents;
-}
+end
 
-var u = Belt_List.makeBy(5, (function (i) {
+var u = Belt_List.makeBy(5, (function (i) do
         return Caml_int32.imul(i, i);
-      }));
+      end));
 
-function f(i) {
+function f(i) do
   return eq("File \"bs_list_test.ml\", line 26, characters 7-14", Belt_List.getExn(u, i), Caml_int32.imul(i, i));
-}
+end
 
-for(var i = 0; i <= 4; ++i){
+for(var i = 0; i <= 4; ++i)do
   f(i);
-}
+end
 
-eq("File \"bs_list_test.ml\", line 30, characters 5-12", Belt_List.map(u, (function (i) {
+eq("File \"bs_list_test.ml\", line 30, characters 5-12", Belt_List.map(u, (function (i) do
             return i + 1 | 0;
-          })), --[ :: ]--[
+          end)), --[ :: ]--[
       1,
       --[ :: ]--[
         2,
@@ -92,9 +92,9 @@ eq("File \"bs_list_test.ml\", line 31, characters 5-12", Belt_List.getBy(--[ :: 
               ]
             ]
           ]
-        ], (function (x) {
+        ], (function (x) do
             return x % 2 == 0;
-          })), 4);
+          end)), 4);
 
 eq("File \"bs_list_test.ml\", line 32, characters 5-12", Belt_List.getBy(--[ :: ]--[
           1,
@@ -108,9 +108,9 @@ eq("File \"bs_list_test.ml\", line 32, characters 5-12", Belt_List.getBy(--[ :: 
               ]
             ]
           ]
-        ], (function (x) {
+        ], (function (x) do
             return x % 5 == 0;
-          })), undefined);
+          end)), undefined);
 
 eq("FLATTEN", Belt_List.flatten(--[ :: ]--[
           --[ :: ]--[
@@ -130,9 +130,9 @@ eq("FLATTEN", Belt_List.flatten(--[ :: ]--[
               --[ :: ]--[
                 --[ [] ]--0,
                 --[ :: ]--[
-                  Belt_List.makeBy(4, (function (i) {
+                  Belt_List.makeBy(4, (function (i) do
                           return i;
-                        })),
+                        end)),
                   --[ [] ]--0
                 ]
               ]
@@ -215,9 +215,9 @@ eq("CONCATMANY", Belt_List.concatMany([
             --[ [] ]--0
           ],
           --[ [] ]--0,
-          Belt_List.makeBy(4, (function (i) {
+          Belt_List.makeBy(4, (function (i) do
                   return i;
-                }))
+                end))
         ]), --[ :: ]--[
       1,
       --[ :: ]--[
@@ -323,15 +323,15 @@ eq("CONCATMANY", Belt_List.concatMany([--[ :: ]--[
       ]
     ]);
 
-eq("File \"bs_list_test.ml\", line 57, characters 5-12", Belt_List.toArray(Belt_List.concat(Belt_List.makeBy(100, (function (i) {
+eq("File \"bs_list_test.ml\", line 57, characters 5-12", Belt_List.toArray(Belt_List.concat(Belt_List.makeBy(100, (function (i) do
                     return i;
-                  })), Belt_List.makeBy(100, (function (i) {
+                  end)), Belt_List.makeBy(100, (function (i) do
                     return i;
-                  })))), Belt_Array.concat(Belt_Array.makeBy(100, (function (i) {
+                  end)))), Belt_Array.concat(Belt_Array.makeBy(100, (function (i) do
                 return i;
-              })), Belt_Array.makeBy(100, (function (i) {
+              end)), Belt_Array.makeBy(100, (function (i) do
                 return i;
-              }))));
+              end))));
 
 eq("APPEND", Belt_List.concat(--[ :: ]--[
           1,
@@ -434,13 +434,13 @@ eq("ZIP", Belt_List.zip(--[ :: ]--[
       ]
     ]);
 
-function mod2(x) {
+function mod2(x) do
   return x % 2 == 0;
-}
+end
 
-function evenIndex(_x, i) {
+function evenIndex(_x, i) do
   return i % 2 == 0;
-}
+end
 
 eq("PARTITION", Belt_List.partition(--[ :: ]--[
           1,
@@ -524,9 +524,9 @@ eq("PARTITION", Belt_List.partition(--[ :: ]--[
               ]
             ]
           ]
-        ], (function (x) {
+        ], (function (x) do
             return !mod2(x);
-          })), --[ tuple ]--[
+          end)), --[ tuple ]--[
       --[ [] ]--0,
       --[ :: ]--[
         2,
@@ -724,13 +724,13 @@ eq("FILTER2", Belt_List.keepWithIndex(--[ :: ]--[
       ]
     ]);
 
-function id(x) {
+function id(x) do
   return x;
-}
+end
 
-eq("MAP", Belt_List.map(Belt_List.makeBy(5, id), (function (x) {
+eq("MAP", Belt_List.map(Belt_List.makeBy(5, id), (function (x) do
             return (x << 1);
-          })), --[ :: ]--[
+          end)), --[ :: ]--[
       0,
       --[ :: ]--[
         2,
@@ -752,24 +752,24 @@ eq("MAP", Belt_List.map(--[ [] ]--0, id), --[ [] ]--0);
 eq("MAP", Belt_List.map(--[ :: ]--[
           1,
           --[ [] ]--0
-        ], (function (x) {
+        ], (function (x) do
             return -x | 0;
-          })), --[ :: ]--[
+          end)), --[ :: ]--[
       -1,
       --[ [] ]--0
     ]);
 
-function add(a, b) {
+function add(a, b) do
   return a + b | 0;
-}
+end
 
 var length_10_id = Belt_List.makeBy(10, id);
 
 var length_8_id = Belt_List.makeBy(8, id);
 
-var d = Belt_List.makeBy(10, (function (x) {
+var d = Belt_List.makeBy(10, (function (x) do
         return (x << 1);
-      }));
+      end));
 
 eq("MAP2", Belt_List.zipBy(length_10_id, length_10_id, add), d);
 
@@ -785,9 +785,9 @@ eq("MAP2", Belt_List.zipBy(--[ :: ]--[
 
 eq("MAP2", Belt_List.zipBy(--[ [] ]--0, --[ [] ]--0, add), --[ [] ]--0);
 
-eq("MAP2", Belt_List.zipBy(length_10_id, length_10_id, add), Belt_List.concat(Belt_List.map(length_8_id, (function (x) {
+eq("MAP2", Belt_List.zipBy(length_10_id, length_10_id, add), Belt_List.concat(Belt_List.map(length_8_id, (function (x) do
                 return (x << 1);
-              })), --[ :: ]--[
+              end)), --[ :: ]--[
           16,
           --[ :: ]--[
             18,
@@ -795,13 +795,13 @@ eq("MAP2", Belt_List.zipBy(length_10_id, length_10_id, add), Belt_List.concat(Be
           ]
         ]));
 
-eq("MAP2", Belt_List.zipBy(length_10_id, length_8_id, add), Belt_List.mapWithIndex(length_8_id, (function (i, x) {
+eq("MAP2", Belt_List.zipBy(length_10_id, length_8_id, add), Belt_List.mapWithIndex(length_8_id, (function (i, x) do
             return i + x | 0;
-          })));
+          end)));
 
-eq("MAP2", Belt_List.reverse(Belt_List.mapReverse2(length_10_id, length_10_id, add)), Belt_List.map(length_10_id, (function (x) {
+eq("MAP2", Belt_List.reverse(Belt_List.mapReverse2(length_10_id, length_10_id, add)), Belt_List.map(length_10_id, (function (x) do
             return (x << 1);
-          })));
+          end)));
 
 var xs = Belt_List.reverse(Belt_List.mapReverse2(length_8_id, length_10_id, add));
 
@@ -824,9 +824,9 @@ eq("MAP2", Belt_List.mapReverse2(--[ :: ]--[
             2,
             --[ [] ]--0
           ]
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x + y | 0;
-          })), --[ :: ]--[
+          end)), --[ :: ]--[
       4,
       --[ :: ]--[
         2,
@@ -993,13 +993,13 @@ eq("SPLIT", Belt_List.splitAt(a, 0), --[ tuple ]--[
 
 eq("SPLIT", Belt_List.splitAt(a, -1), undefined);
 
-function succx(x) {
+function succx(x) do
   return x + 1 | 0;
-}
+end
 
-function eqx(x, y) {
+function eqx(x, y) do
   return x == y;
-}
+end
 
 b("File \"bs_list_test.ml\", line 182, characters 4-11", Belt_List.hasAssoc(--[ :: ]--[
           --[ tuple ]--[
@@ -1019,9 +1019,9 @@ b("File \"bs_list_test.ml\", line 182, characters 4-11", Belt_List.hasAssoc(--[ 
               --[ [] ]--0
             ]
           ]
-        ], 2, (function (prim, prim$1) {
+        ], 2, (function (prim, prim$1) do
             return prim == prim$1;
-          })));
+          end)));
 
 b("File \"bs_list_test.ml\", line 183, characters 4-11", !Belt_List.hasAssoc(--[ :: ]--[
           --[ tuple ]--[
@@ -1041,9 +1041,9 @@ b("File \"bs_list_test.ml\", line 183, characters 4-11", !Belt_List.hasAssoc(--[
               --[ [] ]--0
             ]
           ]
-        ], 4, (function (prim, prim$1) {
+        ], 4, (function (prim, prim$1) do
             return prim == prim$1;
-          })));
+          end)));
 
 b("File \"bs_list_test.ml\", line 184, characters 4-11", Belt_List.hasAssoc(--[ :: ]--[
           --[ tuple ]--[
@@ -1063,9 +1063,9 @@ b("File \"bs_list_test.ml\", line 184, characters 4-11", Belt_List.hasAssoc(--[ 
               --[ [] ]--0
             ]
           ]
-        ], 4, (function (x, y) {
+        ], 4, (function (x, y) do
             return (x + 1 | 0) == y;
-          })));
+          end)));
 
 eq("REMOVEASSOQ", Belt_List.removeAssoc(--[ :: ]--[
           --[ tuple ]--[
@@ -1085,9 +1085,9 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[ :: ]--[
               --[ [] ]--0
             ]
           ]
-        ], 3, (function (prim, prim$1) {
+        ], 3, (function (prim, prim$1) do
             return prim == prim$1;
-          })), --[ :: ]--[
+          end)), --[ :: ]--[
       --[ tuple ]--[
         1,
         "1"
@@ -1119,9 +1119,9 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[ :: ]--[
               --[ [] ]--0
             ]
           ]
-        ], 1, (function (prim, prim$1) {
+        ], 1, (function (prim, prim$1) do
             return prim == prim$1;
-          })), --[ :: ]--[
+          end)), --[ :: ]--[
       --[ tuple ]--[
         2,
         "2"
@@ -1153,9 +1153,9 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[ :: ]--[
               --[ [] ]--0
             ]
           ]
-        ], 2, (function (prim, prim$1) {
+        ], 2, (function (prim, prim$1) do
             return prim == prim$1;
-          })), --[ :: ]--[
+          end)), --[ :: ]--[
       --[ tuple ]--[
         1,
         "1"
@@ -1187,9 +1187,9 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[ :: ]--[
               --[ [] ]--0
             ]
           ]
-        ], 0, (function (prim, prim$1) {
+        ], 0, (function (prim, prim$1) do
             return prim == prim$1;
-          })), --[ :: ]--[
+          end)), --[ :: ]--[
       --[ tuple ]--[
         1,
         "1"
@@ -1331,9 +1331,9 @@ var ll0 = Belt_List.removeAssoc(ll, 0, eqx);
 
 b("File \"bs_list_test.ml\", line 196, characters 5-12", ll == ll0);
 
-var ll1 = Belt_List.setAssoc(ll, 2, "22", (function (prim, prim$1) {
+var ll1 = Belt_List.setAssoc(ll, 2, "22", (function (prim, prim$1) do
         return prim == prim$1;
-      }));
+      end));
 
 eq("File \"bs_list_test.ml\", line 198, characters 5-12", ll1, --[ :: ]--[
       --[ tuple ]--[
@@ -1355,9 +1355,9 @@ eq("File \"bs_list_test.ml\", line 198, characters 5-12", ll1, --[ :: ]--[
       ]
     ]);
 
-var ll2 = Belt_List.setAssoc(ll1, 22, "2", (function (prim, prim$1) {
+var ll2 = Belt_List.setAssoc(ll1, 22, "2", (function (prim, prim$1) do
         return prim == prim$1;
-      }));
+      end));
 
 b("File \"bs_list_test.ml\", line 200, characters 4-11", Caml_obj.caml_equal(ll2, --[ :: ]--[
           --[ tuple ]--[
@@ -1387,9 +1387,9 @@ b("File \"bs_list_test.ml\", line 202, characters 4-11", Caml_obj.caml_equal(Bel
                   --[ [] ]--0
                 ]
               ]
-            ], 2, "x", (function (prim, prim$1) {
+            ], 2, "x", (function (prim, prim$1) do
                 return prim == prim$1;
-              })), --[ :: ]--[
+              end)), --[ :: ]--[
           --[ tuple ]--[
             1,
             "a"
@@ -1421,9 +1421,9 @@ b("File \"bs_list_test.ml\", line 204, characters 4-11", Caml_obj.caml_equal(Bel
                 ],
                 --[ [] ]--0
               ]
-            ], 2, "2", (function (prim, prim$1) {
+            ], 2, "2", (function (prim, prim$1) do
                 return prim == prim$1;
-              })), --[ :: ]--[
+              end)), --[ :: ]--[
           --[ tuple ]--[
             2,
             "2"
@@ -1443,9 +1443,9 @@ b("File \"bs_list_test.ml\", line 204, characters 4-11", Caml_obj.caml_equal(Bel
           ]
         ]));
 
-eq("File \"bs_list_test.ml\", line 206, characters 5-12", Belt_List.setAssoc(--[ [] ]--0, 1, "1", (function (prim, prim$1) {
+eq("File \"bs_list_test.ml\", line 206, characters 5-12", Belt_List.setAssoc(--[ [] ]--0, 1, "1", (function (prim, prim$1) do
             return prim == prim$1;
-          })), --[ :: ]--[
+          end)), --[ :: ]--[
       --[ tuple ]--[
         1,
         "1"
@@ -1461,9 +1461,9 @@ eq("File \"bs_list_test.ml\", line 208, characters 5-12", Belt_List.setAssoc(--[
             "2"
           ],
           --[ [] ]--0
-        ], 1, "1", (function (prim, prim$1) {
+        ], 1, "1", (function (prim, prim$1) do
             return prim == prim$1;
-          })), --[ :: ]--[
+          end)), --[ :: ]--[
       --[ tuple ]--[
         1,
         "1"
@@ -1483,9 +1483,9 @@ eq("File \"bs_list_test.ml\", line 210, characters 5-12", Belt_List.setAssoc(--[
             ],
             --[ [] ]--0
           ]
-        ], 1, "1", (function (prim, prim$1) {
+        ], 1, "1", (function (prim, prim$1) do
             return prim == prim$1;
-          })), --[ :: ]--[
+          end)), --[ :: ]--[
       --[ tuple ]--[
         0,
         "0"
@@ -1517,9 +1517,9 @@ b("File \"bs_list_test.ml\", line 211, characters 4-11", Caml_obj.caml_equal(Bel
                   --[ [] ]--0
                 ]
               ]
-            ], 2, (function (prim, prim$1) {
+            ], 2, (function (prim, prim$1) do
                 return prim == prim$1;
-              })), "b"));
+              end)), "b"));
 
 b("File \"bs_list_test.ml\", line 212, characters 4-11", Belt_List.getAssoc(--[ :: ]--[
           --[ tuple ]--[
@@ -1539,9 +1539,9 @@ b("File \"bs_list_test.ml\", line 212, characters 4-11", Belt_List.getAssoc(--[ 
               --[ [] ]--0
             ]
           ]
-        ], 4, (function (prim, prim$1) {
+        ], 4, (function (prim, prim$1) do
             return prim == prim$1;
-          })) == undefined);
+          end)) == undefined);
 
 eq("File \"bs_list_test.ml\", line 216, characters 5-12", --[ tuple ]--[
       Belt_List.head(length_10_id),
@@ -1553,16 +1553,16 @@ eq("File \"bs_list_test.ml\", line 216, characters 5-12", --[ tuple ]--[
 
 eq("File \"bs_list_test.ml\", line 219, characters 5-12", Belt_List.head(--[ [] ]--0), undefined);
 
-$$throw("File \"bs_list_test.ml\", line 220, characters 8-15", (function (param) {
+$$throw("File \"bs_list_test.ml\", line 220, characters 8-15", (function (param) do
         return Belt_List.headExn(--[ [] ]--0);
-      }));
+      end));
 
-$$throw("File \"bs_list_test.ml\", line 221, characters 8-15", (function (param) {
+$$throw("File \"bs_list_test.ml\", line 221, characters 8-15", (function (param) do
         Belt_List.tailExn(--[ [] ]--0);
         return --[ () ]--0;
-      }));
+      end));
 
-$$throw("File \"bs_list_test.ml\", line 222, characters 8-15", (function (param) {
+$$throw("File \"bs_list_test.ml\", line 222, characters 8-15", (function (param) do
         Belt_List.getExn(--[ :: ]--[
               0,
               --[ :: ]--[
@@ -1571,9 +1571,9 @@ $$throw("File \"bs_list_test.ml\", line 222, characters 8-15", (function (param)
               ]
             ], -1);
         return --[ () ]--0;
-      }));
+      end));
 
-$$throw("File \"bs_list_test.ml\", line 223, characters 8-15", (function (param) {
+$$throw("File \"bs_list_test.ml\", line 223, characters 8-15", (function (param) do
         Belt_List.getExn(--[ :: ]--[
               0,
               --[ :: ]--[
@@ -1582,7 +1582,7 @@ $$throw("File \"bs_list_test.ml\", line 223, characters 8-15", (function (param)
               ]
             ], 2);
         return --[ () ]--0;
-      }));
+      end));
 
 eq("File \"bs_list_test.ml\", line 224, characters 5-12", Belt_List.map(--[ :: ]--[
           0,
@@ -1590,7 +1590,7 @@ eq("File \"bs_list_test.ml\", line 224, characters 5-12", Belt_List.map(--[ :: ]
             1,
             --[ [] ]--0
           ]
-        ], (function (i) {
+        ], (function (i) do
             return Belt_List.getExn(--[ :: ]--[
                         0,
                         --[ :: ]--[
@@ -1598,7 +1598,7 @@ eq("File \"bs_list_test.ml\", line 224, characters 5-12", Belt_List.map(--[ :: ]
                           --[ [] ]--0
                         ]
                       ], i);
-          })), --[ :: ]--[
+          end)), --[ :: ]--[
       0,
       --[ :: ]--[
         1,
@@ -1616,17 +1616,17 @@ eq("File \"bs_list_test.ml\", line 226, characters 5-12", Belt_List.tailExn(--[ 
           --[ [] ]--0
         ]), --[ [] ]--0);
 
-Belt_List.forEachWithIndex(length_10_id, (function (i, x) {
+Belt_List.forEachWithIndex(length_10_id, (function (i, x) do
         return eq("File \"bs_list_test.ml\", line 228, characters 9-16", Belt_List.get(length_10_id, i), x);
-      }));
+      end));
 
 eq("File \"bs_list_test.ml\", line 229, characters 5-12", Belt_List.tail(--[ [] ]--0), undefined);
 
 eq("File \"bs_list_test.ml\", line 230, characters 5-12", Belt_List.drop(--[ [] ]--0, 3), undefined);
 
-eq("File \"bs_list_test.ml\", line 231, characters 5-12", Belt_List.mapWithIndex(--[ [] ]--0, (function (i, x) {
+eq("File \"bs_list_test.ml\", line 231, characters 5-12", Belt_List.mapWithIndex(--[ [] ]--0, (function (i, x) do
             return i + x | 0;
-          })), --[ [] ]--0);
+          end)), --[ [] ]--0);
 
 eq("File \"bs_list_test.ml\", line 232, characters 5-12", Belt_List.get(length_10_id, -1), undefined);
 
@@ -1650,11 +1650,11 @@ eq("File \"bs_list_test.ml\", line 243, characters 5-12", Belt_List.reduce(lengt
 
 eq("File \"bs_list_test.ml\", line 245, characters 5-12", Belt_List.reduceReverse(length_10_id, 0, add), 45);
 
-eq("File \"bs_list_test.ml\", line 247, characters 5-12", Belt_List.reduceReverse(Belt_List.makeBy(10000, (function (i) {
+eq("File \"bs_list_test.ml\", line 247, characters 5-12", Belt_List.reduceReverse(Belt_List.makeBy(10000, (function (i) do
                 return i;
-              })), 0, (function (prim, prim$1) {
+              end)), 0, (function (prim, prim$1) do
             return prim + prim$1 | 0;
-          })), 49995000);
+          end)), 49995000);
 
 eq("File \"bs_list_test.ml\", line 252, characters 5-12", sum2(length_10_id, length_10_id), 90);
 
@@ -1662,9 +1662,9 @@ eq("File \"bs_list_test.ml\", line 253, characters 5-12", sum2(length_8_id, leng
 
 eq("File \"bs_list_test.ml\", line 254, characters 5-12", sum2(length_10_id, length_8_id), 56);
 
-eq("File \"bs_list_test.ml\", line 255, characters 5-12", Belt_List.reduce2(length_10_id, length_8_id, 0, (function (acc, x, y) {
+eq("File \"bs_list_test.ml\", line 255, characters 5-12", Belt_List.reduce2(length_10_id, length_8_id, 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
-          })), 56);
+          end)), 56);
 
 eq("File \"bs_list_test.ml\", line 257, characters 5-12", Belt_List.reduce2(--[ :: ]--[
           1,
@@ -1684,17 +1684,17 @@ eq("File \"bs_list_test.ml\", line 257, characters 5-12", Belt_List.reduce2(--[ 
               --[ [] ]--0
             ]
           ]
-        ], 0, (function (a, b, c) {
+        ], 0, (function (a, b, c) do
             return (a + b | 0) + c | 0;
-          })), 18);
+          end)), 18);
 
-eq("File \"bs_list_test.ml\", line 258, characters 5-12", Belt_List.reduceReverse2(length_10_id, length_8_id, 0, (function (acc, x, y) {
+eq("File \"bs_list_test.ml\", line 258, characters 5-12", Belt_List.reduceReverse2(length_10_id, length_8_id, 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
-          })), 56);
+          end)), 56);
 
-eq("File \"bs_list_test.ml\", line 260, characters 5-12", Belt_List.reduceReverse2(length_10_id, length_10_id, 0, (function (acc, x, y) {
+eq("File \"bs_list_test.ml\", line 260, characters 5-12", Belt_List.reduceReverse2(length_10_id, length_10_id, 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
-          })), 90);
+          end)), 90);
 
 eq("File \"bs_list_test.ml\", line 262, characters 5-12", Belt_List.reduceReverse2(--[ :: ]--[
           1,
@@ -1711,9 +1711,9 @@ eq("File \"bs_list_test.ml\", line 262, characters 5-12", Belt_List.reduceRevers
             2,
             --[ [] ]--0
           ]
-        ], 0, (function (acc, x, y) {
+        ], 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
-          })), 6);
+          end)), 6);
 
 eq("File \"bs_list_test.ml\", line 263, characters 5-12", Belt_List.every(--[ :: ]--[
           2,
@@ -1766,9 +1766,9 @@ eq("File \"bs_list_test.ml\", line 269, characters 5-12", Belt_List.has(--[ :: ]
               --[ [] ]--0
             ]
           ]
-        ], "2", (function (x, s) {
+        ], "2", (function (x, s) do
             return String(x) == s;
-          })), true);
+          end)), true);
 
 eq("File \"bs_list_test.ml\", line 270, characters 5-12", Belt_List.has(--[ :: ]--[
           1,
@@ -1779,9 +1779,9 @@ eq("File \"bs_list_test.ml\", line 270, characters 5-12", Belt_List.has(--[ :: ]
               --[ [] ]--0
             ]
           ]
-        ], "0", (function (x, s) {
+        ], "0", (function (x, s) do
             return String(x) == s;
-          })), false);
+          end)), false);
 
 b("File \"bs_list_test.ml\", line 272, characters 4-11", Belt_List.reduceReverse(--[ :: ]--[
           1,
@@ -1795,9 +1795,9 @@ b("File \"bs_list_test.ml\", line 272, characters 4-11", Belt_List.reduceReverse
               ]
             ]
           ]
-        ], 0, (function (prim, prim$1) {
+        ], 0, (function (prim, prim$1) do
             return prim + prim$1 | 0;
-          })) == 10);
+          end)) == 10);
 
 b("File \"bs_list_test.ml\", line 273, characters 4-11", Belt_List.reduceReverse(--[ :: ]--[
           1,
@@ -1811,9 +1811,9 @@ b("File \"bs_list_test.ml\", line 273, characters 4-11", Belt_List.reduceReverse
               ]
             ]
           ]
-        ], 10, (function (prim, prim$1) {
+        ], 10, (function (prim, prim$1) do
             return prim - prim$1 | 0;
-          })) == 0);
+          end)) == 0);
 
 b("File \"bs_list_test.ml\", line 274, characters 4-11", Caml_obj.caml_equal(Belt_List.reduceReverse(--[ :: ]--[
               1,
@@ -1853,9 +1853,9 @@ b("File \"bs_list_test.ml\", line 275, characters 4-11", Belt_List.reduce(--[ ::
               ]
             ]
           ]
-        ], 0, (function (prim, prim$1) {
+        ], 0, (function (prim, prim$1) do
             return prim + prim$1 | 0;
-          })) == 10);
+          end)) == 10);
 
 b("File \"bs_list_test.ml\", line 276, characters 4-11", Belt_List.reduce(--[ :: ]--[
           1,
@@ -1869,9 +1869,9 @@ b("File \"bs_list_test.ml\", line 276, characters 4-11", Belt_List.reduce(--[ ::
               ]
             ]
           ]
-        ], 10, (function (prim, prim$1) {
+        ], 10, (function (prim, prim$1) do
             return prim - prim$1 | 0;
-          })) == 0);
+          end)) == 0);
 
 b("File \"bs_list_test.ml\", line 277, characters 4-11", Caml_obj.caml_equal(Belt_List.reduce(--[ :: ]--[
               1,
@@ -1911,9 +1911,9 @@ b("File \"bs_list_test.ml\", line 278, characters 4-11", Belt_List.reduceWithInd
               ]
             ]
           ]
-        ], 0, (function (acc, x, i) {
+        ], 0, (function (acc, x, i) do
             return (acc + x | 0) + i | 0;
-          })) == 16);
+          end)) == 16);
 
 b("File \"bs_list_test.ml\", line 279, characters 4-11", Belt_List.reduceReverse2(--[ :: ]--[
           1,
@@ -1930,27 +1930,27 @@ b("File \"bs_list_test.ml\", line 279, characters 4-11", Belt_List.reduceReverse
             2,
             --[ [] ]--0
           ]
-        ], 0, (function (acc, x, y) {
+        ], 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
-          })) == 6);
+          end)) == 6);
 
-var a$1 = Belt_List.makeBy(10000, (function (i) {
+var a$1 = Belt_List.makeBy(10000, (function (i) do
         return i;
-      }));
+      end));
 
 b("File \"bs_list_test.ml\", line 282, characters 4-11", Belt_List.reduceReverse2(a$1, --[ :: ]--[
           0,
           a$1
-        ], 0, (function (acc, x, y) {
+        ], 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
-          })) == 99980001);
+          end)) == 99980001);
 
 eq("File \"bs_list_test.ml\", line 288, characters 5-12", Belt_List.every2(--[ [] ]--0, --[ :: ]--[
           1,
           --[ [] ]--0
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x > y;
-          })), true);
+          end)), true);
 
 eq("File \"bs_list_test.ml\", line 289, characters 5-12", Belt_List.every2(--[ :: ]--[
           2,
@@ -1961,9 +1961,9 @@ eq("File \"bs_list_test.ml\", line 289, characters 5-12", Belt_List.every2(--[ :
         ], --[ :: ]--[
           1,
           --[ [] ]--0
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x > y;
-          })), true);
+          end)), true);
 
 eq("File \"bs_list_test.ml\", line 290, characters 5-12", Belt_List.every2(--[ :: ]--[
           2,
@@ -1971,9 +1971,9 @@ eq("File \"bs_list_test.ml\", line 290, characters 5-12", Belt_List.every2(--[ :
         ], --[ :: ]--[
           1,
           --[ [] ]--0
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x > y;
-          })), true);
+          end)), true);
 
 eq("File \"bs_list_test.ml\", line 291, characters 5-12", Belt_List.every2(--[ :: ]--[
           2,
@@ -1987,9 +1987,9 @@ eq("File \"bs_list_test.ml\", line 291, characters 5-12", Belt_List.every2(--[ :
             4,
             --[ [] ]--0
           ]
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x > y;
-          })), false);
+          end)), false);
 
 eq("File \"bs_list_test.ml\", line 292, characters 5-12", Belt_List.every2(--[ :: ]--[
           2,
@@ -2003,16 +2003,16 @@ eq("File \"bs_list_test.ml\", line 292, characters 5-12", Belt_List.every2(--[ :
             0,
             --[ [] ]--0
           ]
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x > y;
-          })), true);
+          end)), true);
 
 eq("File \"bs_list_test.ml\", line 293, characters 5-12", Belt_List.some2(--[ [] ]--0, --[ :: ]--[
           1,
           --[ [] ]--0
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x > y;
-          })), false);
+          end)), false);
 
 eq("File \"bs_list_test.ml\", line 294, characters 5-12", Belt_List.some2(--[ :: ]--[
           2,
@@ -2023,9 +2023,9 @@ eq("File \"bs_list_test.ml\", line 294, characters 5-12", Belt_List.some2(--[ ::
         ], --[ :: ]--[
           1,
           --[ [] ]--0
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x > y;
-          })), true);
+          end)), true);
 
 eq("File \"bs_list_test.ml\", line 295, characters 5-12", Belt_List.some2(--[ :: ]--[
           2,
@@ -2039,9 +2039,9 @@ eq("File \"bs_list_test.ml\", line 295, characters 5-12", Belt_List.some2(--[ ::
             4,
             --[ [] ]--0
           ]
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x > y;
-          })), true);
+          end)), true);
 
 eq("File \"bs_list_test.ml\", line 296, characters 5-12", Belt_List.some2(--[ :: ]--[
           0,
@@ -2055,9 +2055,9 @@ eq("File \"bs_list_test.ml\", line 296, characters 5-12", Belt_List.some2(--[ ::
             4,
             --[ [] ]--0
           ]
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x > y;
-          })), false);
+          end)), false);
 
 eq("File \"bs_list_test.ml\", line 297, characters 5-12", Belt_List.some2(--[ :: ]--[
           0,
@@ -2071,9 +2071,9 @@ eq("File \"bs_list_test.ml\", line 297, characters 5-12", Belt_List.some2(--[ ::
             2,
             --[ [] ]--0
           ]
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x > y;
-          })), true);
+          end)), true);
 
 eq("File \"bs_list_test.ml\", line 298, characters 5-12", Belt_List.some2(--[ :: ]--[
           1,
@@ -2090,15 +2090,15 @@ eq("File \"bs_list_test.ml\", line 298, characters 5-12", Belt_List.some2(--[ ::
             -2,
             --[ [] ]--0
           ]
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x == y;
-          })), false);
+          end)), false);
 
-function makeTest(n) {
-  return eq("File \"bs_list_test.ml\", line 301, characters 5-12", Belt_List.make(n, 3), Belt_List.makeBy(n, (function (param) {
+function makeTest(n) do
+  return eq("File \"bs_list_test.ml\", line 301, characters 5-12", Belt_List.make(n, 3), Belt_List.makeBy(n, (function (param) do
                     return 3;
-                  })));
-}
+                  end)));
+end
 
 eq("File \"bs_list_test.ml\", line 304, characters 5-12", --[ :: ]--[
       2,
@@ -2299,9 +2299,9 @@ makeTest(2);
 
 makeTest(3);
 
-function cmp(a, b) {
+function cmp(a, b) do
   return a - b | 0;
-}
+end
 
 eq("SORT", Belt_List.sort(--[ :: ]--[
           5,
@@ -2376,9 +2376,9 @@ b("File \"bs_list_test.ml\", line 337, characters 4-11", !Belt_List.eq(--[ :: ]-
             2,
             --[ [] ]--0
           ]
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x == y;
-          })));
+          end)));
 
 b("File \"bs_list_test.ml\", line 338, characters 4-11", Belt_List.eq(--[ :: ]--[
           1,
@@ -2398,9 +2398,9 @@ b("File \"bs_list_test.ml\", line 338, characters 4-11", Belt_List.eq(--[ :: ]--
               --[ [] ]--0
             ]
           ]
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x == y;
-          })));
+          end)));
 
 b("File \"bs_list_test.ml\", line 339, characters 4-11", !Belt_List.eq(--[ :: ]--[
           1,
@@ -2420,9 +2420,9 @@ b("File \"bs_list_test.ml\", line 339, characters 4-11", !Belt_List.eq(--[ :: ]-
               --[ [] ]--0
             ]
           ]
-        ], (function (x, y) {
+        ], (function (x, y) do
             return x == y;
-          })));
+          end)));
 
 b("File \"bs_list_test.ml\", line 340, characters 4-11", !Belt_List.eq(--[ :: ]--[
           1,
@@ -2445,20 +2445,20 @@ b("File \"bs_list_test.ml\", line 340, characters 4-11", !Belt_List.eq(--[ :: ]-
               ]
             ]
           ]
-        ], (function (prim, prim$1) {
+        ], (function (prim, prim$1) do
             return prim == prim$1;
-          })));
+          end)));
 
-var u0 = Belt_List.makeBy(20, (function (x) {
+var u0 = Belt_List.makeBy(20, (function (x) do
         return x;
-      }));
+      end));
 
-var u1 = Belt_List.keepMap(u0, (function (x) {
-        if (x % 7 == 0) {
+var u1 = Belt_List.keepMap(u0, (function (x) do
+        if (x % 7 == 0) do
           return x + 1 | 0;
-        }
+        end
         
-      }));
+      end));
 
 eq("File \"bs_list_test.ml\", line 344, characters 5-12", u1, --[ :: ]--[
       1,
@@ -2483,12 +2483,12 @@ b("File \"bs_list_test.ml\", line 345, characters 4-11", Caml_obj.caml_equal(Bel
                   ]
                 ]
               ]
-            ], (function (x) {
-                if (x % 2 == 0) {
+            ], (function (x) do
+                if (x % 2 == 0) do
                   return -x | 0;
-                }
+                end
                 
-              })), --[ :: ]--[
+              end)), --[ :: ]--[
           -2,
           --[ :: ]--[
             -4,
@@ -2508,12 +2508,12 @@ b("File \"bs_list_test.ml\", line 349, characters 4-11", Belt_List.keepMap(--[ :
               ]
             ]
           ]
-        ], (function (x) {
-            if (x % 5 == 0) {
+        ], (function (x) do
+            if (x % 5 == 0) do
               return x;
-            }
+            end
             
-          })) == --[ [] ]--0);
+          end)) == --[ [] ]--0);
 
 Mt.from_pair_suites("Bs_list_test", suites.contents);
 

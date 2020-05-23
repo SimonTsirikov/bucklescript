@@ -2,57 +2,57 @@
 
 var Curry = require("../../lib/js/curry.js");
 
-function $pipe$great(x, f) {
+function $pipe$great(x, f) do
   return Curry._1(f, x);
-}
+end
 
-function hello1(y, f) {
+function hello1(y, f) do
   return Curry._1(f, y);
-}
+end
 
-function hello2(y, f) {
+function hello2(y, f) do
   return Curry._1(f, y);
-}
+end
 
-function hello3(y, f) {
+function hello3(y, f) do
   return Curry._1(f, y);
-}
+end
 
-function hello4(y, f) {
+function hello4(y, f) do
   return Curry._1(f, y);
-}
+end
 
-function hello5(y, f) {
+function hello5(y, f) do
   return Curry._1(f, y);
-}
+end
 
-function f(_x) {
-  while(true) {
+function f(_x) do
+  while(true) do
     var x = _x;
     _x = x + 1 | 0;
     continue ;
-  };
-}
+  end;
+end
 
-function ff(_x, _y) {
-  while(true) {
+function ff(_x, _y) do
+  while(true) do
     var y = _y;
     var x = _x;
     _y = x + 1 | 0;
     _x = y;
     continue ;
-  };
-}
+  end;
+end
 
-function fff(_x, _y) {
-  while(true) {
+function fff(_x, _y) do
+  while(true) do
     var y = _y;
     var x = _x;
     _y = x;
     _x = y;
     continue ;
-  };
-}
+  end;
+end
 
 exports.$pipe$great = $pipe$great;
 exports.hello1 = hello1;

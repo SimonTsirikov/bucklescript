@@ -1,25 +1,25 @@
 'use strict';
 
 
-var u = {
+var u = do
   y: 3
-};
+end;
 
-var v_ice_cream3_000 = {
+var v_ice_cream3_000 = do
   flavor: "vanilla",
   num: 3
-};
+end;
 
 var v_ice_cream3_001 = --[ :: ]--[
-  {
+  do
     flavor: "x",
     num: 3
-  },
+  end,
   --[ :: ]--[
-    {
+    do
       flavor: "vanilla",
       num: 3
-    },
+    end,
     --[ [] ]--0
   ]
 ];
@@ -29,16 +29,16 @@ var v_ice_cream3 = --[ :: ]--[
   v_ice_cream3_001
 ];
 
-var v_ice_cream4_000 = {
+var v_ice_cream4_000 = do
   flavor: "vanilla",
   num: 3
-};
+end;
 
 var v_ice_cream4_001 = --[ :: ]--[
-  {
+  do
     flavor: "x",
     num: 3
-  },
+  end,
   --[ [] ]--0
 ];
 
@@ -47,28 +47,28 @@ var v_ice_cream4 = --[ :: ]--[
   v_ice_cream4_001
 ];
 
-var vv = {
+var vv = do
   x: 3
-};
+end;
 
-var int_expect = {
+var int_expect = do
   x: 0
-};
+end;
 
-var int_expect2 = {
+var int_expect2 = do
   x: 0
-};
+end;
 
 var int_expects_000 = { };
 
 var int_expects_001 = --[ :: ]--[
-  {
+  do
     x: 2
-  },
+  end,
   --[ :: ]--[
-    {
+    do
       x: 3
-    },
+    end,
     --[ [] ]--0
   ]
 ];
@@ -78,54 +78,54 @@ var int_expects = --[ :: ]--[
   int_expects_001
 ];
 
-var mk_ice = {
+var mk_ice = do
   flavour: "vanilla",
   num: 3
-};
+end;
 
-var my_ice2 = {
+var my_ice2 = do
   flavour: "vanilla",
   num: 1
-};
+end;
 
-var my_ice3 = {
+var my_ice3 = do
   num: 2
-};
+end;
 
-var v_mk4 = {
+var v_mk4 = do
   y: 3
-};
+end;
 
-var v_mk5 = {
+var v_mk5 = do
   x: --[ () ]--0,
   y: 3
-};
+end;
 
-var v_mk6 = {
+var v_mk6 = do
   y: 3
-};
+end;
 
-var v_mk6_1 = {
+var v_mk6_1 = do
   x: --[ () ]--0,
   y: 3
-};
+end;
 
-var mk_u = {
+var mk_u = do
   x: 0
-};
+end;
 
-var v_mk7_000 = {
+var v_mk7_000 = do
   y: 3
-};
+end;
 
 var v_mk7_001 = --[ :: ]--[
-  {
+  do
     y: 2
-  },
+  end,
   --[ :: ]--[
-    {
+    do
       y: 2
-    },
+    end,
     --[ [] ]--0
   ]
 ];
@@ -149,9 +149,9 @@ again3(3);
 
 again3(2);
 
-var side_effect = {
+var side_effect = do
   contents: 0
-};
+end;
 
 again4(undefined, --[ () ]--0, 166);
 

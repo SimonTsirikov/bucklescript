@@ -1,9 +1,9 @@
 'use strict';
 
 
-function t_error3(param_0) {
+function t_error3(param_0) do
   return --[ T_error3 ]--[param_0];
-}
+end
 
 var t_error = --[ T_error ]--0;
 

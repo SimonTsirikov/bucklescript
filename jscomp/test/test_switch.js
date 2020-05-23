@@ -3,15 +3,15 @@
 var Block = require("../../lib/js/block.js");
 var Curry = require("../../lib/js/curry.js");
 
-function f(param) {
-  if (typeof param == "number") {
-    if (param == --[ G ]--0) {
+function f(param) do
+  if (typeof param == "number") do
+    if (param == --[ G ]--0) do
       return 4;
-    } else {
+    end else do
       return 5;
-    }
-  } else {
-    switch (param.tag | 0) {
+    end
+  end else do
+    switch (param.tag | 0) do
       case --[ A ]--0 :
           return 0;
       case --[ B ]--1 :
@@ -21,17 +21,17 @@ function f(param) {
       case --[ F ]--3 :
           return 3;
       
-    }
-  }
-}
+    end
+  end
+end
 
-function bind(x, f) {
-  if (x.tag) {
+function bind(x, f) do
+  if (x.tag) do
     return x;
-  } else {
+  end else do
     return --[ Left ]--Block.__(0, [Curry._1(f, x[0])]);
-  }
-}
+  end
+end
 
 exports.f = f;
 exports.bind = bind;

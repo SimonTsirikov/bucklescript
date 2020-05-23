@@ -2,9 +2,9 @@
 
 var Curry = require("../../lib/js/curry.js");
 
-function g(x) {
+function g(x) do
   return Curry._1(x[0], x);
-}
+end
 
 var loop = g(--[ A ]--[g]);
 

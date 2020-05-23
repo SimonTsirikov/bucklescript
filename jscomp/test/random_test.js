@@ -9,31 +9,31 @@ var Random = require("../../lib/js/random.js");
 var Mt_global = require("./mt_global.js");
 var Caml_array = require("../../lib/js/caml_array.js");
 
-var id = {
+var id = do
   contents: 0
-};
+end;
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-function eq(f) {
-  return (function (param, param$1) {
+function eq(f) do
+  return (function (param, param$1) do
       return Mt_global.collect_eq(id, suites, f, param, param$1);
-    });
-}
+    end);
+end
 
-function neq(f) {
-  return (function (param, param$1) {
+function neq(f) do
+  return (function (param, param$1) do
       return Mt_global.collect_neq(id, suites, f, param, param$1);
-    });
-}
+    end);
+end
 
-function approx(f) {
-  return (function (param, param$1) {
+function approx(f) do
+  return (function (param, param$1) do
       return Mt_global.collect_approx(id, suites, f, param, param$1);
-    });
-}
+    end);
+end
 
 Random.self_init(--[ () ]--0);
 
@@ -49,9 +49,9 @@ Random.init(0);
 
 var v = Caml_array.caml_make_vect(10, false);
 
-for(var i = 0; i <= 9; ++i){
+for(var i = 0; i <= 9; ++i)do
   Caml_array.caml_array_set(v, i, Random.bool(--[ () ]--0));
-}
+end
 
 var param$2 = [
   true,

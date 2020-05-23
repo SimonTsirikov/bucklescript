@@ -1,13 +1,13 @@
 'use strict';
 
 
-function f(x) {
+function f(x) do
   return x;
-}
+end
 
-function f2(x) {
+function f2(x) do
   return x;
-}
+end
 
 exports.f = f;
 exports.f2 = f2;

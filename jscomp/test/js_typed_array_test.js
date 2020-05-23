@@ -5,19 +5,19 @@ var $$Array = require("../../lib/js/array.js");
 var Block = require("../../lib/js/block.js");
 var Curry = require("../../lib/js/curry.js");
 
-function mkI8(a) {
+function mkI8(a) do
   return new Int8Array(a);
-}
+end
 
-function via(make, f, arr) {
+function via(make, f, arr) do
   return Array.from(Curry._1(f, Curry._1(make, arr)));
-}
+end
 
-function viaInt8(f, arr) {
-  return (function (param, param$1) {
+function viaInt8(f, arr) do
+  return (function (param, param$1) do
       return Array.from(Curry._1(param, new Int8Array(param$1)));
-    });
-}
+    end);
+end
 
 var x = new Int8Array([
       1,
@@ -27,48 +27,48 @@ var x = new Int8Array([
 
 var suites_000 = --[ tuple ]--[
   "array_buffer - make",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 5,
                 new ArrayBuffer(5).byteLength
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "array_buffer - byteLength",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   5,
                   new ArrayBuffer(5).byteLength
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "array_buffer - slice",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     2,
                     new ArrayBuffer(5).slice(2, 4).byteLength
                   ]);
-        })
+        end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
         "array_buffer - sliceFrom",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       3,
                       new ArrayBuffer(5).slice(2).byteLength
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "typed_array - unsafe_get",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         4,
                         new Int8Array([
@@ -79,12 +79,12 @@ var suites_001 = --[ :: ]--[
                                 5
                               ])[3]
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "typed_array - unsafe_set",
-            (function (param) {
+            (function (param) do
                 var a = new Int8Array([
                       1,
                       2,
@@ -97,12 +97,12 @@ var suites_001 = --[ :: ]--[
                           14,
                           a[3]
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "typed_array - buffer",
-              (function (param) {
+              (function (param) do
                   return --[ Eq ]--Block.__(0, [
                             new Int8Array([
                                   3,
@@ -117,12 +117,12 @@ var suites_001 = --[ :: ]--[
                                       5
                                     ]).buffer, 2)
                           ]);
-                })
+                end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
                 "typed_array - byteLength",
-                (function (param) {
+                (function (param) do
                     return --[ Eq ]--Block.__(0, [
                               10,
                               new Int16Array([
@@ -133,12 +133,12 @@ var suites_001 = --[ :: ]--[
                                     5
                                   ]).byteLength
                             ]);
-                  })
+                  end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
                   "typed_array - byteOffset",
-                  (function (param) {
+                  (function (param) do
                       return --[ Eq ]--Block.__(0, [
                                 0,
                                 new Int8Array([
@@ -149,20 +149,20 @@ var suites_001 = --[ :: ]--[
                                       5
                                     ]).byteOffset
                               ]);
-                    })
+                    end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
                     "typed_array - setArray",
-                    (function (param) {
-                        var f = function (a) {
+                    (function (param) do
+                        var f = function (a) do
                           a.set([
                                 9,
                                 8,
                                 7
                               ]);
                           return a;
-                        };
+                        end;
                         return --[ Eq ]--Block.__(0, [
                                   new Int8Array([
                                         9,
@@ -179,20 +179,20 @@ var suites_001 = --[ :: ]--[
                                             5
                                           ]))
                                 ]);
-                      })
+                      end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
                       "typed_array - setArrayOffset",
-                      (function (param) {
-                          var f = function (a) {
+                      (function (param) do
+                          var f = function (a) do
                             a.set([
                                   9,
                                   8,
                                   7
                                 ], 2);
                             return a;
-                          };
+                          end;
                           return --[ Eq ]--Block.__(0, [
                                     new Int8Array([
                                           1,
@@ -209,12 +209,12 @@ var suites_001 = --[ :: ]--[
                                               5
                                             ]))
                                   ]);
-                        })
+                        end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
                         "typed_array - length",
-                        (function (param) {
+                        (function (param) do
                             return --[ Eq ]--Block.__(0, [
                                       5,
                                       new Int8Array([
@@ -225,12 +225,12 @@ var suites_001 = --[ :: ]--[
                                             5
                                           ]).length
                                     ]);
-                          })
+                          end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
                           "typed_array - copyWithin",
-                          (function (param) {
+                          (function (param) do
                               return --[ Eq ]--Block.__(0, [
                                         new Int8Array([
                                               1,
@@ -247,12 +247,12 @@ var suites_001 = --[ :: ]--[
                                                 5
                                               ]).copyWithin(-2)
                                       ]);
-                            })
+                            end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
                             "typed_array - copyWithinFrom",
-                            (function (param) {
+                            (function (param) do
                                 return --[ Eq ]--Block.__(0, [
                                           new Int8Array([
                                                 4,
@@ -269,12 +269,12 @@ var suites_001 = --[ :: ]--[
                                                   5
                                                 ]).copyWithin(0, 3)
                                         ]);
-                              })
+                              end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
                               "typed_array - copyWithinFromRange",
-                              (function (param) {
+                              (function (param) do
                                   return --[ Eq ]--Block.__(0, [
                                             new Int8Array([
                                                   4,
@@ -291,12 +291,12 @@ var suites_001 = --[ :: ]--[
                                                     5
                                                   ]).copyWithin(0, 3, 4)
                                           ]);
-                                })
+                                end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
                                 "typed_array - fillInPlace",
-                                (function (param) {
+                                (function (param) do
                                     return --[ Eq ]--Block.__(0, [
                                               new Int8Array([
                                                     4,
@@ -309,12 +309,12 @@ var suites_001 = --[ :: ]--[
                                                       3
                                                     ]).fill(4)
                                             ]);
-                                  })
+                                  end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
                                   "typed_array - fillFromInPlace",
-                                  (function (param) {
+                                  (function (param) do
                                       return --[ Eq ]--Block.__(0, [
                                                 new Int8Array([
                                                       1,
@@ -327,12 +327,12 @@ var suites_001 = --[ :: ]--[
                                                         3
                                                       ]).fill(4, 1)
                                               ]);
-                                    })
+                                    end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
                                     "typed_array - fillRangeInPlace",
-                                    (function (param) {
+                                    (function (param) do
                                         return --[ Eq ]--Block.__(0, [
                                                   new Int8Array([
                                                         1,
@@ -345,12 +345,12 @@ var suites_001 = --[ :: ]--[
                                                           3
                                                         ]).fill(4, 1, 2)
                                                 ]);
-                                      })
+                                      end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
                                       "typed_array - reverseInPlace",
-                                      (function (param) {
+                                      (function (param) do
                                           return --[ Eq ]--Block.__(0, [
                                                     new Int8Array([
                                                           3,
@@ -363,12 +363,12 @@ var suites_001 = --[ :: ]--[
                                                             3
                                                           ]).reverse()
                                                   ]);
-                                        })
+                                        end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
                                         "typed_array - sortInPlace",
-                                        (function (param) {
+                                        (function (param) do
                                             return --[ Eq ]--Block.__(0, [
                                                       new Int8Array([
                                                             1,
@@ -381,12 +381,12 @@ var suites_001 = --[ :: ]--[
                                                               2
                                                             ]).sort()
                                                     ]);
-                                          })
+                                          end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
                                           "typed_array - sortInPlaceWith",
-                                          (function (param) {
+                                          (function (param) do
                                               return --[ Eq ]--Block.__(0, [
                                                         new Int8Array([
                                                               3,
@@ -397,16 +397,16 @@ var suites_001 = --[ :: ]--[
                                                                 3,
                                                                 1,
                                                                 2
-                                                              ]).sort((function (a, b) {
+                                                              ]).sort((function (a, b) do
                                                                 return b - a | 0;
-                                                              }))
+                                                              end))
                                                       ]);
-                                            })
+                                            end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
                                             "typed_array - includes",
-                                            (function (param) {
+                                            (function (param) do
                                                 return --[ Eq ]--Block.__(0, [
                                                           true,
                                                           new Int8Array([
@@ -415,12 +415,12 @@ var suites_001 = --[ :: ]--[
                                                                   3
                                                                 ]).includes(3)
                                                         ]);
-                                              })
+                                              end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
                                               "typed_array - indexOf",
-                                              (function (param) {
+                                              (function (param) do
                                                   return --[ Eq ]--Block.__(0, [
                                                             1,
                                                             new Int8Array([
@@ -429,12 +429,12 @@ var suites_001 = --[ :: ]--[
                                                                     3
                                                                   ]).indexOf(2)
                                                           ]);
-                                                })
+                                                end)
                                             ],
                                             --[ :: ]--[
                                               --[ tuple ]--[
                                                 "typed_array - indexOfFrom",
-                                                (function (param) {
+                                                (function (param) do
                                                     return --[ Eq ]--Block.__(0, [
                                                               3,
                                                               new Int8Array([
@@ -444,12 +444,12 @@ var suites_001 = --[ :: ]--[
                                                                       2
                                                                     ]).indexOf(2, 2)
                                                             ]);
-                                                  })
+                                                  end)
                                               ],
                                               --[ :: ]--[
                                                 --[ tuple ]--[
                                                   "typed_array - join",
-                                                  (function (param) {
+                                                  (function (param) do
                                                       return --[ Eq ]--Block.__(0, [
                                                                 "1,2,3",
                                                                 new Int8Array([
@@ -458,12 +458,12 @@ var suites_001 = --[ :: ]--[
                                                                         3
                                                                       ]).join()
                                                               ]);
-                                                    })
+                                                    end)
                                                 ],
                                                 --[ :: ]--[
                                                   --[ tuple ]--[
                                                     "typed_array - joinWith",
-                                                    (function (param) {
+                                                    (function (param) do
                                                         return --[ Eq ]--Block.__(0, [
                                                                   "1;2;3",
                                                                   new Int8Array([
@@ -472,12 +472,12 @@ var suites_001 = --[ :: ]--[
                                                                           3
                                                                         ]).join(";")
                                                                 ]);
-                                                      })
+                                                      end)
                                                   ],
                                                   --[ :: ]--[
                                                     --[ tuple ]--[
                                                       "typed_array - lastIndexOf",
-                                                      (function (param) {
+                                                      (function (param) do
                                                           return --[ Eq ]--Block.__(0, [
                                                                     1,
                                                                     new Int8Array([
@@ -486,12 +486,12 @@ var suites_001 = --[ :: ]--[
                                                                             3
                                                                           ]).lastIndexOf(2)
                                                                   ]);
-                                                        })
+                                                        end)
                                                     ],
                                                     --[ :: ]--[
                                                       --[ tuple ]--[
                                                         "typed_array - lastIndexOfFrom",
-                                                        (function (param) {
+                                                        (function (param) do
                                                             return --[ Eq ]--Block.__(0, [
                                                                       1,
                                                                       new Int8Array([
@@ -501,12 +501,12 @@ var suites_001 = --[ :: ]--[
                                                                               2
                                                                             ]).lastIndexOf(2, 2)
                                                                     ]);
-                                                          })
+                                                          end)
                                                       ],
                                                       --[ :: ]--[
                                                         --[ tuple ]--[
                                                           "typed_array - slice",
-                                                          (function (param) {
+                                                          (function (param) do
                                                               return --[ Eq ]--Block.__(0, [
                                                                         new Int8Array([
                                                                               2,
@@ -520,12 +520,12 @@ var suites_001 = --[ :: ]--[
                                                                                 5
                                                                               ]).slice(1, 3)
                                                                       ]);
-                                                            })
+                                                            end)
                                                         ],
                                                         --[ :: ]--[
                                                           --[ tuple ]--[
                                                             "typed_array - copy",
-                                                            (function (param) {
+                                                            (function (param) do
                                                                 return --[ Eq ]--Block.__(0, [
                                                                           new Int8Array([
                                                                                 1,
@@ -542,12 +542,12 @@ var suites_001 = --[ :: ]--[
                                                                                   5
                                                                                 ]).slice()
                                                                         ]);
-                                                              })
+                                                              end)
                                                           ],
                                                           --[ :: ]--[
                                                             --[ tuple ]--[
                                                               "typed_array - sliceFrom",
-                                                              (function (param) {
+                                                              (function (param) do
                                                                   return --[ Eq ]--Block.__(0, [
                                                                             new Int8Array([
                                                                                   3,
@@ -562,12 +562,12 @@ var suites_001 = --[ :: ]--[
                                                                                     5
                                                                                   ]).slice(2)
                                                                           ]);
-                                                                })
+                                                                end)
                                                             ],
                                                             --[ :: ]--[
                                                               --[ tuple ]--[
                                                                 "typed_array - subarray",
-                                                                (function (param) {
+                                                                (function (param) do
                                                                     return --[ Eq ]--Block.__(0, [
                                                                               new Int8Array([
                                                                                     2,
@@ -581,12 +581,12 @@ var suites_001 = --[ :: ]--[
                                                                                       5
                                                                                     ]).subarray(1, 3)
                                                                             ]);
-                                                                  })
+                                                                  end)
                                                               ],
                                                               --[ :: ]--[
                                                                 --[ tuple ]--[
                                                                   "typed_array - subarrayFrom",
-                                                                  (function (param) {
+                                                                  (function (param) do
                                                                       return --[ Eq ]--Block.__(0, [
                                                                                 new Int8Array([
                                                                                       3,
@@ -601,12 +601,12 @@ var suites_001 = --[ :: ]--[
                                                                                         5
                                                                                       ]).subarray(2)
                                                                               ]);
-                                                                    })
+                                                                    end)
                                                                 ],
                                                                 --[ :: ]--[
                                                                   --[ tuple ]--[
                                                                     "typed_array - toString",
-                                                                    (function (param) {
+                                                                    (function (param) do
                                                                         return --[ Eq ]--Block.__(0, [
                                                                                   "1,2,3",
                                                                                   new Int8Array([
@@ -615,12 +615,12 @@ var suites_001 = --[ :: ]--[
                                                                                           3
                                                                                         ]).toString()
                                                                                 ]);
-                                                                      })
+                                                                      end)
                                                                   ],
                                                                   --[ :: ]--[
                                                                     --[ tuple ]--[
                                                                       "typed_array - toLocaleString",
-                                                                      (function (param) {
+                                                                      (function (param) do
                                                                           return --[ Eq ]--Block.__(0, [
                                                                                     "1,2,3",
                                                                                     new Int8Array([
@@ -629,44 +629,44 @@ var suites_001 = --[ :: ]--[
                                                                                             3
                                                                                           ]).toLocaleString()
                                                                                   ]);
-                                                                        })
+                                                                        end)
                                                                     ],
                                                                     --[ :: ]--[
                                                                       --[ tuple ]--[
                                                                         "typed_array - every",
-                                                                        (function (param) {
+                                                                        (function (param) do
                                                                             return --[ Eq ]--Block.__(0, [
                                                                                       true,
                                                                                       new Int8Array([
                                                                                               1,
                                                                                               2,
                                                                                               3
-                                                                                            ]).every((function (n) {
+                                                                                            ]).every((function (n) do
                                                                                               return n > 0;
-                                                                                            }))
+                                                                                            end))
                                                                                     ]);
-                                                                          })
+                                                                          end)
                                                                       ],
                                                                       --[ :: ]--[
                                                                         --[ tuple ]--[
                                                                           "typed_array - everyi",
-                                                                          (function (param) {
+                                                                          (function (param) do
                                                                               return --[ Eq ]--Block.__(0, [
                                                                                         false,
                                                                                         new Int8Array([
                                                                                                 1,
                                                                                                 2,
                                                                                                 3
-                                                                                              ]).every((function (param, i) {
+                                                                                              ]).every((function (param, i) do
                                                                                                 return i > 0;
-                                                                                              }))
+                                                                                              end))
                                                                                       ]);
-                                                                            })
+                                                                            end)
                                                                         ],
                                                                         --[ :: ]--[
                                                                           --[ tuple ]--[
                                                                             "typed_array - filter",
-                                                                            (function (param) {
+                                                                            (function (param) do
                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                           new Int8Array([
                                                                                                 2,
@@ -677,16 +677,16 @@ var suites_001 = --[ :: ]--[
                                                                                                   2,
                                                                                                   3,
                                                                                                   4
-                                                                                                ]).filter((function (n) {
+                                                                                                ]).filter((function (n) do
                                                                                                   return n % 2 == 0;
-                                                                                                }))
+                                                                                                end))
                                                                                         ]);
-                                                                              })
+                                                                              end)
                                                                           ],
                                                                           --[ :: ]--[
                                                                             --[ tuple ]--[
                                                                               "typed_array - filteri",
-                                                                              (function (param) {
+                                                                              (function (param) do
                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                             new Int8Array([
                                                                                                   1,
@@ -697,16 +697,16 @@ var suites_001 = --[ :: ]--[
                                                                                                     2,
                                                                                                     3,
                                                                                                     4
-                                                                                                  ]).filter((function (param, i) {
+                                                                                                  ]).filter((function (param, i) do
                                                                                                     return i % 2 == 0;
-                                                                                                  }))
+                                                                                                  end))
                                                                                           ]);
-                                                                                })
+                                                                                end)
                                                                             ],
                                                                             --[ :: ]--[
                                                                               --[ tuple ]--[
                                                                                 "typed_array - find",
-                                                                                (function (param) {
+                                                                                (function (param) do
                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                               2,
                                                                                               new Int8Array([
@@ -714,16 +714,16 @@ var suites_001 = --[ :: ]--[
                                                                                                       2,
                                                                                                       3,
                                                                                                       4
-                                                                                                    ]).find((function (n) {
+                                                                                                    ]).find((function (n) do
                                                                                                       return n % 2 == 0;
-                                                                                                    }))
+                                                                                                    end))
                                                                                             ]);
-                                                                                  })
+                                                                                  end)
                                                                               ],
                                                                               --[ :: ]--[
                                                                                 --[ tuple ]--[
                                                                                   "typed_array - findi",
-                                                                                  (function (param) {
+                                                                                  (function (param) do
                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                 1,
                                                                                                 new Int8Array([
@@ -731,16 +731,16 @@ var suites_001 = --[ :: ]--[
                                                                                                         2,
                                                                                                         3,
                                                                                                         4
-                                                                                                      ]).find((function (param, i) {
+                                                                                                      ]).find((function (param, i) do
                                                                                                         return i % 2 == 0;
-                                                                                                      }))
+                                                                                                      end))
                                                                                               ]);
-                                                                                    })
+                                                                                    end)
                                                                                 ],
                                                                                 --[ :: ]--[
                                                                                   --[ tuple ]--[
                                                                                     "typed_array - findIndex",
-                                                                                    (function (param) {
+                                                                                    (function (param) do
                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                   1,
                                                                                                   new Int8Array([
@@ -748,16 +748,16 @@ var suites_001 = --[ :: ]--[
                                                                                                           2,
                                                                                                           3,
                                                                                                           4
-                                                                                                        ]).findIndex((function (n) {
+                                                                                                        ]).findIndex((function (n) do
                                                                                                           return n % 2 == 0;
-                                                                                                        }))
+                                                                                                        end))
                                                                                                 ]);
-                                                                                      })
+                                                                                      end)
                                                                                   ],
                                                                                   --[ :: ]--[
                                                                                     --[ tuple ]--[
                                                                                       "typed_array - findIndexi",
-                                                                                      (function (param) {
+                                                                                      (function (param) do
                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                     0,
                                                                                                     new Int8Array([
@@ -765,58 +765,58 @@ var suites_001 = --[ :: ]--[
                                                                                                             2,
                                                                                                             3,
                                                                                                             4
-                                                                                                          ]).findIndex((function (param, i) {
+                                                                                                          ]).findIndex((function (param, i) do
                                                                                                             return i % 2 == 0;
-                                                                                                          }))
+                                                                                                          end))
                                                                                                   ]);
-                                                                                        })
+                                                                                        end)
                                                                                     ],
                                                                                     --[ :: ]--[
                                                                                       --[ tuple ]--[
                                                                                         "typed_array - forEach",
-                                                                                        (function (param) {
-                                                                                            var sum = {
+                                                                                        (function (param) do
+                                                                                            var sum = do
                                                                                               contents: 0
-                                                                                            };
+                                                                                            end;
                                                                                             new Int8Array([
                                                                                                     1,
                                                                                                     2,
                                                                                                     3
-                                                                                                  ]).forEach((function (n) {
+                                                                                                  ]).forEach((function (n) do
                                                                                                     sum.contents = sum.contents + n | 0;
                                                                                                     return --[ () ]--0;
-                                                                                                  }));
+                                                                                                  end));
                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                       6,
                                                                                                       sum.contents
                                                                                                     ]);
-                                                                                          })
+                                                                                          end)
                                                                                       ],
                                                                                       --[ :: ]--[
                                                                                         --[ tuple ]--[
                                                                                           "typed_array - forEachi",
-                                                                                          (function (param) {
-                                                                                              var sum = {
+                                                                                          (function (param) do
+                                                                                              var sum = do
                                                                                                 contents: 0
-                                                                                              };
+                                                                                              end;
                                                                                               new Int8Array([
                                                                                                       1,
                                                                                                       2,
                                                                                                       3
-                                                                                                    ]).forEach((function (param, i) {
+                                                                                                    ]).forEach((function (param, i) do
                                                                                                       sum.contents = sum.contents + i | 0;
                                                                                                       return --[ () ]--0;
-                                                                                                    }));
+                                                                                                    end));
                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                         3,
                                                                                                         sum.contents
                                                                                                       ]);
-                                                                                            })
+                                                                                            end)
                                                                                         ],
                                                                                         --[ :: ]--[
                                                                                           --[ tuple ]--[
                                                                                             "typed_array - map",
-                                                                                            (function (param) {
+                                                                                            (function (param) do
                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                           new Int8Array([
                                                                                                                 2,
@@ -829,16 +829,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                   2,
                                                                                                                   3,
                                                                                                                   4
-                                                                                                                ]).map((function (n) {
+                                                                                                                ]).map((function (n) do
                                                                                                                   return (n << 1);
-                                                                                                                }))
+                                                                                                                end))
                                                                                                         ]);
-                                                                                              })
+                                                                                              end)
                                                                                           ],
                                                                                           --[ :: ]--[
                                                                                             --[ tuple ]--[
                                                                                               "typed_array - map",
-                                                                                              (function (param) {
+                                                                                              (function (param) do
                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                             new Int8Array([
                                                                                                                   0,
@@ -851,16 +851,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                     2,
                                                                                                                     3,
                                                                                                                     4
-                                                                                                                  ]).map((function (param, i) {
+                                                                                                                  ]).map((function (param, i) do
                                                                                                                     return (i << 1);
-                                                                                                                  }))
+                                                                                                                  end))
                                                                                                           ]);
-                                                                                                })
+                                                                                                end)
                                                                                             ],
                                                                                             --[ :: ]--[
                                                                                               --[ tuple ]--[
                                                                                                 "typed_array - reduce",
-                                                                                                (function (param) {
+                                                                                                (function (param) do
                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                               -10,
                                                                                                               new Int8Array([
@@ -868,16 +868,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                       2,
                                                                                                                       3,
                                                                                                                       4
-                                                                                                                    ]).reduce((function (acc, n) {
+                                                                                                                    ]).reduce((function (acc, n) do
                                                                                                                       return acc - n | 0;
-                                                                                                                    }), 0)
+                                                                                                                    end), 0)
                                                                                                             ]);
-                                                                                                  })
+                                                                                                  end)
                                                                                               ],
                                                                                               --[ :: ]--[
                                                                                                 --[ tuple ]--[
                                                                                                   "typed_array - reducei",
-                                                                                                  (function (param) {
+                                                                                                  (function (param) do
                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                 -6,
                                                                                                                 new Int8Array([
@@ -885,16 +885,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                         2,
                                                                                                                         3,
                                                                                                                         4
-                                                                                                                      ]).reduce((function (acc, param, i) {
+                                                                                                                      ]).reduce((function (acc, param, i) do
                                                                                                                         return acc - i | 0;
-                                                                                                                      }), 0)
+                                                                                                                      end), 0)
                                                                                                               ]);
-                                                                                                    })
+                                                                                                    end)
                                                                                                 ],
                                                                                                 --[ :: ]--[
                                                                                                   --[ tuple ]--[
                                                                                                     "typed_array - reduceRight",
-                                                                                                    (function (param) {
+                                                                                                    (function (param) do
                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                   -10,
                                                                                                                   new Int8Array([
@@ -902,16 +902,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                           2,
                                                                                                                           3,
                                                                                                                           4
-                                                                                                                        ]).reduceRight((function (acc, n) {
+                                                                                                                        ]).reduceRight((function (acc, n) do
                                                                                                                           return acc - n | 0;
-                                                                                                                        }), 0)
+                                                                                                                        end), 0)
                                                                                                                 ]);
-                                                                                                      })
+                                                                                                      end)
                                                                                                   ],
                                                                                                   --[ :: ]--[
                                                                                                     --[ tuple ]--[
                                                                                                       "typed_array - reduceRighti",
-                                                                                                      (function (param) {
+                                                                                                      (function (param) do
                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                     -6,
                                                                                                                     new Int8Array([
@@ -919,16 +919,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                             2,
                                                                                                                             3,
                                                                                                                             4
-                                                                                                                          ]).reduceRight((function (acc, param, i) {
+                                                                                                                          ]).reduceRight((function (acc, param, i) do
                                                                                                                             return acc - i | 0;
-                                                                                                                          }), 0)
+                                                                                                                          end), 0)
                                                                                                                   ]);
-                                                                                                        })
+                                                                                                        end)
                                                                                                     ],
                                                                                                     --[ :: ]--[
                                                                                                       --[ tuple ]--[
                                                                                                         "typed_array - some",
-                                                                                                        (function (param) {
+                                                                                                        (function (param) do
                                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                                       false,
                                                                                                                       new Int8Array([
@@ -936,16 +936,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                               2,
                                                                                                                               3,
                                                                                                                               4
-                                                                                                                            ]).some((function (n) {
+                                                                                                                            ]).some((function (n) do
                                                                                                                               return n <= 0;
-                                                                                                                            }))
+                                                                                                                            end))
                                                                                                                     ]);
-                                                                                                          })
+                                                                                                          end)
                                                                                                       ],
                                                                                                       --[ :: ]--[
                                                                                                         --[ tuple ]--[
                                                                                                           "typed_array - somei",
-                                                                                                          (function (param) {
+                                                                                                          (function (param) do
                                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                                         true,
                                                                                                                         new Int8Array([
@@ -953,26 +953,26 @@ var suites_001 = --[ :: ]--[
                                                                                                                                 2,
                                                                                                                                 3,
                                                                                                                                 4
-                                                                                                                              ]).some((function (param, i) {
+                                                                                                                              ]).some((function (param, i) do
                                                                                                                                 return i <= 0;
-                                                                                                                              }))
+                                                                                                                              end))
                                                                                                                       ]);
-                                                                                                            })
+                                                                                                            end)
                                                                                                         ],
                                                                                                         --[ :: ]--[
                                                                                                           --[ tuple ]--[
                                                                                                             "int8_array - _BYTES_PER_ELEMENT",
-                                                                                                            (function (param) {
+                                                                                                            (function (param) do
                                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                                           1,
                                                                                                                           Int8Array.BYTES_PER_ELEMENT
                                                                                                                         ]);
-                                                                                                              })
+                                                                                                              end)
                                                                                                           ],
                                                                                                           --[ :: ]--[
                                                                                                             --[ tuple ]--[
                                                                                                               "int8_array - make",
-                                                                                                              (function (param) {
+                                                                                                              (function (param) do
                                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                                             3,
                                                                                                                             new Int8Array([
@@ -981,54 +981,54 @@ var suites_001 = --[ :: ]--[
                                                                                                                                   3
                                                                                                                                 ]).byteLength
                                                                                                                           ]);
-                                                                                                                })
+                                                                                                                end)
                                                                                                             ],
                                                                                                             --[ :: ]--[
                                                                                                               --[ tuple ]--[
                                                                                                                 "int8_array - fromBuffer",
-                                                                                                                (function (param) {
+                                                                                                                (function (param) do
                                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                                               32,
                                                                                                                               new Int8Array(new ArrayBuffer(32)).byteLength
                                                                                                                             ]);
-                                                                                                                  })
+                                                                                                                  end)
                                                                                                               ],
                                                                                                               --[ :: ]--[
                                                                                                                 --[ tuple ]--[
                                                                                                                   "int8_array - fromBufferOffset",
-                                                                                                                  (function (param) {
+                                                                                                                  (function (param) do
                                                                                                                       var buffer = new ArrayBuffer(32);
                                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                                 24,
                                                                                                                                 new Int8Array(buffer, 8).byteLength
                                                                                                                               ]);
-                                                                                                                    })
+                                                                                                                    end)
                                                                                                                 ],
                                                                                                                 --[ :: ]--[
                                                                                                                   --[ tuple ]--[
                                                                                                                     "int8_array - fromBufferRange",
-                                                                                                                    (function (param) {
+                                                                                                                    (function (param) do
                                                                                                                         var buffer = new ArrayBuffer(32);
                                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                                   2,
                                                                                                                                   new Int8Array(buffer, 8, 2).byteLength
                                                                                                                                 ]);
-                                                                                                                      })
+                                                                                                                      end)
                                                                                                                   ],
                                                                                                                   --[ :: ]--[
                                                                                                                     --[ tuple ]--[
                                                                                                                       "int8_array - fromLength",
-                                                                                                                      (function (param) {
+                                                                                                                      (function (param) do
                                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                                     3,
                                                                                                                                     new Int8Array(3).byteLength
                                                                                                                                   ]);
-                                                                                                                        })
+                                                                                                                        end)
                                                                                                                     ],
                                                                                                                     --[ :: ]--[
                                                                                                                       --[ tuple ]--[
                                                                                                                         "int8_array - unsafe_set - typed_array sanity check",
-                                                                                                                        (function (param) {
+                                                                                                                        (function (param) do
                                                                                                                             var a = new Int8Array([
                                                                                                                                   1,
                                                                                                                                   2,
@@ -1041,22 +1041,22 @@ var suites_001 = --[ :: ]--[
                                                                                                                                       14,
                                                                                                                                       a[3]
                                                                                                                                     ]);
-                                                                                                                          })
+                                                                                                                          end)
                                                                                                                       ],
                                                                                                                       --[ :: ]--[
                                                                                                                         --[ tuple ]--[
                                                                                                                           "uint8_array - _BYTES_PER_ELEMENT",
-                                                                                                                          (function (param) {
+                                                                                                                          (function (param) do
                                                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                                                         1,
                                                                                                                                         Uint8Array.BYTES_PER_ELEMENT
                                                                                                                                       ]);
-                                                                                                                            })
+                                                                                                                            end)
                                                                                                                         ],
                                                                                                                         --[ :: ]--[
                                                                                                                           --[ tuple ]--[
                                                                                                                             "uint8_array - make",
-                                                                                                                            (function (param) {
+                                                                                                                            (function (param) do
                                                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                                                           3,
                                                                                                                                           new Uint8Array([
@@ -1065,54 +1065,54 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                 3
                                                                                                                                               ]).byteLength
                                                                                                                                         ]);
-                                                                                                                              })
+                                                                                                                              end)
                                                                                                                           ],
                                                                                                                           --[ :: ]--[
                                                                                                                             --[ tuple ]--[
                                                                                                                               "uint8_array - fromBuffer",
-                                                                                                                              (function (param) {
+                                                                                                                              (function (param) do
                                                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                                                             32,
                                                                                                                                             new Uint8Array(new ArrayBuffer(32)).byteLength
                                                                                                                                           ]);
-                                                                                                                                })
+                                                                                                                                end)
                                                                                                                             ],
                                                                                                                             --[ :: ]--[
                                                                                                                               --[ tuple ]--[
                                                                                                                                 "uint8_array - fromBufferOffset",
-                                                                                                                                (function (param) {
+                                                                                                                                (function (param) do
                                                                                                                                     var buffer = new ArrayBuffer(32);
                                                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                                                               24,
                                                                                                                                               new Uint8Array(buffer, 8).byteLength
                                                                                                                                             ]);
-                                                                                                                                  })
+                                                                                                                                  end)
                                                                                                                               ],
                                                                                                                               --[ :: ]--[
                                                                                                                                 --[ tuple ]--[
                                                                                                                                   "uint8_array - fromBufferRange",
-                                                                                                                                  (function (param) {
+                                                                                                                                  (function (param) do
                                                                                                                                       var buffer = new ArrayBuffer(32);
                                                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                                                 2,
                                                                                                                                                 new Uint8Array(buffer, 8, 2).byteLength
                                                                                                                                               ]);
-                                                                                                                                    })
+                                                                                                                                    end)
                                                                                                                                 ],
                                                                                                                                 --[ :: ]--[
                                                                                                                                   --[ tuple ]--[
                                                                                                                                     "uint8_array - fromLength",
-                                                                                                                                    (function (param) {
+                                                                                                                                    (function (param) do
                                                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                                                   3,
                                                                                                                                                   new Uint8Array(3).byteLength
                                                                                                                                                 ]);
-                                                                                                                                      })
+                                                                                                                                      end)
                                                                                                                                   ],
                                                                                                                                   --[ :: ]--[
                                                                                                                                     --[ tuple ]--[
                                                                                                                                       "uint8_array - unsafe_set - typed_array sanity check",
-                                                                                                                                      (function (param) {
+                                                                                                                                      (function (param) do
                                                                                                                                           var a = new Uint8Array([
                                                                                                                                                 1,
                                                                                                                                                 2,
@@ -1125,22 +1125,22 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                     14,
                                                                                                                                                     a[3]
                                                                                                                                                   ]);
-                                                                                                                                        })
+                                                                                                                                        end)
                                                                                                                                     ],
                                                                                                                                     --[ :: ]--[
                                                                                                                                       --[ tuple ]--[
                                                                                                                                         "uint8clamped_array - _BYTES_PER_ELEMENT",
-                                                                                                                                        (function (param) {
+                                                                                                                                        (function (param) do
                                                                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                                                                       1,
                                                                                                                                                       Uint8ClampedArray.BYTES_PER_ELEMENT
                                                                                                                                                     ]);
-                                                                                                                                          })
+                                                                                                                                          end)
                                                                                                                                       ],
                                                                                                                                       --[ :: ]--[
                                                                                                                                         --[ tuple ]--[
                                                                                                                                           "uint8clamped_array - make",
-                                                                                                                                          (function (param) {
+                                                                                                                                          (function (param) do
                                                                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                                                                         3,
                                                                                                                                                         new Uint8ClampedArray([
@@ -1149,54 +1149,54 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                               3
                                                                                                                                                             ]).byteLength
                                                                                                                                                       ]);
-                                                                                                                                            })
+                                                                                                                                            end)
                                                                                                                                         ],
                                                                                                                                         --[ :: ]--[
                                                                                                                                           --[ tuple ]--[
                                                                                                                                             "uint8clamped_array - fromBuffer",
-                                                                                                                                            (function (param) {
+                                                                                                                                            (function (param) do
                                                                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                                                                           32,
                                                                                                                                                           new Uint8ClampedArray(new ArrayBuffer(32)).byteLength
                                                                                                                                                         ]);
-                                                                                                                                              })
+                                                                                                                                              end)
                                                                                                                                           ],
                                                                                                                                           --[ :: ]--[
                                                                                                                                             --[ tuple ]--[
                                                                                                                                               "uint8clamped_array - fromBufferOffset",
-                                                                                                                                              (function (param) {
+                                                                                                                                              (function (param) do
                                                                                                                                                   var buffer = new ArrayBuffer(32);
                                                                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                                                                             24,
                                                                                                                                                             new Uint8ClampedArray(buffer, 8).byteLength
                                                                                                                                                           ]);
-                                                                                                                                                })
+                                                                                                                                                end)
                                                                                                                                             ],
                                                                                                                                             --[ :: ]--[
                                                                                                                                               --[ tuple ]--[
                                                                                                                                                 "uint8clamped_array - fromBufferRange",
-                                                                                                                                                (function (param) {
+                                                                                                                                                (function (param) do
                                                                                                                                                     var buffer = new ArrayBuffer(32);
                                                                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                                                                               2,
                                                                                                                                                               new Uint8ClampedArray(buffer, 8, 2).byteLength
                                                                                                                                                             ]);
-                                                                                                                                                  })
+                                                                                                                                                  end)
                                                                                                                                               ],
                                                                                                                                               --[ :: ]--[
                                                                                                                                                 --[ tuple ]--[
                                                                                                                                                   "uint8clamped_array - fromLength",
-                                                                                                                                                  (function (param) {
+                                                                                                                                                  (function (param) do
                                                                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                                                                 3,
                                                                                                                                                                 new Uint8ClampedArray(3).byteLength
                                                                                                                                                               ]);
-                                                                                                                                                    })
+                                                                                                                                                    end)
                                                                                                                                                 ],
                                                                                                                                                 --[ :: ]--[
                                                                                                                                                   --[ tuple ]--[
                                                                                                                                                     "uint8clamped_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                    (function (param) {
+                                                                                                                                                    (function (param) do
                                                                                                                                                         var a = new Uint8ClampedArray([
                                                                                                                                                               1,
                                                                                                                                                               2,
@@ -1209,22 +1209,22 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                   14,
                                                                                                                                                                   a[3]
                                                                                                                                                                 ]);
-                                                                                                                                                      })
+                                                                                                                                                      end)
                                                                                                                                                   ],
                                                                                                                                                   --[ :: ]--[
                                                                                                                                                     --[ tuple ]--[
                                                                                                                                                       "int16_array - _BYTES_PER_ELEMENT",
-                                                                                                                                                      (function (param) {
+                                                                                                                                                      (function (param) do
                                                                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                                                                     2,
                                                                                                                                                                     Int16Array.BYTES_PER_ELEMENT
                                                                                                                                                                   ]);
-                                                                                                                                                        })
+                                                                                                                                                        end)
                                                                                                                                                     ],
                                                                                                                                                     --[ :: ]--[
                                                                                                                                                       --[ tuple ]--[
                                                                                                                                                         "int16_array - make",
-                                                                                                                                                        (function (param) {
+                                                                                                                                                        (function (param) do
                                                                                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                                                                                       6,
                                                                                                                                                                       new Int16Array([
@@ -1233,54 +1233,54 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                             3
                                                                                                                                                                           ]).byteLength
                                                                                                                                                                     ]);
-                                                                                                                                                          })
+                                                                                                                                                          end)
                                                                                                                                                       ],
                                                                                                                                                       --[ :: ]--[
                                                                                                                                                         --[ tuple ]--[
                                                                                                                                                           "int16_array - fromBuffer",
-                                                                                                                                                          (function (param) {
+                                                                                                                                                          (function (param) do
                                                                                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                                                                                         32,
                                                                                                                                                                         new Int16Array(new ArrayBuffer(32)).byteLength
                                                                                                                                                                       ]);
-                                                                                                                                                            })
+                                                                                                                                                            end)
                                                                                                                                                         ],
                                                                                                                                                         --[ :: ]--[
                                                                                                                                                           --[ tuple ]--[
                                                                                                                                                             "int16_array - fromBufferOffset",
-                                                                                                                                                            (function (param) {
+                                                                                                                                                            (function (param) do
                                                                                                                                                                 var buffer = new ArrayBuffer(32);
                                                                                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                                                                                           24,
                                                                                                                                                                           new Int16Array(buffer, 8).byteLength
                                                                                                                                                                         ]);
-                                                                                                                                                              })
+                                                                                                                                                              end)
                                                                                                                                                           ],
                                                                                                                                                           --[ :: ]--[
                                                                                                                                                             --[ tuple ]--[
                                                                                                                                                               "int16_array - fromBufferRange",
-                                                                                                                                                              (function (param) {
+                                                                                                                                                              (function (param) do
                                                                                                                                                                   var buffer = new ArrayBuffer(32);
                                                                                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                                                                                             4,
                                                                                                                                                                             new Int16Array(buffer, 8, 2).byteLength
                                                                                                                                                                           ]);
-                                                                                                                                                                })
+                                                                                                                                                                end)
                                                                                                                                                             ],
                                                                                                                                                             --[ :: ]--[
                                                                                                                                                               --[ tuple ]--[
                                                                                                                                                                 "int16_array - fromLength",
-                                                                                                                                                                (function (param) {
+                                                                                                                                                                (function (param) do
                                                                                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                                                                                               6,
                                                                                                                                                                               new Int16Array(3).byteLength
                                                                                                                                                                             ]);
-                                                                                                                                                                  })
+                                                                                                                                                                  end)
                                                                                                                                                               ],
                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                 --[ tuple ]--[
                                                                                                                                                                   "int16_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                                  (function (param) {
+                                                                                                                                                                  (function (param) do
                                                                                                                                                                       var a = new Int16Array([
                                                                                                                                                                             1,
                                                                                                                                                                             2,
@@ -1293,22 +1293,22 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                 14,
                                                                                                                                                                                 a[3]
                                                                                                                                                                               ]);
-                                                                                                                                                                    })
+                                                                                                                                                                    end)
                                                                                                                                                                 ],
                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                   --[ tuple ]--[
                                                                                                                                                                     "uint16_array - _BYTES_PER_ELEMENT",
-                                                                                                                                                                    (function (param) {
+                                                                                                                                                                    (function (param) do
                                                                                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                   2,
                                                                                                                                                                                   Uint16Array.BYTES_PER_ELEMENT
                                                                                                                                                                                 ]);
-                                                                                                                                                                      })
+                                                                                                                                                                      end)
                                                                                                                                                                   ],
                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                     --[ tuple ]--[
                                                                                                                                                                       "uint16_array - make",
-                                                                                                                                                                      (function (param) {
+                                                                                                                                                                      (function (param) do
                                                                                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                     6,
                                                                                                                                                                                     new Uint16Array([
@@ -1317,54 +1317,54 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                           3
                                                                                                                                                                                         ]).byteLength
                                                                                                                                                                                   ]);
-                                                                                                                                                                        })
+                                                                                                                                                                        end)
                                                                                                                                                                     ],
                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                       --[ tuple ]--[
                                                                                                                                                                         "uint16_array - fromBuffer",
-                                                                                                                                                                        (function (param) {
+                                                                                                                                                                        (function (param) do
                                                                                                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                       32,
                                                                                                                                                                                       new Uint16Array(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                     ]);
-                                                                                                                                                                          })
+                                                                                                                                                                          end)
                                                                                                                                                                       ],
                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                         --[ tuple ]--[
                                                                                                                                                                           "uint16_array - fromBufferOffset",
-                                                                                                                                                                          (function (param) {
+                                                                                                                                                                          (function (param) do
                                                                                                                                                                               var buffer = new ArrayBuffer(32);
                                                                                                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                         24,
                                                                                                                                                                                         new Uint16Array(buffer, 8).byteLength
                                                                                                                                                                                       ]);
-                                                                                                                                                                            })
+                                                                                                                                                                            end)
                                                                                                                                                                         ],
                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                           --[ tuple ]--[
                                                                                                                                                                             "uint16_array - fromBufferRange",
-                                                                                                                                                                            (function (param) {
+                                                                                                                                                                            (function (param) do
                                                                                                                                                                                 var buffer = new ArrayBuffer(32);
                                                                                                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                           4,
                                                                                                                                                                                           new Uint16Array(buffer, 8, 2).byteLength
                                                                                                                                                                                         ]);
-                                                                                                                                                                              })
+                                                                                                                                                                              end)
                                                                                                                                                                           ],
                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                             --[ tuple ]--[
                                                                                                                                                                               "uint16_array - fromLength",
-                                                                                                                                                                              (function (param) {
+                                                                                                                                                                              (function (param) do
                                                                                                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                             6,
                                                                                                                                                                                             new Uint16Array(3).byteLength
                                                                                                                                                                                           ]);
-                                                                                                                                                                                })
+                                                                                                                                                                                end)
                                                                                                                                                                             ],
                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                               --[ tuple ]--[
                                                                                                                                                                                 "uint16_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                                                (function (param) {
+                                                                                                                                                                                (function (param) do
                                                                                                                                                                                     var a = new Uint16Array([
                                                                                                                                                                                           1,
                                                                                                                                                                                           2,
@@ -1377,83 +1377,83 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                               14,
                                                                                                                                                                                               a[3]
                                                                                                                                                                                             ]);
-                                                                                                                                                                                  })
+                                                                                                                                                                                  end)
                                                                                                                                                                               ],
                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                 --[ tuple ]--[
                                                                                                                                                                                   "int32_array - _BYTES_PER_ELEMENT",
-                                                                                                                                                                                  (function (param) {
+                                                                                                                                                                                  (function (param) do
                                                                                                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                 4,
                                                                                                                                                                                                 Int32Array.BYTES_PER_ELEMENT
                                                                                                                                                                                               ]);
-                                                                                                                                                                                    })
+                                                                                                                                                                                    end)
                                                                                                                                                                                 ],
                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                   --[ tuple ]--[
                                                                                                                                                                                     "int32_array - make",
-                                                                                                                                                                                    (function (param) {
+                                                                                                                                                                                    (function (param) do
                                                                                                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                   12,
-                                                                                                                                                                                                  new Int32Array($$Array.map((function (prim) {
+                                                                                                                                                                                                  new Int32Array($$Array.map((function (prim) do
                                                                                                                                                                                                               return prim;
-                                                                                                                                                                                                            }), [
+                                                                                                                                                                                                            end), [
                                                                                                                                                                                                             1,
                                                                                                                                                                                                             2,
                                                                                                                                                                                                             3
                                                                                                                                                                                                           ])).byteLength
                                                                                                                                                                                                 ]);
-                                                                                                                                                                                      })
+                                                                                                                                                                                      end)
                                                                                                                                                                                   ],
                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                     --[ tuple ]--[
                                                                                                                                                                                       "int32_array - fromBuffer",
-                                                                                                                                                                                      (function (param) {
+                                                                                                                                                                                      (function (param) do
                                                                                                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                     32,
                                                                                                                                                                                                     new Int32Array(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                                   ]);
-                                                                                                                                                                                        })
+                                                                                                                                                                                        end)
                                                                                                                                                                                     ],
                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                       --[ tuple ]--[
                                                                                                                                                                                         "int32_array - fromBufferOffset",
-                                                                                                                                                                                        (function (param) {
+                                                                                                                                                                                        (function (param) do
                                                                                                                                                                                             var buffer = new ArrayBuffer(32);
                                                                                                                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                       24,
                                                                                                                                                                                                       new Int32Array(buffer, 8).byteLength
                                                                                                                                                                                                     ]);
-                                                                                                                                                                                          })
+                                                                                                                                                                                          end)
                                                                                                                                                                                       ],
                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                         --[ tuple ]--[
                                                                                                                                                                                           "int32_array - fromBufferRange",
-                                                                                                                                                                                          (function (param) {
+                                                                                                                                                                                          (function (param) do
                                                                                                                                                                                               var buffer = new ArrayBuffer(32);
                                                                                                                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                         8,
                                                                                                                                                                                                         new Int32Array(buffer, 8, 2).byteLength
                                                                                                                                                                                                       ]);
-                                                                                                                                                                                            })
+                                                                                                                                                                                            end)
                                                                                                                                                                                         ],
                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                           --[ tuple ]--[
                                                                                                                                                                                             "int32_array - fromLength",
-                                                                                                                                                                                            (function (param) {
+                                                                                                                                                                                            (function (param) do
                                                                                                                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                           12,
                                                                                                                                                                                                           new Int32Array(3).byteLength
                                                                                                                                                                                                         ]);
-                                                                                                                                                                                              })
+                                                                                                                                                                                              end)
                                                                                                                                                                                           ],
                                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                                             --[ tuple ]--[
                                                                                                                                                                                               "int32_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                                                              (function (param) {
-                                                                                                                                                                                                  var a = new Int32Array($$Array.map((function (prim) {
+                                                                                                                                                                                              (function (param) do
+                                                                                                                                                                                                  var a = new Int32Array($$Array.map((function (prim) do
                                                                                                                                                                                                               return prim;
-                                                                                                                                                                                                            }), [
+                                                                                                                                                                                                            end), [
                                                                                                                                                                                                             1,
                                                                                                                                                                                                             2,
                                                                                                                                                                                                             3,
@@ -1465,22 +1465,22 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                             14,
                                                                                                                                                                                                             a[3]
                                                                                                                                                                                                           ]);
-                                                                                                                                                                                                })
+                                                                                                                                                                                                end)
                                                                                                                                                                                             ],
                                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                                               --[ tuple ]--[
                                                                                                                                                                                                 "uint32_array - _BYTES_PER_ELEMENT",
-                                                                                                                                                                                                (function (param) {
+                                                                                                                                                                                                (function (param) do
                                                                                                                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                               4,
                                                                                                                                                                                                               Uint32Array.BYTES_PER_ELEMENT
                                                                                                                                                                                                             ]);
-                                                                                                                                                                                                  })
+                                                                                                                                                                                                  end)
                                                                                                                                                                                               ],
                                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                                 --[ tuple ]--[
                                                                                                                                                                                                   "uint32_array - make",
-                                                                                                                                                                                                  (function (param) {
+                                                                                                                                                                                                  (function (param) do
                                                                                                                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                 12,
                                                                                                                                                                                                                 new Uint32Array([
@@ -1489,54 +1489,54 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                       3
                                                                                                                                                                                                                     ]).byteLength
                                                                                                                                                                                                               ]);
-                                                                                                                                                                                                    })
+                                                                                                                                                                                                    end)
                                                                                                                                                                                                 ],
                                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                                   --[ tuple ]--[
                                                                                                                                                                                                     "uint32_array - fromBuffer",
-                                                                                                                                                                                                    (function (param) {
+                                                                                                                                                                                                    (function (param) do
                                                                                                                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                   32,
                                                                                                                                                                                                                   new Uint32Array(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                                                 ]);
-                                                                                                                                                                                                      })
+                                                                                                                                                                                                      end)
                                                                                                                                                                                                   ],
                                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                                     --[ tuple ]--[
                                                                                                                                                                                                       "uint32_array - fromBufferOffset",
-                                                                                                                                                                                                      (function (param) {
+                                                                                                                                                                                                      (function (param) do
                                                                                                                                                                                                           var buffer = new ArrayBuffer(32);
                                                                                                                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                     24,
                                                                                                                                                                                                                     new Uint32Array(buffer, 8).byteLength
                                                                                                                                                                                                                   ]);
-                                                                                                                                                                                                        })
+                                                                                                                                                                                                        end)
                                                                                                                                                                                                     ],
                                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                                       --[ tuple ]--[
                                                                                                                                                                                                         "uint32_array - fromBufferRange",
-                                                                                                                                                                                                        (function (param) {
+                                                                                                                                                                                                        (function (param) do
                                                                                                                                                                                                             var buffer = new ArrayBuffer(32);
                                                                                                                                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                       8,
                                                                                                                                                                                                                       new Uint32Array(buffer, 8, 2).byteLength
                                                                                                                                                                                                                     ]);
-                                                                                                                                                                                                          })
+                                                                                                                                                                                                          end)
                                                                                                                                                                                                       ],
                                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                                         --[ tuple ]--[
                                                                                                                                                                                                           "uint32_array - fromLength",
-                                                                                                                                                                                                          (function (param) {
+                                                                                                                                                                                                          (function (param) do
                                                                                                                                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                         12,
                                                                                                                                                                                                                         new Uint32Array(3).byteLength
                                                                                                                                                                                                                       ]);
-                                                                                                                                                                                                            })
+                                                                                                                                                                                                            end)
                                                                                                                                                                                                         ],
                                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                                           --[ tuple ]--[
                                                                                                                                                                                                             "uint32_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                                                                            (function (param) {
+                                                                                                                                                                                                            (function (param) do
                                                                                                                                                                                                                 var a = new Uint32Array([
                                                                                                                                                                                                                       1,
                                                                                                                                                                                                                       2,
@@ -1549,22 +1549,22 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                           14,
                                                                                                                                                                                                                           a[3]
                                                                                                                                                                                                                         ]);
-                                                                                                                                                                                                              })
+                                                                                                                                                                                                              end)
                                                                                                                                                                                                           ],
                                                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                                                             --[ tuple ]--[
                                                                                                                                                                                                               "float32_array - _BYTES_PER_ELEMENT",
-                                                                                                                                                                                                              (function (param) {
+                                                                                                                                                                                                              (function (param) do
                                                                                                                                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                             4,
                                                                                                                                                                                                                             Float32Array.BYTES_PER_ELEMENT
                                                                                                                                                                                                                           ]);
-                                                                                                                                                                                                                })
+                                                                                                                                                                                                                end)
                                                                                                                                                                                                             ],
                                                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                                                               --[ tuple ]--[
                                                                                                                                                                                                                 "float32_array - make",
-                                                                                                                                                                                                                (function (param) {
+                                                                                                                                                                                                                (function (param) do
                                                                                                                                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                               12,
                                                                                                                                                                                                                               new Float32Array([
@@ -1573,54 +1573,54 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                     3
                                                                                                                                                                                                                                   ]).byteLength
                                                                                                                                                                                                                             ]);
-                                                                                                                                                                                                                  })
+                                                                                                                                                                                                                  end)
                                                                                                                                                                                                               ],
                                                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                                                 --[ tuple ]--[
                                                                                                                                                                                                                   "float32_array - fromBuffer",
-                                                                                                                                                                                                                  (function (param) {
+                                                                                                                                                                                                                  (function (param) do
                                                                                                                                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                 32,
                                                                                                                                                                                                                                 new Float32Array(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                                                               ]);
-                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                    end)
                                                                                                                                                                                                                 ],
                                                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                                                   --[ tuple ]--[
                                                                                                                                                                                                                     "float32_array - fromBufferOffset",
-                                                                                                                                                                                                                    (function (param) {
+                                                                                                                                                                                                                    (function (param) do
                                                                                                                                                                                                                         var buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                   24,
                                                                                                                                                                                                                                   new Float32Array(buffer, 8).byteLength
                                                                                                                                                                                                                                 ]);
-                                                                                                                                                                                                                      })
+                                                                                                                                                                                                                      end)
                                                                                                                                                                                                                   ],
                                                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                                                     --[ tuple ]--[
                                                                                                                                                                                                                       "float32_array - fromBufferRange",
-                                                                                                                                                                                                                      (function (param) {
+                                                                                                                                                                                                                      (function (param) do
                                                                                                                                                                                                                           var buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                     8,
                                                                                                                                                                                                                                     new Float32Array(buffer, 8, 2).byteLength
                                                                                                                                                                                                                                   ]);
-                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                        end)
                                                                                                                                                                                                                     ],
                                                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                                                       --[ tuple ]--[
                                                                                                                                                                                                                         "float32_array - fromLength",
-                                                                                                                                                                                                                        (function (param) {
+                                                                                                                                                                                                                        (function (param) do
                                                                                                                                                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                       12,
                                                                                                                                                                                                                                       new Float32Array(3).byteLength
                                                                                                                                                                                                                                     ]);
-                                                                                                                                                                                                                          })
+                                                                                                                                                                                                                          end)
                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                                                         --[ tuple ]--[
                                                                                                                                                                                                                           "float32_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                                                                                          (function (param) {
+                                                                                                                                                                                                                          (function (param) do
                                                                                                                                                                                                                               var a = new Float32Array([
                                                                                                                                                                                                                                     1,
                                                                                                                                                                                                                                     2,
@@ -1633,22 +1633,22 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                         14,
                                                                                                                                                                                                                                         a[3]
                                                                                                                                                                                                                                       ]);
-                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                            end)
                                                                                                                                                                                                                         ],
                                                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                                                           --[ tuple ]--[
                                                                                                                                                                                                                             "float64_array - _BYTES_PER_ELEMENT",
-                                                                                                                                                                                                                            (function (param) {
+                                                                                                                                                                                                                            (function (param) do
                                                                                                                                                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                           8,
                                                                                                                                                                                                                                           Float64Array.BYTES_PER_ELEMENT
                                                                                                                                                                                                                                         ]);
-                                                                                                                                                                                                                              })
+                                                                                                                                                                                                                              end)
                                                                                                                                                                                                                           ],
                                                                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                                                                             --[ tuple ]--[
                                                                                                                                                                                                                               "float64_array - make",
-                                                                                                                                                                                                                              (function (param) {
+                                                                                                                                                                                                                              (function (param) do
                                                                                                                                                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                             24,
                                                                                                                                                                                                                                             new Float64Array([
@@ -1657,54 +1657,54 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                   3
                                                                                                                                                                                                                                                 ]).byteLength
                                                                                                                                                                                                                                           ]);
-                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                end)
                                                                                                                                                                                                                             ],
                                                                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                                                                               --[ tuple ]--[
                                                                                                                                                                                                                                 "float64_array - fromBuffer",
-                                                                                                                                                                                                                                (function (param) {
+                                                                                                                                                                                                                                (function (param) do
                                                                                                                                                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                               32,
                                                                                                                                                                                                                                               new Float64Array(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                                                                             ]);
-                                                                                                                                                                                                                                  })
+                                                                                                                                                                                                                                  end)
                                                                                                                                                                                                                               ],
                                                                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                                                                 --[ tuple ]--[
                                                                                                                                                                                                                                   "float64_array - fromBufferOffset",
-                                                                                                                                                                                                                                  (function (param) {
+                                                                                                                                                                                                                                  (function (param) do
                                                                                                                                                                                                                                       var buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                                 24,
                                                                                                                                                                                                                                                 new Float64Array(buffer, 8).byteLength
                                                                                                                                                                                                                                               ]);
-                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                    end)
                                                                                                                                                                                                                                 ],
                                                                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                                                                   --[ tuple ]--[
                                                                                                                                                                                                                                     "float64_array - fromBufferRange",
-                                                                                                                                                                                                                                    (function (param) {
+                                                                                                                                                                                                                                    (function (param) do
                                                                                                                                                                                                                                         var buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                                   16,
                                                                                                                                                                                                                                                   new Float64Array(buffer, 8, 2).byteLength
                                                                                                                                                                                                                                                 ]);
-                                                                                                                                                                                                                                      })
+                                                                                                                                                                                                                                      end)
                                                                                                                                                                                                                                   ],
                                                                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                                                                     --[ tuple ]--[
                                                                                                                                                                                                                                       "float64_array - fromLength",
-                                                                                                                                                                                                                                      (function (param) {
+                                                                                                                                                                                                                                      (function (param) do
                                                                                                                                                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                                     24,
                                                                                                                                                                                                                                                     new Float64Array(3).byteLength
                                                                                                                                                                                                                                                   ]);
-                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                        end)
                                                                                                                                                                                                                                     ],
                                                                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                                                                       --[ tuple ]--[
                                                                                                                                                                                                                                         "float64_array - unsafe_set - typed_array sanity check",
-                                                                                                                                                                                                                                        (function (param) {
+                                                                                                                                                                                                                                        (function (param) do
                                                                                                                                                                                                                                             var a = new Float64Array([
                                                                                                                                                                                                                                                   1,
                                                                                                                                                                                                                                                   2,
@@ -1717,76 +1717,76 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                       14,
                                                                                                                                                                                                                                                       a[3]
                                                                                                                                                                                                                                                     ]);
-                                                                                                                                                                                                                                          })
+                                                                                                                                                                                                                                          end)
                                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                                                                         --[ tuple ]--[
                                                                                                                                                                                                                                           "DataView - make, byteLength",
-                                                                                                                                                                                                                                          (function (param) {
+                                                                                                                                                                                                                                          (function (param) do
                                                                                                                                                                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                                         32,
                                                                                                                                                                                                                                                         new DataView(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                                                                                       ]);
-                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                            end)
                                                                                                                                                                                                                                         ],
                                                                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                                                                           --[ tuple ]--[
                                                                                                                                                                                                                                             "DataView - fromBuffer",
-                                                                                                                                                                                                                                            (function (param) {
+                                                                                                                                                                                                                                            (function (param) do
                                                                                                                                                                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                                           32,
                                                                                                                                                                                                                                                           new DataView(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                                                                                         ]);
-                                                                                                                                                                                                                                              })
+                                                                                                                                                                                                                                              end)
                                                                                                                                                                                                                                           ],
                                                                                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                                                                                             --[ tuple ]--[
                                                                                                                                                                                                                                               "DataView - fromBufferOffset",
-                                                                                                                                                                                                                                              (function (param) {
+                                                                                                                                                                                                                                              (function (param) do
                                                                                                                                                                                                                                                   var buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                                             24,
                                                                                                                                                                                                                                                             new DataView(buffer, 8).byteLength
                                                                                                                                                                                                                                                           ]);
-                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                end)
                                                                                                                                                                                                                                             ],
                                                                                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                                                                                               --[ tuple ]--[
                                                                                                                                                                                                                                                 "DataView - fromBufferRange",
-                                                                                                                                                                                                                                                (function (param) {
+                                                                                                                                                                                                                                                (function (param) do
                                                                                                                                                                                                                                                     var buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                                               4,
                                                                                                                                                                                                                                                               new DataView(buffer, 8, 4).byteLength
                                                                                                                                                                                                                                                             ]);
-                                                                                                                                                                                                                                                  })
+                                                                                                                                                                                                                                                  end)
                                                                                                                                                                                                                                               ],
                                                                                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                                                                                 --[ tuple ]--[
                                                                                                                                                                                                                                                   "DataView - buffer",
-                                                                                                                                                                                                                                                  (function (param) {
+                                                                                                                                                                                                                                                  (function (param) do
                                                                                                                                                                                                                                                       var buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                                                 buffer,
                                                                                                                                                                                                                                                                 new DataView(buffer).buffer
                                                                                                                                                                                                                                                               ]);
-                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                    end)
                                                                                                                                                                                                                                                 ],
                                                                                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                                                                                   --[ tuple ]--[
                                                                                                                                                                                                                                                     "DataView - byteOffset",
-                                                                                                                                                                                                                                                    (function (param) {
+                                                                                                                                                                                                                                                    (function (param) do
                                                                                                                                                                                                                                                         var buffer = new ArrayBuffer(32);
                                                                                                                                                                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                                                                                                                                                                   8,
                                                                                                                                                                                                                                                                   new DataView(buffer, 8).byteOffset
                                                                                                                                                                                                                                                                 ]);
-                                                                                                                                                                                                                                                      })
+                                                                                                                                                                                                                                                      end)
                                                                                                                                                                                                                                                   ],
                                                                                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                                                                                     --[ tuple ]--[
                                                                                                                                                                                                                                                       "DataView - setInt8, getInt8",
-                                                                                                                                                                                                                                                      (function (param) {
+                                                                                                                                                                                                                                                      (function (param) do
                                                                                                                                                                                                                                                           var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                           var view = new DataView(buffer);
                                                                                                                                                                                                                                                           view.setInt8(0, 1);
@@ -1794,12 +1794,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                     1,
                                                                                                                                                                                                                                                                     view.getInt8(0)
                                                                                                                                                                                                                                                                   ]);
-                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                        end)
                                                                                                                                                                                                                                                     ],
                                                                                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                                                                                       --[ tuple ]--[
                                                                                                                                                                                                                                                         "DataView - setUint8, getUint8",
-                                                                                                                                                                                                                                                        (function (param) {
+                                                                                                                                                                                                                                                        (function (param) do
                                                                                                                                                                                                                                                             var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                             var view = new DataView(buffer);
                                                                                                                                                                                                                                                             view.setUint8(0, 128);
@@ -1807,12 +1807,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                       128,
                                                                                                                                                                                                                                                                       view.getUint8(0)
                                                                                                                                                                                                                                                                     ]);
-                                                                                                                                                                                                                                                          })
+                                                                                                                                                                                                                                                          end)
                                                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                                                                                         --[ tuple ]--[
                                                                                                                                                                                                                                                           "DataView - setInt16, getInt16",
-                                                                                                                                                                                                                                                          (function (param) {
+                                                                                                                                                                                                                                                          (function (param) do
                                                                                                                                                                                                                                                               var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                               var view = new DataView(buffer);
                                                                                                                                                                                                                                                               view.setInt16(0, 257);
@@ -1820,12 +1820,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                         257,
                                                                                                                                                                                                                                                                         view.getInt16(0)
                                                                                                                                                                                                                                                                       ]);
-                                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                                            end)
                                                                                                                                                                                                                                                         ],
                                                                                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                                                                                           --[ tuple ]--[
                                                                                                                                                                                                                                                             "DataView - getInt16LittleEndian",
-                                                                                                                                                                                                                                                            (function (param) {
+                                                                                                                                                                                                                                                            (function (param) do
                                                                                                                                                                                                                                                                 var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                 var view = new DataView(buffer);
                                                                                                                                                                                                                                                                 view.setInt16(0, 25000, 1);
@@ -1833,12 +1833,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                           25000,
                                                                                                                                                                                                                                                                           view.getInt16(0, 1)
                                                                                                                                                                                                                                                                         ]);
-                                                                                                                                                                                                                                                              })
+                                                                                                                                                                                                                                                              end)
                                                                                                                                                                                                                                                           ],
                                                                                                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                                                                                                             --[ tuple ]--[
                                                                                                                                                                                                                                                               "DataView - setInt16LittleEndian",
-                                                                                                                                                                                                                                                              (function (param) {
+                                                                                                                                                                                                                                                              (function (param) do
                                                                                                                                                                                                                                                                   var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                   var view = new DataView(buffer);
                                                                                                                                                                                                                                                                   view.setInt16(0, 25000, 1);
@@ -1846,12 +1846,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                             -22431,
                                                                                                                                                                                                                                                                             view.getInt16(0)
                                                                                                                                                                                                                                                                           ]);
-                                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                                end)
                                                                                                                                                                                                                                                             ],
                                                                                                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                                                                                                               --[ tuple ]--[
                                                                                                                                                                                                                                                                 "DataView - setUint16, getUint16",
-                                                                                                                                                                                                                                                                (function (param) {
+                                                                                                                                                                                                                                                                (function (param) do
                                                                                                                                                                                                                                                                     var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                     var view = new DataView(buffer);
                                                                                                                                                                                                                                                                     view.setUint16(0, 32768);
@@ -1859,12 +1859,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                               32768,
                                                                                                                                                                                                                                                                               view.getUint16(0)
                                                                                                                                                                                                                                                                             ]);
-                                                                                                                                                                                                                                                                  })
+                                                                                                                                                                                                                                                                  end)
                                                                                                                                                                                                                                                               ],
                                                                                                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                                                                                                 --[ tuple ]--[
                                                                                                                                                                                                                                                                   "DataView - getUint16LittleEndian",
-                                                                                                                                                                                                                                                                  (function (param) {
+                                                                                                                                                                                                                                                                  (function (param) do
                                                                                                                                                                                                                                                                       var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                       var view = new DataView(buffer);
                                                                                                                                                                                                                                                                       view.setUint16(0, 32768, 1);
@@ -1872,12 +1872,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                 32768,
                                                                                                                                                                                                                                                                                 view.getUint16(0, 1)
                                                                                                                                                                                                                                                                               ]);
-                                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                                    end)
                                                                                                                                                                                                                                                                 ],
                                                                                                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                                                                                                   --[ tuple ]--[
                                                                                                                                                                                                                                                                     "DataView - setUint16LittleEndian",
-                                                                                                                                                                                                                                                                    (function (param) {
+                                                                                                                                                                                                                                                                    (function (param) do
                                                                                                                                                                                                                                                                         var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                         var view = new DataView(buffer);
                                                                                                                                                                                                                                                                         view.setUint16(0, 32768, 1);
@@ -1885,12 +1885,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                   128,
                                                                                                                                                                                                                                                                                   view.getUint16(0)
                                                                                                                                                                                                                                                                                 ]);
-                                                                                                                                                                                                                                                                      })
+                                                                                                                                                                                                                                                                      end)
                                                                                                                                                                                                                                                                   ],
                                                                                                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                                                                                                     --[ tuple ]--[
                                                                                                                                                                                                                                                                       "DataView - setInt32, getInt32",
-                                                                                                                                                                                                                                                                      (function (param) {
+                                                                                                                                                                                                                                                                      (function (param) do
                                                                                                                                                                                                                                                                           var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                           var view = new DataView(buffer);
                                                                                                                                                                                                                                                                           view.setInt32(0, 65537);
@@ -1898,12 +1898,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                     65537,
                                                                                                                                                                                                                                                                                     view.getInt32(0)
                                                                                                                                                                                                                                                                                   ]);
-                                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                                        end)
                                                                                                                                                                                                                                                                     ],
                                                                                                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                                                                                                       --[ tuple ]--[
                                                                                                                                                                                                                                                                         "DataView - getInt32LittleEndian",
-                                                                                                                                                                                                                                                                        (function (param) {
+                                                                                                                                                                                                                                                                        (function (param) do
                                                                                                                                                                                                                                                                             var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                             var view = new DataView(buffer);
                                                                                                                                                                                                                                                                             view.setInt32(0, 65537, 1);
@@ -1911,12 +1911,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                       65537,
                                                                                                                                                                                                                                                                                       view.getInt32(0, 1)
                                                                                                                                                                                                                                                                                     ]);
-                                                                                                                                                                                                                                                                          })
+                                                                                                                                                                                                                                                                          end)
                                                                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                                                                                                         --[ tuple ]--[
                                                                                                                                                                                                                                                                           "DataView - setInt32LittleEndian",
-                                                                                                                                                                                                                                                                          (function (param) {
+                                                                                                                                                                                                                                                                          (function (param) do
                                                                                                                                                                                                                                                                               var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                               var view = new DataView(buffer);
                                                                                                                                                                                                                                                                               view.setInt32(0, 65537, 1);
@@ -1924,12 +1924,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                         16777472,
                                                                                                                                                                                                                                                                                         view.getInt32(0)
                                                                                                                                                                                                                                                                                       ]);
-                                                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                                                            end)
                                                                                                                                                                                                                                                                         ],
                                                                                                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                                                                                                           --[ tuple ]--[
                                                                                                                                                                                                                                                                             "DataView - setUint32, getUint32",
-                                                                                                                                                                                                                                                                            (function (param) {
+                                                                                                                                                                                                                                                                            (function (param) do
                                                                                                                                                                                                                                                                                 var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                 var view = new DataView(buffer);
                                                                                                                                                                                                                                                                                 view.setUint32(0, 65537);
@@ -1937,12 +1937,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                           65537,
                                                                                                                                                                                                                                                                                           view.getUint32(0)
                                                                                                                                                                                                                                                                                         ]);
-                                                                                                                                                                                                                                                                              })
+                                                                                                                                                                                                                                                                              end)
                                                                                                                                                                                                                                                                           ],
                                                                                                                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                                                                                                                             --[ tuple ]--[
                                                                                                                                                                                                                                                                               "DataView - getUint32LittleEndian",
-                                                                                                                                                                                                                                                                              (function (param) {
+                                                                                                                                                                                                                                                                              (function (param) do
                                                                                                                                                                                                                                                                                   var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                   var view = new DataView(buffer);
                                                                                                                                                                                                                                                                                   view.setUint32(0, 65537, 1);
@@ -1950,12 +1950,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                             65537,
                                                                                                                                                                                                                                                                                             view.getUint32(0, 1)
                                                                                                                                                                                                                                                                                           ]);
-                                                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                                                                end)
                                                                                                                                                                                                                                                                             ],
                                                                                                                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                                                                                                                               --[ tuple ]--[
                                                                                                                                                                                                                                                                                 "DataView - setUint32LittleEndian",
-                                                                                                                                                                                                                                                                                (function (param) {
+                                                                                                                                                                                                                                                                                (function (param) do
                                                                                                                                                                                                                                                                                     var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                     var view = new DataView(buffer);
                                                                                                                                                                                                                                                                                     view.setUint32(0, 65537, 1);
@@ -1963,12 +1963,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                               16777472,
                                                                                                                                                                                                                                                                                               view.getUint32(0)
                                                                                                                                                                                                                                                                                             ]);
-                                                                                                                                                                                                                                                                                  })
+                                                                                                                                                                                                                                                                                  end)
                                                                                                                                                                                                                                                                               ],
                                                                                                                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                                                                                                                 --[ tuple ]--[
                                                                                                                                                                                                                                                                                   "DataView - setFloat32, getFloat32",
-                                                                                                                                                                                                                                                                                  (function (param) {
+                                                                                                                                                                                                                                                                                  (function (param) do
                                                                                                                                                                                                                                                                                       var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                       var view = new DataView(buffer);
                                                                                                                                                                                                                                                                                       view.setFloat32(0, 65537.0);
@@ -1976,12 +1976,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                                 65537.0,
                                                                                                                                                                                                                                                                                                 view.getFloat32(0)
                                                                                                                                                                                                                                                                                               ]);
-                                                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                                                    end)
                                                                                                                                                                                                                                                                                 ],
                                                                                                                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                                                                                                                   --[ tuple ]--[
                                                                                                                                                                                                                                                                                     "DataView - getFloat32LittleEndian",
-                                                                                                                                                                                                                                                                                    (function (param) {
+                                                                                                                                                                                                                                                                                    (function (param) do
                                                                                                                                                                                                                                                                                         var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                         var view = new DataView(buffer);
                                                                                                                                                                                                                                                                                         view.setFloat32(0, 65537.0, 1);
@@ -1989,12 +1989,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                                   65537.0,
                                                                                                                                                                                                                                                                                                   view.getFloat32(0, 1)
                                                                                                                                                                                                                                                                                                 ]);
-                                                                                                                                                                                                                                                                                      })
+                                                                                                                                                                                                                                                                                      end)
                                                                                                                                                                                                                                                                                   ],
                                                                                                                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                                                                                                                     --[ tuple ]--[
                                                                                                                                                                                                                                                                                       "DataView - setFloat32LittleEndian",
-                                                                                                                                                                                                                                                                                      (function (param) {
+                                                                                                                                                                                                                                                                                      (function (param) do
                                                                                                                                                                                                                                                                                           var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                           var view = new DataView(buffer);
                                                                                                                                                                                                                                                                                           view.setFloat32(0, 1.0, 1);
@@ -2002,12 +2002,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                                     4.600602988224807e-41,
                                                                                                                                                                                                                                                                                                     view.getFloat32(0)
                                                                                                                                                                                                                                                                                                   ]);
-                                                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                                                        end)
                                                                                                                                                                                                                                                                                     ],
                                                                                                                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                                                                                                                       --[ tuple ]--[
                                                                                                                                                                                                                                                                                         "DataView - setFloat64, getFloat64",
-                                                                                                                                                                                                                                                                                        (function (param) {
+                                                                                                                                                                                                                                                                                        (function (param) do
                                                                                                                                                                                                                                                                                             var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                             var view = new DataView(buffer);
                                                                                                                                                                                                                                                                                             view.setFloat64(0, 1e200);
@@ -2015,12 +2015,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                                       1e200,
                                                                                                                                                                                                                                                                                                       view.getFloat64(0)
                                                                                                                                                                                                                                                                                                     ]);
-                                                                                                                                                                                                                                                                                          })
+                                                                                                                                                                                                                                                                                          end)
                                                                                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                                                                                                                         --[ tuple ]--[
                                                                                                                                                                                                                                                                                           "DataView - getFloat64LittleEndian",
-                                                                                                                                                                                                                                                                                          (function (param) {
+                                                                                                                                                                                                                                                                                          (function (param) do
                                                                                                                                                                                                                                                                                               var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                               var view = new DataView(buffer);
                                                                                                                                                                                                                                                                                               view.setFloat64(0, 1e200, 1);
@@ -2028,12 +2028,12 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                                         1e200,
                                                                                                                                                                                                                                                                                                         view.getFloat64(0, 1)
                                                                                                                                                                                                                                                                                                       ]);
-                                                                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                                                                            end)
                                                                                                                                                                                                                                                                                         ],
                                                                                                                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                                                                                                                           --[ tuple ]--[
                                                                                                                                                                                                                                                                                             "DataView - setFloat64LittleEndian",
-                                                                                                                                                                                                                                                                                            (function (param) {
+                                                                                                                                                                                                                                                                                            (function (param) do
                                                                                                                                                                                                                                                                                                 var buffer = new ArrayBuffer(8);
                                                                                                                                                                                                                                                                                                 var view = new DataView(buffer);
                                                                                                                                                                                                                                                                                                 view.setFloat64(0, 1.0, 1);
@@ -2041,7 +2041,7 @@ var suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                                           3.03865e-319,
                                                                                                                                                                                                                                                                                                           view.getFloat64(0)
                                                                                                                                                                                                                                                                                                         ]);
-                                                                                                                                                                                                                                                                                              })
+                                                                                                                                                                                                                                                                                              end)
                                                                                                                                                                                                                                                                                           ],
                                                                                                                                                                                                                                                                                           --[ [] ]--0
                                                                                                                                                                                                                                                                                         ]

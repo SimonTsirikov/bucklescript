@@ -7,67 +7,67 @@ var Curry = require("../../lib/js/curry.js");
 var Caml_bytes = require("../../lib/js/caml_bytes.js");
 var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function escaped(s) {
+function escaped(s) do
   var n = 0;
-  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
     var match = s[i];
     var tmp;
-    if (match >= 32) {
+    if (match >= 32) do
       var switcher = match - 34 | 0;
       tmp = switcher > 58 or switcher < 0 ? (
           switcher >= 93 ? 4 : 1
         ) : (
           switcher > 57 or switcher < 1 ? 2 : 1
         );
-    } else {
+    end else do
       tmp = match >= 11 ? (
           match ~= 13 ? 4 : 2
         ) : (
           match >= 8 ? 2 : 4
         );
-    }
+    end
     n = n + tmp | 0;
-  }
-  if (n == #s) {
+  end
+  if (n == #s) do
     return Bytes.copy(s);
-  } else {
+  end else do
     var s$prime = Caml_bytes.caml_create_bytes(n);
     n = 0;
-    for(var i$1 = 0 ,i_finish$1 = #s - 1 | 0; i$1 <= i_finish$1; ++i$1){
+    for(var i$1 = 0 ,i_finish$1 = #s - 1 | 0; i$1 <= i_finish$1; ++i$1)do
       var c = s[i$1];
       var exit = 0;
-      if (c >= 35) {
-        if (c ~= 92) {
-          if (c >= 127) {
+      if (c >= 35) do
+        if (c ~= 92) do
+          if (c >= 127) do
             exit = 1;
-          } else {
+          end else do
             s$prime[n] = c;
-          }
-        } else {
+          end
+        end else do
           exit = 2;
-        }
-      } else if (c >= 32) {
-        if (c >= 34) {
+        end
+      end else if (c >= 32) do
+        if (c >= 34) do
           exit = 2;
-        } else {
+        end else do
           s$prime[n] = c;
-        }
-      } else if (c >= 14) {
+        end
+      end else if (c >= 14) do
         exit = 1;
-      } else {
-        switch (c) {
+      end else do
+        switch (c) do
           case 8 :
               s$prime[n] = --[ "\\" ]--92;
               n = n + 1 | 0;
@@ -101,9 +101,9 @@ function escaped(s) {
               s$prime[n] = --[ "r" ]--114;
               break;
           
-        }
-      }
-      switch (exit) {
+        end
+      end
+      switch (exit) do
         case 1 :
             s$prime[n] = --[ "\\" ]--92;
             n = n + 1 | 0;
@@ -119,38 +119,38 @@ function escaped(s) {
             s$prime[n] = c;
             break;
         
-      }
+      end
       n = n + 1 | 0;
-    }
+    end
     return s$prime;
-  }
-}
+  end
+end
 
-function starts_with(xs, prefix, p) {
+function starts_with(xs, prefix, p) do
   var H = Caml_exceptions.create("H");
   var len1 = #xs;
   var len2 = #prefix;
-  if (len2 > len1) {
+  if (len2 > len1) do
     return false;
-  } else {
-    try {
-      for(var i = 0 ,i_finish = len2 - 1 | 0; i <= i_finish; ++i){
-        if (!Curry._2(p, Caml_bytes.get(xs, i), Caml_bytes.get(prefix, i))) {
+  end else do
+    try do
+      for(var i = 0 ,i_finish = len2 - 1 | 0; i <= i_finish; ++i)do
+        if (!Curry._2(p, Caml_bytes.get(xs, i), Caml_bytes.get(prefix, i))) do
           throw H;
-        }
+        end
         
-      }
+      end
       return true;
-    }
-    catch (exn){
-      if (exn == H) {
+    end
+    catch (exn)do
+      if (exn == H) do
         return false;
-      } else {
+      end else do
         throw exn;
-      }
-    }
-  }
-}
+      end
+    end
+  end
+end
 
 var a = Bytes.init(100, Char.chr);
 
@@ -168,9 +168,9 @@ var f = Char.chr;
 
 var a$2 = Caml_bytes.bytes_to_string(Bytes.init(100, f));
 
-var b = Bytes.init(100, (function (i) {
+var b = Bytes.init(100, (function (i) do
         return --[ "\000" ]--0;
-      }));
+      end));
 
 Bytes.blit_string(a$2, 10, b, 5, 10);
 

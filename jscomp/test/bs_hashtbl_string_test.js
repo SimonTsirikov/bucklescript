@@ -12,11 +12,11 @@ var Caml_hash_primitive = require("../../lib/js/caml_hash_primitive.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 var Belt_internalBucketsType = require("../../lib/js/belt_internalBucketsType.js");
 
-function hash_string(s) {
+function hash_string(s) do
   return Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_string(0, s));
-}
+end
 
-function hashString (str){ 
+function hashString (str)do 
                                               var hash = 5381,
                                               i    = str.length | 0;
 
@@ -25,34 +25,34 @@ function hashString (str){
                                               }
                                               return hash
                                               
-                                            };
+                                            end;
 
-var $$String = Belt_Id.hashable(Hashtbl.hash, (function (x, y) {
+var $$String = Belt_Id.hashable(Hashtbl.hash, (function (x, y) do
         return x == y;
-      }));
+      end));
 
-var String1 = Belt_Id.hashable(hashString, (function (x, y) {
+var String1 = Belt_Id.hashable(hashString, (function (x, y) do
         return x == y;
-      }));
+      end));
 
-var String2 = Belt_Id.hashable((function (x) {
+var String2 = Belt_Id.hashable((function (x) do
         return Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_string(0, x));
-      }), (function (x, y) {
+      end), (function (x, y) do
         return x == y;
-      }));
+      end));
 
-var Int = Belt_Id.hashable(Hashtbl.hash, (function (x, y) {
+var Int = Belt_Id.hashable(Hashtbl.hash, (function (x, y) do
         return x == y;
-      }));
+      end));
 
 var empty = Belt_internalBucketsType.make(Int.hash, Int.eq, 500000);
 
-function bench(param) {
-  for(var i = 0; i <= 1000000; ++i){
+function bench(param) do
+  for(var i = 0; i <= 1000000; ++i)do
     Belt_HashMap.set(empty, i, i);
-  }
-  for(var i$1 = 0; i$1 <= 1000000; ++i$1){
-    if (!Belt_HashMap.has(empty, i$1)) {
+  end
+  for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
+    if (!Belt_HashMap.has(empty, i$1)) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -61,19 +61,19 @@ function bench(param) {
               4
             ]
           ];
-    }
+    end
     
-  }
+  end
   return Belt_HashMap.logStats(empty);
-}
+end
 
-function bench2(m) {
+function bench2(m) do
   var empty = Belt_internalBucketsType.make(m.hash, m.eq, 1000000);
-  for(var i = 0; i <= 1000000; ++i){
+  for(var i = 0; i <= 1000000; ++i)do
     Belt_HashMap.set(empty, String(i), i);
-  }
-  for(var i$1 = 0; i$1 <= 1000000; ++i$1){
-    if (!Belt_HashMap.has(empty, String(i$1))) {
+  end
+  for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
+    if (!Belt_HashMap.has(empty, String(i$1))) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -82,15 +82,15 @@ function bench2(m) {
               4
             ]
           ];
-    }
+    end
     
-  }
-  for(var i$2 = 0; i$2 <= 1000000; ++i$2){
+  end
+  for(var i$2 = 0; i$2 <= 1000000; ++i$2)do
     Belt_HashMap.remove(empty, String(i$2));
-  }
-  if (empty.size == 0) {
+  end
+  if (empty.size == 0) do
     return 0;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -99,21 +99,21 @@ function bench2(m) {
             2
           ]
         ];
-  }
-}
+  end
+end
 
-function bench3(m) {
-  var empty = {
+function bench3(m) do
+  var empty = do
     cmp: m.cmp,
     data: Belt_MapDict.empty
-  };
+  end;
   var cmp = m.cmp;
   var table = empty.data;
-  for(var i = 0; i <= 1000000; ++i){
+  for(var i = 0; i <= 1000000; ++i)do
     table = Belt_MapDict.set(table, String(i), i, cmp);
-  }
-  for(var i$1 = 0; i$1 <= 1000000; ++i$1){
-    if (!Belt_MapDict.has(table, String(i$1), cmp)) {
+  end
+  for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
+    if (!Belt_MapDict.has(table, String(i$1), cmp)) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -122,15 +122,15 @@ function bench3(m) {
               4
             ]
           ];
-    }
+    end
     
-  }
-  for(var i$2 = 0; i$2 <= 1000000; ++i$2){
+  end
+  for(var i$2 = 0; i$2 <= 1000000; ++i$2)do
     table = Belt_MapDict.remove(table, String(i$2), cmp);
-  }
-  if (Belt_MapDict.size(table) == 0) {
+  end
+  if (Belt_MapDict.size(table) == 0) do
     return 0;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -139,18 +139,18 @@ function bench3(m) {
             2
           ]
         ];
-  }
-}
+  end
+end
 
 var Sx = Belt_Id.comparable(Caml_primitive.caml_string_compare);
 
-function bench4(param) {
+function bench4(param) do
   var table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, 1000000);
-  for(var i = 0; i <= 1000000; ++i){
+  for(var i = 0; i <= 1000000; ++i)do
     Belt_HashMapString.set(table, String(i), i);
-  }
-  for(var i$1 = 0; i$1 <= 1000000; ++i$1){
-    if (!Belt_HashMapString.has(table, String(i$1))) {
+  end
+  for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
+    if (!Belt_HashMapString.has(table, String(i$1))) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -159,15 +159,15 @@ function bench4(param) {
               4
             ]
           ];
-    }
+    end
     
-  }
-  for(var i$2 = 0; i$2 <= 1000000; ++i$2){
+  end
+  for(var i$2 = 0; i$2 <= 1000000; ++i$2)do
     Belt_HashMapString.remove(table, String(i$2));
-  }
-  if (Belt_HashMapString.isEmpty(table)) {
+  end
+  if (Belt_HashMapString.isEmpty(table)) do
     return 0;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -176,19 +176,19 @@ function bench4(param) {
             2
           ]
         ];
-  }
-}
+  end
+end
 
-function bench5(param) {
+function bench5(param) do
   var table = Belt_internalBucketsType.make(Int.hash, Int.eq, 1000000);
   console.time("test/bs_hashtbl_string_test.ml 133");
-  for(var i = 0; i <= 1000000; ++i){
+  for(var i = 0; i <= 1000000; ++i)do
     Belt_HashMap.set(table, i, i);
-  }
+  end
   console.timeEnd("test/bs_hashtbl_string_test.ml 133");
   console.time("test/bs_hashtbl_string_test.ml 137");
-  for(var i$1 = 0; i$1 <= 1000000; ++i$1){
-    if (!Belt_HashMap.has(table, i$1)) {
+  for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
+    if (!Belt_HashMap.has(table, i$1)) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -197,18 +197,18 @@ function bench5(param) {
               6
             ]
           ];
-    }
+    end
     
-  }
+  end
   console.timeEnd("test/bs_hashtbl_string_test.ml 137");
   console.time("test/bs_hashtbl_string_test.ml 141");
-  for(var i$2 = 0; i$2 <= 1000000; ++i$2){
+  for(var i$2 = 0; i$2 <= 1000000; ++i$2)do
     Belt_HashMap.remove(table, i$2);
-  }
+  end
   console.timeEnd("test/bs_hashtbl_string_test.ml 141");
-  if (Belt_HashMap.isEmpty(table)) {
+  if (Belt_HashMap.isEmpty(table)) do
     return 0;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -217,16 +217,16 @@ function bench5(param) {
             2
           ]
         ];
-  }
-}
+  end
+end
 
-function bench6(param) {
+function bench6(param) do
   var table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, 1000000);
-  for(var i = 0; i <= 1000000; ++i){
+  for(var i = 0; i <= 1000000; ++i)do
     Belt_HashMapInt.set(table, i, i);
-  }
-  for(var i$1 = 0; i$1 <= 1000000; ++i$1){
-    if (!Belt_HashMapInt.has(table, i$1)) {
+  end
+  for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
+    if (!Belt_HashMapInt.has(table, i$1)) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -235,15 +235,15 @@ function bench6(param) {
               4
             ]
           ];
-    }
+    end
     
-  }
-  for(var i$2 = 0; i$2 <= 1000000; ++i$2){
+  end
+  for(var i$2 = 0; i$2 <= 1000000; ++i$2)do
     Belt_HashMapInt.remove(table, i$2);
-  }
-  if (table.size == 0) {
+  end
+  if (table.size == 0) do
     return 0;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -252,17 +252,17 @@ function bench6(param) {
             2
           ]
         ];
-  }
-}
+  end
+end
 
-function bench7(param) {
+function bench7(param) do
   var hintSize = 2000000;
   var table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, hintSize);
-  for(var i = 0; i <= 1000000; ++i){
+  for(var i = 0; i <= 1000000; ++i)do
     Belt_HashSetInt.add(table, i);
-  }
-  for(var i$1 = 0; i$1 <= 1000000; ++i$1){
-    if (!Belt_HashSetInt.has(table, i$1)) {
+  end
+  for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
+    if (!Belt_HashSetInt.has(table, i$1)) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -271,15 +271,15 @@ function bench7(param) {
               4
             ]
           ];
-    }
+    end
     
-  }
-  for(var i$2 = 0; i$2 <= 1000000; ++i$2){
+  end
+  for(var i$2 = 0; i$2 <= 1000000; ++i$2)do
     Belt_HashSetInt.remove(table, i$2);
-  }
-  if (table.size == 0) {
+  end
+  if (table.size == 0) do
     return 0;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -288,8 +288,8 @@ function bench7(param) {
             2
           ]
         ];
-  }
-}
+  end
+end
 
 console.time("test/bs_hashtbl_string_test.ml 203");
 

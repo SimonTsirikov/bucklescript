@@ -4,32 +4,32 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, param) {
+function eq(loc, param) do
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 function hey(x, y) {
     if (x === void 0) { x = 3; }
@@ -52,31 +52,31 @@ eq("File \"optional_ffi_test.ml\", line 23, characters 5-12", --[ tuple ]--[
       ]
     ]);
 
-var counter = {
+var counter = do
   contents: 0
-};
+end;
 
-function side_effect(x) {
+function side_effect(x) do
   x.contents = x.contents + 1 | 0;
   return x.contents;
-}
+end
 
-function bug_to_fix(f, x) {
+function bug_to_fix(f, x) do
   return hey(f(x), 3);
-}
+end
 
-function bug_to_fix2(f, x) {
+function bug_to_fix2(f, x) do
   return hey(Caml_option.option_get(f(x)), 3);
-}
+end
 
-var counter2 = {
+var counter2 = do
   contents: 0
-};
+end;
 
-function side_effect2(x) {
+function side_effect2(x) do
   x.contents = x.contents + 1 | 0;
   return x.contents;
-}
+end
 
 var v = bug_to_fix(side_effect, counter);
 

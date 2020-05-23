@@ -3,17 +3,17 @@
 var Mt = require("./mt.js");
 var List = require("../../lib/js/list.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
 var oppHeroes = --[ :: ]--[
   0,
@@ -22,21 +22,21 @@ var oppHeroes = --[ :: ]--[
 
 var huntGrootCondition = false;
 
-if (List.length(--[ [] ]--0) > 0) {
-  var x = List.filter((function (h) {
+if (List.length(--[ [] ]--0) > 0) do
+  var x = List.filter((function (h) do
             return List.hd(--[ [] ]--0) <= 1000;
-          }))(oppHeroes);
+          end))(oppHeroes);
   huntGrootCondition = List.length(x) == 0;
-}
+end
 
 var huntGrootCondition2 = true;
 
-if (List.length(--[ [] ]--0) < 0) {
-  var x$1 = List.filter((function (h) {
+if (List.length(--[ [] ]--0) < 0) do
+  var x$1 = List.filter((function (h) do
             return List.hd(--[ [] ]--0) <= 1000;
-          }))(oppHeroes);
+          end))(oppHeroes);
   huntGrootCondition2 = List.length(x$1) == 0;
-}
+end
 
 eq("File \"gpr_2608_test.ml\", line 23, characters 5-12", huntGrootCondition, false);
 

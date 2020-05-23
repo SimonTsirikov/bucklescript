@@ -7,9 +7,9 @@ var v = 1;
 
 var a21 = "hello worldnothello worldnot";
 
-function ff(param) {
+function ff(param) do
   return "cool test hello worldnothello worldnothello";
-}
+end
 
 var a23 = ff(--[ () ]--0);
 

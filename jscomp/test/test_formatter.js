@@ -2,7 +2,7 @@
 
 var Block = require("../../lib/js/block.js");
 
-function f(param) {
+function f(param) do
   return --[ Format ]--[
           --[ Int ]--Block.__(4, [
               --[ Int_d ]--0,
@@ -15,7 +15,7 @@ function f(param) {
             ]),
           "%d%s"
         ];
-}
+end
 
 exports.f = f;
 --[ No side effect ]--

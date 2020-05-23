@@ -8,23 +8,23 @@ var v = (Number.EPSILON?Number.EPSILON:2.220446049250313e-16);
 
 var suites_000 = --[ tuple ]--[
   "epsilon",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 Pervasives.epsilon_float,
                 v
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "raw_epsilon",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   2.220446049250313e-16,
                   v
                 ]);
-      })
+      end)
   ],
   --[ [] ]--0
 ];

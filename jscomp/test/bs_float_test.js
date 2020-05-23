@@ -4,42 +4,42 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 var Belt_Float = require("../../lib/js/belt_Float.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, x) {
+function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-}
+end
 
-function $$throw(loc, x) {
+function $$throw(loc, x) do
   return Mt.throw_suites(test_id, suites, loc, x);
-}
+end
 
-function neq(loc, x, y) {
+function neq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Neq ]--Block.__(1, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 eq("File \"bs_float_test.ml\", line 14, characters 5-12", 1, 1.0);
 

@@ -3,21 +3,21 @@
 var Mt = require("./mt.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
 var match = [1];
 
-if (#match ~= 1) {
+if (#match ~= 1) do
   throw [
         Caml_builtin_exceptions.match_failure,
         --[ tuple ]--[
@@ -26,7 +26,7 @@ if (#match ~= 1) {
           4
         ]
       ];
-}
+end
 
 var a = match[0];
 

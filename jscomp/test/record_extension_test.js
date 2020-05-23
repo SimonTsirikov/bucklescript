@@ -5,26 +5,26 @@ var Block = require("../../lib/js/block.js");
 var Caml_format = require("../../lib/js/caml_format.js");
 var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
 var Inline_record = Caml_exceptions.create("Record_extension_test.Inline_record");
 
-function f(x) {
-  if (x[0] == Inline_record) {
+function f(x) do
+  if (x[0] == Inline_record) do
     return x[--[ x ]--1] + Caml_format.caml_int_of_string(x[--[ y ]--2]) | 0;
-  }
+  end
   
-}
+end
 
 var v0 = [
   Inline_record,
@@ -34,24 +34,24 @@ var v0 = [
 
 eq("File \"record_extension_test.ml\", line 18, characters 6-13", f(v0), 7);
 
-function f2(x) {
-  if (typeof x == "number" or x.tag) {
+function f2(x) do
+  if (typeof x == "number" or x.tag) do
     return 0;
-  } else {
+  end else do
     return x[--[ x ]--0];
-  }
-}
+  end
+end
 
-function f2_with(x) {
-  if (typeof x == "number" or x.tag) {
+function f2_with(x) do
+  if (typeof x == "number" or x.tag) do
     return x;
-  } else {
+  end else do
     return --[ C ]--Block.__(0, [
               --[ x ]--0,
               --[ y ]--x[--[ y ]--1]
             ]);
-  }
-}
+  end
+end
 
 Mt.from_pair_suites("File \"record_extension_test.ml\", line 43, characters 22-29", suites.contents);
 

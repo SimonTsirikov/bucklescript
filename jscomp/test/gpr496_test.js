@@ -5,30 +5,30 @@ var Block = require("../../lib/js/block.js");
 var Curry = require("../../lib/js/curry.js");
 var Caml_primitive = require("../../lib/js/caml_primitive.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 var expected = --[ tuple ]--[
   false,
@@ -67,9 +67,9 @@ eq("File \"gpr496_test.ml\", line 42, characters 12-19", expected, u);
 
 eq("File \"gpr496_test.ml\", line 44, characters 12-19", expected, expected2);
 
-function ff(x, y) {
+function ff(x, y) do
   return Caml_primitive.caml_bool_min(x, Curry._1(y, --[ () ]--0));
-}
+end
 
 eq("File \"gpr496_test.ml\", line 48, characters 5-12", true < false ? true : false, false);
 

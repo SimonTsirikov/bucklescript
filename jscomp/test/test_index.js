@@ -1,23 +1,23 @@
 'use strict';
 
 
-function ff(x) {
+function ff(x) do
   x.case(3, 2);
   return x.case(3);
-}
+end
 
-function h(x) {
+function h(x) do
   return x.cse(3)(2);
-}
+end
 
-function f_ext(x) {
+function f_ext(x) do
   x.cse(3, 2);
   return x.cse(3);
-}
+end
 
-function h_ext(x) {
+function h_ext(x) do
   return x.cse(3)(2);
-}
+end
 
 exports.ff = ff;
 exports.h = h;

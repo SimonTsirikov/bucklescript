@@ -4,32 +4,32 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 var Caml_obj = require("../../lib/js/caml_obj.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function f(param) {
+function f(param) do
   var x = new Date();
   var y = new Date();
   return --[ tuple ]--[
@@ -37,7 +37,7 @@ function f(param) {
           Caml_obj.caml_lessthan(y, x),
           true
         ];
-}
+end
 
 var match = f(--[ () ]--0);
 

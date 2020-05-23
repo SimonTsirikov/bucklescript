@@ -14,7 +14,7 @@ var buf = $$Buffer.create(50);
 
 var fmt = Format.formatter_of_buffer(buf);
 
-function print_float(f) {
+function print_float(f) do
   return Curry._1(Format.fprintf(fmt, --[ Format ]--[
                   --[ String ]--Block.__(2, [
                       --[ No_padding ]--0,
@@ -22,9 +22,9 @@ function print_float(f) {
                     ]),
                   "%s"
                 ]), Pervasives.string_of_float(f));
-}
+end
 
-function print_newline(param) {
+function print_newline(param) do
   return Format.fprintf(fmt, --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ "\n" ]--10,
@@ -32,11 +32,11 @@ function print_newline(param) {
                 ]),
               "\n"
             ]);
-}
+end
 
-var s = {
+var s = do
   f: 1.0
-};
+end;
 
 print_float(1.0);
 
@@ -46,29 +46,29 @@ var b = Float_array.small_float_array(12);
 
 var c = Float_array.longer_float_array(34);
 
-function print_array(a) {
-  $$Array.iter((function (f) {
+function print_array(a) do
+  $$Array.iter((function (f) do
           print_float(f);
           return print_newline(--[ () ]--0);
-        }), a);
+        end), a);
   return print_newline(--[ () ]--0);
-}
+end
 
 print_array(b[0]);
 
 print_array(c[0]);
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(f, a, b) {
+function eq(f, a, b) do
   return Mt_global.collect_eq(test_id, suites, f, a, b);
-}
+end
 
 eq("File \"tfloat_record_test.ml\", line 43, characters 5-12", $$Buffer.contents(buf), "1.\n1.\n2.\n3.\n\n1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n0.\n1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n0.\n1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n0.\n1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n0.\n\n");
 

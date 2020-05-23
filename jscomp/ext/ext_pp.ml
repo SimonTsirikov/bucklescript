@@ -109,10 +109,10 @@ let paren t action =
   v
 
 let brace fmt u =
-  string fmt "{";
+  string fmt "do";
   (* break1 fmt ; *)
   let v = u () in
-  string fmt "}";
+  string fmt "end";
   v
 
 let bracket fmt u =
@@ -122,14 +122,14 @@ let bracket fmt u =
   v
 
 let brace_vgroup st n action =
-  string st "{";
+  string st "do";
   let v = vgroup st n (fun _ ->
       newline st;
       let v =  action () in
       v
     ) in
   force_newline st;
-  string st "}";
+  string st "end";
   v
 
 let bracket_vgroup st n action =

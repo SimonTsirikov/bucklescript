@@ -6,17 +6,17 @@ var Curry = require("../../lib/js/curry.js");
 var Printf = require("../../lib/js/printf.js");
 var Mt_global = require("./mt_global.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(f, param) {
+function eq(f, param) do
   return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
-}
+end
 
 var s = Curry._1(Printf.sprintf(--[ Format ]--[
           --[ Format_arg ]--Block.__(13, [

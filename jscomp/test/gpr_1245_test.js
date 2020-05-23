@@ -3,53 +3,53 @@
 var Curry = require("../../lib/js/curry.js");
 var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var x = {
+var x = do
   contents: 1
-};
+end;
 
-var y = {
+var y = do
   contents: 2
-};
+end;
 
-function f(param) {
-  var a = {
+function f(param) do
+  var a = do
     contents: param[0]
-  };
-  var b = {
+  end;
+  var b = do
     contents: param[1]
-  };
+  end;
   console.log(a, b);
   return --[ () ]--0;
-}
+end
 
-function g(param) {
+function g(param) do
   return 3;
-}
+end
 
-function a0(f) {
+function a0(f) do
   var u = Curry._1(f, --[ () ]--0);
-  if (u ~= null) {
+  if (u ~= null) do
     console.log(u);
     console.log(u);
     return 1;
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function a1(f) {
+function a1(f) do
   var E = Caml_exceptions.create("E");
-  try {
+  try do
     return Curry._1(f, --[ () ]--0);
-  }
-  catch (exn){
-    if (exn == E) {
+  end
+  catch (exn)do
+    if (exn == E) do
       return 1;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
 var a = 1;
 

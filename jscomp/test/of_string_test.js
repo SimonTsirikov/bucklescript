@@ -6,33 +6,33 @@ var Pervasives = require("../../lib/js/pervasives.js");
 
 var suites_000 = --[ tuple ]--[
   "string_of_float_1",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 "10.",
                 Pervasives.string_of_float(10)
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "string_of_int",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   "10",
                   String(10)
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "valid_float_lexem",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     "10.",
                     Pervasives.valid_float_lexem("10")
                   ]);
-        })
+        end)
     ],
     --[ [] ]--0
   ]

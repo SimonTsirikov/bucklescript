@@ -5,32 +5,32 @@ var Fs = require("fs");
 var Path = require("path");
 var Block = require("../../lib/js/block.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, param) {
+function eq(loc, param) do
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 var match = typeof __filename == "undefined" ? undefined : __filename;
 
@@ -48,7 +48,7 @@ var pathobj = Path.parse(current_dir_name);
 
 var match$2 = typeof module == "undefined" ? undefined : module;
 
-if (match$2 ~= undefined) {
+if (match$2 ~= undefined) do
   console.log(--[ tuple ]--[
         match$2.id,
         match$2.paths
@@ -57,7 +57,7 @@ if (match$2 ~= undefined) {
         pathobj.name,
         "test"
       ]);
-}
+end
 
 Mt.from_pair_suites("Fs_test", suites.contents);
 

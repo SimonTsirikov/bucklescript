@@ -23,28 +23,28 @@ var P = Caml_module.init_mod(--[ tuple ]--[
             "print"
           ]]]));
 
-function print(a) {
+function print(a) do
   return $$Array.iter(P.print, a);
-}
+end
 
 Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
             --[ Function ]--0,
             "print"
-          ]]]), PA, {
+          ]]]), PA, do
       print: print
-    });
+    end);
 
-function print$1(i) {
+function print$1(i) do
   console.log(String(i));
   return --[ () ]--0;
-}
+end
 
 Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
             --[ Function ]--0,
             "print"
-          ]]]), P, {
+          ]]]), P, do
       print: print$1
-    });
+    end);
 
 Curry._1(PA.print, [
       1,

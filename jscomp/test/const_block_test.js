@@ -25,16 +25,16 @@ var c = [
   5
 ];
 
-function f(param) {
+function f(param) do
   Caml_array.caml_array_set(a, 0, 3.0);
   return Caml_array.caml_array_set(b, 0, 3);
-}
+end
 
-function h(param) {
+function h(param) do
   return c;
-}
+end
 
-function g(param) {
+function g(param) do
   f(--[ () ]--0);
   return --[ Eq ]--Block.__(0, [
             --[ tuple ]--[
@@ -46,7 +46,7 @@ function g(param) {
               3
             ]
           ]);
-}
+end
 
 var suites_000 = --[ tuple ]--[
   "const_block_test",
@@ -56,7 +56,7 @@ var suites_000 = --[ tuple ]--[
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "avoid_mutable_inline_test",
-    (function (param) {
+    (function (param) do
         Caml_array.caml_array_set(c, 0, 3);
         Caml_array.caml_array_set(c, 1, 4);
         return --[ Eq ]--Block.__(0, [
@@ -70,7 +70,7 @@ var suites_001 = --[ :: ]--[
                   ],
                   c
                 ]);
-      })
+      end)
   ],
   --[ [] ]--0
 ];

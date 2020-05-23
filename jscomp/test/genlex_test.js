@@ -32,32 +32,32 @@ var lexer = Genlex.make_lexer(--[ :: ]--[
       ]
     ]);
 
-function to_list(s) {
+function to_list(s) do
   var _acc = --[ [] ]--0;
-  while(true) {
+  while(true) do
     var acc = _acc;
     var v;
-    try {
+    try do
       v = Stream.next(s);
-    }
-    catch (exn){
-      if (exn == Stream.Failure) {
+    end
+    catch (exn)do
+      if (exn == Stream.Failure) do
         return List.rev(acc);
-      } else {
+      end else do
         throw exn;
-      }
-    }
+      end
+    end
     _acc = --[ :: ]--[
       v,
       acc
     ];
     continue ;
-  };
-}
+  end;
+end
 
 var suites_000 = --[ tuple ]--[
   "lexer_stream_genlex",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 --[ :: ]--[
                   --[ Int ]--Block.__(2, [3]),
@@ -83,7 +83,7 @@ var suites_000 = --[ tuple ]--[
                 ],
                 to_list(lexer(Stream.of_string("3(3 + 2 -1)")))
               ]);
-    })
+    end)
 ];
 
 var suites = --[ :: ]--[

@@ -8,54 +8,54 @@ var Stream = require("../../lib/js/stream.js");
 var Caml_bytes = require("../../lib/js/caml_bytes.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function classify(chr) {
-  if ((chr & 128) == 0) {
+function classify(chr) do
+  if ((chr & 128) == 0) do
     return --[ Single ]--Block.__(0, [chr]);
-  } else if ((chr & 64) == 0) {
+  end else if ((chr & 64) == 0) do
     return --[ Cont ]--Block.__(1, [chr & 63]);
-  } else if ((chr & 32) == 0) {
+  end else if ((chr & 32) == 0) do
     return --[ Leading ]--Block.__(2, [
               1,
               chr & 31
             ]);
-  } else if ((chr & 16) == 0) {
+  end else if ((chr & 16) == 0) do
     return --[ Leading ]--Block.__(2, [
               2,
               chr & 15
             ]);
-  } else if ((chr & 8) == 0) {
+  end else if ((chr & 8) == 0) do
     return --[ Leading ]--Block.__(2, [
               3,
               chr & 7
             ]);
-  } else if ((chr & 4) == 0) {
+  end else if ((chr & 4) == 0) do
     return --[ Leading ]--Block.__(2, [
               4,
               chr & 3
             ]);
-  } else if ((chr & 2) == 0) {
+  end else if ((chr & 2) == 0) do
     return --[ Leading ]--Block.__(2, [
               5,
               chr & 1
             ]);
-  } else {
+  end else do
     return --[ Invalid ]--0;
-  }
-}
+  end
+end
 
-function utf8_decode(strm) {
-  return Stream.slazy((function (param) {
+function utf8_decode(strm) do
+  return Stream.slazy((function (param) do
                 var match = Stream.peek(strm);
-                if (match ~= undefined) {
+                if (match ~= undefined) do
                   Stream.junk(strm);
                   var match$1 = classify(match);
-                  if (typeof match$1 == "number") {
+                  if (typeof match$1 == "number") do
                     throw [
                           Stream.$$Error,
                           "Invalid byte"
                         ];
-                  } else {
-                    switch (match$1.tag | 0) {
+                  end else do
+                    switch (match$1.tag | 0) do
                       case --[ Single ]--0 :
                           return Stream.icons(match$1[0], utf8_decode(strm));
                       case --[ Cont ]--1 :
@@ -64,69 +64,69 @@ function utf8_decode(strm) {
                                 "Unexpected continuation byte"
                               ];
                       case --[ Leading ]--2 :
-                          var follow = function (strm, _n, _c) {
-                            while(true) {
+                          var follow = function (strm, _n, _c) do
+                            while(true) do
                               var c = _c;
                               var n = _n;
-                              if (n == 0) {
+                              if (n == 0) do
                                 return c;
-                              } else {
+                              end else do
                                 var match = classify(Stream.next(strm));
-                                if (typeof match == "number") {
+                                if (typeof match == "number") do
                                   throw [
                                         Stream.$$Error,
                                         "Continuation byte expected"
                                       ];
-                                } else if (match.tag == --[ Cont ]--1) {
+                                end else if (match.tag == --[ Cont ]--1) do
                                   _c = (c << 6) | match[0] & 63;
                                   _n = n - 1 | 0;
                                   continue ;
-                                } else {
+                                end else do
                                   throw [
                                         Stream.$$Error,
                                         "Continuation byte expected"
                                       ];
-                                }
-                              }
-                            };
-                          };
+                                end
+                              end
+                            end;
+                          end;
                           return Stream.icons(follow(strm, match$1[0], match$1[1]), utf8_decode(strm));
                       
-                    }
-                  }
-                }
+                    end
+                  end
+                end
                 
-              }));
-}
+              end));
+end
 
-function to_list(xs) {
-  var v = {
+function to_list(xs) do
+  var v = do
     contents: --[ [] ]--0
-  };
-  Stream.iter((function (x) {
+  end;
+  Stream.iter((function (x) do
           v.contents = --[ :: ]--[
             x,
             v.contents
           ];
           return --[ () ]--0;
-        }), xs);
+        end), xs);
   return List.rev(v.contents);
-}
+end
 
-function utf8_list(s) {
+function utf8_list(s) do
   return to_list(utf8_decode(Stream.of_string(s)));
-}
+end
 
-function decode(bytes, offset) {
+function decode(bytes, offset) do
   var offset$1 = offset;
   var match = classify(Caml_bytes.get(bytes, offset$1));
-  if (typeof match == "number") {
+  if (typeof match == "number") do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "decode"
         ];
-  } else {
-    switch (match.tag | 0) {
+  end else do
+    switch (match.tag | 0) do
       case --[ Single ]--0 :
           return --[ tuple ]--[
                   match[0],
@@ -141,69 +141,69 @@ function decode(bytes, offset) {
           var _n = match[0];
           var _c = match[1];
           var _offset = offset$1 + 1 | 0;
-          while(true) {
+          while(true) do
             var offset$2 = _offset;
             var c = _c;
             var n = _n;
-            if (n == 0) {
+            if (n == 0) do
               return --[ tuple ]--[
                       c,
                       offset$2
                     ];
-            } else {
+            end else do
               var match$1 = classify(Caml_bytes.get(bytes, offset$2));
-              if (typeof match$1 == "number") {
+              if (typeof match$1 == "number") do
                 throw [
                       Caml_builtin_exceptions.invalid_argument,
                       "decode"
                     ];
-              } else if (match$1.tag == --[ Cont ]--1) {
+              end else if (match$1.tag == --[ Cont ]--1) do
                 _offset = offset$2 + 1 | 0;
                 _c = (c << 6) | match$1[0] & 63;
                 _n = n - 1 | 0;
                 continue ;
-              } else {
+              end else do
                 throw [
                       Caml_builtin_exceptions.invalid_argument,
                       "decode"
                     ];
-              }
-            }
-          };
+              end
+            end
+          end;
       
-    }
-  }
-}
+    end
+  end
+end
 
-function eq_list(cmp, _xs, _ys) {
-  while(true) {
+function eq_list(cmp, _xs, _ys) do
+  while(true) do
     var ys = _ys;
     var xs = _xs;
-    if (xs) {
-      if (ys and Curry._2(cmp, xs[0], ys[0])) {
+    if (xs) do
+      if (ys and Curry._2(cmp, xs[0], ys[0])) do
         _ys = ys[1];
         _xs = xs[1];
         continue ;
-      } else {
+      end else do
         return false;
-      }
-    } else if (ys) {
+      end
+    end else if (ys) do
       return false;
-    } else {
+    end else do
       return true;
-    }
-  };
-}
+    end
+  end;
+end
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, param) {
+function eq(loc, param) do
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
@@ -214,26 +214,26 @@ function eq(loc, param) {
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-List.iter((function (param) {
+List.iter((function (param) do
         return eq("File \"utf8_decode_test.ml\", line 107, characters 7-14", --[ tuple ]--[
                     true,
-                    eq_list((function (prim, prim$1) {
+                    eq_list((function (prim, prim$1) do
                             return prim == prim$1;
-                          }), to_list(utf8_decode(Stream.of_string(param[0]))), param[1])
+                          end), to_list(utf8_decode(Stream.of_string(param[0]))), param[1])
                   ]);
-      }), --[ :: ]--[
+      end), --[ :: ]--[
       --[ tuple ]--[
         "\xe4\xbd\xa0\xe5\xa5\xbdBuckleScript,\xe6\x9c\x80\xe5\xa5\xbd\xe7\x9a\x84JS\xe8\xaf\xad\xe8\xa8\x80",
         --[ :: ]--[

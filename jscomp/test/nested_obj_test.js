@@ -1,49 +1,49 @@
 'use strict';
 
 
-var f = {
-  x: {
-    y: {
+var f = do
+  x: do
+    y: do
       z: 3
-    }
-  }
-};
+    end
+  end
+end;
 
 var f2_000 = --[ :: ]--[
-  {
-    x: {
-      y: {
+  do
+    x: do
+      y: do
         z: 3
-      }
-    }
-  },
+      end
+    end
+  end,
   --[ :: ]--[
-    {
-      x: {
-        y: {
+    do
+      x: do
+        y: do
           z: 31
-        }
-      }
-    },
+        end
+      end
+    end,
     --[ [] ]--0
   ]
 ];
 
 var f2_001 = [
-  {
-    x: {
-      y: {
+  do
+    x: do
+      y: do
         z: 3
-      }
-    }
-  },
-  {
-    x: {
-      y: {
+      end
+    end
+  end,
+  do
+    x: do
+      y: do
         z: 31
-      }
-    }
-  }
+      end
+    end
+  end
 ];
 
 var f2 = --[ tuple ]--[
@@ -51,21 +51,21 @@ var f2 = --[ tuple ]--[
   f2_001
 ];
 
-var f3 = {
-  x: {
-    y: {
+var f3 = do
+  x: do
+    y: do
       z: 3
-    }
-  }
-};
+    end
+  end
+end;
 
-var f_record = {
-  x: {
-    y: {
+var f_record = do
+  x: do
+    y: do
       z: 3
-    }
-  }
-};
+    end
+  end
+end;
 
 exports.f_record = f_record;
 exports.f = f;

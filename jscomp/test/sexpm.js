@@ -20,41 +20,41 @@ var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function _with_in(filename, f) {
+function _with_in(filename, f) do
   var ic = Pervasives.open_in_bin(filename);
-  try {
+  try do
     var x = Curry._1(f, ic);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
     return x;
-  }
-  catch (raw_e){
+  end
+  catch (raw_e)do
     var e = Caml_js_exceptions.internalToOCamlException(raw_e);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
     return --[ `Error ]--[
             106380200,
             Printexc.to_string(e)
           ];
-  }
-}
+  end
+end
 
-function _must_escape(s) {
-  try {
-    for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i){
+function _must_escape(s) do
+  try do
+    for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
       var c = s.charCodeAt(i);
       var exit = 0;
-      if (c >= 42) {
-        if (c ~= 59) {
-          if (c ~= 92) {
+      if (c >= 42) do
+        if (c ~= 59) do
+          if (c ~= 92) do
             exit = 1;
-          } else {
+          end else do
             throw Pervasives.Exit;
-          }
-        } else {
+          end
+        end else do
           throw Pervasives.Exit;
-        }
-      } else if (c >= 11) {
-        if (c >= 32) {
-          switch (c - 32 | 0) {
+        end
+      end else if (c >= 11) do
+        if (c >= 32) do
+          switch (c - 32 | 0) do
             case 1 :
             case 3 :
             case 4 :
@@ -69,46 +69,46 @@ function _must_escape(s) {
             case 9 :
                 throw Pervasives.Exit;
             
-          }
-        } else {
+          end
+        end else do
           exit = 1;
-        }
-      } else {
-        if (c >= 9) {
+        end
+      end else do
+        if (c >= 9) do
           throw Pervasives.Exit;
-        }
+        end
         exit = 1;
-      }
-      if (exit == 1 and c > 127) {
+      end
+      if (exit == 1 and c > 127) do
         throw Pervasives.Exit;
-      }
+      end
       
-    }
+    end
     return false;
-  }
-  catch (exn){
-    if (exn == Pervasives.Exit) {
+  end
+  catch (exn)do
+    if (exn == Pervasives.Exit) do
       return true;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
-function to_buf(b, t) {
-  if (t[0] >= 848054398) {
+function to_buf(b, t) do
+  if (t[0] >= 848054398) do
     var l = t[1];
-    if (l) {
-      if (l[1]) {
+    if (l) do
+      if (l[1]) do
         $$Buffer.add_char(b, --[ "(" ]--40);
-        List.iteri((function (i, t$prime) {
-                if (i > 0) {
+        List.iteri((function (i, t$prime) do
+                if (i > 0) do
                   $$Buffer.add_char(b, --[ " " ]--32);
-                }
+                end
                 return to_buf(b, t$prime);
-              }), l);
+              end), l);
         return $$Buffer.add_char(b, --[ ")" ]--41);
-      } else {
+      end else do
         return Curry._2(Printf.bprintf(b, --[ Format ]--[
                         --[ Char_literal ]--Block.__(12, [
                             --[ "(" ]--40,
@@ -119,13 +119,13 @@ function to_buf(b, t) {
                           ]),
                         "(%a)"
                       ]), to_buf, l[0]);
-      }
-    } else {
+      end
+    end else do
       return $$Buffer.add_string(b, "()");
-    }
-  } else {
+    end
+  end else do
     var s = t[1];
-    if (_must_escape(s)) {
+    if (_must_escape(s)) do
       return Curry._1(Printf.bprintf(b, --[ Format ]--[
                       --[ Char_literal ]--Block.__(12, [
                           --[ "\"" ]--34,
@@ -139,23 +139,23 @@ function to_buf(b, t) {
                         ]),
                       "\"%s\""
                     ]), $$String.escaped(s));
-    } else {
+    end else do
       return $$Buffer.add_string(b, s);
-    }
-  }
-}
+    end
+  end
+end
 
-function to_string(t) {
+function to_string(t) do
   var b = $$Buffer.create(128);
   to_buf(b, t);
   return $$Buffer.contents(b);
-}
+end
 
-function print(fmt, t) {
-  if (t[0] >= 848054398) {
+function print(fmt, t) do
+  if (t[0] >= 848054398) do
     var l = t[1];
-    if (l) {
-      if (l[1]) {
+    if (l) do
+      if (l[1]) do
         Format.fprintf(fmt, --[ Format ]--[
               --[ Formatting_gen ]--Block.__(18, [
                   --[ Open_box ]--Block.__(1, [--[ Format ]--[
@@ -172,8 +172,8 @@ function print(fmt, t) {
                 ]),
               "@[<hov1>("
             ]);
-        List.iteri((function (i, t$prime) {
-                if (i > 0) {
+        List.iteri((function (i, t$prime) do
+                if (i > 0) do
                   Format.fprintf(fmt, --[ Format ]--[
                         --[ Formatting_lit ]--Block.__(17, [
                             --[ Break ]--Block.__(0, [
@@ -185,9 +185,9 @@ function print(fmt, t) {
                           ]),
                         "@ "
                       ]);
-                }
+                end
                 return print(fmt, t$prime);
-              }), l);
+              end), l);
         return Format.fprintf(fmt, --[ Format ]--[
                     --[ Char_literal ]--Block.__(12, [
                         --[ ")" ]--41,
@@ -198,7 +198,7 @@ function print(fmt, t) {
                       ]),
                     ")@]"
                   ]);
-      } else {
+      end else do
         return Curry._2(Format.fprintf(fmt, --[ Format ]--[
                         --[ Formatting_gen ]--Block.__(18, [
                             --[ Open_box ]--Block.__(1, [--[ Format ]--[
@@ -221,13 +221,13 @@ function print(fmt, t) {
                           ]),
                         "@[<hov2>(%a)@]"
                       ]), print, l[0]);
-      }
-    } else {
+      end
+    end else do
       return Format.pp_print_string(fmt, "()");
-    }
-  } else {
+    end
+  end else do
     var s = t[1];
-    if (_must_escape(s)) {
+    if (_must_escape(s)) do
       return Curry._1(Format.fprintf(fmt, --[ Format ]--[
                       --[ Char_literal ]--Block.__(12, [
                           --[ "\"" ]--34,
@@ -241,26 +241,26 @@ function print(fmt, t) {
                         ]),
                       "\"%s\""
                     ]), $$String.escaped(s));
-    } else {
+    end else do
       return Format.pp_print_string(fmt, s);
-    }
-  }
-}
+    end
+  end
+end
 
-function print_noindent(fmt, t) {
-  if (t[0] >= 848054398) {
+function print_noindent(fmt, t) do
+  if (t[0] >= 848054398) do
     var l = t[1];
-    if (l) {
-      if (l[1]) {
+    if (l) do
+      if (l[1]) do
         Format.pp_print_char(fmt, --[ "(" ]--40);
-        List.iteri((function (i, t$prime) {
-                if (i > 0) {
+        List.iteri((function (i, t$prime) do
+                if (i > 0) do
                   Format.pp_print_char(fmt, --[ " " ]--32);
-                }
+                end
                 return print_noindent(fmt, t$prime);
-              }), l);
+              end), l);
         return Format.pp_print_char(fmt, --[ ")" ]--41);
-      } else {
+      end else do
         return Curry._2(Format.fprintf(fmt, --[ Format ]--[
                         --[ Char_literal ]--Block.__(12, [
                             --[ "(" ]--40,
@@ -271,13 +271,13 @@ function print_noindent(fmt, t) {
                           ]),
                         "(%a)"
                       ]), print_noindent, l[0]);
-      }
-    } else {
+      end
+    end else do
       return Format.pp_print_string(fmt, "()");
-    }
-  } else {
+    end
+  end else do
     var s = t[1];
-    if (_must_escape(s)) {
+    if (_must_escape(s)) do
       return Curry._1(Format.fprintf(fmt, --[ Format ]--[
                       --[ Char_literal ]--Block.__(12, [
                           --[ "\"" ]--34,
@@ -291,63 +291,63 @@ function print_noindent(fmt, t) {
                         ]),
                       "\"%s\""
                     ]), $$String.escaped(s));
-    } else {
+    end else do
       return Format.pp_print_string(fmt, s);
-    }
-  }
-}
+    end
+  end
+end
 
-function to_chan(oc, t) {
+function to_chan(oc, t) do
   var fmt = Format.formatter_of_out_channel(oc);
   print(fmt, t);
   return Format.pp_print_flush(fmt, --[ () ]--0);
-}
+end
 
-function to_file_seq(filename, seq) {
+function to_file_seq(filename, seq) do
   var filename$1 = filename;
-  var f = function (oc) {
-    return Curry._1(seq, (function (t) {
+  var f = function (oc) do
+    return Curry._1(seq, (function (t) do
                   to_chan(oc, t);
                   return Caml_io.caml_ml_output_char(oc, --[ "\n" ]--10);
-                }));
-  };
+                end));
+  end;
   var oc = Pervasives.open_out(filename$1);
-  try {
+  try do
     var x = Curry._1(f, oc);
     Caml_io.caml_ml_flush(oc);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
     return x;
-  }
-  catch (e){
+  end
+  catch (e)do
     Caml_io.caml_ml_flush(oc);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
     throw e;
-  }
-}
+  end
+end
 
-function to_file(filename, t) {
-  return to_file_seq(filename, (function (k) {
+function to_file(filename, t) do
+  return to_file_seq(filename, (function (k) do
                 return Curry._1(k, t);
-              }));
-}
+              end));
+end
 
-function $$return(x) {
+function $$return(x) do
   return x;
-}
+end
 
-function $great$great$eq(x, f) {
+function $great$great$eq(x, f) do
   return Curry._1(f, x);
-}
+end
 
-var ID_MONAD = {
+var ID_MONAD = do
   $$return: $$return,
   $great$great$eq: $great$great$eq
-};
+end;
 
-function make(bufsizeOpt, refill) {
+function make(bufsizeOpt, refill) do
   var bufsize = bufsizeOpt ~= undefined ? bufsizeOpt : 1024;
   var bufsize$1 = Caml_primitive.caml_int_min(bufsize > 16 ? bufsize : 16, Sys.max_string_length);
-  return {
+  return do
           buf: Caml_bytes.caml_create_bytes(bufsize$1),
           refill: refill,
           atom: $$Buffer.create(32),
@@ -355,30 +355,30 @@ function make(bufsizeOpt, refill) {
           len: 0,
           line: 1,
           col: 1
-        };
-}
+        end;
+end
 
-function _is_digit(c) {
-  if (--[ "0" ]--48 <= c) {
+function _is_digit(c) do
+  if (--[ "0" ]--48 <= c) do
     return c <= --[ "9" ]--57;
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function _refill(t, k_succ, k_fail) {
+function _refill(t, k_succ, k_fail) do
   var n = Curry._3(t.refill, t.buf, 0, #t.buf);
   t.i = 0;
   t.len = n;
-  if (n == 0) {
+  if (n == 0) do
     return Curry._1(k_fail, t);
-  } else {
+  end else do
     return Curry._1(k_succ, t);
-  }
-}
+  end
+end
 
-function _get(t) {
-  if (t.i >= t.len) {
+function _get(t) do
+  if (t.i >= t.len) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -387,19 +387,19 @@ function _get(t) {
             4
           ]
         ];
-  }
+  end
   var c = Caml_bytes.get(t.buf, t.i);
   t.i = t.i + 1 | 0;
-  if (c == --[ "\n" ]--10) {
+  if (c == --[ "\n" ]--10) do
     t.col = 1;
     t.line = t.line + 1 | 0;
-  } else {
+  end else do
     t.col = t.col + 1 | 0;
-  }
+  end
   return c;
-}
+end
 
-function _error(t, msg) {
+function _error(t, msg) do
   var b = $$Buffer.create(32);
   Curry._2(Printf.bprintf(b, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
@@ -424,16 +424,16 @@ function _error(t, msg) {
               ]),
             "at %d, %d: "
           ]), t.line, t.col);
-  return Printf.kbprintf((function (b) {
+  return Printf.kbprintf((function (b) do
                 var msg$prime = $$Buffer.contents(b);
                 return --[ `Error ]--[
                         106380200,
                         msg$prime
                       ];
-              }), b, msg);
-}
+              end), b, msg);
+end
 
-function _error_eof(t) {
+function _error_eof(t) do
   return _error(t, --[ Format ]--[
               --[ String_literal ]--Block.__(11, [
                   "unexpected end of input",
@@ -441,35 +441,35 @@ function _error_eof(t) {
                 ]),
               "unexpected end of input"
             ]);
-}
+end
 
-function expr(k, t) {
-  while(true) {
-    if (t.i == t.len) {
-      return _refill(t, (function (param) {
+function expr(k, t) do
+  while(true) do
+    if (t.i == t.len) do
+      return _refill(t, (function (param) do
                     return expr(k, param);
-                  }), _error_eof);
-    } else {
+                  end), _error_eof);
+    end else do
       var c = _get(t);
-      if (c >= 11) {
-        if (c ~= 32) {
+      if (c >= 11) do
+        if (c ~= 32) do
           return expr_starting_with(c, k, t);
-        } else {
+        end else do
           continue ;
-        }
-      } else if (c >= 9) {
+        end
+      end else if (c >= 9) do
         continue ;
-      } else {
+      end else do
         return expr_starting_with(c, k, t);
-      }
-    }
-  };
-}
+      end
+    end
+  end;
+end
 
-function expr_starting_with(c, k, t) {
-  if (c >= 42) {
-    if (c ~= 59) {
-      if (c == 92) {
+function expr_starting_with(c, k, t) do
+  if (c >= 42) do
+    if (c ~= 59) do
+      if (c == 92) do
         return _error(t, --[ Format ]--[
                     --[ String_literal ]--Block.__(11, [
                         "unexpected '\\'",
@@ -477,16 +477,16 @@ function expr_starting_with(c, k, t) {
                       ]),
                     "unexpected '\\'"
                   ]);
-      }
+      end
       
-    } else {
-      return skip_comment((function (param, param$1) {
+    end else do
+      return skip_comment((function (param, param$1) do
                     return expr(k, t);
-                  }), t);
-    }
-  } else if (c >= 11) {
-    if (c >= 32) {
-      switch (c - 32 | 0) {
+                  end), t);
+    end
+  end else if (c >= 11) do
+    if (c >= 32) do
+      switch (c - 32 | 0) do
         case 0 :
             throw [
                   Caml_builtin_exceptions.assert_failure,
@@ -516,10 +516,10 @@ function expr_starting_with(c, k, t) {
                         "unexpected ')'"
                       ]);
         
-      }
-    }
+      end
+    end
     
-  } else if (c >= 9) {
+  end else if (c >= 9) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -528,41 +528,41 @@ function expr_starting_with(c, k, t) {
             27
           ]
         ];
-  }
+  end
   $$Buffer.add_char(t.atom, c);
   return atom(k, t);
-}
+end
 
-function expr_list(acc, k, t) {
-  while(true) {
-    if (t.i == t.len) {
-      return _refill(t, (function (param) {
+function expr_list(acc, k, t) do
+  while(true) do
+    if (t.i == t.len) do
+      return _refill(t, (function (param) do
                     return expr_list(acc, k, param);
-                  }), _error_eof);
-    } else {
+                  end), _error_eof);
+    end else do
       var c = _get(t);
       var switcher = c - 9 | 0;
-      if (switcher > 23 or switcher < 0) {
-        if (switcher == 32) {
+      if (switcher > 23 or switcher < 0) do
+        if (switcher == 32) do
           return Curry._2(k, undefined, --[ `List ]--[
                       848054398,
                       List.rev(acc)
                     ]);
-        }
+        end
         
-      } else if (switcher > 22 or switcher < 2) {
+      end else if (switcher > 22 or switcher < 2) do
         continue ;
-      }
-      return expr_starting_with(c, (function (last, e) {
-                    if (last ~= undefined) {
+      end
+      return expr_starting_with(c, (function (last, e) do
+                    if (last ~= undefined) do
                       var match = last;
-                      if (match ~= 40) {
-                        if (match ~= 41) {
+                      if (match ~= 40) do
+                        if (match ~= 41) do
                           return expr_list(--[ :: ]--[
                                       e,
                                       acc
                                     ], k, t);
-                        } else {
+                        end else do
                           return Curry._2(k, undefined, --[ `List ]--[
                                       848054398,
                                       List.rev(--[ :: ]--[
@@ -570,51 +570,51 @@ function expr_list(acc, k, t) {
                                             acc
                                           ])
                                     ]);
-                        }
-                      } else {
-                        return expr_list(--[ [] ]--0, (function (param, l) {
+                        end
+                      end else do
+                        return expr_list(--[ [] ]--0, (function (param, l) do
                                       return expr_list(--[ :: ]--[
                                                   l,
                                                   acc
                                                 ], k, t);
-                                    }), t);
-                      }
-                    } else {
+                                    end), t);
+                      end
+                    end else do
                       return expr_list(--[ :: ]--[
                                   e,
                                   acc
                                 ], k, t);
-                    }
-                  }), t);
-    }
-  };
-}
+                    end
+                  end), t);
+    end
+  end;
+end
 
-function _return_atom(last, k, t) {
+function _return_atom(last, k, t) do
   var s = $$Buffer.contents(t.atom);
   t.atom.position = 0;
   return Curry._2(k, last, --[ `Atom ]--[
               726615281,
               s
             ]);
-}
+end
 
-function atom(k, t) {
-  while(true) {
-    if (t.i == t.len) {
-      return _refill(t, (function (param) {
+function atom(k, t) do
+  while(true) do
+    if (t.i == t.len) do
+      return _refill(t, (function (param) do
                     return atom(k, param);
-                  }), (function (param) {
+                  end), (function (param) do
                     return _return_atom(undefined, k, param);
-                  }));
-    } else {
+                  end));
+    end else do
       var c = _get(t);
       var exit = 0;
-      if (c >= 35) {
-        if (c >= 42) {
-          if (c ~= 92) {
+      if (c >= 35) do
+        if (c >= 42) do
+          if (c ~= 92) do
             exit = 1;
-          } else {
+          end else do
             return _error(t, --[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "unexpected '\\' in non-quoted string",
@@ -622,13 +622,13 @@ function atom(k, t) {
                           ]),
                         "unexpected '\\' in non-quoted string"
                       ]);
-          }
-        } else {
+          end
+        end else do
           exit = c >= 40 ? 2 : 1;
-        }
-      } else if (c >= 11) {
-        if (c >= 32) {
-          switch (c - 32 | 0) {
+        end
+      end else if (c >= 11) do
+        if (c >= 32) do
+          switch (c - 32 | 0) do
             case 0 :
                 exit = 2;
                 break;
@@ -644,60 +644,60 @@ function atom(k, t) {
                             "unexpected '\"' in the middle of an atom"
                           ]);
             
-          }
-        } else {
+          end
+        end else do
           exit = 1;
-        }
-      } else {
+        end
+      end else do
         exit = c >= 9 ? 2 : 1;
-      }
-      switch (exit) {
+      end
+      switch (exit) do
         case 1 :
             $$Buffer.add_char(t.atom, c);
             continue ;
         case 2 :
             return _return_atom(c, k, t);
         
-      }
-    }
-  };
-}
+      end
+    end
+  end;
+end
 
-function quoted(k, t) {
-  while(true) {
-    if (t.i == t.len) {
-      return _refill(t, (function (param) {
+function quoted(k, t) do
+  while(true) do
+    if (t.i == t.len) do
+      return _refill(t, (function (param) do
                     return quoted(k, param);
-                  }), _error_eof);
-    } else {
+                  end), _error_eof);
+    end else do
       var c = _get(t);
-      if (c ~= 34) {
-        if (c ~= 92) {
+      if (c ~= 34) do
+        if (c ~= 92) do
           $$Buffer.add_char(t.atom, c);
           continue ;
-        } else {
-          return escaped((function (c) {
+        end else do
+          return escaped((function (c) do
                         $$Buffer.add_char(t.atom, c);
                         return quoted(k, t);
-                      }), t);
-        }
-      } else {
+                      end), t);
+        end
+      end else do
         return _return_atom(undefined, k, t);
-      }
-    }
-  };
-}
+      end
+    end
+  end;
+end
 
-function escaped(k, t) {
-  if (t.i == t.len) {
-    return _refill(t, (function (param) {
+function escaped(k, t) do
+  if (t.i == t.len) do
+    return _refill(t, (function (param) do
                   return escaped(k, param);
-                }), _error_eof);
-  } else {
+                end), _error_eof);
+  end else do
     var c = _get(t);
-    if (c >= 92) {
-      if (c < 117) {
-        switch (c - 92 | 0) {
+    if (c >= 92) do
+      if (c < 117) do
+        switch (c - 92 | 0) do
           case 0 :
               return Curry._1(k, --[ "\\" ]--92);
           case 6 :
@@ -730,17 +730,17 @@ function escaped(k, t) {
           case 24 :
               return Curry._1(k, --[ "\t" ]--9);
           
-        }
-      }
+        end
+      end
       
-    } else if (c == 34) {
+    end else if (c == 34) do
       return Curry._1(k, --[ "\"" ]--34);
-    }
-    if (_is_digit(c)) {
-      return read2int(c - --[ "0" ]--48 | 0, (function (n) {
+    end
+    if (_is_digit(c)) do
+      return read2int(c - --[ "0" ]--48 | 0, (function (n) do
                     return Curry._1(k, Char.chr(n));
-                  }), t);
-    } else {
+                  end), t);
+    end else do
       return Curry._1(_error(t, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "unexpected escaped char '",
@@ -751,20 +751,20 @@ function escaped(k, t) {
                         ]),
                       "unexpected escaped char '%c'"
                     ]), c);
-    }
-  }
-}
+    end
+  end
+end
 
-function read2int(i, k, t) {
-  if (t.i == t.len) {
-    return _refill(t, (function (param) {
+function read2int(i, k, t) do
+  if (t.i == t.len) do
+    return _refill(t, (function (param) do
                   return read2int(i, k, param);
-                }), _error_eof);
-  } else {
+                end), _error_eof);
+  end else do
     var c = _get(t);
-    if (_is_digit(c)) {
+    if (_is_digit(c)) do
       return read1int(Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0, k, t);
-    } else {
+    end else do
       return Curry._1(_error(t, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "unexpected char '",
@@ -775,20 +775,20 @@ function read2int(i, k, t) {
                         ]),
                       "unexpected char '%c' when reading byte"
                     ]), c);
-    }
-  }
-}
+    end
+  end
+end
 
-function read1int(i, k, t) {
-  if (t.i == t.len) {
-    return _refill(t, (function (param) {
+function read1int(i, k, t) do
+  if (t.i == t.len) do
+    return _refill(t, (function (param) do
                   return read1int(i, k, param);
-                }), _error_eof);
-  } else {
+                end), _error_eof);
+  end else do
     var c = _get(t);
-    if (_is_digit(c)) {
+    if (_is_digit(c)) do
       return Curry._1(k, Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0);
-    } else {
+    end else do
       return Curry._1(_error(t, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "unexpected char '",
@@ -799,159 +799,159 @@ function read1int(i, k, t) {
                         ]),
                       "unexpected char '%c' when reading byte"
                     ]), c);
-    }
-  }
-}
+    end
+  end
+end
 
-function skip_comment(k, t) {
-  while(true) {
-    if (t.i == t.len) {
-      return _refill(t, (function (param) {
+function skip_comment(k, t) do
+  while(true) do
+    if (t.i == t.len) do
+      return _refill(t, (function (param) do
                     return skip_comment(k, param);
-                  }), _error_eof);
-    } else {
+                  end), _error_eof);
+    end else do
       var match = _get(t);
-      if (match ~= 10) {
+      if (match ~= 10) do
         continue ;
-      } else {
+      end else do
         return Curry._2(k, undefined, --[ () ]--0);
-      }
-    }
-  };
-}
+      end
+    end
+  end;
+end
 
-function expr_or_end(k, t) {
-  while(true) {
-    if (t.i == t.len) {
-      return _refill(t, (function (param) {
+function expr_or_end(k, t) do
+  while(true) do
+    if (t.i == t.len) do
+      return _refill(t, (function (param) do
                     return expr_or_end(k, param);
-                  }), (function (param) {
+                  end), (function (param) do
                     return --[ End ]--3455931;
-                  }));
-    } else {
+                  end));
+    end else do
       var c = _get(t);
-      if (c >= 11) {
-        if (c ~= 32) {
+      if (c >= 11) do
+        if (c ~= 32) do
           return expr_starting_with(c, k, t);
-        } else {
+        end else do
           continue ;
-        }
-      } else if (c >= 9) {
+        end
+      end else if (c >= 9) do
         continue ;
-      } else {
+      end else do
         return expr_starting_with(c, k, t);
-      }
-    }
-  };
-}
+      end
+    end
+  end;
+end
 
-function next(t) {
-  return expr_or_end((function (param, x) {
+function next(t) do
+  return expr_or_end((function (param, x) do
                 return --[ `Ok ]--[
                         17724,
                         x
                       ];
-              }), t);
-}
+              end), t);
+end
 
-function parse_string(s) {
+function parse_string(s) do
   var n = #s;
-  var stop = {
+  var stop = do
     contents: false
-  };
-  var refill = function (bytes, i, _len) {
-    if (stop.contents) {
+  end;
+  var refill = function (bytes, i, _len) do
+    if (stop.contents) do
       return 0;
-    } else {
+    end else do
       stop.contents = true;
       Bytes.blit_string(s, 0, bytes, i, n);
       return n;
-    }
-  };
+    end
+  end;
   var d = make(n, refill);
   var res = next(d);
-  if (typeof res == "number") {
+  if (typeof res == "number") do
     return --[ `Error ]--[
             106380200,
             "unexpected end of file"
           ];
-  } else {
+  end else do
     return res;
-  }
-}
+  end
+end
 
-function parse_chan(bufsize, ic) {
-  var d = make(bufsize, (function (param, param$1, param$2) {
+function parse_chan(bufsize, ic) do
+  var d = make(bufsize, (function (param, param$1, param$2) do
           return Pervasives.input(ic, param, param$1, param$2);
-        }));
+        end));
   var res = next(d);
-  if (typeof res == "number") {
+  if (typeof res == "number") do
     return --[ `Error ]--[
             106380200,
             "unexpected end of file"
           ];
-  } else {
+  end else do
     return res;
-  }
-}
+  end
+end
 
-function parse_chan_gen(bufsize, ic) {
-  var d = make(bufsize, (function (param, param$1, param$2) {
+function parse_chan_gen(bufsize, ic) do
+  var d = make(bufsize, (function (param, param$1, param$2) do
           return Pervasives.input(ic, param, param$1, param$2);
-        }));
-  return (function (param) {
+        end));
+  return (function (param) do
       var e = next(d);
-      if (typeof e == "number") {
+      if (typeof e == "number") do
         return ;
-      } else {
+      end else do
         return e;
-      }
-    });
-}
+      end
+    end);
+end
 
-function parse_chan_list(bufsize, ic) {
-  var d = make(bufsize, (function (param, param$1, param$2) {
+function parse_chan_list(bufsize, ic) do
+  var d = make(bufsize, (function (param, param$1, param$2) do
           return Pervasives.input(ic, param, param$1, param$2);
-        }));
+        end));
   var _acc = --[ [] ]--0;
-  while(true) {
+  while(true) do
     var acc = _acc;
     var e = next(d);
-    if (typeof e == "number") {
+    if (typeof e == "number") do
       return --[ `Ok ]--[
               17724,
               List.rev(acc)
             ];
-    } else if (e[0] >= 106380200) {
+    end else if (e[0] >= 106380200) do
       return e;
-    } else {
+    end else do
       _acc = --[ :: ]--[
         e[1],
         acc
       ];
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function parse_file(filename) {
-  return _with_in(filename, (function (ic) {
+function parse_file(filename) do
+  return _with_in(filename, (function (ic) do
                 return parse_chan(undefined, ic);
-              }));
-}
+              end));
+end
 
-function parse_file_list(filename) {
-  return _with_in(filename, (function (ic) {
+function parse_file_list(filename) do
+  return _with_in(filename, (function (ic) do
                 return parse_chan_list(undefined, ic);
-              }));
-}
+              end));
+end
 
-function MakeDecode(funarg) {
+function MakeDecode(funarg) do
   var $great$great$eq = funarg.$great$great$eq;
-  var make = function (bufsizeOpt, refill) {
+  var make = function (bufsizeOpt, refill) do
     var bufsize = bufsizeOpt ~= undefined ? bufsizeOpt : 1024;
     var bufsize$1 = Caml_primitive.caml_int_min(bufsize > 16 ? bufsize : 16, Sys.max_string_length);
-    return {
+    return do
             buf: Caml_bytes.caml_create_bytes(bufsize$1),
             refill: refill,
             atom: $$Buffer.create(32),
@@ -959,28 +959,28 @@ function MakeDecode(funarg) {
             len: 0,
             line: 1,
             col: 1
-          };
-  };
-  var _is_digit = function (c) {
-    if (--[ "0" ]--48 <= c) {
+          end;
+  end;
+  var _is_digit = function (c) do
+    if (--[ "0" ]--48 <= c) do
       return c <= --[ "9" ]--57;
-    } else {
+    end else do
       return false;
-    }
-  };
-  var _refill = function (t, k_succ, k_fail) {
-    return Curry._2($great$great$eq, Curry._3(t.refill, t.buf, 0, #t.buf), (function (n) {
+    end
+  end;
+  var _refill = function (t, k_succ, k_fail) do
+    return Curry._2($great$great$eq, Curry._3(t.refill, t.buf, 0, #t.buf), (function (n) do
                   t.i = 0;
                   t.len = n;
-                  if (n == 0) {
+                  if (n == 0) do
                     return Curry._1(k_fail, t);
-                  } else {
+                  end else do
                     return Curry._1(k_succ, t);
-                  }
-                }));
-  };
-  var _get = function (t) {
-    if (t.i >= t.len) {
+                  end
+                end));
+  end;
+  var _get = function (t) do
+    if (t.i >= t.len) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -989,18 +989,18 @@ function MakeDecode(funarg) {
               4
             ]
           ];
-    }
+    end
     var c = Caml_bytes.get(t.buf, t.i);
     t.i = t.i + 1 | 0;
-    if (c == --[ "\n" ]--10) {
+    if (c == --[ "\n" ]--10) do
       t.col = 1;
       t.line = t.line + 1 | 0;
-    } else {
+    end else do
       t.col = t.col + 1 | 0;
-    }
+    end
     return c;
-  };
-  var _error = function (t, msg) {
+  end;
+  var _error = function (t, msg) do
     var b = $$Buffer.create(32);
     Curry._2(Printf.bprintf(b, --[ Format ]--[
               --[ String_literal ]--Block.__(11, [
@@ -1025,15 +1025,15 @@ function MakeDecode(funarg) {
                 ]),
               "at %d, %d: "
             ]), t.line, t.col);
-    return Printf.kbprintf((function (b) {
+    return Printf.kbprintf((function (b) do
                   var msg$prime = $$Buffer.contents(b);
                   return Curry._1(funarg.$$return, --[ `Error ]--[
                               106380200,
                               msg$prime
                             ]);
-                }), b, msg);
-  };
-  var _error_eof = function (t) {
+                end), b, msg);
+  end;
+  var _error_eof = function (t) do
     return _error(t, --[ Format ]--[
                 --[ String_literal ]--Block.__(11, [
                     "unexpected end of input",
@@ -1041,33 +1041,33 @@ function MakeDecode(funarg) {
                   ]),
                 "unexpected end of input"
               ]);
-  };
-  var expr = function (k, t) {
-    while(true) {
-      if (t.i == t.len) {
-        return _refill(t, (function (param) {
+  end;
+  var expr = function (k, t) do
+    while(true) do
+      if (t.i == t.len) do
+        return _refill(t, (function (param) do
                       return expr(k, param);
-                    }), _error_eof);
-      } else {
+                    end), _error_eof);
+      end else do
         var c = _get(t);
-        if (c >= 11) {
-          if (c ~= 32) {
+        if (c >= 11) do
+          if (c ~= 32) do
             return expr_starting_with(c, k, t);
-          } else {
+          end else do
             continue ;
-          }
-        } else if (c >= 9) {
+          end
+        end else if (c >= 9) do
           continue ;
-        } else {
+        end else do
           return expr_starting_with(c, k, t);
-        }
-      }
-    };
-  };
-  var expr_starting_with = function (c, k, t) {
-    if (c >= 42) {
-      if (c ~= 59) {
-        if (c == 92) {
+        end
+      end
+    end;
+  end;
+  var expr_starting_with = function (c, k, t) do
+    if (c >= 42) do
+      if (c ~= 59) do
+        if (c == 92) do
           return _error(t, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "unexpected '\\'",
@@ -1075,16 +1075,16 @@ function MakeDecode(funarg) {
                         ]),
                       "unexpected '\\'"
                     ]);
-        }
+        end
         
-      } else {
-        return skip_comment((function (param, param$1) {
+      end else do
+        return skip_comment((function (param, param$1) do
                       return expr(k, t);
-                    }), t);
-      }
-    } else if (c >= 11) {
-      if (c >= 32) {
-        switch (c - 32 | 0) {
+                    end), t);
+      end
+    end else if (c >= 11) do
+      if (c >= 32) do
+        switch (c - 32 | 0) do
           case 0 :
               throw [
                     Caml_builtin_exceptions.assert_failure,
@@ -1114,10 +1114,10 @@ function MakeDecode(funarg) {
                           "unexpected ')'"
                         ]);
           
-        }
-      }
+        end
+      end
       
-    } else if (c >= 9) {
+    end else if (c >= 9) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -1126,40 +1126,40 @@ function MakeDecode(funarg) {
               27
             ]
           ];
-    }
+    end
     $$Buffer.add_char(t.atom, c);
     return atom(k, t);
-  };
-  var expr_list = function (acc, k, t) {
-    while(true) {
-      if (t.i == t.len) {
-        return _refill(t, (function (param) {
+  end;
+  var expr_list = function (acc, k, t) do
+    while(true) do
+      if (t.i == t.len) do
+        return _refill(t, (function (param) do
                       return expr_list(acc, k, param);
-                    }), _error_eof);
-      } else {
+                    end), _error_eof);
+      end else do
         var c = _get(t);
         var switcher = c - 9 | 0;
-        if (switcher > 23 or switcher < 0) {
-          if (switcher == 32) {
+        if (switcher > 23 or switcher < 0) do
+          if (switcher == 32) do
             return Curry._2(k, undefined, --[ `List ]--[
                         848054398,
                         List.rev(acc)
                       ]);
-          }
+          end
           
-        } else if (switcher > 22 or switcher < 2) {
+        end else if (switcher > 22 or switcher < 2) do
           continue ;
-        }
-        return expr_starting_with(c, (function (last, e) {
-                      if (last ~= undefined) {
+        end
+        return expr_starting_with(c, (function (last, e) do
+                      if (last ~= undefined) do
                         var match = last;
-                        if (match ~= 40) {
-                          if (match ~= 41) {
+                        if (match ~= 40) do
+                          if (match ~= 41) do
                             return expr_list(--[ :: ]--[
                                         e,
                                         acc
                                       ], k, t);
-                          } else {
+                          end else do
                             return Curry._2(k, undefined, --[ `List ]--[
                                         848054398,
                                         List.rev(--[ :: ]--[
@@ -1167,49 +1167,49 @@ function MakeDecode(funarg) {
                                               acc
                                             ])
                                       ]);
-                          }
-                        } else {
-                          return expr_list(--[ [] ]--0, (function (param, l) {
+                          end
+                        end else do
+                          return expr_list(--[ [] ]--0, (function (param, l) do
                                         return expr_list(--[ :: ]--[
                                                     l,
                                                     acc
                                                   ], k, t);
-                                      }), t);
-                        }
-                      } else {
+                                      end), t);
+                        end
+                      end else do
                         return expr_list(--[ :: ]--[
                                     e,
                                     acc
                                   ], k, t);
-                      }
-                    }), t);
-      }
-    };
-  };
-  var _return_atom = function (last, k, t) {
+                      end
+                    end), t);
+      end
+    end;
+  end;
+  var _return_atom = function (last, k, t) do
     var s = $$Buffer.contents(t.atom);
     t.atom.position = 0;
     return Curry._2(k, last, --[ `Atom ]--[
                 726615281,
                 s
               ]);
-  };
-  var atom = function (k, t) {
-    while(true) {
-      if (t.i == t.len) {
-        return _refill(t, (function (param) {
+  end;
+  var atom = function (k, t) do
+    while(true) do
+      if (t.i == t.len) do
+        return _refill(t, (function (param) do
                       return atom(k, param);
-                    }), (function (param) {
+                    end), (function (param) do
                       return _return_atom(undefined, k, param);
-                    }));
-      } else {
+                    end));
+      end else do
         var c = _get(t);
         var exit = 0;
-        if (c >= 35) {
-          if (c >= 42) {
-            if (c ~= 92) {
+        if (c >= 35) do
+          if (c >= 42) do
+            if (c ~= 92) do
               exit = 1;
-            } else {
+            end else do
               return _error(t, --[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "unexpected '\\' in non-quoted string",
@@ -1217,13 +1217,13 @@ function MakeDecode(funarg) {
                             ]),
                           "unexpected '\\' in non-quoted string"
                         ]);
-            }
-          } else {
+            end
+          end else do
             exit = c >= 40 ? 2 : 1;
-          }
-        } else if (c >= 11) {
-          if (c >= 32) {
-            switch (c - 32 | 0) {
+          end
+        end else if (c >= 11) do
+          if (c >= 32) do
+            switch (c - 32 | 0) do
               case 0 :
                   exit = 2;
                   break;
@@ -1239,58 +1239,58 @@ function MakeDecode(funarg) {
                               "unexpected '\"' in the middle of an atom"
                             ]);
               
-            }
-          } else {
+            end
+          end else do
             exit = 1;
-          }
-        } else {
+          end
+        end else do
           exit = c >= 9 ? 2 : 1;
-        }
-        switch (exit) {
+        end
+        switch (exit) do
           case 1 :
               $$Buffer.add_char(t.atom, c);
               continue ;
           case 2 :
               return _return_atom(c, k, t);
           
-        }
-      }
-    };
-  };
-  var quoted = function (k, t) {
-    while(true) {
-      if (t.i == t.len) {
-        return _refill(t, (function (param) {
+        end
+      end
+    end;
+  end;
+  var quoted = function (k, t) do
+    while(true) do
+      if (t.i == t.len) do
+        return _refill(t, (function (param) do
                       return quoted(k, param);
-                    }), _error_eof);
-      } else {
+                    end), _error_eof);
+      end else do
         var c = _get(t);
-        if (c ~= 34) {
-          if (c ~= 92) {
+        if (c ~= 34) do
+          if (c ~= 92) do
             $$Buffer.add_char(t.atom, c);
             continue ;
-          } else {
-            return escaped((function (c) {
+          end else do
+            return escaped((function (c) do
                           $$Buffer.add_char(t.atom, c);
                           return quoted(k, t);
-                        }), t);
-          }
-        } else {
+                        end), t);
+          end
+        end else do
           return _return_atom(undefined, k, t);
-        }
-      }
-    };
-  };
-  var escaped = function (k, t) {
-    if (t.i == t.len) {
-      return _refill(t, (function (param) {
+        end
+      end
+    end;
+  end;
+  var escaped = function (k, t) do
+    if (t.i == t.len) do
+      return _refill(t, (function (param) do
                     return escaped(k, param);
-                  }), _error_eof);
-    } else {
+                  end), _error_eof);
+    end else do
       var c = _get(t);
-      if (c >= 92) {
-        if (c < 117) {
-          switch (c - 92 | 0) {
+      if (c >= 92) do
+        if (c < 117) do
+          switch (c - 92 | 0) do
             case 0 :
                 return Curry._1(k, --[ "\\" ]--92);
             case 6 :
@@ -1323,17 +1323,17 @@ function MakeDecode(funarg) {
             case 24 :
                 return Curry._1(k, --[ "\t" ]--9);
             
-          }
-        }
+          end
+        end
         
-      } else if (c == 34) {
+      end else if (c == 34) do
         return Curry._1(k, --[ "\"" ]--34);
-      }
-      if (_is_digit(c)) {
-        return read2int(c - --[ "0" ]--48 | 0, (function (n) {
+      end
+      if (_is_digit(c)) do
+        return read2int(c - --[ "0" ]--48 | 0, (function (n) do
                       return Curry._1(k, Char.chr(n));
-                    }), t);
-      } else {
+                    end), t);
+      end else do
         return Curry._1(_error(t, --[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "unexpected escaped char '",
@@ -1344,19 +1344,19 @@ function MakeDecode(funarg) {
                           ]),
                         "unexpected escaped char '%c'"
                       ]), c);
-      }
-    }
-  };
-  var read2int = function (i, k, t) {
-    if (t.i == t.len) {
-      return _refill(t, (function (param) {
+      end
+    end
+  end;
+  var read2int = function (i, k, t) do
+    if (t.i == t.len) do
+      return _refill(t, (function (param) do
                     return read2int(i, k, param);
-                  }), _error_eof);
-    } else {
+                  end), _error_eof);
+    end else do
       var c = _get(t);
-      if (_is_digit(c)) {
+      if (_is_digit(c)) do
         return read1int(Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0, k, t);
-      } else {
+      end else do
         return Curry._1(_error(t, --[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "unexpected char '",
@@ -1367,19 +1367,19 @@ function MakeDecode(funarg) {
                           ]),
                         "unexpected char '%c' when reading byte"
                       ]), c);
-      }
-    }
-  };
-  var read1int = function (i, k, t) {
-    if (t.i == t.len) {
-      return _refill(t, (function (param) {
+      end
+    end
+  end;
+  var read1int = function (i, k, t) do
+    if (t.i == t.len) do
+      return _refill(t, (function (param) do
                     return read1int(i, k, param);
-                  }), _error_eof);
-    } else {
+                  end), _error_eof);
+    end else do
       var c = _get(t);
-      if (_is_digit(c)) {
+      if (_is_digit(c)) do
         return Curry._1(k, Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0);
-      } else {
+      end else do
         return Curry._1(_error(t, --[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "unexpected char '",
@@ -1390,67 +1390,67 @@ function MakeDecode(funarg) {
                           ]),
                         "unexpected char '%c' when reading byte"
                       ]), c);
-      }
-    }
-  };
-  var skip_comment = function (k, t) {
-    while(true) {
-      if (t.i == t.len) {
-        return _refill(t, (function (param) {
+      end
+    end
+  end;
+  var skip_comment = function (k, t) do
+    while(true) do
+      if (t.i == t.len) do
+        return _refill(t, (function (param) do
                       return skip_comment(k, param);
-                    }), _error_eof);
-      } else {
+                    end), _error_eof);
+      end else do
         var match = _get(t);
-        if (match ~= 10) {
+        if (match ~= 10) do
           continue ;
-        } else {
+        end else do
           return Curry._2(k, undefined, --[ () ]--0);
-        }
-      }
-    };
-  };
-  var expr_or_end = function (k, t) {
-    while(true) {
-      if (t.i == t.len) {
-        return _refill(t, (function (param) {
+        end
+      end
+    end;
+  end;
+  var expr_or_end = function (k, t) do
+    while(true) do
+      if (t.i == t.len) do
+        return _refill(t, (function (param) do
                       return expr_or_end(k, param);
-                    }), (function (param) {
+                    end), (function (param) do
                       return Curry._1(funarg.$$return, --[ End ]--3455931);
-                    }));
-      } else {
+                    end));
+      end else do
         var c = _get(t);
-        if (c >= 11) {
-          if (c ~= 32) {
+        if (c >= 11) do
+          if (c ~= 32) do
             return expr_starting_with(c, k, t);
-          } else {
+          end else do
             continue ;
-          }
-        } else if (c >= 9) {
+          end
+        end else if (c >= 9) do
           continue ;
-        } else {
+        end else do
           return expr_starting_with(c, k, t);
-        }
-      }
-    };
-  };
-  var next = function (t) {
-    return expr_or_end((function (param, x) {
+        end
+      end
+    end;
+  end;
+  var next = function (t) do
+    return expr_or_end((function (param, x) do
                   return Curry._1(funarg.$$return, --[ `Ok ]--[
                               17724,
                               x
                             ]);
-                }), t);
-  };
-  return {
+                end), t);
+  end;
+  return do
           make: make,
           next: next
-        };
-}
+        end;
+end
 
-var D = {
+var D = do
   make: make,
   next: next
-};
+end;
 
 exports.to_buf = to_buf;
 exports.to_string = to_string;

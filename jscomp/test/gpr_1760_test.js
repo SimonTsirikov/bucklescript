@@ -5,74 +5,74 @@ var Block = require("../../lib/js/block.js");
 var Caml_int32 = require("../../lib/js/caml_int32.js");
 var Caml_int64 = require("../../lib/js/caml_int64.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 var a0;
 
-try {
+try do
   Caml_int32.div(0, 0);
   a0 = 0;
-}
-catch (exn){
+end
+catch (exn)do
   a0 = 1;
-}
+end
 
 var a1;
 
-try {
+try do
   Caml_int32.mod_(0, 0);
   a1 = 0;
-}
-catch (exn$1){
+end
+catch (exn$1)do
   a1 = 1;
-}
+end
 
 var a4;
 
-try {
+try do
   Caml_int32.div(0, 0);
   a4 = 0;
-}
-catch (exn$2){
+end
+catch (exn$2)do
   a4 = 1;
-}
+end
 
 var a5;
 
-try {
+try do
   Caml_int32.mod_(0, 0);
   a5 = 0;
-}
-catch (exn$3){
+end
+catch (exn$3)do
   a5 = 1;
-}
+end
 
 var a6;
 
-try {
+try do
   Caml_int64.div(--[ int64 ]--[
         --[ hi ]--0,
         --[ lo ]--0
@@ -81,14 +81,14 @@ try {
         --[ lo ]--0
       ]);
   a6 = 0;
-}
-catch (exn$4){
+end
+catch (exn$4)do
   a6 = 1;
-}
+end
 
 var a7;
 
-try {
+try do
   Caml_int64.mod_(--[ int64 ]--[
         --[ hi ]--0,
         --[ lo ]--0
@@ -97,10 +97,10 @@ try {
         --[ lo ]--0
       ]);
   a7 = 0;
-}
-catch (exn$5){
+end
+catch (exn$5)do
   a7 = 1;
-}
+end
 
 eq("File \"gpr_1760_test.ml\", line 30, characters 5-12", --[ tuple ]--[
       a0,

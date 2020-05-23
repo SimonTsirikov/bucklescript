@@ -1,51 +1,51 @@
 'use strict';
 
 
-function sum (a,b){ 
+function sum (a,b)do 
   return a + b
-};
+end;
 
 var v = sum(1, 2);
 
-function f(a) {
+function f(a) do
   return a + 3 | 0;
-}
+end
 
 var b = f(1);
 
 var c = f(2);
 
-function forIn (o,foo){
+function forIn (o,foo)do
   for (var i in o){
     foo(o)
   }
-  };
+  end;
 
-function log(x) {
+function log(x) do
   console.log(x);
   return --[ () ]--0;
-}
+end
 
-var N = {
+var N = do
   log2: log
-};
+end;
 
-forIn({
+forIn(do
       x: 3
-    }, (function (x) {
+    end, (function (x) do
         console.log(x);
         return --[ () ]--0;
-      }));
+      end));
 
-forIn({
+forIn(do
       x: 3,
       y: 3
-    }, (function (x) {
+    end, (function (x) do
         console.log(x);
         return --[ () ]--0;
-      }));
+      end));
 
-function f3 (){return true};
+function f3 ()doreturn trueend;
 
 var bbbb = f3();
 

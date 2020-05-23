@@ -4,7 +4,7 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 var Curry = require("../../lib/js/curry.js");
 
-var v = {
+var v = do
   syntax: undefined,
   imports: 0,
   file_options: 0,
@@ -12,9 +12,9 @@ var v = {
   messages: 0,
   enums: 0,
   extends: 0
-};
+end;
 
-var u_v = {
+var u_v = do
   syntax: undefined,
   imports: 0,
   file_options: 0,
@@ -22,11 +22,11 @@ var u_v = {
   messages: 0,
   enums: 0,
   extends: 0
-};
+end;
 
-function f(g, h) {
+function f(g, h) do
   var init = Curry._1(g, h);
-  return {
+  return do
           syntax: init.syntax,
           imports: 0,
           file_options: init.file_options,
@@ -34,17 +34,17 @@ function f(g, h) {
           messages: init.messages,
           enums: init.enums,
           extends: init.extends
-        };
-}
+        end;
+end
 
 var suites_000 = --[ tuple ]--[
   "eq_with",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 v,
                 u_v
               ]);
-    })
+    end)
 ];
 
 var suites = --[ :: ]--[
@@ -54,7 +54,7 @@ var suites = --[ :: ]--[
 
 Mt.from_pair_suites("Record_with_test", suites);
 
-var uv = {
+var uv = do
   syntax: undefined,
   imports: 1,
   file_options: 0,
@@ -62,7 +62,7 @@ var uv = {
   messages: 0,
   enums: 0,
   extends: 0
-};
+end;
 
 exports.v = v;
 exports.uv = uv;

@@ -2,8 +2,8 @@
 
 var Pervasives = require("../../lib/js/pervasives.js");
 
-function str(e) {
-  switch (e.tag | 0) {
+function str(e) do
+  switch (e.tag | 0) do
     case --[ Numeral ]--0 :
         return Pervasives.string_of_float(e[0]);
     case --[ Plus ]--1 :
@@ -19,8 +19,8 @@ function str(e) {
     case --[ Variable ]--6 :
         return e[0];
     
-  }
-}
+  end
+end
 
 exports.str = str;
 --[ No side effect ]--

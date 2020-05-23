@@ -1,8 +1,8 @@
 'use strict';
 
 
-function actionKey(key, a, b, c, d, e) {
-  switch (key) {
+function actionKey(key, a, b, c, d, e) do
+  switch (key) do
     case 98 :
         return c;
     case 106 :
@@ -32,11 +32,11 @@ function actionKey(key, a, b, c, d, e) {
         return a;
     default:
       
-  }
-  return (function (param) {
+  end
+  return (function (param) do
       return --[ () ]--0;
-    });
-}
+    end);
+end
 
 exports.actionKey = actionKey;
 --[ No side effect ]--

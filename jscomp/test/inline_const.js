@@ -3,9 +3,9 @@
 
 var N = { };
 
-function N1($star) {
+function N1($star) do
   return { };
-}
+end
 
 var x = true;
 

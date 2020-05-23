@@ -2,33 +2,33 @@
 
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function f(x) {
+function f(x) do
   return x + 1 | 0;
-}
+end
 
-function f_0(x) {
+function f_0(x) do
   return x - 1 | 0;
-}
+end
 
-function f2(param) {
-  if (param >= 3) {
+function f2(param) do
+  if (param >= 3) do
     return --[ T003 ]--3;
-  } else {
+  end else do
     return param;
-  }
-}
+  end
+end
 
-function f3(param) {
+function f3(param) do
   return param;
-}
+end
 
-function f4(param) {
+function f4(param) do
   return 3;
-}
+end
 
-function f5(param) {
-  if (typeof param == "number") {
-    switch (param) {
+function f5(param) do
+  if (typeof param == "number") do
+    switch (param) do
       case --[ A ]--0 :
           return 1;
       case --[ B ]--1 :
@@ -36,34 +36,34 @@ function f5(param) {
       case --[ F ]--2 :
           return 4;
       
-    }
-  } else {
-    switch (param.tag | 0) {
+    end
+  end else do
+    switch (param.tag | 0) do
       case --[ C ]--0 :
       case --[ D ]--1 :
           return 1;
       case --[ E ]--2 :
           return 2;
       
-    }
-  }
-}
+    end
+  end
+end
 
-function f6(param) {
-  if (typeof param == "number") {
-    if (param >= 2) {
+function f6(param) do
+  if (typeof param == "number") do
+    if (param >= 2) do
       return 2;
-    } else {
+    end else do
       return 0;
-    }
-  } else {
+    end
+  end else do
     return 1;
-  }
-}
+  end
+end
 
-function f7(param) {
-  if (typeof param == "number") {
-    switch (param) {
+function f7(param) do
+  if (typeof param == "number") do
+    switch (param) do
       case --[ A ]--0 :
           return 1;
       case --[ B ]--1 :
@@ -71,9 +71,9 @@ function f7(param) {
       case --[ F ]--2 :
           return -1;
       
-    }
-  } else {
-    switch (param.tag | 0) {
+    end
+  end else do
+    switch (param.tag | 0) do
       case --[ C ]--0 :
           return 3;
       case --[ D ]--1 :
@@ -81,39 +81,39 @@ function f7(param) {
       case --[ E ]--2 :
           return -1;
       
-    }
-  }
-}
+    end
+  end
+end
 
-function f8(param) {
-  if (typeof param == "number") {
-    switch (param) {
+function f8(param) do
+  if (typeof param == "number") do
+    switch (param) do
       case --[ T60 ]--0 :
       case --[ T61 ]--1 :
           return 1;
       default:
         return 3;
-    }
-  } else {
-    switch (param.tag | 0) {
+    end
+  end else do
+    switch (param.tag | 0) do
       case --[ T64 ]--0 :
       case --[ T65 ]--1 :
           return 2;
       default:
         return 3;
-    }
-  }
-}
+    end
+  end
+end
 
-function f9(param) {
-  if (typeof param == "number") {
-    if (param == --[ T63 ]--3) {
+function f9(param) do
+  if (typeof param == "number") do
+    if (param == --[ T63 ]--3) do
       return 3;
-    } else {
+    end else do
       return 1;
-    }
-  } else {
-    switch (param.tag | 0) {
+    end
+  end else do
+    switch (param.tag | 0) do
       case --[ T64 ]--0 :
       case --[ T65 ]--1 :
           return 2;
@@ -121,13 +121,13 @@ function f9(param) {
       case --[ T68 ]--3 :
           return 3;
       
-    }
-  }
-}
+    end
+  end
+end
 
-function f10(param) {
-  if (typeof param == "number") {
-    switch (param) {
+function f10(param) do
+  if (typeof param == "number") do
+    switch (param) do
       case --[ T60 ]--0 :
           return 0;
       case --[ T61 ]--1 :
@@ -137,9 +137,9 @@ function f10(param) {
       case --[ T63 ]--3 :
           return 1;
       
-    }
-  } else {
-    switch (param.tag | 0) {
+    end
+  end else do
+    switch (param.tag | 0) do
       case --[ T64 ]--0 :
       case --[ T65 ]--1 :
           return 2;
@@ -147,14 +147,14 @@ function f10(param) {
       case --[ T68 ]--3 :
           return 3;
       
-    }
-  }
-}
+    end
+  end
+end
 
-function f11(x) {
-  if (typeof x == "number") {
+function f11(x) do
+  if (typeof x == "number") do
     return 2;
-  } else if (x.tag) {
+  end else if (x.tag) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -163,10 +163,10 @@ function f11(x) {
             9
           ]
         ];
-  } else {
+  end else do
     return 1;
-  }
-}
+  end
+end
 
 exports.f = f;
 exports.f_0 = f_0;

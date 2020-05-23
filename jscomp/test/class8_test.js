@@ -14,24 +14,24 @@ var shared = [
 
 var shared$1 = ["repr"];
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function comparable_001($$class) {
+function comparable_001($$class) do
   CamlinternalOO.get_method_label($$class, "leq");
-  return (function (env, self) {
+  return (function (env, self) do
       return CamlinternalOO.create_object_opt(self, $$class);
-    });
-}
+    end);
+end
 
 var comparable = --[ class ]--[
   0,
@@ -40,7 +40,7 @@ var comparable = --[ class ]--[
   0
 ];
 
-function money_init($$class) {
+function money_init($$class) do
   var x = CamlinternalOO.new_variable($$class, "");
   var ids = CamlinternalOO.new_methods_variables($$class, [
         "value",
@@ -53,43 +53,43 @@ function money_init($$class) {
   var obj_init = inh[0];
   CamlinternalOO.set_methods($$class, [
         value,
-        (function (self$2) {
+        (function (self$2) do
             return self$2[repr];
-          }),
+          end),
         leq,
-        (function (self$2, p) {
+        (function (self$2, p) do
             return self$2[repr] <= Caml_oo_curry.js1(834174833, 1, p);
-          })
+          end)
       ]);
-  return (function (env, self, x$1) {
+  return (function (env, self, x$1) do
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x] = x$1;
       Curry._1(obj_init, self$1);
       self$1[repr] = x$1;
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    });
-}
+    end);
+end
 
 var money = CamlinternalOO.make_class(shared, money_init);
 
-function money2_init($$class) {
+function money2_init($$class) do
   var x = CamlinternalOO.new_variable($$class, "");
   var times = CamlinternalOO.get_method_label($$class, "times");
   var inh = CamlinternalOO.inherits($$class, shared$1, 0, shared, money, true);
   var obj_init = inh[0];
   var repr = inh[1];
-  CamlinternalOO.set_method($$class, times, (function (self$3, k) {
+  CamlinternalOO.set_method($$class, times, (function (self$3, k) do
           var copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
           copy[repr] = k * self$3[repr];
           return copy;
-        }));
-  return (function (env, self, x$1) {
+        end));
+  return (function (env, self, x$1) do
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x] = x$1;
       Curry._2(obj_init, self$1, x$1);
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    });
-}
+    end);
+end
 
 var money2 = CamlinternalOO.make_class([
       "leq",
@@ -97,13 +97,13 @@ var money2 = CamlinternalOO.make_class([
       "value"
     ], money2_init);
 
-function min(x, y) {
-  if (Caml_oo_curry.js2(5393368, 2, x, y)) {
+function min(x, y) do
+  if (Caml_oo_curry.js2(5393368, 2, x, y)) do
     return x;
-  } else {
+  end else do
     return y;
-  }
-}
+  end
+end
 
 var tmp = min(Curry._2(money[0], 0, 1.0), Curry._2(money[0], 0, 3.0));
 

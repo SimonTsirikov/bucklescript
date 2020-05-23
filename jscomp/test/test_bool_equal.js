@@ -2,22 +2,22 @@
 
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function bool_equal(x, y) {
-  if (x) {
-    if (y) {
+function bool_equal(x, y) do
+  if (x) do
+    if (y) do
       return true;
-    } else {
+    end else do
       return false;
-    }
-  } else if (y) {
+    end
+  end else if (y) do
     return false;
-  } else {
+  end else do
     return true;
-  }
-}
+  end
+end
 
-function assertions(param) {
-  if (!bool_equal(true, true)) {
+function assertions(param) do
+  if (!bool_equal(true, true)) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -26,8 +26,8 @@ function assertions(param) {
             2
           ]
         ];
-  }
-  if (!bool_equal(false, false)) {
+  end
+  if (!bool_equal(false, false)) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -36,8 +36,8 @@ function assertions(param) {
             2
           ]
         ];
-  }
-  if (bool_equal(true, false)) {
+  end
+  if (bool_equal(true, false)) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -46,8 +46,8 @@ function assertions(param) {
             2
           ]
         ];
-  }
-  if (bool_equal(false, true)) {
+  end
+  if (bool_equal(false, true)) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -56,77 +56,77 @@ function assertions(param) {
             2
           ]
         ];
-  }
+  end
   return 0;
-}
+end
 
-function f0(x) {
-  if (x == true) {
+function f0(x) do
+  if (x == true) do
     return 1;
-  } else {
+  end else do
     return 2;
-  }
-}
+  end
+end
 
-function f1(x) {
-  if (x ~= true) {
+function f1(x) do
+  if (x ~= true) do
     return 1;
-  } else {
+  end else do
     return 2;
-  }
-}
+  end
+end
 
-function f2(x) {
-  if (x == true) {
+function f2(x) do
+  if (x == true) do
     return 1;
-  } else {
+  end else do
     return 2;
-  }
-}
+  end
+end
 
-function f3(x) {
-  if (x == false) {
+function f3(x) do
+  if (x == false) do
     return 1;
-  } else {
+  end else do
     return 2;
-  }
-}
+  end
+end
 
-function f4(x) {
-  if (x ~= true) {
+function f4(x) do
+  if (x ~= true) do
     return 1;
-  } else {
+  end else do
     return 2;
-  }
-}
+  end
+end
 
-function f5(x) {
-  if (x) {
+function f5(x) do
+  if (x) do
     return 2;
-  } else {
+  end else do
     return 1;
-  }
-}
+  end
+end
 
-function f6(x) {
-  if (x == --[ [] ]--0) {
+function f6(x) do
+  if (x == --[ [] ]--0) do
     return 1;
-  } else {
+  end else do
     return 2;
-  }
-}
+  end
+end
 
-function f7(x) {
-  if (#x ~= 0) {
+function f7(x) do
+  if (#x ~= 0) do
     return 1;
-  } else {
+  end else do
     return 2;
-  }
-}
+  end
+end
 
-function f8(x) {
+function f8(x) do
   return 1;
-}
+end
 
 exports.bool_equal = bool_equal;
 exports.assertions = assertions;

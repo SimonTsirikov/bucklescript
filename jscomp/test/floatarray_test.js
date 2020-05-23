@@ -3,23 +3,23 @@
 var Mt = require("./mt.js");
 var Caml_array = require("../../lib/js/caml_array.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
 var v = Caml_array.caml_make_float_vect(5);
 
-for(var i = 0; i <= 4; ++i){
+for(var i = 0; i <= 4; ++i)do
   v[i] = 0;
-}
+end
 
 Caml_array.caml_array_set(v, 2, 15.5);
 

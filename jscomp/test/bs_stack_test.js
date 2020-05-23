@@ -5,98 +5,98 @@ var Js_undefined = require("../../lib/js/js_undefined.js");
 var Belt_MutableQueue = require("../../lib/js/belt_MutableQueue.js");
 var Belt_MutableStack = require("../../lib/js/belt_MutableStack.js");
 
-function inOrder(v) {
+function inOrder(v) do
   var current = v;
-  var s = {
+  var s = do
     root: null
-  };
+  end;
   var q = Belt_MutableQueue.make(--[ () ]--0);
-  while(current ~= undefined) {
+  while(current ~= undefined) do
     var v$1 = current;
     Belt_MutableStack.push(s, v$1);
     current = v$1.left;
-  };
-  while(s.root ~= null) {
+  end;
+  while(s.root ~= null) do
     current = Belt_MutableStack.popUndefined(s);
     var v$2 = current;
     Belt_MutableQueue.add(q, v$2.value);
     current = v$2.right;
-    while(current ~= undefined) {
+    while(current ~= undefined) do
       var v$3 = current;
       Belt_MutableStack.push(s, v$3);
       current = v$3.left;
-    };
-  };
+    end;
+  end;
   return Belt_MutableQueue.toArray(q);
-}
+end
 
-function inOrder3(v) {
+function inOrder3(v) do
   var current = v;
-  var s = {
+  var s = do
     root: null
-  };
+  end;
   var q = Belt_MutableQueue.make(--[ () ]--0);
-  while(current ~= undefined) {
+  while(current ~= undefined) do
     var v$1 = current;
     Belt_MutableStack.push(s, v$1);
     current = v$1.left;
-  };
-  Belt_MutableStack.dynamicPopIter(s, (function (popped) {
+  end;
+  Belt_MutableStack.dynamicPopIter(s, (function (popped) do
           Belt_MutableQueue.add(q, popped.value);
           var current = popped.right;
-          while(current ~= undefined) {
+          while(current ~= undefined) do
             var v = current;
             Belt_MutableStack.push(s, v);
             current = v.left;
-          };
+          end;
           return --[ () ]--0;
-        }));
+        end));
   return Belt_MutableQueue.toArray(q);
-}
+end
 
-function inOrder2(v) {
+function inOrder2(v) do
   var todo = true;
   var cursor = v;
-  var s = {
+  var s = do
     root: null
-  };
+  end;
   var q = Belt_MutableQueue.make(--[ () ]--0);
-  while(todo) {
-    if (cursor ~= undefined) {
+  while(todo) do
+    if (cursor ~= undefined) do
       var v$1 = cursor;
       Belt_MutableStack.push(s, v$1);
       cursor = v$1.left;
-    } else if (s.root ~= null) {
+    end else if (s.root ~= null) do
       cursor = Belt_MutableStack.popUndefined(s);
       var current = cursor;
       Belt_MutableQueue.add(q, current.value);
       cursor = current.right;
-    } else {
+    end else do
       todo = false;
-    }
-  };
+    end
+  end;
   return --[ () ]--0;
-}
+end
 
-function n(l, r, a) {
-  return {
+function n(l, r, a) do
+  return do
           value: a,
           left: Js_undefined.fromOption(l),
           right: Js_undefined.fromOption(r)
-        };
-}
+        end;
+end
 
 var test1 = n(Caml_option.some(n(Caml_option.some(n(undefined, undefined, 4)), Caml_option.some(n(undefined, undefined, 5)), 2)), Caml_option.some(n(undefined, undefined, 3)), 1);
 
-function pushAllLeft(st1, s1) {
+function pushAllLeft(st1, s1) do
   var current = st1;
-  while(current ~= undefined) {
+  while(current ~= undefined) do
     var v = current;
     Belt_MutableStack.push(s1, v);
     current = v.left;
-  };
+  end;
   return --[ () ]--0;
-}
+end
 
 var test2 = n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(undefined, undefined, 4)), undefined, 2)), undefined, 5)), undefined, 1)), undefined, 3);
 

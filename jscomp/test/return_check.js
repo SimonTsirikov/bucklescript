@@ -3,21 +3,21 @@
 var Caml_option = require("../../lib/js/caml_option.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function test(dom) {
+function test(dom) do
   var elem = dom.getElementById("haha");
-  if (elem ~= null) {
+  if (elem ~= null) do
     console.log(elem);
     return 2;
-  } else {
+  end else do
     return 1;
-  }
-}
+  end
+end
 
-function f_undefined(xs, i) {
+function f_undefined(xs, i) do
   var match = xs[i];
-  if (match ~= undefined) {
+  if (match ~= undefined) do
     return match;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -26,40 +26,40 @@ function f_undefined(xs, i) {
             14
           ]
         ];
-  }
-}
+  end
+end
 
-function f_escaped_not(xs, i) {
+function f_escaped_not(xs, i) do
   var x = xs[i];
   console.log("hei");
-  if (x ~= undefined) {
+  if (x ~= undefined) do
     return x;
-  } else {
+  end else do
     return 1;
-  }
-}
+  end
+end
 
-function f_escaped_1(xs, i) {
+function f_escaped_1(xs, i) do
   var x = xs[i];
-  return (function (param) {
-      if (x ~= undefined) {
+  return (function (param) do
+      if (x ~= undefined) do
         return x;
-      } else {
+      end else do
         return 1;
-      }
-    });
-}
+      end
+    end);
+end
 
-function f_escaped_2(xs, i) {
+function f_escaped_2(xs, i) do
   console.log(Caml_option.undefined_to_opt(xs[i]));
   return --[ () ]--0;
-}
+end
 
-function f_null(xs, i) {
+function f_null(xs, i) do
   var match = xs[i];
-  if (match ~= null) {
+  if (match ~= null) do
     return match;
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -68,12 +68,12 @@ function f_null(xs, i) {
             14
           ]
         ];
-  }
-}
+  end
+end
 
-function f_null_undefined(xs, i) {
+function f_null_undefined(xs, i) do
   var match = xs[i];
-  if (match == null) {
+  if (match == null) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -82,10 +82,10 @@ function f_null_undefined(xs, i) {
             14
           ]
         ];
-  } else {
+  end else do
     return match;
-  }
-}
+  end
+end
 
 exports.test = test;
 exports.f_undefined = f_undefined;

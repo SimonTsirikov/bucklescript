@@ -2,25 +2,25 @@
 
 var Mt = require("./mt.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function make(x) {
+function make(x) do
   return x;
-}
+end
 
-function get(param) {
+function get(param) do
   return param;
-}
+end
 
 var x = "foo";
 

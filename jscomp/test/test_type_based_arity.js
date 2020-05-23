@@ -2,74 +2,74 @@
 
 var Curry = require("../../lib/js/curry.js");
 
-function f0(g, x) {
+function f0(g, x) do
   return Curry._1(g, x);
-}
+end
 
-function f1(g, x) {
+function f1(g, x) do
   return Curry._1(g, x);
-}
+end
 
 var X = { };
 
-function f2(g, x) {
+function f2(g, x) do
   return Curry._1(g, x);
-}
+end
 
-function f3(g, x) {
+function f3(g, x) do
   Curry._1(g, x);
   return --[ () ]--0;
-}
+end
 
-function f4(g, x) {
+function f4(g, x) do
   return Curry._1(g, x);
-}
+end
 
-function f5(g, x) {
+function f5(g, x) do
   return Curry._1(g, x);
-}
+end
 
-function f6(g, x) {
+function f6(g, x) do
   return Curry._1(g, x);
-}
+end
 
-function f7(g, x) {
+function f7(g, x) do
   return Curry._1(g, x);
-}
+end
 
 var X0 = { };
 
-function f8(g, x) {
+function f8(g, x) do
   return Curry._1(g, x);
-}
+end
 
-function f9(g, x) {
+function f9(g, x) do
   return Curry._1(g, x);
-}
+end
 
-function f10(g, x) {
+function f10(g, x) do
   return Curry._1(g, x);
-}
+end
 
-function f11(g, x) {
+function f11(g, x) do
   return Curry._1(g, x);
-}
+end
 
-function f12(g, x) {
+function f12(g, x) do
   return Curry._1(g, x);
-}
+end
 
-function f13(g, x) {
+function f13(g, x) do
   return Curry._1(g, x);
-}
+end
 
-var X2 = {
+var X2 = do
   f13: f13
-};
+end;
 
-function f14(h, g, x) {
+function f14(h, g, x) do
   return Curry._2(h, g, x);
-}
+end
 
 exports.f0 = f0;
 exports.f1 = f1;

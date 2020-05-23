@@ -17,34 +17,34 @@ var shared$2 = [
   "get_money"
 ];
 
-function x0_init($$class) {
+function x0_init($$class) do
   var v = CamlinternalOO.new_variable($$class, "");
   var x = CamlinternalOO.new_variable($$class, "x");
-  return (function (env, self, v$1) {
+  return (function (env, self, v$1) do
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[v] = v$1;
       self$1[x] = v$1 + 2 | 0;
       return self$1;
-    });
-}
+    end);
+end
 
 var x0 = CamlinternalOO.make_class(0, x0_init);
 
-function x_init($$class) {
+function x_init($$class) do
   var v = CamlinternalOO.new_variable($$class, "");
   var ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared);
   var get_x = ids[0];
   var x = ids[1];
-  CamlinternalOO.set_method($$class, get_x, (function (self$2) {
+  CamlinternalOO.set_method($$class, get_x, (function (self$2) do
           return self$2[x];
-        }));
-  return (function (env, self, v$1) {
+        end));
+  return (function (env, self, v$1) do
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[v] = v$1;
       self$1[x] = v$1;
       return self$1;
-    });
-}
+    end);
+end
 
 var x = CamlinternalOO.make_class(shared$1, x_init);
 
@@ -52,7 +52,7 @@ var v = Curry._2(x[0], 0, 3);
 
 var u = Oo.copy(v);
 
-if (Caml_oo_curry.js1(291546447, 1, v) ~= 3) {
+if (Caml_oo_curry.js1(291546447, 1, v) ~= 3) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -61,9 +61,9 @@ if (Caml_oo_curry.js1(291546447, 1, v) ~= 3) {
           9
         ]
       ];
-}
+end
 
-if (Caml_oo_curry.js1(291546447, 2, u) ~= 3) {
+if (Caml_oo_curry.js1(291546447, 2, u) ~= 3) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -72,9 +72,9 @@ if (Caml_oo_curry.js1(291546447, 2, u) ~= 3) {
           9
         ]
       ];
-}
+end
 
-function xx_init($$class) {
+function xx_init($$class) do
   var x = CamlinternalOO.new_variable($$class, "");
   var ids = CamlinternalOO.new_methods_variables($$class, shared$2, ["money"]);
   var incr = ids[0];
@@ -82,23 +82,23 @@ function xx_init($$class) {
   var money = ids[2];
   CamlinternalOO.set_methods($$class, [
         get_money,
-        (function (self$3) {
+        (function (self$3) do
             return self$3[money];
-          }),
+          end),
         incr,
-        (function (self$3) {
+        (function (self$3) do
             var copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
             copy[money] = 2 * self$3[x] + Curry._1(self$3[0][get_money], self$3);
             return copy;
-          })
+          end)
       ]);
-  return (function (env, self, x$1) {
+  return (function (env, self, x$1) do
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x] = x$1;
       self$1[money] = x$1;
       return self$1;
-    });
-}
+    end);
+end
 
 var xx = CamlinternalOO.make_class(shared$2, xx_init);
 
@@ -106,7 +106,7 @@ var v1 = Curry._2(xx[0], 0, 3);
 
 var v2 = Caml_oo_curry.js1(-977586732, 3, v1);
 
-if (Caml_oo_curry.js1(-804710761, 4, v1) ~= 3) {
+if (Caml_oo_curry.js1(-804710761, 4, v1) ~= 3) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -115,14 +115,14 @@ if (Caml_oo_curry.js1(-804710761, 4, v1) ~= 3) {
           9
         ]
       ];
-}
+end
 
 console.log(--[ tuple ]--[
       Caml_oo_curry.js1(-804710761, 5, v1),
       Caml_oo_curry.js1(-804710761, 6, v2)
     ]);
 
-if (Caml_oo_curry.js1(-804710761, 7, v2) ~= 9) {
+if (Caml_oo_curry.js1(-804710761, 7, v2) ~= 9) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -131,9 +131,9 @@ if (Caml_oo_curry.js1(-804710761, 7, v2) ~= 9) {
           9
         ]
       ];
-}
+end
 
-function point_init($$class) {
+function point_init($$class) do
   var ids = CamlinternalOO.new_methods_variables($$class, [
         "get_x5",
         "get_x"
@@ -143,20 +143,20 @@ function point_init($$class) {
   var x = ids[2];
   CamlinternalOO.set_methods($$class, [
         get_x,
-        (function (self$4) {
+        (function (self$4) do
             return self$4[x];
-          }),
+          end),
         get_x5,
-        (function (self$4) {
+        (function (self$4) do
             return Curry._1(self$4[0][get_x], self$4) + 5 | 0;
-          })
+          end)
       ]);
-  return (function (env, self) {
+  return (function (env, self) do
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x] = 0;
       return self$1;
-    });
-}
+    end);
+end
 
 var point = CamlinternalOO.make_class([
       "get_x",
@@ -165,7 +165,7 @@ var point = CamlinternalOO.make_class([
 
 var v$1 = Curry._1(point[0], 0);
 
-if (Caml_oo_curry.js1(590348294, 8, v$1) ~= 5) {
+if (Caml_oo_curry.js1(590348294, 8, v$1) ~= 5) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -174,9 +174,9 @@ if (Caml_oo_curry.js1(590348294, 8, v$1) ~= 5) {
           2
         ]
       ];
-}
+end
 
-function xx0_init($$class) {
+function xx0_init($$class) do
   var x = CamlinternalOO.new_variable($$class, "");
   var ids = CamlinternalOO.new_methods_variables($$class, shared$2, [
         "money",
@@ -192,18 +192,18 @@ function xx0_init($$class) {
   var a2 = ids[5];
   CamlinternalOO.set_methods($$class, [
         get_money,
-        (function (self$5) {
+        (function (self$5) do
             return self$5[money];
-          }),
+          end),
         incr,
-        (function (self$5) {
+        (function (self$5) do
             var copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$5));
             copy[money] = 2 * self$5[x] + Curry._1(self$5[0][get_money], self$5);
             copy[a0] = 2;
             return copy;
-          })
+          end)
       ]);
-  return (function (env, self, x$1) {
+  return (function (env, self, x$1) do
       var self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x] = x$1;
       self$1[money] = x$1;
@@ -211,8 +211,8 @@ function xx0_init($$class) {
       self$1[a1] = 1;
       self$1[a2] = 2;
       return self$1;
-    });
-}
+    end);
+end
 
 var xx0 = CamlinternalOO.make_class(shared$2, xx0_init);
 

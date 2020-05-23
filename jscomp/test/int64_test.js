@@ -12,9 +12,9 @@ var Caml_int64 = require("../../lib/js/caml_int64.js");
 var Pervasives = require("../../lib/js/pervasives.js");
 var Ext_array_test = require("./ext_array_test.js");
 
-function f(u, v) {
+function f(u, v) do
   return u > v;
-}
+end
 
 var v = Caml_int64.add(Caml_int64.of_int32(Int32.max_int), Int64.one);
 
@@ -25,7 +25,7 @@ var a = --[ int64 ]--[
   --[ lo ]--2147483647
 ];
 
-function commutative_add(result, a, b) {
+function commutative_add(result, a, b) do
   return --[ Eq ]--Block.__(0, [
             --[ tuple ]--[
               result,
@@ -36,16 +36,16 @@ function commutative_add(result, a, b) {
               Caml_int64.add(b, a)
             ]
           ]);
-}
+end
 
 var generic_compare = Caml_obj.caml_compare;
 
-var shift_left_tests_000 = $$Array.map((function (i) {
+var shift_left_tests_000 = $$Array.map((function (i) do
         return Caml_int64.lsl_(--[ int64 ]--[
                     --[ hi ]--0,
                     --[ lo ]--1
                   ], i);
-      }), Ext_array_test.range(0, 63));
+      end), Ext_array_test.range(0, 63));
 
 var shift_left_tests_001 = [
   --[ int64 ]--[
@@ -311,12 +311,12 @@ var shift_left_tests = --[ tuple ]--[
   shift_left_tests_001
 ];
 
-var shift_right_tests_000 = $$Array.map((function (i) {
+var shift_right_tests_000 = $$Array.map((function (i) do
         return Caml_int64.asr_(--[ int64 ]--[
                     --[ hi ]---2147483648,
                     --[ lo ]--0
                   ], i);
-      }), Ext_array_test.range(0, 63));
+      end), Ext_array_test.range(0, 63));
 
 var shift_right_tests_001 = [
   --[ int64 ]--[
@@ -582,12 +582,12 @@ var shift_right_tests = --[ tuple ]--[
   shift_right_tests_001
 ];
 
-var shift_right_logical_suites_000 = $$Array.map((function (i) {
+var shift_right_logical_suites_000 = $$Array.map((function (i) do
         return Caml_int64.lsr_(--[ int64 ]--[
                     --[ hi ]---2147483648,
                     --[ lo ]--0
                   ], i);
-      }), Ext_array_test.range(0, 63));
+      end), Ext_array_test.range(0, 63));
 
 var shift_right_logical_suites_001 = [
   --[ int64 ]--[
@@ -853,40 +853,40 @@ var shift_right_logical_suites = --[ tuple ]--[
   shift_right_logical_suites_001
 ];
 
-function fib(_n, _a, _b) {
-  while(true) {
+function fib(_n, _a, _b) do
+  while(true) do
     var b = _b;
     var a = _a;
     var n = _n;
-    if (n == 0) {
+    if (n == 0) do
       return a;
-    } else {
+    end else do
       _b = Caml_int64.add(a, b);
       _a = b;
       _n = n - 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function fac(_n, _acc) {
-  while(true) {
+function fac(_n, _acc) do
+  while(true) do
     var acc = _acc;
     var n = _n;
-    if (n == 0) {
+    if (n == 0) do
       return acc;
-    } else {
+    end else do
       _acc = Caml_int64.mul(acc, Caml_int64.of_int32(n));
       _n = n - 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
 var suites = Pervasives.$at(--[ :: ]--[
       --[ tuple ]--[
         "add_one",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       v,
                       --[ int64 ]--[
@@ -894,12 +894,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                         --[ lo ]--2147483648
                       ]
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "add_2",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         --[ int64 ]--[
                           --[ hi ]--0,
@@ -907,12 +907,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                         ],
                         Caml_int64.add(a, a)
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "add_3",
-            (function (param) {
+            (function (param) do
                 return --[ Eq ]--Block.__(0, [
                           --[ int64 ]--[
                             --[ hi ]--0,
@@ -923,12 +923,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                             --[ lo ]--0
                           ]
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "add_4",
-              (function (param) {
+              (function (param) do
                   return commutative_add(--[ int64 ]--[
                               --[ hi ]---1,
                               --[ lo ]--4294967294
@@ -939,12 +939,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                               --[ hi ]--0,
                               --[ lo ]--1
                             ]);
-                })
+                end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
                 "add_5",
-                (function (param) {
+                (function (param) do
                     return commutative_add(--[ int64 ]--[
                                 --[ hi ]---1,
                                 --[ lo ]--4294967293
@@ -955,12 +955,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                 --[ hi ]--0,
                                 --[ lo ]--0
                               ]);
-                  })
+                  end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
                   "add_6",
-                  (function (param) {
+                  (function (param) do
                       return commutative_add(--[ int64 ]--[
                                   --[ hi ]--0,
                                   --[ lo ]--4
@@ -971,12 +971,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                   --[ hi ]--0,
                                   --[ lo ]--7
                                 ]);
-                    })
+                    end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
                     "add_7",
-                    (function (param) {
+                    (function (param) do
                         return commutative_add(--[ int64 ]--[
                                     --[ hi ]--1,
                                     --[ lo ]--0
@@ -987,12 +987,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                     --[ hi ]--0,
                                     --[ lo ]--2147483648
                                   ]);
-                      })
+                      end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
                       "add_8",
-                      (function (param) {
+                      (function (param) do
                           return commutative_add(--[ int64 ]--[
                                       --[ hi ]--1,
                                       --[ lo ]--0
@@ -1003,12 +1003,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                       --[ hi ]--0,
                                       --[ lo ]--1
                                     ]);
-                        })
+                        end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
                         "add_9",
-                        (function (param) {
+                        (function (param) do
                             return commutative_add(--[ int64 ]--[
                                         --[ hi ]--0,
                                         --[ lo ]--4294967295
@@ -1019,12 +1019,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                         --[ hi ]--0,
                                         --[ lo ]--2147483647
                                       ]);
-                          })
+                          end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
                           "add_10",
-                          (function (param) {
+                          (function (param) do
                               return commutative_add(--[ int64 ]--[
                                           --[ hi ]--0,
                                           --[ lo ]--2147483648
@@ -1035,12 +1035,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                           --[ hi ]--0,
                                           --[ lo ]--0
                                         ]);
-                            })
+                            end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
                             "add_11",
-                            (function (param) {
+                            (function (param) do
                                 return commutative_add(--[ int64 ]--[
                                             --[ hi ]--0,
                                             --[ lo ]--4294967295
@@ -1051,12 +1051,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                             --[ hi ]--0,
                                             --[ lo ]--0
                                           ]);
-                              })
+                              end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
                               "to_int32",
-                              (function (param) {
+                              (function (param) do
                                   return --[ Eq ]--Block.__(0, [
                                             3,
                                             Caml_int64.to_int32(--[ int64 ]--[
@@ -1064,12 +1064,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                   --[ lo ]--3
                                                 ])
                                           ]);
-                                })
+                                end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
                                 "to_int",
-                                (function (param) {
+                                (function (param) do
                                     return --[ Eq ]--Block.__(0, [
                                               3,
                                               Caml_int64.to_int32(--[ int64 ]--[
@@ -1077,12 +1077,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                     --[ lo ]--3
                                                   ])
                                             ]);
-                                  })
+                                  end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
                                   "of_int",
-                                  (function (param) {
+                                  (function (param) do
                                       return --[ Eq ]--Block.__(0, [
                                                 --[ int64 ]--[
                                                   --[ hi ]--0,
@@ -1093,12 +1093,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                   --[ lo ]--3
                                                 ]
                                               ]);
-                                    })
+                                    end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
                                     "lognot",
-                                    (function (param) {
+                                    (function (param) do
                                         return --[ Eq ]--Block.__(0, [
                                                   --[ int64 ]--[
                                                     --[ hi ]---1,
@@ -1109,12 +1109,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                     --[ lo ]--4294967293
                                                   ]
                                                 ]);
-                                      })
+                                      end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
                                       "neg",
-                                      (function (param) {
+                                      (function (param) do
                                           return --[ Eq ]--Block.__(0, [
                                                     --[ int64 ]--[
                                                       --[ hi ]---1,
@@ -1125,12 +1125,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                       --[ lo ]--4294967294
                                                     ]
                                                   ]);
-                                        })
+                                        end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
                                         "sub1",
-                                        (function (param) {
+                                        (function (param) do
                                             return --[ Eq ]--Block.__(0, [
                                                       --[ int64 ]--[
                                                         --[ hi ]--0,
@@ -1141,12 +1141,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                         --[ lo ]--2
                                                       ]
                                                     ]);
-                                          })
+                                          end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
                                           "xor1",
-                                          (function (param) {
+                                          (function (param) do
                                               return --[ Eq ]--Block.__(0, [
                                                         --[ tuple ]--[
                                                           --[ int64 ]--[
@@ -1169,12 +1169,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                           ]
                                                         ]
                                                       ]);
-                                            })
+                                            end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
                                             "or",
-                                            (function (param) {
+                                            (function (param) do
                                                 return --[ Eq ]--Block.__(0, [
                                                           --[ int64 ]--[
                                                             --[ hi ]--0,
@@ -1185,12 +1185,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                             --[ lo ]--4294967295
                                                           ]
                                                         ]);
-                                              })
+                                              end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
                                               "and",
-                                              (function (param) {
+                                              (function (param) do
                                                   return --[ Eq ]--Block.__(0, [
                                                             --[ int64 ]--[
                                                               --[ hi ]--0,
@@ -1201,21 +1201,21 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                               --[ lo ]--4008636142
                                                             ]
                                                           ]);
-                                                })
+                                                end)
                                             ],
                                             --[ :: ]--[
                                               --[ tuple ]--[
                                                 "lsl",
-                                                (function (param) {
+                                                (function (param) do
                                                     return --[ Eq ]--Block.__(0, [
-                                                              $$Array.map((function (x) {
+                                                              $$Array.map((function (x) do
                                                                       return Caml_int64.lsl_(--[ int64 ]--[
                                                                                   --[ hi ]--0,
                                                                                   --[ lo ]--1
                                                                                 ], x);
-                                                                    }), $$Array.init(64, (function (i) {
+                                                                    end), $$Array.init(64, (function (i) do
                                                                           return i;
-                                                                        }))),
+                                                                        end))),
                                                               [
                                                                 --[ int64 ]--[
                                                                   --[ hi ]--0,
@@ -1475,21 +1475,21 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                 ]
                                                               ]
                                                             ]);
-                                                  })
+                                                  end)
                                               ],
                                               --[ :: ]--[
                                                 --[ tuple ]--[
                                                   "lsr",
-                                                  (function (param) {
+                                                  (function (param) do
                                                       return --[ Eq ]--Block.__(0, [
-                                                                $$Array.map((function (x) {
+                                                                $$Array.map((function (x) do
                                                                         return Caml_int64.lsr_(--[ int64 ]--[
                                                                                     --[ hi ]---1,
                                                                                     --[ lo ]--4294967295
                                                                                   ], x);
-                                                                      }), $$Array.init(64, (function (i) {
+                                                                      end), $$Array.init(64, (function (i) do
                                                                             return i;
-                                                                          }))),
+                                                                          end))),
                                                                 [
                                                                   --[ int64 ]--[
                                                                     --[ hi ]---1,
@@ -1749,21 +1749,21 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                   ]
                                                                 ]
                                                               ]);
-                                                    })
+                                                    end)
                                                 ],
                                                 --[ :: ]--[
                                                   --[ tuple ]--[
                                                     "asr",
-                                                    (function (param) {
+                                                    (function (param) do
                                                         return --[ Eq ]--Block.__(0, [
-                                                                  $$Array.map((function (x) {
+                                                                  $$Array.map((function (x) do
                                                                           return Caml_int64.asr_(--[ int64 ]--[
                                                                                       --[ hi ]---1,
                                                                                       --[ lo ]--4294967295
                                                                                     ], x);
-                                                                        }), $$Array.init(64, (function (i) {
+                                                                        end), $$Array.init(64, (function (i) do
                                                                               return i;
-                                                                            }))),
+                                                                            end))),
                                                                   [
                                                                     --[ int64 ]--[
                                                                       --[ hi ]---1,
@@ -2023,12 +2023,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                     ]
                                                                   ]
                                                                 ]);
-                                                      })
+                                                      end)
                                                   ],
                                                   --[ :: ]--[
                                                     --[ tuple ]--[
                                                       "mul simple",
-                                                      (function (param) {
+                                                      (function (param) do
                                                           return --[ Eq ]--Block.__(0, [
                                                                     --[ int64 ]--[
                                                                       --[ hi ]--0,
@@ -2039,12 +2039,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                       --[ lo ]--6
                                                                     ]
                                                                   ]);
-                                                        })
+                                                        end)
                                                     ],
                                                     --[ :: ]--[
                                                       --[ tuple ]--[
                                                         "of_int32",
-                                                        (function (param) {
+                                                        (function (param) do
                                                             return --[ Eq ]--Block.__(0, [
                                                                       $$Array.map(Caml_int64.of_int32, [
                                                                             0,
@@ -2061,12 +2061,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                         ]
                                                                       ]
                                                                     ]);
-                                                          })
+                                                          end)
                                                       ],
                                                       --[ :: ]--[
                                                         --[ tuple ]--[
                                                           "of_int32_singleton",
-                                                          (function (param) {
+                                                          (function (param) do
                                                               return --[ Eq ]--Block.__(0, [
                                                                         --[ int64 ]--[
                                                                           --[ hi ]---1,
@@ -2077,12 +2077,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                           --[ lo ]--4294967293
                                                                         ]
                                                                       ]);
-                                                            })
+                                                            end)
                                                         ],
                                                         --[ :: ]--[
                                                           --[ tuple ]--[
                                                             "File \"int64_test.ml\", line 132, characters 4-11",
-                                                            (function (param) {
+                                                            (function (param) do
                                                                 return --[ Eq ]--Block.__(0, [
                                                                           --[ int64 ]--[
                                                                             --[ hi ]--0,
@@ -2093,12 +2093,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                             --[ lo ]--3
                                                                           ]
                                                                         ]);
-                                                              })
+                                                              end)
                                                           ],
                                                           --[ :: ]--[
                                                             --[ tuple ]--[
                                                               "to_int32",
-                                                              (function (param) {
+                                                              (function (param) do
                                                                   return --[ Eq ]--Block.__(0, [
                                                                             $$Array.map(Caml_int64.to_int32, [
                                                                                   --[ int64 ]--[
@@ -2115,12 +2115,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                               -2147483648
                                                                             ]
                                                                           ]);
-                                                                })
+                                                                end)
                                                             ],
                                                             --[ :: ]--[
                                                               --[ tuple ]--[
                                                                 "discard_sign",
-                                                                (function (param) {
+                                                                (function (param) do
                                                                     return --[ Eq ]--Block.__(0, [
                                                                               Caml_int64.discard_sign(--[ int64 ]--[
                                                                                     --[ hi ]---1,
@@ -2131,12 +2131,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                                 --[ lo ]--4294967295
                                                                               ]
                                                                             ]);
-                                                                  })
+                                                                  end)
                                                               ],
                                                               --[ :: ]--[
                                                                 --[ tuple ]--[
                                                                   "div_mod",
-                                                                  (function (param) {
+                                                                  (function (param) do
                                                                       return --[ Eq ]--Block.__(0, [
                                                                                 Caml_int64.div_mod(--[ int64 ]--[
                                                                                       --[ hi ]--0,
@@ -2156,12 +2156,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                                   ]
                                                                                 ]
                                                                               ]);
-                                                                    })
+                                                                    end)
                                                                 ],
                                                                 --[ :: ]--[
                                                                   --[ tuple ]--[
                                                                     "to_hex",
-                                                                    (function (param) {
+                                                                    (function (param) do
                                                                         return --[ Eq ]--Block.__(0, [
                                                                                   Caml_int64.to_hex(--[ int64 ]--[
                                                                                         --[ hi ]---1,
@@ -2169,12 +2169,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                                       ]),
                                                                                   "ffffffffffffffff"
                                                                                 ]);
-                                                                      })
+                                                                      end)
                                                                   ],
                                                                   --[ :: ]--[
                                                                     --[ tuple ]--[
                                                                       "generic_compare",
-                                                                      (function (param) {
+                                                                      (function (param) do
                                                                           return --[ Eq ]--Block.__(0, [
                                                                                     Caml_obj.caml_compare(--[ int64 ]--[
                                                                                           --[ hi ]--1,
@@ -2185,12 +2185,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                                         ]) > 0,
                                                                                     true
                                                                                   ]);
-                                                                        })
+                                                                        end)
                                                                     ],
                                                                     --[ :: ]--[
                                                                       --[ tuple ]--[
                                                                         "test_compier_literal",
-                                                                        (function (param) {
+                                                                        (function (param) do
                                                                             return --[ Eq ]--Block.__(0, [
                                                                                       --[ int64 ]--[
                                                                                         --[ hi ]--0,
@@ -2201,12 +2201,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                                         --[ lo ]--4294967295
                                                                                       ]
                                                                                     ]);
-                                                                          })
+                                                                          end)
                                                                       ],
                                                                       --[ :: ]--[
                                                                         --[ tuple ]--[
                                                                           "generic_compare2",
-                                                                          (function (param) {
+                                                                          (function (param) do
                                                                               return --[ Eq ]--Block.__(0, [
                                                                                         Caml_obj.caml_compare(--[ int64 ]--[
                                                                                               --[ hi ]--0,
@@ -2217,12 +2217,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                                             ]) > 0,
                                                                                         true
                                                                                       ]);
-                                                                            })
+                                                                            end)
                                                                         ],
                                                                         --[ :: ]--[
                                                                           --[ tuple ]--[
                                                                             "shift_left",
-                                                                            (function (param) {
+                                                                            (function (param) do
                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                           --[ int64 ]--[
                                                                                             --[ hi ]--0,
@@ -2233,22 +2233,22 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                                             --[ lo ]--4294967040
                                                                                           ]
                                                                                         ]);
-                                                                              })
+                                                                              end)
                                                                           ],
                                                                           --[ :: ]--[
                                                                             --[ tuple ]--[
                                                                               "shift_right",
-                                                                              (function (param) {
+                                                                              (function (param) do
                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                             4294967295,
                                                                                             4294967295
                                                                                           ]);
-                                                                                })
+                                                                                end)
                                                                             ],
                                                                             --[ :: ]--[
                                                                               --[ tuple ]--[
                                                                                 "fib_int64",
-                                                                                (function (param) {
+                                                                                (function (param) do
                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                               fib(1000, --[ int64 ]--[
                                                                                                     --[ hi ]--0,
@@ -2262,12 +2262,12 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                                                 --[ lo ]--2874523960
                                                                                               ]
                                                                                             ]);
-                                                                                  })
+                                                                                  end)
                                                                               ],
                                                                               --[ :: ]--[
                                                                                 --[ tuple ]--[
                                                                                   "fac_int64",
-                                                                                  (function (param) {
+                                                                                  (function (param) do
                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                 fac(30, --[ int64 ]--[
                                                                                                       --[ hi ]--0,
@@ -2278,7 +2278,7 @@ var suites = Pervasives.$at(--[ :: ]--[
                                                                                                   --[ lo ]--1409286144
                                                                                                 ]
                                                                                               ]);
-                                                                                    })
+                                                                                    end)
                                                                                 ],
                                                                                 --[ [] ]--0
                                                                               ]
@@ -2318,7 +2318,7 @@ var suites = Pervasives.$at(--[ :: ]--[
           ]
         ]
       ]
-    ], Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) {
+    ], Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                     return --[ tuple ]--[
                             Curry._1(Format.asprintf(--[ Format ]--[
                                       --[ String_literal ]--Block.__(11, [
@@ -2332,14 +2332,14 @@ var suites = Pervasives.$at(--[ :: ]--[
                                         ]),
                                       "shift_left_cases %d"
                                     ]), i),
-                            (function (param) {
+                            (function (param) do
                                 return --[ Eq ]--Block.__(0, [
                                           a,
                                           b
                                         ]);
-                              })
+                              end)
                           ];
-                  }), shift_left_tests_000, shift_left_tests_001)), Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) {
+                  end), shift_left_tests_000, shift_left_tests_001)), Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                         return --[ tuple ]--[
                                 Curry._1(Format.asprintf(--[ Format ]--[
                                           --[ String_literal ]--Block.__(11, [
@@ -2353,14 +2353,14 @@ var suites = Pervasives.$at(--[ :: ]--[
                                             ]),
                                           "shift_right_cases %d"
                                         ]), i),
-                                (function (param) {
+                                (function (param) do
                                     return --[ Eq ]--Block.__(0, [
                                               a,
                                               b
                                             ]);
-                                  })
+                                  end)
                               ];
-                      }), shift_right_tests_000, shift_right_tests_001)), $$Array.to_list(Ext_array_test.map2i((function (i, a, b) {
+                      end), shift_right_tests_000, shift_right_tests_001)), $$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                         return --[ tuple ]--[
                                 Curry._1(Format.asprintf(--[ Format ]--[
                                           --[ String_literal ]--Block.__(11, [
@@ -2374,36 +2374,36 @@ var suites = Pervasives.$at(--[ :: ]--[
                                             ]),
                                           "shift_right_logical_cases %d"
                                         ]), i),
-                                (function (param) {
+                                (function (param) do
                                     return --[ Eq ]--Block.__(0, [
                                               a,
                                               b
                                             ]);
-                                  })
+                                  end)
                               ];
-                      }), shift_right_logical_suites_000, shift_right_logical_suites_001)))));
+                      end), shift_right_logical_suites_000, shift_right_logical_suites_001)))));
 
-var suites$1 = {
+var suites$1 = do
   contents: suites
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites$1, loc, x, y);
-}
+end
 
-function id(loc, x) {
+function id(loc, x) do
   var float_value = Caml_int64.float_of_bits(x);
   var match = Pervasives.classify_float(float_value);
-  if (match >= 4) {
+  if (match >= 4) do
     return --[ () ]--0;
-  } else {
+  end else do
     return eq(loc, Caml_int64.bits_of_float(float_value), x);
-  }
-}
+  end
+end
 
 eq("File \"int64_test.ml\", line 188, characters 5-12", Caml_int64.bits_of_float(0.3), --[ int64 ]--[
       --[ hi ]--1070805811,

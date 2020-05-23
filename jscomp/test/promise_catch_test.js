@@ -8,39 +8,39 @@ var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function handler(e) {
-  if (e[0] == Js_exn.$$Error) {
+function handler(e) do
+  if (e[0] == Js_exn.$$Error) do
     console.log("js error");
     return Promise.resolve(0);
-  } else if (e == Caml_builtin_exceptions.not_found) {
+  end else if (e == Caml_builtin_exceptions.not_found) do
     console.log("hi");
     return Promise.resolve(0);
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -49,42 +49,42 @@ function handler(e) {
             9
           ]
         ];
-  }
-}
+  end
+end
 
-function myHandler(match) {
-  if (Caml_exceptions.caml_is_extension(match)) {
-    if (match == Caml_builtin_exceptions.not_found) {
+function myHandler(match) do
+  if (Caml_exceptions.caml_is_extension(match)) do
+    if (match == Caml_builtin_exceptions.not_found) do
       return 1;
-    } else if (match[0] == Js_exn.$$Error) {
+    end else if (match[0] == Js_exn.$$Error) do
       return 2;
-    } else {
+    end else do
       return ;
-    }
-  }
+    end
+  end
   
-}
+end
 
-function f(x) {
+function f(x) do
   return x.catch(handler);
-}
+end
 
 var exit = 0;
 
 var val;
 
-try {
+try do
   val = JSON.parse(" 1. +  ");
   exit = 1;
-}
-catch (raw_e){
+end
+catch (raw_e)do
   var e = Caml_js_exceptions.internalToOCamlException(raw_e);
-  eq("File \"promise_catch_test.ml\", line 36, characters 7-14", true, Js_option.isSomeValue((function (xxx, y) {
+  eq("File \"promise_catch_test.ml\", line 36, characters 7-14", true, Js_option.isSomeValue((function (xxx, y) do
               return xxx == y;
-            }), 2, myHandler(e)));
-}
+            end), 2, myHandler(e)));
+end
 
-if (exit == 1) {
+if (exit == 1) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -93,7 +93,7 @@ if (exit == 1) {
           9
         ]
       ];
-}
+end
 
 Mt.from_pair_suites("Promise_catch_test", suites.contents);
 

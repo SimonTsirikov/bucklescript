@@ -7,7 +7,7 @@ var Test_google_closure = require("./test_google_closure.js");
 Mt.from_pair_suites("Closure", --[ :: ]--[
       --[ tuple ]--[
         "partial",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       --[ tuple ]--[
                         Test_google_closure.a,
@@ -23,7 +23,7 @@ Mt.from_pair_suites("Closure", --[ :: ]--[
                         ]
                       ]
                     ]);
-          })
+          end)
       ],
       --[ [] ]--0
     ]);

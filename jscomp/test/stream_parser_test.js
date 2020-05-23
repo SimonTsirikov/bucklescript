@@ -11,51 +11,51 @@ var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
 var Parse_error = Caml_exceptions.create("Stream_parser_test.Parse_error");
 
-function parse(token) {
-  var look_ahead = {
+function parse(token) do
+  var look_ahead = do
     length: 0,
     first: --[ Nil ]--0,
     last: --[ Nil ]--0
-  };
-  var token$1 = function (param) {
-    if (look_ahead.length == 0) {
-      try {
+  end;
+  var token$1 = function (param) do
+    if (look_ahead.length == 0) do
+      try do
         return Curry._1(token, --[ () ]--0);
-      }
-      catch (exn){
+      end
+      catch (exn)do
         return --[ Kwd ]--Block.__(0, ["=="]);
-      }
-    } else {
+      end
+    end else do
       return Queue.pop(look_ahead);
-    }
-  };
-  var parse_atom = function (param) {
+    end
+  end;
+  var parse_atom = function (param) do
     var e = token$1(--[ () ]--0);
-    switch (e.tag | 0) {
+    switch (e.tag | 0) do
       case --[ Kwd ]--0 :
-          if (e[0] == "(") {
+          if (e[0] == "(") do
             var v = parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0)));
             var match = token$1(--[ () ]--0);
-            if (match.tag) {
+            if (match.tag) do
               throw [
                     Parse_error,
                     "Unbalanced parens"
                   ];
-            } else if (match[0] == ")") {
+            end else if (match[0] == ")") do
               return v;
-            } else {
+            end else do
               throw [
                     Parse_error,
                     "Unbalanced parens"
                   ];
-            }
-          } else {
+            end
+          end else do
             Queue.push(e, look_ahead);
             throw [
                   Parse_error,
                   "unexpected token"
                 ];
-          }
+          end
       case --[ Int ]--2 :
           return e[0];
       default:
@@ -64,15 +64,15 @@ function parse(token) {
               Parse_error,
               "unexpected token"
             ];
-    }
-  };
-  var parse_term_aux = function (e1) {
+    end
+  end;
+  var parse_term_aux = function (e1) do
     var e = token$1(--[ () ]--0);
-    if (e.tag) {
+    if (e.tag) do
       Queue.push(e, look_ahead);
       return e1;
-    } else {
-      switch (e[0]) {
+    end else do
+      switch (e[0]) do
         case "*" :
             return Caml_int32.imul(e1, parse_term_aux(parse_atom(--[ () ]--0)));
         case "/" :
@@ -80,16 +80,16 @@ function parse(token) {
         default:
           Queue.push(e, look_ahead);
           return e1;
-      }
-    }
-  };
-  var parse_expr_aux = function (e1) {
+      end
+    end
+  end;
+  var parse_expr_aux = function (e1) do
     var e = token$1(--[ () ]--0);
-    if (e.tag) {
+    if (e.tag) do
       Queue.push(e, look_ahead);
       return e1;
-    } else {
-      switch (e[0]) {
+    end else do
+      switch (e[0]) do
         case "+" :
             return e1 + parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0))) | 0;
         case "-" :
@@ -97,20 +97,20 @@ function parse(token) {
         default:
           Queue.push(e, look_ahead);
           return e1;
-      }
-    }
-  };
+      end
+    end
+  end;
   var r = parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0)));
   return --[ tuple ]--[
           r,
-          Queue.fold((function (acc, x) {
+          Queue.fold((function (acc, x) do
                   return --[ :: ]--[
                           x,
                           acc
                         ];
-                }), --[ [] ]--0, look_ahead)
+                end), --[ [] ]--0, look_ahead)
         ];
-}
+end
 
 var lexer = Genlex.make_lexer(--[ :: ]--[
       "(",
@@ -132,40 +132,40 @@ var lexer = Genlex.make_lexer(--[ :: ]--[
       ]
     ]);
 
-function token(chars) {
+function token(chars) do
   var strm = lexer(chars);
-  return (function (param) {
+  return (function (param) do
       return Stream.next(strm);
-    });
-}
+    end);
+end
 
-function l_parse(token) {
-  var look_ahead = {
+function l_parse(token) do
+  var look_ahead = do
     length: 0,
     first: --[ Nil ]--0,
     last: --[ Nil ]--0
-  };
-  var token$1 = function (param) {
-    if (look_ahead.length == 0) {
-      try {
+  end;
+  var token$1 = function (param) do
+    if (look_ahead.length == 0) do
+      try do
         return Curry._1(token, --[ () ]--0);
-      }
-      catch (exn){
+      end
+      catch (exn)do
         return --[ Kwd ]--Block.__(0, ["=="]);
-      }
-    } else {
+      end
+    end else do
       return Queue.pop(look_ahead);
-    }
-  };
-  var parse_f_aux = function (_a) {
-    while(true) {
+    end
+  end;
+  var parse_f_aux = function (_a) do
+    while(true) do
       var a = _a;
       var t = token$1(--[ () ]--0);
-      if (t.tag) {
+      if (t.tag) do
         Queue.push(t, look_ahead);
         return a;
-      } else {
-        switch (t[0]) {
+      end else do
+        switch (t[0]) do
           case "*" :
               _a = Caml_int32.imul(a, parse_f(--[ () ]--0));
               continue ;
@@ -175,36 +175,36 @@ function l_parse(token) {
           default:
             Queue.push(t, look_ahead);
             return a;
-        }
-      }
-    };
-  };
-  var parse_f = function (param) {
+        end
+      end
+    end;
+  end;
+  var parse_f = function (param) do
     var t = token$1(--[ () ]--0);
-    switch (t.tag | 0) {
+    switch (t.tag | 0) do
       case --[ Kwd ]--0 :
-          if (t[0] == "(") {
+          if (t[0] == "(") do
             var v = parse_t_aux(parse_f_aux(parse_f(--[ () ]--0)));
             var t$1 = token$1(--[ () ]--0);
-            if (t$1.tag) {
+            if (t$1.tag) do
               throw [
                     Parse_error,
                     "Unbalanced )"
                   ];
-            } else if (t$1[0] == ")") {
+            end else if (t$1[0] == ")") do
               return v;
-            } else {
+            end else do
               throw [
                     Parse_error,
                     "Unbalanced )"
                   ];
-            }
-          } else {
+            end
+          end else do
             throw [
                   Parse_error,
                   "Unexpected token"
                 ];
-          }
+          end
       case --[ Int ]--2 :
           return t[0];
       default:
@@ -212,17 +212,17 @@ function l_parse(token) {
               Parse_error,
               "Unexpected token"
             ];
-    }
-  };
-  var parse_t_aux = function (_a) {
-    while(true) {
+    end
+  end;
+  var parse_t_aux = function (_a) do
+    while(true) do
       var a = _a;
       var t = token$1(--[ () ]--0);
-      if (t.tag) {
+      if (t.tag) do
         Queue.push(t, look_ahead);
         return a;
-      } else {
-        switch (t[0]) {
+      end else do
+        switch (t[0]) do
           case "+" :
               _a = a + parse_f_aux(parse_f(--[ () ]--0)) | 0;
               continue ;
@@ -232,46 +232,46 @@ function l_parse(token) {
           default:
             Queue.push(t, look_ahead);
             return a;
-        }
-      }
-    };
-  };
+        end
+      end
+    end;
+  end;
   var r = parse_t_aux(parse_f_aux(parse_f(--[ () ]--0)));
   return --[ tuple ]--[
           r,
-          Queue.fold((function (acc, x) {
+          Queue.fold((function (acc, x) do
                   return --[ :: ]--[
                           x,
                           acc
                         ];
-                }), --[ [] ]--0, look_ahead)
+                end), --[ [] ]--0, look_ahead)
         ];
-}
+end
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 var match = parse(token(Stream.of_string("1 + 2 + (3  - 2) * 3 * 3  - 2 a")));
 

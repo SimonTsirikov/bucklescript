@@ -5,103 +5,103 @@ var Block = require("../../lib/js/block.js");
 var Curry = require("../../lib/js/curry.js");
 var Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function f1(x) {
-  if (x ~= null) {
+function f1(x) do
+  if (x ~= null) do
     return x + 1 | 0;
-  } else {
+  end else do
     return 3;
-  }
-}
+  end
+end
 
-function f2(x) {
-  if (x ~= null) {
+function f2(x) do
+  if (x ~= null) do
     return x + 1 | 0;
-  } else {
+  end else do
     return 3;
-  }
-}
+  end
+end
 
-function f5(h, x) {
+function f5(h, x) do
   var u = Curry._1(h, 32);
-  if (u ~= null) {
+  if (u ~= null) do
     return u + 1 | 0;
-  } else {
+  end else do
     return 3;
-  }
-}
+  end
+end
 
-function f4(h, x) {
+function f4(h, x) do
   var u = Curry._1(h, 32);
   var v = 32 + x | 0;
-  if (u ~= null) {
+  if (u ~= null) do
     return u + 1 | 0;
-  } else {
+  end else do
     return 1 + v | 0;
-  }
-}
+  end
+end
 
-function f6(x, y) {
+function f6(x, y) do
   return x == y;
-}
+end
 
-function f7(x) {
+function f7(x) do
   return x;
-}
+end
 
-function f8(x) {
-  if (x ~= null) {
-    if (x ~= null) {
+function f8(x) do
+  if (x ~= null) do
+    if (x ~= null) do
       return 0;
-    } else {
+    end else do
       return 1;
-    }
-  } else {
+    end
+  end else do
     return 2;
-  }
-}
+  end
+end
 
 var u = f8(undefined);
 
-function f9(x) {
-  if (x == null) {
+function f9(x) do
+  if (x == null) do
     return ;
-  } else {
+  end else do
     return Caml_option.some(x);
-  }
-}
+  end
+end
 
-function f10(x) {
+function f10(x) do
   return x == null;
-}
+end
 
 var f11 = false;
 
-var Test_null = {
+var Test_null = do
   f1: f1,
   f2: f2,
   f5: f5,
@@ -113,80 +113,80 @@ var Test_null = {
   f9: f9,
   f10: f10,
   f11: f11
-};
+end;
 
-function f1$1(x) {
-  if (x ~= undefined) {
+function f1$1(x) do
+  if (x ~= undefined) do
     return x + 1 | 0;
-  } else {
+  end else do
     return 3;
-  }
-}
+  end
+end
 
-function f2$1(x) {
-  if (x ~= undefined) {
+function f2$1(x) do
+  if (x ~= undefined) do
     return x + 1 | 0;
-  } else {
+  end else do
     return 3;
-  }
-}
+  end
+end
 
-function f5$1(h, x) {
+function f5$1(h, x) do
   var u = Curry._1(h, 32);
-  if (u ~= undefined) {
+  if (u ~= undefined) do
     return u + 1 | 0;
-  } else {
+  end else do
     return 3;
-  }
-}
+  end
+end
 
-function f4$1(h, x) {
+function f4$1(h, x) do
   var u = Curry._1(h, 32);
   var v = 32 + x | 0;
-  if (u ~= undefined) {
+  if (u ~= undefined) do
     return u + 1 | 0;
-  } else {
+  end else do
     return 1 + v | 0;
-  }
-}
+  end
+end
 
-function f6$1(x, y) {
+function f6$1(x, y) do
   return x == y;
-}
+end
 
-function f7$1(x) {
+function f7$1(x) do
   return x;
-}
+end
 
-function f8$1(x) {
-  if (x ~= undefined) {
-    if (x ~= undefined) {
+function f8$1(x) do
+  if (x ~= undefined) do
+    if (x ~= undefined) do
       return 0;
-    } else {
+    end else do
       return 1;
-    }
-  } else {
+    end
+  end else do
     return 2;
-  }
-}
+  end
+end
 
 var u$1 = f8$1(undefined);
 
-function f9$1(x) {
-  if (x == undefined) {
+function f9$1(x) do
+  if (x == undefined) do
     return ;
-  } else {
+  end else do
     return Caml_option.some(x);
-  }
-}
+  end
+end
 
-function f10$1(x) {
+function f10$1(x) do
   return x == undefined;
-}
+end
 
 var f11$1 = false;
 
-var Test_def = {
+var Test_def = do
   f1: f1$1,
   f2: f2$1,
   f5: f5$1,
@@ -198,78 +198,78 @@ var Test_def = {
   f9: f9$1,
   f10: f10$1,
   f11: f11$1
-};
+end;
 
-function f1$2(x) {
-  if (x == null) {
+function f1$2(x) do
+  if (x == null) do
     return 3;
-  } else {
+  end else do
     return x + 1 | 0;
-  }
-}
+  end
+end
 
-function f2$2(x) {
-  if (x == null) {
+function f2$2(x) do
+  if (x == null) do
     return 3;
-  } else {
+  end else do
     return x + 1 | 0;
-  }
-}
+  end
+end
 
-function f5$2(h, x) {
+function f5$2(h, x) do
   var u = Curry._1(h, 32);
-  if (u == null) {
+  if (u == null) do
     return 3;
-  } else {
+  end else do
     return u + 1 | 0;
-  }
-}
+  end
+end
 
-function f4$2(h, x) {
+function f4$2(h, x) do
   var u = Curry._1(h, 32);
   var v = 32 + x | 0;
-  if (u == null) {
+  if (u == null) do
     return 1 + v | 0;
-  } else {
+  end else do
     return u + 1 | 0;
-  }
-}
+  end
+end
 
-function f6$2(x, y) {
+function f6$2(x, y) do
   return x == y;
-}
+end
 
-function f7$2(x) {
+function f7$2(x) do
   return x;
-}
+end
 
-function f8$2(x) {
-  if (x == null) {
+function f8$2(x) do
+  if (x == null) do
     return 2;
-  } else if (x == null) {
+  end else if (x == null) do
     return 1;
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
 var u$2 = f8$2(undefined);
 
-function f9$2(x) {
-  if (x == null) {
+function f9$2(x) do
+  if (x == null) do
     return ;
-  } else {
+  end else do
     return Caml_option.some(x);
-  }
-}
+  end
+end
 
-function f10$2(x) {
+function f10$2(x) do
   return x == null;
-}
+end
 
 var f11$2 = false;
 
-var Test_null_def = {
+var Test_null_def = do
   f1: f1$2,
   f2: f2$2,
   f5: f5$2,
@@ -281,7 +281,7 @@ var Test_null_def = {
   f9: f9$2,
   f10: f10$2,
   f11: f11$2
-};
+end;
 
 eq("File \"test_zero_nullable.ml\", line 227, characters 7-14", f1$2(0), 1);
 

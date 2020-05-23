@@ -3,7 +3,7 @@
 var Curry = require("../../lib/js/curry.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function peek_queue(param) {
+function peek_queue(param) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -12,9 +12,9 @@ function peek_queue(param) {
           19
         ]
       ];
-}
+end
 
-function int_of_size(param) {
+function int_of_size(param) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -23,9 +23,9 @@ function int_of_size(param) {
           20
         ]
       ];
-}
+end
 
-function take_queue(param) {
+function take_queue(param) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -34,9 +34,9 @@ function take_queue(param) {
           19
         ]
       ];
-}
+end
 
-function format_pp_token(param, param$1) {
+function format_pp_token(param, param$1) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -45,23 +45,23 @@ function format_pp_token(param, param$1) {
           26
         ]
       ];
-}
+end
 
-function advance_loop(state) {
-  while(true) {
+function advance_loop(state) do
+  while(true) do
     var match = peek_queue(state.pp_queue);
     var size = match.elem_size;
     var size$1 = int_of_size(size);
-    if (size$1 < 0 and (state.pp_right_total - state.pp_left_total | 0) < state.pp_space_left) {
+    if (size$1 < 0 and (state.pp_right_total - state.pp_left_total | 0) < state.pp_space_left) do
       return 0;
-    } else {
+    end else do
       take_queue(state.pp_queue);
       Curry._1(format_pp_token(state, size$1 < 0 ? 1000000010 : size$1), match.token);
       state.pp_left_total = match.length + state.pp_left_total | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
 var pp_infinity = 1000000010;
 

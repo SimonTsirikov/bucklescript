@@ -1,21 +1,21 @@
 'use strict';
 
 
-function f0(x) {
+function f0(x) do
   return x;
-}
+end
 
-function f1(x) {
+function f1(x) do
   return 2;
-}
+end
 
-function f3(x) {
-  if (x ~= undefined) {
+function f3(x) do
+  if (x ~= undefined) do
     return x;
-  } else {
+  end else do
     return --[ A ]--0;
-  }
-}
+  end
+end
 
 var v0 = --[ () ]--0;
 

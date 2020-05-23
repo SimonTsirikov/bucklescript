@@ -1,12 +1,12 @@
 'use strict';
 
 
-function to_enum(param) {
+function to_enum(param) do
   return param;
-}
+end
 
-function to_string(param) {
-  switch (param) {
+function to_string(param) do
+  switch (param) do
     case --[ A0 ]--0 :
         return "A0";
     case --[ A1 ]--1 :
@@ -608,8 +608,8 @@ function to_string(param) {
     case --[ A299 ]--299 :
         return "A299";
     
-  }
-}
+  end
+end
 
 exports.to_enum = to_enum;
 exports.to_string = to_string;

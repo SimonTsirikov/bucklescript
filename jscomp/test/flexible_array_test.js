@@ -8,119 +8,119 @@ var Caml_obj = require("../../lib/js/caml_obj.js");
 var Caml_array = require("../../lib/js/caml_array.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function sub(_tr, _k) {
-  while(true) {
+function sub(_tr, _k) do
+  while(true) do
     var k = _k;
     var tr = _tr;
-    if (tr) {
-      if (k == 1) {
+    if (tr) do
+      if (k == 1) do
         return tr[0];
-      } else {
+      end else do
         _k = k / 2 | 0;
-        if (k % 2 == 0) {
+        if (k % 2 == 0) do
           _tr = tr[1];
           continue ;
-        } else {
+        end else do
           _tr = tr[2];
           continue ;
-        }
-      }
-    } else {
+        end
+      end
+    end else do
       throw Caml_builtin_exceptions.not_found;
-    }
-  };
-}
+    end
+  end;
+end
 
-function update(tr, k, w) {
-  if (tr) {
+function update(tr, k, w) do
+  if (tr) do
     var r = tr[2];
     var l = tr[1];
-    if (k == 1) {
+    if (k == 1) do
       return --[ Br ]--[
               w,
               l,
               r
             ];
-    } else {
+    end else do
       var v = tr[0];
-      if (k % 2 == 0) {
+      if (k % 2 == 0) do
         return --[ Br ]--[
                 v,
                 update(l, k / 2 | 0, w),
                 r
               ];
-      } else {
+      end else do
         return --[ Br ]--[
                 v,
                 l,
                 update(r, k / 2 | 0, w)
               ];
-      }
-    }
-  } else if (k == 1) {
+      end
+    end
+  end else if (k == 1) do
     return --[ Br ]--[
             w,
             --[ Lf ]--0,
             --[ Lf ]--0
           ];
-  } else {
+  end else do
     throw Caml_builtin_exceptions.not_found;
-  }
-}
+  end
+end
 
-function $$delete(tr, n) {
-  if (tr) {
-    if (n == 1) {
+function $$delete(tr, n) do
+  if (tr) do
+    if (n == 1) do
       return --[ Lf ]--0;
-    } else {
+    end else do
       var r = tr[2];
       var l = tr[1];
       var v = tr[0];
-      if (n % 2 == 0) {
+      if (n % 2 == 0) do
         return --[ Br ]--[
                 v,
                 $$delete(l, n / 2 | 0),
                 r
               ];
-      } else {
+      end else do
         return --[ Br ]--[
                 v,
                 l,
                 $$delete(r, n / 2 | 0)
               ];
-      }
-    }
-  } else {
+      end
+    end
+  end else do
     throw Caml_builtin_exceptions.not_found;
-  }
-}
+  end
+end
 
-function loext(tr, w) {
-  if (tr) {
+function loext(tr, w) do
+  if (tr) do
     return --[ Br ]--[
             w,
             loext(tr[2], tr[0]),
             tr[1]
           ];
-  } else {
+  end else do
     return --[ Br ]--[
             w,
             --[ Lf ]--0,
             --[ Lf ]--0
           ];
-  }
-}
+  end
+end
 
-function lorem(tr) {
-  if (tr) {
+function lorem(tr) do
+  if (tr) do
     var l = tr[1];
-    if (l) {
+    if (l) do
       return --[ Br ]--[
               l[0],
               tr[2],
               lorem(l)
             ];
-    } else if (tr[2]) {
+    end else if (tr[2]) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -129,99 +129,99 @@ function lorem(tr) {
               9
             ]
           ];
-    } else {
+    end else do
       return --[ Lf ]--0;
-    }
-  } else {
+    end
+  end else do
     throw Caml_builtin_exceptions.not_found;
-  }
-}
+  end
+end
 
 var empty = --[ tuple ]--[
   --[ Lf ]--0,
   0
 ];
 
-function length(param) {
+function length(param) do
   return param[1];
-}
+end
 
-function get(param, i) {
-  if (i >= 0 and i < param[1]) {
+function get(param, i) do
+  if (i >= 0 and i < param[1]) do
     return sub(param[0], i + 1 | 0);
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Array.get"
         ];
-  }
-}
+  end
+end
 
-function set(param, i, v) {
+function set(param, i, v) do
   var k = param[1];
-  if (i >= 0 and i < k) {
+  if (i >= 0 and i < k) do
     return --[ tuple ]--[
             update(param[0], i + 1 | 0, v),
             k
           ];
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Array.set"
         ];
-  }
-}
+  end
+end
 
-function push_front(param, v) {
+function push_front(param, v) do
   return --[ tuple ]--[
           loext(param[0], v),
           param[1] + 1 | 0
         ];
-}
+end
 
-function pop_front(param) {
+function pop_front(param) do
   var k = param[1];
-  if (k > 0) {
+  if (k > 0) do
     return --[ tuple ]--[
             lorem(param[0]),
             k - 1 | 0
           ];
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Array.pop_front"
         ];
-  }
-}
+  end
+end
 
-function push_back(param, v) {
+function push_back(param, v) do
   var k = param[1];
   return --[ tuple ]--[
           update(param[0], k + 1 | 0, v),
           k + 1 | 0
         ];
-}
+end
 
-function pop_back(param) {
+function pop_back(param) do
   var k = param[1];
-  if (k > 0) {
+  if (k > 0) do
     return --[ tuple ]--[
             $$delete(param[0], k),
             k - 1 | 0
           ];
-  } else {
+  end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Array.pop_back"
         ];
-  }
-}
+  end
+end
 
-function pp(fmt, s) {
+function pp(fmt, s) do
   var v = "[ ";
-  for(var i = 0 ,i_finish = length(s) - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = length(s) - 1 | 0; i <= i_finish; ++i)do
     v = v .. (", " .. String(get(s, i)));
-  }
+  end
   v = v .. "]";
   return Curry._1(Format.fprintf(fmt, --[ Format ]--[
                   --[ String ]--Block.__(2, [
@@ -230,58 +230,58 @@ function pp(fmt, s) {
                     ]),
                   "%s"
                 ]), v);
-}
+end
 
-function filter_from(i, p, s) {
+function filter_from(i, p, s) do
   var u = empty;
-  for(var i$1 = i ,i_finish = length(s) - 1 | 0; i$1 <= i_finish; ++i$1){
+  for(var i$1 = i ,i_finish = length(s) - 1 | 0; i$1 <= i_finish; ++i$1)do
     var ele = get(s, i$1);
-    if (Curry._1(p, ele)) {
+    if (Curry._1(p, ele)) do
       u = push_back(u, ele);
-    }
+    end
     
-  }
+  end
   return u;
-}
+end
 
-function append(a, b) {
+function append(a, b) do
   var empty$1 = empty;
-  for(var i = 0 ,i_finish = length(a) - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = length(a) - 1 | 0; i <= i_finish; ++i)do
     empty$1 = push_back(empty$1, get(a, i));
-  }
-  for(var i$1 = 0 ,i_finish$1 = length(b) - 1 | 0; i$1 <= i_finish$1; ++i$1){
+  end
+  for(var i$1 = 0 ,i_finish$1 = length(b) - 1 | 0; i$1 <= i_finish$1; ++i$1)do
     empty$1 = push_back(empty$1, get(b, i$1));
-  }
+  end
   return empty$1;
-}
+end
 
-function sort(s) {
+function sort(s) do
   var size = length(s);
-  if (size <= 1) {
+  if (size <= 1) do
     return s;
-  } else {
+  end else do
     var head = get(s, 0);
-    var larger = sort(filter_from(1, (function (x) {
+    var larger = sort(filter_from(1, (function (x) do
                 return Caml_obj.caml_greaterthan(x, head);
-              }), s));
-    var smaller = sort(filter_from(1, (function (x) {
+              end), s));
+    var smaller = sort(filter_from(1, (function (x) do
                 return Caml_obj.caml_lessequal(x, head);
-              }), s));
+              end), s));
     return append(smaller, push_front(larger, head));
-  }
-}
+  end
+end
 
-function of_array(arr) {
+function of_array(arr) do
   var v = empty;
-  for(var i = 0 ,i_finish = #arr - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = #arr - 1 | 0; i <= i_finish; ++i)do
     v = push_back(v, Caml_array.caml_array_get(arr, i));
-  }
+  end
   return v;
-}
+end
 
 var equal = Caml_obj.caml_equal;
 
-var Int_array = {
+var Int_array = do
   empty: empty,
   get: get,
   set: set,
@@ -294,11 +294,11 @@ var Int_array = {
   sort: sort,
   of_array: of_array,
   equal: equal
-};
+end;
 
-function $eq$tilde(x, y) {
+function $eq$tilde(x, y) do
   return Caml_obj.caml_equal(x, of_array(y));
-}
+end
 
 var u = of_array([
       1,
@@ -318,7 +318,7 @@ if (!Caml_obj.caml_equal(x, of_array([
             3,
             5,
             6
-          ]))) {
+          ]))) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -327,15 +327,15 @@ if (!Caml_obj.caml_equal(x, of_array([
           4
         ]
       ];
-}
+end
 
-var v = $$Array.init(500, (function (i) {
+var v = $$Array.init(500, (function (i) do
         return 500 - i | 0;
-      }));
+      end));
 
-var y = $$Array.init(500, (function (i) {
+var y = $$Array.init(500, (function (i) do
         return i + 1 | 0;
-      }));
+      end));
 
 var x$1 = sort(of_array(v));
 

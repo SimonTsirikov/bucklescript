@@ -1,17 +1,17 @@
 'use strict';
 
 
-function f(x) {
+function f(x) do
   return x + 1 | 0;
-}
+end
 
 var a = f(1);
 
 var b = f(2);
 
-function g(param) {
+function g(param) do
   return 1;
-}
+end
 
 var c = g(--[ () ]--0);
 

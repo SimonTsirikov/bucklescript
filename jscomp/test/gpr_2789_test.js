@@ -3,17 +3,17 @@
 var Mt = require("./mt.js");
 var Caml_weak = require("../../lib/js/caml_weak.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
 eq("File \"gpr_2789_test.ml\", line 8, characters 5-12", 0, #Caml_weak.caml_weak_create(0));
 

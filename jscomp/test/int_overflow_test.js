@@ -6,178 +6,178 @@ var Int32 = require("../../lib/js/int32.js");
 var Caml_int32 = require("../../lib/js/caml_int32.js");
 var Caml_string = require("../../lib/js/caml_string.js");
 
-function hash_variant(s) {
+function hash_variant(s) do
   var accu = 0;
-  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
     accu = Caml_int32.imul(223, accu) + Caml_string.get(s, i) & 2147483647;
-  }
-  if (accu > 1073741823) {
+  end
+  if (accu > 1073741823) do
     return accu - -2147483648 | 0;
-  } else {
+  end else do
     return accu;
-  }
-}
+  end
+end
 
-function hash_variant2(s) {
+function hash_variant2(s) do
   var accu = 0;
-  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
     accu = Caml_int32.imul(223, accu) + Caml_string.get(s, i) | 0;
-  }
+  end
   accu = accu & 2147483647;
-  if (accu > 1073741823) {
+  if (accu > 1073741823) do
     return accu - -2147483648 | 0;
-  } else {
+  end else do
     return accu;
-  }
-}
+  end
+end
 
-function fib(n) {
-  if (n ~= 0 and n ~= 1) {
+function fib(n) do
+  if (n ~= 0 and n ~= 1) do
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
-  } else {
+  end else do
     return 1;
-  }
-}
+  end
+end
 
 Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
       --[ tuple ]--[
         "plus_overflow",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       true,
                       (Int32.max_int + 1 | 0) == Int32.min_int
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "minus_overflow",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         true,
                         (Int32.min_int - Int32.one | 0) == Int32.max_int
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "flow_again",
-            (function (param) {
+            (function (param) do
                 return --[ Eq ]--Block.__(0, [
                           2147483646,
                           (Int32.max_int + Int32.max_int | 0) + Int32.min_int | 0
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "flow_again",
-              (function (param) {
+              (function (param) do
                   return --[ Eq ]--Block.__(0, [
                             -2,
                             Int32.max_int + Int32.max_int | 0
                           ]);
-                })
+                end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
                 "hash_test",
-                (function (param) {
+                (function (param) do
                     return --[ Eq ]--Block.__(0, [
                               hash_variant("xxyyzzuuxxzzyy00112233"),
                               544087776
                             ]);
-                  })
+                  end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
                   "hash_test2",
-                  (function (param) {
+                  (function (param) do
                       return --[ Eq ]--Block.__(0, [
                                 hash_variant("xxyyzxzzyy"),
                                 -449896130
                               ]);
-                    })
+                    end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
                     "File \"int_overflow_test.ml\", line 37, characters 2-9",
-                    (function (param) {
+                    (function (param) do
                         return --[ Eq ]--Block.__(0, [
                                   hash_variant2("xxyyzzuuxxzzyy00112233"),
                                   544087776
                                 ]);
-                      })
+                      end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
                       "File \"int_overflow_test.ml\", line 38, characters 2-9",
-                      (function (param) {
+                      (function (param) do
                           return --[ Eq ]--Block.__(0, [
                                     hash_variant2("xxyyzxzzyy"),
                                     -449896130
                                   ]);
-                        })
+                        end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
                         "int_literal_flow",
-                        (function (param) {
+                        (function (param) do
                             return --[ Eq ]--Block.__(0, [
                                       -1,
                                       -1
                                     ]);
-                          })
+                          end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
                           "int_literal_flow2",
-                          (function (param) {
+                          (function (param) do
                               return --[ Eq ]--Block.__(0, [
                                         -1,
                                         -1
                                       ]);
-                            })
+                            end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
                             "int_literal_flow3",
-                            (function (param) {
+                            (function (param) do
                                 return --[ Eq ]--Block.__(0, [
                                           -1,
                                           -1
                                         ]);
-                              })
+                              end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
                               "int32_mul",
-                              (function (param) {
+                              (function (param) do
                                   return --[ Eq ]--Block.__(0, [
                                             -33554431,
                                             -33554431
                                           ]);
-                                })
+                                end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
                                 "File \"int_overflow_test.ml\", line 44, characters 3-10",
-                                (function (param) {
+                                (function (param) do
                                     return --[ Eq ]--Block.__(0, [
                                               Number("3") | 0,
                                               3
                                             ]);
-                                  })
+                                  end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
                                   "File \"int_overflow_test.ml\", line 46, characters 3-10",
-                                  (function (param) {
+                                  (function (param) do
                                       return --[ Eq ]--Block.__(0, [
                                                 Number("3.2") | 0,
                                                 3
                                               ]);
-                                    })
+                                    end)
                                 ],
                                 --[ [] ]--0
                               ]

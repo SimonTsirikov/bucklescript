@@ -4,7 +4,7 @@ var List = require("../../lib/js/list.js");
 var Stack = require("../../lib/js/stack.js");
 var Pervasives = require("../../lib/js/pervasives.js");
 
-var List$1 = {
+var List$1 = do
   length: List.length,
   compare_lengths: List.compare_lengths,
   compare_length_with: List.compare_length_with,
@@ -142,9 +142,9 @@ var List$1 = {
   valid_float_lexem: Pervasives.valid_float_lexem,
   unsafe_really_input: Pervasives.unsafe_really_input,
   do_at_exit: Pervasives.do_at_exit
-};
+end;
 
-var U = {
+var U = do
   Empty: Stack.Empty,
   create: Stack.create,
   push: Stack.push,
@@ -241,7 +241,7 @@ var U = {
   valid_float_lexem: Pervasives.valid_float_lexem,
   unsafe_really_input: Pervasives.unsafe_really_input,
   do_at_exit: Pervasives.do_at_exit
-};
+end;
 
 var f = Pervasives.$at;
 

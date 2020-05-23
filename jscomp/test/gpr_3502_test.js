@@ -1,18 +1,18 @@
 'use strict';
 
 
-function toString(param) {
+function toString(param) do
   return "a";
-}
+end
 
-function name(param) {
+function name(param) do
   return 2;
-}
+end
 
-var Language = {
+var Language = do
   toString: toString,
   name: name
-};
+end;
 
 var language = "a";
 

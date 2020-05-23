@@ -7,15 +7,15 @@ var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function foo(param) {
-  if (typeof param == "number") {
-    if (param == --[ A1 ]--0) {
+function foo(param) do
+  if (typeof param == "number") do
+    if (param == --[ A1 ]--0) do
       return 1;
-    } else {
+    end else do
       return 2;
-    }
-  } else {
-    switch (param.tag | 0) {
+    end
+  end else do
+    switch (param.tag | 0) do
       case --[ B ]--0 :
           return param[0];
       case --[ C ]--1 :
@@ -24,28 +24,28 @@ function foo(param) {
           var match = param[0];
           return match[0] + match[1] | 0;
       
-    }
-  }
-}
+    end
+  end
+end
 
-function fooA1(param) {
-  if (typeof param == "number" and param == 0) {
+function fooA1(param) do
+  if (typeof param == "number" and param == 0) do
     return 1;
-  } else {
+  end else do
     return 42;
-  }
-}
+  end
+end
 
-function fooC(param) {
-  if (typeof param == "number" or param.tag ~= --[ C ]--1) {
+function fooC(param) do
+  if (typeof param == "number" or param.tag ~= --[ C ]--1) do
     return 42;
-  } else {
+  end else do
     return param[0] + param[1] | 0;
-  }
-}
+  end
+end
 
-function switchNum(param) {
-  switch (param) {
+function switchNum(param) do
+  switch (param) do
     case 0 :
         return "0";
     case 1 :
@@ -54,54 +54,54 @@ function switchNum(param) {
         return "2";
     default:
       return "_";
-  }
-}
+  end
+end
 
 var same = Caml_obj.caml_equal;
 
 var compare = Caml_obj.caml_compare;
 
-var Path = {
+var Path = do
   same: same,
   compare: compare
-};
+end;
 
-function Make(M) {
-  var find = function (x) {
+function Make(M) do
+  var find = function (x) do
     return --[ () ]--0;
-  };
-  return {
+  end;
+  return do
           find: find
-        };
-}
+        end;
+end
 
-function find(x) {
+function find(x) do
   return --[ () ]--0;
-}
+end
 
-var M = {
+var M = do
   find: find
-};
+end;
 
-function rollback_path(subst, p) {
-  try {
+function rollback_path(subst, p) do
+  try do
     return "try";
-  }
-  catch (exn){
-    if (exn == Caml_builtin_exceptions.not_found) {
-      switch (p.tag | 0) {
+  end
+  catch (exn)do
+    if (exn == Caml_builtin_exceptions.not_found) do
+      switch (p.tag | 0) do
         case --[ Pdot ]--1 :
             return "Pdot";
         case --[ Pident ]--0 :
         case --[ Papply ]--2 :
             return "Pident | Papply";
         
-      }
-    } else {
+      end
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
 var EA1 = Caml_exceptions.create("Variant.EA1");
 
@@ -113,28 +113,28 @@ var EC = Caml_exceptions.create("Variant.EC");
 
 var ED = Caml_exceptions.create("Variant.ED");
 
-function fooExn(f) {
-  try {
+function fooExn(f) do
+  try do
     return Curry._1(f, --[ () ]--0);
-  }
-  catch (raw_exn){
+  end
+  catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-    if (exn == EA1) {
+    if (exn == EA1) do
       return 1;
-    } else if (exn == EA2) {
+    end else if (exn == EA2) do
       return 2;
-    } else if (exn[0] == EB) {
+    end else if (exn[0] == EB) do
       return exn[1];
-    } else if (exn[0] == EC) {
+    end else if (exn[0] == EC) do
       return exn[1] + exn[2] | 0;
-    } else if (exn[0] == ED) {
+    end else if (exn[0] == ED) do
       var match = exn[1];
       return match[0] + match[1] | 0;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
 var a1 = --[ A1 ]--0;
 

@@ -1,13 +1,13 @@
 'use strict';
 
 
-function f(x) {
-  if (x == 3) {
+function f(x) do
+  if (x == 3) do
     return true;
-  } else {
+  end else do
     return x == 4;
-  }
-}
+  end
+end
 
 exports.f = f;
 --[ No side effect ]--

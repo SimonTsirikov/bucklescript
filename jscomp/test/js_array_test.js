@@ -7,7 +7,7 @@ var Caml_option = require("../../lib/js/caml_option.js");
 
 var suites_000 = --[ tuple ]--[
   "File \"js_array_test.ml\", line 3, characters 4-11",
-  (function (param) {
+  (function (param) do
       var x = [
         1,
         2,
@@ -20,17 +20,17 @@ var suites_000 = --[ tuple ]--[
                   2,
                   4
                 ],
-                (Js_vector.filterInPlace((function (x) {
+                (Js_vector.filterInPlace((function (x) do
                           return x % 2 == 0;
-                        }), x), x)
+                        end), x), x)
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "File \"js_array_test.ml\", line 11, characters 4-11",
-    (function (param) {
+    (function (param) do
         var x = [
           1,
           2,
@@ -40,36 +40,36 @@ var suites_001 = --[ :: ]--[
         ];
         return --[ Eq ]--Block.__(0, [
                   true,
-                  (Js_vector.filterInPlace((function (x) {
+                  (Js_vector.filterInPlace((function (x) do
                             return x > 10;
-                          }), x), #x == 0)
+                          end), x), #x == 0)
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "isArray_array",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     true,
                     Array.isArray([])
                   ]);
-        })
+        end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
         "isArray_int",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       false,
                       Array.isArray(34)
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "length",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         3,
                         [
@@ -78,12 +78,12 @@ var suites_001 = --[ :: ]--[
                           3
                         ].length
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "copyWithin",
-            (function (param) {
+            (function (param) do
                 return --[ Eq ]--Block.__(0, [
                           [
                             1,
@@ -100,12 +100,12 @@ var suites_001 = --[ :: ]--[
                               5
                             ].copyWithin(-2)
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "copyWithinFrom",
-              (function (param) {
+              (function (param) do
                   return --[ Eq ]--Block.__(0, [
                             [
                               4,
@@ -122,12 +122,12 @@ var suites_001 = --[ :: ]--[
                                 5
                               ].copyWithin(0, 3)
                           ]);
-                })
+                end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
                 "copyWithinFromRange",
-                (function (param) {
+                (function (param) do
                     return --[ Eq ]--Block.__(0, [
                               [
                                 4,
@@ -144,12 +144,12 @@ var suites_001 = --[ :: ]--[
                                   5
                                 ].copyWithin(0, 3, 4)
                             ]);
-                  })
+                  end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
                   "fillInPlace",
-                  (function (param) {
+                  (function (param) do
                       return --[ Eq ]--Block.__(0, [
                                 [
                                   4,
@@ -162,12 +162,12 @@ var suites_001 = --[ :: ]--[
                                     3
                                   ].fill(4)
                               ]);
-                    })
+                    end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
                     "fillFromInPlace",
-                    (function (param) {
+                    (function (param) do
                         return --[ Eq ]--Block.__(0, [
                                   [
                                     1,
@@ -180,12 +180,12 @@ var suites_001 = --[ :: ]--[
                                       3
                                     ].fill(4, 1)
                                 ]);
-                      })
+                      end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
                       "fillRangeInPlace",
-                      (function (param) {
+                      (function (param) do
                           return --[ Eq ]--Block.__(0, [
                                     [
                                       1,
@@ -198,12 +198,12 @@ var suites_001 = --[ :: ]--[
                                         3
                                       ].fill(4, 1, 2)
                                   ]);
-                        })
+                        end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
                         "pop",
-                        (function (param) {
+                        (function (param) do
                             return --[ Eq ]--Block.__(0, [
                                       3,
                                       Caml_option.undefined_to_opt([
@@ -212,22 +212,22 @@ var suites_001 = --[ :: ]--[
                                               3
                                             ].pop())
                                     ]);
-                          })
+                          end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
                           "pop - empty array",
-                          (function (param) {
+                          (function (param) do
                               return --[ Eq ]--Block.__(0, [
                                         undefined,
                                         Caml_option.undefined_to_opt([].pop())
                                       ]);
-                            })
+                            end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
                             "push",
-                            (function (param) {
+                            (function (param) do
                                 return --[ Eq ]--Block.__(0, [
                                           4,
                                           [
@@ -236,12 +236,12 @@ var suites_001 = --[ :: ]--[
                                               3
                                             ].push(4)
                                         ]);
-                              })
+                              end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
                               "pushMany",
-                              (function (param) {
+                              (function (param) do
                                   return --[ Eq ]--Block.__(0, [
                                             5,
                                             [
@@ -250,12 +250,12 @@ var suites_001 = --[ :: ]--[
                                                 3
                                               ].push(4, 5)
                                           ]);
-                                })
+                                end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
                                 "reverseInPlace",
-                                (function (param) {
+                                (function (param) do
                                     return --[ Eq ]--Block.__(0, [
                                               [
                                                 3,
@@ -268,12 +268,12 @@ var suites_001 = --[ :: ]--[
                                                   3
                                                 ].reverse()
                                             ]);
-                                  })
+                                  end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
                                   "shift",
-                                  (function (param) {
+                                  (function (param) do
                                       return --[ Eq ]--Block.__(0, [
                                                 1,
                                                 Caml_option.undefined_to_opt([
@@ -282,22 +282,22 @@ var suites_001 = --[ :: ]--[
                                                         3
                                                       ].shift())
                                               ]);
-                                    })
+                                    end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
                                     "shift - empty array",
-                                    (function (param) {
+                                    (function (param) do
                                         return --[ Eq ]--Block.__(0, [
                                                   undefined,
                                                   Caml_option.undefined_to_opt([].shift())
                                                 ]);
-                                      })
+                                      end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
                                       "sortInPlace",
-                                      (function (param) {
+                                      (function (param) do
                                           return --[ Eq ]--Block.__(0, [
                                                     [
                                                       1,
@@ -310,12 +310,12 @@ var suites_001 = --[ :: ]--[
                                                         2
                                                       ].sort()
                                                   ]);
-                                        })
+                                        end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
                                         "sortInPlaceWith",
-                                        (function (param) {
+                                        (function (param) do
                                             return --[ Eq ]--Block.__(0, [
                                                       [
                                                         3,
@@ -326,16 +326,16 @@ var suites_001 = --[ :: ]--[
                                                           3,
                                                           1,
                                                           2
-                                                        ].sort((function (a, b) {
+                                                        ].sort((function (a, b) do
                                                               return b - a | 0;
-                                                            }))
+                                                            end))
                                                     ]);
-                                          })
+                                          end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
                                           "spliceInPlace",
-                                          (function (param) {
+                                          (function (param) do
                                               var arr = [
                                                 1,
                                                 2,
@@ -359,12 +359,12 @@ var suites_001 = --[ :: ]--[
                                                           removed
                                                         ]
                                                       ]);
-                                            })
+                                            end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
                                             "removeFromInPlace",
-                                            (function (param) {
+                                            (function (param) do
                                                 var arr = [
                                                   1,
                                                   2,
@@ -388,12 +388,12 @@ var suites_001 = --[ :: ]--[
                                                             removed
                                                           ]
                                                         ]);
-                                              })
+                                              end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
                                               "removeCountInPlace",
-                                              (function (param) {
+                                              (function (param) do
                                                   var arr = [
                                                     1,
                                                     2,
@@ -415,12 +415,12 @@ var suites_001 = --[ :: ]--[
                                                               removed
                                                             ]
                                                           ]);
-                                                })
+                                                end)
                                             ],
                                             --[ :: ]--[
                                               --[ tuple ]--[
                                                 "unshift",
-                                                (function (param) {
+                                                (function (param) do
                                                     return --[ Eq ]--Block.__(0, [
                                                               4,
                                                               [
@@ -429,12 +429,12 @@ var suites_001 = --[ :: ]--[
                                                                   3
                                                                 ].unshift(4)
                                                             ]);
-                                                  })
+                                                  end)
                                               ],
                                               --[ :: ]--[
                                                 --[ tuple ]--[
                                                   "unshiftMany",
-                                                  (function (param) {
+                                                  (function (param) do
                                                       return --[ Eq ]--Block.__(0, [
                                                                 5,
                                                                 [
@@ -443,12 +443,12 @@ var suites_001 = --[ :: ]--[
                                                                     3
                                                                   ].unshift(4, 5)
                                                               ]);
-                                                    })
+                                                    end)
                                                 ],
                                                 --[ :: ]--[
                                                   --[ tuple ]--[
                                                     "append",
-                                                    (function (param) {
+                                                    (function (param) do
                                                         return --[ Eq ]--Block.__(0, [
                                                                   [
                                                                     1,
@@ -462,12 +462,12 @@ var suites_001 = --[ :: ]--[
                                                                       3
                                                                     ].concat([4])
                                                                 ]);
-                                                      })
+                                                      end)
                                                   ],
                                                   --[ :: ]--[
                                                     --[ tuple ]--[
                                                       "concat",
-                                                      (function (param) {
+                                                      (function (param) do
                                                           return --[ Eq ]--Block.__(0, [
                                                                     [
                                                                       1,
@@ -485,12 +485,12 @@ var suites_001 = --[ :: ]--[
                                                                           5
                                                                         ])
                                                                   ]);
-                                                        })
+                                                        end)
                                                     ],
                                                     --[ :: ]--[
                                                       --[ tuple ]--[
                                                         "concatMany",
-                                                        (function (param) {
+                                                        (function (param) do
                                                             return --[ Eq ]--Block.__(0, [
                                                                       [
                                                                         1,
@@ -513,12 +513,12 @@ var suites_001 = --[ :: ]--[
                                                                             7
                                                                           ])
                                                                     ]);
-                                                          })
+                                                          end)
                                                       ],
                                                       --[ :: ]--[
                                                         --[ tuple ]--[
                                                           "includes",
-                                                          (function (param) {
+                                                          (function (param) do
                                                               return --[ Eq ]--Block.__(0, [
                                                                         true,
                                                                         [
@@ -527,12 +527,12 @@ var suites_001 = --[ :: ]--[
                                                                             3
                                                                           ].includes(3)
                                                                       ]);
-                                                            })
+                                                            end)
                                                         ],
                                                         --[ :: ]--[
                                                           --[ tuple ]--[
                                                             "indexOf",
-                                                            (function (param) {
+                                                            (function (param) do
                                                                 return --[ Eq ]--Block.__(0, [
                                                                           1,
                                                                           [
@@ -541,12 +541,12 @@ var suites_001 = --[ :: ]--[
                                                                               3
                                                                             ].indexOf(2)
                                                                         ]);
-                                                              })
+                                                              end)
                                                           ],
                                                           --[ :: ]--[
                                                             --[ tuple ]--[
                                                               "indexOfFrom",
-                                                              (function (param) {
+                                                              (function (param) do
                                                                   return --[ Eq ]--Block.__(0, [
                                                                             3,
                                                                             [
@@ -556,12 +556,12 @@ var suites_001 = --[ :: ]--[
                                                                                 2
                                                                               ].indexOf(2, 2)
                                                                           ]);
-                                                                })
+                                                                end)
                                                             ],
                                                             --[ :: ]--[
                                                               --[ tuple ]--[
                                                                 "join",
-                                                                (function (param) {
+                                                                (function (param) do
                                                                     return --[ Eq ]--Block.__(0, [
                                                                               "1,2,3",
                                                                               [
@@ -570,12 +570,12 @@ var suites_001 = --[ :: ]--[
                                                                                   3
                                                                                 ].join()
                                                                             ]);
-                                                                  })
+                                                                  end)
                                                               ],
                                                               --[ :: ]--[
                                                                 --[ tuple ]--[
                                                                   "joinWith",
-                                                                  (function (param) {
+                                                                  (function (param) do
                                                                       return --[ Eq ]--Block.__(0, [
                                                                                 "1;2;3",
                                                                                 [
@@ -584,12 +584,12 @@ var suites_001 = --[ :: ]--[
                                                                                     3
                                                                                   ].join(";")
                                                                               ]);
-                                                                    })
+                                                                    end)
                                                                 ],
                                                                 --[ :: ]--[
                                                                   --[ tuple ]--[
                                                                     "lastIndexOf",
-                                                                    (function (param) {
+                                                                    (function (param) do
                                                                         return --[ Eq ]--Block.__(0, [
                                                                                   1,
                                                                                   [
@@ -598,12 +598,12 @@ var suites_001 = --[ :: ]--[
                                                                                       3
                                                                                     ].lastIndexOf(2)
                                                                                 ]);
-                                                                      })
+                                                                      end)
                                                                   ],
                                                                   --[ :: ]--[
                                                                     --[ tuple ]--[
                                                                       "lastIndexOfFrom",
-                                                                      (function (param) {
+                                                                      (function (param) do
                                                                           return --[ Eq ]--Block.__(0, [
                                                                                     1,
                                                                                     [
@@ -613,12 +613,12 @@ var suites_001 = --[ :: ]--[
                                                                                         2
                                                                                       ].lastIndexOf(2, 2)
                                                                                   ]);
-                                                                        })
+                                                                        end)
                                                                     ],
                                                                     --[ :: ]--[
                                                                       --[ tuple ]--[
                                                                         "slice",
-                                                                        (function (param) {
+                                                                        (function (param) do
                                                                             return --[ Eq ]--Block.__(0, [
                                                                                       [
                                                                                         2,
@@ -632,12 +632,12 @@ var suites_001 = --[ :: ]--[
                                                                                           5
                                                                                         ].slice(1, 3)
                                                                                     ]);
-                                                                          })
+                                                                          end)
                                                                       ],
                                                                       --[ :: ]--[
                                                                         --[ tuple ]--[
                                                                           "copy",
-                                                                          (function (param) {
+                                                                          (function (param) do
                                                                               return --[ Eq ]--Block.__(0, [
                                                                                         [
                                                                                           1,
@@ -654,12 +654,12 @@ var suites_001 = --[ :: ]--[
                                                                                             5
                                                                                           ].slice()
                                                                                       ]);
-                                                                            })
+                                                                            end)
                                                                         ],
                                                                         --[ :: ]--[
                                                                           --[ tuple ]--[
                                                                             "sliceFrom",
-                                                                            (function (param) {
+                                                                            (function (param) do
                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                           [
                                                                                             3,
@@ -674,12 +674,12 @@ var suites_001 = --[ :: ]--[
                                                                                               5
                                                                                             ].slice(2)
                                                                                         ]);
-                                                                              })
+                                                                              end)
                                                                           ],
                                                                           --[ :: ]--[
                                                                             --[ tuple ]--[
                                                                               "toString",
-                                                                              (function (param) {
+                                                                              (function (param) do
                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                             "1,2,3",
                                                                                             [
@@ -688,12 +688,12 @@ var suites_001 = --[ :: ]--[
                                                                                                 3
                                                                                               ].toString()
                                                                                           ]);
-                                                                                })
+                                                                                end)
                                                                             ],
                                                                             --[ :: ]--[
                                                                               --[ tuple ]--[
                                                                                 "toLocaleString",
-                                                                                (function (param) {
+                                                                                (function (param) do
                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                               "1,2,3",
                                                                                               [
@@ -702,44 +702,44 @@ var suites_001 = --[ :: ]--[
                                                                                                   3
                                                                                                 ].toLocaleString()
                                                                                             ]);
-                                                                                  })
+                                                                                  end)
                                                                               ],
                                                                               --[ :: ]--[
                                                                                 --[ tuple ]--[
                                                                                   "every",
-                                                                                  (function (param) {
+                                                                                  (function (param) do
                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                 true,
                                                                                                 [
                                                                                                     1,
                                                                                                     2,
                                                                                                     3
-                                                                                                  ].every((function (n) {
+                                                                                                  ].every((function (n) do
                                                                                                         return n > 0;
-                                                                                                      }))
+                                                                                                      end))
                                                                                               ]);
-                                                                                    })
+                                                                                    end)
                                                                                 ],
                                                                                 --[ :: ]--[
                                                                                   --[ tuple ]--[
                                                                                     "everyi",
-                                                                                    (function (param) {
+                                                                                    (function (param) do
                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                   false,
                                                                                                   [
                                                                                                       1,
                                                                                                       2,
                                                                                                       3
-                                                                                                    ].every((function (param, i) {
+                                                                                                    ].every((function (param, i) do
                                                                                                           return i > 0;
-                                                                                                        }))
+                                                                                                        end))
                                                                                                 ]);
-                                                                                      })
+                                                                                      end)
                                                                                   ],
                                                                                   --[ :: ]--[
                                                                                     --[ tuple ]--[
                                                                                       "filter",
-                                                                                      (function (param) {
+                                                                                      (function (param) do
                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                     [
                                                                                                       2,
@@ -750,16 +750,16 @@ var suites_001 = --[ :: ]--[
                                                                                                         2,
                                                                                                         3,
                                                                                                         4
-                                                                                                      ].filter((function (n) {
+                                                                                                      ].filter((function (n) do
                                                                                                             return n % 2 == 0;
-                                                                                                          }))
+                                                                                                          end))
                                                                                                   ]);
-                                                                                        })
+                                                                                        end)
                                                                                     ],
                                                                                     --[ :: ]--[
                                                                                       --[ tuple ]--[
                                                                                         "filteri",
-                                                                                        (function (param) {
+                                                                                        (function (param) do
                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                       [
                                                                                                         1,
@@ -770,16 +770,16 @@ var suites_001 = --[ :: ]--[
                                                                                                           2,
                                                                                                           3,
                                                                                                           4
-                                                                                                        ].filter((function (param, i) {
+                                                                                                        ].filter((function (param, i) do
                                                                                                               return i % 2 == 0;
-                                                                                                            }))
+                                                                                                            end))
                                                                                                     ]);
-                                                                                          })
+                                                                                          end)
                                                                                       ],
                                                                                       --[ :: ]--[
                                                                                         --[ tuple ]--[
                                                                                           "find",
-                                                                                          (function (param) {
+                                                                                          (function (param) do
                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                         2,
                                                                                                         Caml_option.undefined_to_opt([
@@ -787,16 +787,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                 2,
                                                                                                                 3,
                                                                                                                 4
-                                                                                                              ].find((function (n) {
+                                                                                                              ].find((function (n) do
                                                                                                                     return n % 2 == 0;
-                                                                                                                  })))
+                                                                                                                  end)))
                                                                                                       ]);
-                                                                                            })
+                                                                                            end)
                                                                                         ],
                                                                                         --[ :: ]--[
                                                                                           --[ tuple ]--[
                                                                                             "find - no match",
-                                                                                            (function (param) {
+                                                                                            (function (param) do
                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                           undefined,
                                                                                                           Caml_option.undefined_to_opt([
@@ -804,16 +804,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                   2,
                                                                                                                   3,
                                                                                                                   4
-                                                                                                                ].find((function (n) {
+                                                                                                                ].find((function (n) do
                                                                                                                       return n % 2 == 5;
-                                                                                                                    })))
+                                                                                                                    end)))
                                                                                                         ]);
-                                                                                              })
+                                                                                              end)
                                                                                           ],
                                                                                           --[ :: ]--[
                                                                                             --[ tuple ]--[
                                                                                               "findi",
-                                                                                              (function (param) {
+                                                                                              (function (param) do
                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                             1,
                                                                                                             Caml_option.undefined_to_opt([
@@ -821,16 +821,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                     2,
                                                                                                                     3,
                                                                                                                     4
-                                                                                                                  ].find((function (param, i) {
+                                                                                                                  ].find((function (param, i) do
                                                                                                                         return i % 2 == 0;
-                                                                                                                      })))
+                                                                                                                      end)))
                                                                                                           ]);
-                                                                                                })
+                                                                                                end)
                                                                                             ],
                                                                                             --[ :: ]--[
                                                                                               --[ tuple ]--[
                                                                                                 "findi - no match",
-                                                                                                (function (param) {
+                                                                                                (function (param) do
                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                               undefined,
                                                                                                               Caml_option.undefined_to_opt([
@@ -838,16 +838,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                       2,
                                                                                                                       3,
                                                                                                                       4
-                                                                                                                    ].find((function (param, i) {
+                                                                                                                    ].find((function (param, i) do
                                                                                                                           return i % 2 == 5;
-                                                                                                                        })))
+                                                                                                                        end)))
                                                                                                             ]);
-                                                                                                  })
+                                                                                                  end)
                                                                                               ],
                                                                                               --[ :: ]--[
                                                                                                 --[ tuple ]--[
                                                                                                   "findIndex",
-                                                                                                  (function (param) {
+                                                                                                  (function (param) do
                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                 1,
                                                                                                                 [
@@ -855,16 +855,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                     2,
                                                                                                                     3,
                                                                                                                     4
-                                                                                                                  ].findIndex((function (n) {
+                                                                                                                  ].findIndex((function (n) do
                                                                                                                         return n % 2 == 0;
-                                                                                                                      }))
+                                                                                                                      end))
                                                                                                               ]);
-                                                                                                    })
+                                                                                                    end)
                                                                                                 ],
                                                                                                 --[ :: ]--[
                                                                                                   --[ tuple ]--[
                                                                                                     "findIndexi",
-                                                                                                    (function (param) {
+                                                                                                    (function (param) do
                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                   0,
                                                                                                                   [
@@ -872,58 +872,58 @@ var suites_001 = --[ :: ]--[
                                                                                                                       2,
                                                                                                                       3,
                                                                                                                       4
-                                                                                                                    ].findIndex((function (param, i) {
+                                                                                                                    ].findIndex((function (param, i) do
                                                                                                                           return i % 2 == 0;
-                                                                                                                        }))
+                                                                                                                        end))
                                                                                                                 ]);
-                                                                                                      })
+                                                                                                      end)
                                                                                                   ],
                                                                                                   --[ :: ]--[
                                                                                                     --[ tuple ]--[
                                                                                                       "forEach",
-                                                                                                      (function (param) {
-                                                                                                          var sum = {
+                                                                                                      (function (param) do
+                                                                                                          var sum = do
                                                                                                             contents: 0
-                                                                                                          };
+                                                                                                          end;
                                                                                                           [
                                                                                                               1,
                                                                                                               2,
                                                                                                               3
-                                                                                                            ].forEach((function (n) {
+                                                                                                            ].forEach((function (n) do
                                                                                                                   sum.contents = sum.contents + n | 0;
                                                                                                                   return --[ () ]--0;
-                                                                                                                }));
+                                                                                                                end));
                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                     6,
                                                                                                                     sum.contents
                                                                                                                   ]);
-                                                                                                        })
+                                                                                                        end)
                                                                                                     ],
                                                                                                     --[ :: ]--[
                                                                                                       --[ tuple ]--[
                                                                                                         "forEachi",
-                                                                                                        (function (param) {
-                                                                                                            var sum = {
+                                                                                                        (function (param) do
+                                                                                                            var sum = do
                                                                                                               contents: 0
-                                                                                                            };
+                                                                                                            end;
                                                                                                             [
                                                                                                                 1,
                                                                                                                 2,
                                                                                                                 3
-                                                                                                              ].forEach((function (param, i) {
+                                                                                                              ].forEach((function (param, i) do
                                                                                                                     sum.contents = sum.contents + i | 0;
                                                                                                                     return --[ () ]--0;
-                                                                                                                  }));
+                                                                                                                  end));
                                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                                       3,
                                                                                                                       sum.contents
                                                                                                                     ]);
-                                                                                                          })
+                                                                                                          end)
                                                                                                       ],
                                                                                                       --[ :: ]--[
                                                                                                         --[ tuple ]--[
                                                                                                           "map",
-                                                                                                          (function (param) {
+                                                                                                          (function (param) do
                                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                                         [
                                                                                                                           2,
@@ -936,16 +936,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                             2,
                                                                                                                             3,
                                                                                                                             4
-                                                                                                                          ].map((function (n) {
+                                                                                                                          ].map((function (n) do
                                                                                                                                 return (n << 1);
-                                                                                                                              }))
+                                                                                                                              end))
                                                                                                                       ]);
-                                                                                                            })
+                                                                                                            end)
                                                                                                         ],
                                                                                                         --[ :: ]--[
                                                                                                           --[ tuple ]--[
                                                                                                             "map",
-                                                                                                            (function (param) {
+                                                                                                            (function (param) do
                                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                                           [
                                                                                                                             0,
@@ -958,16 +958,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                               2,
                                                                                                                               3,
                                                                                                                               4
-                                                                                                                            ].map((function (param, i) {
+                                                                                                                            ].map((function (param, i) do
                                                                                                                                   return (i << 1);
-                                                                                                                                }))
+                                                                                                                                end))
                                                                                                                         ]);
-                                                                                                              })
+                                                                                                              end)
                                                                                                           ],
                                                                                                           --[ :: ]--[
                                                                                                             --[ tuple ]--[
                                                                                                               "reduce",
-                                                                                                              (function (param) {
+                                                                                                              (function (param) do
                                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                                             -10,
                                                                                                                             [
@@ -975,16 +975,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                                 2,
                                                                                                                                 3,
                                                                                                                                 4
-                                                                                                                              ].reduce((function (acc, n) {
+                                                                                                                              ].reduce((function (acc, n) do
                                                                                                                                     return acc - n | 0;
-                                                                                                                                  }), 0)
+                                                                                                                                  end), 0)
                                                                                                                           ]);
-                                                                                                                })
+                                                                                                                end)
                                                                                                             ],
                                                                                                             --[ :: ]--[
                                                                                                               --[ tuple ]--[
                                                                                                                 "reducei",
-                                                                                                                (function (param) {
+                                                                                                                (function (param) do
                                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                                               -6,
                                                                                                                               [
@@ -992,16 +992,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                                   2,
                                                                                                                                   3,
                                                                                                                                   4
-                                                                                                                                ].reduce((function (acc, param, i) {
+                                                                                                                                ].reduce((function (acc, param, i) do
                                                                                                                                       return acc - i | 0;
-                                                                                                                                    }), 0)
+                                                                                                                                    end), 0)
                                                                                                                             ]);
-                                                                                                                  })
+                                                                                                                  end)
                                                                                                               ],
                                                                                                               --[ :: ]--[
                                                                                                                 --[ tuple ]--[
                                                                                                                   "reduceRight",
-                                                                                                                  (function (param) {
+                                                                                                                  (function (param) do
                                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                                 -10,
                                                                                                                                 [
@@ -1009,16 +1009,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                                     2,
                                                                                                                                     3,
                                                                                                                                     4
-                                                                                                                                  ].reduceRight((function (acc, n) {
+                                                                                                                                  ].reduceRight((function (acc, n) do
                                                                                                                                         return acc - n | 0;
-                                                                                                                                      }), 0)
+                                                                                                                                      end), 0)
                                                                                                                               ]);
-                                                                                                                    })
+                                                                                                                    end)
                                                                                                                 ],
                                                                                                                 --[ :: ]--[
                                                                                                                   --[ tuple ]--[
                                                                                                                     "reduceRighti",
-                                                                                                                    (function (param) {
+                                                                                                                    (function (param) do
                                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                                   -6,
                                                                                                                                   [
@@ -1026,16 +1026,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                                       2,
                                                                                                                                       3,
                                                                                                                                       4
-                                                                                                                                    ].reduceRight((function (acc, param, i) {
+                                                                                                                                    ].reduceRight((function (acc, param, i) do
                                                                                                                                           return acc - i | 0;
-                                                                                                                                        }), 0)
+                                                                                                                                        end), 0)
                                                                                                                                 ]);
-                                                                                                                      })
+                                                                                                                      end)
                                                                                                                   ],
                                                                                                                   --[ :: ]--[
                                                                                                                     --[ tuple ]--[
                                                                                                                       "some",
-                                                                                                                      (function (param) {
+                                                                                                                      (function (param) do
                                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                                     false,
                                                                                                                                     [
@@ -1043,16 +1043,16 @@ var suites_001 = --[ :: ]--[
                                                                                                                                         2,
                                                                                                                                         3,
                                                                                                                                         4
-                                                                                                                                      ].some((function (n) {
+                                                                                                                                      ].some((function (n) do
                                                                                                                                             return n <= 0;
-                                                                                                                                          }))
+                                                                                                                                          end))
                                                                                                                                   ]);
-                                                                                                                        })
+                                                                                                                        end)
                                                                                                                     ],
                                                                                                                     --[ :: ]--[
                                                                                                                       --[ tuple ]--[
                                                                                                                         "somei",
-                                                                                                                        (function (param) {
+                                                                                                                        (function (param) do
                                                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                                                       true,
                                                                                                                                       [
@@ -1060,11 +1060,11 @@ var suites_001 = --[ :: ]--[
                                                                                                                                           2,
                                                                                                                                           3,
                                                                                                                                           4
-                                                                                                                                        ].some((function (param, i) {
+                                                                                                                                        ].some((function (param, i) do
                                                                                                                                               return i <= 0;
-                                                                                                                                            }))
+                                                                                                                                            end))
                                                                                                                                     ]);
-                                                                                                                          })
+                                                                                                                          end)
                                                                                                                       ],
                                                                                                                       --[ [] ]--0
                                                                                                                     ]

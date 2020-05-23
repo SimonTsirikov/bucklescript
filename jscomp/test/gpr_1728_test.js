@@ -4,44 +4,44 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 var Caml_format = require("../../lib/js/caml_format.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function foo(x) {
+function foo(x) do
   return Caml_format.caml_int_of_string(x) ~= 3;
-}
+end
 
-function badInlining(obj) {
+function badInlining(obj) do
   var x = obj.field;
   Caml_format.caml_int_of_string(x) ~= 3;
   return --[ () ]--0;
-}
+end
 
-eq("File \"gpr_1728_test.ml\", line 17, characters 6-13", badInlining({
+eq("File \"gpr_1728_test.ml\", line 17, characters 6-13", badInlining(do
           field: "3"
-        }), --[ () ]--0);
+        end), --[ () ]--0);
 
 eq("File \"gpr_1728_test.ml\", line 19, characters 6-13", Caml_format.caml_int_of_string("-13"), -13);
 

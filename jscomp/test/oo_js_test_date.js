@@ -5,31 +5,31 @@ var Block = require("../../lib/js/block.js");
 
 var d = new Date(2016, 2);
 
-function d2(param) {
-  return (function (param$1, param$2) {
+function d2(param) do
+  return (function (param$1, param$2) do
       var prim = param;
       var prim$1 = 2;
       var prim$2 = param$1;
       return new Date(prim, prim$1, prim$2);
-    });
-}
+    end);
+end
 
 var d3 = d2(2016)(1, --[ () ]--0);
 
 var suites_000 = --[ tuple ]--[
   "getMonth",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 2,
                 d.getMonth()
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "getYear",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   --[ tuple ]--[
                     2016,
@@ -42,7 +42,7 @@ var suites_001 = --[ :: ]--[
                     d3.getDate()
                   ]
                 ]);
-      })
+      end)
   ],
   --[ [] ]--0
 ];

@@ -2,16 +2,16 @@
 
 var Curry = require("../../lib/js/curry.js");
 
-function map_pair(r, param) {
+function map_pair(r, param) do
   return --[ tuple ]--[
           Curry._1(r, param[0]),
           Curry._1(r, param[1])
         ];
-}
+end
 
-function u(x) {
+function u(x) do
   return x;
-}
+end
 
 map_pair(u, --[ tuple ]--[
       3,

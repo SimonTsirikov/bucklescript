@@ -6,7 +6,7 @@ var Curry = require("../../lib/js/curry.js");
 var Format = require("../../lib/js/format.js");
 var Printf = require("../../lib/js/printf.js");
 
-function print_pair(fmt, param) {
+function print_pair(fmt, param) do
   return Curry._2(Format.fprintf(fmt, --[ Format ]--[
                   --[ Char_literal ]--Block.__(12, [
                       --[ "(" ]--40,
@@ -30,11 +30,11 @@ function print_pair(fmt, param) {
                     ]),
                   "(%d,%d)"
                 ]), param[0], param[1]);
-}
+end
 
 var suites_000 = --[ tuple ]--[
   "sprintf_simple",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 "3232",
                 Curry._2(Printf.sprintf(--[ Format ]--[
@@ -50,13 +50,13 @@ var suites_000 = --[ tuple ]--[
                           "%s%d"
                         ]), "32", 32)
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "print_asprintf",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   "xx",
                   Format.asprintf(--[ Format ]--[
@@ -67,12 +67,12 @@ var suites_001 = --[ :: ]--[
                         "xx"
                       ])
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "print_pair",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     "(1,2)",
                     Curry._2(Format.asprintf(--[ Format ]--[
@@ -83,7 +83,7 @@ var suites_001 = --[ :: ]--[
                           2
                         ])
                   ]);
-        })
+        end)
     ],
     --[ [] ]--0
   ]

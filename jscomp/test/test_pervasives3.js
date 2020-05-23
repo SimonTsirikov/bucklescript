@@ -3,7 +3,7 @@
 var List = require("../../lib/js/list.js");
 var Pervasives = require("../../lib/js/pervasives.js");
 
-var Pervasives$1 = {
+var Pervasives$1 = do
   invalid_arg: Pervasives.invalid_arg,
   failwith: Pervasives.failwith,
   Exit: Pervasives.Exit,
@@ -141,7 +141,7 @@ var Pervasives$1 = {
   fast_sort: List.fast_sort,
   sort_uniq: List.sort_uniq,
   merge: List.merge
-};
+end;
 
 var v = Pervasives.$at;
 

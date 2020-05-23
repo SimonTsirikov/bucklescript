@@ -45,71 +45,71 @@ var yynames_const = "PLUS\0MINUS\0TIMES\0DIVIDE\0UMINUS\0LPAREN\0RPAREN\0EOF\0";
 var yynames_block = "NUMERAL\0IDENT\0";
 
 var yyact = [
-  (function (param) {
+  (function (param) do
       throw [
             Caml_builtin_exceptions.failure,
             "parser"
           ];
-    }),
-  (function (__caml_parser_env) {
+    end),
+  (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    }),
-  (function (__caml_parser_env) {
+    end),
+  (function (__caml_parser_env) do
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Numeral ]--Block.__(0, [_1]);
-    }),
-  (function (__caml_parser_env) {
+    end),
+  (function (__caml_parser_env) do
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Variable ]--Block.__(6, [_1]);
-    }),
-  (function (__caml_parser_env) {
+    end),
+  (function (__caml_parser_env) do
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Plus ]--Block.__(1, [
                 _1,
                 _3
               ]);
-    }),
-  (function (__caml_parser_env) {
+    end),
+  (function (__caml_parser_env) do
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Minus ]--Block.__(2, [
                 _1,
                 _3
               ]);
-    }),
-  (function (__caml_parser_env) {
+    end),
+  (function (__caml_parser_env) do
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Times ]--Block.__(3, [
                 _1,
                 _3
               ]);
-    }),
-  (function (__caml_parser_env) {
+    end),
+  (function (__caml_parser_env) do
       var _1 = Parsing.peek_val(__caml_parser_env, 2);
       var _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Divide ]--Block.__(4, [
                 _1,
                 _3
               ]);
-    }),
-  (function (__caml_parser_env) {
+    end),
+  (function (__caml_parser_env) do
       var _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Negate ]--Block.__(5, [_2]);
-    }),
-  (function (__caml_parser_env) {
+    end),
+  (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    }),
-  (function (__caml_parser_env) {
+    end),
+  (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    })
+    end)
 ];
 
-var yytables = {
+var yytables = do
   actions: yyact,
   transl_const: yytransl_const,
   transl_block: yytransl_block,
@@ -126,11 +126,11 @@ var yytables = {
   error_function: Parsing.parse_error,
   names_const: yynames_const,
   names_block: yynames_block
-};
+end;
 
-function toplevel(lexfun, lexbuf) {
+function toplevel(lexfun, lexbuf) do
   return Parsing.yyparse(yytables, 1, lexfun, lexbuf);
-}
+end
 
 var yytablesize = 272;
 

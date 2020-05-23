@@ -2,9 +2,9 @@
 
 var Belt_MutableSetInt = require("../../lib/js/belt_MutableSetInt.js");
 
-var mySet = {
+var mySet = do
   data: null
-};
+end;
 
 Belt_MutableSetInt.add(mySet, 1);
 

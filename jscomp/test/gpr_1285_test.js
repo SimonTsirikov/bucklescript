@@ -6,30 +6,30 @@ var Curry = require("../../lib/js/curry.js");
 var Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
 var CamlinternalOO = require("../../lib/js/camlinternalOO.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 var class_tables = --[ Cons ]--[
   0,
@@ -43,39 +43,39 @@ var class_tables$1 = --[ Cons ]--[
   0
 ];
 
-function step1(param) {
-  if (!class_tables[0]) {
+function step1(param) do
+  if (!class_tables[0]) do
     var $$class = CamlinternalOO.create_table(["step2"]);
     var env = CamlinternalOO.new_variable($$class, "");
     var step2 = CamlinternalOO.get_method_label($$class, "step2");
-    CamlinternalOO.set_method($$class, step2, (function (self$1) {
-            if (!class_tables$1[0]) {
+    CamlinternalOO.set_method($$class, step2, (function (self$1) do
+            if (!class_tables$1[0]) do
               var $$class = CamlinternalOO.create_table(["step3"]);
               var env = CamlinternalOO.new_variable($$class, "");
               var step3 = CamlinternalOO.get_method_label($$class, "step3");
-              CamlinternalOO.set_method($$class, step3, (function (self$2) {
+              CamlinternalOO.set_method($$class, step3, (function (self$2) do
                       return 33;
-                    }));
-              var env_init = function (env$1) {
+                    end));
+              var env_init = function (env$1) do
                 var self = CamlinternalOO.create_object_opt(0, $$class);
                 self[env] = env$1;
                 return self;
-              };
+              end;
               CamlinternalOO.init_class($$class);
               class_tables$1[0] = env_init;
-            }
+            end
             return Curry._1(class_tables$1[0], 0);
-          }));
-    var env_init = function (env$1) {
+          end));
+    var env_init = function (env$1) do
       var self = CamlinternalOO.create_object_opt(0, $$class);
       self[env] = env$1;
       return self;
-    };
+    end;
     CamlinternalOO.init_class($$class);
     class_tables[0] = env_init;
-  }
+  end
   return Curry._1(class_tables[0], 0);
-}
+end
 
 var tmp = step1(--[ () ]--0);
 

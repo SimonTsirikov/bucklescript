@@ -2,35 +2,35 @@
 
 var Curry = require("../../lib/js/curry.js");
 
-function test_hi(x) {
+function test_hi(x) do
   var match = x.hi(1, 2, 3);
-  if (match ~= null) {
+  if (match ~= null) do
     console.log(match);
     return 2;
-  } else {
+  end else do
     return 1;
-  }
-}
+  end
+end
 
-function test_hi__2(x) {
+function test_hi__2(x) do
   var match = x.hi__2();
-  if (match == null) {
+  if (match == null) do
     return 1;
-  } else {
+  end else do
     return 2;
-  }
-}
+  end
+end
 
-function test_cb(x) {
+function test_cb(x) do
   Curry._1(x.cb("hI", 1, 2, 3), 3);
   Curry._1(x.cb("hI", 1, 2, 3), 3);
   return x.cb2("hI", 1, 2, 3)(3);
-}
+end
 
-function f(x) {
+function f(x) do
   v(x);
   return --[ () ]--0;
-}
+end
 
 exports.test_hi = test_hi;
 exports.test_hi__2 = test_hi__2;

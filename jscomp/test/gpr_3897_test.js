@@ -1,9 +1,9 @@
 'use strict';
 
 
-function Make(U) {
+function Make(U) do
   return U;
-}
+end
 
 exports.Make = Make;
 --[ No side effect ]--

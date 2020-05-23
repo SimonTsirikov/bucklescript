@@ -5,12 +5,12 @@
 
 console.log("hi");
 
-function f(x) {
-  ({
+function f(x) do
+  (do
       x: (console.log("hi"), x)
-    }).x = x + 1 | 0;
+    end).x = x + 1 | 0;
   return --[ () ]--0;
-}
+end
 
 exports.f = f;
 --[  Not a pure module ]--

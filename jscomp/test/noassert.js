@@ -2,7 +2,7 @@
 
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function f(param) {
+function f(param) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -11,11 +11,11 @@ function f(param) {
           11
         ]
       ];
-}
+end
 
-function h(param) {
+function h(param) do
   return 0;
-}
+end
 
 exports.f = f;
 exports.h = h;

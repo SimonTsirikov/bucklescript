@@ -1,22 +1,22 @@
 'use strict';
 
 
-function f(x) {
+function f(x) do
   return x + 3 | 0;
-}
+end
 
-function M(S) {
-  var f = function (x) {
+function M(S) do
+  var f = function (x) do
     return x;
-  };
-  return {
+  end;
+  return do
           f: f
-        };
-}
+        end;
+end
 
-function fff(param, param$1) {
+function fff(param, param$1) do
   return 3;
-}
+end
 
 exports.f = f;
 exports.M = M;

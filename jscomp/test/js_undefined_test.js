@@ -7,131 +7,131 @@ var Js_undefined = require("../../lib/js/js_undefined.js");
 
 var suites_000 = --[ tuple ]--[
   "toOption - empty",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 undefined,
                 undefined
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "toOption - 'a",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   --[ () ]--0,
                   Caml_option.undefined_to_opt(--[ () ]--0)
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "return",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     "something",
                     Caml_option.undefined_to_opt("something")
                   ]);
-        })
+        end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
         "test - empty",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       true,
                       true
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "test - 'a",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         false,
                         false
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "bind - empty",
-            (function (param) {
+            (function (param) do
                 return --[ Eq ]--Block.__(0, [
                           undefined,
-                          Js_undefined.bind(undefined, (function (v) {
+                          Js_undefined.bind(undefined, (function (v) do
                                   return v;
-                                }))
+                                end))
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "bind - 'a",
-              (function (param) {
+              (function (param) do
                   return --[ Eq ]--Block.__(0, [
                             4,
-                            Js_undefined.bind(2, (function (n) {
+                            Js_undefined.bind(2, (function (n) do
                                     return (n << 1);
-                                  }))
+                                  end))
                           ]);
-                })
+                end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
                 "iter - empty",
-                (function (param) {
-                    var hit = {
+                (function (param) do
+                    var hit = do
                       contents: false
-                    };
-                    Js_undefined.iter(undefined, (function (param) {
+                    end;
+                    Js_undefined.iter(undefined, (function (param) do
                             hit.contents = true;
                             return --[ () ]--0;
-                          }));
+                          end));
                     return --[ Eq ]--Block.__(0, [
                               false,
                               hit.contents
                             ]);
-                  })
+                  end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
                   "iter - 'a",
-                  (function (param) {
-                      var hit = {
+                  (function (param) do
+                      var hit = do
                         contents: 0
-                      };
-                      Js_undefined.iter(2, (function (v) {
+                      end;
+                      Js_undefined.iter(2, (function (v) do
                               hit.contents = v;
                               return --[ () ]--0;
-                            }));
+                            end));
                       return --[ Eq ]--Block.__(0, [
                                 2,
                                 hit.contents
                               ]);
-                    })
+                    end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
                     "fromOption - None",
-                    (function (param) {
+                    (function (param) do
                         return --[ Eq ]--Block.__(0, [
                                   undefined,
                                   Js_undefined.fromOption(undefined)
                                 ]);
-                      })
+                      end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
                       "fromOption - Some",
-                      (function (param) {
+                      (function (param) do
                           return --[ Eq ]--Block.__(0, [
                                     2,
                                     Js_undefined.fromOption(2)
                                   ]);
-                        })
+                        end)
                     ],
                     --[ [] ]--0
                   ]

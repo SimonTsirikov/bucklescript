@@ -3,108 +3,108 @@
 var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-function f0(x) {
+function f0(x) do
   var old = x.open;
   x.open = old + 1 | 0;
   return x.open;
-}
+end
 
-function f1(x) {
+function f1(x) do
   var old = x.in;
   x.in = old + 1 | 0;
   return x.in;
-}
+end
 
-function f2(x) {
+function f2(x) do
   var old = x.MAX_LENGTH;
   x.MAX_LENGTH = old + 1 | 0;
   return x.MAX_LENGTH;
-}
+end
 
-function f3(x) {
+function f3(x) do
   var old = x.Capital;
   x.Capital = old + 1 | 0;
   return x.Capital;
-}
+end
 
-function f4(x) {
+function f4(x) do
   var old = x._open;
   x._open = old + 1 | 0;
   return x._open;
-}
+end
 
-function f5(x) {
+function f5(x) do
   var old = x.open;
   x.open = old + 1 | 0;
   return x.open;
-}
+end
 
-function f6(x) {
+function f6(x) do
   var old = x["'x"];
   x["'x"] = old + 1 | 0;
   return x["'x"];
-}
+end
 
-function f7(x) {
+function f7(x) do
   var old = x._Capital;
   x._Capital = old + 1 | 0;
   return x._Capital;
-}
+end
 
-function f8(x) {
+function f8(x) do
   var old = x._MAX;
   x._MAX = old + 1 | 0;
   return x._MAX;
-}
+end
 
-function f9(x) {
+function f9(x) do
   var old = x.__;
   x.__ = old + 1 | 0;
   return x.__;
-}
+end
 
-function f10(x) {
+function f10(x) do
   var old = x.__x;
   x.__x = old + 1 | 0;
   return x.__x;
-}
+end
 
-function f11(x) {
+function f11(x) do
   var old = x._;
   x._ = old + 1 | 0;
   return x._;
-}
+end
 
-function f12(x) {
+function f12(x) do
   var old = x.__;
   x.__ = old + 1 | 0;
   return x.__;
-}
+end
 
 eq("File \"name_mangle_test.ml\", line 85, characters 7-14", f0(({open:0})), 1);
 

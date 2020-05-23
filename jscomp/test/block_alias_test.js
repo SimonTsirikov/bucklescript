@@ -5,21 +5,21 @@ var List = require("../../lib/js/list.js");
 var Block = require("../../lib/js/block.js");
 var Caml_obj = require("../../lib/js/caml_obj.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, x) {
+function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-}
+end
 
 var Block$1 = { };
 
@@ -35,18 +35,18 @@ var v1 = --[ A ]--Block.__(1, [
     1
   ]);
 
-var N = {
+var N = do
   Block: Block$2,
   v1: v1
-};
+end;
 
 var Caml_obj$1 = { };
 
 var List$1 = { };
 
-var V = {
+var V = do
   List: List$1
-};
+end;
 
 var f = Caml_obj.caml_equal;
 

@@ -7,7 +7,7 @@ var Ext_string_test = require("./ext_string_test.js");
 
 var suites_000 = --[ tuple ]--[
   "split",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 Ext_string_test.split(true, "hihi", --[ "i" ]--105),
                 --[ :: ]--[
@@ -21,13 +21,13 @@ var suites_000 = --[ tuple ]--[
                   ]
                 ]
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "split_non_empty",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   Ext_string_test.split(undefined, "hihi", --[ "i" ]--105),
                   --[ :: ]--[
@@ -38,22 +38,22 @@ var suites_001 = --[ :: ]--[
                     ]
                   ]
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "split_empty",
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     Ext_string_test.split(true, "", --[ "i" ]--105),
                     --[ [] ]--0
                   ]);
-        })
+        end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
         "split_normal",
-        (function (param) {
+        (function (param) do
             return --[ Eq ]--Block.__(0, [
                       Ext_string_test.split(true, "h i i", --[ " " ]--32),
                       --[ :: ]--[
@@ -67,22 +67,22 @@ var suites_001 = --[ :: ]--[
                         ]
                       ]
                     ]);
-          })
+          end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
           "split_by",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
-                        List.filter((function (s) {
+                        List.filter((function (s) do
                                   return s ~= "";
-                                }))(Ext_string_test.split_by(undefined, (function (x) {
-                                    if (x == --[ " " ]--32) {
+                                end))(Ext_string_test.split_by(undefined, (function (x) do
+                                    if (x == --[ " " ]--32) do
                                       return true;
-                                    } else {
+                                    end else do
                                       return x == --[ "\t" ]--9;
-                                    }
-                                  }), "h hgso hgso \t hi")),
+                                    end
+                                  end), "h hgso hgso \t hi")),
                         --[ :: ]--[
                           "h",
                           --[ :: ]--[
@@ -97,7 +97,7 @@ var suites_001 = --[ :: ]--[
                           ]
                         ]
                       ]);
-            })
+            end)
         ],
         --[ [] ]--0
       ]

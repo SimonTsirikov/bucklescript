@@ -4,48 +4,48 @@ var Curry = require("../../lib/js/curry.js");
 var React = require("react");
 var ReactDom = require("react-dom");
 
-function fib(n) {
-  if (n == 2 or n == 1) {
+function fib(n) do
+  if (n == 2 or n == 1) do
     return 1;
-  } else {
+  end else do
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
-  }
-}
+  end
+end
 
-function sum(n) {
+function sum(n) do
   var v = 0;
-  for(var i = 0; i <= n; ++i){
+  for(var i = 0; i <= n; ++i)do
     v = v + i | 0;
-  }
+  end
   return v;
-}
+end
 
-function map(f, param) {
-  if (param) {
+function map(f, param) do
+  if (param) do
     return --[ Cons ]--[
             Curry._1(f, param[0]),
             map(f, param[1])
           ];
-  } else {
+  end else do
     return --[ Nil ]--0;
-  }
-}
+  end
+end
 
-function test_curry(x, y) {
+function test_curry(x, y) do
   return x + y | 0;
-}
+end
 
-function f(param) {
+function f(param) do
   return 32 + param | 0;
-}
+end
 
-ReactDom.render(React.createClass({
-          render: (function (param) {
-              return React.DOM.div({
+ReactDom.render(React.createClass(do
+          render: (function (param) do
+              return React.DOM.div(do
                           alt: "pic"
-                        }, React.DOM.h1(undefined, "hello react"), React.DOM.h2(undefined, "type safe!"));
-            })
-        }), document.getElementById("hi"));
+                        end, React.DOM.h1(undefined, "hello react"), React.DOM.h2(undefined, "type safe!"));
+            end)
+        end), document.getElementById("hi"));
 
 exports.fib = fib;
 exports.sum = sum;

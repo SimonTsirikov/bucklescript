@@ -6,19 +6,19 @@ var A = Caml_exceptions.create("Test_exception_escape.N.A");
 
 var f;
 
-try {
+try do
   throw [
         A,
         3
       ];
-}
-catch (exn){
+end
+catch (exn)do
   f = 3;
-}
+end
 
-var N = {
+var N = do
   f: f
-};
+end;
 
 exports.N = N;
 --[ f Not a pure module ]--

@@ -1,25 +1,25 @@
 'use strict';
 
 
-function bla(foo, bar, baz) {
+function bla(foo, bar, baz) do
   return foo["##"](bar, baz);
-}
+end
 
-function bla2(foo, bar, baz) {
+function bla2(foo, bar, baz) do
   return foo.bar.baz;
-}
+end
 
-function bla3(foo, bar, baz) {
+function bla3(foo, bar, baz) do
   return foo["##"](bar, baz);
-}
+end
 
-function bla4(foo, x, y) {
+function bla4(foo, x, y) do
   return foo.method1(x, y);
-}
+end
 
-function bla5(foo, x, y) {
+function bla5(foo, x, y) do
   return foo.method1(x, y);
-}
+end
 
 exports.bla = bla;
 exports.bla2 = bla2;

@@ -10,52 +10,52 @@ var WebpackMiddlewareConfigJs = require("../../../webpack.middleware.config.js")
 
 var configx = WebpackConfigJs;
 
-var WebpackConfig = {
+var WebpackConfig = do
   configx: configx
-};
+end;
 
 var configx$1 = WebpackMiddlewareConfigJs;
 
-var WebpackDevMiddlewareConfig = {
+var WebpackDevMiddlewareConfig = do
   configx: configx$1
-};
+end;
 
-function configX(prim) {
+function configX(prim) do
   return WebpackMiddlewareConfigJs.configX();
-}
+end
 
-function configX$1(prim) {
+function configX$1(prim) do
   return WebpackConfigJs.configX();
-}
+end
 
-var U = {
+var U = do
   configX: configX$1
-};
+end;
 
 var A = { };
 
 var B = { };
 
-function f(param) {
+function f(param) do
   return --[ tuple ]--[
-          (function (prim) {
+          (function (prim) do
               List$3.ff();
               return --[ () ]--0;
-            }),
-          (function (prim) {
+            end),
+          (function (prim) do
               List$3.ff2();
               return --[ () ]--0;
-            }),
-          (function (prim) {
+            end),
+          (function (prim) do
               List$2.ff();
               return --[ () ]--0;
-            }),
-          (function (prim) {
+            end),
+          (function (prim) do
               List$2.ff2();
               return --[ () ]--0;
-            })
+            end)
         ];
-}
+end
 
 List$1.xx();
 
@@ -69,9 +69,9 @@ List.length(--[ :: ]--[
 
 List.length(--[ [] ]--0);
 
-function ff(prim) {
+function ff(prim) do
   return Local.ff();
-}
+end
 
 exports.WebpackConfig = WebpackConfig;
 exports.WebpackDevMiddlewareConfig = WebpackDevMiddlewareConfig;

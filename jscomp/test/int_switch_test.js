@@ -3,25 +3,25 @@
 var Mt = require("./mt.js");
 var Curry = require("../../lib/js/curry.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, x) {
+function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-}
+end
 
-function f(x) {
+function f(x) do
   var match = Curry._1(x, --[ () ]--0);
-  switch (match) {
+  switch (match) do
     case 1 :
         return --[ "a" ]--97;
     case 2 :
@@ -30,12 +30,12 @@ function f(x) {
         return --[ "c" ]--99;
     default:
       return --[ "x" ]--120;
-  }
-}
+  end
+end
 
-function f22(x) {
+function f22(x) do
   var match = Curry._1(x, --[ () ]--0);
-  switch (match) {
+  switch (match) do
     case 1 :
         return --[ "a" ]--97;
     case 2 :
@@ -44,12 +44,12 @@ function f22(x) {
         return --[ "c" ]--99;
     default:
       return --[ "x" ]--120;
-  }
-}
+  end
+end
 
-function f33(x) {
+function f33(x) do
   var match = Curry._1(x, --[ () ]--0);
-  switch (match) {
+  switch (match) do
     case --[ A ]--0 :
         return --[ "a" ]--97;
     case --[ B ]--1 :
@@ -59,28 +59,28 @@ function f33(x) {
     case --[ D ]--3 :
         return --[ "x" ]--120;
     
-  }
-}
+  end
+end
 
-eq("File \"int_switch_test.ml\", line 35, characters 6-13", f((function (param) {
+eq("File \"int_switch_test.ml\", line 35, characters 6-13", f((function (param) do
             return 1;
-          })), --[ "a" ]--97);
+          end)), --[ "a" ]--97);
 
-eq("File \"int_switch_test.ml\", line 36, characters 6-13", f((function (param) {
+eq("File \"int_switch_test.ml\", line 36, characters 6-13", f((function (param) do
             return 2;
-          })), --[ "b" ]--98);
+          end)), --[ "b" ]--98);
 
-eq("File \"int_switch_test.ml\", line 37, characters 6-13", f((function (param) {
+eq("File \"int_switch_test.ml\", line 37, characters 6-13", f((function (param) do
             return 3;
-          })), --[ "c" ]--99);
+          end)), --[ "c" ]--99);
 
-eq("File \"int_switch_test.ml\", line 38, characters 6-13", f((function (param) {
+eq("File \"int_switch_test.ml\", line 38, characters 6-13", f((function (param) do
             return 0;
-          })), --[ "x" ]--120);
+          end)), --[ "x" ]--120);
 
-eq("File \"int_switch_test.ml\", line 39, characters 6-13", f((function (param) {
+eq("File \"int_switch_test.ml\", line 39, characters 6-13", f((function (param) do
             return -1;
-          })), --[ "x" ]--120);
+          end)), --[ "x" ]--120);
 
 Mt.from_pair_suites("Int_switch_test", suites.contents);
 

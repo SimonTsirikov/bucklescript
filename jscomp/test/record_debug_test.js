@@ -3,25 +3,25 @@
 var Format = require("../../lib/js/format.js");
 var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var v = {
+var v = do
   a: 3,
-  b: {
+  b: do
     xx: 2,
     yy: 3
-  }
-};
+  end
+end;
 
 var u_a = 2;
 
-var u_b = {
+var u_b = do
   xx: 2,
   yy: 3
-};
+end;
 
-var u = {
+var u = do
   a: u_a,
   b: u_b
-};
+end;
 
 var A = Caml_exceptions.create("Record_debug_test.A");
 
@@ -38,20 +38,20 @@ var v1 = [
   2
 ];
 
-var N = {
+var N = do
   a: 0,
   b: 1
-};
+end;
 
-function N0_f(prim) {
+function N0_f(prim) do
   return prim;
-}
+end
 
-var N0 = {
+var N0 = do
   a: 0,
   b: 1,
   f: N0_f
-};
+end;
 
 console.log(" hei " .. (String(v) .. " "));
 

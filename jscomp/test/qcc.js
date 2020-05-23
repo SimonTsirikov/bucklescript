@@ -19,30 +19,30 @@ var Caml_string = require("../../lib/js/caml_string.js");
 var Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var dbg = {
+var dbg = do
   contents: true
-};
+end;
 
-var inch = {
+var inch = do
   contents: Pervasives.stdin
-};
+end;
 
-function bufferize(f) {
-  var buf = {
+function bufferize(f) do
+  var buf = do
     contents: undefined
-  };
+  end;
   return --[ tuple ]--[
-          (function (param) {
+          (function (param) do
               var match = buf.contents;
-              if (match ~= undefined) {
+              if (match ~= undefined) do
                 buf.contents = undefined;
                 return Caml_option.valFromOption(match);
-              } else {
+              end else do
                 return Curry._1(f, --[ () ]--0);
-              }
-            }),
-          (function (x) {
-              if (buf.contents ~= undefined) {
+              end
+            end),
+          (function (x) do
+              if (buf.contents ~= undefined) do
                 throw [
                       Caml_builtin_exceptions.assert_failure,
                       --[ tuple ]--[
@@ -51,56 +51,56 @@ function bufferize(f) {
                         4
                       ]
                     ];
-              }
+              end
               buf.contents = Caml_option.some(x);
               return --[ () ]--0;
-            })
+            end)
         ];
-}
+end
 
-var match = bufferize((function (param) {
+var match = bufferize((function (param) do
         return Caml_external_polyfill.resolve("caml_ml_input_char")(inch.contents);
-      }));
+      end));
 
 var ungetch = match[1];
 
 var getch = match[0];
 
-function peekch(param) {
+function peekch(param) do
   var ch = Curry._1(getch, --[ () ]--0);
   Curry._1(ungetch, ch);
   return ch;
-}
+end
 
 var symtab = Caml_array.caml_make_vect(100, "");
 
-var syms = {
+var syms = do
   contents: 0
-};
+end;
 
-function find(s, _n) {
-  while(true) {
+function find(s, _n) do
+  while(true) do
     var n = _n;
-    if (n >= syms.contents) {
+    if (n >= syms.contents) do
       syms.contents = syms.contents + 1 | 0;
       return n;
-    } else if (Caml_array.caml_array_get(symtab, n) == s) {
+    end else if (Caml_array.caml_array_get(symtab, n) == s) do
       return n;
-    } else {
+    end else do
       _n = n + 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function addsym(s) {
+function addsym(s) do
   var sid = find(s, 0);
   Caml_array.caml_array_set(symtab, sid, s);
   return sid;
-}
+end
 
-function symstr(n) {
-  if (n >= syms.contents) {
+function symstr(n) do
+  if (n >= syms.contents) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -109,164 +109,164 @@ function symstr(n) {
             4
           ]
         ];
-  }
+  end
   return Caml_array.caml_array_get(symtab, n);
-}
+end
 
-function symitr(f) {
-  for(var i = 0 ,i_finish = syms.contents - 1 | 0; i <= i_finish; ++i){
+function symitr(f) do
+  for(var i = 0 ,i_finish = syms.contents - 1 | 0; i <= i_finish; ++i)do
     Curry._2(f, i, Caml_array.caml_array_get(symtab, i));
-  }
+  end
   return --[ () ]--0;
-}
+end
 
 var glo = Bytes.make(4096, --[ "\000" ]--0);
 
-var gpos = {
+var gpos = do
   contents: 0
-};
+end;
 
 var s = Caml_bytes.caml_create_bytes(100);
 
-function getq(param) {
+function getq(param) do
   var c = Curry._1(getch, --[ () ]--0);
-  if (c ~= 92 or peekch(--[ () ]--0) ~= --[ "n" ]--110) {
+  if (c ~= 92 or peekch(--[ () ]--0) ~= --[ "n" ]--110) do
     return c;
-  } else {
+  end else do
     Curry._1(getch, --[ () ]--0);
     return --[ "\n" ]--10;
-  }
-}
+  end
+end
 
-function isid(param) {
+function isid(param) do
   var switcher = param - 91 | 0;
-  if (switcher > 5 or switcher < 0) {
+  if (switcher > 5 or switcher < 0) do
     return (switcher + 26 >>> 0) <= 57;
-  } else {
+  end else do
     return switcher == 4;
-  }
-}
+  end
+end
 
-function skip(_param) {
-  while(true) {
+function skip(_param) do
+  while(true) do
     var ch = Curry._1(getch, --[ () ]--0);
-    if (ch >= 14) {
-      if (ch ~= 32) {
-        if (ch ~= 47 or peekch(--[ () ]--0) ~= --[ "*" ]--42) {
+    if (ch >= 14) do
+      if (ch ~= 32) do
+        if (ch ~= 47 or peekch(--[ () ]--0) ~= --[ "*" ]--42) do
           return ch;
-        } else {
+        end else do
           var _param$1 = (Curry._1(getch, --[ () ]--0), --[ () ]--0);
-          while(true) {
+          while(true) do
             var match = Curry._1(getch, --[ () ]--0);
-            if (match ~= 42) {
+            if (match ~= 42) do
               _param$1 = --[ () ]--0;
               continue ;
-            } else if (peekch(--[ () ]--0) == --[ "/" ]--47) {
+            end else if (peekch(--[ () ]--0) == --[ "/" ]--47) do
               return skip((Curry._1(getch, --[ () ]--0), --[ () ]--0));
-            } else {
+            end else do
               _param$1 = --[ () ]--0;
               continue ;
-            }
-          };
-        }
-      } else {
+            end
+          end;
+        end
+      end else do
         _param = --[ () ]--0;
         continue ;
-      }
-    } else if (ch >= 11) {
-      if (ch >= 13) {
+      end
+    end else if (ch >= 11) do
+      if (ch >= 13) do
         _param = --[ () ]--0;
         continue ;
-      } else {
+      end else do
         return ch;
-      }
-    } else if (ch >= 9) {
+      end
+    end else if (ch >= 9) do
       _param = --[ () ]--0;
       continue ;
-    } else {
+    end else do
       return ch;
-    }
-  };
-}
+    end
+  end;
+end
 
-function next(param) {
+function next(param) do
   var match;
-  try {
+  try do
     match = skip(--[ () ]--0);
-  }
-  catch (exn){
-    if (exn == Caml_builtin_exceptions.end_of_file) {
+  end
+  catch (exn)do
+    if (exn == Caml_builtin_exceptions.end_of_file) do
       match = undefined;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-  if (match ~= undefined) {
+    end
+  end
+  if (match ~= undefined) do
     var c = match;
-    if (c ~= 34) {
-      if (c >= 48) {
-        if (c < 58) {
+    if (c ~= 34) do
+      if (c >= 48) do
+        if (c < 58) do
           var _n = c - 48 | 0;
-          while(true) {
+          while(true) do
             var n = _n;
             var match$1 = peekch(--[ () ]--0);
-            if (match$1 > 57 or match$1 < 48) {
+            if (match$1 > 57 or match$1 < 48) do
               return --[ ILit ]--Block.__(1, [n]);
-            } else {
+            end else do
               _n = (Caml_int32.imul(10, n) + Curry._1(getch, --[ () ]--0) | 0) - 48 | 0;
               continue ;
-            }
-          };
-        }
+            end
+          end;
+        end
         
-      } else if (c == 39) {
+      end else if (c == 39) do
         var ch = getq(--[ () ]--0);
         var qt = Curry._1(getch, --[ () ]--0);
-        if (qt ~= --[ "'" ]--39) {
+        if (qt ~= --[ "'" ]--39) do
           throw [
                 Caml_builtin_exceptions.failure,
                 "syntax error"
               ];
-        }
+        end
         return --[ ILit ]--Block.__(1, [ch]);
-      }
+      end
       
-    } else {
+    end else do
       var b = gpos.contents;
       var _e = gpos.contents;
-      while(true) {
+      while(true) do
         var e = _e;
         var match$2 = peekch(--[ () ]--0);
-        if (match$2 ~= 34) {
+        if (match$2 ~= 34) do
           glo[e] = getq(--[ () ]--0);
           _e = e + 1 | 0;
           continue ;
-        } else {
+        end else do
           Curry._1(getch, --[ () ]--0);
           gpos.contents = e + 8 & -8;
           return --[ SLit ]--Block.__(2, [
                     (b + 232 | 0) + 4194304 | 0,
                     Bytes.to_string(Bytes.sub(glo, b, e - b | 0))
                   ]);
-        }
-      };
-    }
-    if (isid(c)) {
+        end
+      end;
+    end
+    if (isid(c)) do
       var _n$1 = 0;
       var _ch = c;
-      while(true) {
+      while(true) do
         var ch$1 = _ch;
         var n$1 = _n$1;
         s[n$1] = ch$1;
-        if (isid(peekch(--[ () ]--0))) {
+        if (isid(peekch(--[ () ]--0))) do
           _ch = Curry._1(getch, --[ () ]--0);
           _n$1 = n$1 + 1 | 0;
           continue ;
-        } else {
+        end else do
           return --[ Sym ]--Block.__(3, [addsym(Bytes.to_string(Bytes.sub(s, 0, n$1 + 1 | 0)))]);
-        }
-      };
-    } else {
+        end
+      end;
+    end else do
       var ch$2 = c;
       var _param = --[ :: ]--[
         "++",
@@ -299,26 +299,26 @@ function next(param) {
           ]
         ]
       ];
-      while(true) {
+      while(true) do
         var param$1 = _param;
-        if (param$1) {
+        if (param$1) do
           var lop = param$1[0];
-          if (Caml_string.get(lop, 0) == ch$2 and Caml_string.get(lop, 1) == peekch(--[ () ]--0)) {
+          if (Caml_string.get(lop, 0) == ch$2 and Caml_string.get(lop, 1) == peekch(--[ () ]--0)) do
             Curry._1(getch, --[ () ]--0);
             return --[ Op ]--Block.__(0, [lop]);
-          } else {
+          end else do
             _param = param$1[1];
             continue ;
-          }
-        } else {
+          end
+        end else do
           return --[ Op ]--Block.__(0, [Caml_bytes.bytes_to_string(Bytes.make(1, ch$2))]);
-        }
-      };
-    }
-  } else {
+        end
+      end;
+    end
+  end else do
     return --[ Op ]--Block.__(0, ["EOF!"]);
-  }
-}
+  end
+end
 
 var match$1 = bufferize(next);
 
@@ -326,44 +326,44 @@ var unnext = match$1[1];
 
 var next$1 = match$1[0];
 
-function nextis(t) {
+function nextis(t) do
   var nt = Curry._1(next$1, --[ () ]--0);
   Curry._1(unnext, nt);
   return Caml_obj.caml_equal(t, nt);
-}
+end
 
 var obuf = Bytes.make(1048576, --[ "\000" ]--0);
 
-var opos = {
+var opos = do
   contents: 0
-};
+end;
 
-function out(x) {
-  if (x ~= 0) {
+function out(x) do
+  if (x ~= 0) do
     out(x / 256 | 0);
     obuf[opos.contents] = Char.chr(x & 255);
     opos.contents = opos.contents + 1 | 0;
     return --[ () ]--0;
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function le(n, x) {
-  for(var i = 0 ,i_finish = (n / 8 | 0) - 1 | 0; i <= i_finish; ++i){
+function le(n, x) do
+  for(var i = 0 ,i_finish = (n / 8 | 0) - 1 | 0; i <= i_finish; ++i)do
     var $$byte = (x >>> (i << 3)) & 255;
     obuf[opos.contents] = Char.chr($$byte);
     opos.contents = opos.contents + 1 | 0;
-  }
+  end
   return --[ () ]--0;
-}
+end
 
-function get32(l) {
+function get32(l) do
   return ((Caml_bytes.get(obuf, l) + (Caml_bytes.get(obuf, l + 1 | 0) << 8) | 0) + (Caml_bytes.get(obuf, l + 2 | 0) << 16) | 0) + (Caml_bytes.get(obuf, l + 3 | 0) << 24) | 0;
-}
+end
 
-function patch(rel, loc, n) {
-  if (n >= 0) {
+function patch(rel, loc, n) do
+  if (n >= 0) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -372,12 +372,12 @@ function patch(rel, loc, n) {
             2
           ]
         ];
-  }
-  if (loc ~= 0) {
+  end
+  if (loc ~= 0) do
     var i = opos.contents;
     var loc$prime = get32(loc);
     var x = rel ? n - (loc + 4 | 0) | 0 : n;
-    if (dbg.contents) {
+    if (dbg.contents) do
       Curry._3(Printf.eprintf(--[ Format ]--[
                 --[ String_literal ]--Block.__(11, [
                     "patching at ",
@@ -409,77 +409,77 @@ function patch(rel, loc, n) {
                   ]),
                 "patching at %d to %d (n=%d)\n"
               ]), loc, x, n);
-    }
+    end
     opos.contents = loc;
     le(32, x);
     patch(rel, loc$prime, n);
     opos.contents = i;
     return --[ () ]--0;
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function load(r, n) {
+function load(r, n) do
   out(184 + r | 0);
   return le(32, n);
-}
+end
 
-function cmp(n) {
+function cmp(n) do
   load(0, 0);
   return out(1020608 + (n << 8) | 0);
-}
+end
 
-function test(n, l) {
+function test(n, l) do
   out(4752832);
   out(3972 + n | 0);
   var loc = opos.contents;
   le(32, l);
   return loc;
-}
+end
 
-var align = {
+var align = do
   contents: 0
-};
+end;
 
-function push(r) {
+function push(r) do
   align.contents = align.contents + 1 | 0;
-  if (r < 8) {
+  if (r < 8) do
     return out(80 + r | 0);
-  } else {
+  end else do
     return out((16720 + r | 0) - 8 | 0);
-  }
-}
+  end
+end
 
-function pop(r) {
+function pop(r) do
   align.contents = align.contents - 1 | 0;
-  if (r < 8) {
+  if (r < 8) do
     return out(88 + r | 0);
-  } else {
+  end else do
     return out((16728 + r | 0) - 8 | 0);
-  }
-}
+  end
+end
 
-var lval = {
+var lval = do
   contents: --[ tuple ]--[
     --[ Mov ]--Block.__(0, [0]),
     --[ Int ]--0
   ]
-};
+end;
 
-function patchlval(param) {
+function patchlval(param) do
   var match = lval.contents[0];
-  if (match.tag) {
+  if (match.tag) do
     opos.contents = opos.contents - match[0] | 0;
     return --[ () ]--0;
-  } else {
+  end else do
     obuf[opos.contents - match[0] | 0] = --[ "\141" ]--141;
     return --[ () ]--0;
-  }
-}
+  end
+end
 
-function read(param) {
-  if (param) {
+function read(param) do
+  if (param) do
     out(4722614);
     le(8, 0);
     lval.contents = --[ tuple ]--[
@@ -487,7 +487,7 @@ function read(param) {
       --[ Chr ]--1
     ];
     return --[ () ]--0;
-  } else {
+  end else do
     out(18571);
     le(8, 0);
     lval.contents = --[ tuple ]--[
@@ -495,13 +495,13 @@ function read(param) {
       --[ Int ]--0
     ];
     return --[ () ]--0;
-  }
-}
+  end
+end
 
-var globs = Caml_array.caml_make_vect(100, {
+var globs = Caml_array.caml_make_vect(100, do
       loc: 0,
       va: -1
-    });
+    end);
 
 var lvls = --[ :: ]--[
   --[ tuple ]--[
@@ -781,72 +781,72 @@ var tokfor = --[ Sym ]--Block.__(3, [addsym("for")]);
 
 var tokbreak = --[ Sym ]--Block.__(3, [addsym("break")]);
 
-function binary(stk, lvl) {
-  if (lvl == -1) {
+function binary(stk, lvl) do
+  if (lvl == -1) do
     return unary(stk);
-  } else {
-    var lvlof = function (o) {
-      if (List.mem_assoc(o, lvls)) {
+  end else do
+    var lvlof = function (o) do
+      if (List.mem_assoc(o, lvls)) do
         return List.assoc(o, lvls);
-      } else {
+      end else do
         return -1;
-      }
-    };
-    var foldtst = function (_loc) {
-      while(true) {
+      end
+    end;
+    var foldtst = function (_loc) do
+      while(true) do
         var loc = _loc;
         var t = Curry._1(next$1, --[ () ]--0);
-        if (t.tag or lvlof(t[0]) ~= lvl) {
+        if (t.tag or lvlof(t[0]) ~= lvl) do
           Curry._1(unnext, t);
           return loc;
-        } else {
+        end else do
           var loc$prime = test(lvl - 8 | 0, loc);
           binary(stk, lvl - 1 | 0);
           _loc = loc$prime;
           continue ;
-        }
-      };
-    };
+        end
+      end;
+    end;
     binary(stk, lvl - 1 | 0);
-    if (lvl < 8) {
+    if (lvl < 8) do
       var _param = --[ () ]--0;
-      while(true) {
+      while(true) do
         var t = Curry._1(next$1, --[ () ]--0);
-        if (t.tag) {
+        if (t.tag) do
           return Curry._1(unnext, t);
-        } else {
+        end else do
           var o = t[0];
-          if (lvlof(o) == lvl) {
+          if (lvlof(o) == lvl) do
             push(0);
             binary(stk, lvl - 1 | 0);
             pop(1);
             var match = List.assoc(o, inss);
-            if (match.tag) {
+            if (match.tag) do
               out(4733377);
               cmp(match[0]);
-            } else {
+            end else do
               List.iter(out, match[0]);
-            }
+            end
             _param = --[ () ]--0;
             continue ;
-          } else {
+          end else do
             return Curry._1(unnext, t);
-          }
-        }
-      };
-    } else {
+          end
+        end
+      end;
+    end else do
       var loc = foldtst(0);
       return patch(true, loc, opos.contents);
-    }
-  }
-}
+    end
+  end
+end
 
-function unary(stk) {
+function unary(stk) do
   var match = Curry._1(next$1, --[ () ]--0);
-  switch (match.tag | 0) {
+  switch (match.tag | 0) do
     case --[ Op ]--0 :
         var o = match[0];
-        switch (o) {
+        switch (o) do
           case "&" :
               unary(stk);
               return patchlval(--[ () ]--0);
@@ -858,7 +858,7 @@ function unary(stk) {
               Curry._1(next$1, --[ () ]--0);
               var t = Curry._1(next$1, --[ () ]--0);
               var match$1;
-              if (Caml_obj.caml_equal(t, tokint)) {
+              if (Caml_obj.caml_equal(t, tokint)) do
                 match$1 = Caml_obj.caml_equal(Curry._1(next$1, --[ () ]--0), --[ Op ]--Block.__(0, ["*"])) ? --[ tuple ]--[
                     --[ Int ]--0,
                     1
@@ -866,20 +866,20 @@ function unary(stk) {
                     --[ Int ]--0,
                     5
                   ];
-              } else if (Caml_obj.caml_equal(t, tokchar)) {
+              end else if (Caml_obj.caml_equal(t, tokchar)) do
                 match$1 = --[ tuple ]--[
                   --[ Chr ]--1,
                   2
                 ];
-              } else {
+              end else do
                 throw [
                       Caml_builtin_exceptions.failure,
                       "[cast] expected"
                     ];
-              }
-              for(var k = 1 ,k_finish = match$1[1]; k <= k_finish; ++k){
+              end
+              for(var k = 1 ,k_finish = match$1[1]; k <= k_finish; ++k)do
                 Curry._1(next$1, --[ () ]--0);
-              }
+              end
               unary(stk);
               return read(match$1[0]);
           default:
@@ -909,7 +909,7 @@ function unary(stk) {
               ]
             ];
             unary(stk);
-            if (!List.mem_assoc(o, unops)) {
+            if (!List.mem_assoc(o, unops)) do
               var s = Curry._1(Printf.sprintf(--[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "unknown operator ",
@@ -924,14 +924,14 @@ function unary(stk) {
                     Caml_builtin_exceptions.failure,
                     s
                   ];
-            }
+            end
             out(List.assoc(o, unops));
-            if (o == "!") {
+            if (o == "!") do
               return cmp(2);
-            } else {
+            end else do
               return 0;
-            }
-        }
+            end
+        end
     case --[ ILit ]--1 :
         return load(0, match[0]);
     case --[ SLit ]--2 :
@@ -939,9 +939,9 @@ function unary(stk) {
         return le(64, match[0]);
     case --[ Sym ]--3 :
         var i = match[0];
-        if (List.mem_assoc(i, stk)) {
+        if (List.mem_assoc(i, stk)) do
           var l = List.assoc(i, stk);
-          if (l <= -256) {
+          if (l <= -256) do
             throw [
                   Caml_builtin_exceptions.assert_failure,
                   --[ tuple ]--[
@@ -950,59 +950,59 @@ function unary(stk) {
                     6
                   ]
                 ];
-          }
+          end
           out(4754245);
           out(l & 255);
           lval.contents = --[ tuple ]--[
             --[ Mov ]--Block.__(0, [3]),
             --[ Int ]--0
           ];
-        } else {
+        end else do
           out(18616);
           var g = Caml_array.caml_array_get(globs, i);
           var loc = opos.contents;
           le(64, g.loc);
-          Caml_array.caml_array_set(globs, i, {
+          Caml_array.caml_array_set(globs, i, do
                 loc: loc,
                 va: g.va
-              });
+              end);
           read(--[ Int ]--0);
-        }
+        end
         return postfix(stk);
     
-  }
-}
+  end
+end
 
-function postfix(stk) {
+function postfix(stk) do
   var t = Curry._1(next$1, --[ () ]--0);
-  if (t.tag) {
+  if (t.tag) do
     return Curry._1(unnext, t);
-  } else {
+  end else do
     var op = t[0];
-    switch (op) {
+    switch (op) do
       case "(" :
-          var emitargs = function (_l, _rl) {
-            while(true) {
+          var emitargs = function (_l, _rl) do
+            while(true) do
               var rl = _rl;
               var l = _l;
-              if (nextis(--[ Op ]--Block.__(0, [")"]))) {
+              if (nextis(--[ Op ]--Block.__(0, [")"]))) do
                 Curry._1(next$1, --[ () ]--0);
                 return List.iter(pop, l);
-              } else {
+              end else do
                 expr(stk);
                 push(0);
-                if (nextis(--[ Op ]--Block.__(0, [","]))) {
+                if (nextis(--[ Op ]--Block.__(0, [","]))) do
                   Curry._1(next$1, --[ () ]--0);
-                }
+                end
                 _rl = List.tl(rl);
                 _l = --[ :: ]--[
                   List.hd(rl),
                   l
                 ];
                 continue ;
-              }
-            };
-          };
+              end
+            end;
+          end;
           patchlval(--[ () ]--0);
           push(0);
           emitargs(--[ [] ]--0, --[ :: ]--[
@@ -1025,21 +1025,21 @@ function postfix(stk) {
                 ]
               ]);
           pop(0);
-          if (align.contents % 2 ~= 0) {
+          if (align.contents % 2 ~= 0) do
             out(1216605192);
-          }
+          end
           out(65488);
-          if (align.contents % 2 ~= 0) {
+          if (align.contents % 2 ~= 0) do
             return out(1216594952);
-          } else {
+          end else do
             return 0;
-          }
+          end
       case "++" :
       case "--" :
           break;
       default:
         return Curry._1(unnext, t);
-    }
+    end
     patchlval(--[ () ]--0);
     out(4753857);
     read(lval.contents[1]);
@@ -1083,75 +1083,75 @@ function postfix(stk) {
                       ]
                     ]
                   ]));
-  }
-}
+  end
+end
 
-function expr(stk) {
+function expr(stk) do
   binary(stk, 10);
   var _param = --[ () ]--0;
-  while(true) {
+  while(true) do
     var t = Curry._1(next$1, --[ () ]--0);
-    if (t.tag or t[0] ~= "=") {
+    if (t.tag or t[0] ~= "=") do
       return Curry._1(unnext, t);
-    } else {
+    end else do
       patchlval(--[ () ]--0);
       var ty = lval.contents[1];
       push(0);
       expr(stk);
       pop(1);
-      if (ty == --[ Int ]--0) {
+      if (ty == --[ Int ]--0) do
         out(4753665);
-      } else {
+      end else do
         out(34817);
-      }
+      end
       _param = --[ () ]--0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function decl(g, _n, _stk) {
-  while(true) {
+function decl(g, _n, _stk) do
+  while(true) do
     var stk = _stk;
     var n = _n;
     var t = Curry._1(next$1, --[ () ]--0);
-    if (Caml_obj.caml_equal(t, tokint)) {
+    if (Caml_obj.caml_equal(t, tokint)) do
       var top = stk ? stk[0][1] : 0;
-      var vars = (function(top){
-      return function vars(_n, _stk) {
-        while(true) {
+      var vars = (function(top)do
+      return function vars(_n, _stk) do
+        while(true) do
           var stk = _stk;
           var n = _n;
-          while(nextis(--[ Op ]--Block.__(0, ["*"]))) {
+          while(nextis(--[ Op ]--Block.__(0, ["*"]))) do
             Curry._1(next$1, --[ () ]--0);
-          };
-          if (nextis(--[ Op ]--Block.__(0, [";"]))) {
+          end;
+          if (nextis(--[ Op ]--Block.__(0, [";"]))) do
             return --[ tuple ]--[
                     n,
                     stk
                   ];
-          } else {
+          end else do
             var match = Curry._1(next$1, --[ () ]--0);
-            if (match.tag == --[ Sym ]--3) {
+            if (match.tag == --[ Sym ]--3) do
               var s = match[0];
               var n$prime = n + 1 | 0;
               var stk$prime;
-              if (g) {
+              if (g) do
                 var glo = Caml_array.caml_array_get(globs, s);
-                if (glo.va >= 0) {
+                if (glo.va >= 0) do
                   throw [
                         Caml_builtin_exceptions.failure,
                         "symbol defined twice"
                       ];
-                }
+                end
                 var va = (gpos.contents + 232 | 0) + 4194304 | 0;
-                Caml_array.caml_array_set(globs, s, {
+                Caml_array.caml_array_set(globs, s, do
                       loc: glo.loc,
                       va: va
-                    });
+                    end);
                 gpos.contents = gpos.contents + 8 | 0;
                 stk$prime = stk;
-              } else {
+              end else do
                 stk$prime = --[ :: ]--[
                   --[ tuple ]--[
                     s,
@@ -1159,31 +1159,31 @@ function decl(g, _n, _stk) {
                   ],
                   stk
                 ];
-              }
-              if (nextis(--[ Op ]--Block.__(0, [","]))) {
+              end
+              if (nextis(--[ Op ]--Block.__(0, [","]))) do
                 Curry._1(next$1, --[ () ]--0);
                 _stk = stk$prime;
                 _n = n$prime;
                 continue ;
-              } else {
+              end else do
                 return --[ tuple ]--[
                         n$prime,
                         stk$prime
                       ];
-              }
-            } else {
+              end
+            end else do
               throw [
                     Caml_builtin_exceptions.failure,
                     "[var] expected in [decl]"
                   ];
-            }
-          }
-        };
-      }
-      }(top));
+            end
+          end
+        end;
+      end
+      end(top));
       var match = vars(0, stk);
       Curry._1(next$1, --[ () ]--0);
-      if (dbg.contents) {
+      if (dbg.contents) do
         Curry._1(Printf.eprintf(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "end of decl (",
@@ -1199,14 +1199,14 @@ function decl(g, _n, _stk) {
                     ]),
                   "end of decl (%d vars)\n"
                 ]), n);
-      }
+      end
       _stk = match[1];
       _n = n + match[0] | 0;
       continue ;
-    } else {
+    end else do
       Curry._1(unnext, t);
-      if (!g and n ~= 0) {
-        if ((n << 3) >= 256) {
+      if (!g and n ~= 0) do
+        if ((n << 3) >= 256) do
           throw [
                 Caml_builtin_exceptions.assert_failure,
                 --[ tuple ]--[
@@ -1215,40 +1215,40 @@ function decl(g, _n, _stk) {
                   6
                 ]
               ];
-        }
+        end
         out(4752364);
         out((n << 3));
         align.contents = align.contents + n | 0;
-      }
-      if (dbg.contents and !g) {
+      end
+      if (dbg.contents and !g) do
         console.error("end of blk decls");
-      }
+      end
       return --[ tuple ]--[
               n,
               stk
             ];
-    }
-  };
-}
+    end
+  end;
+end
 
-var retl = {
+var retl = do
   contents: 0
-};
+end;
 
-function stmt(brk, stk) {
-  var pexpr = function (stk) {
+function stmt(brk, stk) do
+  var pexpr = function (stk) do
     Curry._1(next$1, --[ () ]--0);
     expr(stk);
     Curry._1(next$1, --[ () ]--0);
     return --[ () ]--0;
-  };
+  end;
   var t = Curry._1(next$1, --[ () ]--0);
-  if (Caml_obj.caml_equal(t, tokif)) {
+  if (Caml_obj.caml_equal(t, tokif)) do
     pexpr(stk);
     var loc = test(0, 0);
     stmt(brk, stk);
     var loc$1;
-    if (nextis(tokelse)) {
+    if (nextis(tokelse)) do
       Curry._1(next$1, --[ () ]--0);
       out(233);
       var l = opos.contents;
@@ -1256,17 +1256,17 @@ function stmt(brk, stk) {
       patch(true, loc, opos.contents);
       stmt(brk, stk);
       loc$1 = l;
-    } else {
+    end else do
       loc$1 = loc;
-    }
+    end
     return patch(true, loc$1, opos.contents);
-  } else if (Caml_obj.caml_equal(t, tokwhile) or Caml_obj.caml_equal(t, tokfor)) {
-    var bl = {
+  end else if (Caml_obj.caml_equal(t, tokwhile) or Caml_obj.caml_equal(t, tokfor)) do
+    var bl = do
       contents: 0
-    };
+    end;
     var ba = align.contents;
     var match;
-    if (Caml_obj.caml_equal(t, tokwhile)) {
+    if (Caml_obj.caml_equal(t, tokwhile)) do
       var loc$2 = opos.contents;
       pexpr(stk);
       bl.contents = test(0, 0);
@@ -1274,19 +1274,19 @@ function stmt(brk, stk) {
         0,
         loc$2
       ];
-    } else {
+    end else do
       Curry._1(next$1, --[ () ]--0);
-      if (!nextis(--[ Op ]--Block.__(0, [";"]))) {
+      if (!nextis(--[ Op ]--Block.__(0, [";"]))) do
         expr(stk);
-      }
+      end
       Curry._1(next$1, --[ () ]--0);
       var top = opos.contents;
-      if (nextis(--[ Op ]--Block.__(0, [";"]))) {
+      if (nextis(--[ Op ]--Block.__(0, [";"]))) do
         bl.contents = 0;
-      } else {
+      end else do
         expr(stk);
         bl.contents = test(0, 0);
-      }
+      end
       Curry._1(next$1, --[ () ]--0);
       out(233);
       var bdy = opos.contents;
@@ -1300,7 +1300,7 @@ function stmt(brk, stk) {
         bdy,
         itr
       ];
-    }
+    end
     patch(true, match[0], opos.contents);
     stmt(--[ tuple ]--[
           bl,
@@ -1309,21 +1309,21 @@ function stmt(brk, stk) {
     out(233);
     le(32, (match[1] - opos.contents | 0) - 4 | 0);
     return patch(true, bl.contents, opos.contents);
-  } else if (Caml_obj.caml_equal(t, tokret)) {
-    if (!nextis(--[ Op ]--Block.__(0, [";"]))) {
+  end else if (Caml_obj.caml_equal(t, tokret)) do
+    if (!nextis(--[ Op ]--Block.__(0, [";"]))) do
       expr(stk);
-    }
+    end
     Curry._1(next$1, --[ () ]--0);
     out(233);
     var loc$3 = opos.contents;
     le(32, retl.contents);
     retl.contents = loc$3;
     return --[ () ]--0;
-  } else if (Caml_obj.caml_equal(t, tokbreak)) {
+  end else if (Caml_obj.caml_equal(t, tokbreak)) do
     Curry._1(next$1, --[ () ]--0);
     var brkl = brk[0];
     var n = align.contents - brk[1] | 0;
-    if (n < 0) {
+    if (n < 0) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -1332,89 +1332,89 @@ function stmt(brk, stk) {
               4
             ]
           ];
-    }
-    if (n ~= 0) {
+    end
+    if (n ~= 0) do
       out(4752324);
       out((n << 3));
-    }
+    end
     out(233);
     var loc$4 = opos.contents;
     le(32, brkl.contents);
     brkl.contents = loc$4;
     return --[ () ]--0;
-  } else if (!t.tag) {
-    switch (t[0]) {
+  end else if (!t.tag) do
+    switch (t[0]) do
       case ";" :
           return --[ () ]--0;
       case "{" :
           return block(brk, stk);
       default:
         
-    }
-  }
+    end
+  end
   Curry._1(unnext, t);
   expr(stk);
   Curry._1(next$1, --[ () ]--0);
   return --[ () ]--0;
-}
+end
 
-function block(brk, stk) {
+function block(brk, stk) do
   var match = decl(false, 0, stk);
   var stk$prime = match[1];
   var n = match[0];
-  while(!nextis(--[ Op ]--Block.__(0, ["}"]))) {
+  while(!nextis(--[ Op ]--Block.__(0, ["}"]))) do
     stmt(brk, stk$prime);
-  };
+  end;
   Curry._1(next$1, --[ () ]--0);
-  if (n ~= 0) {
+  if (n ~= 0) do
     out(4752324);
     out((n << 3));
     align.contents = align.contents - n | 0;
     return --[ () ]--0;
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function top(_param) {
-  while(true) {
-    if (nextis(--[ Op ]--Block.__(0, ["EOF!"]))) {
+function top(_param) do
+  while(true) do
+    if (nextis(--[ Op ]--Block.__(0, ["EOF!"]))) do
       return 0;
-    } else if (nextis(tokint)) {
+    end else if (nextis(tokint)) do
       decl(true, 0, --[ [] ]--0);
       _param = --[ () ]--0;
       continue ;
-    } else {
+    end else do
       var match = Curry._1(next$1, --[ () ]--0);
-      if (match.tag == --[ Sym ]--3) {
+      if (match.tag == --[ Sym ]--3) do
         var f = match[0];
         var g = Caml_array.caml_array_get(globs, f);
-        if (g.va >= 0) {
+        if (g.va >= 0) do
           throw [
                 Caml_builtin_exceptions.failure,
                 "symbol defined twice"
               ];
-        }
-        Caml_array.caml_array_set(globs, f, {
+        end
+        Caml_array.caml_array_set(globs, f, do
               loc: g.loc,
               va: opos.contents
-            });
-        var emitargs = function (_regs, _n, _stk) {
-          while(true) {
+            end);
+        var emitargs = function (_regs, _n, _stk) do
+          while(true) do
             var stk = _stk;
             var n = _n;
             var regs = _regs;
             var match = Curry._1(next$1, --[ () ]--0);
-            switch (match.tag | 0) {
+            switch (match.tag | 0) do
               case --[ Op ]--0 :
-                  if (match[0] == ")") {
+                  if (match[0] == ")") do
                     return stk;
-                  } else {
+                  end else do
                     throw [
                           Caml_builtin_exceptions.failure,
                           "[var] or ) expected"
                         ];
-                  }
+                  end
               case --[ ILit ]--1 :
               case --[ SLit ]--2 :
                   throw [
@@ -1424,9 +1424,9 @@ function top(_param) {
               case --[ Sym ]--3 :
                   var r = List.hd(regs);
                   push(r);
-                  if (nextis(--[ Op ]--Block.__(0, [","]))) {
+                  if (nextis(--[ Op ]--Block.__(0, [","]))) do
                     Curry._1(next$1, --[ () ]--0);
-                  }
+                  end
                   var stk$prime_000 = --[ tuple ]--[
                     match[0],
                     ((-n | 0) << 3)
@@ -1440,9 +1440,9 @@ function top(_param) {
                   _regs = List.tl(regs);
                   continue ;
               
-            }
-          };
-        };
+            end
+          end;
+        end;
         Curry._1(next$1, --[ () ]--0);
         align.contents = 0;
         out(85);
@@ -1466,19 +1466,19 @@ function top(_param) {
                 ]
               ]
             ], 1, --[ [] ]--0);
-        while(Caml_obj.caml_notequal(Curry._1(next$1, --[ () ]--0), --[ Op ]--Block.__(0, ["{"]))) {
+        while(Caml_obj.caml_notequal(Curry._1(next$1, --[ () ]--0), --[ Op ]--Block.__(0, ["{"]))) do
           
-        };
+        end;
         retl.contents = 0;
         block(--[ tuple ]--[
-              {
+              do
                 contents: 0
-              },
+              end,
               0
             ], stk);
         patch(true, retl.contents, opos.contents);
         out(51651);
-        if (dbg.contents) {
+        if (dbg.contents) do
           Curry._1(Printf.eprintf(--[ Format ]--[
                     --[ String_literal ]--Block.__(11, [
                         "done with function ",
@@ -1492,18 +1492,18 @@ function top(_param) {
                       ]),
                     "done with function %s\n"
                   ]), symstr(f));
-        }
+        end
         _param = --[ () ]--0;
         continue ;
-      } else {
+      end else do
         throw [
               Caml_builtin_exceptions.failure,
               "[decl] or [fun] expected"
             ];
-      }
-    }
-  };
-}
+      end
+    end
+  end;
+end
 
 var elfhdr = Bytes.of_string($$String.concat("", --[ :: ]--[
           "\x7fELF\x02\x01\x01\0",
@@ -1552,7 +1552,7 @@ var elfhdr = Bytes.of_string($$String.concat("", --[ :: ]--[
           ]
         ]));
 
-function elfphdr(ty, off, sz, align) {
+function elfphdr(ty, off, sz, align) do
   le(32, ty);
   le(32, 7);
   le(64, off);
@@ -1561,9 +1561,9 @@ function elfphdr(ty, off, sz, align) {
   le(64, sz);
   le(64, sz);
   return le(64, align);
-}
+end
 
-function elfgen(outf) {
+function elfgen(outf) do
   var entry = opos.contents;
   var main = addsym("main");
   var gmain = Caml_array.caml_array_get(globs, main);
@@ -1571,98 +1571,98 @@ function elfgen(outf) {
   out(-1921768440);
   out(18616);
   le(64, gmain.loc);
-  Caml_array.caml_array_set(globs, main, {
+  Caml_array.caml_array_set(globs, main, do
         loc: opos.contents - 8 | 0,
         va: gmain.va
-      });
+      end);
   out(65488);
   out(35271);
   load(0, 60);
   out(3845);
   var off = 232 + gpos.contents | 0;
-  var itr = function (f) {
-    return symitr((function (i, s) {
+  var itr = function (f) do
+    return symitr((function (i, s) do
                   var g = Caml_array.caml_array_get(globs, i);
-                  if (g.va < 0 and g.loc ~= 0) {
+                  if (g.va < 0 and g.loc ~= 0) do
                     return Curry._3(f, s, #s, g.loc);
-                  } else {
+                  end else do
                     return 0;
-                  }
-                }));
-  };
-  var va = function (x) {
+                  end
+                end));
+  end;
+  var va = function (x) do
     return (x + off | 0) + 4194304 | 0;
-  };
-  var patchloc = function (i, param) {
+  end;
+  var patchloc = function (i, param) do
     var g = Caml_array.caml_array_get(globs, i);
-    if (g.va >= 0 and g.va < 4194304) {
+    if (g.va >= 0 and g.va < 4194304) do
       return patch(false, g.loc, va(g.va));
-    } else if (g.va >= 0) {
+    end else if (g.va >= 0) do
       return patch(false, g.loc, g.va);
-    } else {
+    end else do
       return 0;
-    }
-  };
+    end
+  end;
   symitr(patchloc);
   var strtab = opos.contents;
   opos.contents = opos.contents + 1 | 0;
   $$String.blit("/lib64/ld-linux-x86-64.so.2\0libc.so.6", 0, obuf, opos.contents, 37);
   opos.contents = (opos.contents + 37 | 0) + 1 | 0;
-  itr((function (s, sl, param) {
+  itr((function (s, sl, param) do
           $$String.blit(s, 0, obuf, opos.contents, sl);
           opos.contents = (opos.contents + sl | 0) + 1 | 0;
           return --[ () ]--0;
-        }));
+        end));
   opos.contents = opos.contents + 7 & -8;
   var symtab = opos.contents;
-  var n = {
+  var n = do
     contents: 39
-  };
+  end;
   opos.contents = opos.contents + 24 | 0;
-  itr((function (param, sl, param$1) {
+  itr((function (param, sl, param$1) do
           le(32, n.contents);
           le(32, 16);
           le(64, 0);
           le(64, 0);
           n.contents = (n.contents + sl | 0) + 1 | 0;
           return --[ () ]--0;
-        }));
+        end));
   var rel = opos.contents;
-  var n$1 = {
+  var n$1 = do
     contents: 1
-  };
-  itr((function (param, param$1, l) {
-          var genrel = function (_l) {
-            while(true) {
+  end;
+  itr((function (param, param$1, l) do
+          var genrel = function (_l) do
+            while(true) do
               var l = _l;
-              if (l ~= 0) {
+              if (l ~= 0) do
                 le(64, va(l));
                 le(64, 1 + (n$1.contents << 32) | 0);
                 le(64, 0);
                 _l = get32(l);
                 continue ;
-              } else {
+              end else do
                 return 0;
-              }
-            };
-          };
+              end
+            end;
+          end;
           genrel(l);
           n$1.contents = n$1.contents + 1 | 0;
           return --[ () ]--0;
-        }));
+        end));
   var hash = opos.contents;
   var n$2 = ((rel - symtab | 0) / 24 | 0) - 1 | 0;
   le(32, 1);
   le(32, n$2 + 1 | 0);
   le(32, n$2 > 0 ? 1 : 0);
-  for(var i = 1; i <= n$2; ++i){
+  for(var i = 1; i <= n$2; ++i)do
     le(32, i);
-  }
+  end
   le(32, 0);
   var dyn = opos.contents;
-  List.iter((function (param) {
+  List.iter((function (param) do
           return le(64, param);
-        }), --[ :: ]--[
+        end), --[ :: ]--[
         1,
         --[ :: ]--[
           29,
@@ -1728,7 +1728,7 @@ function elfgen(outf) {
   elfphdr(3, (strtab + 1 | 0) + off | 0, 28, 1);
   elfphdr(1, 0, tend + off | 0, 2097152);
   elfphdr(2, dyn + off | 0, tend - dyn | 0, 8);
-  if (opos.contents ~= 232) {
+  if (opos.contents ~= 232) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -1737,14 +1737,14 @@ function elfgen(outf) {
             2
           ]
         ];
-  }
+  end
   patch(false, 24, va(entry));
   return Pervasives.output_bytes(outf, Bytes.sub(obuf, 0, tend + off | 0));
-}
+end
 
-function main(param) {
-  var ppsym = function (param) {
-    switch (param.tag | 0) {
+function main(param) do
+  var ppsym = function (param) do
+    switch (param.tag | 0) do
       case --[ Op ]--0 :
           return Curry._1(Printf.printf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -1813,34 +1813,34 @@ function main(param) {
                           "Symbol '%s' (%d)\n"
                         ]), symstr(i), i);
       
-    }
-  };
+    end
+  end;
   var f = #Sys.argv < 2 ? "-blk" : Caml_array.caml_array_get(Sys.argv, 1);
-  switch (f) {
+  switch (f) do
     case "-blk" :
-        var partial_arg_000 = {
+        var partial_arg_000 = do
           contents: 0
-        };
+        end;
         var partial_arg = --[ tuple ]--[
           partial_arg_000,
           0
         ];
-        var c = function (param) {
+        var c = function (param) do
           return block(partial_arg, param);
-        };
+        end;
         var stk = --[ [] ]--0;
         opos.contents = 0;
         Curry._1(c, stk);
         return Pervasives.print_bytes(Bytes.sub(obuf, 0, opos.contents));
     case "-lex" :
         var _param = --[ () ]--0;
-        while(true) {
+        while(true) do
           var tok = Curry._1(next$1, --[ () ]--0);
-          if (tok.tag) {
+          if (tok.tag) do
             ppsym(tok);
             _param = --[ () ]--0;
             continue ;
-          } else if (tok[0] == "EOF!") {
+          end else if (tok[0] == "EOF!") do
             return Printf.printf(--[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "End of input stream\n",
@@ -1848,12 +1848,12 @@ function main(param) {
                           ]),
                         "End of input stream\n"
                       ]);
-          } else {
+          end else do
             ppsym(tok);
             _param = --[ () ]--0;
             continue ;
-          }
-        };
+          end
+        end;
     default:
       var oc = Pervasives.open_out("a.out");
       inch.contents = Pervasives.open_in_bin(f);
@@ -1861,8 +1861,8 @@ function main(param) {
       elfgen(oc);
       Caml_io.caml_ml_flush(oc);
       return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
-  }
-}
+  end
+end
 
 main(--[ () ]--0);
 

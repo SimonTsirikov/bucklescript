@@ -2,9 +2,9 @@
 
 var Moduleid = require("#moduleid");
 
-function f(param) {
+function f(param) do
   return Moduleid.name;
-}
+end
 
 exports.f = f;
 --[ #moduleid Not a pure module ]--

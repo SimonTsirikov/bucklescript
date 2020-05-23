@@ -5,38 +5,38 @@ var Curry = require("../../lib/js/curry.js");
 var Caml_array = require("../../lib/js/caml_array.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var v = {
+var v = do
   contents: 0
-};
+end;
 
-var arr = Caml_array.caml_make_vect(10, (function (param) {
+var arr = Caml_array.caml_make_vect(10, (function (param) do
         return --[ () ]--0;
-      }));
+      end));
 
-function f(param) {
+function f(param) do
   var n = 0;
-  while(n < 10) {
+  while(n < 10) do
     var j = n;
-    Caml_array.caml_array_set(arr, j, (function(j){
-        return function (param) {
+    Caml_array.caml_array_set(arr, j, (function(j)do
+        return function (param) do
           v.contents = v.contents + j | 0;
           return --[ () ]--0;
-        }
-        }(j)));
+        end
+        end(j)));
     n = n + 1 | 0;
-  };
+  end;
   return --[ () ]--0;
-}
+end
 
 f(--[ () ]--0);
 
-$$Array.iter((function (x) {
+$$Array.iter((function (x) do
         return Curry._1(x, --[ () ]--0);
-      }), arr);
+      end), arr);
 
 console.log(String(v.contents));
 
-if (v.contents ~= 45) {
+if (v.contents ~= 45) do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -45,7 +45,7 @@ if (v.contents ~= 45) {
           4
         ]
       ];
-}
+end
 
 var count = 10;
 

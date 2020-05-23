@@ -8,9 +8,9 @@ var A = Caml_exceptions.create("Exception_def.A");
 
 var A$1 = Caml_exceptions.create("Exception_def.U.A");
 
-var U = {
+var U = do
   A: A$1
-};
+end;
 
 var H = { };
 
@@ -33,12 +33,12 @@ var v = [
   v_001
 ];
 
-Printexc.register_printer((function (param) {
-        if (param[0] == A) {
+Printexc.register_printer((function (param) do
+        if (param[0] == A) do
           return "A";
-        }
+        end
         
-      }));
+      end));
 
 var a = 3;
 

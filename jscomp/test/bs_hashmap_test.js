@@ -10,25 +10,25 @@ var Caml_primitive = require("../../lib/js/caml_primitive.js");
 var Array_data_util = require("./array_data_util.js");
 var Belt_internalBucketsType = require("../../lib/js/belt_internalBucketsType.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eqx(loc, x, y) {
+function eqx(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, x) {
+function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-}
+end
 
-function eq(x, y) {
+function eq(x, y) do
   return x == y;
-}
+end
 
 var hash = Hashtbl.hash;
 
@@ -38,9 +38,9 @@ var Y = Belt_Id.hashable(hash, eq);
 
 var empty = Belt_internalBucketsType.make(Y.hash, Y.eq, 30);
 
-function add(prim, prim$1) {
+function add(prim, prim$1) do
   return prim + prim$1 | 0;
-}
+end
 
 Belt_HashMap.mergeMany(empty, [
       --[ tuple ]--[
@@ -83,21 +83,21 @@ Belt_HashMap.mergeMany(v$1, Belt_Array.zip(u$1, u$1));
 
 eqx("File \"bs_hashmap_test.ml\", line 48, characters 6-13", v$1.size, 100001);
 
-for(var i = 0; i <= 1000; ++i){
+for(var i = 0; i <= 1000; ++i)do
   Belt_HashMap.remove(v$1, i);
-}
+end
 
 eqx("File \"bs_hashmap_test.ml\", line 52, characters 6-13", v$1.size, 99000);
 
-for(var i$1 = 0; i$1 <= 2000; ++i$1){
+for(var i$1 = 0; i$1 <= 2000; ++i$1)do
   Belt_HashMap.remove(v$1, i$1);
-}
+end
 
 eqx("File \"bs_hashmap_test.ml\", line 56, characters 6-13", v$1.size, 98000);
 
-b("File \"bs_hashmap_test.ml\", line 57, characters 4-11", Belt_Array.every(Array_data_util.range(2001, 100000), (function (x) {
+b("File \"bs_hashmap_test.ml\", line 57, characters 4-11", Belt_Array.every(Array_data_util.range(2001, 100000), (function (x) do
             return Belt_HashMap.has(v$1, x);
-          })));
+          end)));
 
 Mt.from_pair_suites("Bs_hashmap_test", suites.contents);
 

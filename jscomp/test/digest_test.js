@@ -12,9 +12,9 @@ var Caml_bytes = require("../../lib/js/caml_bytes.js");
 var Pervasives = require("../../lib/js/pervasives.js");
 var Ext_array_test = require("./ext_array_test.js");
 
-function f(x) {
+function f(x) do
   return Digest.to_hex(Digest.string(x));
-}
+end
 
 var ref = [
   "d41d8cd98f00b204e9800998ecf8427e",
@@ -152,62 +152,62 @@ var ref = [
 Mt.from_pair_suites("Digest_test", Pervasives.$at(--[ :: ]--[
           --[ tuple ]--[
             "File \"digest_test.ml\", line 6, characters 4-11",
-            (function (param) {
+            (function (param) do
                 return --[ Eq ]--Block.__(0, [
                           Digest.to_hex(Digest.string("value")),
                           "2063c1608d6e0baf80249c42e2be5804"
                         ]);
-              })
+              end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "File \"digest_test.ml\", line 7, characters 4-11",
-              (function (param) {
+              (function (param) do
                   return --[ Eq ]--Block.__(0, [
                             Digest.to_hex(Digest.string("The quick brown fox jumps over the lazy dog")),
                             "9e107d9d372bb6826bd81d3542a419d6"
                           ]);
-                })
+                end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
                 "File \"digest_test.ml\", line 9, characters 4-11",
-                (function (param) {
+                (function (param) do
                     return --[ Eq ]--Block.__(0, [
                               Digest.to_hex(Digest.string("The quick brown fox jumps over the lazy dog.")),
                               "e4d909c290d0fb1ca068ffaddf22cbd0"
                             ]);
-                  })
+                  end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
                   "File \"digest_test.ml\", line 11, characters 4-11",
-                  (function (param) {
+                  (function (param) do
                       return --[ Eq ]--Block.__(0, [
                                 Digest.to_hex(Digest.string("")),
                                 "d41d8cd98f00b204e9800998ecf8427e"
                               ]);
-                    })
+                    end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
                     "File \"digest_test.ml\", line 12, characters 4-11",
-                    (function (param) {
+                    (function (param) do
                         return --[ Eq ]--Block.__(0, [
                                   Digest.to_hex(Digest.string("The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.")),
                                   "7065cc36bba1d155fb09f9d02f22e8bf"
                                 ]);
-                      })
+                      end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
                       "File \"digest_test.ml\", line 13, characters 4-11",
-                      (function (param) {
+                      (function (param) do
                           return --[ Eq ]--Block.__(0, [
                                     Digest.to_hex(Digest.string("The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.")),
                                     "b9193d1df4b7a8f0a25ffdd1005c5b2b"
                                   ]);
-                        })
+                        end)
                     ],
                     --[ [] ]--0
                   ]
@@ -215,7 +215,7 @@ Mt.from_pair_suites("Digest_test", Pervasives.$at(--[ :: ]--[
               ]
             ]
           ]
-        ], $$Array.to_list($$Array.map((function (i) {
+        ], $$Array.to_list($$Array.map((function (i) do
                     return --[ tuple ]--[
                             Curry._1(Printf.sprintf(--[ Format ]--[
                                       --[ Int ]--Block.__(4, [
@@ -226,14 +226,14 @@ Mt.from_pair_suites("Digest_test", Pervasives.$at(--[ :: ]--[
                                         ]),
                                       "%d"
                                     ]), i),
-                            (function (param) {
+                            (function (param) do
                                 return --[ Eq ]--Block.__(0, [
                                           Digest.to_hex(Digest.string(Caml_bytes.bytes_to_string(Bytes.make(i, --[ "a" ]--97)))),
                                           Caml_array.caml_array_get(ref, i)
                                         ]);
-                              })
+                              end)
                           ];
-                  }), Ext_array_test.range(0, 129)))));
+                  end), Ext_array_test.range(0, 129)))));
 
 exports.f = f;
 --[  Not a pure module ]--

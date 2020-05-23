@@ -7,38 +7,38 @@ var $$default = SomeEs6Module.default;
 
 var $$window = Vscode.window;
 
-function mk($$window, $$default) {
-  return {
+function mk($$window, $$default) do
+  return do
           window: $$window,
           default: $$default
-        };
-}
+        end;
+end
 
-function mk2($$window, $$default) {
+function mk2($$window, $$default) do
   return --[ :: ]--[
-          {
+          do
             window: $$window,
             default: $$default
-          },
+          end,
           --[ [] ]--0
         ];
-}
+end
 
-function des(v) {
-  return {
+function des(v) do
+  return do
           window: v.window,
           default: v.default
-        };
-}
+        end;
+end
 
-var test = {
+var test = do
   case: 3,
   window: 3
-};
+end;
 
-function u(param) {
+function u(param) do
   return $$window.switch();
-}
+end
 
 var $$case = 3;
 

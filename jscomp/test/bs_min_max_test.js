@@ -5,39 +5,39 @@ var Caml_obj = require("../../lib/js/caml_obj.js");
 var Caml_int64 = require("../../lib/js/caml_int64.js");
 var Caml_primitive = require("../../lib/js/caml_primitive.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(param, param$1) {
+function b(param, param$1) do
   return Mt.bool_suites(test_id, suites, param, param$1);
-}
+end
 
-function f(x, y) {
+function f(x, y) do
   return Caml_primitive.caml_int_compare(x + y | 0, y + x | 0);
-}
+end
 
-function f2(x, y) {
+function f2(x, y) do
   return Caml_primitive.caml_int_compare(x + y | 0, y);
-}
+end
 
 var f3 = Caml_primitive.caml_int_compare;
 
-function f4(x, y) {
-  if (x < y) {
+function f4(x, y) do
+  if (x < y) do
     return x;
-  } else {
+  end else do
     return y;
-  }
-}
+  end
+end
 
 var f5_min = Caml_obj.caml_min;
 

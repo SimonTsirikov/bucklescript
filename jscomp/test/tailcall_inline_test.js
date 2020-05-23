@@ -5,30 +5,30 @@ var $$Array = require("../../lib/js/array.js");
 var Block = require("../../lib/js/block.js");
 var Caml_array = require("../../lib/js/caml_array.js");
 
-function f(param) {
-  var f$1 = function (_acc, _n) {
-    while(true) {
+function f(param) do
+  var f$1 = function (_acc, _n) do
+    while(true) do
       var n = _n;
       var acc = _acc;
-      if (n > 0) {
+      if (n > 0) do
         _n = n - 1 | 0;
         _acc = acc + n | 0;
         continue ;
-      } else {
+      end else do
         return acc;
-      }
-    };
-  };
+      end
+    end;
+  end;
   var v = Caml_array.caml_make_vect(10, 0);
-  for(var i = 0; i <= 9; ++i){
+  for(var i = 0; i <= 9; ++i)do
     Caml_array.caml_array_set(v, i, f$1(0, i));
-  }
+  end
   return v;
-}
+end
 
 var suites_000 = --[ tuple ]--[
   "acc",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 f(--[ () ]--0),
                 [
@@ -44,13 +44,13 @@ var suites_000 = --[ tuple ]--[
                   45
                 ]
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "array_to_list",
-    (function (param) {
+    (function (param) do
         return --[ Eq ]--Block.__(0, [
                   --[ :: ]--[
                     1,
@@ -68,7 +68,7 @@ var suites_001 = --[ :: ]--[
                         3
                       ])
                 ]);
-      })
+      end)
   ],
   --[ [] ]--0
 ];

@@ -18,17 +18,17 @@ function add_dyn(kind,x,y){
 }
 ;
 
-function string_of_kind(kind) {
-  if (kind) {
+function string_of_kind(kind) do
+  if (kind) do
     return "string";
-  } else {
+  end else do
     return "float";
-  }
-}
+  end
+end
 
-function add2(k, x, y) {
+function add2(k, x, y) do
   return add_dyn(k ? "string" : "float", x, y);
-}
+end
 
 console.log(add2(--[ Float ]--0, 3.0, 2.0));
 

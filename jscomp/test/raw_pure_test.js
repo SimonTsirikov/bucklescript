@@ -16,11 +16,11 @@ var x3 = /ghoghos/;
  * copyright
 */
 
-function f(x) {
+function f(x) do
   --eslint-disable
   --[hgosgh ]--
   return x;
-}
+end
 
 var hh = List.length;
 

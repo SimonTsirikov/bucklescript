@@ -4,92 +4,92 @@ var List = require("../../lib/js/list.js");
 var Curry = require("../../lib/js/curry.js");
 var Caml_int32 = require("../../lib/js/caml_int32.js");
 
-function h0(x) {
+function h0(x) do
   return x();
-}
+end
 
-function h00(x) {
+function h00(x) do
   return Curry._1(x(), --[ () ]--0);
-}
+end
 
-function h1(x) {
-  return (function (param) {
+function h1(x) do
+  return (function (param) do
       return x(param);
-    });
-}
+    end);
+end
 
-function h10(x) {
+function h10(x) do
   return x(3);
-}
+end
 
-function h30(x) {
-  return (function (param) {
+function h30(x) do
+  return (function (param) do
       return x(3, 3, param);
-    });
-}
+    end);
+end
 
-function h33(x) {
+function h33(x) do
   return x(1, 2, 3);
-}
+end
 
-function h34(x) {
+function h34(x) do
   return Curry._1(x(1, 2, 3), 4);
-}
+end
 
-function ocaml_run(param, param$1) {
-  return (function (x, y, z) {
+function ocaml_run(param, param$1) do
+  return (function (x, y, z) do
               return (x + y | 0) + z | 0;
-            })(1, param, param$1);
-}
+            end)(1, param, param$1);
+end
 
-function a0() {
+function a0() do
   console.log("hi");
   return --[ () ]--0;
-}
+end
 
-function a1(param) {
-  return (function (x) {
+function a1(param) do
+  return (function (x) do
       return x;
-    });
-}
+    end);
+end
 
-function a2(x, y) {
+function a2(x, y) do
   return x + y | 0;
-}
+end
 
-function a3(x, y, z) {
+function a3(x, y, z) do
   return (x + y | 0) + z | 0;
-}
+end
 
-function a4(x, y, z, param) {
+function a4(x, y, z, param) do
   var u = (Caml_int32.imul(x, x) + Caml_int32.imul(y, y) | 0) + Caml_int32.imul(z, z) | 0;
-  return (function (d) {
+  return (function (d) do
               return u + d | 0;
-            })(param);
-}
+            end)(param);
+end
 
-function a44(x, y, z, d) {
+function a44(x, y, z, d) do
   var u = (Caml_int32.imul(x, x) + Caml_int32.imul(y, y) | 0) + Caml_int32.imul(z, z) | 0;
   return u + d | 0;
-}
+end
 
-function b44(param) {
-  return (function (x, y, z, d) {
+function b44(param) do
+  return (function (x, y, z, d) do
       return --[ tuple ]--[
               x,
               y,
               z,
               d
             ];
-    });
-}
+    end);
+end
 
-function xx(param) {
-  return (function (param) {
+function xx(param) do
+  return (function (param) do
       console.log(3);
       return --[ () ]--0;
-    });
-}
+    end);
+end
 
 var test_as = List.map;
 

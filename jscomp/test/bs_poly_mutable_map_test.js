@@ -9,40 +9,40 @@ var Array_data_util = require("./array_data_util.js");
 var Belt_MutableMap = require("../../lib/js/belt_MutableMap.js");
 var Belt_internalAVLtree = require("../../lib/js/belt_internalAVLtree.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function b(loc, v) {
+function b(loc, v) do
   return Mt.bool_suites(test_id, suites, loc, v);
-}
+end
 
 var Icmp = Belt_Id.comparable(Caml_primitive.caml_int_compare);
 
-function f(x) {
+function f(x) do
   return Belt_MutableMap.fromArray(x, Icmp);
-}
+end
 
-function ff(x) {
+function ff(x) do
   return Belt_Set.fromArray(x, Icmp);
-}
+end
 
-function randomRange(i, j) {
-  return Belt_Array.map(Array_data_util.randomRange(i, j), (function (x) {
+function randomRange(i, j) do
+  return Belt_Array.map(Array_data_util.randomRange(i, j), (function (x) do
                 return --[ tuple ]--[
                         x,
                         x
                       ];
-              }));
-}
+              end));
+end
 
 var x = randomRange(0, 10);
 

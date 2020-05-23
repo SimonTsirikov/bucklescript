@@ -1,13 +1,13 @@
 'use strict';
 
 
-var direct = {
+var direct = do
   contents: --[ [] ]--0
-};
+end;
 
-var indirect = {
+var indirect = do
   contents: --[ [] ]--0
-};
+end;
 
 exports.direct = direct;
 exports.indirect = indirect;

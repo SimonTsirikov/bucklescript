@@ -2,24 +2,24 @@
 
 var Mt = require("./mt.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
-function f(xOpt, y) {
+function f(xOpt, y) do
   var x = xOpt ~= undefined ? xOpt : 3;
   var xOpt$1 = x + 2 | 0;
   console.log(xOpt$1);
   return xOpt$1 + y | 0;
-}
+end
 
 console.log(f(undefined, 2));
 

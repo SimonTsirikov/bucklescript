@@ -10,7 +10,7 @@ var v = "gso";
 
 var suites_000 = --[ tuple ]--[
   "equal",
-  (function (param) {
+  (function (param) do
       return --[ Eq ]--Block.__(0, [
                 --[ tuple ]--[
                   Caml_bytes.get(Bytes.make(3, --[ "a" ]--97), 0),
@@ -21,13 +21,13 @@ var suites_000 = --[ tuple ]--[
                   --[ "a" ]--97
                 ]
               ]);
-    })
+    end)
 ];
 
 var suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "equal2",
-    (function (param) {
+    (function (param) do
         var u = Bytes.make(3, --[ "a" ]--97);
         u[0] = --[ "b" ]--98;
         return --[ Eq ]--Block.__(0, [
@@ -40,21 +40,21 @@ var suites_001 = --[ :: ]--[
                     --[ "g" ]--103
                   ]
                 ]);
-      })
+      end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
       "buffer",
-      (function (param) {
+      (function (param) do
           var v = $$Buffer.create(30);
-          for(var i = 0; i <= 10; ++i){
+          for(var i = 0; i <= 10; ++i)do
             $$Buffer.add_string(v, String(i));
-          }
+          end
           return --[ Eq ]--Block.__(0, [
                     $$Buffer.contents(v),
                     "012345678910"
                   ]);
-        })
+        end)
     ],
     --[ [] ]--0
   ]

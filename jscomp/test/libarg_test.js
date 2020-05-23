@@ -8,25 +8,25 @@ var Curry = require("../../lib/js/curry.js");
 var Printf = require("../../lib/js/printf.js");
 var Caml_obj = require("../../lib/js/caml_obj.js");
 
-var current = {
+var current = do
   contents: 0
-};
+end;
 
-var accum = {
+var accum = do
   contents: --[ [] ]--0
-};
+end;
 
-function record(fmt) {
-  return Printf.kprintf((function (s) {
+function record(fmt) do
+  return Printf.kprintf((function (s) do
                 accum.contents = --[ :: ]--[
                   s,
                   accum.contents
                 ];
                 return --[ () ]--0;
-              }), fmt);
-}
+              end), fmt);
+end
 
-function f_unit(param) {
+function f_unit(param) do
   return record(--[ Format ]--[
               --[ String_literal ]--Block.__(11, [
                   "unit()",
@@ -34,9 +34,9 @@ function f_unit(param) {
                 ]),
               "unit()"
             ]);
-}
+end
 
-function f_bool(b) {
+function f_bool(b) do
   return Curry._1(record(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "bool(",
@@ -50,17 +50,17 @@ function f_bool(b) {
                     ]),
                   "bool(%b)"
                 ]), b);
-}
+end
 
-var r_set = {
+var r_set = do
   contents: false
-};
+end;
 
-var r_clear = {
+var r_clear = do
   contents: true
-};
+end;
 
-function f_string(s) {
+function f_string(s) do
   return Curry._1(record(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "string(",
@@ -74,13 +74,13 @@ function f_string(s) {
                     ]),
                   "string(%s)"
                 ]), s);
-}
+end
 
-var r_string = {
+var r_string = do
   contents: ""
-};
+end;
 
-function f_int(i) {
+function f_int(i) do
   return Curry._1(record(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "int(",
@@ -96,13 +96,13 @@ function f_int(i) {
                     ]),
                   "int(%d)"
                 ]), i);
-}
+end
 
-var r_int = {
+var r_int = do
   contents: 0
-};
+end;
 
-function f_float(f) {
+function f_float(f) do
   return Curry._1(record(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "float(",
@@ -118,13 +118,13 @@ function f_float(f) {
                     ]),
                   "float(%g)"
                 ]), f);
-}
+end
 
-var r_float = {
+var r_float = do
   contents: 0.0
-};
+end;
 
-function f_symbol(s) {
+function f_symbol(s) do
   return Curry._1(record(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "symbol(",
@@ -138,9 +138,9 @@ function f_symbol(s) {
                     ]),
                   "symbol(%s)"
                 ]), s);
-}
+end
 
-function f_rest(s) {
+function f_rest(s) do
   return Curry._1(record(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "rest(",
@@ -154,9 +154,9 @@ function f_rest(s) {
                     ]),
                   "rest(%s)"
                 ]), s);
-}
+end
 
-function f_anon(s) {
+function f_anon(s) do
   return Curry._1(record(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "anon(",
@@ -170,7 +170,7 @@ function f_anon(s) {
                     ]),
                   "anon(%s)"
                 ]), s);
-}
+end
 
 var spec_000 = --[ tuple ]--[
   "-u",
@@ -350,7 +350,7 @@ var args2 = [
   "r2"
 ];
 
-function error(s) {
+function error(s) do
   return Curry._1(Printf.printf(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "error (",
@@ -364,17 +364,17 @@ function error(s) {
                     ]),
                   "error (%s)\n"
                 ]), s);
-}
+end
 
-function check(r, v, msg) {
-  if (Caml_obj.caml_notequal(r.contents, v)) {
+function check(r, v, msg) do
+  if (Caml_obj.caml_notequal(r.contents, v)) do
     return error(msg);
-  } else {
+  end else do
     return 0;
-  }
-}
+  end
+end
 
-function test(argv) {
+function test(argv) do
   current.contents = 0;
   r_set.contents = false;
   r_clear.contents = true;
@@ -430,8 +430,8 @@ function test(argv) {
       ]
     ]
   ];
-  if (Caml_obj.caml_notequal(result, reference)) {
-    var f = function (x, y) {
+  if (Caml_obj.caml_notequal(result, reference)) do
+    var f = function (x, y) do
       return Curry._3(Printf.printf(--[ Format ]--[
                       --[ String ]--Block.__(2, [
                           --[ Lit_padding ]--Block.__(0, [
@@ -457,15 +457,15 @@ function test(argv) {
                         ]),
                       "%20s %c %-20s\n%!"
                     ]), x, x == y ? --[ "=" ]--61 : --[ "#" ]--35, y);
-    };
+    end;
     List.iter2(f, result, reference);
-  }
+  end
   check(r_set, true, "Set");
   check(r_clear, false, "Clear");
   check(r_string, "bar", "Set_string");
   check(r_int, 42, "Set_int");
   return check(r_float, 2.72, "Set_float");
-}
+end
 
 test(args1);
 

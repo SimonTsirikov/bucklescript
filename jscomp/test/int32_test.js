@@ -11,17 +11,17 @@ var Caml_int32 = require("../../lib/js/caml_int32.js");
 var Pervasives = require("../../lib/js/pervasives.js");
 var Ext_array_test = require("./ext_array_test.js");
 
-function f(x) {
+function f(x) do
   return --[ tuple ]--[
           x,
           (x >>> 1),
           (x >>> 2)
         ];
-}
+end
 
-var shift_right_logical_tests_000 = $$Array.map((function (x) {
+var shift_right_logical_tests_000 = $$Array.map((function (x) do
         return (-1 >>> x) | 0;
-      }), Ext_array_test.range(0, 31));
+      end), Ext_array_test.range(0, 31));
 
 var shift_right_logical_tests_001 = [
   -1,
@@ -63,9 +63,9 @@ var shift_right_logical_tests = --[ tuple ]--[
   shift_right_logical_tests_001
 ];
 
-var shift_right_tests_000 = $$Array.map((function (x) {
+var shift_right_tests_000 = $$Array.map((function (x) do
         return (Int32.min_int >> x);
-      }), Ext_array_test.range(0, 31));
+      end), Ext_array_test.range(0, 31));
 
 var shift_right_tests_001 = [
   -2147483648,
@@ -107,9 +107,9 @@ var shift_right_tests = --[ tuple ]--[
   shift_right_tests_001
 ];
 
-var shift_left_tests_000 = $$Array.map((function (x) {
+var shift_left_tests_000 = $$Array.map((function (x) do
         return (1 << x);
-      }), Ext_array_test.range(0, 31));
+      end), Ext_array_test.range(0, 31));
 
 var shift_left_tests_001 = [
   1,
@@ -153,30 +153,30 @@ var shift_left_tests = --[ tuple ]--[
 
 var $star$tilde = Caml_int32.imul;
 
-var suites = {
+var suites = do
   contents: Pervasives.$at(--[ :: ]--[
         --[ tuple ]--[
           "File \"int32_test.ml\", line 31, characters 2-9",
-          (function (param) {
+          (function (param) do
               return --[ Eq ]--Block.__(0, [
                         1,
                         1
                       ]);
-            })
+            end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
             "File \"int32_test.ml\", line 32, characters 2-9",
-            (function (param) {
+            (function (param) do
                 return --[ Eq ]--Block.__(0, [
                           -2147483647,
                           -2147483647
                         ]);
-              })
+              end)
           ],
           --[ [] ]--0
         ]
-      ], Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) {
+      ], Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                       return --[ tuple ]--[
                               Curry._1(Format.asprintf(--[ Format ]--[
                                         --[ String_literal ]--Block.__(11, [
@@ -190,14 +190,14 @@ var suites = {
                                           ]),
                                         "shift_right_logical_cases %d"
                                       ]), i),
-                              (function (param) {
+                              (function (param) do
                                   return --[ Eq ]--Block.__(0, [
                                             a,
                                             b
                                           ]);
-                                })
+                                end)
                             ];
-                    }), shift_right_logical_tests_000, shift_right_logical_tests_001)), Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) {
+                    end), shift_right_logical_tests_000, shift_right_logical_tests_001)), Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                           return --[ tuple ]--[
                                   Curry._1(Format.asprintf(--[ Format ]--[
                                             --[ String_literal ]--Block.__(11, [
@@ -211,14 +211,14 @@ var suites = {
                                               ]),
                                             "shift_right_cases %d"
                                           ]), i),
-                                  (function (param) {
+                                  (function (param) do
                                       return --[ Eq ]--Block.__(0, [
                                                 a,
                                                 b
                                               ]);
-                                    })
+                                    end)
                                 ];
-                        }), shift_right_tests_000, shift_right_tests_001)), $$Array.to_list(Ext_array_test.map2i((function (i, a, b) {
+                        end), shift_right_tests_000, shift_right_tests_001)), $$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                           return --[ tuple ]--[
                                   Curry._1(Format.asprintf(--[ Format ]--[
                                             --[ String_literal ]--Block.__(11, [
@@ -232,23 +232,23 @@ var suites = {
                                               ]),
                                             "shift_left_cases %d"
                                           ]), i),
-                                  (function (param) {
+                                  (function (param) do
                                       return --[ Eq ]--Block.__(0, [
                                                 a,
                                                 b
                                               ]);
-                                    })
+                                    end)
                                 ];
-                        }), shift_left_tests_000, shift_left_tests_001)))))
-};
+                        end), shift_left_tests_000, shift_left_tests_001)))))
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
 eq("File \"int32_test.ml\", line 47, characters 5-12", Caml_float.caml_int32_bits_of_float(0.3), 1050253722);
 

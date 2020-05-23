@@ -3,15 +3,15 @@
 var List = require("../../lib/js/list.js");
 var Curry = require("../../lib/js/curry.js");
 
-function from_pair_suites(name, suites) {
+function from_pair_suites(name, suites) do
   console.log(--[ tuple ]--[
         name,
         "testing"
       ]);
-  return List.iter((function (param) {
+  return List.iter((function (param) do
                 var name = param[0];
                 var match = Curry._1(param[1], --[ () ]--0);
-                switch (match.tag | 0) {
+                switch (match.tag | 0) do
                   case --[ Eq ]--0 :
                       console.log(--[ tuple ]--[
                             name,
@@ -79,9 +79,9 @@ function from_pair_suites(name, suites) {
                       console.log("failed: " .. match[0]);
                       return --[ () ]--0;
                   
-                }
-              }), suites);
-}
+                end
+              end), suites);
+end
 
 exports.from_pair_suites = from_pair_suites;
 --[ No side effect ]--

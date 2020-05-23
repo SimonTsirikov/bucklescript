@@ -4,17 +4,17 @@ var Mt = require("./mt.js");
 var List = require("../../lib/js/list.js");
 var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-}
+end
 
 var x = List.length(--[ :: ]--[
       1,
@@ -42,13 +42,13 @@ var jsMapperConstantArray = [
   ]
 ];
 
-function adapterToJs(param) {
+function adapterToJs(param) do
   return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray);
-}
+end
 
-function adapterFromJs(param) {
+function adapterFromJs(param) do
   return Js_mapperRt.revSearch(3, jsMapperConstantArray, param);
-}
+end
 
 eq("File \"re_first_test.re\", line 18, characters 3-10", adapterToJs(--[ idb ]--5243943), "idb");
 

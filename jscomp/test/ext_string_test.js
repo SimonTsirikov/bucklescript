@@ -11,28 +11,28 @@ var Ext_bytes_test = require("./ext_bytes_test.js");
 var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function split_by(keep_emptyOpt, is_delim, str) {
+function split_by(keep_emptyOpt, is_delim, str) do
   var keep_empty = keep_emptyOpt ~= undefined ? keep_emptyOpt : false;
   var len = #str;
   var _acc = --[ [] ]--0;
   var _last_pos = len;
   var _pos = len - 1 | 0;
-  while(true) {
+  while(true) do
     var pos = _pos;
     var last_pos = _last_pos;
     var acc = _acc;
-    if (pos == -1) {
-      if (last_pos == 0 and !keep_empty) {
+    if (pos == -1) do
+      if (last_pos == 0 and !keep_empty) do
         return acc;
-      } else {
+      end else do
         return --[ :: ]--[
                 $$String.sub(str, 0, last_pos),
                 acc
               ];
-      }
-    } else if (Curry._1(is_delim, Caml_string.get(str, pos))) {
+      end
+    end else if (Curry._1(is_delim, Caml_string.get(str, pos))) do
       var new_len = (last_pos - pos | 0) - 1 | 0;
-      if (new_len ~= 0 or keep_empty) {
+      if (new_len ~= 0 or keep_empty) do
         var v = $$String.sub(str, pos + 1 | 0, new_len);
         _pos = pos - 1 | 0;
         _last_pos = pos;
@@ -41,484 +41,484 @@ function split_by(keep_emptyOpt, is_delim, str) {
           acc
         ];
         continue ;
-      } else {
+      end else do
         _pos = pos - 1 | 0;
         _last_pos = pos;
         continue ;
-      }
-    } else {
+      end
+    end else do
       _pos = pos - 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function trim(s) {
+function trim(s) do
   var i = 0;
   var j = #s;
-  while((function () {
+  while((function () do
           var tmp = false;
-          if (i < j) {
+          if (i < j) do
             var u = s.charCodeAt(i);
             tmp = u == --[ "\t" ]--9 or u == --[ "\n" ]--10 or u == --[ " " ]--32;
-          }
+          end
           return tmp;
-        })()) {
+        end)()) do
     i = i + 1 | 0;
-  };
+  end;
   var k = j - 1 | 0;
-  while((function () {
+  while((function () do
           var tmp = false;
-          if (k >= i) {
+          if (k >= i) do
             var u = s.charCodeAt(k);
             tmp = u == --[ "\t" ]--9 or u == --[ "\n" ]--10 or u == --[ " " ]--32;
-          }
+          end
           return tmp;
-        })()) {
+        end)()) do
     k = k - 1 | 0;
-  };
+  end;
   return $$String.sub(s, i, (k - i | 0) + 1 | 0);
-}
+end
 
-function split(keep_empty, str, on) {
-  if (str == "") {
+function split(keep_empty, str, on) do
+  if (str == "") do
     return --[ [] ]--0;
-  } else {
-    return split_by(keep_empty, (function (x) {
+  end else do
+    return split_by(keep_empty, (function (x) do
                   return x == on;
-                }), str);
-  }
-}
+                end), str);
+  end
+end
 
-function quick_split_by_ws(str) {
-  return split_by(false, (function (x) {
-                if (x == --[ "\t" ]--9 or x == --[ "\n" ]--10) {
+function quick_split_by_ws(str) do
+  return split_by(false, (function (x) do
+                if (x == --[ "\t" ]--9 or x == --[ "\n" ]--10) do
                   return true;
-                } else {
+                end else do
                   return x == --[ " " ]--32;
-                }
-              }), str);
-}
+                end
+              end), str);
+end
 
-function starts_with(s, beg) {
+function starts_with(s, beg) do
   var beg_len = #beg;
   var s_len = #s;
-  if (beg_len <= s_len) {
+  if (beg_len <= s_len) do
     var i = 0;
-    while(i < beg_len and s[i] == beg[i]) {
+    while(i < beg_len and s[i] == beg[i]) do
       i = i + 1 | 0;
-    };
+    end;
     return i == beg_len;
-  } else {
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function ends_with_index(s, end_) {
+function ends_with_index(s, end_) do
   var s_finish = #s - 1 | 0;
   var s_beg = #end_ - 1 | 0;
-  if (s_beg > s_finish) {
+  if (s_beg > s_finish) do
     return -1;
-  } else {
+  end else do
     var _j = s_finish;
     var _k = s_beg;
-    while(true) {
+    while(true) do
       var k = _k;
       var j = _j;
-      if (k < 0) {
+      if (k < 0) do
         return j + 1 | 0;
-      } else if (s[j] == end_[k]) {
+      end else if (s[j] == end_[k]) do
         _k = k - 1 | 0;
         _j = j - 1 | 0;
         continue ;
-      } else {
+      end else do
         return -1;
-      }
-    };
-  }
-}
+      end
+    end;
+  end
+end
 
-function ends_with(s, end_) {
+function ends_with(s, end_) do
   return ends_with_index(s, end_) >= 0;
-}
+end
 
-function ends_with_then_chop(s, beg) {
+function ends_with_then_chop(s, beg) do
   var i = ends_with_index(s, beg);
-  if (i >= 0) {
+  if (i >= 0) do
     return $$String.sub(s, 0, i);
-  }
+  end
   
-}
+end
 
-function check_any_suffix_case(s, suffixes) {
-  return List.exists((function (x) {
+function check_any_suffix_case(s, suffixes) do
+  return List.exists((function (x) do
                 return ends_with(s, x);
-              }), suffixes);
-}
+              end), suffixes);
+end
 
-function check_any_suffix_case_then_chop(s, suffixes) {
+function check_any_suffix_case_then_chop(s, suffixes) do
   var _suffixes = suffixes;
-  while(true) {
+  while(true) do
     var suffixes$1 = _suffixes;
-    if (suffixes$1) {
+    if (suffixes$1) do
       var id = ends_with_index(s, suffixes$1[0]);
-      if (id >= 0) {
+      if (id >= 0) do
         return $$String.sub(s, 0, id);
-      } else {
+      end else do
         _suffixes = suffixes$1[1];
         continue ;
-      }
-    } else {
+      end
+    end else do
       return ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function escaped(s) {
-  var needs_escape = function (_i) {
-    while(true) {
+function escaped(s) do
+  var needs_escape = function (_i) do
+    while(true) do
       var i = _i;
-      if (i >= #s) {
+      if (i >= #s) do
         return false;
-      } else {
+      end else do
         var match = s.charCodeAt(i);
-        if (match >= 32) {
+        if (match >= 32) do
           var switcher = match - 34 | 0;
-          if (switcher > 58 or switcher < 0) {
-            if (switcher >= 93) {
+          if (switcher > 58 or switcher < 0) do
+            if (switcher >= 93) do
               return true;
-            } else {
+            end else do
               _i = i + 1 | 0;
               continue ;
-            }
-          } else if (switcher > 57 or switcher < 1) {
+            end
+          end else if (switcher > 57 or switcher < 1) do
             return true;
-          } else {
+          end else do
             _i = i + 1 | 0;
             continue ;
-          }
-        } else {
+          end
+        end else do
           return true;
-        }
-      }
-    };
-  };
-  if (needs_escape(0)) {
+        end
+      end
+    end;
+  end;
+  if (needs_escape(0)) do
     return Caml_bytes.bytes_to_string(Ext_bytes_test.escaped(Caml_bytes.bytes_of_string(s)));
-  } else {
+  end else do
     return s;
-  }
-}
+  end
+end
 
-function unsafe_for_all_range(s, _start, finish, p) {
-  while(true) {
+function unsafe_for_all_range(s, _start, finish, p) do
+  while(true) do
     var start = _start;
-    if (start > finish) {
+    if (start > finish) do
       return true;
-    } else if (Curry._1(p, s.charCodeAt(start))) {
+    end else if (Curry._1(p, s.charCodeAt(start))) do
       _start = start + 1 | 0;
       continue ;
-    } else {
+    end else do
       return false;
-    }
-  };
-}
+    end
+  end;
+end
 
-function for_all_range(s, start, finish, p) {
+function for_all_range(s, start, finish, p) do
   var len = #s;
-  if (start < 0 or finish >= len) {
+  if (start < 0 or finish >= len) do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_string_test.for_all_range"
         ];
-  }
+  end
   return unsafe_for_all_range(s, start, finish, p);
-}
+end
 
-function for_all(p, s) {
+function for_all(p, s) do
   return unsafe_for_all_range(s, 0, #s - 1 | 0, p);
-}
+end
 
-function is_empty(s) {
+function is_empty(s) do
   return #s == 0;
-}
+end
 
-function repeat(n, s) {
+function repeat(n, s) do
   var len = #s;
   var res = Caml_bytes.caml_create_bytes(Caml_int32.imul(n, len));
-  for(var i = 0 ,i_finish = n - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = n - 1 | 0; i <= i_finish; ++i)do
     $$String.blit(s, 0, res, Caml_int32.imul(i, len), len);
-  }
+  end
   return Bytes.to_string(res);
-}
+end
 
-function unsafe_is_sub(sub, i, s, j, len) {
-  if ((j + len | 0) <= #s) {
+function unsafe_is_sub(sub, i, s, j, len) do
+  if ((j + len | 0) <= #s) do
     var _k = 0;
-    while(true) {
+    while(true) do
       var k = _k;
-      if (k == len) {
+      if (k == len) do
         return true;
-      } else if (sub[i + k | 0] == s[j + k | 0]) {
+      end else if (sub[i + k | 0] == s[j + k | 0]) do
         _k = k + 1 | 0;
         continue ;
-      } else {
+      end else do
         return false;
-      }
-    };
-  } else {
+      end
+    end;
+  end else do
     return false;
-  }
-}
+  end
+end
 
 var Local_exit = Caml_exceptions.create("Ext_string_test.Local_exit");
 
-function find(startOpt, sub, s) {
+function find(startOpt, sub, s) do
   var start = startOpt ~= undefined ? startOpt : 0;
   var n = #sub;
   var s_len = #s;
   var i = start;
-  try {
-    while((i + n | 0) <= s_len) {
-      if (unsafe_is_sub(sub, 0, s, i, n)) {
+  try do
+    while((i + n | 0) <= s_len) do
+      if (unsafe_is_sub(sub, 0, s, i, n)) do
         throw Local_exit;
-      }
+      end
       i = i + 1 | 0;
-    };
+    end;
     return -1;
-  }
-  catch (exn){
-    if (exn == Local_exit) {
+  end
+  catch (exn)do
+    if (exn == Local_exit) do
       return i;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
-function contain_substring(s, sub) {
+function contain_substring(s, sub) do
   return find(undefined, sub, s) >= 0;
-}
+end
 
-function non_overlap_count(sub, s) {
+function non_overlap_count(sub, s) do
   var sub_len = #sub;
-  if (#sub == 0) {
+  if (#sub == 0) do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_string_test.non_overlap_count"
         ];
-  }
+  end
   var _acc = 0;
   var _off = 0;
-  while(true) {
+  while(true) do
     var off = _off;
     var acc = _acc;
     var i = find(off, sub, s);
-    if (i < 0) {
+    if (i < 0) do
       return acc;
-    } else {
+    end else do
       _off = i + sub_len | 0;
       _acc = acc + 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function rfind(sub, s) {
+function rfind(sub, s) do
   var n = #sub;
   var i = #s - n | 0;
-  try {
-    while(i >= 0) {
-      if (unsafe_is_sub(sub, 0, s, i, n)) {
+  try do
+    while(i >= 0) do
+      if (unsafe_is_sub(sub, 0, s, i, n)) do
         throw Local_exit;
-      }
+      end
       i = i - 1 | 0;
-    };
+    end;
     return -1;
-  }
-  catch (exn){
-    if (exn == Local_exit) {
+  end
+  catch (exn)do
+    if (exn == Local_exit) do
       return i;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
-function tail_from(s, x) {
+function tail_from(s, x) do
   var len = #s;
-  if (x > len) {
+  if (x > len) do
     var s$1 = "Ext_string_test.tail_from " .. (s .. (" : " .. String(x)));
     throw [
           Caml_builtin_exceptions.invalid_argument,
           s$1
         ];
-  } else {
+  end else do
     return $$String.sub(s, x, len - x | 0);
-  }
-}
+  end
+end
 
-function digits_of_str(s, offset, x) {
+function digits_of_str(s, offset, x) do
   var _i = 0;
   var _acc = 0;
   var s$1 = s;
   var x$1 = x;
-  while(true) {
+  while(true) do
     var acc = _acc;
     var i = _i;
-    if (i >= x$1) {
+    if (i >= x$1) do
       return acc;
-    } else {
+    end else do
       _acc = (Caml_int32.imul(10, acc) + Caml_string.get(s$1, offset + i | 0) | 0) - 48 | 0;
       _i = i + 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function starts_with_and_number(s, offset, beg) {
+function starts_with_and_number(s, offset, beg) do
   var beg_len = #beg;
   var s_len = #s;
   var finish_delim = offset + beg_len | 0;
-  if (finish_delim > s_len) {
+  if (finish_delim > s_len) do
     return -1;
-  } else {
+  end else do
     var i = offset;
-    while(i < finish_delim and s[i] == beg[i - offset | 0]) {
+    while(i < finish_delim and s[i] == beg[i - offset | 0]) do
       i = i + 1 | 0;
-    };
-    if (i == finish_delim) {
+    end;
+    if (i == finish_delim) do
       return digits_of_str(s, finish_delim, 2);
-    } else {
+    end else do
       return -1;
-    }
-  }
-}
+    end
+  end
+end
 
-function equal(x, y) {
+function equal(x, y) do
   return x == y;
-}
+end
 
-function unsafe_concat_with_length(len, sep, l) {
-  if (l) {
+function unsafe_concat_with_length(len, sep, l) do
+  if (l) do
     var hd = l[0];
     var r = Caml_bytes.caml_create_bytes(len);
     var hd_len = #hd;
     var sep_len = #sep;
     Caml_bytes.caml_blit_string(hd, 0, r, 0, hd_len);
-    var pos = {
+    var pos = do
       contents: hd_len
-    };
-    List.iter((function (s) {
+    end;
+    List.iter((function (s) do
             var s_len = #s;
             Caml_bytes.caml_blit_string(sep, 0, r, pos.contents, sep_len);
             pos.contents = pos.contents + sep_len | 0;
             Caml_bytes.caml_blit_string(s, 0, r, pos.contents, s_len);
             pos.contents = pos.contents + s_len | 0;
             return --[ () ]--0;
-          }), l[1]);
+          end), l[1]);
     return Caml_bytes.bytes_to_string(r);
-  } else {
+  end else do
     return "";
-  }
-}
+  end
+end
 
-function rindex_rec(s, _i, c) {
-  while(true) {
+function rindex_rec(s, _i, c) do
+  while(true) do
     var i = _i;
-    if (i < 0 or s.charCodeAt(i) == c) {
+    if (i < 0 or s.charCodeAt(i) == c) do
       return i;
-    } else {
+    end else do
       _i = i - 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function rindex_rec_opt(s, _i, c) {
-  while(true) {
+function rindex_rec_opt(s, _i, c) do
+  while(true) do
     var i = _i;
-    if (i < 0) {
+    if (i < 0) do
       return ;
-    } else if (s.charCodeAt(i) == c) {
+    end else if (s.charCodeAt(i) == c) do
       return i;
-    } else {
+    end else do
       _i = i - 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function rindex_neg(s, c) {
+function rindex_neg(s, c) do
   return rindex_rec(s, #s - 1 | 0, c);
-}
+end
 
-function rindex_opt(s, c) {
+function rindex_opt(s, c) do
   return rindex_rec_opt(s, #s - 1 | 0, c);
-}
+end
 
-function is_valid_module_file(s) {
+function is_valid_module_file(s) do
   var len = #s;
-  if (len > 0) {
+  if (len > 0) do
     var match = s.charCodeAt(0);
-    if (match >= 91) {
-      if (match > 122 or match < 97) {
+    if (match >= 91) do
+      if (match > 122 or match < 97) do
         return false;
-      }
+      end
       
-    } else if (match < 65) {
+    end else if (match < 65) do
       return false;
-    }
-    return unsafe_for_all_range(s, 1, len - 1 | 0, (function (x) {
-                  if (x >= 65) {
+    end
+    return unsafe_for_all_range(s, 1, len - 1 | 0, (function (x) do
+                  if (x >= 65) do
                     var switcher = x - 91 | 0;
-                    if (switcher > 5 or switcher < 0) {
+                    if (switcher > 5 or switcher < 0) do
                       return switcher < 32;
-                    } else {
+                    end else do
                       return switcher == 4;
-                    }
-                  } else if (x >= 48) {
+                    end
+                  end else if (x >= 48) do
                     return x < 58;
-                  } else {
+                  end else do
                     return x == 39;
-                  }
-                }));
-  } else {
+                  end
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function is_valid_npm_package_name(s) {
+function is_valid_npm_package_name(s) do
   var len = #s;
-  if (len <= 214 and len > 0) {
+  if (len <= 214 and len > 0) do
     var match = s.charCodeAt(0);
-    if (match >= 97) {
-      if (match >= 123) {
+    if (match >= 97) do
+      if (match >= 123) do
         return false;
-      }
+      end
       
-    } else if (match ~= 64) {
+    end else if (match ~= 64) do
       return false;
-    }
-    return unsafe_for_all_range(s, 1, len - 1 | 0, (function (x) {
-                  if (x >= 58) {
-                    if (x >= 97) {
+    end
+    return unsafe_for_all_range(s, 1, len - 1 | 0, (function (x) do
+                  if (x >= 58) do
+                    if (x >= 97) do
                       return x < 123;
-                    } else {
+                    end else do
                       return x == 95;
-                    }
-                  } else if (x ~= 45) {
+                    end
+                  end else if (x ~= 45) do
                     return x >= 48;
-                  } else {
+                  end else do
                     return true;
-                  }
-                }));
-  } else {
+                  end
+                end));
+  end else do
     return false;
-  }
-}
+  end
+end
 
-function is_valid_source_name(name) {
+function is_valid_source_name(name) do
   var match = check_any_suffix_case_then_chop(name, --[ :: ]--[
         ".ml",
         --[ :: ]--[
@@ -532,130 +532,130 @@ function is_valid_source_name(name) {
           ]
         ]
       ]);
-  if (match ~= undefined) {
-    if (is_valid_module_file(match)) {
+  if (match ~= undefined) do
+    if (is_valid_module_file(match)) do
       return --[ Good ]--0;
-    } else {
+    end else do
       return --[ Invalid_module_name ]--1;
-    }
-  } else {
+    end
+  end else do
     return --[ Suffix_mismatch ]--2;
-  }
-}
+  end
+end
 
-function unsafe_no_char(x, ch, _i, last_idx) {
-  while(true) {
+function unsafe_no_char(x, ch, _i, last_idx) do
+  while(true) do
     var i = _i;
-    if (i > last_idx) {
+    if (i > last_idx) do
       return true;
-    } else if (x.charCodeAt(i) ~= ch) {
+    end else if (x.charCodeAt(i) ~= ch) do
       _i = i + 1 | 0;
       continue ;
-    } else {
+    end else do
       return false;
-    }
-  };
-}
+    end
+  end;
+end
 
-function unsafe_no_char_idx(x, ch, _i, last_idx) {
-  while(true) {
+function unsafe_no_char_idx(x, ch, _i, last_idx) do
+  while(true) do
     var i = _i;
-    if (i > last_idx) {
+    if (i > last_idx) do
       return -1;
-    } else if (x.charCodeAt(i) ~= ch) {
+    end else if (x.charCodeAt(i) ~= ch) do
       _i = i + 1 | 0;
       continue ;
-    } else {
+    end else do
       return i;
-    }
-  };
-}
+    end
+  end;
+end
 
-function no_char(x, ch, i, len) {
+function no_char(x, ch, i, len) do
   var str_len = #x;
-  if (i < 0 or i >= str_len or len >= str_len) {
+  if (i < 0 or i >= str_len or len >= str_len) do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_string_test.no_char"
         ];
-  }
+  end
   return unsafe_no_char(x, ch, i, len);
-}
+end
 
-function no_slash(x) {
+function no_slash(x) do
   return unsafe_no_char(x, --[ "/" ]--47, 0, #x - 1 | 0);
-}
+end
 
-function no_slash_idx(x) {
+function no_slash_idx(x) do
   return unsafe_no_char_idx(x, --[ "/" ]--47, 0, #x - 1 | 0);
-}
+end
 
-function replace_slash_backward(x) {
+function replace_slash_backward(x) do
   var len = #x;
-  if (unsafe_no_char(x, --[ "/" ]--47, 0, len - 1 | 0)) {
+  if (unsafe_no_char(x, --[ "/" ]--47, 0, len - 1 | 0)) do
     return x;
-  } else {
-    return $$String.map((function (x) {
-                  if (x ~= 47) {
+  end else do
+    return $$String.map((function (x) do
+                  if (x ~= 47) do
                     return x;
-                  } else {
+                  end else do
                     return --[ "\\" ]--92;
-                  }
-                }), x);
-  }
-}
+                  end
+                end), x);
+  end
+end
 
-function replace_backward_slash(x) {
+function replace_backward_slash(x) do
   var len = #x;
-  if (unsafe_no_char(x, --[ "\\" ]--92, 0, len - 1 | 0)) {
+  if (unsafe_no_char(x, --[ "\\" ]--92, 0, len - 1 | 0)) do
     return x;
-  } else {
-    return $$String.map((function (x) {
-                  if (x ~= 92) {
+  end else do
+    return $$String.map((function (x) do
+                  if (x ~= 92) do
                     return x;
-                  } else {
+                  end else do
                     return --[ "/" ]--47;
-                  }
-                }), x);
-  }
-}
+                  end
+                end), x);
+  end
+end
 
 var empty = "";
 
 var single_space = " ";
 
-function concat_array(sep, s) {
+function concat_array(sep, s) do
   var s_len = #s;
-  if (s_len ~= 0) {
-    if (s_len ~= 1) {
+  if (s_len ~= 0) do
+    if (s_len ~= 1) do
       var sep_len = #sep;
       var len = 0;
-      for(var i = 0 ,i_finish = s_len - 1 | 0; i <= i_finish; ++i){
+      for(var i = 0 ,i_finish = s_len - 1 | 0; i <= i_finish; ++i)do
         len = len + #s[i] | 0;
-      }
+      end
       var target = Caml_bytes.caml_create_bytes(len + Caml_int32.imul(s_len - 1 | 0, sep_len) | 0);
       var hd = s[0];
       var hd_len = #hd;
       Caml_bytes.caml_blit_string(hd, 0, target, 0, hd_len);
       var current_offset = hd_len;
-      for(var i$1 = 1 ,i_finish$1 = s_len - 1 | 0; i$1 <= i_finish$1; ++i$1){
+      for(var i$1 = 1 ,i_finish$1 = s_len - 1 | 0; i$1 <= i_finish$1; ++i$1)do
         Caml_bytes.caml_blit_string(sep, 0, target, current_offset, sep_len);
         var cur = s[i$1];
         var cur_len = #cur;
         var new_off_set = current_offset + sep_len | 0;
         Caml_bytes.caml_blit_string(cur, 0, target, new_off_set, cur_len);
         current_offset = new_off_set + cur_len | 0;
-      }
+      end
       return Caml_bytes.bytes_to_string(target);
-    } else {
+    end else do
       return s[0];
-    }
-  } else {
+    end
+  end else do
     return empty;
-  }
-}
+  end
+end
 
-function concat3(a, b, c) {
+function concat3(a, b, c) do
   var a_len = #a;
   var b_len = #b;
   var c_len = #c;
@@ -665,9 +665,9 @@ function concat3(a, b, c) {
   Caml_bytes.caml_blit_string(b, 0, target, a_len, b_len);
   Caml_bytes.caml_blit_string(c, 0, target, a_len + b_len | 0, c_len);
   return Caml_bytes.bytes_to_string(target);
-}
+end
 
-function concat4(a, b, c, d) {
+function concat4(a, b, c, d) do
   var a_len = #a;
   var b_len = #b;
   var c_len = #c;
@@ -679,9 +679,9 @@ function concat4(a, b, c, d) {
   Caml_bytes.caml_blit_string(c, 0, target, a_len + b_len | 0, c_len);
   Caml_bytes.caml_blit_string(d, 0, target, (a_len + b_len | 0) + c_len | 0, d_len);
   return Caml_bytes.bytes_to_string(target);
-}
+end
 
-function concat5(a, b, c, d, e) {
+function concat5(a, b, c, d, e) do
   var a_len = #a;
   var b_len = #b;
   var c_len = #c;
@@ -695,24 +695,24 @@ function concat5(a, b, c, d, e) {
   Caml_bytes.caml_blit_string(d, 0, target, (a_len + b_len | 0) + c_len | 0, d_len);
   Caml_bytes.caml_blit_string(e, 0, target, ((a_len + b_len | 0) + c_len | 0) + d_len | 0, e_len);
   return Caml_bytes.bytes_to_string(target);
-}
+end
 
-function inter2(a, b) {
+function inter2(a, b) do
   return concat3(a, single_space, b);
-}
+end
 
-function inter3(a, b, c) {
+function inter3(a, b, c) do
   return concat5(a, single_space, b, single_space, c);
-}
+end
 
-function inter4(a, b, c, d) {
+function inter4(a, b, c, d) do
   return concat_array(single_space, [
               a,
               b,
               c,
               d
             ]);
-}
+end
 
 var check_suffix_case = ends_with;
 

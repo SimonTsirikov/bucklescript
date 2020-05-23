@@ -7,102 +7,102 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 
 var Foo = Caml_exceptions.create("Gpr_1701_test.Foo");
 
-function test(n) {
-  if (n == 0) {
+function test(n) do
+  if (n == 0) do
     throw Foo;
-  }
-  try {
+  end
+  try do
     return test(n - 1 | 0);
-  }
-  catch (exn){
-    if (exn == Foo) {
+  end
+  catch (exn)do
+    if (exn == Foo) do
       return --[ () ]--0;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
 test(100);
 
-function read_lines(inc) {
+function read_lines(inc) do
   var _acc = --[ [] ]--0;
-  while(true) {
+  while(true) do
     var acc = _acc;
     var match;
-    try {
+    try do
       match = Pervasives.input_line(inc);
-    }
-    catch (exn){
-      if (exn == Caml_builtin_exceptions.end_of_file) {
+    end
+    catch (exn)do
+      if (exn == Caml_builtin_exceptions.end_of_file) do
         match = undefined;
-      } else {
+      end else do
         throw exn;
-      }
-    }
-    if (match ~= undefined) {
+      end
+    end
+    if (match ~= undefined) do
       _acc = --[ :: ]--[
         match,
         acc
       ];
       continue ;
-    } else {
+    end else do
       return List.rev(acc);
-    }
-  };
-}
+    end
+  end;
+end
 
-function read_lines2(inc) {
+function read_lines2(inc) do
   var _acc = --[ [] ]--0;
-  while(true) {
+  while(true) do
     var acc = _acc;
     var l;
-    try {
+    try do
       l = Pervasives.input_line(inc);
-    }
-    catch (exn){
-      if (exn == Caml_builtin_exceptions.end_of_file) {
+    end
+    catch (exn)do
+      if (exn == Caml_builtin_exceptions.end_of_file) do
         return List.rev(acc);
-      } else {
+      end else do
         throw exn;
-      }
-    }
+      end
+    end
     _acc = --[ :: ]--[
       l,
       acc
     ];
     continue ;
-  };
-}
+  end;
+end
 
-function read_lines3(inc) {
-  var loop = function (acc) {
-    try {
+function read_lines3(inc) do
+  var loop = function (acc) do
+    try do
       var l = Pervasives.input_line(inc);
       return loop(--[ :: ]--[
                   l,
                   acc
                 ]);
-    }
-    catch (exn){
-      if (exn == Caml_builtin_exceptions.end_of_file) {
+    end
+    catch (exn)do
+      if (exn == Caml_builtin_exceptions.end_of_file) do
         return List.rev(acc);
-      } else {
+      end else do
         throw exn;
-      }
-    }
-  };
+      end
+    end
+  end;
   return loop(--[ [] ]--0);
-}
+end
 
-function fff(f, x) {
-  try {
+function fff(f, x) do
+  try do
     return fff(f, x);
-  }
-  catch (exn){
+  end
+  catch (exn)do
     return x + 1 | 0;
-  }
-}
+  end
+end
 
 exports.Foo = Foo;
 exports.test = test;

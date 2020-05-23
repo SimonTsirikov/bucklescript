@@ -1,12 +1,12 @@
 'use strict';
 
 
-function fff(x) {
+function fff(x) do
   x.height = 2;
   return --[ () ]--0;
-}
+end
 
-function ff(x, z) {
+function ff(x, z) do
   return --[ :: ]--[
           x.height,
           --[ :: ]--[
@@ -14,7 +14,7 @@ function ff(x, z) {
             --[ [] ]--0
           ]
         ];
-}
+end
 
 exports.fff = fff;
 exports.ff = ff;

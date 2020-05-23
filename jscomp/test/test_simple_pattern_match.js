@@ -4,7 +4,7 @@ var Sys = require("../../lib/js/sys.js");
 
 var match;
 
-switch (Sys.os_type) {
+switch (Sys.os_type) do
   case "Cygwin" :
   case "Unix" :
       match = --[ tuple ]--[
@@ -17,7 +17,7 @@ switch (Sys.os_type) {
       3,
       4
     ];
-}
+end
 
 var a = match[0];
 

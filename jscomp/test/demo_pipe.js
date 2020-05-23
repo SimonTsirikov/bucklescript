@@ -1,15 +1,15 @@
 'use strict';
 
 
-function register(rl) {
-  return rl.on("line", (function (x) {
+function register(rl) do
+  return rl.on("line", (function (x) do
                   console.log(x);
                   return --[ () ]--0;
-                })).on("close", (function (param) {
+                end)).on("close", (function (param) do
                 console.log("finished");
                 return --[ () ]--0;
-              }));
-}
+              end));
+end
 
 exports.register = register;
 --[ No side effect ]--

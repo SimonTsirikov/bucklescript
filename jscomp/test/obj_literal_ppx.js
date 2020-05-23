@@ -1,27 +1,27 @@
 'use strict';
 
 
-var a = {
+var a = do
   x: 3,
   y: [1]
-};
+end;
 
-var b = {
+var b = do
   x: 3,
   y: [1],
   z: 3,
-  u: (function (x, y) {
+  u: (function (x, y) do
       return x + y | 0;
-    })
-};
+    end)
+end;
 
-function f(obj) {
+function f(obj) do
   return obj.x + #obj.y | 0;
-}
+end
 
-function h(obj) {
+function h(obj) do
   return obj.u(1, 2);
-}
+end
 
 var u = f(a);
 

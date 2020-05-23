@@ -1,10 +1,10 @@
 'use strict';
 
 
-function f(re) {
+function f(re) do
   re.exec("banana");
   return 3;
-}
+end
 
 exports.f = f;
 --[ No side effect ]--

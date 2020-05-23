@@ -7,30 +7,30 @@ var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, x, y) {
+function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
 var A = Caml_exceptions.create("Exception_rebound_err_test.A");
 
@@ -38,46 +38,46 @@ var B = Caml_exceptions.create("Exception_rebound_err_test.B");
 
 var C = Caml_exceptions.create("Exception_rebound_err_test.C");
 
-function test_js_error4(param) {
-  try {
+function test_js_error4(param) do
+  try do
     JSON.parse(" {\"x\"}");
     return 1;
-  }
-  catch (raw_e){
+  end
+  catch (raw_e)do
     var e = Caml_js_exceptions.internalToOCamlException(raw_e);
-    if (e == Caml_builtin_exceptions.not_found) {
+    if (e == Caml_builtin_exceptions.not_found) do
       return 2;
-    } else if (e[0] == Caml_builtin_exceptions.invalid_argument and e[1] == "x") {
+    end else if (e[0] == Caml_builtin_exceptions.invalid_argument and e[1] == "x") do
       return 3;
-    }
-    if (e[0] == A) {
-      if (e[1] ~= 2) {
+    end
+    if (e[0] == A) do
+      if (e[1] ~= 2) do
         return 7;
-      } else {
+      end else do
         return 4;
-      }
-    } else if (e == B) {
+      end
+    end else if (e == B) do
       return 5;
-    } else if (e[0] == C and !(e[1] ~= 1 or e[2] ~= 2)) {
+    end else if (e[0] == C and !(e[1] ~= 1 or e[2] ~= 2)) do
       return 6;
-    } else {
+    end else do
       return 7;
-    }
-  }
-}
+    end
+  end
+end
 
-function f(g) {
-  try {
+function f(g) do
+  try do
     return Curry._1(g, --[ () ]--0);
-  }
-  catch (exn){
-    if (exn == Caml_builtin_exceptions.not_found) {
+  end
+  catch (exn)do
+    if (exn == Caml_builtin_exceptions.not_found) do
       return 1;
-    } else {
+    end else do
       throw exn;
-    }
-  }
-}
+    end
+  end
+end
 
 eq("File \"exception_rebound_err_test.ml\", line 24, characters 6-13", test_js_error4(--[ () ]--0), 7);
 

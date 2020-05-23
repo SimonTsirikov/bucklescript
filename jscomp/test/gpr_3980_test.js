@@ -5,8 +5,8 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 
 var match = 1;
 
-if (match ~= undefined) {
-  if (match ~= 1) {
+if (match ~= undefined) do
+  if (match ~= 1) do
     throw [
           Caml_builtin_exceptions.assert_failure,
           --[ tuple ]--[
@@ -15,10 +15,10 @@ if (match ~= undefined) {
             10
           ]
         ];
-  }
+  end
   var match$1 = 1;
-  if (match$1 ~= 1) {
-    if (match$1 ~= 2) {
+  if (match$1 ~= 1) do
+    if (match$1 ~= 2) do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -27,14 +27,14 @@ if (match ~= undefined) {
               12
             ]
           ];
-    }
-    ({
+    end
+    (do
         name: "bye",
         age: Js_math.floor(1)
-      });
-  }
+      end);
+  end
   
-} else {
+end else do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -43,6 +43,6 @@ if (match ~= undefined) {
           10
         ]
       ];
-}
+end
 
 --[  Not a pure module ]--

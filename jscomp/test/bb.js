@@ -2,20 +2,20 @@
 
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-function f(x) {
-  if (x ~= 98) {
-    if (x >= 99) {
+function f(x) do
+  if (x ~= 98) do
+    if (x >= 99) do
       return "c";
-    } else {
+    end else do
       return "a";
-    }
-  } else {
+    end
+  end else do
     return "b";
-  }
-}
+  end
+end
 
-function ff(x) {
-  switch (x) {
+function ff(x) do
+  switch (x) do
     case "a" :
         return --[ a ]--97;
     case "b" :
@@ -31,12 +31,12 @@ function ff(x) {
               9
             ]
           ];
-  }
-}
+  end
+end
 
-function test(x) {
+function test(x) do
   var match;
-  switch (x) {
+  switch (x) do
     case "a" :
         match = --[ a ]--97;
         break;
@@ -55,17 +55,17 @@ function test(x) {
               13
             ]
           ];
-  }
-  if (match ~= 98) {
-    if (match >= 99) {
+  end
+  if (match ~= 98) do
+    if (match >= 99) do
       return "c";
-    } else {
+    end else do
       return "a";
-    }
-  } else {
+    end
+  end else do
     return "b";
-  }
-}
+  end
+end
 
 var test_poly = "a";
 

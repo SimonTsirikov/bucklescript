@@ -2,12 +2,12 @@
 
 var List = require("../../lib/js/list.js");
 
-function v(x) {
+function v(x) do
   return --[ tuple ]--[
           List.length(x),
           List.length(x)
         ];
-}
+end
 
 var L = --[ alias ]--0;
 

@@ -1,50 +1,50 @@
 'use strict';
 
 
-function test3(_n) {
-  while(true) {
+function test3(_n) do
+  while(true) do
     var n = _n;
-    if (n == 0) {
+    if (n == 0) do
       return (n + 5 | 0) + 4 | 0;
-    } else {
+    end else do
       _n = n - 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function test2(_n) {
-  while(true) {
+function test2(_n) do
+  while(true) do
     var n = _n;
-    if (n == 0) {
+    if (n == 0) do
       return test3(n) + 3 | 0;
-    } else {
+    end else do
       _n = n - 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
-function test0(_n) {
-  while(true) {
+function test0(_n) do
+  while(true) do
     var n = _n;
-    if (n == 0) {
+    if (n == 0) do
       var _n$1 = n;
-      while(true) {
+      while(true) do
         var n$1 = _n$1;
-        if (n$1 == 0) {
+        if (n$1 == 0) do
           return test2(n$1) + 2 | 0;
-        } else {
+        end else do
           _n$1 = n$1 - 1 | 0;
           continue ;
-        }
-      };
-    } else {
+        end
+      end;
+    end else do
       _n = n - 1 | 0;
       continue ;
-    }
-  };
-}
+    end
+  end;
+end
 
 var v = test0(10);
 

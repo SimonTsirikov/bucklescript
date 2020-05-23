@@ -3,89 +3,89 @@
 var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
-var suites = {
+var suites = do
   contents: --[ [] ]--0
-};
+end;
 
-var test_id = {
+var test_id = do
   contents: 0
-};
+end;
 
-function eq(loc, param) {
+function eq(loc, param) do
   var y = param[1];
   var x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       loc .. (" id " .. String(test_id.contents)),
-      (function (param) {
+      (function (param) do
           return --[ Eq ]--Block.__(0, [
                     x,
                     y
                   ]);
-        })
+        end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-}
+end
 
-var v = {
-  x: (function () {
+var v = do
+  x: (function () do
       return 3;
-    }),
-  say: (function (x) {
+    end),
+  say: (function (x) do
       var self = this ;
       return x * self.x();
-    }),
-  hi: (function (x, y) {
+    end),
+  hi: (function (x, y) do
       var self = this ;
       return self.say(x) + y;
-    })
-};
+    end)
+end;
 
-var v2 = {
-  hi: (function (x, y) {
+var v2 = do
+  hi: (function (x, y) do
       var self = this ;
       return self.say(x) + y;
-    }),
-  say: (function (x) {
+    end),
+  say: (function (x) do
       var self = this ;
       return x * self.x();
-    }),
-  x: (function () {
+    end),
+  x: (function () do
       return 3;
-    })
-};
+    end)
+end;
 
-var v3 = {
-  hi: (function (x, y) {
+var v3 = do
+  hi: (function (x, y) do
       var self = this ;
-      var u = {
+      var u = do
         x: x
-      };
+      end;
       return self.say(u.x) + y + x;
-    }),
-  say: (function (x) {
+    end),
+  say: (function (x) do
       var self = this ;
       return x * self.x();
-    }),
-  x: (function () {
+    end),
+  x: (function () do
       return 3;
-    })
-};
+    end)
+end;
 
-var v4 = {
-  hi: (function (x, y) {
+var v4 = do
+  hi: (function (x, y) do
       return x + y;
-    }),
-  say: (function (x) {
+    end),
+  say: (function (x) do
       return x;
-    }),
-  x: (function () {
+    end),
+  x: (function () do
       return 1;
-    })
-};
+    end)
+end;
 
 var collection = [
   v,

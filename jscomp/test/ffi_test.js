@@ -1,25 +1,25 @@
 'use strict';
 
 
-function u(param) {
+function u(param) do
   return xx(3);
-}
+end
 
 var Textarea = { };
 
 var $$Int32Array = { };
 
-function v(param) {
+function v(param) do
   var u = new TextArea();
   u.minHeight = 3;
   return u.minHeight;
-}
+end
 
-function f(param) {
+function f(param) do
   var v = new Int32Array(32);
   v[0] = 3;
   return v[0];
-}
+end
 
 var a = true;
 
