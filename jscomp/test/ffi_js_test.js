@@ -89,12 +89,12 @@ var v_obj = {
 };
 
 eq("File \"ffi_js_test.ml\", line 44, characters 5-12", --[ tuple ]--[
-      Object.keys(int_config).length,
+      #Object.keys(int_config),
       2
     ]);
 
 eq("File \"ffi_js_test.ml\", line 45, characters 5-12", --[ tuple ]--[
-      Object.keys(string_config).length,
+      #Object.keys(string_config),
       2
     ]);
 

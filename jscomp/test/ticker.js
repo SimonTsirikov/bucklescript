@@ -13,7 +13,7 @@ var Caml_primitive = require("../../lib/js/caml_primitive.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function split(delim, s) {
-  var len = s.length;
+  var len = #s;
   if (len ~= 0) {
     var _l = --[ [] ]--0;
     var _i = len;

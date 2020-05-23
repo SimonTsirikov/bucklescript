@@ -1584,7 +1584,7 @@ function elfgen(outf) {
     return symitr((function (i, s) {
                   var g = Caml_array.caml_array_get(globs, i);
                   if (g.va < 0 and g.loc ~= 0) {
-                    return Curry._3(f, s, s.length, g.loc);
+                    return Curry._3(f, s, #s, g.loc);
                   } else {
                     return 0;
                   }
@@ -1815,7 +1815,7 @@ function main(param) {
       
     }
   };
-  var f = Sys.argv.length < 2 ? "-blk" : Caml_array.caml_array_get(Sys.argv, 1);
+  var f = #Sys.argv < 2 ? "-blk" : Caml_array.caml_array_get(Sys.argv, 1);
   switch (f) {
     case "-blk" :
         var partial_arg_000 = {

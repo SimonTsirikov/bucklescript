@@ -214,7 +214,7 @@ function rev_split_by_char(c, s) {
     catch (exn){
       if (exn == Caml_builtin_exceptions.not_found) {
         return --[ :: ]--[
-                $$String.sub(s, i, s.length - i | 0),
+                $$String.sub(s, i, #s - i | 0),
                 l
               ];
       } else {
@@ -278,7 +278,7 @@ function string_of_string_list(l) {
 }
 
 function string_fold_lefti(f, e0, s) {
-  var len = s.length;
+  var len = #s;
   var _acc = e0;
   var _i = 0;
   while(true) {
@@ -6294,7 +6294,7 @@ function rev_split_by_naming_convention(s) {
         0,
         false
       ], s);
-  var len = s.length;
+  var len = #s;
   return add_sub_string(match[1], len, match[0]);
 }
 

@@ -3,7 +3,7 @@
 
 var setter_suffix = "#=";
 
-var setter_suffix_len = setter_suffix.length;
+var setter_suffix_len = #setter_suffix;
 
 var js_array_ctor = "Array";
 

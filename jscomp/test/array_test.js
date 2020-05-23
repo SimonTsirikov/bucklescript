@@ -12,8 +12,8 @@ var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
 function starts_with(xs, prefix, p) {
   var H = Caml_exceptions.create("H");
-  var len1 = xs.length;
-  var len2 = prefix.length;
+  var len1 = #xs;
+  var len2 = #prefix;
   if (len2 > len1) {
     return false;
   } else {
@@ -37,7 +37,7 @@ function starts_with(xs, prefix, p) {
 }
 
 function is_sorted(x) {
-  var len = x.length;
+  var len = #x;
   var _i = 0;
   while(true) {
     var i = _i;

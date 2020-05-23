@@ -35,7 +35,7 @@ function f_list(x) {
 }
 
 function f_arr(x) {
-  if (x.length ~= 6) {
+  if (#x ~= 6) {
     return 0;
   } else {
     var a0 = x[0];

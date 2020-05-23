@@ -122,7 +122,7 @@ function dump(r) {
         if (typeof r == "number") {
           return Caml_obj.caml_equal(r, 0);
         } else {
-          var s = r.length;
+          var s = #r;
           var t = r.tag | 0;
           if (t == 0 and s == 2) {
             _r = r[1];
@@ -145,7 +145,7 @@ function dump(r) {
               ];
       }
     };
-    var s = r.length;
+    var s = #r;
     var t = r.tag | 0;
     if (is_list(r)) {
       var fields = get_list(r);
@@ -259,7 +259,7 @@ function pp_any(fmt, v) {
 
 function hash_variant(s) {
   var accu = 0;
-  for(var i = 0 ,i_finish = s.length - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i){
     accu = Caml_int32.imul(223, accu) + Caml_string.get(s, i) | 0;
   }
   accu = accu & 2147483647;

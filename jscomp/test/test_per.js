@@ -90,8 +90,8 @@ var epsilon_float = Caml_int64.float_of_bits(--[ int64 ]--[
     ]);
 
 function $caret(s1, s2) {
-  var l1 = s1.length;
-  var l2 = s2.length;
+  var l1 = #s1;
+  var l2 = #s2;
   var s = Caml_bytes.caml_create_bytes(l1 + l2 | 0);
   Caml_bytes.caml_blit_string(s1, 0, s, 0, l1);
   Caml_bytes.caml_blit_string(s2, 0, s, l1, l2);
@@ -135,7 +135,7 @@ function string_of_int(n) {
 }
 
 function valid_float_lexem(s) {
-  var l = s.length;
+  var l = #s;
   var _i = 0;
   while(true) {
     var i = _i;
@@ -237,15 +237,15 @@ function flush_all(param) {
 }
 
 function output_bytes(oc, s) {
-  return Caml_io.caml_ml_output(oc, s, 0, s.length);
+  return Caml_io.caml_ml_output(oc, s, 0, #s);
 }
 
 function output_string(oc, s) {
-  return Caml_io.caml_ml_output(oc, s, 0, s.length);
+  return Caml_io.caml_ml_output(oc, s, 0, #s);
 }
 
 function output(oc, s, ofs, len) {
-  if (ofs < 0 or len < 0 or ofs > (s.length - len | 0)) {
+  if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "output"
@@ -255,7 +255,7 @@ function output(oc, s, ofs, len) {
 }
 
 function output_substring(oc, s, ofs, len) {
-  if (ofs < 0 or len < 0 or ofs > (s.length - len | 0)) {
+  if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "output_substring"
@@ -313,7 +313,7 @@ function open_in_bin(name) {
 }
 
 function input(ic, s, ofs, len) {
-  if (ofs < 0 or len < 0 or ofs > (s.length - len | 0)) {
+  if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "input"
@@ -341,7 +341,7 @@ function unsafe_really_input(ic, s, _ofs, _len) {
 }
 
 function really_input(ic, s, ofs, len) {
-  if (ofs < 0 or len < 0 or ofs > (s.length - len | 0)) {
+  if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "really_input"
@@ -363,7 +363,7 @@ function input_line(chan) {
       var pos = _pos;
       if (param) {
         var hd = param[0];
-        var len = hd.length;
+        var len = #hd;
         Caml_bytes.caml_blit_string(hd, 0, buf, pos - len | 0, len);
         _param = param[1];
         _pos = pos - len | 0;

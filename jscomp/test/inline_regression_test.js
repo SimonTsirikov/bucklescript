@@ -11,7 +11,7 @@ function generic_basename(is_dir_sep, current_dir_name, name) {
   if (name == "") {
     return current_dir_name;
   } else {
-    var _n = name.length - 1 | 0;
+    var _n = #name - 1 | 0;
     while(true) {
       var n = _n;
       if (n < 0) {

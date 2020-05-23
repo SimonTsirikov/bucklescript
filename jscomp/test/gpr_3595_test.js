@@ -17,7 +17,7 @@ function eq(loc, x, y) {
 
 var match = [1];
 
-if (match.length ~= 1) {
+if (#match ~= 1) {
   throw [
         Caml_builtin_exceptions.match_failure,
         --[ tuple ]--[

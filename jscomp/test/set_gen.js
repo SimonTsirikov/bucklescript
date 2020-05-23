@@ -589,7 +589,7 @@ function of_sorted_array(l) {
       return create(left, v, right);
     }
   };
-  return sub(0, l.length, l);
+  return sub(0, #l, l);
 }
 
 function is_ordered(cmp, tree) {

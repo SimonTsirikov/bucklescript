@@ -12,7 +12,7 @@ function caml_array_sub(x, offset, len) {
 }
 
 function caml_array_set(xs, index, newval) {
-  if (index < 0 or index >= xs.length) {
+  if (index < 0 or index >= #xs) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "index out of bounds"
@@ -22,7 +22,7 @@ function caml_array_set(xs, index, newval) {
 }
 
 function caml_array_get(xs, index) {
-  if (index < 0 or index >= xs.length) {
+  if (index < 0 or index >= #xs) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "index out of bounds"

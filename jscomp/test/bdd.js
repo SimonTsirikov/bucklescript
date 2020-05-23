@@ -366,7 +366,7 @@ function bool_equal(a, b) {
 
 function test_hwb(bdd, vars) {
   var ntrue = 0;
-  for(var i = 0 ,i_finish = vars.length - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = #vars - 1 | 0; i <= i_finish; ++i){
     if (Caml_array.caml_array_get(vars, i)) {
       ntrue = ntrue + 1 | 0;
     }

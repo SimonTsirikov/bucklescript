@@ -8,7 +8,7 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 function map(f, a) {
   var f$1 = Curry.__1(f);
   var a$1 = a;
-  var l = a$1.length;
+  var l = #a$1;
   if (l == 0) {
     return [];
   } else {
@@ -45,7 +45,7 @@ function fold_left(f, x, a) {
   var x$1 = x;
   var a$1 = a;
   var r = x$1;
-  for(var i = 0 ,i_finish = a$1.length - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = #a$1 - 1 | 0; i <= i_finish; ++i){
     r = f$1(r, a$1[i]);
   }
   return r;

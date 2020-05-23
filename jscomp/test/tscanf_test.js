@@ -3696,7 +3696,7 @@ test("File \"tscanf_test.ml\", line 1176, characters 5-12", test49(--[ () ]--0))
 
 function next_char(ob, param) {
   var s = $$Buffer.contents(ob);
-  var len = s.length;
+  var len = #s;
   if (len == 0) {
     throw Caml_builtin_exceptions.end_of_file;
   }
@@ -3775,7 +3775,7 @@ function reader(ib, ob) {
                     send_string(ob, "stop");
                     return writer(ib, ob);
                   } else {
-                    var l = s.length;
+                    var l = #s;
                     count.contents = l + count.contents | 0;
                     if (count.contents >= 100) {
                       send_string(ob, "stop");

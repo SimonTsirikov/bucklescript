@@ -42,7 +42,7 @@ var suites_001 = --[ :: ]--[
                   true,
                   (Js_vector.filterInPlace((function (x) {
                             return x > 10;
-                          }), x), x.length == 0)
+                          }), x), #x == 0)
                 ]);
       })
   ],

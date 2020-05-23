@@ -44,7 +44,7 @@ if (tst01("\0\0\0\0\0\0\0\x07") ~= 1) {
 }
 
 function tst02(s) {
-  var len = s.length;
+  var len = #s;
   if (s == "") {
     if (len < 0) {
       throw [

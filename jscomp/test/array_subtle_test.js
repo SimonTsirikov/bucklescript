@@ -40,7 +40,7 @@ var v = [
 
 eq("File \"array_subtle_test.ml\", line 12, characters 5-12", --[ tuple ]--[
       4,
-      v.length
+      #v
     ]);
 
 eq("File \"array_subtle_test.ml\", line 15, characters 5-12", --[ tuple ]--[
@@ -50,7 +50,7 @@ eq("File \"array_subtle_test.ml\", line 15, characters 5-12", --[ tuple ]--[
 
 eq("File \"array_subtle_test.ml\", line 16, characters 5-12", --[ tuple ]--[
       5,
-      v.length
+      #v
     ]);
 
 eq("File \"array_subtle_test.ml\", line 17, characters 5-12", --[ tuple ]--[
@@ -95,7 +95,7 @@ function fff(x) {
 }
 
 function fff2(x) {
-  if (x.length >= 10) {
+  if (#x >= 10) {
     console.log("hi");
     return --[ () ]--0;
   } else {
@@ -108,7 +108,7 @@ function fff3(x) {
 }
 
 function fff4(x) {
-  if (x.length ~= 0) {
+  if (#x ~= 0) {
     return 1;
   } else {
     return 2;

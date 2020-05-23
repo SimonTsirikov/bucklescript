@@ -117,7 +117,7 @@ function f6(x) {
 }
 
 function f7(x) {
-  if (x.length ~= 0) {
+  if (#x ~= 0) {
     return 1;
   } else {
     return 2;

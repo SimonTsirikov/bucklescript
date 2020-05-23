@@ -447,7 +447,7 @@ function init(n, f) {
 
 function take(n, l) {
   var arr = $$Array.of_list(l);
-  var arr_length = arr.length;
+  var arr_length = #arr;
   if (arr_length < n) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
@@ -462,7 +462,7 @@ function take(n, l) {
 
 function try_take(n, l) {
   var arr = $$Array.of_list(l);
-  var arr_length = arr.length;
+  var arr_length = #arr;
   if (arr_length <= n) {
     return --[ tuple ]--[
             l,

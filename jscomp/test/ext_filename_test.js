@@ -143,7 +143,7 @@ function relative_path(file_or_dir_1, file_or_dir_2) {
 function node_relative_path(node_modules_shorten, file1, dep_file) {
   var file2 = dep_file[1];
   var v = Ext_string_test.find(undefined, Test_literals.node_modules, file2);
-  var len = file2.length;
+  var len = #file2;
   if (node_modules_shorten and v >= 0) {
     var skip = function (_i) {
       while(true) {
@@ -195,7 +195,7 @@ function find_root_filename(_cwd, filename) {
       return cwd;
     } else {
       var cwd$prime = Curry._1(Filename.dirname, cwd);
-      if (cwd$prime.length < cwd.length) {
+      if (#cwd$prime < #cwd) {
         _cwd = cwd$prime;
         continue ;
       } else {

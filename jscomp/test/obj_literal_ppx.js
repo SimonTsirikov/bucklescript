@@ -16,7 +16,7 @@ var b = {
 };
 
 function f(obj) {
-  return obj.x + obj.y.length | 0;
+  return obj.x + #obj.y | 0;
 }
 
 function h(obj) {

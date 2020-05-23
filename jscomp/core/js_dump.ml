@@ -917,9 +917,8 @@ and expression_desc cxt ~(level:int) f x : cxt  =
   | Length (e, _) ->
     (** Todo: check parens *)
     P.cond_paren_group f (level > 15) 1 (fun _ -> 
-      let cxt = expression ~level:15 cxt f e in
-      P.string f L.dot;
       P.string f L.length;
+      let cxt = expression ~level:15 cxt f e in
       cxt)
   | New (e,  el) ->
     P.cond_paren_group f (level > 15) 1 (fun _ ->

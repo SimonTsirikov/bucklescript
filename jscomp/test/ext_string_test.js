@@ -13,7 +13,7 @@ var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js")
 
 function split_by(keep_emptyOpt, is_delim, str) {
   var keep_empty = keep_emptyOpt ~= undefined ? keep_emptyOpt : false;
-  var len = str.length;
+  var len = #str;
   var _acc = --[ [] ]--0;
   var _last_pos = len;
   var _pos = len - 1 | 0;
@@ -55,7 +55,7 @@ function split_by(keep_emptyOpt, is_delim, str) {
 
 function trim(s) {
   var i = 0;
-  var j = s.length;
+  var j = #s;
   while((function () {
           var tmp = false;
           if (i < j) {
@@ -101,8 +101,8 @@ function quick_split_by_ws(str) {
 }
 
 function starts_with(s, beg) {
-  var beg_len = beg.length;
-  var s_len = s.length;
+  var beg_len = #beg;
+  var s_len = #s;
   if (beg_len <= s_len) {
     var i = 0;
     while(i < beg_len and s[i] == beg[i]) {
@@ -115,8 +115,8 @@ function starts_with(s, beg) {
 }
 
 function ends_with_index(s, end_) {
-  var s_finish = s.length - 1 | 0;
-  var s_beg = end_.length - 1 | 0;
+  var s_finish = #s - 1 | 0;
+  var s_beg = #end_ - 1 | 0;
   if (s_beg > s_finish) {
     return -1;
   } else {
@@ -178,7 +178,7 @@ function escaped(s) {
   var needs_escape = function (_i) {
     while(true) {
       var i = _i;
-      if (i >= s.length) {
+      if (i >= #s) {
         return false;
       } else {
         var match = s.charCodeAt(i);
@@ -225,7 +225,7 @@ function unsafe_for_all_range(s, _start, finish, p) {
 }
 
 function for_all_range(s, start, finish, p) {
-  var len = s.length;
+  var len = #s;
   if (start < 0 or finish >= len) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
@@ -236,15 +236,15 @@ function for_all_range(s, start, finish, p) {
 }
 
 function for_all(p, s) {
-  return unsafe_for_all_range(s, 0, s.length - 1 | 0, p);
+  return unsafe_for_all_range(s, 0, #s - 1 | 0, p);
 }
 
 function is_empty(s) {
-  return s.length == 0;
+  return #s == 0;
 }
 
 function repeat(n, s) {
-  var len = s.length;
+  var len = #s;
   var res = Caml_bytes.caml_create_bytes(Caml_int32.imul(n, len));
   for(var i = 0 ,i_finish = n - 1 | 0; i <= i_finish; ++i){
     $$String.blit(s, 0, res, Caml_int32.imul(i, len), len);
@@ -253,7 +253,7 @@ function repeat(n, s) {
 }
 
 function unsafe_is_sub(sub, i, s, j, len) {
-  if ((j + len | 0) <= s.length) {
+  if ((j + len | 0) <= #s) {
     var _k = 0;
     while(true) {
       var k = _k;
@@ -275,8 +275,8 @@ var Local_exit = Caml_exceptions.create("Ext_string_test.Local_exit");
 
 function find(startOpt, sub, s) {
   var start = startOpt ~= undefined ? startOpt : 0;
-  var n = sub.length;
-  var s_len = s.length;
+  var n = #sub;
+  var s_len = #s;
   var i = start;
   try {
     while((i + n | 0) <= s_len) {
@@ -301,8 +301,8 @@ function contain_substring(s, sub) {
 }
 
 function non_overlap_count(sub, s) {
-  var sub_len = sub.length;
-  if (sub.length == 0) {
+  var sub_len = #sub;
+  if (#sub == 0) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_string_test.non_overlap_count"
@@ -325,8 +325,8 @@ function non_overlap_count(sub, s) {
 }
 
 function rfind(sub, s) {
-  var n = sub.length;
-  var i = s.length - n | 0;
+  var n = #sub;
+  var i = #s - n | 0;
   try {
     while(i >= 0) {
       if (unsafe_is_sub(sub, 0, s, i, n)) {
@@ -346,7 +346,7 @@ function rfind(sub, s) {
 }
 
 function tail_from(s, x) {
-  var len = s.length;
+  var len = #s;
   if (x > len) {
     var s$1 = "Ext_string_test.tail_from " .. (s .. (" : " .. String(x)));
     throw [
@@ -377,8 +377,8 @@ function digits_of_str(s, offset, x) {
 }
 
 function starts_with_and_number(s, offset, beg) {
-  var beg_len = beg.length;
-  var s_len = s.length;
+  var beg_len = #beg;
+  var s_len = #s;
   var finish_delim = offset + beg_len | 0;
   if (finish_delim > s_len) {
     return -1;
@@ -403,14 +403,14 @@ function unsafe_concat_with_length(len, sep, l) {
   if (l) {
     var hd = l[0];
     var r = Caml_bytes.caml_create_bytes(len);
-    var hd_len = hd.length;
-    var sep_len = sep.length;
+    var hd_len = #hd;
+    var sep_len = #sep;
     Caml_bytes.caml_blit_string(hd, 0, r, 0, hd_len);
     var pos = {
       contents: hd_len
     };
     List.iter((function (s) {
-            var s_len = s.length;
+            var s_len = #s;
             Caml_bytes.caml_blit_string(sep, 0, r, pos.contents, sep_len);
             pos.contents = pos.contents + sep_len | 0;
             Caml_bytes.caml_blit_string(s, 0, r, pos.contents, s_len);
@@ -450,15 +450,15 @@ function rindex_rec_opt(s, _i, c) {
 }
 
 function rindex_neg(s, c) {
-  return rindex_rec(s, s.length - 1 | 0, c);
+  return rindex_rec(s, #s - 1 | 0, c);
 }
 
 function rindex_opt(s, c) {
-  return rindex_rec_opt(s, s.length - 1 | 0, c);
+  return rindex_rec_opt(s, #s - 1 | 0, c);
 }
 
 function is_valid_module_file(s) {
-  var len = s.length;
+  var len = #s;
   if (len > 0) {
     var match = s.charCodeAt(0);
     if (match >= 91) {
@@ -489,7 +489,7 @@ function is_valid_module_file(s) {
 }
 
 function is_valid_npm_package_name(s) {
-  var len = s.length;
+  var len = #s;
   if (len <= 214 and len > 0) {
     var match = s.charCodeAt(0);
     if (match >= 97) {
@@ -572,7 +572,7 @@ function unsafe_no_char_idx(x, ch, _i, last_idx) {
 }
 
 function no_char(x, ch, i, len) {
-  var str_len = x.length;
+  var str_len = #x;
   if (i < 0 or i >= str_len or len >= str_len) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
@@ -583,15 +583,15 @@ function no_char(x, ch, i, len) {
 }
 
 function no_slash(x) {
-  return unsafe_no_char(x, --[ "/" ]--47, 0, x.length - 1 | 0);
+  return unsafe_no_char(x, --[ "/" ]--47, 0, #x - 1 | 0);
 }
 
 function no_slash_idx(x) {
-  return unsafe_no_char_idx(x, --[ "/" ]--47, 0, x.length - 1 | 0);
+  return unsafe_no_char_idx(x, --[ "/" ]--47, 0, #x - 1 | 0);
 }
 
 function replace_slash_backward(x) {
-  var len = x.length;
+  var len = #x;
   if (unsafe_no_char(x, --[ "/" ]--47, 0, len - 1 | 0)) {
     return x;
   } else {
@@ -606,7 +606,7 @@ function replace_slash_backward(x) {
 }
 
 function replace_backward_slash(x) {
-  var len = x.length;
+  var len = #x;
   if (unsafe_no_char(x, --[ "\\" ]--92, 0, len - 1 | 0)) {
     return x;
   } else {
@@ -625,23 +625,23 @@ var empty = "";
 var single_space = " ";
 
 function concat_array(sep, s) {
-  var s_len = s.length;
+  var s_len = #s;
   if (s_len ~= 0) {
     if (s_len ~= 1) {
-      var sep_len = sep.length;
+      var sep_len = #sep;
       var len = 0;
       for(var i = 0 ,i_finish = s_len - 1 | 0; i <= i_finish; ++i){
-        len = len + s[i].length | 0;
+        len = len + #s[i] | 0;
       }
       var target = Caml_bytes.caml_create_bytes(len + Caml_int32.imul(s_len - 1 | 0, sep_len) | 0);
       var hd = s[0];
-      var hd_len = hd.length;
+      var hd_len = #hd;
       Caml_bytes.caml_blit_string(hd, 0, target, 0, hd_len);
       var current_offset = hd_len;
       for(var i$1 = 1 ,i_finish$1 = s_len - 1 | 0; i$1 <= i_finish$1; ++i$1){
         Caml_bytes.caml_blit_string(sep, 0, target, current_offset, sep_len);
         var cur = s[i$1];
-        var cur_len = cur.length;
+        var cur_len = #cur;
         var new_off_set = current_offset + sep_len | 0;
         Caml_bytes.caml_blit_string(cur, 0, target, new_off_set, cur_len);
         current_offset = new_off_set + cur_len | 0;
@@ -656,9 +656,9 @@ function concat_array(sep, s) {
 }
 
 function concat3(a, b, c) {
-  var a_len = a.length;
-  var b_len = b.length;
-  var c_len = c.length;
+  var a_len = #a;
+  var b_len = #b;
+  var c_len = #c;
   var len = (a_len + b_len | 0) + c_len | 0;
   var target = Caml_bytes.caml_create_bytes(len);
   Caml_bytes.caml_blit_string(a, 0, target, 0, a_len);
@@ -668,10 +668,10 @@ function concat3(a, b, c) {
 }
 
 function concat4(a, b, c, d) {
-  var a_len = a.length;
-  var b_len = b.length;
-  var c_len = c.length;
-  var d_len = d.length;
+  var a_len = #a;
+  var b_len = #b;
+  var c_len = #c;
+  var d_len = #d;
   var len = ((a_len + b_len | 0) + c_len | 0) + d_len | 0;
   var target = Caml_bytes.caml_create_bytes(len);
   Caml_bytes.caml_blit_string(a, 0, target, 0, a_len);
@@ -682,11 +682,11 @@ function concat4(a, b, c, d) {
 }
 
 function concat5(a, b, c, d, e) {
-  var a_len = a.length;
-  var b_len = b.length;
-  var c_len = c.length;
-  var d_len = d.length;
-  var e_len = e.length;
+  var a_len = #a;
+  var b_len = #b;
+  var c_len = #c;
+  var d_len = #d;
+  var e_len = #e;
   var len = (((a_len + b_len | 0) + c_len | 0) + d_len | 0) + e_len | 0;
   var target = Caml_bytes.caml_create_bytes(len);
   Caml_bytes.caml_blit_string(a, 0, target, 0, a_len);

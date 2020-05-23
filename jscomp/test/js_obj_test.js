@@ -79,7 +79,7 @@ var suites_001 = --[ :: ]--[
         (function (param) {
             return --[ Eq ]--Block.__(0, [
                       0,
-                      Object.keys({ }).length
+                      #Object.keys({ })
                     ]);
           })
       ],

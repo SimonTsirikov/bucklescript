@@ -15,9 +15,9 @@ function eq(loc, x, y) {
   return Mt.eq_suites(test_id, suites, loc, x, y);
 }
 
-eq("File \"gpr_2789_test.ml\", line 8, characters 5-12", 0, Caml_weak.caml_weak_create(0).length);
+eq("File \"gpr_2789_test.ml\", line 8, characters 5-12", 0, #Caml_weak.caml_weak_create(0));
 
-eq("File \"gpr_2789_test.ml\", line 9, characters 5-12", 1, Caml_weak.caml_weak_create(1).length);
+eq("File \"gpr_2789_test.ml\", line 9, characters 5-12", 1, #Caml_weak.caml_weak_create(1));
 
 Mt.from_pair_suites("Gpr_2789_test", suites.contents);
 

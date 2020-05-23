@@ -29,8 +29,8 @@ function cmp(x, y) {
 }
 
 function unions(xs, ys) {
-  var lenX = xs.length;
-  var lenY = ys.length;
+  var lenX = #xs;
+  var lenY = #ys;
   var o = new Array(lenX + lenY | 0);
   var v = Belt_SortArray.union(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
@@ -38,8 +38,8 @@ function unions(xs, ys) {
 }
 
 function inters(xs, ys) {
-  var lenX = xs.length;
-  var lenY = ys.length;
+  var lenX = #xs;
+  var lenY = #ys;
   var o = new Array(lenX);
   var v = Belt_SortArray.intersect(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
@@ -47,8 +47,8 @@ function inters(xs, ys) {
 }
 
 function diffs(xs, ys) {
-  var lenX = xs.length;
-  var lenY = ys.length;
+  var lenX = #xs;
+  var lenY = #ys;
   var o = new Array(lenX);
   var v = Belt_SortArray.diff(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;

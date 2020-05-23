@@ -73,7 +73,7 @@ function rev_split_by_char(c, s) {
     catch (exn){
       if (exn == Caml_builtin_exceptions.not_found) {
         return --[ :: ]--[
-                $$String.sub(s, i, s.length - i | 0),
+                $$String.sub(s, i, #s - i | 0),
                 l
               ];
       } else {
@@ -85,7 +85,7 @@ function rev_split_by_char(c, s) {
 }
 
 function xsplit(delim, s) {
-  var len = s.length;
+  var len = #s;
   if (len ~= 0) {
     var _l = --[ [] ]--0;
     var _i = len;

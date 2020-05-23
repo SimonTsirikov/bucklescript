@@ -15,7 +15,7 @@ var N = {
 };
 
 function v(x) {
-  return x.length;
+  return #x;
 }
 
 var suites_000 = --[ tuple ]--[

@@ -70,7 +70,7 @@ function gg(x) {
 }
 
 function f(x) {
-  return x.length;
+  return #x;
 }
 
 var is_lazy_force = CamlinternalLazy.force;

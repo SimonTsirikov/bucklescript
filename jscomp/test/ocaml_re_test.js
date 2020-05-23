@@ -962,7 +962,7 @@ var Table = Hashtbl.Make({
     });
 
 function reset_table(a) {
-  return $$Array.fill(a, 0, a.length, false);
+  return $$Array.fill(a, 0, #a, false);
 }
 
 function mark_used_indices(tbl) {
@@ -1004,7 +1004,7 @@ function free_index(tbl_ref, l) {
   var tbl = tbl_ref.contents;
   reset_table(tbl);
   mark_used_indices(tbl)(l);
-  var len = tbl.length;
+  var len = #tbl;
   var idx = find_free(tbl, 0, len);
   if (idx == len) {
     tbl_ref.contents = Caml_array.caml_make_vect((len << 1), false);
@@ -1484,7 +1484,7 @@ function find_state(re, desc) {
 
 function delta$1(info, cat, c, st) {
   var desc = delta(info.re.tbl, cat, c, st.desc);
-  var len = info.positions.length;
+  var len = #info.positions;
   if (desc.idx == len and len > 0) {
     var pos = info.positions;
     info.positions = Caml_array.caml_make_vect((len << 1), 0);
@@ -1591,7 +1591,7 @@ function get_color(re, s, pos) {
   if (pos < 0) {
     return -1;
   } else {
-    var slen = s.length;
+    var slen = #s;
     if (pos >= slen) {
       return -1;
     } else if (pos == (slen - 1 | 0) and re.lnl ~= -1 and Caml_string.get(s, pos) == --[ "\n" ]--10) {
@@ -1605,7 +1605,7 @@ function get_color(re, s, pos) {
 function scan_str(info, s, initial_state, groups) {
   var pos = info.pos;
   var last = info.last;
-  if (last == s.length and info.re.lnl ~= -1 and last > pos and Caml_string.get(s, last - 1 | 0) == --[ "\n" ]--10) {
+  if (last == #s and info.re.lnl ~= -1 and last > pos and Caml_string.get(s, last - 1 | 0) == --[ "\n" ]--10) {
     var info$1 = {
       re: info.re,
       i_cols: info.i_cols,
@@ -2640,7 +2640,7 @@ function repn(r, i, j) {
 
 function set(str) {
   var s = --[ [] ]--0;
-  for(var i = 0 ,i_finish = str.length - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = #str - 1 | 0; i <= i_finish; ++i){
     s = union(single(Caml_string.get(str, i)), s);
   }
   return --[ Set ]--Block.__(0, [s]);
@@ -2899,7 +2899,7 @@ function compile(r) {
 function exec_internal(name, posOpt, lenOpt, groups, re, s) {
   var pos = posOpt ~= undefined ? posOpt : 0;
   var len = lenOpt ~= undefined ? lenOpt : -1;
-  if (pos < 0 or len < -1 or (pos + len | 0) > s.length) {
+  if (pos < 0 or len < -1 or (pos + len | 0) > #s) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           name
@@ -2911,11 +2911,11 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) {
   var s$1 = s;
   var pos$1 = pos;
   var len$1 = len;
-  var slen = s$1.length;
+  var slen = #s$1;
   var last = len$1 == -1 ? slen : pos$1 + len$1 | 0;
   var tmp;
   if (groups$1) {
-    var n = re$1.tbl.contents.length + 1 | 0;
+    var n = #re$1.tbl.contents + 1 | 0;
     tmp = n <= 10 ? [
         0,
         0,
@@ -2970,7 +2970,7 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) {
 }
 
 function offset$1(t, i) {
-  if (((i << 1) + 1 | 0) >= t.marks.length) {
+  if (((i << 1) + 1 | 0) >= #t.marks) {
     throw Caml_builtin_exceptions.not_found;
   }
   var m1 = Caml_array.caml_array_get(t.marks, (i << 1));
@@ -3036,7 +3036,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) {
   var i = {
     contents: 0
   };
-  var l = s.length;
+  var l = #s;
   var test = function (c) {
     if (i.contents ~= l) {
       return Caml_string.get(s, i.contents) == c;
@@ -3052,7 +3052,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) {
     return r;
   };
   var accept_s = function (s$prime) {
-    var len = s$prime.length;
+    var len = #s$prime;
     try {
       for(var j = 0 ,j_finish = len - 1 | 0; j <= j_finish; ++j){
         try {

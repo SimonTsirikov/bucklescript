@@ -1521,7 +1521,7 @@ function unexpected_error_w_suggest(env, loc, value, suggest) {
 
 function illegal_number(env, lexbuf, word, token) {
   var loc = from_lb(env.lex_source, lexbuf);
-  yyback(word.length, lexbuf);
+  yyback(#word, lexbuf);
   var env$1 = lex_error(env, loc, --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"]));
   return --[ tuple ]--[
           env$1,
@@ -4972,10 +4972,10 @@ function next_power_of_two(n) {
 }
 
 function grow(t, n) {
-  if (t.la_results.length < n) {
+  if (#t.la_results < n) {
     var new_size = next_power_of_two(n);
     var filler = function (i) {
-      if (i < t.la_results.length) {
+      if (i < #t.la_results) {
         return Caml_array.caml_array_get(t.la_results, i);
       }
       
@@ -8414,7 +8414,7 @@ function primary$1(env) {
           }
           var raw_flags = match$5[2];
           pop_lex_mode(env$3);
-          var filtered_flags = $$Buffer.create(raw_flags.length);
+          var filtered_flags = $$Buffer.create(#raw_flags);
           $$String.iter((function (c) {
                   if (c >= 110) {
                     if (c ~= 121) {

@@ -21,11 +21,11 @@ function reverse_range(a, i, len) {
 }
 
 function reverse_in_place(a) {
-  return reverse_range(a, 0, a.length);
+  return reverse_range(a, 0, #a);
 }
 
 function reverse(a) {
-  var b_len = a.length;
+  var b_len = #a;
   if (b_len == 0) {
     return [];
   } else {
@@ -61,7 +61,7 @@ function reverse_of_list(l) {
 }
 
 function filter(f, a) {
-  var arr_len = a.length;
+  var arr_len = #a;
   var _acc = --[ [] ]--0;
   var _i = 0;
   while(true) {
@@ -87,7 +87,7 @@ function filter(f, a) {
 }
 
 function filter_map(f, a) {
-  var arr_len = a.length;
+  var arr_len = #a;
   var _acc = --[ [] ]--0;
   var _i = 0;
   while(true) {
@@ -125,8 +125,8 @@ function range(from, to_) {
 }
 
 function map2i(f, a, b) {
-  var len = a.length;
-  if (len ~= b.length) {
+  var len = #a;
+  if (len ~= #b) {
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_array_test.map2i"
@@ -157,11 +157,11 @@ function tolist_aux(a, f, _i, _res) {
 }
 
 function to_list_map(f, a) {
-  return tolist_aux(a, f, a.length - 1 | 0, --[ [] ]--0);
+  return tolist_aux(a, f, #a - 1 | 0, --[ [] ]--0);
 }
 
 function to_list_map_acc(f, a, acc) {
-  return tolist_aux(a, f, a.length - 1 | 0, acc);
+  return tolist_aux(a, f, #a - 1 | 0, acc);
 }
 
 function of_list_map(f, a) {
@@ -190,7 +190,7 @@ function of_list_map(f, a) {
 }
 
 function rfind_with_index(arr, cmp, v) {
-  var len = arr.length;
+  var len = #arr;
   var _i = len - 1 | 0;
   while(true) {
     var i = _i;
@@ -212,14 +212,14 @@ function rfind_and_split(arr, cmp, v) {
             345791162,
             --[ tuple ]--[
               $$Array.sub(arr, 0, i),
-              $$Array.sub(arr, i + 1 | 0, (arr.length - i | 0) - 1 | 0)
+              $$Array.sub(arr, i + 1 | 0, (#arr - i | 0) - 1 | 0)
             ]
           ];
   }
 }
 
 function find_with_index(arr, cmp, v) {
-  var len = arr.length;
+  var len = #arr;
   var _i = 0;
   var len$1 = len;
   while(true) {
@@ -244,14 +244,14 @@ function find_and_split(arr, cmp, v) {
             345791162,
             --[ tuple ]--[
               $$Array.sub(arr, 0, i),
-              $$Array.sub(arr, i + 1 | 0, (arr.length - i | 0) - 1 | 0)
+              $$Array.sub(arr, i + 1 | 0, (#arr - i | 0) - 1 | 0)
             ]
           ];
   }
 }
 
 function exists(p, a) {
-  var n = a.length;
+  var n = #a;
   var _i = 0;
   while(true) {
     var i = _i;
@@ -267,7 +267,7 @@ function exists(p, a) {
 }
 
 function is_empty(arr) {
-  return arr.length == 0;
+  return #arr == 0;
 }
 
 function unsafe_loop(_index, len, p, xs, ys) {
@@ -285,8 +285,8 @@ function unsafe_loop(_index, len, p, xs, ys) {
 }
 
 function for_all2_no_exn(p, xs, ys) {
-  var len_xs = xs.length;
-  var len_ys = ys.length;
+  var len_xs = #xs;
+  var len_ys = #ys;
   if (len_xs == len_ys) {
     return unsafe_loop(0, len_xs, p, xs, ys);
   } else {

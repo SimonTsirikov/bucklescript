@@ -39,7 +39,7 @@ function _with_in(filename, f) {
 
 function _must_escape(s) {
   try {
-    for(var i = 0 ,i_finish = s.length - 1 | 0; i <= i_finish; ++i){
+    for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i){
       var c = s.charCodeAt(i);
       var exit = 0;
       if (c >= 42) {
@@ -367,7 +367,7 @@ function _is_digit(c) {
 }
 
 function _refill(t, k_succ, k_fail) {
-  var n = Curry._3(t.refill, t.buf, 0, t.buf.length);
+  var n = Curry._3(t.refill, t.buf, 0, #t.buf);
   t.i = 0;
   t.len = n;
   if (n == 0) {
@@ -855,7 +855,7 @@ function next(t) {
 }
 
 function parse_string(s) {
-  var n = s.length;
+  var n = #s;
   var stop = {
     contents: false
   };
@@ -969,7 +969,7 @@ function MakeDecode(funarg) {
     }
   };
   var _refill = function (t, k_succ, k_fail) {
-    return Curry._2($great$great$eq, Curry._3(t.refill, t.buf, 0, t.buf.length), (function (n) {
+    return Curry._2($great$great$eq, Curry._3(t.refill, t.buf, 0, #t.buf), (function (n) {
                   t.i = 0;
                   t.len = n;
                   if (n == 0) {

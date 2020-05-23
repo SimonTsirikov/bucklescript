@@ -623,7 +623,7 @@ function parse_opt(error, active, flags, s) {
     while(true) {
       var i = _i;
       var n = _n;
-      if (i >= s.length) {
+      if (i >= #s) {
         return --[ tuple ]--[
                 i,
                 n
@@ -647,7 +647,7 @@ function parse_opt(error, active, flags, s) {
     var match = get_num(0, i);
     var n1 = match[1];
     var i$1 = match[0];
-    if ((i$1 + 2 | 0) < s.length and Caml_string.get(s, i$1) == --[ "." ]--46 and Caml_string.get(s, i$1 + 1 | 0) == --[ "." ]--46) {
+    if ((i$1 + 2 | 0) < #s and Caml_string.get(s, i$1) == --[ "." ]--46 and Caml_string.get(s, i$1 + 1 | 0) == --[ "." ]--46) {
       var match$1 = get_num(0, i$1 + 2 | 0);
       var n2 = match$1[1];
       if (n2 < n1) {
@@ -672,7 +672,7 @@ function parse_opt(error, active, flags, s) {
   var loop = function (_i) {
     while(true) {
       var i = _i;
-      if (i >= s.length) {
+      if (i >= #s) {
         return --[ () ]--0;
       } else {
         var c = Caml_string.get(s, i);
@@ -730,7 +730,7 @@ function parse_opt(error, active, flags, s) {
     };
   };
   var loop_letter_num = function (myset, i) {
-    if (i >= s.length) {
+    if (i >= #s) {
       throw [
             Arg.Bad,
             "Ill-formed list of warnings"
@@ -1763,7 +1763,7 @@ function prerr_warning(loc, w) {
 }
 
 function print_phanton_error_prefix(ppf) {
-  return Format.pp_print_as(ppf, error_prefix.length + 2 | 0, "");
+  return Format.pp_print_as(ppf, #error_prefix + 2 | 0, "");
 }
 
 function errorf(locOpt, subOpt, if_highlightOpt, fmt) {
@@ -3547,8 +3547,8 @@ function mkinfix(arg1, name, arg2) {
 }
 
 function neg_float_string(f) {
-  if (f.length ~= 0 and Caml_string.get(f, 0) == --[ "-" ]--45) {
-    return $$String.sub(f, 1, f.length - 1 | 0);
+  if (#f ~= 0 and Caml_string.get(f, 0) == --[ "-" ]--45) {
+    return $$String.sub(f, 1, #f - 1 | 0);
   } else {
     return "-" .. f;
   }
@@ -9620,7 +9620,7 @@ catch (exn$1){
 }
 
 if (exit == 1) {
-  tmp = $$String.sub(Sys.ocaml_version, i + 1 | 0, (Sys.ocaml_version.length - i | 0) - 1 | 0);
+  tmp = $$String.sub(Sys.ocaml_version, i + 1 | 0, (#Sys.ocaml_version - i | 0) - 1 | 0);
 }
 
 var v = --[ Dir_string ]--Block.__(3, [tmp]);
@@ -9867,7 +9867,7 @@ function directive_parse(token_with_comments, lexbuf) {
                   var loc = curr_loc;
                   var lhs$1 = lhs[0];
                   var str = rhs[0];
-                  var last_index = str.length - 1 | 0;
+                  var last_index = #str - 1 | 0;
                   if (last_index < 0) {
                     throw [
                           $$Error$2,
@@ -9945,7 +9945,7 @@ function directive_parse(token_with_comments, lexbuf) {
                   var version = match[1][0];
                   var major = version[0];
                   var pred = match[0];
-                  var match$1 = semantic_version_parse(lhs$1, 0, lhs$1.length - 1 | 0);
+                  var match$1 = semantic_version_parse(lhs$1, 0, #lhs$1 - 1 | 0);
                   var lversion = match$1[0];
                   var l_major = lversion[0];
                   if (pred >= 17049) {
@@ -10602,9 +10602,9 @@ function reset_string_buffer(param) {
 }
 
 function store_string_char(c) {
-  if (string_index.contents >= string_buff.contents.length) {
-    var new_buff = Caml_bytes.caml_create_bytes((string_buff.contents.length << 1));
-    Bytes.blit(string_buff.contents, 0, new_buff, 0, string_buff.contents.length);
+  if (string_index.contents >= #string_buff.contents) {
+    var new_buff = Caml_bytes.caml_create_bytes((#string_buff.contents << 1));
+    Bytes.blit(string_buff.contents, 0, new_buff, 0, #string_buff.contents);
     string_buff.contents = new_buff;
   }
   string_buff.contents[string_index.contents] = c;
@@ -10613,7 +10613,7 @@ function store_string_char(c) {
 }
 
 function store_string(s) {
-  for(var i = 0 ,i_finish = s.length - 1 | 0; i <= i_finish; ++i){
+  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i){
     store_string_char(Caml_string.get(s, i));
   }
   return --[ () ]--0;
@@ -10734,19 +10734,19 @@ function cvt_int_literal(s) {
 }
 
 function cvt_int32_literal(s) {
-  return -Caml_format.caml_int32_of_string("-" .. $$String.sub(s, 0, s.length - 1 | 0)) | 0;
+  return -Caml_format.caml_int32_of_string("-" .. $$String.sub(s, 0, #s - 1 | 0)) | 0;
 }
 
 function cvt_int64_literal(s) {
-  return Caml_int64.neg(Caml_format.caml_int64_of_string("-" .. $$String.sub(s, 0, s.length - 1 | 0)));
+  return Caml_int64.neg(Caml_format.caml_int64_of_string("-" .. $$String.sub(s, 0, #s - 1 | 0)));
 }
 
 function cvt_nativeint_literal(s) {
-  return -Caml_format.caml_nativeint_of_string("-" .. $$String.sub(s, 0, s.length - 1 | 0));
+  return -Caml_format.caml_nativeint_of_string("-" .. $$String.sub(s, 0, #s - 1 | 0));
 }
 
 function remove_underscores(s) {
-  var l = s.length;
+  var l = #s;
   var b = Caml_bytes.caml_create_bytes(l);
   var _src = 0;
   var _dst = 0;
@@ -10776,7 +10776,7 @@ function remove_underscores(s) {
 
 function get_label_name(lexbuf) {
   var s = Lexing.lexeme(lexbuf);
-  var name = $$String.sub(s, 1, s.length - 2 | 0);
+  var name = $$String.sub(s, 1, #s - 2 | 0);
   if (Hashtbl.mem(keyword_table, name)) {
     throw [
           $$Error$2,
@@ -11157,7 +11157,7 @@ function token(lexbuf) {
       case 20 :
           reset_string_buffer(--[ () ]--0);
           var delim = Lexing.lexeme(lexbuf$1);
-          var delim$1 = $$String.sub(delim, 1, delim.length - 2 | 0);
+          var delim$1 = $$String.sub(delim, 1, #delim - 2 | 0);
           is_in_string.contents = true;
           var string_start$1 = lexbuf$1.lex_start_p;
           string_start_loc.contents = curr(lexbuf$1);
@@ -11181,7 +11181,7 @@ function token(lexbuf) {
           return --[ CHAR ]--Block.__(0, [char_for_hexadecimal_code(lexbuf$1, 3)]);
       case 26 :
           var l = Lexing.lexeme(lexbuf$1);
-          var esc = $$String.sub(l, 1, l.length - 1 | 0);
+          var esc = $$String.sub(l, 1, #l - 1 | 0);
           throw [
                 $$Error$2,
                 --[ Illegal_escape ]--Block.__(1, [esc]),
@@ -11401,7 +11401,7 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) {
               ];
       case 2 :
           var edelim = Lexing.lexeme(lexbuf);
-          var edelim$1 = $$String.sub(edelim, 1, edelim.length - 2 | 0);
+          var edelim$1 = $$String.sub(edelim, 1, #edelim - 2 | 0);
           if (delim == edelim$1) {
             return --[ () ]--0;
           } else {
@@ -11433,7 +11433,7 @@ function string(lexbuf) {
           return --[ () ]--0;
       case 1 :
           var space = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
-          update_loc(lexbuf$1, undefined, 1, false, space.length);
+          update_loc(lexbuf$1, undefined, 1, false, #space);
           return string(lexbuf$1);
       case 2 :
           store_string_char(char_for_backslash(Lexing.lexeme_char(lexbuf$1, 1)));
@@ -11565,7 +11565,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) {
           continue ;
       case 3 :
           var delim = Lexing.lexeme(lexbuf);
-          var delim$1 = $$String.sub(delim, 1, delim.length - 2 | 0);
+          var delim$1 = $$String.sub(delim, 1, #delim - 2 | 0);
           string_start_loc.contents = curr(lexbuf);
           store_string(Lexing.lexeme(lexbuf));
           is_in_string.contents = true;

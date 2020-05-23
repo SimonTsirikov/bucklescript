@@ -68,7 +68,7 @@ console.log(Object.keys(a_));
 
 console.log(a, b, a_, b_);
 
-eq("File \"gpr_1409_test.ml\", line 36, characters 6-13", Object.keys(a_).length, 0);
+eq("File \"gpr_1409_test.ml\", line 36, characters 6-13", #Object.keys(a_), 0);
 
 var test2 = {
   hi: 2
