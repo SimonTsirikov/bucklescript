@@ -4,7 +4,7 @@ Mt = require("./mt.js");
 Caml_option = require("../../lib/js/caml_option.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -55,4 +55,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.make = make;
 exports.hh = hh;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

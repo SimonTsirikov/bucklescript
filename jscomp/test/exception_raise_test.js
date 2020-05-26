@@ -102,7 +102,7 @@ catch (raw_exn$3)do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "exception_raise_test.ml",
             102,
             9
@@ -130,18 +130,18 @@ catch (raw_e$1)do
 end
 
 suites = do
-  contents: --[ :: ]--[
-    --[ tuple ]--[
+  contents: --[[ :: ]][
+    --[[ tuple ]][
       "File \"exception_raise_test.ml\", line 114, characters 4-11",
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
-                    --[ tuple ]--[
+          return --[[ Eq ]]Block.__(0, [
+                    --[[ tuple ]][
                       f,
                       ff,
                       fff,
                       a0
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       2,
                       2,
                       2,
@@ -150,19 +150,19 @@ suites = do
                   ]);
         end end)
     ],
-    --[ :: ]--[
-      --[ tuple ]--[
+    --[[ :: ]][
+      --[[ tuple ]][
         "File \"exception_raise_test.ml\", line 116, characters 4-11",
         (function (param) do
             if (a1[0] == Js_exn.$$Error) then do
-              return --[ Eq ]--Block.__(0, [
+              return --[[ Eq ]]Block.__(0, [
                         a1[1],
                         2
                       ]);
             end else do
               throw [
                     Caml_builtin_exceptions.assert_failure,
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "exception_raise_test.ml",
                       119,
                       15
@@ -171,7 +171,7 @@ suites = do
             end end 
           end end)
       ],
-      --[ [] ]--0
+      --[[ [] ]]0
     ]
   ]
 end;
@@ -185,7 +185,7 @@ function eq(loc, x, y) do
 end end
 
 try do
-  (function (_)dothrow 2end(--[ () ]--0));
+  (function (_)dothrow 2end(--[[ () ]]0));
 end
 catch (raw_e$2)do
   e = Caml_js_exceptions.internalToOCamlException(raw_e$2);
@@ -203,12 +203,12 @@ end
 function fff0(x, g) do
   val;
   try do
-    val = Curry._1(x, --[ () ]--0);
+    val = Curry._1(x, --[[ () ]]0);
   end
   catch (exn)do
     return 1;
   end
-  return Curry._1(g, --[ () ]--0);
+  return Curry._1(g, --[[ () ]]0);
 end end
 
 function input_lines(ic, _acc) do
@@ -221,7 +221,7 @@ function input_lines(ic, _acc) do
     catch (exn)do
       return List.rev(acc);
     end
-    _acc = --[ :: ]--[
+    _acc = --[[ :: ]][
       line,
       acc
     ];
@@ -250,4 +250,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.fff0 = fff0;
 exports.input_lines = input_lines;
---[ f Not a pure module ]--
+--[[ f Not a pure module ]]

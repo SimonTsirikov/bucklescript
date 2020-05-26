@@ -1,7 +1,7 @@
 'use strict';
 
 
-L = --[ alias ]--0;
+L = --[[ alias ]]0;
 
 exports.L = L;
---[ No side effect ]--
+--[[ No side effect ]]

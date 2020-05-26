@@ -209,4 +209,4 @@ exports.stable_sort = stable_sort;
 exports.fast_sort = fast_sort;
 exports.sort_uniq = sort_uniq;
 exports.merge = merge;
---[ fff Not a pure module ]--
+--[[ fff Not a pure module ]]

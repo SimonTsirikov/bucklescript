@@ -160,10 +160,10 @@ CamlinternalOO.init_class($$class$5);
 
 vvvv = CamlinternalOO.create_object_opt(0, $$class$5);
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "single_obj",
   (function (param) do
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 [
                   3,
                   32
@@ -176,11 +176,11 @@ suites_000 = --[ tuple ]--[
     end end)
 ];
 
-suites_001 = --[ :: ]--[
-  --[ tuple ]--[
+suites_001 = --[[ :: ]][
+  --[[ tuple ]][
     "single_obj_cache",
     (function (param) do
-        return --[ Eq ]--Block.__(0, [
+        return --[[ Eq ]]Block.__(0, [
                   [
                     3,
                     32
@@ -192,117 +192,117 @@ suites_001 = --[ :: ]--[
                 ]);
       end end)
   ],
-  --[ :: ]--[
-    --[ tuple ]--[
+  --[[ :: ]][
+    --[[ tuple ]][
       "self_obj",
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     13,
                     Caml_oo_curry.js2(616641298, 5, vv, 3)
                   ]);
         end end)
     ],
-    --[ :: ]--[
-      --[ tuple ]--[
+    --[[ :: ]][
+      --[[ tuple ]][
         "uu_id",
         (function (param) do
-            return --[ Eq ]--Block.__(0, [
+            return --[[ Eq ]]Block.__(0, [
                       "uu",
                       Caml_oo_curry.js1(23515, 6, uu)
                     ]);
           end end)
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "uu_add",
           (function (param) do
-              return --[ Eq ]--Block.__(0, [
+              return --[[ Eq ]]Block.__(0, [
                         Caml_oo_curry.js3(4846113, 7, uuu, 1, 20),
                         21
                       ]);
             end end)
         ],
-        --[ :: ]--[
-          --[ tuple ]--[
+        --[[ :: ]][
+          --[[ tuple ]][
             "v_add",
             (function (param) do
-                return --[ Eq ]--Block.__(0, [
+                return --[[ Eq ]]Block.__(0, [
                           Caml_oo_curry.js3(4846113, 8, vvvv, 3, 7),
                           10
                         ]);
               end end)
           ],
-          --[ :: ]--[
-            --[ tuple ]--[
+          --[[ :: ]][
+            --[[ tuple ]][
               "u_id1",
               (function (param) do
-                  return --[ Eq ]--Block.__(0, [
+                  return --[[ Eq ]]Block.__(0, [
                             Caml_oo_curry.js1(5243894, 9, u),
                             3
                           ]);
                 end end)
             ],
-            --[ :: ]--[
-              --[ tuple ]--[
+            --[[ :: ]][
+              --[[ tuple ]][
                 "u_id2",
                 (function (param) do
-                    return --[ Eq ]--Block.__(0, [
+                    return --[[ Eq ]]Block.__(0, [
                               Caml_oo_curry.js1(5243895, 10, u),
                               4
                             ]);
                   end end)
               ],
-              --[ :: ]--[
-                --[ tuple ]--[
+              --[[ :: ]][
+                --[[ tuple ]][
                   "u hi",
                   (function (param) do
-                      return --[ Eq ]--Block.__(0, [
+                      return --[[ Eq ]]Block.__(0, [
                                 Caml_oo_curry.js3(23297, 11, u, 1, 2),
                                 3
                               ]);
                     end end)
                 ],
-                --[ :: ]--[
-                  --[ tuple ]--[
+                --[[ :: ]][
+                  --[[ tuple ]][
                     "u hello",
                     (function (param) do
-                        return --[ Eq ]--Block.__(0, [
+                        return --[[ Eq ]]Block.__(0, [
                                   Caml_oo_curry.js2(616641298, 12, u, 32),
                                   32
                                 ]);
                       end end)
                   ],
-                  --[ :: ]--[
-                    --[ tuple ]--[
+                  --[[ :: ]][
+                    --[[ tuple ]][
                       "v hi",
                       (function (param) do
-                          return --[ Eq ]--Block.__(0, [
+                          return --[[ Eq ]]Block.__(0, [
                                     Caml_oo_curry.js2(23297, 13, vvvv, 31),
                                     63
                                   ]);
                         end end)
                     ],
-                    --[ :: ]--[
-                      --[ tuple ]--[
+                    --[[ :: ]][
+                      --[[ tuple ]][
                         "uuu add",
                         (function (param) do
-                            return --[ Eq ]--Block.__(0, [
+                            return --[[ Eq ]]Block.__(0, [
                                       Caml_oo_curry.js3(4846113, 14, uuu, 3, 4),
                                       7
                                     ]);
                           end end)
                       ],
-                      --[ :: ]--[
-                        --[ tuple ]--[
+                      --[[ :: ]][
+                        --[[ tuple ]][
                           "v x",
                           (function (param) do
-                              return --[ Eq ]--Block.__(0, [
+                              return --[[ Eq ]]Block.__(0, [
                                         Caml_oo_curry.js1(120, 15, v),
                                         3
                                       ]);
                             end end)
                         ],
-                        --[ [] ]--0
+                        --[[ [] ]]0
                       ]
                     ]
                   ]
@@ -316,7 +316,7 @@ suites_001 = --[ :: ]--[
   ]
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
   suites_001
 ];
@@ -330,4 +330,4 @@ exports.uu = uu;
 exports.uuu = uuu;
 exports.vvvv = vvvv;
 exports.suites = suites;
---[ class Not a pure module ]--
+--[[ class Not a pure module ]]

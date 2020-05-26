@@ -14,31 +14,31 @@ function split(x, tree) do
     l = tree[0];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               l,
               true,
               r
             ];
     end else if (c < 0) then do
       match = split(x, l);
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               match[0],
               match[1],
               Set_gen.internal_join(match[2], v, r)
             ];
     end else do
       match$1 = split(x, r);
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               Set_gen.internal_join(l, v, match$1[0]),
               match$1[1],
               match$1[2]
             ];
     end end  end 
   end else do
-    return --[ tuple ]--[
-            --[ Empty ]--0,
+    return --[[ tuple ]][
+            --[[ Empty ]]0,
             false,
-            --[ Empty ]--0
+            --[[ Empty ]]0
           ];
   end end 
 end end
@@ -57,10 +57,10 @@ function add(x, tree) do
       return Set_gen.internal_bal(l, v, add(x, r));
     end end  end 
   end else do
-    return --[ Node ]--[
-            --[ Empty ]--0,
+    return --[[ Node ]][
+            --[[ Empty ]]0,
             x,
-            --[ Empty ]--0,
+            --[[ Empty ]]0,
             1
           ];
   end end 
@@ -107,7 +107,7 @@ function inter(s1, s2) do
       return Set_gen.internal_concat(inter(l1, l2), inter(r1, match[2]));
     end end 
   end else do
-    return --[ Empty ]--0;
+    return --[[ Empty ]]0;
   end end 
 end end
 
@@ -128,7 +128,7 @@ function diff(s1, s2) do
       return s1;
     end end 
   end else do
-    return --[ Empty ]--0;
+    return --[[ Empty ]]0;
   end end 
 end end
 
@@ -163,7 +163,7 @@ function remove(x, tree) do
       return Set_gen.internal_bal(l, v, remove(x, r));
     end end  end 
   end else do
-    return --[ Empty ]--0;
+    return --[[ Empty ]]0;
   end end 
 end end
 
@@ -196,10 +196,10 @@ function subset(_s1, _s2) do
             return false;
           end end 
         end else if (c < 0) then do
-          if (subset(--[ Node ]--[
+          if (subset(--[[ Node ]][
                   l1,
                   v1,
-                  --[ Empty ]--0,
+                  --[[ Empty ]]0,
                   0
                 ], l2)) then do
             _s1 = r1;
@@ -207,8 +207,8 @@ function subset(_s1, _s2) do
           end else do
             return false;
           end end 
-        end else if (subset(--[ Node ]--[
-                --[ Empty ]--0,
+        end else if (subset(--[[ Node ]][
+                --[[ Empty ]]0,
                 v1,
                 r1,
                 0
@@ -277,14 +277,14 @@ function of_list(l) do
       return Set_gen.singleton(x0);
     end end 
   end else do
-    return --[ Empty ]--0;
+    return --[[ Empty ]]0;
   end end 
 end end
 
 function of_array(l) do
   return $$Array.fold_left((function (acc, x) do
                 return add(x, acc);
-              end end), --[ Empty ]--0, l);
+              end end), --[[ Empty ]]0, l);
 end end
 
 function invariant(t) do
@@ -294,7 +294,7 @@ end end
 
 compare_elt = $$String.compare;
 
-empty = --[ Empty ]--0;
+empty = --[[ Empty ]]0;
 
 is_empty = Set_gen.is_empty;
 
@@ -357,4 +357,4 @@ exports.find = find;
 exports.of_list = of_list;
 exports.of_array = of_array;
 exports.invariant = invariant;
---[ No side effect ]--
+--[[ No side effect ]]

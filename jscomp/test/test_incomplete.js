@@ -6,14 +6,14 @@ function f(x) do
   if (x > 3 or x < 1) then do
     throw [
           Caml_builtin_exceptions.match_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "test_incomplete.ml",
             3,
             2
           ]
         ];
   end else do
-    return --[ "a" ]--97;
+    return --[[ "a" ]]97;
   end end 
 end end
 
@@ -28,11 +28,11 @@ end end
 function f3(x) do
   local ___conditional___=(x.tag | 0);
   do
-     if ___conditional___ = 0--[ A ]--
-     or ___conditional___ = 2--[ C ]-- then do
+     if ___conditional___ = 0--[[ A ]]
+     or ___conditional___ = 2--[[ C ]] then do
         return x[0] + 1 | 0;end end end 
-     if ___conditional___ = 1--[ B ]--
-     or ___conditional___ = 3--[ D ]-- then do
+     if ___conditional___ = 1--[[ B ]]
+     or ___conditional___ = 3--[[ D ]] then do
         return x[0] + 2 | 0;end end end 
      do
     
@@ -42,4 +42,4 @@ end end
 exports.f = f;
 exports.f2 = f2;
 exports.f3 = f3;
---[ No side effect ]--
+--[[ No side effect ]]

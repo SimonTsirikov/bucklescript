@@ -4,10 +4,10 @@ Mt = require("./mt.js");
 Block = require("../../lib/js/block.js");
 Complex = require("../../lib/js/complex.js");
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "basic_add",
   (function (param) do
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 do
                   re: 2,
                   im: 2
@@ -17,12 +17,12 @@ suites_000 = --[ tuple ]--[
     end end)
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
-  --[ [] ]--0
+  --[[ [] ]]0
 ];
 
 Mt.from_pair_suites("Complex_test", suites);
 
 exports.suites = suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

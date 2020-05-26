@@ -6,7 +6,7 @@ Caml_int64 = require("../../lib/js/caml_int64.js");
 Caml_primitive = require("../../lib/js/caml_primitive.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -43,37 +43,37 @@ f5_min = Caml_obj.caml_min;
 
 f5_max = Caml_obj.caml_max;
 
-b("File \"bs_min_max_test.ml\", line 28, characters 4-11", Caml_int64.eq(Caml_int64.min(--[ int64 ]--[
-              --[ hi ]--0,
-              --[ lo ]--0
-            ], --[ int64 ]--[
-              --[ hi ]--0,
-              --[ lo ]--1
-            ]), --[ int64 ]--[
-          --[ hi ]--0,
-          --[ lo ]--0
+b("File \"bs_min_max_test.ml\", line 28, characters 4-11", Caml_int64.eq(Caml_int64.min(--[[ int64 ]][
+              --[[ hi ]]0,
+              --[[ lo ]]0
+            ], --[[ int64 ]][
+              --[[ hi ]]0,
+              --[[ lo ]]1
+            ]), --[[ int64 ]][
+          --[[ hi ]]0,
+          --[[ lo ]]0
         ]));
 
-b("File \"bs_min_max_test.ml\", line 29, characters 4-11", Caml_int64.eq(Caml_int64.max(--[ int64 ]--[
-              --[ hi ]--0,
-              --[ lo ]--22
-            ], --[ int64 ]--[
-              --[ hi ]--0,
-              --[ lo ]--1
-            ]), --[ int64 ]--[
-          --[ hi ]--0,
-          --[ lo ]--22
+b("File \"bs_min_max_test.ml\", line 29, characters 4-11", Caml_int64.eq(Caml_int64.max(--[[ int64 ]][
+              --[[ hi ]]0,
+              --[[ lo ]]22
+            ], --[[ int64 ]][
+              --[[ hi ]]0,
+              --[[ lo ]]1
+            ]), --[[ int64 ]][
+          --[[ hi ]]0,
+          --[[ lo ]]22
         ]));
 
-b("File \"bs_min_max_test.ml\", line 30, characters 4-11", Caml_int64.eq(Caml_int64.max(--[ int64 ]--[
-              --[ hi ]---1,
-              --[ lo ]--4294967293
-            ], --[ int64 ]--[
-              --[ hi ]--0,
-              --[ lo ]--3
-            ]), --[ int64 ]--[
-          --[ hi ]--0,
-          --[ lo ]--3
+b("File \"bs_min_max_test.ml\", line 30, characters 4-11", Caml_int64.eq(Caml_int64.max(--[[ int64 ]][
+              --[[ hi ]]-1,
+              --[[ lo ]]4294967293
+            ], --[[ int64 ]][
+              --[[ hi ]]0,
+              --[[ lo ]]3
+            ]), --[[ int64 ]][
+          --[[ hi ]]0,
+          --[[ lo ]]3
         ]));
 
 eq("File \"bs_min_max_test.ml\", line 31, characters 5-12", Caml_obj.caml_min(undefined, 3), undefined);
@@ -104,4 +104,4 @@ exports.f3 = f3;
 exports.f4 = f4;
 exports.f5_min = f5_min;
 exports.f5_max = f5_max;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

@@ -29,7 +29,7 @@ function Make(funarg) do
     already_processed = Curry._1(H.create, 97);
     on_the_stack = Curry._1(H.create, 97);
     cut_set = do
-      contents: --[ [] ]--0
+      contents: --[[ [] ]]0
     end;
     counter = do
       contents: 1
@@ -38,7 +38,7 @@ function Make(funarg) do
       if (find_default(already_processed, top)) then do
         throw [
               Caml_builtin_exceptions.assert_failure,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "gpr_405_test.ml",
                 43,
                 6
@@ -49,7 +49,7 @@ function Make(funarg) do
       if (find_default(on_the_stack, top)) then do
         throw [
               Caml_builtin_exceptions.assert_failure,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "gpr_405_test.ml",
                 44,
                 6
@@ -77,8 +77,8 @@ function Make(funarg) do
             _successors = successors[1];
             continue ;
           end else do
-            return step2(successor, --[ :: ]--[
-                        --[ tuple ]--[
+            return step2(successor, --[[ :: ]][
+                        --[[ tuple ]][
                           top$1,
                           successors
                         ],
@@ -87,7 +87,7 @@ function Make(funarg) do
           end end 
         end else do
           if (Curry._2(H.find, l_labels, top$1) == Curry._2(H.find, n_labels, top$1)) then do
-            cut_set.contents = --[ :: ]--[
+            cut_set.contents = --[[ :: ]][
               top$1,
               cut_set.contents
             ];
@@ -116,7 +116,7 @@ function Make(funarg) do
         end end 
       end;
     end end;
-    return step2(first_node, --[ [] ]--0);
+    return step2(first_node, --[[ [] ]]0);
   end end;
   return do
           min_cutset: min_cutset
@@ -124,4 +124,4 @@ function Make(funarg) do
 end end
 
 exports.Make = Make;
---[ No side effect ]--
+--[[ No side effect ]]

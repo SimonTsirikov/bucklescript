@@ -8,4 +8,4 @@ const_v = $$Array.append([
     ], [3]);
 
 exports.const_v = const_v;
---[ const_v Not a pure module ]--
+--[[ const_v Not a pure module ]]

@@ -6,7 +6,7 @@ Int64 = require("../../lib/js/int64.js");
 Caml_format = require("../../lib/js/caml_format.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -15,11 +15,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -27,16 +27,16 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function id(x) do
   return Caml_format.caml_int64_of_string(Caml_format.caml_int64_format("%d", x));
 end end
 
-i = --[ int64 ]--[
-  --[ hi ]--2074848171,
-  --[ lo ]--2880154539
+i = --[[ int64 ]][
+  --[[ hi ]]2074848171,
+  --[[ lo ]]2880154539
 ];
 
 s = Caml_format.caml_int64_format("%d", i);
@@ -55,4 +55,4 @@ exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.id = id;
---[ s Not a pure module ]--
+--[[ s Not a pure module ]]

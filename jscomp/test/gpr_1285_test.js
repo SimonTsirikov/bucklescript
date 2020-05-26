@@ -7,7 +7,7 @@ Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
 CamlinternalOO = require("../../lib/js/camlinternalOO.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -16,11 +16,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -28,16 +28,16 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-class_tables = --[ Cons ]--[
+class_tables = --[[ Cons ]][
   0,
   0,
   0
 ];
 
-class_tables$1 = --[ Cons ]--[
+class_tables$1 = --[[ Cons ]][
   0,
   0,
   0
@@ -79,7 +79,7 @@ function step1(param) do
   return Curry._1(class_tables[0], 0);
 end end
 
-tmp = step1(--[ () ]--0);
+tmp = step1(--[[ () ]]0);
 
 tmp$1 = Caml_oo_curry.js1(68057958, 1, tmp);
 
@@ -94,4 +94,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.step1 = step1;
 exports.x = x;
---[ x Not a pure module ]--
+--[[ x Not a pure module ]]

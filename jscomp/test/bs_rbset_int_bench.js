@@ -4,7 +4,7 @@ Rbset = require("./rbset.js");
 Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function bench(param) do
-  data = --[ Empty ]--0;
+  data = --[[ Empty ]]0;
   console.time("test/bs_rbset_int_bench.ml 7");
   for i = 0 , 1000000 , 1 do
     data = Rbset.add(i, data);
@@ -15,7 +15,7 @@ function bench(param) do
     if (!Rbset.mem(i$1, data)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "bs_rbset_int_bench.ml",
               12,
               4
@@ -35,7 +35,7 @@ function bench(param) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "bs_rbset_int_bench.ml",
             17,
             2
@@ -46,15 +46,15 @@ end end
 
 console.time("test/bs_rbset_int_bench.ml 21");
 
-bench(--[ () ]--0);
+bench(--[[ () ]]0);
 
 console.timeEnd("test/bs_rbset_int_bench.ml 21");
 
 count = 1000000;
 
-V = --[ alias ]--0;
+V = --[[ alias ]]0;
 
 exports.count = count;
 exports.V = V;
 exports.bench = bench;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

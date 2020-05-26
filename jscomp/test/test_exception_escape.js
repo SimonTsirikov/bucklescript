@@ -21,4 +21,4 @@ N = do
 end;
 
 exports.N = N;
---[ f Not a pure module ]--
+--[[ f Not a pure module ]]

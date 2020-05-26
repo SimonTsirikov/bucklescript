@@ -16,9 +16,9 @@ function randomRange(i, j) do
   return v;
 end end
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
 exports.A = A;
 exports.range = range;
 exports.randomRange = randomRange;
---[ No side effect ]--
+--[[ No side effect ]]

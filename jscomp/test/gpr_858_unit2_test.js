@@ -5,7 +5,7 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 delayed = do
   contents: (function (param) do
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end end)
 end;
 
@@ -15,16 +15,16 @@ for i = 1 , 2 , 1 do
     if (j ~= 0) then do
       prev = delayed.contents;
       delayed.contents = (function (param) do
-          Curry._1(prev, --[ () ]--0);
+          Curry._1(prev, --[[ () ]]0);
           return f(((n + 1 | 0) + i | 0) - i | 0, j - 1 | 0);
         end end);
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end else if (i == n) then do
       return 0;
     end else do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "gpr_858_unit2_test.ml",
               6,
               13
@@ -36,6 +36,6 @@ for i = 1 , 2 , 1 do
   f(0, i);
 end
 
-Curry._1(delayed.contents, --[ () ]--0);
+Curry._1(delayed.contents, --[[ () ]]0);
 
---[  Not a pure module ]--
+--[[  Not a pure module ]]

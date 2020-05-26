@@ -4,19 +4,19 @@
 obj = do
   hi: (function (x) do
       console.log(x);
-      return --[ () ]--0; end
+      return --[[ () ]]0; end
     end)
 end;
 
 eventObj = do
   events: [],
   empty: (function () do
-      return --[ () ]--0; end
+      return --[[ () ]]0; end
     end),
   push: (function (a) do
       self = this ;
       self.events[0] = a;
-      return --[ () ]--0; end
+      return --[[ () ]]0; end
     end),
   needRebuild: (function () do
       self = this ;
@@ -35,4 +35,4 @@ end end
 exports.obj = obj;
 exports.eventObj = eventObj;
 exports.f = f;
---[ obj Not a pure module ]--
+--[[ obj Not a pure module ]]

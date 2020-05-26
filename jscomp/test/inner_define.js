@@ -10,15 +10,15 @@ N = do
 end;
 
 function f1(param) do
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function f2(param, param$1) do
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function f3(param, param$1, param$2) do
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 N0 = do
@@ -28,11 +28,11 @@ N0 = do
 end;
 
 function f2$1(param, param$1) do
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function f3$1(param, param$1, param$2) do
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 N1 = do
@@ -43,4 +43,4 @@ end;
 exports.N = N;
 exports.N0 = N0;
 exports.N1 = N1;
---[ No side effect ]--
+--[[ No side effect ]]

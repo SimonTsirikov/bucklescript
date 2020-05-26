@@ -52,7 +52,7 @@ function f(children) do
                                   if (children$15[1]) then do
                                     throw [
                                           Caml_builtin_exceptions.assert_failure,
-                                          --[ tuple ]--[
+                                          --[[ tuple ]][
                                             "gpr_1150.ml",
                                             56,
                                             34
@@ -262,4 +262,4 @@ function f(children) do
 end end
 
 exports.f = f;
---[ No side effect ]--
+--[[ No side effect ]]

@@ -14,7 +14,7 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 function split_by(keep_emptyOpt, is_delim, str) do
   keep_empty = keep_emptyOpt ~= undefined and keep_emptyOpt or false;
   len = #str;
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   _last_pos = len;
   _pos = len - 1 | 0;
   while(true) do
@@ -25,7 +25,7 @@ function split_by(keep_emptyOpt, is_delim, str) do
       if (last_pos == 0 and !keep_empty) then do
         return acc;
       end else do
-        return --[ :: ]--[
+        return --[[ :: ]][
                 $$String.sub(str, 0, last_pos),
                 acc
               ];
@@ -36,7 +36,7 @@ function split_by(keep_emptyOpt, is_delim, str) do
         v = $$String.sub(str, pos + 1 | 0, new_len);
         _pos = pos - 1 | 0;
         _last_pos = pos;
-        _acc = --[ :: ]--[
+        _acc = --[[ :: ]][
           v,
           acc
         ];
@@ -60,7 +60,7 @@ function trim(s) do
           tmp = false;
           if (i < j) then do
             u = s.charCodeAt(i);
-            tmp = u == --[ "\t" ]--9 or u == --[ "\n" ]--10 or u == --[ " " ]--32;
+            tmp = u == --[[ "\t" ]]9 or u == --[[ "\n" ]]10 or u == --[[ " " ]]32;
           end
            end 
           return tmp;
@@ -72,7 +72,7 @@ function trim(s) do
           tmp = false;
           if (k >= i) then do
             u = s.charCodeAt(k);
-            tmp = u == --[ "\t" ]--9 or u == --[ "\n" ]--10 or u == --[ " " ]--32;
+            tmp = u == --[[ "\t" ]]9 or u == --[[ "\n" ]]10 or u == --[[ " " ]]32;
           end
            end 
           return tmp;
@@ -84,7 +84,7 @@ end end
 
 function split(keep_empty, str, on) do
   if (str == "") then do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end else do
     return split_by(keep_empty, (function (x) do
                   return x == on;
@@ -94,10 +94,10 @@ end end
 
 function quick_split_by_ws(str) do
   return split_by(false, (function (x) do
-                if (x == --[ "\t" ]--9 or x == --[ "\n" ]--10) then do
+                if (x == --[[ "\t" ]]9 or x == --[[ "\n" ]]10) then do
                   return true;
                 end else do
-                  return x == --[ " " ]--32;
+                  return x == --[[ " " ]]32;
                 end end 
               end end), str);
 end end
@@ -421,7 +421,7 @@ function unsafe_concat_with_length(len, sep, l) do
             pos.contents = pos.contents + sep_len | 0;
             Caml_bytes.caml_blit_string(s, 0, r, pos.contents, s_len);
             pos.contents = pos.contents + s_len | 0;
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end end), l[1]);
     return Caml_bytes.bytes_to_string(r);
   end else do
@@ -527,27 +527,27 @@ function is_valid_npm_package_name(s) do
 end end
 
 function is_valid_source_name(name) do
-  match = check_any_suffix_case_then_chop(name, --[ :: ]--[
+  match = check_any_suffix_case_then_chop(name, --[[ :: ]][
         ".ml",
-        --[ :: ]--[
+        --[[ :: ]][
           ".re",
-          --[ :: ]--[
+          --[[ :: ]][
             ".mli",
-            --[ :: ]--[
+            --[[ :: ]][
               ".rei",
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ]
         ]
       ]);
   if (match ~= undefined) then do
     if (is_valid_module_file(match)) then do
-      return --[ Good ]--0;
+      return --[[ Good ]]0;
     end else do
-      return --[ Invalid_module_name ]--1;
+      return --[[ Invalid_module_name ]]1;
     end end 
   end else do
-    return --[ Suffix_mismatch ]--2;
+    return --[[ Suffix_mismatch ]]2;
   end end 
 end end
 
@@ -592,23 +592,23 @@ function no_char(x, ch, i, len) do
 end end
 
 function no_slash(x) do
-  return unsafe_no_char(x, --[ "/" ]--47, 0, #x - 1 | 0);
+  return unsafe_no_char(x, --[[ "/" ]]47, 0, #x - 1 | 0);
 end end
 
 function no_slash_idx(x) do
-  return unsafe_no_char_idx(x, --[ "/" ]--47, 0, #x - 1 | 0);
+  return unsafe_no_char_idx(x, --[[ "/" ]]47, 0, #x - 1 | 0);
 end end
 
 function replace_slash_backward(x) do
   len = #x;
-  if (unsafe_no_char(x, --[ "/" ]--47, 0, len - 1 | 0)) then do
+  if (unsafe_no_char(x, --[[ "/" ]]47, 0, len - 1 | 0)) then do
     return x;
   end else do
     return $$String.map((function (x) do
                   if (x ~= 47) then do
                     return x;
                   end else do
-                    return --[ "\\" ]--92;
+                    return --[[ "\\" ]]92;
                   end end 
                 end end), x);
   end end 
@@ -616,14 +616,14 @@ end end
 
 function replace_backward_slash(x) do
   len = #x;
-  if (unsafe_no_char(x, --[ "\\" ]--92, 0, len - 1 | 0)) then do
+  if (unsafe_no_char(x, --[[ "\\" ]]92, 0, len - 1 | 0)) then do
     return x;
   end else do
     return $$String.map((function (x) do
                   if (x ~= 92) then do
                     return x;
                   end else do
-                    return --[ "/" ]--47;
+                    return --[[ "/" ]]47;
                   end end 
                 end end), x);
   end end 
@@ -788,4 +788,4 @@ exports.inter3 = inter3;
 exports.inter4 = inter4;
 exports.parent_dir_lit = parent_dir_lit;
 exports.current_dir_lit = current_dir_lit;
---[ Ext_bytes_test Not a pure module ]--
+--[[ Ext_bytes_test Not a pure module ]]

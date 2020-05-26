@@ -29,4 +29,4 @@ end end
 
 exports.treeHeight = treeHeight;
 exports.copy = copy;
---[ No side effect ]--
+--[[ No side effect ]]

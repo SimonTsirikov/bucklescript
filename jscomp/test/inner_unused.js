@@ -21,4 +21,4 @@ end end
 exports.f = f;
 exports.M = M;
 exports.fff = fff;
---[ No side effect ]--
+--[[ No side effect ]]

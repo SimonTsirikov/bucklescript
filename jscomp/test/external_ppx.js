@@ -7,4 +7,4 @@ function f(prim) do
 end end
 
 exports.f = f;
---[ ./external_ppx.gen Not a pure module ]--
+--[[ ./external_ppx.gen Not a pure module ]]

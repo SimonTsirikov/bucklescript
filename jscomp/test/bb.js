@@ -18,16 +18,16 @@ function ff(x) do
   local ___conditional___=(x);
   do
      if ___conditional___ = "a" then do
-        return --[ a ]--97;end end end 
+        return --[[ a ]]97;end end end 
      if ___conditional___ = "b" then do
-        return --[ b ]--98;end end end 
+        return --[[ b ]]98;end end end 
      if ___conditional___ = "c" then do
-        return --[ c ]--99;end end end 
+        return --[[ c ]]99;end end end 
      do
     else do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "bb.ml",
               17,
               9
@@ -43,16 +43,16 @@ function test(x) do
   local ___conditional___=(x);
   do
      if ___conditional___ = "a" then do
-        match = --[ a ]--97;end else 
+        match = --[[ a ]]97;end else 
      if ___conditional___ = "b" then do
-        match = --[ b ]--98;end else 
+        match = --[[ b ]]98;end else 
      if ___conditional___ = "c" then do
-        match = --[ c ]--99;end else 
+        match = --[[ c ]]99;end else 
      do end end end end
     else do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "bb.ml",
               26,
               13
@@ -74,11 +74,11 @@ end end
 
 test_poly = "a";
 
-c = f(--[ a ]--97);
+c = f(--[[ a ]]97);
 
-d = f(--[ b ]--98);
+d = f(--[[ b ]]98);
 
-e = f(--[ c ]--99);
+e = f(--[[ c ]]99);
 
 exports.f = f;
 exports.ff = ff;
@@ -87,4 +87,4 @@ exports.test_poly = test_poly;
 exports.c = c;
 exports.d = d;
 exports.e = e;
---[ c Not a pure module ]--
+--[[ c Not a pure module ]]

@@ -52,4 +52,4 @@ end end
 exports.f0 = f0;
 exports.f1 = f1;
 exports.f3 = f3;
---[ No side effect ]--
+--[[ No side effect ]]

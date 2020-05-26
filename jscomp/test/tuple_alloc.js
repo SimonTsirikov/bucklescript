@@ -8,12 +8,12 @@ end;
 
 function reset(param) do
   v.contents = 0;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function incr(param) do
   v.contents = v.contents + 1 | 0;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 vv = do
@@ -22,12 +22,12 @@ end;
 
 function reset2(param) do
   vv.contents = 0;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function incr2(param) do
   v.contents = v.contents + 1 | 0;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function f(a, b, d, e) do
@@ -44,7 +44,7 @@ end end
 
 function ikf(v) do
   return kf((function (prim) do
-                return --[ () ]--0;
+                return --[[ () ]]0;
               end end), v);
 end end
 
@@ -56,4 +56,4 @@ exports.incr2 = incr2;
 exports.f = f;
 exports.kf = kf;
 exports.ikf = ikf;
---[ No side effect ]--
+--[[ No side effect ]]

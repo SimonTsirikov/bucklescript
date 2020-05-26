@@ -3,11 +3,11 @@
 Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
 jsMapperConstantArray = [
-  --[ tuple ]--[
+  --[[ tuple ]][
     -1010337642,
     "vertical"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     208994564,
     "horizontal"
   ]
@@ -21,8 +21,8 @@ function orientationFromJs(param) do
   return Js_mapperRt.revSearch(2, jsMapperConstantArray, param);
 end end
 
-console.log(orientationToJs(--[ Horizontal ]--208994564));
+console.log(orientationToJs(--[[ Horizontal ]]208994564));
 
 exports.orientationToJs = orientationToJs;
 exports.orientationFromJs = orientationFromJs;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

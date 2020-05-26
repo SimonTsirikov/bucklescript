@@ -7,7 +7,7 @@ Caml_int32 = require("../../lib/js/caml_int32.js");
 Caml_module = require("../../lib/js/caml_module.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -16,11 +16,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -28,37 +28,37 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function add(suite) do
-  suites.contents = --[ :: ]--[
+  suites.contents = --[[ :: ]][
     suite,
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-Int3 = Caml_module.init_mod(--[ tuple ]--[
+Int3 = Caml_module.init_mod(--[[ tuple ]][
       "recursive_module_test.ml",
       13,
       6
-    ], --[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Function ]--0,
+    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Function ]]0,
             "u"
           ]]]));
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Function ]--0,
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Function ]]0,
             "u"
           ]]]), Int3, Int3);
 
-M = Caml_module.init_mod(--[ tuple ]--[
+M = Caml_module.init_mod(--[[ tuple ]][
       "recursive_module_test.ml",
       20,
       20
-    ], --[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Function ]--0,
+    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Function ]]0,
             "fact"
           ]]]));
 
@@ -70,8 +70,8 @@ function fact(n) do
   end end 
 end end
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Function ]--0,
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Function ]]0,
             "fact"
           ]]]), M, do
       fact: fact
@@ -86,12 +86,12 @@ end;
 
 eq("File \"recursive_module_test.ml\", line 30, characters 5-12", 120, Curry._1(fact$1, 5));
 
-add(--[ tuple ]--[
+add(--[[ tuple ]][
       "File \"recursive_module_test.ml\", line 34, characters 7-14",
       (function (param) do
-          return --[ ThrowAny ]--Block.__(7, [(function (param) do
+          return --[[ ThrowAny ]]Block.__(7, [(function (param) do
                         Curry._1(Int3.u, 3);
-                        return --[ () ]--0;
+                        return --[[ () ]]0;
                       end end)]);
         end end)
     ]);
@@ -104,4 +104,4 @@ exports.eq = eq;
 exports.add = add;
 exports.Int3 = Int3;
 exports.Fact = Fact;
---[ Int3 Not a pure module ]--
+--[[ Int3 Not a pure module ]]

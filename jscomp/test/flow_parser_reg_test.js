@@ -99,10 +99,10 @@ function order_of_filename(param) do
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[ LibFile ]-- then do
+       if ___conditional___ = 0--[[ LibFile ]] then do
           return 2;end end end 
-       if ___conditional___ = 1--[ SourceFile ]--
-       or ___conditional___ = 2--[ JsonFile ]-- then do
+       if ___conditional___ = 1--[[ SourceFile ]]
+       or ___conditional___ = 2--[[ JsonFile ]] then do
           return 3;end end end 
        do
       
@@ -132,10 +132,10 @@ function source_cmp(a, b) do
 end end
 
 function pos_cmp(a, b) do
-  return Caml_obj.caml_compare(--[ tuple ]--[
+  return Caml_obj.caml_compare(--[[ tuple ]][
               a.line,
               a.column
-            ], --[ tuple ]--[
+            ], --[[ tuple ]][
               b.line,
               b.column
             ]);
@@ -161,129 +161,129 @@ function error(param) do
   if (typeof param == "number") then do
     local ___conditional___=(param);
     do
-       if ___conditional___ = 0--[ UnexpectedNumber ]-- then do
+       if ___conditional___ = 0--[[ UnexpectedNumber ]] then do
           return "Unexpected number";end end end 
-       if ___conditional___ = 1--[ UnexpectedString ]-- then do
+       if ___conditional___ = 1--[[ UnexpectedString ]] then do
           return "Unexpected string";end end end 
-       if ___conditional___ = 2--[ UnexpectedIdentifier ]-- then do
+       if ___conditional___ = 2--[[ UnexpectedIdentifier ]] then do
           return "Unexpected identifier";end end end 
-       if ___conditional___ = 3--[ UnexpectedReserved ]-- then do
+       if ___conditional___ = 3--[[ UnexpectedReserved ]] then do
           return "Unexpected reserved word";end end end 
-       if ___conditional___ = 4--[ UnexpectedEOS ]-- then do
+       if ___conditional___ = 4--[[ UnexpectedEOS ]] then do
           return "Unexpected end of input";end end end 
-       if ___conditional___ = 5--[ UnexpectedTypeAlias ]-- then do
+       if ___conditional___ = 5--[[ UnexpectedTypeAlias ]] then do
           return "Type aliases are not allowed in untyped mode";end end end 
-       if ___conditional___ = 6--[ UnexpectedTypeAnnotation ]-- then do
+       if ___conditional___ = 6--[[ UnexpectedTypeAnnotation ]] then do
           return "Type annotations are not allowed in untyped mode";end end end 
-       if ___conditional___ = 7--[ UnexpectedTypeDeclaration ]-- then do
+       if ___conditional___ = 7--[[ UnexpectedTypeDeclaration ]] then do
           return "Type declarations are not allowed in untyped mode";end end end 
-       if ___conditional___ = 8--[ UnexpectedTypeImport ]-- then do
+       if ___conditional___ = 8--[[ UnexpectedTypeImport ]] then do
           return "Type imports are not allowed in untyped mode";end end end 
-       if ___conditional___ = 9--[ UnexpectedTypeExport ]-- then do
+       if ___conditional___ = 9--[[ UnexpectedTypeExport ]] then do
           return "Type exports are not allowed in untyped mode";end end end 
-       if ___conditional___ = 10--[ UnexpectedTypeInterface ]-- then do
+       if ___conditional___ = 10--[[ UnexpectedTypeInterface ]] then do
           return "Interfaces are not allowed in untyped mode";end end end 
-       if ___conditional___ = 11--[ NewlineAfterThrow ]-- then do
+       if ___conditional___ = 11--[[ NewlineAfterThrow ]] then do
           return "Illegal newline after throw";end end end 
-       if ___conditional___ = 12--[ InvalidRegExp ]-- then do
+       if ___conditional___ = 12--[[ InvalidRegExp ]] then do
           return "Invalid regular expression";end end end 
-       if ___conditional___ = 13--[ UnterminatedRegExp ]-- then do
+       if ___conditional___ = 13--[[ UnterminatedRegExp ]] then do
           return "Invalid regular expression: missing /";end end end 
-       if ___conditional___ = 14--[ InvalidLHSInAssignment ]-- then do
+       if ___conditional___ = 14--[[ InvalidLHSInAssignment ]] then do
           return "Invalid left-hand side in assignment";end end end 
-       if ___conditional___ = 15--[ InvalidLHSInExponentiation ]-- then do
+       if ___conditional___ = 15--[[ InvalidLHSInExponentiation ]] then do
           return "Invalid left-hand side in exponentiation expression";end end end 
-       if ___conditional___ = 16--[ InvalidLHSInForIn ]-- then do
+       if ___conditional___ = 16--[[ InvalidLHSInForIn ]] then do
           return "Invalid left-hand side in for-in";end end end 
-       if ___conditional___ = 17--[ InvalidLHSInForOf ]-- then do
+       if ___conditional___ = 17--[[ InvalidLHSInForOf ]] then do
           return "Invalid left-hand side in for-of";end end end 
-       if ___conditional___ = 18--[ ExpectedPatternFoundExpression ]-- then do
+       if ___conditional___ = 18--[[ ExpectedPatternFoundExpression ]] then do
           return "Expected an object pattern, array pattern, or an identifier but found an expression instead";end end end 
-       if ___conditional___ = 19--[ MultipleDefaultsInSwitch ]-- then do
+       if ___conditional___ = 19--[[ MultipleDefaultsInSwitch ]] then do
           return "More than one default clause in switch statement";end end end 
-       if ___conditional___ = 20--[ NoCatchOrFinally ]-- then do
+       if ___conditional___ = 20--[[ NoCatchOrFinally ]] then do
           return "Missing catch or finally after try";end end end 
-       if ___conditional___ = 21--[ IllegalContinue ]-- then do
+       if ___conditional___ = 21--[[ IllegalContinue ]] then do
           return "Illegal continue statement";end end end 
-       if ___conditional___ = 22--[ IllegalBreak ]-- then do
+       if ___conditional___ = 22--[[ IllegalBreak ]] then do
           return "Illegal break statement";end end end 
-       if ___conditional___ = 23--[ IllegalReturn ]-- then do
+       if ___conditional___ = 23--[[ IllegalReturn ]] then do
           return "Illegal return statement";end end end 
-       if ___conditional___ = 24--[ IllegalYield ]-- then do
+       if ___conditional___ = 24--[[ IllegalYield ]] then do
           return "Illegal yield expression";end end end 
-       if ___conditional___ = 25--[ StrictModeWith ]-- then do
+       if ___conditional___ = 25--[[ StrictModeWith ]] then do
           return "Strict mode code may not include a with statement";end end end 
-       if ___conditional___ = 26--[ StrictCatchVariable ]-- then do
+       if ___conditional___ = 26--[[ StrictCatchVariable ]] then do
           return "Catch variable may not be eval or arguments in strict mode";end end end 
-       if ___conditional___ = 27--[ StrictVarName ]-- then do
+       if ___conditional___ = 27--[[ StrictVarName ]] then do
           return "Variable name may not be eval or arguments in strict mode";end end end 
-       if ___conditional___ = 28--[ StrictParamName ]-- then do
+       if ___conditional___ = 28--[[ StrictParamName ]] then do
           return "Parameter name eval or arguments is not allowed in strict mode";end end end 
-       if ___conditional___ = 29--[ StrictParamDupe ]-- then do
+       if ___conditional___ = 29--[[ StrictParamDupe ]] then do
           return "Strict mode function may not have duplicate parameter names";end end end 
-       if ___conditional___ = 30--[ StrictFunctionName ]-- then do
+       if ___conditional___ = 30--[[ StrictFunctionName ]] then do
           return "Function name may not be eval or arguments in strict mode";end end end 
-       if ___conditional___ = 31--[ StrictOctalLiteral ]-- then do
+       if ___conditional___ = 31--[[ StrictOctalLiteral ]] then do
           return "Octal literals are not allowed in strict mode.";end end end 
-       if ___conditional___ = 32--[ StrictDelete ]-- then do
+       if ___conditional___ = 32--[[ StrictDelete ]] then do
           return "Delete of an unqualified identifier in strict mode.";end end end 
-       if ___conditional___ = 33--[ StrictDuplicateProperty ]-- then do
+       if ___conditional___ = 33--[[ StrictDuplicateProperty ]] then do
           return "Duplicate data property in object literal not allowed in strict mode";end end end 
-       if ___conditional___ = 34--[ AccessorDataProperty ]-- then do
+       if ___conditional___ = 34--[[ AccessorDataProperty ]] then do
           return "Object literal may not have data and accessor property with the same name";end end end 
-       if ___conditional___ = 35--[ AccessorGetSet ]-- then do
+       if ___conditional___ = 35--[[ AccessorGetSet ]] then do
           return "Object literal may not have multiple get/set accessors with the same name";end end end 
-       if ___conditional___ = 36--[ StrictLHSAssignment ]-- then do
+       if ___conditional___ = 36--[[ StrictLHSAssignment ]] then do
           return "Assignment to eval or arguments is not allowed in strict mode";end end end 
-       if ___conditional___ = 37--[ StrictLHSPostfix ]-- then do
+       if ___conditional___ = 37--[[ StrictLHSPostfix ]] then do
           return "Postfix increment/decrement may not have eval or arguments operand in strict mode";end end end 
-       if ___conditional___ = 38--[ StrictLHSPrefix ]-- then do
+       if ___conditional___ = 38--[[ StrictLHSPrefix ]] then do
           return "Prefix increment/decrement may not have eval or arguments operand in strict mode";end end end 
-       if ___conditional___ = 39--[ StrictReservedWord ]-- then do
+       if ___conditional___ = 39--[[ StrictReservedWord ]] then do
           return "Use of future reserved word in strict mode";end end end 
-       if ___conditional___ = 40--[ JSXAttributeValueEmptyExpression ]-- then do
+       if ___conditional___ = 40--[[ JSXAttributeValueEmptyExpression ]] then do
           return "JSX attributes must only be assigned a non-empty expression";end end end 
-       if ___conditional___ = 41--[ InvalidJSXAttributeValue ]-- then do
+       if ___conditional___ = 41--[[ InvalidJSXAttributeValue ]] then do
           return "JSX value should be either an expression or a quoted JSX text";end end end 
-       if ___conditional___ = 42--[ NoUninitializedConst ]-- then do
+       if ___conditional___ = 42--[[ NoUninitializedConst ]] then do
           return "Const must be initialized";end end end 
-       if ___conditional___ = 43--[ NoUninitializedDestructuring ]-- then do
+       if ___conditional___ = 43--[[ NoUninitializedDestructuring ]] then do
           return "Destructuring assignment must be initialized";end end end 
-       if ___conditional___ = 44--[ NewlineBeforeArrow ]-- then do
+       if ___conditional___ = 44--[[ NewlineBeforeArrow ]] then do
           return "Illegal newline before arrow";end end end 
-       if ___conditional___ = 45--[ StrictFunctionStatement ]-- then do
+       if ___conditional___ = 45--[[ StrictFunctionStatement ]] then do
           return "In strict mode code, functions can only be declared at top level or immediately within another function.";end end end 
-       if ___conditional___ = 46--[ AdjacentJSXElements ]-- then do
+       if ___conditional___ = 46--[[ AdjacentJSXElements ]] then do
           return "Unexpected token <. Remember, adjacent JSX elements must be wrapped in an enclosing parent tag";end end end 
-       if ___conditional___ = 47--[ ParameterAfterRestParameter ]-- then do
+       if ___conditional___ = 47--[[ ParameterAfterRestParameter ]] then do
           return "Rest parameter must be final parameter of an argument list";end end end 
-       if ___conditional___ = 48--[ AsyncGenerator ]-- then do
+       if ___conditional___ = 48--[[ AsyncGenerator ]] then do
           return "A function may not be both async and a generator";end end end 
-       if ___conditional___ = 49--[ DeclareAsync ]-- then do
+       if ___conditional___ = 49--[[ DeclareAsync ]] then do
           return "async is an implementation detail and isn't necessary for your declare function statement. It is sufficient for your declare function to just have a Promise return type.";end end end 
-       if ___conditional___ = 50--[ DeclareExportLet ]-- then do
+       if ___conditional___ = 50--[[ DeclareExportLet ]] then do
           return "`declare export let` is not supported. Use `declare export var` instead.";end end end 
-       if ___conditional___ = 51--[ DeclareExportConst ]-- then do
+       if ___conditional___ = 51--[[ DeclareExportConst ]] then do
           return "`declare export const` is not supported. Use `declare export var` instead.";end end end 
-       if ___conditional___ = 52--[ DeclareExportType ]-- then do
+       if ___conditional___ = 52--[[ DeclareExportType ]] then do
           return "`declare export type` is not supported. Use `export type` instead.";end end end 
-       if ___conditional___ = 53--[ DeclareExportInterface ]-- then do
+       if ___conditional___ = 53--[[ DeclareExportInterface ]] then do
           return "`declare export interface` is not supported. Use `export interface` instead.";end end end 
-       if ___conditional___ = 54--[ UnexpectedExportStarAs ]-- then do
+       if ___conditional___ = 54--[[ UnexpectedExportStarAs ]] then do
           return "`export * as` is an early-stage proposal and is not enabled by default. To enable support in the parser, use the `esproposal_export_star_as` option";end end end 
-       if ___conditional___ = 55--[ ExportNamelessClass ]-- then do
+       if ___conditional___ = 55--[[ ExportNamelessClass ]] then do
           return "When exporting a class as a named export, you must specify a class name. Did you mean `export default class ...`?";end end end 
-       if ___conditional___ = 56--[ ExportNamelessFunction ]-- then do
+       if ___conditional___ = 56--[[ ExportNamelessFunction ]] then do
           return "When exporting a function as a named export, you must specify a function name. Did you mean `export default function ...`?";end end end 
-       if ___conditional___ = 57--[ UnsupportedDecorator ]-- then do
+       if ___conditional___ = 57--[[ UnsupportedDecorator ]] then do
           return "Found a decorator in an unsupported position.";end end end 
-       if ___conditional___ = 58--[ MissingTypeParamDefault ]-- then do
+       if ___conditional___ = 58--[[ MissingTypeParamDefault ]] then do
           return "Type parameter declaration needs a default, since a preceding type parameter declaration has a default.";end end end 
-       if ___conditional___ = 59--[ WindowsFloatOfString ]-- then do
+       if ___conditional___ = 59--[[ WindowsFloatOfString ]] then do
           return "The Windows version of OCaml has a bug in how it parses hexidecimal numbers. It is fixed in OCaml 4.03.0. Until we can switch to 4.03.0, please avoid either hexidecimal notation or Windows.";end end end 
-       if ___conditional___ = 60--[ DuplicateDeclareModuleExports ]-- then do
+       if ___conditional___ = 60--[[ DuplicateDeclareModuleExports ]] then do
           return "Duplicate `declare module.exports` statement!";end end end 
-       if ___conditional___ = 61--[ AmbiguousDeclareModuleKind ]-- then do
+       if ___conditional___ = 61--[[ AmbiguousDeclareModuleKind ]] then do
           return "Found both `declare module.exports` and `declare export` in the same module. Modules can only have 1 since they are either an ES module xor they are a CommonJS module.";end end end 
        do
       
@@ -291,23 +291,23 @@ function error(param) do
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[ Assertion ]-- then do
+       if ___conditional___ = 0--[[ Assertion ]] then do
           return "Unexpected parser state: " .. param[0];end end end 
-       if ___conditional___ = 1--[ UnexpectedToken ]-- then do
+       if ___conditional___ = 1--[[ UnexpectedToken ]] then do
           return "Unexpected token " .. param[0];end end end 
-       if ___conditional___ = 2--[ UnexpectedTokenWithSuggestion ]-- then do
-          return Curry._2(Printf.sprintf(--[ Format ]--[
-                          --[ String_literal ]--Block.__(11, [
+       if ___conditional___ = 2--[[ UnexpectedTokenWithSuggestion ]] then do
+          return Curry._2(Printf.sprintf(--[[ Format ]][
+                          --[[ String_literal ]]Block.__(11, [
                               "Unexpected token `",
-                              --[ String ]--Block.__(2, [
-                                  --[ No_padding ]--0,
-                                  --[ String_literal ]--Block.__(11, [
+                              --[[ String ]]Block.__(2, [
+                                  --[[ No_padding ]]0,
+                                  --[[ String_literal ]]Block.__(11, [
                                       "`. Did you mean `",
-                                      --[ String ]--Block.__(2, [
-                                          --[ No_padding ]--0,
-                                          --[ String_literal ]--Block.__(11, [
+                                      --[[ String ]]Block.__(2, [
+                                          --[[ No_padding ]]0,
+                                          --[[ String_literal ]]Block.__(11, [
                                               "`?",
-                                              --[ End_of_format ]--0
+                                              --[[ End_of_format ]]0
                                             ])
                                         ])
                                     ])
@@ -315,23 +315,23 @@ function error(param) do
                             ]),
                           "Unexpected token `%s`. Did you mean `%s`?"
                         ]), param[0], param[1]);end end end 
-       if ___conditional___ = 3--[ InvalidRegExpFlags ]-- then do
+       if ___conditional___ = 3--[[ InvalidRegExpFlags ]] then do
           return "Invalid flags supplied to RegExp constructor '" .. (param[0] .. "'");end end end 
-       if ___conditional___ = 4--[ UnknownLabel ]-- then do
+       if ___conditional___ = 4--[[ UnknownLabel ]] then do
           return "Undefined label '" .. (param[0] .. "'");end end end 
-       if ___conditional___ = 5--[ Redeclaration ]-- then do
+       if ___conditional___ = 5--[[ Redeclaration ]] then do
           return param[0] .. (" '" .. (param[1] .. "' has already been declared"));end end end 
-       if ___conditional___ = 6--[ ExpectedJSXClosingTag ]-- then do
+       if ___conditional___ = 6--[[ ExpectedJSXClosingTag ]] then do
           return "Expected corresponding JSX closing tag for " .. param[0];end end end 
-       if ___conditional___ = 7--[ DuplicateExport ]-- then do
-          return Curry._1(Printf.sprintf(--[ Format ]--[
-                          --[ String_literal ]--Block.__(11, [
+       if ___conditional___ = 7--[[ DuplicateExport ]] then do
+          return Curry._1(Printf.sprintf(--[[ Format ]][
+                          --[[ String_literal ]]Block.__(11, [
                               "Duplicate export for `",
-                              --[ String ]--Block.__(2, [
-                                  --[ No_padding ]--0,
-                                  --[ Char_literal ]--Block.__(12, [
-                                      --[ "`" ]--96,
-                                      --[ End_of_format ]--0
+                              --[[ String ]]Block.__(2, [
+                                  --[[ No_padding ]]0,
+                                  --[[ Char_literal ]]Block.__(12, [
+                                      --[[ "`" ]]96,
+                                      --[[ End_of_format ]]0
                                     ])
                                 ])
                             ]),
@@ -343,770 +343,770 @@ function error(param) do
   end end 
 end end
 
-Literal = Caml_module.init_mod(--[ tuple ]--[
+Literal = Caml_module.init_mod(--[[ tuple ]][
       "spider_monkey_ast.ml",
       44,
       6
-    ], --[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "RegExp"
           ]]]));
 
-Type = Caml_module.init_mod(--[ tuple ]--[
+Type = Caml_module.init_mod(--[[ tuple ]][
       "spider_monkey_ast.ml",
       191,
       6
-    ], --[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+    ], --[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Param"
                   ]]]),
             "Function"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Property"
                   ],
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Indexer"
                   ],
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "CallProperty"
                   ]
                 ]]),
             "Object"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Identifier"
                   ]]]),
             "Generic"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "StringLiteral"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "NumberLiteral"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "BooleanLiteral"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                            --[[ Module ]]Block.__(0, [[]]),
                             "Variance"
                           ]]]),
                     "TypeParam"
                   ]]]),
             "ParameterDeclaration"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "ParameterInstantiation"
           ]
         ]]));
 
-Statement = Caml_module.init_mod(--[ tuple ]--[
+Statement = Caml_module.init_mod(--[[ tuple ]][
       "spider_monkey_ast.ml",
       493,
       6
-    ], --[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+    ], --[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Block"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "If"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Labeled"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Break"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Continue"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "With"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "TypeAlias"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Case"
                   ]]]),
             "Switch"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Return"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Throw"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "CatchClause"
                   ]]]),
             "Try"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Declarator"
                   ]]]),
             "VariableDeclaration"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "While"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "DoWhile"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "For"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "ForIn"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "ForOf"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Let"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Interface"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "DeclareVariable"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "DeclareFunction"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "DeclareModule"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Specifier"
                   ]]]),
             "ExportDeclaration"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "DeclareExportDeclaration"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "NamedSpecifier"
                   ]]]),
             "ImportDeclaration"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Expression"
           ]
         ]]));
 
-Expression = Caml_module.init_mod(--[ tuple ]--[
+Expression = Caml_module.init_mod(--[[ tuple ]][
       "spider_monkey_ast.ml",
       758,
       6
-    ], --[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+    ], --[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "SpreadElement"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Array"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Element"
                   ]]]),
             "TemplateLiteral"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "TaggedTemplate"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Property"
                   ],
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "SpreadProperty"
                   ]
                 ]]),
             "Object"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Sequence"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Unary"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Binary"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Assignment"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Update"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Logical"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Conditional"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "New"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Call"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Member"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Yield"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Block"
                   ]]]),
             "Comprehension"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Generator"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Let"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "TypeCast"
           ]
         ]]));
 
-JSX = Caml_module.init_mod(--[ tuple ]--[
+JSX = Caml_module.init_mod(--[[ tuple ]][
       "spider_monkey_ast.ml",
       861,
       6
-    ], --[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+    ], --[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Identifier"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "NamespacedName"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "ExpressionContainer"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Text"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Attribute"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "SpreadAttribute"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "MemberExpression"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Opening"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Closing"
           ]
         ]]));
 
-Pattern = Caml_module.init_mod(--[ tuple ]--[
+Pattern = Caml_module.init_mod(--[[ tuple ]][
       "spider_monkey_ast.ml",
       919,
       6
-    ], --[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+    ], --[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Property"
                   ],
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "SpreadProperty"
                   ]
                 ]]),
             "Object"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "SpreadElement"
                   ]]]),
             "Array"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Assignment"
           ]
         ]]));
 
-Class = Caml_module.init_mod(--[ tuple ]--[
+Class = Caml_module.init_mod(--[[ tuple ]][
       "spider_monkey_ast.ml",
       978,
       6
-    ], --[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+    ], --[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Method"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Property"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Implements"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Body"
           ]
         ]]));
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "RegExp"
           ]]]), Literal, Literal);
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Param"
                   ]]]),
             "Function"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Property"
                   ],
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Indexer"
                   ],
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "CallProperty"
                   ]
                 ]]),
             "Object"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Identifier"
                   ]]]),
             "Generic"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "StringLiteral"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "NumberLiteral"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "BooleanLiteral"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                            --[[ Module ]]Block.__(0, [[]]),
                             "Variance"
                           ]]]),
                     "TypeParam"
                   ]]]),
             "ParameterDeclaration"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "ParameterInstantiation"
           ]
         ]]), Type, Type);
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Block"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "If"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Labeled"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Break"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Continue"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "With"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "TypeAlias"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Case"
                   ]]]),
             "Switch"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Return"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Throw"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "CatchClause"
                   ]]]),
             "Try"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Declarator"
                   ]]]),
             "VariableDeclaration"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "While"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "DoWhile"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "For"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "ForIn"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "ForOf"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Let"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Interface"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "DeclareVariable"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "DeclareFunction"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "DeclareModule"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Specifier"
                   ]]]),
             "ExportDeclaration"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "DeclareExportDeclaration"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "NamedSpecifier"
                   ]]]),
             "ImportDeclaration"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Expression"
           ]
         ]]), Statement, Statement);
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "SpreadElement"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Array"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Element"
                   ]]]),
             "TemplateLiteral"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "TaggedTemplate"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Property"
                   ],
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "SpreadProperty"
                   ]
                 ]]),
             "Object"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Sequence"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Unary"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Binary"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Assignment"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Update"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Logical"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Conditional"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "New"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Call"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Member"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Yield"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Block"
                   ]]]),
             "Comprehension"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Generator"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Let"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "TypeCast"
           ]
         ]]), Expression, Expression);
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Identifier"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "NamespacedName"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "ExpressionContainer"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Text"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Attribute"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "SpreadAttribute"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "MemberExpression"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Opening"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Closing"
           ]
         ]]), JSX, JSX);
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "Property"
                   ],
-                  --[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+                  --[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "SpreadProperty"
                   ]
                 ]]),
             "Object"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[--[ tuple ]--[
-                    --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+                    --[[ Module ]]Block.__(0, [[]]),
                     "SpreadElement"
                   ]]]),
             "Array"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Assignment"
           ]
         ]]), Pattern, Pattern);
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Method"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Property"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Implements"
           ],
-          --[ tuple ]--[
-            --[ Module ]--Block.__(0, [[]]),
+          --[[ tuple ]][
+            --[[ Module ]]Block.__(0, [[]]),
             "Body"
           ]
         ]]), Class, Class);
@@ -1115,229 +1115,229 @@ function token_to_string(param) do
   if (typeof param == "number") then do
     local ___conditional___=(param);
     do
-       if ___conditional___ = 0--[ T_IDENTIFIER ]-- then do
+       if ___conditional___ = 0--[[ T_IDENTIFIER ]] then do
           return "T_IDENTIFIER";end end end 
-       if ___conditional___ = 1--[ T_LCURLY ]-- then do
+       if ___conditional___ = 1--[[ T_LCURLY ]] then do
           return "T_LCURLY";end end end 
-       if ___conditional___ = 2--[ T_RCURLY ]-- then do
+       if ___conditional___ = 2--[[ T_RCURLY ]] then do
           return "T_RCURLY";end end end 
-       if ___conditional___ = 3--[ T_LPAREN ]-- then do
+       if ___conditional___ = 3--[[ T_LPAREN ]] then do
           return "T_LPAREN";end end end 
-       if ___conditional___ = 4--[ T_RPAREN ]-- then do
+       if ___conditional___ = 4--[[ T_RPAREN ]] then do
           return "T_RPAREN";end end end 
-       if ___conditional___ = 5--[ T_LBRACKET ]-- then do
+       if ___conditional___ = 5--[[ T_LBRACKET ]] then do
           return "T_LBRACKET";end end end 
-       if ___conditional___ = 6--[ T_RBRACKET ]-- then do
+       if ___conditional___ = 6--[[ T_RBRACKET ]] then do
           return "T_RBRACKET";end end end 
-       if ___conditional___ = 7--[ T_SEMICOLON ]-- then do
+       if ___conditional___ = 7--[[ T_SEMICOLON ]] then do
           return "T_SEMICOLON";end end end 
-       if ___conditional___ = 8--[ T_COMMA ]-- then do
+       if ___conditional___ = 8--[[ T_COMMA ]] then do
           return "T_COMMA";end end end 
-       if ___conditional___ = 9--[ T_PERIOD ]-- then do
+       if ___conditional___ = 9--[[ T_PERIOD ]] then do
           return "T_PERIOD";end end end 
-       if ___conditional___ = 10--[ T_ARROW ]-- then do
+       if ___conditional___ = 10--[[ T_ARROW ]] then do
           return "T_ARROW";end end end 
-       if ___conditional___ = 11--[ T_ELLIPSIS ]-- then do
+       if ___conditional___ = 11--[[ T_ELLIPSIS ]] then do
           return "T_ELLIPSIS";end end end 
-       if ___conditional___ = 12--[ T_AT ]-- then do
+       if ___conditional___ = 12--[[ T_AT ]] then do
           return "T_AT";end end end 
-       if ___conditional___ = 13--[ T_FUNCTION ]-- then do
+       if ___conditional___ = 13--[[ T_FUNCTION ]] then do
           return "T_FUNCTION";end end end 
-       if ___conditional___ = 14--[ T_IF ]-- then do
+       if ___conditional___ = 14--[[ T_IF ]] then do
           return "T_IF";end end end 
-       if ___conditional___ = 15--[ T_IN ]-- then do
+       if ___conditional___ = 15--[[ T_IN ]] then do
           return "T_IN";end end end 
-       if ___conditional___ = 16--[ T_INSTANCEOF ]-- then do
+       if ___conditional___ = 16--[[ T_INSTANCEOF ]] then do
           return "T_INSTANCEOF";end end end 
-       if ___conditional___ = 17--[ T_RETURN ]-- then do
+       if ___conditional___ = 17--[[ T_RETURN ]] then do
           return "T_RETURN";end end end 
-       if ___conditional___ = 18--[ T_SWITCH ]-- then do
+       if ___conditional___ = 18--[[ T_SWITCH ]] then do
           return "T_SWITCH";end end end 
-       if ___conditional___ = 19--[ T_THIS ]-- then do
+       if ___conditional___ = 19--[[ T_THIS ]] then do
           return "T_THIS";end end end 
-       if ___conditional___ = 20--[ T_THROW ]-- then do
+       if ___conditional___ = 20--[[ T_THROW ]] then do
           return "T_THROW";end end end 
-       if ___conditional___ = 21--[ T_TRY ]-- then do
+       if ___conditional___ = 21--[[ T_TRY ]] then do
           return "T_TRY";end end end 
-       if ___conditional___ = 22--[ T_VAR ]-- then do
+       if ___conditional___ = 22--[[ T_VAR ]] then do
           return "T_VAR";end end end 
-       if ___conditional___ = 23--[ T_WHILE ]-- then do
+       if ___conditional___ = 23--[[ T_WHILE ]] then do
           return "T_WHILE";end end end 
-       if ___conditional___ = 24--[ T_WITH ]-- then do
+       if ___conditional___ = 24--[[ T_WITH ]] then do
           return "T_WITH";end end end 
-       if ___conditional___ = 25--[ T_CONST ]-- then do
+       if ___conditional___ = 25--[[ T_CONST ]] then do
           return "T_CONST";end end end 
-       if ___conditional___ = 26--[ T_LET ]-- then do
+       if ___conditional___ = 26--[[ T_LET ]] then do
           return "T_LET";end end end 
-       if ___conditional___ = 27--[ T_NULL ]-- then do
+       if ___conditional___ = 27--[[ T_NULL ]] then do
           return "T_NULL";end end end 
-       if ___conditional___ = 28--[ T_FALSE ]-- then do
+       if ___conditional___ = 28--[[ T_FALSE ]] then do
           return "T_FALSE";end end end 
-       if ___conditional___ = 29--[ T_TRUE ]-- then do
+       if ___conditional___ = 29--[[ T_TRUE ]] then do
           return "T_TRUE";end end end 
-       if ___conditional___ = 30--[ T_BREAK ]-- then do
+       if ___conditional___ = 30--[[ T_BREAK ]] then do
           return "T_BREAK";end end end 
-       if ___conditional___ = 31--[ T_CASE ]-- then do
+       if ___conditional___ = 31--[[ T_CASE ]] then do
           return "T_CASE";end end end 
-       if ___conditional___ = 32--[ T_CATCH ]-- then do
+       if ___conditional___ = 32--[[ T_CATCH ]] then do
           return "T_CATCH";end end end 
-       if ___conditional___ = 33--[ T_CONTINUE ]-- then do
+       if ___conditional___ = 33--[[ T_CONTINUE ]] then do
           return "T_CONTINUE";end end end 
-       if ___conditional___ = 34--[ T_DEFAULT ]-- then do
+       if ___conditional___ = 34--[[ T_DEFAULT ]] then do
           return "T_DEFAULT";end end end 
-       if ___conditional___ = 35--[ T_DO ]-- then do
+       if ___conditional___ = 35--[[ T_DO ]] then do
           return "T_DO";end end end 
-       if ___conditional___ = 36--[ T_FINALLY ]-- then do
+       if ___conditional___ = 36--[[ T_FINALLY ]] then do
           return "T_FINALLY";end end end 
-       if ___conditional___ = 37--[ T_FOR ]-- then do
+       if ___conditional___ = 37--[[ T_FOR ]] then do
           return "T_FOR";end end end 
-       if ___conditional___ = 38--[ T_CLASS ]-- then do
+       if ___conditional___ = 38--[[ T_CLASS ]] then do
           return "T_CLASS";end end end 
-       if ___conditional___ = 39--[ T_EXTENDS ]-- then do
+       if ___conditional___ = 39--[[ T_EXTENDS ]] then do
           return "T_EXTENDS";end end end 
-       if ___conditional___ = 40--[ T_STATIC ]-- then do
+       if ___conditional___ = 40--[[ T_STATIC ]] then do
           return "T_STATIC";end end end 
-       if ___conditional___ = 41--[ T_ELSE ]-- then do
+       if ___conditional___ = 41--[[ T_ELSE ]] then do
           return "T_ELSE";end end end 
-       if ___conditional___ = 42--[ T_NEW ]-- then do
+       if ___conditional___ = 42--[[ T_NEW ]] then do
           return "T_NEW";end end end 
-       if ___conditional___ = 43--[ T_DELETE ]-- then do
+       if ___conditional___ = 43--[[ T_DELETE ]] then do
           return "T_DELETE";end end end 
-       if ___conditional___ = 44--[ T_TYPEOF ]-- then do
+       if ___conditional___ = 44--[[ T_TYPEOF ]] then do
           return "T_TYPEOF";end end end 
-       if ___conditional___ = 45--[ T_VOID ]-- then do
+       if ___conditional___ = 45--[[ T_VOID ]] then do
           return "T_VOID";end end end 
-       if ___conditional___ = 46--[ T_ENUM ]-- then do
+       if ___conditional___ = 46--[[ T_ENUM ]] then do
           return "T_ENUM";end end end 
-       if ___conditional___ = 47--[ T_EXPORT ]-- then do
+       if ___conditional___ = 47--[[ T_EXPORT ]] then do
           return "T_EXPORT";end end end 
-       if ___conditional___ = 48--[ T_IMPORT ]-- then do
+       if ___conditional___ = 48--[[ T_IMPORT ]] then do
           return "T_IMPORT";end end end 
-       if ___conditional___ = 49--[ T_SUPER ]-- then do
+       if ___conditional___ = 49--[[ T_SUPER ]] then do
           return "T_SUPER";end end end 
-       if ___conditional___ = 50--[ T_IMPLEMENTS ]-- then do
+       if ___conditional___ = 50--[[ T_IMPLEMENTS ]] then do
           return "T_IMPLEMENTS";end end end 
-       if ___conditional___ = 51--[ T_INTERFACE ]-- then do
+       if ___conditional___ = 51--[[ T_INTERFACE ]] then do
           return "T_INTERFACE";end end end 
-       if ___conditional___ = 52--[ T_PACKAGE ]-- then do
+       if ___conditional___ = 52--[[ T_PACKAGE ]] then do
           return "T_PACKAGE";end end end 
-       if ___conditional___ = 53--[ T_PRIVATE ]-- then do
+       if ___conditional___ = 53--[[ T_PRIVATE ]] then do
           return "T_PRIVATE";end end end 
-       if ___conditional___ = 54--[ T_PROTECTED ]-- then do
+       if ___conditional___ = 54--[[ T_PROTECTED ]] then do
           return "T_PROTECTED";end end end 
-       if ___conditional___ = 55--[ T_PUBLIC ]-- then do
+       if ___conditional___ = 55--[[ T_PUBLIC ]] then do
           return "T_PUBLIC";end end end 
-       if ___conditional___ = 56--[ T_YIELD ]-- then do
+       if ___conditional___ = 56--[[ T_YIELD ]] then do
           return "T_YIELD";end end end 
-       if ___conditional___ = 57--[ T_DEBUGGER ]-- then do
+       if ___conditional___ = 57--[[ T_DEBUGGER ]] then do
           return "T_DEBUGGER";end end end 
-       if ___conditional___ = 58--[ T_DECLARE ]-- then do
+       if ___conditional___ = 58--[[ T_DECLARE ]] then do
           return "T_DECLARE";end end end 
-       if ___conditional___ = 59--[ T_TYPE ]-- then do
+       if ___conditional___ = 59--[[ T_TYPE ]] then do
           return "T_TYPE";end end end 
-       if ___conditional___ = 60--[ T_OF ]-- then do
+       if ___conditional___ = 60--[[ T_OF ]] then do
           return "T_OF";end end end 
-       if ___conditional___ = 61--[ T_ASYNC ]-- then do
+       if ___conditional___ = 61--[[ T_ASYNC ]] then do
           return "T_ASYNC";end end end 
-       if ___conditional___ = 62--[ T_AWAIT ]-- then do
+       if ___conditional___ = 62--[[ T_AWAIT ]] then do
           return "T_AWAIT";end end end 
-       if ___conditional___ = 63--[ T_RSHIFT3_ASSIGN ]-- then do
+       if ___conditional___ = 63--[[ T_RSHIFT3_ASSIGN ]] then do
           return "T_RSHIFT3_ASSIGN";end end end 
-       if ___conditional___ = 64--[ T_RSHIFT_ASSIGN ]-- then do
+       if ___conditional___ = 64--[[ T_RSHIFT_ASSIGN ]] then do
           return "T_RSHIFT_ASSIGN";end end end 
-       if ___conditional___ = 65--[ T_LSHIFT_ASSIGN ]-- then do
+       if ___conditional___ = 65--[[ T_LSHIFT_ASSIGN ]] then do
           return "T_LSHIFT_ASSIGN";end end end 
-       if ___conditional___ = 66--[ T_BIT_XOR_ASSIGN ]-- then do
+       if ___conditional___ = 66--[[ T_BIT_XOR_ASSIGN ]] then do
           return "T_BIT_XOR_ASSIGN";end end end 
-       if ___conditional___ = 67--[ T_BIT_OR_ASSIGN ]-- then do
+       if ___conditional___ = 67--[[ T_BIT_OR_ASSIGN ]] then do
           return "T_BIT_OR_ASSIGN";end end end 
-       if ___conditional___ = 68--[ T_BIT_AND_ASSIGN ]-- then do
+       if ___conditional___ = 68--[[ T_BIT_AND_ASSIGN ]] then do
           return "T_BIT_AND_ASSIGN";end end end 
-       if ___conditional___ = 69--[ T_MOD_ASSIGN ]-- then do
+       if ___conditional___ = 69--[[ T_MOD_ASSIGN ]] then do
           return "T_MOD_ASSIGN";end end end 
-       if ___conditional___ = 70--[ T_DIV_ASSIGN ]-- then do
+       if ___conditional___ = 70--[[ T_DIV_ASSIGN ]] then do
           return "T_DIV_ASSIGN";end end end 
-       if ___conditional___ = 71--[ T_MULT_ASSIGN ]-- then do
+       if ___conditional___ = 71--[[ T_MULT_ASSIGN ]] then do
           return "T_MULT_ASSIGN";end end end 
-       if ___conditional___ = 72--[ T_EXP_ASSIGN ]-- then do
+       if ___conditional___ = 72--[[ T_EXP_ASSIGN ]] then do
           return "T_EXP_ASSIGN";end end end 
-       if ___conditional___ = 73--[ T_MINUS_ASSIGN ]-- then do
+       if ___conditional___ = 73--[[ T_MINUS_ASSIGN ]] then do
           return "T_MINUS_ASSIGN";end end end 
-       if ___conditional___ = 74--[ T_PLUS_ASSIGN ]-- then do
+       if ___conditional___ = 74--[[ T_PLUS_ASSIGN ]] then do
           return "T_PLUS_ASSIGN";end end end 
-       if ___conditional___ = 75--[ T_ASSIGN ]-- then do
+       if ___conditional___ = 75--[[ T_ASSIGN ]] then do
           return "T_ASSIGN";end end end 
-       if ___conditional___ = 76--[ T_PLING ]-- then do
+       if ___conditional___ = 76--[[ T_PLING ]] then do
           return "T_PLING";end end end 
-       if ___conditional___ = 77--[ T_COLON ]-- then do
+       if ___conditional___ = 77--[[ T_COLON ]] then do
           return "T_COLON";end end end 
-       if ___conditional___ = 78--[ T_OR ]-- then do
+       if ___conditional___ = 78--[[ T_OR ]] then do
           return "T_OR";end end end 
-       if ___conditional___ = 79--[ T_AND ]-- then do
+       if ___conditional___ = 79--[[ T_AND ]] then do
           return "T_AND";end end end 
-       if ___conditional___ = 80--[ T_BIT_OR ]-- then do
+       if ___conditional___ = 80--[[ T_BIT_OR ]] then do
           return "T_BIT_OR";end end end 
-       if ___conditional___ = 81--[ T_BIT_XOR ]-- then do
+       if ___conditional___ = 81--[[ T_BIT_XOR ]] then do
           return "T_BIT_XOR";end end end 
-       if ___conditional___ = 82--[ T_BIT_AND ]-- then do
+       if ___conditional___ = 82--[[ T_BIT_AND ]] then do
           return "T_BIT_AND";end end end 
-       if ___conditional___ = 83--[ T_EQUAL ]-- then do
+       if ___conditional___ = 83--[[ T_EQUAL ]] then do
           return "T_EQUAL";end end end 
-       if ___conditional___ = 84--[ T_NOT_EQUAL ]-- then do
+       if ___conditional___ = 84--[[ T_NOT_EQUAL ]] then do
           return "T_NOT_EQUAL";end end end 
-       if ___conditional___ = 85--[ T_STRICT_EQUAL ]-- then do
+       if ___conditional___ = 85--[[ T_STRICT_EQUAL ]] then do
           return "T_STRICT_EQUAL";end end end 
-       if ___conditional___ = 86--[ T_STRICT_NOT_EQUAL ]-- then do
+       if ___conditional___ = 86--[[ T_STRICT_NOT_EQUAL ]] then do
           return "T_STRICT_NOT_EQUAL";end end end 
-       if ___conditional___ = 87--[ T_LESS_THAN_EQUAL ]-- then do
+       if ___conditional___ = 87--[[ T_LESS_THAN_EQUAL ]] then do
           return "T_LESS_THAN_EQUAL";end end end 
-       if ___conditional___ = 88--[ T_GREATER_THAN_EQUAL ]-- then do
+       if ___conditional___ = 88--[[ T_GREATER_THAN_EQUAL ]] then do
           return "T_GREATER_THAN_EQUAL";end end end 
-       if ___conditional___ = 89--[ T_LESS_THAN ]-- then do
+       if ___conditional___ = 89--[[ T_LESS_THAN ]] then do
           return "T_LESS_THAN";end end end 
-       if ___conditional___ = 90--[ T_GREATER_THAN ]-- then do
+       if ___conditional___ = 90--[[ T_GREATER_THAN ]] then do
           return "T_GREATER_THAN";end end end 
-       if ___conditional___ = 91--[ T_LSHIFT ]-- then do
+       if ___conditional___ = 91--[[ T_LSHIFT ]] then do
           return "T_LSHIFT";end end end 
-       if ___conditional___ = 92--[ T_RSHIFT ]-- then do
+       if ___conditional___ = 92--[[ T_RSHIFT ]] then do
           return "T_RSHIFT";end end end 
-       if ___conditional___ = 93--[ T_RSHIFT3 ]-- then do
+       if ___conditional___ = 93--[[ T_RSHIFT3 ]] then do
           return "T_RSHIFT3";end end end 
-       if ___conditional___ = 94--[ T_PLUS ]-- then do
+       if ___conditional___ = 94--[[ T_PLUS ]] then do
           return "T_PLUS";end end end 
-       if ___conditional___ = 95--[ T_MINUS ]-- then do
+       if ___conditional___ = 95--[[ T_MINUS ]] then do
           return "T_MINUS";end end end 
-       if ___conditional___ = 96--[ T_DIV ]-- then do
+       if ___conditional___ = 96--[[ T_DIV ]] then do
           return "T_DIV";end end end 
-       if ___conditional___ = 97--[ T_MULT ]-- then do
+       if ___conditional___ = 97--[[ T_MULT ]] then do
           return "T_MULT";end end end 
-       if ___conditional___ = 98--[ T_EXP ]-- then do
+       if ___conditional___ = 98--[[ T_EXP ]] then do
           return "T_EXP";end end end 
-       if ___conditional___ = 99--[ T_MOD ]-- then do
+       if ___conditional___ = 99--[[ T_MOD ]] then do
           return "T_MOD";end end end 
-       if ___conditional___ = 100--[ T_NOT ]-- then do
+       if ___conditional___ = 100--[[ T_NOT ]] then do
           return "T_NOT";end end end 
-       if ___conditional___ = 101--[ T_BIT_NOT ]-- then do
+       if ___conditional___ = 101--[[ T_BIT_NOT ]] then do
           return "T_BIT_NOT";end end end 
-       if ___conditional___ = 102--[ T_INCR ]-- then do
+       if ___conditional___ = 102--[[ T_INCR ]] then do
           return "T_INCR";end end end 
-       if ___conditional___ = 103--[ T_DECR ]-- then do
+       if ___conditional___ = 103--[[ T_DECR ]] then do
           return "T_DECR";end end end 
-       if ___conditional___ = 104--[ T_ERROR ]-- then do
+       if ___conditional___ = 104--[[ T_ERROR ]] then do
           return "T_ERROR";end end end 
-       if ___conditional___ = 105--[ T_EOF ]-- then do
+       if ___conditional___ = 105--[[ T_EOF ]] then do
           return "T_EOF";end end end 
-       if ___conditional___ = 106--[ T_JSX_IDENTIFIER ]-- then do
+       if ___conditional___ = 106--[[ T_JSX_IDENTIFIER ]] then do
           return "T_JSX_IDENTIFIER";end end end 
-       if ___conditional___ = 107--[ T_ANY_TYPE ]-- then do
+       if ___conditional___ = 107--[[ T_ANY_TYPE ]] then do
           return "T_ANY_TYPE";end end end 
-       if ___conditional___ = 108--[ T_BOOLEAN_TYPE ]-- then do
+       if ___conditional___ = 108--[[ T_BOOLEAN_TYPE ]] then do
           return "T_BOOLEAN_TYPE";end end end 
-       if ___conditional___ = 109--[ T_NUMBER_TYPE ]-- then do
+       if ___conditional___ = 109--[[ T_NUMBER_TYPE ]] then do
           return "T_NUMBER_TYPE";end end end 
-       if ___conditional___ = 110--[ T_STRING_TYPE ]-- then do
+       if ___conditional___ = 110--[[ T_STRING_TYPE ]] then do
           return "T_STRING_TYPE";end end end 
-       if ___conditional___ = 111--[ T_VOID_TYPE ]-- then do
+       if ___conditional___ = 111--[[ T_VOID_TYPE ]] then do
           return "T_VOID_TYPE";end end end 
        do
       
@@ -1345,17 +1345,17 @@ function token_to_string(param) do
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[ T_NUMBER ]-- then do
+       if ___conditional___ = 0--[[ T_NUMBER ]] then do
           return "T_NUMBER";end end end 
-       if ___conditional___ = 1--[ T_STRING ]-- then do
+       if ___conditional___ = 1--[[ T_STRING ]] then do
           return "T_STRING";end end end 
-       if ___conditional___ = 2--[ T_TEMPLATE_PART ]-- then do
+       if ___conditional___ = 2--[[ T_TEMPLATE_PART ]] then do
           return "T_TEMPLATE_PART";end end end 
-       if ___conditional___ = 3--[ T_REGEXP ]-- then do
+       if ___conditional___ = 3--[[ T_REGEXP ]] then do
           return "T_REGEXP";end end end 
-       if ___conditional___ = 4--[ T_JSX_TEXT ]-- then do
+       if ___conditional___ = 4--[[ T_JSX_TEXT ]] then do
           return "T_JSX_TEXT";end end end 
-       if ___conditional___ = 5--[ T_NUMBER_SINGLETON_TYPE ]-- then do
+       if ___conditional___ = 5--[[ T_NUMBER_SINGLETON_TYPE ]] then do
           return "T_NUMBER_SINGLETON_TYPE";end end end 
        do
       
@@ -1372,7 +1372,7 @@ function yyback(n, lexbuf) do
     pos_bol: currp.pos_bol,
     pos_cnum: currp.pos_cnum - n | 0
   end;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function back(lb) do
@@ -1381,8 +1381,8 @@ function back(lb) do
 end end
 
 empty_lex_state = do
-  lex_errors_acc: --[ [] ]--0,
-  lex_comments_acc: --[ [] ]--0
+  lex_errors_acc: --[[ [] ]]0,
+  lex_comments_acc: --[[ [] ]]0
 end;
 
 function new_lex_env(lex_source, lex_lb, enable_types_in_comments) do
@@ -1404,7 +1404,7 @@ function get_and_clear_state(env) do
         lex_enable_comment_syntax: env.lex_enable_comment_syntax,
         lex_state: empty_lex_state
       end) or env;
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           env$1,
           state
         ];
@@ -1446,20 +1446,20 @@ function get_result_and_clear_state(param) do
   end else do
     local ___conditional___=(lex_token.tag | 0);
     do
-       if ___conditional___ = 2--[ T_TEMPLATE_PART ]-- then do
+       if ___conditional___ = 2--[[ T_TEMPLATE_PART ]] then do
           match$2 = lex_token[0];
-          match$1 = --[ tuple ]--[
+          match$1 = --[[ tuple ]][
             match$2[0],
             match$2[1].literal
           ];end else 
-       if ___conditional___ = 3--[ T_REGEXP ]-- then do
+       if ___conditional___ = 3--[[ T_REGEXP ]] then do
           match$3 = lex_token[0];
-          match$1 = --[ tuple ]--[
+          match$1 = --[[ tuple ]][
             match$3[0],
             "/" .. (match$3[1] .. ("/" .. match$3[2]))
           ];end else 
-       if ___conditional___ = 1--[ T_STRING ]--
-       or ___conditional___ = 4--[ T_JSX_TEXT ]-- then do
+       if ___conditional___ = 1--[[ T_STRING ]]
+       or ___conditional___ = 4--[[ T_JSX_TEXT ]] then do
           exit = 1;end else 
        do end end end end
       else do
@@ -1472,19 +1472,19 @@ function get_result_and_clear_state(param) do
   do
      if ___conditional___ = 1 then do
         match$4 = lex_token[0];
-        match$1 = --[ tuple ]--[
+        match$1 = --[[ tuple ]][
           match$4[0],
           match$4[2]
         ];end else 
      if ___conditional___ = 2 then do
-        match$1 = --[ tuple ]--[
+        match$1 = --[[ tuple ]][
           from_lb(env.lex_source, env.lex_lb),
           Lexing.lexeme(env.lex_lb)
         ];end else 
      do end end end
     
   end
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           env,
           do
             lex_token: lex_token,
@@ -1497,12 +1497,12 @@ function get_result_and_clear_state(param) do
 end end
 
 function lex_error(env, loc, err) do
-  lex_errors_acc_000 = --[ tuple ]--[
+  lex_errors_acc_000 = --[[ tuple ]][
     loc,
     err
   ];
   lex_errors_acc_001 = env.lex_state.lex_errors_acc;
-  lex_errors_acc = --[ :: ]--[
+  lex_errors_acc = --[[ :: ]][
     lex_errors_acc_000,
     lex_errors_acc_001
   ];
@@ -1520,11 +1520,11 @@ function lex_error(env, loc, err) do
 end end
 
 function unexpected_error(env, loc, value) do
-  return lex_error(env, loc, --[ UnexpectedToken ]--Block.__(1, [value]));
+  return lex_error(env, loc, --[[ UnexpectedToken ]]Block.__(1, [value]));
 end end
 
 function unexpected_error_w_suggest(env, loc, value, suggest) do
-  return lex_error(env, loc, --[ UnexpectedTokenWithSuggestion ]--Block.__(2, [
+  return lex_error(env, loc, --[[ UnexpectedTokenWithSuggestion ]]Block.__(2, [
                 value,
                 suggest
               ]));
@@ -1533,8 +1533,8 @@ end end
 function illegal_number(env, lexbuf, word, token) do
   loc = from_lb(env.lex_source, lexbuf);
   yyback(#word, lexbuf);
-  env$1 = lex_error(env, loc, --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"]));
-  return --[ tuple ]--[
+  env$1 = lex_error(env, loc, --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
+  return --[[ tuple ]][
           env$1,
           token
         ];
@@ -1559,14 +1559,14 @@ end end
 
 function start(str) do
   todo = do
-    contents: --[ [] ]--0
+    contents: --[[ [] ]]0
   end;
   $$String.iter((function (c) do
-          todo.contents = --[ :: ]--[
+          todo.contents = --[[ :: ]][
             c,
             todo.contents
           ];
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end), str);
   return do
           negative: false,
@@ -1652,7 +1652,7 @@ function parse_exponent(f) do
           mantissa: f.mantissa,
           exponent: exponent,
           decimal_exponent: f.decimal_exponent,
-          todo: --[ [] ]--0
+          todo: --[[ [] ]]0
         end;
 end end
 
@@ -1691,11 +1691,11 @@ function parse_body(_f) do
         throw No_good;
       end end  end  end 
       ref_char_code;
-      if (c >= --[ "0" ]--48 and c <= --[ "9" ]--57) then do
-        ref_char_code = --[ "0" ]--48;
-      end else if (c >= --[ "A" ]--65 and c <= --[ "F" ]--70) then do
+      if (c >= --[[ "0" ]]48 and c <= --[[ "9" ]]57) then do
+        ref_char_code = --[[ "0" ]]48;
+      end else if (c >= --[[ "A" ]]65 and c <= --[[ "F" ]]70) then do
         ref_char_code = 55;
-      end else if (c >= --[ "a" ]--97 and c <= --[ "f" ]--102) then do
+      end else if (c >= --[[ "a" ]]97 and c <= --[[ "f" ]]102) then do
         ref_char_code = 87;
       end else do
         throw No_good;
@@ -1727,10 +1727,10 @@ function float_of_string(str) do
     if (Sys.win32) then do
       try do
         f = parse_body(parse_hex_symbol(parse_sign(start(str))));
-        if (f.todo ~= --[ [] ]--0) then do
+        if (f.todo ~= --[[ [] ]]0) then do
           throw [
                 Caml_builtin_exceptions.assert_failure,
-                --[ tuple ]--[
+                --[[ tuple ]][
                   "lexer_flow.mll",
                   546,
                   4
@@ -1764,13 +1764,13 @@ end end
 function save_comment(env, start, _end, buf, multiline) do
   loc = btwn(start, _end);
   s = $$Buffer.contents(buf);
-  c = multiline and --[ Block ]--Block.__(0, [s]) or --[ Line ]--Block.__(1, [s]);
-  lex_comments_acc_000 = --[ tuple ]--[
+  c = multiline and --[[ Block ]]Block.__(0, [s]) or --[[ Line ]]Block.__(1, [s]);
+  lex_comments_acc_000 = --[[ tuple ]][
     loc,
     c
   ];
   lex_comments_acc_001 = env.lex_state.lex_comments_acc;
-  lex_comments_acc = --[ :: ]--[
+  lex_comments_acc = --[[ :: ]][
     lex_comments_acc_000,
     lex_comments_acc_001
   ];
@@ -1812,14 +1812,14 @@ function unicode_fix_cols(lb) do
     pos_bol: new_bol,
     pos_cnum: init.pos_cnum
   end;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function oct_to_int(x) do
   if (x > 55 or x < 48) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "lexer_flow.mll",
             604,
             11
@@ -1827,27 +1827,27 @@ function oct_to_int(x) do
         ];
   end
    end 
-  return x - --[ "0" ]--48 | 0;
+  return x - --[[ "0" ]]48 | 0;
 end end
 
 function hexa_to_int(x) do
   if (x >= 65) then do
     if (x >= 97) then do
       if (x < 103) then do
-        return (x - --[ "a" ]--97 | 0) + 10 | 0;
+        return (x - --[[ "a" ]]97 | 0) + 10 | 0;
       end
        end 
     end else if (x < 71) then do
-      return (x - --[ "A" ]--65 | 0) + 10 | 0;
+      return (x - --[[ "A" ]]65 | 0) + 10 | 0;
     end
      end  end 
   end else if (!(x > 57 or x < 48)) then do
-    return x - --[ "0" ]--48 | 0;
+    return x - --[[ "0" ]]48 | 0;
   end
    end  end 
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "lexer_flow.mll",
           610,
           11
@@ -1857,42 +1857,42 @@ end end
 
 function utf16to8(code) do
   if (code >= 65536) then do
-    return --[ :: ]--[
+    return --[[ :: ]][
             Char.chr(240 | (code >>> 18)),
-            --[ :: ]--[
+            --[[ :: ]][
               Char.chr(128 | (code >>> 12) & 63),
-              --[ :: ]--[
+              --[[ :: ]][
                 Char.chr(128 | (code >>> 6) & 63),
-                --[ :: ]--[
+                --[[ :: ]][
                   Char.chr(128 | code & 63),
-                  --[ [] ]--0
+                  --[[ [] ]]0
                 ]
               ]
             ]
           ];
   end else if (code >= 2048) then do
-    return --[ :: ]--[
+    return --[[ :: ]][
             Char.chr(224 | (code >>> 12)),
-            --[ :: ]--[
+            --[[ :: ]][
               Char.chr(128 | (code >>> 6) & 63),
-              --[ :: ]--[
+              --[[ :: ]][
                 Char.chr(128 | code & 63),
-                --[ [] ]--0
+                --[[ [] ]]0
               ]
             ]
           ];
   end else if (code >= 128) then do
-    return --[ :: ]--[
+    return --[[ :: ]][
             Char.chr(192 | (code >>> 6)),
-            --[ :: ]--[
+            --[[ :: ]][
               Char.chr(128 | code & 63),
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ];
   end else do
-    return --[ :: ]--[
+    return --[[ :: ]][
             Char.chr(code),
-            --[ [] ]--0
+            --[[ [] ]]0
           ];
   end end  end  end 
 end end
@@ -1902,11 +1902,11 @@ function mk_num_singleton(number_type, num, neg) do
   if (number_type ~= 0) then do
     local ___conditional___=(number_type - 1 | 0);
     do
-       if ___conditional___ = 0--[ BINARY ]-- then do
+       if ___conditional___ = 0--[[ BINARY ]] then do
           value = Caml_format.caml_int_of_string("0o" .. num);end else 
-       if ___conditional___ = 1--[ LEGACY_OCTAL ]-- then do
+       if ___conditional___ = 1--[[ LEGACY_OCTAL ]] then do
           value = Caml_format.caml_int_of_string(num);end else 
-       if ___conditional___ = 2--[ OCTAL ]-- then do
+       if ___conditional___ = 2--[[ OCTAL ]] then do
           value = float_of_string(num);end else 
        do end end end end
       
@@ -1915,7 +1915,7 @@ function mk_num_singleton(number_type, num, neg) do
     value = Caml_format.caml_int_of_string(num);
   end end 
   value$1 = neg == "" and value or -value;
-  return --[ T_NUMBER_SINGLETON_TYPE ]--Block.__(5, [
+  return --[[ T_NUMBER_SINGLETON_TYPE ]]Block.__(5, [
             number_type,
             value$1
           ]);
@@ -1927,257 +1927,257 @@ type_keywords = Hashtbl.create(undefined, 53);
 
 List.iter((function (param) do
         return Hashtbl.add(keywords, param[0], param[1]);
-      end end), --[ :: ]--[
-      --[ tuple ]--[
+      end end), --[[ :: ]][
+      --[[ tuple ]][
         "function",
-        --[ T_FUNCTION ]--13
+        --[[ T_FUNCTION ]]13
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "if",
-          --[ T_IF ]--14
+          --[[ T_IF ]]14
         ],
-        --[ :: ]--[
-          --[ tuple ]--[
+        --[[ :: ]][
+          --[[ tuple ]][
             "in",
-            --[ T_IN ]--15
+            --[[ T_IN ]]15
           ],
-          --[ :: ]--[
-            --[ tuple ]--[
+          --[[ :: ]][
+            --[[ tuple ]][
               "instanceof",
-              --[ T_INSTANCEOF ]--16
+              --[[ T_INSTANCEOF ]]16
             ],
-            --[ :: ]--[
-              --[ tuple ]--[
+            --[[ :: ]][
+              --[[ tuple ]][
                 "return",
-                --[ T_RETURN ]--17
+                --[[ T_RETURN ]]17
               ],
-              --[ :: ]--[
-                --[ tuple ]--[
+              --[[ :: ]][
+                --[[ tuple ]][
                   "switch",
-                  --[ T_SWITCH ]--18
+                  --[[ T_SWITCH ]]18
                 ],
-                --[ :: ]--[
-                  --[ tuple ]--[
+                --[[ :: ]][
+                  --[[ tuple ]][
                     "this",
-                    --[ T_THIS ]--19
+                    --[[ T_THIS ]]19
                   ],
-                  --[ :: ]--[
-                    --[ tuple ]--[
+                  --[[ :: ]][
+                    --[[ tuple ]][
                       "throw",
-                      --[ T_THROW ]--20
+                      --[[ T_THROW ]]20
                     ],
-                    --[ :: ]--[
-                      --[ tuple ]--[
+                    --[[ :: ]][
+                      --[[ tuple ]][
                         "try",
-                        --[ T_TRY ]--21
+                        --[[ T_TRY ]]21
                       ],
-                      --[ :: ]--[
-                        --[ tuple ]--[
+                      --[[ :: ]][
+                        --[[ tuple ]][
                           "var",
-                          --[ T_VAR ]--22
+                          --[[ T_VAR ]]22
                         ],
-                        --[ :: ]--[
-                          --[ tuple ]--[
+                        --[[ :: ]][
+                          --[[ tuple ]][
                             "while",
-                            --[ T_WHILE ]--23
+                            --[[ T_WHILE ]]23
                           ],
-                          --[ :: ]--[
-                            --[ tuple ]--[
+                          --[[ :: ]][
+                            --[[ tuple ]][
                               "with",
-                              --[ T_WITH ]--24
+                              --[[ T_WITH ]]24
                             ],
-                            --[ :: ]--[
-                              --[ tuple ]--[
+                            --[[ :: ]][
+                              --[[ tuple ]][
                                 "const",
-                                --[ T_CONST ]--25
+                                --[[ T_CONST ]]25
                               ],
-                              --[ :: ]--[
-                                --[ tuple ]--[
+                              --[[ :: ]][
+                                --[[ tuple ]][
                                   "let",
-                                  --[ T_LET ]--26
+                                  --[[ T_LET ]]26
                                 ],
-                                --[ :: ]--[
-                                  --[ tuple ]--[
+                                --[[ :: ]][
+                                  --[[ tuple ]][
                                     "null",
-                                    --[ T_NULL ]--27
+                                    --[[ T_NULL ]]27
                                   ],
-                                  --[ :: ]--[
-                                    --[ tuple ]--[
+                                  --[[ :: ]][
+                                    --[[ tuple ]][
                                       "false",
-                                      --[ T_FALSE ]--28
+                                      --[[ T_FALSE ]]28
                                     ],
-                                    --[ :: ]--[
-                                      --[ tuple ]--[
+                                    --[[ :: ]][
+                                      --[[ tuple ]][
                                         "true",
-                                        --[ T_TRUE ]--29
+                                        --[[ T_TRUE ]]29
                                       ],
-                                      --[ :: ]--[
-                                        --[ tuple ]--[
+                                      --[[ :: ]][
+                                        --[[ tuple ]][
                                           "break",
-                                          --[ T_BREAK ]--30
+                                          --[[ T_BREAK ]]30
                                         ],
-                                        --[ :: ]--[
-                                          --[ tuple ]--[
+                                        --[[ :: ]][
+                                          --[[ tuple ]][
                                             "case",
-                                            --[ T_CASE ]--31
+                                            --[[ T_CASE ]]31
                                           ],
-                                          --[ :: ]--[
-                                            --[ tuple ]--[
+                                          --[[ :: ]][
+                                            --[[ tuple ]][
                                               "catch",
-                                              --[ T_CATCH ]--32
+                                              --[[ T_CATCH ]]32
                                             ],
-                                            --[ :: ]--[
-                                              --[ tuple ]--[
+                                            --[[ :: ]][
+                                              --[[ tuple ]][
                                                 "continue",
-                                                --[ T_CONTINUE ]--33
+                                                --[[ T_CONTINUE ]]33
                                               ],
-                                              --[ :: ]--[
-                                                --[ tuple ]--[
+                                              --[[ :: ]][
+                                                --[[ tuple ]][
                                                   "default",
-                                                  --[ T_DEFAULT ]--34
+                                                  --[[ T_DEFAULT ]]34
                                                 ],
-                                                --[ :: ]--[
-                                                  --[ tuple ]--[
+                                                --[[ :: ]][
+                                                  --[[ tuple ]][
                                                     "do",
-                                                    --[ T_DO ]--35
+                                                    --[[ T_DO ]]35
                                                   ],
-                                                  --[ :: ]--[
-                                                    --[ tuple ]--[
+                                                  --[[ :: ]][
+                                                    --[[ tuple ]][
                                                       "finally",
-                                                      --[ T_FINALLY ]--36
+                                                      --[[ T_FINALLY ]]36
                                                     ],
-                                                    --[ :: ]--[
-                                                      --[ tuple ]--[
+                                                    --[[ :: ]][
+                                                      --[[ tuple ]][
                                                         "for",
-                                                        --[ T_FOR ]--37
+                                                        --[[ T_FOR ]]37
                                                       ],
-                                                      --[ :: ]--[
-                                                        --[ tuple ]--[
+                                                      --[[ :: ]][
+                                                        --[[ tuple ]][
                                                           "class",
-                                                          --[ T_CLASS ]--38
+                                                          --[[ T_CLASS ]]38
                                                         ],
-                                                        --[ :: ]--[
-                                                          --[ tuple ]--[
+                                                        --[[ :: ]][
+                                                          --[[ tuple ]][
                                                             "extends",
-                                                            --[ T_EXTENDS ]--39
+                                                            --[[ T_EXTENDS ]]39
                                                           ],
-                                                          --[ :: ]--[
-                                                            --[ tuple ]--[
+                                                          --[[ :: ]][
+                                                            --[[ tuple ]][
                                                               "static",
-                                                              --[ T_STATIC ]--40
+                                                              --[[ T_STATIC ]]40
                                                             ],
-                                                            --[ :: ]--[
-                                                              --[ tuple ]--[
+                                                            --[[ :: ]][
+                                                              --[[ tuple ]][
                                                                 "else",
-                                                                --[ T_ELSE ]--41
+                                                                --[[ T_ELSE ]]41
                                                               ],
-                                                              --[ :: ]--[
-                                                                --[ tuple ]--[
+                                                              --[[ :: ]][
+                                                                --[[ tuple ]][
                                                                   "new",
-                                                                  --[ T_NEW ]--42
+                                                                  --[[ T_NEW ]]42
                                                                 ],
-                                                                --[ :: ]--[
-                                                                  --[ tuple ]--[
+                                                                --[[ :: ]][
+                                                                  --[[ tuple ]][
                                                                     "delete",
-                                                                    --[ T_DELETE ]--43
+                                                                    --[[ T_DELETE ]]43
                                                                   ],
-                                                                  --[ :: ]--[
-                                                                    --[ tuple ]--[
+                                                                  --[[ :: ]][
+                                                                    --[[ tuple ]][
                                                                       "typeof",
-                                                                      --[ T_TYPEOF ]--44
+                                                                      --[[ T_TYPEOF ]]44
                                                                     ],
-                                                                    --[ :: ]--[
-                                                                      --[ tuple ]--[
+                                                                    --[[ :: ]][
+                                                                      --[[ tuple ]][
                                                                         "void",
-                                                                        --[ T_VOID ]--45
+                                                                        --[[ T_VOID ]]45
                                                                       ],
-                                                                      --[ :: ]--[
-                                                                        --[ tuple ]--[
+                                                                      --[[ :: ]][
+                                                                        --[[ tuple ]][
                                                                           "enum",
-                                                                          --[ T_ENUM ]--46
+                                                                          --[[ T_ENUM ]]46
                                                                         ],
-                                                                        --[ :: ]--[
-                                                                          --[ tuple ]--[
+                                                                        --[[ :: ]][
+                                                                          --[[ tuple ]][
                                                                             "export",
-                                                                            --[ T_EXPORT ]--47
+                                                                            --[[ T_EXPORT ]]47
                                                                           ],
-                                                                          --[ :: ]--[
-                                                                            --[ tuple ]--[
+                                                                          --[[ :: ]][
+                                                                            --[[ tuple ]][
                                                                               "import",
-                                                                              --[ T_IMPORT ]--48
+                                                                              --[[ T_IMPORT ]]48
                                                                             ],
-                                                                            --[ :: ]--[
-                                                                              --[ tuple ]--[
+                                                                            --[[ :: ]][
+                                                                              --[[ tuple ]][
                                                                                 "super",
-                                                                                --[ T_SUPER ]--49
+                                                                                --[[ T_SUPER ]]49
                                                                               ],
-                                                                              --[ :: ]--[
-                                                                                --[ tuple ]--[
+                                                                              --[[ :: ]][
+                                                                                --[[ tuple ]][
                                                                                   "implements",
-                                                                                  --[ T_IMPLEMENTS ]--50
+                                                                                  --[[ T_IMPLEMENTS ]]50
                                                                                 ],
-                                                                                --[ :: ]--[
-                                                                                  --[ tuple ]--[
+                                                                                --[[ :: ]][
+                                                                                  --[[ tuple ]][
                                                                                     "interface",
-                                                                                    --[ T_INTERFACE ]--51
+                                                                                    --[[ T_INTERFACE ]]51
                                                                                   ],
-                                                                                  --[ :: ]--[
-                                                                                    --[ tuple ]--[
+                                                                                  --[[ :: ]][
+                                                                                    --[[ tuple ]][
                                                                                       "package",
-                                                                                      --[ T_PACKAGE ]--52
+                                                                                      --[[ T_PACKAGE ]]52
                                                                                     ],
-                                                                                    --[ :: ]--[
-                                                                                      --[ tuple ]--[
+                                                                                    --[[ :: ]][
+                                                                                      --[[ tuple ]][
                                                                                         "private",
-                                                                                        --[ T_PRIVATE ]--53
+                                                                                        --[[ T_PRIVATE ]]53
                                                                                       ],
-                                                                                      --[ :: ]--[
-                                                                                        --[ tuple ]--[
+                                                                                      --[[ :: ]][
+                                                                                        --[[ tuple ]][
                                                                                           "protected",
-                                                                                          --[ T_PROTECTED ]--54
+                                                                                          --[[ T_PROTECTED ]]54
                                                                                         ],
-                                                                                        --[ :: ]--[
-                                                                                          --[ tuple ]--[
+                                                                                        --[[ :: ]][
+                                                                                          --[[ tuple ]][
                                                                                             "public",
-                                                                                            --[ T_PUBLIC ]--55
+                                                                                            --[[ T_PUBLIC ]]55
                                                                                           ],
-                                                                                          --[ :: ]--[
-                                                                                            --[ tuple ]--[
+                                                                                          --[[ :: ]][
+                                                                                            --[[ tuple ]][
                                                                                               "yield",
-                                                                                              --[ T_YIELD ]--56
+                                                                                              --[[ T_YIELD ]]56
                                                                                             ],
-                                                                                            --[ :: ]--[
-                                                                                              --[ tuple ]--[
+                                                                                            --[[ :: ]][
+                                                                                              --[[ tuple ]][
                                                                                                 "debugger",
-                                                                                                --[ T_DEBUGGER ]--57
+                                                                                                --[[ T_DEBUGGER ]]57
                                                                                               ],
-                                                                                              --[ :: ]--[
-                                                                                                --[ tuple ]--[
+                                                                                              --[[ :: ]][
+                                                                                                --[[ tuple ]][
                                                                                                   "declare",
-                                                                                                  --[ T_DECLARE ]--58
+                                                                                                  --[[ T_DECLARE ]]58
                                                                                                 ],
-                                                                                                --[ :: ]--[
-                                                                                                  --[ tuple ]--[
+                                                                                                --[[ :: ]][
+                                                                                                  --[[ tuple ]][
                                                                                                     "type",
-                                                                                                    --[ T_TYPE ]--59
+                                                                                                    --[[ T_TYPE ]]59
                                                                                                   ],
-                                                                                                  --[ :: ]--[
-                                                                                                    --[ tuple ]--[
+                                                                                                  --[[ :: ]][
+                                                                                                    --[[ tuple ]][
                                                                                                       "of",
-                                                                                                      --[ T_OF ]--60
+                                                                                                      --[[ T_OF ]]60
                                                                                                     ],
-                                                                                                    --[ :: ]--[
-                                                                                                      --[ tuple ]--[
+                                                                                                    --[[ :: ]][
+                                                                                                      --[[ tuple ]][
                                                                                                         "async",
-                                                                                                        --[ T_ASYNC ]--61
+                                                                                                        --[[ T_ASYNC ]]61
                                                                                                       ],
-                                                                                                      --[ :: ]--[
-                                                                                                        --[ tuple ]--[
+                                                                                                      --[[ :: ]][
+                                                                                                        --[[ tuple ]][
                                                                                                           "await",
-                                                                                                          --[ T_AWAIT ]--62
+                                                                                                          --[[ T_AWAIT ]]62
                                                                                                         ],
-                                                                                                        --[ [] ]--0
+                                                                                                        --[[ [] ]]0
                                                                                                       ]
                                                                                                     ]
                                                                                                   ]
@@ -2231,62 +2231,62 @@ List.iter((function (param) do
 
 List.iter((function (param) do
         return Hashtbl.add(type_keywords, param[0], param[1]);
-      end end), --[ :: ]--[
-      --[ tuple ]--[
+      end end), --[[ :: ]][
+      --[[ tuple ]][
         "static",
-        --[ T_STATIC ]--40
+        --[[ T_STATIC ]]40
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "typeof",
-          --[ T_TYPEOF ]--44
+          --[[ T_TYPEOF ]]44
         ],
-        --[ :: ]--[
-          --[ tuple ]--[
+        --[[ :: ]][
+          --[[ tuple ]][
             "any",
-            --[ T_ANY_TYPE ]--107
+            --[[ T_ANY_TYPE ]]107
           ],
-          --[ :: ]--[
-            --[ tuple ]--[
+          --[[ :: ]][
+            --[[ tuple ]][
               "bool",
-              --[ T_BOOLEAN_TYPE ]--108
+              --[[ T_BOOLEAN_TYPE ]]108
             ],
-            --[ :: ]--[
-              --[ tuple ]--[
+            --[[ :: ]][
+              --[[ tuple ]][
                 "boolean",
-                --[ T_BOOLEAN_TYPE ]--108
+                --[[ T_BOOLEAN_TYPE ]]108
               ],
-              --[ :: ]--[
-                --[ tuple ]--[
+              --[[ :: ]][
+                --[[ tuple ]][
                   "true",
-                  --[ T_TRUE ]--29
+                  --[[ T_TRUE ]]29
                 ],
-                --[ :: ]--[
-                  --[ tuple ]--[
+                --[[ :: ]][
+                  --[[ tuple ]][
                     "false",
-                    --[ T_FALSE ]--28
+                    --[[ T_FALSE ]]28
                   ],
-                  --[ :: ]--[
-                    --[ tuple ]--[
+                  --[[ :: ]][
+                    --[[ tuple ]][
                       "number",
-                      --[ T_NUMBER_TYPE ]--109
+                      --[[ T_NUMBER_TYPE ]]109
                     ],
-                    --[ :: ]--[
-                      --[ tuple ]--[
+                    --[[ :: ]][
+                      --[[ tuple ]][
                         "string",
-                        --[ T_STRING_TYPE ]--110
+                        --[[ T_STRING_TYPE ]]110
                       ],
-                      --[ :: ]--[
-                        --[ tuple ]--[
+                      --[[ :: ]][
+                        --[[ tuple ]][
                           "void",
-                          --[ T_VOID_TYPE ]--111
+                          --[[ T_VOID_TYPE ]]111
                         ],
-                        --[ :: ]--[
-                          --[ tuple ]--[
+                        --[[ :: ]][
+                          --[[ tuple ]][
                             "null",
-                            --[ T_NULL ]--27
+                            --[[ T_NULL ]]27
                           ],
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ]
                     ]
@@ -2327,7 +2327,7 @@ function token(env, lexbuf) do
           Lexing.new_line(lexbuf$1);
           return token(env$1, lexbuf$1);end end end 
        if ___conditional___ = 1 then do
-          env$2 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"]));
+          env$2 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
           return token(env$2, lexbuf$1);end end end 
        if ___conditional___ = 2 then do
           unicode_fix_cols(lexbuf$1);
@@ -2352,9 +2352,9 @@ function token(env, lexbuf) do
             end end 
             env$5 = in_comment_syntax(true, env$4);
             if (escape_type == ":") then do
-              return --[ tuple ]--[
+              return --[[ tuple ]][
                       env$5,
-                      --[ T_COLON ]--77
+                      --[[ T_COLON ]]77
                     ];
             end else do
               return token(env$5, lexbuf$1);
@@ -2374,9 +2374,9 @@ function token(env, lexbuf) do
             return token(env$7, lexbuf$1);
           end else do
             yyback(1, lexbuf$1);
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     env$1,
-                    --[ T_MULT ]--97
+                    --[[ T_MULT ]]97
                   ];
           end end end end end 
        if ___conditional___ = 6 then do
@@ -2390,9 +2390,9 @@ function token(env, lexbuf) do
             match$3 = line_comment(env$1, $$Buffer.create(127), lexbuf$1);
             return token(match$3[0], lexbuf$1);
           end else do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     env$1,
-                    --[ T_ERROR ]--104
+                    --[[ T_ERROR ]]104
                   ];
           end end end end end 
        if ___conditional___ = 8 then do
@@ -2402,9 +2402,9 @@ function token(env, lexbuf) do
           raw = $$Buffer.create(127);
           $$Buffer.add_char(raw, quote);
           match$4 = string_quote(env$1, quote, buf$3, raw, false, lexbuf$1);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match$4[0],
-                  --[ T_STRING ]--Block.__(1, [--[ tuple ]--[
+                  --[[ T_STRING ]]Block.__(1, [--[[ tuple ]][
                         btwn(start$3, match$4[1]),
                         $$Buffer.contents(buf$3),
                         $$Buffer.contents(raw),
@@ -2418,9 +2418,9 @@ function token(env, lexbuf) do
           $$Buffer.add_string(literal, Lexing.lexeme(lexbuf$1));
           start$4 = from_lb(env$1.lex_source, lexbuf$1);
           match$5 = template_part(env$1, start$4, cooked, raw$1, literal, lexbuf$1);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match$5[0],
-                  --[ T_TEMPLATE_PART ]--Block.__(2, [--[ tuple ]--[
+                  --[[ T_TEMPLATE_PART ]]Block.__(2, [--[[ tuple ]][
                         match$5[1],
                         do
                           cooked: $$Buffer.contents(cooked),
@@ -2432,27 +2432,27 @@ function token(env, lexbuf) do
                 ];end end end 
        if ___conditional___ = 10 then do
           w = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
-          return illegal_number(env$1, lexbuf$1, w, --[ T_NUMBER ]--Block.__(0, [--[ BINARY ]--0]));end end end 
+          return illegal_number(env$1, lexbuf$1, w, --[[ T_NUMBER ]]Block.__(0, [--[[ BINARY ]]0]));end end end 
        if ___conditional___ = 11 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_NUMBER ]--Block.__(0, [--[ BINARY ]--0])
+                  --[[ T_NUMBER ]]Block.__(0, [--[[ BINARY ]]0])
                 ];end end end 
        if ___conditional___ = 12 then do
           w$1 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
-          return illegal_number(env$1, lexbuf$1, w$1, --[ T_NUMBER ]--Block.__(0, [--[ OCTAL ]--2]));end end end 
+          return illegal_number(env$1, lexbuf$1, w$1, --[[ T_NUMBER ]]Block.__(0, [--[[ OCTAL ]]2]));end end end 
        if ___conditional___ = 13 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_NUMBER ]--Block.__(0, [--[ OCTAL ]--2])
+                  --[[ T_NUMBER ]]Block.__(0, [--[[ OCTAL ]]2])
                 ];end end end 
        if ___conditional___ = 14 then do
           w$2 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
-          return illegal_number(env$1, lexbuf$1, w$2, --[ T_NUMBER ]--Block.__(0, [--[ LEGACY_OCTAL ]--1]));end end end 
+          return illegal_number(env$1, lexbuf$1, w$2, --[[ T_NUMBER ]]Block.__(0, [--[[ LEGACY_OCTAL ]]1]));end end end 
        if ___conditional___ = 15 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_NUMBER ]--Block.__(0, [--[ LEGACY_OCTAL ]--1])
+                  --[[ T_NUMBER ]]Block.__(0, [--[[ LEGACY_OCTAL ]]1])
                 ];end end end 
        if ___conditional___ = 16
        or ___conditional___ = 18
@@ -2460,311 +2460,311 @@ function token(env, lexbuf) do
        or ___conditional___ = 17
        or ___conditional___ = 19
        or ___conditional___ = 21 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_NUMBER ]--Block.__(0, [--[ NORMAL ]--3])
+                  --[[ T_NUMBER ]]Block.__(0, [--[[ NORMAL ]]3])
                 ];end end end 
        if ___conditional___ = 22 then do
           word = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
           unicode_fix_cols(lexbuf$1);
           try do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     env$1,
                     Hashtbl.find(keywords, word)
                   ];
           end
           catch (exn)do
             if (exn == Caml_builtin_exceptions.not_found) then do
-              return --[ tuple ]--[
+              return --[[ tuple ]][
                       env$1,
-                      --[ T_IDENTIFIER ]--0
+                      --[[ T_IDENTIFIER ]]0
                     ];
             end else do
               throw exn;
             end end 
           endend end end 
        if ___conditional___ = 23 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LCURLY ]--1
+                  --[[ T_LCURLY ]]1
                 ];end end end 
        if ___conditional___ = 24 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_RCURLY ]--2
+                  --[[ T_RCURLY ]]2
                 ];end end end 
        if ___conditional___ = 25 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LPAREN ]--3
+                  --[[ T_LPAREN ]]3
                 ];end end end 
        if ___conditional___ = 26 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_RPAREN ]--4
+                  --[[ T_RPAREN ]]4
                 ];end end end 
        if ___conditional___ = 27 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LBRACKET ]--5
+                  --[[ T_LBRACKET ]]5
                 ];end end end 
        if ___conditional___ = 28 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_RBRACKET ]--6
+                  --[[ T_RBRACKET ]]6
                 ];end end end 
        if ___conditional___ = 29 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_ELLIPSIS ]--11
+                  --[[ T_ELLIPSIS ]]11
                 ];end end end 
        if ___conditional___ = 30 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_PERIOD ]--9
+                  --[[ T_PERIOD ]]9
                 ];end end end 
        if ___conditional___ = 31 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_SEMICOLON ]--7
+                  --[[ T_SEMICOLON ]]7
                 ];end end end 
        if ___conditional___ = 32 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_COMMA ]--8
+                  --[[ T_COMMA ]]8
                 ];end end end 
        if ___conditional___ = 33 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_COLON ]--77
+                  --[[ T_COLON ]]77
                 ];end end end 
        if ___conditional___ = 34 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_PLING ]--76
+                  --[[ T_PLING ]]76
                 ];end end end 
        if ___conditional___ = 35 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_AND ]--79
+                  --[[ T_AND ]]79
                 ];end end end 
        if ___conditional___ = 36 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_OR ]--78
+                  --[[ T_OR ]]78
                 ];end end end 
        if ___conditional___ = 37 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_STRICT_EQUAL ]--85
+                  --[[ T_STRICT_EQUAL ]]85
                 ];end end end 
        if ___conditional___ = 38 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_STRICT_NOT_EQUAL ]--86
+                  --[[ T_STRICT_NOT_EQUAL ]]86
                 ];end end end 
        if ___conditional___ = 39 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LESS_THAN_EQUAL ]--87
+                  --[[ T_LESS_THAN_EQUAL ]]87
                 ];end end end 
        if ___conditional___ = 40 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_GREATER_THAN_EQUAL ]--88
+                  --[[ T_GREATER_THAN_EQUAL ]]88
                 ];end end end 
        if ___conditional___ = 41 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_EQUAL ]--83
+                  --[[ T_EQUAL ]]83
                 ];end end end 
        if ___conditional___ = 42 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_NOT_EQUAL ]--84
+                  --[[ T_NOT_EQUAL ]]84
                 ];end end end 
        if ___conditional___ = 43 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_INCR ]--102
+                  --[[ T_INCR ]]102
                 ];end end end 
        if ___conditional___ = 44 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_DECR ]--103
+                  --[[ T_DECR ]]103
                 ];end end end 
        if ___conditional___ = 45 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LSHIFT_ASSIGN ]--65
+                  --[[ T_LSHIFT_ASSIGN ]]65
                 ];end end end 
        if ___conditional___ = 46 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LSHIFT ]--91
+                  --[[ T_LSHIFT ]]91
                 ];end end end 
        if ___conditional___ = 47 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_RSHIFT_ASSIGN ]--64
+                  --[[ T_RSHIFT_ASSIGN ]]64
                 ];end end end 
        if ___conditional___ = 48 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_RSHIFT3_ASSIGN ]--63
+                  --[[ T_RSHIFT3_ASSIGN ]]63
                 ];end end end 
        if ___conditional___ = 49 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_RSHIFT3 ]--93
+                  --[[ T_RSHIFT3 ]]93
                 ];end end end 
        if ___conditional___ = 50 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_RSHIFT ]--92
+                  --[[ T_RSHIFT ]]92
                 ];end end end 
        if ___conditional___ = 51 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_PLUS_ASSIGN ]--74
+                  --[[ T_PLUS_ASSIGN ]]74
                 ];end end end 
        if ___conditional___ = 52 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_MINUS_ASSIGN ]--73
+                  --[[ T_MINUS_ASSIGN ]]73
                 ];end end end 
        if ___conditional___ = 53 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_MULT_ASSIGN ]--71
+                  --[[ T_MULT_ASSIGN ]]71
                 ];end end end 
        if ___conditional___ = 54 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_EXP_ASSIGN ]--72
+                  --[[ T_EXP_ASSIGN ]]72
                 ];end end end 
        if ___conditional___ = 55 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_MOD_ASSIGN ]--69
+                  --[[ T_MOD_ASSIGN ]]69
                 ];end end end 
        if ___conditional___ = 56 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_BIT_AND_ASSIGN ]--68
+                  --[[ T_BIT_AND_ASSIGN ]]68
                 ];end end end 
        if ___conditional___ = 57 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_BIT_OR_ASSIGN ]--67
+                  --[[ T_BIT_OR_ASSIGN ]]67
                 ];end end end 
        if ___conditional___ = 58 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_BIT_XOR_ASSIGN ]--66
+                  --[[ T_BIT_XOR_ASSIGN ]]66
                 ];end end end 
        if ___conditional___ = 59 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LESS_THAN ]--89
+                  --[[ T_LESS_THAN ]]89
                 ];end end end 
        if ___conditional___ = 60 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_GREATER_THAN ]--90
+                  --[[ T_GREATER_THAN ]]90
                 ];end end end 
        if ___conditional___ = 61 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_PLUS ]--94
+                  --[[ T_PLUS ]]94
                 ];end end end 
        if ___conditional___ = 62 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_MINUS ]--95
+                  --[[ T_MINUS ]]95
                 ];end end end 
        if ___conditional___ = 63 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_MULT ]--97
+                  --[[ T_MULT ]]97
                 ];end end end 
        if ___conditional___ = 64 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_EXP ]--98
+                  --[[ T_EXP ]]98
                 ];end end end 
        if ___conditional___ = 65 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_MOD ]--99
+                  --[[ T_MOD ]]99
                 ];end end end 
        if ___conditional___ = 66 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_BIT_OR ]--80
+                  --[[ T_BIT_OR ]]80
                 ];end end end 
        if ___conditional___ = 67 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_BIT_AND ]--82
+                  --[[ T_BIT_AND ]]82
                 ];end end end 
        if ___conditional___ = 68 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_BIT_XOR ]--81
+                  --[[ T_BIT_XOR ]]81
                 ];end end end 
        if ___conditional___ = 69 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_NOT ]--100
+                  --[[ T_NOT ]]100
                 ];end end end 
        if ___conditional___ = 70 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_BIT_NOT ]--101
+                  --[[ T_BIT_NOT ]]101
                 ];end end end 
        if ___conditional___ = 71 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_ASSIGN ]--75
+                  --[[ T_ASSIGN ]]75
                 ];end end end 
        if ___conditional___ = 72 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_ARROW ]--10
+                  --[[ T_ARROW ]]10
                 ];end end end 
        if ___conditional___ = 73 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_DIV_ASSIGN ]--70
+                  --[[ T_DIV_ASSIGN ]]70
                 ];end end end 
        if ___conditional___ = 74 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_DIV ]--96
+                  --[[ T_DIV ]]96
                 ];end end end 
        if ___conditional___ = 75 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_AT ]--12
+                  --[[ T_AT ]]12
                 ];end end end 
        if ___conditional___ = 76 then do
           env$9;
           if (env$1.lex_in_comment_syntax) then do
             loc$1 = from_lb(env$1.lex_source, lexbuf$1);
-            env$9 = lex_error(env$1, loc$1, --[ UnexpectedEOS ]--4);
+            env$9 = lex_error(env$1, loc$1, --[[ UnexpectedEOS ]]4);
           end else do
             env$9 = env$1;
           end end 
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$9,
-                  --[ T_EOF ]--105
+                  --[[ T_EOF ]]105
                 ];end end end 
        if ___conditional___ = 77 then do
-          env$10 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"]));
-          return --[ tuple ]--[
+          env$10 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
+          return --[[ tuple ]][
                   env$10,
-                  --[ T_ERROR ]--104
+                  --[[ T_ERROR ]]104
                 ];end end end 
        do
       else do
@@ -2775,7 +2775,7 @@ function token(env, lexbuf) do
         
     end
     w$3 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
-    return illegal_number(env$1, lexbuf$1, w$3, --[ T_NUMBER ]--Block.__(0, [--[ NORMAL ]--3]));
+    return illegal_number(env$1, lexbuf$1, w$3, --[[ T_NUMBER ]]Block.__(0, [--[[ NORMAL ]]3]));
   end;
 end end
 
@@ -2791,15 +2791,15 @@ function regexp_body(env, buf, lexbuf) do
     do
        if ___conditional___ = 0 then do
           loc = from_lb(env$1.lex_source, lexbuf$1);
-          env$2 = lex_error(env$1, loc, --[ UnterminatedRegExp ]--13);
-          return --[ tuple ]--[
+          env$2 = lex_error(env$1, loc, --[[ UnterminatedRegExp ]]13);
+          return --[[ tuple ]][
                   env$2,
                   ""
                 ];end end end 
        if ___conditional___ = 1 then do
           loc$1 = from_lb(env$1.lex_source, lexbuf$1);
-          env$3 = lex_error(env$1, loc$1, --[ UnterminatedRegExp ]--13);
-          return --[ tuple ]--[
+          env$3 = lex_error(env$1, loc$1, --[[ UnterminatedRegExp ]]13);
+          return --[[ tuple ]][
                   env$3,
                   ""
                 ];end end end 
@@ -2809,12 +2809,12 @@ function regexp_body(env, buf, lexbuf) do
           return regexp_body(env$1, buf$1, lexbuf$1);end end end 
        if ___conditional___ = 3 then do
           flags = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos + 1 | 0, lexbuf$1.lex_curr_pos);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   flags
                 ];end end end 
        if ___conditional___ = 4 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   ""
                 ];end end end 
@@ -2825,8 +2825,8 @@ function regexp_body(env, buf, lexbuf) do
           return regexp_body(env$4, buf$1, lexbuf$1);end end end 
        if ___conditional___ = 6 then do
           loc$2 = from_lb(env$1.lex_source, lexbuf$1);
-          env$5 = lex_error(env$1, loc$2, --[ UnterminatedRegExp ]--13);
-          return --[ tuple ]--[
+          env$5 = lex_error(env$1, loc$2, --[[ UnterminatedRegExp ]]13);
+          return --[[ tuple ]][
                   env$5,
                   ""
                 ];end end end 
@@ -2892,7 +2892,7 @@ function line_comment(env, buf, lexbuf) do
     local ___conditional___=(__ocaml_lex_state$1);
     do
        if ___conditional___ = 0 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   from_lb(env$1.lex_source, lexbuf$1)
                 ];end end end 
@@ -2908,7 +2908,7 @@ function line_comment(env, buf, lexbuf) do
             column: _end_column,
             offset: _end_offset
           end;
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   do
                     source: match.source,
@@ -2942,25 +2942,25 @@ function comment(env, buf, lexbuf) do
     local ___conditional___=(__ocaml_lex_state$1);
     do
        if ___conditional___ = 0 then do
-          env$2 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"]));
-          return --[ tuple ]--[
+          env$2 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
+          return --[[ tuple ]][
                   env$2,
                   from_lb(env$2.lex_source, lexbuf$1)
                 ];end end end 
        if ___conditional___ = 1 then do
           Lexing.new_line(lexbuf$1);
-          $$Buffer.add_char(buf$1, --[ "\n" ]--10);
+          $$Buffer.add_char(buf$1, --[[ "\n" ]]10);
           return comment(env$1, buf$1, lexbuf$1);end end end 
        if ___conditional___ = 2 then do
           loc = from_lb(env$1.lex_source, lexbuf$1);
           env$3 = env$1.lex_in_comment_syntax and unexpected_error_w_suggest(env$1, loc, "]--", "]--") or env$1;
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$3,
                   loc
                 ];end end end 
        if ___conditional___ = 3 then do
           if (env$1.lex_in_comment_syntax) then do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     env$1,
                     from_lb(env$1.lex_source, lexbuf$1)
                   ];
@@ -2997,29 +2997,29 @@ function template_part(env, start, cooked, raw, literal, lexbuf) do
     local ___conditional___=(__ocaml_lex_state$1);
     do
        if ___conditional___ = 0 then do
-          env$2 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"]));
-          return --[ tuple ]--[
+          env$2 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
+          return --[[ tuple ]][
                   env$2,
                   btwn(start$1, from_lb(env$2.lex_source, lexbuf$1)),
                   true
                 ];end end end 
        if ___conditional___ = 1 then do
-          $$Buffer.add_char(literal$1, --[ "`" ]--96);
-          return --[ tuple ]--[
+          $$Buffer.add_char(literal$1, --[[ "`" ]]96);
+          return --[[ tuple ]][
                   env$1,
                   btwn(start$1, from_lb(env$1.lex_source, lexbuf$1)),
                   true
                 ];end end end 
        if ___conditional___ = 2 then do
           $$Buffer.add_string(literal$1, "${");
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   btwn(start$1, from_lb(env$1.lex_source, lexbuf$1)),
                   false
                 ];end end end 
        if ___conditional___ = 3 then do
-          $$Buffer.add_char(raw$1, --[ "\\" ]--92);
-          $$Buffer.add_char(literal$1, --[ "\\" ]--92);
+          $$Buffer.add_char(raw$1, --[[ "\\" ]]92);
+          $$Buffer.add_char(literal$1, --[[ "\\" ]]92);
           match = string_escape(env$1, cooked$1, lexbuf$1);
           str = Lexing.lexeme(lexbuf$1);
           $$Buffer.add_string(raw$1, str);
@@ -3036,7 +3036,7 @@ function template_part(env, start, cooked, raw, literal, lexbuf) do
           lf$1 = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
           $$Buffer.add_char(raw$1, lf$1);
           $$Buffer.add_char(literal$1, lf$1);
-          $$Buffer.add_char(cooked$1, --[ "\n" ]--10);
+          $$Buffer.add_char(cooked$1, --[[ "\n" ]]10);
           Lexing.new_line(lexbuf$1);
           return template_part(env$1, start$1, cooked$1, raw$1, literal$1, lexbuf$1);end end end 
        if ___conditional___ = 6 then do
@@ -3073,7 +3073,7 @@ function string_quote(env, q, buf, raw, octal, lexbuf) do
           q$prime = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
           $$Buffer.add_char(raw$1, q$prime);
           if (q$1 == q$prime) then do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     env$1,
                     from_lb(env$1.lex_source, lexbuf$1),
                     octal$1
@@ -3092,9 +3092,9 @@ function string_quote(env, q, buf, raw, octal, lexbuf) do
        if ___conditional___ = 2 then do
           x = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
           $$Buffer.add_string(raw$1, x);
-          env$2 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"]));
+          env$2 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
           $$Buffer.add_string(buf$1, x);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$2,
                   from_lb(env$2.lex_source, lexbuf$1),
                   octal$1
@@ -3153,9 +3153,9 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
           literal = $$Buffer.create(127);
           $$Buffer.add_string(literal, "}");
           match$2 = template_part(env, start$2, cooked, raw, literal, lexbuf);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match$2[0],
-                  --[ T_TEMPLATE_PART ]--Block.__(2, [--[ tuple ]--[
+                  --[[ T_TEMPLATE_PART ]]Block.__(2, [--[[ tuple ]][
                         match$2[1],
                         do
                           cooked: $$Buffer.contents(cooked),
@@ -3166,10 +3166,10 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
                       ]])
                 ];end end end 
        if ___conditional___ = 5 then do
-          env$3 = lex_error(env, from_lb(env.lex_source, lexbuf), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"]));
-          return --[ tuple ]--[
+          env$3 = lex_error(env, from_lb(env.lex_source, lexbuf), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
+          return --[[ tuple ]][
                   env$3,
-                  --[ T_TEMPLATE_PART ]--Block.__(2, [--[ tuple ]--[
+                  --[[ T_TEMPLATE_PART ]]Block.__(2, [--[[ tuple ]][
                         from_lb(env$3.lex_source, lexbuf),
                         do
                           cooked: "",
@@ -3198,9 +3198,9 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
     local ___conditional___=(__ocaml_lex_state$1);
     do
        if ___conditional___ = 0 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env,
-                  --[ T_EOF ]--105
+                  --[[ T_EOF ]]105
                 ];end end end 
        if ___conditional___ = 1 then do
           Lexing.new_line(lexbuf);
@@ -3227,45 +3227,45 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
           _env = env$2;
           continue ;end end end 
        if ___conditional___ = 5 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env,
-                  --[ T_LESS_THAN ]--89
+                  --[[ T_LESS_THAN ]]89
                 ];end end end 
        if ___conditional___ = 6 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env,
-                  --[ T_DIV ]--96
+                  --[[ T_DIV ]]96
                 ];end end end 
        if ___conditional___ = 7 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env,
-                  --[ T_GREATER_THAN ]--90
+                  --[[ T_GREATER_THAN ]]90
                 ];end end end 
        if ___conditional___ = 8 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env,
-                  --[ T_LCURLY ]--1
+                  --[[ T_LCURLY ]]1
                 ];end end end 
        if ___conditional___ = 9 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env,
-                  --[ T_COLON ]--77
+                  --[[ T_COLON ]]77
                 ];end end end 
        if ___conditional___ = 10 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env,
-                  --[ T_PERIOD ]--9
+                  --[[ T_PERIOD ]]9
                 ];end end end 
        if ___conditional___ = 11 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env,
-                  --[ T_ASSIGN ]--75
+                  --[[ T_ASSIGN ]]75
                 ];end end end 
        if ___conditional___ = 12 then do
           unicode_fix_cols(lexbuf);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env,
-                  --[ T_JSX_IDENTIFIER ]--106
+                  --[[ T_JSX_IDENTIFIER ]]106
                 ];end end end 
        if ___conditional___ = 13 then do
           quote = Caml_bytes.get(lexbuf.lex_buffer, lexbuf.lex_start_pos);
@@ -3273,23 +3273,23 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
           buf$2 = $$Buffer.create(127);
           raw = $$Buffer.create(127);
           $$Buffer.add_char(raw, quote);
-          mode = quote == --[ "'" ]--39 and --[ JSX_SINGLE_QUOTED_TEXT ]--0 or --[ JSX_DOUBLE_QUOTED_TEXT ]--1;
+          mode = quote == --[[ "'" ]]39 and --[[ JSX_SINGLE_QUOTED_TEXT ]]0 or --[[ JSX_DOUBLE_QUOTED_TEXT ]]1;
           match$2 = jsx_text(env, mode, buf$2, raw, lexbuf);
           $$Buffer.add_char(raw, quote);
           value = $$Buffer.contents(buf$2);
           raw$1 = $$Buffer.contents(raw);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match$2[0],
-                  --[ T_JSX_TEXT ]--Block.__(4, [--[ tuple ]--[
+                  --[[ T_JSX_TEXT ]]Block.__(4, [--[[ tuple ]][
                         btwn(start$2, match$2[1]),
                         value,
                         raw$1
                       ]])
                 ];end end end 
        if ___conditional___ = 14 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env,
-                  --[ T_ERROR ]--104
+                  --[[ T_ERROR ]]104
                 ];end end end 
        do
       else do
@@ -3318,23 +3318,23 @@ function jsx_text(env, mode, buf, raw, lexbuf) do
           c = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
           local ___conditional___=(mode$1);
           do
-             if ___conditional___ = 0--[ JSX_SINGLE_QUOTED_TEXT ]-- then do
+             if ___conditional___ = 0--[[ JSX_SINGLE_QUOTED_TEXT ]] then do
                 if (c == 39) then do
-                  return --[ tuple ]--[
+                  return --[[ tuple ]][
                           env$1,
                           from_lb(env$1.lex_source, lexbuf$1)
                         ];
                 end
                  end end else 
-             if ___conditional___ = 1--[ JSX_DOUBLE_QUOTED_TEXT ]-- then do
+             if ___conditional___ = 1--[[ JSX_DOUBLE_QUOTED_TEXT ]] then do
                 if (c == 34) then do
-                  return --[ tuple ]--[
+                  return --[[ tuple ]][
                           env$1,
                           from_lb(env$1.lex_source, lexbuf$1)
                         ];
                 end
                  end end else 
-             if ___conditional___ = 2--[ JSX_CHILD_TEXT ]-- then do
+             if ___conditional___ = 2--[[ JSX_CHILD_TEXT ]] then do
                 exit = 0;
                 if (!(c ~= 60 and c ~= 123)) then do
                   exit = 2;
@@ -3342,7 +3342,7 @@ function jsx_text(env, mode, buf, raw, lexbuf) do
                  end 
                 if (exit == 2) then do
                   back(lexbuf$1);
-                  return --[ tuple ]--[
+                  return --[[ tuple ]][
                           env$1,
                           from_lb(env$1.lex_source, lexbuf$1)
                         ];
@@ -3355,8 +3355,8 @@ function jsx_text(env, mode, buf, raw, lexbuf) do
           $$Buffer.add_char(buf$1, c);
           return jsx_text(env$1, mode$1, buf$1, raw$1, lexbuf$1);end end end 
        if ___conditional___ = 1 then do
-          env$2 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"]));
-          return --[ tuple ]--[
+          env$2 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
+          return --[[ tuple ]][
                   env$2,
                   from_lb(env$2.lex_source, lexbuf$1)
                 ];end end end 
@@ -3977,9 +3977,9 @@ function type_token(env, lexbuf) do
             end end 
             env$4 = in_comment_syntax(true, env$3);
             if (escape_type == ":") then do
-              return --[ tuple ]--[
+              return --[[ tuple ]][
                       env$4,
-                      --[ T_COLON ]--77
+                      --[[ T_COLON ]]77
                     ];
             end else do
               return type_token(env$4, lexbuf$1);
@@ -3999,9 +3999,9 @@ function type_token(env, lexbuf) do
             return type_token(env$6, lexbuf$1);
           end else do
             yyback(1, lexbuf$1);
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     env$1,
-                    --[ T_MULT ]--97
+                    --[[ T_MULT ]]97
                   ];
           end end end end end 
        if ___conditional___ = 5 then do
@@ -4017,9 +4017,9 @@ function type_token(env, lexbuf) do
           raw = $$Buffer.create(127);
           $$Buffer.add_char(raw, quote);
           match$3 = string_quote(env$1, quote, buf$3, raw, false, lexbuf$1);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match$3[0],
-                  --[ T_STRING ]--Block.__(1, [--[ tuple ]--[
+                  --[[ T_STRING ]]Block.__(1, [--[[ tuple ]][
                         btwn(start$3, match$3[1]),
                         $$Buffer.contents(buf$3),
                         $$Buffer.contents(raw),
@@ -4030,37 +4030,37 @@ function type_token(env, lexbuf) do
           neg = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), Caml_array.caml_array_get(lexbuf$1.lex_mem, 1));
           w = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 1), lexbuf$1.lex_curr_pos);
-          return illegal_number(env$1, lexbuf$1, w, mk_num_singleton(--[ BINARY ]--0, num, neg));end end end 
+          return illegal_number(env$1, lexbuf$1, w, mk_num_singleton(--[[ BINARY ]]0, num, neg));end end end 
        if ___conditional___ = 8 then do
           neg$1 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num$1 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  mk_num_singleton(--[ BINARY ]--0, num$1, neg$1)
+                  mk_num_singleton(--[[ BINARY ]]0, num$1, neg$1)
                 ];end end end 
        if ___conditional___ = 9 then do
           neg$2 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num$2 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), Caml_array.caml_array_get(lexbuf$1.lex_mem, 1));
           w$1 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 1), lexbuf$1.lex_curr_pos);
-          return illegal_number(env$1, lexbuf$1, w$1, mk_num_singleton(--[ OCTAL ]--2, num$2, neg$2));end end end 
+          return illegal_number(env$1, lexbuf$1, w$1, mk_num_singleton(--[[ OCTAL ]]2, num$2, neg$2));end end end 
        if ___conditional___ = 10 then do
           neg$3 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num$3 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  mk_num_singleton(--[ OCTAL ]--2, num$3, neg$3)
+                  mk_num_singleton(--[[ OCTAL ]]2, num$3, neg$3)
                 ];end end end 
        if ___conditional___ = 11 then do
           neg$4 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num$4 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), Caml_array.caml_array_get(lexbuf$1.lex_mem, 1));
           w$2 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 1), lexbuf$1.lex_curr_pos);
-          return illegal_number(env$1, lexbuf$1, w$2, mk_num_singleton(--[ LEGACY_OCTAL ]--1, num$4, neg$4));end end end 
+          return illegal_number(env$1, lexbuf$1, w$2, mk_num_singleton(--[[ LEGACY_OCTAL ]]1, num$4, neg$4));end end end 
        if ___conditional___ = 12 then do
           neg$5 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num$5 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  mk_num_singleton(--[ LEGACY_OCTAL ]--1, num$5, neg$5)
+                  mk_num_singleton(--[[ LEGACY_OCTAL ]]1, num$5, neg$5)
                 ];end end end 
        if ___conditional___ = 13 then do
           neg$6 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
@@ -4068,19 +4068,19 @@ function type_token(env, lexbuf) do
           w$3 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 1), lexbuf$1.lex_curr_pos);
           match$4;
           try do
-            match$4 = --[ tuple ]--[
+            match$4 = --[[ tuple ]][
               env$1,
-              mk_num_singleton(--[ NORMAL ]--3, num$6, neg$6)
+              mk_num_singleton(--[[ NORMAL ]]3, num$6, neg$6)
             ];
           end
           catch (exn)do
             if (Sys.win32) then do
               loc$1 = from_lb(env$1.lex_source, lexbuf$1);
-              env$8 = lex_error(env$1, loc$1, --[ WindowsFloatOfString ]--59);
-              match$4 = --[ tuple ]--[
+              env$8 = lex_error(env$1, loc$1, --[[ WindowsFloatOfString ]]59);
+              match$4 = --[[ tuple ]][
                 env$8,
-                --[ T_NUMBER_SINGLETON_TYPE ]--Block.__(5, [
-                    --[ NORMAL ]--3,
+                --[[ T_NUMBER_SINGLETON_TYPE ]]Block.__(5, [
+                    --[[ NORMAL ]]3,
                     789.0
                   ])
               ];
@@ -4093,19 +4093,19 @@ function type_token(env, lexbuf) do
           neg$7 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num$7 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
           try do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     env$1,
-                    mk_num_singleton(--[ NORMAL ]--3, num$7, neg$7)
+                    mk_num_singleton(--[[ NORMAL ]]3, num$7, neg$7)
                   ];
           end
           catch (exn$1)do
             if (Sys.win32) then do
               loc$2 = from_lb(env$1.lex_source, lexbuf$1);
-              env$9 = lex_error(env$1, loc$2, --[ WindowsFloatOfString ]--59);
-              return --[ tuple ]--[
+              env$9 = lex_error(env$1, loc$2, --[[ WindowsFloatOfString ]]59);
+              return --[[ tuple ]][
                       env$9,
-                      --[ T_NUMBER_SINGLETON_TYPE ]--Block.__(5, [
-                          --[ NORMAL ]--3,
+                      --[[ T_NUMBER_SINGLETON_TYPE ]]Block.__(5, [
+                          --[[ NORMAL ]]3,
                           789.0
                         ])
                     ];
@@ -4117,176 +4117,176 @@ function type_token(env, lexbuf) do
           neg$8 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num$8 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), Caml_array.caml_array_get(lexbuf$1.lex_mem, 1));
           w$4 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 1), lexbuf$1.lex_curr_pos);
-          return illegal_number(env$1, lexbuf$1, w$4, mk_num_singleton(--[ NORMAL ]--3, num$8, neg$8));end end end 
+          return illegal_number(env$1, lexbuf$1, w$4, mk_num_singleton(--[[ NORMAL ]]3, num$8, neg$8));end end end 
        if ___conditional___ = 16 then do
           neg$9 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num$9 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  mk_num_singleton(--[ NORMAL ]--3, num$9, neg$9)
+                  mk_num_singleton(--[[ NORMAL ]]3, num$9, neg$9)
                 ];end end end 
        if ___conditional___ = 17 then do
           neg$10 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num$10 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), Caml_array.caml_array_get(lexbuf$1.lex_mem, 1));
           w$5 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 1), lexbuf$1.lex_curr_pos);
-          return illegal_number(env$1, lexbuf$1, w$5, mk_num_singleton(--[ NORMAL ]--3, num$10, neg$10));end end end 
+          return illegal_number(env$1, lexbuf$1, w$5, mk_num_singleton(--[[ NORMAL ]]3, num$10, neg$10));end end end 
        if ___conditional___ = 18 then do
           neg$11 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 1), Caml_array.caml_array_get(lexbuf$1.lex_mem, 0));
           num$11 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 3), Caml_array.caml_array_get(lexbuf$1.lex_mem, 2));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  mk_num_singleton(--[ NORMAL ]--3, num$11, neg$11)
+                  mk_num_singleton(--[[ NORMAL ]]3, num$11, neg$11)
                 ];end end end 
        if ___conditional___ = 19 then do
           word = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
           unicode_fix_cols(lexbuf$1);
           try do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     env$1,
                     Hashtbl.find(type_keywords, word)
                   ];
           end
           catch (exn$2)do
             if (exn$2 == Caml_builtin_exceptions.not_found) then do
-              return --[ tuple ]--[
+              return --[[ tuple ]][
                       env$1,
-                      --[ T_IDENTIFIER ]--0
+                      --[[ T_IDENTIFIER ]]0
                     ];
             end else do
               throw exn$2;
             end end 
           endend end end 
        if ___conditional___ = 22 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LCURLY ]--1
+                  --[[ T_LCURLY ]]1
                 ];end end end 
        if ___conditional___ = 23 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_RCURLY ]--2
+                  --[[ T_RCURLY ]]2
                 ];end end end 
        if ___conditional___ = 24 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LPAREN ]--3
+                  --[[ T_LPAREN ]]3
                 ];end end end 
        if ___conditional___ = 25 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_RPAREN ]--4
+                  --[[ T_RPAREN ]]4
                 ];end end end 
        if ___conditional___ = 26 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_ELLIPSIS ]--11
+                  --[[ T_ELLIPSIS ]]11
                 ];end end end 
        if ___conditional___ = 27 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_PERIOD ]--9
+                  --[[ T_PERIOD ]]9
                 ];end end end 
        if ___conditional___ = 28 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_SEMICOLON ]--7
+                  --[[ T_SEMICOLON ]]7
                 ];end end end 
        if ___conditional___ = 29 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_COMMA ]--8
+                  --[[ T_COMMA ]]8
                 ];end end end 
        if ___conditional___ = 20
        or ___conditional___ = 32 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LBRACKET ]--5
+                  --[[ T_LBRACKET ]]5
                 ];end end end 
        if ___conditional___ = 21
        or ___conditional___ = 33 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_RBRACKET ]--6
+                  --[[ T_RBRACKET ]]6
                 ];end end end 
        if ___conditional___ = 34 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LESS_THAN ]--89
+                  --[[ T_LESS_THAN ]]89
                 ];end end end 
        if ___conditional___ = 35 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_GREATER_THAN ]--90
+                  --[[ T_GREATER_THAN ]]90
                 ];end end end 
        if ___conditional___ = 31
        or ___conditional___ = 37 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_PLING ]--76
+                  --[[ T_PLING ]]76
                 ];end end end 
        if ___conditional___ = 38 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_MULT ]--97
+                  --[[ T_MULT ]]97
                 ];end end end 
        if ___conditional___ = 30
        or ___conditional___ = 39 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_COLON ]--77
+                  --[[ T_COLON ]]77
                 ];end end end 
        if ___conditional___ = 40 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_BIT_OR ]--80
+                  --[[ T_BIT_OR ]]80
                 ];end end end 
        if ___conditional___ = 41 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_BIT_AND ]--82
+                  --[[ T_BIT_AND ]]82
                 ];end end end 
        if ___conditional___ = 42 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_TYPEOF ]--44
+                  --[[ T_TYPEOF ]]44
                 ];end end end 
        if ___conditional___ = 43 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_ARROW ]--10
+                  --[[ T_ARROW ]]10
                 ];end end end 
        if ___conditional___ = 36
        or ___conditional___ = 44 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_ASSIGN ]--75
+                  --[[ T_ASSIGN ]]75
                 ];end end end 
        if ___conditional___ = 45 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_PLUS ]--94
+                  --[[ T_PLUS ]]94
                 ];end end end 
        if ___conditional___ = 46 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_MINUS ]--95
+                  --[[ T_MINUS ]]95
                 ];end end end 
        if ___conditional___ = 47 then do
           env$10;
           if (env$1.lex_in_comment_syntax) then do
             loc$3 = from_lb(env$1.lex_source, lexbuf$1);
-            env$10 = lex_error(env$1, loc$3, --[ UnexpectedEOS ]--4);
+            env$10 = lex_error(env$1, loc$3, --[[ UnexpectedEOS ]]4);
           end else do
             env$10 = env$1;
           end end 
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$10,
-                  --[ T_EOF ]--105
+                  --[[ T_EOF ]]105
                 ];end end end 
        if ___conditional___ = 48 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_ERROR ]--104
+                  --[[ T_ERROR ]]104
                 ];end end end 
        do
       else do
@@ -4310,13 +4310,13 @@ function string_escape(env, buf, lexbuf) do
     local ___conditional___=(__ocaml_lex_state$1);
     do
        if ___conditional___ = 0 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 1 then do
           $$Buffer.add_string(buf$1, "\\");
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
@@ -4327,7 +4327,7 @@ function string_escape(env, buf, lexbuf) do
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
                 end end), utf16to8(code));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
@@ -4347,7 +4347,7 @@ function string_escape(env, buf, lexbuf) do
                   end end), utf16to8(code$2));
             $$Buffer.add_char(buf$1, c);
           end end 
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   true
                 ];end end end 
@@ -4358,49 +4358,49 @@ function string_escape(env, buf, lexbuf) do
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
                 end end), utf16to8(code$3));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   true
                 ];end end end 
        if ___conditional___ = 5 then do
           $$Buffer.add_char(buf$1, Char.chr(0));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 6 then do
           $$Buffer.add_char(buf$1, Char.chr(8));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 7 then do
           $$Buffer.add_char(buf$1, Char.chr(12));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 8 then do
           $$Buffer.add_char(buf$1, Char.chr(10));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 9 then do
           $$Buffer.add_char(buf$1, Char.chr(13));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 10 then do
           $$Buffer.add_char(buf$1, Char.chr(9));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 11 then do
           $$Buffer.add_char(buf$1, Char.chr(11));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
@@ -4410,7 +4410,7 @@ function string_escape(env, buf, lexbuf) do
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
                 end end), utf16to8(code$4));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   true
                 ];end end end 
@@ -4423,39 +4423,39 @@ function string_escape(env, buf, lexbuf) do
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
                 end end), utf16to8(code$5));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 14 then do
           hex_code = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos + 2 | 0, lexbuf$1.lex_curr_pos - 1 | 0);
           code$6 = Caml_format.caml_int_of_string("0x" .. hex_code);
-          env$2 = code$6 > 1114111 and lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"])) or env$1;
+          env$2 = code$6 > 1114111 and lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"])) or env$1;
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
                 end end), utf16to8(code$6));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$2,
                   false
                 ];end end end 
        if ___conditional___ = 15 then do
           c$2 = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
-          env$3 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"]));
+          env$3 = lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
           $$Buffer.add_char(buf$1, c$2);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$3,
                   false
                 ];end end end 
        if ___conditional___ = 16 then do
           Lexing.new_line(lexbuf$1);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
        if ___conditional___ = 17 then do
           c$3 = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
           $$Buffer.add_char(buf$1, c$3);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
                   false
                 ];end end end 
@@ -4478,9 +4478,9 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
     local ___conditional___=(__ocaml_lex_state$1);
     do
        if ___conditional___ = 0 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env,
-                  --[ T_EOF ]--105
+                  --[[ T_EOF ]]105
                 ];end end end 
        if ___conditional___ = 1 then do
           Lexing.new_line(lexbuf);
@@ -4513,19 +4513,19 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
           env$3 = match$2[0];
           end_ = from_lb(env$3.lex_source, lexbuf);
           loc = btwn(start$2, end_);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$3,
-                  --[ T_REGEXP ]--Block.__(3, [--[ tuple ]--[
+                  --[[ T_REGEXP ]]Block.__(3, [--[[ tuple ]][
                         loc,
                         $$Buffer.contents(buf$2),
                         match$2[1]
                       ]])
                 ];end end end 
        if ___conditional___ = 6 then do
-          env$4 = lex_error(env, from_lb(env.lex_source, lexbuf), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"]));
-          return --[ tuple ]--[
+          env$4 = lex_error(env, from_lb(env.lex_source, lexbuf), --[[ UnexpectedToken ]]Block.__(1, ["ILLEGAL"]));
+          return --[[ tuple ]][
                   env$4,
-                  --[ T_ERROR ]--104
+                  --[[ T_ERROR ]]104
                 ];end end end 
        do
       else do
@@ -4555,42 +4555,42 @@ function jsx_child(env, start, buf, raw, lexbuf) do
           $$Buffer.add_string(raw$1, lt);
           $$Buffer.add_string(buf$1, lt);
           Lexing.new_line(lexbuf$1);
-          match = jsx_text(env$1, --[ JSX_CHILD_TEXT ]--2, buf$1, raw$1, lexbuf$1);
+          match = jsx_text(env$1, --[[ JSX_CHILD_TEXT ]]2, buf$1, raw$1, lexbuf$1);
           value = $$Buffer.contents(buf$1);
           raw$2 = $$Buffer.contents(raw$1);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match[0],
-                  --[ T_JSX_TEXT ]--Block.__(4, [--[ tuple ]--[
+                  --[[ T_JSX_TEXT ]]Block.__(4, [--[[ tuple ]][
                         btwn(start$1, match[1]),
                         value,
                         raw$2
                       ]])
                 ];end end end 
        if ___conditional___ = 1 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_EOF ]--105
+                  --[[ T_EOF ]]105
                 ];end end end 
        if ___conditional___ = 2 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LESS_THAN ]--89
+                  --[[ T_LESS_THAN ]]89
                 ];end end end 
        if ___conditional___ = 3 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   env$1,
-                  --[ T_LCURLY ]--1
+                  --[[ T_LCURLY ]]1
                 ];end end end 
        if ___conditional___ = 4 then do
           c = Caml_bytes.get(lexbuf$1.lex_buffer, lexbuf$1.lex_start_pos);
           $$Buffer.add_char(raw$1, c);
           $$Buffer.add_char(buf$1, c);
-          match$1 = jsx_text(env$1, --[ JSX_CHILD_TEXT ]--2, buf$1, raw$1, lexbuf$1);
+          match$1 = jsx_text(env$1, --[[ JSX_CHILD_TEXT ]]2, buf$1, raw$1, lexbuf$1);
           value$1 = $$Buffer.contents(buf$1);
           raw$3 = $$Buffer.contents(raw$1);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match$1[0],
-                  --[ T_JSX_TEXT ]--Block.__(4, [--[ tuple ]--[
+                  --[[ T_JSX_TEXT ]]Block.__(4, [--[[ tuple ]][
                         btwn(start$1, match$1[1]),
                         value$1,
                         raw$3
@@ -4616,7 +4616,7 @@ function jsx_child$1(env) do
   buf = $$Buffer.create(127);
   raw = $$Buffer.create(127);
   match = jsx_child(env, start, buf, raw, env.lex_lb);
-  return get_result_and_clear_state(--[ tuple ]--[
+  return get_result_and_clear_state(--[[ tuple ]][
               match[0],
               match[1]
             ]);
@@ -4640,35 +4640,35 @@ end end
 
 function height(param) do
   if (param) then do
-    return param[--[ h ]--3];
+    return param[--[[ h ]]3];
   end else do
     return 0;
   end end 
 end end
 
 function create(l, v, r) do
-  hl = l and l[--[ h ]--3] or 0;
-  hr = r and r[--[ h ]--3] or 0;
-  return --[ Node ]--[
-          --[ l ]--l,
-          --[ v ]--v,
-          --[ r ]--r,
-          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
+  hl = l and l[--[[ h ]]3] or 0;
+  hr = r and r[--[[ h ]]3] or 0;
+  return --[[ Node ]][
+          --[[ l ]]l,
+          --[[ v ]]v,
+          --[[ r ]]r,
+          --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end end
 
 function bal(l, v, r) do
-  hl = l and l[--[ h ]--3] or 0;
-  hr = r and r[--[ h ]--3] or 0;
+  hl = l and l[--[[ h ]]3] or 0;
+  hr = r and r[--[[ h ]]3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      lr = l[--[ r ]--2];
-      lv = l[--[ v ]--1];
-      ll = l[--[ l ]--0];
+      lr = l[--[[ r ]]2];
+      lv = l[--[[ v ]]1];
+      ll = l[--[[ l ]]0];
       if (height(ll) >= height(lr)) then do
         return create(ll, lv, create(lr, v, r));
       end else if (lr) then do
-        return create(create(ll, lv, lr[--[ l ]--0]), lr[--[ v ]--1], create(lr[--[ r ]--2], v, r));
+        return create(create(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create(lr[--[[ r ]]2], v, r));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
@@ -4683,13 +4683,13 @@ function bal(l, v, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      rr = r[--[ r ]--2];
-      rv = r[--[ v ]--1];
-      rl = r[--[ l ]--0];
+      rr = r[--[[ r ]]2];
+      rv = r[--[[ v ]]1];
+      rl = r[--[[ l ]]0];
       if (height(rr) >= height(rl)) then do
         return create(create(l, v, rl), rv, rr);
       end else if (rl) then do
-        return create(create(l, v, rl[--[ l ]--0]), rl[--[ v ]--1], create(rl[--[ r ]--2], rv, rr));
+        return create(create(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create(rl[--[[ r ]]2], rv, rr));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
@@ -4703,20 +4703,20 @@ function bal(l, v, r) do
           ];
     end end 
   end else do
-    return --[ Node ]--[
-            --[ l ]--l,
-            --[ v ]--v,
-            --[ r ]--r,
-            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
+    return --[[ Node ]][
+            --[[ l ]]l,
+            --[[ v ]]v,
+            --[[ r ]]r,
+            --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end end
 
 function add(x, t) do
   if (t) then do
-    r = t[--[ r ]--2];
-    v = t[--[ v ]--1];
-    l = t[--[ l ]--0];
+    r = t[--[[ r ]]2];
+    v = t[--[[ v ]]1];
+    l = t[--[[ l ]]0];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
       return t;
@@ -4736,11 +4736,11 @@ function add(x, t) do
       end end 
     end end  end 
   end else do
-    return --[ Node ]--[
-            --[ l : Empty ]--0,
-            --[ v ]--x,
-            --[ r : Empty ]--0,
-            --[ h ]--1
+    return --[[ Node ]][
+            --[[ l : Empty ]]0,
+            --[[ v ]]x,
+            --[[ r : Empty ]]0,
+            --[[ h ]]1
           ];
   end end 
 end end
@@ -4749,11 +4749,11 @@ function mem(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      c = Caml_primitive.caml_string_compare(x, param[--[ v ]--1]);
+      c = Caml_primitive.caml_string_compare(x, param[--[[ v ]]1]);
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
+        _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
         continue ;
       end end 
     end else do
@@ -4811,7 +4811,7 @@ function grow(t, n) do
     end end;
     new_arr = $$Array.init(new_size, filler);
     t.la_results = new_arr;
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end else do
     return 0;
   end end 
@@ -4823,18 +4823,18 @@ function lex(t) do
   match$1;
   local ___conditional___=(match);
   do
-     if ___conditional___ = 1--[ TYPE ]-- then do
+     if ___conditional___ = 1--[[ TYPE ]] then do
         match$1 = type_token$1(lex_env);end else 
-     if ___conditional___ = 2--[ JSX_TAG ]-- then do
+     if ___conditional___ = 2--[[ JSX_TAG ]] then do
         match$1 = jsx_tag(lex_env);end else 
-     if ___conditional___ = 3--[ JSX_CHILD ]-- then do
+     if ___conditional___ = 3--[[ JSX_CHILD ]] then do
         match$1 = jsx_child$1(lex_env);end else 
-     if ___conditional___ = 4--[ TEMPLATE ]-- then do
+     if ___conditional___ = 4--[[ TEMPLATE ]] then do
         match$1 = template_tail(lex_env);end else 
-     if ___conditional___ = 5--[ REGEXP ]-- then do
+     if ___conditional___ = 5--[[ REGEXP ]] then do
         match$1 = regexp(lex_env);end else 
-     if ___conditional___ = 0--[ NORMAL ]--
-     or ___conditional___ = 6--[ PREDICATE ]-- then do
+     if ___conditional___ = 0--[[ NORMAL ]]
+     or ___conditional___ = 6--[[ PREDICATE ]] then do
         match$1 = token$1(lex_env);end else 
      do end end end end end end end
     
@@ -4857,12 +4857,12 @@ function lex(t) do
   end;
   cloned_env = with_lexbuf(lexbuf$1, lex_env$1);
   t.la_lex_env = lex_env$1;
-  Caml_array.caml_array_set(t.la_results, t.la_num_lexed, --[ tuple ]--[
+  Caml_array.caml_array_set(t.la_results, t.la_num_lexed, --[[ tuple ]][
         cloned_env,
         match$1[1]
       ]);
   t.la_num_lexed = t.la_num_lexed + 1 | 0;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function lex_until(t, i) do
@@ -4870,7 +4870,7 @@ function lex_until(t, i) do
   while(t.la_num_lexed <= i) do
     lex(t);
   end;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 default_parse_options = do
@@ -4905,14 +4905,14 @@ function init_env(token_sinkOpt, parse_optionsOpt, source, content) do
   lex_env = new_lex_env(source, lb, enable_types_in_comments);
   return do
           errors: do
-            contents: --[ [] ]--0
+            contents: --[[ [] ]]0
           end,
           comments: do
-            contents: --[ [] ]--0
+            contents: --[[ [] ]]0
           end,
-          labels: --[ Empty ]--0,
+          labels: --[[ Empty ]]0,
           exports: do
-            contents: --[ Empty ]--0
+            contents: --[[ Empty ]]0
           end,
           last_loc: do
             contents: undefined
@@ -4929,16 +4929,16 @@ function init_env(token_sinkOpt, parse_optionsOpt, source, content) do
           allow_await: false,
           error_callback: undefined,
           lex_mode_stack: do
-            contents: --[ :: ]--[
-              --[ NORMAL ]--0,
-              --[ [] ]--0
+            contents: --[[ :: ]][
+              --[[ NORMAL ]]0,
+              --[[ [] ]]0
             ]
           end,
           lex_env: do
             contents: lex_env
           end,
           lookahead: do
-            contents: create$1(lex_env, --[ NORMAL ]--0)
+            contents: create$1(lex_env, --[[ NORMAL ]]0)
           end,
           token_sink: do
             contents: token_sink
@@ -4950,8 +4950,8 @@ end end
 
 function error_at(env, param) do
   e = param[1];
-  env.errors.contents = --[ :: ]--[
-    --[ tuple ]--[
+  env.errors.contents = --[[ :: ]][
+    --[[ tuple ]][
       param[0],
       e
     ],
@@ -4961,18 +4961,18 @@ function error_at(env, param) do
   if (match ~= undefined) then do
     return Curry._2(match, env, e);
   end else do
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end end 
 end end
 
 function comment_list(env) do
   return (function (param) do
       return List.iter((function (c) do
-                    env.comments.contents = --[ :: ]--[
+                    env.comments.contents = --[[ :: ]][
                       c,
                       env.comments.contents
                     ];
-                    return --[ () ]--0;
+                    return --[[ () ]]0;
                   end end), param);
     end end);
 end end
@@ -4981,13 +4981,13 @@ function record_export(env, param) do
   export_name = param[1];
   $$exports = env.exports.contents;
   if (mem(export_name, $$exports)) then do
-    return error_at(env, --[ tuple ]--[
+    return error_at(env, --[[ tuple ]][
                 param[0],
-                --[ DuplicateExport ]--Block.__(7, [export_name])
+                --[[ DuplicateExport ]]Block.__(7, [export_name])
               ]);
   end else do
     env.exports.contents = add(export_name, env.exports.contents);
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end end 
 end end
 
@@ -4996,7 +4996,7 @@ function lookahead(iOpt, env) do
   if (i >= 2) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "parser_env.ml",
             288,
             2
@@ -5105,7 +5105,7 @@ function enter_function(env, async, generator) do
   newrecord.in_function = true;
   newrecord.in_switch = false;
   newrecord.in_loop = false;
-  newrecord.labels = --[ Empty ]--0;
+  newrecord.labels = --[[ Empty ]]0;
   return newrecord;
 end end
 
@@ -5223,7 +5223,7 @@ end end
 
 function semicolon_loc(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
-  if (token$2(i, env) == --[ T_SEMICOLON ]--7) then do
+  if (token$2(i, env) == --[[ T_SEMICOLON ]]7) then do
     return loc(i, env);
   end
    end 
@@ -5249,10 +5249,10 @@ end end
 
 function is_function(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
-  if (token$2(i, env) == --[ T_FUNCTION ]--13) then do
+  if (token$2(i, env) == --[[ T_FUNCTION ]]13) then do
     return true;
-  end else if (token$2(i, env) == --[ T_ASYNC ]--61) then do
-    return token$2(i + 1 | 0, env) == --[ T_FUNCTION ]--13;
+  end else if (token$2(i, env) == --[[ T_ASYNC ]]61) then do
+    return token$2(i + 1 | 0, env) == --[[ T_FUNCTION ]]13;
   end else do
     return false;
   end end  end 
@@ -5274,7 +5274,7 @@ end end
 
 function error$1(env, e) do
   loc$1 = loc(undefined, env);
-  return error_at(env, --[ tuple ]--[
+  return error_at(env, --[[ tuple ]][
               loc$1,
               e
             ]);
@@ -5285,10 +5285,10 @@ function get_unexpected_error(param) do
   if (typeof tmp == "number") then do
     local ___conditional___=(tmp);
     do
-       if ___conditional___ = 0--[ T_IDENTIFIER ]-- then do
-          return --[ UnexpectedIdentifier ]--2;end end end 
-       if ___conditional___ = 105--[ T_EOF ]-- then do
-          return --[ UnexpectedEOS ]--4;end end end 
+       if ___conditional___ = 0--[[ T_IDENTIFIER ]] then do
+          return --[[ UnexpectedIdentifier ]]2;end end end 
+       if ___conditional___ = 105--[[ T_EOF ]] then do
+          return --[[ UnexpectedEOS ]]4;end end end 
        do
       else do
         end end
@@ -5297,11 +5297,11 @@ function get_unexpected_error(param) do
   end else do
     local ___conditional___=(tmp.tag | 0);
     do
-       if ___conditional___ = 0--[ T_NUMBER ]-- then do
-          return --[ UnexpectedNumber ]--0;end end end 
-       if ___conditional___ = 1--[ T_STRING ]--
-       or ___conditional___ = 4--[ T_JSX_TEXT ]-- then do
-          return --[ UnexpectedString ]--1;end end end 
+       if ___conditional___ = 0--[[ T_NUMBER ]] then do
+          return --[[ UnexpectedNumber ]]0;end end end 
+       if ___conditional___ = 1--[[ T_STRING ]]
+       or ___conditional___ = 4--[[ T_JSX_TEXT ]] then do
+          return --[[ UnexpectedString ]]1;end end end 
        do
       else do
         end end
@@ -5310,17 +5310,17 @@ function get_unexpected_error(param) do
   end end 
   word = param[1];
   if (is_future_reserved(word)) then do
-    return --[ UnexpectedReserved ]--3;
+    return --[[ UnexpectedReserved ]]3;
   end else if (is_strict_reserved(word)) then do
-    return --[ StrictReservedWord ]--39;
+    return --[[ StrictReservedWord ]]39;
   end else do
-    return --[ UnexpectedToken ]--Block.__(1, [word]);
+    return --[[ UnexpectedToken ]]Block.__(1, [word]);
   end end  end 
 end end
 
 function error_unexpected(env) do
   error_list(env)(errors(undefined, env));
-  return error$1(env, get_unexpected_error(--[ tuple ]--[
+  return error$1(env, get_unexpected_error(--[[ tuple ]][
                   token$2(undefined, env),
                   value(undefined, env)
                 ]));
@@ -5329,9 +5329,9 @@ end end
 function error_on_decorators(env) do
   return (function (param) do
       return List.iter((function (decorator) do
-                    return error_at(env, --[ tuple ]--[
+                    return error_at(env, --[[ tuple ]][
                                 decorator[0],
-                                --[ UnsupportedDecorator ]--57
+                                --[[ UnsupportedDecorator ]]57
                               ]);
                   end end), param);
     end end);
@@ -5347,7 +5347,7 @@ end end
 
 function strict_error_at(env, param) do
   if (env.in_strict_mode) then do
-    return error_at(env, --[ tuple ]--[
+    return error_at(env, --[[ tuple ]][
                 param[0],
                 param[1]
               ]);
@@ -5382,16 +5382,16 @@ function token$3(env) do
    end 
   Caml_array.caml_array_set(t.la_results, t.la_num_lexed - 1 | 0, undefined);
   t.la_num_lexed = t.la_num_lexed - 1 | 0;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function push_lex_mode(env, mode) do
-  env.lex_mode_stack.contents = --[ :: ]--[
+  env.lex_mode_stack.contents = --[[ :: ]][
     mode,
     env.lex_mode_stack.contents
   ];
   env.lookahead.contents = create$1(env.lex_env.contents, List.hd(env.lex_mode_stack.contents));
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function pop_lex_mode(env) do
@@ -5407,7 +5407,7 @@ function pop_lex_mode(env) do
   end end 
   env.lex_mode_stack.contents = new_stack;
   env.lookahead.contents = create$1(env.lex_env.contents, List.hd(env.lex_mode_stack.contents));
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function double_pop_lex_mode(env) do
@@ -5431,13 +5431,13 @@ function double_pop_lex_mode(env) do
   end end 
   env.lex_mode_stack.contents = new_stack;
   env.lookahead.contents = create$1(env.lex_env.contents, List.hd(env.lex_mode_stack.contents));
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function semicolon(env) do
   if (is_implicit_semicolon(env)) then do
     return 0;
-  end else if (token$2(undefined, env) == --[ T_SEMICOLON ]--7) then do
+  end else if (token$2(undefined, env) == --[[ T_SEMICOLON ]]7) then do
     return token$3(env);
   end else do
     return error_unexpected(env);
@@ -5477,13 +5477,13 @@ function save_state(env) do
   if (match ~= undefined) then do
     buffer = do
       length: 0,
-      first: --[ Nil ]--0,
-      last: --[ Nil ]--0
+      first: --[[ Nil ]]0,
+      last: --[[ Nil ]]0
     end;
     env.token_sink.contents = (function (token_data) do
         return Queue.add(token_data, buffer);
       end end);
-    token_buffer = --[ tuple ]--[
+    token_buffer = --[[ tuple ]][
       match,
       buffer
     ];
@@ -5511,7 +5511,7 @@ function reset_token_sink(flush, env, token_buffer_info) do
       return 0;
     end end 
   end else do
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end end 
 end end
 
@@ -5522,7 +5522,7 @@ function to_parse(env, parse) do
     saved_state$1 = saved_state;
     result = Curry._1(parse, env);
     reset_token_sink(true, env$1, saved_state$1.token_buffer);
-    return --[ ParsedSuccessfully ]--[result];
+    return --[[ ParsedSuccessfully ]][result];
   end
   catch (exn)do
     if (exn == Rollback) then do
@@ -5535,7 +5535,7 @@ function to_parse(env, parse) do
       env$2.lex_mode_stack.contents = saved_state$2.saved_lex_mode_stack;
       env$2.lex_env.contents = saved_state$2.saved_lex_env;
       env$2.lookahead.contents = create$1(env$2.lex_env.contents, List.hd(env$2.lex_mode_stack.contents));
-      return --[ FailedToParse ]--0;
+      return --[[ FailedToParse ]]0;
     end else do
       throw exn;
     end end 
@@ -5563,35 +5563,35 @@ end;
 
 function height$1(param) do
   if (param) then do
-    return param[--[ h ]--3];
+    return param[--[[ h ]]3];
   end else do
     return 0;
   end end 
 end end
 
 function create$2(l, v, r) do
-  hl = l and l[--[ h ]--3] or 0;
-  hr = r and r[--[ h ]--3] or 0;
-  return --[ Node ]--[
-          --[ l ]--l,
-          --[ v ]--v,
-          --[ r ]--r,
-          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
+  hl = l and l[--[[ h ]]3] or 0;
+  hr = r and r[--[[ h ]]3] or 0;
+  return --[[ Node ]][
+          --[[ l ]]l,
+          --[[ v ]]v,
+          --[[ r ]]r,
+          --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end end
 
 function bal$1(l, v, r) do
-  hl = l and l[--[ h ]--3] or 0;
-  hr = r and r[--[ h ]--3] or 0;
+  hl = l and l[--[[ h ]]3] or 0;
+  hr = r and r[--[[ h ]]3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      lr = l[--[ r ]--2];
-      lv = l[--[ v ]--1];
-      ll = l[--[ l ]--0];
+      lr = l[--[[ r ]]2];
+      lv = l[--[[ v ]]1];
+      ll = l[--[[ l ]]0];
       if (height$1(ll) >= height$1(lr)) then do
         return create$2(ll, lv, create$2(lr, v, r));
       end else if (lr) then do
-        return create$2(create$2(ll, lv, lr[--[ l ]--0]), lr[--[ v ]--1], create$2(lr[--[ r ]--2], v, r));
+        return create$2(create$2(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create$2(lr[--[[ r ]]2], v, r));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
@@ -5606,13 +5606,13 @@ function bal$1(l, v, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      rr = r[--[ r ]--2];
-      rv = r[--[ v ]--1];
-      rl = r[--[ l ]--0];
+      rr = r[--[[ r ]]2];
+      rv = r[--[[ v ]]1];
+      rl = r[--[[ l ]]0];
       if (height$1(rr) >= height$1(rl)) then do
         return create$2(create$2(l, v, rl), rv, rr);
       end else if (rl) then do
-        return create$2(create$2(l, v, rl[--[ l ]--0]), rl[--[ v ]--1], create$2(rl[--[ r ]--2], rv, rr));
+        return create$2(create$2(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create$2(rl[--[[ r ]]2], rv, rr));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
@@ -5626,20 +5626,20 @@ function bal$1(l, v, r) do
           ];
     end end 
   end else do
-    return --[ Node ]--[
-            --[ l ]--l,
-            --[ v ]--v,
-            --[ r ]--r,
-            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
+    return --[[ Node ]][
+            --[[ l ]]l,
+            --[[ v ]]v,
+            --[[ r ]]r,
+            --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end end
 
 function add$1(x, t) do
   if (t) then do
-    r = t[--[ r ]--2];
-    v = t[--[ v ]--1];
-    l = t[--[ l ]--0];
+    r = t[--[[ r ]]2];
+    v = t[--[[ v ]]1];
+    l = t[--[[ l ]]0];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
       return t;
@@ -5659,11 +5659,11 @@ function add$1(x, t) do
       end end 
     end end  end 
   end else do
-    return --[ Node ]--[
-            --[ l : Empty ]--0,
-            --[ v ]--x,
-            --[ r : Empty ]--0,
-            --[ h ]--1
+    return --[[ Node ]][
+            --[[ l : Empty ]]0,
+            --[[ v ]]x,
+            --[[ r : Empty ]]0,
+            --[[ h ]]1
           ];
   end end 
 end end
@@ -5672,11 +5672,11 @@ function mem$1(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      c = Caml_primitive.caml_string_compare(x, param[--[ v ]--1]);
+      c = Caml_primitive.caml_string_compare(x, param[--[[ v ]]1]);
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
+        _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
         continue ;
       end end 
     end else do
@@ -5687,7 +5687,7 @@ end end
 
 function height$2(param) do
   if (param) then do
-    return param[--[ h ]--4];
+    return param[--[[ h ]]4];
   end else do
     return 0;
   end end 
@@ -5696,28 +5696,28 @@ end end
 function create$3(l, x, d, r) do
   hl = height$2(l);
   hr = height$2(r);
-  return --[ Node ]--[
-          --[ l ]--l,
-          --[ v ]--x,
-          --[ d ]--d,
-          --[ r ]--r,
-          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
+  return --[[ Node ]][
+          --[[ l ]]l,
+          --[[ v ]]x,
+          --[[ d ]]d,
+          --[[ r ]]r,
+          --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end end
 
 function bal$2(l, x, d, r) do
-  hl = l and l[--[ h ]--4] or 0;
-  hr = r and r[--[ h ]--4] or 0;
+  hl = l and l[--[[ h ]]4] or 0;
+  hr = r and r[--[[ h ]]4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      lr = l[--[ r ]--3];
-      ld = l[--[ d ]--2];
-      lv = l[--[ v ]--1];
-      ll = l[--[ l ]--0];
+      lr = l[--[[ r ]]3];
+      ld = l[--[[ d ]]2];
+      lv = l[--[[ v ]]1];
+      ll = l[--[[ l ]]0];
       if (height$2(ll) >= height$2(lr)) then do
         return create$3(ll, lv, ld, create$3(lr, x, d, r));
       end else if (lr) then do
-        return create$3(create$3(ll, lv, ld, lr[--[ l ]--0]), lr[--[ v ]--1], lr[--[ d ]--2], create$3(lr[--[ r ]--3], x, d, r));
+        return create$3(create$3(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$3(lr[--[[ r ]]3], x, d, r));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
@@ -5732,14 +5732,14 @@ function bal$2(l, x, d, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      rr = r[--[ r ]--3];
-      rd = r[--[ d ]--2];
-      rv = r[--[ v ]--1];
-      rl = r[--[ l ]--0];
+      rr = r[--[[ r ]]3];
+      rd = r[--[[ d ]]2];
+      rv = r[--[[ v ]]1];
+      rl = r[--[[ l ]]0];
       if (height$2(rr) >= height$2(rl)) then do
         return create$3(create$3(l, x, d, rl), rv, rd, rr);
       end else if (rl) then do
-        return create$3(create$3(l, x, d, rl[--[ l ]--0]), rl[--[ v ]--1], rl[--[ d ]--2], create$3(rl[--[ r ]--3], rv, rd, rr));
+        return create$3(create$3(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$3(rl[--[[ r ]]3], rv, rd, rr));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
@@ -5753,33 +5753,33 @@ function bal$2(l, x, d, r) do
           ];
     end end 
   end else do
-    return --[ Node ]--[
-            --[ l ]--l,
-            --[ v ]--x,
-            --[ d ]--d,
-            --[ r ]--r,
-            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
+    return --[[ Node ]][
+            --[[ l ]]l,
+            --[[ v ]]x,
+            --[[ d ]]d,
+            --[[ r ]]r,
+            --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end end
 
 function add$2(x, data, m) do
   if (m) then do
-    r = m[--[ r ]--3];
-    d = m[--[ d ]--2];
-    v = m[--[ v ]--1];
-    l = m[--[ l ]--0];
+    r = m[--[[ r ]]3];
+    d = m[--[[ d ]]2];
+    v = m[--[[ v ]]1];
+    l = m[--[[ l ]]0];
     c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
       if (d == data) then do
         return m;
       end else do
-        return --[ Node ]--[
-                --[ l ]--l,
-                --[ v ]--x,
-                --[ d ]--data,
-                --[ r ]--r,
-                --[ h ]--m[--[ h ]--4]
+        return --[[ Node ]][
+                --[[ l ]]l,
+                --[[ v ]]x,
+                --[[ d ]]data,
+                --[[ r ]]r,
+                --[[ h ]]m[--[[ h ]]4]
               ];
       end end 
     end else if (c < 0) then do
@@ -5798,12 +5798,12 @@ function add$2(x, data, m) do
       end end 
     end end  end 
   end else do
-    return --[ Node ]--[
-            --[ l : Empty ]--0,
-            --[ v ]--x,
-            --[ d ]--data,
-            --[ r : Empty ]--0,
-            --[ h ]--1
+    return --[[ Node ]][
+            --[[ l : Empty ]]0,
+            --[[ v ]]x,
+            --[[ d ]]data,
+            --[[ r : Empty ]]0,
+            --[[ h ]]1
           ];
   end end 
 end end
@@ -5812,11 +5812,11 @@ function find(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      c = Caml_primitive.caml_string_compare(x, param[--[ v ]--1]);
+      c = Caml_primitive.caml_string_compare(x, param[--[[ v ]]1]);
       if (c == 0) then do
-        return param[--[ d ]--2];
+        return param[--[[ d ]]2];
       end else do
-        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
+        _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
         continue ;
       end end 
     end else do
@@ -5836,35 +5836,35 @@ end end
 
 function height$3(param) do
   if (param) then do
-    return param[--[ h ]--3];
+    return param[--[[ h ]]3];
   end else do
     return 0;
   end end 
 end end
 
 function create$4(l, v, r) do
-  hl = l and l[--[ h ]--3] or 0;
-  hr = r and r[--[ h ]--3] or 0;
-  return --[ Node ]--[
-          --[ l ]--l,
-          --[ v ]--v,
-          --[ r ]--r,
-          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
+  hl = l and l[--[[ h ]]3] or 0;
+  hr = r and r[--[[ h ]]3] or 0;
+  return --[[ Node ]][
+          --[[ l ]]l,
+          --[[ v ]]v,
+          --[[ r ]]r,
+          --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end end
 
 function bal$3(l, v, r) do
-  hl = l and l[--[ h ]--3] or 0;
-  hr = r and r[--[ h ]--3] or 0;
+  hl = l and l[--[[ h ]]3] or 0;
+  hr = r and r[--[[ h ]]3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      lr = l[--[ r ]--2];
-      lv = l[--[ v ]--1];
-      ll = l[--[ l ]--0];
+      lr = l[--[[ r ]]2];
+      lv = l[--[[ v ]]1];
+      ll = l[--[[ l ]]0];
       if (height$3(ll) >= height$3(lr)) then do
         return create$4(ll, lv, create$4(lr, v, r));
       end else if (lr) then do
-        return create$4(create$4(ll, lv, lr[--[ l ]--0]), lr[--[ v ]--1], create$4(lr[--[ r ]--2], v, r));
+        return create$4(create$4(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create$4(lr[--[[ r ]]2], v, r));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
@@ -5879,13 +5879,13 @@ function bal$3(l, v, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      rr = r[--[ r ]--2];
-      rv = r[--[ v ]--1];
-      rl = r[--[ l ]--0];
+      rr = r[--[[ r ]]2];
+      rv = r[--[[ v ]]1];
+      rl = r[--[[ l ]]0];
       if (height$3(rr) >= height$3(rl)) then do
         return create$4(create$4(l, v, rl), rv, rr);
       end else if (rl) then do
-        return create$4(create$4(l, v, rl[--[ l ]--0]), rl[--[ v ]--1], create$4(rl[--[ r ]--2], rv, rr));
+        return create$4(create$4(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create$4(rl[--[[ r ]]2], rv, rr));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
@@ -5899,20 +5899,20 @@ function bal$3(l, v, r) do
           ];
     end end 
   end else do
-    return --[ Node ]--[
-            --[ l ]--l,
-            --[ v ]--v,
-            --[ r ]--r,
-            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
+    return --[[ Node ]][
+            --[[ l ]]l,
+            --[[ v ]]v,
+            --[[ r ]]r,
+            --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end end
 
 function add$3(x, t) do
   if (t) then do
-    r = t[--[ r ]--2];
-    v = t[--[ v ]--1];
-    l = t[--[ l ]--0];
+    r = t[--[[ r ]]2];
+    v = t[--[[ v ]]1];
+    l = t[--[[ l ]]0];
     c = compare$1(x, v);
     if (c == 0) then do
       return t;
@@ -5932,11 +5932,11 @@ function add$3(x, t) do
       end end 
     end end  end 
   end else do
-    return --[ Node ]--[
-            --[ l : Empty ]--0,
-            --[ v ]--x,
-            --[ r : Empty ]--0,
-            --[ h ]--1
+    return --[[ Node ]][
+            --[[ l : Empty ]]0,
+            --[[ v ]]x,
+            --[[ r : Empty ]]0,
+            --[[ h ]]1
           ];
   end end 
 end end
@@ -5945,11 +5945,11 @@ function mem$2(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      c = compare$1(x, param[--[ v ]--1]);
+      c = compare$1(x, param[--[[ v ]]1]);
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
+        _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]2];
         continue ;
       end end 
     end else do
@@ -5964,22 +5964,22 @@ function filter_duplicate_errors(errs) do
           deduped = param[1];
           set = param[0];
           if (mem$2(err, set)) then do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     set,
                     deduped
                   ];
           end else do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     add$3(err, set),
-                    --[ :: ]--[
+                    --[[ :: ]][
                       err,
                       deduped
                     ]
                   ];
           end end 
-        end end), --[ tuple ]--[
-        --[ Empty ]--0,
-        --[ [] ]--0
+        end end), --[[ tuple ]][
+        --[[ Empty ]]0,
+        --[[ [] ]]0
       ], errs$1);
   return List.rev(match[1]);
 end end
@@ -5988,114 +5988,114 @@ function with_loc(fn, env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   result = Curry._1(fn, env);
   match = env.last_loc.contents;
-  end_loc = match ~= undefined and match or (error$1(env, --[ Assertion ]--Block.__(0, ["did not consume any tokens"])), Curry._2(Parser_env_Peek.loc, undefined, env));
-  return --[ tuple ]--[
+  end_loc = match ~= undefined and match or (error$1(env, --[[ Assertion ]]Block.__(0, ["did not consume any tokens"])), Curry._2(Parser_env_Peek.loc, undefined, env));
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           result
         ];
 end end
 
-Parse = Caml_module.init_mod(--[ tuple ]--[
+Parse = Caml_module.init_mod(--[[ tuple ]][
       "parser_flow.ml",
       95,
       6
-    ], --[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Function ]--0,
+    ], --[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "program"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "statement"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "statement_list_item"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "statement_list"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "statement_list_with_directives"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "module_body"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "expression"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "assignment"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "object_initializer"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "array_initializer"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "identifier"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "identifier_or_reserved_keyword"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "identifier_with_type"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "block_body"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "function_block_body"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "jsx_element"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "pattern"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "pattern_from_expr"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "object_key"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "class_declaration"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "class_expression"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "is_assignable_lhs"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "predicate"
           ]
         ]]));
 
 function intersection(env) do
-  maybe(env, --[ T_BIT_AND ]--82);
+  maybe(env, --[[ T_BIT_AND ]]82);
   left = prefix(env);
   return Curry._2(intersection_with, env, left);
 end end
@@ -6111,19 +6111,19 @@ function primary(env) do
   if (typeof token$5 == "number") then do
     local ___conditional___=(token$5);
     do
-       if ___conditional___ = 0--[ T_IDENTIFIER ]-- then do
+       if ___conditional___ = 0--[[ T_IDENTIFIER ]] then do
           match = generic(env);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match[0],
-                  --[ Generic ]--Block.__(4, [match[1]])
+                  --[[ Generic ]]Block.__(4, [match[1]])
                 ];end end end 
-       if ___conditional___ = 1--[ T_LCURLY ]-- then do
+       if ___conditional___ = 1--[[ T_LCURLY ]] then do
           match$1 = Curry._2(_object, undefined, env);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match$1[0],
-                  --[ Object ]--Block.__(2, [match$1[1]])
+                  --[[ Object ]]Block.__(2, [match$1[1]])
                 ];end end end 
-       if ___conditional___ = 3--[ T_LPAREN ]-- then do
+       if ___conditional___ = 3--[[ T_LPAREN ]] then do
           env$1 = env;
           start_loc = Curry._2(Parser_env_Peek.loc, undefined, env$1);
           match$2 = param_list_or_type(env$1);
@@ -6131,12 +6131,12 @@ function primary(env) do
             return match$2[0];
           end else do
             match$3 = match$2[0];
-            token$4(env$1, --[ T_ARROW ]--10);
+            token$4(env$1, --[[ T_ARROW ]]10);
             returnType = union(env$1);
             end_loc = returnType[0];
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     btwn(start_loc, end_loc),
-                    --[ Function ]--Block.__(1, [do
+                    --[[ Function ]]Block.__(1, [do
                           params: match$3[1],
                           returnType: returnType,
                           rest: match$3[0],
@@ -6144,50 +6144,50 @@ function primary(env) do
                         end])
                   ];
           end end end end end 
-       if ___conditional___ = 5--[ T_LBRACKET ]-- then do
+       if ___conditional___ = 5--[[ T_LBRACKET ]] then do
           env$2 = env;
           start_loc$1 = Curry._2(Parser_env_Peek.loc, undefined, env$2);
-          token$4(env$2, --[ T_LBRACKET ]--5);
-          tl = types(env$2, --[ [] ]--0);
+          token$4(env$2, --[[ T_LBRACKET ]]5);
+          tl = types(env$2, --[[ [] ]]0);
           end_loc$1 = Curry._2(Parser_env_Peek.loc, undefined, env$2);
-          token$4(env$2, --[ T_RBRACKET ]--6);
-          return --[ tuple ]--[
+          token$4(env$2, --[[ T_RBRACKET ]]6);
+          return --[[ tuple ]][
                   btwn(start_loc$1, end_loc$1),
-                  --[ Tuple ]--Block.__(8, [tl])
+                  --[[ Tuple ]]Block.__(8, [tl])
                 ];end end end 
-       if ___conditional___ = 28--[ T_FALSE ]--
-       or ___conditional___ = 29--[ T_TRUE ]-- then do
+       if ___conditional___ = 28--[[ T_FALSE ]]
+       or ___conditional___ = 29--[[ T_TRUE ]] then do
           exit = 2;end else 
-       if ___conditional___ = 44--[ T_TYPEOF ]-- then do
+       if ___conditional___ = 44--[[ T_TYPEOF ]] then do
           start_loc$2 = Curry._2(Parser_env_Peek.loc, undefined, env);
-          token$4(env, --[ T_TYPEOF ]--44);
+          token$4(env, --[[ T_TYPEOF ]]44);
           t = primary(env);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   btwn(start_loc$2, t[0]),
-                  --[ Typeof ]--Block.__(7, [t])
+                  --[[ Typeof ]]Block.__(7, [t])
                 ];end end end 
-       if ___conditional___ = 89--[ T_LESS_THAN ]-- then do
+       if ___conditional___ = 89--[[ T_LESS_THAN ]] then do
           env$3 = env;
           start_loc$3 = Curry._2(Parser_env_Peek.loc, undefined, env$3);
           typeParameters = Curry._2(type_parameter_declaration, false, env$3);
           match$4 = function_param_list(env$3);
-          token$4(env$3, --[ T_ARROW ]--10);
+          token$4(env$3, --[[ T_ARROW ]]10);
           returnType$1 = union(env$3);
           end_loc$2 = returnType$1[0];
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   btwn(start_loc$3, end_loc$2),
-                  --[ Function ]--Block.__(1, [do
+                  --[[ Function ]]Block.__(1, [do
                         params: match$4[1],
                         returnType: returnType$1,
                         rest: match$4[0],
                         typeParameters: typeParameters
                       end])
                 ];end end end 
-       if ___conditional___ = 97--[ T_MULT ]-- then do
-          token$4(env, --[ T_MULT ]--97);
-          return --[ tuple ]--[
+       if ___conditional___ = 97--[[ T_MULT ]] then do
+          token$4(env, --[[ T_MULT ]]97);
+          return --[[ tuple ]][
                   loc,
-                  --[ Exists ]--6
+                  --[[ Exists ]]6
                 ];end end end 
        do
       else do
@@ -6198,44 +6198,44 @@ function primary(env) do
   end else do
     local ___conditional___=(token$5.tag | 0);
     do
-       if ___conditional___ = 1--[ T_STRING ]-- then do
+       if ___conditional___ = 1--[[ T_STRING ]] then do
           match$5 = token$5[0];
           octal = match$5[3];
           raw = match$5[2];
           value = match$5[1];
           loc$1 = match$5[0];
           if (octal) then do
-            strict_error(env, --[ StrictOctalLiteral ]--31);
+            strict_error(env, --[[ StrictOctalLiteral ]]31);
           end
            end 
-          token$4(env, --[ T_STRING ]--Block.__(1, [--[ tuple ]--[
+          token$4(env, --[[ T_STRING ]]Block.__(1, [--[[ tuple ]][
                     loc$1,
                     value,
                     raw,
                     octal
                   ]]));
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   loc$1,
-                  --[ StringLiteral ]--Block.__(9, [do
+                  --[[ StringLiteral ]]Block.__(9, [do
                         value: value,
                         raw: raw
                       end])
                 ];end end end 
-       if ___conditional___ = 5--[ T_NUMBER_SINGLETON_TYPE ]-- then do
+       if ___conditional___ = 5--[[ T_NUMBER_SINGLETON_TYPE ]] then do
           value$1 = token$5[1];
           number_type = token$5[0];
           raw$1 = Curry._2(Parser_env_Peek.value, undefined, env);
-          token$4(env, --[ T_NUMBER_SINGLETON_TYPE ]--Block.__(5, [
+          token$4(env, --[[ T_NUMBER_SINGLETON_TYPE ]]Block.__(5, [
                   number_type,
                   value$1
                 ]));
-          if (number_type == --[ LEGACY_OCTAL ]--1) then do
-            strict_error(env, --[ StrictOctalLiteral ]--31);
+          if (number_type == --[[ LEGACY_OCTAL ]]1) then do
+            strict_error(env, --[[ StrictOctalLiteral ]]31);
           end
            end 
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   loc,
-                  --[ NumberLiteral ]--Block.__(10, [do
+                  --[[ NumberLiteral ]]Block.__(10, [do
                         value: value$1,
                         raw: raw$1
                       end])
@@ -6253,24 +6253,24 @@ function primary(env) do
         match$6 = primitive(token$5);
         if (match$6 ~= undefined) then do
           token$4(env, token$5);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   loc,
                   match$6
                 ];
         end else do
           error_unexpected(env);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   loc,
-                  --[ Any ]--0
+                  --[[ Any ]]0
                 ];
         end end end end end 
      if ___conditional___ = 2 then do
         raw$2 = Curry._2(Parser_env_Peek.value, undefined, env);
         token$4(env, token$5);
-        value$2 = token$5 == --[ T_TRUE ]--29;
-        return --[ tuple ]--[
+        value$2 = token$5 == --[[ T_TRUE ]]29;
+        return --[[ tuple ]][
                 loc,
-                --[ BooleanLiteral ]--Block.__(11, [do
+                --[[ BooleanLiteral ]]Block.__(11, [do
                       value: value$2,
                       raw: raw$2
                     end])
@@ -6286,16 +6286,16 @@ function primitive(param) do
       if (param >= 107) then do
         local ___conditional___=(param - 107 | 0);
         do
-           if ___conditional___ = 0--[ T_IDENTIFIER ]-- then do
-              return --[ Any ]--0;end end end 
-           if ___conditional___ = 1--[ T_LCURLY ]-- then do
-              return --[ Boolean ]--5;end end end 
-           if ___conditional___ = 2--[ T_RCURLY ]-- then do
-              return --[ Number ]--3;end end end 
-           if ___conditional___ = 3--[ T_LPAREN ]-- then do
-              return --[ String ]--4;end end end 
-           if ___conditional___ = 4--[ T_RPAREN ]-- then do
-              return --[ Void ]--1;end end end 
+           if ___conditional___ = 0--[[ T_IDENTIFIER ]] then do
+              return --[[ Any ]]0;end end end 
+           if ___conditional___ = 1--[[ T_LCURLY ]] then do
+              return --[[ Boolean ]]5;end end end 
+           if ___conditional___ = 2--[[ T_RCURLY ]] then do
+              return --[[ Number ]]3;end end end 
+           if ___conditional___ = 3--[[ T_LPAREN ]] then do
+              return --[[ String ]]4;end end end 
+           if ___conditional___ = 4--[[ T_RPAREN ]] then do
+              return --[[ Void ]]1;end end end 
            do
           
         end
@@ -6303,7 +6303,7 @@ function primitive(param) do
         return ;
       end end 
     end else do
-      return --[ Null ]--2;
+      return --[[ Null ]]2;
     end end 
   end
    end 
@@ -6314,31 +6314,31 @@ function function_param_or_generic_type(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
   if (typeof match == "number" and (match == 77 or match == 76)) then do
     param = function_param_with_id(env, id);
-    maybe(env, --[ T_COMMA ]--8);
-    return --[ ParamList ]--Block.__(0, [Curry._2(function_param_list_without_parens, env, --[ :: ]--[
+    maybe(env, --[[ T_COMMA ]]8);
+    return --[[ ParamList ]]Block.__(0, [Curry._2(function_param_list_without_parens, env, --[[ :: ]][
                     param,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ])]);
   end
    end 
-  return --[ Type ]--Block.__(1, [Curry._2(union_with, env, Curry._2(intersection_with, env, postfix_with(env, generic_type_with_identifier(env, id))))]);
+  return --[[ Type ]]Block.__(1, [Curry._2(union_with, env, Curry._2(intersection_with, env, postfix_with(env, generic_type_with_identifier(env, id))))]);
 end end
 
 function union(env) do
-  maybe(env, --[ T_BIT_OR ]--80);
+  maybe(env, --[[ T_BIT_OR ]]80);
   left = intersection(env);
   return Curry._2(union_with, env, left);
 end end
 
 function function_param_with_id(env, name) do
   if (!env.parse_options.types) then do
-    error$1(env, --[ UnexpectedTypeAnnotation ]--6);
+    error$1(env, --[[ UnexpectedTypeAnnotation ]]6);
   end
    end 
-  optional = maybe(env, --[ T_PLING ]--76);
-  token$4(env, --[ T_COLON ]--77);
+  optional = maybe(env, --[[ T_PLING ]]76);
+  token$4(env, --[[ T_COLON ]]77);
   typeAnnotation = union(env);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(name[0], typeAnnotation[0]),
           do
             name: name,
@@ -6350,21 +6350,21 @@ end end
 
 function generic_type_with_identifier(env, id) do
   match = Curry._2(raw_generic_with_identifier, env, id);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           match[0],
-          --[ Generic ]--Block.__(4, [match[1]])
+          --[[ Generic ]]Block.__(4, [match[1]])
         ];
 end end
 
 function postfix_with(env, _t) do
   while(true) do
     t = _t;
-    if (!Curry._1(Parser_env_Peek.is_line_terminator, env) and maybe(env, --[ T_LBRACKET ]--5)) then do
+    if (!Curry._1(Parser_env_Peek.is_line_terminator, env) and maybe(env, --[[ T_LBRACKET ]]5)) then do
       end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-      token$4(env, --[ T_RBRACKET ]--6);
+      token$4(env, --[[ T_RBRACKET ]]6);
       loc = btwn(t[0], end_loc);
-      t_001 = --[ Array ]--Block.__(3, [t]);
-      t$1 = --[ tuple ]--[
+      t_001 = --[[ Array ]]Block.__(3, [t]);
+      t$1 = --[[ tuple ]][
         loc,
         t_001
       ];
@@ -6377,9 +6377,9 @@ function postfix_with(env, _t) do
 end end
 
 function function_param_list(env) do
-  token$4(env, --[ T_LPAREN ]--3);
-  ret = Curry._2(function_param_list_without_parens, env, --[ [] ]--0);
-  token$4(env, --[ T_RPAREN ]--4);
+  token$4(env, --[[ T_LPAREN ]]3);
+  ret = Curry._2(function_param_list_without_parens, env, --[[ [] ]]0);
+  token$4(env, --[[ T_RPAREN ]]4);
   return ret;
 end end
 
@@ -6387,11 +6387,11 @@ function prefix(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
   if (typeof match == "number" and match == 76) then do
     loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-    token$4(env, --[ T_PLING ]--76);
+    token$4(env, --[[ T_PLING ]]76);
     t = prefix(env);
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             btwn(loc, t[0]),
-            --[ Nullable ]--Block.__(0, [t])
+            --[[ Nullable ]]Block.__(0, [t])
           ];
   end else do
     env$1 = env;
@@ -6407,7 +6407,7 @@ function rev_nonempty_acc(acc) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "parser_flow.ml",
             127,
             13
@@ -6421,21 +6421,21 @@ function rev_nonempty_acc(acc) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "parser_flow.ml",
             131,
             13
           ]
         ];
   end end 
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           acc$1
         ];
 end end
 
 function param_list_or_type(env) do
-  token$4(env, --[ T_LPAREN ]--3);
+  token$4(env, --[[ T_LPAREN ]]3);
   token$5 = Curry._2(Parser_env_Peek.token, undefined, env);
   ret;
   exit = 0;
@@ -6446,31 +6446,31 @@ function param_list_or_type(env) do
       end else do
         local ___conditional___=(token$5);
         do
-           if ___conditional___ = 0--[ T_IDENTIFIER ]-- then do
+           if ___conditional___ = 0--[[ T_IDENTIFIER ]] then do
               ret = function_param_or_generic_type(env);end else 
-           if ___conditional___ = 4--[ T_RPAREN ]-- then do
-              ret = --[ ParamList ]--Block.__(0, [--[ tuple ]--[
+           if ___conditional___ = 4--[[ T_RPAREN ]] then do
+              ret = --[[ ParamList ]]Block.__(0, [--[[ tuple ]][
                     undefined,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]]);end else 
-           if ___conditional___ = 1--[ T_LCURLY ]--
-           or ___conditional___ = 2--[ T_RCURLY ]--
-           or ___conditional___ = 3--[ T_LPAREN ]--
-           or ___conditional___ = 5--[ T_LBRACKET ]--
-           or ___conditional___ = 6--[ T_RBRACKET ]--
-           or ___conditional___ = 7--[ T_SEMICOLON ]--
-           or ___conditional___ = 8--[ T_COMMA ]--
-           or ___conditional___ = 9--[ T_PERIOD ]--
-           or ___conditional___ = 10--[ T_ARROW ]-- then do
+           if ___conditional___ = 1--[[ T_LCURLY ]]
+           or ___conditional___ = 2--[[ T_RCURLY ]]
+           or ___conditional___ = 3--[[ T_LPAREN ]]
+           or ___conditional___ = 5--[[ T_LBRACKET ]]
+           or ___conditional___ = 6--[[ T_RBRACKET ]]
+           or ___conditional___ = 7--[[ T_SEMICOLON ]]
+           or ___conditional___ = 8--[[ T_COMMA ]]
+           or ___conditional___ = 9--[[ T_PERIOD ]]
+           or ___conditional___ = 10--[[ T_ARROW ]] then do
               exit = 1;end else 
-           if ___conditional___ = 11--[ T_ELLIPSIS ]-- then do
-              ret = --[ ParamList ]--Block.__(0, [Curry._2(function_param_list_without_parens, env, --[ [] ]--0)]);end else 
+           if ___conditional___ = 11--[[ T_ELLIPSIS ]] then do
+              ret = --[[ ParamList ]]Block.__(0, [Curry._2(function_param_list_without_parens, env, --[[ [] ]]0)]);end else 
            do end end end end end
           
         end
       end end 
     end else do
-      ret = --[ ParamList ]--Block.__(0, [Curry._2(function_param_list_without_parens, env, --[ [] ]--0)]);
+      ret = --[[ ParamList ]]Block.__(0, [Curry._2(function_param_list_without_parens, env, --[[ [] ]]0)]);
     end end 
   end else do
     exit = 1;
@@ -6483,14 +6483,14 @@ function param_list_or_type(env) do
         match$2 = Curry._1(Parse.identifier_or_reserved_keyword, env);
         name = match$2[0];
         if (!env.parse_options.types) then do
-          error$1(env, --[ UnexpectedTypeAnnotation ]--6);
+          error$1(env, --[[ UnexpectedTypeAnnotation ]]6);
         end
          end 
-        optional = maybe(env, --[ T_PLING ]--76);
-        token$4(env, --[ T_COLON ]--77);
+        optional = maybe(env, --[[ T_PLING ]]76);
+        token$4(env, --[[ T_COLON ]]77);
         typeAnnotation = union(env);
-        if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[ T_RPAREN ]--4) then do
-          token$4(env, --[ T_COMMA ]--8);
+        if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RPAREN ]]4) then do
+          token$4(env, --[[ T_COMMA ]]8);
         end
          end 
         param_000 = btwn(name[0], typeAnnotation[0]);
@@ -6499,39 +6499,39 @@ function param_list_or_type(env) do
           typeAnnotation: typeAnnotation,
           optional: optional
         end;
-        param = --[ tuple ]--[
+        param = --[[ tuple ]][
           param_000,
           param_001
         ];
-        ret = --[ ParamList ]--Block.__(0, [Curry._2(function_param_list_without_parens, env, --[ :: ]--[
+        ret = --[[ ParamList ]]Block.__(0, [Curry._2(function_param_list_without_parens, env, --[[ :: ]][
                   param,
-                  --[ [] ]--0
+                  --[[ [] ]]0
                 ])]);
       end else do
-        ret = --[ Type ]--Block.__(1, [union(env)]);
+        ret = --[[ Type ]]Block.__(1, [union(env)]);
       end end 
     end else do
-      ret = --[ Type ]--Block.__(1, [union(env)]);
+      ret = --[[ Type ]]Block.__(1, [union(env)]);
     end end 
   end
    end 
-  token$4(env, --[ T_RPAREN ]--4);
+  token$4(env, --[[ T_RPAREN ]]4);
   return ret;
 end end
 
 function union_with(env, left) do
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_BIT_OR ]--80) then do
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_BIT_OR ]]80) then do
     env$1 = env;
-    _acc = --[ :: ]--[
+    _acc = --[[ :: ]][
       left,
-      --[ [] ]--0
+      --[[ [] ]]0
     ];
     while(true) do
       acc = _acc;
       match = Curry._2(Parser_env_Peek.token, undefined, env$1);
       if (typeof match == "number" and match == 80) then do
-        token$4(env$1, --[ T_BIT_OR ]--80);
-        _acc = --[ :: ]--[
+        token$4(env$1, --[[ T_BIT_OR ]]80);
+        _acc = --[[ :: ]][
           intersection(env$1),
           acc
         ];
@@ -6539,9 +6539,9 @@ function union_with(env, left) do
       end
        end 
       match$1 = rev_nonempty_acc(acc);
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               match$1[0],
-              --[ Union ]--Block.__(5, [match$1[1]])
+              --[[ Union ]]Block.__(5, [match$1[1]])
             ];
     end;
   end else do
@@ -6552,10 +6552,10 @@ end end
 function methodish(env, start_loc) do
   typeParameters = Curry._2(type_parameter_declaration, false, env);
   match = function_param_list(env);
-  token$4(env, --[ T_COLON ]--77);
+  token$4(env, --[[ T_COLON ]]77);
   returnType = union(env);
   loc = btwn(start_loc, returnType[0]);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
           do
             params: match[1],
@@ -6569,12 +6569,12 @@ end end
 function method_property(env, start_loc, $$static, key) do
   value = methodish(env, start_loc);
   value_000 = value[0];
-  value_001 = --[ Function ]--Block.__(1, [value[1]]);
-  value$1 = --[ tuple ]--[
+  value_001 = --[[ Function ]]Block.__(1, [value[1]]);
+  value$1 = --[[ tuple ]][
     value_000,
     value_001
   ];
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           value_000,
           do
             key: key,
@@ -6588,7 +6588,7 @@ end end
 
 function call_property(env, start_loc, $$static) do
   value = methodish(env, Curry._2(Parser_env_Peek.loc, undefined, env));
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, value[0]),
           do
             value: value,
@@ -6599,13 +6599,13 @@ end end
 
 function property(env, start_loc, $$static, key) do
   if (!env.parse_options.types) then do
-    error$1(env, --[ UnexpectedTypeAnnotation ]--6);
+    error$1(env, --[[ UnexpectedTypeAnnotation ]]6);
   end
    end 
-  optional = maybe(env, --[ T_PLING ]--76);
-  token$4(env, --[ T_COLON ]--77);
+  optional = maybe(env, --[[ T_PLING ]]76);
+  token$4(env, --[[ T_COLON ]]77);
   value = union(env);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, value[0]),
           do
             key: key,
@@ -6618,14 +6618,14 @@ function property(env, start_loc, $$static, key) do
 end end
 
 function indexer_property(env, start_loc, $$static) do
-  token$4(env, --[ T_LBRACKET ]--5);
+  token$4(env, --[[ T_LBRACKET ]]5);
   match = Curry._1(Parse.identifier_or_reserved_keyword, env);
-  token$4(env, --[ T_COLON ]--77);
+  token$4(env, --[[ T_COLON ]]77);
   key = union(env);
-  token$4(env, --[ T_RBRACKET ]--6);
-  token$4(env, --[ T_COLON ]--77);
+  token$4(env, --[[ T_RBRACKET ]]6);
+  token$4(env, --[[ T_COLON ]]77);
   value = union(env);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, value[0]),
           do
             id: match[0],
@@ -6648,7 +6648,7 @@ function semicolon$1(env) do
     end else if (match ~= 2) then do
       return error_unexpected(env);
     end else do
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end end  end 
   end else do
     return error_unexpected(env);
@@ -6662,7 +6662,7 @@ function properties(allow_static, env, _param) do
     indexers = param[1];
     acc = param[0];
     start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-    $$static = allow_static and maybe(env, --[ T_STATIC ]--40);
+    $$static = allow_static and maybe(env, --[[ T_STATIC ]]40);
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     exit = 0;
     if (typeof match == "number") then do
@@ -6673,20 +6673,20 @@ function properties(allow_static, env, _param) do
           end else do
             local ___conditional___=(match);
             do
-               if ___conditional___ = 2--[ T_RCURLY ]-- then do
+               if ___conditional___ = 2--[[ T_RCURLY ]] then do
                   exit = 2;end else 
-               if ___conditional___ = 3--[ T_LPAREN ]-- then do
+               if ___conditional___ = 3--[[ T_LPAREN ]] then do
                   exit = 3;end else 
-               if ___conditional___ = 0--[ T_IDENTIFIER ]--
-               or ___conditional___ = 1--[ T_LCURLY ]--
-               or ___conditional___ = 4--[ T_RPAREN ]-- then do
+               if ___conditional___ = 0--[[ T_IDENTIFIER ]]
+               or ___conditional___ = 1--[[ T_LCURLY ]]
+               or ___conditional___ = 4--[[ T_RPAREN ]] then do
                   exit = 1;end else 
-               if ___conditional___ = 5--[ T_LBRACKET ]-- then do
+               if ___conditional___ = 5--[[ T_LBRACKET ]] then do
                   indexer = indexer_property(env, start_loc, $$static);
                   semicolon$1(env);
-                  _param = --[ tuple ]--[
+                  _param = --[[ tuple ]][
                     acc,
-                    --[ :: ]--[
+                    --[[ :: ]][
                       indexer,
                       indexers
                     ],
@@ -6713,11 +6713,11 @@ function properties(allow_static, env, _param) do
           match$2;
           exit$1 = 0;
           if ($$static and typeof match$1 == "number" and match$1 == 77) then do
-            strict_error_at(env, --[ tuple ]--[
+            strict_error_at(env, --[[ tuple ]][
                   start_loc,
-                  --[ StrictReservedWord ]--39
+                  --[[ StrictReservedWord ]]39
                 ]);
-            static_key_001 = --[ Identifier ]--Block.__(1, [--[ tuple ]--[
+            static_key_001 = --[[ Identifier ]]Block.__(1, [--[[ tuple ]][
                   start_loc,
                   do
                     name: "static",
@@ -6725,11 +6725,11 @@ function properties(allow_static, env, _param) do
                     optional: false
                   end
                 ]]);
-            static_key = --[ tuple ]--[
+            static_key = --[[ tuple ]][
               start_loc,
               static_key_001
             ];
-            match$2 = --[ tuple ]--[
+            match$2 = --[[ tuple ]][
               false,
               static_key
             ];
@@ -6737,10 +6737,10 @@ function properties(allow_static, env, _param) do
             exit$1 = 4;
           end end 
           if (exit$1 == 4) then do
-            push_lex_mode(env, --[ NORMAL ]--0);
+            push_lex_mode(env, --[[ NORMAL ]]0);
             key = Curry._1(Parse.object_key, env);
             pop_lex_mode(env);
-            match$2 = --[ tuple ]--[
+            match$2 = --[[ tuple ]][
               $$static,
               key
             ];
@@ -6751,8 +6751,8 @@ function properties(allow_static, env, _param) do
           match$3 = Curry._2(Parser_env_Peek.token, undefined, env);
           property$1 = typeof match$3 == "number" and !(match$3 ~= 3 and match$3 ~= 89) and method_property(env, start_loc, $$static$1, key$1) or property(env, start_loc, $$static$1, key$1);
           semicolon$1(env);
-          _param = --[ tuple ]--[
-            --[ :: ]--[
+          _param = --[[ tuple ]][
+            --[[ :: ]][
               property$1,
               acc
             ],
@@ -6761,7 +6761,7 @@ function properties(allow_static, env, _param) do
           ];
           continue ;end end end 
        if ___conditional___ = 2 then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   List.rev(acc),
                   List.rev(indexers),
                   List.rev(callProperties)
@@ -6769,10 +6769,10 @@ function properties(allow_static, env, _param) do
        if ___conditional___ = 3 then do
           call_prop = call_property(env, start_loc, $$static);
           semicolon$1(env);
-          _param = --[ tuple ]--[
+          _param = --[[ tuple ]][
             acc,
             indexers,
-            --[ :: ]--[
+            --[[ :: ]][
               call_prop,
               callProperties
             ]
@@ -6787,15 +6787,15 @@ end end
 function _object(allow_staticOpt, env) do
   allow_static = allow_staticOpt ~= undefined and allow_staticOpt or false;
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_LCURLY ]--1);
-  match = properties(allow_static, env, --[ tuple ]--[
-        --[ [] ]--0,
-        --[ [] ]--0,
-        --[ [] ]--0
+  token$4(env, --[[ T_LCURLY ]]1);
+  match = properties(allow_static, env, --[[ tuple ]][
+        --[[ [] ]]0,
+        --[[ [] ]]0,
+        --[[ [] ]]0
       ]);
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_RCURLY ]--2);
-  return --[ tuple ]--[
+  token$4(env, --[[ T_RCURLY ]]2);
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             properties: match[0],
@@ -6814,12 +6814,12 @@ function types(env, _acc) do
     end
      end 
     acc_000 = union(env);
-    acc$1 = --[ :: ]--[
+    acc$1 = --[[ :: ]][
       acc_000,
       acc
     ];
-    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[ T_RBRACKET ]--6) then do
-      token$4(env, --[ T_COMMA ]--8);
+    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RBRACKET ]]6) then do
+      token$4(env, --[[ T_COMMA ]]8);
     end
      end 
     _acc = acc$1;
@@ -6854,19 +6854,19 @@ function function_param_list_without_parens(env) do
         do
            if ___conditional___ = 1 then do
               acc_000 = param(env$1);
-              acc$1 = --[ :: ]--[
+              acc$1 = --[[ :: ]][
                 acc_000,
                 acc
               ];
-              if (Curry._2(Parser_env_Peek.token, undefined, env$1) ~= --[ T_RPAREN ]--4) then do
-                token$4(env$1, --[ T_COMMA ]--8);
+              if (Curry._2(Parser_env_Peek.token, undefined, env$1) ~= --[[ T_RPAREN ]]4) then do
+                token$4(env$1, --[[ T_COMMA ]]8);
               end
                end 
               _acc = acc$1;
               continue ;end end end 
            if ___conditional___ = 2 then do
-              rest = t == --[ T_ELLIPSIS ]--11 and (token$4(env$1, --[ T_ELLIPSIS ]--11), param(env$1)) or undefined;
-              return --[ tuple ]--[
+              rest = t == --[[ T_ELLIPSIS ]]11 and (token$4(env$1, --[[ T_ELLIPSIS ]]11), param(env$1)) or undefined;
+              return --[[ tuple ]][
                       rest,
                       List.rev(acc)
                     ];end end end 
@@ -6886,12 +6886,12 @@ function params(env, _acc) do
     end
      end 
     acc_000 = union(env);
-    acc$1 = --[ :: ]--[
+    acc$1 = --[[ :: ]][
       acc_000,
       acc
     ];
-    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[ T_GREATER_THAN ]--90) then do
-      token$4(env, --[ T_COMMA ]--8);
+    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_GREATER_THAN ]]90) then do
+      token$4(env, --[[ T_COMMA ]]8);
     end
      end 
     _acc = acc$1;
@@ -6901,12 +6901,12 @@ end end
 
 function type_parameter_instantiation(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_LESS_THAN ]--89) then do
-    token$4(env, --[ T_LESS_THAN ]--89);
-    params$1 = params(env, --[ [] ]--0);
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LESS_THAN ]]89) then do
+    token$4(env, --[[ T_LESS_THAN ]]89);
+    params$1 = params(env, --[[ [] ]]0);
     loc = btwn(start_loc, Curry._2(Parser_env_Peek.loc, undefined, env));
-    token$4(env, --[ T_GREATER_THAN ]--90);
-    return --[ tuple ]--[
+    token$4(env, --[[ T_GREATER_THAN ]]90);
+    return --[[ tuple ]][
             loc,
             do
               params: params$1
@@ -6917,18 +6917,18 @@ function type_parameter_instantiation(env) do
 end end
 
 function intersection_with(env, left) do
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_BIT_AND ]--82) then do
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_BIT_AND ]]82) then do
     env$1 = env;
-    _acc = --[ :: ]--[
+    _acc = --[[ :: ]][
       left,
-      --[ [] ]--0
+      --[[ [] ]]0
     ];
     while(true) do
       acc = _acc;
       match = Curry._2(Parser_env_Peek.token, undefined, env$1);
       if (typeof match == "number" and match == 82) then do
-        token$4(env$1, --[ T_BIT_AND ]--82);
-        _acc = --[ :: ]--[
+        token$4(env$1, --[[ T_BIT_AND ]]82);
+        _acc = --[[ :: ]][
           prefix(env$1),
           acc
         ];
@@ -6936,9 +6936,9 @@ function intersection_with(env, left) do
       end
        end 
       match$1 = rev_nonempty_acc(acc);
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               match$1[0],
-              --[ Intersection ]--Block.__(6, [match$1[1]])
+              --[[ Intersection ]]Block.__(6, [match$1[1]])
             ];
     end;
   end else do
@@ -6953,10 +6953,10 @@ function params$1(env, allow_default, _require_default, _acc) do
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     variance = typeof match == "number" and (
         match ~= 94 and (
-            match ~= 95 and undefined or (token$3(env), --[ Minus ]--1)
-          ) or (token$3(env), --[ Plus ]--0)
+            match ~= 95 and undefined or (token$3(env), --[[ Minus ]]1)
+          ) or (token$3(env), --[[ Plus ]]0)
       ) or undefined;
-    match$1 = Curry._2(Parse.identifier_with_type, env, --[ StrictParamName ]--28);
+    match$1 = Curry._2(Parse.identifier_with_type, env, --[[ StrictParamName ]]28);
     id = match$1[1];
     loc = match$1[0];
     match$2 = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -6965,7 +6965,7 @@ function params$1(env, allow_default, _require_default, _acc) do
       exit = 0;
       if (typeof match$2 == "number" and match$2 == 75) then do
         token$3(env);
-        match$3 = --[ tuple ]--[
+        match$3 = --[[ tuple ]][
           union(env),
           true
         ];
@@ -6974,20 +6974,20 @@ function params$1(env, allow_default, _require_default, _acc) do
       end end 
       if (exit == 1) then do
         if (require_default) then do
-          error_at(env, --[ tuple ]--[
+          error_at(env, --[[ tuple ]][
                 loc,
-                --[ MissingTypeParamDefault ]--58
+                --[[ MissingTypeParamDefault ]]58
               ]);
         end
          end 
-        match$3 = --[ tuple ]--[
+        match$3 = --[[ tuple ]][
           undefined,
           require_default
         ];
       end
        end 
     end else do
-      match$3 = --[ tuple ]--[
+      match$3 = --[[ tuple ]][
         undefined,
         false
       ];
@@ -6998,11 +6998,11 @@ function params$1(env, allow_default, _require_default, _acc) do
       variance: variance,
       default: match$3[0]
     end;
-    param = --[ tuple ]--[
+    param = --[[ tuple ]][
       loc,
       param_001
     ];
-    acc$1 = --[ :: ]--[
+    acc$1 = --[[ :: ]][
       param,
       acc
     ];
@@ -7011,8 +7011,8 @@ function params$1(env, allow_default, _require_default, _acc) do
       return List.rev(acc$1);
     end
      end 
-    token$4(env, --[ T_COMMA ]--8);
-    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_GREATER_THAN ]--90) then do
+    token$4(env, --[[ T_COMMA ]]8);
+    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_GREATER_THAN ]]90) then do
       return List.rev(acc$1);
     end else do
       _acc = acc$1;
@@ -7024,16 +7024,16 @@ end end
 
 function type_parameter_declaration(allow_default, env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_LESS_THAN ]--89) then do
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LESS_THAN ]]89) then do
     if (!env.parse_options.types) then do
-      error$1(env, --[ UnexpectedTypeAnnotation ]--6);
+      error$1(env, --[[ UnexpectedTypeAnnotation ]]6);
     end
      end 
-    token$4(env, --[ T_LESS_THAN ]--89);
-    params$2 = params$1(env, allow_default, false, --[ [] ]--0);
+    token$4(env, --[[ T_LESS_THAN ]]89);
+    params$2 = params$1(env, allow_default, false, --[[ [] ]]0);
     loc = btwn(start_loc, Curry._2(Parser_env_Peek.loc, undefined, env));
-    token$4(env, --[ T_GREATER_THAN ]--90);
-    return --[ tuple ]--[
+    token$4(env, --[[ T_GREATER_THAN ]]90);
+    return --[[ tuple ]][
             loc,
             do
               params: params$2
@@ -7048,24 +7048,24 @@ function identifier(env, _param) do
     param = _param;
     qualification = param[1];
     q_loc = param[0];
-    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_PERIOD ]--9) then do
-      token$4(env, --[ T_PERIOD ]--9);
+    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_PERIOD ]]9) then do
+      token$4(env, --[[ T_PERIOD ]]9);
       id = Curry._2(Parse.identifier, undefined, env);
       loc = btwn(q_loc, id[0]);
-      qualification$1 = --[ Qualified ]--Block.__(1, [--[ tuple ]--[
+      qualification$1 = --[[ Qualified ]]Block.__(1, [--[[ tuple ]][
             loc,
             do
               qualification: qualification,
               id: id
             end
           ]]);
-      _param = --[ tuple ]--[
+      _param = --[[ tuple ]][
         loc,
         qualification$1
       ];
       continue ;
     end else do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               q_loc,
               qualification
             ];
@@ -7075,8 +7075,8 @@ end end
 
 function raw_generic_with_identifier(env, id) do
   id_000 = id[0];
-  id_001 = --[ Unqualified ]--Block.__(0, [id]);
-  id$1 = --[ tuple ]--[
+  id_001 = --[[ Unqualified ]]Block.__(0, [id]);
+  id$1 = --[[ tuple ]][
     id_000,
     id_001
   ];
@@ -7084,7 +7084,7 @@ function raw_generic_with_identifier(env, id) do
   id_loc = match[0];
   typeParameters = Curry._1(type_parameter_instantiation, env);
   loc = typeParameters ~= undefined and btwn(id_loc, typeParameters[0]) or id_loc;
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
           do
             id: match[1],
@@ -7097,11 +7097,11 @@ _type = union;
 
 function annotation(env) do
   if (!env.parse_options.types) then do
-    error$1(env, --[ UnexpectedTypeAnnotation ]--6);
+    error$1(env, --[[ UnexpectedTypeAnnotation ]]6);
   end
    end 
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_COLON ]--77);
+  token$4(env, --[[ T_COLON ]]77);
   typeAnnotation = union(env);
   match = env.last_loc.contents;
   end_loc;
@@ -7110,14 +7110,14 @@ function annotation(env) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "parser_flow.ml",
             121,
             16
           ]
         ];
   end end 
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           typeAnnotation
         ];
@@ -7133,7 +7133,7 @@ end end
 
 function wrap(f, env) do
   env$1 = with_strict(true, env);
-  push_lex_mode(env$1, --[ TYPE ]--1);
+  push_lex_mode(env$1, --[[ TYPE ]]1);
   ret = Curry._1(f, env$1);
   pop_lex_mode(env$1);
   return ret;
@@ -7162,42 +7162,42 @@ function pattern(check_env, _param) do
     p = param[1];
     local ___conditional___=(p.tag | 0);
     do
-       if ___conditional___ = 0--[ Object ]-- then do
+       if ___conditional___ = 0--[[ Object ]] then do
           check_env$1 = check_env;
           o = p[0];
           return List.fold_left(object_property, check_env$1, o.properties);end end end 
-       if ___conditional___ = 1--[ Array ]-- then do
+       if ___conditional___ = 1--[[ Array ]] then do
           check_env$2 = check_env;
           arr = p[0];
           return List.fold_left(array_element, check_env$2, arr.elements);end end end 
-       if ___conditional___ = 2--[ Assignment ]-- then do
+       if ___conditional___ = 2--[[ Assignment ]] then do
           _param = p[0].left;
           continue ;end end end 
-       if ___conditional___ = 3--[ Identifier ]-- then do
+       if ___conditional___ = 3--[[ Identifier ]] then do
           param$1 = check_env;
           id = p[0];
           name = id[1].name;
           param_names = param$1[1];
           env = param$1[0];
           if (mem$1(name, param_names)) then do
-            error_at(env, --[ tuple ]--[
+            error_at(env, --[[ tuple ]][
                   id[0],
-                  --[ StrictParamDupe ]--29
+                  --[[ StrictParamDupe ]]29
                 ]);
           end
            end 
-          match = identifier_no_dupe_check(--[ tuple ]--[
+          match = identifier_no_dupe_check(--[[ tuple ]][
                 env,
                 param_names
               ], id);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match[0],
                   add$1(name, match[1])
                 ];end end end 
-       if ___conditional___ = 4--[ Expression ]-- then do
-          error_at(check_env[0], --[ tuple ]--[
+       if ___conditional___ = 4--[[ Expression ]] then do
+          error_at(check_env[0], --[[ tuple ]][
                 param[0],
-                --[ ExpectedPatternFoundExpression ]--18
+                --[[ ExpectedPatternFoundExpression ]]18
               ]);
           return check_env;end end end 
        do
@@ -7215,10 +7215,10 @@ function object_property(check_env, param) do
     check_env$1;
     local ___conditional___=(match.tag | 0);
     do
-       if ___conditional___ = 1--[ Identifier ]-- then do
+       if ___conditional___ = 1--[[ Identifier ]] then do
           check_env$1 = identifier_no_dupe_check(check_env, match[0]);end else 
-       if ___conditional___ = 0--[ Literal ]--
-       or ___conditional___ = 2--[ Computed ]-- then do
+       if ___conditional___ = 0--[[ Literal ]]
+       or ___conditional___ = 2--[[ Computed ]] then do
           check_env$1 = check_env;end else 
        do end end end
       
@@ -7245,20 +7245,20 @@ function identifier_no_dupe_check(param, param$1) do
   loc = param$1[0];
   env = param[0];
   if (is_restricted(name)) then do
-    strict_error_at(env, --[ tuple ]--[
+    strict_error_at(env, --[[ tuple ]][
           loc,
-          --[ StrictParamName ]--28
+          --[[ StrictParamName ]]28
         ]);
   end
    end 
   if (is_future_reserved(name) or is_strict_reserved(name)) then do
-    strict_error_at(env, --[ tuple ]--[
+    strict_error_at(env, --[[ tuple ]][
           loc,
-          --[ StrictReservedWord ]--39
+          --[[ StrictReservedWord ]]39
         ]);
   end
    end 
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           env,
           param[1]
         ];
@@ -7272,42 +7272,42 @@ function strict_post_check(env, strict, simple, id, params) do
       name = match[1].name;
       loc = match[0];
       if (is_restricted(name)) then do
-        strict_error_at(env$1, --[ tuple ]--[
+        strict_error_at(env$1, --[[ tuple ]][
               loc,
-              --[ StrictFunctionName ]--30
+              --[[ StrictFunctionName ]]30
             ]);
       end
        end 
       if (is_future_reserved(name) or is_strict_reserved(name)) then do
-        strict_error_at(env$1, --[ tuple ]--[
+        strict_error_at(env$1, --[[ tuple ]][
               loc,
-              --[ StrictReservedWord ]--39
+              --[[ StrictReservedWord ]]39
             ]);
       end
        end 
     end
      end 
-    List.fold_left(pattern, --[ tuple ]--[
+    List.fold_left(pattern, --[[ tuple ]][
           env$1,
-          --[ Empty ]--0
+          --[[ Empty ]]0
         ], params);
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end else do
     return 0;
   end end 
 end end
 
 function param$1(env) do
-  id = Curry._2(Parse.pattern, env, --[ StrictParamName ]--28);
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_ASSIGN ]--75) then do
-    token$4(env, --[ T_ASSIGN ]--75);
+  id = Curry._2(Parse.pattern, env, --[[ StrictParamName ]]28);
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ASSIGN ]]75) then do
+    token$4(env, --[[ T_ASSIGN ]]75);
     $$default = Curry._1(Parse.assignment, env);
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             id,
             $$default
           ];
   end else do
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             id,
             undefined
           ];
@@ -7338,16 +7338,16 @@ function param_list(env, _param) do
           match = param$1(env);
           $$default = match[1];
           has_default$1 = has_default or $$default ~= undefined;
-          if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[ T_RPAREN ]--4) then do
-            token$4(env, --[ T_COMMA ]--8);
+          if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RPAREN ]]4) then do
+            token$4(env, --[[ T_COMMA ]]8);
           end
            end 
-          _param = --[ tuple ]--[
-            --[ :: ]--[
+          _param = --[[ tuple ]][
+            --[[ :: ]][
               match[0],
               params
             ],
-            --[ :: ]--[
+            --[[ :: ]][
               $$default,
               defaults
             ],
@@ -7355,14 +7355,14 @@ function param_list(env, _param) do
           ];
           continue ;end end end 
        if ___conditional___ = 2 then do
-          rest = t == --[ T_ELLIPSIS ]--11 and (token$4(env, --[ T_ELLIPSIS ]--11), Curry._2(Parse.identifier_with_type, env, --[ StrictParamName ]--28)) or undefined;
-          if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[ T_RPAREN ]--4) then do
-            error$1(env, --[ ParameterAfterRestParameter ]--47);
+          rest = t == --[[ T_ELLIPSIS ]]11 and (token$4(env, --[[ T_ELLIPSIS ]]11), Curry._2(Parse.identifier_with_type, env, --[[ StrictParamName ]]28)) or undefined;
+          if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RPAREN ]]4) then do
+            error$1(env, --[[ ParameterAfterRestParameter ]]47);
           end
            end 
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   List.rev(params),
-                  has_default and List.rev(defaults) or --[ [] ]--0,
+                  has_default and List.rev(defaults) or --[[ [] ]]0,
                   rest
                 ];end end end 
        do
@@ -7372,14 +7372,14 @@ function param_list(env, _param) do
 end end
 
 function function_params(env) do
-  token$4(env, --[ T_LPAREN ]--3);
-  match = param_list(env, --[ tuple ]--[
-        --[ [] ]--0,
-        --[ [] ]--0,
+  token$4(env, --[[ T_LPAREN ]]3);
+  match = param_list(env, --[[ tuple ]][
+        --[[ [] ]]0,
+        --[[ [] ]]0,
         false
       ]);
-  token$4(env, --[ T_RPAREN ]--4);
-  return --[ tuple ]--[
+  token$4(env, --[[ T_RPAREN ]]4);
+  return --[[ tuple ]][
           match[0],
           match[1],
           match[2]
@@ -7390,9 +7390,9 @@ function function_body(env, async, generator) do
   env$1 = enter_function(env, async, generator);
   match = Curry._1(Parse.function_block_body, env$1);
   loc = match[0];
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
-          --[ BodyBlock ]--Block.__(0, [--[ tuple ]--[
+          --[[ BodyBlock ]]Block.__(0, [--[[ tuple ]][
                 loc,
                 match[1]
               ]]),
@@ -7401,9 +7401,9 @@ function function_body(env, async, generator) do
 end end
 
 function generator(env, is_async) do
-  match = maybe(env, --[ T_MULT ]--97);
+  match = maybe(env, --[[ T_MULT ]]97);
   if (is_async and match) then do
-    error$1(env, --[ AsyncGenerator ]--48);
+    error$1(env, --[[ AsyncGenerator ]]48);
     return true;
   end else do
     return match;
@@ -7411,7 +7411,7 @@ function generator(env, is_async) do
 end end
 
 function is_simple_param(param) do
-  if (param[1].tag == --[ Identifier ]--3) then do
+  if (param[1].tag == --[[ Identifier ]]3) then do
     return true;
   end else do
     return false;
@@ -7419,7 +7419,7 @@ function is_simple_param(param) do
 end end
 
 function is_simple_function_params(params, defaults, rest) do
-  if (defaults == --[ [] ]--0 and rest == undefined) then do
+  if (defaults == --[[ [] ]]0 and rest == undefined) then do
     return List.for_all(is_simple_param, params);
   end else do
     return false;
@@ -7428,8 +7428,8 @@ end end
 
 function _function(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  async = maybe(env, --[ T_ASYNC ]--61);
-  token$4(env, --[ T_FUNCTION ]--13);
+  async = maybe(env, --[[ T_ASYNC ]]61);
+  token$4(env, --[[ T_FUNCTION ]]13);
   generator$1 = generator(env, async);
   match = env.in_export;
   match$1 = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -7441,14 +7441,14 @@ function _function(env) do
         exit = 1;
       end else do
         typeParams = Curry._1(type_parameter_declaration$1, env);
-        id = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_LPAREN ]--3 and undefined or Curry._2(Parse.identifier, --[ StrictFunctionName ]--30, env);
-        match$2 = --[ tuple ]--[
+        id = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LPAREN ]]3 and undefined or Curry._2(Parse.identifier, --[[ StrictFunctionName ]]30, env);
+        match$2 = --[[ tuple ]][
           typeParams,
           id
         ];
       end end 
     end else do
-      match$2 = --[ tuple ]--[
+      match$2 = --[[ tuple ]][
         undefined,
         undefined
       ];
@@ -7457,8 +7457,8 @@ function _function(env) do
     exit = 1;
   end end 
   if (exit == 1) then do
-    id$1 = Curry._2(Parse.identifier, --[ StrictFunctionName ]--30, env);
-    match$2 = --[ tuple ]--[
+    id$1 = Curry._2(Parse.identifier, --[[ StrictFunctionName ]]30, env);
+    match$2 = --[[ tuple ]][
       Curry._1(type_parameter_declaration$1, env),
       id$1
     ];
@@ -7476,16 +7476,16 @@ function _function(env) do
   simple = is_simple_function_params(params, defaults, rest);
   strict_post_check(env, match$4[2], simple, id$2, params);
   match$5;
-  match$5 = body.tag and --[ tuple ]--[
+  match$5 = body.tag and --[[ tuple ]][
       body[0][0],
       true
-    ] or --[ tuple ]--[
+    ] or --[[ tuple ]][
       body[0][0],
       false
     ];
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, match$5[0]),
-          --[ FunctionDeclaration ]--Block.__(18, [do
+          --[[ FunctionDeclaration ]]Block.__(18, [do
                 id: id$2,
                 params: params,
                 defaults: defaults,
@@ -7502,33 +7502,33 @@ function _function(env) do
 end end
 
 function variable_declaration(env) do
-  id = Curry._2(Parse.pattern, env, --[ StrictVarName ]--27);
+  id = Curry._2(Parse.pattern, env, --[[ StrictVarName ]]27);
   match;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_ASSIGN ]--75) then do
-    token$4(env, --[ T_ASSIGN ]--75);
-    match = --[ tuple ]--[
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ASSIGN ]]75) then do
+    token$4(env, --[[ T_ASSIGN ]]75);
+    match = --[[ tuple ]][
       Curry._1(Parse.assignment, env),
-      --[ [] ]--0
+      --[[ [] ]]0
     ];
   end else do
-    match = id[1].tag == --[ Identifier ]--3 and --[ tuple ]--[
+    match = id[1].tag == --[[ Identifier ]]3 and --[[ tuple ]][
         undefined,
-        --[ [] ]--0
-      ] or --[ tuple ]--[
+        --[[ [] ]]0
+      ] or --[[ tuple ]][
         undefined,
-        --[ :: ]--[
-          --[ tuple ]--[
+        --[[ :: ]][
+          --[[ tuple ]][
             id[0],
-            --[ NoUninitializedDestructuring ]--43
+            --[[ NoUninitializedDestructuring ]]43
           ],
-          --[ [] ]--0
+          --[[ [] ]]0
         ]
       ];
   end end 
   init = match[0];
   end_loc = init ~= undefined and init[0] or id[0];
-  return --[ tuple ]--[
-          --[ tuple ]--[
+  return --[[ tuple ]][
+          --[[ tuple ]][
             btwn(id[0], end_loc),
             do
               id: id,
@@ -7545,13 +7545,13 @@ function helper(env, _decls, _errs) do
     decls = _decls;
     match = variable_declaration(env);
     decl = match[0];
-    decls$1 = --[ :: ]--[
+    decls$1 = --[[ :: ]][
       decl,
       decls
     ];
     errs$1 = Pervasives.$at(match[1], errs);
-    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_COMMA ]--8) then do
-      token$4(env, --[ T_COMMA ]--8);
+    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COMMA ]]8) then do
+      token$4(env, --[[ T_COMMA ]]8);
       _errs = errs$1;
       _decls = decls$1;
       continue ;
@@ -7559,7 +7559,7 @@ function helper(env, _decls, _errs) do
       end_loc = decl[0];
       declarations = List.rev(decls$1);
       start_loc = decl[0];
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               btwn(start_loc, end_loc),
               declarations,
               List.rev(errs$1)
@@ -7571,9 +7571,9 @@ end end
 function declarations(token$5, kind, env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   token$4(env, token$5);
-  match = helper(env, --[ [] ]--0, --[ [] ]--0);
-  return --[ tuple ]--[
-          --[ tuple ]--[
+  match = helper(env, --[[ [] ]]0, --[[ [] ]]0);
+  return --[[ tuple ]][
+          --[[ tuple ]][
             btwn(start_loc, match[0]),
             do
               declarations: match[1],
@@ -7586,24 +7586,24 @@ end end
 
 function $$const(env) do
   env$1 = with_no_let(true, env);
-  match = declarations(--[ T_CONST ]--25, --[ Const ]--2, env$1);
+  match = declarations(--[[ T_CONST ]]25, --[[ Const ]]2, env$1);
   match$1 = match[0];
   variable = match$1[1];
   errs = List.fold_left((function (errs, decl) do
           if (decl[1].init ~= undefined) then do
             return errs;
           end else do
-            return --[ :: ]--[
-                    --[ tuple ]--[
+            return --[[ :: ]][
+                    --[[ tuple ]][
                       decl[0],
-                      --[ NoUninitializedConst ]--42
+                      --[[ NoUninitializedConst ]]42
                     ],
                     errs
                   ];
           end end 
         end end), match[1], variable.declarations);
-  return --[ tuple ]--[
-          --[ tuple ]--[
+  return --[[ tuple ]][
+          --[[ tuple ]][
             match$1[0],
             variable
           ],
@@ -7613,7 +7613,7 @@ end end
 
 function _let(env) do
   env$1 = with_no_let(true, env);
-  return declarations(--[ T_LET ]--26, --[ Let ]--1, env$1);
+  return declarations(--[[ T_LET ]]26, --[[ Let ]]1, env$1);
 end end
 
 function variable(env) do
@@ -7623,32 +7623,32 @@ function variable(env) do
   if (typeof match == "number") then do
     local ___conditional___=(match);
     do
-       if ___conditional___ = 22--[ T_VAR ]-- then do
-          match$1 = declarations(--[ T_VAR ]--22, --[ Var ]--0, env);end else 
-       if ___conditional___ = 23--[ T_WHILE ]--
-       or ___conditional___ = 24--[ T_WITH ]-- then do
+       if ___conditional___ = 22--[[ T_VAR ]] then do
+          match$1 = declarations(--[[ T_VAR ]]22, --[[ Var ]]0, env);end else 
+       if ___conditional___ = 23--[[ T_WHILE ]]
+       or ___conditional___ = 24--[[ T_WITH ]] then do
           error_unexpected(env);
-          match$1 = declarations(--[ T_VAR ]--22, --[ Var ]--0, env);end else 
-       if ___conditional___ = 25--[ T_CONST ]-- then do
+          match$1 = declarations(--[[ T_VAR ]]22, --[[ Var ]]0, env);end else 
+       if ___conditional___ = 25--[[ T_CONST ]] then do
           match$1 = $$const(env);end else 
-       if ___conditional___ = 26--[ T_LET ]-- then do
+       if ___conditional___ = 26--[[ T_LET ]] then do
           match$1 = _let(env);end else 
        do end end end end end
       else do
         error_unexpected(env);
-        match$1 = declarations(--[ T_VAR ]--22, --[ Var ]--0, env);
+        match$1 = declarations(--[[ T_VAR ]]22, --[[ Var ]]0, env);
         end end
         
     end
   end else do
     error_unexpected(env);
-    match$1 = declarations(--[ T_VAR ]--22, --[ Var ]--0, env);
+    match$1 = declarations(--[[ T_VAR ]]22, --[[ Var ]]0, env);
   end end 
   match$2 = match$1[0];
-  return --[ tuple ]--[
-          --[ tuple ]--[
+  return --[[ tuple ]][
+          --[[ tuple ]][
             btwn(start_loc, match$2[0]),
-            --[ VariableDeclaration ]--Block.__(19, [match$2[1]])
+            --[[ VariableDeclaration ]]Block.__(19, [match$2[1]])
           ],
           match$1[1]
         ];
@@ -7667,8 +7667,8 @@ function is_lhs(param) do
   end else do
     local ___conditional___=(tmp.tag | 0);
     do
-       if ___conditional___ = 13--[ Member ]--
-       or ___conditional___ = 18--[ Identifier ]-- then do
+       if ___conditional___ = 13--[[ Member ]]
+       or ___conditional___ = 18--[[ Identifier ]] then do
           return true;end end end 
        do
       else do
@@ -7686,10 +7686,10 @@ function is_assignable_lhs(param) do
   end else do
     local ___conditional___=(tmp.tag | 0);
     do
-       if ___conditional___ = 0--[ Array ]--
-       or ___conditional___ = 1--[ Object ]--
-       or ___conditional___ = 13--[ Member ]--
-       or ___conditional___ = 18--[ Identifier ]-- then do
+       if ___conditional___ = 0--[[ Array ]]
+       or ___conditional___ = 1--[[ Object ]]
+       or ___conditional___ = 13--[[ Member ]]
+       or ___conditional___ = 18--[[ Identifier ]] then do
           return true;end end end 
        do
       else do
@@ -7706,32 +7706,32 @@ function assignment_op(env) do
   if (typeof match == "number") then do
     local ___conditional___=(match);
     do
-       if ___conditional___ = 63--[ T_RSHIFT3_ASSIGN ]-- then do
-          op = --[ RShift3Assign ]--9;end else 
-       if ___conditional___ = 64--[ T_RSHIFT_ASSIGN ]-- then do
-          op = --[ RShiftAssign ]--8;end else 
-       if ___conditional___ = 65--[ T_LSHIFT_ASSIGN ]-- then do
-          op = --[ LShiftAssign ]--7;end else 
-       if ___conditional___ = 66--[ T_BIT_XOR_ASSIGN ]-- then do
-          op = --[ BitXorAssign ]--11;end else 
-       if ___conditional___ = 67--[ T_BIT_OR_ASSIGN ]-- then do
-          op = --[ BitOrAssign ]--10;end else 
-       if ___conditional___ = 68--[ T_BIT_AND_ASSIGN ]-- then do
-          op = --[ BitAndAssign ]--12;end else 
-       if ___conditional___ = 69--[ T_MOD_ASSIGN ]-- then do
-          op = --[ ModAssign ]--6;end else 
-       if ___conditional___ = 70--[ T_DIV_ASSIGN ]-- then do
-          op = --[ DivAssign ]--5;end else 
-       if ___conditional___ = 71--[ T_MULT_ASSIGN ]-- then do
-          op = --[ MultAssign ]--3;end else 
-       if ___conditional___ = 72--[ T_EXP_ASSIGN ]-- then do
-          op = --[ ExpAssign ]--4;end else 
-       if ___conditional___ = 73--[ T_MINUS_ASSIGN ]-- then do
-          op = --[ MinusAssign ]--2;end else 
-       if ___conditional___ = 74--[ T_PLUS_ASSIGN ]-- then do
-          op = --[ PlusAssign ]--1;end else 
-       if ___conditional___ = 75--[ T_ASSIGN ]-- then do
-          op = --[ Assign ]--0;end else 
+       if ___conditional___ = 63--[[ T_RSHIFT3_ASSIGN ]] then do
+          op = --[[ RShift3Assign ]]9;end else 
+       if ___conditional___ = 64--[[ T_RSHIFT_ASSIGN ]] then do
+          op = --[[ RShiftAssign ]]8;end else 
+       if ___conditional___ = 65--[[ T_LSHIFT_ASSIGN ]] then do
+          op = --[[ LShiftAssign ]]7;end else 
+       if ___conditional___ = 66--[[ T_BIT_XOR_ASSIGN ]] then do
+          op = --[[ BitXorAssign ]]11;end else 
+       if ___conditional___ = 67--[[ T_BIT_OR_ASSIGN ]] then do
+          op = --[[ BitOrAssign ]]10;end else 
+       if ___conditional___ = 68--[[ T_BIT_AND_ASSIGN ]] then do
+          op = --[[ BitAndAssign ]]12;end else 
+       if ___conditional___ = 69--[[ T_MOD_ASSIGN ]] then do
+          op = --[[ ModAssign ]]6;end else 
+       if ___conditional___ = 70--[[ T_DIV_ASSIGN ]] then do
+          op = --[[ DivAssign ]]5;end else 
+       if ___conditional___ = 71--[[ T_MULT_ASSIGN ]] then do
+          op = --[[ MultAssign ]]3;end else 
+       if ___conditional___ = 72--[[ T_EXP_ASSIGN ]] then do
+          op = --[[ ExpAssign ]]4;end else 
+       if ___conditional___ = 73--[[ T_MINUS_ASSIGN ]] then do
+          op = --[[ MinusAssign ]]2;end else 
+       if ___conditional___ = 74--[[ T_PLUS_ASSIGN ]] then do
+          op = --[[ PlusAssign ]]1;end else 
+       if ___conditional___ = 75--[[ T_ASSIGN ]] then do
+          op = --[[ Assign ]]0;end else 
        do end end end end end end end end end end end end end end
       else do
         op = undefined;
@@ -7751,16 +7751,16 @@ end end
 function conditional(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   expr = Curry._1(logical, env);
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_PLING ]--76) then do
-    token$4(env, --[ T_PLING ]--76);
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_PLING ]]76) then do
+    token$4(env, --[[ T_PLING ]]76);
     env$prime = with_no_in(false, env);
     consequent = Curry._1(assignment, env$prime);
-    token$4(env, --[ T_COLON ]--77);
+    token$4(env, --[[ T_COLON ]]77);
     match = with_loc(assignment, env);
     loc = btwn(start_loc, match[0]);
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             loc,
-            --[ Conditional ]--Block.__(10, [do
+            --[[ Conditional ]]Block.__(10, [do
                   test: expr,
                   consequent: consequent,
                   alternate: match[1]
@@ -7781,19 +7781,19 @@ function peek_unary_op(env) do
         end else do
           local ___conditional___=(match - 94 | 0);
           do
-             if ___conditional___ = 0--[ T_IDENTIFIER ]-- then do
-                return --[ Plus ]--1;end end end 
-             if ___conditional___ = 1--[ T_LCURLY ]-- then do
-                return --[ Minus ]--0;end end end 
-             if ___conditional___ = 2--[ T_RCURLY ]--
-             or ___conditional___ = 3--[ T_LPAREN ]--
-             or ___conditional___ = 4--[ T_RPAREN ]--
-             or ___conditional___ = 5--[ T_LBRACKET ]-- then do
+             if ___conditional___ = 0--[[ T_IDENTIFIER ]] then do
+                return --[[ Plus ]]1;end end end 
+             if ___conditional___ = 1--[[ T_LCURLY ]] then do
+                return --[[ Minus ]]0;end end end 
+             if ___conditional___ = 2--[[ T_RCURLY ]]
+             or ___conditional___ = 3--[[ T_LPAREN ]]
+             or ___conditional___ = 4--[[ T_RPAREN ]]
+             or ___conditional___ = 5--[[ T_LBRACKET ]] then do
                 return ;end end end 
-             if ___conditional___ = 6--[ T_RBRACKET ]-- then do
-                return --[ Not ]--2;end end end 
-             if ___conditional___ = 7--[ T_SEMICOLON ]-- then do
-                return --[ BitNot ]--3;end end end 
+             if ___conditional___ = 6--[[ T_RBRACKET ]] then do
+                return --[[ Not ]]2;end end end 
+             if ___conditional___ = 7--[[ T_SEMICOLON ]] then do
+                return --[[ BitNot ]]3;end end end 
              do
             
           end
@@ -7801,17 +7801,17 @@ function peek_unary_op(env) do
       end else if (match ~= 62 or !env.allow_await) then do
         return ;
       end else do
-        return --[ Await ]--7;
+        return --[[ Await ]]7;
       end end  end 
     end else if (match >= 43) then do
       local ___conditional___=(match - 43 | 0);
       do
-         if ___conditional___ = 0--[ T_IDENTIFIER ]-- then do
-            return --[ Delete ]--6;end end end 
-         if ___conditional___ = 1--[ T_LCURLY ]-- then do
-            return --[ Typeof ]--4;end end end 
-         if ___conditional___ = 2--[ T_RCURLY ]-- then do
-            return --[ Void ]--5;end end end 
+         if ___conditional___ = 0--[[ T_IDENTIFIER ]] then do
+            return --[[ Delete ]]6;end end end 
+         if ___conditional___ = 1--[[ T_LCURLY ]] then do
+            return --[[ Typeof ]]4;end end end 
+         if ___conditional___ = 2--[[ T_RCURLY ]] then do
+            return --[[ Void ]]5;end end end 
          do
         
       end
@@ -7832,18 +7832,18 @@ function unary(env) do
     loc = btwn(begin_loc, argument[0]);
     if (operator == 6) then do
       tmp = argument[1];
-      if (typeof tmp ~= "number" and tmp.tag == --[ Identifier ]--18) then do
-        strict_error_at(env, --[ tuple ]--[
+      if (typeof tmp ~= "number" and tmp.tag == --[[ Identifier ]]18) then do
+        strict_error_at(env, --[[ tuple ]][
               loc,
-              --[ StrictDelete ]--32
+              --[[ StrictDelete ]]32
             ]);
       end
        end 
     end
      end 
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             loc,
-            --[ Unary ]--Block.__(5, [do
+            --[[ Unary ]]Block.__(5, [do
                   operator: operator,
                   prefix: true,
                   argument: argument
@@ -7853,27 +7853,27 @@ function unary(env) do
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     op$1 = typeof match == "number" and (
         match ~= 102 and (
-            match ~= 103 and undefined or --[ Decrement ]--1
-          ) or --[ Increment ]--0
+            match ~= 103 and undefined or --[[ Decrement ]]1
+          ) or --[[ Increment ]]0
       ) or undefined;
     if (op$1 ~= undefined) then do
       token$3(env);
       argument$1 = unary(env);
       if (!is_lhs(argument$1)) then do
-        error_at(env, --[ tuple ]--[
+        error_at(env, --[[ tuple ]][
               argument$1[0],
-              --[ InvalidLHSInAssignment ]--14
+              --[[ InvalidLHSInAssignment ]]14
             ]);
       end
        end 
       match$1 = argument$1[1];
-      if (typeof match$1 ~= "number" and match$1.tag == --[ Identifier ]--18 and is_restricted(match$1[0][1].name)) then do
-        strict_error(env, --[ StrictLHSPrefix ]--38);
+      if (typeof match$1 ~= "number" and match$1.tag == --[[ Identifier ]]18 and is_restricted(match$1[0][1].name)) then do
+        strict_error(env, --[[ StrictLHSPrefix ]]38);
       end
        end 
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               btwn(begin_loc, argument$1[0]),
-              --[ Update ]--Block.__(8, [do
+              --[[ Update ]]Block.__(8, [do
                     operator: op$1,
                     argument: argument$1,
                     prefix: true
@@ -7888,27 +7888,27 @@ function unary(env) do
         match$2 = Curry._2(Parser_env_Peek.token, undefined, env$1);
         op$2 = typeof match$2 == "number" and (
             match$2 ~= 102 and (
-                match$2 ~= 103 and undefined or --[ Decrement ]--1
-              ) or --[ Increment ]--0
+                match$2 ~= 103 and undefined or --[[ Decrement ]]1
+              ) or --[[ Increment ]]0
           ) or undefined;
         if (op$2 ~= undefined) then do
           if (!is_lhs(argument$2)) then do
-            error_at(env$1, --[ tuple ]--[
+            error_at(env$1, --[[ tuple ]][
                   argument$2[0],
-                  --[ InvalidLHSInAssignment ]--14
+                  --[[ InvalidLHSInAssignment ]]14
                 ]);
           end
            end 
           match$3 = argument$2[1];
-          if (typeof match$3 ~= "number" and match$3.tag == --[ Identifier ]--18 and is_restricted(match$3[0][1].name)) then do
-            strict_error(env$1, --[ StrictLHSPostfix ]--37);
+          if (typeof match$3 ~= "number" and match$3.tag == --[[ Identifier ]]18 and is_restricted(match$3[0][1].name)) then do
+            strict_error(env$1, --[[ StrictLHSPostfix ]]37);
           end
            end 
           end_loc = Curry._2(Parser_env_Peek.loc, undefined, env$1);
           token$3(env$1);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   btwn(argument$2[0], end_loc),
-                  --[ Update ]--Block.__(8, [do
+                  --[[ Update ]]Block.__(8, [do
                         operator: op$2,
                         argument: argument$2,
                         prefix: false
@@ -7940,12 +7940,12 @@ function left_hand_side(env) do
   expr$1 = member(env, expr);
   match$1 = Curry._2(Parser_env_Peek.token, undefined, env);
   if (typeof match$1 == "number") then do
-    if (match$1 == --[ T_LPAREN ]--3) then do
+    if (match$1 == --[[ T_LPAREN ]]3) then do
       return call(env, expr$1);
     end else do
       return expr$1;
     end end 
-  end else if (match$1.tag == --[ T_TEMPLATE_PART ]--2) then do
+  end else if (match$1.tag == --[[ T_TEMPLATE_PART ]]2) then do
     return member(env, tagged_template(env, expr$1, match$1[0]));
   end else do
     return expr$1;
@@ -7959,44 +7959,44 @@ function call(env, _left) do
     if (typeof match == "number") then do
       local ___conditional___=(match);
       do
-         if ___conditional___ = 3--[ T_LPAREN ]-- then do
+         if ___conditional___ = 3--[[ T_LPAREN ]] then do
             if (env.no_call) then do
               return left;
             end else do
               match$1 = Curry._1($$arguments, env);
-              _left = --[ tuple ]--[
+              _left = --[[ tuple ]][
                 btwn(left[0], match$1[0]),
-                --[ Call ]--Block.__(12, [do
+                --[[ Call ]]Block.__(12, [do
                       callee: left,
                       arguments: match$1[1]
                     end])
               ];
               continue ;
             end end end end end 
-         if ___conditional___ = 5--[ T_LBRACKET ]-- then do
-            token$4(env, --[ T_LBRACKET ]--5);
+         if ___conditional___ = 5--[[ T_LBRACKET ]] then do
+            token$4(env, --[[ T_LBRACKET ]]5);
             expr = Curry._1(Parse.expression, env);
             last_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
             loc = btwn(left[0], last_loc);
-            token$4(env, --[ T_RBRACKET ]--6);
-            _left = --[ tuple ]--[
+            token$4(env, --[[ T_RBRACKET ]]6);
+            _left = --[[ tuple ]][
               loc,
-              --[ Member ]--Block.__(13, [do
+              --[[ Member ]]Block.__(13, [do
                     _object: left,
-                    property: --[ PropertyExpression ]--Block.__(1, [expr]),
+                    property: --[[ PropertyExpression ]]Block.__(1, [expr]),
                     computed: true
                   end])
             ];
             continue ;end end end 
-         if ___conditional___ = 9--[ T_PERIOD ]-- then do
-            token$4(env, --[ T_PERIOD ]--9);
+         if ___conditional___ = 9--[[ T_PERIOD ]] then do
+            token$4(env, --[[ T_PERIOD ]]9);
             match$2 = identifier_or_reserved_keyword(env);
             id = match$2[0];
-            _left = --[ tuple ]--[
+            _left = --[[ tuple ]][
               btwn(left[0], id[0]),
-              --[ Member ]--Block.__(13, [do
+              --[[ Member ]]Block.__(13, [do
                     _object: left,
-                    property: --[ PropertyIdentifier ]--Block.__(0, [id]),
+                    property: --[[ PropertyIdentifier ]]Block.__(0, [id]),
                     computed: false
                   end])
             ];
@@ -8007,7 +8007,7 @@ function call(env, _left) do
           end end
           
       end
-    end else if (match.tag == --[ T_TEMPLATE_PART ]--2) then do
+    end else if (match.tag == --[[ T_TEMPLATE_PART ]]2) then do
       return tagged_template(env, left, match[0]);
     end else do
       return left;
@@ -8021,28 +8021,28 @@ function _new(env, _finish_fn) do
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof match == "number" and match == 42) then do
       start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-      token$4(env, --[ T_NEW ]--42);
+      token$4(env, --[[ T_NEW ]]42);
       finish_fn$prime = (function(finish_fn,start_loc)do
       return function finish_fn$prime(callee, args) do
         match;
         if (args ~= undefined) then do
           match$1 = args;
-          match = --[ tuple ]--[
+          match = --[[ tuple ]][
             match$1[0],
             match$1[1]
           ];
         end else do
-          match = --[ tuple ]--[
+          match = --[[ tuple ]][
             callee[0],
-            --[ [] ]--0
+            --[[ [] ]]0
           ];
         end end 
         callee$prime_000 = btwn(start_loc, match[0]);
-        callee$prime_001 = --[ New ]--Block.__(11, [do
+        callee$prime_001 = --[[ New ]]Block.__(11, [do
               callee: callee,
               arguments: match[1]
             end]);
-        callee$prime = --[ tuple ]--[
+        callee$prime = --[[ tuple ]][
           callee$prime_000,
           callee$prime_001
         ];
@@ -8058,7 +8058,7 @@ function _new(env, _finish_fn) do
     callee = member(with_no_call(true, env), expr);
     match$1 = Curry._2(Parser_env_Peek.token, undefined, env);
     callee$1;
-    callee$1 = typeof match$1 == "number" or match$1.tag ~= --[ T_TEMPLATE_PART ]--2 and callee or tagged_template(env, callee, match$1[0]);
+    callee$1 = typeof match$1 == "number" or match$1.tag ~= --[[ T_TEMPLATE_PART ]]2 and callee or tagged_template(env, callee, match$1[0]);
     match$2 = Curry._2(Parser_env_Peek.token, undefined, env);
     args = typeof match$2 == "number" and match$2 == 3 and Curry._1($$arguments, env) or undefined;
     return Curry._2(finish_fn, callee$1, args);
@@ -8072,28 +8072,28 @@ function member(env, left) do
       if (match ~= 9) then do
         return left;
       end else do
-        token$4(env, --[ T_PERIOD ]--9);
+        token$4(env, --[[ T_PERIOD ]]9);
         match$1 = identifier_or_reserved_keyword(env);
         id = match$1[0];
-        return call(env, --[ tuple ]--[
+        return call(env, --[[ tuple ]][
                     btwn(left[0], id[0]),
-                    --[ Member ]--Block.__(13, [do
+                    --[[ Member ]]Block.__(13, [do
                           _object: left,
-                          property: --[ PropertyIdentifier ]--Block.__(0, [id]),
+                          property: --[[ PropertyIdentifier ]]Block.__(0, [id]),
                           computed: false
                         end])
                   ]);
       end end 
     end else do
-      token$4(env, --[ T_LBRACKET ]--5);
+      token$4(env, --[[ T_LBRACKET ]]5);
       expr = Curry._1(Parse.expression, with_no_call(false, env));
       last_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-      token$4(env, --[ T_RBRACKET ]--6);
-      return call(env, --[ tuple ]--[
+      token$4(env, --[[ T_RBRACKET ]]6);
+      return call(env, --[[ tuple ]][
                   btwn(left[0], last_loc),
-                  --[ Member ]--Block.__(13, [do
+                  --[[ Member ]]Block.__(13, [do
                         _object: left,
-                        property: --[ PropertyExpression ]--Block.__(1, [expr]),
+                        property: --[[ PropertyExpression ]]Block.__(1, [expr]),
                         computed: true
                       end])
                 ]);
@@ -8105,19 +8105,19 @@ end end
 
 function _function$1(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  async = maybe(env, --[ T_ASYNC ]--61);
-  token$4(env, --[ T_FUNCTION ]--13);
+  async = maybe(env, --[[ T_ASYNC ]]61);
+  token$4(env, --[[ T_FUNCTION ]]13);
   generator$1 = generator(env, async);
   match;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_LPAREN ]--3) then do
-    match = --[ tuple ]--[
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LPAREN ]]3) then do
+    match = --[[ tuple ]][
       undefined,
       undefined
     ];
   end else do
     match$1 = Curry._2(Parser_env_Peek.token, undefined, env);
-    id = typeof match$1 == "number" and match$1 == 89 and undefined or Curry._2(Parse.identifier, --[ StrictFunctionName ]--30, env);
-    match = --[ tuple ]--[
+    id = typeof match$1 == "number" and match$1 == 89 and undefined or Curry._2(Parse.identifier, --[[ StrictFunctionName ]]30, env);
+    match = --[[ tuple ]][
       id,
       Curry._1(type_parameter_declaration$1, env)
     ];
@@ -8135,9 +8135,9 @@ function _function$1(env) do
   strict_post_check(env, match$3[2], simple, id$1, params);
   expression;
   expression = body.tag and true or false;
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, match$3[0]),
-          --[ Function ]--Block.__(2, [do
+          --[[ Function ]]Block.__(2, [do
                 id: id$1,
                 params: params,
                 defaults: defaults,
@@ -8159,18 +8159,18 @@ function number(env, number_type) do
   if (number_type ~= 0) then do
     local ___conditional___=(number_type - 1 | 0);
     do
-       if ___conditional___ = 0--[ BINARY ]-- then do
-          strict_error(env, --[ StrictOctalLiteral ]--31);
+       if ___conditional___ = 0--[[ BINARY ]] then do
+          strict_error(env, --[[ StrictOctalLiteral ]]31);
           value$1 = Caml_format.caml_int_of_string("0o" .. value);end else 
-       if ___conditional___ = 1--[ LEGACY_OCTAL ]-- then do
+       if ___conditional___ = 1--[[ LEGACY_OCTAL ]] then do
           value$1 = Caml_format.caml_int_of_string(value);end else 
-       if ___conditional___ = 2--[ OCTAL ]-- then do
+       if ___conditional___ = 2--[[ OCTAL ]] then do
           try do
             value$1 = float_of_string(value);
           end
           catch (exn)do
             if (Sys.win32) then do
-              error$1(env, --[ WindowsFloatOfString ]--59);
+              error$1(env, --[[ WindowsFloatOfString ]]59);
               value$1 = 789.0;
             end else do
               throw exn;
@@ -8182,7 +8182,7 @@ function number(env, number_type) do
   end else do
     value$1 = Caml_format.caml_int_of_string(value);
   end end 
-  token$4(env, --[ T_NUMBER ]--Block.__(0, [number_type]));
+  token$4(env, --[[ T_NUMBER ]]Block.__(0, [number_type]));
   return value$1;
 end end
 
@@ -8193,16 +8193,16 @@ function primary$1(env) do
   if (typeof token$5 == "number") then do
     local ___conditional___=(token$5);
     do
-       if ___conditional___ = 1--[ T_LCURLY ]-- then do
+       if ___conditional___ = 1--[[ T_LCURLY ]] then do
           env$1 = env;
           match = Curry._1(Parse.object_initializer, env$1);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match[0],
-                  --[ Object ]--Block.__(1, [match[1]])
+                  --[[ Object ]]Block.__(1, [match[1]])
                 ];end end end 
-       if ___conditional___ = 3--[ T_LPAREN ]-- then do
+       if ___conditional___ = 3--[[ T_LPAREN ]] then do
           env$2 = env;
-          token$4(env$2, --[ T_LPAREN ]--3);
+          token$4(env$2, --[[ T_LPAREN ]]3);
           expression = Curry._1(assignment, env$2);
           match$1 = Curry._2(Parser_env_Peek.token, undefined, env$2);
           ret;
@@ -8212,95 +8212,95 @@ function primary$1(env) do
                 ret = expression;
               end else do
                 typeAnnotation = wrap(annotation, env$2);
-                ret = --[ tuple ]--[
+                ret = --[[ tuple ]][
                   btwn(expression[0], typeAnnotation[0]),
-                  --[ TypeCast ]--Block.__(24, [do
+                  --[[ TypeCast ]]Block.__(24, [do
                         expression: expression,
                         typeAnnotation: typeAnnotation
                       end])
                 ];
               end end 
             end else do
-              ret = sequence(env$2, --[ :: ]--[
+              ret = sequence(env$2, --[[ :: ]][
                     expression,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]);
             end end 
           end else do
             ret = expression;
           end end 
-          token$4(env$2, --[ T_RPAREN ]--4);
+          token$4(env$2, --[[ T_RPAREN ]]4);
           return ret;end end end 
-       if ___conditional___ = 5--[ T_LBRACKET ]-- then do
+       if ___conditional___ = 5--[[ T_LBRACKET ]] then do
           match$2 = Curry._1(array_initializer, env);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match$2[0],
-                  --[ Array ]--Block.__(0, [match$2[1]])
+                  --[[ Array ]]Block.__(0, [match$2[1]])
                 ];end end end 
-       if ___conditional___ = 19--[ T_THIS ]-- then do
-          token$4(env, --[ T_THIS ]--19);
-          return --[ tuple ]--[
+       if ___conditional___ = 19--[[ T_THIS ]] then do
+          token$4(env, --[[ T_THIS ]]19);
+          return --[[ tuple ]][
                   loc,
-                  --[ This ]--0
+                  --[[ This ]]0
                 ];end end end 
-       if ___conditional___ = 27--[ T_NULL ]-- then do
+       if ___conditional___ = 27--[[ T_NULL ]] then do
           raw = Curry._2(Parser_env_Peek.value, undefined, env);
-          token$4(env, --[ T_NULL ]--27);
-          return --[ tuple ]--[
+          token$4(env, --[[ T_NULL ]]27);
+          return --[[ tuple ]][
                   loc,
-                  --[ Literal ]--Block.__(19, [do
-                        value: --[ Null ]--0,
+                  --[[ Literal ]]Block.__(19, [do
+                        value: --[[ Null ]]0,
                         raw: raw
                       end])
                 ];end end end 
-       if ___conditional___ = 28--[ T_FALSE ]--
-       or ___conditional___ = 29--[ T_TRUE ]-- then do
+       if ___conditional___ = 28--[[ T_FALSE ]]
+       or ___conditional___ = 29--[[ T_TRUE ]] then do
           exit = 2;end else 
-       if ___conditional___ = 38--[ T_CLASS ]-- then do
+       if ___conditional___ = 38--[[ T_CLASS ]] then do
           return Curry._1(Parse.class_expression, env);end end end 
-       if ___conditional___ = 49--[ T_SUPER ]-- then do
+       if ___conditional___ = 49--[[ T_SUPER ]] then do
           loc$1 = Curry._2(Parser_env_Peek.loc, undefined, env);
-          token$4(env, --[ T_SUPER ]--49);
+          token$4(env, --[[ T_SUPER ]]49);
           id_001 = do
             name: "super",
             typeAnnotation: undefined,
             optional: false
           end;
-          id = --[ tuple ]--[
+          id = --[[ tuple ]][
             loc$1,
             id_001
           ];
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   loc$1,
-                  --[ Identifier ]--Block.__(18, [id])
+                  --[[ Identifier ]]Block.__(18, [id])
                 ];end end end 
-       if ___conditional___ = 89--[ T_LESS_THAN ]-- then do
+       if ___conditional___ = 89--[[ T_LESS_THAN ]] then do
           match$3 = Curry._1(Parse.jsx_element, env);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match$3[0],
-                  --[ JSXElement ]--Block.__(22, [match$3[1]])
+                  --[[ JSXElement ]]Block.__(22, [match$3[1]])
                 ];end end end 
-       if ___conditional___ = 70--[ T_DIV_ASSIGN ]--
-       or ___conditional___ = 96--[ T_DIV ]-- then do
+       if ___conditional___ = 70--[[ T_DIV_ASSIGN ]]
+       or ___conditional___ = 96--[[ T_DIV ]] then do
           env$3 = env;
-          push_lex_mode(env$3, --[ REGEXP ]--5);
+          push_lex_mode(env$3, --[[ REGEXP ]]5);
           loc$2 = Curry._2(Parser_env_Peek.loc, undefined, env$3);
           match$4 = Curry._2(Parser_env_Peek.token, undefined, env$3);
           match$5;
           if (typeof match$4 == "number") then do
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "parser_flow.ml",
                     1699,
                     15
                   ]
                 ];
-          end else if (match$4.tag == --[ T_REGEXP ]--3) then do
+          end else if (match$4.tag == --[[ T_REGEXP ]]3) then do
             match$6 = match$4[0];
             raw$1 = Curry._2(Parser_env_Peek.value, undefined, env$3);
             token$3(env$3);
-            match$5 = --[ tuple ]--[
+            match$5 = --[[ tuple ]][
               raw$1,
               match$6[1],
               match$6[2]
@@ -8308,7 +8308,7 @@ function primary$1(env) do
           end else do
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "parser_flow.ml",
                     1699,
                     15
@@ -8321,7 +8321,7 @@ function primary$1(env) do
           $$String.iter((function (c) do
                   if (c >= 110) then do
                     if (c ~= 121) then do
-                      return --[ () ]--0;
+                      return --[[ () ]]0;
                     end else do
                       return $$Buffer.add_char(filtered_flags, c);
                     end end 
@@ -8332,7 +8332,7 @@ function primary$1(env) do
                        or ___conditional___ = 3
                        or ___conditional___ = 4
                        or ___conditional___ = 5 then do
-                          return --[ () ]--0;end end end 
+                          return --[[ () ]]0;end end end 
                        if ___conditional___ = 0
                        or ___conditional___ = 2
                        or ___conditional___ = 6 then do
@@ -8341,21 +8341,21 @@ function primary$1(env) do
                       
                     end
                   end else do
-                    return --[ () ]--0;
+                    return --[[ () ]]0;
                   end end  end 
                 end end), raw_flags);
           flags = $$Buffer.contents(filtered_flags);
           if (flags ~= raw_flags) then do
-            error$1(env$3, --[ InvalidRegExpFlags ]--Block.__(3, [raw_flags]));
+            error$1(env$3, --[[ InvalidRegExpFlags ]]Block.__(3, [raw_flags]));
           end
            end 
-          value = --[ RegExp ]--Block.__(3, [do
+          value = --[[ RegExp ]]Block.__(3, [do
                 pattern: match$5[1],
                 flags: flags
               end]);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   loc$2,
-                  --[ Literal ]--Block.__(19, [do
+                  --[[ Literal ]]Block.__(19, [do
                         value: value,
                         raw: match$5[0]
                       end])
@@ -8369,45 +8369,45 @@ function primary$1(env) do
   end else do
     local ___conditional___=(token$5.tag | 0);
     do
-       if ___conditional___ = 0--[ T_NUMBER ]-- then do
+       if ___conditional___ = 0--[[ T_NUMBER ]] then do
           raw$2 = Curry._2(Parser_env_Peek.value, undefined, env);
-          value$1 = --[ Number ]--Block.__(2, [number(env, token$5[0])]);
-          return --[ tuple ]--[
+          value$1 = --[[ Number ]]Block.__(2, [number(env, token$5[0])]);
+          return --[[ tuple ]][
                   loc,
-                  --[ Literal ]--Block.__(19, [do
+                  --[[ Literal ]]Block.__(19, [do
                         value: value$1,
                         raw: raw$2
                       end])
                 ];end end end 
-       if ___conditional___ = 1--[ T_STRING ]-- then do
+       if ___conditional___ = 1--[[ T_STRING ]] then do
           match$7 = token$5[0];
           octal = match$7[3];
           raw$3 = match$7[2];
           value$2 = match$7[1];
           loc$3 = match$7[0];
           if (octal) then do
-            strict_error(env, --[ StrictOctalLiteral ]--31);
+            strict_error(env, --[[ StrictOctalLiteral ]]31);
           end
            end 
-          token$4(env, --[ T_STRING ]--Block.__(1, [--[ tuple ]--[
+          token$4(env, --[[ T_STRING ]]Block.__(1, [--[[ tuple ]][
                     loc$3,
                     value$2,
                     raw$3,
                     octal
                   ]]));
-          value$3 = --[ String ]--Block.__(0, [value$2]);
-          return --[ tuple ]--[
+          value$3 = --[[ String ]]Block.__(0, [value$2]);
+          return --[[ tuple ]][
                   loc$3,
-                  --[ Literal ]--Block.__(19, [do
+                  --[[ Literal ]]Block.__(19, [do
                         value: value$3,
                         raw: raw$3
                       end])
                 ];end end end 
-       if ___conditional___ = 2--[ T_TEMPLATE_PART ]-- then do
+       if ___conditional___ = 2--[[ T_TEMPLATE_PART ]] then do
           match$8 = Curry._2(template_literal, env, token$5[0]);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match$8[0],
-                  --[ TemplateLiteral ]--Block.__(20, [match$8[1]])
+                  --[[ TemplateLiteral ]]Block.__(20, [match$8[1]])
                 ];end end end 
        do
       else do
@@ -8421,20 +8421,20 @@ function primary$1(env) do
      if ___conditional___ = 1 then do
         if (Curry._2(Parser_env_Peek.is_identifier, undefined, env)) then do
           id$1 = Curry._2(Parse.identifier, undefined, env);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   id$1[0],
-                  --[ Identifier ]--Block.__(18, [id$1])
+                  --[[ Identifier ]]Block.__(18, [id$1])
                 ];
         end else do
           error_unexpected(env);
-          if (token$5 == --[ T_ERROR ]--104) then do
+          if (token$5 == --[[ T_ERROR ]]104) then do
             token$3(env);
           end
            end 
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   loc,
-                  --[ Literal ]--Block.__(19, [do
-                        value: --[ Null ]--0,
+                  --[[ Literal ]]Block.__(19, [do
+                        value: --[[ Null ]]0,
                         raw: "null"
                       end])
                 ];
@@ -8442,10 +8442,10 @@ function primary$1(env) do
      if ___conditional___ = 2 then do
         raw$4 = Curry._2(Parser_env_Peek.value, undefined, env);
         token$4(env, token$5);
-        value$4 = --[ Boolean ]--Block.__(1, [token$5 == --[ T_TRUE ]--29]);
-        return --[ tuple ]--[
+        value$4 = --[[ Boolean ]]Block.__(1, [token$5 == --[[ T_TRUE ]]29]);
+        return --[[ tuple ]][
                 loc,
-                --[ Literal ]--Block.__(19, [do
+                --[[ Literal ]]Block.__(19, [do
                       value: value$4,
                       raw: raw$4
                     end])
@@ -8457,9 +8457,9 @@ end end
 
 function tagged_template(env, tag, part) do
   quasi = Curry._2(template_literal, env, part);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(tag[0], quasi[0]),
-          --[ TaggedTemplate ]--Block.__(21, [do
+          --[[ TaggedTemplate ]]Block.__(21, [do
                 tag: tag,
                 quasi: quasi
               end])
@@ -8471,9 +8471,9 @@ function sequence(env, _acc) do
     acc = _acc;
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof match == "number" and match == 8) then do
-      token$4(env, --[ T_COMMA ]--8);
+      token$4(env, --[[ T_COMMA ]]8);
       expr = Curry._1(assignment, env);
-      _acc = --[ :: ]--[
+      _acc = --[[ :: ]][
         expr,
         acc
       ];
@@ -8483,9 +8483,9 @@ function sequence(env, _acc) do
     last_loc = acc and acc[0][0] or none;
     expressions = List.rev(acc);
     first_loc = expressions and expressions[0][0] or none;
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             btwn(first_loc, last_loc),
-            --[ Sequence ]--Block.__(4, [do
+            --[[ Sequence ]]Block.__(4, [do
                   expressions: expressions
                 end])
           ];
@@ -8502,7 +8502,7 @@ function identifier_or_reserved_keyword(env) do
       if (lex_token >= 62) then do
         exit = 1;
       end else do
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 Curry._2(Parse.identifier, undefined, env),
                 undefined
               ];
@@ -8510,7 +8510,7 @@ function identifier_or_reserved_keyword(env) do
     end else if (lex_token ~= 0) then do
       exit = 1;
     end else do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               Curry._2(Parse.identifier, undefined, env),
               undefined
             ];
@@ -8541,9 +8541,9 @@ function identifier_or_reserved_keyword(env) do
       err = undefined;
     end end 
     if (exit$1 == 2) then do
-      err = --[ tuple ]--[
+      err = --[[ tuple ]][
         lex_loc,
-        get_unexpected_error(--[ tuple ]--[
+        get_unexpected_error(--[[ tuple ]][
               lex_token,
               lex_value
             ])
@@ -8551,8 +8551,8 @@ function identifier_or_reserved_keyword(env) do
     end
      end 
     token$3(env);
-    return --[ tuple ]--[
-            --[ tuple ]--[
+    return --[[ tuple ]][
+            --[[ tuple ]][
               lex_loc,
               do
                 name: lex_value,
@@ -8571,26 +8571,26 @@ function assignment_but_not_arrow_function(env) do
   match = assignment_op(env);
   if (match ~= undefined) then do
     if (!is_assignable_lhs(expr)) then do
-      error_at(env, --[ tuple ]--[
+      error_at(env, --[[ tuple ]][
             expr[0],
-            --[ InvalidLHSInAssignment ]--14
+            --[[ InvalidLHSInAssignment ]]14
           ]);
     end
      end 
     match$1 = expr[1];
-    if (typeof match$1 ~= "number" and match$1.tag == --[ Identifier ]--18 and is_restricted(match$1[0][1].name)) then do
-      strict_error_at(env, --[ tuple ]--[
+    if (typeof match$1 ~= "number" and match$1.tag == --[[ Identifier ]]18 and is_restricted(match$1[0][1].name)) then do
+      strict_error_at(env, --[[ tuple ]][
             expr[0],
-            --[ StrictLHSAssignment ]--36
+            --[[ StrictLHSAssignment ]]36
           ]);
     end
      end 
     left = Curry._2(Parse.pattern_from_expr, env, expr);
     right = Curry._1(assignment, env);
     loc = btwn(left[0], right[0]);
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             loc,
-            --[ Assignment ]--Block.__(7, [do
+            --[[ Assignment ]]Block.__(7, [do
                   operator: match,
                   left: left,
                   right: right
@@ -8626,7 +8626,7 @@ function try_assignment_but_not_arrow_function(env) do
     end
      end 
     match$1 = ret[1];
-    if (typeof match$1 == "number" or !(match$1.tag == --[ Identifier ]--18 and match$1[0][1].name == "async")) then do
+    if (typeof match$1 == "number" or !(match$1.tag == --[[ Identifier ]]18 and match$1[0][1].name == "async")) then do
       return ret;
     end else do
       if (!Curry._1(Parser_env_Peek.is_line_terminator, env$1)) then do
@@ -8656,13 +8656,13 @@ function assignment(env) do
     end else do
       env$1 = env;
       start_loc = Curry._2(Parser_env_Peek.loc, undefined, env$1);
-      token$4(env$1, --[ T_YIELD ]--56);
+      token$4(env$1, --[[ T_YIELD ]]56);
       if (!env$1.allow_yield) then do
-        error$1(env$1, --[ IllegalYield ]--24);
+        error$1(env$1, --[[ IllegalYield ]]24);
       end
        end 
-      delegate = maybe(env$1, --[ T_MULT ]--97);
-      has_argument = !(Curry._2(Parser_env_Peek.token, undefined, env$1) == --[ T_SEMICOLON ]--7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env$1));
+      delegate = maybe(env$1, --[[ T_MULT ]]97);
+      has_argument = !(Curry._2(Parser_env_Peek.token, undefined, env$1) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env$1));
       argument = delegate or has_argument and Curry._1(assignment, env$1) or undefined;
       end_loc;
       if (argument ~= undefined) then do
@@ -8673,9 +8673,9 @@ function assignment(env) do
         semicolon(env$1);
         end_loc = end_loc$1;
       end end 
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               btwn(start_loc, end_loc),
-              --[ Yield ]--Block.__(14, [do
+              --[[ Yield ]]Block.__(14, [do
                     argument: argument,
                     delegate: delegate
                   end])
@@ -8702,9 +8702,9 @@ function assignment(env) do
 end end
 
 function make_logical(left, right, operator, loc) do
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
-          --[ Logical ]--Block.__(9, [do
+          --[[ Logical ]]Block.__(9, [do
                 operator: operator,
                 left: left,
                 right: right
@@ -8718,14 +8718,14 @@ function logical_and(env, _left, _lloc) do
     left = _left;
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof match == "number" and match == 79) then do
-      token$4(env, --[ T_AND ]--79);
+      token$4(env, --[[ T_AND ]]79);
       match$1 = with_loc(binary, env);
       loc = btwn(lloc, match$1[0]);
       _lloc = loc;
-      _left = make_logical(left, match$1[1], --[ And ]--1, loc);
+      _left = make_logical(left, match$1[1], --[[ And ]]1, loc);
       continue ;
     end else do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               lloc,
               left
             ];
@@ -8739,15 +8739,15 @@ function logical_or(env, _left, _lloc) do
     left = _left;
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof match == "number" and match == 78) then do
-      token$4(env, --[ T_OR ]--78);
+      token$4(env, --[[ T_OR ]]78);
       match$1 = with_loc(binary, env);
       match$2 = logical_and(env, match$1[1], match$1[0]);
       loc = btwn(lloc, match$2[0]);
       _lloc = loc;
-      _left = make_logical(left, match$2[1], --[ Or ]--0, loc);
+      _left = make_logical(left, match$2[1], --[[ Or ]]0, loc);
       continue ;
     end else do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               lloc,
               left
             ];
@@ -8767,130 +8767,130 @@ function binary_op(env) do
   if (typeof match == "number") then do
     switcher = match - 15 | 0;
     if (switcher == 0 or switcher == 1) then do
-      ret = switcher ~= 0 and --[ tuple ]--[
-          --[ Instanceof ]--21,
-          --[ Left_assoc ]--Block.__(0, [6])
+      ret = switcher ~= 0 and --[[ tuple ]][
+          --[[ Instanceof ]]21,
+          --[[ Left_assoc ]]Block.__(0, [6])
         ] or (
-          env.no_in and undefined or --[ tuple ]--[
-              --[ In ]--20,
-              --[ Left_assoc ]--Block.__(0, [6])
+          env.no_in and undefined or --[[ tuple ]][
+              --[[ In ]]20,
+              --[[ Left_assoc ]]Block.__(0, [6])
             ]
         );
     end else if (switcher >= 65) then do
       local ___conditional___=(switcher - 65 | 0);
       do
-         if ___conditional___ = 0--[ T_IDENTIFIER ]-- then do
-            ret = --[ tuple ]--[
-              --[ BitOr ]--17,
-              --[ Left_assoc ]--Block.__(0, [2])
+         if ___conditional___ = 0--[[ T_IDENTIFIER ]] then do
+            ret = --[[ tuple ]][
+              --[[ BitOr ]]17,
+              --[[ Left_assoc ]]Block.__(0, [2])
             ];end else 
-         if ___conditional___ = 1--[ T_LCURLY ]-- then do
-            ret = --[ tuple ]--[
-              --[ Xor ]--18,
-              --[ Left_assoc ]--Block.__(0, [3])
+         if ___conditional___ = 1--[[ T_LCURLY ]] then do
+            ret = --[[ tuple ]][
+              --[[ Xor ]]18,
+              --[[ Left_assoc ]]Block.__(0, [3])
             ];end else 
-         if ___conditional___ = 2--[ T_RCURLY ]-- then do
-            ret = --[ tuple ]--[
-              --[ BitAnd ]--19,
-              --[ Left_assoc ]--Block.__(0, [4])
+         if ___conditional___ = 2--[[ T_RCURLY ]] then do
+            ret = --[[ tuple ]][
+              --[[ BitAnd ]]19,
+              --[[ Left_assoc ]]Block.__(0, [4])
             ];end else 
-         if ___conditional___ = 3--[ T_LPAREN ]-- then do
-            ret = --[ tuple ]--[
-              --[ Equal ]--0,
-              --[ Left_assoc ]--Block.__(0, [5])
+         if ___conditional___ = 3--[[ T_LPAREN ]] then do
+            ret = --[[ tuple ]][
+              --[[ Equal ]]0,
+              --[[ Left_assoc ]]Block.__(0, [5])
             ];end else 
-         if ___conditional___ = 4--[ T_RPAREN ]-- then do
-            ret = --[ tuple ]--[
-              --[ NotEqual ]--1,
-              --[ Left_assoc ]--Block.__(0, [5])
+         if ___conditional___ = 4--[[ T_RPAREN ]] then do
+            ret = --[[ tuple ]][
+              --[[ NotEqual ]]1,
+              --[[ Left_assoc ]]Block.__(0, [5])
             ];end else 
-         if ___conditional___ = 5--[ T_LBRACKET ]-- then do
-            ret = --[ tuple ]--[
-              --[ StrictEqual ]--2,
-              --[ Left_assoc ]--Block.__(0, [5])
+         if ___conditional___ = 5--[[ T_LBRACKET ]] then do
+            ret = --[[ tuple ]][
+              --[[ StrictEqual ]]2,
+              --[[ Left_assoc ]]Block.__(0, [5])
             ];end else 
-         if ___conditional___ = 6--[ T_RBRACKET ]-- then do
-            ret = --[ tuple ]--[
-              --[ StrictNotEqual ]--3,
-              --[ Left_assoc ]--Block.__(0, [5])
+         if ___conditional___ = 6--[[ T_RBRACKET ]] then do
+            ret = --[[ tuple ]][
+              --[[ StrictNotEqual ]]3,
+              --[[ Left_assoc ]]Block.__(0, [5])
             ];end else 
-         if ___conditional___ = 7--[ T_SEMICOLON ]-- then do
-            ret = --[ tuple ]--[
-              --[ LessThanEqual ]--5,
-              --[ Left_assoc ]--Block.__(0, [6])
+         if ___conditional___ = 7--[[ T_SEMICOLON ]] then do
+            ret = --[[ tuple ]][
+              --[[ LessThanEqual ]]5,
+              --[[ Left_assoc ]]Block.__(0, [6])
             ];end else 
-         if ___conditional___ = 8--[ T_COMMA ]-- then do
-            ret = --[ tuple ]--[
-              --[ GreaterThanEqual ]--7,
-              --[ Left_assoc ]--Block.__(0, [6])
+         if ___conditional___ = 8--[[ T_COMMA ]] then do
+            ret = --[[ tuple ]][
+              --[[ GreaterThanEqual ]]7,
+              --[[ Left_assoc ]]Block.__(0, [6])
             ];end else 
-         if ___conditional___ = 9--[ T_PERIOD ]-- then do
-            ret = --[ tuple ]--[
-              --[ LessThan ]--4,
-              --[ Left_assoc ]--Block.__(0, [6])
+         if ___conditional___ = 9--[[ T_PERIOD ]] then do
+            ret = --[[ tuple ]][
+              --[[ LessThan ]]4,
+              --[[ Left_assoc ]]Block.__(0, [6])
             ];end else 
-         if ___conditional___ = 10--[ T_ARROW ]-- then do
-            ret = --[ tuple ]--[
-              --[ GreaterThan ]--6,
-              --[ Left_assoc ]--Block.__(0, [6])
+         if ___conditional___ = 10--[[ T_ARROW ]] then do
+            ret = --[[ tuple ]][
+              --[[ GreaterThan ]]6,
+              --[[ Left_assoc ]]Block.__(0, [6])
             ];end else 
-         if ___conditional___ = 11--[ T_ELLIPSIS ]-- then do
-            ret = --[ tuple ]--[
-              --[ LShift ]--8,
-              --[ Left_assoc ]--Block.__(0, [7])
+         if ___conditional___ = 11--[[ T_ELLIPSIS ]] then do
+            ret = --[[ tuple ]][
+              --[[ LShift ]]8,
+              --[[ Left_assoc ]]Block.__(0, [7])
             ];end else 
-         if ___conditional___ = 12--[ T_AT ]-- then do
-            ret = --[ tuple ]--[
-              --[ RShift ]--9,
-              --[ Left_assoc ]--Block.__(0, [7])
+         if ___conditional___ = 12--[[ T_AT ]] then do
+            ret = --[[ tuple ]][
+              --[[ RShift ]]9,
+              --[[ Left_assoc ]]Block.__(0, [7])
             ];end else 
-         if ___conditional___ = 13--[ T_FUNCTION ]-- then do
-            ret = --[ tuple ]--[
-              --[ RShift3 ]--10,
-              --[ Left_assoc ]--Block.__(0, [7])
+         if ___conditional___ = 13--[[ T_FUNCTION ]] then do
+            ret = --[[ tuple ]][
+              --[[ RShift3 ]]10,
+              --[[ Left_assoc ]]Block.__(0, [7])
             ];end else 
-         if ___conditional___ = 14--[ T_IF ]-- then do
-            ret = --[ tuple ]--[
-              --[ Plus ]--11,
-              --[ Left_assoc ]--Block.__(0, [8])
+         if ___conditional___ = 14--[[ T_IF ]] then do
+            ret = --[[ tuple ]][
+              --[[ Plus ]]11,
+              --[[ Left_assoc ]]Block.__(0, [8])
             ];end else 
-         if ___conditional___ = 15--[ T_IN ]-- then do
-            ret = --[ tuple ]--[
-              --[ Minus ]--12,
-              --[ Left_assoc ]--Block.__(0, [8])
+         if ___conditional___ = 15--[[ T_IN ]] then do
+            ret = --[[ tuple ]][
+              --[[ Minus ]]12,
+              --[[ Left_assoc ]]Block.__(0, [8])
             ];end else 
-         if ___conditional___ = 16--[ T_INSTANCEOF ]-- then do
-            ret = --[ tuple ]--[
-              --[ Div ]--15,
-              --[ Left_assoc ]--Block.__(0, [9])
+         if ___conditional___ = 16--[[ T_INSTANCEOF ]] then do
+            ret = --[[ tuple ]][
+              --[[ Div ]]15,
+              --[[ Left_assoc ]]Block.__(0, [9])
             ];end else 
-         if ___conditional___ = 17--[ T_RETURN ]-- then do
-            ret = --[ tuple ]--[
-              --[ Mult ]--13,
-              --[ Left_assoc ]--Block.__(0, [9])
+         if ___conditional___ = 17--[[ T_RETURN ]] then do
+            ret = --[[ tuple ]][
+              --[[ Mult ]]13,
+              --[[ Left_assoc ]]Block.__(0, [9])
             ];end else 
-         if ___conditional___ = 18--[ T_SWITCH ]-- then do
-            ret = --[ tuple ]--[
-              --[ Exp ]--14,
-              --[ Right_assoc ]--Block.__(1, [10])
+         if ___conditional___ = 18--[[ T_SWITCH ]] then do
+            ret = --[[ tuple ]][
+              --[[ Exp ]]14,
+              --[[ Right_assoc ]]Block.__(1, [10])
             ];end else 
-         if ___conditional___ = 19--[ T_THIS ]-- then do
-            ret = --[ tuple ]--[
-              --[ Mod ]--16,
-              --[ Left_assoc ]--Block.__(0, [9])
+         if ___conditional___ = 19--[[ T_THIS ]] then do
+            ret = --[[ tuple ]][
+              --[[ Mod ]]16,
+              --[[ Left_assoc ]]Block.__(0, [9])
             ];end else 
-         if ___conditional___ = 20--[ T_THROW ]--
-         or ___conditional___ = 21--[ T_TRY ]--
-         or ___conditional___ = 22--[ T_VAR ]--
-         or ___conditional___ = 23--[ T_WHILE ]--
-         or ___conditional___ = 24--[ T_WITH ]--
-         or ___conditional___ = 25--[ T_CONST ]--
-         or ___conditional___ = 26--[ T_LET ]--
-         or ___conditional___ = 27--[ T_NULL ]--
-         or ___conditional___ = 28--[ T_FALSE ]--
-         or ___conditional___ = 29--[ T_TRUE ]--
-         or ___conditional___ = 30--[ T_BREAK ]--
-         or ___conditional___ = 31--[ T_CASE ]-- then do
+         if ___conditional___ = 20--[[ T_THROW ]]
+         or ___conditional___ = 21--[[ T_TRY ]]
+         or ___conditional___ = 22--[[ T_VAR ]]
+         or ___conditional___ = 23--[[ T_WHILE ]]
+         or ___conditional___ = 24--[[ T_WITH ]]
+         or ___conditional___ = 25--[[ T_CONST ]]
+         or ___conditional___ = 26--[[ T_LET ]]
+         or ___conditional___ = 27--[[ T_NULL ]]
+         or ___conditional___ = 28--[[ T_FALSE ]]
+         or ___conditional___ = 29--[[ T_TRUE ]]
+         or ___conditional___ = 30--[[ T_BREAK ]]
+         or ___conditional___ = 31--[[ T_CASE ]] then do
             ret = undefined;end else 
          do end end end end end end end end end end end end end end end end end end end end end end
         
@@ -8909,9 +8909,9 @@ function binary_op(env) do
 end end
 
 function make_binary(left, right, operator, loc) do
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
-          --[ Binary ]--Block.__(6, [do
+          --[[ Binary ]]Block.__(6, [do
                 operator: operator,
                 left: left,
                 right: right
@@ -8935,7 +8935,7 @@ function add_to_stack(_right, _param, _rloc, _stack) do
         right$1 = make_binary(match[0], right, match$1[0], loc);
         _stack = stack[1];
         _rloc = loc;
-        _param = --[ tuple ]--[
+        _param = --[[ tuple ]][
           rop,
           rpri
         ];
@@ -8945,10 +8945,10 @@ function add_to_stack(_right, _param, _rloc, _stack) do
        end 
     end
      end 
-    return --[ :: ]--[
-            --[ tuple ]--[
+    return --[[ :: ]][
+            --[[ tuple ]][
               right,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 rop,
                 rpri
               ],
@@ -8961,7 +8961,7 @@ end end
 
 function binary(env) do
   env$1 = env;
-  _stack = --[ [] ]--0;
+  _stack = --[[ [] ]]0;
   while(true) do
     stack = _stack;
     start_loc = Curry._2(Parser_env_Peek.loc, undefined, env$1);
@@ -8970,10 +8970,10 @@ function binary(env) do
     match = env$1.last_loc.contents;
     end_loc = match ~= undefined and match or right[0];
     right_loc = btwn(start_loc, end_loc);
-    if (Curry._2(Parser_env_Peek.token, undefined, env$1) == --[ T_LESS_THAN ]--89) then do
+    if (Curry._2(Parser_env_Peek.token, undefined, env$1) == --[[ T_LESS_THAN ]]89) then do
       tmp = right[1];
-      if (typeof tmp ~= "number" and tmp.tag == --[ JSXElement ]--22) then do
-        error$1(env$1, --[ AdjacentJSXElements ]--46);
+      if (typeof tmp ~= "number" and tmp.tag == --[[ JSXElement ]]22) then do
+        error$1(env$1, --[[ AdjacentJSXElements ]]46);
       end
        end 
     end
@@ -8982,14 +8982,14 @@ function binary(env) do
     if (match$1 ~= undefined) then do
       match$2 = match$1;
       rop = match$2[0];
-      if (is_unary and rop == --[ Exp ]--14) then do
-        error_at(env$1, --[ tuple ]--[
+      if (is_unary and rop == --[[ Exp ]]14) then do
+        error_at(env$1, --[[ tuple ]][
               right_loc,
-              --[ InvalidLHSInExponentiation ]--15
+              --[[ InvalidLHSInExponentiation ]]15
             ]);
       end
        end 
-      _stack = add_to_stack(right, --[ tuple ]--[
+      _stack = add_to_stack(right, --[[ tuple ]][
             rop,
             match$2[1]
           ], right_loc, stack);
@@ -9021,17 +9021,17 @@ function argument(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
   if (typeof match == "number" and match == 11) then do
     start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-    token$4(env, --[ T_ELLIPSIS ]--11);
+    token$4(env, --[[ T_ELLIPSIS ]]11);
     argument$1 = Curry._1(assignment, env);
     loc = btwn(start_loc, argument$1[0]);
-    return --[ Spread ]--Block.__(1, [--[ tuple ]--[
+    return --[[ Spread ]]Block.__(1, [--[[ tuple ]][
                 loc,
                 do
                   argument: argument$1
                 end
               ]]);
   end else do
-    return --[ Expression ]--Block.__(0, [Curry._1(assignment, env)]);
+    return --[[ Expression ]]Block.__(0, [Curry._1(assignment, env)]);
   end end 
 end end
 
@@ -9044,12 +9044,12 @@ function arguments$prime(env, _acc) do
     end
      end 
     acc_000 = argument(env);
-    acc$1 = --[ :: ]--[
+    acc$1 = --[[ :: ]][
       acc_000,
       acc
     ];
-    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[ T_RPAREN ]--4) then do
-      token$4(env, --[ T_COMMA ]--8);
+    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RPAREN ]]4) then do
+      token$4(env, --[[ T_COMMA ]]8);
     end
      end 
     _acc = acc$1;
@@ -9059,11 +9059,11 @@ end end
 
 function $$arguments(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_LPAREN ]--3);
-  args = arguments$prime(env, --[ [] ]--0);
+  token$4(env, --[[ T_LPAREN ]]3);
+  args = arguments$prime(env, --[[ [] ]]0);
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_RPAREN ]--4);
-  return --[ tuple ]--[
+  token$4(env, --[[ T_RPAREN ]]4);
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           args
         ];
@@ -9074,30 +9074,30 @@ function template_parts(env, _quasis, _expressions) do
     expressions = _expressions;
     quasis = _quasis;
     expr = Curry._1(Parse.expression, env);
-    expressions$1 = --[ :: ]--[
+    expressions$1 = --[[ :: ]][
       expr,
       expressions
     ];
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof match == "number" and match == 2) then do
-      push_lex_mode(env, --[ TEMPLATE ]--4);
+      push_lex_mode(env, --[[ TEMPLATE ]]4);
       match$1 = Curry._2(Parser_env_Peek.token, undefined, env);
       match$2;
       if (typeof match$1 == "number") then do
         throw [
               Caml_builtin_exceptions.assert_failure,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "parser_flow.ml",
                 1602,
                 19
               ]
             ];
-      end else if (match$1.tag == --[ T_TEMPLATE_PART ]--2) then do
+      end else if (match$1.tag == --[[ T_TEMPLATE_PART ]]2) then do
         match$3 = match$1[0];
         tail = match$3[2];
         match$4 = match$3[1];
         token$3(env);
-        match$2 = --[ tuple ]--[
+        match$2 = --[[ tuple ]][
           match$3[0],
           do
             value: do
@@ -9111,7 +9111,7 @@ function template_parts(env, _quasis, _expressions) do
       end else do
         throw [
               Caml_builtin_exceptions.assert_failure,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "parser_flow.ml",
                 1602,
                 19
@@ -9120,16 +9120,16 @@ function template_parts(env, _quasis, _expressions) do
       end end  end 
       loc = match$2[0];
       pop_lex_mode(env);
-      quasis_000 = --[ tuple ]--[
+      quasis_000 = --[[ tuple ]][
         loc,
         match$2[1]
       ];
-      quasis$1 = --[ :: ]--[
+      quasis$1 = --[[ :: ]][
         quasis_000,
         quasis
       ];
       if (match$2[2]) then do
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 loc,
                 List.rev(quasis$1),
                 List.rev(expressions$1)
@@ -9150,13 +9150,13 @@ function template_parts(env, _quasis, _expressions) do
       end,
       tail: true
     end;
-    imaginary_quasi = --[ tuple ]--[
+    imaginary_quasi = --[[ tuple ]][
       imaginary_quasi_000,
       imaginary_quasi_001
     ];
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             expr[0],
-            List.rev(--[ :: ]--[
+            List.rev(--[[ :: ]][
                   imaginary_quasi,
                   quasis
                 ]),
@@ -9169,7 +9169,7 @@ function template_literal(env, part) do
   is_tail = part[2];
   match = part[1];
   start_loc = part[0];
-  token$4(env, --[ T_TEMPLATE_PART ]--Block.__(2, [part]));
+  token$4(env, --[[ T_TEMPLATE_PART ]]Block.__(2, [part]));
   head_001 = do
     value: do
       raw: match.raw,
@@ -9177,23 +9177,23 @@ function template_literal(env, part) do
     end,
     tail: is_tail
   end;
-  head = --[ tuple ]--[
+  head = --[[ tuple ]][
     start_loc,
     head_001
   ];
-  match$1 = is_tail and --[ tuple ]--[
+  match$1 = is_tail and --[[ tuple ]][
       start_loc,
-      --[ :: ]--[
+      --[[ :: ]][
         head,
-        --[ [] ]--0
+        --[[ [] ]]0
       ],
-      --[ [] ]--0
-    ] or template_parts(env, --[ :: ]--[
+      --[[ [] ]]0
+    ] or template_parts(env, --[[ :: ]][
           head,
-          --[ [] ]--0
-        ], --[ [] ]--0);
+          --[[ [] ]]0
+        ], --[[ [] ]]0);
   loc = btwn(start_loc, match$1[0]);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
           do
             quasis: match$1[1],
@@ -9211,36 +9211,36 @@ function elements(env, _acc) do
         if (match < 12) then do
           local ___conditional___=(match);
           do
-             if ___conditional___ = 6--[ T_RBRACKET ]-- then do
+             if ___conditional___ = 6--[[ T_RBRACKET ]] then do
                 return List.rev(acc);end end end 
-             if ___conditional___ = 8--[ T_COMMA ]-- then do
-                token$4(env, --[ T_COMMA ]--8);
-                _acc = --[ :: ]--[
+             if ___conditional___ = 8--[[ T_COMMA ]] then do
+                token$4(env, --[[ T_COMMA ]]8);
+                _acc = --[[ :: ]][
                   undefined,
                   acc
                 ];
                 continue ;end end end 
-             if ___conditional___ = 0--[ T_IDENTIFIER ]--
-             or ___conditional___ = 1--[ T_LCURLY ]--
-             or ___conditional___ = 2--[ T_RCURLY ]--
-             or ___conditional___ = 3--[ T_LPAREN ]--
-             or ___conditional___ = 4--[ T_RPAREN ]--
-             or ___conditional___ = 5--[ T_LBRACKET ]--
-             or ___conditional___ = 7--[ T_SEMICOLON ]--
-             or ___conditional___ = 9--[ T_PERIOD ]--
-             or ___conditional___ = 10--[ T_ARROW ]--
-             or ___conditional___ = 11--[ T_ELLIPSIS ]-- then do
+             if ___conditional___ = 0--[[ T_IDENTIFIER ]]
+             or ___conditional___ = 1--[[ T_LCURLY ]]
+             or ___conditional___ = 2--[[ T_RCURLY ]]
+             or ___conditional___ = 3--[[ T_LPAREN ]]
+             or ___conditional___ = 4--[[ T_RPAREN ]]
+             or ___conditional___ = 5--[[ T_LBRACKET ]]
+             or ___conditional___ = 7--[[ T_SEMICOLON ]]
+             or ___conditional___ = 9--[[ T_PERIOD ]]
+             or ___conditional___ = 10--[[ T_ARROW ]]
+             or ___conditional___ = 11--[[ T_ELLIPSIS ]] then do
                 start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-                token$4(env, --[ T_ELLIPSIS ]--11);
+                token$4(env, --[[ T_ELLIPSIS ]]11);
                 argument = Curry._1(assignment, env);
                 loc = btwn(start_loc, argument[0]);
-                elem = --[ Spread ]--Block.__(1, [--[ tuple ]--[
+                elem = --[[ Spread ]]Block.__(1, [--[[ tuple ]][
                       loc,
                       do
                         argument: argument
                       end
                     ]]);
-                _acc = --[ :: ]--[
+                _acc = --[[ :: ]][
                   elem,
                   acc
                 ];
@@ -9255,12 +9255,12 @@ function elements(env, _acc) do
       end end 
     end
      end 
-    elem$1 = --[ Expression ]--Block.__(0, [Curry._1(assignment, env)]);
-    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[ T_RBRACKET ]--6) then do
-      token$4(env, --[ T_COMMA ]--8);
+    elem$1 = --[[ Expression ]]Block.__(0, [Curry._1(assignment, env)]);
+    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RBRACKET ]]6) then do
+      token$4(env, --[[ T_COMMA ]]8);
     end
      end 
-    _acc = --[ :: ]--[
+    _acc = --[[ :: ]][
       elem$1,
       acc
     ];
@@ -9270,11 +9270,11 @@ end end
 
 function array_initializer(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_LBRACKET ]--5);
-  elements$1 = elements(env, --[ [] ]--0);
+  token$4(env, --[[ T_LBRACKET ]]5);
+  elements$1 = elements(env, --[[ [] ]]0);
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_RBRACKET ]--6);
-  return --[ tuple ]--[
+  token$4(env, --[[ T_RBRACKET ]]6);
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             elements: elements$1
@@ -9289,10 +9289,10 @@ function error_callback$1(param, param$1) do
       if (switcher ~= 19) then do
         throw Parser_env_Try.Rollback;
       end else do
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end 
     end else if (switcher > 15 or switcher < 1) then do
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end else do
       throw Parser_env_Try.Rollback;
     end end  end 
@@ -9304,29 +9304,29 @@ end end
 function try_arrow_function(env) do
   env$1 = with_error_callback(error_callback$1, env);
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env$1);
-  async = Curry._2(Parser_env_Peek.token, 1, env$1) ~= --[ T_ARROW ]--10 and maybe(env$1, --[ T_ASYNC ]--61);
+  async = Curry._2(Parser_env_Peek.token, 1, env$1) ~= --[[ T_ARROW ]]10 and maybe(env$1, --[[ T_ASYNC ]]61);
   typeParameters = Curry._1(type_parameter_declaration$1, env$1);
   match;
   if (Curry._2(Parser_env_Peek.is_identifier, undefined, env$1) and typeParameters == undefined) then do
-    id = Curry._2(Parse.identifier, --[ StrictParamName ]--28, env$1);
+    id = Curry._2(Parse.identifier, --[[ StrictParamName ]]28, env$1);
     param_000 = id[0];
-    param_001 = --[ Identifier ]--Block.__(3, [id]);
-    param = --[ tuple ]--[
+    param_001 = --[[ Identifier ]]Block.__(3, [id]);
+    param = --[[ tuple ]][
       param_000,
       param_001
     ];
-    match = --[ tuple ]--[
-      --[ :: ]--[
+    match = --[[ tuple ]][
+      --[[ :: ]][
         param,
-        --[ [] ]--0
+        --[[ [] ]]0
       ],
-      --[ [] ]--0,
+      --[[ [] ]]0,
       undefined,
       undefined
     ];
   end else do
     match$1 = function_params(env$1);
-    match = --[ tuple ]--[
+    match = --[[ tuple ]][
       match$1[0],
       match$1[1],
       match$1[2],
@@ -9337,12 +9337,12 @@ function try_arrow_function(env) do
   defaults = match[1];
   params = match[0];
   predicate = Curry._1(Parse.predicate, env$1);
-  env$2 = params == --[ [] ]--0 or rest ~= undefined and without_error_callback(env$1) or env$1;
-  if (Curry._1(Parser_env_Peek.is_line_terminator, env$2) and Curry._2(Parser_env_Peek.token, undefined, env$2) == --[ T_ARROW ]--10) then do
-    error$1(env$2, --[ NewlineBeforeArrow ]--44);
+  env$2 = params == --[[ [] ]]0 or rest ~= undefined and without_error_callback(env$1) or env$1;
+  if (Curry._1(Parser_env_Peek.is_line_terminator, env$2) and Curry._2(Parser_env_Peek.token, undefined, env$2) == --[[ T_ARROW ]]10) then do
+    error$1(env$2, --[[ NewlineBeforeArrow ]]44);
   end
    end 
-  token$4(env$2, --[ T_ARROW ]--10);
+  token$4(env$2, --[[ T_ARROW ]]10);
   env$3 = without_error_callback(env$2);
   match$2 = with_loc((function (param) do
           env = param;
@@ -9352,7 +9352,7 @@ function try_arrow_function(env) do
           match = Curry._2(Parser_env_Peek.token, undefined, env$1);
           if (typeof match == "number" and match == 1) then do
             match$1 = function_body(env$1, async$1, generator);
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     match$1[1],
                     match$1[2]
                   ];
@@ -9360,8 +9360,8 @@ function try_arrow_function(env) do
            end 
           env$2 = enter_function(env$1, async$1, generator);
           expr = Curry._1(Parse.assignment, env$2);
-          return --[ tuple ]--[
-                  --[ BodyExpression ]--Block.__(1, [expr]),
+          return --[[ tuple ]][
+                  --[[ BodyExpression ]]Block.__(1, [expr]),
                   env$2.in_strict_mode
                 ];
         end end), env$3);
@@ -9372,9 +9372,9 @@ function try_arrow_function(env) do
   expression;
   expression = body.tag and true or false;
   loc = btwn(start_loc, match$2[0]);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
-          --[ ArrowFunction ]--Block.__(3, [do
+          --[[ ArrowFunction ]]Block.__(3, [do
                 id: undefined,
                 params: params,
                 defaults: defaults,
@@ -9396,7 +9396,7 @@ function decorator_list_helper(env, _decorators) do
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof match == "number" and match == 12) then do
       token$3(env);
-      _decorators = --[ :: ]--[
+      _decorators = --[[ :: ]][
         left_hand_side(env),
         decorators
       ];
@@ -9409,38 +9409,38 @@ end end
 
 function decorator_list(env) do
   if (env.parse_options.esproposal_decorators) then do
-    return List.rev(decorator_list_helper(env, --[ [] ]--0));
+    return List.rev(decorator_list_helper(env, --[[ [] ]]0));
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end 
 end end
 
 function key(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
   if (typeof match == "number") then do
-    if (match == --[ T_LBRACKET ]--5) then do
+    if (match == --[[ T_LBRACKET ]]5) then do
       start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-      token$4(env, --[ T_LBRACKET ]--5);
+      token$4(env, --[[ T_LBRACKET ]]5);
       expr = Curry._1(Parse.assignment, with_no_in(false, env));
       end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-      token$4(env, --[ T_RBRACKET ]--6);
-      return --[ tuple ]--[
+      token$4(env, --[[ T_RBRACKET ]]6);
+      return --[[ tuple ]][
               btwn(start_loc, end_loc),
-              --[ Computed ]--Block.__(2, [expr])
+              --[[ Computed ]]Block.__(2, [expr])
             ];
     end
      end 
   end else do
     local ___conditional___=(match.tag | 0);
     do
-       if ___conditional___ = 0--[ T_NUMBER ]-- then do
+       if ___conditional___ = 0--[[ T_NUMBER ]] then do
           raw = Curry._2(Parser_env_Peek.value, undefined, env);
           loc = Curry._2(Parser_env_Peek.loc, undefined, env);
           value = number(env, match[0]);
-          value$1 = --[ Number ]--Block.__(2, [value]);
-          return --[ tuple ]--[
+          value$1 = --[[ Number ]]Block.__(2, [value]);
+          return --[[ tuple ]][
                   loc,
-                  --[ Literal ]--Block.__(0, [--[ tuple ]--[
+                  --[[ Literal ]]Block.__(0, [--[[ tuple ]][
                         loc,
                         do
                           value: value$1,
@@ -9448,26 +9448,26 @@ function key(env) do
                         end
                       ]])
                 ];end end end 
-       if ___conditional___ = 1--[ T_STRING ]-- then do
+       if ___conditional___ = 1--[[ T_STRING ]] then do
           match$1 = match[0];
           octal = match$1[3];
           raw$1 = match$1[2];
           value$2 = match$1[1];
           loc$1 = match$1[0];
           if (octal) then do
-            strict_error(env, --[ StrictOctalLiteral ]--31);
+            strict_error(env, --[[ StrictOctalLiteral ]]31);
           end
            end 
-          token$4(env, --[ T_STRING ]--Block.__(1, [--[ tuple ]--[
+          token$4(env, --[[ T_STRING ]]Block.__(1, [--[[ tuple ]][
                     loc$1,
                     value$2,
                     raw$1,
                     octal
                   ]]));
-          value$3 = --[ String ]--Block.__(0, [value$2]);
-          return --[ tuple ]--[
+          value$3 = --[[ String ]]Block.__(0, [value$2]);
+          return --[[ tuple ]][
                   loc$1,
-                  --[ Literal ]--Block.__(0, [--[ tuple ]--[
+                  --[[ Literal ]]Block.__(0, [--[[ tuple ]][
                         loc$1,
                         do
                           value: value$3,
@@ -9483,9 +9483,9 @@ function key(env) do
   end end 
   match$2 = identifier_or_reserved_keyword(env);
   id = match$2[0];
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           id[0],
-          --[ Identifier ]--Block.__(1, [id])
+          --[[ Identifier ]]Block.__(1, [id])
         ];
 end end
 
@@ -9493,44 +9493,44 @@ function _method(env, kind) do
   generator$1 = generator(env, false);
   match = key(env);
   typeParameters = kind ~= 0 and undefined or Curry._1(type_parameter_declaration$1, env);
-  token$4(env, --[ T_LPAREN ]--3);
+  token$4(env, --[[ T_LPAREN ]]3);
   params;
   local ___conditional___=(kind);
   do
-     if ___conditional___ = 0--[ Init ]-- then do
+     if ___conditional___ = 0--[[ Init ]] then do
         throw [
               Caml_builtin_exceptions.assert_failure,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "parser_flow.ml",
                 1954,
                 16
               ]
             ];end end end 
-     if ___conditional___ = 1--[ Get ]-- then do
-        params = --[ [] ]--0;end else 
-     if ___conditional___ = 2--[ Set ]-- then do
-        param = Curry._2(Parse.identifier_with_type, env, --[ StrictParamName ]--28);
-        params = --[ :: ]--[
-          --[ tuple ]--[
+     if ___conditional___ = 1--[[ Get ]] then do
+        params = --[[ [] ]]0;end else 
+     if ___conditional___ = 2--[[ Set ]] then do
+        param = Curry._2(Parse.identifier_with_type, env, --[[ StrictParamName ]]28);
+        params = --[[ :: ]][
+          --[[ tuple ]][
             param[0],
-            --[ Identifier ]--Block.__(3, [param])
+            --[[ Identifier ]]Block.__(3, [param])
           ],
-          --[ [] ]--0
+          --[[ [] ]]0
         ];end else 
      do end end
     
   end
-  token$4(env, --[ T_RPAREN ]--4);
+  token$4(env, --[[ T_RPAREN ]]4);
   returnType = wrap(annotation_opt, env);
   match$1 = function_body(env, false, generator$1);
   body = match$1[1];
-  simple = is_simple_function_params(params, --[ [] ]--0, undefined);
+  simple = is_simple_function_params(params, --[[ [] ]]0, undefined);
   strict_post_check(env, match$1[2], simple, undefined, params);
   match$2;
-  match$2 = body.tag and --[ tuple ]--[
+  match$2 = body.tag and --[[ tuple ]][
       body[0][0],
       true
-    ] or --[ tuple ]--[
+    ] or --[[ tuple ]][
       body[0][0],
       false
     ];
@@ -9538,7 +9538,7 @@ function _method(env, kind) do
   value_001 = do
     id: undefined,
     params: params,
-    defaults: --[ [] ]--0,
+    defaults: --[[ [] ]]0,
     rest: undefined,
     body: body,
     async: false,
@@ -9548,11 +9548,11 @@ function _method(env, kind) do
     returnType: returnType,
     typeParameters: typeParameters
   end;
-  value = --[ tuple ]--[
+  value = --[[ tuple ]][
     value_000,
     value_001
   ];
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           match[1],
           value
         ];
@@ -9560,17 +9560,17 @@ end end
 
 function property$1(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_ELLIPSIS ]--11) then do
-    token$4(env, --[ T_ELLIPSIS ]--11);
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ELLIPSIS ]]11) then do
+    token$4(env, --[[ T_ELLIPSIS ]]11);
     argument = Curry._1(Parse.assignment, env);
-    return --[ SpreadProperty ]--Block.__(1, [--[ tuple ]--[
+    return --[[ SpreadProperty ]]Block.__(1, [--[[ tuple ]][
                 btwn(start_loc, argument[0]),
                 do
                   argument: argument
                 end
               ]]);
   end else do
-    async = Curry._2(Parser_env_Peek.is_identifier, 1, env) and maybe(env, --[ T_ASYNC ]--61);
+    async = Curry._2(Parser_env_Peek.is_identifier, 1, env) and maybe(env, --[[ T_ASYNC ]]61);
     match = generator(env, async);
     match$1 = key(env);
     tmp;
@@ -9581,7 +9581,7 @@ function property$1(env) do
       key$1 = match$1[1];
       local ___conditional___=(key$1.tag | 0);
       do
-         if ___conditional___ = 1--[ Identifier ]-- then do
+         if ___conditional___ = 1--[[ Identifier ]] then do
             local ___conditional___=(key$1[0][1].name);
             do
                if ___conditional___ = "get" then do
@@ -9614,8 +9614,8 @@ function property$1(env) do
                 end end
                 
             endend else 
-         if ___conditional___ = 0--[ Literal ]--
-         or ___conditional___ = 2--[ Computed ]-- then do
+         if ___conditional___ = 0--[[ Literal ]]
+         or ___conditional___ = 2--[[ Computed ]] then do
             exit = 1;end else 
          do end end end
         
@@ -9625,25 +9625,25 @@ function property$1(env) do
       tmp = init(env, start_loc, match$1[1], async, match);
     end
      end 
-    return --[ Property ]--Block.__(0, [tmp]);
+    return --[[ Property ]]Block.__(0, [tmp]);
   end end 
 end end
 
 function get(env, start_loc) do
-  match = _method(env, --[ Get ]--1);
+  match = _method(env, --[[ Get ]]1);
   match$1 = match[1];
   end_loc = match$1[0];
-  value_001 = --[ Function ]--Block.__(2, [match$1[1]]);
-  value = --[ tuple ]--[
+  value_001 = --[[ Function ]]Block.__(2, [match$1[1]]);
+  value = --[[ tuple ]][
     end_loc,
     value_001
   ];
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             key: match[0],
             value: value,
-            kind: --[ Get ]--1,
+            kind: --[[ Get ]]1,
             _method: false,
             shorthand: false
           end
@@ -9651,20 +9651,20 @@ function get(env, start_loc) do
 end end
 
 function set(env, start_loc) do
-  match = _method(env, --[ Set ]--2);
+  match = _method(env, --[[ Set ]]2);
   match$1 = match[1];
   end_loc = match$1[0];
-  value_001 = --[ Function ]--Block.__(2, [match$1[1]]);
-  value = --[ tuple ]--[
+  value_001 = --[[ Function ]]Block.__(2, [match$1[1]]);
+  value = --[[ tuple ]][
     end_loc,
     value_001
   ];
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             key: match[0],
             value: value,
-            kind: --[ Set ]--2,
+            kind: --[[ Set ]]2,
             _method: false,
             shorthand: false
           end
@@ -9682,17 +9682,17 @@ function init(env, start_loc, key, async, generator) do
       end else do
         local ___conditional___=(match);
         do
-           if ___conditional___ = 3--[ T_LPAREN ]-- then do
+           if ___conditional___ = 3--[[ T_LPAREN ]] then do
               exit = 3;end else 
-           if ___conditional___ = 0--[ T_IDENTIFIER ]--
-           or ___conditional___ = 1--[ T_LCURLY ]--
-           or ___conditional___ = 4--[ T_RPAREN ]--
-           or ___conditional___ = 5--[ T_LBRACKET ]--
-           or ___conditional___ = 6--[ T_RBRACKET ]--
-           or ___conditional___ = 7--[ T_SEMICOLON ]-- then do
+           if ___conditional___ = 0--[[ T_IDENTIFIER ]]
+           or ___conditional___ = 1--[[ T_LCURLY ]]
+           or ___conditional___ = 4--[[ T_RPAREN ]]
+           or ___conditional___ = 5--[[ T_LBRACKET ]]
+           or ___conditional___ = 6--[[ T_RBRACKET ]]
+           or ___conditional___ = 7--[[ T_SEMICOLON ]] then do
               exit = 1;end else 
-           if ___conditional___ = 2--[ T_RCURLY ]--
-           or ___conditional___ = 8--[ T_COMMA ]-- then do
+           if ___conditional___ = 2--[[ T_RCURLY ]]
+           or ___conditional___ = 8--[[ T_COMMA ]] then do
               exit = 2;end else 
            do end end end end
           
@@ -9707,8 +9707,8 @@ function init(env, start_loc, key, async, generator) do
   local ___conditional___=(exit);
   do
      if ___conditional___ = 1 then do
-        token$4(env, --[ T_COLON ]--77);
-        match$1 = --[ tuple ]--[
+        token$4(env, --[[ T_COLON ]]77);
+        match$1 = --[[ tuple ]][
           Curry._1(Parse.assignment, env),
           false,
           false
@@ -9717,24 +9717,24 @@ function init(env, start_loc, key, async, generator) do
         tmp;
         local ___conditional___=(key.tag | 0);
         do
-           if ___conditional___ = 0--[ Literal ]-- then do
+           if ___conditional___ = 0--[[ Literal ]] then do
               lit = key[0];
-              tmp = --[ tuple ]--[
+              tmp = --[[ tuple ]][
                 lit[0],
-                --[ Literal ]--Block.__(19, [lit[1]])
+                --[[ Literal ]]Block.__(19, [lit[1]])
               ];end else 
-           if ___conditional___ = 1--[ Identifier ]-- then do
+           if ___conditional___ = 1--[[ Identifier ]] then do
               id = key[0];
-              tmp = --[ tuple ]--[
+              tmp = --[[ tuple ]][
                 id[0],
-                --[ Identifier ]--Block.__(18, [id])
+                --[[ Identifier ]]Block.__(18, [id])
               ];end else 
-           if ___conditional___ = 2--[ Computed ]-- then do
+           if ___conditional___ = 2--[[ Computed ]] then do
               tmp = key[0];end else 
            do end end end end
           
         end
-        match$1 = --[ tuple ]--[
+        match$1 = --[[ tuple ]][
           tmp,
           true,
           false
@@ -9751,15 +9751,15 @@ function init(env, start_loc, key, async, generator) do
         simple = is_simple_function_params(params, defaults, rest);
         strict_post_check(env, match$3[2], simple, undefined, params);
         match$4;
-        match$4 = body.tag and --[ tuple ]--[
+        match$4 = body.tag and --[[ tuple ]][
             body[0][0],
             true
-          ] or --[ tuple ]--[
+          ] or --[[ tuple ]][
             body[0][0],
             false
           ];
         value_000 = match$4[0];
-        value_001 = --[ Function ]--Block.__(2, [do
+        value_001 = --[[ Function ]]Block.__(2, [do
               id: undefined,
               params: params,
               defaults: defaults,
@@ -9772,11 +9772,11 @@ function init(env, start_loc, key, async, generator) do
               returnType: returnType,
               typeParameters: typeParameters
             end]);
-        value = --[ tuple ]--[
+        value = --[[ tuple ]][
           value_000,
           value_001
         ];
-        match$1 = --[ tuple ]--[
+        match$1 = --[[ tuple ]][
           value,
           false,
           true
@@ -9785,12 +9785,12 @@ function init(env, start_loc, key, async, generator) do
     
   end
   value$1 = match$1[0];
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, value$1[0]),
           do
             key: key,
             value: value$1,
-            kind: --[ Init ]--0,
+            kind: --[[ Init ]]0,
             _method: match$1[2],
             shorthand: match$1[1]
           end
@@ -9807,10 +9807,10 @@ function check_property(env, prop_map, prop) do
     exit = 0;
     local ___conditional___=(prop$1.key.tag | 0);
     do
-       if ___conditional___ = 0--[ Literal ]--
-       or ___conditional___ = 1--[ Identifier ]-- then do
+       if ___conditional___ = 0--[[ Literal ]]
+       or ___conditional___ = 1--[[ Identifier ]] then do
           exit = 1;end else 
-       if ___conditional___ = 2--[ Computed ]-- then do
+       if ___conditional___ = 2--[[ Computed ]] then do
           return prop_map;end end end 
        do end
       
@@ -9820,21 +9820,21 @@ function check_property(env, prop_map, prop) do
       key;
       local ___conditional___=(match$1.tag | 0);
       do
-         if ___conditional___ = 0--[ Literal ]-- then do
+         if ___conditional___ = 0--[[ Literal ]] then do
             match$2 = match$1[0][1].value;
             if (typeof match$2 == "number") then do
               key = "nil";
             end else do
               local ___conditional___=(match$2.tag | 0);
               do
-                 if ___conditional___ = 0--[ String ]-- then do
+                 if ___conditional___ = 0--[[ String ]] then do
                     key = match$2[0];end else 
-                 if ___conditional___ = 1--[ Boolean ]-- then do
+                 if ___conditional___ = 1--[[ Boolean ]] then do
                     b = match$2[0];
                     key = b and "true" or "false";end else 
-                 if ___conditional___ = 2--[ Number ]-- then do
+                 if ___conditional___ = 2--[[ Number ]] then do
                     key = Pervasives.string_of_float(match$2[0]);end else 
-                 if ___conditional___ = 3--[ RegExp ]-- then do
+                 if ___conditional___ = 3--[[ RegExp ]] then do
                     throw [
                           Caml_builtin_exceptions.failure,
                           "RegExp cannot be property key"
@@ -9843,12 +9843,12 @@ function check_property(env, prop_map, prop) do
                 
               end
             end end end else 
-         if ___conditional___ = 1--[ Identifier ]-- then do
+         if ___conditional___ = 1--[[ Identifier ]] then do
             key = match$1[0][1].name;end else 
-         if ___conditional___ = 2--[ Computed ]-- then do
+         if ___conditional___ = 2--[[ Computed ]] then do
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "parser_flow.ml",
                     2103,
                     30
@@ -9863,7 +9863,7 @@ function check_property(env, prop_map, prop) do
       end
       catch (exn)do
         if (exn == Caml_builtin_exceptions.not_found) then do
-          prev_kinds = --[ Empty ]--0;
+          prev_kinds = --[[ Empty ]]0;
         end else do
           throw exn;
         end end 
@@ -9872,11 +9872,11 @@ function check_property(env, prop_map, prop) do
       kind_string;
       local ___conditional___=(match$3);
       do
-         if ___conditional___ = 0--[ Init ]-- then do
+         if ___conditional___ = 0--[[ Init ]] then do
             kind_string = "Init";end else 
-         if ___conditional___ = 1--[ Get ]-- then do
+         if ___conditional___ = 1--[[ Get ]] then do
             kind_string = "Get";end else 
-         if ___conditional___ = 2--[ Set ]-- then do
+         if ___conditional___ = 2--[[ Set ]] then do
             kind_string = "Set";end else 
          do end end end end
         
@@ -9886,14 +9886,14 @@ function check_property(env, prop_map, prop) do
       do
          if ___conditional___ = "Init" then do
             if (mem$1("Init", prev_kinds)) then do
-              strict_error_at(env, --[ tuple ]--[
+              strict_error_at(env, --[[ tuple ]][
                     prop_loc,
-                    --[ StrictDuplicateProperty ]--33
+                    --[[ StrictDuplicateProperty ]]33
                   ]);
             end else if (mem$1("Set", prev_kinds) or mem$1("Get", prev_kinds)) then do
-              error_at(env, --[ tuple ]--[
+              error_at(env, --[[ tuple ]][
                     prop_loc,
-                    --[ AccessorDataProperty ]--34
+                    --[[ AccessorDataProperty ]]34
                   ]);
             end
              end  end end else 
@@ -9907,14 +9907,14 @@ function check_property(env, prop_map, prop) do
       end
       if (exit$1 == 2) then do
         if (mem$1("Init", prev_kinds)) then do
-          error_at(env, --[ tuple ]--[
+          error_at(env, --[[ tuple ]][
                 prop_loc,
-                --[ AccessorDataProperty ]--34
+                --[[ AccessorDataProperty ]]34
               ]);
         end else if (mem$1(kind_string, prev_kinds)) then do
-          error_at(env, --[ tuple ]--[
+          error_at(env, --[[ tuple ]][
                 prop_loc,
-                --[ AccessorGetSet ]--35
+                --[[ AccessorGetSet ]]35
               ]);
         end
          end  end 
@@ -9938,13 +9938,13 @@ function properties$1(env, _param) do
      end 
     prop = property$1(env);
     prop_map = check_property(env, param[0], prop);
-    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[ T_RCURLY ]--2) then do
-      token$4(env, --[ T_COMMA ]--8);
+    if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RCURLY ]]2) then do
+      token$4(env, --[[ T_COMMA ]]8);
     end
      end 
-    _param = --[ tuple ]--[
+    _param = --[[ tuple ]][
       prop_map,
-      --[ :: ]--[
+      --[[ :: ]][
         prop,
         acc
       ]
@@ -9955,14 +9955,14 @@ end end
 
 function _initializer(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_LCURLY ]--1);
-  props = properties$1(env, --[ tuple ]--[
-        --[ Empty ]--0,
-        --[ [] ]--0
+  token$4(env, --[[ T_LCURLY ]]1);
+  props = properties$1(env, --[[ tuple ]][
+        --[[ Empty ]]0,
+        --[[ [] ]]0
       ]);
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_RCURLY ]--2);
-  return --[ tuple ]--[
+  token$4(env, --[[ T_RCURLY ]]2);
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             properties: props
@@ -9980,17 +9980,17 @@ function class_implements(env, _acc) do
       id: id,
       typeParameters: typeParameters
     end;
-    implement = --[ tuple ]--[
+    implement = --[[ tuple ]][
       loc,
       implement_001
     ];
-    acc$1 = --[ :: ]--[
+    acc$1 = --[[ :: ]][
       implement,
       acc
     ];
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof match == "number" and match == 8) then do
-      token$4(env, --[ T_COMMA ]--8);
+      token$4(env, --[[ T_COMMA ]]8);
       _acc = acc$1;
       continue ;
     end else do
@@ -10018,17 +10018,17 @@ function init$1(env, start_loc, decorators, key, async, generator, $$static) do
   if (exit == 2 and !async and !generator) then do
     typeAnnotation = wrap(annotation_opt, env);
     options = env.parse_options;
-    value = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_ASSIGN ]--75 and ($$static and options.esproposal_class_static_fields or !$$static and options.esproposal_class_instance_fields) and (token$4(env, --[ T_ASSIGN ]--75), Curry._1(Parse.expression, env)) or undefined;
+    value = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ASSIGN ]]75 and ($$static and options.esproposal_class_static_fields or !$$static and options.esproposal_class_instance_fields) and (token$4(env, --[[ T_ASSIGN ]]75), Curry._1(Parse.expression, env)) or undefined;
     end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-    if (!maybe(env, --[ T_SEMICOLON ]--7)) then do
-      if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_LBRACKET ]--5 or Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_LPAREN ]--3) then do
+    if (!maybe(env, --[[ T_SEMICOLON ]]7)) then do
+      if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LBRACKET ]]5 or Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_LPAREN ]]3) then do
         error_unexpected(env);
       end
        end 
     end
      end 
     loc = btwn(start_loc, end_loc);
-    return --[ Property ]--Block.__(1, [--[ tuple ]--[
+    return --[[ Property ]]Block.__(1, [--[[ tuple ]][
                 loc,
                 do
                   key: key,
@@ -10050,10 +10050,10 @@ function init$1(env, start_loc, decorators, key, async, generator, $$static) do
   simple = is_simple_function_params(params, defaults, rest);
   strict_post_check(env, match$2[2], simple, undefined, params);
   match$3;
-  match$3 = body.tag and --[ tuple ]--[
+  match$3 = body.tag and --[[ tuple ]][
       body[0][0],
       true
-    ] or --[ tuple ]--[
+    ] or --[[ tuple ]][
       body[0][0],
       false
     ];
@@ -10071,24 +10071,24 @@ function init$1(env, start_loc, decorators, key, async, generator, $$static) do
     returnType: returnType,
     typeParameters: typeParameters
   end;
-  value$1 = --[ tuple ]--[
+  value$1 = --[[ tuple ]][
     end_loc$1,
     value_001
   ];
   kind;
   local ___conditional___=(key.tag | 0);
   do
-     if ___conditional___ = 0--[ Literal ]-- then do
+     if ___conditional___ = 0--[[ Literal ]] then do
         match$4 = key[0][1].value;
-        kind = typeof match$4 == "number" or match$4.tag or match$4[0] ~= "constructor" and --[ Method ]--1 or --[ Constructor ]--0;end else 
-     if ___conditional___ = 1--[ Identifier ]-- then do
-        kind = key[0][1].name == "constructor" and --[ Constructor ]--0 or --[ Method ]--1;end else 
-     if ___conditional___ = 2--[ Computed ]-- then do
-        kind = --[ Method ]--1;end else 
+        kind = typeof match$4 == "number" or match$4.tag or match$4[0] ~= "constructor" and --[[ Method ]]1 or --[[ Constructor ]]0;end else 
+     if ___conditional___ = 1--[[ Identifier ]] then do
+        kind = key[0][1].name == "constructor" and --[[ Constructor ]]0 or --[[ Method ]]1;end else 
+     if ___conditional___ = 2--[[ Computed ]] then do
+        kind = --[[ Method ]]1;end else 
      do end end end end
     
   end
-  return --[ Method ]--Block.__(0, [--[ tuple ]--[
+  return --[[ Method ]]Block.__(0, [--[[ tuple ]][
               btwn(start_loc, end_loc$1),
               do
                 kind: kind,
@@ -10103,15 +10103,15 @@ end end
 function class_element(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   decorators = decorator_list(env);
-  $$static = maybe(env, --[ T_STATIC ]--40);
-  async = Curry._2(Parser_env_Peek.token, 1, env) ~= --[ T_LPAREN ]--3 and Curry._2(Parser_env_Peek.token, 1, env) ~= --[ T_COLON ]--77 and maybe(env, --[ T_ASYNC ]--61);
+  $$static = maybe(env, --[[ T_STATIC ]]40);
+  async = Curry._2(Parser_env_Peek.token, 1, env) ~= --[[ T_LPAREN ]]3 and Curry._2(Parser_env_Peek.token, 1, env) ~= --[[ T_COLON ]]77 and maybe(env, --[[ T_ASYNC ]]61);
   generator$1 = generator(env, async);
   match = key(env);
   if (!async and !generator$1) then do
     key$1 = match[1];
     local ___conditional___=(key$1.tag | 0);
     do
-       if ___conditional___ = 1--[ Identifier ]-- then do
+       if ___conditional___ = 1--[[ Identifier ]] then do
           local ___conditional___=(key$1[0][1].name);
           do
              if ___conditional___ = "get" then do
@@ -10135,12 +10135,12 @@ function class_element(env) do
                       start_loc$1 = start_loc;
                       decorators$1 = decorators;
                       $$static$1 = $$static;
-                      match$2 = _method(env$1, --[ Get ]--1);
+                      match$2 = _method(env$1, --[[ Get ]]1);
                       value = match$2[1];
-                      return --[ Method ]--Block.__(0, [--[ tuple ]--[
+                      return --[[ Method ]]Block.__(0, [--[[ tuple ]][
                                   btwn(start_loc$1, value[0]),
                                   do
-                                    kind: --[ Get ]--2,
+                                    kind: --[[ Get ]]2,
                                     key: match$2[0],
                                     value: value,
                                     static: $$static$1,
@@ -10173,12 +10173,12 @@ function class_element(env) do
                       start_loc$2 = start_loc;
                       decorators$2 = decorators;
                       $$static$2 = $$static;
-                      match$4 = _method(env$2, --[ Set ]--2);
+                      match$4 = _method(env$2, --[[ Set ]]2);
                       value$1 = match$4[1];
-                      return --[ Method ]--Block.__(0, [--[ tuple ]--[
+                      return --[[ Method ]]Block.__(0, [--[[ tuple ]][
                                   btwn(start_loc$2, value$1[0]),
                                   do
-                                    kind: --[ Set ]--3,
+                                    kind: --[[ Set ]]3,
                                     key: match$4[0],
                                     value: value$1,
                                     static: $$static$2,
@@ -10195,8 +10195,8 @@ function class_element(env) do
               end end
               
           endend else 
-       if ___conditional___ = 0--[ Literal ]--
-       or ___conditional___ = 2--[ Computed ]--
+       if ___conditional___ = 0--[[ Literal ]]
+       or ___conditional___ = 2--[[ Computed ]]
        do end end
       
     end
@@ -10217,13 +10217,13 @@ function elements$1(env, _acc) do
         end
          end 
       end else if (switcher == 4) then do
-        token$4(env, --[ T_SEMICOLON ]--7);
+        token$4(env, --[[ T_SEMICOLON ]]7);
         continue ;
       end
        end  end 
     end
      end 
-    _acc = --[ :: ]--[
+    _acc = --[[ :: ]][
       Curry._1(class_element, env),
       acc
     ];
@@ -10233,11 +10233,11 @@ end end
 
 function class_body(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_LCURLY ]--1);
-  body = elements$1(env, --[ [] ]--0);
+  token$4(env, --[[ T_LCURLY ]]1);
+  body = elements$1(env, --[[ [] ]]0);
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_RCURLY ]--2);
-  return --[ tuple ]--[
+  token$4(env, --[[ T_RCURLY ]]2);
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             body: body
@@ -10247,33 +10247,33 @@ end end
 
 function _class(env) do
   match;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_EXTENDS ]--39) then do
-    token$4(env, --[ T_EXTENDS ]--39);
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_EXTENDS ]]39) then do
+    token$4(env, --[[ T_EXTENDS ]]39);
     superClass = left_hand_side(with_allow_yield(false, env));
     superTypeParameters = wrap(type_parameter_instantiation, env);
-    match = --[ tuple ]--[
+    match = --[[ tuple ]][
       superClass,
       superTypeParameters
     ];
   end else do
-    match = --[ tuple ]--[
+    match = --[[ tuple ]][
       undefined,
       undefined
     ];
   end end 
   $$implements;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_IMPLEMENTS ]--50) then do
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_IMPLEMENTS ]]50) then do
     if (!env.parse_options.types) then do
-      error$1(env, --[ UnexpectedTypeInterface ]--10);
+      error$1(env, --[[ UnexpectedTypeInterface ]]10);
     end
      end 
-    token$4(env, --[ T_IMPLEMENTS ]--50);
-    $$implements = class_implements(env, --[ [] ]--0);
+    token$4(env, --[[ T_IMPLEMENTS ]]50);
+    $$implements = class_implements(env, --[[ [] ]]0);
   end else do
-    $$implements = --[ [] ]--0;
+    $$implements = --[[ [] ]]0;
   end end 
   body = Curry._1(class_body, env);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           body,
           match[0],
           match[1],
@@ -10285,7 +10285,7 @@ function class_declaration(env, decorators) do
   env$1 = with_strict(true, env);
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env$1);
   decorators$1 = Pervasives.$at(decorators, decorator_list(env$1));
-  token$4(env$1, --[ T_CLASS ]--38);
+  token$4(env$1, --[[ T_CLASS ]]38);
   tmp_env = with_no_let(true, env$1);
   match = env$1.in_export;
   match$1 = Curry._2(Parser_env_Peek.is_identifier, undefined, tmp_env);
@@ -10294,9 +10294,9 @@ function class_declaration(env, decorators) do
   match$2 = _class(env$1);
   body = match$2[0];
   loc = btwn(start_loc, body[0]);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
-          --[ ClassDeclaration ]--Block.__(20, [do
+          --[[ ClassDeclaration ]]Block.__(20, [do
                 id: id,
                 body: body,
                 superClass: match$2[1],
@@ -10311,7 +10311,7 @@ end end
 function class_expression(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   decorators = decorator_list(env);
-  token$4(env, --[ T_CLASS ]--38);
+  token$4(env, --[[ T_CLASS ]]38);
   match = Curry._2(Parser_env_Peek.token, undefined, env);
   match$1;
   exit = 0;
@@ -10321,13 +10321,13 @@ function class_expression(env) do
       if (switcher ~= 88) then do
         exit = 1;
       end else do
-        match$1 = --[ tuple ]--[
+        match$1 = --[[ tuple ]][
           undefined,
           undefined
         ];
       end end 
     end else if (switcher > 37 or switcher < 1) then do
-      match$1 = --[ tuple ]--[
+      match$1 = --[[ tuple ]][
         undefined,
         undefined
       ];
@@ -10340,7 +10340,7 @@ function class_expression(env) do
   if (exit == 1) then do
     id = Curry._2(Parse.identifier, undefined, env);
     typeParameters = Curry._1(type_parameter_declaration_with_defaults, env);
-    match$1 = --[ tuple ]--[
+    match$1 = --[[ tuple ]][
       id,
       typeParameters
     ];
@@ -10349,9 +10349,9 @@ function class_expression(env) do
   match$2 = _class(env);
   body = match$2[0];
   loc = btwn(start_loc, body[0]);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
-          --[ Class ]--Block.__(23, [do
+          --[[ Class ]]Block.__(23, [do
                 id: match$1[0],
                 body: body,
                 superClass: match$2[1],
@@ -10366,24 +10366,24 @@ end end
 function export_source(env) do
   contextual(env, "from");
   match = Curry._2(Parser_env_Peek.token, undefined, env);
-  if (typeof match ~= "number" and match.tag == --[ T_STRING ]--1) then do
+  if (typeof match ~= "number" and match.tag == --[[ T_STRING ]]1) then do
     match$1 = match[0];
     octal = match$1[3];
     raw = match$1[2];
     value = match$1[1];
     loc = match$1[0];
     if (octal) then do
-      strict_error(env, --[ StrictOctalLiteral ]--31);
+      strict_error(env, --[[ StrictOctalLiteral ]]31);
     end
      end 
-    token$4(env, --[ T_STRING ]--Block.__(1, [--[ tuple ]--[
+    token$4(env, --[[ T_STRING ]]Block.__(1, [--[[ tuple ]][
               loc,
               value,
               raw,
               octal
             ]]));
-    value$1 = --[ String ]--Block.__(0, [value]);
-    return --[ tuple ]--[
+    value$1 = --[[ String ]]Block.__(0, [value]);
+    return --[[ tuple ]][
             loc,
             do
               value: value$1,
@@ -10393,13 +10393,13 @@ function export_source(env) do
   end
    end 
   raw$1 = Curry._2(Parser_env_Peek.value, undefined, env);
-  value$2 = --[ String ]--Block.__(0, [raw$1]);
+  value$2 = --[[ String ]]Block.__(0, [raw$1]);
   ret_000 = Curry._2(Parser_env_Peek.loc, undefined, env);
   ret_001 = do
     value: value$2,
     raw: raw$1
   end;
-  ret = --[ tuple ]--[
+  ret = --[[ tuple ]][
     ret_000,
     ret_001
   ];
@@ -10412,35 +10412,35 @@ function expression(env) do
   match = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
   end_loc = match ~= undefined and match or expression$1[0];
   semicolon(env);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(expression$1[0], end_loc),
-          --[ Expression ]--Block.__(1, [do
+          --[[ Expression ]]Block.__(1, [do
                 expression: expression$1
               end])
         ];
 end end
 
 function declare_function(env, start_loc) do
-  token$4(env, --[ T_FUNCTION ]--13);
+  token$4(env, --[[ T_FUNCTION ]]13);
   id = Curry._2(Parse.identifier, undefined, env);
   start_sig_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   typeParameters = Curry._1(type_parameter_declaration$1, env);
   match = wrap(function_param_list, env);
-  token$4(env, --[ T_COLON ]--77);
+  token$4(env, --[[ T_COLON ]]77);
   returnType = wrap(_type, env);
   end_loc = returnType[0];
   loc = btwn(start_sig_loc, end_loc);
-  value_001 = --[ Function ]--Block.__(1, [do
+  value_001 = --[[ Function ]]Block.__(1, [do
         params: match[1],
         returnType: returnType,
         rest: match[0],
         typeParameters: typeParameters
       end]);
-  value = --[ tuple ]--[
+  value = --[[ tuple ]][
     loc,
     value_001
   ];
-  typeAnnotation = --[ tuple ]--[
+  typeAnnotation = --[[ tuple ]][
     loc,
     value
   ];
@@ -10451,7 +10451,7 @@ function declare_function(env, start_loc) do
     typeAnnotation: typeAnnotation,
     optional: init.optional
   end;
-  id$1 = --[ tuple ]--[
+  id$1 = --[[ tuple ]][
     id_000,
     id_001
   ];
@@ -10460,7 +10460,7 @@ function declare_function(env, start_loc) do
   predicate = Curry._1(Parse.predicate, env);
   semicolon(env);
   loc$1 = btwn(start_loc, end_loc$1);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc$1,
           do
             id: id$1,
@@ -10475,7 +10475,7 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
     specifiers = _specifiers;
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof match == "number" and !(match ~= 2 and match ~= 105)) then do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               List.rev(specifiers),
               List.rev(errs)
             ];
@@ -10488,22 +10488,22 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
       contextual(env, "as");
       match$3 = Curry._1(Parse.identifier_or_reserved_keyword, env);
       name = match$3[0];
-      record_export(env, --[ tuple ]--[
+      record_export(env, --[[ tuple ]][
             name[0],
             extract_ident_name(name)
           ]);
-      match$2 = --[ tuple ]--[
+      match$2 = --[[ tuple ]][
         name,
         undefined,
         name[0]
       ];
     end else do
       loc = id[0];
-      record_export(env, --[ tuple ]--[
+      record_export(env, --[[ tuple ]][
             loc,
             extract_ident_name(id)
           ]);
-      match$2 = --[ tuple ]--[
+      match$2 = --[[ tuple ]][
         undefined,
         match$1[1],
         loc
@@ -10515,20 +10515,20 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
       id: id,
       name: match$2[0]
     end;
-    specifier = --[ tuple ]--[
+    specifier = --[[ tuple ]][
       loc$1,
       specifier_001
     ];
-    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_COMMA ]--8) then do
-      token$4(env, --[ T_COMMA ]--8);
+    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COMMA ]]8) then do
+      token$4(env, --[[ T_COMMA ]]8);
     end
      end 
-    errs$1 = err ~= undefined and --[ :: ]--[
+    errs$1 = err ~= undefined and --[[ :: ]][
         err,
         errs
       ] or errs;
     _errs = errs$1;
-    _specifiers = --[ :: ]--[
+    _specifiers = --[[ :: ]][
       specifier,
       specifiers
     ];
@@ -10539,20 +10539,20 @@ end end
 function type_alias_helper(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   if (!env.parse_options.types) then do
-    error$1(env, --[ UnexpectedTypeAlias ]--5);
+    error$1(env, --[[ UnexpectedTypeAlias ]]5);
   end
    end 
-  token$4(env, --[ T_TYPE ]--59);
-  push_lex_mode(env, --[ TYPE ]--1);
+  token$4(env, --[[ T_TYPE ]]59);
+  push_lex_mode(env, --[[ TYPE ]]1);
   id = Curry._2(Parse.identifier, undefined, env);
   typeParameters = Curry._1(type_parameter_declaration_with_defaults, env);
-  token$4(env, --[ T_ASSIGN ]--75);
+  token$4(env, --[[ T_ASSIGN ]]75);
   right = wrap(_type, env);
   match = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
   end_loc = match ~= undefined and match or right[0];
   semicolon(env);
   pop_lex_mode(env);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             id: id,
@@ -10563,13 +10563,13 @@ function type_alias_helper(env) do
 end end
 
 function declare_var(env, start_loc) do
-  token$4(env, --[ T_VAR ]--22);
-  id = Curry._2(Parse.identifier_with_type, env, --[ StrictVarName ]--27);
+  token$4(env, --[[ T_VAR ]]22);
+  id = Curry._2(Parse.identifier_with_type, env, --[[ StrictVarName ]]27);
   match = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
   end_loc = match ~= undefined and match or id[0];
   loc = btwn(start_loc, end_loc);
   semicolon(env);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
           do
             id: id
@@ -10580,9 +10580,9 @@ end end
 function $$interface(env) do
   if (Curry._2(Parser_env_Peek.is_identifier, 1, env)) then do
     match = Curry._1(interface_helper, env);
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             match[0],
-            --[ InterfaceDeclaration ]--Block.__(21, [match[1]])
+            --[[ InterfaceDeclaration ]]Block.__(21, [match[1]])
           ];
   end else do
     return expression(env);
@@ -10592,13 +10592,13 @@ end end
 function declare_export_declaration(allow_export_typeOpt, env) do
   allow_export_type = allow_export_typeOpt ~= undefined and allow_export_typeOpt or false;
   if (!env.parse_options.types) then do
-    error$1(env, --[ UnexpectedTypeDeclaration ]--7);
+    error$1(env, --[[ UnexpectedTypeDeclaration ]]7);
   end
    end 
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_DECLARE ]--58);
+  token$4(env, --[[ T_DECLARE ]]58);
   env$1 = with_in_export(true, with_strict(true, env));
-  token$4(env$1, --[ T_EXPORT ]--47);
+  token$4(env$1, --[[ T_EXPORT ]]47);
   match = Curry._2(Parser_env_Peek.token, undefined, env$1);
   exit = 0;
   if (typeof match == "number") then do
@@ -10608,10 +10608,10 @@ function declare_export_declaration(allow_export_typeOpt, env) do
           exit = 1;
         end else do
           loc = Curry._2(Parser_env_Peek.loc, undefined, env$1);
-          token$4(env$1, --[ T_MULT ]--97);
+          token$4(env$1, --[[ T_MULT ]]97);
           parse_export_star_as = env$1.parse_options.esproposal_export_star_as;
-          local_name = Curry._2(Parser_env_Peek.value, undefined, env$1) == "as" and (contextual(env$1, "as"), parse_export_star_as and Curry._2(Parse.identifier, undefined, env$1) or (error$1(env$1, --[ UnexpectedTypeDeclaration ]--7), undefined)) or undefined;
-          specifiers = --[ ExportBatchSpecifier ]--Block.__(1, [
+          local_name = Curry._2(Parser_env_Peek.value, undefined, env$1) == "as" and (contextual(env$1, "as"), parse_export_star_as and Curry._2(Parse.identifier, undefined, env$1) or (error$1(env$1, --[[ UnexpectedTypeDeclaration ]]7), undefined)) or undefined;
+          specifiers = --[[ ExportBatchSpecifier ]]Block.__(1, [
               loc,
               local_name
             ]);
@@ -10620,9 +10620,9 @@ function declare_export_declaration(allow_export_typeOpt, env) do
           end_loc = match$1 ~= undefined and match$1 or source[0];
           source$1 = source;
           semicolon(env$1);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   btwn(start_loc, end_loc),
-                  --[ DeclareExportDeclaration ]--Block.__(27, [do
+                  --[[ DeclareExportDeclaration ]]Block.__(27, [do
                         default: false,
                         declaration: undefined,
                         specifiers: specifiers,
@@ -10634,11 +10634,11 @@ function declare_export_declaration(allow_export_typeOpt, env) do
         match$2 = type_alias_helper(env$1);
         alias_loc = match$2[0];
         loc$1 = btwn(start_loc, alias_loc);
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 loc$1,
-                --[ DeclareExportDeclaration ]--Block.__(27, [do
+                --[[ DeclareExportDeclaration ]]Block.__(27, [do
                       default: false,
-                      declaration: --[ NamedType ]--Block.__(4, [--[ tuple ]--[
+                      declaration: --[[ NamedType ]]Block.__(4, [--[[ tuple ]][
                             alias_loc,
                             match$2[1]
                           ]]),
@@ -10654,11 +10654,11 @@ function declare_export_declaration(allow_export_typeOpt, env) do
         match$3 = Curry._1(interface_helper, env$1);
         iface_loc = match$3[0];
         loc$2 = btwn(start_loc, iface_loc);
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 loc$2,
-                --[ DeclareExportDeclaration ]--Block.__(27, [do
+                --[[ DeclareExportDeclaration ]]Block.__(27, [do
                       default: false,
-                      declaration: --[ Interface ]--Block.__(5, [--[ tuple ]--[
+                      declaration: --[[ Interface ]]Block.__(5, [--[[ tuple ]][
                             iface_loc,
                             match$3[1]
                           ]]),
@@ -10672,8 +10672,8 @@ function declare_export_declaration(allow_export_typeOpt, env) do
     end else if (match >= 13) then do
       local ___conditional___=(match - 13 | 0);
       do
-         if ___conditional___ = 21--[ T_TRY ]-- then do
-            token$4(env$1, --[ T_DEFAULT ]--34);
+         if ___conditional___ = 21--[[ T_TRY ]] then do
+            token$4(env$1, --[[ T_DEFAULT ]]34);
             match$4 = Curry._2(Parser_env_Peek.token, undefined, env$1);
             match$5;
             exit$1 = 0;
@@ -10683,16 +10683,16 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                   exit$1 = 3;
                 end else do
                   _class = Curry._2(declare_class, env$1, start_loc);
-                  match$5 = --[ tuple ]--[
+                  match$5 = --[[ tuple ]][
                     _class[0],
-                    --[ Class ]--Block.__(2, [_class])
+                    --[[ Class ]]Block.__(2, [_class])
                   ];
                 end end 
               end else do
                 fn = declare_function(env$1, start_loc);
-                match$5 = --[ tuple ]--[
+                match$5 = --[[ tuple ]][
                   fn[0],
-                  --[ Function ]--Block.__(1, [fn])
+                  --[[ Function ]]Block.__(1, [fn])
                 ];
               end end 
             end else do
@@ -10703,47 +10703,47 @@ function declare_export_declaration(allow_export_typeOpt, env) do
               match$6 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$1);
               end_loc$1 = match$6 ~= undefined and match$6 or _type$1[0];
               semicolon(env$1);
-              match$5 = --[ tuple ]--[
+              match$5 = --[[ tuple ]][
                 end_loc$1,
-                --[ DefaultType ]--Block.__(3, [_type$1])
+                --[[ DefaultType ]]Block.__(3, [_type$1])
               ];
             end
              end 
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     btwn(start_loc, match$5[0]),
-                    --[ DeclareExportDeclaration ]--Block.__(27, [do
+                    --[[ DeclareExportDeclaration ]]Block.__(27, [do
                           default: true,
                           declaration: match$5[1],
                           specifiers: undefined,
                           source: undefined
                         end])
                   ];end end end 
-         if ___conditional___ = 1--[ T_LCURLY ]--
-         or ___conditional___ = 2--[ T_RCURLY ]--
-         or ___conditional___ = 3--[ T_LPAREN ]--
-         or ___conditional___ = 4--[ T_RPAREN ]--
-         or ___conditional___ = 5--[ T_LBRACKET ]--
-         or ___conditional___ = 6--[ T_RBRACKET ]--
-         or ___conditional___ = 7--[ T_SEMICOLON ]--
-         or ___conditional___ = 8--[ T_COMMA ]--
-         or ___conditional___ = 10--[ T_ARROW ]--
-         or ___conditional___ = 11--[ T_ELLIPSIS ]--
-         or ___conditional___ = 14--[ T_IF ]--
-         or ___conditional___ = 15--[ T_IN ]--
-         or ___conditional___ = 16--[ T_INSTANCEOF ]--
-         or ___conditional___ = 17--[ T_RETURN ]--
-         or ___conditional___ = 18--[ T_SWITCH ]--
-         or ___conditional___ = 19--[ T_THIS ]--
-         or ___conditional___ = 20--[ T_THROW ]--
-         or ___conditional___ = 22--[ T_VAR ]--
-         or ___conditional___ = 23--[ T_WHILE ]--
-         or ___conditional___ = 24--[ T_WITH ]-- then do
+         if ___conditional___ = 1--[[ T_LCURLY ]]
+         or ___conditional___ = 2--[[ T_RCURLY ]]
+         or ___conditional___ = 3--[[ T_LPAREN ]]
+         or ___conditional___ = 4--[[ T_RPAREN ]]
+         or ___conditional___ = 5--[[ T_LBRACKET ]]
+         or ___conditional___ = 6--[[ T_RBRACKET ]]
+         or ___conditional___ = 7--[[ T_SEMICOLON ]]
+         or ___conditional___ = 8--[[ T_COMMA ]]
+         or ___conditional___ = 10--[[ T_ARROW ]]
+         or ___conditional___ = 11--[[ T_ELLIPSIS ]]
+         or ___conditional___ = 14--[[ T_IF ]]
+         or ___conditional___ = 15--[[ T_IN ]]
+         or ___conditional___ = 16--[[ T_INSTANCEOF ]]
+         or ___conditional___ = 17--[[ T_RETURN ]]
+         or ___conditional___ = 18--[[ T_SWITCH ]]
+         or ___conditional___ = 19--[[ T_THIS ]]
+         or ___conditional___ = 20--[[ T_THROW ]]
+         or ___conditional___ = 22--[[ T_VAR ]]
+         or ___conditional___ = 23--[[ T_WHILE ]]
+         or ___conditional___ = 24--[[ T_WITH ]] then do
             exit = 1;end else 
-         if ___conditional___ = 0--[ T_IDENTIFIER ]--
-         or ___conditional___ = 9--[ T_PERIOD ]--
-         or ___conditional___ = 12--[ T_AT ]--
-         or ___conditional___ = 13--[ T_FUNCTION ]--
-         or ___conditional___ = 25--[ T_CONST ]-- then do
+         if ___conditional___ = 0--[[ T_IDENTIFIER ]]
+         or ___conditional___ = 9--[[ T_PERIOD ]]
+         or ___conditional___ = 12--[[ T_AT ]]
+         or ___conditional___ = 13--[[ T_FUNCTION ]]
+         or ___conditional___ = 25--[[ T_CONST ]] then do
             exit = 2;end else 
          do end end
         
@@ -10763,18 +10763,18 @@ function declare_export_declaration(allow_export_typeOpt, env) do
             if (match$7 ~= 59) then do
               
             end else do
-              error$1(env$1, --[ DeclareExportType ]--52);
+              error$1(env$1, --[[ DeclareExportType ]]52);
             end end 
           end else do
-            error$1(env$1, --[ DeclareExportInterface ]--53);
+            error$1(env$1, --[[ DeclareExportInterface ]]53);
           end end 
         end
          end 
-        token$4(env$1, --[ T_LCURLY ]--1);
-        match$8 = export_specifiers_and_errs(env$1, --[ [] ]--0, --[ [] ]--0);
-        specifiers$1 = --[ ExportSpecifiers ]--Block.__(0, [match$8[0]]);
+        token$4(env$1, --[[ T_LCURLY ]]1);
+        match$8 = export_specifiers_and_errs(env$1, --[[ [] ]]0, --[[ [] ]]0);
+        specifiers$1 = --[[ ExportSpecifiers ]]Block.__(0, [match$8[0]]);
         end_loc$2 = Curry._2(Parser_env_Peek.loc, undefined, env$1);
-        token$4(env$1, --[ T_RCURLY ]--2);
+        token$4(env$1, --[[ T_RCURLY ]]2);
         source$2 = Curry._2(Parser_env_Peek.value, undefined, env$1) == "from" and export_source(env$1) or (List.iter((function (param) do
                     return error_at(env$1, param);
                   end end), match$8[1]), undefined);
@@ -10783,9 +10783,9 @@ function declare_export_declaration(allow_export_typeOpt, env) do
             source$2 ~= undefined and source$2[0] or end_loc$2
           );
         semicolon(env$1);
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 btwn(start_loc, end_loc$3),
-                --[ DeclareExportDeclaration ]--Block.__(27, [do
+                --[[ DeclareExportDeclaration ]]Block.__(27, [do
                       default: false,
                       declaration: undefined,
                       specifiers: specifiers$1,
@@ -10803,9 +10803,9 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                 exit$2 = 3;
               end else do
                 _class$1 = Curry._2(declare_class, env$1, start_loc);
-                match$10 = --[ tuple ]--[
+                match$10 = --[[ tuple ]][
                   _class$1[0],
-                  --[ Class ]--Block.__(2, [_class$1])
+                  --[[ Class ]]Block.__(2, [_class$1])
                 ];
               end end 
             end else do
@@ -10815,9 +10815,9 @@ function declare_export_declaration(allow_export_typeOpt, env) do
             exit$2 = token$5 >= 22 and 4 or 3;
           end else do
             fn$1 = declare_function(env$1, start_loc);
-            match$10 = --[ tuple ]--[
+            match$10 = --[[ tuple ]][
               fn$1[0],
-              --[ Function ]--Block.__(1, [fn$1])
+              --[[ Function ]]Block.__(1, [fn$1])
             ];
           end end  end 
         end else do
@@ -10828,7 +10828,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
            if ___conditional___ = 3 then do
               throw [
                     Caml_builtin_exceptions.assert_failure,
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "parser_flow.ml",
                       3480,
                       17
@@ -10840,24 +10840,24 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                   if (token$5 ~= 26) then do
                     
                   end else do
-                    error$1(env$1, --[ DeclareExportLet ]--50);
+                    error$1(env$1, --[[ DeclareExportLet ]]50);
                   end end 
                 end else do
-                  error$1(env$1, --[ DeclareExportConst ]--51);
+                  error$1(env$1, --[[ DeclareExportConst ]]51);
                 end end 
               end
                end 
               $$var = declare_var(env$1, start_loc);
-              match$10 = --[ tuple ]--[
+              match$10 = --[[ tuple ]][
                 $$var[0],
-                --[ Variable ]--Block.__(0, [$$var])
+                --[[ Variable ]]Block.__(0, [$$var])
               ];end else 
            do end
           
         end
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 btwn(start_loc, match$10[0]),
-                --[ DeclareExportDeclaration ]--Block.__(27, [do
+                --[[ DeclareExportDeclaration ]]Block.__(27, [do
                       default: false,
                       declaration: match$10[1],
                       specifiers: undefined,
@@ -10871,18 +10871,18 @@ end end
 
 function declare_function_statement(env, start_loc) do
   match = declare_function(env, start_loc);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           match[0],
-          --[ DeclareFunction ]--Block.__(23, [match[1]])
+          --[[ DeclareFunction ]]Block.__(23, [match[1]])
         ];
 end end
 
 function type_alias(env) do
   if (Curry._2(Parser_env_Peek.is_identifier, 1, env)) then do
     match = type_alias_helper(env);
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             match[0],
-            --[ TypeAlias ]--Block.__(7, [match[1]])
+            --[[ TypeAlias ]]Block.__(7, [match[1]])
           ];
   end else do
     return Curry._1(Parse.statement, env);
@@ -10891,16 +10891,16 @@ end end
 
 function declare_var_statement(env, start_loc) do
   match = declare_var(env, start_loc);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           match[0],
-          --[ DeclareVariable ]--Block.__(22, [match[1]])
+          --[[ DeclareVariable ]]Block.__(22, [match[1]])
         ];
 end end
 
 function declare(in_moduleOpt, env) do
   in_module = in_moduleOpt ~= undefined and in_moduleOpt or false;
   if (!env.parse_options.types) then do
-    error$1(env, --[ UnexpectedTypeDeclaration ]--7);
+    error$1(env, --[[ UnexpectedTypeDeclaration ]]7);
   end
    end 
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -10911,49 +10911,49 @@ function declare(in_moduleOpt, env) do
         if (match < 62) then do
           local ___conditional___=(match - 38 | 0);
           do
-             if ___conditional___ = 0--[ T_IDENTIFIER ]-- then do
-                token$4(env, --[ T_DECLARE ]--58);
+             if ___conditional___ = 0--[[ T_IDENTIFIER ]] then do
+                token$4(env, --[[ T_DECLARE ]]58);
                 env$1 = env;
                 start_loc$1 = start_loc;
                 match$1 = Curry._2(declare_class, env$1, start_loc$1);
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         match$1[0],
-                        --[ DeclareClass ]--Block.__(24, [match$1[1]])
+                        --[[ DeclareClass ]]Block.__(24, [match$1[1]])
                       ];end end end 
-             if ___conditional___ = 9--[ T_PERIOD ]-- then do
+             if ___conditional___ = 9--[[ T_PERIOD ]] then do
                 if (in_module) then do
                   return declare_export_declaration(in_module, env);
                 end
                  end end else 
-             if ___conditional___ = 13--[ T_FUNCTION ]-- then do
-                token$4(env, --[ T_DECLARE ]--58);
+             if ___conditional___ = 13--[[ T_FUNCTION ]] then do
+                token$4(env, --[[ T_DECLARE ]]58);
                 return $$interface(env);end end end 
-             if ___conditional___ = 21--[ T_TRY ]-- then do
-                token$4(env, --[ T_DECLARE ]--58);
+             if ___conditional___ = 21--[[ T_TRY ]] then do
+                token$4(env, --[[ T_DECLARE ]]58);
                 return type_alias(env);end end end 
-             if ___conditional___ = 1--[ T_LCURLY ]--
-             or ___conditional___ = 2--[ T_RCURLY ]--
-             or ___conditional___ = 3--[ T_LPAREN ]--
-             or ___conditional___ = 4--[ T_RPAREN ]--
-             or ___conditional___ = 5--[ T_LBRACKET ]--
-             or ___conditional___ = 6--[ T_RBRACKET ]--
-             or ___conditional___ = 7--[ T_SEMICOLON ]--
-             or ___conditional___ = 8--[ T_COMMA ]--
-             or ___conditional___ = 10--[ T_ARROW ]--
-             or ___conditional___ = 11--[ T_ELLIPSIS ]--
-             or ___conditional___ = 12--[ T_AT ]--
-             or ___conditional___ = 14--[ T_IF ]--
-             or ___conditional___ = 15--[ T_IN ]--
-             or ___conditional___ = 16--[ T_INSTANCEOF ]--
-             or ___conditional___ = 17--[ T_RETURN ]--
-             or ___conditional___ = 18--[ T_SWITCH ]--
-             or ___conditional___ = 19--[ T_THIS ]--
-             or ___conditional___ = 20--[ T_THROW ]--
-             or ___conditional___ = 22--[ T_VAR ]--
-             or ___conditional___ = 23--[ T_WHILE ]-- then do
-                token$4(env, --[ T_DECLARE ]--58);
-                error$1(env, --[ DeclareAsync ]--49);
-                token$4(env, --[ T_ASYNC ]--61);
+             if ___conditional___ = 1--[[ T_LCURLY ]]
+             or ___conditional___ = 2--[[ T_RCURLY ]]
+             or ___conditional___ = 3--[[ T_LPAREN ]]
+             or ___conditional___ = 4--[[ T_RPAREN ]]
+             or ___conditional___ = 5--[[ T_LBRACKET ]]
+             or ___conditional___ = 6--[[ T_RBRACKET ]]
+             or ___conditional___ = 7--[[ T_SEMICOLON ]]
+             or ___conditional___ = 8--[[ T_COMMA ]]
+             or ___conditional___ = 10--[[ T_ARROW ]]
+             or ___conditional___ = 11--[[ T_ELLIPSIS ]]
+             or ___conditional___ = 12--[[ T_AT ]]
+             or ___conditional___ = 14--[[ T_IF ]]
+             or ___conditional___ = 15--[[ T_IN ]]
+             or ___conditional___ = 16--[[ T_INSTANCEOF ]]
+             or ___conditional___ = 17--[[ T_RETURN ]]
+             or ___conditional___ = 18--[[ T_SWITCH ]]
+             or ___conditional___ = 19--[[ T_THIS ]]
+             or ___conditional___ = 20--[[ T_THROW ]]
+             or ___conditional___ = 22--[[ T_VAR ]]
+             or ___conditional___ = 23--[[ T_WHILE ]] then do
+                token$4(env, --[[ T_DECLARE ]]58);
+                error$1(env, --[[ DeclareAsync ]]49);
+                token$4(env, --[[ T_ASYNC ]]61);
                 return declare_function_statement(env, start_loc);end end end 
              do
             
@@ -10961,35 +10961,35 @@ function declare(in_moduleOpt, env) do
         end
          end 
       end else if (match < 23) then do
-        token$4(env, --[ T_DECLARE ]--58);
+        token$4(env, --[[ T_DECLARE ]]58);
         return declare_var_statement(env, start_loc);
       end
        end  end 
     end else if (match ~= 13) then do
       if (match == 0 and Curry._2(Parser_env_Peek.value, 1, env) == "module") then do
-        token$4(env, --[ T_DECLARE ]--58);
+        token$4(env, --[[ T_DECLARE ]]58);
         contextual(env, "module");
-        if (in_module or Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_PERIOD ]--9) then do
+        if (in_module or Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_PERIOD ]]9) then do
           env$2 = env;
           start_loc$2 = start_loc;
-          token$4(env$2, --[ T_PERIOD ]--9);
+          token$4(env$2, --[[ T_PERIOD ]]9);
           contextual(env$2, "exports");
           type_annot = wrap(annotation, env$2);
           match$2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$2);
           end_loc = match$2 ~= undefined and match$2 or type_annot[0];
           semicolon(env$2);
           loc = btwn(start_loc$2, end_loc);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   loc,
-                  --[ DeclareModuleExports ]--Block.__(26, [type_annot])
+                  --[[ DeclareModuleExports ]]Block.__(26, [type_annot])
                 ];
         end else do
           env$3 = env;
           start_loc$3 = start_loc;
           match$3 = Curry._2(Parser_env_Peek.token, undefined, env$3);
           id;
-          if (typeof match$3 == "number" or match$3.tag ~= --[ T_STRING ]--1) then do
-            id = --[ Identifier ]--Block.__(0, [Curry._2(Parse.identifier, undefined, env$3)]);
+          if (typeof match$3 == "number" or match$3.tag ~= --[[ T_STRING ]]1) then do
+            id = --[[ Identifier ]]Block.__(0, [Curry._2(Parse.identifier, undefined, env$3)]);
           end else do
             match$4 = match$3[0];
             octal = match$4[3];
@@ -10997,17 +10997,17 @@ function declare(in_moduleOpt, env) do
             value = match$4[1];
             loc$1 = match$4[0];
             if (octal) then do
-              strict_error(env$3, --[ StrictOctalLiteral ]--31);
+              strict_error(env$3, --[[ StrictOctalLiteral ]]31);
             end
              end 
-            token$4(env$3, --[ T_STRING ]--Block.__(1, [--[ tuple ]--[
+            token$4(env$3, --[[ T_STRING ]]Block.__(1, [--[[ tuple ]][
                       loc$1,
                       value,
                       raw,
                       octal
                     ]]));
-            value$1 = --[ String ]--Block.__(0, [value]);
-            id = --[ Literal ]--Block.__(1, [--[ tuple ]--[
+            value$1 = --[[ String ]]Block.__(0, [value]);
+            id = --[[ Literal ]]Block.__(1, [--[[ tuple ]][
                   loc$1,
                   do
                     value: value$1,
@@ -11016,24 +11016,24 @@ function declare(in_moduleOpt, env) do
                 ]]);
           end end 
           body_start_loc = Curry._2(Parser_env_Peek.loc, undefined, env$3);
-          token$4(env$3, --[ T_LCURLY ]--1);
-          match$5 = module_items(env$3, undefined, --[ [] ]--0);
+          token$4(env$3, --[[ T_LCURLY ]]1);
+          match$5 = module_items(env$3, undefined, --[[ [] ]]0);
           module_kind = match$5[0];
-          token$4(env$3, --[ T_RCURLY ]--2);
+          token$4(env$3, --[[ T_RCURLY ]]2);
           body_end_loc = Curry._2(Parser_env_Peek.loc, undefined, env$3);
           body_loc = btwn(body_start_loc, body_end_loc);
           body_001 = do
             body: match$5[1]
           end;
-          body = --[ tuple ]--[
+          body = --[[ tuple ]][
             body_loc,
             body_001
           ];
           loc$2 = btwn(start_loc$3, body_loc);
-          kind = module_kind ~= undefined and module_kind or --[ CommonJS ]--Block.__(0, [loc$2]);
-          return --[ tuple ]--[
+          kind = module_kind ~= undefined and module_kind or --[[ CommonJS ]]Block.__(0, [loc$2]);
+          return --[[ tuple ]][
                   loc$2,
-                  --[ DeclareModule ]--Block.__(25, [do
+                  --[[ DeclareModule ]]Block.__(25, [do
                         id: id,
                         body: body,
                         kind: kind
@@ -11043,13 +11043,13 @@ function declare(in_moduleOpt, env) do
       end
        end 
     end else do
-      token$4(env, --[ T_DECLARE ]--58);
+      token$4(env, --[[ T_DECLARE ]]58);
       return declare_function_statement(env, start_loc);
     end end  end 
   end
    end 
   if (in_module) then do
-    token$4(env, --[ T_DECLARE ]--58);
+    token$4(env, --[[ T_DECLARE ]]58);
     return declare_var_statement(env, start_loc);
   end else do
     return Curry._1(Parse.statement, env);
@@ -11064,13 +11064,13 @@ function supers(env, _acc) do
   while(true) do
     acc = _acc;
     $$super = wrap(generic, env);
-    acc$1 = --[ :: ]--[
+    acc$1 = --[[ :: ]][
       $$super,
       acc
     ];
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof match == "number" and match == 8) then do
-      token$4(env, --[ T_COMMA ]--8);
+      token$4(env, --[[ T_COMMA ]]8);
       _acc = acc$1;
       continue ;
     end else do
@@ -11082,23 +11082,23 @@ end end
 function interface_helper(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   if (!env.parse_options.types) then do
-    error$1(env, --[ UnexpectedTypeInterface ]--10);
+    error$1(env, --[[ UnexpectedTypeInterface ]]10);
   end
    end 
-  token$4(env, --[ T_INTERFACE ]--51);
+  token$4(env, --[[ T_INTERFACE ]]51);
   id = Curry._2(Parse.identifier, undefined, env);
   typeParameters = Curry._1(type_parameter_declaration_with_defaults, env);
-  $$extends = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_EXTENDS ]--39 and (token$4(env, --[ T_EXTENDS ]--39), supers(env, --[ [] ]--0)) or --[ [] ]--0;
+  $$extends = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_EXTENDS ]]39 and (token$4(env, --[[ T_EXTENDS ]]39), supers(env, --[[ [] ]]0)) or --[[ [] ]]0;
   body = _object$1(true, env);
   loc = btwn(start_loc, body[0]);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
           do
             id: id,
             typeParameters: typeParameters,
             body: body,
             extends: $$extends,
-            mixins: --[ [] ]--0
+            mixins: --[[ [] ]]0
           end
         ];
 end end
@@ -11107,13 +11107,13 @@ function supers$1(env, _acc) do
   while(true) do
     acc = _acc;
     $$super = wrap(generic, env);
-    acc$1 = --[ :: ]--[
+    acc$1 = --[[ :: ]][
       $$super,
       acc
     ];
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof match == "number" and match == 8) then do
-      token$4(env, --[ T_COMMA ]--8);
+      token$4(env, --[[ T_COMMA ]]8);
       _acc = acc$1;
       continue ;
     end else do
@@ -11124,14 +11124,14 @@ end end
 
 function declare_class(env, start_loc) do
   env$1 = with_strict(true, env);
-  token$4(env$1, --[ T_CLASS ]--38);
+  token$4(env$1, --[[ T_CLASS ]]38);
   id = Curry._2(Parse.identifier, undefined, env$1);
   typeParameters = Curry._1(type_parameter_declaration_with_defaults, env$1);
-  $$extends = Curry._2(Parser_env_Peek.token, undefined, env$1) == --[ T_EXTENDS ]--39 and (token$4(env$1, --[ T_EXTENDS ]--39), supers$1(env$1, --[ [] ]--0)) or --[ [] ]--0;
-  mixins = Curry._2(Parser_env_Peek.value, undefined, env$1) == "mixins" and (contextual(env$1, "mixins"), supers$1(env$1, --[ [] ]--0)) or --[ [] ]--0;
+  $$extends = Curry._2(Parser_env_Peek.token, undefined, env$1) == --[[ T_EXTENDS ]]39 and (token$4(env$1, --[[ T_EXTENDS ]]39), supers$1(env$1, --[[ [] ]]0)) or --[[ [] ]]0;
+  mixins = Curry._2(Parser_env_Peek.value, undefined, env$1) == "mixins" and (contextual(env$1, "mixins"), supers$1(env$1, --[[ [] ]]0)) or --[[ [] ]]0;
   body = _object$1(true, env$1);
   loc = btwn(start_loc, body[0]);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
           do
             id: id,
@@ -11149,7 +11149,7 @@ function module_items(env, _module_kind, _acc) do
     module_kind = _module_kind;
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof match == "number" and !(match ~= 2 and match ~= 105)) then do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               module_kind,
               List.rev(acc)
             ];
@@ -11161,10 +11161,10 @@ function module_items(env, _module_kind, _acc) do
     module_kind$1;
     if (module_kind ~= undefined) then do
       if (module_kind.tag) then do
-        if (typeof stmt$1 == "number" or stmt$1.tag ~= --[ DeclareModuleExports ]--26) then do
+        if (typeof stmt$1 == "number" or stmt$1.tag ~= --[[ DeclareModuleExports ]]26) then do
           module_kind$1 = module_kind;
         end else do
-          error$1(env, --[ AmbiguousDeclareModuleKind ]--61);
+          error$1(env, --[[ AmbiguousDeclareModuleKind ]]61);
           module_kind$1 = module_kind;
         end end 
       end else if (typeof stmt$1 == "number") then do
@@ -11172,24 +11172,24 @@ function module_items(env, _module_kind, _acc) do
       end else do
         local ___conditional___=(stmt$1.tag | 0);
         do
-           if ___conditional___ = 26--[ DeclareModuleExports ]-- then do
-              error$1(env, --[ DuplicateDeclareModuleExports ]--60);
+           if ___conditional___ = 26--[[ DeclareModuleExports ]] then do
+              error$1(env, --[[ DuplicateDeclareModuleExports ]]60);
               module_kind$1 = module_kind;end else 
-           if ___conditional___ = 27--[ DeclareExportDeclaration ]-- then do
+           if ___conditional___ = 27--[[ DeclareExportDeclaration ]] then do
               declaration = stmt$1[0].declaration;
               if (declaration ~= undefined) then do
                 local ___conditional___=(declaration.tag | 0);
                 do
-                   if ___conditional___ = 4--[ NamedType ]--
-                   or ___conditional___ = 5--[ Interface ]--
+                   if ___conditional___ = 4--[[ NamedType ]]
+                   or ___conditional___ = 5--[[ Interface ]]
                    do end
                   else do
-                    error$1(env, --[ AmbiguousDeclareModuleKind ]--61);
+                    error$1(env, --[[ AmbiguousDeclareModuleKind ]]61);
                     end end
                     
                 end
               end else do
-                error$1(env, --[ AmbiguousDeclareModuleKind ]--61);
+                error$1(env, --[[ AmbiguousDeclareModuleKind ]]61);
               end end 
               module_kind$1 = module_kind;end else 
            do end end end
@@ -11204,24 +11204,24 @@ function module_items(env, _module_kind, _acc) do
     end else do
       local ___conditional___=(stmt$1.tag | 0);
       do
-         if ___conditional___ = 26--[ DeclareModuleExports ]-- then do
-            module_kind$1 = --[ CommonJS ]--Block.__(0, [loc]);end else 
-         if ___conditional___ = 27--[ DeclareExportDeclaration ]-- then do
+         if ___conditional___ = 26--[[ DeclareModuleExports ]] then do
+            module_kind$1 = --[[ CommonJS ]]Block.__(0, [loc]);end else 
+         if ___conditional___ = 27--[[ DeclareExportDeclaration ]] then do
             declaration$1 = stmt$1[0].declaration;
             if (declaration$1 ~= undefined) then do
               local ___conditional___=(declaration$1.tag | 0);
               do
-                 if ___conditional___ = 4--[ NamedType ]--
-                 or ___conditional___ = 5--[ Interface ]-- then do
+                 if ___conditional___ = 4--[[ NamedType ]]
+                 or ___conditional___ = 5--[[ Interface ]] then do
                     module_kind$1 = module_kind;end else 
                  do end end
                 else do
-                  module_kind$1 = --[ ES ]--Block.__(1, [loc]);
+                  module_kind$1 = --[[ ES ]]Block.__(1, [loc]);
                   end end
                   
               end
             end else do
-              module_kind$1 = --[ ES ]--Block.__(1, [loc]);
+              module_kind$1 = --[[ ES ]]Block.__(1, [loc]);
             end end end else 
          do end end end
         else do
@@ -11230,7 +11230,7 @@ function module_items(env, _module_kind, _acc) do
           
       end
     end end  end 
-    _acc = --[ :: ]--[
+    _acc = --[[ :: ]][
       stmt,
       acc
     ];
@@ -11245,7 +11245,7 @@ function fold(acc, _param) do
     match = param[1];
     local ___conditional___=(match.tag | 0);
     do
-       if ___conditional___ = 0--[ Object ]-- then do
+       if ___conditional___ = 0--[[ Object ]] then do
           return List.fold_left((function (acc, prop) do
                         if (prop.tag) then do
                           return fold(acc, prop[0][1].argument);
@@ -11253,7 +11253,7 @@ function fold(acc, _param) do
                           return fold(acc, prop[0][1].pattern);
                         end end 
                       end end), acc, match[0].properties);end end end 
-       if ___conditional___ = 1--[ Array ]-- then do
+       if ___conditional___ = 1--[[ Array ]] then do
           return List.fold_left((function (acc, elem) do
                         if (elem ~= undefined) then do
                           match = elem;
@@ -11266,19 +11266,19 @@ function fold(acc, _param) do
                           return acc;
                         end end 
                       end end), acc, match[0].elements);end end end 
-       if ___conditional___ = 2--[ Assignment ]-- then do
+       if ___conditional___ = 2--[[ Assignment ]] then do
           _param = match[0].left;
           continue ;end end end 
-       if ___conditional___ = 3--[ Identifier ]-- then do
+       if ___conditional___ = 3--[[ Identifier ]] then do
           match$1 = match[0];
-          return --[ :: ]--[
-                  --[ tuple ]--[
+          return --[[ :: ]][
+                  --[[ tuple ]][
                     match$1[0],
                     match$1[1].name
                   ],
                   acc
                 ];end end end 
-       if ___conditional___ = 4--[ Expression ]-- then do
+       if ___conditional___ = 4--[[ Expression ]] then do
           throw [
                 Caml_builtin_exceptions.failure,
                 "Parser error: No such thing as an expression pattern!"
@@ -11295,13 +11295,13 @@ function assert_can_be_forin_or_forof(env, err, param) do
     if (match.tag) then do
       match$1 = match[0];
       loc = match$1[0];
-      if (Curry._1(Parse.is_assignable_lhs, --[ tuple ]--[
+      if (Curry._1(Parse.is_assignable_lhs, --[[ tuple ]][
               loc,
               match$1[1]
             ])) then do
         return 0;
       end else do
-        return error_at(env, --[ tuple ]--[
+        return error_at(env, --[[ tuple ]][
                     loc,
                     err
                   ]);
@@ -11310,10 +11310,10 @@ function assert_can_be_forin_or_forof(env, err, param) do
       match$2 = match[0];
       declarations = match$2[1].declarations;
       if (declarations and declarations[0][1].init == undefined and !declarations[1]) then do
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end
        end 
-      return error_at(env, --[ tuple ]--[
+      return error_at(env, --[[ tuple ]][
                   match$2[0],
                   err
                 ]);
@@ -11325,17 +11325,17 @@ end end
 
 function _if(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_IF ]--14);
-  token$4(env, --[ T_LPAREN ]--3);
+  token$4(env, --[[ T_IF ]]14);
+  token$4(env, --[[ T_LPAREN ]]3);
   test = Curry._1(Parse.expression, env);
-  token$4(env, --[ T_RPAREN ]--4);
+  token$4(env, --[[ T_RPAREN ]]4);
   Curry._2(Parser_env_Peek.token, undefined, env);
-  consequent = Curry._2(Parser_env_Peek.is_function, undefined, env) and (strict_error(env, --[ StrictFunctionStatement ]--45), _function(env)) or Curry._1(Parse.statement, env);
-  alternate = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_ELSE ]--41 and (token$4(env, --[ T_ELSE ]--41), Curry._1(Parse.statement, env)) or undefined;
+  consequent = Curry._2(Parser_env_Peek.is_function, undefined, env) and (strict_error(env, --[[ StrictFunctionStatement ]]45), _function(env)) or Curry._1(Parse.statement, env);
+  alternate = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ELSE ]]41 and (token$4(env, --[[ T_ELSE ]]41), Curry._1(Parse.statement, env)) or undefined;
   end_loc = alternate ~= undefined and alternate[0] or consequent[0];
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
-          --[ If ]--Block.__(2, [do
+          --[[ If ]]Block.__(2, [do
                 test: test,
                 consequent: consequent,
                 alternate: alternate
@@ -11358,18 +11358,18 @@ function case_list(env, _param) do
     test;
     if (typeof match$1 == "number" and match$1 == 34) then do
       if (seen_default) then do
-        error$1(env, --[ MultipleDefaultsInSwitch ]--19);
+        error$1(env, --[[ MultipleDefaultsInSwitch ]]19);
       end
        end 
-      token$4(env, --[ T_DEFAULT ]--34);
+      token$4(env, --[[ T_DEFAULT ]]34);
       test = undefined;
     end else do
-      token$4(env, --[ T_CASE ]--31);
+      token$4(env, --[[ T_CASE ]]31);
       test = Curry._1(Parse.expression, env);
     end end 
     seen_default$1 = seen_default or test == undefined;
     end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-    token$4(env, --[ T_COLON ]--77);
+    token$4(env, --[[ T_COLON ]]77);
     term_fn = function (param) do
       if (typeof param == "number") then do
         switcher = param - 2 | 0;
@@ -11385,18 +11385,18 @@ function case_list(env, _param) do
     consequent = Curry._2(Parse.statement_list, term_fn, with_in_switch(true, env));
     match$2 = List.rev(consequent);
     end_loc$1 = match$2 and match$2[0][0] or end_loc;
-    acc_000 = --[ tuple ]--[
+    acc_000 = --[[ tuple ]][
       btwn(start_loc, end_loc$1),
       do
         test: test,
         consequent: consequent
       end
     ];
-    acc$1 = --[ :: ]--[
+    acc$1 = --[[ :: ]][
       acc_000,
       acc
     ];
-    _param = --[ tuple ]--[
+    _param = --[[ tuple ]][
       seen_default$1,
       acc$1
     ];
@@ -11414,7 +11414,7 @@ function var_or_const(env) do
   List.iter((function (param) do
           return error_at(env, param);
         end end), match[1]);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           match$1[1]
         ];
@@ -11423,24 +11423,24 @@ end end
 function source(env) do
   contextual(env, "from");
   match = Curry._2(Parser_env_Peek.token, undefined, env);
-  if (typeof match ~= "number" and match.tag == --[ T_STRING ]--1) then do
+  if (typeof match ~= "number" and match.tag == --[[ T_STRING ]]1) then do
     match$1 = match[0];
     octal = match$1[3];
     raw = match$1[2];
     value = match$1[1];
     loc = match$1[0];
     if (octal) then do
-      strict_error(env, --[ StrictOctalLiteral ]--31);
+      strict_error(env, --[[ StrictOctalLiteral ]]31);
     end
      end 
-    token$4(env, --[ T_STRING ]--Block.__(1, [--[ tuple ]--[
+    token$4(env, --[[ T_STRING ]]Block.__(1, [--[[ tuple ]][
               loc,
               value,
               raw,
               octal
             ]]));
-    value$1 = --[ String ]--Block.__(0, [value]);
-    return --[ tuple ]--[
+    value$1 = --[[ String ]]Block.__(0, [value]);
+    return --[[ tuple ]][
             loc,
             do
               value: value$1,
@@ -11450,13 +11450,13 @@ function source(env) do
   end
    end 
   raw$1 = Curry._2(Parser_env_Peek.value, undefined, env);
-  value$2 = --[ String ]--Block.__(0, [raw$1]);
+  value$2 = --[[ String ]]Block.__(0, [raw$1]);
   ret_000 = Curry._2(Parser_env_Peek.loc, undefined, env);
   ret_001 = do
     value: value$2,
     raw: raw$1
   end;
-  ret = --[ tuple ]--[
+  ret = --[[ tuple ]][
     ret_000,
     ret_001
   ];
@@ -11479,7 +11479,7 @@ function specifier_list(env, _acc) do
     if (Curry._2(Parser_env_Peek.value, undefined, env) == "as") then do
       contextual(env, "as");
       local = Curry._2(Parse.identifier, undefined, env);
-      specifier = --[ ImportNamedSpecifier ]--Block.__(0, [do
+      specifier = --[[ ImportNamedSpecifier ]]Block.__(0, [do
             local: local,
             remote: remote
           end]);
@@ -11488,16 +11488,16 @@ function specifier_list(env, _acc) do
         error_at(env, err);
       end
        end 
-      specifier = --[ ImportNamedSpecifier ]--Block.__(0, [do
+      specifier = --[[ ImportNamedSpecifier ]]Block.__(0, [do
             local: undefined,
             remote: remote
           end]);
     end end 
-    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_COMMA ]--8) then do
-      token$4(env, --[ T_COMMA ]--8);
+    if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COMMA ]]8) then do
+      token$4(env, --[[ T_COMMA ]]8);
     end
      end 
-    _acc = --[ :: ]--[
+    _acc = --[[ :: ]][
       specifier,
       acc
     ];
@@ -11509,21 +11509,21 @@ function named_or_namespace_specifier(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   match = Curry._2(Parser_env_Peek.token, undefined, env);
   if (typeof match == "number" and match == 97) then do
-    token$4(env, --[ T_MULT ]--97);
+    token$4(env, --[[ T_MULT ]]97);
     contextual(env, "as");
     id = Curry._2(Parse.identifier, undefined, env);
-    return --[ :: ]--[
-            --[ ImportNamespaceSpecifier ]--Block.__(2, [--[ tuple ]--[
+    return --[[ :: ]][
+            --[[ ImportNamespaceSpecifier ]]Block.__(2, [--[[ tuple ]][
                   btwn(start_loc, id[0]),
                   id
                 ]]),
-            --[ [] ]--0
+            --[[ [] ]]0
           ];
   end
    end 
-  token$4(env, --[ T_LCURLY ]--1);
-  specifiers = specifier_list(env, --[ [] ]--0);
-  token$4(env, --[ T_RCURLY ]--2);
+  token$4(env, --[[ T_LCURLY ]]1);
+  specifiers = specifier_list(env, --[[ [] ]]0);
+  token$4(env, --[[ T_RCURLY ]]2);
   return specifiers;
 end end
 
@@ -11533,9 +11533,9 @@ function from_expr(env, param) do
   if (typeof expr ~= "number") then do
     local ___conditional___=(expr.tag | 0);
     do
-       if ___conditional___ = 0--[ Array ]-- then do
+       if ___conditional___ = 0--[[ Array ]] then do
           env$1 = env;
-          param$1 = --[ tuple ]--[
+          param$1 = --[[ tuple ]][
             loc,
             expr[0]
           ];
@@ -11547,7 +11547,7 @@ function from_expr(env, param) do
                     if (match.tag) then do
                       match$1 = match[0];
                       argument = Curry._2(Parse.pattern_from_expr, env$2, match$1[1].argument);
-                      return --[ Spread ]--Block.__(1, [--[ tuple ]--[
+                      return --[[ Spread ]]Block.__(1, [--[[ tuple ]][
                                   match$1[0],
                                   do
                                     argument: argument
@@ -11555,7 +11555,7 @@ function from_expr(env, param) do
                                 ]]);
                     end else do
                       match$2 = match[0];
-                      return --[ Element ]--Block.__(0, [Curry._2(Parse.pattern_from_expr, env$2, --[ tuple ]--[
+                      return --[[ Element ]]Block.__(0, [Curry._2(Parse.pattern_from_expr, env$2, --[[ tuple ]][
                                       match$2[0],
                                       match$2[1]
                                     ])]);
@@ -11563,16 +11563,16 @@ function from_expr(env, param) do
                   end
                    end 
                 end end), param$1[1].elements);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   param$1[0],
-                  --[ Array ]--Block.__(1, [do
+                  --[[ Array ]]Block.__(1, [do
                         elements: elements,
                         typeAnnotation: undefined
                       end])
                 ];end end end 
-       if ___conditional___ = 1--[ Object ]-- then do
+       if ___conditional___ = 1--[[ Object ]] then do
           env$2 = env;
-          param$2 = --[ tuple ]--[
+          param$2 = --[[ tuple ]][
             loc,
             expr[0]
           ];
@@ -11582,7 +11582,7 @@ function from_expr(env, param) do
                   if (prop.tag) then do
                     match = prop[0];
                     argument = Curry._2(Parse.pattern_from_expr, env$3, match[1].argument);
-                    return --[ SpreadProperty ]--Block.__(1, [--[ tuple ]--[
+                    return --[[ SpreadProperty ]]Block.__(1, [--[[ tuple ]][
                                 match[0],
                                 do
                                   argument: argument
@@ -11595,17 +11595,17 @@ function from_expr(env, param) do
                     key$1;
                     local ___conditional___=(key.tag | 0);
                     do
-                       if ___conditional___ = 0--[ Literal ]-- then do
-                          key$1 = --[ Literal ]--Block.__(0, [key[0]]);end else 
-                       if ___conditional___ = 1--[ Identifier ]-- then do
-                          key$1 = --[ Identifier ]--Block.__(1, [key[0]]);end else 
-                       if ___conditional___ = 2--[ Computed ]-- then do
-                          key$1 = --[ Computed ]--Block.__(2, [key[0]]);end else 
+                       if ___conditional___ = 0--[[ Literal ]] then do
+                          key$1 = --[[ Literal ]]Block.__(0, [key[0]]);end else 
+                       if ___conditional___ = 1--[[ Identifier ]] then do
+                          key$1 = --[[ Identifier ]]Block.__(1, [key[0]]);end else 
+                       if ___conditional___ = 2--[[ Computed ]] then do
+                          key$1 = --[[ Computed ]]Block.__(2, [key[0]]);end else 
                        do end end end end
                       
                     end
                     pattern = Curry._2(Parse.pattern_from_expr, env$3, match$2.value);
-                    return --[ Property ]--Block.__(0, [--[ tuple ]--[
+                    return --[[ Property ]]Block.__(0, [--[[ tuple ]][
                                 match$1[0],
                                 do
                                   key: key$1,
@@ -11615,29 +11615,29 @@ function from_expr(env, param) do
                               ]]);
                   end end 
                 end end), param$2[1].properties);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   param$2[0],
-                  --[ Object ]--Block.__(0, [do
+                  --[[ Object ]]Block.__(0, [do
                         properties: properties,
                         typeAnnotation: undefined
                       end])
                 ];end end end 
-       if ___conditional___ = 7--[ Assignment ]-- then do
+       if ___conditional___ = 7--[[ Assignment ]] then do
           match = expr[0];
           if (match.operator == 0) then do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     loc,
-                    --[ Assignment ]--Block.__(2, [do
+                    --[[ Assignment ]]Block.__(2, [do
                           left: match.left,
                           right: match.right
                         end])
                   ];
           end
            end end else 
-       if ___conditional___ = 18--[ Identifier ]-- then do
-          return --[ tuple ]--[
+       if ___conditional___ = 18--[[ Identifier ]] then do
+          return --[[ tuple ]][
                   loc,
-                  --[ Identifier ]--Block.__(3, [expr[0]])
+                  --[[ Identifier ]]Block.__(3, [expr[0]])
                 ];end end end 
        do
       else do
@@ -11646,9 +11646,9 @@ function from_expr(env, param) do
     end
   end
    end 
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
-          --[ Expression ]--Block.__(4, [--[ tuple ]--[
+          --[[ Expression ]]Block.__(4, [--[[ tuple ]][
                 loc,
                 expr
               ]])
@@ -11658,10 +11658,10 @@ end end
 function _object$2(restricted_error) do
   property = function (env) do
     start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-    if (maybe(env, --[ T_ELLIPSIS ]--11)) then do
+    if (maybe(env, --[[ T_ELLIPSIS ]]11)) then do
       argument = pattern$1(env, restricted_error);
       loc = btwn(start_loc, argument[0]);
-      return --[ SpreadProperty ]--Block.__(1, [--[ tuple ]--[
+      return --[[ SpreadProperty ]]Block.__(1, [--[[ tuple ]][
                   loc,
                   do
                     argument: argument
@@ -11673,12 +11673,12 @@ function _object$2(restricted_error) do
       key;
       local ___conditional___=(match$1.tag | 0);
       do
-         if ___conditional___ = 0--[ Literal ]-- then do
-            key = --[ Literal ]--Block.__(0, [match$1[0]]);end else 
-         if ___conditional___ = 1--[ Identifier ]-- then do
-            key = --[ Identifier ]--Block.__(1, [match$1[0]]);end else 
-         if ___conditional___ = 2--[ Computed ]-- then do
-            key = --[ Computed ]--Block.__(2, [match$1[0]]);end else 
+         if ___conditional___ = 0--[[ Literal ]] then do
+            key = --[[ Literal ]]Block.__(0, [match$1[0]]);end else 
+         if ___conditional___ = 1--[[ Identifier ]] then do
+            key = --[[ Identifier ]]Block.__(1, [match$1[0]]);end else 
+         if ___conditional___ = 2--[[ Computed ]] then do
+            key = --[[ Computed ]]Block.__(2, [match$1[0]]);end else 
          do end end end end
         
       end
@@ -11686,8 +11686,8 @@ function _object$2(restricted_error) do
       prop;
       exit = 0;
       if (typeof match$2 == "number" and match$2 == 77) then do
-        token$4(env, --[ T_COLON ]--77);
-        prop = --[ tuple ]--[
+        token$4(env, --[[ T_COLON ]]77);
+        prop = --[[ tuple ]][
           pattern$1(env, restricted_error),
           false
         ];
@@ -11697,20 +11697,20 @@ function _object$2(restricted_error) do
       if (exit == 1) then do
         local ___conditional___=(key.tag | 0);
         do
-           if ___conditional___ = 1--[ Identifier ]-- then do
+           if ___conditional___ = 1--[[ Identifier ]] then do
               id = key[0];
               pattern_000 = id[0];
-              pattern_001 = --[ Identifier ]--Block.__(3, [id]);
-              pattern$2 = --[ tuple ]--[
+              pattern_001 = --[[ Identifier ]]Block.__(3, [id]);
+              pattern$2 = --[[ tuple ]][
                 pattern_000,
                 pattern_001
               ];
-              prop = --[ tuple ]--[
+              prop = --[[ tuple ]][
                 pattern$2,
                 true
               ];end else 
-           if ___conditional___ = 0--[ Literal ]--
-           or ___conditional___ = 2--[ Computed ]-- then do
+           if ___conditional___ = 0--[[ Literal ]]
+           or ___conditional___ = 2--[[ Computed ]] then do
               error_unexpected(env);
               prop = undefined;end else 
            do end end end
@@ -11724,12 +11724,12 @@ function _object$2(restricted_error) do
         match$4 = Curry._2(Parser_env_Peek.token, undefined, env);
         pattern$4;
         if (typeof match$4 == "number" and match$4 == 75) then do
-          token$4(env, --[ T_ASSIGN ]--75);
+          token$4(env, --[[ T_ASSIGN ]]75);
           $$default = Curry._1(Parse.assignment, env);
           loc$1 = btwn(pattern$3[0], $$default[0]);
-          pattern$4 = --[ tuple ]--[
+          pattern$4 = --[[ tuple ]][
             loc$1,
-            --[ Assignment ]--Block.__(2, [do
+            --[[ Assignment ]]Block.__(2, [do
                   left: pattern$3,
                   right: $$default
                 end])
@@ -11738,7 +11738,7 @@ function _object$2(restricted_error) do
           pattern$4 = pattern$3;
         end end 
         loc$2 = btwn(start_loc, pattern$4[0]);
-        return --[ Property ]--Block.__(0, [--[ tuple ]--[
+        return --[[ Property ]]Block.__(0, [--[[ tuple ]][
                     loc$2,
                     do
                       key: key,
@@ -11761,11 +11761,11 @@ function _object$2(restricted_error) do
        end 
       match$1 = property(env);
       if (match$1 ~= undefined) then do
-        if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[ T_RCURLY ]--2) then do
-          token$4(env, --[ T_COMMA ]--8);
+        if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RCURLY ]]2) then do
+          token$4(env, --[[ T_COMMA ]]8);
         end
          end 
-        _acc = --[ :: ]--[
+        _acc = --[[ :: ]][
           match$1,
           acc
         ];
@@ -11777,26 +11777,26 @@ function _object$2(restricted_error) do
   end end;
   return (function (env) do
       start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-      token$4(env, --[ T_LCURLY ]--1);
-      properties$1 = properties(env, --[ [] ]--0);
+      token$4(env, --[[ T_LCURLY ]]1);
+      properties$1 = properties(env, --[[ [] ]]0);
       end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-      token$4(env, --[ T_RCURLY ]--2);
+      token$4(env, --[[ T_RCURLY ]]2);
       match;
-      if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_COLON ]--77) then do
+      if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COLON ]]77) then do
         typeAnnotation = wrap(annotation, env);
-        match = --[ tuple ]--[
+        match = --[[ tuple ]][
           typeAnnotation[0],
           typeAnnotation
         ];
       end else do
-        match = --[ tuple ]--[
+        match = --[[ tuple ]][
           end_loc,
           undefined
         ];
       end end 
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               btwn(start_loc, match[0]),
-              --[ Object ]--Block.__(0, [do
+              --[[ Object ]]Block.__(0, [do
                     properties: properties$1,
                     typeAnnotation: match[1]
                   end])
@@ -11814,36 +11814,36 @@ function _array(restricted_error) do
           if (match < 12) then do
             local ___conditional___=(match);
             do
-               if ___conditional___ = 6--[ T_RBRACKET ]-- then do
+               if ___conditional___ = 6--[[ T_RBRACKET ]] then do
                   return List.rev(acc);end end end 
-               if ___conditional___ = 8--[ T_COMMA ]-- then do
-                  token$4(env, --[ T_COMMA ]--8);
-                  _acc = --[ :: ]--[
+               if ___conditional___ = 8--[[ T_COMMA ]] then do
+                  token$4(env, --[[ T_COMMA ]]8);
+                  _acc = --[[ :: ]][
                     undefined,
                     acc
                   ];
                   continue ;end end end 
-               if ___conditional___ = 0--[ T_IDENTIFIER ]--
-               or ___conditional___ = 1--[ T_LCURLY ]--
-               or ___conditional___ = 2--[ T_RCURLY ]--
-               or ___conditional___ = 3--[ T_LPAREN ]--
-               or ___conditional___ = 4--[ T_RPAREN ]--
-               or ___conditional___ = 5--[ T_LBRACKET ]--
-               or ___conditional___ = 7--[ T_SEMICOLON ]--
-               or ___conditional___ = 9--[ T_PERIOD ]--
-               or ___conditional___ = 10--[ T_ARROW ]--
-               or ___conditional___ = 11--[ T_ELLIPSIS ]-- then do
+               if ___conditional___ = 0--[[ T_IDENTIFIER ]]
+               or ___conditional___ = 1--[[ T_LCURLY ]]
+               or ___conditional___ = 2--[[ T_RCURLY ]]
+               or ___conditional___ = 3--[[ T_LPAREN ]]
+               or ___conditional___ = 4--[[ T_RPAREN ]]
+               or ___conditional___ = 5--[[ T_LBRACKET ]]
+               or ___conditional___ = 7--[[ T_SEMICOLON ]]
+               or ___conditional___ = 9--[[ T_PERIOD ]]
+               or ___conditional___ = 10--[[ T_ARROW ]]
+               or ___conditional___ = 11--[[ T_ELLIPSIS ]] then do
                   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-                  token$4(env, --[ T_ELLIPSIS ]--11);
+                  token$4(env, --[[ T_ELLIPSIS ]]11);
                   argument = pattern$1(env, restricted_error);
                   loc = btwn(start_loc, argument[0]);
-                  element = --[ Spread ]--Block.__(1, [--[ tuple ]--[
+                  element = --[[ Spread ]]Block.__(1, [--[[ tuple ]][
                         loc,
                         do
                           argument: argument
                         end
                       ]]);
-                  _acc = --[ :: ]--[
+                  _acc = --[[ :: ]][
                     element,
                     acc
                   ];
@@ -11862,12 +11862,12 @@ function _array(restricted_error) do
       match$1 = Curry._2(Parser_env_Peek.token, undefined, env);
       pattern$3;
       if (typeof match$1 == "number" and match$1 == 75) then do
-        token$4(env, --[ T_ASSIGN ]--75);
+        token$4(env, --[[ T_ASSIGN ]]75);
         $$default = Curry._1(Parse.expression, env);
         loc$1 = btwn(pattern$2[0], $$default[0]);
-        pattern$3 = --[ tuple ]--[
+        pattern$3 = --[[ tuple ]][
           loc$1,
-          --[ Assignment ]--Block.__(2, [do
+          --[[ Assignment ]]Block.__(2, [do
                 left: pattern$2,
                 right: $$default
               end])
@@ -11875,12 +11875,12 @@ function _array(restricted_error) do
       end else do
         pattern$3 = pattern$2;
       end end 
-      element$1 = --[ Element ]--Block.__(0, [pattern$3]);
-      if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[ T_RBRACKET ]--6) then do
-        token$4(env, --[ T_COMMA ]--8);
+      element$1 = --[[ Element ]]Block.__(0, [pattern$3]);
+      if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[[ T_RBRACKET ]]6) then do
+        token$4(env, --[[ T_COMMA ]]8);
       end
        end 
-      _acc = --[ :: ]--[
+      _acc = --[[ :: ]][
         element$1,
         acc
       ];
@@ -11889,26 +11889,26 @@ function _array(restricted_error) do
   end end;
   return (function (env) do
       start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-      token$4(env, --[ T_LBRACKET ]--5);
-      elements$1 = elements(env, --[ [] ]--0);
+      token$4(env, --[[ T_LBRACKET ]]5);
+      elements$1 = elements(env, --[[ [] ]]0);
       end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-      token$4(env, --[ T_RBRACKET ]--6);
+      token$4(env, --[[ T_RBRACKET ]]6);
       match;
-      if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_COLON ]--77) then do
+      if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COLON ]]77) then do
         typeAnnotation = wrap(annotation, env);
-        match = --[ tuple ]--[
+        match = --[[ tuple ]][
           typeAnnotation[0],
           typeAnnotation
         ];
       end else do
-        match = --[ tuple ]--[
+        match = --[[ tuple ]][
           end_loc,
           undefined
         ];
       end end 
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               btwn(start_loc, match[0]),
-              --[ Array ]--Block.__(1, [do
+              --[[ Array ]]Block.__(1, [do
                     elements: elements$1,
                     typeAnnotation: match[1]
                   end])
@@ -11930,22 +11930,22 @@ function pattern$1(env, restricted_error) do
   end
    end 
   id = Curry._2(Parse.identifier_with_type, env, restricted_error);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           id[0],
-          --[ Identifier ]--Block.__(3, [id])
+          --[[ Identifier ]]Block.__(3, [id])
         ];
 end end
 
 function spread_attribute(env) do
-  push_lex_mode(env, --[ NORMAL ]--0);
+  push_lex_mode(env, --[[ NORMAL ]]0);
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_LCURLY ]--1);
-  token$4(env, --[ T_ELLIPSIS ]--11);
+  token$4(env, --[[ T_LCURLY ]]1);
+  token$4(env, --[[ T_ELLIPSIS ]]11);
   argument = Curry._1(assignment, env);
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_RCURLY ]--2);
+  token$4(env, --[[ T_RCURLY ]]2);
   pop_lex_mode(env);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             argument: argument
@@ -11954,20 +11954,20 @@ function spread_attribute(env) do
 end end
 
 function expression_container(env) do
-  push_lex_mode(env, --[ NORMAL ]--0);
+  push_lex_mode(env, --[[ NORMAL ]]0);
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_LCURLY ]--1);
+  token$4(env, --[[ T_LCURLY ]]1);
   expression;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_RCURLY ]--2) then do
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_RCURLY ]]2) then do
     empty_loc = btwn_exclusive(start_loc, Curry._2(Parser_env_Peek.loc, undefined, env));
-    expression = --[ EmptyExpression ]--Block.__(1, [empty_loc]);
+    expression = --[[ EmptyExpression ]]Block.__(1, [empty_loc]);
   end else do
-    expression = --[ Expression ]--Block.__(0, [Curry._1(Parse.expression, env)]);
+    expression = --[[ Expression ]]Block.__(0, [Curry._1(Parse.expression, env)]);
   end end 
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_RCURLY ]--2);
+  token$4(env, --[[ T_RCURLY ]]2);
   pop_lex_mode(env);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             expression: expression
@@ -11978,8 +11978,8 @@ end end
 function identifier$1(env) do
   loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   name = Curry._2(Parser_env_Peek.value, undefined, env);
-  token$4(env, --[ T_JSX_IDENTIFIER ]--106);
-  return --[ tuple ]--[
+  token$4(env, --[[ T_JSX_IDENTIFIER ]]106);
+  return --[[ tuple ]][
           loc,
           do
             name: name
@@ -11992,15 +11992,15 @@ function member_expression(env, _member) do
     member = _member;
     match = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof match == "number" and match == 9) then do
-      _object = --[ MemberExpression ]--Block.__(1, [member]);
-      token$4(env, --[ T_PERIOD ]--9);
+      _object = --[[ MemberExpression ]]Block.__(1, [member]);
+      token$4(env, --[[ T_PERIOD ]]9);
       property = identifier$1(env);
       loc = btwn(member[0], property[0]);
       member_001 = do
         _object: _object,
         property: property
       end;
-      member$1 = --[ tuple ]--[
+      member$1 = --[[ tuple ]][
         loc,
         member_001
       ];
@@ -12018,12 +12018,12 @@ function name(env) do
   if (typeof match == "number") then do
     if (match ~= 9) then do
       if (match ~= 77) then do
-        return --[ Identifier ]--Block.__(0, [name$1]);
+        return --[[ Identifier ]]Block.__(0, [name$1]);
       end else do
-        token$4(env, --[ T_COLON ]--77);
+        token$4(env, --[[ T_COLON ]]77);
         name$2 = identifier$1(env);
         loc = btwn(name$1[0], name$2[0]);
-        return --[ NamespacedName ]--Block.__(1, [--[ tuple ]--[
+        return --[[ NamespacedName ]]Block.__(1, [--[[ tuple ]][
                     loc,
                     do
                       namespace: name$1,
@@ -12032,22 +12032,22 @@ function name(env) do
                   ]]);
       end end 
     end else do
-      _object = --[ Identifier ]--Block.__(0, [name$1]);
-      token$4(env, --[ T_PERIOD ]--9);
+      _object = --[[ Identifier ]]Block.__(0, [name$1]);
+      token$4(env, --[[ T_PERIOD ]]9);
       property = identifier$1(env);
       loc$1 = btwn(name$1[0], property[0]);
       member_001 = do
         _object: _object,
         property: property
       end;
-      member = --[ tuple ]--[
+      member = --[[ tuple ]][
         loc$1,
         member_001
       ];
-      return --[ MemberExpression ]--Block.__(2, [member_expression(env, member)]);
+      return --[[ MemberExpression ]]Block.__(2, [member_expression(env, member)]);
     end end 
   end else do
-    return --[ Identifier ]--Block.__(0, [name$1]);
+    return --[[ Identifier ]]Block.__(0, [name$1]);
   end end 
 end end
 
@@ -12055,13 +12055,13 @@ function attribute(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   name = identifier$1(env);
   match;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_COLON ]--77) then do
-    token$4(env, --[ T_COLON ]--77);
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COLON ]]77) then do
+    token$4(env, --[[ T_COLON ]]77);
     name$1 = identifier$1(env);
     loc = btwn(name[0], name$1[0]);
-    match = --[ tuple ]--[
+    match = --[[ tuple ]][
       loc,
-      --[ NamespacedName ]--Block.__(1, [--[ tuple ]--[
+      --[[ NamespacedName ]]Block.__(1, [--[[ tuple ]][
             loc,
             do
               namespace: name,
@@ -12070,29 +12070,29 @@ function attribute(env) do
           ]])
     ];
   end else do
-    match = --[ tuple ]--[
+    match = --[[ tuple ]][
       name[0],
-      --[ Identifier ]--Block.__(0, [name])
+      --[[ Identifier ]]Block.__(0, [name])
     ];
   end end 
   match$1;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_ASSIGN ]--75) then do
-    token$4(env, --[ T_ASSIGN ]--75);
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_ASSIGN ]]75) then do
+    token$4(env, --[[ T_ASSIGN ]]75);
     token$5 = Curry._2(Parser_env_Peek.token, undefined, env);
     exit = 0;
     if (typeof token$5 == "number") then do
-      if (token$5 == --[ T_LCURLY ]--1) then do
+      if (token$5 == --[[ T_LCURLY ]]1) then do
         match$2 = expression_container(env);
         expression_container$1 = match$2[1];
         loc$1 = match$2[0];
         match$3 = expression_container$1.expression;
         if (match$3.tag) then do
-          error$1(env, --[ JSXAttributeValueEmptyExpression ]--40);
+          error$1(env, --[[ JSXAttributeValueEmptyExpression ]]40);
         end
          end 
-        match$1 = --[ tuple ]--[
+        match$1 = --[[ tuple ]][
           loc$1,
-          --[ ExpressionContainer ]--Block.__(1, [
+          --[[ ExpressionContainer ]]Block.__(1, [
               loc$1,
               expression_container$1
             ])
@@ -12100,14 +12100,14 @@ function attribute(env) do
       end else do
         exit = 1;
       end end 
-    end else if (token$5.tag == --[ T_JSX_TEXT ]--4) then do
+    end else if (token$5.tag == --[[ T_JSX_TEXT ]]4) then do
       match$4 = token$5[0];
       loc$2 = match$4[0];
       token$4(env, token$5);
-      value = --[ String ]--Block.__(0, [match$4[1]]);
-      match$1 = --[ tuple ]--[
+      value = --[[ String ]]Block.__(0, [match$4[1]]);
+      match$1 = --[[ tuple ]][
         loc$2,
-        --[ Literal ]--Block.__(0, [
+        --[[ Literal ]]Block.__(0, [
             loc$2,
             do
               value: value,
@@ -12119,14 +12119,14 @@ function attribute(env) do
       exit = 1;
     end end  end 
     if (exit == 1) then do
-      error$1(env, --[ InvalidJSXAttributeValue ]--41);
+      error$1(env, --[[ InvalidJSXAttributeValue ]]41);
       loc$3 = Curry._2(Parser_env_Peek.loc, undefined, env);
-      match$1 = --[ tuple ]--[
+      match$1 = --[[ tuple ]][
         loc$3,
-        --[ Literal ]--Block.__(0, [
+        --[[ Literal ]]Block.__(0, [
             loc$3,
             do
-              value: --[ String ]--Block.__(0, [""]),
+              value: --[[ String ]]Block.__(0, [""]),
               raw: ""
             end
           ])
@@ -12134,12 +12134,12 @@ function attribute(env) do
     end
      end 
   end else do
-    match$1 = --[ tuple ]--[
+    match$1 = --[[ tuple ]][
       match[0],
       undefined
     ];
   end end 
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, match$1[0]),
           do
             name: match[1],
@@ -12164,8 +12164,8 @@ function attributes(env, _acc) do
         end
          end 
       end else do
-        attribute$1 = --[ SpreadAttribute ]--Block.__(1, [spread_attribute(env)]);
-        _acc = --[ :: ]--[
+        attribute$1 = --[[ SpreadAttribute ]]Block.__(1, [spread_attribute(env)]);
+        _acc = --[[ :: ]][
           attribute$1,
           acc
         ];
@@ -12173,8 +12173,8 @@ function attributes(env, _acc) do
       end end  end 
     end
      end 
-    attribute$2 = --[ Attribute ]--Block.__(0, [attribute(env)]);
-    _acc = --[ :: ]--[
+    attribute$2 = --[[ Attribute ]]Block.__(0, [attribute(env)]);
+    _acc = --[[ :: ]][
       attribute$2,
       acc
     ];
@@ -12184,16 +12184,16 @@ end end
 
 function opening_element_without_lt(env, start_loc) do
   name$1 = name(env);
-  attributes$1 = attributes(env, --[ [] ]--0);
-  selfClosing = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_DIV ]--96;
+  attributes$1 = attributes(env, --[[ [] ]]0);
+  selfClosing = Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_DIV ]]96;
   if (selfClosing) then do
-    token$4(env, --[ T_DIV ]--96);
+    token$4(env, --[[ T_DIV ]]96);
   end
    end 
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_GREATER_THAN ]--90);
+  token$4(env, --[[ T_GREATER_THAN ]]90);
   pop_lex_mode(env);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             name: name$1,
@@ -12204,12 +12204,12 @@ function opening_element_without_lt(env, start_loc) do
 end end
 
 function closing_element_without_lt(env, start_loc) do
-  token$4(env, --[ T_DIV ]--96);
+  token$4(env, --[[ T_DIV ]]96);
   name$1 = name(env);
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_GREATER_THAN ]--90);
+  token$4(env, --[[ T_GREATER_THAN ]]90);
   double_pop_lex_mode(env);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             name: name$1
@@ -12220,20 +12220,20 @@ end end
 function child(env) do
   token$5 = Curry._2(Parser_env_Peek.token, undefined, env);
   if (typeof token$5 == "number") then do
-    if (token$5 == --[ T_LCURLY ]--1) then do
+    if (token$5 == --[[ T_LCURLY ]]1) then do
       expression_container$1 = expression_container(env);
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               expression_container$1[0],
-              --[ ExpressionContainer ]--Block.__(1, [expression_container$1[1]])
+              --[[ ExpressionContainer ]]Block.__(1, [expression_container$1[1]])
             ];
     end
      end 
-  end else if (token$5.tag == --[ T_JSX_TEXT ]--4) then do
+  end else if (token$5.tag == --[[ T_JSX_TEXT ]]4) then do
     match = token$5[0];
     token$4(env, token$5);
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             match[0],
-            --[ Text ]--Block.__(2, [do
+            --[[ Text ]]Block.__(2, [do
                   value: match[1],
                   raw: match[2]
                 end])
@@ -12241,28 +12241,28 @@ function child(env) do
   end
    end  end 
   element$1 = element(env);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           element$1[0],
-          --[ Element ]--Block.__(0, [element$1[1]])
+          --[[ Element ]]Block.__(0, [element$1[1]])
         ];
 end end
 
 function element(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  push_lex_mode(env, --[ JSX_TAG ]--2);
-  token$4(env, --[ T_LESS_THAN ]--89);
+  push_lex_mode(env, --[[ JSX_TAG ]]2);
+  token$4(env, --[[ T_LESS_THAN ]]89);
   return Curry._2(element_without_lt, env, start_loc);
 end end
 
 function element_or_closing(env) do
-  push_lex_mode(env, --[ JSX_TAG ]--2);
+  push_lex_mode(env, --[[ JSX_TAG ]]2);
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_LESS_THAN ]--89);
+  token$4(env, --[[ T_LESS_THAN ]]89);
   match = Curry._2(Parser_env_Peek.token, undefined, env);
   if (typeof match == "number" and !(match ~= 96 and match ~= 105)) then do
-    return --[ Closing ]--Block.__(0, [closing_element_without_lt(env, start_loc)]);
+    return --[[ Closing ]]Block.__(0, [closing_element_without_lt(env, start_loc)]);
   end else do
-    return --[ ChildElement ]--Block.__(1, [Curry._2(element_without_lt, env, start_loc)]);
+    return --[[ ChildElement ]]Block.__(1, [Curry._2(element_without_lt, env, start_loc)]);
   end end 
 end end
 
@@ -12273,14 +12273,14 @@ function children_and_closing(env, _acc) do
     if (typeof match == "number") then do
       if (match ~= 89) then do
         if (match ~= 105) then do
-          _acc = --[ :: ]--[
+          _acc = --[[ :: ]][
             child(env),
             acc
           ];
           continue ;
         end else do
           error_unexpected(env);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   List.rev(acc),
                   undefined
                 ];
@@ -12290,25 +12290,25 @@ function children_and_closing(env, _acc) do
         if (match$1.tag) then do
           element = match$1[0];
           element_000 = element[0];
-          element_001 = --[ Element ]--Block.__(0, [element[1]]);
-          element$1 = --[ tuple ]--[
+          element_001 = --[[ Element ]]Block.__(0, [element[1]]);
+          element$1 = --[[ tuple ]][
             element_000,
             element_001
           ];
-          _acc = --[ :: ]--[
+          _acc = --[[ :: ]][
             element$1,
             acc
           ];
           continue ;
         end else do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   List.rev(acc),
                   match$1[0]
                 ];
         end end 
       end end 
     end else do
-      _acc = --[ :: ]--[
+      _acc = --[[ :: ]][
         child(env),
         acc
       ];
@@ -12320,16 +12320,16 @@ end end
 function normalize(name) do
   local ___conditional___=(name.tag | 0);
   do
-     if ___conditional___ = 0--[ Identifier ]-- then do
+     if ___conditional___ = 0--[[ Identifier ]] then do
         return name[0][1].name;end end end 
-     if ___conditional___ = 1--[ NamespacedName ]-- then do
+     if ___conditional___ = 1--[[ NamespacedName ]] then do
         match = name[0][1];
         return match.namespace[1].name .. (":" .. match.name[1].name);end end end 
-     if ___conditional___ = 2--[ MemberExpression ]-- then do
+     if ___conditional___ = 2--[[ MemberExpression ]] then do
         match$1 = name[0][1];
         _object = match$1._object;
         _object$1;
-        _object$1 = _object.tag and normalize(--[ MemberExpression ]--Block.__(2, [_object[0]])) or _object[0][1].name;
+        _object$1 = _object.tag and normalize(--[[ MemberExpression ]]Block.__(2, [_object[0]])) or _object[0][1].name;
         return _object$1 .. ("." .. match$1.property[1].name);end end end 
      do
     
@@ -12338,24 +12338,24 @@ end end
 
 function element_without_lt(env, start_loc) do
   openingElement = opening_element_without_lt(env, start_loc);
-  match = openingElement[1].selfClosing and --[ tuple ]--[
-      --[ [] ]--0,
+  match = openingElement[1].selfClosing and --[[ tuple ]][
+      --[[ [] ]]0,
       undefined
-    ] or (push_lex_mode(env, --[ JSX_CHILD ]--3), children_and_closing(env, --[ [] ]--0));
+    ] or (push_lex_mode(env, --[[ JSX_CHILD ]]3), children_and_closing(env, --[[ [] ]]0));
   closingElement = match[1];
   end_loc;
   if (closingElement ~= undefined) then do
     match$1 = closingElement;
     opening_name = normalize(openingElement[1].name);
     if (normalize(match$1[1].name) ~= opening_name) then do
-      error$1(env, --[ ExpectedJSXClosingTag ]--Block.__(6, [opening_name]));
+      error$1(env, --[[ ExpectedJSXClosingTag ]]Block.__(6, [opening_name]));
     end
      end 
     end_loc = match$1[0];
   end else do
     end_loc = openingElement[0];
   end end 
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           btwn(openingElement[0], end_loc),
           do
             openingElement: openingElement,
@@ -12366,7 +12366,7 @@ function element_without_lt(env, start_loc) do
 end end
 
 function statement_list_item(decoratorsOpt, env) do
-  decorators = decoratorsOpt ~= undefined and decoratorsOpt or --[ [] ]--0;
+  decorators = decoratorsOpt ~= undefined and decoratorsOpt or --[[ [] ]]0;
   if (!Curry._2(Parser_env_Peek.is_class, undefined, env)) then do
     error_on_decorators(env)(decorators);
   end
@@ -12377,10 +12377,10 @@ function statement_list_item(decoratorsOpt, env) do
       if (match == 26) then do
         env$1 = env;
         start_loc = Curry._2(Parser_env_Peek.loc, undefined, env$1);
-        token$4(env$1, --[ T_LET ]--26);
-        if (Curry._2(Parser_env_Peek.token, undefined, env$1) == --[ T_LPAREN ]--3) then do
-          token$4(env$1, --[ T_LPAREN ]--3);
-          match$1 = helper(with_no_let(true, env$1), --[ [] ]--0, --[ [] ]--0);
+        token$4(env$1, --[[ T_LET ]]26);
+        if (Curry._2(Parser_env_Peek.token, undefined, env$1) == --[[ T_LPAREN ]]3) then do
+          token$4(env$1, --[[ T_LPAREN ]]3);
+          match$1 = helper(with_no_let(true, env$1), --[[ [] ]]0, --[[ [] ]]0);
           head = List.map((function (param) do
                   match = param[1];
                   return do
@@ -12388,7 +12388,7 @@ function statement_list_item(decoratorsOpt, env) do
                           init: match.init
                         end;
                 end end), match$1[1]);
-          token$4(env$1, --[ T_RPAREN ]--4);
+          token$4(env$1, --[[ T_RPAREN ]]4);
           body = Curry._1(Parse.statement, env$1);
           match$2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$1);
           end_loc = match$2 ~= undefined and match$2 or match$1[0];
@@ -12396,18 +12396,18 @@ function statement_list_item(decoratorsOpt, env) do
           List.iter((function (param) do
                   return error_at(env$1, param);
                 end end), match$1[2]);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   btwn(start_loc, end_loc),
-                  --[ Let ]--Block.__(17, [do
+                  --[[ Let ]]Block.__(17, [do
                         head: head,
                         body: body
                       end])
                 ];
         end else do
-          match$3 = helper(with_no_let(true, env$1), --[ [] ]--0, --[ [] ]--0);
-          declaration = --[ VariableDeclaration ]--Block.__(19, [do
+          match$3 = helper(with_no_let(true, env$1), --[[ [] ]]0, --[[ [] ]]0);
+          declaration = --[[ VariableDeclaration ]]Block.__(19, [do
                 declarations: match$3[1],
-                kind: --[ Let ]--1
+                kind: --[[ Let ]]1
               end]);
           match$4 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$1);
           end_loc$1 = match$4 ~= undefined and match$4 or match$3[0];
@@ -12415,7 +12415,7 @@ function statement_list_item(decoratorsOpt, env) do
           List.iter((function (param) do
                   return error_at(env$1, param);
                 end end), match$3[2]);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   btwn(start_loc, end_loc$1),
                   declaration
                 ];
@@ -12434,18 +12434,18 @@ function statement_list_item(decoratorsOpt, env) do
   end else if (typeof match == "number") then do
     local ___conditional___=(match);
     do
-       if ___conditional___ = 51--[ T_INTERFACE ]-- then do
+       if ___conditional___ = 51--[[ T_INTERFACE ]] then do
           return $$interface(env);end end end 
-       if ___conditional___ = 52--[ T_PACKAGE ]--
-       or ___conditional___ = 53--[ T_PRIVATE ]--
-       or ___conditional___ = 54--[ T_PROTECTED ]--
-       or ___conditional___ = 55--[ T_PUBLIC ]--
-       or ___conditional___ = 56--[ T_YIELD ]--
-       or ___conditional___ = 57--[ T_DEBUGGER ]-- then do
+       if ___conditional___ = 52--[[ T_PACKAGE ]]
+       or ___conditional___ = 53--[[ T_PRIVATE ]]
+       or ___conditional___ = 54--[[ T_PROTECTED ]]
+       or ___conditional___ = 55--[[ T_PUBLIC ]]
+       or ___conditional___ = 56--[[ T_YIELD ]]
+       or ___conditional___ = 57--[[ T_DEBUGGER ]] then do
           return statement(env);end end end 
-       if ___conditional___ = 58--[ T_DECLARE ]-- then do
+       if ___conditional___ = 58--[[ T_DECLARE ]] then do
           return declare(undefined, env);end end end 
-       if ___conditional___ = 59--[ T_TYPE ]-- then do
+       if ___conditional___ = 59--[[ T_TYPE ]] then do
           return type_alias(env);end end end 
        do
       else do
@@ -12464,12 +12464,12 @@ function module_item(env) do
   if (typeof match == "number") then do
     local ___conditional___=(match);
     do
-       if ___conditional___ = 47--[ T_EXPORT ]-- then do
+       if ___conditional___ = 47--[[ T_EXPORT ]] then do
           env$1 = env;
           decorators$1 = decorators;
           env$2 = with_in_export(true, with_strict(true, env$1));
           start_loc = Curry._2(Parser_env_Peek.loc, undefined, env$2);
-          token$4(env$2, --[ T_EXPORT ]--47);
+          token$4(env$2, --[[ T_EXPORT ]]47);
           match$1 = Curry._2(Parser_env_Peek.token, undefined, env$2);
           exit = 0;
           if (typeof match$1 == "number") then do
@@ -12480,9 +12480,9 @@ function module_item(env) do
                 end else do
                   local ___conditional___=(match$1 - 51 | 0);
                   do
-                     if ___conditional___ = 0--[ T_IDENTIFIER ]-- then do
+                     if ___conditional___ = 0--[[ T_IDENTIFIER ]] then do
                         if (!env$2.parse_options.types) then do
-                          error$1(env$2, --[ UnexpectedTypeExport ]--9);
+                          error$1(env$2, --[[ UnexpectedTypeExport ]]9);
                         end
                          end 
                         $$interface$1 = $$interface(env$2);
@@ -12492,8 +12492,8 @@ function module_item(env) do
                                 Caml_builtin_exceptions.failure,
                                 "Internal Flow Error! Parsed `export interface` into something other than an interface declaration!"
                               ];
-                        end else if (match$2.tag == --[ InterfaceDeclaration ]--21) then do
-                          record_export(env$2, --[ tuple ]--[
+                        end else if (match$2.tag == --[[ InterfaceDeclaration ]]21) then do
+                          record_export(env$2, --[[ tuple ]][
                                 $$interface$1[0],
                                 extract_ident_name(match$2[0].id)
                               ]);
@@ -12504,20 +12504,20 @@ function module_item(env) do
                               ];
                         end end  end 
                         end_loc = $$interface$1[0];
-                        return --[ tuple ]--[
+                        return --[[ tuple ]][
                                 btwn(start_loc, end_loc),
-                                --[ ExportDeclaration ]--Block.__(28, [do
+                                --[[ ExportDeclaration ]]Block.__(28, [do
                                       default: false,
-                                      declaration: --[ Declaration ]--Block.__(0, [$$interface$1]),
+                                      declaration: --[[ Declaration ]]Block.__(0, [$$interface$1]),
                                       specifiers: undefined,
                                       source: undefined,
-                                      exportKind: --[ ExportType ]--0
+                                      exportKind: --[[ ExportType ]]0
                                     end])
                               ];end end end 
-                     if ___conditional___ = 8--[ T_COMMA ]-- then do
-                        if (Curry._2(Parser_env_Peek.token, 1, env$2) ~= --[ T_LCURLY ]--1) then do
+                     if ___conditional___ = 8--[[ T_COMMA ]] then do
+                        if (Curry._2(Parser_env_Peek.token, 1, env$2) ~= --[[ T_LCURLY ]]1) then do
                           if (!env$2.parse_options.types) then do
-                            error$1(env$2, --[ UnexpectedTypeExport ]--9);
+                            error$1(env$2, --[[ UnexpectedTypeExport ]]9);
                           end
                            end 
                           type_alias$1 = type_alias(env$2);
@@ -12527,8 +12527,8 @@ function module_item(env) do
                                   Caml_builtin_exceptions.failure,
                                   "Internal Flow Error! Parsed `export type` into something other than a type alias!"
                                 ];
-                          end else if (match$3.tag == --[ TypeAlias ]--7) then do
-                            record_export(env$2, --[ tuple ]--[
+                          end else if (match$3.tag == --[[ TypeAlias ]]7) then do
+                            record_export(env$2, --[[ tuple ]][
                                   type_alias$1[0],
                                   extract_ident_name(match$3[0].id)
                                 ]);
@@ -12539,29 +12539,29 @@ function module_item(env) do
                                 ];
                           end end  end 
                           end_loc$1 = type_alias$1[0];
-                          return --[ tuple ]--[
+                          return --[[ tuple ]][
                                   btwn(start_loc, end_loc$1),
-                                  --[ ExportDeclaration ]--Block.__(28, [do
+                                  --[[ ExportDeclaration ]]Block.__(28, [do
                                         default: false,
-                                        declaration: --[ Declaration ]--Block.__(0, [type_alias$1]),
+                                        declaration: --[[ Declaration ]]Block.__(0, [type_alias$1]),
                                         specifiers: undefined,
                                         source: undefined,
-                                        exportKind: --[ ExportType ]--0
+                                        exportKind: --[[ ExportType ]]0
                                       end])
                                 ];
                         end else do
                           exit = 1;
                         end end end else 
-                     if ___conditional___ = 1--[ T_LCURLY ]--
-                     or ___conditional___ = 2--[ T_RCURLY ]--
-                     or ___conditional___ = 3--[ T_LPAREN ]--
-                     or ___conditional___ = 4--[ T_RPAREN ]--
-                     or ___conditional___ = 5--[ T_LBRACKET ]--
-                     or ___conditional___ = 6--[ T_RBRACKET ]--
-                     or ___conditional___ = 7--[ T_SEMICOLON ]--
-                     or ___conditional___ = 9--[ T_PERIOD ]-- then do
+                     if ___conditional___ = 1--[[ T_LCURLY ]]
+                     or ___conditional___ = 2--[[ T_RCURLY ]]
+                     or ___conditional___ = 3--[[ T_LPAREN ]]
+                     or ___conditional___ = 4--[[ T_RPAREN ]]
+                     or ___conditional___ = 5--[[ T_LBRACKET ]]
+                     or ___conditional___ = 6--[[ T_RBRACKET ]]
+                     or ___conditional___ = 7--[[ T_SEMICOLON ]]
+                     or ___conditional___ = 9--[[ T_PERIOD ]] then do
                         exit = 1;end else 
-                     if ___conditional___ = 10--[ T_ARROW ]-- then do
+                     if ___conditional___ = 10--[[ T_ARROW ]] then do
                         exit = 2;end else 
                      do end end end
                     
@@ -12569,10 +12569,10 @@ function module_item(env) do
                 end end 
               end else do
                 loc = Curry._2(Parser_env_Peek.loc, undefined, env$2);
-                token$4(env$2, --[ T_MULT ]--97);
+                token$4(env$2, --[[ T_MULT ]]97);
                 parse_export_star_as = env$2.parse_options.esproposal_export_star_as;
-                local_name = Curry._2(Parser_env_Peek.value, undefined, env$2) == "as" and (contextual(env$2, "as"), parse_export_star_as and Curry._2(Parse.identifier, undefined, env$2) or (error$1(env$2, --[ UnexpectedTypeDeclaration ]--7), undefined)) or undefined;
-                specifiers = --[ ExportBatchSpecifier ]--Block.__(1, [
+                local_name = Curry._2(Parser_env_Peek.value, undefined, env$2) == "as" and (contextual(env$2, "as"), parse_export_star_as and Curry._2(Parse.identifier, undefined, env$2) or (error$1(env$2, --[[ UnexpectedTypeDeclaration ]]7), undefined)) or undefined;
+                specifiers = --[[ ExportBatchSpecifier ]]Block.__(1, [
                     loc,
                     local_name
                   ]);
@@ -12581,23 +12581,23 @@ function module_item(env) do
                 end_loc$2 = match$4 ~= undefined and match$4 or source$1[0];
                 source$2 = source$1;
                 semicolon(env$2);
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         btwn(start_loc, end_loc$2),
-                        --[ ExportDeclaration ]--Block.__(28, [do
+                        --[[ ExportDeclaration ]]Block.__(28, [do
                               default: false,
                               declaration: undefined,
                               specifiers: specifiers,
                               source: source$2,
-                              exportKind: --[ ExportValue ]--1
+                              exportKind: --[[ ExportValue ]]1
                             end])
                       ];
               end end 
             end else do
               local ___conditional___=(match$1);
               do
-                 if ___conditional___ = 34--[ T_DEFAULT ]-- then do
-                    token$4(env$2, --[ T_DEFAULT ]--34);
-                    record_export(env$2, --[ tuple ]--[
+                 if ___conditional___ = 34--[[ T_DEFAULT ]] then do
+                    token$4(env$2, --[[ T_DEFAULT ]]34);
+                    record_export(env$2, --[[ tuple ]][
                           btwn(start_loc, Curry._2(Parser_env_Peek.loc, undefined, env$2)),
                           "default"
                         ]);
@@ -12606,9 +12606,9 @@ function module_item(env) do
                     exit$1 = 0;
                     if (typeof match$5 == "number" and match$5 == 13) then do
                       fn = _function(env$2);
-                      match$6 = --[ tuple ]--[
+                      match$6 = --[[ tuple ]][
                         fn[0],
-                        --[ Declaration ]--Block.__(0, [fn])
+                        --[[ Declaration ]]Block.__(0, [fn])
                       ];
                     end else do
                       exit$1 = 3;
@@ -12616,59 +12616,59 @@ function module_item(env) do
                     if (exit$1 == 3) then do
                       if (Curry._2(Parser_env_Peek.is_class, undefined, env$2)) then do
                         _class = class_declaration(env$2, decorators$1);
-                        match$6 = --[ tuple ]--[
+                        match$6 = --[[ tuple ]][
                           _class[0],
-                          --[ Declaration ]--Block.__(0, [_class])
+                          --[[ Declaration ]]Block.__(0, [_class])
                         ];
                       end else do
                         expr = Curry._1(Parse.assignment, env$2);
                         match$7 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$2);
                         end_loc$3 = match$7 ~= undefined and match$7 or expr[0];
                         semicolon(env$2);
-                        match$6 = --[ tuple ]--[
+                        match$6 = --[[ tuple ]][
                           end_loc$3,
-                          --[ Expression ]--Block.__(1, [expr])
+                          --[[ Expression ]]Block.__(1, [expr])
                         ];
                       end end 
                     end
                      end 
-                    return --[ tuple ]--[
+                    return --[[ tuple ]][
                             btwn(start_loc, match$6[0]),
-                            --[ ExportDeclaration ]--Block.__(28, [do
+                            --[[ ExportDeclaration ]]Block.__(28, [do
                                   default: true,
                                   declaration: match$6[1],
                                   specifiers: undefined,
                                   source: undefined,
-                                  exportKind: --[ ExportValue ]--1
+                                  exportKind: --[[ ExportValue ]]1
                                 end])
                           ];end end end 
-                 if ___conditional___ = 14--[ T_IF ]--
-                 or ___conditional___ = 15--[ T_IN ]--
-                 or ___conditional___ = 16--[ T_INSTANCEOF ]--
-                 or ___conditional___ = 17--[ T_RETURN ]--
-                 or ___conditional___ = 18--[ T_SWITCH ]--
-                 or ___conditional___ = 19--[ T_THIS ]--
-                 or ___conditional___ = 20--[ T_THROW ]--
-                 or ___conditional___ = 21--[ T_TRY ]--
-                 or ___conditional___ = 23--[ T_WHILE ]--
-                 or ___conditional___ = 24--[ T_WITH ]--
-                 or ___conditional___ = 27--[ T_NULL ]--
-                 or ___conditional___ = 28--[ T_FALSE ]--
-                 or ___conditional___ = 29--[ T_TRUE ]--
-                 or ___conditional___ = 30--[ T_BREAK ]--
-                 or ___conditional___ = 31--[ T_CASE ]--
-                 or ___conditional___ = 32--[ T_CATCH ]--
-                 or ___conditional___ = 33--[ T_CONTINUE ]--
-                 or ___conditional___ = 35--[ T_DO ]--
-                 or ___conditional___ = 36--[ T_FINALLY ]--
-                 or ___conditional___ = 37--[ T_FOR ]-- then do
+                 if ___conditional___ = 14--[[ T_IF ]]
+                 or ___conditional___ = 15--[[ T_IN ]]
+                 or ___conditional___ = 16--[[ T_INSTANCEOF ]]
+                 or ___conditional___ = 17--[[ T_RETURN ]]
+                 or ___conditional___ = 18--[[ T_SWITCH ]]
+                 or ___conditional___ = 19--[[ T_THIS ]]
+                 or ___conditional___ = 20--[[ T_THROW ]]
+                 or ___conditional___ = 21--[[ T_TRY ]]
+                 or ___conditional___ = 23--[[ T_WHILE ]]
+                 or ___conditional___ = 24--[[ T_WITH ]]
+                 or ___conditional___ = 27--[[ T_NULL ]]
+                 or ___conditional___ = 28--[[ T_FALSE ]]
+                 or ___conditional___ = 29--[[ T_TRUE ]]
+                 or ___conditional___ = 30--[[ T_BREAK ]]
+                 or ___conditional___ = 31--[[ T_CASE ]]
+                 or ___conditional___ = 32--[[ T_CATCH ]]
+                 or ___conditional___ = 33--[[ T_CONTINUE ]]
+                 or ___conditional___ = 35--[[ T_DO ]]
+                 or ___conditional___ = 36--[[ T_FINALLY ]]
+                 or ___conditional___ = 37--[[ T_FOR ]] then do
                     exit = 1;end else 
-                 if ___conditional___ = 12--[ T_AT ]--
-                 or ___conditional___ = 13--[ T_FUNCTION ]--
-                 or ___conditional___ = 22--[ T_VAR ]--
-                 or ___conditional___ = 25--[ T_CONST ]--
-                 or ___conditional___ = 26--[ T_LET ]--
-                 or ___conditional___ = 38--[ T_CLASS ]-- then do
+                 if ___conditional___ = 12--[[ T_AT ]]
+                 or ___conditional___ = 13--[[ T_FUNCTION ]]
+                 or ___conditional___ = 22--[[ T_VAR ]]
+                 or ___conditional___ = 25--[[ T_CONST ]]
+                 or ___conditional___ = 26--[[ T_LET ]]
+                 or ___conditional___ = 38--[[ T_CLASS ]] then do
                     exit = 2;end else 
                  do end end
                 else do
@@ -12684,12 +12684,12 @@ function module_item(env) do
           do
              if ___conditional___ = 1 then do
                 match$8 = Curry._2(Parser_env_Peek.token, undefined, env$2);
-                exportKind = typeof match$8 == "number" and match$8 == 59 and (token$3(env$2), --[ ExportType ]--0) or --[ ExportValue ]--1;
-                token$4(env$2, --[ T_LCURLY ]--1);
-                match$9 = export_specifiers_and_errs(env$2, --[ [] ]--0, --[ [] ]--0);
-                specifiers$1 = --[ ExportSpecifiers ]--Block.__(0, [match$9[0]]);
+                exportKind = typeof match$8 == "number" and match$8 == 59 and (token$3(env$2), --[[ ExportType ]]0) or --[[ ExportValue ]]1;
+                token$4(env$2, --[[ T_LCURLY ]]1);
+                match$9 = export_specifiers_and_errs(env$2, --[[ [] ]]0, --[[ [] ]]0);
+                specifiers$1 = --[[ ExportSpecifiers ]]Block.__(0, [match$9[0]]);
                 end_loc$4 = Curry._2(Parser_env_Peek.loc, undefined, env$2);
-                token$4(env$2, --[ T_RCURLY ]--2);
+                token$4(env$2, --[[ T_RCURLY ]]2);
                 source$3 = Curry._2(Parser_env_Peek.value, undefined, env$2) == "from" and export_source(env$2) or (List.iter((function (param) do
                             return error_at(env$2, param);
                           end end), match$9[1]), undefined);
@@ -12698,9 +12698,9 @@ function module_item(env) do
                     source$3 ~= undefined and source$3[0] or end_loc$4
                   );
                 semicolon(env$2);
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         btwn(start_loc, end_loc$5),
-                        --[ ExportDeclaration ]--Block.__(28, [do
+                        --[[ ExportDeclaration ]]Block.__(28, [do
                               default: false,
                               declaration: undefined,
                               specifiers: specifiers$1,
@@ -12721,49 +12721,49 @@ function module_item(env) do
                 end else do
                   local ___conditional___=(match$11.tag | 0);
                   do
-                     if ___conditional___ = 18--[ FunctionDeclaration ]-- then do
+                     if ___conditional___ = 18--[[ FunctionDeclaration ]] then do
                         match$12 = match$11[0].id;
                         if (match$12 ~= undefined) then do
-                          names = --[ :: ]--[
-                            --[ tuple ]--[
+                          names = --[[ :: ]][
+                            --[[ tuple ]][
                               loc$1,
                               extract_ident_name(match$12)
                             ],
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ];
                         end else do
-                          error_at(env$2, --[ tuple ]--[
+                          error_at(env$2, --[[ tuple ]][
                                 loc$1,
-                                --[ ExportNamelessFunction ]--56
+                                --[[ ExportNamelessFunction ]]56
                               ]);
-                          names = --[ [] ]--0;
+                          names = --[[ [] ]]0;
                         end end end else 
-                     if ___conditional___ = 19--[ VariableDeclaration ]-- then do
+                     if ___conditional___ = 19--[[ VariableDeclaration ]] then do
                         names = List.fold_left((function (names, param) do
                                 id = param[1].id;
                                 param$1 = names;
-                                param$2 = --[ :: ]--[
+                                param$2 = --[[ :: ]][
                                   id,
-                                  --[ [] ]--0
+                                  --[[ [] ]]0
                                 ];
                                 return List.fold_left(fold, param$1, param$2);
-                              end end), --[ [] ]--0, match$11[0].declarations);end else 
-                     if ___conditional___ = 20--[ ClassDeclaration ]-- then do
+                              end end), --[[ [] ]]0, match$11[0].declarations);end else 
+                     if ___conditional___ = 20--[[ ClassDeclaration ]] then do
                         match$13 = match$11[0].id;
                         if (match$13 ~= undefined) then do
-                          names = --[ :: ]--[
-                            --[ tuple ]--[
+                          names = --[[ :: ]][
+                            --[[ tuple ]][
                               loc$1,
                               extract_ident_name(match$13)
                             ],
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ];
                         end else do
-                          error_at(env$2, --[ tuple ]--[
+                          error_at(env$2, --[[ tuple ]][
                                 loc$1,
-                                --[ ExportNamelessClass ]--55
+                                --[[ ExportNamelessClass ]]55
                               ]);
-                          names = --[ [] ]--0;
+                          names = --[[ [] ]]0;
                         end end end else 
                      do end end end end
                     else do
@@ -12778,59 +12778,59 @@ function module_item(env) do
                 List.iter((function (param) do
                         return record_export(env$2, param);
                       end end), names);
-                declaration = --[ Declaration ]--Block.__(0, [stmt]);
-                return --[ tuple ]--[
+                declaration = --[[ Declaration ]]Block.__(0, [stmt]);
+                return --[[ tuple ]][
                         btwn(start_loc, stmt[0]),
-                        --[ ExportDeclaration ]--Block.__(28, [do
+                        --[[ ExportDeclaration ]]Block.__(28, [do
                               default: false,
                               declaration: declaration,
                               specifiers: undefined,
                               source: undefined,
-                              exportKind: --[ ExportValue ]--1
+                              exportKind: --[[ ExportValue ]]1
                             end])
                       ];end end end 
              do
             
           endend end end 
-       if ___conditional___ = 48--[ T_IMPORT ]-- then do
+       if ___conditional___ = 48--[[ T_IMPORT ]] then do
           error_on_decorators(env)(decorators);
           env$3 = env;
           env$4 = with_strict(true, env$3);
           start_loc$1 = Curry._2(Parser_env_Peek.loc, undefined, env$4);
-          token$4(env$4, --[ T_IMPORT ]--48);
+          token$4(env$4, --[[ T_IMPORT ]]48);
           match$14 = Curry._2(Parser_env_Peek.token, undefined, env$4);
           match$15;
           if (typeof match$14 == "number") then do
             if (match$14 ~= 44) then do
               if (match$14 ~= 59) then do
-                match$15 = --[ tuple ]--[
-                  --[ ImportValue ]--2,
+                match$15 = --[[ tuple ]][
+                  --[[ ImportValue ]]2,
                   undefined
                 ];
               end else do
                 if (!env$4.parse_options.types) then do
-                  error$1(env$4, --[ UnexpectedTypeImport ]--8);
+                  error$1(env$4, --[[ UnexpectedTypeImport ]]8);
                 end
                  end 
-                match$15 = --[ tuple ]--[
-                  --[ ImportType ]--0,
+                match$15 = --[[ tuple ]][
+                  --[[ ImportType ]]0,
                   Curry._2(Parse.identifier, undefined, env$4)
                 ];
               end end 
             end else do
               if (!env$4.parse_options.types) then do
-                error$1(env$4, --[ UnexpectedTypeImport ]--8);
+                error$1(env$4, --[[ UnexpectedTypeImport ]]8);
               end
                end 
-              token$4(env$4, --[ T_TYPEOF ]--44);
-              match$15 = --[ tuple ]--[
-                --[ ImportTypeof ]--1,
+              token$4(env$4, --[[ T_TYPEOF ]]44);
+              match$15 = --[[ tuple ]][
+                --[[ ImportTypeof ]]1,
                 undefined
               ];
             end end 
           end else do
-            match$15 = --[ tuple ]--[
-              --[ ImportValue ]--2,
+            match$15 = --[[ tuple ]][
+              --[[ ImportValue ]]2,
               undefined
             ];
           end end 
@@ -12841,45 +12841,45 @@ function module_item(env) do
           exit$2 = 0;
           exit$3 = 0;
           if (typeof match$16 == "number") then do
-            if (match$16 == --[ T_COMMA ]--8) then do
+            if (match$16 == --[[ T_COMMA ]]8) then do
               exit$2 = 1;
             end else do
               exit$3 = 2;
             end end 
-          end else if (match$16.tag == --[ T_STRING ]--1 and importKind == --[ ImportValue ]--2) then do
+          end else if (match$16.tag == --[[ T_STRING ]]1 and importKind == --[[ ImportValue ]]2) then do
             match$18 = match$16[0];
             octal = match$18[3];
             raw = match$18[2];
             value = match$18[1];
             str_loc = match$18[0];
             if (octal) then do
-              strict_error(env$4, --[ StrictOctalLiteral ]--31);
+              strict_error(env$4, --[[ StrictOctalLiteral ]]31);
             end
              end 
-            token$4(env$4, --[ T_STRING ]--Block.__(1, [--[ tuple ]--[
+            token$4(env$4, --[[ T_STRING ]]Block.__(1, [--[[ tuple ]][
                       str_loc,
                       value,
                       raw,
                       octal
                     ]]));
-            value$1 = --[ String ]--Block.__(0, [value]);
+            value$1 = --[[ String ]]Block.__(0, [value]);
             source_001 = do
               value: value$1,
               raw: raw
             end;
-            source$4 = --[ tuple ]--[
+            source$4 = --[[ tuple ]][
               str_loc,
               source_001
             ];
             match$19 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$4);
             end_loc$6 = match$19 ~= undefined and match$19 or str_loc;
             semicolon(env$4);
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     btwn(start_loc$1, end_loc$6),
-                    --[ ImportDeclaration ]--Block.__(29, [do
+                    --[[ ImportDeclaration ]]Block.__(29, [do
                           importKind: importKind,
                           source: source$4,
-                          specifiers: --[ [] ]--0
+                          specifiers: --[[ [] ]]0
                         end])
                   ];
           end else do
@@ -12894,9 +12894,9 @@ function module_item(env) do
               match$20 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$4);
               end_loc$7 = match$20 ~= undefined and match$20 or source$5[0];
               semicolon(env$4);
-              return --[ tuple ]--[
+              return --[[ tuple ]][
                       btwn(start_loc$1, end_loc$7),
-                      --[ ImportDeclaration ]--Block.__(29, [do
+                      --[[ ImportDeclaration ]]Block.__(29, [do
                             importKind: importKind,
                             source: source$5,
                             specifiers: specifiers$2
@@ -12915,33 +12915,33 @@ function module_item(env) do
               if (match$21 ~= 8 and (match$21 ~= 0 or match$22 ~= "from")) then do
                 exit$4 = 2;
               end else do
-                match$23 = --[ tuple ]--[
-                  --[ ImportValue ]--2,
-                  --[ ImportDefaultSpecifier ]--Block.__(1, [type_ident$1])
+                match$23 = --[[ tuple ]][
+                  --[[ ImportValue ]]2,
+                  --[[ ImportDefaultSpecifier ]]Block.__(1, [type_ident$1])
                 ];
               end end 
             end else do
               exit$4 = 2;
             end end 
             if (exit$4 == 2) then do
-              match$23 = --[ tuple ]--[
+              match$23 = --[[ tuple ]][
                 importKind,
-                --[ ImportDefaultSpecifier ]--Block.__(1, [Curry._2(Parse.identifier, undefined, env$4)])
+                --[[ ImportDefaultSpecifier ]]Block.__(1, [Curry._2(Parse.identifier, undefined, env$4)])
               ];
             end
              end 
             match$24 = Curry._2(Parser_env_Peek.token, undefined, env$4);
-            additional_specifiers = typeof match$24 == "number" and match$24 == 8 and (token$4(env$4, --[ T_COMMA ]--8), named_or_namespace_specifier(env$4)) or --[ [] ]--0;
+            additional_specifiers = typeof match$24 == "number" and match$24 == 8 and (token$4(env$4, --[[ T_COMMA ]]8), named_or_namespace_specifier(env$4)) or --[[ [] ]]0;
             source$6 = source(env$4);
             match$25 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$4);
             end_loc$8 = match$25 ~= undefined and match$25 or source$6[0];
             semicolon(env$4);
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     btwn(start_loc$1, end_loc$8),
-                    --[ ImportDeclaration ]--Block.__(29, [do
+                    --[[ ImportDeclaration ]]Block.__(29, [do
                           importKind: match$23[0],
                           source: source$6,
-                          specifiers: --[ :: ]--[
+                          specifiers: --[[ :: ]][
                             match$23[1],
                             additional_specifiers
                           ]
@@ -12949,18 +12949,18 @@ function module_item(env) do
                   ];
           end
            end end end end 
-       if ___conditional___ = 49--[ T_SUPER ]--
-       or ___conditional___ = 50--[ T_IMPLEMENTS ]--
-       or ___conditional___ = 51--[ T_INTERFACE ]--
-       or ___conditional___ = 52--[ T_PACKAGE ]--
-       or ___conditional___ = 53--[ T_PRIVATE ]--
-       or ___conditional___ = 54--[ T_PROTECTED ]--
-       or ___conditional___ = 55--[ T_PUBLIC ]--
-       or ___conditional___ = 56--[ T_YIELD ]--
-       or ___conditional___ = 57--[ T_DEBUGGER ]-- then do
+       if ___conditional___ = 49--[[ T_SUPER ]]
+       or ___conditional___ = 50--[[ T_IMPLEMENTS ]]
+       or ___conditional___ = 51--[[ T_INTERFACE ]]
+       or ___conditional___ = 52--[[ T_PACKAGE ]]
+       or ___conditional___ = 53--[[ T_PRIVATE ]]
+       or ___conditional___ = 54--[[ T_PROTECTED ]]
+       or ___conditional___ = 55--[[ T_PUBLIC ]]
+       or ___conditional___ = 56--[[ T_YIELD ]]
+       or ___conditional___ = 57--[[ T_DEBUGGER ]] then do
           return statement_list_item(decorators, env);end end end 
-       if ___conditional___ = 58--[ T_DECLARE ]-- then do
-          if (Curry._2(Parser_env_Peek.token, 1, env) == --[ T_EXPORT ]--47) then do
+       if ___conditional___ = 58--[[ T_DECLARE ]] then do
+          if (Curry._2(Parser_env_Peek.token, 1, env) == --[[ T_EXPORT ]]47) then do
             error_on_decorators(env)(decorators);
             return declare_export_declaration(undefined, env);
           end else do
@@ -12988,73 +12988,73 @@ function statement(env) do
         end else do
           local ___conditional___=(match);
           do
-             if ___conditional___ = 1--[ T_LCURLY ]-- then do
+             if ___conditional___ = 1--[[ T_LCURLY ]] then do
                 env$1 = env;
                 match$1 = Curry._1(Parse.block_body, env$1);
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         match$1[0],
-                        --[ Block ]--Block.__(0, [match$1[1]])
+                        --[[ Block ]]Block.__(0, [match$1[1]])
                       ];end end end 
-             if ___conditional___ = 7--[ T_SEMICOLON ]-- then do
+             if ___conditional___ = 7--[[ T_SEMICOLON ]] then do
                 env$2 = env;
                 loc = Curry._2(Parser_env_Peek.loc, undefined, env$2);
-                token$4(env$2, --[ T_SEMICOLON ]--7);
-                return --[ tuple ]--[
+                token$4(env$2, --[[ T_SEMICOLON ]]7);
+                return --[[ tuple ]][
                         loc,
-                        --[ Empty ]--0
+                        --[[ Empty ]]0
                       ];end end end 
-             if ___conditional___ = 14--[ T_IF ]-- then do
+             if ___conditional___ = 14--[[ T_IF ]] then do
                 return _if(env);end end end 
-             if ___conditional___ = 17--[ T_RETURN ]-- then do
+             if ___conditional___ = 17--[[ T_RETURN ]] then do
                 env$3 = env;
                 if (!env$3.in_function) then do
-                  error$1(env$3, --[ IllegalReturn ]--23);
+                  error$1(env$3, --[[ IllegalReturn ]]23);
                 end
                  end 
                 start_loc = Curry._2(Parser_env_Peek.loc, undefined, env$3);
-                token$4(env$3, --[ T_RETURN ]--17);
-                argument = Curry._2(Parser_env_Peek.token, undefined, env$3) == --[ T_SEMICOLON ]--7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env$3) and undefined or Curry._1(Parse.expression, env$3);
+                token$4(env$3, --[[ T_RETURN ]]17);
+                argument = Curry._2(Parser_env_Peek.token, undefined, env$3) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env$3) and undefined or Curry._1(Parse.expression, env$3);
                 match$2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$3);
                 end_loc = match$2 ~= undefined and match$2 or (
                     argument ~= undefined and argument[0] or start_loc
                   );
                 semicolon(env$3);
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         btwn(start_loc, end_loc),
-                        --[ Return ]--Block.__(9, [do
+                        --[[ Return ]]Block.__(9, [do
                               argument: argument
                             end])
                       ];end end end 
-             if ___conditional___ = 18--[ T_SWITCH ]-- then do
+             if ___conditional___ = 18--[[ T_SWITCH ]] then do
                 env$4 = env;
                 start_loc$1 = Curry._2(Parser_env_Peek.loc, undefined, env$4);
-                token$4(env$4, --[ T_SWITCH ]--18);
-                token$4(env$4, --[ T_LPAREN ]--3);
+                token$4(env$4, --[[ T_SWITCH ]]18);
+                token$4(env$4, --[[ T_LPAREN ]]3);
                 discriminant = Curry._1(Parse.expression, env$4);
-                token$4(env$4, --[ T_RPAREN ]--4);
-                token$4(env$4, --[ T_LCURLY ]--1);
-                cases = case_list(env$4, --[ tuple ]--[
+                token$4(env$4, --[[ T_RPAREN ]]4);
+                token$4(env$4, --[[ T_LCURLY ]]1);
+                cases = case_list(env$4, --[[ tuple ]][
                       false,
-                      --[ [] ]--0
+                      --[[ [] ]]0
                     ]);
                 end_loc$1 = Curry._2(Parser_env_Peek.loc, undefined, env$4);
-                token$4(env$4, --[ T_RCURLY ]--2);
-                return --[ tuple ]--[
+                token$4(env$4, --[[ T_RCURLY ]]2);
+                return --[[ tuple ]][
                         btwn(start_loc$1, end_loc$1),
-                        --[ Switch ]--Block.__(8, [do
+                        --[[ Switch ]]Block.__(8, [do
                               discriminant: discriminant,
                               cases: cases,
                               lexical: false
                             end])
                       ];end end end 
-             if ___conditional___ = 20--[ T_THROW ]-- then do
+             if ___conditional___ = 20--[[ T_THROW ]] then do
                 env$5 = env;
                 start_loc$2 = Curry._2(Parser_env_Peek.loc, undefined, env$5);
-                token$4(env$5, --[ T_THROW ]--20);
+                token$4(env$5, --[[ T_THROW ]]20);
                 if (Curry._1(Parser_env_Peek.is_line_terminator, env$5)) then do
-                  error_at(env$5, --[ tuple ]--[
+                  error_at(env$5, --[[ tuple ]][
                         start_loc$2,
-                        --[ NewlineAfterThrow ]--11
+                        --[[ NewlineAfterThrow ]]11
                       ]);
                 end
                  end 
@@ -13062,34 +13062,34 @@ function statement(env) do
                 match$3 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$5);
                 end_loc$2 = match$3 ~= undefined and match$3 or argument$1[0];
                 semicolon(env$5);
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         btwn(start_loc$2, end_loc$2),
-                        --[ Throw ]--Block.__(10, [do
+                        --[[ Throw ]]Block.__(10, [do
                               argument: argument$1
                             end])
                       ];end end end 
-             if ___conditional___ = 21--[ T_TRY ]-- then do
+             if ___conditional___ = 21--[[ T_TRY ]] then do
                 env$6 = env;
                 start_loc$3 = Curry._2(Parser_env_Peek.loc, undefined, env$6);
-                token$4(env$6, --[ T_TRY ]--21);
+                token$4(env$6, --[[ T_TRY ]]21);
                 block = Curry._1(Parse.block_body, env$6);
                 match$4 = Curry._2(Parser_env_Peek.token, undefined, env$6);
                 handler;
                 if (typeof match$4 == "number" and match$4 == 32) then do
                   start_loc$4 = Curry._2(Parser_env_Peek.loc, undefined, env$6);
-                  token$4(env$6, --[ T_CATCH ]--32);
-                  token$4(env$6, --[ T_LPAREN ]--3);
-                  id = Curry._2(Parse.identifier, --[ StrictCatchVariable ]--26, env$6);
+                  token$4(env$6, --[[ T_CATCH ]]32);
+                  token$4(env$6, --[[ T_LPAREN ]]3);
+                  id = Curry._2(Parse.identifier, --[[ StrictCatchVariable ]]26, env$6);
                   param_000 = id[0];
-                  param_001 = --[ Identifier ]--Block.__(3, [id]);
-                  param = --[ tuple ]--[
+                  param_001 = --[[ Identifier ]]Block.__(3, [id]);
+                  param = --[[ tuple ]][
                     param_000,
                     param_001
                   ];
-                  token$4(env$6, --[ T_RPAREN ]--4);
+                  token$4(env$6, --[[ T_RPAREN ]]4);
                   body = Curry._1(Parse.block_body, env$6);
                   loc$1 = btwn(start_loc$4, body[0]);
-                  handler = --[ tuple ]--[
+                  handler = --[[ tuple ]][
                     loc$1,
                     do
                       param: param,
@@ -13101,71 +13101,71 @@ function statement(env) do
                   handler = undefined;
                 end end 
                 match$5 = Curry._2(Parser_env_Peek.token, undefined, env$6);
-                finalizer = typeof match$5 == "number" and match$5 == 36 and (token$4(env$6, --[ T_FINALLY ]--36), Curry._1(Parse.block_body, env$6)) or undefined;
+                finalizer = typeof match$5 == "number" and match$5 == 36 and (token$4(env$6, --[[ T_FINALLY ]]36), Curry._1(Parse.block_body, env$6)) or undefined;
                 end_loc$3 = finalizer ~= undefined and finalizer[0] or (
-                    handler ~= undefined and handler[0] or (error_at(env$6, --[ tuple ]--[
+                    handler ~= undefined and handler[0] or (error_at(env$6, --[[ tuple ]][
                               block[0],
-                              --[ NoCatchOrFinally ]--20
+                              --[[ NoCatchOrFinally ]]20
                             ]), block[0])
                   );
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         btwn(start_loc$3, end_loc$3),
-                        --[ Try ]--Block.__(11, [do
+                        --[[ Try ]]Block.__(11, [do
                               block: block,
                               handler: handler,
-                              guardedHandlers: --[ [] ]--0,
+                              guardedHandlers: --[[ [] ]]0,
                               finalizer: finalizer
                             end])
                       ];end end end 
-             if ___conditional___ = 22--[ T_VAR ]-- then do
+             if ___conditional___ = 22--[[ T_VAR ]] then do
                 return var_or_const(env);end end end 
-             if ___conditional___ = 23--[ T_WHILE ]-- then do
+             if ___conditional___ = 23--[[ T_WHILE ]] then do
                 env$7 = env;
                 start_loc$5 = Curry._2(Parser_env_Peek.loc, undefined, env$7);
-                token$4(env$7, --[ T_WHILE ]--23);
-                token$4(env$7, --[ T_LPAREN ]--3);
+                token$4(env$7, --[[ T_WHILE ]]23);
+                token$4(env$7, --[[ T_LPAREN ]]3);
                 test = Curry._1(Parse.expression, env$7);
-                token$4(env$7, --[ T_RPAREN ]--4);
+                token$4(env$7, --[[ T_RPAREN ]]4);
                 body$1 = Curry._1(Parse.statement, with_in_loop(true, env$7));
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         btwn(start_loc$5, body$1[0]),
-                        --[ While ]--Block.__(12, [do
+                        --[[ While ]]Block.__(12, [do
                               test: test,
                               body: body$1
                             end])
                       ];end end end 
-             if ___conditional___ = 24--[ T_WITH ]-- then do
+             if ___conditional___ = 24--[[ T_WITH ]] then do
                 env$8 = env;
                 start_loc$6 = Curry._2(Parser_env_Peek.loc, undefined, env$8);
-                token$4(env$8, --[ T_WITH ]--24);
-                token$4(env$8, --[ T_LPAREN ]--3);
+                token$4(env$8, --[[ T_WITH ]]24);
+                token$4(env$8, --[[ T_LPAREN ]]3);
                 _object = Curry._1(Parse.expression, env$8);
-                token$4(env$8, --[ T_RPAREN ]--4);
+                token$4(env$8, --[[ T_RPAREN ]]4);
                 body$2 = Curry._1(Parse.statement, env$8);
                 loc$2 = btwn(start_loc$6, body$2[0]);
-                strict_error_at(env$8, --[ tuple ]--[
+                strict_error_at(env$8, --[[ tuple ]][
                       loc$2,
-                      --[ StrictModeWith ]--25
+                      --[[ StrictModeWith ]]25
                     ]);
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         loc$2,
-                        --[ With ]--Block.__(6, [do
+                        --[[ With ]]Block.__(6, [do
                               _object: _object,
                               body: body$2
                             end])
                       ];end end end 
-             if ___conditional___ = 30--[ T_BREAK ]-- then do
+             if ___conditional___ = 30--[[ T_BREAK ]] then do
                 env$9 = env;
                 start_loc$7 = Curry._2(Parser_env_Peek.loc, undefined, env$9);
-                token$4(env$9, --[ T_BREAK ]--30);
+                token$4(env$9, --[[ T_BREAK ]]30);
                 label;
-                if (Curry._2(Parser_env_Peek.token, undefined, env$9) == --[ T_SEMICOLON ]--7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env$9)) then do
+                if (Curry._2(Parser_env_Peek.token, undefined, env$9) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env$9)) then do
                   label = undefined;
                 end else do
                   label$1 = Curry._2(Parse.identifier, undefined, env$9);
                   name = label$1[1].name;
                   if (!mem$1(name, env$9.labels)) then do
-                    error$1(env$9, --[ UnknownLabel ]--Block.__(4, [name]));
+                    error$1(env$9, --[[ UnknownLabel ]]Block.__(4, [name]));
                   end
                    end 
                   label = label$1;
@@ -13176,31 +13176,31 @@ function statement(env) do
                   );
                 loc$3 = btwn(start_loc$7, end_loc$4);
                 if (label == undefined and !(env$9.in_loop or env$9.in_switch)) then do
-                  error_at(env$9, --[ tuple ]--[
+                  error_at(env$9, --[[ tuple ]][
                         loc$3,
-                        --[ IllegalBreak ]--22
+                        --[[ IllegalBreak ]]22
                       ]);
                 end
                  end 
                 semicolon(env$9);
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         loc$3,
-                        --[ Break ]--Block.__(4, [do
+                        --[[ Break ]]Block.__(4, [do
                               label: label
                             end])
                       ];end end end 
-             if ___conditional___ = 33--[ T_CONTINUE ]-- then do
+             if ___conditional___ = 33--[[ T_CONTINUE ]] then do
                 env$10 = env;
                 start_loc$8 = Curry._2(Parser_env_Peek.loc, undefined, env$10);
-                token$4(env$10, --[ T_CONTINUE ]--33);
+                token$4(env$10, --[[ T_CONTINUE ]]33);
                 label$2;
-                if (Curry._2(Parser_env_Peek.token, undefined, env$10) == --[ T_SEMICOLON ]--7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env$10)) then do
+                if (Curry._2(Parser_env_Peek.token, undefined, env$10) == --[[ T_SEMICOLON ]]7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env$10)) then do
                   label$2 = undefined;
                 end else do
                   label$3 = Curry._2(Parse.identifier, undefined, env$10);
                   name$1 = label$3[1].name;
                   if (!mem$1(name$1, env$10.labels)) then do
-                    error$1(env$10, --[ UnknownLabel ]--Block.__(4, [name$1]));
+                    error$1(env$10, --[[ UnknownLabel ]]Block.__(4, [name$1]));
                   end
                    end 
                   label$2 = label$3;
@@ -13211,47 +13211,47 @@ function statement(env) do
                   );
                 loc$4 = btwn(start_loc$8, end_loc$5);
                 if (!env$10.in_loop) then do
-                  error_at(env$10, --[ tuple ]--[
+                  error_at(env$10, --[[ tuple ]][
                         loc$4,
-                        --[ IllegalContinue ]--21
+                        --[[ IllegalContinue ]]21
                       ]);
                 end
                  end 
                 semicolon(env$10);
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         loc$4,
-                        --[ Continue ]--Block.__(5, [do
+                        --[[ Continue ]]Block.__(5, [do
                               label: label$2
                             end])
                       ];end end end 
-             if ___conditional___ = 35--[ T_DO ]-- then do
+             if ___conditional___ = 35--[[ T_DO ]] then do
                 env$11 = env;
                 start_loc$9 = Curry._2(Parser_env_Peek.loc, undefined, env$11);
-                token$4(env$11, --[ T_DO ]--35);
+                token$4(env$11, --[[ T_DO ]]35);
                 body$3 = Curry._1(Parse.statement, with_in_loop(true, env$11));
-                token$4(env$11, --[ T_WHILE ]--23);
-                token$4(env$11, --[ T_LPAREN ]--3);
+                token$4(env$11, --[[ T_WHILE ]]23);
+                token$4(env$11, --[[ T_LPAREN ]]3);
                 test$1 = Curry._1(Parse.expression, env$11);
                 end_loc$6 = Curry._2(Parser_env_Peek.loc, undefined, env$11);
-                token$4(env$11, --[ T_RPAREN ]--4);
+                token$4(env$11, --[[ T_RPAREN ]]4);
                 match$8 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$11);
                 end_loc$7 = match$8 ~= undefined and match$8 or end_loc$6;
-                if (Curry._2(Parser_env_Peek.token, undefined, env$11) == --[ T_SEMICOLON ]--7) then do
+                if (Curry._2(Parser_env_Peek.token, undefined, env$11) == --[[ T_SEMICOLON ]]7) then do
                   semicolon(env$11);
                 end
                  end 
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         btwn(start_loc$9, end_loc$7),
-                        --[ DoWhile ]--Block.__(13, [do
+                        --[[ DoWhile ]]Block.__(13, [do
                               body: body$3,
                               test: test$1
                             end])
                       ];end end end 
-             if ___conditional___ = 37--[ T_FOR ]-- then do
+             if ___conditional___ = 37--[[ T_FOR ]] then do
                 env$12 = env;
                 start_loc$10 = Curry._2(Parser_env_Peek.loc, undefined, env$12);
-                token$4(env$12, --[ T_FOR ]--37);
-                token$4(env$12, --[ T_LPAREN ]--3);
+                token$4(env$12, --[[ T_FOR ]]37);
+                token$4(env$12, --[[ T_LPAREN ]]3);
                 match$9 = Curry._2(Parser_env_Peek.token, undefined, env$12);
                 match$10;
                 exit$1 = 0;
@@ -13262,25 +13262,25 @@ function statement(env) do
                     end else do
                       local ___conditional___=(match$9 - 22 | 0);
                       do
-                         if ___conditional___ = 0--[ T_IDENTIFIER ]-- then do
-                            match$11 = declarations(--[ T_VAR ]--22, --[ Var ]--0, with_no_in(true, env$12));
-                            match$10 = --[ tuple ]--[
-                              --[ InitDeclaration ]--Block.__(0, [match$11[0]]),
+                         if ___conditional___ = 0--[[ T_IDENTIFIER ]] then do
+                            match$11 = declarations(--[[ T_VAR ]]22, --[[ Var ]]0, with_no_in(true, env$12));
+                            match$10 = --[[ tuple ]][
+                              --[[ InitDeclaration ]]Block.__(0, [match$11[0]]),
                               match$11[1]
                             ];end else 
-                         if ___conditional___ = 1--[ T_LCURLY ]--
-                         or ___conditional___ = 2--[ T_RCURLY ]-- then do
+                         if ___conditional___ = 1--[[ T_LCURLY ]]
+                         or ___conditional___ = 2--[[ T_RCURLY ]] then do
                             exit$1 = 1;end else 
-                         if ___conditional___ = 3--[ T_LPAREN ]-- then do
+                         if ___conditional___ = 3--[[ T_LPAREN ]] then do
                             match$12 = $$const(with_no_in(true, env$12));
-                            match$10 = --[ tuple ]--[
-                              --[ InitDeclaration ]--Block.__(0, [match$12[0]]),
+                            match$10 = --[[ tuple ]][
+                              --[[ InitDeclaration ]]Block.__(0, [match$12[0]]),
                               match$12[1]
                             ];end else 
-                         if ___conditional___ = 4--[ T_RPAREN ]-- then do
+                         if ___conditional___ = 4--[[ T_RPAREN ]] then do
                             match$13 = _let(with_no_in(true, env$12));
-                            match$10 = --[ tuple ]--[
-                              --[ InitDeclaration ]--Block.__(0, [match$13[0]]),
+                            match$10 = --[[ tuple ]][
+                              --[[ InitDeclaration ]]Block.__(0, [match$13[0]]),
                               match$13[1]
                             ];end else 
                          do end end end end end
@@ -13290,9 +13290,9 @@ function statement(env) do
                   end else if (match$9 ~= 7) then do
                     exit$1 = 1;
                   end else do
-                    match$10 = --[ tuple ]--[
+                    match$10 = --[[ tuple ]][
                       undefined,
-                      --[ [] ]--0
+                      --[[ [] ]]0
                     ];
                   end end  end 
                 end else do
@@ -13300,9 +13300,9 @@ function statement(env) do
                 end end 
                 if (exit$1 == 1) then do
                   expr = Curry._1(Parse.expression, with_no_let(true, with_no_in(true, env$12)));
-                  match$10 = --[ tuple ]--[
-                    --[ InitExpression ]--Block.__(1, [expr]),
-                    --[ [] ]--0
+                  match$10 = --[[ tuple ]][
+                    --[[ InitExpression ]]Block.__(1, [expr]),
+                    --[[ [] ]]0
                   ];
                 end
                  end 
@@ -13311,28 +13311,28 @@ function statement(env) do
                 if (typeof match$14 == "number") then do
                   if (match$14 ~= 15) then do
                     if (match$14 == 60) then do
-                      assert_can_be_forin_or_forof(env$12, --[ InvalidLHSInForOf ]--17, init);
+                      assert_can_be_forin_or_forof(env$12, --[[ InvalidLHSInForOf ]]17, init);
                       left;
                       if (init ~= undefined) then do
                         match$15 = init;
-                        left = match$15.tag and --[ LeftExpression ]--Block.__(1, [match$15[0]]) or --[ LeftDeclaration ]--Block.__(0, [match$15[0]]);
+                        left = match$15.tag and --[[ LeftExpression ]]Block.__(1, [match$15[0]]) or --[[ LeftDeclaration ]]Block.__(0, [match$15[0]]);
                       end else do
                         throw [
                               Caml_builtin_exceptions.assert_failure,
-                              --[ tuple ]--[
+                              --[[ tuple ]][
                                 "parser_flow.ml",
                                 2573,
                                 22
                               ]
                             ];
                       end end 
-                      token$4(env$12, --[ T_OF ]--60);
+                      token$4(env$12, --[[ T_OF ]]60);
                       right = Curry._1(Parse.assignment, env$12);
-                      token$4(env$12, --[ T_RPAREN ]--4);
+                      token$4(env$12, --[[ T_RPAREN ]]4);
                       body$4 = Curry._1(Parse.statement, with_in_loop(true, env$12));
-                      return --[ tuple ]--[
+                      return --[[ tuple ]][
                               btwn(start_loc$10, body$4[0]),
-                              --[ ForOf ]--Block.__(16, [do
+                              --[[ ForOf ]]Block.__(16, [do
                                     left: left,
                                     right: right,
                                     body: body$4
@@ -13341,28 +13341,28 @@ function statement(env) do
                     end
                      end 
                   end else do
-                    assert_can_be_forin_or_forof(env$12, --[ InvalidLHSInForIn ]--16, init);
+                    assert_can_be_forin_or_forof(env$12, --[[ InvalidLHSInForIn ]]16, init);
                     left$1;
                     if (init ~= undefined) then do
                       match$16 = init;
-                      left$1 = match$16.tag and --[ LeftExpression ]--Block.__(1, [match$16[0]]) or --[ LeftDeclaration ]--Block.__(0, [match$16[0]]);
+                      left$1 = match$16.tag and --[[ LeftExpression ]]Block.__(1, [match$16[0]]) or --[[ LeftDeclaration ]]Block.__(0, [match$16[0]]);
                     end else do
                       throw [
                             Caml_builtin_exceptions.assert_failure,
-                            --[ tuple ]--[
+                            --[[ tuple ]][
                               "parser_flow.ml",
                               2556,
                               22
                             ]
                           ];
                     end end 
-                    token$4(env$12, --[ T_IN ]--15);
+                    token$4(env$12, --[[ T_IN ]]15);
                     right$1 = Curry._1(Parse.expression, env$12);
-                    token$4(env$12, --[ T_RPAREN ]--4);
+                    token$4(env$12, --[[ T_RPAREN ]]4);
                     body$5 = Curry._1(Parse.statement, with_in_loop(true, env$12));
-                    return --[ tuple ]--[
+                    return --[[ tuple ]][
                             btwn(start_loc$10, body$5[0]),
-                            --[ ForIn ]--Block.__(15, [do
+                            --[[ ForIn ]]Block.__(15, [do
                                   left: left$1,
                                   right: right$1,
                                   body: body$5,
@@ -13377,77 +13377,77 @@ function statement(env) do
                       return error_at(env$12, param);
                     end end
                     end(env$12)), match$10[1]);
-                token$4(env$12, --[ T_SEMICOLON ]--7);
+                token$4(env$12, --[[ T_SEMICOLON ]]7);
                 match$17 = Curry._2(Parser_env_Peek.token, undefined, env$12);
                 test$2 = typeof match$17 == "number" and match$17 == 7 and undefined or Curry._1(Parse.expression, env$12);
-                token$4(env$12, --[ T_SEMICOLON ]--7);
+                token$4(env$12, --[[ T_SEMICOLON ]]7);
                 match$18 = Curry._2(Parser_env_Peek.token, undefined, env$12);
                 update = typeof match$18 == "number" and match$18 == 4 and undefined or Curry._1(Parse.expression, env$12);
-                token$4(env$12, --[ T_RPAREN ]--4);
+                token$4(env$12, --[[ T_RPAREN ]]4);
                 body$6 = Curry._1(Parse.statement, with_in_loop(true, env$12));
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         btwn(start_loc$10, body$6[0]),
-                        --[ For ]--Block.__(14, [do
+                        --[[ For ]]Block.__(14, [do
                               init: init,
                               test: test$2,
                               update: update,
                               body: body$6
                             end])
                       ];end end end 
-             if ___conditional___ = 0--[ T_IDENTIFIER ]--
-             or ___conditional___ = 2--[ T_RCURLY ]--
-             or ___conditional___ = 3--[ T_LPAREN ]--
-             or ___conditional___ = 4--[ T_RPAREN ]--
-             or ___conditional___ = 5--[ T_LBRACKET ]--
-             or ___conditional___ = 6--[ T_RBRACKET ]--
-             or ___conditional___ = 8--[ T_COMMA ]--
-             or ___conditional___ = 9--[ T_PERIOD ]--
-             or ___conditional___ = 10--[ T_ARROW ]--
-             or ___conditional___ = 11--[ T_ELLIPSIS ]--
-             or ___conditional___ = 12--[ T_AT ]--
-             or ___conditional___ = 13--[ T_FUNCTION ]--
-             or ___conditional___ = 15--[ T_IN ]--
-             or ___conditional___ = 16--[ T_INSTANCEOF ]--
-             or ___conditional___ = 19--[ T_THIS ]--
-             or ___conditional___ = 25--[ T_CONST ]--
-             or ___conditional___ = 26--[ T_LET ]--
-             or ___conditional___ = 27--[ T_NULL ]--
-             or ___conditional___ = 28--[ T_FALSE ]--
-             or ___conditional___ = 29--[ T_TRUE ]--
-             or ___conditional___ = 31--[ T_CASE ]--
-             or ___conditional___ = 32--[ T_CATCH ]--
-             or ___conditional___ = 34--[ T_DEFAULT ]--
-             or ___conditional___ = 36--[ T_FINALLY ]--
-             or ___conditional___ = 38--[ T_CLASS ]--
-             or ___conditional___ = 39--[ T_EXTENDS ]--
-             or ___conditional___ = 40--[ T_STATIC ]--
-             or ___conditional___ = 41--[ T_ELSE ]--
-             or ___conditional___ = 42--[ T_NEW ]--
-             or ___conditional___ = 43--[ T_DELETE ]--
-             or ___conditional___ = 44--[ T_TYPEOF ]--
-             or ___conditional___ = 45--[ T_VOID ]--
-             or ___conditional___ = 46--[ T_ENUM ]--
-             or ___conditional___ = 47--[ T_EXPORT ]--
-             or ___conditional___ = 48--[ T_IMPORT ]--
-             or ___conditional___ = 49--[ T_SUPER ]--
-             or ___conditional___ = 50--[ T_IMPLEMENTS ]--
-             or ___conditional___ = 51--[ T_INTERFACE ]--
-             or ___conditional___ = 52--[ T_PACKAGE ]--
-             or ___conditional___ = 53--[ T_PRIVATE ]--
-             or ___conditional___ = 54--[ T_PROTECTED ]--
-             or ___conditional___ = 55--[ T_PUBLIC ]--
-             or ___conditional___ = 56--[ T_YIELD ]-- then do
+             if ___conditional___ = 0--[[ T_IDENTIFIER ]]
+             or ___conditional___ = 2--[[ T_RCURLY ]]
+             or ___conditional___ = 3--[[ T_LPAREN ]]
+             or ___conditional___ = 4--[[ T_RPAREN ]]
+             or ___conditional___ = 5--[[ T_LBRACKET ]]
+             or ___conditional___ = 6--[[ T_RBRACKET ]]
+             or ___conditional___ = 8--[[ T_COMMA ]]
+             or ___conditional___ = 9--[[ T_PERIOD ]]
+             or ___conditional___ = 10--[[ T_ARROW ]]
+             or ___conditional___ = 11--[[ T_ELLIPSIS ]]
+             or ___conditional___ = 12--[[ T_AT ]]
+             or ___conditional___ = 13--[[ T_FUNCTION ]]
+             or ___conditional___ = 15--[[ T_IN ]]
+             or ___conditional___ = 16--[[ T_INSTANCEOF ]]
+             or ___conditional___ = 19--[[ T_THIS ]]
+             or ___conditional___ = 25--[[ T_CONST ]]
+             or ___conditional___ = 26--[[ T_LET ]]
+             or ___conditional___ = 27--[[ T_NULL ]]
+             or ___conditional___ = 28--[[ T_FALSE ]]
+             or ___conditional___ = 29--[[ T_TRUE ]]
+             or ___conditional___ = 31--[[ T_CASE ]]
+             or ___conditional___ = 32--[[ T_CATCH ]]
+             or ___conditional___ = 34--[[ T_DEFAULT ]]
+             or ___conditional___ = 36--[[ T_FINALLY ]]
+             or ___conditional___ = 38--[[ T_CLASS ]]
+             or ___conditional___ = 39--[[ T_EXTENDS ]]
+             or ___conditional___ = 40--[[ T_STATIC ]]
+             or ___conditional___ = 41--[[ T_ELSE ]]
+             or ___conditional___ = 42--[[ T_NEW ]]
+             or ___conditional___ = 43--[[ T_DELETE ]]
+             or ___conditional___ = 44--[[ T_TYPEOF ]]
+             or ___conditional___ = 45--[[ T_VOID ]]
+             or ___conditional___ = 46--[[ T_ENUM ]]
+             or ___conditional___ = 47--[[ T_EXPORT ]]
+             or ___conditional___ = 48--[[ T_IMPORT ]]
+             or ___conditional___ = 49--[[ T_SUPER ]]
+             or ___conditional___ = 50--[[ T_IMPLEMENTS ]]
+             or ___conditional___ = 51--[[ T_INTERFACE ]]
+             or ___conditional___ = 52--[[ T_PACKAGE ]]
+             or ___conditional___ = 53--[[ T_PRIVATE ]]
+             or ___conditional___ = 54--[[ T_PROTECTED ]]
+             or ___conditional___ = 55--[[ T_PUBLIC ]]
+             or ___conditional___ = 56--[[ T_YIELD ]] then do
                 exit = 2;end else 
-             if ___conditional___ = 57--[ T_DEBUGGER ]-- then do
+             if ___conditional___ = 57--[[ T_DEBUGGER ]] then do
                 env$13 = env;
                 start_loc$11 = Curry._2(Parser_env_Peek.loc, undefined, env$13);
-                token$4(env$13, --[ T_DEBUGGER ]--57);
+                token$4(env$13, --[[ T_DEBUGGER ]]57);
                 match$19 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$13);
                 end_loc$8 = match$19 ~= undefined and match$19 or start_loc$11;
                 semicolon(env$13);
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         btwn(start_loc$11, end_loc$8),
-                        --[ Debugger ]--1
+                        --[[ Debugger ]]1
                       ];end end end 
              do
             
@@ -13455,9 +13455,9 @@ function statement(env) do
         end end 
       end else do
         error_unexpected(env);
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 Curry._2(Parser_env_Peek.loc, undefined, env),
-                --[ Empty ]--0
+                --[[ Empty ]]0
               ];
       end end 
     end else do
@@ -13470,15 +13470,15 @@ function statement(env) do
         match$20 = Curry._2(Parser_env_Peek.token, undefined, env$14);
         match$21 = expr$1[1];
         loc$5 = expr$1[0];
-        if (typeof match$21 ~= "number" and match$21.tag == --[ Identifier ]--18 and typeof match$20 == "number" and match$20 == 77) then do
+        if (typeof match$21 ~= "number" and match$21.tag == --[[ Identifier ]]18 and typeof match$20 == "number" and match$20 == 77) then do
           label$4 = match$21[0];
           match$22 = label$4[1];
           name$2 = match$22.name;
-          token$4(env$14, --[ T_COLON ]--77);
+          token$4(env$14, --[[ T_COLON ]]77);
           if (mem$1(name$2, env$14.labels)) then do
-            error_at(env$14, --[ tuple ]--[
+            error_at(env$14, --[[ tuple ]][
                   loc$5,
-                  --[ Redeclaration ]--Block.__(5, [
+                  --[[ Redeclaration ]]Block.__(5, [
                       "Label",
                       name$2
                     ])
@@ -13487,9 +13487,9 @@ function statement(env) do
            end 
           env$15 = add_label(env$14, name$2);
           labeled_stmt = Curry._1(Parse.statement, env$15);
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   btwn(loc$5, labeled_stmt[0]),
-                  --[ Labeled ]--Block.__(3, [do
+                  --[[ Labeled ]]Block.__(3, [do
                         label: label$4,
                         body: labeled_stmt
                       end])
@@ -13499,9 +13499,9 @@ function statement(env) do
         match$23 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$14);
         end_loc$9 = match$23 ~= undefined and match$23 or expr$1[0];
         semicolon(env$14);
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 btwn(expr$1[0], end_loc$9),
-                --[ Expression ]--Block.__(1, [do
+                --[[ Expression ]]Block.__(1, [do
                       expression: expr$1
                     end])
               ];
@@ -13512,57 +13512,57 @@ function statement(env) do
           end else do
             local ___conditional___=(match);
             do
-               if ___conditional___ = 41--[ T_ELSE ]-- then do
+               if ___conditional___ = 41--[[ T_ELSE ]] then do
                   return _if(env);end end end 
-               if ___conditional___ = 0--[ T_IDENTIFIER ]--
-               or ___conditional___ = 1--[ T_LCURLY ]--
-               or ___conditional___ = 3--[ T_LPAREN ]--
-               or ___conditional___ = 5--[ T_LBRACKET ]--
-               or ___conditional___ = 7--[ T_SEMICOLON ]--
-               or ___conditional___ = 12--[ T_AT ]--
-               or ___conditional___ = 13--[ T_FUNCTION ]--
-               or ___conditional___ = 14--[ T_IF ]--
-               or ___conditional___ = 17--[ T_RETURN ]--
-               or ___conditional___ = 18--[ T_SWITCH ]--
-               or ___conditional___ = 19--[ T_THIS ]--
-               or ___conditional___ = 20--[ T_THROW ]--
-               or ___conditional___ = 21--[ T_TRY ]--
-               or ___conditional___ = 22--[ T_VAR ]--
-               or ___conditional___ = 23--[ T_WHILE ]--
-               or ___conditional___ = 24--[ T_WITH ]--
-               or ___conditional___ = 25--[ T_CONST ]--
-               or ___conditional___ = 26--[ T_LET ]--
-               or ___conditional___ = 27--[ T_NULL ]--
-               or ___conditional___ = 28--[ T_FALSE ]--
-               or ___conditional___ = 29--[ T_TRUE ]--
-               or ___conditional___ = 30--[ T_BREAK ]--
-               or ___conditional___ = 33--[ T_CONTINUE ]--
-               or ___conditional___ = 35--[ T_DO ]--
-               or ___conditional___ = 37--[ T_FOR ]--
-               or ___conditional___ = 38--[ T_CLASS ]--
-               or ___conditional___ = 42--[ T_NEW ]--
-               or ___conditional___ = 43--[ T_DELETE ]--
-               or ___conditional___ = 44--[ T_TYPEOF ]--
-               or ___conditional___ = 45--[ T_VOID ]--
-               or ___conditional___ = 46--[ T_ENUM ]-- then do
+               if ___conditional___ = 0--[[ T_IDENTIFIER ]]
+               or ___conditional___ = 1--[[ T_LCURLY ]]
+               or ___conditional___ = 3--[[ T_LPAREN ]]
+               or ___conditional___ = 5--[[ T_LBRACKET ]]
+               or ___conditional___ = 7--[[ T_SEMICOLON ]]
+               or ___conditional___ = 12--[[ T_AT ]]
+               or ___conditional___ = 13--[[ T_FUNCTION ]]
+               or ___conditional___ = 14--[[ T_IF ]]
+               or ___conditional___ = 17--[[ T_RETURN ]]
+               or ___conditional___ = 18--[[ T_SWITCH ]]
+               or ___conditional___ = 19--[[ T_THIS ]]
+               or ___conditional___ = 20--[[ T_THROW ]]
+               or ___conditional___ = 21--[[ T_TRY ]]
+               or ___conditional___ = 22--[[ T_VAR ]]
+               or ___conditional___ = 23--[[ T_WHILE ]]
+               or ___conditional___ = 24--[[ T_WITH ]]
+               or ___conditional___ = 25--[[ T_CONST ]]
+               or ___conditional___ = 26--[[ T_LET ]]
+               or ___conditional___ = 27--[[ T_NULL ]]
+               or ___conditional___ = 28--[[ T_FALSE ]]
+               or ___conditional___ = 29--[[ T_TRUE ]]
+               or ___conditional___ = 30--[[ T_BREAK ]]
+               or ___conditional___ = 33--[[ T_CONTINUE ]]
+               or ___conditional___ = 35--[[ T_DO ]]
+               or ___conditional___ = 37--[[ T_FOR ]]
+               or ___conditional___ = 38--[[ T_CLASS ]]
+               or ___conditional___ = 42--[[ T_NEW ]]
+               or ___conditional___ = 43--[[ T_DELETE ]]
+               or ___conditional___ = 44--[[ T_TYPEOF ]]
+               or ___conditional___ = 45--[[ T_VOID ]]
+               or ___conditional___ = 46--[[ T_ENUM ]] then do
                   return expression(env);end end end 
-               if ___conditional___ = 2--[ T_RCURLY ]--
-               or ___conditional___ = 4--[ T_RPAREN ]--
-               or ___conditional___ = 6--[ T_RBRACKET ]--
-               or ___conditional___ = 8--[ T_COMMA ]--
-               or ___conditional___ = 9--[ T_PERIOD ]--
-               or ___conditional___ = 10--[ T_ARROW ]--
-               or ___conditional___ = 11--[ T_ELLIPSIS ]--
-               or ___conditional___ = 15--[ T_IN ]--
-               or ___conditional___ = 16--[ T_INSTANCEOF ]--
-               or ___conditional___ = 31--[ T_CASE ]--
-               or ___conditional___ = 32--[ T_CATCH ]--
-               or ___conditional___ = 34--[ T_DEFAULT ]--
-               or ___conditional___ = 36--[ T_FINALLY ]--
-               or ___conditional___ = 39--[ T_EXTENDS ]--
-               or ___conditional___ = 40--[ T_STATIC ]--
-               or ___conditional___ = 47--[ T_EXPORT ]--
-               or ___conditional___ = 48--[ T_IMPORT ]--
+               if ___conditional___ = 2--[[ T_RCURLY ]]
+               or ___conditional___ = 4--[[ T_RPAREN ]]
+               or ___conditional___ = 6--[[ T_RBRACKET ]]
+               or ___conditional___ = 8--[[ T_COMMA ]]
+               or ___conditional___ = 9--[[ T_PERIOD ]]
+               or ___conditional___ = 10--[[ T_ARROW ]]
+               or ___conditional___ = 11--[[ T_ELLIPSIS ]]
+               or ___conditional___ = 15--[[ T_IN ]]
+               or ___conditional___ = 16--[[ T_INSTANCEOF ]]
+               or ___conditional___ = 31--[[ T_CASE ]]
+               or ___conditional___ = 32--[[ T_CATCH ]]
+               or ___conditional___ = 34--[[ T_DEFAULT ]]
+               or ___conditional___ = 36--[[ T_FINALLY ]]
+               or ___conditional___ = 39--[[ T_EXTENDS ]]
+               or ___conditional___ = 40--[[ T_STATIC ]]
+               or ___conditional___ = 47--[[ T_EXPORT ]]
+               or ___conditional___ = 48--[[ T_IMPORT ]]
                do
               
             end
@@ -13583,7 +13583,7 @@ end end
 function module_body(term_fn, env) do
   env$1 = env;
   term_fn$1 = term_fn;
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   while(true) do
     acc = _acc;
     t = Curry._2(Parser_env_Peek.token, undefined, env$1);
@@ -13594,7 +13594,7 @@ function module_body(term_fn, env) do
     if (Curry._1(term_fn$1, t)) then do
       return List.rev(acc);
     end else do
-      _acc = --[ :: ]--[
+      _acc = --[[ :: ]][
         module_item(env$1),
         acc
       ];
@@ -13611,7 +13611,7 @@ function statement_list(_env, term_fn, item_fn, _param) do
     string_tokens = param[0];
     t = Curry._2(Parser_env_Peek.token, undefined, env);
     if (typeof t == "number" and t == 105) then do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               env,
               string_tokens,
               stmts
@@ -13619,7 +13619,7 @@ function statement_list(_env, term_fn, item_fn, _param) do
     end
      end 
     if (Curry._1(term_fn, t)) then do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               env,
               string_tokens,
               stmts
@@ -13627,18 +13627,18 @@ function statement_list(_env, term_fn, item_fn, _param) do
     end else do
       string_token_000 = Curry._2(Parser_env_Peek.loc, undefined, env);
       string_token_001 = Curry._2(Parser_env_Peek.token, undefined, env);
-      string_token = --[ tuple ]--[
+      string_token = --[[ tuple ]][
         string_token_000,
         string_token_001
       ];
       possible_directive = Curry._1(item_fn, env);
-      stmts$1 = --[ :: ]--[
+      stmts$1 = --[[ :: ]][
         possible_directive,
         stmts
       ];
       match = possible_directive[1];
-      if (typeof match == "number" or match.tag ~= --[ Expression ]--1) then do
-        return --[ tuple ]--[
+      if (typeof match == "number" or match.tag ~= --[[ Expression ]]1) then do
+        return --[[ tuple ]][
                 env,
                 string_tokens,
                 stmts$1
@@ -13646,8 +13646,8 @@ function statement_list(_env, term_fn, item_fn, _param) do
       end else do
         match$1 = match[0].expression;
         match$2 = match$1[1];
-        if (typeof match$2 == "number" or match$2.tag ~= --[ Literal ]--19) then do
-          return --[ tuple ]--[
+        if (typeof match$2 == "number" or match$2.tag ~= --[[ Literal ]]19) then do
+          return --[[ tuple ]][
                   env,
                   string_tokens,
                   stmts$1
@@ -13655,7 +13655,7 @@ function statement_list(_env, term_fn, item_fn, _param) do
         end else do
           match$3 = match$2[0].value;
           if (typeof match$3 == "number" or match$3.tag) then do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     env,
                     string_tokens,
                     stmts$1
@@ -13664,11 +13664,11 @@ function statement_list(_env, term_fn, item_fn, _param) do
             loc = match$1[0];
             len = loc._end.column - loc.start.column | 0;
             strict = env.in_strict_mode or match$3[0] == "use strict" and len == 12;
-            string_tokens$1 = --[ :: ]--[
+            string_tokens$1 = --[[ :: ]][
               string_token,
               string_tokens
             ];
-            _param = --[ tuple ]--[
+            _param = --[[ tuple ]][
               string_tokens$1,
               stmts$1
             ];
@@ -13682,20 +13682,20 @@ function statement_list(_env, term_fn, item_fn, _param) do
 end end
 
 function directives(env, term_fn, item_fn) do
-  match = statement_list(env, term_fn, item_fn, --[ tuple ]--[
-        --[ [] ]--0,
-        --[ [] ]--0
+  match = statement_list(env, term_fn, item_fn, --[[ tuple ]][
+        --[[ [] ]]0,
+        --[[ [] ]]0
       ]);
   env$1 = match[0];
   List.iter((function (param) do
           env$2 = env$1;
           param$1 = param;
           token = param$1[1];
-          if (typeof token ~= "number" and token.tag == --[ T_STRING ]--1) then do
+          if (typeof token ~= "number" and token.tag == --[[ T_STRING ]]1) then do
             if (token[0][3]) then do
-              return strict_error_at(env$2, --[ tuple ]--[
+              return strict_error_at(env$2, --[[ tuple ]][
                           param$1[0],
-                          --[ StrictOctalLiteral ]--31
+                          --[[ StrictOctalLiteral ]]31
                         ]);
             end else do
               return 0;
@@ -13708,7 +13708,7 @@ function directives(env, term_fn, item_fn) do
                 s
               ];
         end end), List.rev(match[1]));
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           env$1,
           match[2]
         ];
@@ -13717,7 +13717,7 @@ end end
 function statement_list$1(term_fn, env) do
   env$1 = env;
   term_fn$1 = term_fn;
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   while(true) do
     acc = _acc;
     t = Curry._2(Parser_env_Peek.token, undefined, env$1);
@@ -13728,7 +13728,7 @@ function statement_list$1(term_fn, env) do
     if (Curry._1(term_fn$1, t)) then do
       return List.rev(acc);
     end else do
-      _acc = --[ :: ]--[
+      _acc = --[[ :: ]][
         statement_list_item(undefined, env$1),
         acc
       ];
@@ -13746,12 +13746,12 @@ function statement_list_with_directives(term_fn, env) do
   env$1 = match[0];
   stmts = Curry._2(statement_list$1, term_fn, env$1);
   stmts$1 = List.fold_left((function (acc, stmt) do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   stmt,
                   acc
                 ];
         end end), stmts, match[1]);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           stmts$1,
           env$1.in_strict_mode
         ];
@@ -13764,9 +13764,9 @@ function identifier$2(restricted_error, env) do
   exit = 0;
   if (typeof t == "number" and t == 26) then do
     if (env.in_strict_mode) then do
-      strict_error(env, --[ StrictReservedWord ]--39);
+      strict_error(env, --[[ StrictReservedWord ]]39);
     end else if (env.no_let) then do
-      error$1(env, --[ UnexpectedToken ]--Block.__(1, [name]));
+      error$1(env, --[[ UnexpectedToken ]]Block.__(1, [name]));
     end
      end  end 
     token$3(env);
@@ -13775,18 +13775,18 @@ function identifier$2(restricted_error, env) do
   end end 
   if (exit == 1) then do
     if (is_strict_reserved(name)) then do
-      strict_error(env, --[ StrictReservedWord ]--39);
+      strict_error(env, --[[ StrictReservedWord ]]39);
       token$3(env);
     end else if (typeof t == "number" and !(t > 62 or t < 58)) then do
       token$4(env, t);
     end else do
-      token$4(env, --[ T_IDENTIFIER ]--0);
+      token$4(env, --[[ T_IDENTIFIER ]]0);
     end end  end 
   end
    end 
   if (restricted_error ~= undefined) then do
     if (is_restricted(name)) then do
-      strict_error_at(env, --[ tuple ]--[
+      strict_error_at(env, --[[ tuple ]][
             loc,
             restricted_error
           ]);
@@ -13794,7 +13794,7 @@ function identifier$2(restricted_error, env) do
      end 
   end
    end 
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
           do
             name: name,
@@ -13808,7 +13808,7 @@ function module_body_with_directives(env, term_fn) do
   match = Curry._3(directives, env, term_fn, module_item);
   stmts = Curry._2(module_body, term_fn, match[0]);
   return List.fold_left((function (acc, stmt) do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         stmt,
                         acc
                       ];
@@ -13820,10 +13820,10 @@ function program(env) do
           return false;
         end end));
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_EOF ]--105);
+  token$4(env, --[[ T_EOF ]]105);
   loc = stmts and btwn(List.hd(stmts)[0], List.hd(List.rev(stmts))[0]) or end_loc;
   comments = List.rev(env.comments.contents);
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           loc,
           stmts,
           comments
@@ -13834,9 +13834,9 @@ function expression$1(env) do
   expr = Curry._1(assignment, env);
   match = Curry._2(Parser_env_Peek.token, undefined, env);
   if (typeof match == "number" and match == 8) then do
-    return sequence(env, --[ :: ]--[
+    return sequence(env, --[[ :: ]][
                 expr,
-                --[ [] ]--0
+                --[[ [] ]]0
               ]);
   end else do
     return expr;
@@ -13848,14 +13848,14 @@ function identifier_with_type(env, restricted_error) do
   id = match[1];
   loc = match[0];
   match$1;
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_PLING ]--76) then do
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_PLING ]]76) then do
     if (!env.parse_options.types) then do
-      error$1(env, --[ UnexpectedTypeAnnotation ]--6);
+      error$1(env, --[[ UnexpectedTypeAnnotation ]]6);
     end
      end 
     loc$1 = btwn(loc, Curry._2(Parser_env_Peek.loc, undefined, env));
-    token$4(env, --[ T_PLING ]--76);
-    match$1 = --[ tuple ]--[
+    token$4(env, --[[ T_PLING ]]76);
+    match$1 = --[[ tuple ]][
       loc$1,
       do
         name: id.name,
@@ -13864,18 +13864,18 @@ function identifier_with_type(env, restricted_error) do
       end
     ];
   end else do
-    match$1 = --[ tuple ]--[
+    match$1 = --[[ tuple ]][
       loc,
       id
     ];
   end end 
   id$1 = match$1[1];
   loc$2 = match$1[0];
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_COLON ]--77) then do
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_COLON ]]77) then do
     typeAnnotation = wrap(annotation, env);
     loc$3 = btwn(loc$2, typeAnnotation[0]);
     typeAnnotation$1 = typeAnnotation;
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             loc$3,
             do
               name: id$1.name,
@@ -13884,7 +13884,7 @@ function identifier_with_type(env, restricted_error) do
             end
           ];
   end else do
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             loc$2,
             id$1
           ];
@@ -13893,14 +13893,14 @@ end end
 
 function block_body(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_LCURLY ]--1);
+  token$4(env, --[[ T_LCURLY ]]1);
   term_fn = function (t) do
-    return t == --[ T_RCURLY ]--2;
+    return t == --[[ T_RCURLY ]]2;
   end end;
   body = Curry._2(statement_list$1, term_fn, env);
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_RCURLY ]--2);
-  return --[ tuple ]--[
+  token$4(env, --[[ T_RCURLY ]]2);
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             body: body
@@ -13910,14 +13910,14 @@ end end
 
 function function_block_body(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_LCURLY ]--1);
+  token$4(env, --[[ T_LCURLY ]]1);
   term_fn = function (t) do
-    return t == --[ T_RCURLY ]--2;
+    return t == --[[ T_RCURLY ]]2;
   end end;
   match = statement_list_with_directives(term_fn, env);
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  token$4(env, --[ T_RCURLY ]--2);
-  return --[ tuple ]--[
+  token$4(env, --[[ T_RCURLY ]]2);
+  return --[[ tuple ]][
           btwn(start_loc, end_loc),
           do
             body: match[0]
@@ -13928,118 +13928,118 @@ end end
 
 function predicate(env) do
   checks_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_IDENTIFIER ]--0 and Curry._2(Parser_env_Peek.value, undefined, env) == "checks") then do
-    token$4(env, --[ T_IDENTIFIER ]--0);
-    if (maybe(env, --[ T_LPAREN ]--3)) then do
+  if (Curry._2(Parser_env_Peek.token, undefined, env) == --[[ T_IDENTIFIER ]]0 and Curry._2(Parser_env_Peek.value, undefined, env) == "checks") then do
+    token$4(env, --[[ T_IDENTIFIER ]]0);
+    if (maybe(env, --[[ T_LPAREN ]]3)) then do
       exp = Curry._1(Parse.expression, env);
       rparen_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
-      token$4(env, --[ T_RPAREN ]--4);
+      token$4(env, --[[ T_RPAREN ]]4);
       loc = btwn(checks_loc, rparen_loc);
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               loc,
-              --[ Declared ]--[exp]
+              --[[ Declared ]][exp]
             ];
     end else do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               checks_loc,
-              --[ Inferred ]--0
+              --[[ Inferred ]]0
             ];
     end end 
   end
    end 
 end end
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[
-          --[ tuple ]--[
-            --[ Function ]--0,
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "program"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "statement"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "statement_list_item"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "statement_list"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "statement_list_with_directives"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "module_body"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "expression"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "assignment"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "object_initializer"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "array_initializer"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "identifier"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "identifier_or_reserved_keyword"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "identifier_with_type"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "block_body"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "function_block_body"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "jsx_element"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "pattern"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "pattern_from_expr"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "object_key"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "class_declaration"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "class_expression"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "is_assignable_lhs"
           ],
-          --[ tuple ]--[
-            --[ Function ]--0,
+          --[[ tuple ]][
+            --[[ Function ]]0,
             "predicate"
           ]
         ]]), Parse, do
@@ -14085,21 +14085,21 @@ function program$1(failOpt, token_sinkOpt, parse_optionsOpt, content) do
   fail$2 = fail$1;
   ast = Curry._1(parser, env$1);
   error_list = filter_duplicate_errors(env$1.errors.contents);
-  if (fail$2 and error_list ~= --[ [] ]--0) then do
+  if (fail$2 and error_list ~= --[[ [] ]]0) then do
     throw [
           $$Error,
           error_list
         ];
   end
    end 
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           ast,
           error_list
         ];
 end end
 
 translation_errors = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 string = (function (x) {return x;});
@@ -14119,10 +14119,10 @@ function regexp$1(loc, pattern, flags) do
     return new RegExp(pattern, flags);
   end
   catch (exn)do
-    translation_errors.contents = --[ :: ]--[
-      --[ tuple ]--[
+    translation_errors.contents = --[[ :: ]][
+      --[[ tuple ]][
         loc,
-        --[ InvalidRegExp ]--12
+        --[[ InvalidRegExp ]]12
       ],
       translation_errors.contents
     ];
@@ -14133,7 +14133,7 @@ end end
 function parse(content, options) do
   try do
     match = program$1(false, undefined, Caml_option.some(undefined), content);
-    translation_errors.contents = --[ [] ]--0;
+    translation_errors.contents = --[[ [] ]]0;
     array_of_list = function (fn, list) do
       return array($$Array.of_list(List.map(fn, list)));
     end end;
@@ -14146,11 +14146,11 @@ function parse(content, options) do
     end end;
     position = function (p) do
       return obj([
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "line",
                     number$1(p.line)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "column",
                     number$1(p.column)
                   ]
@@ -14166,15 +14166,15 @@ function parse(content, options) do
         source = $$null;
       end end 
       return obj([
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "source",
                     source
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "start",
                     position($$location.start)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "end",
                     position($$location._end)
                   ]
@@ -14188,15 +14188,15 @@ function parse(content, options) do
     end end;
     node = function (_type, $$location, props) do
       return obj($$Array.append([
-                      --[ tuple ]--[
+                      --[[ tuple ]][
                         "type",
                         string(_type)
                       ],
-                      --[ tuple ]--[
+                      --[[ tuple ]][
                         "loc",
                         loc($$location)
                       ],
-                      --[ tuple ]--[
+                      --[[ tuple ]][
                         "range",
                         range($$location)
                       ]
@@ -14205,11 +14205,11 @@ function parse(content, options) do
     errors = function (l) do
       error$2 = function (param) do
         return obj([
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "loc",
                       loc(param[0])
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "message",
                       string(error(param[1]))
                     ]
@@ -14223,25 +14223,25 @@ function parse(content, options) do
       if (typeof t == "number") then do
         local ___conditional___=(t);
         do
-           if ___conditional___ = 0--[ Any ]-- then do
+           if ___conditional___ = 0--[[ Any ]] then do
               loc$1 = loc;
               return node("AnyTypeAnnotation", loc$1, []);end end end 
-           if ___conditional___ = 1--[ Void ]-- then do
+           if ___conditional___ = 1--[[ Void ]] then do
               loc$2 = loc;
               return node("VoidTypeAnnotation", loc$2, []);end end end 
-           if ___conditional___ = 2--[ Null ]-- then do
+           if ___conditional___ = 2--[[ Null ]] then do
               loc$3 = loc;
               return node("NullTypeAnnotation", loc$3, []);end end end 
-           if ___conditional___ = 3--[ Number ]-- then do
+           if ___conditional___ = 3--[[ Number ]] then do
               loc$4 = loc;
               return node("NumberTypeAnnotation", loc$4, []);end end end 
-           if ___conditional___ = 4--[ String ]-- then do
+           if ___conditional___ = 4--[[ String ]] then do
               loc$5 = loc;
               return node("StringTypeAnnotation", loc$5, []);end end end 
-           if ___conditional___ = 5--[ Boolean ]-- then do
+           if ___conditional___ = 5--[[ Boolean ]] then do
               loc$6 = loc;
               return node("BooleanTypeAnnotation", loc$6, []);end end end 
-           if ___conditional___ = 6--[ Exists ]-- then do
+           if ___conditional___ = 6--[[ Exists ]] then do
               loc$7 = loc;
               return node("ExistsTypeAnnotation", loc$7, []);end end end 
            do
@@ -14250,32 +14250,32 @@ function parse(content, options) do
       end else do
         local ___conditional___=(t.tag | 0);
         do
-           if ___conditional___ = 0--[ Nullable ]-- then do
+           if ___conditional___ = 0--[[ Nullable ]] then do
               loc$8 = loc;
               t$1 = t[0];
-              return node("NullableTypeAnnotation", loc$8, [--[ tuple ]--[
+              return node("NullableTypeAnnotation", loc$8, [--[[ tuple ]][
                             "typeAnnotation",
                             _type(t$1)
                           ]]);end end end 
-           if ___conditional___ = 1--[ Function ]-- then do
-              return function_type(--[ tuple ]--[
+           if ___conditional___ = 1--[[ Function ]] then do
+              return function_type(--[[ tuple ]][
                           loc,
                           t[0]
                         ]);end end end 
-           if ___conditional___ = 2--[ Object ]-- then do
-              return object_type(--[ tuple ]--[
+           if ___conditional___ = 2--[[ Object ]] then do
+              return object_type(--[[ tuple ]][
                           loc,
                           t[0]
                         ]);end end end 
-           if ___conditional___ = 3--[ Array ]-- then do
+           if ___conditional___ = 3--[[ Array ]] then do
               loc$9 = loc;
               t$2 = t[0];
-              return node("ArrayTypeAnnotation", loc$9, [--[ tuple ]--[
+              return node("ArrayTypeAnnotation", loc$9, [--[[ tuple ]][
                             "elementType",
                             _type(t$2)
                           ]]);end end end 
-           if ___conditional___ = 4--[ Generic ]-- then do
-              param$1 = --[ tuple ]--[
+           if ___conditional___ = 4--[[ Generic ]] then do
+              param$1 = --[[ tuple ]][
                 loc,
                 t[0]
               ];
@@ -14284,95 +14284,95 @@ function parse(content, options) do
               id;
               id = match.tag and generic_type_qualified_identifier(match[0]) or identifier(match[0]);
               return node("GenericTypeAnnotation", param$1[0], [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "id",
                             id
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "typeParameters",
                             option(type_parameter_instantiation, g.typeParameters)
                           ]
                         ]);end end end 
-           if ___conditional___ = 5--[ Union ]-- then do
-              param$2 = --[ tuple ]--[
+           if ___conditional___ = 5--[[ Union ]] then do
+              param$2 = --[[ tuple ]][
                 loc,
                 t[0]
               ];
-              return node("UnionTypeAnnotation", param$2[0], [--[ tuple ]--[
+              return node("UnionTypeAnnotation", param$2[0], [--[[ tuple ]][
                             "types",
                             array_of_list(_type, param$2[1])
                           ]]);end end end 
-           if ___conditional___ = 6--[ Intersection ]-- then do
-              param$3 = --[ tuple ]--[
+           if ___conditional___ = 6--[[ Intersection ]] then do
+              param$3 = --[[ tuple ]][
                 loc,
                 t[0]
               ];
-              return node("IntersectionTypeAnnotation", param$3[0], [--[ tuple ]--[
+              return node("IntersectionTypeAnnotation", param$3[0], [--[[ tuple ]][
                             "types",
                             array_of_list(_type, param$3[1])
                           ]]);end end end 
-           if ___conditional___ = 7--[ Typeof ]-- then do
-              param$4 = --[ tuple ]--[
+           if ___conditional___ = 7--[[ Typeof ]] then do
+              param$4 = --[[ tuple ]][
                 loc,
                 t[0]
               ];
-              return node("TypeofTypeAnnotation", param$4[0], [--[ tuple ]--[
+              return node("TypeofTypeAnnotation", param$4[0], [--[[ tuple ]][
                             "argument",
                             _type(param$4[1])
                           ]]);end end end 
-           if ___conditional___ = 8--[ Tuple ]-- then do
-              param$5 = --[ tuple ]--[
+           if ___conditional___ = 8--[[ Tuple ]] then do
+              param$5 = --[[ tuple ]][
                 loc,
                 t[0]
               ];
-              return node("TupleTypeAnnotation", param$5[0], [--[ tuple ]--[
+              return node("TupleTypeAnnotation", param$5[0], [--[[ tuple ]][
                             "types",
                             array_of_list(_type, param$5[1])
                           ]]);end end end 
-           if ___conditional___ = 9--[ StringLiteral ]-- then do
-              param$6 = --[ tuple ]--[
+           if ___conditional___ = 9--[[ StringLiteral ]] then do
+              param$6 = --[[ tuple ]][
                 loc,
                 t[0]
               ];
               s = param$6[1];
               return node("StringLiteralTypeAnnotation", param$6[0], [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "value",
                             string(s.value)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "raw",
                             string(s.raw)
                           ]
                         ]);end end end 
-           if ___conditional___ = 10--[ NumberLiteral ]-- then do
-              param$7 = --[ tuple ]--[
+           if ___conditional___ = 10--[[ NumberLiteral ]] then do
+              param$7 = --[[ tuple ]][
                 loc,
                 t[0]
               ];
               s$1 = param$7[1];
               return node("NumberLiteralTypeAnnotation", param$7[0], [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "value",
                             number$1(s$1.value)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "raw",
                             string(s$1.raw)
                           ]
                         ]);end end end 
-           if ___conditional___ = 11--[ BooleanLiteral ]-- then do
-              param$8 = --[ tuple ]--[
+           if ___conditional___ = 11--[[ BooleanLiteral ]] then do
+              param$8 = --[[ tuple ]][
                 loc,
                 t[0]
               ];
               s$2 = param$8[1];
               return node("BooleanLiteralTypeAnnotation", param$8[0], [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "value",
                             bool(s$2.value)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "raw",
                             string(s$2.raw)
                           ]
@@ -14383,7 +14383,7 @@ function parse(content, options) do
       end end 
     end end;
     type_annotation = function (param) do
-      return node("TypeAnnotation", param[0], [--[ tuple ]--[
+      return node("TypeAnnotation", param[0], [--[[ tuple ]][
                     "typeAnnotation",
                     _type(param[1])
                   ]]);
@@ -14391,15 +14391,15 @@ function parse(content, options) do
     identifier = function (param) do
       id = param[1];
       return node("Identifier", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "name",
                     string(id.name)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "typeAnnotation",
                     option(type_annotation, id.typeAnnotation)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "optional",
                     bool(id.optional)
                   ]
@@ -14408,15 +14408,15 @@ function parse(content, options) do
     object_type = function (param) do
       o = param[1];
       return node("ObjectTypeAnnotation", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "properties",
                     array_of_list(object_type_property, o.properties)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "indexers",
                     array_of_list(object_type_indexer, o.indexers)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "callProperties",
                     array_of_list(object_type_call_property, o.callProperties)
                   ]
@@ -14428,18 +14428,18 @@ function parse(content, options) do
       id;
       id = match.tag and generic_type_qualified_identifier(match[0]) or identifier(match[0]);
       return node("InterfaceExtends", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "id",
                     id
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "typeParameters",
                     option(type_parameter_instantiation, g.typeParameters)
                   ]
                 ]);
     end end;
     type_parameter_declaration = function (param) do
-      return node("TypeParameterDeclaration", param[0], [--[ tuple ]--[
+      return node("TypeParameterDeclaration", param[0], [--[[ tuple ]][
                     "params",
                     array_of_list(type_param, param[1].params)
                   ]]);
@@ -14447,11 +14447,11 @@ function parse(content, options) do
     template_literal = function (param) do
       value = param[1];
       return node("TemplateLiteral", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "quasis",
                     array_of_list(template_element, value.quasis)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "expressions",
                     array_of_list(expression, value.expressions)
                   ]
@@ -14465,82 +14465,82 @@ function parse(content, options) do
       end else do
         local ___conditional___=(match.tag | 0);
         do
-           if ___conditional___ = 0--[ Array ]-- then do
-              return node("ArrayExpression", loc, [--[ tuple ]--[
+           if ___conditional___ = 0--[[ Array ]] then do
+              return node("ArrayExpression", loc, [--[[ tuple ]][
                             "elements",
                             array_of_list((function (param) do
                                     return option(expression_or_spread, param);
                                   end end), match[0].elements)
                           ]]);end end end 
-           if ___conditional___ = 1--[ Object ]-- then do
-              return node("ObjectExpression", loc, [--[ tuple ]--[
+           if ___conditional___ = 1--[[ Object ]] then do
+              return node("ObjectExpression", loc, [--[[ tuple ]][
                             "properties",
                             array_of_list(object_property, match[0].properties)
                           ]]);end end end 
-           if ___conditional___ = 2--[ Function ]-- then do
-              return function_expression(--[ tuple ]--[
+           if ___conditional___ = 2--[[ Function ]] then do
+              return function_expression(--[[ tuple ]][
                           loc,
                           match[0]
                         ]);end end end 
-           if ___conditional___ = 3--[ ArrowFunction ]-- then do
+           if ___conditional___ = 3--[[ ArrowFunction ]] then do
               arrow = match[0];
               match$1 = arrow.body;
               body;
               body = match$1.tag and expression(match$1[0]) or block(match$1[0]);
               return node("ArrowFunctionExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "id",
                             option(identifier, arrow.id)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "params",
                             array_of_list(pattern, arrow.params)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "defaults",
                             array_of_list((function (param) do
                                     return option(expression, param);
                                   end end), arrow.defaults)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "rest",
                             option(identifier, arrow.rest)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             body
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "async",
                             bool(arrow.async)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "generator",
                             bool(arrow.generator)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "expression",
                             bool(arrow.expression)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "returnType",
                             option(type_annotation, arrow.returnType)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "typeParameters",
                             option(type_parameter_declaration, arrow.typeParameters)
                           ]
                         ]);end end end 
-           if ___conditional___ = 4--[ Sequence ]-- then do
-              return node("SequenceExpression", loc, [--[ tuple ]--[
+           if ___conditional___ = 4--[[ Sequence ]] then do
+              return node("SequenceExpression", loc, [--[[ tuple ]][
                             "expressions",
                             array_of_list(expression, match[0].expressions)
                           ]]);end end end 
-           if ___conditional___ = 5--[ Unary ]-- then do
+           if ___conditional___ = 5--[[ Unary ]] then do
               unary = match[0];
               match$2 = unary.operator;
               if (match$2 >= 7) then do
-                return node("AwaitExpression", loc, [--[ tuple ]--[
+                return node("AwaitExpression", loc, [--[[ tuple ]][
                               "argument",
                               expression(unary.argument)
                             ]]);
@@ -14549,21 +14549,21 @@ function parse(content, options) do
                 operator;
                 local ___conditional___=(match$3);
                 do
-                   if ___conditional___ = 0--[ Minus ]-- then do
+                   if ___conditional___ = 0--[[ Minus ]] then do
                       operator = "-";end else 
-                   if ___conditional___ = 1--[ Plus ]-- then do
+                   if ___conditional___ = 1--[[ Plus ]] then do
                       operator = "+";end else 
-                   if ___conditional___ = 2--[ Not ]-- then do
+                   if ___conditional___ = 2--[[ Not ]] then do
                       operator = "!";end else 
-                   if ___conditional___ = 3--[ BitNot ]-- then do
+                   if ___conditional___ = 3--[[ BitNot ]] then do
                       operator = "~";end else 
-                   if ___conditional___ = 4--[ Typeof ]-- then do
+                   if ___conditional___ = 4--[[ Typeof ]] then do
                       operator = "typeof";end else 
-                   if ___conditional___ = 5--[ Void ]-- then do
+                   if ___conditional___ = 5--[[ Void ]] then do
                       operator = "void";end else 
-                   if ___conditional___ = 6--[ Delete ]-- then do
+                   if ___conditional___ = 6--[[ Delete ]] then do
                       operator = "delete";end else 
-                   if ___conditional___ = 7--[ Await ]-- then do
+                   if ___conditional___ = 7--[[ Await ]] then do
                       throw [
                             Caml_builtin_exceptions.failure,
                             "matched above"
@@ -14572,355 +14572,355 @@ function parse(content, options) do
                   
                 end
                 return node("UnaryExpression", loc, [
-                            --[ tuple ]--[
+                            --[[ tuple ]][
                               "operator",
                               string(operator)
                             ],
-                            --[ tuple ]--[
+                            --[[ tuple ]][
                               "prefix",
                               bool(unary.prefix)
                             ],
-                            --[ tuple ]--[
+                            --[[ tuple ]][
                               "argument",
                               expression(unary.argument)
                             ]
                           ]);
               end end end end end 
-           if ___conditional___ = 6--[ Binary ]-- then do
+           if ___conditional___ = 6--[[ Binary ]] then do
               binary = match[0];
               match$4 = binary.operator;
               operator$1;
               local ___conditional___=(match$4);
               do
-                 if ___conditional___ = 0--[ Equal ]-- then do
+                 if ___conditional___ = 0--[[ Equal ]] then do
                     operator$1 = "==";end else 
-                 if ___conditional___ = 1--[ NotEqual ]-- then do
+                 if ___conditional___ = 1--[[ NotEqual ]] then do
                     operator$1 = "!=";end else 
-                 if ___conditional___ = 2--[ StrictEqual ]-- then do
+                 if ___conditional___ = 2--[[ StrictEqual ]] then do
                     operator$1 = "===";end else 
-                 if ___conditional___ = 3--[ StrictNotEqual ]-- then do
+                 if ___conditional___ = 3--[[ StrictNotEqual ]] then do
                     operator$1 = "!==";end else 
-                 if ___conditional___ = 4--[ LessThan ]-- then do
+                 if ___conditional___ = 4--[[ LessThan ]] then do
                     operator$1 = "<";end else 
-                 if ___conditional___ = 5--[ LessThanEqual ]-- then do
+                 if ___conditional___ = 5--[[ LessThanEqual ]] then do
                     operator$1 = "<=";end else 
-                 if ___conditional___ = 6--[ GreaterThan ]-- then do
+                 if ___conditional___ = 6--[[ GreaterThan ]] then do
                     operator$1 = ">";end else 
-                 if ___conditional___ = 7--[ GreaterThanEqual ]-- then do
+                 if ___conditional___ = 7--[[ GreaterThanEqual ]] then do
                     operator$1 = ">=";end else 
-                 if ___conditional___ = 8--[ LShift ]-- then do
+                 if ___conditional___ = 8--[[ LShift ]] then do
                     operator$1 = "<<";end else 
-                 if ___conditional___ = 9--[ RShift ]-- then do
+                 if ___conditional___ = 9--[[ RShift ]] then do
                     operator$1 = ">>";end else 
-                 if ___conditional___ = 10--[ RShift3 ]-- then do
+                 if ___conditional___ = 10--[[ RShift3 ]] then do
                     operator$1 = ">>>";end else 
-                 if ___conditional___ = 11--[ Plus ]-- then do
+                 if ___conditional___ = 11--[[ Plus ]] then do
                     operator$1 = "+";end else 
-                 if ___conditional___ = 12--[ Minus ]-- then do
+                 if ___conditional___ = 12--[[ Minus ]] then do
                     operator$1 = "-";end else 
-                 if ___conditional___ = 13--[ Mult ]-- then do
+                 if ___conditional___ = 13--[[ Mult ]] then do
                     operator$1 = "*";end else 
-                 if ___conditional___ = 15--[ Div ]-- then do
+                 if ___conditional___ = 15--[[ Div ]] then do
                     operator$1 = "/";end else 
-                 if ___conditional___ = 16--[ Mod ]-- then do
+                 if ___conditional___ = 16--[[ Mod ]] then do
                     operator$1 = "%";end else 
-                 if ___conditional___ = 17--[ BitOr ]-- then do
+                 if ___conditional___ = 17--[[ BitOr ]] then do
                     operator$1 = "|";end else 
-                 if ___conditional___ = 14--[ Exp ]--
-                 or ___conditional___ = 18--[ Xor ]-- then do
+                 if ___conditional___ = 14--[[ Exp ]]
+                 or ___conditional___ = 18--[[ Xor ]] then do
                     operator$1 = "^";end else 
-                 if ___conditional___ = 19--[ BitAnd ]-- then do
+                 if ___conditional___ = 19--[[ BitAnd ]] then do
                     operator$1 = "&";end else 
-                 if ___conditional___ = 20--[ In ]-- then do
+                 if ___conditional___ = 20--[[ In ]] then do
                     operator$1 = "in";end else 
-                 if ___conditional___ = 21--[ Instanceof ]-- then do
+                 if ___conditional___ = 21--[[ Instanceof ]] then do
                     operator$1 = "instanceof";end else 
                  do end end end end end end end end end end end end end end end end end end end end end end
                 
               end
               return node("BinaryExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "operator",
                             string(operator$1)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "left",
                             expression(binary.left)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "right",
                             expression(binary.right)
                           ]
                         ]);end end end 
-           if ___conditional___ = 7--[ Assignment ]-- then do
+           if ___conditional___ = 7--[[ Assignment ]] then do
               assignment = match[0];
               match$5 = assignment.operator;
               operator$2;
               local ___conditional___=(match$5);
               do
-                 if ___conditional___ = 0--[ Assign ]-- then do
+                 if ___conditional___ = 0--[[ Assign ]] then do
                     operator$2 = "=";end else 
-                 if ___conditional___ = 1--[ PlusAssign ]-- then do
+                 if ___conditional___ = 1--[[ PlusAssign ]] then do
                     operator$2 = "+=";end else 
-                 if ___conditional___ = 2--[ MinusAssign ]-- then do
+                 if ___conditional___ = 2--[[ MinusAssign ]] then do
                     operator$2 = "-=";end else 
-                 if ___conditional___ = 3--[ MultAssign ]-- then do
+                 if ___conditional___ = 3--[[ MultAssign ]] then do
                     operator$2 = "*=";end else 
-                 if ___conditional___ = 4--[ ExpAssign ]-- then do
+                 if ___conditional___ = 4--[[ ExpAssign ]] then do
                     operator$2 = "**=";end else 
-                 if ___conditional___ = 5--[ DivAssign ]-- then do
+                 if ___conditional___ = 5--[[ DivAssign ]] then do
                     operator$2 = "/=";end else 
-                 if ___conditional___ = 6--[ ModAssign ]-- then do
+                 if ___conditional___ = 6--[[ ModAssign ]] then do
                     operator$2 = "%=";end else 
-                 if ___conditional___ = 7--[ LShiftAssign ]-- then do
+                 if ___conditional___ = 7--[[ LShiftAssign ]] then do
                     operator$2 = "<<=";end else 
-                 if ___conditional___ = 8--[ RShiftAssign ]-- then do
+                 if ___conditional___ = 8--[[ RShiftAssign ]] then do
                     operator$2 = ">>=";end else 
-                 if ___conditional___ = 9--[ RShift3Assign ]-- then do
+                 if ___conditional___ = 9--[[ RShift3Assign ]] then do
                     operator$2 = ">>>=";end else 
-                 if ___conditional___ = 10--[ BitOrAssign ]-- then do
+                 if ___conditional___ = 10--[[ BitOrAssign ]] then do
                     operator$2 = "|=";end else 
-                 if ___conditional___ = 11--[ BitXorAssign ]-- then do
+                 if ___conditional___ = 11--[[ BitXorAssign ]] then do
                     operator$2 = "^=";end else 
-                 if ___conditional___ = 12--[ BitAndAssign ]-- then do
+                 if ___conditional___ = 12--[[ BitAndAssign ]] then do
                     operator$2 = "&=";end else 
                  do end end end end end end end end end end end end end end
                 
               end
               return node("AssignmentExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "operator",
                             string(operator$2)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "left",
                             pattern(assignment.left)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "right",
                             expression(assignment.right)
                           ]
                         ]);end end end 
-           if ___conditional___ = 8--[ Update ]-- then do
+           if ___conditional___ = 8--[[ Update ]] then do
               update = match[0];
               match$6 = update.operator;
               operator$3 = match$6 and "--" or "++";
               return node("UpdateExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "operator",
                             string(operator$3)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "argument",
                             expression(update.argument)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "prefix",
                             bool(update.prefix)
                           ]
                         ]);end end end 
-           if ___conditional___ = 9--[ Logical ]-- then do
+           if ___conditional___ = 9--[[ Logical ]] then do
               logical = match[0];
               match$7 = logical.operator;
               operator$4 = match$7 and "and" or "or";
               return node("LogicalExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "operator",
                             string(operator$4)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "left",
                             expression(logical.left)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "right",
                             expression(logical.right)
                           ]
                         ]);end end end 
-           if ___conditional___ = 10--[ Conditional ]-- then do
+           if ___conditional___ = 10--[[ Conditional ]] then do
               conditional = match[0];
               return node("ConditionalExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "test",
                             expression(conditional.test)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "consequent",
                             expression(conditional.consequent)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "alternate",
                             expression(conditional.alternate)
                           ]
                         ]);end end end 
-           if ___conditional___ = 11--[ New ]-- then do
+           if ___conditional___ = 11--[[ New ]] then do
               _new = match[0];
               return node("NewExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "callee",
                             expression(_new.callee)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "arguments",
                             array_of_list(expression_or_spread, _new.arguments)
                           ]
                         ]);end end end 
-           if ___conditional___ = 12--[ Call ]-- then do
+           if ___conditional___ = 12--[[ Call ]] then do
               call = match[0];
               return node("CallExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "callee",
                             expression(call.callee)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "arguments",
                             array_of_list(expression_or_spread, call.arguments)
                           ]
                         ]);end end end 
-           if ___conditional___ = 13--[ Member ]-- then do
+           if ___conditional___ = 13--[[ Member ]] then do
               member = match[0];
               match$8 = member.property;
               property;
               property = match$8.tag and expression(match$8[0]) or identifier(match$8[0]);
               return node("MemberExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "object",
                             expression(member._object)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "property",
                             property
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "computed",
                             bool(member.computed)
                           ]
                         ]);end end end 
-           if ___conditional___ = 14--[ Yield ]-- then do
+           if ___conditional___ = 14--[[ Yield ]] then do
               $$yield = match[0];
               return node("YieldExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "argument",
                             option(expression, $$yield.argument)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "delegate",
                             bool($$yield.delegate)
                           ]
                         ]);end end end 
-           if ___conditional___ = 15--[ Comprehension ]-- then do
+           if ___conditional___ = 15--[[ Comprehension ]] then do
               comp = match[0];
               return node("ComprehensionExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "blocks",
                             array_of_list(comprehension_block, comp.blocks)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "filter",
                             option(expression, comp.filter)
                           ]
                         ]);end end end 
-           if ___conditional___ = 16--[ Generator ]-- then do
+           if ___conditional___ = 16--[[ Generator ]] then do
               gen = match[0];
               return node("GeneratorExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "blocks",
                             array_of_list(comprehension_block, gen.blocks)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "filter",
                             option(expression, gen.filter)
                           ]
                         ]);end end end 
-           if ___conditional___ = 17--[ Let ]-- then do
+           if ___conditional___ = 17--[[ Let ]] then do
               _let = match[0];
               return node("LetExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "head",
                             array_of_list(let_assignment, _let.head)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             expression(_let.body)
                           ]
                         ]);end end end 
-           if ___conditional___ = 18--[ Identifier ]-- then do
+           if ___conditional___ = 18--[[ Identifier ]] then do
               return identifier(match[0]);end end end 
-           if ___conditional___ = 19--[ Literal ]-- then do
-              return literal(--[ tuple ]--[
+           if ___conditional___ = 19--[[ Literal ]] then do
+              return literal(--[[ tuple ]][
                           loc,
                           match[0]
                         ]);end end end 
-           if ___conditional___ = 20--[ TemplateLiteral ]-- then do
-              return template_literal(--[ tuple ]--[
+           if ___conditional___ = 20--[[ TemplateLiteral ]] then do
+              return template_literal(--[[ tuple ]][
                           loc,
                           match[0]
                         ]);end end end 
-           if ___conditional___ = 21--[ TaggedTemplate ]-- then do
-              param$1 = --[ tuple ]--[
+           if ___conditional___ = 21--[[ TaggedTemplate ]] then do
+              param$1 = --[[ tuple ]][
                 loc,
                 match[0]
               ];
               tagged = param$1[1];
               return node("TaggedTemplateExpression", param$1[0], [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "tag",
                             expression(tagged.tag)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "quasi",
                             template_literal(tagged.quasi)
                           ]
                         ]);end end end 
-           if ___conditional___ = 22--[ JSXElement ]-- then do
-              return jsx_element(--[ tuple ]--[
+           if ___conditional___ = 22--[[ JSXElement ]] then do
+              return jsx_element(--[[ tuple ]][
                           loc,
                           match[0]
                         ]);end end end 
-           if ___conditional___ = 23--[ Class ]-- then do
-              param$2 = --[ tuple ]--[
+           if ___conditional___ = 23--[[ Class ]] then do
+              param$2 = --[[ tuple ]][
                 loc,
                 match[0]
               ];
               c = param$2[1];
               return node("ClassExpression", param$2[0], [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "id",
                             option(identifier, c.id)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             class_body(c.body)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "superClass",
                             option(expression, c.superClass)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "typeParameters",
                             option(type_parameter_declaration, c.typeParameters)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "superTypeParameters",
                             option(type_parameter_instantiation, c.superTypeParameters)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "implements",
                             array_of_list(class_implements, c.implements)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "decorators",
                             array_of_list(expression, c.classDecorators)
                           ]
                         ]);end end end 
-           if ___conditional___ = 24--[ TypeCast ]-- then do
+           if ___conditional___ = 24--[[ TypeCast ]] then do
               typecast = match[0];
               return node("TypeCastExpression", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "expression",
                             expression(typecast.expression)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "typeAnnotation",
                             type_annotation(typecast.typeAnnotation)
                           ]
@@ -14933,7 +14933,7 @@ function parse(content, options) do
     jsx_opening_attribute = function (param) do
       if (param.tag) then do
         param$1 = param[0];
-        return node("JSXSpreadAttribute", param$1[0], [--[ tuple ]--[
+        return node("JSXSpreadAttribute", param$1[0], [--[[ tuple ]][
                       "argument",
                       expression(param$1[1].argument)
                     ]]);
@@ -14944,11 +14944,11 @@ function parse(content, options) do
         name;
         name = match.tag and jsx_namespaced_name(match[0]) or jsx_identifier(match[0]);
         return node("JSXAttribute", param$2[0], [
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "name",
                       name
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "value",
                       option(jsx_attribute_value, attribute.value)
                     ]
@@ -14958,11 +14958,11 @@ function parse(content, options) do
     jsx_name = function (param) do
       local ___conditional___=(param.tag | 0);
       do
-         if ___conditional___ = 0--[ Identifier ]-- then do
+         if ___conditional___ = 0--[[ Identifier ]] then do
             return jsx_identifier(param[0]);end end end 
-         if ___conditional___ = 1--[ NamespacedName ]-- then do
+         if ___conditional___ = 1--[[ NamespacedName ]] then do
             return jsx_namespaced_name(param[0]);end end end 
-         if ___conditional___ = 2--[ MemberExpression ]-- then do
+         if ___conditional___ = 2--[[ MemberExpression ]] then do
             return jsx_member_expression(param[0]);end end end 
          do
         
@@ -14979,13 +14979,13 @@ function parse(content, options) do
       end else do
         local ___conditional___=(value.tag | 0);
         do
-           if ___conditional___ = 0--[ String ]-- then do
+           if ___conditional___ = 0--[[ String ]] then do
               value_ = string(value[0]);end else 
-           if ___conditional___ = 1--[ Boolean ]-- then do
+           if ___conditional___ = 1--[[ Boolean ]] then do
               value_ = bool(value[0]);end else 
-           if ___conditional___ = 2--[ Number ]-- then do
+           if ___conditional___ = 2--[[ Number ]] then do
               value_ = number$1(value[0]);end else 
-           if ___conditional___ = 3--[ RegExp ]-- then do
+           if ___conditional___ = 3--[[ RegExp ]] then do
               match = value[0];
               value_ = regexp$1(loc, match.pattern, match.flags);end else 
            do end end end end end
@@ -14994,30 +14994,30 @@ function parse(content, options) do
       end end 
       props;
       exit = 0;
-      if (typeof value == "number" or value.tag ~= --[ RegExp ]--3) then do
+      if (typeof value == "number" or value.tag ~= --[[ RegExp ]]3) then do
         exit = 1;
       end else do
         match$1 = value[0];
         regex = obj([
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "pattern",
                 string(match$1.pattern)
               ],
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "flags",
                 string(match$1.flags)
               ]
             ]);
         props = [
-          --[ tuple ]--[
+          --[[ tuple ]][
             "value",
             value_
           ],
-          --[ tuple ]--[
+          --[[ tuple ]][
             "raw",
             string(raw)
           ],
-          --[ tuple ]--[
+          --[[ tuple ]][
             "regex",
             regex
           ]
@@ -15025,11 +15025,11 @@ function parse(content, options) do
       end end 
       if (exit == 1) then do
         props = [
-          --[ tuple ]--[
+          --[[ tuple ]][
             "value",
             value_
           ],
-          --[ tuple ]--[
+          --[[ tuple ]][
             "raw",
             string(raw)
           ]
@@ -15042,7 +15042,7 @@ function parse(content, options) do
       match = param[1].expression;
       expression$1;
       expression$1 = match.tag and node("JSXEmptyExpression", match[0], []) or expression(match[0]);
-      return node("JSXExpressionContainer", param[0], [--[ tuple ]--[
+      return node("JSXExpressionContainer", param[0], [--[[ tuple ]][
                     "expression",
                     expression$1
                   ]]);
@@ -15050,18 +15050,18 @@ function parse(content, options) do
     jsx_namespaced_name = function (param) do
       namespaced_name = param[1];
       return node("JSXNamespacedName", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "namespace",
                     jsx_identifier(namespaced_name.namespace)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "name",
                     jsx_identifier(namespaced_name.name)
                   ]
                 ]);
     end end;
     jsx_identifier = function (param) do
-      return node("JSXIdentifier", param[0], [--[ tuple ]--[
+      return node("JSXIdentifier", param[0], [--[[ tuple ]][
                     "name",
                     string(param[1].name)
                   ]]);
@@ -15072,18 +15072,18 @@ function parse(content, options) do
       _object;
       _object = match.tag and jsx_member_expression(match[0]) or jsx_identifier(match[0]);
       return node("JSXMemberExpression", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "object",
                     _object
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "property",
                     jsx_identifier(member_expression.property)
                   ]
                 ]);
     end end;
     type_parameter_instantiation = function (param) do
-      return node("TypeParameterInstantiation", param[0], [--[ tuple ]--[
+      return node("TypeParameterInstantiation", param[0], [--[[ tuple ]][
                     "params",
                     array_of_list(_type, param[1].params)
                   ]]);
@@ -15094,11 +15094,11 @@ function parse(content, options) do
       qualification;
       qualification = match.tag and generic_type_qualified_identifier(match[0]) or identifier(match[0]);
       return node("QualifiedTypeIdentifier", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "qualification",
                     qualification
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "id",
                     identifier(q.id)
                   ]
@@ -15107,19 +15107,19 @@ function parse(content, options) do
     object_type_indexer = function (param) do
       indexer = param[1];
       return node("ObjectTypeIndexer", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "id",
                     identifier(indexer.id)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "key",
                     _type(indexer.key)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "value",
                     _type(indexer.value)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "static",
                     bool(indexer.static)
                   ]
@@ -15128,11 +15128,11 @@ function parse(content, options) do
     object_type_call_property = function (param) do
       callProperty = param[1];
       return node("ObjectTypeCallProperty", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "value",
                     function_type(callProperty.value)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "static",
                     bool(callProperty.static)
                   ]
@@ -15144,11 +15144,11 @@ function parse(content, options) do
       key;
       local ___conditional___=(match.tag | 0);
       do
-         if ___conditional___ = 0--[ Literal ]-- then do
+         if ___conditional___ = 0--[[ Literal ]] then do
             key = literal(match[0]);end else 
-         if ___conditional___ = 1--[ Identifier ]-- then do
+         if ___conditional___ = 1--[[ Identifier ]] then do
             key = identifier(match[0]);end else 
-         if ___conditional___ = 2--[ Computed ]-- then do
+         if ___conditional___ = 2--[[ Computed ]] then do
             throw [
                   Caml_builtin_exceptions.failure,
                   "There should not be computed object type property keys"
@@ -15157,19 +15157,19 @@ function parse(content, options) do
         
       end
       return node("ObjectTypeProperty", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "key",
                     key
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "value",
                     _type(prop.value)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "optional",
                     bool(prop.optional)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "static",
                     bool(prop.static)
                   ]
@@ -15180,47 +15180,47 @@ function parse(content, options) do
       loc = param[0];
       local ___conditional___=(match.tag | 0);
       do
-         if ___conditional___ = 0--[ Object ]-- then do
+         if ___conditional___ = 0--[[ Object ]] then do
             obj = match[0];
             return node("ObjectPattern", loc, [
-                        --[ tuple ]--[
+                        --[[ tuple ]][
                           "properties",
                           array_of_list(object_pattern_property, obj.properties)
                         ],
-                        --[ tuple ]--[
+                        --[[ tuple ]][
                           "typeAnnotation",
                           option(type_annotation, obj.typeAnnotation)
                         ]
                       ]);end end end 
-         if ___conditional___ = 1--[ Array ]-- then do
+         if ___conditional___ = 1--[[ Array ]] then do
             arr = match[0];
             return node("ArrayPattern", loc, [
-                        --[ tuple ]--[
+                        --[[ tuple ]][
                           "elements",
                           array_of_list((function (param) do
                                   return option(array_pattern_element, param);
                                 end end), arr.elements)
                         ],
-                        --[ tuple ]--[
+                        --[[ tuple ]][
                           "typeAnnotation",
                           option(type_annotation, arr.typeAnnotation)
                         ]
                       ]);end end end 
-         if ___conditional___ = 2--[ Assignment ]-- then do
+         if ___conditional___ = 2--[[ Assignment ]] then do
             match$1 = match[0];
             return node("AssignmentPattern", loc, [
-                        --[ tuple ]--[
+                        --[[ tuple ]][
                           "left",
                           pattern(match$1.left)
                         ],
-                        --[ tuple ]--[
+                        --[[ tuple ]][
                           "right",
                           expression(match$1.right)
                         ]
                       ]);end end end 
-         if ___conditional___ = 3--[ Identifier ]-- then do
+         if ___conditional___ = 3--[[ Identifier ]] then do
             return identifier(match[0]);end end end 
-         if ___conditional___ = 4--[ Expression ]-- then do
+         if ___conditional___ = 4--[[ Expression ]] then do
             return expression(match[0]);end end end 
          do
         
@@ -15229,18 +15229,18 @@ function parse(content, options) do
     class_implements = function (param) do
       $$implements = param[1];
       return node("ClassImplements", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "id",
                     identifier($$implements.id)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "typeParameters",
                     option(type_parameter_instantiation, $$implements.typeParameters)
                   ]
                 ]);
     end end;
     class_body = function (param) do
-      return node("ClassBody", param[0], [--[ tuple ]--[
+      return node("ClassBody", param[0], [--[[ tuple ]][
                     "body",
                     array_of_list(class_element, param[1].body)
                   ]]);
@@ -15248,15 +15248,15 @@ function parse(content, options) do
     $$catch = function (param) do
       c = param[1];
       return node("CatchClause", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "param",
                     pattern(c.param)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "guard",
                     option(expression, c.guard)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "body",
                     block(c.body)
                   ]
@@ -15265,19 +15265,19 @@ function parse(content, options) do
     declare_class = function (param) do
       d = param[1];
       return node("DeclareClass", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "id",
                     identifier(d.id)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "typeParameters",
                     option(type_parameter_declaration, d.typeParameters)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "body",
                     object_type(d.body)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "extends",
                     array_of_list(interface_extends, d.extends)
                   ]
@@ -15286,15 +15286,15 @@ function parse(content, options) do
     type_alias = function (param) do
       alias = param[1];
       return node("TypeAlias", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "id",
                     identifier(alias.id)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "typeParameters",
                     option(type_parameter_declaration, alias.typeParameters)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "right",
                     _type(alias.right)
                   ]
@@ -15302,18 +15302,18 @@ function parse(content, options) do
     end end;
     let_assignment = function (assignment) do
       return obj([
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "id",
                     pattern(assignment.id)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "init",
                     option(expression, assignment.init)
                   ]
                 ]);
     end end;
     declare_function = function (param) do
-      return node("DeclareFunction", param[0], [--[ tuple ]--[
+      return node("DeclareFunction", param[0], [--[[ tuple ]][
                     "id",
                     identifier(param[1].id)
                   ]]);
@@ -15324,21 +15324,21 @@ function parse(content, options) do
       kind;
       local ___conditional___=(match);
       do
-         if ___conditional___ = 0--[ Var ]-- then do
+         if ___conditional___ = 0--[[ Var ]] then do
             kind = "var";end else 
-         if ___conditional___ = 1--[ Let ]-- then do
+         if ___conditional___ = 1--[[ Let ]] then do
             kind = "let";end else 
-         if ___conditional___ = 2--[ Const ]-- then do
+         if ___conditional___ = 2--[[ Const ]] then do
             kind = "const";end else 
          do end end end end
         
       end
       return node("VariableDeclaration", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "declarations",
                     array_of_list(variable_declarator, $$var.declarations)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "kind",
                     string(kind)
                   ]
@@ -15348,7 +15348,7 @@ function parse(content, options) do
       match = param[1];
       loc = param[0];
       if (typeof match == "number") then do
-        if (match == --[ Empty ]--0) then do
+        if (match == --[[ Empty ]]0) then do
           return node("EmptyStatement", loc, []);
         end else do
           return node("DebuggerStatement", loc, []);
@@ -15356,142 +15356,142 @@ function parse(content, options) do
       end else do
         local ___conditional___=(match.tag | 0);
         do
-           if ___conditional___ = 0--[ Block ]-- then do
-              return block(--[ tuple ]--[
+           if ___conditional___ = 0--[[ Block ]] then do
+              return block(--[[ tuple ]][
                           loc,
                           match[0]
                         ]);end end end 
-           if ___conditional___ = 1--[ Expression ]-- then do
-              return node("ExpressionStatement", loc, [--[ tuple ]--[
+           if ___conditional___ = 1--[[ Expression ]] then do
+              return node("ExpressionStatement", loc, [--[[ tuple ]][
                             "expression",
                             expression(match[0].expression)
                           ]]);end end end 
-           if ___conditional___ = 2--[ If ]-- then do
+           if ___conditional___ = 2--[[ If ]] then do
               _if = match[0];
               return node("IfStatement", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "test",
                             expression(_if.test)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "consequent",
                             statement(_if.consequent)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "alternate",
                             option(statement, _if.alternate)
                           ]
                         ]);end end end 
-           if ___conditional___ = 3--[ Labeled ]-- then do
+           if ___conditional___ = 3--[[ Labeled ]] then do
               labeled = match[0];
               return node("LabeledStatement", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "label",
                             identifier(labeled.label)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             statement(labeled.body)
                           ]
                         ]);end end end 
-           if ___conditional___ = 4--[ Break ]-- then do
-              return node("BreakStatement", loc, [--[ tuple ]--[
+           if ___conditional___ = 4--[[ Break ]] then do
+              return node("BreakStatement", loc, [--[[ tuple ]][
                             "label",
                             option(identifier, match[0].label)
                           ]]);end end end 
-           if ___conditional___ = 5--[ Continue ]-- then do
-              return node("ContinueStatement", loc, [--[ tuple ]--[
+           if ___conditional___ = 5--[[ Continue ]] then do
+              return node("ContinueStatement", loc, [--[[ tuple ]][
                             "label",
                             option(identifier, match[0].label)
                           ]]);end end end 
-           if ___conditional___ = 6--[ With ]-- then do
+           if ___conditional___ = 6--[[ With ]] then do
               _with = match[0];
               return node("WithStatement", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "object",
                             expression(_with._object)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             statement(_with.body)
                           ]
                         ]);end end end 
-           if ___conditional___ = 7--[ TypeAlias ]-- then do
-              return type_alias(--[ tuple ]--[
+           if ___conditional___ = 7--[[ TypeAlias ]] then do
+              return type_alias(--[[ tuple ]][
                           loc,
                           match[0]
                         ]);end end end 
-           if ___conditional___ = 8--[ Switch ]-- then do
+           if ___conditional___ = 8--[[ Switch ]] then do
               $$switch = match[0];
               return node("SwitchStatement", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "discriminant",
                             expression($$switch.discriminant)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "cases",
                             array_of_list($$case, $$switch.cases)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "lexical",
                             bool($$switch.lexical)
                           ]
                         ]);end end end 
-           if ___conditional___ = 9--[ Return ]-- then do
-              return node("ReturnStatement", loc, [--[ tuple ]--[
+           if ___conditional___ = 9--[[ Return ]] then do
+              return node("ReturnStatement", loc, [--[[ tuple ]][
                             "argument",
                             option(expression, match[0].argument)
                           ]]);end end end 
-           if ___conditional___ = 10--[ Throw ]-- then do
-              return node("ThrowStatement", loc, [--[ tuple ]--[
+           if ___conditional___ = 10--[[ Throw ]] then do
+              return node("ThrowStatement", loc, [--[[ tuple ]][
                             "argument",
                             expression(match[0].argument)
                           ]]);end end end 
-           if ___conditional___ = 11--[ Try ]-- then do
+           if ___conditional___ = 11--[[ Try ]] then do
               _try = match[0];
               return node("TryStatement", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "block",
                             block(_try.block)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "handler",
                             option($$catch, _try.handler)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "guardedHandlers",
                             array_of_list($$catch, _try.guardedHandlers)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "finalizer",
                             option(block, _try.finalizer)
                           ]
                         ]);end end end 
-           if ___conditional___ = 12--[ While ]-- then do
+           if ___conditional___ = 12--[[ While ]] then do
               _while = match[0];
               return node("WhileStatement", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "test",
                             expression(_while.test)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             statement(_while.body)
                           ]
                         ]);end end end 
-           if ___conditional___ = 13--[ DoWhile ]-- then do
+           if ___conditional___ = 13--[[ DoWhile ]] then do
               dowhile = match[0];
               return node("DoWhileStatement", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             statement(dowhile.body)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "test",
                             expression(dowhile.test)
                           ]
                         ]);end end end 
-           if ___conditional___ = 14--[ For ]-- then do
+           if ___conditional___ = 14--[[ For ]] then do
               _for = match[0];
               init = function (param) do
                 if (param.tag) then do
@@ -15501,84 +15501,84 @@ function parse(content, options) do
                 end end 
               end end;
               return node("ForStatement", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "init",
                             option(init, _for.init)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "test",
                             option(expression, _for.test)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "update",
                             option(expression, _for.update)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             statement(_for.body)
                           ]
                         ]);end end end 
-           if ___conditional___ = 15--[ ForIn ]-- then do
+           if ___conditional___ = 15--[[ ForIn ]] then do
               forin = match[0];
               match$1 = forin.left;
               left;
               left = match$1.tag and expression(match$1[0]) or variable_declaration(match$1[0]);
               return node("ForInStatement", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "left",
                             left
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "right",
                             expression(forin.right)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             statement(forin.body)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "each",
                             bool(forin.each)
                           ]
                         ]);end end end 
-           if ___conditional___ = 16--[ ForOf ]-- then do
+           if ___conditional___ = 16--[[ ForOf ]] then do
               forof = match[0];
               match$2 = forof.left;
               left$1;
               left$1 = match$2.tag and expression(match$2[0]) or variable_declaration(match$2[0]);
               return node("ForOfStatement", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "left",
                             left$1
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "right",
                             expression(forof.right)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             statement(forof.body)
                           ]
                         ]);end end end 
-           if ___conditional___ = 17--[ Let ]-- then do
+           if ___conditional___ = 17--[[ Let ]] then do
               _let = match[0];
               return node("LetStatement", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "head",
                             array_of_list(let_assignment, _let.head)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             statement(_let.body)
                           ]
                         ]);end end end 
-           if ___conditional___ = 18--[ FunctionDeclaration ]-- then do
+           if ___conditional___ = 18--[[ FunctionDeclaration ]] then do
               fn = match[0];
               match$3 = fn.id;
-              match$4 = match$3 ~= undefined and --[ tuple ]--[
+              match$4 = match$3 ~= undefined and --[[ tuple ]][
                   "FunctionDeclaration",
                   identifier(match$3)
-                ] or --[ tuple ]--[
+                ] or --[[ tuple ]][
                   "FunctionExpression",
                   $$null
                 ];
@@ -15586,119 +15586,119 @@ function parse(content, options) do
               body;
               body = match$5.tag and expression(match$5[0]) or block(match$5[0]);
               return node(match$4[0], loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "id",
                             match$4[1]
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "params",
                             array_of_list(pattern, fn.params)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "defaults",
                             array_of_list((function (param) do
                                     return option(expression, param);
                                   end end), fn.defaults)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "rest",
                             option(identifier, fn.rest)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             body
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "async",
                             bool(fn.async)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "generator",
                             bool(fn.generator)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "expression",
                             bool(fn.expression)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "returnType",
                             option(type_annotation, fn.returnType)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "typeParameters",
                             option(type_parameter_declaration, fn.typeParameters)
                           ]
                         ]);end end end 
-           if ___conditional___ = 19--[ VariableDeclaration ]-- then do
-              return variable_declaration(--[ tuple ]--[
+           if ___conditional___ = 19--[[ VariableDeclaration ]] then do
+              return variable_declaration(--[[ tuple ]][
                           loc,
                           match[0]
                         ]);end end end 
-           if ___conditional___ = 20--[ ClassDeclaration ]-- then do
-              param$1 = --[ tuple ]--[
+           if ___conditional___ = 20--[[ ClassDeclaration ]] then do
+              param$1 = --[[ tuple ]][
                 loc,
                 match[0]
               ];
               c = param$1[1];
               match$6 = c.id;
-              match$7 = match$6 ~= undefined and --[ tuple ]--[
+              match$7 = match$6 ~= undefined and --[[ tuple ]][
                   "ClassDeclaration",
                   identifier(match$6)
-                ] or --[ tuple ]--[
+                ] or --[[ tuple ]][
                   "ClassExpression",
                   $$null
                 ];
               return node(match$7[0], param$1[0], [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "id",
                             match$7[1]
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             class_body(c.body)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "superClass",
                             option(expression, c.superClass)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "typeParameters",
                             option(type_parameter_declaration, c.typeParameters)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "superTypeParameters",
                             option(type_parameter_instantiation, c.superTypeParameters)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "implements",
                             array_of_list(class_implements, c.implements)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "decorators",
                             array_of_list(expression, c.classDecorators)
                           ]
                         ]);end end end 
-           if ___conditional___ = 21--[ InterfaceDeclaration ]-- then do
-              return interface_declaration(--[ tuple ]--[
+           if ___conditional___ = 21--[[ InterfaceDeclaration ]] then do
+              return interface_declaration(--[[ tuple ]][
                           loc,
                           match[0]
                         ]);end end end 
-           if ___conditional___ = 22--[ DeclareVariable ]-- then do
-              return declare_variable(--[ tuple ]--[
+           if ___conditional___ = 22--[[ DeclareVariable ]] then do
+              return declare_variable(--[[ tuple ]][
                           loc,
                           match[0]
                         ]);end end end 
-           if ___conditional___ = 23--[ DeclareFunction ]-- then do
-              return declare_function(--[ tuple ]--[
+           if ___conditional___ = 23--[[ DeclareFunction ]] then do
+              return declare_function(--[[ tuple ]][
                           loc,
                           match[0]
                         ]);end end end 
-           if ___conditional___ = 24--[ DeclareClass ]-- then do
-              return declare_class(--[ tuple ]--[
+           if ___conditional___ = 24--[[ DeclareClass ]] then do
+              return declare_class(--[[ tuple ]][
                           loc,
                           match[0]
                         ]);end end end 
-           if ___conditional___ = 25--[ DeclareModule ]-- then do
+           if ___conditional___ = 25--[[ DeclareModule ]] then do
               m = match[0];
               match$8 = m.id;
               id;
@@ -15707,25 +15707,25 @@ function parse(content, options) do
               tmp;
               tmp = match$9.tag and string("ES") or string("CommonJS");
               return node("DeclareModule", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "id",
                             id
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "body",
                             block(m.body)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "kind",
                             tmp
                           ]
                         ]);end end end 
-           if ___conditional___ = 26--[ DeclareModuleExports ]-- then do
-              return node("DeclareModuleExports", loc, [--[ tuple ]--[
+           if ___conditional___ = 26--[[ DeclareModuleExports ]] then do
+              return node("DeclareModuleExports", loc, [--[[ tuple ]][
                             "typeAnnotation",
                             type_annotation(match[0])
                           ]]);end end end 
-           if ___conditional___ = 27--[ DeclareExportDeclaration ]-- then do
+           if ___conditional___ = 27--[[ DeclareExportDeclaration ]] then do
               $$export = match[0];
               match$10 = $$export.declaration;
               declaration;
@@ -15733,17 +15733,17 @@ function parse(content, options) do
                 match$11 = match$10;
                 local ___conditional___=(match$11.tag | 0);
                 do
-                   if ___conditional___ = 0--[ Variable ]-- then do
+                   if ___conditional___ = 0--[[ Variable ]] then do
                       declaration = declare_variable(match$11[0]);end else 
-                   if ___conditional___ = 1--[ Function ]-- then do
+                   if ___conditional___ = 1--[[ Function ]] then do
                       declaration = declare_function(match$11[0]);end else 
-                   if ___conditional___ = 2--[ Class ]-- then do
+                   if ___conditional___ = 2--[[ Class ]] then do
                       declaration = declare_class(match$11[0]);end else 
-                   if ___conditional___ = 3--[ DefaultType ]-- then do
+                   if ___conditional___ = 3--[[ DefaultType ]] then do
                       declaration = _type(match$11[0]);end else 
-                   if ___conditional___ = 4--[ NamedType ]-- then do
+                   if ___conditional___ = 4--[[ NamedType ]] then do
                       declaration = type_alias(match$11[0]);end else 
-                   if ___conditional___ = 5--[ Interface ]-- then do
+                   if ___conditional___ = 5--[[ Interface ]] then do
                       declaration = interface_declaration(match$11[0]);end else 
                    do end end end end end end end
                   
@@ -15752,24 +15752,24 @@ function parse(content, options) do
                 declaration = $$null;
               end end 
               return node("DeclareExportDeclaration", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "default",
                             bool($$export.default)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "declaration",
                             declaration
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "specifiers",
                             export_specifiers($$export.specifiers)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "source",
                             option(literal, $$export.source)
                           ]
                         ]);end end end 
-           if ___conditional___ = 28--[ ExportDeclaration ]-- then do
+           if ___conditional___ = 28--[[ ExportDeclaration ]] then do
               $$export$1 = match[0];
               match$12 = $$export$1.declaration;
               declaration$1;
@@ -15780,56 +15780,56 @@ function parse(content, options) do
                 declaration$1 = $$null;
               end end 
               return node("ExportDeclaration", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "default",
                             bool($$export$1.default)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "declaration",
                             declaration$1
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "specifiers",
                             export_specifiers($$export$1.specifiers)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "source",
                             option(literal, $$export$1.source)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "exportKind",
                             string($$export$1.exportKind and "value" or "type")
                           ]
                         ]);end end end 
-           if ___conditional___ = 29--[ ImportDeclaration ]-- then do
+           if ___conditional___ = 29--[[ ImportDeclaration ]] then do
               $$import = match[0];
               specifiers = List.map((function (param) do
                       local ___conditional___=(param.tag | 0);
                       do
-                         if ___conditional___ = 0--[ ImportNamedSpecifier ]-- then do
+                         if ___conditional___ = 0--[[ ImportNamedSpecifier ]] then do
                             match = param[0];
                             local_id = match.local;
                             remote_id = match.remote;
                             span_loc = local_id ~= undefined and btwn(remote_id[0], local_id[0]) or remote_id[0];
                             return node("ImportSpecifier", span_loc, [
-                                        --[ tuple ]--[
+                                        --[[ tuple ]][
                                           "id",
                                           identifier(remote_id)
                                         ],
-                                        --[ tuple ]--[
+                                        --[[ tuple ]][
                                           "name",
                                           option(identifier, local_id)
                                         ]
                                       ]);end end end 
-                         if ___conditional___ = 1--[ ImportDefaultSpecifier ]-- then do
+                         if ___conditional___ = 1--[[ ImportDefaultSpecifier ]] then do
                             id = param[0];
-                            return node("ImportDefaultSpecifier", id[0], [--[ tuple ]--[
+                            return node("ImportDefaultSpecifier", id[0], [--[[ tuple ]][
                                           "id",
                                           identifier(id)
                                         ]]);end end end 
-                         if ___conditional___ = 2--[ ImportNamespaceSpecifier ]-- then do
+                         if ___conditional___ = 2--[[ ImportNamespaceSpecifier ]] then do
                             param$1 = param[0];
-                            return node("ImportNamespaceSpecifier", param$1[0], [--[ tuple ]--[
+                            return node("ImportNamespaceSpecifier", param$1[0], [--[[ tuple ]][
                                           "id",
                                           identifier(param$1[1])
                                         ]]);end end end 
@@ -15841,25 +15841,25 @@ function parse(content, options) do
               import_kind;
               local ___conditional___=(match$14);
               do
-                 if ___conditional___ = 0--[ ImportType ]-- then do
+                 if ___conditional___ = 0--[[ ImportType ]] then do
                     import_kind = "type";end else 
-                 if ___conditional___ = 1--[ ImportTypeof ]-- then do
+                 if ___conditional___ = 1--[[ ImportTypeof ]] then do
                     import_kind = "typeof";end else 
-                 if ___conditional___ = 2--[ ImportValue ]-- then do
+                 if ___conditional___ = 2--[[ ImportValue ]] then do
                     import_kind = "value";end else 
                  do end end end end
                 
               end
               return node("ImportDeclaration", loc, [
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "specifiers",
                             array($$Array.of_list(specifiers))
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "source",
                             literal($$import.source)
                           ],
-                          --[ tuple ]--[
+                          --[[ tuple ]][
                             "importKind",
                             string(import_kind)
                           ]
@@ -15872,18 +15872,18 @@ function parse(content, options) do
     $$case = function (param) do
       c = param[1];
       return node("SwitchCase", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "test",
                     option(expression, c.test)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "consequent",
                     array_of_list(statement, c.consequent)
                   ]
                 ]);
     end end;
     declare_variable = function (param) do
-      return node("DeclareVariable", param[0], [--[ tuple ]--[
+      return node("DeclareVariable", param[0], [--[[ tuple ]][
                     "id",
                     identifier(param[1].id)
                   ]]);
@@ -15891,19 +15891,19 @@ function parse(content, options) do
     interface_declaration = function (param) do
       i = param[1];
       return node("InterfaceDeclaration", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "id",
                     identifier(i.id)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "typeParameters",
                     option(type_parameter_declaration, i.typeParameters)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "body",
                     object_type(i.body)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "extends",
                     array_of_list(interface_extends, i.extends)
                   ]
@@ -15913,7 +15913,7 @@ function parse(content, options) do
       if (param ~= undefined) then do
         match = param;
         if (match.tag) then do
-          return array([node("ExportBatchSpecifier", match[0], [--[ tuple ]--[
+          return array([node("ExportBatchSpecifier", match[0], [--[[ tuple ]][
                               "name",
                               option(identifier, match[1])
                             ]])]);
@@ -15925,7 +15925,7 @@ function parse(content, options) do
       end end 
     end end;
     block = function (param) do
-      return node("BlockStatement", param[0], [--[ tuple ]--[
+      return node("BlockStatement", param[0], [--[[ tuple ]][
                     "body",
                     array_of_list(statement, param[1].body)
                   ]]);
@@ -15933,15 +15933,15 @@ function parse(content, options) do
     jsx_element = function (param) do
       element = param[1];
       return node("JSXElement", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "openingElement",
                     jsx_opening(element.openingElement)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "closingElement",
                     option(jsx_closing, element.closingElement)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "children",
                     array_of_list(jsx_child, element.children)
                   ]
@@ -15949,12 +15949,12 @@ function parse(content, options) do
     end end;
     jsx_attribute_value = function (param) do
       if (param.tag) then do
-        return jsx_expression_container(--[ tuple ]--[
+        return jsx_expression_container(--[[ tuple ]][
                     param[0],
                     param[1]
                   ]);
       end else do
-        return literal(--[ tuple ]--[
+        return literal(--[[ tuple ]][
                     param[0],
                     param[1]
                   ]);
@@ -15963,15 +15963,15 @@ function parse(content, options) do
     function_type_param = function (param) do
       param$1 = param[1];
       return node("FunctionTypeParam", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "name",
                     identifier(param$1.name)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "typeAnnotation",
                     _type(param$1.typeAnnotation)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "optional",
                     bool(param$1.optional)
                   ]
@@ -15980,11 +15980,11 @@ function parse(content, options) do
     variable_declarator = function (param) do
       declarator = param[1];
       return node("VariableDeclarator", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "id",
                     pattern(declarator.id)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "init",
                     option(expression, declarator.init)
                   ]
@@ -15993,7 +15993,7 @@ function parse(content, options) do
     array_pattern_element = function (param) do
       if (param.tag) then do
         match = param[0];
-        return node("SpreadElementPattern", match[0], [--[ tuple ]--[
+        return node("SpreadElementPattern", match[0], [--[[ tuple ]][
                       "argument",
                       pattern(match[1].argument)
                     ]]);
@@ -16004,7 +16004,7 @@ function parse(content, options) do
     object_pattern_property = function (param) do
       if (param.tag) then do
         match = param[0];
-        return node("SpreadPropertyPattern", match[0], [--[ tuple ]--[
+        return node("SpreadPropertyPattern", match[0], [--[[ tuple ]][
                       "argument",
                       pattern(match[1].argument)
                     ]]);
@@ -16015,18 +16015,18 @@ function parse(content, options) do
         match$3;
         local ___conditional___=(match$2.tag | 0);
         do
-           if ___conditional___ = 0--[ Literal ]-- then do
-              match$3 = --[ tuple ]--[
+           if ___conditional___ = 0--[[ Literal ]] then do
+              match$3 = --[[ tuple ]][
                 literal(match$2[0]),
                 false
               ];end else 
-           if ___conditional___ = 1--[ Identifier ]-- then do
-              match$3 = --[ tuple ]--[
+           if ___conditional___ = 1--[[ Identifier ]] then do
+              match$3 = --[[ tuple ]][
                 identifier(match$2[0]),
                 false
               ];end else 
-           if ___conditional___ = 2--[ Computed ]-- then do
-              match$3 = --[ tuple ]--[
+           if ___conditional___ = 2--[[ Computed ]] then do
+              match$3 = --[[ tuple ]][
                 expression(match$2[0]),
                 true
               ];end else 
@@ -16034,19 +16034,19 @@ function parse(content, options) do
           
         end
         return node("PropertyPattern", match$1[0], [
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "key",
                       match$3[0]
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "pattern",
                       pattern(prop.pattern)
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "computed",
                       bool(match$3[1])
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "shorthand",
                       bool(prop.shorthand)
                     ]
@@ -16061,18 +16061,18 @@ function parse(content, options) do
         match$1;
         local ___conditional___=(match.tag | 0);
         do
-           if ___conditional___ = 0--[ Literal ]-- then do
-              match$1 = --[ tuple ]--[
+           if ___conditional___ = 0--[[ Literal ]] then do
+              match$1 = --[[ tuple ]][
                 literal(match[0]),
                 false
               ];end else 
-           if ___conditional___ = 1--[ Identifier ]-- then do
-              match$1 = --[ tuple ]--[
+           if ___conditional___ = 1--[[ Identifier ]] then do
+              match$1 = --[[ tuple ]][
                 identifier(match[0]),
                 false
               ];end else 
-           if ___conditional___ = 2--[ Computed ]-- then do
-              match$1 = --[ tuple ]--[
+           if ___conditional___ = 2--[[ Computed ]] then do
+              match$1 = --[[ tuple ]][
                 expression(match[0]),
                 true
               ];end else 
@@ -16080,23 +16080,23 @@ function parse(content, options) do
           
         end
         return node("ClassProperty", param$1[0], [
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "key",
                       match$1[0]
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "value",
                       option(expression, prop.value)
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "typeAnnotation",
                       option(type_annotation, prop.typeAnnotation)
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "computed",
                       bool(match$1[1])
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "static",
                       bool(prop.static)
                     ]
@@ -16108,18 +16108,18 @@ function parse(content, options) do
         match$2;
         local ___conditional___=(key.tag | 0);
         do
-           if ___conditional___ = 0--[ Literal ]-- then do
-              match$2 = --[ tuple ]--[
+           if ___conditional___ = 0--[[ Literal ]] then do
+              match$2 = --[[ tuple ]][
                 literal(key[0]),
                 false
               ];end else 
-           if ___conditional___ = 1--[ Identifier ]-- then do
-              match$2 = --[ tuple ]--[
+           if ___conditional___ = 1--[[ Identifier ]] then do
+              match$2 = --[[ tuple ]][
                 identifier(key[0]),
                 false
               ];end else 
-           if ___conditional___ = 2--[ Computed ]-- then do
-              match$2 = --[ tuple ]--[
+           if ___conditional___ = 2--[[ Computed ]] then do
+              match$2 = --[[ tuple ]][
                 expression(key[0]),
                 true
               ];end else 
@@ -16129,39 +16129,39 @@ function parse(content, options) do
         kind;
         local ___conditional___=(method_.kind);
         do
-           if ___conditional___ = 0--[ Constructor ]-- then do
+           if ___conditional___ = 0--[[ Constructor ]] then do
               kind = "constructor";end else 
-           if ___conditional___ = 1--[ Method ]-- then do
+           if ___conditional___ = 1--[[ Method ]] then do
               kind = "method";end else 
-           if ___conditional___ = 2--[ Get ]-- then do
+           if ___conditional___ = 2--[[ Get ]] then do
               kind = "get";end else 
-           if ___conditional___ = 3--[ Set ]-- then do
+           if ___conditional___ = 3--[[ Set ]] then do
               kind = "set";end else 
            do end end end end end
           
         end
         return node("MethodDefinition", param$2[0], [
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "key",
                       match$2[0]
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "value",
                       function_expression(method_.value)
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "kind",
                       string(kind)
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "static",
                       bool(method_.static)
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "computed",
                       bool(match$2[1])
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "decorators",
                       array_of_list(expression, method_.decorators)
                     ]
@@ -16171,14 +16171,14 @@ function parse(content, options) do
     comment = function (param) do
       c = param[1];
       match;
-      match = c.tag and --[ tuple ]--[
+      match = c.tag and --[[ tuple ]][
           "Line",
           c[0]
-        ] or --[ tuple ]--[
+        ] or --[[ tuple ]][
           "Block",
           c[0]
         ];
-      return node(match[0], param[0], [--[ tuple ]--[
+      return node(match[0], param[0], [--[[ tuple ]][
                     "value",
                     string(match[1])
                   ]]);
@@ -16188,28 +16188,28 @@ function parse(content, options) do
       loc = param[0];
       local ___conditional___=(match.tag | 0);
       do
-         if ___conditional___ = 0--[ Element ]-- then do
-            return jsx_element(--[ tuple ]--[
+         if ___conditional___ = 0--[[ Element ]] then do
+            return jsx_element(--[[ tuple ]][
                         loc,
                         match[0]
                       ]);end end end 
-         if ___conditional___ = 1--[ ExpressionContainer ]-- then do
-            return jsx_expression_container(--[ tuple ]--[
+         if ___conditional___ = 1--[[ ExpressionContainer ]] then do
+            return jsx_expression_container(--[[ tuple ]][
                         loc,
                         match[0]
                       ]);end end end 
-         if ___conditional___ = 2--[ Text ]-- then do
-            param$1 = --[ tuple ]--[
+         if ___conditional___ = 2--[[ Text ]] then do
+            param$1 = --[[ tuple ]][
               loc,
               match[0]
             ];
             text = param$1[1];
             return node("JSXText", param$1[0], [
-                        --[ tuple ]--[
+                        --[[ tuple ]][
                           "value",
                           string(text.value)
                         ],
-                        --[ tuple ]--[
+                        --[[ tuple ]][
                           "raw",
                           string(text.raw)
                         ]
@@ -16221,22 +16221,22 @@ function parse(content, options) do
     jsx_opening = function (param) do
       opening = param[1];
       return node("JSXOpeningElement", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "name",
                     jsx_name(opening.name)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "attributes",
                     array_of_list(jsx_opening_attribute, opening.attributes)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "selfClosing",
                     bool(opening.selfClosing)
                   ]
                 ]);
     end end;
     jsx_closing = function (param) do
-      return node("JSXClosingElement", param[0], [--[ tuple ]--[
+      return node("JSXClosingElement", param[0], [--[[ tuple ]][
                     "name",
                     jsx_name(param[1].name)
                   ]]);
@@ -16244,21 +16244,21 @@ function parse(content, options) do
     template_element = function (param) do
       element = param[1];
       value = obj([
-            --[ tuple ]--[
+            --[[ tuple ]][
               "raw",
               string(element.value.raw)
             ],
-            --[ tuple ]--[
+            --[[ tuple ]][
               "cooked",
               string(element.value.cooked)
             ]
           ]);
       return node("TemplateElement", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "value",
                     value
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "tail",
                     bool(element.tail)
                   ]
@@ -16267,11 +16267,11 @@ function parse(content, options) do
     export_specifier = function (param) do
       specifier = param[1];
       return node("ExportSpecifier", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "id",
                     identifier(specifier.id)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "name",
                     option(identifier, specifier.name)
                   ]
@@ -16287,19 +16287,19 @@ function parse(content, options) do
         end end 
       end end;
       return node("TypeParameter", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "name",
                     string(tp.name)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "bound",
                     option(type_annotation, tp.bound)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "variance",
                     option(variance, tp.variance)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "default",
                     option(_type, tp.default)
                   ]
@@ -16311,45 +16311,45 @@ function parse(content, options) do
       body;
       body = match.tag and expression(match[0]) or block(match[0]);
       return node("FunctionExpression", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "id",
                     option(identifier, _function.id)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "params",
                     array_of_list(pattern, _function.params)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "defaults",
                     array_of_list((function (param) do
                             return option(expression, param);
                           end end), _function.defaults)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "rest",
                     option(identifier, _function.rest)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "body",
                     body
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "async",
                     bool(_function.async)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "generator",
                     bool(_function.generator)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "expression",
                     bool(_function.expression)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "returnType",
                     option(type_annotation, _function.returnType)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "typeParameters",
                     option(type_parameter_declaration, _function.typeParameters)
                   ]
@@ -16358,7 +16358,7 @@ function parse(content, options) do
     expression_or_spread = function (param) do
       if (param.tag) then do
         match = param[0];
-        return node("SpreadElement", match[0], [--[ tuple ]--[
+        return node("SpreadElement", match[0], [--[[ tuple ]][
                       "argument",
                       expression(match[1].argument)
                     ]]);
@@ -16369,7 +16369,7 @@ function parse(content, options) do
     object_property = function (param) do
       if (param.tag) then do
         match = param[0];
-        return node("SpreadProperty", match[0], [--[ tuple ]--[
+        return node("SpreadProperty", match[0], [--[[ tuple ]][
                       "argument",
                       expression(match[1].argument)
                     ]]);
@@ -16380,18 +16380,18 @@ function parse(content, options) do
         match$3;
         local ___conditional___=(match$2.tag | 0);
         do
-           if ___conditional___ = 0--[ Literal ]-- then do
-              match$3 = --[ tuple ]--[
+           if ___conditional___ = 0--[[ Literal ]] then do
+              match$3 = --[[ tuple ]][
                 literal(match$2[0]),
                 false
               ];end else 
-           if ___conditional___ = 1--[ Identifier ]-- then do
-              match$3 = --[ tuple ]--[
+           if ___conditional___ = 1--[[ Identifier ]] then do
+              match$3 = --[[ tuple ]][
                 identifier(match$2[0]),
                 false
               ];end else 
-           if ___conditional___ = 2--[ Computed ]-- then do
-              match$3 = --[ tuple ]--[
+           if ___conditional___ = 2--[[ Computed ]] then do
+              match$3 = --[[ tuple ]][
                 expression(match$2[0]),
                 true
               ];end else 
@@ -16402,37 +16402,37 @@ function parse(content, options) do
         kind;
         local ___conditional___=(match$4);
         do
-           if ___conditional___ = 0--[ Init ]-- then do
+           if ___conditional___ = 0--[[ Init ]] then do
               kind = "init";end else 
-           if ___conditional___ = 1--[ Get ]-- then do
+           if ___conditional___ = 1--[[ Get ]] then do
               kind = "get";end else 
-           if ___conditional___ = 2--[ Set ]-- then do
+           if ___conditional___ = 2--[[ Set ]] then do
               kind = "set";end else 
            do end end end end
           
         end
         return node("Property", match$1[0], [
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "key",
                       match$3[0]
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "value",
                       expression(prop.value)
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "kind",
                       string(kind)
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "method",
                       bool(prop._method)
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "shorthand",
                       bool(prop.shorthand)
                     ],
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "computed",
                       bool(match$3[1])
                     ]
@@ -16442,15 +16442,15 @@ function parse(content, options) do
     comprehension_block = function (param) do
       b = param[1];
       return node("ComprehensionBlock", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "left",
                     pattern(b.left)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "right",
                     expression(b.right)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "each",
                     bool(b.each)
                   ]
@@ -16459,19 +16459,19 @@ function parse(content, options) do
     function_type = function (param) do
       fn = param[1];
       return node("FunctionTypeAnnotation", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "params",
                     array_of_list(function_type_param, fn.params)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "returnType",
                     _type(fn.returnType)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "rest",
                     option(function_type_param, fn.rest)
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "typeParameters",
                     option(type_parameter_declaration, fn.typeParameters)
                   ]
@@ -16479,11 +16479,11 @@ function parse(content, options) do
     end end;
     program$2 = function (param) do
       return node("Program", param[0], [
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "body",
                     array_of_list(statement, param[1])
                   ],
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "comments",
                     array_of_list(comment, param[2])
                   ]
@@ -16508,7 +16508,7 @@ function parse(content, options) do
 end end
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -16517,11 +16517,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -16529,7 +16529,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 match = typeof __dirname == "undefined" and undefined or __dirname;
@@ -16537,14 +16537,14 @@ match = typeof __dirname == "undefined" and undefined or __dirname;
 if (match ~= undefined) then do
   f = Path.join(match, "flow_parser_sample.js");
   v = parse(Fs.readFileSync(f, "utf8"), undefined);
-  eq("File \"runParser.ml\", line 14, characters 7-14", --[ tuple ]--[
+  eq("File \"runParser.ml\", line 14, characters 7-14", --[[ tuple ]][
         0,
         2842
       ], v.range);
 end else do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "runParser.ml",
           15,
           12
@@ -16554,4 +16554,4 @@ end end
 
 Mt.from_pair_suites("Flow_parser_reg_test", suites.contents);
 
---[ Literal Not a pure module ]--
+--[[ Literal Not a pure module ]]

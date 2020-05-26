@@ -16,7 +16,7 @@ end end
 function clear(q) do
   q.length = 0;
   q.tail = undefined;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function add(x, q) do
@@ -26,7 +26,7 @@ function add(x, q) do
     cell.next = cell;
     q.length = 1;
     q.tail = cell;
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end else do
     tail = q.tail;
     head = tail.next;
@@ -37,7 +37,7 @@ function add(x, q) do
     q.length = q.length + 1 | 0;
     tail.next = cell$1;
     q.tail = cell$1;
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end end 
 end end
 
@@ -168,7 +168,7 @@ function transfer(q1, q2) do
      end 
     q2.length = q2.length + length1 | 0;
     q2.tail = tail1;
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end else do
     return 0;
   end end 
@@ -195,4 +195,4 @@ exports.length = length;
 exports.iter = iter;
 exports.fold = fold;
 exports.transfer = transfer;
---[ No side effect ]--
+--[[ No side effect ]]

@@ -18,7 +18,7 @@ function Test(Queue) do
     return v;
   end end;
   queue_1 = function (x) do
-    q = Curry._1(Queue.create, --[ () ]--0);
+    q = Curry._1(Queue.create, --[[ () ]]0);
     $$Array.iter((function (x) do
             return Curry._2(Queue.add, x, q);
           end end), x);
@@ -42,8 +42,8 @@ end end
 function queue_1(x) do
   q = do
     length: 0,
-    first: --[ Nil ]--0,
-    last: --[ Nil ]--0
+    first: --[[ Nil ]]0,
+    last: --[[ Nil ]]0
   end;
   $$Array.iter((function (x) do
           return Queue.add(x, q);
@@ -81,7 +81,7 @@ T2 = do
   queue_1: queue_1$1
 end;
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "File \"queue_test.ml\", line 26, characters 2-9",
   (function (param) do
       x = [
@@ -90,15 +90,15 @@ suites_000 = --[ tuple ]--[
         5,
         2
       ];
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 x,
                 queue_1(x)
               ]);
     end end)
 ];
 
-suites_001 = --[ :: ]--[
-  --[ tuple ]--[
+suites_001 = --[[ :: ]][
+  --[[ tuple ]][
     "File \"queue_test.ml\", line 29, characters 2-9",
     (function (param) do
         x = [
@@ -107,16 +107,16 @@ suites_001 = --[ :: ]--[
           5,
           2
         ];
-        return --[ Eq ]--Block.__(0, [
+        return --[[ Eq ]]Block.__(0, [
                   x,
                   queue_1$1(x)
                 ]);
       end end)
   ],
-  --[ [] ]--0
+  --[[ [] ]]0
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
   suites_001
 ];
@@ -127,4 +127,4 @@ exports.Test = Test;
 exports.T1 = T1;
 exports.T2 = T2;
 exports.suites = suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

@@ -15,12 +15,12 @@ function test(param) do
       acc = _acc;
       n = _n;
       if (n == 0) then do
-        return Curry._1(acc, --[ () ]--0);
+        return Curry._1(acc, --[[ () ]]0);
       end else do
         _acc = (function(n,acc)do
         return function (param) do
           v.contents = v.contents + n | 0;
-          return Curry._1(acc, --[ () ]--0);
+          return Curry._1(acc, --[[ () ]]0);
         end end
         end(n,acc));
         _n = n - 1 | 0;
@@ -29,7 +29,7 @@ function test(param) do
     end;
   end end;
   f(10, (function (param) do
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end));
   return v.contents;
 end end
@@ -50,7 +50,7 @@ function test_closure(param) do
   end
   $$Array.iter((function (i) do
           v.contents = v.contents + Curry._1(i, 0) | 0;
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end), arr);
   return v.contents;
 end end
@@ -72,42 +72,42 @@ function test_closure2(param) do
   end
   $$Array.iter((function (i) do
           v.contents = v.contents + Curry._1(i, 0) | 0;
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end), arr);
   return v.contents;
 end end
 
-Mt.from_pair_suites("Cps_test", --[ :: ]--[
-      --[ tuple ]--[
+Mt.from_pair_suites("Cps_test", --[[ :: ]][
+      --[[ tuple ]][
         "cps_test_sum",
         (function (param) do
-            return --[ Eq ]--Block.__(0, [
+            return --[[ Eq ]]Block.__(0, [
                       55,
-                      test(--[ () ]--0)
+                      test(--[[ () ]]0)
                     ]);
           end end)
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "cps_test_closure",
           (function (param) do
-              return --[ Eq ]--Block.__(0, [
+              return --[[ Eq ]]Block.__(0, [
                         15,
-                        test_closure(--[ () ]--0)
+                        test_closure(--[[ () ]]0)
                       ]);
             end end)
         ],
-        --[ :: ]--[
-          --[ tuple ]--[
+        --[[ :: ]][
+          --[[ tuple ]][
             "cps_test_closure2",
             (function (param) do
-                return --[ Eq ]--Block.__(0, [
+                return --[[ Eq ]]Block.__(0, [
                           30,
-                          test_closure2(--[ () ]--0)
+                          test_closure2(--[[ () ]]0)
                         ]);
               end end)
           ],
-          --[ [] ]--0
+          --[[ [] ]]0
         ]
       ]
     ]);
@@ -115,4 +115,4 @@ Mt.from_pair_suites("Cps_test", --[ :: ]--[
 exports.test = test;
 exports.test_closure = test_closure;
 exports.test_closure2 = test_closure2;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

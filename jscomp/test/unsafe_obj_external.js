@@ -15,4 +15,4 @@ u = v.x() + v.say(3) | 0;
 
 exports.v = v;
 exports.u = u;
---[ v Not a pure module ]--
+--[[ v Not a pure module ]]

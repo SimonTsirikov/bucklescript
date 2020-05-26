@@ -6,23 +6,23 @@ Block = require("../../lib/js/block.js");
 Genlex = require("../../lib/js/genlex.js");
 Stream = require("../../lib/js/stream.js");
 
-lexer = Genlex.make_lexer(--[ :: ]--[
+lexer = Genlex.make_lexer(--[[ :: ]][
       "+",
-      --[ :: ]--[
+      --[[ :: ]][
         "-",
-        --[ :: ]--[
+        --[[ :: ]][
           "*",
-          --[ :: ]--[
+          --[[ :: ]][
             "/",
-            --[ :: ]--[
+            --[[ :: ]][
               "let",
-              --[ :: ]--[
+              --[[ :: ]][
                 "=",
-                --[ :: ]--[
+                --[[ :: ]][
                   "(",
-                  --[ :: ]--[
+                  --[[ :: ]][
                     ")",
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ]
               ]
@@ -33,7 +33,7 @@ lexer = Genlex.make_lexer(--[ :: ]--[
     ]);
 
 function to_list(s) do
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   while(true) do
     acc = _acc;
     v;
@@ -47,7 +47,7 @@ function to_list(s) do
         throw exn;
       end end 
     end
-    _acc = --[ :: ]--[
+    _acc = --[[ :: ]][
       v,
       acc
     ];
@@ -55,25 +55,25 @@ function to_list(s) do
   end;
 end end
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "lexer_stream_genlex",
   (function (param) do
-      return --[ Eq ]--Block.__(0, [
-                --[ :: ]--[
-                  --[ Int ]--Block.__(2, [3]),
-                  --[ :: ]--[
-                    --[ Kwd ]--Block.__(0, ["("]),
-                    --[ :: ]--[
-                      --[ Int ]--Block.__(2, [3]),
-                      --[ :: ]--[
-                        --[ Kwd ]--Block.__(0, ["+"]),
-                        --[ :: ]--[
-                          --[ Int ]--Block.__(2, [2]),
-                          --[ :: ]--[
-                            --[ Int ]--Block.__(2, [-1]),
-                            --[ :: ]--[
-                              --[ Kwd ]--Block.__(0, [")"]),
-                              --[ [] ]--0
+      return --[[ Eq ]]Block.__(0, [
+                --[[ :: ]][
+                  --[[ Int ]]Block.__(2, [3]),
+                  --[[ :: ]][
+                    --[[ Kwd ]]Block.__(0, ["("]),
+                    --[[ :: ]][
+                      --[[ Int ]]Block.__(2, [3]),
+                      --[[ :: ]][
+                        --[[ Kwd ]]Block.__(0, ["+"]),
+                        --[[ :: ]][
+                          --[[ Int ]]Block.__(2, [2]),
+                          --[[ :: ]][
+                            --[[ Int ]]Block.__(2, [-1]),
+                            --[[ :: ]][
+                              --[[ Kwd ]]Block.__(0, [")"]),
+                              --[[ [] ]]0
                             ]
                           ]
                         ]
@@ -86,9 +86,9 @@ suites_000 = --[ tuple ]--[
     end end)
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
-  --[ [] ]--0
+  --[[ [] ]]0
 ];
 
 Mt.from_pair_suites("Genlex_test", suites);
@@ -96,4 +96,4 @@ Mt.from_pair_suites("Genlex_test", suites);
 exports.lexer = lexer;
 exports.to_list = to_list;
 exports.suites = suites;
---[ lexer Not a pure module ]--
+--[[ lexer Not a pure module ]]

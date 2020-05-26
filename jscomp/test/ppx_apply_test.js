@@ -4,7 +4,7 @@ Mt = require("./mt.js");
 Block = require("../../lib/js/block.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -13,11 +13,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -25,7 +25,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 u = 3;
@@ -51,4 +51,4 @@ exports.u = u;
 exports.nullary = nullary;
 exports.unary = unary;
 exports.xx = xx;
---[ u Not a pure module ]--
+--[[ u Not a pure module ]]

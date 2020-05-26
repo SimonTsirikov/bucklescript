@@ -43,7 +43,7 @@ function f(x) do
   for i = 0 , 10 , 1 do
     Caml_array.caml_array_set(x, i, i);
   end
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 exports.g = g;
@@ -54,4 +54,4 @@ exports.aa = aa;
 exports.aaa = aaa;
 exports.aaaa = aaaa;
 exports.f = f;
---[ No side effect ]--
+--[[ No side effect ]]

@@ -40,4 +40,4 @@ exports.f1 = f1;
 exports.f2 = f2;
 exports.f3 = f3;
 exports.f4 = f4;
---[ No side effect ]--
+--[[ No side effect ]]

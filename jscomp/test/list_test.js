@@ -6,42 +6,42 @@ $$Array = require("../../lib/js/array.js");
 Block = require("../../lib/js/block.js");
 Caml_primitive = require("../../lib/js/caml_primitive.js");
 
-list_suites_000 = --[ tuple ]--[
+list_suites_000 = --[[ tuple ]][
   "length",
   (function (param) do
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 1,
-                List.length(--[ :: ]--[
-                      --[ tuple ]--[
+                List.length(--[[ :: ]][
+                      --[[ tuple ]][
                         0,
                         1,
                         2,
                         3,
                         4
                       ],
-                      --[ [] ]--0
+                      --[[ [] ]]0
                     ])
               ]);
     end end)
 ];
 
-list_suites_001 = --[ :: ]--[
-  --[ tuple ]--[
+list_suites_001 = --[[ :: ]][
+  --[[ tuple ]][
     "length2",
     (function (param) do
-        return --[ Eq ]--Block.__(0, [
+        return --[[ Eq ]]Block.__(0, [
                   5,
-                  List.length(--[ :: ]--[
+                  List.length(--[[ :: ]][
                         0,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           1,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             2,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               3,
-                              --[ :: ]--[
+                              --[[ :: ]][
                                 4,
-                                --[ [] ]--0
+                                --[[ [] ]]0
                               ]
                             ]
                           ]
@@ -50,11 +50,11 @@ list_suites_001 = --[ :: ]--[
                 ]);
       end end)
   ],
-  --[ :: ]--[
-    --[ tuple ]--[
+  --[[ :: ]][
+    --[[ tuple ]][
       "long_length",
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     30000,
                     List.length($$Array.to_list($$Array.init(30000, (function (param) do
                                     return 0;
@@ -62,33 +62,33 @@ list_suites_001 = --[ :: ]--[
                   ]);
         end end)
     ],
-    --[ :: ]--[
-      --[ tuple ]--[
+    --[[ :: ]][
+      --[[ tuple ]][
         "sort",
         (function (param) do
-            return --[ Eq ]--Block.__(0, [
-                      List.sort(Caml_primitive.caml_int_compare, --[ :: ]--[
+            return --[[ Eq ]]Block.__(0, [
+                      List.sort(Caml_primitive.caml_int_compare, --[[ :: ]][
                             4,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               1,
-                              --[ :: ]--[
+                              --[[ :: ]][
                                 2,
-                                --[ :: ]--[
+                                --[[ :: ]][
                                   3,
-                                  --[ [] ]--0
+                                  --[[ [] ]]0
                                 ]
                               ]
                             ]
                           ]),
-                      --[ :: ]--[
+                      --[[ :: ]][
                         1,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           2,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             3,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               4,
-                              --[ [] ]--0
+                              --[[ [] ]]0
                             ]
                           ]
                         ]
@@ -96,12 +96,12 @@ list_suites_001 = --[ :: ]--[
                     ]);
           end end)
       ],
-      --[ [] ]--0
+      --[[ [] ]]0
     ]
   ]
 ];
 
-list_suites = --[ :: ]--[
+list_suites = --[[ :: ]][
   list_suites_000,
   list_suites_001
 ];
@@ -109,4 +109,4 @@ list_suites = --[ :: ]--[
 Mt.from_pair_suites("List_test", list_suites);
 
 exports.list_suites = list_suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

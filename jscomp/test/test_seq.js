@@ -33,13 +33,13 @@ end end
 function help_action(param) do
   throw [
         Stop,
-        --[ Unknown ]--Block.__(0, ["-help"])
+        --[[ Unknown ]]Block.__(0, ["-help"])
       ];
 end end
 
 function v(speclist) do
   assoc3("-help", speclist);
-  return --[ [] ]--0;
+  return --[[ [] ]]0;
 end end
 
 function f(g, speclist) do
@@ -50,17 +50,17 @@ function add_help(speclist) do
   add1;
   try do
     assoc3("-help", speclist);
-    add1 = --[ [] ]--0;
+    add1 = --[[ [] ]]0;
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      add1 = --[ :: ]--[
-        --[ tuple ]--[
+      add1 = --[[ :: ]][
+        --[[ tuple ]][
           "-help",
-          --[ Unit ]--Block.__(0, [help_action]),
+          --[[ Unit ]]Block.__(0, [help_action]),
           " Display this list of options"
         ],
-        --[ [] ]--0
+        --[[ [] ]]0
       ];
     end else do
       throw exn;
@@ -69,17 +69,17 @@ function add_help(speclist) do
   add2;
   try do
     assoc3("--help", speclist);
-    add2 = --[ [] ]--0;
+    add2 = --[[ [] ]]0;
   end
   catch (exn$1)do
     if (exn$1 == Caml_builtin_exceptions.not_found) then do
-      add2 = --[ :: ]--[
-        --[ tuple ]--[
+      add2 = --[[ :: ]][
+        --[[ tuple ]][
           "--help",
-          --[ Unit ]--Block.__(0, [help_action]),
+          --[[ Unit ]]Block.__(0, [help_action]),
           " Display this list of options"
         ],
-        --[ [] ]--0
+        --[[ [] ]]0
       ];
     end else do
       throw exn$1;
@@ -96,4 +96,4 @@ exports.help_action = help_action;
 exports.v = v;
 exports.f = f;
 exports.add_help = add_help;
---[ No side effect ]--
+--[[ No side effect ]]

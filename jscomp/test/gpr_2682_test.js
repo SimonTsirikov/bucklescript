@@ -23,7 +23,7 @@ function forIn (o,foo)do
 
 function log(x) do
   console.log(x);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 N = do
@@ -34,7 +34,7 @@ forIn(do
       x: 3
     end, (function (x) do
         console.log(x);
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 forIn(do
@@ -42,7 +42,7 @@ forIn(do
       y: 3
     end, (function (x) do
         console.log(x);
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 function f3 ()doreturn trueend;
@@ -58,4 +58,4 @@ exports.forIn = forIn;
 exports.N = N;
 exports.f3 = f3;
 exports.bbbb = bbbb;
---[ v Not a pure module ]--
+--[[ v Not a pure module ]]

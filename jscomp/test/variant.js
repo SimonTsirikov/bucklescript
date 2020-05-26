@@ -9,7 +9,7 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function foo(param) do
   if (typeof param == "number") then do
-    if (param == --[ A1 ]--0) then do
+    if (param == --[[ A1 ]]0) then do
       return 1;
     end else do
       return 2;
@@ -17,11 +17,11 @@ function foo(param) do
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[ B ]-- then do
+       if ___conditional___ = 0--[[ B ]] then do
           return param[0];end end end 
-       if ___conditional___ = 1--[ C ]-- then do
+       if ___conditional___ = 1--[[ C ]] then do
           return param[0] + param[1] | 0;end end end 
-       if ___conditional___ = 2--[ D ]-- then do
+       if ___conditional___ = 2--[[ D ]] then do
           match = param[0];
           return match[0] + match[1] | 0;end end end 
        do
@@ -39,7 +39,7 @@ function fooA1(param) do
 end end
 
 function fooC(param) do
-  if (typeof param == "number" or param.tag ~= --[ C ]--1) then do
+  if (typeof param == "number" or param.tag ~= --[[ C ]]1) then do
     return 42;
   end else do
     return param[0] + param[1] | 0;
@@ -74,7 +74,7 @@ end;
 
 function Make(M) do
   find = function (x) do
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end end;
   return do
           find: find
@@ -82,7 +82,7 @@ function Make(M) do
 end end
 
 function find(x) do
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 M = do
@@ -97,10 +97,10 @@ function rollback_path(subst, p) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       local ___conditional___=(p.tag | 0);
       do
-         if ___conditional___ = 1--[ Pdot ]-- then do
+         if ___conditional___ = 1--[[ Pdot ]] then do
             return "Pdot";end end end 
-         if ___conditional___ = 0--[ Pident ]--
-         or ___conditional___ = 2--[ Papply ]-- then do
+         if ___conditional___ = 0--[[ Pident ]]
+         or ___conditional___ = 2--[[ Papply ]] then do
             return "Pident | Papply";end end end 
          do
         
@@ -123,7 +123,7 @@ ED = Caml_exceptions.create("Variant.ED");
 
 function fooExn(f) do
   try do
-    return Curry._1(f, --[ () ]--0);
+    return Curry._1(f, --[[ () ]]0);
   end
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
@@ -144,18 +144,18 @@ function fooExn(f) do
   end
 end end
 
-a1 = --[ A1 ]--0;
+a1 = --[[ A1 ]]0;
 
-a2 = --[ A2 ]--1;
+a2 = --[[ A2 ]]1;
 
-b = --[ B ]--Block.__(0, [34]);
+b = --[[ B ]]Block.__(0, [34]);
 
-c = --[ C ]--Block.__(1, [
+c = --[[ C ]]Block.__(1, [
     4,
     2
   ]);
 
-d = --[ D ]--Block.__(2, [--[ tuple ]--[
+d = --[[ D ]]Block.__(2, [--[[ tuple ]][
       4,
       2
     ]]);
@@ -179,4 +179,4 @@ exports.EB = EB;
 exports.EC = EC;
 exports.ED = ED;
 exports.fooExn = fooExn;
---[ No side effect ]--
+--[[ No side effect ]]

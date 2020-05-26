@@ -14,13 +14,13 @@ function f_js(u) do
   return u.say(32);
 end end
 
-class_tables = --[ Cons ]--[
+class_tables = --[[ Cons ]][
   0,
   0,
   0
 ];
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "caml_obj",
   (function (param) do
       if (!class_tables[0]) then do
@@ -39,18 +39,18 @@ suites_000 = --[ tuple ]--[
         class_tables[0] = env_init;
       end
        end 
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 33,
                 f(Curry._1(class_tables[0], 0))
               ]);
     end end)
 ];
 
-suites_001 = --[ :: ]--[
-  --[ tuple ]--[
+suites_001 = --[[ :: ]][
+  --[[ tuple ]][
     "js_obj",
     (function (param) do
-        return --[ Eq ]--Block.__(0, [
+        return --[[ Eq ]]Block.__(0, [
                   34,
                   (do
                         say: (function (x) do
@@ -60,11 +60,11 @@ suites_001 = --[ :: ]--[
                 ]);
       end end)
   ],
-  --[ :: ]--[
-    --[ tuple ]--[
+  --[[ :: ]][
+    --[[ tuple ]][
       "js_obj2",
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     34,
                     (do
                           say: (function (x) do
@@ -74,21 +74,21 @@ suites_001 = --[ :: ]--[
                   ]);
         end end)
     ],
-    --[ :: ]--[
-      --[ tuple ]--[
+    --[[ :: ]][
+      --[[ tuple ]][
         "empty",
         (function (param) do
-            return --[ Eq ]--Block.__(0, [
+            return --[[ Eq ]]Block.__(0, [
                       0,
                       #Object.keys({ })
                     ]);
           end end)
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "assign",
           (function (param) do
-              return --[ Eq ]--Block.__(0, [
+              return --[[ Eq ]]Block.__(0, [
                         do
                           a: 1
                         end,
@@ -98,13 +98,13 @@ suites_001 = --[ :: ]--[
                       ]);
             end end)
         ],
-        --[ [] ]--0
+        --[[ [] ]]0
       ]
     ]
   ]
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
   suites_001
 ];
@@ -114,4 +114,4 @@ Mt.from_pair_suites("Js_obj_test", suites);
 exports.f = f;
 exports.f_js = f_js;
 exports.suites = suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

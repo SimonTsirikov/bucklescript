@@ -9,7 +9,7 @@ Array_data_util = require("./array_data_util.js");
 Belt_SortArrayInt = require("../../lib/js/belt_SortArrayInt.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -148,15 +148,15 @@ console.timeEnd("test/bs_sort_test.ml 84");
 b("File \"bs_sort_test.ml\", line 85, characters 4-11", Belt_SortArray.isSorted(u1, cmp));
 
 u$1 = [
-  --[ tuple ]--[
+  --[[ tuple ]][
     1,
     "a"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     1,
     "b"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     2,
     "a"
   ]
@@ -165,34 +165,34 @@ u$1 = [
 eq("File \"bs_sort_test.ml\", line 90, characters 5-12", Belt_SortArray.stableSortBy(u$1, (function (param, param$1) do
             return param[0] - param$1[0] | 0;
           end end)), [
-      --[ tuple ]--[
+      --[[ tuple ]][
         1,
         "a"
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         1,
         "b"
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         2,
         "a"
       ]
     ]);
 
 u$2 = [
-  --[ tuple ]--[
+  --[[ tuple ]][
     1,
     "b"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     1,
     "a"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     1,
     "b"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     2,
     "a"
   ]
@@ -201,46 +201,46 @@ u$2 = [
 eq("File \"bs_sort_test.ml\", line 96, characters 5-12", Belt_SortArray.stableSortBy(u$2, (function (param, param$1) do
             return param[0] - param$1[0] | 0;
           end end)), [
-      --[ tuple ]--[
+      --[[ tuple ]][
         1,
         "b"
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         1,
         "a"
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         1,
         "b"
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         2,
         "a"
       ]
     ]);
 
 u$3 = [
-  --[ tuple ]--[
+  --[[ tuple ]][
     1,
     "c"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     1,
     "b"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     1,
     "a"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     1,
     "b"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     1,
     "c"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     2,
     "a"
   ]
@@ -249,27 +249,27 @@ u$3 = [
 eq("File \"bs_sort_test.ml\", line 102, characters 5-12", Belt_SortArray.stableSortBy(u$3, (function (param, param$1) do
             return param[0] - param$1[0] | 0;
           end end)), [
-      --[ tuple ]--[
+      --[[ tuple ]][
         1,
         "c"
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         1,
         "b"
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         1,
         "a"
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         1,
         "b"
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         1,
         "c"
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         2,
         "a"
       ]
@@ -411,15 +411,15 @@ eq("File \"bs_sort_test.ml\", line 143, characters 5-12", Belt_SortArray.strictl
 
 Mt.from_pair_suites("Bs_sort_test", suites.contents);
 
-I = --[ alias ]--0;
+I = --[[ alias ]]0;
 
-S = --[ alias ]--0;
+S = --[[ alias ]]0;
 
-R = --[ alias ]--0;
+R = --[[ alias ]]0;
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
-SI = --[ alias ]--0;
+SI = --[[ alias ]]0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -435,4 +435,4 @@ exports.inters = inters;
 exports.diffs = diffs;
 exports.SI = SI;
 exports.lt = lt;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

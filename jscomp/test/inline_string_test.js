@@ -13,15 +13,15 @@ function f(param) do
   end end 
 end end
 
-console.log(--[ tuple ]--[
+console.log(--[[ tuple ]][
       f(3),
       "None",
       "Some"
     ]);
 
-console.log(--[ tuple ]--[
+console.log(--[[ tuple ]][
       "A",
       "A"
     ]);
 
---[  Not a pure module ]--
+--[[  Not a pure module ]]

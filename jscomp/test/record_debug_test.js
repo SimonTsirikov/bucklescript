@@ -55,7 +55,7 @@ end;
 
 console.log(" hei " .. (String(v) .. " "));
 
-a = --[ tuple ]--[
+a = --[[ tuple ]][
   1,
   2,
   2,
@@ -73,28 +73,28 @@ c = [
 
 console.log(" " .. (String(Format.std_formatter) .. (" " .. (String(a) .. (" " .. (String(c) .. " "))))));
 
-h = --[ :: ]--[
+h = --[[ :: ]][
   1,
-  --[ :: ]--[
+  --[[ :: ]][
     2,
-    --[ :: ]--[
+    --[[ :: ]][
       3,
-      --[ :: ]--[
+      --[[ :: ]][
         4,
-        --[ [] ]--0
+        --[[ [] ]]0
       ]
     ]
   ]
 ];
 
-v2 = --[ `C ]--[
+v2 = --[[ `C ]][
   67,
   2
 ];
 
-v3 = --[ `C ]--[
+v3 = --[[ `C ]][
   67,
-  --[ tuple ]--[
+  --[[ tuple ]][
     2,
     3
   ]
@@ -116,4 +116,4 @@ exports.N0 = N0;
 exports.fmt = fmt;
 exports.a = a;
 exports.c = c;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

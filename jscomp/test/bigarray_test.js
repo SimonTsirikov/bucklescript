@@ -8,7 +8,7 @@ function sum(v) do
   for i = 0 , Caml_external_polyfill.resolve("caml_ba_dim_1")(v) - 1 | 0 , 1 do
     result = result + Caml_external_polyfill.resolve("caml_ba_get_1")(v, i) | 0;
   end
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function init(v) do
@@ -18,28 +18,28 @@ function init(v) do
       im: Caml_int32.imul(Caml_int32.imul(i, i), i)
     end;
   end
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function init2(v) do
   for i = 0 , Caml_external_polyfill.resolve("caml_ba_dim_1")(v) - 1 | 0 , 1 do
     v[i] = i;
   end
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function init3(v) do
   for i = 0 , Caml_external_polyfill.resolve("caml_ba_dim_1")(v) - 1 | 0 , 1 do
     Caml_external_polyfill.resolve("caml_ba_set_1")(v, i, i);
   end
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-BA1 = --[ alias ]--0;
+BA1 = --[[ alias ]]0;
 
 exports.BA1 = BA1;
 exports.sum = sum;
 exports.init = init;
 exports.init2 = init2;
 exports.init3 = init3;
---[ No side effect ]--
+--[[ No side effect ]]

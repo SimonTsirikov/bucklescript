@@ -55,7 +55,7 @@ function bench(param) do
     if (!Belt_HashMap.has(empty, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "bs_hashtbl_string_test.ml",
               50,
               4
@@ -76,7 +76,7 @@ function bench2(m) do
     if (!Belt_HashMap.has(empty, String(i$1))) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "bs_hashtbl_string_test.ml",
               76,
               4
@@ -93,7 +93,7 @@ function bench2(m) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "bs_hashtbl_string_test.ml",
             82,
             2
@@ -116,7 +116,7 @@ function bench3(m) do
     if (!Belt_MapDict.has(table, String(i$1), cmp)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "bs_hashtbl_string_test.ml",
               98,
               4
@@ -133,7 +133,7 @@ function bench3(m) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "bs_hashtbl_string_test.ml",
             105,
             2
@@ -145,7 +145,7 @@ end end
 Sx = Belt_Id.comparable(Caml_primitive.caml_string_compare);
 
 function bench4(param) do
-  table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, 1000000);
+  table = Belt_internalBucketsType.make(--[[ () ]]0, --[[ () ]]0, 1000000);
   for i = 0 , 1000000 , 1 do
     Belt_HashMapString.set(table, String(i), i);
   end
@@ -153,7 +153,7 @@ function bench4(param) do
     if (!Belt_HashMapString.has(table, String(i$1))) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "bs_hashtbl_string_test.ml",
               118,
               4
@@ -170,7 +170,7 @@ function bench4(param) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "bs_hashtbl_string_test.ml",
             124,
             2
@@ -191,7 +191,7 @@ function bench5(param) do
     if (!Belt_HashMap.has(table, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "bs_hashtbl_string_test.ml",
               138,
               6
@@ -211,7 +211,7 @@ function bench5(param) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "bs_hashtbl_string_test.ml",
             144,
             2
@@ -221,7 +221,7 @@ function bench5(param) do
 end end
 
 function bench6(param) do
-  table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, 1000000);
+  table = Belt_internalBucketsType.make(--[[ () ]]0, --[[ () ]]0, 1000000);
   for i = 0 , 1000000 , 1 do
     Belt_HashMapInt.set(table, i, i);
   end
@@ -229,7 +229,7 @@ function bench6(param) do
     if (!Belt_HashMapInt.has(table, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "bs_hashtbl_string_test.ml",
               156,
               4
@@ -246,7 +246,7 @@ function bench6(param) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "bs_hashtbl_string_test.ml",
             162,
             2
@@ -257,7 +257,7 @@ end end
 
 function bench7(param) do
   hintSize = 2000000;
-  table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, hintSize);
+  table = Belt_internalBucketsType.make(--[[ () ]]0, --[[ () ]]0, hintSize);
   for i = 0 , 1000000 , 1 do
     Belt_HashSetInt.add(table, i);
   end
@@ -265,7 +265,7 @@ function bench7(param) do
     if (!Belt_HashSetInt.has(table, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "bs_hashtbl_string_test.ml",
               181,
               4
@@ -282,7 +282,7 @@ function bench7(param) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "bs_hashtbl_string_test.ml",
             192,
             2
@@ -293,29 +293,29 @@ end end
 
 console.time("test/bs_hashtbl_string_test.ml 203");
 
-bench7(--[ () ]--0);
+bench7(--[[ () ]]0);
 
 console.timeEnd("test/bs_hashtbl_string_test.ml 203");
 
-N = --[ alias ]--0;
+N = --[[ alias ]]0;
 
 count = 1000000;
 
 initial_size = 1000000;
 
-M = --[ alias ]--0;
+M = --[[ alias ]]0;
 
-Md = --[ alias ]--0;
+Md = --[[ alias ]]0;
 
-Md0 = --[ alias ]--0;
+Md0 = --[[ alias ]]0;
 
-H = --[ alias ]--0;
+H = --[[ alias ]]0;
 
-H0 = --[ alias ]--0;
+H0 = --[[ alias ]]0;
 
-HI = --[ alias ]--0;
+HI = --[[ alias ]]0;
 
-S = --[ alias ]--0;
+S = --[[ alias ]]0;
 
 exports.hash_string = hash_string;
 exports.hashString = hashString;
@@ -342,4 +342,4 @@ exports.HI = HI;
 exports.bench6 = bench6;
 exports.S = S;
 exports.bench7 = bench7;
---[ String Not a pure module ]--
+--[[ String Not a pure module ]]

@@ -5,7 +5,7 @@ Block = require("../../lib/js/block.js");
 Caml_int32 = require("../../lib/js/caml_int32.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -14,11 +14,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -26,10 +26,10 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-myShape = --[ Circle ]--Block.__(0, [10]);
+myShape = --[[ Circle ]]Block.__(0, [10]);
 
 area;
 
@@ -44,4 +44,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.myShape = myShape;
 exports.area = area;
---[ area Not a pure module ]--
+--[[ area Not a pure module ]]

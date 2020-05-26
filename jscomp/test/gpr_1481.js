@@ -7,4 +7,4 @@ function f(param) do
 end end
 
 exports.f = f;
---[ #moduleid Not a pure module ]--
+--[[ #moduleid Not a pure module ]]

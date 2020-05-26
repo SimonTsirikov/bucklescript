@@ -14,7 +14,7 @@ function on1(foo, $$event) do
               
             end
           end end)(), $$event[1]);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function on2(foo, h, $$event) do
@@ -29,9 +29,9 @@ function on2(foo, h, $$event) do
               
             end
           end end)(), Curry._1(h, $$event)[1]);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 exports.on1 = on1;
 exports.on2 = on2;
---[ No side effect ]--
+--[[ No side effect ]]

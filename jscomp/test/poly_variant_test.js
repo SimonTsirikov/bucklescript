@@ -5,7 +5,7 @@ Fs = require("fs");
 Block = require("../../lib/js/block.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -14,11 +14,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -26,7 +26,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function hey_string (option){
@@ -67,10 +67,10 @@ eq("File \"poly_variant_test.ml\", line 58, characters 5-12", vv, [
       4
     ]);
 
-eq("File \"poly_variant_test.ml\", line 59, characters 5-12", --[ tuple ]--[
+eq("File \"poly_variant_test.ml\", line 59, characters 5-12", --[[ tuple ]][
       hey_int(5),
       hey_int(6)
-    ], --[ tuple ]--[
+    ], --[[ tuple ]][
       5,
       6
     ]);
@@ -88,13 +88,13 @@ hey_string("in");
 function register(readline) do
   readline.on("line", (function (s) do
           console.log(s);
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end));
   readline.on("close", (function () do
           console.log("finished");
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end));
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function read(name) do
@@ -117,7 +117,7 @@ function test(readline, x) do
               
             end
           end end)(), x[1]);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function p_is_int_test(x) do
@@ -130,7 +130,7 @@ end end
 
 eq("File \"poly_variant_test.ml\", line 142, characters 5-12", 2, 2);
 
-eq("File \"poly_variant_test.ml\", line 143, characters 5-12", 3, p_is_int_test(--[ `b ]--[
+eq("File \"poly_variant_test.ml\", line 143, characters 5-12", 3, p_is_int_test(--[[ `b ]][
           98,
           2
         ]));
@@ -149,7 +149,7 @@ function on2(prim, prim$1) do
               
             end
           end end)(), prim$1[1]);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 readN = read$1;
@@ -162,4 +162,4 @@ exports.on2 = on2;
 exports.read = read;
 exports.readN = readN;
 exports.p_is_int_test = p_is_int_test;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

@@ -11,7 +11,7 @@ Belt_internalAVLset = require("../../lib/js/belt_internalAVLset.js");
 Belt_internalSetInt = require("../../lib/js/belt_internalSetInt.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -397,17 +397,17 @@ b("File \"bs_mutable_set_test.ml\", line 164, characters 4-11", Belt_MutableSetI
 
 b("File \"bs_mutable_set_test.ml\", line 165, characters 4-11", Belt_MutableSetInt.eq(a2, a4));
 
-Belt_List.forEach(--[ :: ]--[
+Belt_List.forEach(--[[ :: ]][
       a0,
-      --[ :: ]--[
+      --[[ :: ]][
         a1,
-        --[ :: ]--[
+        --[[ :: ]][
           a2,
-          --[ :: ]--[
+          --[[ :: ]][
             a3,
-            --[ :: ]--[
+            --[[ :: ]][
               a4,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ]
         ]
@@ -822,15 +822,15 @@ b("File \"bs_mutable_set_test.ml\", line 317, characters 4-11", Belt_MutableSetI
 
 Mt.from_pair_suites("Bs_mutable_set_test", suites.contents);
 
-N = --[ alias ]--0;
+N = --[[ alias ]]0;
 
-I = --[ alias ]--0;
+I = --[[ alias ]]0;
 
-R = --[ alias ]--0;
+R = --[[ alias ]]0;
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
-L = --[ alias ]--0;
+L = --[[ alias ]]0;
 
 empty = Belt_MutableSetInt.make;
 
@@ -856,4 +856,4 @@ exports.fromArray = fromArray;
 exports.$plus$plus = $plus$plus;
 exports.f = f;
 exports.$eq$tilde = $eq$tilde;
---[ u Not a pure module ]--
+--[[ u Not a pure module ]]

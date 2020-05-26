@@ -12,7 +12,7 @@ end end
 
 function f2(param) do
   if (param >= 3) then do
-    return --[ T003 ]--3;
+    return --[[ T003 ]]3;
   end else do
     return param;
   end end 
@@ -30,11 +30,11 @@ function f5(param) do
   if (typeof param == "number") then do
     local ___conditional___=(param);
     do
-       if ___conditional___ = 0--[ A ]-- then do
+       if ___conditional___ = 0--[[ A ]] then do
           return 1;end end end 
-       if ___conditional___ = 1--[ B ]-- then do
+       if ___conditional___ = 1--[[ B ]] then do
           return 3;end end end 
-       if ___conditional___ = 2--[ F ]-- then do
+       if ___conditional___ = 2--[[ F ]] then do
           return 4;end end end 
        do
       
@@ -42,10 +42,10 @@ function f5(param) do
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[ C ]--
-       or ___conditional___ = 1--[ D ]-- then do
+       if ___conditional___ = 0--[[ C ]]
+       or ___conditional___ = 1--[[ D ]] then do
           return 1;end end end 
-       if ___conditional___ = 2--[ E ]-- then do
+       if ___conditional___ = 2--[[ E ]] then do
           return 2;end end end 
        do
       
@@ -69,11 +69,11 @@ function f7(param) do
   if (typeof param == "number") then do
     local ___conditional___=(param);
     do
-       if ___conditional___ = 0--[ A ]-- then do
+       if ___conditional___ = 0--[[ A ]] then do
           return 1;end end end 
-       if ___conditional___ = 1--[ B ]-- then do
+       if ___conditional___ = 1--[[ B ]] then do
           return 2;end end end 
-       if ___conditional___ = 2--[ F ]-- then do
+       if ___conditional___ = 2--[[ F ]] then do
           return -1;end end end 
        do
       
@@ -81,11 +81,11 @@ function f7(param) do
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[ C ]-- then do
+       if ___conditional___ = 0--[[ C ]] then do
           return 3;end end end 
-       if ___conditional___ = 1--[ D ]-- then do
+       if ___conditional___ = 1--[[ D ]] then do
           return 4;end end end 
-       if ___conditional___ = 2--[ E ]-- then do
+       if ___conditional___ = 2--[[ E ]] then do
           return -1;end end end 
        do
       
@@ -97,8 +97,8 @@ function f8(param) do
   if (typeof param == "number") then do
     local ___conditional___=(param);
     do
-       if ___conditional___ = 0--[ T60 ]--
-       or ___conditional___ = 1--[ T61 ]-- then do
+       if ___conditional___ = 0--[[ T60 ]]
+       or ___conditional___ = 1--[[ T61 ]] then do
           return 1;end end end 
        do
       else do
@@ -109,8 +109,8 @@ function f8(param) do
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[ T64 ]--
-       or ___conditional___ = 1--[ T65 ]-- then do
+       if ___conditional___ = 0--[[ T64 ]]
+       or ___conditional___ = 1--[[ T65 ]] then do
           return 2;end end end 
        do
       else do
@@ -123,7 +123,7 @@ end end
 
 function f9(param) do
   if (typeof param == "number") then do
-    if (param == --[ T63 ]--3) then do
+    if (param == --[[ T63 ]]3) then do
       return 3;
     end else do
       return 1;
@@ -131,11 +131,11 @@ function f9(param) do
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[ T64 ]--
-       or ___conditional___ = 1--[ T65 ]-- then do
+       if ___conditional___ = 0--[[ T64 ]]
+       or ___conditional___ = 1--[[ T65 ]] then do
           return 2;end end end 
-       if ___conditional___ = 2--[ T66 ]--
-       or ___conditional___ = 3--[ T68 ]-- then do
+       if ___conditional___ = 2--[[ T66 ]]
+       or ___conditional___ = 3--[[ T68 ]] then do
           return 3;end end end 
        do
       
@@ -147,13 +147,13 @@ function f10(param) do
   if (typeof param == "number") then do
     local ___conditional___=(param);
     do
-       if ___conditional___ = 0--[ T60 ]-- then do
+       if ___conditional___ = 0--[[ T60 ]] then do
           return 0;end end end 
-       if ___conditional___ = 1--[ T61 ]-- then do
+       if ___conditional___ = 1--[[ T61 ]] then do
           return 2;end end end 
-       if ___conditional___ = 2--[ T62 ]-- then do
+       if ___conditional___ = 2--[[ T62 ]] then do
           return 4;end end end 
-       if ___conditional___ = 3--[ T63 ]-- then do
+       if ___conditional___ = 3--[[ T63 ]] then do
           return 1;end end end 
        do
       
@@ -161,11 +161,11 @@ function f10(param) do
   end else do
     local ___conditional___=(param.tag | 0);
     do
-       if ___conditional___ = 0--[ T64 ]--
-       or ___conditional___ = 1--[ T65 ]-- then do
+       if ___conditional___ = 0--[[ T64 ]]
+       or ___conditional___ = 1--[[ T65 ]] then do
           return 2;end end end 
-       if ___conditional___ = 2--[ T66 ]--
-       or ___conditional___ = 3--[ T68 ]-- then do
+       if ___conditional___ = 2--[[ T66 ]]
+       or ___conditional___ = 3--[[ T68 ]] then do
           return 3;end end end 
        do
       
@@ -179,7 +179,7 @@ function f11(x) do
   end else if (x.tag) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "adt_optimize_test.ml",
             191,
             9
@@ -202,4 +202,4 @@ exports.f8 = f8;
 exports.f9 = f9;
 exports.f10 = f10;
 exports.f11 = f11;
---[ No side effect ]--
+--[[ No side effect ]]

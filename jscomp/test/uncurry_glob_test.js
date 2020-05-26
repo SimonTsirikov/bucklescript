@@ -30,4 +30,4 @@ exports.M = M;
 exports.f = f;
 exports.$plus$great = $plus$great;
 exports.u = u;
---[ v Not a pure module ]--
+--[[ v Not a pure module ]]

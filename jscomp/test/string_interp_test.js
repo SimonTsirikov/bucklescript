@@ -32,7 +32,7 @@ end end
 function f(x, y) do
   sum = x + y | 0;
   console.log(" " .. (String(x) .. (" + " .. (String(y) .. (" = " .. (String(sum) .. " "))))));
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 world = "世界";
@@ -85,4 +85,4 @@ exports.hello_world = hello_world;
 exports.test1 = test1;
 exports.test3 = test3;
 exports.test5 = test5;
---[ hello_world Not a pure module ]--
+--[[ hello_world Not a pure module ]]

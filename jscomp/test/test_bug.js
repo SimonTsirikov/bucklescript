@@ -49,17 +49,17 @@ function escaped(s) do
           local ___conditional___=(switcher + 34 | 0);
           do
              if ___conditional___ = 8 then do
-                s$prime[n] = --[ "\\" ]--92;
+                s$prime[n] = --[[ "\\" ]]92;
                 n = n + 1 | 0;
-                s$prime[n] = --[ "b" ]--98;end else 
+                s$prime[n] = --[[ "b" ]]98;end else 
              if ___conditional___ = 9 then do
-                s$prime[n] = --[ "\\" ]--92;
+                s$prime[n] = --[[ "\\" ]]92;
                 n = n + 1 | 0;
-                s$prime[n] = --[ "t" ]--116;end else 
+                s$prime[n] = --[[ "t" ]]116;end else 
              if ___conditional___ = 10 then do
-                s$prime[n] = --[ "\\" ]--92;
+                s$prime[n] = --[[ "\\" ]]92;
                 n = n + 1 | 0;
-                s$prime[n] = --[ "n" ]--110;end else 
+                s$prime[n] = --[[ "n" ]]110;end else 
              if ___conditional___ = 0
              or ___conditional___ = 1
              or ___conditional___ = 2
@@ -72,15 +72,15 @@ function escaped(s) do
              or ___conditional___ = 12 then do
                 exit$1 = 1;end else 
              if ___conditional___ = 13 then do
-                s$prime[n] = --[ "\\" ]--92;
+                s$prime[n] = --[[ "\\" ]]92;
                 n = n + 1 | 0;
-                s$prime[n] = --[ "r" ]--114;end else 
+                s$prime[n] = --[[ "r" ]]114;end else 
              do end end end end end end
             
           end
         end end 
       end else if (switcher > 57 or switcher < 1) then do
-        s$prime[n] = --[ "\\" ]--92;
+        s$prime[n] = --[[ "\\" ]]92;
         n = n + 1 | 0;
         s$prime[n] = c$1;
       end else do
@@ -90,7 +90,7 @@ function escaped(s) do
         if (Caml_char.caml_is_printable(c$1)) then do
           s$prime[n] = c$1;
         end else do
-          s$prime[n] = --[ "\\" ]--92;
+          s$prime[n] = --[[ "\\" ]]92;
           n = n + 1 | 0;
           s$prime[n] = 48 + (c$1 / 100 | 0) | 0;
           n = n + 1 | 0;
@@ -107,4 +107,4 @@ function escaped(s) do
 end end
 
 exports.escaped = escaped;
---[ No side effect ]--
+--[[ No side effect ]]

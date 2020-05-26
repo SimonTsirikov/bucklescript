@@ -4,61 +4,61 @@ Mt = require("./mt.js");
 Obj = require("../../lib/js/obj.js");
 Block = require("../../lib/js/block.js");
 
-empty_backtrace = --[ obj_block ]--Block.__(Obj.abstract_tag, []);
+empty_backtrace = --[[ obj_block ]]Block.__(Obj.abstract_tag, []);
 
 function is_block(x) do
   return typeof x ~= "number";
 end end
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "is_block_test1",
   (function (param) do
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 false,
                 false
               ]);
     end end)
 ];
 
-suites_001 = --[ :: ]--[
-  --[ tuple ]--[
+suites_001 = --[[ :: ]][
+  --[[ tuple ]][
     "is_block_test2",
     (function (param) do
-        return --[ Eq ]--Block.__(0, [
+        return --[[ Eq ]]Block.__(0, [
                   true,
-                  typeof --[ :: ]--[
+                  typeof --[[ :: ]][
                     3,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ] ~= "number"
                 ]);
       end end)
   ],
-  --[ :: ]--[
-    --[ tuple ]--[
+  --[[ :: ]][
+    --[[ tuple ]][
       "is_block_test3",
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     true,
                     true
                   ]);
         end end)
     ],
-    --[ :: ]--[
-      --[ tuple ]--[
+    --[[ :: ]][
+      --[[ tuple ]][
         "is_block_test4",
         (function (param) do
-            return --[ Eq ]--Block.__(0, [
+            return --[[ Eq ]]Block.__(0, [
                       false,
                       false
                     ]);
           end end)
       ],
-      --[ [] ]--0
+      --[[ [] ]]0
     ]
   ]
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
   suites_001
 ];
@@ -68,4 +68,4 @@ Mt.from_pair_suites("Obj_magic_test", suites);
 exports.empty_backtrace = empty_backtrace;
 exports.is_block = is_block;
 exports.suites = suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

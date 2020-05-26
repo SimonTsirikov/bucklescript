@@ -4,7 +4,7 @@ Mt = require("./mt.js");
 Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -20,7 +20,7 @@ match = [1];
 if (#match ~= 1) then do
   throw [
         Caml_builtin_exceptions.match_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "gpr_3595_test.ml",
           9,
           4
@@ -38,4 +38,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.a = a;
 exports.x = x;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

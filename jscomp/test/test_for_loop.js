@@ -9,14 +9,14 @@ function for_(x) do
   for i = 0 , console.log("hi"), #x , 1 do
     console.log(Caml_array.caml_array_get(x, i));
   end
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function for_2(x) do
   for i = 0 , #x , 1 do
     console.log(Caml_array.caml_array_get(x, i));
   end
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function for_3(x) do
@@ -24,19 +24,19 @@ function for_3(x) do
     contents: 0
   end;
   arr = $$Array.map((function (param, param$1) do
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end), x);
   for i = 0 , #x , 1 do
     j = (i << 1);
     Caml_array.caml_array_set(arr, i, (function(j)do
         return function (param) do
           v.contents = v.contents + j | 0;
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end
         end(j)));
   end
   $$Array.iter((function (x) do
-          return Curry._1(x, --[ () ]--0);
+          return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
 end end
@@ -46,7 +46,7 @@ function for_4(x) do
     contents: 0
   end;
   arr = $$Array.map((function (param, param$1) do
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end), x);
   for i = 0 , #x , 1 do
     j = (i << 1);
@@ -54,12 +54,12 @@ function for_4(x) do
     Caml_array.caml_array_set(arr, i, (function(k)do
         return function (param) do
           v.contents = v.contents + k | 0;
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end
         end(k)));
   end
   $$Array.iter((function (x) do
-          return Curry._1(x, --[ () ]--0);
+          return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
 end end
@@ -69,19 +69,19 @@ function for_5(x, u) do
     contents: 0
   end;
   arr = $$Array.map((function (param, param$1) do
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end), x);
   for i = 0 , #x , 1 do
     k = Caml_int32.imul((u << 1), u);
     Caml_array.caml_array_set(arr, i, (function(k)do
         return function (param) do
           v.contents = v.contents + k | 0;
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end
         end(k)));
   end
   $$Array.iter((function (x) do
-          return Curry._1(x, --[ () ]--0);
+          return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
 end end
@@ -91,7 +91,7 @@ function for_6(x, u) do
     contents: 0
   end;
   arr = $$Array.map((function (param, param$1) do
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end), x);
   v4 = do
     contents: 0
@@ -113,14 +113,14 @@ function for_6(x, u) do
       Caml_array.caml_array_set(arr, i, (function(k,h)do
           return function (param) do
             v.contents = (((((v.contents + k | 0) + v2.contents | 0) + u | 0) + v4.contents | 0) + v5.contents | 0) + h | 0;
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end end
           end(k,h)));
     end
     end(v2));
   end
   $$Array.iter((function (x) do
-          return Curry._1(x, --[ () ]--0);
+          return Curry._1(x, --[[ () ]]0);
         end end), arr);
   return v.contents;
 end end
@@ -131,4 +131,4 @@ exports.for_3 = for_3;
 exports.for_4 = for_4;
 exports.for_5 = for_5;
 exports.for_6 = for_6;
---[ No side effect ]--
+--[[ No side effect ]]

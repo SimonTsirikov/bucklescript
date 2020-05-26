@@ -43,4 +43,4 @@ exports.$$require = $$require;
 exports.$$setImmediate = $$setImmediate;
 exports.$$setInterval = $$setInterval;
 exports.$$setTimeout = $$setTimeout;
---[ No side effect ]--
+--[[ No side effect ]]

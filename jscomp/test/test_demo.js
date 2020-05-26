@@ -12,7 +12,7 @@ function fib(n) do
 end end
 
 function cons(x, y) do
-  return --[ Cons ]--[
+  return --[[ Cons ]][
           x,
           y
         ];
@@ -20,12 +20,12 @@ end end
 
 function map(f, param) do
   if (param) then do
-    return --[ Cons ]--[
+    return --[[ Cons ]][
             Curry._1(f, param[0]),
             map(f, param[1])
           ];
   end else do
-    return --[ Nil ]--0;
+    return --[[ Nil ]]0;
   end end 
 end end
 
@@ -69,7 +69,7 @@ function v(param) do
   return (xx + yy | 0) + u$1 | 0;
 end end
 
-nil = --[ Nil ]--0;
+nil = --[[ Nil ]]0;
 
 len = List.length;
 
@@ -84,4 +84,4 @@ exports.g = g;
 exports.g1 = g1;
 exports.x = x;
 exports.v = v;
---[ x Not a pure module ]--
+--[[ x Not a pure module ]]

@@ -8,7 +8,7 @@ String_set = require("./string_set.js");
 Caml_option = require("../../lib/js/caml_option.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -17,11 +17,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -29,7 +29,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 a = { };
@@ -59,9 +59,9 @@ function make(foo) do
     end end);
 end end
 
-a_ = make(undefined)(--[ () ]--0);
+a_ = make(undefined)(--[[ () ]]0);
 
-b_ = make(42)(--[ () ]--0);
+b_ = make(42)(--[[ () ]]0);
 
 eq("File \"gpr_1409_test.ml\", line 30, characters 6-13", b_.foo, "42");
 
@@ -147,26 +147,26 @@ function keys(xs, ys) do
   return String_set.equal(String_set.of_list(xs), String_set.of_list($$Array.to_list(ys)));
 end end
 
-eq("File \"gpr_1409_test.ml\", line 69, characters 6-13", keys(--[ :: ]--[
+eq("File \"gpr_1409_test.ml\", line 69, characters 6-13", keys(--[[ :: ]][
           "hi",
-          --[ [] ]--0
+          --[[ [] ]]0
         ], Object.keys(test3(undefined, undefined))), true);
 
-eq("File \"gpr_1409_test.ml\", line 71, characters 6-13", keys(--[ :: ]--[
+eq("File \"gpr_1409_test.ml\", line 71, characters 6-13", keys(--[[ :: ]][
           "hi",
-          --[ :: ]--[
+          --[[ :: ]][
             "open",
-            --[ [] ]--0
+            --[[ [] ]]0
           ]
         ], Object.keys(test3(2, undefined))), true);
 
-eq("File \"gpr_1409_test.ml\", line 73, characters 6-13", keys(--[ :: ]--[
+eq("File \"gpr_1409_test.ml\", line 73, characters 6-13", keys(--[[ :: ]][
           "hi",
-          --[ :: ]--[
+          --[[ :: ]][
             "open",
-            --[ :: ]--[
+            --[[ :: ]][
               "xx",
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ]
         ], Object.keys(test3(2, 2))), true);
@@ -188,4 +188,4 @@ exports.test4 = test4;
 exports.test5 = test5;
 exports.test6 = test6;
 exports.keys = keys;
---[ a_ Not a pure module ]--
+--[[ a_ Not a pure module ]]

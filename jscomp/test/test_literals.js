@@ -214,4 +214,4 @@ exports.unescaped_js_delimiter = unescaped_js_delimiter;
 exports.$$native = $$native;
 exports.bytecode = bytecode;
 exports.js = js;
---[ No side effect ]--
+--[[ No side effect ]]

@@ -24,11 +24,11 @@ function test(param) do
   return should(Belt_MapInt.isEmpty(m));
 end end
 
-test(--[ () ]--0);
+test(--[[ () ]]0);
 
-M = --[ alias ]--0;
+M = --[[ alias ]]0;
 
 exports.should = should;
 exports.M = M;
 exports.test = test;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

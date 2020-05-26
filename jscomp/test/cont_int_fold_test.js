@@ -11,4 +11,4 @@ end end
 
 exports.a = a;
 exports.b = b;
---[ No side effect ]--
+--[[ No side effect ]]

@@ -96,7 +96,7 @@ function ff(g, x) do
   catch (raw_exn$4)do
     exn$9 = Caml_js_exceptions.internalToOCamlException(raw_exn$4);
     if (exn$9[0] == Caml_builtin_exceptions.undefined_recursive_module) then do
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end else do
       throw exn$9;
     end end 
@@ -113,7 +113,7 @@ function f(x) do
   end else if (x.tag) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "test_trywith.ml",
             51,
             9
@@ -133,4 +133,4 @@ exports.u = u;
 exports.u1 = u1;
 exports.v = v;
 exports.f = f;
---[ No side effect ]--
+--[[ No side effect ]]

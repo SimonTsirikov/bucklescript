@@ -34,7 +34,7 @@ shared$6 = [
 ];
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -43,11 +43,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -55,7 +55,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function point_init($$class) do
@@ -72,7 +72,7 @@ function point_init($$class) do
         move,
         (function (self$1, d) do
             self$1[x] = self$1[x] + d | 0;
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end end)
       ]);
   return (function (env, self, x_init$1) do
@@ -91,10 +91,10 @@ q = Oo.copy(p);
 
 Caml_oo_curry.js2(-933174511, 1, q, 7);
 
-eq("File \"class7_test.ml\", line 22, characters 5-12", --[ tuple ]--[
+eq("File \"class7_test.ml\", line 22, characters 5-12", --[[ tuple ]][
       55,
       62
-    ], --[ tuple ]--[
+    ], --[[ tuple ]][
       Caml_oo_curry.js1(291546447, 2, p),
       Caml_oo_curry.js1(291546447, 3, q)
     ]);
@@ -116,7 +116,7 @@ function ref_init($$class) do
         set,
         (function (self$2, y) do
             self$2[x] = y;
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end end)
       ]);
   return (function (env, self, x_init$1) do
@@ -139,7 +139,7 @@ function backup_init($$class) do
         (function (self$3) do
             copy$1 = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
             self$3[copy] = Caml_option.some((copy$1[copy] = undefined, copy$1));
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end end),
         restore,
         (function (self$3) do
@@ -237,7 +237,7 @@ function backup2_init($$class) do
         save,
         (function (self$5) do
             self$5[copy] = Caml_option.some(Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$5)));
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end end),
         restore,
         (function (self$5) do
@@ -251,7 +251,7 @@ function backup2_init($$class) do
         clear,
         (function (self$5) do
             self$5[copy] = undefined;
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end end)
       ]);
   return (function (env, self) do
@@ -366,4 +366,4 @@ exports.backup2 = backup2;
 exports.backup_ref2 = backup_ref2;
 exports.$$window = $$window;
 exports.widget = widget;
---[ point Not a pure module ]--
+--[[ point Not a pure module ]]

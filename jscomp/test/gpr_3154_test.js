@@ -5,7 +5,7 @@ Js_dict = require("../../lib/js/js_dict.js");
 Caml_option = require("../../lib/js/caml_option.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -40,11 +40,11 @@ eq("File \"gpr_3154_test.ml\", line 18, characters 5-12", Js_dict.get(d0, "foo")
 
 Mt.from_pair_suites("Gpr_3154_test", suites.contents);
 
-J = --[ alias ]--0;
+J = --[[ alias ]]0;
 
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.b = b;
 exports.J = J;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

@@ -5,7 +5,7 @@ Block = require("../../lib/js/block.js");
 Caml_obj = require("../../lib/js/caml_obj.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -14,11 +14,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -26,20 +26,20 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function f(param) do
   x = new Date();
   y = new Date();
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           Caml_obj.caml_greaterthan(y, x),
           Caml_obj.caml_lessthan(y, x),
           true
         ];
 end end
 
-match = f(--[ () ]--0);
+match = f(--[[ () ]]0);
 
 a2 = match[2];
 
@@ -60,4 +60,4 @@ exports.f = f;
 exports.a0 = a0;
 exports.a1 = a1;
 exports.a2 = a2;
---[ match Not a pure module ]--
+--[[ match Not a pure module ]]

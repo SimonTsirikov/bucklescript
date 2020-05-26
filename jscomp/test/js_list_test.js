@@ -7,7 +7,7 @@ Js_vector = require("../../lib/js/js_vector.js");
 Caml_int32 = require("../../lib/js/caml_int32.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -16,11 +16,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -28,52 +28,52 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-eq("File \"js_list_test.ml\", line 11, characters 7-14", Js_list.flatten(--[ :: ]--[
-          --[ :: ]--[
+eq("File \"js_list_test.ml\", line 11, characters 7-14", Js_list.flatten(--[[ :: ]][
+          --[[ :: ]][
             1,
-            --[ :: ]--[
+            --[[ :: ]][
               2,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ],
-          --[ :: ]--[
-            --[ :: ]--[
+          --[[ :: ]][
+            --[[ :: ]][
               3,
-              --[ [] ]--0
+              --[[ [] ]]0
             ],
-            --[ :: ]--[
-              --[ [] ]--0,
-              --[ :: ]--[
-                --[ :: ]--[
+            --[[ :: ]][
+              --[[ [] ]]0,
+              --[[ :: ]][
+                --[[ :: ]][
                   1,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     2,
-                    --[ :: ]--[
+                    --[[ :: ]][
                       3,
-                      --[ [] ]--0
+                      --[[ [] ]]0
                     ]
                   ]
                 ],
-                --[ [] ]--0
+                --[[ [] ]]0
               ]
             ]
           ]
-        ]), --[ :: ]--[
+        ]), --[[ :: ]][
       1,
-      --[ :: ]--[
+      --[[ :: ]][
         2,
-        --[ :: ]--[
+        --[[ :: ]][
           3,
-          --[ :: ]--[
+          --[[ :: ]][
             1,
-            --[ :: ]--[
+            --[[ :: ]][
               2,
-              --[ :: ]--[
+              --[[ :: ]][
                 3,
-                --[ [] ]--0
+                --[[ [] ]]0
               ]
             ]
           ]
@@ -86,34 +86,34 @@ eq("File \"js_list_test.ml\", line 14, characters 7-14", Js_list.filterMap((func
               return x;
             end
              end 
-          end end), --[ :: ]--[
+          end end), --[[ :: ]][
           1,
-          --[ :: ]--[
+          --[[ :: ]][
             2,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ :: ]--[
+              --[[ :: ]][
                 4,
-                --[ :: ]--[
+                --[[ :: ]][
                   5,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     6,
-                    --[ :: ]--[
+                    --[[ :: ]][
                       7,
-                      --[ [] ]--0
+                      --[[ [] ]]0
                     ]
                   ]
                 ]
               ]
             ]
           ]
-        ]), --[ :: ]--[
+        ]), --[[ :: ]][
       2,
-      --[ :: ]--[
+      --[[ :: ]][
         4,
-        --[ :: ]--[
+        --[[ :: ]][
           6,
-          --[ [] ]--0
+          --[[ [] ]]0
         ]
       ]
     ]);
@@ -123,50 +123,50 @@ eq("File \"js_list_test.ml\", line 17, characters 7-14", Js_list.filterMap((func
               return x;
             end
              end 
-          end end), --[ :: ]--[
+          end end), --[[ :: ]][
           1,
-          --[ :: ]--[
+          --[[ :: ]][
             2,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ :: ]--[
+              --[[ :: ]][
                 4,
-                --[ :: ]--[
+                --[[ :: ]][
                   5,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     6,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ]
               ]
             ]
           ]
-        ]), --[ :: ]--[
+        ]), --[[ :: ]][
       2,
-      --[ :: ]--[
+      --[[ :: ]][
         4,
-        --[ :: ]--[
+        --[[ :: ]][
           6,
-          --[ [] ]--0
+          --[[ [] ]]0
         ]
       ]
     ]);
 
 eq("File \"js_list_test.ml\", line 20, characters 7-14", Js_list.countBy((function (x) do
             return x % 2 == 0;
-          end end), --[ :: ]--[
+          end end), --[[ :: ]][
           1,
-          --[ :: ]--[
+          --[[ :: ]][
             2,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ :: ]--[
+              --[[ :: ]][
                 4,
-                --[ :: ]--[
+                --[[ :: ]][
                   5,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     6,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ]
               ]
@@ -185,11 +185,11 @@ eq("File \"js_list_test.ml\", line 23, characters 7-14", Js_list.countBy((functi
           end end), v), 50000);
 
 vv = Js_list.foldRight((function (x, y) do
-        return --[ :: ]--[
+        return --[[ :: ]][
                 x,
                 y
               ];
-      end end), v, --[ [] ]--0);
+      end end), v, --[[ [] ]]0);
 
 eq("File \"js_list_test.ml\", line 27, characters 7-14", true, Js_list.equal((function (x, y) do
             return x == y;
@@ -214,4 +214,4 @@ Mt.from_pair_suites("Js_list_test", suites.contents);
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

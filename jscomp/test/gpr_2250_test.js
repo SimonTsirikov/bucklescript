@@ -7,7 +7,7 @@ Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
 CamlinternalOO = require("../../lib/js/camlinternalOO.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -16,11 +16,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -28,10 +28,10 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-class_tables = --[ Cons ]--[
+class_tables = --[[ Cons ]][
   0,
   0,
   0
@@ -75,21 +75,21 @@ function create(param) do
   return Curry._1(class_tables[0], 0);
 end end
 
-cxt1 = create(--[ () ]--0);
+cxt1 = create(--[[ () ]]0);
 
-tmp = Caml_oo_curry.js2(4846113, 1, cxt1, --[ () ]--0);
+tmp = Caml_oo_curry.js2(4846113, 1, cxt1, --[[ () ]]0);
 
-result = Caml_oo_curry.js2(5144726, 2, tmp, --[ () ]--0);
+result = Caml_oo_curry.js2(5144726, 2, tmp, --[[ () ]]0);
 
 eq("File \"gpr_2250_test.ml\", line 26, characters 5-12", result, 1);
 
-cxt2 = create(--[ () ]--0);
+cxt2 = create(--[[ () ]]0);
 
-tmp$1 = Caml_oo_curry.js2(4846113, 3, cxt2, --[ () ]--0);
+tmp$1 = Caml_oo_curry.js2(4846113, 3, cxt2, --[[ () ]]0);
 
-tmp$2 = Caml_oo_curry.js2(4846113, 4, tmp$1, --[ () ]--0);
+tmp$2 = Caml_oo_curry.js2(4846113, 4, tmp$1, --[[ () ]]0);
 
-result2 = Caml_oo_curry.js2(5144726, 5, tmp$2, --[ () ]--0);
+result2 = Caml_oo_curry.js2(5144726, 5, tmp$2, --[[ () ]]0);
 
 eq("File \"gpr_2250_test.ml\", line 37, characters 5-12", result2, 2);
 
@@ -103,4 +103,4 @@ exports.cxt1 = cxt1;
 exports.result = result;
 exports.cxt2 = cxt2;
 exports.result2 = result2;
---[ cxt1 Not a pure module ]--
+--[[ cxt1 Not a pure module ]]

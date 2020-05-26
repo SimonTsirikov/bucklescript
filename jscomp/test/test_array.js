@@ -21,22 +21,22 @@ hhh = $$Array.append([
       5
     ]);
 
-u = Caml_array.caml_array_concat(--[ :: ]--[
+u = Caml_array.caml_array_concat(--[[ :: ]][
       [
         1,
         2
       ],
-      --[ :: ]--[
+      --[[ :: ]][
         [
           2,
           3
         ],
-        --[ :: ]--[
+        --[[ :: ]][
           [
             3,
             4
           ],
-          --[ [] ]--0
+          --[[ [] ]]0
         ]
       ]
     ]);
@@ -48,4 +48,4 @@ exports.h = h;
 exports.hh = hh;
 exports.hhh = hhh;
 exports.u = u;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

@@ -16,7 +16,7 @@ test_id = do
 end;
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 function eq(loc) do
@@ -31,9 +31,9 @@ function approx(loc) do
     end end);
 end end
 
-epsilon_float = Caml_int64.float_of_bits(--[ int64 ]--[
-      --[ hi ]--1018167296,
-      --[ lo ]--0
+epsilon_float = Caml_int64.float_of_bits(--[[ int64 ]][
+      --[[ hi ]]1018167296,
+      --[[ lo ]]0
     ]);
 
 match = Caml_float.caml_frexp_float(12.0);
@@ -43,80 +43,80 @@ match$1 = Caml_float.caml_frexp_float(0);
 match$2 = Caml_float.caml_frexp_float(-12.0);
 
 results = $$Array.append([
-      --[ tuple ]--[
+      --[[ tuple ]][
         Math.log10(2),
         0.301029995663981198
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         Caml_float.caml_ldexp_float(1, 6),
         64
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         Caml_float.caml_ldexp_float(1, 5),
         32
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         Caml_float.caml_ldexp_float(1.e-5, 1024),
         1.79769313486231605e+303
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         Caml_float.caml_ldexp_float(1, -1024),
         5.56268464626800346e-309
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         Caml_float.caml_hypot_float(3, 4),
         5
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         Caml_float.caml_hypot_float(4, 3),
         5
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         Caml_float.caml_hypot_float(5, 12),
         13
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         Caml_float.caml_hypot_float(12, 5),
         13
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         Caml_float.caml_copysign_float(22.3, -1),
         -22.3
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         Caml_float.caml_copysign_float(22.3, 1),
         22.3
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         Caml_float.caml_expm1_float(1e-15),
         1.00000000000000067e-15
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         Math.log1p(1e-10),
         9.9999999995000007e-11
       ]
     ], [
-      --[ tuple ]--[
+      --[[ tuple ]][
         match$1[0],
         0
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         match$1[1],
         0
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         match[0],
         0.75
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         match[1],
         4
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         match$2[0],
         -0.75
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         match$2[1],
         4
       ]
@@ -126,21 +126,21 @@ function from_pairs(ps) do
   return $$Array.to_list($$Array.mapi((function (i, param) do
                     b = param[1];
                     a = param[0];
-                    return --[ tuple ]--[
-                            Curry._1(Printf.sprintf(--[ Format ]--[
-                                      --[ String_literal ]--Block.__(11, [
+                    return --[[ tuple ]][
+                            Curry._1(Printf.sprintf(--[[ Format ]][
+                                      --[[ String_literal ]]Block.__(11, [
                                           "pair ",
-                                          --[ Int ]--Block.__(4, [
-                                              --[ Int_d ]--0,
-                                              --[ No_padding ]--0,
-                                              --[ No_precision ]--0,
-                                              --[ End_of_format ]--0
+                                          --[[ Int ]]Block.__(4, [
+                                              --[[ Int_d ]]0,
+                                              --[[ No_padding ]]0,
+                                              --[[ No_precision ]]0,
+                                              --[[ End_of_format ]]0
                                             ])
                                         ]),
                                       "pair %d"
                                     ]), i),
                             (function (param) do
-                                return --[ Approx ]--Block.__(5, [
+                                return --[[ Approx ]]Block.__(5, [
                                           a,
                                           b
                                         ]);
@@ -153,11 +153,11 @@ float_compare = Caml_primitive.caml_float_compare;
 
 param = Pervasives.classify_float(3);
 
-Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 47, characters 5-12", param, --[ FP_normal ]--0);
+Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 47, characters 5-12", param, --[[ FP_normal ]]0);
 
 param$1 = Caml_float.caml_modf_float(-3.125);
 
-Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 48, characters 5-12", param$1, --[ tuple ]--[
+Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 48, characters 5-12", param$1, --[[ tuple ]][
       -0.125,
       -3
     ]);
@@ -168,12 +168,12 @@ param_000 = isNaN(match$3[0]);
 
 param_001 = isNaN(match$3[1]);
 
-param$2 = --[ tuple ]--[
+param$2 = --[[ tuple ]][
   param_000,
   param_001
 ];
 
-Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 49, characters 5-12", param$2, --[ tuple ]--[
+Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 49, characters 5-12", param$2, --[[ tuple ]][
       true,
       true
     ]);
@@ -195,15 +195,15 @@ param$4 = $$Array.map((function (x) do
       end end), $$Array.map((function (param) do
             return Caml_primitive.caml_float_compare(param[0], param[1]);
           end end), [
-          --[ tuple ]--[
+          --[[ tuple ]][
             1,
             3
           ],
-          --[ tuple ]--[
+          --[[ tuple ]][
             2,
             1
           ],
-          --[ tuple ]--[
+          --[[ tuple ]][
             3,
             2
           ]
@@ -241,47 +241,47 @@ b = match$4[1];
 
 a = match$4[0];
 
-Mt.from_pair_suites("Float_test", Pervasives.$at(--[ :: ]--[
-          --[ tuple ]--[
+Mt.from_pair_suites("Float_test", Pervasives.$at(--[[ :: ]][
+          --[[ tuple ]][
             "mod_float",
             (function (param) do
-                return --[ Approx ]--Block.__(5, [
+                return --[[ Approx ]]Block.__(5, [
                           3.2 % 0.5,
                           0.200000000000000178
                         ]);
               end end)
           ],
-          --[ :: ]--[
-            --[ tuple ]--[
+          --[[ :: ]][
+            --[[ tuple ]][
               "modf_float1",
               (function (param) do
-                  return --[ Approx ]--Block.__(5, [
+                  return --[[ Approx ]]Block.__(5, [
                             a,
                             0.299999999999997158
                           ]);
                 end end)
             ],
-            --[ :: ]--[
-              --[ tuple ]--[
+            --[[ :: ]][
+              --[[ tuple ]][
                 "modf_float2",
                 (function (param) do
-                    return --[ Approx ]--Block.__(5, [
+                    return --[[ Approx ]]Block.__(5, [
                               b,
                               32
                             ]);
                   end end)
               ],
-              --[ :: ]--[
-                --[ tuple ]--[
+              --[[ :: ]][
+                --[[ tuple ]][
                   "int_of_float",
                   (function (param) do
-                      return --[ Eq ]--Block.__(0, [
+                      return --[[ Eq ]]Block.__(0, [
                                 3,
                                 3
                               ]);
                     end end)
                 ],
-                --[ [] ]--0
+                --[[ [] ]]0
               ]
             ]
           ]
@@ -295,4 +295,4 @@ exports.epsilon_float = epsilon_float;
 exports.results = results;
 exports.from_pairs = from_pairs;
 exports.float_compare = float_compare;
---[ results Not a pure module ]--
+--[[ results Not a pure module ]]

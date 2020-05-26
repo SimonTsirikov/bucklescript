@@ -6,10 +6,10 @@ r = 0;
 
 for k = 1 , 10 , 1 do
   for i = 1 , 10 , 1 do
-    match = i % 2 == 0 and --[ tuple ]--[
+    match = i % 2 == 0 and --[[ tuple ]][
         1,
         (i << 1)
-      ] or --[ tuple ]--[
+      ] or --[[ tuple ]][
         2,
         Caml_int32.imul(i, 3)
       ];
@@ -17,4 +17,4 @@ for k = 1 , 10 , 1 do
   end
 end
 
---[  Not a pure module ]--
+--[[  Not a pure module ]]

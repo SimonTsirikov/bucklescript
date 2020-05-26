@@ -19,4 +19,4 @@ if (match ~= undefined) then do
 end
  end 
 
---[ match Not a pure module ]--
+--[[ match Not a pure module ]]

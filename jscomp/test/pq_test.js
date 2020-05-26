@@ -9,14 +9,14 @@ function insert(queue, prio, elt) do
     e = queue[1];
     p = queue[0];
     if (prio <= p) then do
-      return --[ Node ]--[
+      return --[[ Node ]][
               prio,
               elt,
               insert(right, p, e),
               left
             ];
     end else do
-      return --[ Node ]--[
+      return --[[ Node ]][
               p,
               e,
               insert(right, prio, elt),
@@ -24,11 +24,11 @@ function insert(queue, prio, elt) do
             ];
     end end 
   end else do
-    return --[ Node ]--[
+    return --[[ Node ]][
             prio,
             elt,
-            --[ Empty ]--0,
-            --[ Empty ]--0
+            --[[ Empty ]]0,
+            --[[ Empty ]]0
           ];
   end end 
 end end
@@ -44,14 +44,14 @@ function remove_top(param) do
         rprio = right[0];
         lprio = left[0];
         if (lprio <= rprio) then do
-          return --[ Node ]--[
+          return --[[ Node ]][
                   lprio,
                   left[1],
                   remove_top(left),
                   right
                 ];
         end else do
-          return --[ Node ]--[
+          return --[[ Node ]][
                   rprio,
                   right[1],
                   left,
@@ -71,7 +71,7 @@ end end
 
 function extract(queue) do
   if (queue) then do
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             queue[0],
             queue[1],
             remove_top(queue)
@@ -82,7 +82,7 @@ function extract(queue) do
 end end
 
 PrioQueue = do
-  empty: --[ Empty ]--0,
+  empty: --[[ Empty ]]0,
   insert: insert,
   Queue_is_empty: Queue_is_empty,
   remove_top: remove_top,
@@ -90,4 +90,4 @@ PrioQueue = do
 end;
 
 exports.PrioQueue = PrioQueue;
---[ No side effect ]--
+--[[ No side effect ]]

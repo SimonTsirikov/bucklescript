@@ -5,7 +5,7 @@ Block = require("../../lib/js/block.js");
 Global_mangles = require("./global_mangles.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -14,11 +14,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -26,7 +26,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 eq("File \"key_word_property_plus_test.ml\", line 10, characters 5-12", [
@@ -53,4 +53,4 @@ Mt.from_pair_suites("Key_word_property_plus_test", suites.contents);
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

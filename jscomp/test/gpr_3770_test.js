@@ -11,4 +11,4 @@ function show(param) do
 end end
 
 exports.show = show;
---[ No side effect ]--
+--[[ No side effect ]]

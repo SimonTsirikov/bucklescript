@@ -17,7 +17,7 @@ function test(n) do
   end
   catch (exn)do
     if (exn == Foo) then do
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end else do
       throw exn;
     end end 
@@ -27,7 +27,7 @@ end end
 test(100);
 
 function read_lines(inc) do
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   while(true) do
     acc = _acc;
     match;
@@ -42,7 +42,7 @@ function read_lines(inc) do
       end end 
     end
     if (match ~= undefined) then do
-      _acc = --[ :: ]--[
+      _acc = --[[ :: ]][
         match,
         acc
       ];
@@ -54,7 +54,7 @@ function read_lines(inc) do
 end end
 
 function read_lines2(inc) do
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   while(true) do
     acc = _acc;
     l;
@@ -68,7 +68,7 @@ function read_lines2(inc) do
         throw exn;
       end end 
     end
-    _acc = --[ :: ]--[
+    _acc = --[[ :: ]][
       l,
       acc
     ];
@@ -80,7 +80,7 @@ function read_lines3(inc) do
   loop = function (acc) do
     try do
       l = Pervasives.input_line(inc);
-      return loop(--[ :: ]--[
+      return loop(--[[ :: ]][
                   l,
                   acc
                 ]);
@@ -93,7 +93,7 @@ function read_lines3(inc) do
       end end 
     end
   end end;
-  return loop(--[ [] ]--0);
+  return loop(--[[ [] ]]0);
 end end
 
 function fff(f, x) do
@@ -111,4 +111,4 @@ exports.read_lines = read_lines;
 exports.read_lines2 = read_lines2;
 exports.read_lines3 = read_lines3;
 exports.fff = fff;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

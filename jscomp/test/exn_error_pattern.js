@@ -40,7 +40,7 @@ function g(match) do
 end end
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -85,4 +85,4 @@ exports.g = g;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

@@ -57,4 +57,4 @@ exports.uff = uff;
 exports.uff2 = uff2;
 exports.uff3 = uff3;
 exports.fx = fx;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

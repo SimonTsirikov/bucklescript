@@ -19,7 +19,7 @@ shared$2 = [
 ];
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -28,11 +28,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -40,7 +40,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function point_init($$class) do
@@ -57,7 +57,7 @@ function point_init($$class) do
         move,
         (function (self$1, d) do
             self$1[x] = self$1[x] + d | 0;
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end end)
       ]);
   return (function (env, self, x_init$1) do
@@ -175,7 +175,7 @@ CamlinternalOO.init_class(table);
 
 d_000 = Curry._1(env_init, 0);
 
-d = --[ class ]--[
+d = --[[ class ]][
   d_000,
   d_init,
   env_init,
@@ -189,7 +189,7 @@ function c2$prime_001($$class) do
     end end);
 end end
 
-c2$prime = --[ class ]--[
+c2$prime = --[[ class ]][
   0,
   c2$prime_001,
   0,
@@ -228,11 +228,11 @@ p$1 = Curry._2(functional_point[0], 0, 7);
 
 tmp = Caml_oo_curry.js2(-933174511, 2, p$1, 3);
 
-eq("File \"class6_test.ml\", line 60, characters 5-12", --[ tuple ]--[
+eq("File \"class6_test.ml\", line 60, characters 5-12", --[[ tuple ]][
       7,
       10,
       7
-    ], --[ tuple ]--[
+    ], --[[ tuple ]][
       Caml_oo_curry.js1(291546447, 1, p$1),
       Caml_oo_curry.js1(291546447, 3, tmp),
       Caml_oo_curry.js1(291546447, 4, p$1)
@@ -270,7 +270,7 @@ CamlinternalOO.init_class(table$1);
 
 bad_functional_point_000 = Curry._1(env_init$1, 0);
 
-bad_functional_point = --[ class ]--[
+bad_functional_point = --[[ class ]][
   bad_functional_point_000,
   bad_functional_point_init,
   env_init$1,
@@ -281,11 +281,11 @@ p$2 = Curry._2(bad_functional_point_000, 0, 7);
 
 tmp$1 = Caml_oo_curry.js2(-933174511, 6, p$2, 3);
 
-eq("File \"class6_test.ml\", line 74, characters 5-12", --[ tuple ]--[
+eq("File \"class6_test.ml\", line 74, characters 5-12", --[[ tuple ]][
       7,
       10,
       7
-    ], --[ tuple ]--[
+    ], --[[ tuple ]][
       Caml_oo_curry.js1(291546447, 5, p$2),
       Caml_oo_curry.js1(291546447, 7, tmp$1),
       Caml_oo_curry.js1(291546447, 8, p$2)
@@ -307,4 +307,4 @@ exports.d = d;
 exports.c2$prime = c2$prime;
 exports.functional_point = functional_point;
 exports.bad_functional_point = bad_functional_point;
---[ point Not a pure module ]--
+--[[ point Not a pure module ]]

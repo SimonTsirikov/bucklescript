@@ -7,4 +7,4 @@
           end end);
       end end)("")("");
 
---[  Not a pure module ]--
+--[[  Not a pure module ]]

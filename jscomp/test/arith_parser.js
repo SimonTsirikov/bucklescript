@@ -56,16 +56,16 @@ yyact = [
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[ Numeral ]--Block.__(0, [_1]);
+      return --[[ Numeral ]]Block.__(0, [_1]);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[ Variable ]--Block.__(6, [_1]);
+      return --[[ Variable ]]Block.__(6, [_1]);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[ Plus ]--Block.__(1, [
+      return --[[ Plus ]]Block.__(1, [
                 _1,
                 _3
               ]);
@@ -73,7 +73,7 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[ Minus ]--Block.__(2, [
+      return --[[ Minus ]]Block.__(2, [
                 _1,
                 _3
               ]);
@@ -81,7 +81,7 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[ Times ]--Block.__(3, [
+      return --[[ Times ]]Block.__(3, [
                 _1,
                 _3
               ]);
@@ -89,14 +89,14 @@ yyact = [
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[ Divide ]--Block.__(4, [
+      return --[[ Divide ]]Block.__(4, [
                 _1,
                 _3
               ]);
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[ Negate ]--Block.__(5, [_2]);
+      return --[[ Negate ]]Block.__(5, [_2]);
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
@@ -151,4 +151,4 @@ exports.yynames_block = yynames_block;
 exports.yyact = yyact;
 exports.yytables = yytables;
 exports.toplevel = toplevel;
---[ No side effect ]--
+--[[ No side effect ]]

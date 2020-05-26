@@ -11,21 +11,21 @@ function obj(param) do
         end;
 end end
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "empty",
   (function (param) do
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 [],
                 Object.keys({ })
               ]);
     end end)
 ];
 
-suites_001 = --[ :: ]--[
-  --[ tuple ]--[
+suites_001 = --[[ :: ]][
+  --[[ tuple ]][
     "get",
     (function (param) do
-        return --[ Eq ]--Block.__(0, [
+        return --[[ Eq ]]Block.__(0, [
                   43,
                   Js_dict.get(do
                         foo: 43,
@@ -34,11 +34,11 @@ suites_001 = --[ :: ]--[
                 ]);
       end end)
   ],
-  --[ :: ]--[
-    --[ tuple ]--[
+  --[[ :: ]][
+    --[[ tuple ]][
       "get - property not in object",
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     undefined,
                     Js_dict.get(do
                           foo: 43,
@@ -47,11 +47,11 @@ suites_001 = --[ :: ]--[
                   ]);
         end end)
     ],
-    --[ :: ]--[
-      --[ tuple ]--[
+    --[[ :: ]][
+      --[[ tuple ]][
         "unsafe_get",
         (function (param) do
-            return --[ Eq ]--Block.__(0, [
+            return --[[ Eq ]]Block.__(0, [
                       43,
                       (do
                             foo: 43,
@@ -60,8 +60,8 @@ suites_001 = --[ :: ]--[
                     ]);
           end end)
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "set",
           (function (param) do
               o = do
@@ -69,17 +69,17 @@ suites_001 = --[ :: ]--[
                 bar: 86
               end;
               o["foo"] = 36;
-              return --[ Eq ]--Block.__(0, [
+              return --[[ Eq ]]Block.__(0, [
                         36,
                         Js_dict.get(o, "foo")
                       ]);
             end end)
         ],
-        --[ :: ]--[
-          --[ tuple ]--[
+        --[[ :: ]][
+          --[[ tuple ]][
             "keys",
             (function (param) do
-                return --[ Eq ]--Block.__(0, [
+                return --[[ Eq ]]Block.__(0, [
                           [
                             "foo",
                             "bar"
@@ -91,17 +91,17 @@ suites_001 = --[ :: ]--[
                         ]);
               end end)
           ],
-          --[ :: ]--[
-            --[ tuple ]--[
+          --[[ :: ]][
+            --[[ tuple ]][
               "entries",
               (function (param) do
-                  return --[ Eq ]--Block.__(0, [
+                  return --[[ Eq ]]Block.__(0, [
                             [
-                              --[ tuple ]--[
+                              --[[ tuple ]][
                                 "foo",
                                 43
                               ],
-                              --[ tuple ]--[
+                              --[[ tuple ]][
                                 "bar",
                                 86
                               ]
@@ -113,11 +113,11 @@ suites_001 = --[ :: ]--[
                           ]);
                 end end)
             ],
-            --[ :: ]--[
-              --[ tuple ]--[
+            --[[ :: ]][
+              --[[ tuple ]][
                 "values",
                 (function (param) do
-                    return --[ Eq ]--Block.__(0, [
+                    return --[[ Eq ]]Block.__(0, [
                               [
                                 43,
                                 86
@@ -129,78 +129,78 @@ suites_001 = --[ :: ]--[
                             ]);
                   end end)
               ],
-              --[ :: ]--[
-                --[ tuple ]--[
+              --[[ :: ]][
+                --[[ tuple ]][
                   "fromList - []",
                   (function (param) do
-                      return --[ Eq ]--Block.__(0, [
+                      return --[[ Eq ]]Block.__(0, [
                                 { },
-                                Js_dict.fromList(--[ [] ]--0)
+                                Js_dict.fromList(--[[ [] ]]0)
                               ]);
                     end end)
                 ],
-                --[ :: ]--[
-                  --[ tuple ]--[
+                --[[ :: ]][
+                  --[[ tuple ]][
                     "fromList",
                     (function (param) do
-                        return --[ Eq ]--Block.__(0, [
+                        return --[[ Eq ]]Block.__(0, [
                                   [
-                                    --[ tuple ]--[
+                                    --[[ tuple ]][
                                       "x",
                                       23
                                     ],
-                                    --[ tuple ]--[
+                                    --[[ tuple ]][
                                       "y",
                                       46
                                     ]
                                   ],
-                                  Js_dict.entries(Js_dict.fromList(--[ :: ]--[
-                                            --[ tuple ]--[
+                                  Js_dict.entries(Js_dict.fromList(--[[ :: ]][
+                                            --[[ tuple ]][
                                               "x",
                                               23
                                             ],
-                                            --[ :: ]--[
-                                              --[ tuple ]--[
+                                            --[[ :: ]][
+                                              --[[ tuple ]][
                                                 "y",
                                                 46
                                               ],
-                                              --[ [] ]--0
+                                              --[[ [] ]]0
                                             ]
                                           ]))
                                 ]);
                       end end)
                   ],
-                  --[ :: ]--[
-                    --[ tuple ]--[
+                  --[[ :: ]][
+                    --[[ tuple ]][
                       "fromArray - []",
                       (function (param) do
-                          return --[ Eq ]--Block.__(0, [
+                          return --[[ Eq ]]Block.__(0, [
                                     { },
                                     Js_dict.fromArray([])
                                   ]);
                         end end)
                     ],
-                    --[ :: ]--[
-                      --[ tuple ]--[
+                    --[[ :: ]][
+                      --[[ tuple ]][
                         "fromArray",
                         (function (param) do
-                            return --[ Eq ]--Block.__(0, [
+                            return --[[ Eq ]]Block.__(0, [
                                       [
-                                        --[ tuple ]--[
+                                        --[[ tuple ]][
                                           "x",
                                           23
                                         ],
-                                        --[ tuple ]--[
+                                        --[[ tuple ]][
                                           "y",
                                           46
                                         ]
                                       ],
                                       Js_dict.entries(Js_dict.fromArray([
-                                                --[ tuple ]--[
+                                                --[[ tuple ]][
                                                   "x",
                                                   23
                                                 ],
-                                                --[ tuple ]--[
+                                                --[[ tuple ]][
                                                   "y",
                                                   46
                                                 ]
@@ -208,11 +208,11 @@ suites_001 = --[ :: ]--[
                                     ]);
                           end end)
                       ],
-                      --[ :: ]--[
-                        --[ tuple ]--[
+                      --[[ :: ]][
+                        --[[ tuple ]][
                           "map",
                           (function (param) do
-                              return --[ Eq ]--Block.__(0, [
+                              return --[[ Eq ]]Block.__(0, [
                                         do
                                           foo: "43",
                                           bar: "86"
@@ -226,7 +226,7 @@ suites_001 = --[ :: ]--[
                                       ]);
                             end end)
                         ],
-                        --[ [] ]--0
+                        --[[ [] ]]0
                       ]
                     ]
                   ]
@@ -240,7 +240,7 @@ suites_001 = --[ :: ]--[
   ]
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
   suites_001
 ];
@@ -249,4 +249,4 @@ Mt.from_pair_suites("Js_dict_test", suites);
 
 exports.obj = obj;
 exports.suites = suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

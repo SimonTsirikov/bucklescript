@@ -14,7 +14,7 @@ function filter_map(f, _xs) do
       ys = xs[1];
       match = Curry._1(f, xs[0]);
       if (match ~= undefined) then do
-        return --[ :: ]--[
+        return --[[ :: ]][
                 Caml_option.valFromOption(match),
                 filter_map(f, ys)
               ];
@@ -23,7 +23,7 @@ function filter_map(f, _xs) do
         continue ;
       end end 
     end else do
-      return --[ [] ]--0;
+      return --[[ [] ]]0;
     end end 
   end;
 end end
@@ -45,7 +45,7 @@ function excludes(p, l) do
           continue ;
         end else do
           _param = l;
-          _accu = --[ :: ]--[
+          _accu = --[[ :: ]][
             x,
             accu
           ];
@@ -56,14 +56,14 @@ function excludes(p, l) do
       end end 
     end;
   end end;
-  v = aux(--[ [] ]--0, l);
+  v = aux(--[[ [] ]]0, l);
   if (excluded.contents) then do
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             true,
             v
           ];
   end else do
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             false,
             l
           ];
@@ -87,7 +87,7 @@ function exclude_with_fact(p, l) do
           continue ;
         end else do
           _param = l;
-          _accu = --[ :: ]--[
+          _accu = --[[ :: ]][
             x,
             accu
           ];
@@ -98,8 +98,8 @@ function exclude_with_fact(p, l) do
       end end 
     end;
   end end;
-  v = aux(--[ [] ]--0, l);
-  return --[ tuple ]--[
+  v = aux(--[[ [] ]]0, l);
+  return --[[ tuple ]][
           excluded.contents,
           excluded.contents ~= undefined and v or l
         ];
@@ -129,7 +129,7 @@ function exclude_with_fact2(p1, p2, l) do
           continue ;
         end else do
           _param = l;
-          _accu = --[ :: ]--[
+          _accu = --[[ :: ]][
             x,
             accu
           ];
@@ -140,8 +140,8 @@ function exclude_with_fact2(p1, p2, l) do
       end end 
     end;
   end end;
-  v = aux(--[ [] ]--0, l);
-  return --[ tuple ]--[
+  v = aux(--[[ [] ]]0, l);
+  return --[[ tuple ]][
           excluded1.contents,
           excluded2.contents,
           excluded1.contents ~= undefined and excluded2.contents ~= undefined and v or l
@@ -177,7 +177,7 @@ function filter_mapi(f, xs) do
         ys = xs[1];
         match = Curry._2(f, i, xs[0]);
         if (match ~= undefined) then do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   Caml_option.valFromOption(match),
                   aux(i + 1 | 0, ys)
                 ];
@@ -187,7 +187,7 @@ function filter_mapi(f, xs) do
           continue ;
         end end 
       end else do
-        return --[ [] ]--0;
+        return --[[ [] ]]0;
       end end 
     end;
   end end;
@@ -204,7 +204,7 @@ function filter_map2(f, _xs, _ys) do
         us = xs[1];
         match = Curry._2(f, xs[0], ys[0]);
         if (match ~= undefined) then do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   Caml_option.valFromOption(match),
                   filter_map2(f, us, vs)
                 ];
@@ -225,7 +225,7 @@ function filter_map2(f, _xs, _ys) do
             "Ext_list_test.filter_map2"
           ];
     end else do
-      return --[ [] ]--0;
+      return --[[ [] ]]0;
     end end  end 
   end;
 end end
@@ -242,7 +242,7 @@ function filter_map2i(f, xs, ys) do
           us = xs[1];
           match = Curry._3(f, i, xs[0], ys[0]);
           if (match ~= undefined) then do
-            return --[ :: ]--[
+            return --[[ :: ]][
                     Caml_option.valFromOption(match),
                     aux(i + 1 | 0, us, vs)
                   ];
@@ -264,7 +264,7 @@ function filter_map2i(f, xs, ys) do
               "Ext_list_test.filter_map2i"
             ];
       end else do
-        return --[ [] ]--0;
+        return --[[ [] ]]0;
       end end  end 
     end;
   end end;
@@ -276,7 +276,7 @@ function rev_map_append(f, _l1, _l2) do
     l2 = _l2;
     l1 = _l1;
     if (l1) then do
-      _l2 = --[ :: ]--[
+      _l2 = --[[ :: ]][
         Curry._1(f, l1[0]),
         l2
       ];
@@ -289,7 +289,7 @@ function rev_map_append(f, _l1, _l2) do
 end end
 
 function flat_map2(f, lx, ly) do
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   _lx = lx;
   _ly = ly;
   while(true) do
@@ -336,11 +336,11 @@ function flat_map_aux(f, _acc, append, _lx) do
 end end
 
 function flat_map(f, lx) do
-  return flat_map_aux(f, --[ [] ]--0, --[ [] ]--0, lx);
+  return flat_map_aux(f, --[[ [] ]]0, --[[ [] ]]0, lx);
 end end
 
 function flat_map_acc(f, append, lx) do
-  return flat_map_aux(f, --[ [] ]--0, append, lx);
+  return flat_map_aux(f, --[[ [] ]]0, append, lx);
 end end
 
 function map2_last(f, l1, l2) do
@@ -350,9 +350,9 @@ function map2_last(f, l1, l2) do
     if (!l1$1) then do
       if (l2) then do
         if (!l2[1]) then do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   Curry._3(f, true, u, l2[0]),
-                  --[ [] ]--0
+                  --[[ [] ]]0
                 ];
         end
          end 
@@ -366,7 +366,7 @@ function map2_last(f, l1, l2) do
      end 
     if (l2) then do
       r = Curry._3(f, false, u, l2[0]);
-      return --[ :: ]--[
+      return --[[ :: ]][
               r,
               map2_last(f, l1$1, l2[1])
             ];
@@ -382,7 +382,7 @@ function map2_last(f, l1, l2) do
           "List.map2_last"
         ];
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end  end 
 end end
 
@@ -392,18 +392,18 @@ function map_last(f, l1) do
     u = l1[0];
     if (l1$1) then do
       r = Curry._2(f, false, u);
-      return --[ :: ]--[
+      return --[[ :: ]][
               r,
               map_last(f, l1$1)
             ];
     end else do
-      return --[ :: ]--[
+      return --[[ :: ]][
               Curry._2(f, true, u),
-              --[ [] ]--0
+              --[[ [] ]]0
             ];
     end end 
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end 
 end end
 
@@ -459,7 +459,7 @@ function take(n, l) do
         ];
   end
    end 
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           $$Array.to_list($$Array.sub(arr, 0, n)),
           $$Array.to_list($$Array.sub(arr, n, arr_length - n | 0))
         ];
@@ -469,13 +469,13 @@ function try_take(n, l) do
   arr = $$Array.of_list(l);
   arr_length = #arr;
   if (arr_length <= n) then do
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             l,
             arr_length,
-            --[ [] ]--0
+            --[[ [] ]]0
           ];
   end else do
-    return --[ tuple ]--[
+    return --[[ tuple ]][
             $$Array.to_list($$Array.sub(arr, 0, n)),
             n,
             $$Array.to_list($$Array.sub(arr, n, arr_length - n | 0))
@@ -488,15 +488,15 @@ function length_compare(_l, _n) do
     n = _n;
     l = _l;
     if (n < 0) then do
-      return --[ Gt ]--15949;
+      return --[[ Gt ]]15949;
     end else if (l) then do
       _n = n - 1 | 0;
       _l = l[1];
       continue ;
     end else if (n == 0) then do
-      return --[ Eq ]--15500;
+      return --[[ Eq ]]15500;
     end else do
-      return --[ Lt ]--17064;
+      return --[[ Lt ]]17064;
     end end  end  end 
   end;
 end end
@@ -514,13 +514,13 @@ function length_larger_than_n(n, _xs, _ys) do
         return false;
       end end 
     end else do
-      return length_compare(xs, n) == --[ Eq ]--15500;
+      return length_compare(xs, n) == --[[ Eq ]]15500;
     end end 
   end;
 end end
 
 function exclude_tail(x) do
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   _x = x;
   while(true) do
     x$1 = _x;
@@ -530,13 +530,13 @@ function exclude_tail(x) do
       x$2 = x$1[0];
       if (ys) then do
         _x = ys;
-        _acc = --[ :: ]--[
+        _acc = --[[ :: ]][
           x$2,
           acc
         ];
         continue ;
       end else do
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 x$2,
                 List.rev(acc)
               ];
@@ -554,7 +554,7 @@ function group(cmp, lst) do
   if (lst) then do
     return aux(cmp, lst[0], group(cmp, lst[1]));
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end 
 end end
 
@@ -563,26 +563,26 @@ function aux(cmp, x, xss) do
     ys = xss[1];
     y = xss[0];
     if (Curry._2(cmp, x, List.hd(y))) then do
-      return --[ :: ]--[
-              --[ :: ]--[
+      return --[[ :: ]][
+              --[[ :: ]][
                 x,
                 y
               ],
               ys
             ];
     end else do
-      return --[ :: ]--[
+      return --[[ :: ]][
               y,
               aux(cmp, x, ys)
             ];
     end end 
   end else do
-    return --[ :: ]--[
-            --[ :: ]--[
+    return --[[ :: ]][
+            --[[ :: ]][
               x,
-              --[ [] ]--0
+              --[[ [] ]]0
             ],
-            --[ [] ]--0
+            --[[ [] ]]0
           ];
   end end 
 end end
@@ -605,7 +605,7 @@ function drop(_n, _h) do
     if (n == 0) then do
       return h;
     end else do
-      if (h == --[ [] ]--0) then do
+      if (h == --[[ [] ]]0) then do
         throw [
               Caml_builtin_exceptions.invalid_argument,
               "Ext_list_test.drop"
@@ -667,7 +667,7 @@ function rev_map_acc(acc, f, l) do
     accu = _accu;
     if (param) then do
       _param = param[1];
-      _accu = --[ :: ]--[
+      _accu = --[[ :: ]][
         Curry._1(f, param[0]),
         accu
       ];
@@ -680,7 +680,7 @@ end end
 
 function map_acc(acc, f, l) do
   if (l) then do
-    return --[ :: ]--[
+    return --[[ :: ]][
             Curry._1(f, l[0]),
             map_acc(acc, f, l[1])
           ];
@@ -694,7 +694,7 @@ function rev_iter(f, xs) do
     rev_iter(f, xs[1]);
     return Curry._1(f, xs[0]);
   end else do
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end end 
 end end
 
@@ -753,8 +753,8 @@ function find_opt(p, _param) do
 end end
 
 function split_map(f, xs) do
-  _bs = --[ [] ]--0;
-  _cs = --[ [] ]--0;
+  _bs = --[[ [] ]]0;
+  _cs = --[[ [] ]]0;
   _xs = xs;
   while(true) do
     xs$1 = _xs;
@@ -763,17 +763,17 @@ function split_map(f, xs) do
     if (xs$1) then do
       match = Curry._1(f, xs$1[0]);
       _xs = xs$1[1];
-      _cs = --[ :: ]--[
+      _cs = --[[ :: ]][
         match[1],
         cs
       ];
-      _bs = --[ :: ]--[
+      _bs = --[[ :: ]][
         match[0],
         bs
       ];
       continue ;
     end else do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               List.rev(bs),
               List.rev(cs)
             ];
@@ -808,7 +808,7 @@ end end
 
 function create_ref_empty(param) do
   return do
-          contents: --[ [] ]--0
+          contents: --[[ [] ]]0
         end;
 end end
 
@@ -834,11 +834,11 @@ function ref_empty(x) do
 end end
 
 function ref_push(x, refs) do
-  refs.contents = --[ :: ]--[
+  refs.contents = --[[ :: ]][
     x,
     refs.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function ref_pop(refs) do
@@ -855,7 +855,7 @@ function ref_pop(refs) do
 end end
 
 function rev_except_last(xs) do
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   _xs = xs;
   while(true) do
     xs$1 = _xs;
@@ -865,13 +865,13 @@ function rev_except_last(xs) do
       x = xs$1[0];
       if (xs$2) then do
         _xs = xs$2;
-        _acc = --[ :: ]--[
+        _acc = --[[ :: ]][
           x,
           acc
         ];
         continue ;
       end else do
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 acc,
                 x
               ];
@@ -927,7 +927,7 @@ function assoc_by_string(def, k, _lst) do
     end else do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "ext_list_test.ml",
               399,
               14
@@ -953,7 +953,7 @@ function assoc_by_int(def, k, _lst) do
     end else do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "ext_list_test.ml",
               409,
               14
@@ -1011,4 +1011,4 @@ exports.sort_via_array = sort_via_array;
 exports.last = last;
 exports.assoc_by_string = assoc_by_string;
 exports.assoc_by_int = assoc_by_int;
---[ Ext_string_test Not a pure module ]--
+--[[ Ext_string_test Not a pure module ]]

@@ -6,19 +6,19 @@ Format = require("../../lib/js/format.js");
 Pervasives = require("../../lib/js/pervasives.js");
 
 function err(str, f) do
-  return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
-                      --[ String ]--Block.__(2, [
-                          --[ No_padding ]--0,
-                          --[ Char_literal ]--Block.__(12, [
-                              --[ " " ]--32,
-                              --[ End_of_format ]--0
+  return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[[ Format ]][
+                      --[[ String ]]Block.__(2, [
+                          --[[ No_padding ]]0,
+                          --[[ Char_literal ]]Block.__(12, [
+                              --[[ " " ]]32,
+                              --[[ End_of_format ]]0
                             ])
                         ]),
                       "%s "
-                    ], Pervasives.$caret$caret(f, --[ Format ]--[
-                          --[ Formatting_lit ]--Block.__(17, [
-                              --[ Flush_newline ]--4,
-                              --[ End_of_format ]--0
+                    ], Pervasives.$caret$caret(f, --[[ Format ]][
+                          --[[ Formatting_lit ]]Block.__(17, [
+                              --[[ Flush_newline ]]4,
+                              --[[ End_of_format ]]0
                             ]),
                           "@."
                         ]))), str);
@@ -26,23 +26,23 @@ end end
 
 function ierr(b, str, f) do
   if (b) then do
-    return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
-                        --[ String ]--Block.__(2, [
-                            --[ No_padding ]--0,
-                            --[ Char_literal ]--Block.__(12, [
-                                --[ " " ]--32,
-                                --[ End_of_format ]--0
+    return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[[ Format ]][
+                        --[[ String ]]Block.__(2, [
+                            --[[ No_padding ]]0,
+                            --[[ Char_literal ]]Block.__(12, [
+                                --[[ " " ]]32,
+                                --[[ End_of_format ]]0
                               ])
                           ]),
                         "%s "
                       ], f)), str);
   end else do
-    return Format.ifprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
-                      --[ String ]--Block.__(2, [
-                          --[ No_padding ]--0,
-                          --[ Char_literal ]--Block.__(12, [
-                              --[ " " ]--32,
-                              --[ End_of_format ]--0
+    return Format.ifprintf(Format.err_formatter, Pervasives.$caret$caret(--[[ Format ]][
+                      --[[ String ]]Block.__(2, [
+                          --[[ No_padding ]]0,
+                          --[[ Char_literal ]]Block.__(12, [
+                              --[[ " " ]]32,
+                              --[[ End_of_format ]]0
                             ])
                         ]),
                       "%s "
@@ -51,22 +51,22 @@ function ierr(b, str, f) do
 end end
 
 function warn(str, f) do
-  return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
-                      --[ String_literal ]--Block.__(11, [
+  return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[[ Format ]][
+                      --[[ String_literal ]]Block.__(11, [
                           "WARN: ",
-                          --[ String ]--Block.__(2, [
-                              --[ No_padding ]--0,
-                              --[ Char_literal ]--Block.__(12, [
-                                  --[ " " ]--32,
-                                  --[ End_of_format ]--0
+                          --[[ String ]]Block.__(2, [
+                              --[[ No_padding ]]0,
+                              --[[ Char_literal ]]Block.__(12, [
+                                  --[[ " " ]]32,
+                                  --[[ End_of_format ]]0
                                 ])
                             ])
                         ]),
                       "WARN: %s "
-                    ], Pervasives.$caret$caret(f, --[ Format ]--[
-                          --[ Formatting_lit ]--Block.__(17, [
-                              --[ Flush_newline ]--4,
-                              --[ End_of_format ]--0
+                    ], Pervasives.$caret$caret(f, --[[ Format ]][
+                          --[[ Formatting_lit ]]Block.__(17, [
+                              --[[ Flush_newline ]]4,
+                              --[[ End_of_format ]]0
                             ]),
                           "@."
                         ]))), str);
@@ -74,28 +74,28 @@ end end
 
 function iwarn(b, str, f) do
   if (b) then do
-    return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
-                        --[ String_literal ]--Block.__(11, [
+    return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[[ Format ]][
+                        --[[ String_literal ]]Block.__(11, [
                             "WARN: ",
-                            --[ String ]--Block.__(2, [
-                                --[ No_padding ]--0,
-                                --[ Char_literal ]--Block.__(12, [
-                                    --[ " " ]--32,
-                                    --[ End_of_format ]--0
+                            --[[ String ]]Block.__(2, [
+                                --[[ No_padding ]]0,
+                                --[[ Char_literal ]]Block.__(12, [
+                                    --[[ " " ]]32,
+                                    --[[ End_of_format ]]0
                                   ])
                               ])
                           ]),
                         "WARN: %s "
                       ], f)), str);
   end else do
-    return Format.ifprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
-                      --[ String_literal ]--Block.__(11, [
+    return Format.ifprintf(Format.err_formatter, Pervasives.$caret$caret(--[[ Format ]][
+                      --[[ String_literal ]]Block.__(11, [
                           "WARN: ",
-                          --[ String ]--Block.__(2, [
-                              --[ No_padding ]--0,
-                              --[ Char_literal ]--Block.__(12, [
-                                  --[ " " ]--32,
-                                  --[ End_of_format ]--0
+                          --[[ String ]]Block.__(2, [
+                              --[[ No_padding ]]0,
+                              --[[ Char_literal ]]Block.__(12, [
+                                  --[[ " " ]]32,
+                                  --[[ End_of_format ]]0
                                 ])
                             ])
                         ]),
@@ -105,14 +105,14 @@ function iwarn(b, str, f) do
 end end
 
 function info(str, f) do
-  return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
-                      --[ String_literal ]--Block.__(11, [
+  return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[[ Format ]][
+                      --[[ String_literal ]]Block.__(11, [
                           "INFO: ",
-                          --[ String ]--Block.__(2, [
-                              --[ No_padding ]--0,
-                              --[ Char_literal ]--Block.__(12, [
-                                  --[ " " ]--32,
-                                  --[ End_of_format ]--0
+                          --[[ String ]]Block.__(2, [
+                              --[[ No_padding ]]0,
+                              --[[ Char_literal ]]Block.__(12, [
+                                  --[[ " " ]]32,
+                                  --[[ End_of_format ]]0
                                 ])
                             ])
                         ]),
@@ -121,14 +121,14 @@ function info(str, f) do
 end end
 
 function iinfo(b, str, f) do
-  return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
-                      --[ String_literal ]--Block.__(11, [
+  return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[[ Format ]][
+                      --[[ String_literal ]]Block.__(11, [
                           "INFO: ",
-                          --[ String ]--Block.__(2, [
-                              --[ No_padding ]--0,
-                              --[ Char_literal ]--Block.__(12, [
-                                  --[ " " ]--32,
-                                  --[ End_of_format ]--0
+                          --[[ String ]]Block.__(2, [
+                              --[[ No_padding ]]0,
+                              --[[ Char_literal ]]Block.__(12, [
+                                  --[[ " " ]]32,
+                                  --[[ End_of_format ]]0
                                 ])
                             ])
                         ]),
@@ -142,4 +142,4 @@ exports.warn = warn;
 exports.iwarn = iwarn;
 exports.info = info;
 exports.iinfo = iinfo;
---[ Format Not a pure module ]--
+--[[ Format Not a pure module ]]

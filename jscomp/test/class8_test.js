@@ -15,7 +15,7 @@ shared = [
 shared$1 = ["repr"];
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -33,7 +33,7 @@ function comparable_001($$class) do
     end end);
 end end
 
-comparable = --[ class ]--[
+comparable = --[[ class ]][
   0,
   comparable_001,
   0,
@@ -122,4 +122,4 @@ exports.comparable = comparable;
 exports.money = money;
 exports.money2 = money2;
 exports.min = min;
---[ money Not a pure module ]--
+--[[ money Not a pure module ]]

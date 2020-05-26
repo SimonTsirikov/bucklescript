@@ -13,10 +13,10 @@ end end
 function h(x) do
   x.height = 3;
   x.width = 3;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 exports.f = f;
 exports.g = g;
 exports.h = h;
---[ No side effect ]--
+--[[ No side effect ]]

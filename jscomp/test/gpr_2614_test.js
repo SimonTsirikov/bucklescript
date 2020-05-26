@@ -17,7 +17,7 @@ c = v.open;
 function ff(param) do
   v["Content-Type"] = 3;
   v.l = 2;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 partial_arg = "x";
@@ -74,4 +74,4 @@ exports.hh = hh;
 exports.hh2 = hh2;
 exports.u = u;
 exports.v = v$1;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

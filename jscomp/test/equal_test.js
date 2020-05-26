@@ -17,4 +17,4 @@ exports.str_equal = str_equal;
 exports.str_b = str_b;
 exports.int_equal = int_equal;
 exports.v = v;
---[ str_b Not a pure module ]--
+--[[ str_b Not a pure module ]]

@@ -8,4 +8,4 @@ function f(point) do
 end end
 
 exports.f = f;
---[ No side effect ]--
+--[[ No side effect ]]

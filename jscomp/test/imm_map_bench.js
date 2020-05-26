@@ -24,7 +24,7 @@ function should(b) do
 end end
 
 shuffledDataAdd = Belt_Array.makeByAndShuffle(1000001, (function (i) do
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 i,
                 i
               ];
@@ -35,7 +35,7 @@ function test(param) do
   for j = 0 , 1000000 , 1 do
     should(v.has(j));
   end
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function test2(param) do
@@ -43,26 +43,26 @@ function test2(param) do
   for j = 0 , 1000000 , 1 do
     should(Belt_MapInt.has(v, j));
   end
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 console.time("test/imm_map_bench.ml 44");
 
-test(--[ () ]--0);
+test(--[[ () ]]0);
 
 console.timeEnd("test/imm_map_bench.ml 44");
 
 console.time("test/imm_map_bench.ml 45");
 
-test2(--[ () ]--0);
+test2(--[[ () ]]0);
 
 console.timeEnd("test/imm_map_bench.ml 45");
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
 count = 1000000;
 
-M = --[ alias ]--0;
+M = --[[ alias ]]0;
 
 exports.A = A;
 exports.empty = empty;
@@ -73,4 +73,4 @@ exports.shuffledDataAdd = shuffledDataAdd;
 exports.test = test;
 exports.M = M;
 exports.test2 = test2;
---[ empty Not a pure module ]--
+--[[ empty Not a pure module ]]

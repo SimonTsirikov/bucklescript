@@ -31,14 +31,14 @@ function f(param) do
   C$1.y();
   C.x();
   C.y();
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-v = --[ () ]--0;
+v = --[[ () ]]0;
 
 u = 33;
 
 exports.v = v;
 exports.u = u;
 exports.f = f;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

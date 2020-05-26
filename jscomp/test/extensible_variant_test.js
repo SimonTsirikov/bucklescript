@@ -25,7 +25,7 @@ function to_int(x) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "extensible_variant_test.ml",
             16,
             9
@@ -34,10 +34,10 @@ function to_int(x) do
   end end  end  end 
 end end
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "test_int",
   (function (param) do
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 3,
                 to_int([
                       Int,
@@ -48,11 +48,11 @@ suites_000 = --[ tuple ]--[
     end end)
 ];
 
-suites_001 = --[ :: ]--[
-  --[ tuple ]--[
+suites_001 = --[[ :: ]][
+  --[[ tuple ]][
     "test_int2",
     (function (param) do
-        return --[ Eq ]--Block.__(0, [
+        return --[[ Eq ]]Block.__(0, [
                   0,
                   to_int([
                         Int$1,
@@ -62,11 +62,11 @@ suites_001 = --[ :: ]--[
                 ]);
       end end)
   ],
-  --[ :: ]--[
-    --[ tuple ]--[
+  --[[ :: ]][
+    --[[ tuple ]][
       "test_string",
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     -1,
                     to_int([
                           Str,
@@ -75,11 +75,11 @@ suites_001 = --[ :: ]--[
                   ]);
         end end)
     ],
-    --[ [] ]--0
+    --[[ [] ]]0
   ]
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
   suites_001
 ];
@@ -91,4 +91,4 @@ exports.N = N;
 exports.Int = Int$1;
 exports.to_int = to_int;
 exports.suites = suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

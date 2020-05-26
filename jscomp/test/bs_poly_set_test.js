@@ -12,7 +12,7 @@ Caml_primitive = require("../../lib/js/caml_primitive.js");
 Array_data_util = require("./array_data_util.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -216,28 +216,28 @@ b("File \"bs_poly_set_test.ml\", line 92, characters 4-11", Belt_SetDict.maxUnde
 
 function testIterToList(xs) do
   v = do
-    contents: --[ [] ]--0
+    contents: --[[ [] ]]0
   end;
   Belt_Set.forEach(xs, (function (x) do
-          v.contents = --[ :: ]--[
+          v.contents = --[[ :: ]][
             x,
             v.contents
           ];
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end));
   return Belt_List.reverse(v.contents);
 end end
 
 function testIterToList2(xs) do
   v = do
-    contents: --[ [] ]--0
+    contents: --[[ [] ]]0
   end;
   Belt_SetDict.forEach(xs.data, (function (x) do
-          v.contents = --[ :: ]--[
+          v.contents = --[[ :: ]][
             x,
             v.contents
           ];
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end));
   return Belt_List.reverse(v.contents);
 end end
@@ -324,12 +324,12 @@ eq("File \"bs_poly_set_test.ml\", line 132, characters 5-12", Belt_Set.getExn(a0
 
 t("File \"bs_poly_set_test.ml\", line 133, characters 4-11", (function (param) do
         Belt_Set.getExn(a0, 1002);
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 t("File \"bs_poly_set_test.ml\", line 134, characters 4-11", (function (param) do
         Belt_Set.getExn(a0, -1);
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 eq("File \"bs_poly_set_test.ml\", line 135, characters 5-12", Belt_SetDict.size(a0.data), 1001);
@@ -374,17 +374,17 @@ eq("File \"bs_poly_set_test.ml\", line 146, characters 5-12", Belt_SetDict.minim
 
 eq("File \"bs_poly_set_test.ml\", line 147, characters 5-12", Belt_SetDict.minimum(a9.data), 201);
 
-Belt_List.forEach(--[ :: ]--[
+Belt_List.forEach(--[[ :: ]][
       a0,
-      --[ :: ]--[
+      --[[ :: ]][
         a1,
-        --[ :: ]--[
+        --[[ :: ]][
           a2,
-          --[ :: ]--[
+          --[[ :: ]][
             a3,
-            --[ :: ]--[
+            --[[ :: ]][
               a4,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ]
         ]
@@ -416,17 +416,17 @@ b("File \"bs_poly_set_test.ml\", line 159, characters 4-11", !match$5[1]);
 
 Mt.from_pair_suites("Bs_poly_set_test", suites.contents);
 
-N = --[ alias ]--0;
+N = --[[ alias ]]0;
 
-D = --[ alias ]--0;
+D = --[[ alias ]]0;
 
-I = --[ alias ]--0;
+I = --[[ alias ]]0;
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
-S = --[ alias ]--0;
+S = --[[ alias ]]0;
 
-L = --[ alias ]--0;
+L = --[[ alias ]]0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -442,4 +442,4 @@ exports.IntCmp = IntCmp;
 exports.L = L;
 exports.testIterToList = testIterToList;
 exports.testIterToList2 = testIterToList2;
---[ IntCmp Not a pure module ]--
+--[[ IntCmp Not a pure module ]]

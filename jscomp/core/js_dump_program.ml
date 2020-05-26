@@ -29,7 +29,7 @@ module L = Js_dump_lit
 
 
 let empty_explanation = 
-  "--[ This output is empty. Its source's type definitions, externals and/or unused code got optimized away. ]--\n"
+  "--[[ This output is empty. Its source's type definitions, externals and/or unused code got optimized away. ]]\n"
 
 let program_is_empty (x : J.program) = 
   match x with 
@@ -147,9 +147,9 @@ let pp_deps_program
       P.newline f ;
       P.string f (
         match program.side_effect with
-        | None -> "--[ No side effect ]--"
+        | None -> "--[[ No side effect ]]"
 
-        | Some v -> Printf.sprintf "--[ %s Not a pure module ]--" v );
+        | Some v -> Printf.sprintf "--[[ %s Not a pure module ]]" v );
       P.newline f;
       P.flush f ()
     end

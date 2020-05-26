@@ -9,14 +9,14 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function reverse_range(a, i, len) do
   if (len == 0) then do
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end else do
     for k = 0 , (len - 1 | 0) / 2 | 0 , 1 do
       t = a[i + k | 0];
       a[i + k | 0] = a[((i + len | 0) - 1 | 0) - k | 0];
       a[((i + len | 0) - 1 | 0) - k | 0] = t;
     end
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end end 
 end end
 
@@ -62,7 +62,7 @@ end end
 
 function filter(f, a) do
   arr_len = #a;
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   _i = 0;
   while(true) do
     i = _i;
@@ -73,7 +73,7 @@ function filter(f, a) do
       v = a[i];
       if (Curry._1(f, v)) then do
         _i = i + 1 | 0;
-        _acc = --[ :: ]--[
+        _acc = --[[ :: ]][
           v,
           acc
         ];
@@ -88,7 +88,7 @@ end end
 
 function filter_map(f, a) do
   arr_len = #a;
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   _i = 0;
   while(true) do
     i = _i;
@@ -100,7 +100,7 @@ function filter_map(f, a) do
       match = Curry._1(f, v);
       _i = i + 1 | 0;
       if (match ~= undefined) then do
-        _acc = --[ :: ]--[
+        _acc = --[[ :: ]][
           Caml_option.valFromOption(match),
           acc
         ];
@@ -148,7 +148,7 @@ function tolist_aux(a, f, _i, _res) do
     end else do
       v = a[i];
       match = Curry._1(f, v);
-      _res = match ~= undefined and --[ :: ]--[
+      _res = match ~= undefined and --[[ :: ]][
           Caml_option.valFromOption(match),
           res
         ] or res;
@@ -159,7 +159,7 @@ function tolist_aux(a, f, _i, _res) do
 end end
 
 function to_list_map(f, a) do
-  return tolist_aux(a, f, #a - 1 | 0, --[ [] ]--0);
+  return tolist_aux(a, f, #a - 1 | 0, --[[ [] ]]0);
 end end
 
 function to_list_map_acc(f, a, acc) do
@@ -208,11 +208,11 @@ end end
 function rfind_and_split(arr, cmp, v) do
   i = rfind_with_index(arr, cmp, v);
   if (i < 0) then do
-    return --[ No_split ]---226265796;
+    return --[[ No_split ]]-226265796;
   end else do
-    return --[ `Split ]--[
+    return --[[ `Split ]][
             345791162,
-            --[ tuple ]--[
+            --[[ tuple ]][
               $$Array.sub(arr, 0, i),
               $$Array.sub(arr, i + 1 | 0, (#arr - i | 0) - 1 | 0)
             ]
@@ -240,11 +240,11 @@ end end
 function find_and_split(arr, cmp, v) do
   i = find_with_index(arr, cmp, v);
   if (i < 0) then do
-    return --[ No_split ]---226265796;
+    return --[[ No_split ]]-226265796;
   end else do
-    return --[ `Split ]--[
+    return --[[ `Split ]][
             345791162,
-            --[ tuple ]--[
+            --[[ tuple ]][
               $$Array.sub(arr, 0, i),
               $$Array.sub(arr, i + 1 | 0, (#arr - i | 0) - 1 | 0)
             ]
@@ -316,4 +316,4 @@ exports.exists = exists;
 exports.is_empty = is_empty;
 exports.unsafe_loop = unsafe_loop;
 exports.for_all2_no_exn = for_all2_no_exn;
---[ No side effect ]--
+--[[ No side effect ]]

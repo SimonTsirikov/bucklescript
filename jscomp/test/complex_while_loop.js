@@ -16,7 +16,7 @@ function f(param) do
     console.log(String(n));
     n = n + 1 | 0;
   end;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function ff(param) do
@@ -26,9 +26,9 @@ function ff(param) do
         end end)()) do
     
   end;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 exports.f = f;
 exports.ff = ff;
---[ No side effect ]--
+--[[ No side effect ]]

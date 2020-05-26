@@ -6,4 +6,4 @@ function f(x, x$1) do
 end end
 
 exports.f = f;
---[ No side effect ]--
+--[[ No side effect ]]

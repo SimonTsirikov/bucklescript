@@ -32,4 +32,4 @@ end
 
 exports.package_json = package_json;
 exports.find_package_json = find_package_json;
---[ match Not a pure module ]--
+--[[ match Not a pure module ]]

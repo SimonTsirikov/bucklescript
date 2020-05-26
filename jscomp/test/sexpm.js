@@ -30,7 +30,7 @@ function _with_in(filename, f) do
   catch (raw_e)do
     e = Caml_js_exceptions.internalToOCamlException(raw_e);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
-    return --[ `Error ]--[
+    return --[[ `Error ]][
             106380200,
             Printexc.to_string(e)
           ];
@@ -102,22 +102,22 @@ function to_buf(b, t) do
     l = t[1];
     if (l) then do
       if (l[1]) then do
-        $$Buffer.add_char(b, --[ "(" ]--40);
+        $$Buffer.add_char(b, --[[ "(" ]]40);
         List.iteri((function (i, t$prime) do
                 if (i > 0) then do
-                  $$Buffer.add_char(b, --[ " " ]--32);
+                  $$Buffer.add_char(b, --[[ " " ]]32);
                 end
                  end 
                 return to_buf(b, t$prime);
               end end), l);
-        return $$Buffer.add_char(b, --[ ")" ]--41);
+        return $$Buffer.add_char(b, --[[ ")" ]]41);
       end else do
-        return Curry._2(Printf.bprintf(b, --[ Format ]--[
-                        --[ Char_literal ]--Block.__(12, [
-                            --[ "(" ]--40,
-                            --[ Alpha ]--Block.__(15, [--[ Char_literal ]--Block.__(12, [
-                                    --[ ")" ]--41,
-                                    --[ End_of_format ]--0
+        return Curry._2(Printf.bprintf(b, --[[ Format ]][
+                        --[[ Char_literal ]]Block.__(12, [
+                            --[[ "(" ]]40,
+                            --[[ Alpha ]]Block.__(15, [--[[ Char_literal ]]Block.__(12, [
+                                    --[[ ")" ]]41,
+                                    --[[ End_of_format ]]0
                                   ])])
                           ]),
                         "(%a)"
@@ -129,14 +129,14 @@ function to_buf(b, t) do
   end else do
     s = t[1];
     if (_must_escape(s)) then do
-      return Curry._1(Printf.bprintf(b, --[ Format ]--[
-                      --[ Char_literal ]--Block.__(12, [
-                          --[ "\"" ]--34,
-                          --[ String ]--Block.__(2, [
-                              --[ No_padding ]--0,
-                              --[ Char_literal ]--Block.__(12, [
-                                  --[ "\"" ]--34,
-                                  --[ End_of_format ]--0
+      return Curry._1(Printf.bprintf(b, --[[ Format ]][
+                      --[[ Char_literal ]]Block.__(12, [
+                          --[[ "\"" ]]34,
+                          --[[ String ]]Block.__(2, [
+                              --[[ No_padding ]]0,
+                              --[[ Char_literal ]]Block.__(12, [
+                                  --[[ "\"" ]]34,
+                                  --[[ End_of_format ]]0
                                 ])
                             ])
                         ]),
@@ -159,32 +159,32 @@ function print(fmt, t) do
     l = t[1];
     if (l) then do
       if (l[1]) then do
-        Format.fprintf(fmt, --[ Format ]--[
-              --[ Formatting_gen ]--Block.__(18, [
-                  --[ Open_box ]--Block.__(1, [--[ Format ]--[
-                        --[ String_literal ]--Block.__(11, [
+        Format.fprintf(fmt, --[[ Format ]][
+              --[[ Formatting_gen ]]Block.__(18, [
+                  --[[ Open_box ]]Block.__(1, [--[[ Format ]][
+                        --[[ String_literal ]]Block.__(11, [
                             "<hov1>",
-                            --[ End_of_format ]--0
+                            --[[ End_of_format ]]0
                           ]),
                         "<hov1>"
                       ]]),
-                  --[ Char_literal ]--Block.__(12, [
-                      --[ "(" ]--40,
-                      --[ End_of_format ]--0
+                  --[[ Char_literal ]]Block.__(12, [
+                      --[[ "(" ]]40,
+                      --[[ End_of_format ]]0
                     ])
                 ]),
               "@[<hov1>("
             ]);
         List.iteri((function (i, t$prime) do
                 if (i > 0) then do
-                  Format.fprintf(fmt, --[ Format ]--[
-                        --[ Formatting_lit ]--Block.__(17, [
-                            --[ Break ]--Block.__(0, [
+                  Format.fprintf(fmt, --[[ Format ]][
+                        --[[ Formatting_lit ]]Block.__(17, [
+                            --[[ Break ]]Block.__(0, [
                                 "@ ",
                                 1,
                                 0
                               ]),
-                            --[ End_of_format ]--0
+                            --[[ End_of_format ]]0
                           ]),
                         "@ "
                       ]);
@@ -192,33 +192,33 @@ function print(fmt, t) do
                  end 
                 return print(fmt, t$prime);
               end end), l);
-        return Format.fprintf(fmt, --[ Format ]--[
-                    --[ Char_literal ]--Block.__(12, [
-                        --[ ")" ]--41,
-                        --[ Formatting_lit ]--Block.__(17, [
-                            --[ Close_box ]--0,
-                            --[ End_of_format ]--0
+        return Format.fprintf(fmt, --[[ Format ]][
+                    --[[ Char_literal ]]Block.__(12, [
+                        --[[ ")" ]]41,
+                        --[[ Formatting_lit ]]Block.__(17, [
+                            --[[ Close_box ]]0,
+                            --[[ End_of_format ]]0
                           ])
                       ]),
                     ")@]"
                   ]);
       end else do
-        return Curry._2(Format.fprintf(fmt, --[ Format ]--[
-                        --[ Formatting_gen ]--Block.__(18, [
-                            --[ Open_box ]--Block.__(1, [--[ Format ]--[
-                                  --[ String_literal ]--Block.__(11, [
+        return Curry._2(Format.fprintf(fmt, --[[ Format ]][
+                        --[[ Formatting_gen ]]Block.__(18, [
+                            --[[ Open_box ]]Block.__(1, [--[[ Format ]][
+                                  --[[ String_literal ]]Block.__(11, [
                                       "<hov2>",
-                                      --[ End_of_format ]--0
+                                      --[[ End_of_format ]]0
                                     ]),
                                   "<hov2>"
                                 ]]),
-                            --[ Char_literal ]--Block.__(12, [
-                                --[ "(" ]--40,
-                                --[ Alpha ]--Block.__(15, [--[ Char_literal ]--Block.__(12, [
-                                        --[ ")" ]--41,
-                                        --[ Formatting_lit ]--Block.__(17, [
-                                            --[ Close_box ]--0,
-                                            --[ End_of_format ]--0
+                            --[[ Char_literal ]]Block.__(12, [
+                                --[[ "(" ]]40,
+                                --[[ Alpha ]]Block.__(15, [--[[ Char_literal ]]Block.__(12, [
+                                        --[[ ")" ]]41,
+                                        --[[ Formatting_lit ]]Block.__(17, [
+                                            --[[ Close_box ]]0,
+                                            --[[ End_of_format ]]0
                                           ])
                                       ])])
                               ])
@@ -232,14 +232,14 @@ function print(fmt, t) do
   end else do
     s = t[1];
     if (_must_escape(s)) then do
-      return Curry._1(Format.fprintf(fmt, --[ Format ]--[
-                      --[ Char_literal ]--Block.__(12, [
-                          --[ "\"" ]--34,
-                          --[ String ]--Block.__(2, [
-                              --[ No_padding ]--0,
-                              --[ Char_literal ]--Block.__(12, [
-                                  --[ "\"" ]--34,
-                                  --[ End_of_format ]--0
+      return Curry._1(Format.fprintf(fmt, --[[ Format ]][
+                      --[[ Char_literal ]]Block.__(12, [
+                          --[[ "\"" ]]34,
+                          --[[ String ]]Block.__(2, [
+                              --[[ No_padding ]]0,
+                              --[[ Char_literal ]]Block.__(12, [
+                                  --[[ "\"" ]]34,
+                                  --[[ End_of_format ]]0
                                 ])
                             ])
                         ]),
@@ -256,22 +256,22 @@ function print_noindent(fmt, t) do
     l = t[1];
     if (l) then do
       if (l[1]) then do
-        Format.pp_print_char(fmt, --[ "(" ]--40);
+        Format.pp_print_char(fmt, --[[ "(" ]]40);
         List.iteri((function (i, t$prime) do
                 if (i > 0) then do
-                  Format.pp_print_char(fmt, --[ " " ]--32);
+                  Format.pp_print_char(fmt, --[[ " " ]]32);
                 end
                  end 
                 return print_noindent(fmt, t$prime);
               end end), l);
-        return Format.pp_print_char(fmt, --[ ")" ]--41);
+        return Format.pp_print_char(fmt, --[[ ")" ]]41);
       end else do
-        return Curry._2(Format.fprintf(fmt, --[ Format ]--[
-                        --[ Char_literal ]--Block.__(12, [
-                            --[ "(" ]--40,
-                            --[ Alpha ]--Block.__(15, [--[ Char_literal ]--Block.__(12, [
-                                    --[ ")" ]--41,
-                                    --[ End_of_format ]--0
+        return Curry._2(Format.fprintf(fmt, --[[ Format ]][
+                        --[[ Char_literal ]]Block.__(12, [
+                            --[[ "(" ]]40,
+                            --[[ Alpha ]]Block.__(15, [--[[ Char_literal ]]Block.__(12, [
+                                    --[[ ")" ]]41,
+                                    --[[ End_of_format ]]0
                                   ])])
                           ]),
                         "(%a)"
@@ -283,14 +283,14 @@ function print_noindent(fmt, t) do
   end else do
     s = t[1];
     if (_must_escape(s)) then do
-      return Curry._1(Format.fprintf(fmt, --[ Format ]--[
-                      --[ Char_literal ]--Block.__(12, [
-                          --[ "\"" ]--34,
-                          --[ String ]--Block.__(2, [
-                              --[ No_padding ]--0,
-                              --[ Char_literal ]--Block.__(12, [
-                                  --[ "\"" ]--34,
-                                  --[ End_of_format ]--0
+      return Curry._1(Format.fprintf(fmt, --[[ Format ]][
+                      --[[ Char_literal ]]Block.__(12, [
+                          --[[ "\"" ]]34,
+                          --[[ String ]]Block.__(2, [
+                              --[[ No_padding ]]0,
+                              --[[ Char_literal ]]Block.__(12, [
+                                  --[[ "\"" ]]34,
+                                  --[[ End_of_format ]]0
                                 ])
                             ])
                         ]),
@@ -305,7 +305,7 @@ end end
 function to_chan(oc, t) do
   fmt = Format.formatter_of_out_channel(oc);
   print(fmt, t);
-  return Format.pp_print_flush(fmt, --[ () ]--0);
+  return Format.pp_print_flush(fmt, --[[ () ]]0);
 end end
 
 function to_file_seq(filename, seq) do
@@ -313,7 +313,7 @@ function to_file_seq(filename, seq) do
   f = function (oc) do
     return Curry._1(seq, (function (t) do
                   to_chan(oc, t);
-                  return Caml_io.caml_ml_output_char(oc, --[ "\n" ]--10);
+                  return Caml_io.caml_ml_output_char(oc, --[[ "\n" ]]10);
                 end end));
   end end;
   oc = Pervasives.open_out(filename$1);
@@ -364,8 +364,8 @@ function make(bufsizeOpt, refill) do
 end end
 
 function _is_digit(c) do
-  if (--[ "0" ]--48 <= c) then do
-    return c <= --[ "9" ]--57;
+  if (--[[ "0" ]]48 <= c) then do
+    return c <= --[[ "9" ]]57;
   end else do
     return false;
   end end 
@@ -386,7 +386,7 @@ function _get(t) do
   if (t.i >= t.len) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "sexpm.ml",
             152,
             4
@@ -396,7 +396,7 @@ function _get(t) do
    end 
   c = Caml_bytes.get(t.buf, t.i);
   t.i = t.i + 1 | 0;
-  if (c == --[ "\n" ]--10) then do
+  if (c == --[[ "\n" ]]10) then do
     t.col = 1;
     t.line = t.line + 1 | 0;
   end else do
@@ -407,22 +407,22 @@ end end
 
 function _error(t, msg) do
   b = $$Buffer.create(32);
-  Curry._2(Printf.bprintf(b, --[ Format ]--[
-            --[ String_literal ]--Block.__(11, [
+  Curry._2(Printf.bprintf(b, --[[ Format ]][
+            --[[ String_literal ]]Block.__(11, [
                 "at ",
-                --[ Int ]--Block.__(4, [
-                    --[ Int_d ]--0,
-                    --[ No_padding ]--0,
-                    --[ No_precision ]--0,
-                    --[ String_literal ]--Block.__(11, [
+                --[[ Int ]]Block.__(4, [
+                    --[[ Int_d ]]0,
+                    --[[ No_padding ]]0,
+                    --[[ No_precision ]]0,
+                    --[[ String_literal ]]Block.__(11, [
                         ", ",
-                        --[ Int ]--Block.__(4, [
-                            --[ Int_d ]--0,
-                            --[ No_padding ]--0,
-                            --[ No_precision ]--0,
-                            --[ String_literal ]--Block.__(11, [
+                        --[[ Int ]]Block.__(4, [
+                            --[[ Int_d ]]0,
+                            --[[ No_padding ]]0,
+                            --[[ No_precision ]]0,
+                            --[[ String_literal ]]Block.__(11, [
                                 ": ",
-                                --[ End_of_format ]--0
+                                --[[ End_of_format ]]0
                               ])
                           ])
                       ])
@@ -432,7 +432,7 @@ function _error(t, msg) do
           ]), t.line, t.col);
   return Printf.kbprintf((function (b) do
                 msg$prime = $$Buffer.contents(b);
-                return --[ `Error ]--[
+                return --[[ `Error ]][
                         106380200,
                         msg$prime
                       ];
@@ -440,10 +440,10 @@ function _error(t, msg) do
 end end
 
 function _error_eof(t) do
-  return _error(t, --[ Format ]--[
-              --[ String_literal ]--Block.__(11, [
+  return _error(t, --[[ Format ]][
+              --[[ String_literal ]]Block.__(11, [
                   "unexpected end of input",
-                  --[ End_of_format ]--0
+                  --[[ End_of_format ]]0
                 ]),
               "unexpected end of input"
             ]);
@@ -476,10 +476,10 @@ function expr_starting_with(c, k, t) do
   if (c >= 42) then do
     if (c ~= 59) then do
       if (c == 92) then do
-        return _error(t, --[ Format ]--[
-                    --[ String_literal ]--Block.__(11, [
+        return _error(t, --[[ Format ]][
+                    --[[ String_literal ]]Block.__(11, [
                         "unexpected '\\'",
-                        --[ End_of_format ]--0
+                        --[[ End_of_format ]]0
                       ]),
                     "unexpected '\\'"
                   ]);
@@ -497,7 +497,7 @@ function expr_starting_with(c, k, t) do
          if ___conditional___ = 0 then do
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "sexpm.ml",
                     183,
                     27
@@ -512,12 +512,12 @@ function expr_starting_with(c, k, t) do
          or ___conditional___ = 6
          or ___conditional___ = 7
          or ___conditional___ = 8 then do
-            return expr_list(--[ [] ]--0, k, t);end end end 
+            return expr_list(--[[ [] ]]0, k, t);end end end 
          if ___conditional___ = 9 then do
-            return _error(t, --[ Format ]--[
-                        --[ String_literal ]--Block.__(11, [
+            return _error(t, --[[ Format ]][
+                        --[[ String_literal ]]Block.__(11, [
                             "unexpected ')'",
-                            --[ End_of_format ]--0
+                            --[[ End_of_format ]]0
                           ]),
                         "unexpected ')'"
                       ]);end end end 
@@ -529,7 +529,7 @@ function expr_starting_with(c, k, t) do
   end else if (c >= 9) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "sexpm.ml",
             183,
             27
@@ -552,7 +552,7 @@ function expr_list(acc, k, t) do
       switcher = c - 9 | 0;
       if (switcher > 23 or switcher < 0) then do
         if (switcher == 32) then do
-          return Curry._2(k, undefined, --[ `List ]--[
+          return Curry._2(k, undefined, --[[ `List ]][
                       848054398,
                       List.rev(acc)
                     ]);
@@ -567,29 +567,29 @@ function expr_list(acc, k, t) do
                       match = last;
                       if (match ~= 40) then do
                         if (match ~= 41) then do
-                          return expr_list(--[ :: ]--[
+                          return expr_list(--[[ :: ]][
                                       e,
                                       acc
                                     ], k, t);
                         end else do
-                          return Curry._2(k, undefined, --[ `List ]--[
+                          return Curry._2(k, undefined, --[[ `List ]][
                                       848054398,
-                                      List.rev(--[ :: ]--[
+                                      List.rev(--[[ :: ]][
                                             e,
                                             acc
                                           ])
                                     ]);
                         end end 
                       end else do
-                        return expr_list(--[ [] ]--0, (function (param, l) do
-                                      return expr_list(--[ :: ]--[
+                        return expr_list(--[[ [] ]]0, (function (param, l) do
+                                      return expr_list(--[[ :: ]][
                                                   l,
                                                   acc
                                                 ], k, t);
                                     end end), t);
                       end end 
                     end else do
-                      return expr_list(--[ :: ]--[
+                      return expr_list(--[[ :: ]][
                                   e,
                                   acc
                                 ], k, t);
@@ -602,7 +602,7 @@ end end
 function _return_atom(last, k, t) do
   s = $$Buffer.contents(t.atom);
   t.atom.position = 0;
-  return Curry._2(k, last, --[ `Atom ]--[
+  return Curry._2(k, last, --[[ `Atom ]][
               726615281,
               s
             ]);
@@ -624,10 +624,10 @@ function atom(k, t) do
           if (c ~= 92) then do
             exit = 1;
           end else do
-            return _error(t, --[ Format ]--[
-                        --[ String_literal ]--Block.__(11, [
+            return _error(t, --[[ Format ]][
+                        --[[ String_literal ]]Block.__(11, [
                             "unexpected '\\' in non-quoted string",
-                            --[ End_of_format ]--0
+                            --[[ End_of_format ]]0
                           ]),
                         "unexpected '\\' in non-quoted string"
                       ]);
@@ -644,10 +644,10 @@ function atom(k, t) do
              if ___conditional___ = 1 then do
                 exit = 1;end else 
              if ___conditional___ = 2 then do
-                return _error(t, --[ Format ]--[
-                            --[ String_literal ]--Block.__(11, [
+                return _error(t, --[[ Format ]][
+                            --[[ String_literal ]]Block.__(11, [
                                 "unexpected '\"' in the middle of an atom",
-                                --[ End_of_format ]--0
+                                --[[ End_of_format ]]0
                               ]),
                             "unexpected '\"' in the middle of an atom"
                           ]);end end end 
@@ -711,13 +711,13 @@ function escaped(k, t) do
         local ___conditional___=(c - 92 | 0);
         do
            if ___conditional___ = 0 then do
-              return Curry._1(k, --[ "\\" ]--92);end end end 
+              return Curry._1(k, --[[ "\\" ]]92);end end end 
            if ___conditional___ = 6 then do
-              return Curry._1(k, --[ "\b" ]--8);end end end 
+              return Curry._1(k, --[[ "\b" ]]8);end end end 
            if ___conditional___ = 18 then do
-              return Curry._1(k, --[ "\n" ]--10);end end end 
+              return Curry._1(k, --[[ "\n" ]]10);end end end 
            if ___conditional___ = 22 then do
-              return Curry._1(k, --[ "\r" ]--13);end end end 
+              return Curry._1(k, --[[ "\r" ]]13);end end end 
            if ___conditional___ = 1
            or ___conditional___ = 2
            or ___conditional___ = 3
@@ -739,27 +739,27 @@ function escaped(k, t) do
            or ___conditional___ = 21
            or ___conditional___ = 23
            or ___conditional___ = 24 then do
-              return Curry._1(k, --[ "\t" ]--9);end end end 
+              return Curry._1(k, --[[ "\t" ]]9);end end end 
            do
           
         end
       end
        end 
     end else if (c == 34) then do
-      return Curry._1(k, --[ "\"" ]--34);
+      return Curry._1(k, --[[ "\"" ]]34);
     end
      end  end 
     if (_is_digit(c)) then do
-      return read2int(c - --[ "0" ]--48 | 0, (function (n) do
+      return read2int(c - --[[ "0" ]]48 | 0, (function (n) do
                     return Curry._1(k, Char.chr(n));
                   end end), t);
     end else do
-      return Curry._1(_error(t, --[ Format ]--[
-                      --[ String_literal ]--Block.__(11, [
+      return Curry._1(_error(t, --[[ Format ]][
+                      --[[ String_literal ]]Block.__(11, [
                           "unexpected escaped char '",
-                          --[ Char ]--Block.__(0, [--[ Char_literal ]--Block.__(12, [
-                                  --[ "'" ]--39,
-                                  --[ End_of_format ]--0
+                          --[[ Char ]]Block.__(0, [--[[ Char_literal ]]Block.__(12, [
+                                  --[[ "'" ]]39,
+                                  --[[ End_of_format ]]0
                                 ])])
                         ]),
                       "unexpected escaped char '%c'"
@@ -776,14 +776,14 @@ function read2int(i, k, t) do
   end else do
     c = _get(t);
     if (_is_digit(c)) then do
-      return read1int(Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0, k, t);
+      return read1int(Caml_int32.imul(10, i) + (c - --[[ "0" ]]48 | 0) | 0, k, t);
     end else do
-      return Curry._1(_error(t, --[ Format ]--[
-                      --[ String_literal ]--Block.__(11, [
+      return Curry._1(_error(t, --[[ Format ]][
+                      --[[ String_literal ]]Block.__(11, [
                           "unexpected char '",
-                          --[ Char ]--Block.__(0, [--[ String_literal ]--Block.__(11, [
+                          --[[ Char ]]Block.__(0, [--[[ String_literal ]]Block.__(11, [
                                   "' when reading byte",
-                                  --[ End_of_format ]--0
+                                  --[[ End_of_format ]]0
                                 ])])
                         ]),
                       "unexpected char '%c' when reading byte"
@@ -800,14 +800,14 @@ function read1int(i, k, t) do
   end else do
     c = _get(t);
     if (_is_digit(c)) then do
-      return Curry._1(k, Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0);
+      return Curry._1(k, Caml_int32.imul(10, i) + (c - --[[ "0" ]]48 | 0) | 0);
     end else do
-      return Curry._1(_error(t, --[ Format ]--[
-                      --[ String_literal ]--Block.__(11, [
+      return Curry._1(_error(t, --[[ Format ]][
+                      --[[ String_literal ]]Block.__(11, [
                           "unexpected char '",
-                          --[ Char ]--Block.__(0, [--[ String_literal ]--Block.__(11, [
+                          --[[ Char ]]Block.__(0, [--[[ String_literal ]]Block.__(11, [
                                   "' when reading byte",
-                                  --[ End_of_format ]--0
+                                  --[[ End_of_format ]]0
                                 ])])
                         ]),
                       "unexpected char '%c' when reading byte"
@@ -827,7 +827,7 @@ function skip_comment(k, t) do
       if (match ~= 10) then do
         continue ;
       end else do
-        return Curry._2(k, undefined, --[ () ]--0);
+        return Curry._2(k, undefined, --[[ () ]]0);
       end end 
     end end 
   end;
@@ -839,7 +839,7 @@ function expr_or_end(k, t) do
       return _refill(t, (function (param) do
                     return expr_or_end(k, param);
                   end end), (function (param) do
-                    return --[ End ]--3455931;
+                    return --[[ End ]]3455931;
                   end end));
     end else do
       c = _get(t);
@@ -860,7 +860,7 @@ end end
 
 function next(t) do
   return expr_or_end((function (param, x) do
-                return --[ `Ok ]--[
+                return --[[ `Ok ]][
                         17724,
                         x
                       ];
@@ -884,7 +884,7 @@ function parse_string(s) do
   d = make(n, refill);
   res = next(d);
   if (typeof res == "number") then do
-    return --[ `Error ]--[
+    return --[[ `Error ]][
             106380200,
             "unexpected end of file"
           ];
@@ -899,7 +899,7 @@ function parse_chan(bufsize, ic) do
         end end));
   res = next(d);
   if (typeof res == "number") then do
-    return --[ `Error ]--[
+    return --[[ `Error ]][
             106380200,
             "unexpected end of file"
           ];
@@ -926,19 +926,19 @@ function parse_chan_list(bufsize, ic) do
   d = make(bufsize, (function (param, param$1, param$2) do
           return Pervasives.input(ic, param, param$1, param$2);
         end end));
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   while(true) do
     acc = _acc;
     e = next(d);
     if (typeof e == "number") then do
-      return --[ `Ok ]--[
+      return --[[ `Ok ]][
               17724,
               List.rev(acc)
             ];
     end else if (e[0] >= 106380200) then do
       return e;
     end else do
-      _acc = --[ :: ]--[
+      _acc = --[[ :: ]][
         e[1],
         acc
       ];
@@ -975,8 +975,8 @@ function MakeDecode(funarg) do
           end;
   end end;
   _is_digit = function (c) do
-    if (--[ "0" ]--48 <= c) then do
-      return c <= --[ "9" ]--57;
+    if (--[[ "0" ]]48 <= c) then do
+      return c <= --[[ "9" ]]57;
     end else do
       return false;
     end end 
@@ -996,7 +996,7 @@ function MakeDecode(funarg) do
     if (t.i >= t.len) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "sexpm.ml",
               152,
               4
@@ -1006,7 +1006,7 @@ function MakeDecode(funarg) do
      end 
     c = Caml_bytes.get(t.buf, t.i);
     t.i = t.i + 1 | 0;
-    if (c == --[ "\n" ]--10) then do
+    if (c == --[[ "\n" ]]10) then do
       t.col = 1;
       t.line = t.line + 1 | 0;
     end else do
@@ -1016,22 +1016,22 @@ function MakeDecode(funarg) do
   end end;
   _error = function (t, msg) do
     b = $$Buffer.create(32);
-    Curry._2(Printf.bprintf(b, --[ Format ]--[
-              --[ String_literal ]--Block.__(11, [
+    Curry._2(Printf.bprintf(b, --[[ Format ]][
+              --[[ String_literal ]]Block.__(11, [
                   "at ",
-                  --[ Int ]--Block.__(4, [
-                      --[ Int_d ]--0,
-                      --[ No_padding ]--0,
-                      --[ No_precision ]--0,
-                      --[ String_literal ]--Block.__(11, [
+                  --[[ Int ]]Block.__(4, [
+                      --[[ Int_d ]]0,
+                      --[[ No_padding ]]0,
+                      --[[ No_precision ]]0,
+                      --[[ String_literal ]]Block.__(11, [
                           ", ",
-                          --[ Int ]--Block.__(4, [
-                              --[ Int_d ]--0,
-                              --[ No_padding ]--0,
-                              --[ No_precision ]--0,
-                              --[ String_literal ]--Block.__(11, [
+                          --[[ Int ]]Block.__(4, [
+                              --[[ Int_d ]]0,
+                              --[[ No_padding ]]0,
+                              --[[ No_precision ]]0,
+                              --[[ String_literal ]]Block.__(11, [
                                   ": ",
-                                  --[ End_of_format ]--0
+                                  --[[ End_of_format ]]0
                                 ])
                             ])
                         ])
@@ -1041,17 +1041,17 @@ function MakeDecode(funarg) do
             ]), t.line, t.col);
     return Printf.kbprintf((function (b) do
                   msg$prime = $$Buffer.contents(b);
-                  return Curry._1(funarg.$$return, --[ `Error ]--[
+                  return Curry._1(funarg.$$return, --[[ `Error ]][
                               106380200,
                               msg$prime
                             ]);
                 end end), b, msg);
   end end;
   _error_eof = function (t) do
-    return _error(t, --[ Format ]--[
-                --[ String_literal ]--Block.__(11, [
+    return _error(t, --[[ Format ]][
+                --[[ String_literal ]]Block.__(11, [
                     "unexpected end of input",
-                    --[ End_of_format ]--0
+                    --[[ End_of_format ]]0
                   ]),
                 "unexpected end of input"
               ]);
@@ -1082,10 +1082,10 @@ function MakeDecode(funarg) do
     if (c >= 42) then do
       if (c ~= 59) then do
         if (c == 92) then do
-          return _error(t, --[ Format ]--[
-                      --[ String_literal ]--Block.__(11, [
+          return _error(t, --[[ Format ]][
+                      --[[ String_literal ]]Block.__(11, [
                           "unexpected '\\'",
-                          --[ End_of_format ]--0
+                          --[[ End_of_format ]]0
                         ]),
                       "unexpected '\\'"
                     ]);
@@ -1103,7 +1103,7 @@ function MakeDecode(funarg) do
            if ___conditional___ = 0 then do
               throw [
                     Caml_builtin_exceptions.assert_failure,
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       "sexpm.ml",
                       183,
                       27
@@ -1118,12 +1118,12 @@ function MakeDecode(funarg) do
            or ___conditional___ = 6
            or ___conditional___ = 7
            or ___conditional___ = 8 then do
-              return expr_list(--[ [] ]--0, k, t);end end end 
+              return expr_list(--[[ [] ]]0, k, t);end end end 
            if ___conditional___ = 9 then do
-              return _error(t, --[ Format ]--[
-                          --[ String_literal ]--Block.__(11, [
+              return _error(t, --[[ Format ]][
+                          --[[ String_literal ]]Block.__(11, [
                               "unexpected ')'",
-                              --[ End_of_format ]--0
+                              --[[ End_of_format ]]0
                             ]),
                           "unexpected ')'"
                         ]);end end end 
@@ -1135,7 +1135,7 @@ function MakeDecode(funarg) do
     end else if (c >= 9) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "sexpm.ml",
               183,
               27
@@ -1157,7 +1157,7 @@ function MakeDecode(funarg) do
         switcher = c - 9 | 0;
         if (switcher > 23 or switcher < 0) then do
           if (switcher == 32) then do
-            return Curry._2(k, undefined, --[ `List ]--[
+            return Curry._2(k, undefined, --[[ `List ]][
                         848054398,
                         List.rev(acc)
                       ]);
@@ -1172,29 +1172,29 @@ function MakeDecode(funarg) do
                         match = last;
                         if (match ~= 40) then do
                           if (match ~= 41) then do
-                            return expr_list(--[ :: ]--[
+                            return expr_list(--[[ :: ]][
                                         e,
                                         acc
                                       ], k, t);
                           end else do
-                            return Curry._2(k, undefined, --[ `List ]--[
+                            return Curry._2(k, undefined, --[[ `List ]][
                                         848054398,
-                                        List.rev(--[ :: ]--[
+                                        List.rev(--[[ :: ]][
                                               e,
                                               acc
                                             ])
                                       ]);
                           end end 
                         end else do
-                          return expr_list(--[ [] ]--0, (function (param, l) do
-                                        return expr_list(--[ :: ]--[
+                          return expr_list(--[[ [] ]]0, (function (param, l) do
+                                        return expr_list(--[[ :: ]][
                                                     l,
                                                     acc
                                                   ], k, t);
                                       end end), t);
                         end end 
                       end else do
-                        return expr_list(--[ :: ]--[
+                        return expr_list(--[[ :: ]][
                                     e,
                                     acc
                                   ], k, t);
@@ -1206,7 +1206,7 @@ function MakeDecode(funarg) do
   _return_atom = function (last, k, t) do
     s = $$Buffer.contents(t.atom);
     t.atom.position = 0;
-    return Curry._2(k, last, --[ `Atom ]--[
+    return Curry._2(k, last, --[[ `Atom ]][
                 726615281,
                 s
               ]);
@@ -1227,10 +1227,10 @@ function MakeDecode(funarg) do
             if (c ~= 92) then do
               exit = 1;
             end else do
-              return _error(t, --[ Format ]--[
-                          --[ String_literal ]--Block.__(11, [
+              return _error(t, --[[ Format ]][
+                          --[[ String_literal ]]Block.__(11, [
                               "unexpected '\\' in non-quoted string",
-                              --[ End_of_format ]--0
+                              --[[ End_of_format ]]0
                             ]),
                           "unexpected '\\' in non-quoted string"
                         ]);
@@ -1247,10 +1247,10 @@ function MakeDecode(funarg) do
                if ___conditional___ = 1 then do
                   exit = 1;end else 
                if ___conditional___ = 2 then do
-                  return _error(t, --[ Format ]--[
-                              --[ String_literal ]--Block.__(11, [
+                  return _error(t, --[[ Format ]][
+                              --[[ String_literal ]]Block.__(11, [
                                   "unexpected '\"' in the middle of an atom",
-                                  --[ End_of_format ]--0
+                                  --[[ End_of_format ]]0
                                 ]),
                               "unexpected '\"' in the middle of an atom"
                             ]);end end end 
@@ -1312,13 +1312,13 @@ function MakeDecode(funarg) do
           local ___conditional___=(c - 92 | 0);
           do
              if ___conditional___ = 0 then do
-                return Curry._1(k, --[ "\\" ]--92);end end end 
+                return Curry._1(k, --[[ "\\" ]]92);end end end 
              if ___conditional___ = 6 then do
-                return Curry._1(k, --[ "\b" ]--8);end end end 
+                return Curry._1(k, --[[ "\b" ]]8);end end end 
              if ___conditional___ = 18 then do
-                return Curry._1(k, --[ "\n" ]--10);end end end 
+                return Curry._1(k, --[[ "\n" ]]10);end end end 
              if ___conditional___ = 22 then do
-                return Curry._1(k, --[ "\r" ]--13);end end end 
+                return Curry._1(k, --[[ "\r" ]]13);end end end 
              if ___conditional___ = 1
              or ___conditional___ = 2
              or ___conditional___ = 3
@@ -1340,27 +1340,27 @@ function MakeDecode(funarg) do
              or ___conditional___ = 21
              or ___conditional___ = 23
              or ___conditional___ = 24 then do
-                return Curry._1(k, --[ "\t" ]--9);end end end 
+                return Curry._1(k, --[[ "\t" ]]9);end end end 
              do
             
           end
         end
          end 
       end else if (c == 34) then do
-        return Curry._1(k, --[ "\"" ]--34);
+        return Curry._1(k, --[[ "\"" ]]34);
       end
        end  end 
       if (_is_digit(c)) then do
-        return read2int(c - --[ "0" ]--48 | 0, (function (n) do
+        return read2int(c - --[[ "0" ]]48 | 0, (function (n) do
                       return Curry._1(k, Char.chr(n));
                     end end), t);
       end else do
-        return Curry._1(_error(t, --[ Format ]--[
-                        --[ String_literal ]--Block.__(11, [
+        return Curry._1(_error(t, --[[ Format ]][
+                        --[[ String_literal ]]Block.__(11, [
                             "unexpected escaped char '",
-                            --[ Char ]--Block.__(0, [--[ Char_literal ]--Block.__(12, [
-                                    --[ "'" ]--39,
-                                    --[ End_of_format ]--0
+                            --[[ Char ]]Block.__(0, [--[[ Char_literal ]]Block.__(12, [
+                                    --[[ "'" ]]39,
+                                    --[[ End_of_format ]]0
                                   ])])
                           ]),
                         "unexpected escaped char '%c'"
@@ -1376,14 +1376,14 @@ function MakeDecode(funarg) do
     end else do
       c = _get(t);
       if (_is_digit(c)) then do
-        return read1int(Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0, k, t);
+        return read1int(Caml_int32.imul(10, i) + (c - --[[ "0" ]]48 | 0) | 0, k, t);
       end else do
-        return Curry._1(_error(t, --[ Format ]--[
-                        --[ String_literal ]--Block.__(11, [
+        return Curry._1(_error(t, --[[ Format ]][
+                        --[[ String_literal ]]Block.__(11, [
                             "unexpected char '",
-                            --[ Char ]--Block.__(0, [--[ String_literal ]--Block.__(11, [
+                            --[[ Char ]]Block.__(0, [--[[ String_literal ]]Block.__(11, [
                                     "' when reading byte",
-                                    --[ End_of_format ]--0
+                                    --[[ End_of_format ]]0
                                   ])])
                           ]),
                         "unexpected char '%c' when reading byte"
@@ -1399,14 +1399,14 @@ function MakeDecode(funarg) do
     end else do
       c = _get(t);
       if (_is_digit(c)) then do
-        return Curry._1(k, Caml_int32.imul(10, i) + (c - --[ "0" ]--48 | 0) | 0);
+        return Curry._1(k, Caml_int32.imul(10, i) + (c - --[[ "0" ]]48 | 0) | 0);
       end else do
-        return Curry._1(_error(t, --[ Format ]--[
-                        --[ String_literal ]--Block.__(11, [
+        return Curry._1(_error(t, --[[ Format ]][
+                        --[[ String_literal ]]Block.__(11, [
                             "unexpected char '",
-                            --[ Char ]--Block.__(0, [--[ String_literal ]--Block.__(11, [
+                            --[[ Char ]]Block.__(0, [--[[ String_literal ]]Block.__(11, [
                                     "' when reading byte",
-                                    --[ End_of_format ]--0
+                                    --[[ End_of_format ]]0
                                   ])])
                           ]),
                         "unexpected char '%c' when reading byte"
@@ -1425,7 +1425,7 @@ function MakeDecode(funarg) do
         if (match ~= 10) then do
           continue ;
         end else do
-          return Curry._2(k, undefined, --[ () ]--0);
+          return Curry._2(k, undefined, --[[ () ]]0);
         end end 
       end end 
     end;
@@ -1436,7 +1436,7 @@ function MakeDecode(funarg) do
         return _refill(t, (function (param) do
                       return expr_or_end(k, param);
                     end end), (function (param) do
-                      return Curry._1(funarg.$$return, --[ End ]--3455931);
+                      return Curry._1(funarg.$$return, --[[ End ]]3455931);
                     end end));
       end else do
         c = _get(t);
@@ -1456,7 +1456,7 @@ function MakeDecode(funarg) do
   end end;
   next = function (t) do
     return expr_or_end((function (param, x) do
-                  return Curry._1(funarg.$$return, --[ `Ok ]--[
+                  return Curry._1(funarg.$$return, --[[ `Ok ]][
                               17724,
                               x
                             ]);
@@ -1489,4 +1489,4 @@ exports.parse_chan_gen = parse_chan_gen;
 exports.parse_chan_list = parse_chan_list;
 exports.parse_file = parse_file;
 exports.parse_file_list = parse_file_list;
---[ Format Not a pure module ]--
+--[[ Format Not a pure module ]]

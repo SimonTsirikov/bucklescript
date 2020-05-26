@@ -11,7 +11,7 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 shared = ["calc"];
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -20,11 +20,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -32,7 +32,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function fib_init($$class) do
@@ -93,4 +93,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.fib = fib;
 exports.memo_fib = memo_fib;
---[ fib Not a pure module ]--
+--[[ fib Not a pure module ]]

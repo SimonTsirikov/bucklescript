@@ -6,4 +6,4 @@ function say(x, y) do
 end end
 
 exports.say = say;
---[ No side effect ]--
+--[[ No side effect ]]

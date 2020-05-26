@@ -47,4 +47,4 @@ exports.x = x;
 exports.xx = xx;
 exports.Nullary = Nullary;
 exports.a = a;
---[ No side effect ]--
+--[[ No side effect ]]

@@ -81,7 +81,7 @@ function rev_append(_l1, _l2) do
     l2 = _l2;
     l1 = _l1;
     if (l1) then do
-      _l2 = --[ :: ]--[
+      _l2 = --[[ :: ]][
         l1[0],
         l2
       ];
@@ -94,38 +94,38 @@ function rev_append(_l1, _l2) do
 end end
 
 function rev(l) do
-  return rev_append(l, --[ [] ]--0);
+  return rev_append(l, --[[ [] ]]0);
 end end
 
 function flatten(param) do
   if (param) then do
     return Pervasives.$at(param[0], flatten(param[1]));
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end 
 end end
 
 function map(f, param) do
   if (param) then do
     r = Curry._1(f, param[0]);
-    return --[ :: ]--[
+    return --[[ :: ]][
             r,
             map(f, param[1])
           ];
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end 
 end end
 
 function mapi(i, f, param) do
   if (param) then do
     r = Curry._2(f, i, param[0]);
-    return --[ :: ]--[
+    return --[[ :: ]][
             r,
             mapi(i + 1 | 0, f, param[1])
           ];
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end 
 end end
 
@@ -134,14 +134,14 @@ function mapi$1(f, l) do
 end end
 
 function rev_map(f, l) do
-  _accu = --[ [] ]--0;
+  _accu = --[[ [] ]]0;
   _param = l;
   while(true) do
     param = _param;
     accu = _accu;
     if (param) then do
       _param = param[1];
-      _accu = --[ :: ]--[
+      _accu = --[[ :: ]][
         Curry._1(f, param[0]),
         accu
       ];
@@ -160,7 +160,7 @@ function iter(f, _param) do
       _param = param[1];
       continue ;
     end else do
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end end 
   end;
 end end
@@ -178,7 +178,7 @@ function iteri(f, l) do
       _i = i + 1 | 0;
       continue ;
     end else do
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end end 
   end;
 end end
@@ -209,7 +209,7 @@ function map2(f, l1, l2) do
   if (l1) then do
     if (l2) then do
       r = Curry._2(f, l1[0], l2[0]);
-      return --[ :: ]--[
+      return --[[ :: ]][
               r,
               map2(f, l1[1], l2[1])
             ];
@@ -225,12 +225,12 @@ function map2(f, l1, l2) do
           "List.map2"
         ];
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end  end 
 end end
 
 function rev_map2(f, l1, l2) do
-  _accu = --[ [] ]--0;
+  _accu = --[[ [] ]]0;
   _l1 = l1;
   _l2 = l2;
   while(true) do
@@ -241,7 +241,7 @@ function rev_map2(f, l1, l2) do
       if (l2$1) then do
         _l2 = l2$1[1];
         _l1 = l1$1[1];
-        _accu = --[ :: ]--[
+        _accu = --[[ :: ]][
           Curry._2(f, l1$1[0], l2$1[0]),
           accu
         ];
@@ -287,7 +287,7 @@ function iter2(f, _l1, _l2) do
             "List.iter2"
           ];
     end else do
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end end  end 
   end;
 end end
@@ -541,13 +541,13 @@ function remove_assoc(x, param) do
     if (Caml_obj.caml_equal(pair[0], x)) then do
       return l;
     end else do
-      return --[ :: ]--[
+      return --[[ :: ]][
               pair,
               remove_assoc(x, l)
             ];
     end end 
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end 
 end end
 
@@ -558,13 +558,13 @@ function remove_assq(x, param) do
     if (pair[0] == x) then do
       return l;
     end else do
-      return --[ :: ]--[
+      return --[[ :: ]][
               pair,
               remove_assq(x, l)
             ];
     end end 
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end 
 end end
 
@@ -587,7 +587,7 @@ end end
 
 function find_all(p) do
   return (function (param) do
-      _accu = --[ [] ]--0;
+      _accu = --[[ [] ]]0;
       _param = param;
       while(true) do
         param$1 = _param;
@@ -597,7 +597,7 @@ function find_all(p) do
           x = param$1[0];
           if (Curry._1(p, x)) then do
             _param = l;
-            _accu = --[ :: ]--[
+            _accu = --[[ :: ]][
               x,
               accu
             ];
@@ -607,15 +607,15 @@ function find_all(p) do
             continue ;
           end end 
         end else do
-          return rev_append(accu, --[ [] ]--0);
+          return rev_append(accu, --[[ [] ]]0);
         end end 
       end;
     end end);
 end end
 
 function partition(p, l) do
-  _yes = --[ [] ]--0;
-  _no = --[ [] ]--0;
+  _yes = --[[ [] ]]0;
+  _no = --[[ [] ]]0;
   _param = l;
   while(true) do
     param = _param;
@@ -626,23 +626,23 @@ function partition(p, l) do
       x = param[0];
       if (Curry._1(p, x)) then do
         _param = l$1;
-        _yes = --[ :: ]--[
+        _yes = --[[ :: ]][
           x,
           yes
         ];
         continue ;
       end else do
         _param = l$1;
-        _no = --[ :: ]--[
+        _no = --[[ :: ]][
           x,
           no
         ];
         continue ;
       end end 
     end else do
-      return --[ tuple ]--[
-              rev_append(yes, --[ [] ]--0),
-              rev_append(no, --[ [] ]--0)
+      return --[[ tuple ]][
+              rev_append(yes, --[[ [] ]]0),
+              rev_append(no, --[[ [] ]]0)
             ];
     end end 
   end;
@@ -652,20 +652,20 @@ function split(param) do
   if (param) then do
     match = param[0];
     match$1 = split(param[1]);
-    return --[ tuple ]--[
-            --[ :: ]--[
+    return --[[ tuple ]][
+            --[[ :: ]][
               match[0],
               match$1[0]
             ],
-            --[ :: ]--[
+            --[[ :: ]][
               match[1],
               match$1[1]
             ]
           ];
   end else do
-    return --[ tuple ]--[
-            --[ [] ]--0,
-            --[ [] ]--0
+    return --[[ tuple ]][
+            --[[ [] ]]0,
+            --[[ [] ]]0
           ];
   end end 
 end end
@@ -673,8 +673,8 @@ end end
 function combine(l1, l2) do
   if (l1) then do
     if (l2) then do
-      return --[ :: ]--[
-              --[ tuple ]--[
+      return --[[ :: ]][
+              --[[ tuple ]][
                 l1[0],
                 l2[0]
               ],
@@ -692,7 +692,7 @@ function combine(l1, l2) do
           "List.combine"
         ];
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end  end 
 end end
 
@@ -702,12 +702,12 @@ function merge(cmp, l1, l2) do
       h2 = l2[0];
       h1 = l1[0];
       if (Curry._2(cmp, h1, h2) <= 0) then do
-        return --[ :: ]--[
+        return --[[ :: ]][
                 h1,
                 merge(cmp, l1[1], l2)
               ];
       end else do
-        return --[ :: ]--[
+        return --[[ :: ]][
                 h2,
                 merge(cmp, l1, l2[1])
               ];
@@ -733,7 +733,7 @@ function chop(_k, _l) do
     end else do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "test_list.ml",
               224,
               11
@@ -756,69 +756,69 @@ function stable_sort(cmp, l) do
             x1 = l[0];
             if (Curry._2(cmp, x1, x2) <= 0) then do
               if (Curry._2(cmp, x2, x3) <= 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x1,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x2,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x3,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ]
                       ];
               end else if (Curry._2(cmp, x1, x3) <= 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x1,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x3,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x2,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ]
                       ];
               end else do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x3,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x1,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x2,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ]
                       ];
               end end  end 
             end else if (Curry._2(cmp, x1, x3) <= 0) then do
-              return --[ :: ]--[
+              return --[[ :: ]][
                       x2,
-                      --[ :: ]--[
+                      --[[ :: ]][
                         x1,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x3,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ]
                     ];
             end else if (Curry._2(cmp, x2, x3) <= 0) then do
-              return --[ :: ]--[
+              return --[[ :: ]][
                       x2,
-                      --[ :: ]--[
+                      --[[ :: ]][
                         x3,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x1,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ]
                     ];
             end else do
-              return --[ :: ]--[
+              return --[[ :: ]][
                       x3,
-                      --[ :: ]--[
+                      --[[ :: ]][
                         x2,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x1,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ]
                     ];
@@ -835,19 +835,19 @@ function stable_sort(cmp, l) do
         x2$1 = match$2[0];
         x1$1 = l[0];
         if (Curry._2(cmp, x1$1, x2$1) <= 0) then do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   x1$1,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     x2$1,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ];
         end else do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   x2$1,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     x1$1,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ];
         end end 
@@ -862,7 +862,7 @@ function stable_sort(cmp, l) do
     s2 = rev_sort(n2, l2);
     _l1 = s1;
     _l2 = s2;
-    _accu = --[ [] ]--0;
+    _accu = --[[ [] ]]0;
     while(true) do
       accu = _accu;
       l2$1 = _l2;
@@ -872,14 +872,14 @@ function stable_sort(cmp, l) do
           h2 = l2$1[0];
           h1 = l1[0];
           if (Curry._2(cmp, h1, h2) > 0) then do
-            _accu = --[ :: ]--[
+            _accu = --[[ :: ]][
               h1,
               accu
             ];
             _l1 = l1[1];
             continue ;
           end else do
-            _accu = --[ :: ]--[
+            _accu = --[[ :: ]][
               h2,
               accu
             ];
@@ -906,69 +906,69 @@ function stable_sort(cmp, l) do
             x1 = l[0];
             if (Curry._2(cmp, x1, x2) > 0) then do
               if (Curry._2(cmp, x2, x3) > 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x1,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x2,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x3,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ]
                       ];
               end else if (Curry._2(cmp, x1, x3) > 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x1,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x3,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x2,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ]
                       ];
               end else do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x3,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x1,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x2,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ]
                       ];
               end end  end 
             end else if (Curry._2(cmp, x1, x3) > 0) then do
-              return --[ :: ]--[
+              return --[[ :: ]][
                       x2,
-                      --[ :: ]--[
+                      --[[ :: ]][
                         x1,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x3,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ]
                     ];
             end else if (Curry._2(cmp, x2, x3) > 0) then do
-              return --[ :: ]--[
+              return --[[ :: ]][
                       x2,
-                      --[ :: ]--[
+                      --[[ :: ]][
                         x3,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x1,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ]
                     ];
             end else do
-              return --[ :: ]--[
+              return --[[ :: ]][
                       x3,
-                      --[ :: ]--[
+                      --[[ :: ]][
                         x2,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x1,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ]
                     ];
@@ -985,19 +985,19 @@ function stable_sort(cmp, l) do
         x2$1 = match$2[0];
         x1$1 = l[0];
         if (Curry._2(cmp, x1$1, x2$1) > 0) then do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   x1$1,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     x2$1,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ];
         end else do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   x2$1,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     x1$1,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ];
         end end 
@@ -1012,7 +1012,7 @@ function stable_sort(cmp, l) do
     s2 = sort(n2, l2);
     _l1 = s1;
     _l2 = s2;
-    _accu = --[ [] ]--0;
+    _accu = --[[ [] ]]0;
     while(true) do
       accu = _accu;
       l2$1 = _l2;
@@ -1022,14 +1022,14 @@ function stable_sort(cmp, l) do
           h2 = l2$1[0];
           h1 = l1[0];
           if (Curry._2(cmp, h1, h2) <= 0) then do
-            _accu = --[ :: ]--[
+            _accu = --[[ :: ]][
               h1,
               accu
             ];
             _l1 = l1[1];
             continue ;
           end else do
-            _accu = --[ :: ]--[
+            _accu = --[[ :: ]][
               h2,
               accu
             ];
@@ -1067,77 +1067,77 @@ function sort_uniq(cmp, l) do
             if (c == 0) then do
               c$1 = Curry._2(cmp, x2, x3);
               if (c$1 == 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x2,
-                        --[ [] ]--0
+                        --[[ [] ]]0
                       ];
               end else if (c$1 < 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x2,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x3,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ];
               end else do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x3,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x2,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ];
               end end  end 
             end else if (c < 0) then do
               c$2 = Curry._2(cmp, x2, x3);
               if (c$2 == 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x1,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x2,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ];
               end else if (c$2 < 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x1,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x2,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x3,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ]
                       ];
               end else do
                 c$3 = Curry._2(cmp, x1, x3);
                 if (c$3 == 0) then do
-                  return --[ :: ]--[
+                  return --[[ :: ]][
                           x1,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x2,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ];
                 end else if (c$3 < 0) then do
-                  return --[ :: ]--[
+                  return --[[ :: ]][
                           x1,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x3,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               x2,
-                              --[ [] ]--0
+                              --[[ [] ]]0
                             ]
                           ]
                         ];
                 end else do
-                  return --[ :: ]--[
+                  return --[[ :: ]][
                           x3,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x1,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               x2,
-                              --[ [] ]--0
+                              --[[ [] ]]0
                             ]
                           ]
                         ];
@@ -1146,53 +1146,53 @@ function sort_uniq(cmp, l) do
             end else do
               c$4 = Curry._2(cmp, x1, x3);
               if (c$4 == 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x2,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x1,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ];
               end else if (c$4 < 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x2,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x1,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x3,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ]
                       ];
               end else do
                 c$5 = Curry._2(cmp, x2, x3);
                 if (c$5 == 0) then do
-                  return --[ :: ]--[
+                  return --[[ :: ]][
                           x2,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x1,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ];
                 end else if (c$5 < 0) then do
-                  return --[ :: ]--[
+                  return --[[ :: ]][
                           x2,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x3,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               x1,
-                              --[ [] ]--0
+                              --[[ [] ]]0
                             ]
                           ]
                         ];
                 end else do
-                  return --[ :: ]--[
+                  return --[[ :: ]][
                           x3,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x2,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               x1,
-                              --[ [] ]--0
+                              --[[ [] ]]0
                             ]
                           ]
                         ];
@@ -1212,24 +1212,24 @@ function sort_uniq(cmp, l) do
         x1$1 = l[0];
         c$6 = Curry._2(cmp, x1$1, x2$1);
         if (c$6 == 0) then do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   x1$1,
-                  --[ [] ]--0
+                  --[[ [] ]]0
                 ];
         end else if (c$6 < 0) then do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   x1$1,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     x2$1,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ];
         end else do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   x2$1,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     x1$1,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ];
         end end  end 
@@ -1244,7 +1244,7 @@ function sort_uniq(cmp, l) do
     s2 = rev_sort(n2, l2);
     _l1 = s1;
     _l2 = s2;
-    _accu = --[ [] ]--0;
+    _accu = --[[ [] ]]0;
     while(true) do
       accu = _accu;
       l2$1 = _l2;
@@ -1257,7 +1257,7 @@ function sort_uniq(cmp, l) do
           h1 = l1[0];
           c$7 = Curry._2(cmp, h1, h2);
           if (c$7 == 0) then do
-            _accu = --[ :: ]--[
+            _accu = --[[ :: ]][
               h1,
               accu
             ];
@@ -1265,14 +1265,14 @@ function sort_uniq(cmp, l) do
             _l1 = t1;
             continue ;
           end else if (c$7 > 0) then do
-            _accu = --[ :: ]--[
+            _accu = --[[ :: ]][
               h1,
               accu
             ];
             _l1 = t1;
             continue ;
           end else do
-            _accu = --[ :: ]--[
+            _accu = --[[ :: ]][
               h2,
               accu
             ];
@@ -1301,77 +1301,77 @@ function sort_uniq(cmp, l) do
             if (c == 0) then do
               c$1 = Curry._2(cmp, x2, x3);
               if (c$1 == 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x2,
-                        --[ [] ]--0
+                        --[[ [] ]]0
                       ];
               end else if (c$1 > 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x2,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x3,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ];
               end else do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x3,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x2,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ];
               end end  end 
             end else if (c > 0) then do
               c$2 = Curry._2(cmp, x2, x3);
               if (c$2 == 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x1,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x2,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ];
               end else if (c$2 > 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x1,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x2,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x3,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ]
                       ];
               end else do
                 c$3 = Curry._2(cmp, x1, x3);
                 if (c$3 == 0) then do
-                  return --[ :: ]--[
+                  return --[[ :: ]][
                           x1,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x2,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ];
                 end else if (c$3 > 0) then do
-                  return --[ :: ]--[
+                  return --[[ :: ]][
                           x1,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x3,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               x2,
-                              --[ [] ]--0
+                              --[[ [] ]]0
                             ]
                           ]
                         ];
                 end else do
-                  return --[ :: ]--[
+                  return --[[ :: ]][
                           x3,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x1,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               x2,
-                              --[ [] ]--0
+                              --[[ [] ]]0
                             ]
                           ]
                         ];
@@ -1380,53 +1380,53 @@ function sort_uniq(cmp, l) do
             end else do
               c$4 = Curry._2(cmp, x1, x3);
               if (c$4 == 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x2,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x1,
-                          --[ [] ]--0
+                          --[[ [] ]]0
                         ]
                       ];
               end else if (c$4 > 0) then do
-                return --[ :: ]--[
+                return --[[ :: ]][
                         x2,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           x1,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x3,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ]
                       ];
               end else do
                 c$5 = Curry._2(cmp, x2, x3);
                 if (c$5 == 0) then do
-                  return --[ :: ]--[
+                  return --[[ :: ]][
                           x2,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x1,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ];
                 end else if (c$5 > 0) then do
-                  return --[ :: ]--[
+                  return --[[ :: ]][
                           x2,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x3,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               x1,
-                              --[ [] ]--0
+                              --[[ [] ]]0
                             ]
                           ]
                         ];
                 end else do
-                  return --[ :: ]--[
+                  return --[[ :: ]][
                           x3,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             x2,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               x1,
-                              --[ [] ]--0
+                              --[[ [] ]]0
                             ]
                           ]
                         ];
@@ -1446,24 +1446,24 @@ function sort_uniq(cmp, l) do
         x1$1 = l[0];
         c$6 = Curry._2(cmp, x1$1, x2$1);
         if (c$6 == 0) then do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   x1$1,
-                  --[ [] ]--0
+                  --[[ [] ]]0
                 ];
         end else if (c$6 > 0) then do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   x1$1,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     x2$1,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ];
         end else do
-          return --[ :: ]--[
+          return --[[ :: ]][
                   x2$1,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     x1$1,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ];
         end end  end 
@@ -1478,7 +1478,7 @@ function sort_uniq(cmp, l) do
     s2 = sort(n2, l2);
     _l1 = s1;
     _l2 = s2;
-    _accu = --[ [] ]--0;
+    _accu = --[[ [] ]]0;
     while(true) do
       accu = _accu;
       l2$1 = _l2;
@@ -1491,7 +1491,7 @@ function sort_uniq(cmp, l) do
           h1 = l1[0];
           c$7 = Curry._2(cmp, h1, h2);
           if (c$7 == 0) then do
-            _accu = --[ :: ]--[
+            _accu = --[[ :: ]][
               h1,
               accu
             ];
@@ -1499,14 +1499,14 @@ function sort_uniq(cmp, l) do
             _l1 = t1;
             continue ;
           end else if (c$7 < 0) then do
-            _accu = --[ :: ]--[
+            _accu = --[[ :: ]][
               h1,
               accu
             ];
             _l1 = t1;
             continue ;
           end else do
-            _accu = --[ :: ]--[
+            _accu = --[[ :: ]][
               h2,
               accu
             ];
@@ -1588,4 +1588,4 @@ exports.stable_sort = stable_sort;
 exports.sort = sort;
 exports.fast_sort = fast_sort;
 exports.sort_uniq = sort_uniq;
---[ No side effect ]--
+--[[ No side effect ]]

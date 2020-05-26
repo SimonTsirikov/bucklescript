@@ -6,4 +6,4 @@ function f(u) do
 end end
 
 exports.f = f;
---[ No side effect ]--
+--[[ No side effect ]]

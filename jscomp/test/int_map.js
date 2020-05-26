@@ -7,7 +7,7 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function height(param) do
   if (param) then do
-    return param[--[ h ]--4];
+    return param[--[[ h ]]4];
   end else do
     return 0;
   end end 
@@ -16,38 +16,38 @@ end end
 function create(l, x, d, r) do
   hl = height(l);
   hr = height(r);
-  return --[ Node ]--[
-          --[ l ]--l,
-          --[ v ]--x,
-          --[ d ]--d,
-          --[ r ]--r,
-          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
+  return --[[ Node ]][
+          --[[ l ]]l,
+          --[[ v ]]x,
+          --[[ d ]]d,
+          --[[ r ]]r,
+          --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end end
 
 function singleton(x, d) do
-  return --[ Node ]--[
-          --[ l : Empty ]--0,
-          --[ v ]--x,
-          --[ d ]--d,
-          --[ r : Empty ]--0,
-          --[ h ]--1
+  return --[[ Node ]][
+          --[[ l : Empty ]]0,
+          --[[ v ]]x,
+          --[[ d ]]d,
+          --[[ r : Empty ]]0,
+          --[[ h ]]1
         ];
 end end
 
 function bal(l, x, d, r) do
-  hl = l and l[--[ h ]--4] or 0;
-  hr = r and r[--[ h ]--4] or 0;
+  hl = l and l[--[[ h ]]4] or 0;
+  hr = r and r[--[[ h ]]4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      lr = l[--[ r ]--3];
-      ld = l[--[ d ]--2];
-      lv = l[--[ v ]--1];
-      ll = l[--[ l ]--0];
+      lr = l[--[[ r ]]3];
+      ld = l[--[[ d ]]2];
+      lv = l[--[[ v ]]1];
+      ll = l[--[[ l ]]0];
       if (height(ll) >= height(lr)) then do
         return create(ll, lv, ld, create(lr, x, d, r));
       end else if (lr) then do
-        return create(create(ll, lv, ld, lr[--[ l ]--0]), lr[--[ v ]--1], lr[--[ d ]--2], create(lr[--[ r ]--3], x, d, r));
+        return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
@@ -62,14 +62,14 @@ function bal(l, x, d, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      rr = r[--[ r ]--3];
-      rd = r[--[ d ]--2];
-      rv = r[--[ v ]--1];
-      rl = r[--[ l ]--0];
+      rr = r[--[[ r ]]3];
+      rd = r[--[[ d ]]2];
+      rv = r[--[[ v ]]1];
+      rl = r[--[[ l ]]0];
       if (height(rr) >= height(rl)) then do
         return create(create(l, x, d, rl), rv, rd, rr);
       end else if (rl) then do
-        return create(create(l, x, d, rl[--[ l ]--0]), rl[--[ v ]--1], rl[--[ d ]--2], create(rl[--[ r ]--3], rv, rd, rr));
+        return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
         throw [
               Caml_builtin_exceptions.invalid_argument,
@@ -83,12 +83,12 @@ function bal(l, x, d, r) do
           ];
     end end 
   end else do
-    return --[ Node ]--[
-            --[ l ]--l,
-            --[ v ]--x,
-            --[ d ]--d,
-            --[ r ]--r,
-            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
+    return --[[ Node ]][
+            --[[ l ]]l,
+            --[[ v ]]x,
+            --[[ d ]]d,
+            --[[ r ]]r,
+            --[[ h ]]hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end end
@@ -103,21 +103,21 @@ end end
 
 function add(x, data, m) do
   if (m) then do
-    r = m[--[ r ]--3];
-    d = m[--[ d ]--2];
-    v = m[--[ v ]--1];
-    l = m[--[ l ]--0];
+    r = m[--[[ r ]]3];
+    d = m[--[[ d ]]2];
+    v = m[--[[ v ]]1];
+    l = m[--[[ l ]]0];
     c = Caml_primitive.caml_int_compare(x, v);
     if (c == 0) then do
       if (d == data) then do
         return m;
       end else do
-        return --[ Node ]--[
-                --[ l ]--l,
-                --[ v ]--x,
-                --[ d ]--data,
-                --[ r ]--r,
-                --[ h ]--m[--[ h ]--4]
+        return --[[ Node ]][
+                --[[ l ]]l,
+                --[[ v ]]x,
+                --[[ d ]]data,
+                --[[ r ]]r,
+                --[[ h ]]m[--[[ h ]]4]
               ];
       end end 
     end else if (c < 0) then do
@@ -136,12 +136,12 @@ function add(x, data, m) do
       end end 
     end end  end 
   end else do
-    return --[ Node ]--[
-            --[ l : Empty ]--0,
-            --[ v ]--x,
-            --[ d ]--data,
-            --[ r : Empty ]--0,
-            --[ h ]--1
+    return --[[ Node ]][
+            --[[ l : Empty ]]0,
+            --[[ v ]]x,
+            --[[ d ]]data,
+            --[[ r : Empty ]]0,
+            --[[ h ]]1
           ];
   end end 
 end end
@@ -150,11 +150,11 @@ function find(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      c = Caml_primitive.caml_int_compare(x, param[--[ v ]--1]);
+      c = Caml_primitive.caml_int_compare(x, param[--[[ v ]]1]);
       if (c == 0) then do
-        return param[--[ d ]--2];
+        return param[--[[ d ]]2];
       end else do
-        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
+        _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
         continue ;
       end end 
     end else do
@@ -167,36 +167,36 @@ function find_first(f, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      v = param[--[ v ]--1];
+      v = param[--[[ v ]]1];
       if (Curry._1(f, v)) then do
         _v0 = v;
-        _d0 = param[--[ d ]--2];
+        _d0 = param[--[[ d ]]2];
         f$1 = f;
-        _param$1 = param[--[ l ]--0];
+        _param$1 = param[--[[ l ]]0];
         while(true) do
           param$1 = _param$1;
           d0 = _d0;
           v0 = _v0;
           if (param$1) then do
-            v$1 = param$1[--[ v ]--1];
+            v$1 = param$1[--[[ v ]]1];
             if (Curry._1(f$1, v$1)) then do
-              _param$1 = param$1[--[ l ]--0];
-              _d0 = param$1[--[ d ]--2];
+              _param$1 = param$1[--[[ l ]]0];
+              _d0 = param$1[--[[ d ]]2];
               _v0 = v$1;
               continue ;
             end else do
-              _param$1 = param$1[--[ r ]--3];
+              _param$1 = param$1[--[[ r ]]3];
               continue ;
             end end 
           end else do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     v0,
                     d0
                   ];
           end end 
         end;
       end else do
-        _param = param[--[ r ]--3];
+        _param = param[--[[ r ]]3];
         continue ;
       end end 
     end else do
@@ -209,36 +209,36 @@ function find_first_opt(f, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      v = param[--[ v ]--1];
+      v = param[--[[ v ]]1];
       if (Curry._1(f, v)) then do
         _v0 = v;
-        _d0 = param[--[ d ]--2];
+        _d0 = param[--[[ d ]]2];
         f$1 = f;
-        _param$1 = param[--[ l ]--0];
+        _param$1 = param[--[[ l ]]0];
         while(true) do
           param$1 = _param$1;
           d0 = _d0;
           v0 = _v0;
           if (param$1) then do
-            v$1 = param$1[--[ v ]--1];
+            v$1 = param$1[--[[ v ]]1];
             if (Curry._1(f$1, v$1)) then do
-              _param$1 = param$1[--[ l ]--0];
-              _d0 = param$1[--[ d ]--2];
+              _param$1 = param$1[--[[ l ]]0];
+              _d0 = param$1[--[[ d ]]2];
               _v0 = v$1;
               continue ;
             end else do
-              _param$1 = param$1[--[ r ]--3];
+              _param$1 = param$1[--[[ r ]]3];
               continue ;
             end end 
           end else do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     v0,
                     d0
                   ];
           end end 
         end;
       end else do
-        _param = param[--[ r ]--3];
+        _param = param[--[[ r ]]3];
         continue ;
       end end 
     end else do
@@ -251,36 +251,36 @@ function find_last(f, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      v = param[--[ v ]--1];
+      v = param[--[[ v ]]1];
       if (Curry._1(f, v)) then do
         _v0 = v;
-        _d0 = param[--[ d ]--2];
+        _d0 = param[--[[ d ]]2];
         f$1 = f;
-        _param$1 = param[--[ r ]--3];
+        _param$1 = param[--[[ r ]]3];
         while(true) do
           param$1 = _param$1;
           d0 = _d0;
           v0 = _v0;
           if (param$1) then do
-            v$1 = param$1[--[ v ]--1];
+            v$1 = param$1[--[[ v ]]1];
             if (Curry._1(f$1, v$1)) then do
-              _param$1 = param$1[--[ r ]--3];
-              _d0 = param$1[--[ d ]--2];
+              _param$1 = param$1[--[[ r ]]3];
+              _d0 = param$1[--[[ d ]]2];
               _v0 = v$1;
               continue ;
             end else do
-              _param$1 = param$1[--[ l ]--0];
+              _param$1 = param$1[--[[ l ]]0];
               continue ;
             end end 
           end else do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     v0,
                     d0
                   ];
           end end 
         end;
       end else do
-        _param = param[--[ l ]--0];
+        _param = param[--[[ l ]]0];
         continue ;
       end end 
     end else do
@@ -293,36 +293,36 @@ function find_last_opt(f, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      v = param[--[ v ]--1];
+      v = param[--[[ v ]]1];
       if (Curry._1(f, v)) then do
         _v0 = v;
-        _d0 = param[--[ d ]--2];
+        _d0 = param[--[[ d ]]2];
         f$1 = f;
-        _param$1 = param[--[ r ]--3];
+        _param$1 = param[--[[ r ]]3];
         while(true) do
           param$1 = _param$1;
           d0 = _d0;
           v0 = _v0;
           if (param$1) then do
-            v$1 = param$1[--[ v ]--1];
+            v$1 = param$1[--[[ v ]]1];
             if (Curry._1(f$1, v$1)) then do
-              _param$1 = param$1[--[ r ]--3];
-              _d0 = param$1[--[ d ]--2];
+              _param$1 = param$1[--[[ r ]]3];
+              _d0 = param$1[--[[ d ]]2];
               _v0 = v$1;
               continue ;
             end else do
-              _param$1 = param$1[--[ l ]--0];
+              _param$1 = param$1[--[[ l ]]0];
               continue ;
             end end 
           end else do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     v0,
                     d0
                   ];
           end end 
         end;
       end else do
-        _param = param[--[ l ]--0];
+        _param = param[--[[ l ]]0];
         continue ;
       end end 
     end else do
@@ -335,11 +335,11 @@ function find_opt(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      c = Caml_primitive.caml_int_compare(x, param[--[ v ]--1]);
+      c = Caml_primitive.caml_int_compare(x, param[--[[ v ]]1]);
       if (c == 0) then do
-        return Caml_option.some(param[--[ d ]--2]);
+        return Caml_option.some(param[--[[ d ]]2]);
       end else do
-        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
+        _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
         continue ;
       end end 
     end else do
@@ -352,11 +352,11 @@ function mem(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      c = Caml_primitive.caml_int_compare(x, param[--[ v ]--1]);
+      c = Caml_primitive.caml_int_compare(x, param[--[[ v ]]1]);
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
+        _param = c < 0 and param[--[[ l ]]0] or param[--[[ r ]]3];
         continue ;
       end end 
     end else do
@@ -369,14 +369,14 @@ function min_binding(_param) do
   while(true) do
     param = _param;
     if (param) then do
-      l = param[--[ l ]--0];
+      l = param[--[[ l ]]0];
       if (l) then do
         _param = l;
         continue ;
       end else do
-        return --[ tuple ]--[
-                param[--[ v ]--1],
-                param[--[ d ]--2]
+        return --[[ tuple ]][
+                param[--[[ v ]]1],
+                param[--[[ d ]]2]
               ];
       end end 
     end else do
@@ -389,14 +389,14 @@ function min_binding_opt(_param) do
   while(true) do
     param = _param;
     if (param) then do
-      l = param[--[ l ]--0];
+      l = param[--[[ l ]]0];
       if (l) then do
         _param = l;
         continue ;
       end else do
-        return --[ tuple ]--[
-                param[--[ v ]--1],
-                param[--[ d ]--2]
+        return --[[ tuple ]][
+                param[--[[ v ]]1],
+                param[--[[ d ]]2]
               ];
       end end 
     end else do
@@ -409,14 +409,14 @@ function max_binding(_param) do
   while(true) do
     param = _param;
     if (param) then do
-      r = param[--[ r ]--3];
+      r = param[--[[ r ]]3];
       if (r) then do
         _param = r;
         continue ;
       end else do
-        return --[ tuple ]--[
-                param[--[ v ]--1],
-                param[--[ d ]--2]
+        return --[[ tuple ]][
+                param[--[[ v ]]1],
+                param[--[[ d ]]2]
               ];
       end end 
     end else do
@@ -429,14 +429,14 @@ function max_binding_opt(_param) do
   while(true) do
     param = _param;
     if (param) then do
-      r = param[--[ r ]--3];
+      r = param[--[[ r ]]3];
       if (r) then do
         _param = r;
         continue ;
       end else do
-        return --[ tuple ]--[
-                param[--[ v ]--1],
-                param[--[ d ]--2]
+        return --[[ tuple ]][
+                param[--[[ v ]]1],
+                param[--[[ d ]]2]
               ];
       end end 
     end else do
@@ -447,11 +447,11 @@ end end
 
 function remove_min_binding(param) do
   if (param) then do
-    l = param[--[ l ]--0];
+    l = param[--[[ l ]]0];
     if (l) then do
-      return bal(remove_min_binding(l), param[--[ v ]--1], param[--[ d ]--2], param[--[ r ]--3]);
+      return bal(remove_min_binding(l), param[--[[ v ]]1], param[--[[ d ]]2], param[--[[ r ]]3]);
     end else do
-      return param[--[ r ]--3];
+      return param[--[[ r ]]3];
     end end 
   end else do
     throw [
@@ -476,10 +476,10 @@ end end
 
 function remove(x, m) do
   if (m) then do
-    r = m[--[ r ]--3];
-    d = m[--[ d ]--2];
-    v = m[--[ v ]--1];
-    l = m[--[ l ]--0];
+    r = m[--[[ r ]]3];
+    d = m[--[[ d ]]2];
+    v = m[--[[ v ]]1];
+    l = m[--[[ l ]]0];
     c = Caml_primitive.caml_int_compare(x, v);
     if (c == 0) then do
       return merge(l, r);
@@ -499,16 +499,16 @@ function remove(x, m) do
       end end 
     end end  end 
   end else do
-    return --[ Empty ]--0;
+    return --[[ Empty ]]0;
   end end 
 end end
 
 function update(x, f, m) do
   if (m) then do
-    r = m[--[ r ]--3];
-    d = m[--[ d ]--2];
-    v = m[--[ v ]--1];
-    l = m[--[ l ]--0];
+    r = m[--[[ r ]]3];
+    d = m[--[[ d ]]2];
+    v = m[--[[ v ]]1];
+    l = m[--[[ l ]]0];
     c = Caml_primitive.caml_int_compare(x, v);
     if (c == 0) then do
       match = Curry._1(f, Caml_option.some(d));
@@ -517,12 +517,12 @@ function update(x, f, m) do
         if (d == data) then do
           return m;
         end else do
-          return --[ Node ]--[
-                  --[ l ]--l,
-                  --[ v ]--x,
-                  --[ d ]--data,
-                  --[ r ]--r,
-                  --[ h ]--m[--[ h ]--4]
+          return --[[ Node ]][
+                  --[[ l ]]l,
+                  --[[ v ]]x,
+                  --[[ d ]]data,
+                  --[[ r ]]r,
+                  --[[ h ]]m[--[[ h ]]4]
                 ];
         end end 
       end else do
@@ -546,15 +546,15 @@ function update(x, f, m) do
   end else do
     match$1 = Curry._1(f, undefined);
     if (match$1 ~= undefined) then do
-      return --[ Node ]--[
-              --[ l : Empty ]--0,
-              --[ v ]--x,
-              --[ d ]--Caml_option.valFromOption(match$1),
-              --[ r : Empty ]--0,
-              --[ h ]--1
+      return --[[ Node ]][
+              --[[ l : Empty ]]0,
+              --[[ v ]]x,
+              --[[ d ]]Caml_option.valFromOption(match$1),
+              --[[ r : Empty ]]0,
+              --[[ h ]]1
             ];
     end else do
-      return --[ Empty ]--0;
+      return --[[ Empty ]]0;
     end end 
   end end 
 end end
@@ -563,48 +563,48 @@ function iter(f, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      iter(f, param[--[ l ]--0]);
-      Curry._2(f, param[--[ v ]--1], param[--[ d ]--2]);
-      _param = param[--[ r ]--3];
+      iter(f, param[--[[ l ]]0]);
+      Curry._2(f, param[--[[ v ]]1], param[--[[ d ]]2]);
+      _param = param[--[[ r ]]3];
       continue ;
     end else do
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end end 
   end;
 end end
 
 function map(f, param) do
   if (param) then do
-    l$prime = map(f, param[--[ l ]--0]);
-    d$prime = Curry._1(f, param[--[ d ]--2]);
-    r$prime = map(f, param[--[ r ]--3]);
-    return --[ Node ]--[
-            --[ l ]--l$prime,
-            --[ v ]--param[--[ v ]--1],
-            --[ d ]--d$prime,
-            --[ r ]--r$prime,
-            --[ h ]--param[--[ h ]--4]
+    l$prime = map(f, param[--[[ l ]]0]);
+    d$prime = Curry._1(f, param[--[[ d ]]2]);
+    r$prime = map(f, param[--[[ r ]]3]);
+    return --[[ Node ]][
+            --[[ l ]]l$prime,
+            --[[ v ]]param[--[[ v ]]1],
+            --[[ d ]]d$prime,
+            --[[ r ]]r$prime,
+            --[[ h ]]param[--[[ h ]]4]
           ];
   end else do
-    return --[ Empty ]--0;
+    return --[[ Empty ]]0;
   end end 
 end end
 
 function mapi(f, param) do
   if (param) then do
-    v = param[--[ v ]--1];
-    l$prime = mapi(f, param[--[ l ]--0]);
-    d$prime = Curry._2(f, v, param[--[ d ]--2]);
-    r$prime = mapi(f, param[--[ r ]--3]);
-    return --[ Node ]--[
-            --[ l ]--l$prime,
-            --[ v ]--v,
-            --[ d ]--d$prime,
-            --[ r ]--r$prime,
-            --[ h ]--param[--[ h ]--4]
+    v = param[--[[ v ]]1];
+    l$prime = mapi(f, param[--[[ l ]]0]);
+    d$prime = Curry._2(f, v, param[--[[ d ]]2]);
+    r$prime = mapi(f, param[--[[ r ]]3]);
+    return --[[ Node ]][
+            --[[ l ]]l$prime,
+            --[[ v ]]v,
+            --[[ d ]]d$prime,
+            --[[ r ]]r$prime,
+            --[[ h ]]param[--[[ h ]]4]
           ];
   end else do
-    return --[ Empty ]--0;
+    return --[[ Empty ]]0;
   end end 
 end end
 
@@ -613,8 +613,8 @@ function fold(f, _m, _accu) do
     accu = _accu;
     m = _m;
     if (m) then do
-      _accu = Curry._3(f, m[--[ v ]--1], m[--[ d ]--2], fold(f, m[--[ l ]--0], accu));
-      _m = m[--[ r ]--3];
+      _accu = Curry._3(f, m[--[[ v ]]1], m[--[[ d ]]2], fold(f, m[--[[ l ]]0], accu));
+      _m = m[--[[ r ]]3];
       continue ;
     end else do
       return accu;
@@ -626,8 +626,8 @@ function for_all(p, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      if (Curry._2(p, param[--[ v ]--1], param[--[ d ]--2]) and for_all(p, param[--[ l ]--0])) then do
-        _param = param[--[ r ]--3];
+      if (Curry._2(p, param[--[[ v ]]1], param[--[[ d ]]2]) and for_all(p, param[--[[ l ]]0])) then do
+        _param = param[--[[ r ]]3];
         continue ;
       end else do
         return false;
@@ -642,10 +642,10 @@ function exists(p, _param) do
   while(true) do
     param = _param;
     if (param) then do
-      if (Curry._2(p, param[--[ v ]--1], param[--[ d ]--2]) or exists(p, param[--[ l ]--0])) then do
+      if (Curry._2(p, param[--[[ v ]]1], param[--[[ d ]]2]) or exists(p, param[--[[ l ]]0])) then do
         return true;
       end else do
-        _param = param[--[ r ]--3];
+        _param = param[--[[ r ]]3];
         continue ;
       end end 
     end else do
@@ -656,7 +656,7 @@ end end
 
 function add_min_binding(k, x, param) do
   if (param) then do
-    return bal(add_min_binding(k, x, param[--[ l ]--0]), param[--[ v ]--1], param[--[ d ]--2], param[--[ r ]--3]);
+    return bal(add_min_binding(k, x, param[--[[ l ]]0]), param[--[[ v ]]1], param[--[[ d ]]2], param[--[[ r ]]3]);
   end else do
     return singleton(k, x);
   end end 
@@ -664,7 +664,7 @@ end end
 
 function add_max_binding(k, x, param) do
   if (param) then do
-    return bal(param[--[ l ]--0], param[--[ v ]--1], param[--[ d ]--2], add_max_binding(k, x, param[--[ r ]--3]));
+    return bal(param[--[[ l ]]0], param[--[[ v ]]1], param[--[[ d ]]2], add_max_binding(k, x, param[--[[ r ]]3]));
   end else do
     return singleton(k, x);
   end end 
@@ -673,12 +673,12 @@ end end
 function join(l, v, d, r) do
   if (l) then do
     if (r) then do
-      rh = r[--[ h ]--4];
-      lh = l[--[ h ]--4];
+      rh = r[--[[ h ]]4];
+      lh = l[--[[ h ]]4];
       if (lh > (rh + 2 | 0)) then do
-        return bal(l[--[ l ]--0], l[--[ v ]--1], l[--[ d ]--2], join(l[--[ r ]--3], v, d, r));
+        return bal(l[--[[ l ]]0], l[--[[ v ]]1], l[--[[ d ]]2], join(l[--[[ r ]]3], v, d, r));
       end else if (rh > (lh + 2 | 0)) then do
-        return bal(join(l, v, d, r[--[ l ]--0]), r[--[ v ]--1], r[--[ d ]--2], r[--[ r ]--3]);
+        return bal(join(l, v, d, r[--[[ l ]]0]), r[--[[ v ]]1], r[--[[ d ]]2], r[--[[ r ]]3]);
       end else do
         return create(l, v, d, r);
       end end  end 
@@ -713,61 +713,61 @@ end end
 
 function split(x, param) do
   if (param) then do
-    r = param[--[ r ]--3];
-    d = param[--[ d ]--2];
-    v = param[--[ v ]--1];
-    l = param[--[ l ]--0];
+    r = param[--[[ r ]]3];
+    d = param[--[[ d ]]2];
+    v = param[--[[ v ]]1];
+    l = param[--[[ l ]]0];
     c = Caml_primitive.caml_int_compare(x, v);
     if (c == 0) then do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               l,
               Caml_option.some(d),
               r
             ];
     end else if (c < 0) then do
       match = split(x, l);
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               match[0],
               match[1],
               join(match[2], v, d, r)
             ];
     end else do
       match$1 = split(x, r);
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               join(l, v, d, match$1[0]),
               match$1[1],
               match$1[2]
             ];
     end end  end 
   end else do
-    return --[ tuple ]--[
-            --[ Empty ]--0,
+    return --[[ tuple ]][
+            --[[ Empty ]]0,
             undefined,
-            --[ Empty ]--0
+            --[[ Empty ]]0
           ];
   end end 
 end end
 
 function merge$1(f, s1, s2) do
   if (s1) then do
-    v1 = s1[--[ v ]--1];
-    if (s1[--[ h ]--4] >= height(s2)) then do
+    v1 = s1[--[[ v ]]1];
+    if (s1[--[[ h ]]4] >= height(s2)) then do
       match = split(v1, s2);
-      return concat_or_join(merge$1(f, s1[--[ l ]--0], match[0]), v1, Curry._3(f, v1, Caml_option.some(s1[--[ d ]--2]), match[1]), merge$1(f, s1[--[ r ]--3], match[2]));
+      return concat_or_join(merge$1(f, s1[--[[ l ]]0], match[0]), v1, Curry._3(f, v1, Caml_option.some(s1[--[[ d ]]2]), match[1]), merge$1(f, s1[--[[ r ]]3], match[2]));
     end
      end 
   end else if (!s2) then do
-    return --[ Empty ]--0;
+    return --[[ Empty ]]0;
   end
    end  end 
   if (s2) then do
-    v2 = s2[--[ v ]--1];
+    v2 = s2[--[[ v ]]1];
     match$1 = split(v2, s1);
-    return concat_or_join(merge$1(f, match$1[0], s2[--[ l ]--0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[--[ d ]--2])), merge$1(f, match$1[2], s2[--[ r ]--3]));
+    return concat_or_join(merge$1(f, match$1[0], s2[--[[ l ]]0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[--[[ d ]]2])), merge$1(f, match$1[2], s2[--[[ r ]]3]));
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "map.ml",
             393,
             10
@@ -779,15 +779,15 @@ end end
 function union(f, s1, s2) do
   if (s1) then do
     if (s2) then do
-      d2 = s2[--[ d ]--2];
-      v2 = s2[--[ v ]--1];
-      d1 = s1[--[ d ]--2];
-      v1 = s1[--[ v ]--1];
-      if (s1[--[ h ]--4] >= s2[--[ h ]--4]) then do
+      d2 = s2[--[[ d ]]2];
+      v2 = s2[--[[ v ]]1];
+      d1 = s1[--[[ d ]]2];
+      v1 = s1[--[[ v ]]1];
+      if (s1[--[[ h ]]4] >= s2[--[[ h ]]4]) then do
         match = split(v1, s2);
         d2$1 = match[1];
-        l = union(f, s1[--[ l ]--0], match[0]);
-        r = union(f, s1[--[ r ]--3], match[2]);
+        l = union(f, s1[--[[ l ]]0], match[0]);
+        r = union(f, s1[--[[ r ]]3], match[2]);
         if (d2$1 ~= undefined) then do
           return concat_or_join(l, v1, Curry._3(f, v1, d1, Caml_option.valFromOption(d2$1)), r);
         end else do
@@ -796,8 +796,8 @@ function union(f, s1, s2) do
       end else do
         match$1 = split(v2, s1);
         d1$1 = match$1[1];
-        l$1 = union(f, match$1[0], s2[--[ l ]--0]);
-        r$1 = union(f, match$1[2], s2[--[ r ]--3]);
+        l$1 = union(f, match$1[0], s2[--[[ l ]]0]);
+        r$1 = union(f, match$1[2], s2[--[[ r ]]3]);
         if (d1$1 ~= undefined) then do
           return concat_or_join(l$1, v2, Curry._3(f, v2, Caml_option.valFromOption(d1$1), d2), r$1);
         end else do
@@ -814,10 +814,10 @@ end end
 
 function filter(p, m) do
   if (m) then do
-    r = m[--[ r ]--3];
-    d = m[--[ d ]--2];
-    v = m[--[ v ]--1];
-    l = m[--[ l ]--0];
+    r = m[--[[ r ]]3];
+    d = m[--[[ d ]]2];
+    v = m[--[[ v ]]1];
+    l = m[--[[ l ]]0];
     l$prime = filter(p, l);
     pvd = Curry._2(p, v, d);
     r$prime = filter(p, r);
@@ -831,36 +831,36 @@ function filter(p, m) do
       return concat(l$prime, r$prime);
     end end 
   end else do
-    return --[ Empty ]--0;
+    return --[[ Empty ]]0;
   end end 
 end end
 
 function partition(p, param) do
   if (param) then do
-    d = param[--[ d ]--2];
-    v = param[--[ v ]--1];
-    match = partition(p, param[--[ l ]--0]);
+    d = param[--[[ d ]]2];
+    v = param[--[[ v ]]1];
+    match = partition(p, param[--[[ l ]]0]);
     lf = match[1];
     lt = match[0];
     pvd = Curry._2(p, v, d);
-    match$1 = partition(p, param[--[ r ]--3]);
+    match$1 = partition(p, param[--[[ r ]]3]);
     rf = match$1[1];
     rt = match$1[0];
     if (pvd) then do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               join(lt, v, d, rt),
               concat(lf, rf)
             ];
     end else do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               concat(lt, rt),
               join(lf, v, d, rf)
             ];
     end end 
   end else do
-    return --[ tuple ]--[
-            --[ Empty ]--0,
-            --[ Empty ]--0
+    return --[[ tuple ]][
+            --[[ Empty ]]0,
+            --[[ Empty ]]0
           ];
   end end 
 end end
@@ -870,13 +870,13 @@ function cons_enum(_m, _e) do
     e = _e;
     m = _m;
     if (m) then do
-      _e = --[ More ]--[
-        m[--[ v ]--1],
-        m[--[ d ]--2],
-        m[--[ r ]--3],
+      _e = --[[ More ]][
+        m[--[[ v ]]1],
+        m[--[[ d ]]2],
+        m[--[[ r ]]3],
         e
       ];
-      _m = m[--[ l ]--0];
+      _m = m[--[[ l ]]0];
       continue ;
     end else do
       return e;
@@ -885,8 +885,8 @@ function cons_enum(_m, _e) do
 end end
 
 function compare(cmp, m1, m2) do
-  _e1 = cons_enum(m1, --[ End ]--0);
-  _e2 = cons_enum(m2, --[ End ]--0);
+  _e1 = cons_enum(m1, --[[ End ]]0);
+  _e2 = cons_enum(m2, --[[ End ]]0);
   while(true) do
     e2 = _e2;
     e1 = _e1;
@@ -917,8 +917,8 @@ function compare(cmp, m1, m2) do
 end end
 
 function equal(cmp, m1, m2) do
-  _e1 = cons_enum(m1, --[ End ]--0);
-  _e2 = cons_enum(m2, --[ End ]--0);
+  _e1 = cons_enum(m1, --[[ End ]]0);
+  _e2 = cons_enum(m2, --[[ End ]]0);
   while(true) do
     e2 = _e2;
     e1 = _e1;
@@ -940,7 +940,7 @@ end end
 
 function cardinal(param) do
   if (param) then do
-    return (cardinal(param[--[ l ]--0]) + 1 | 0) + cardinal(param[--[ r ]--3]) | 0;
+    return (cardinal(param[--[[ l ]]0]) + 1 | 0) + cardinal(param[--[[ r ]]3]) | 0;
   end else do
     return 0;
   end end 
@@ -951,13 +951,13 @@ function bindings_aux(_accu, _param) do
     param = _param;
     accu = _accu;
     if (param) then do
-      _param = param[--[ l ]--0];
-      _accu = --[ :: ]--[
-        --[ tuple ]--[
-          param[--[ v ]--1],
-          param[--[ d ]--2]
+      _param = param[--[[ l ]]0];
+      _accu = --[[ :: ]][
+        --[[ tuple ]][
+          param[--[[ v ]]1],
+          param[--[[ d ]]2]
         ],
-        bindings_aux(accu, param[--[ r ]--3])
+        bindings_aux(accu, param[--[[ r ]]3])
       ];
       continue ;
     end else do
@@ -967,10 +967,10 @@ function bindings_aux(_accu, _param) do
 end end
 
 function bindings(s) do
-  return bindings_aux(--[ [] ]--0, s);
+  return bindings_aux(--[[ [] ]]0, s);
 end end
 
-empty = --[ Empty ]--0;
+empty = --[[ Empty ]]0;
 
 choose = min_binding;
 
@@ -1010,4 +1010,4 @@ exports.find_last = find_last;
 exports.find_last_opt = find_last_opt;
 exports.map = map;
 exports.mapi = mapi;
---[ No side effect ]--
+--[[ No side effect ]]

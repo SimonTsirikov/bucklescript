@@ -97,10 +97,10 @@ function ui_layout(compile, lookup, appContext) do
                               return Curry._2(lookup, env, key);
                             end end));
               end end);
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end
           catch (e)do
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end
         end end));
   Runtime.setInterval((function () do
@@ -119,11 +119,11 @@ function ui_layout(compile, lookup, appContext) do
                           mk_titleRow(result.toFixed(2))
                         ];
                 end end));
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end), 100);
   return hw1;
 end end
 
 exports.data = data;
 exports.ui_layout = ui_layout;
---[ @ui Not a pure module ]--
+--[[ @ui Not a pure module ]]

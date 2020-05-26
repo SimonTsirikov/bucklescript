@@ -15,4 +15,4 @@ function to_buffer(buff, ofs, len, v, flags) do
 end end
 
 exports.to_buffer = to_buffer;
---[ No side effect ]--
+--[[ No side effect ]]

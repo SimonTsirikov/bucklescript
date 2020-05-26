@@ -12,7 +12,7 @@ end end
 function create(l, v, r) do
   hl = height(l);
   hr = height(r);
-  return --[ Node ]--[
+  return --[[ Node ]][
           l,
           v,
           r,
@@ -33,10 +33,10 @@ function bal(l, v, r) do
       end else if (lr) then do
         return create(create(ll, lv, lr[0]), lr[1], create(lr[2], v, r));
       end else do
-        return --[ Empty ]--0;
+        return --[[ Empty ]]0;
       end end  end 
     end else do
-      return --[ Empty ]--0;
+      return --[[ Empty ]]0;
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
@@ -48,13 +48,13 @@ function bal(l, v, r) do
       end else if (rl) then do
         return create(create(l, v, rl[0]), rl[1], create(rl[2], rv, rr));
       end else do
-        return --[ Empty ]--0;
+        return --[[ Empty ]]0;
       end end  end 
     end else do
-      return --[ Empty ]--0;
+      return --[[ Empty ]]0;
     end end 
   end else do
-    return --[ Node ]--[
+    return --[[ Node ]][
             l,
             v,
             r,
@@ -87,10 +87,10 @@ function add(x, t) do
       return bal(l, v, add(x, r));
     end end  end 
   end else do
-    return --[ Node ]--[
-            --[ Empty ]--0,
+    return --[[ Node ]][
+            --[[ Empty ]]0,
             x,
-            --[ Empty ]--0,
+            --[[ Empty ]]0,
             1
           ];
   end end 
@@ -150,7 +150,7 @@ function remove(x, tree) do
       return bal(l, v, remove(x, r));
     end end  end 
   end else do
-    return --[ Empty ]--0;
+    return --[[ Empty ]]0;
   end end 
 end end
 
@@ -171,7 +171,7 @@ function mem(x, _param) do
   end;
 end end
 
-v = --[ Empty ]--0;
+v = --[[ Empty ]]0;
 
 for i = 0 , 100000 , 1 do
   v = add(i, v);
@@ -205,4 +205,4 @@ exports.remove_min_elt = remove_min_elt;
 exports.internal_merge = internal_merge;
 exports.remove = remove;
 exports.mem = mem;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

@@ -8,7 +8,7 @@ Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -17,11 +17,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -29,7 +29,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 A = Caml_exceptions.create("Exception_rebound_err_test.A");
@@ -69,7 +69,7 @@ end end
 
 function f(g) do
   try do
-    return Curry._1(g, --[ () ]--0);
+    return Curry._1(g, --[[ () ]]0);
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
@@ -80,7 +80,7 @@ function f(g) do
   end
 end end
 
-eq("File \"exception_rebound_err_test.ml\", line 24, characters 6-13", test_js_error4(--[ () ]--0), 7);
+eq("File \"exception_rebound_err_test.ml\", line 24, characters 6-13", test_js_error4(--[[ () ]]0), 7);
 
 Mt.from_pair_suites("Exception_rebound_err_test", suites.contents);
 
@@ -92,4 +92,4 @@ exports.B = B;
 exports.C = C;
 exports.test_js_error4 = test_js_error4;
 exports.f = f;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

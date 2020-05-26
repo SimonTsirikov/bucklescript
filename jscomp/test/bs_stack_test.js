@@ -10,7 +10,7 @@ function inOrder(v) do
   s = do
     root: null
   end;
-  q = Belt_MutableQueue.make(--[ () ]--0);
+  q = Belt_MutableQueue.make(--[[ () ]]0);
   while(current ~= undefined) do
     v$1 = current;
     Belt_MutableStack.push(s, v$1);
@@ -35,7 +35,7 @@ function inOrder3(v) do
   s = do
     root: null
   end;
-  q = Belt_MutableQueue.make(--[ () ]--0);
+  q = Belt_MutableQueue.make(--[[ () ]]0);
   while(current ~= undefined) do
     v$1 = current;
     Belt_MutableStack.push(s, v$1);
@@ -49,7 +49,7 @@ function inOrder3(v) do
             Belt_MutableStack.push(s, v);
             current = v.left;
           end;
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end));
   return Belt_MutableQueue.toArray(q);
 end end
@@ -60,7 +60,7 @@ function inOrder2(v) do
   s = do
     root: null
   end;
-  q = Belt_MutableQueue.make(--[ () ]--0);
+  q = Belt_MutableQueue.make(--[[ () ]]0);
   while(todo) do
     if (cursor ~= undefined) then do
       v$1 = cursor;
@@ -75,7 +75,7 @@ function inOrder2(v) do
       todo = false;
     end end  end 
   end;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function n(l, r, a) do
@@ -95,7 +95,7 @@ function pushAllLeft(st1, s1) do
     Belt_MutableStack.push(s1, v);
     current = v.left;
   end;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 test2 = n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(undefined, undefined, 4)), undefined, 2)), undefined, 5)), undefined, 1)), undefined, 3);
@@ -106,9 +106,9 @@ console.log(inOrder(test1));
 
 console.log(inOrder3(test1));
 
-S = --[ alias ]--0;
+S = --[[ alias ]]0;
 
-Q = --[ alias ]--0;
+Q = --[[ alias ]]0;
 
 exports.S = S;
 exports.Q = Q;
@@ -120,4 +120,4 @@ exports.test1 = test1;
 exports.pushAllLeft = pushAllLeft;
 exports.test2 = test2;
 exports.test3 = test3;
---[ test1 Not a pure module ]--
+--[[ test1 Not a pure module ]]

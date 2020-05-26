@@ -9,7 +9,7 @@ function h0(x) do
 end end
 
 function h00(x) do
-  return Curry._1(x(), --[ () ]--0);
+  return Curry._1(x(), --[[ () ]]0);
 end end
 
 function h1(x) do
@@ -44,7 +44,7 @@ end end
 
 function a0() do
   console.log("hi");
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function a1(param) do
@@ -75,7 +75,7 @@ end end
 
 function b44(param) do
   return (function (x, y, z, d) do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               x,
               y,
               z,
@@ -87,7 +87,7 @@ end end
 function xx(param) do
   return (function (param) do
       console.log(3);
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end end);
 end end
 
@@ -110,4 +110,4 @@ exports.a44 = a44;
 exports.b44 = b44;
 exports.test_as = test_as;
 exports.xx = xx;
---[ No side effect ]--
+--[[ No side effect ]]

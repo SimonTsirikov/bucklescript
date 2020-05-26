@@ -14,14 +14,14 @@ end;
 
 v = Caml_obj.caml_lazy_make((function (param) do
         u.contents = 32;
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 function lazy_test(param) do
   h = u.contents;
   CamlinternalLazy.force(v);
   g = u.contents;
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           h,
           g
         ];
@@ -38,7 +38,7 @@ function f(param) do
     end else do
       throw [
             Caml_builtin_exceptions.match_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "lazy_test.ml",
               11,
               8
@@ -56,18 +56,18 @@ end;
 
 set_true = Caml_obj.caml_lazy_make((function (param) do
         s.contents = 1;
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 set_false = Caml_obj.caml_lazy_make((function (param) do
         s.contents = undefined;
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 h;
 
 try do
-  h = f(--[ tuple ]--[
+  h = f(--[[ tuple ]][
         set_true,
         set_false,
         s
@@ -88,7 +88,7 @@ end;
 
 u$1 = Caml_obj.caml_lazy_make((function (param) do
         u_v.contents = 2;
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 CamlinternalLazy.force(u$1);
@@ -124,81 +124,81 @@ f008 = Caml_obj.caml_lazy_make((function (param) do
         throw Caml_builtin_exceptions.not_found;
       end end));
 
-Mt.from_pair_suites("Lazy_test", --[ :: ]--[
-      --[ tuple ]--[
+Mt.from_pair_suites("Lazy_test", --[[ :: ]][
+      --[[ tuple ]][
         "simple",
         (function (param) do
-            return --[ Eq ]--Block.__(0, [
-                      lazy_test(--[ () ]--0),
-                      --[ tuple ]--[
+            return --[[ Eq ]]Block.__(0, [
+                      lazy_test(--[[ () ]]0),
+                      --[[ tuple ]][
                         3,
                         32
                       ]
                     ]);
           end end)
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "lazy_match",
           (function (param) do
-              return --[ Eq ]--Block.__(0, [
+              return --[[ Eq ]]Block.__(0, [
                         h,
                         2
                       ]);
             end end)
         ],
-        --[ :: ]--[
-          --[ tuple ]--[
+        --[[ :: ]][
+          --[[ tuple ]][
             "lazy_force",
             (function (param) do
-                return --[ Eq ]--Block.__(0, [
+                return --[[ Eq ]]Block.__(0, [
                           u_v.contents,
                           2
                         ]);
               end end)
           ],
-          --[ :: ]--[
-            --[ tuple ]--[
+          --[[ :: ]][
+            --[[ tuple ]][
               "lazy_from_fun",
               (function (param) do
-                  return --[ Eq ]--Block.__(0, [
+                  return --[[ Eq ]]Block.__(0, [
                             CamlinternalLazy.force(l_from_fun),
                             3
                           ]);
                 end end)
             ],
-            --[ :: ]--[
-              --[ tuple ]--[
+            --[[ :: ]][
+              --[[ tuple ]][
                 "lazy_from_val",
                 (function (param) do
-                    return --[ Eq ]--Block.__(0, [
+                    return --[[ Eq ]]Block.__(0, [
                               CamlinternalLazy.force(Lazy.from_val(3)),
                               3
                             ]);
                   end end)
               ],
-              --[ :: ]--[
-                --[ tuple ]--[
+              --[[ :: ]][
+                --[[ tuple ]][
                   "lazy_from_val2",
                   (function (param) do
-                      return --[ Eq ]--Block.__(0, [
+                      return --[[ Eq ]]Block.__(0, [
                                 CamlinternalLazy.force(CamlinternalLazy.force(Lazy.from_val(3))),
                                 3
                               ]);
                     end end)
                 ],
-                --[ :: ]--[
-                  --[ tuple ]--[
+                --[[ :: ]][
+                  --[[ tuple ]][
                     "lazy_from_val3",
                     (function (param) do
                         debugger;
-                        return --[ Eq ]--Block.__(0, [
+                        return --[[ Eq ]]Block.__(0, [
                                   CamlinternalLazy.force(CamlinternalLazy.force(Lazy.from_val(forward_test))),
                                   4
                                 ]);
                       end end)
                   ],
-                  --[ [] ]--0
+                  --[[ [] ]]0
                 ]
               ]
             ]
@@ -223,4 +223,4 @@ exports.f005 = f005;
 exports.f006 = f006;
 exports.f007 = f007;
 exports.f008 = f008;
---[ h Not a pure module ]--
+--[[ h Not a pure module ]]

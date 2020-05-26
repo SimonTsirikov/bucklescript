@@ -9,7 +9,7 @@ f = do
   end
 end;
 
-f2_000 = --[ :: ]--[
+f2_000 = --[[ :: ]][
   do
     x: do
       y: do
@@ -17,7 +17,7 @@ f2_000 = --[ :: ]--[
       end
     end
   end,
-  --[ :: ]--[
+  --[[ :: ]][
     do
       x: do
         y: do
@@ -25,7 +25,7 @@ f2_000 = --[ :: ]--[
         end
       end
     end,
-    --[ [] ]--0
+    --[[ [] ]]0
   ]
 ];
 
@@ -46,7 +46,7 @@ f2_001 = [
   end
 ];
 
-f2 = --[ tuple ]--[
+f2 = --[[ tuple ]][
   f2_000,
   f2_001
 ];
@@ -71,4 +71,4 @@ exports.f_record = f_record;
 exports.f = f;
 exports.f2 = f2;
 exports.f3 = f3;
---[ No side effect ]--
+--[[ No side effect ]]

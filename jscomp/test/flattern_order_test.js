@@ -36,7 +36,7 @@ end end
 
 function obj_set(i) do
   v.contents = i;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 obj = do
@@ -48,4 +48,4 @@ exports.even = even;
 exports.even2 = even2;
 exports.v = v;
 exports.obj = obj;
---[ No side effect ]--
+--[[ No side effect ]]

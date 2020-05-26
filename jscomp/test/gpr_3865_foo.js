@@ -4,4 +4,4 @@
 $$return = 5;
 
 exports.$$return = $$return;
---[ No side effect ]--
+--[[ No side effect ]]

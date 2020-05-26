@@ -63,4 +63,4 @@ exports.hello5 = hello5;
 exports.f = f;
 exports.ff = ff;
 exports.fff = fff;
---[ No side effect ]--
+--[[ No side effect ]]

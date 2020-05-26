@@ -55,7 +55,7 @@ u = Oo.copy(v);
 if (Caml_oo_curry.js1(291546447, 1, v) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "class_repr.ml",
           30,
           9
@@ -67,7 +67,7 @@ end
 if (Caml_oo_curry.js1(291546447, 2, u) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "class_repr.ml",
           32,
           9
@@ -111,7 +111,7 @@ v2 = Caml_oo_curry.js1(-977586732, 3, v1);
 if (Caml_oo_curry.js1(-804710761, 4, v1) ~= 3) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "class_repr.ml",
           44,
           9
@@ -120,7 +120,7 @@ if (Caml_oo_curry.js1(-804710761, 4, v1) ~= 3) then do
 end
  end 
 
-console.log(--[ tuple ]--[
+console.log(--[[ tuple ]][
       Caml_oo_curry.js1(-804710761, 5, v1),
       Caml_oo_curry.js1(-804710761, 6, v2)
     ]);
@@ -128,7 +128,7 @@ console.log(--[ tuple ]--[
 if (Caml_oo_curry.js1(-804710761, 7, v2) ~= 9) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "class_repr.ml",
           52,
           9
@@ -172,7 +172,7 @@ v$1 = Curry._1(point[0], 0);
 if (Caml_oo_curry.js1(590348294, 8, v$1) ~= 5) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "class_repr.ml",
           99,
           2
@@ -230,4 +230,4 @@ exports.v2 = v2;
 exports.point = point;
 exports.v = v$1;
 exports.xx0 = xx0;
---[ x0 Not a pure module ]--
+--[[ x0 Not a pure module ]]

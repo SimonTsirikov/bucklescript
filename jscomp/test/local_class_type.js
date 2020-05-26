@@ -4,7 +4,7 @@ Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
 
 function f(x) do
   x.height = 3;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function h(x) do
@@ -13,4 +13,4 @@ end end
 
 exports.f = f;
 exports.h = h;
---[ No side effect ]--
+--[[ No side effect ]]

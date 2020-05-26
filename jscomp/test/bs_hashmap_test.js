@@ -11,7 +11,7 @@ Array_data_util = require("./array_data_util.js");
 Belt_internalBucketsType = require("../../lib/js/belt_internalBucketsType.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -43,19 +43,19 @@ function add(prim, prim$1) do
 end end
 
 Belt_HashMap.mergeMany(empty, [
-      --[ tuple ]--[
+      --[[ tuple ]][
         1,
         1
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         2,
         3
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         3,
         3
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         2,
         2
       ]
@@ -101,17 +101,17 @@ b("File \"bs_hashmap_test.ml\", line 57, characters 4-11", Belt_Array.every(Arra
 
 Mt.from_pair_suites("Bs_hashmap_test", suites.contents);
 
-N = --[ alias ]--0;
+N = --[[ alias ]]0;
 
-S = --[ alias ]--0;
+S = --[[ alias ]]0;
 
-I = --[ alias ]--0;
+I = --[[ alias ]]0;
 
 $plus$plus = Belt_Array.concat;
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
-So = --[ alias ]--0;
+So = --[[ alias ]]0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -129,4 +129,4 @@ exports.$plus$plus = $plus$plus;
 exports.add = add;
 exports.A = A;
 exports.So = So;
---[ Y Not a pure module ]--
+--[[ Y Not a pure module ]]

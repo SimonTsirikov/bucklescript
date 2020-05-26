@@ -6,7 +6,7 @@ Block = require("../../lib/js/block.js");
 Caml_obj = require("../../lib/js/caml_obj.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -23,14 +23,14 @@ end end
 
 Block$1 = { };
 
-v0 = --[ A ]--Block.__(1, [
+v0 = --[[ A ]]Block.__(1, [
     0,
     1
   ]);
 
 Block$2 = { };
 
-v1 = --[ A ]--Block.__(1, [
+v1 = --[[ A ]]Block.__(1, [
     0,
     1
   ]);
@@ -50,15 +50,15 @@ end;
 
 f = Caml_obj.caml_equal;
 
-eq("File \"block_alias_test.ml\", line 32, characters 6-13", List.length(--[ :: ]--[
+eq("File \"block_alias_test.ml\", line 32, characters 6-13", List.length(--[[ :: ]][
           1,
-          --[ :: ]--[
+          --[[ :: ]][
             2,
-            --[ [] ]--0
+            --[[ [] ]]0
           ]
         ]), 2);
 
-b("File \"block_alias_test.ml\", line 33, characters 5-12", Caml_obj.caml_equal(v0, --[ A ]--Block.__(1, [
+b("File \"block_alias_test.ml\", line 33, characters 5-12", Caml_obj.caml_equal(v0, --[[ A ]]Block.__(1, [
             0,
             1
           ])));
@@ -80,4 +80,4 @@ exports.Caml_obj = Caml_obj$1;
 exports.V = V;
 exports.f = f;
 exports.h = h;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

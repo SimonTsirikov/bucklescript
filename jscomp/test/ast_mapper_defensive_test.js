@@ -5,7 +5,7 @@ Block = require("../../lib/js/block.js");
 Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -14,16 +14,16 @@ end;
 
 function $$throw(loc, x) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ ThrowAny ]--Block.__(7, [x]);
+          return --[[ ThrowAny ]]Block.__(7, [x]);
         end end)
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function aToJs(param) do
@@ -53,15 +53,15 @@ function bFromJs(param) do
 end end
 
 jsMapperConstantArray$1 = [
-  --[ tuple ]--[
+  --[[ tuple ]][
     22125,
     "c0"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     22126,
     "c1"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     22127,
     "c2"
   ]
@@ -77,17 +77,17 @@ end end
 
 $$throw("File \"ast_mapper_defensive_test.ml\", line 28, characters 16-23", (function (param) do
         aFromJs(3);
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 $$throw("File \"ast_mapper_defensive_test.ml\", line 29, characters 15-22", (function (param) do
         bFromJs(2);
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 $$throw("File \"ast_mapper_defensive_test.ml\", line 30, characters 15-22", (function (param) do
         cFromJs(33);
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 Mt.from_pair_suites("Ast_mapper_defensive_test", suites.contents);
@@ -101,4 +101,4 @@ exports.bToJs = bToJs;
 exports.bFromJs = bFromJs;
 exports.cToJs = cToJs;
 exports.cFromJs = cFromJs;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

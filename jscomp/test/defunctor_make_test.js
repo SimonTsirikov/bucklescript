@@ -27,7 +27,7 @@ end end
 function create(l, x, d, r) do
   hl = height(l);
   hr = height(r);
-  return --[ Node ]--[
+  return --[[ Node ]][
           l,
           x,
           d,
@@ -84,7 +84,7 @@ function bal(l, x, d, r) do
           ];
     end end 
   end else do
-    return --[ Node ]--[
+    return --[[ Node ]][
             l,
             x,
             d,
@@ -102,7 +102,7 @@ function add(x, data, compare, param) do
     l = param[0];
     c = compare(x, v);
     if (c == 0) then do
-      return --[ Node ]--[
+      return --[[ Node ]][
               l,
               x,
               data,
@@ -115,11 +115,11 @@ function add(x, data, compare, param) do
       return bal(l, v, d, add(x, data, compare, r));
     end end  end 
   end else do
-    return --[ Node ]--[
-            --[ Empty ]--0,
+    return --[[ Node ]][
+            --[[ Empty ]]0,
             x,
             data,
-            --[ Empty ]--0,
+            --[[ Empty ]]0,
             1
           ];
   end end 
@@ -136,7 +136,7 @@ end end
 function empty(v) do
   return do
           compare: v,
-          data: --[ Empty ]--0
+          data: --[[ Empty ]]0
         end;
 end end
 
@@ -154,12 +154,12 @@ end;
 
 v0 = do
   compare: V0,
-  data: --[ Empty ]--0
+  data: --[[ Empty ]]0
 end;
 
 v1 = do
   compare: V1,
-  data: --[ Empty ]--0
+  data: --[[ Empty ]]0
 end;
 
 v3 = add$1(3, "a", v0);
@@ -177,4 +177,4 @@ exports.V1 = V1;
 exports.v0 = v0;
 exports.v1 = v1;
 exports.v3 = v3;
---[ v3 Not a pure module ]--
+--[[ v3 Not a pure module ]]

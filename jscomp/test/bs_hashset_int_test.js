@@ -9,7 +9,7 @@ Belt_SortArrayInt = require("../../lib/js/belt_SortArrayInt.js");
 Belt_internalBucketsType = require("../../lib/js/belt_internalBucketsType.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -34,7 +34,7 @@ function sum2(h) do
   end;
   Belt_HashSetInt.forEach(h, (function (x) do
           v.contents = v.contents + x | 0;
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end));
   return v.contents;
 end end
@@ -55,7 +55,7 @@ eq("File \"bs_hashset_int_test.ml\", line 24, characters 5-12", sum2(v), 6825);
 
 u$1 = Belt_Array.concat(Array_data_util.randomRange(0, 100000), Array_data_util.randomRange(0, 100));
 
-v$1 = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, 40);
+v$1 = Belt_internalBucketsType.make(--[[ () ]]0, --[[ () ]]0, 40);
 
 Belt_HashSetInt.mergeMany(v$1, u$1);
 
@@ -105,17 +105,17 @@ b("File \"bs_hashset_int_test.ml\", line 62, characters 4-11", #histo <= 10);
 
 Mt.from_pair_suites("Bs_hashset_int_test", suites.contents);
 
-N = --[ alias ]--0;
+N = --[[ alias ]]0;
 
-S = --[ alias ]--0;
+S = --[[ alias ]]0;
 
-I = --[ alias ]--0;
+I = --[[ alias ]]0;
 
 $plus$plus = Belt_Array.concat;
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
-SI = --[ alias ]--0;
+SI = --[[ alias ]]0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -129,4 +129,4 @@ exports.add = add;
 exports.sum2 = sum2;
 exports.A = A;
 exports.SI = SI;
---[ u Not a pure module ]--
+--[[ u Not a pure module ]]

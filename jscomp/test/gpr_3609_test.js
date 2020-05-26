@@ -10,4 +10,4 @@ function func(state) do
 end end
 
 exports.func = func;
---[ No side effect ]--
+--[[ No side effect ]]

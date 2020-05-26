@@ -15,7 +15,7 @@ function Make(Ord) do
   create = function (l, v, r) do
     hl = l and l[3] or 0;
     hr = r and r[3] or 0;
-    return --[ Node ]--[
+    return --[[ Node ]][
             l,
             v,
             r,
@@ -68,7 +68,7 @@ function Make(Ord) do
             ];
       end end 
     end else do
-      return --[ Node ]--[
+      return --[[ Node ]][
               l,
               v,
               r,
@@ -90,19 +90,19 @@ function Make(Ord) do
         return bal(l, v, add(x, r));
       end end  end 
     end else do
-      return --[ Node ]--[
-              --[ Empty ]--0,
+      return --[[ Node ]][
+              --[[ Empty ]]0,
               x,
-              --[ Empty ]--0,
+              --[[ Empty ]]0,
               1
             ];
     end end 
   end end;
   singleton = function (x) do
-    return --[ Node ]--[
-            --[ Empty ]--0,
+    return --[[ Node ]][
+            --[[ Empty ]]0,
             x,
-            --[ Empty ]--0,
+            --[[ Empty ]]0,
             1
           ];
   end end;
@@ -215,31 +215,31 @@ function Make(Ord) do
       l = param[0];
       c = Curry._2(Ord.compare, x, v);
       if (c == 0) then do
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 l,
                 true,
                 r
               ];
       end else if (c < 0) then do
         match = split(x, l);
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 match[0],
                 match[1],
                 join(match[2], v, r)
               ];
       end else do
         match$1 = split(x, r);
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 join(l, v, match$1[0]),
                 match$1[1],
                 match$1[2]
               ];
       end end  end 
     end else do
-      return --[ tuple ]--[
-              --[ Empty ]--0,
+      return --[[ tuple ]][
+              --[[ Empty ]]0,
               false,
-              --[ Empty ]--0
+              --[[ Empty ]]0
             ];
     end end 
   end end;
@@ -280,7 +280,7 @@ function Make(Ord) do
         return bal(l, v, remove(x, r));
       end end  end 
     end else do
-      return --[ Empty ]--0;
+      return --[[ Empty ]]0;
     end end 
   end end;
   union = function (s1, s2) do
@@ -323,7 +323,7 @@ function Make(Ord) do
         return concat(inter(l1, l2), inter(r1, match[2]));
       end end 
     end else do
-      return --[ Empty ]--0;
+      return --[[ Empty ]]0;
     end end 
   end end;
   diff = function (s1, s2) do
@@ -343,7 +343,7 @@ function Make(Ord) do
         return s1;
       end end 
     end else do
-      return --[ Empty ]--0;
+      return --[[ Empty ]]0;
     end end 
   end end;
   cons_enum = function (_s, _e) do
@@ -351,7 +351,7 @@ function Make(Ord) do
       e = _e;
       s = _s;
       if (s) then do
-        _e = --[ More ]--[
+        _e = --[[ More ]][
           s[1],
           s[2],
           e
@@ -388,7 +388,7 @@ function Make(Ord) do
     end;
   end end;
   compare = function (s1, s2) do
-    return compare_aux(cons_enum(s1, --[ End ]--0), cons_enum(s2, --[ End ]--0));
+    return compare_aux(cons_enum(s1, --[[ End ]]0), cons_enum(s2, --[[ End ]]0));
   end end;
   equal = function (s1, s2) do
     return compare(s1, s2) == 0;
@@ -414,10 +414,10 @@ function Make(Ord) do
               return false;
             end end 
           end else if (c < 0) then do
-            if (subset(--[ Node ]--[
+            if (subset(--[[ Node ]][
                     l1,
                     v1,
-                    --[ Empty ]--0,
+                    --[[ Empty ]]0,
                     0
                   ], l2)) then do
               _s1 = r1;
@@ -425,8 +425,8 @@ function Make(Ord) do
             end else do
               return false;
             end end 
-          end else if (subset(--[ Node ]--[
-                  --[ Empty ]--0,
+          end else if (subset(--[[ Node ]][
+                  --[[ Empty ]]0,
                   v1,
                   r1,
                   0
@@ -453,7 +453,7 @@ function Make(Ord) do
         _param = param[2];
         continue ;
       end else do
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end 
     end;
   end end;
@@ -512,7 +512,7 @@ function Make(Ord) do
         return concat(l$prime, r$prime);
       end end 
     end else do
-      return --[ Empty ]--0;
+      return --[[ Empty ]]0;
     end end 
   end end;
   partition = function (p, param) do
@@ -526,20 +526,20 @@ function Make(Ord) do
       rf = match$1[1];
       rt = match$1[0];
       if (pv) then do
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 join(lt, v, rt),
                 concat(lf, rf)
               ];
       end else do
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 concat(lt, rt),
                 join(lf, v, rf)
               ];
       end end 
     end else do
-      return --[ tuple ]--[
-              --[ Empty ]--0,
-              --[ Empty ]--0
+      return --[[ tuple ]][
+              --[[ Empty ]]0,
+              --[[ Empty ]]0
             ];
     end end 
   end end;
@@ -556,7 +556,7 @@ function Make(Ord) do
       accu = _accu;
       if (param) then do
         _param = param[0];
-        _accu = --[ :: ]--[
+        _accu = --[[ :: ]][
           param[1],
           elements_aux(accu, param[2])
         ];
@@ -567,7 +567,7 @@ function Make(Ord) do
     end;
   end end;
   elements = function (s) do
-    return elements_aux(--[ [] ]--0, s);
+    return elements_aux(--[[ [] ]]0, s);
   end end;
   find = function (x, _param) do
     while(true) do
@@ -591,17 +591,17 @@ function Make(Ord) do
       local ___conditional___=(n);
       do
          if ___conditional___ = 0 then do
-            return --[ tuple ]--[
-                    --[ Empty ]--0,
+            return --[[ tuple ]][
+                    --[[ Empty ]]0,
                     l
                   ];end end end 
          if ___conditional___ = 1 then do
             if (l) then do
-              return --[ tuple ]--[
-                      --[ Node ]--[
-                        --[ Empty ]--0,
+              return --[[ tuple ]][
+                      --[[ Node ]][
+                        --[[ Empty ]]0,
                         l[0],
-                        --[ Empty ]--0,
+                        --[[ Empty ]]0,
                         1
                       ],
                       l[1]
@@ -612,16 +612,16 @@ function Make(Ord) do
             if (l) then do
               match = l[1];
               if (match) then do
-                return --[ tuple ]--[
-                        --[ Node ]--[
-                          --[ Node ]--[
-                            --[ Empty ]--0,
+                return --[[ tuple ]][
+                        --[[ Node ]][
+                          --[[ Node ]][
+                            --[[ Empty ]]0,
                             l[0],
-                            --[ Empty ]--0,
+                            --[[ Empty ]]0,
                             1
                           ],
                           match[0],
-                          --[ Empty ]--0,
+                          --[[ Empty ]]0,
                           2
                         ],
                         match[1]
@@ -636,19 +636,19 @@ function Make(Ord) do
               if (match$1) then do
                 match$2 = match$1[1];
                 if (match$2) then do
-                  return --[ tuple ]--[
-                          --[ Node ]--[
-                            --[ Node ]--[
-                              --[ Empty ]--0,
+                  return --[[ tuple ]][
+                          --[[ Node ]][
+                            --[[ Node ]][
+                              --[[ Empty ]]0,
                               l[0],
-                              --[ Empty ]--0,
+                              --[[ Empty ]]0,
                               1
                             ],
                             match$1[0],
-                            --[ Node ]--[
-                              --[ Empty ]--0,
+                            --[[ Node ]][
+                              --[[ Empty ]]0,
                               match$2[0],
-                              --[ Empty ]--0,
+                              --[[ Empty ]]0,
                               1
                             ],
                             2
@@ -671,14 +671,14 @@ function Make(Ord) do
       l$1 = match$3[1];
       if (l$1) then do
         match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 create(match$3[0], l$1[0], match$4[0]),
                 match$4[1]
               ];
       end else do
         throw [
               Caml_builtin_exceptions.assert_failure,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "test_set.ml",
                 372,
                 18
@@ -720,7 +720,7 @@ function Make(Ord) do
         return singleton(x0);
       end end 
     end else do
-      return --[ Empty ]--0;
+      return --[[ Empty ]]0;
     end end 
   end end;
   return do
@@ -738,7 +738,7 @@ function Make(Ord) do
           merge: merge,
           concat: concat,
           split: split,
-          empty: --[ Empty ]--0,
+          empty: --[[ Empty ]]0,
           is_empty: is_empty,
           mem: mem,
           remove: remove,
@@ -772,4 +772,4 @@ end;
 
 exports.Make = Make;
 exports.N = N;
---[ No side effect ]--
+--[[ No side effect ]]

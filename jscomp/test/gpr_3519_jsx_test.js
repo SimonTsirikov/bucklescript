@@ -2,11 +2,11 @@
 
 
 React = do
-  $$null: --[ () ]--0
+  $$null: --[[ () ]]0
 end;
 
 function make(param, param$1) do
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 Foo = do
@@ -15,4 +15,4 @@ end;
 
 exports.React = React;
 exports.Foo = Foo;
---[ No side effect ]--
+--[[ No side effect ]]

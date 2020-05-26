@@ -10,4 +10,4 @@ end end
 
 exports.foo = foo;
 exports.bar = bar;
---[ No side effect ]--
+--[[ No side effect ]]

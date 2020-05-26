@@ -19,7 +19,7 @@ function f(param) do
     contents: param[1]
   end;
   console.log(a, b);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function g(param) do
@@ -27,7 +27,7 @@ function g(param) do
 end end
 
 function a0(f) do
-  u = Curry._1(f, --[ () ]--0);
+  u = Curry._1(f, --[[ () ]]0);
   if (u ~= null) then do
     console.log(u);
     console.log(u);
@@ -40,7 +40,7 @@ end end
 function a1(f) do
   E = Caml_exceptions.create("E");
   try do
-    return Curry._1(f, --[ () ]--0);
+    return Curry._1(f, --[[ () ]]0);
   end
   catch (exn)do
     if (exn == E) then do
@@ -63,4 +63,4 @@ exports.f = f;
 exports.g = g;
 exports.a0 = a0;
 exports.a1 = a1;
---[ No side effect ]--
+--[[ No side effect ]]

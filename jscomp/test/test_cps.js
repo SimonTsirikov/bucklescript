@@ -8,12 +8,12 @@ function f(_n, _acc) do
     acc = _acc;
     n = _n;
     if (n == 0) then do
-      return Curry._1(acc, --[ () ]--0);
+      return Curry._1(acc, --[[ () ]]0);
     end else do
       _acc = (function(n,acc)do
       return function (param) do
         console.log(String(n));
-        return Curry._1(acc, --[ () ]--0);
+        return Curry._1(acc, --[[ () ]]0);
       end end
       end(n,acc));
       _n = n - 1 | 0;
@@ -37,9 +37,9 @@ function test_closure(param) do
 end end
 
 f(10, (function (param) do
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 exports.f = f;
 exports.test_closure = test_closure;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

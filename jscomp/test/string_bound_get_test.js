@@ -5,7 +5,7 @@ Caml_string = require("../../lib/js/caml_string.js");
 
 v = "ghos";
 
-u_a = --[ "g" ]--103;
+u_a = --[[ "g" ]]103;
 
 function u_b(param) do
   return Caml_string.get(v, -1);
@@ -23,7 +23,7 @@ function u_g(param) do
   return Caml_bytes.get(u_e, -1);
 end end
 
-u_c = --[ "g" ]--103;
+u_c = --[[ "g" ]]103;
 
 exports.v = v;
 exports.u_a = u_a;
@@ -33,4 +33,4 @@ exports.u_d = u_d;
 exports.u_e = u_e;
 exports.u_f = u_f;
 exports.u_g = u_g;
---[ No side effect ]--
+--[[ No side effect ]]

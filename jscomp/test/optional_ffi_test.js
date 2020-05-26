@@ -5,7 +5,7 @@ Block = require("../../lib/js/block.js");
 Caml_option = require("../../lib/js/caml_option.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -16,11 +16,11 @@ function eq(loc, param) do
   y = param[1];
   x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -28,7 +28,7 @@ function eq(loc, param) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function hey(x, y) {
@@ -41,12 +41,12 @@ u = hey(undefined, 3);
 
 z = hey(5, 3);
 
-eq("File \"optional_ffi_test.ml\", line 23, characters 5-12", --[ tuple ]--[
-      --[ tuple ]--[
+eq("File \"optional_ffi_test.ml\", line 23, characters 5-12", --[[ tuple ]][
+      --[[ tuple ]][
         u,
         z
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         6,
         8
       ]
@@ -80,34 +80,34 @@ end end
 
 v = bug_to_fix(side_effect, counter);
 
-pair_000 = --[ tuple ]--[
+pair_000 = --[[ tuple ]][
   v,
   counter.contents
 ];
 
-pair_001 = --[ tuple ]--[
+pair_001 = --[[ tuple ]][
   4,
   1
 ];
 
-pair = --[ tuple ]--[
+pair = --[[ tuple ]][
   pair_000,
   pair_001
 ];
 
 v2 = bug_to_fix2(side_effect2, counter2);
 
-pair2_000 = --[ tuple ]--[
+pair2_000 = --[[ tuple ]][
   v2,
   counter.contents
 ];
 
-pair2_001 = --[ tuple ]--[
+pair2_001 = --[[ tuple ]][
   4,
   1
 ];
 
-pair2 = --[ tuple ]--[
+pair2 = --[[ tuple ]][
   pair2_000,
   pair2_001
 ];
@@ -124,7 +124,7 @@ function heystr(x, y) {
 
 pair_001$1 = heystr("name", "4");
 
-pair$1 = --[ tuple ]--[
+pair$1 = --[[ tuple ]][
   "name4",
   pair_001$1
 ];
@@ -144,4 +144,4 @@ exports.bug_to_fix = bug_to_fix;
 exports.bug_to_fix2 = bug_to_fix2;
 exports.counter2 = counter2;
 exports.side_effect2 = side_effect2;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

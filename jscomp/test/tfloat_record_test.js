@@ -15,20 +15,20 @@ buf = $$Buffer.create(50);
 fmt = Format.formatter_of_buffer(buf);
 
 function print_float(f) do
-  return Curry._1(Format.fprintf(fmt, --[ Format ]--[
-                  --[ String ]--Block.__(2, [
-                      --[ No_padding ]--0,
-                      --[ End_of_format ]--0
+  return Curry._1(Format.fprintf(fmt, --[[ Format ]][
+                  --[[ String ]]Block.__(2, [
+                      --[[ No_padding ]]0,
+                      --[[ End_of_format ]]0
                     ]),
                   "%s"
                 ]), Pervasives.string_of_float(f));
 end end
 
 function print_newline(param) do
-  return Format.fprintf(fmt, --[ Format ]--[
-              --[ Char_literal ]--Block.__(12, [
-                  --[ "\n" ]--10,
-                  --[ End_of_format ]--0
+  return Format.fprintf(fmt, --[[ Format ]][
+              --[[ Char_literal ]]Block.__(12, [
+                  --[[ "\n" ]]10,
+                  --[[ End_of_format ]]0
                 ]),
               "\n"
             ]);
@@ -40,7 +40,7 @@ end;
 
 print_float(1.0);
 
-print_newline(--[ () ]--0);
+print_newline(--[[ () ]]0);
 
 b = Float_array.small_float_array(12);
 
@@ -49,9 +49,9 @@ c = Float_array.longer_float_array(34);
 function print_array(a) do
   $$Array.iter((function (f) do
           print_float(f);
-          return print_newline(--[ () ]--0);
+          return print_newline(--[[ () ]]0);
         end end), a);
-  return print_newline(--[ () ]--0);
+  return print_newline(--[[ () ]]0);
 end end
 
 print_array(b[0]);
@@ -59,7 +59,7 @@ print_array(b[0]);
 print_array(c[0]);
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -85,4 +85,4 @@ exports.print_array = print_array;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
---[ buf Not a pure module ]--
+--[[ buf Not a pure module ]]

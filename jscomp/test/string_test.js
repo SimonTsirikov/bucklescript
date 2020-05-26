@@ -64,14 +64,14 @@ function rev_split_by_char(c, s) do
     try do
       i$prime = $$String.index_from(s, i, c);
       s$prime = $$String.sub(s, i, i$prime - i | 0);
-      return loop(i$prime + 1 | 0, s$prime == "" and l or --[ :: ]--[
+      return loop(i$prime + 1 | 0, s$prime == "" and l or --[[ :: ]][
                     s$prime,
                     l
                   ]);
     end
     catch (exn)do
       if (exn == Caml_builtin_exceptions.not_found) then do
-        return --[ :: ]--[
+        return --[[ :: ]][
                 $$String.sub(s, i, #s - i | 0),
                 l
               ];
@@ -80,13 +80,13 @@ function rev_split_by_char(c, s) do
       end end 
     end
   end end;
-  return loop(0, --[ [] ]--0);
+  return loop(0, --[[ [] ]]0);
 end end
 
 function xsplit(delim, s) do
   len = #s;
   if (len ~= 0) then do
-    _l = --[ [] ]--0;
+    _l = --[[ [] ]]0;
     _i = len;
     while(true) do
       i = _i;
@@ -98,7 +98,7 @@ function xsplit(delim, s) do
         end
         catch (exn)do
           if (exn == Caml_builtin_exceptions.not_found) then do
-            return --[ :: ]--[
+            return --[[ :: ]][
                     $$String.sub(s, 0, i),
                     l
                   ];
@@ -107,11 +107,11 @@ function xsplit(delim, s) do
           end end 
         end
         l_000 = $$String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
-        l$1 = --[ :: ]--[
+        l$1 = --[[ :: ]][
           l_000,
           l
         ];
-        l$2 = i$prime == 0 and --[ :: ]--[
+        l$2 = i$prime == 0 and --[[ :: ]][
             "",
             l$1
           ] or l$1;
@@ -123,7 +123,7 @@ function xsplit(delim, s) do
       end end 
     end;
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end 
 end end
 
@@ -133,212 +133,212 @@ function string_of_chars(x) do
                   end end), x));
 end end
 
-Mt.from_pair_suites("String_test", --[ :: ]--[
-      --[ tuple ]--[
+Mt.from_pair_suites("String_test", --[[ :: ]][
+      --[[ tuple ]][
         "mutliple switch",
         (function (param) do
-            return --[ Eq ]--Block.__(0, [
+            return --[[ Eq ]]Block.__(0, [
                       9,
                       ff("4")
                     ]);
           end end)
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "int switch",
           (function (param) do
-              return --[ Eq ]--Block.__(0, [
+              return --[[ Eq ]]Block.__(0, [
                         9,
                         gg(4)
                       ]);
             end end)
         ],
-        --[ :: ]--[
-          --[ tuple ]--[
+        --[[ :: ]][
+          --[[ tuple ]][
             "escape_normal",
             (function (param) do
-                return --[ Eq ]--Block.__(0, [
+                return --[[ Eq ]]Block.__(0, [
                           "haha",
                           $$String.escaped("haha")
                         ]);
               end end)
           ],
-          --[ :: ]--[
-            --[ tuple ]--[
+          --[[ :: ]][
+            --[[ tuple ]][
               "escape_bytes",
               (function (param) do
-                  return --[ Eq ]--Block.__(0, [
+                  return --[[ Eq ]]Block.__(0, [
                             Bytes.of_string("haha"),
                             Bytes.escaped(Bytes.of_string("haha"))
                           ]);
                 end end)
             ],
-            --[ :: ]--[
-              --[ tuple ]--[
+            --[[ :: ]][
+              --[[ tuple ]][
                 "escape_quote",
                 (function (param) do
-                    return --[ Eq ]--Block.__(0, [
+                    return --[[ Eq ]]Block.__(0, [
                               "\\\"\\\"",
                               $$String.escaped("\"\"")
                             ]);
                   end end)
               ],
-              --[ :: ]--[
-                --[ tuple ]--[
+              --[[ :: ]][
+                --[[ tuple ]][
                   "rev_split_by_char",
                   (function (param) do
-                      return --[ Eq ]--Block.__(0, [
-                                --[ :: ]--[
+                      return --[[ Eq ]]Block.__(0, [
+                                --[[ :: ]][
                                   "",
-                                  --[ :: ]--[
+                                  --[[ :: ]][
                                     "bbbb",
-                                    --[ :: ]--[
+                                    --[[ :: ]][
                                       "bbbb",
-                                      --[ [] ]--0
+                                      --[[ [] ]]0
                                     ]
                                   ]
                                 ],
-                                rev_split_by_char(--[ "a" ]--97, "bbbbabbbba")
+                                rev_split_by_char(--[[ "a" ]]97, "bbbbabbbba")
                               ]);
                     end end)
                 ],
-                --[ :: ]--[
-                  --[ tuple ]--[
+                --[[ :: ]][
+                  --[[ tuple ]][
                     "File \"string_test.ml\", line 74, characters 2-9",
                     (function (param) do
-                        return --[ Eq ]--Block.__(0, [
-                                  --[ :: ]--[
+                        return --[[ Eq ]]Block.__(0, [
+                                  --[[ :: ]][
                                     "aaaa",
-                                    --[ [] ]--0
+                                    --[[ [] ]]0
                                   ],
-                                  rev_split_by_char(--[ "," ]--44, "aaaa")
+                                  rev_split_by_char(--[[ "," ]]44, "aaaa")
                                 ]);
                       end end)
                   ],
-                  --[ :: ]--[
-                    --[ tuple ]--[
+                  --[[ :: ]][
+                    --[[ tuple ]][
                       "xsplit",
                       (function (param) do
-                          return --[ Eq ]--Block.__(0, [
-                                    --[ :: ]--[
+                          return --[[ Eq ]]Block.__(0, [
+                                    --[[ :: ]][
                                       "a",
-                                      --[ :: ]--[
+                                      --[[ :: ]][
                                         "b",
-                                        --[ :: ]--[
+                                        --[[ :: ]][
                                           "c",
-                                          --[ [] ]--0
+                                          --[[ [] ]]0
                                         ]
                                       ]
                                     ],
-                                    xsplit(--[ "." ]--46, "a.b.c")
+                                    xsplit(--[[ "." ]]46, "a.b.c")
                                   ]);
                         end end)
                     ],
-                    --[ :: ]--[
-                      --[ tuple ]--[
+                    --[[ :: ]][
+                      --[[ tuple ]][
                         "split_empty",
                         (function (param) do
-                            return --[ Eq ]--Block.__(0, [
-                                      --[ [] ]--0,
-                                      Ext_string_test.split(undefined, "", --[ "_" ]--95)
+                            return --[[ Eq ]]Block.__(0, [
+                                      --[[ [] ]]0,
+                                      Ext_string_test.split(undefined, "", --[[ "_" ]]95)
                                     ]);
                           end end)
                       ],
-                      --[ :: ]--[
-                        --[ tuple ]--[
+                      --[[ :: ]][
+                        --[[ tuple ]][
                           "split_empty2",
                           (function (param) do
-                              return --[ Eq ]--Block.__(0, [
-                                        --[ :: ]--[
+                              return --[[ Eq ]]Block.__(0, [
+                                        --[[ :: ]][
                                           "test_unsafe_obj_ffi_ppx.cmi",
-                                          --[ [] ]--0
+                                          --[[ [] ]]0
                                         ],
-                                        Ext_string_test.split(false, " test_unsafe_obj_ffi_ppx.cmi", --[ " " ]--32)
+                                        Ext_string_test.split(false, " test_unsafe_obj_ffi_ppx.cmi", --[[ " " ]]32)
                                       ]);
                             end end)
                         ],
-                        --[ :: ]--[
-                          --[ tuple ]--[
+                        --[[ :: ]][
+                          --[[ tuple ]][
                             "rfind",
                             (function (param) do
-                                return --[ Eq ]--Block.__(0, [
+                                return --[[ Eq ]]Block.__(0, [
                                           7,
                                           Ext_string_test.rfind("__", "__index__js")
                                         ]);
                               end end)
                           ],
-                          --[ :: ]--[
-                            --[ tuple ]--[
+                          --[[ :: ]][
+                            --[[ tuple ]][
                               "rfind_2",
                               (function (param) do
-                                  return --[ Eq ]--Block.__(0, [
+                                  return --[[ Eq ]]Block.__(0, [
                                             0,
                                             Ext_string_test.rfind("__", "__index_js")
                                           ]);
                                 end end)
                             ],
-                            --[ :: ]--[
-                              --[ tuple ]--[
+                            --[[ :: ]][
+                              --[[ tuple ]][
                                 "rfind_3",
                                 (function (param) do
-                                    return --[ Eq ]--Block.__(0, [
+                                    return --[[ Eq ]]Block.__(0, [
                                               -1,
                                               Ext_string_test.rfind("__", "_index_js")
                                             ]);
                                   end end)
                               ],
-                              --[ :: ]--[
-                                --[ tuple ]--[
+                              --[[ :: ]][
+                                --[[ tuple ]][
                                   "find",
                                   (function (param) do
-                                      return --[ Eq ]--Block.__(0, [
+                                      return --[[ Eq ]]Block.__(0, [
                                                 0,
                                                 Ext_string_test.find(undefined, "__", "__index__js")
                                               ]);
                                     end end)
                                 ],
-                                --[ :: ]--[
-                                  --[ tuple ]--[
+                                --[[ :: ]][
+                                  --[[ tuple ]][
                                     "find_2",
                                     (function (param) do
-                                        return --[ Eq ]--Block.__(0, [
+                                        return --[[ Eq ]]Block.__(0, [
                                                   6,
                                                   Ext_string_test.find(undefined, "__", "_index__js")
                                                 ]);
                                       end end)
                                   ],
-                                  --[ :: ]--[
-                                    --[ tuple ]--[
+                                  --[[ :: ]][
+                                    --[[ tuple ]][
                                       "find_3",
                                       (function (param) do
-                                          return --[ Eq ]--Block.__(0, [
+                                          return --[[ Eq ]]Block.__(0, [
                                                     -1,
                                                     Ext_string_test.find(undefined, "__", "_index_js")
                                                   ]);
                                         end end)
                                     ],
-                                    --[ :: ]--[
-                                      --[ tuple ]--[
+                                    --[[ :: ]][
+                                      --[[ tuple ]][
                                         "of_char",
                                         (function (param) do
-                                            return --[ Eq ]--Block.__(0, [
-                                                      String.fromCharCode(--[ "0" ]--48),
-                                                      Caml_bytes.bytes_to_string(Bytes.make(1, --[ "0" ]--48))
+                                            return --[[ Eq ]]Block.__(0, [
+                                                      String.fromCharCode(--[[ "0" ]]48),
+                                                      Caml_bytes.bytes_to_string(Bytes.make(1, --[[ "0" ]]48))
                                                     ]);
                                           end end)
                                       ],
-                                      --[ :: ]--[
-                                        --[ tuple ]--[
+                                      --[[ :: ]][
+                                        --[[ tuple ]][
                                           "of_chars",
                                           (function (param) do
-                                              return --[ Eq ]--Block.__(0, [
-                                                        string_of_chars(--[ :: ]--[
-                                                              --[ "0" ]--48,
-                                                              --[ :: ]--[
-                                                                --[ "1" ]--49,
-                                                                --[ :: ]--[
-                                                                  --[ "2" ]--50,
-                                                                  --[ [] ]--0
+                                              return --[[ Eq ]]Block.__(0, [
+                                                        string_of_chars(--[[ :: ]][
+                                                              --[[ "0" ]]48,
+                                                              --[[ :: ]][
+                                                                --[[ "1" ]]49,
+                                                                --[[ :: ]][
+                                                                  --[[ "2" ]]50,
+                                                                  --[[ [] ]]0
                                                                 ]
                                                               ]
                                                             ]),
@@ -346,7 +346,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                                       ]);
                                             end end)
                                         ],
-                                        --[ [] ]--0
+                                        --[[ [] ]]0
                                       ]
                                     ]
                                   ]
@@ -371,4 +371,4 @@ exports.gg = gg;
 exports.rev_split_by_char = rev_split_by_char;
 exports.xsplit = xsplit;
 exports.string_of_chars = string_of_chars;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

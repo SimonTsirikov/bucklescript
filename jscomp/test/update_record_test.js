@@ -5,7 +5,7 @@ Block = require("../../lib/js/block.js");
 Caml_obj = require("../../lib/js/caml_obj.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -13,16 +13,16 @@ test_id = do
 end;
 
 function eq(loc, x, y) do
-  console.log(--[ tuple ]--[
+  console.log(--[[ tuple ]][
         x,
         y
       ]);
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -30,7 +30,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function f(x) do
@@ -81,4 +81,4 @@ exports.f = f;
 exports.val0 = val0;
 exports.fff = fff;
 exports.val1 = val1;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

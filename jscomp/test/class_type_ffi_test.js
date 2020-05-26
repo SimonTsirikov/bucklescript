@@ -28,7 +28,7 @@ end end
 
 function test_set(x) do
   x.length = 3;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function f(x) do
@@ -98,4 +98,4 @@ exports.ff2 = ff2;
 exports.off2 = off2;
 exports.mk_f = mk_f;
 exports.omk_f = omk_f;
---[ No side effect ]--
+--[[ No side effect ]]

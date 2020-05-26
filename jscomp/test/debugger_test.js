@@ -2,7 +2,7 @@
 
 
 function f(x, y) do
-  console.log(--[ tuple ]--[
+  console.log(--[[ tuple ]][
         x,
         y
       ]);
@@ -20,7 +20,7 @@ end end
 function exterme_g(param) do
   f(1, 2);
   debugger;
-  v = --[ () ]--0;
+  v = --[[ () ]]0;
   console.log(v);
   f(1, 2);
   debugger;
@@ -30,4 +30,4 @@ end end
 exports.f = f;
 exports.g = g;
 exports.exterme_g = exterme_g;
---[ No side effect ]--
+--[[ No side effect ]]

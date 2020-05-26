@@ -8,7 +8,7 @@ Belt_SetInt = require("../../lib/js/belt_SetInt.js");
 Array_data_util = require("./array_data_util.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -372,11 +372,11 @@ eq("File \"bs_set_int_test.ml\", line 176, characters 5-12", Belt_SetInt.get(v$1
 
 Mt.from_pair_suites("Bs_set_int_test", suites.contents);
 
-N = --[ alias ]--0;
+N = --[[ alias ]]0;
 
-I = --[ alias ]--0;
+I = --[[ alias ]]0;
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
 ofA = Belt_SetInt.fromArray;
 
@@ -393,4 +393,4 @@ exports.ofA = ofA;
 exports.u = u;
 exports.range = range;
 exports.revRange = revRange;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

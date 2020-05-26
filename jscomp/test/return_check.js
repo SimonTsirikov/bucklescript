@@ -20,7 +20,7 @@ function f_undefined(xs, i) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "return_check.ml",
             31,
             14
@@ -52,7 +52,7 @@ end end
 
 function f_escaped_2(xs, i) do
   console.log(Caml_option.undefined_to_opt(xs[i]));
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function f_null(xs, i) do
@@ -62,7 +62,7 @@ function f_null(xs, i) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "return_check.ml",
             59,
             14
@@ -76,7 +76,7 @@ function f_null_undefined(xs, i) do
   if (match == null) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "return_check.ml",
             68,
             14
@@ -94,4 +94,4 @@ exports.f_escaped_1 = f_escaped_1;
 exports.f_escaped_2 = f_escaped_2;
 exports.f_null = f_null;
 exports.f_null_undefined = f_null_undefined;
---[ No side effect ]--
+--[[ No side effect ]]

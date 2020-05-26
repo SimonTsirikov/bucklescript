@@ -12,7 +12,7 @@ Caml_primitive = require("../../lib/js/caml_primitive.js");
 Array_data_util = require("./array_data_util.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -101,7 +101,7 @@ function $eq$tilde(a, b) do
 end end
 
 u0 = f(Belt_Array.map(Array_data_util.randomRange(0, 39), (function (x) do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     x,
                     x
                   ];
@@ -110,7 +110,7 @@ u0 = f(Belt_Array.map(Array_data_util.randomRange(0, 39), (function (x) do
 u1 = Belt_Map.set(u0, 39, 120);
 
 b("File \"bs_map_set_dict_test.ml\", line 77, characters 4-11", Belt_Array.every2(Belt_MapDict.toArray(u0.data), Belt_Array.map(Array_data_util.range(0, 39), (function (x) do
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         x,
                         x
                       ];
@@ -123,7 +123,7 @@ b("File \"bs_map_set_dict_test.ml\", line 77, characters 4-11", Belt_Array.every
           end end)));
 
 b("File \"bs_map_set_dict_test.ml\", line 82, characters 4-11", Belt_List.every2(Belt_MapDict.toList(u0.data), Belt_List.fromArray(Belt_Array.map(Array_data_util.range(0, 39), (function (x) do
-                    return --[ tuple ]--[
+                    return --[[ tuple ]][
                             x,
                             x
                           ];
@@ -140,14 +140,14 @@ eq("File \"bs_map_set_dict_test.ml\", line 87, characters 5-12", Belt_Map.get(u0
 eq("File \"bs_map_set_dict_test.ml\", line 88, characters 5-12", Belt_Map.get(u1, 39), 120);
 
 u = f(Belt_Array.makeByAndShuffle(10000, (function (x) do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     x,
                     x
                   ];
           end end)));
 
 eq("File \"bs_map_set_dict_test.ml\", line 94, characters 4-11", Belt_Array.makeBy(10000, (function (x) do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     x,
                     x
                   ];
@@ -155,25 +155,25 @@ eq("File \"bs_map_set_dict_test.ml\", line 94, characters 4-11", Belt_Array.make
 
 Mt.from_pair_suites("Bs_map_set_dict_test", suites.contents);
 
-M = --[ alias ]--0;
+M = --[[ alias ]]0;
 
-MI = --[ alias ]--0;
+MI = --[[ alias ]]0;
 
-I = --[ alias ]--0;
+I = --[[ alias ]]0;
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
-L = --[ alias ]--0;
+L = --[[ alias ]]0;
 
 vv = Belt_MapInt.empty;
 
 vv2 = Belt_MapInt.empty;
 
-Md0 = --[ alias ]--0;
+Md0 = --[[ alias ]]0;
 
-ISet = --[ alias ]--0;
+ISet = --[[ alias ]]0;
 
-S0 = --[ alias ]--0;
+S0 = --[[ alias ]]0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -197,4 +197,4 @@ exports.ISet = ISet;
 exports.S0 = S0;
 exports.f = f;
 exports.$eq$tilde = $eq$tilde;
---[ Icmp Not a pure module ]--
+--[[ Icmp Not a pure module ]]

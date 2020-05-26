@@ -13,7 +13,7 @@ function f(param) do
     else do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "test_string_case.ml",
               4,
               9
@@ -25,4 +25,4 @@ function f(param) do
 end end
 
 exports.f = f;
---[ No side effect ]--
+--[[ No side effect ]]

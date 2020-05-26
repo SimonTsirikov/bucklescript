@@ -9,4 +9,4 @@ v1 = do
 end;
 
 exports.v1 = v1;
---[ No side effect ]--
+--[[ No side effect ]]

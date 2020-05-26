@@ -10,4 +10,4 @@ b = Curry._1(ff("x"), 3);
 
 exports.xx = xx;
 exports.b = b;
---[ xx Not a pure module ]--
+--[[ xx Not a pure module ]]

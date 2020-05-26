@@ -46,7 +46,7 @@ let classify (prog : string) : Js_raw_info.exp =
   let comment = 
     match comments with 
     | None -> None 
-    | Some {leading = [_, Block comment]} -> Some ("--[" ^ comment ^ "]--")
+    | Some {leading = [_, Block comment]} -> Some ("--[[" ^ comment ^ "]]")
     | Some {leading = [_, Line comment]} -> Some ("--" ^ comment)
     | Some _ -> None
   in   

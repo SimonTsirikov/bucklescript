@@ -6,22 +6,22 @@ Pervasives = require("../../lib/js/pervasives.js");
 CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
 
 function a4(prim) do
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           "File \"test_primitive.ml\", line 30, characters 9-19",
           prim
         ];
 end end
 
 function a5(prim) do
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           31,
           prim
         ];
 end end
 
 function a6(prim) do
-  return --[ tuple ]--[
-          --[ tuple ]--[
+  return --[[ tuple ]][
+          --[[ tuple ]][
             "test_primitive.ml",
             32,
             9,
@@ -42,7 +42,7 @@ v = [
 
 xxx = "a";
 
-a = --[ "a" ]--97;
+a = --[[ "a" ]]97;
 
 function u(b) do
   if (b) then do
@@ -66,7 +66,7 @@ end;
 
 function gg(x) do
   x.u = 0;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function f(x) do
@@ -93,7 +93,7 @@ a2 = 28;
 
 a3 = "Test_primitive";
 
-xx = --[ tuple ]--[
+xx = --[[ tuple ]][
   0,
   0
 ];
@@ -118,4 +118,4 @@ exports.gg = gg;
 exports.f = f;
 exports.is_lazy_force = is_lazy_force;
 exports.fib = fib;
---[ test_abs Not a pure module ]--
+--[[ test_abs Not a pure module ]]

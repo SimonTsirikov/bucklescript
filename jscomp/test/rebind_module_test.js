@@ -11,4 +11,4 @@ function x(v) do
 end end
 
 exports.x = x;
---[ No side effect ]--
+--[[ No side effect ]]

@@ -15,12 +15,12 @@ function mk($$window, $$default) do
 end end
 
 function mk2($$window, $$default) do
-  return --[ :: ]--[
+  return --[[ :: ]][
           do
             window: $$window,
             default: $$default
           end,
-          --[ [] ]--0
+          --[[ [] ]]0
         ];
 end end
 
@@ -52,4 +52,4 @@ exports.des = des;
 exports.$$case = $$case;
 exports.test = test;
 exports.u = u;
---[ default Not a pure module ]--
+--[[ default Not a pure module ]]

@@ -13,7 +13,7 @@ Caml_primitive = require("../../lib/js/caml_primitive.js");
 Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -34,11 +34,11 @@ end end
 
 function neq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Neq ]--Block.__(1, [
+          return --[[ Neq ]]Block.__(1, [
                     x,
                     y
                   ]);
@@ -46,7 +46,7 @@ function neq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 console.log([
@@ -67,13 +67,13 @@ v = [
   2
 ];
 
-eq("File \"bs_array_test.ml\", line 25, characters 5-12", --[ tuple ]--[
+eq("File \"bs_array_test.ml\", line 25, characters 5-12", --[[ tuple ]][
       Belt_Array.get(v, 0),
       Belt_Array.get(v, 1),
       Belt_Array.get(v, 2),
       Belt_Array.get(v, 3),
       Belt_Array.get(v, -1)
-    ], --[ tuple ]--[
+    ], --[[ tuple ]][
       1,
       2,
       undefined,
@@ -86,7 +86,7 @@ $$throw("File \"bs_array_test.ml\", line 28, characters 8-15", (function (param)
               0,
               1
             ], -1);
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 $$throw("File \"bs_array_test.ml\", line 29, characters 8-15", (function (param) do
@@ -94,7 +94,7 @@ $$throw("File \"bs_array_test.ml\", line 29, characters 8-15", (function (param)
               0,
               1
             ], 2);
-        return --[ () ]--0;
+        return --[[ () ]]0;
       end end));
 
 partial_arg = [
@@ -106,10 +106,10 @@ function f(param) do
   return Belt_Array.getExn(partial_arg, param);
 end end
 
-b("File \"bs_array_test.ml\", line 30, characters 4-11", Caml_obj.caml_equal(--[ tuple ]--[
+b("File \"bs_array_test.ml\", line 30, characters 4-11", Caml_obj.caml_equal(--[[ tuple ]][
           Curry._1(f, 0),
           Curry._1(f, 1)
-        ], --[ tuple ]--[
+        ], --[[ tuple ]][
           0,
           1
         ]));
@@ -141,7 +141,7 @@ v$1 = [
 if (!Belt_Array.set(v$1, 0, 0)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "bs_array_test.ml",
           34,
           33
@@ -160,7 +160,7 @@ v$2 = [
 if (!Belt_Array.set(v$2, 1, 0)) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "bs_array_test.ml",
           35,
           32
@@ -189,13 +189,13 @@ function id(x) do
   return eq("File \"bs_array_test.ml\", line 40, characters 5-12", Js_vector.toList(Js_list.toVector(x)), x);
 end end
 
-eq("File \"bs_array_test.ml\", line 44, characters 5-12", Js_list.toVector(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 44, characters 5-12", Js_list.toVector(--[[ :: ]][
           1,
-          --[ :: ]--[
+          --[[ :: ]][
             2,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ]
         ]), [
@@ -247,13 +247,13 @@ eq("File \"bs_array_test.ml\", line 57, characters 5-12", (Js_vector.filterInPla
       5
     ]);
 
-eq("File \"bs_array_test.ml\", line 64, characters 5-12", Js_list.toVector(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 64, characters 5-12", Js_list.toVector(--[[ :: ]][
           1,
-          --[ :: ]--[
+          --[[ :: ]][
             2,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ]
         ]), [
@@ -262,29 +262,29 @@ eq("File \"bs_array_test.ml\", line 64, characters 5-12", Js_list.toVector(--[ :
       3
     ]);
 
-eq("File \"bs_array_test.ml\", line 66, characters 5-12", Js_list.toVector(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 66, characters 5-12", Js_list.toVector(--[[ :: ]][
           1,
-          --[ [] ]--0
+          --[[ [] ]]0
         ]), [1]);
 
-id(--[ [] ]--0);
+id(--[[ [] ]]0);
 
-id(--[ :: ]--[
+id(--[[ :: ]][
       1,
-      --[ [] ]--0
+      --[[ [] ]]0
     ]);
 
-id(--[ :: ]--[
+id(--[[ :: ]][
       1,
-      --[ :: ]--[
+      --[[ :: ]][
         2,
-        --[ :: ]--[
+        --[[ :: ]][
           3,
-          --[ :: ]--[
+          --[[ :: ]][
             4,
-            --[ :: ]--[
+            --[[ :: ]][
               5,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ]
         ]
@@ -466,24 +466,24 @@ eq("File \"bs_array_test.ml\", line 132, characters 5-12", Belt_Array.mapWithInd
       5
     ]);
 
-eq("File \"bs_array_test.ml\", line 133, characters 5-12", Belt_List.fromArray([]), --[ [] ]--0);
+eq("File \"bs_array_test.ml\", line 133, characters 5-12", Belt_List.fromArray([]), --[[ [] ]]0);
 
-eq("File \"bs_array_test.ml\", line 134, characters 5-12", Belt_List.fromArray([1]), --[ :: ]--[
+eq("File \"bs_array_test.ml\", line 134, characters 5-12", Belt_List.fromArray([1]), --[[ :: ]][
       1,
-      --[ [] ]--0
+      --[[ [] ]]0
     ]);
 
 eq("File \"bs_array_test.ml\", line 135, characters 5-12", Belt_List.fromArray([
           1,
           2,
           3
-        ]), --[ :: ]--[
+        ]), --[[ :: ]][
       1,
-      --[ :: ]--[
+      --[[ :: ]][
         2,
-        --[ :: ]--[
+        --[[ :: ]][
           3,
-          --[ [] ]--0
+          --[[ [] ]]0
         ]
       ]
     ]);
@@ -500,31 +500,31 @@ eq("File \"bs_array_test.ml\", line 136, characters 5-12", Belt_Array.map([
       4
     ]);
 
-eq("File \"bs_array_test.ml\", line 137, characters 5-12", Belt_List.toArray(--[ [] ]--0), []);
+eq("File \"bs_array_test.ml\", line 137, characters 5-12", Belt_List.toArray(--[[ [] ]]0), []);
 
-eq("File \"bs_array_test.ml\", line 138, characters 5-12", Belt_List.toArray(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 138, characters 5-12", Belt_List.toArray(--[[ :: ]][
           1,
-          --[ [] ]--0
+          --[[ [] ]]0
         ]), [1]);
 
-eq("File \"bs_array_test.ml\", line 139, characters 5-12", Belt_List.toArray(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 139, characters 5-12", Belt_List.toArray(--[[ :: ]][
           1,
-          --[ :: ]--[
+          --[[ :: ]][
             2,
-            --[ [] ]--0
+            --[[ [] ]]0
           ]
         ]), [
       1,
       2
     ]);
 
-eq("File \"bs_array_test.ml\", line 140, characters 5-12", Belt_List.toArray(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 140, characters 5-12", Belt_List.toArray(--[[ :: ]][
           1,
-          --[ :: ]--[
+          --[[ :: ]][
             2,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ]
         ]), [
@@ -1071,15 +1071,15 @@ eq("File \"bs_array_test.ml\", line 256, characters 5-12", Belt_Array.zip([
           4,
           1
         ]), [
-      --[ tuple ]--[
+      --[[ tuple ]][
         1,
         2
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         2,
         3
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         3,
         4
       ]
@@ -1095,15 +1095,15 @@ eq("File \"bs_array_test.ml\", line 257, characters 5-12", Belt_Array.zip([
           2,
           3
         ]), [
-      --[ tuple ]--[
+      --[[ tuple ]][
         2,
         1
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         3,
         2
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         4,
         3
       ]
@@ -1146,19 +1146,19 @@ eq("File \"bs_array_test.ml\", line 259, characters 5-12", Belt_Array.zipBy([
           end end)));
 
 eq("File \"bs_array_test.ml\", line 260, characters 5-12", Belt_Array.unzip([
-          --[ tuple ]--[
+          --[[ tuple ]][
             1,
             2
           ],
-          --[ tuple ]--[
+          --[[ tuple ]][
             2,
             3
           ],
-          --[ tuple ]--[
+          --[[ tuple ]][
             3,
             4
           ]
-        ]), --[ tuple ]--[
+        ]), --[[ tuple ]][
       [
         1,
         2,
@@ -1177,7 +1177,7 @@ function sumUsingForEach(xs) do
   end;
   Belt_Array.forEach(xs, (function (x) do
           v.contents = v.contents + x | 0;
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end));
   return v.contents;
 end end
@@ -1234,7 +1234,7 @@ b("File \"bs_array_test.ml\", line 275, characters 4-11", (Belt_Array.forEachWit
             1
           ], (function (i, v) do
               c$1.contents = (c$1.contents + i | 0) + v | 0;
-              return --[ () ]--0;
+              return --[[ () ]]0;
             end end)), c$1.contents == 6));
 
 function id$1(loc, x) do
@@ -1280,131 +1280,131 @@ function some2(xs, ys) do
     end end);
 end end
 
-eq("File \"bs_array_test.ml\", line 304, characters 5-12", every2(--[ [] ]--0, --[ :: ]--[
+eq("File \"bs_array_test.ml\", line 304, characters 5-12", every2(--[[ [] ]]0, --[[ :: ]][
             1,
-            --[ [] ]--0
+            --[[ [] ]]0
           ])((function (x, y) do
             return x > y;
           end end)), true);
 
-eq("File \"bs_array_test.ml\", line 305, characters 5-12", every2(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 305, characters 5-12", every2(--[[ :: ]][
             2,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
-          ], --[ :: ]--[
+          ], --[[ :: ]][
             1,
-            --[ [] ]--0
+            --[[ [] ]]0
           ])((function (x, y) do
             return x > y;
           end end)), true);
 
-eq("File \"bs_array_test.ml\", line 306, characters 5-12", every2(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 306, characters 5-12", every2(--[[ :: ]][
             2,
-            --[ [] ]--0
-          ], --[ :: ]--[
+            --[[ [] ]]0
+          ], --[[ :: ]][
             1,
-            --[ [] ]--0
+            --[[ [] ]]0
           ])((function (x, y) do
             return x > y;
           end end)), true);
 
-eq("File \"bs_array_test.ml\", line 307, characters 5-12", every2(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 307, characters 5-12", every2(--[[ :: ]][
             2,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
-          ], --[ :: ]--[
+          ], --[[ :: ]][
             1,
-            --[ :: ]--[
+            --[[ :: ]][
               4,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ])((function (x, y) do
             return x > y;
           end end)), false);
 
-eq("File \"bs_array_test.ml\", line 308, characters 5-12", every2(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 308, characters 5-12", every2(--[[ :: ]][
             2,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
-          ], --[ :: ]--[
+          ], --[[ :: ]][
             1,
-            --[ :: ]--[
+            --[[ :: ]][
               0,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ])((function (x, y) do
             return x > y;
           end end)), true);
 
-eq("File \"bs_array_test.ml\", line 309, characters 5-12", some2(--[ [] ]--0, --[ :: ]--[
+eq("File \"bs_array_test.ml\", line 309, characters 5-12", some2(--[[ [] ]]0, --[[ :: ]][
             1,
-            --[ [] ]--0
+            --[[ [] ]]0
           ])((function (x, y) do
             return x > y;
           end end)), false);
 
-eq("File \"bs_array_test.ml\", line 310, characters 5-12", some2(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 310, characters 5-12", some2(--[[ :: ]][
             2,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
-          ], --[ :: ]--[
+          ], --[[ :: ]][
             1,
-            --[ [] ]--0
+            --[[ [] ]]0
           ])((function (x, y) do
             return x > y;
           end end)), true);
 
-eq("File \"bs_array_test.ml\", line 311, characters 5-12", some2(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 311, characters 5-12", some2(--[[ :: ]][
             2,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
-          ], --[ :: ]--[
+          ], --[[ :: ]][
             1,
-            --[ :: ]--[
+            --[[ :: ]][
               4,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ])((function (x, y) do
             return x > y;
           end end)), true);
 
-eq("File \"bs_array_test.ml\", line 312, characters 5-12", some2(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 312, characters 5-12", some2(--[[ :: ]][
             0,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
-          ], --[ :: ]--[
+          ], --[[ :: ]][
             1,
-            --[ :: ]--[
+            --[[ :: ]][
               4,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ])((function (x, y) do
             return x > y;
           end end)), false);
 
-eq("File \"bs_array_test.ml\", line 313, characters 5-12", some2(--[ :: ]--[
+eq("File \"bs_array_test.ml\", line 313, characters 5-12", some2(--[[ :: ]][
             0,
-            --[ :: ]--[
+            --[[ :: ]][
               3,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
-          ], --[ :: ]--[
+          ], --[[ :: ]][
             3,
-            --[ :: ]--[
+            --[[ :: ]][
               2,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ])((function (x, y) do
             return x > y;
@@ -1589,9 +1589,9 @@ eq("File \"bs_array_test.ml\", line 339, characters 5-12", Belt_Array.getIndexBy
 
 Mt.from_pair_suites("File \"bs_array_test.ml\", line 341, characters 23-30", suites.contents);
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
-L = --[ alias ]--0;
+L = --[[ alias ]]0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -1606,4 +1606,4 @@ exports.addone = addone;
 exports.makeMatrixExn = makeMatrixExn;
 exports.sumUsingForEach = sumUsingForEach;
 exports.id = id$1;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

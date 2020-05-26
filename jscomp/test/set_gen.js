@@ -11,7 +11,7 @@ function cons_enum(_s, _e) do
     e = _e;
     s = _s;
     if (s) then do
-      _e = --[ More ]--[
+      _e = --[[ More ]][
         s[1],
         s[2],
         e
@@ -98,7 +98,7 @@ function elements_aux(_accu, _param) do
     accu = _accu;
     if (param) then do
       _param = param[0];
-      _accu = --[ :: ]--[
+      _accu = --[[ :: ]][
         param[1],
         elements_aux(accu, param[2])
       ];
@@ -110,7 +110,7 @@ function elements_aux(_accu, _param) do
 end end
 
 function elements(s) do
-  return elements_aux(--[ [] ]--0, s);
+  return elements_aux(--[[ [] ]]0, s);
 end end
 
 function iter(f, _param) do
@@ -122,7 +122,7 @@ function iter(f, _param) do
       _param = param[2];
       continue ;
     end else do
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end end 
   end;
 end end
@@ -221,13 +221,13 @@ end end
 
 function check(tree) do
   check_height_and_diff(tree);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function create(l, v, r) do
   hl = l and l[3] or 0;
   hr = r and r[3] or 0;
-  return --[ Node ]--[
+  return --[[ Node ]][
           l,
           v,
           r,
@@ -250,7 +250,7 @@ function internal_bal(l, v, r) do
       end else do
         throw [
               Caml_builtin_exceptions.assert_failure,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "set_gen.ml",
                 235,
                 19
@@ -260,7 +260,7 @@ function internal_bal(l, v, r) do
     end else do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "set_gen.ml",
               225,
               15
@@ -279,7 +279,7 @@ function internal_bal(l, v, r) do
       end else do
         throw [
               Caml_builtin_exceptions.assert_failure,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "set_gen.ml",
                 251,
                 19
@@ -289,7 +289,7 @@ function internal_bal(l, v, r) do
     end else do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "set_gen.ml",
               245,
               15
@@ -297,7 +297,7 @@ function internal_bal(l, v, r) do
           ];
     end end 
   end else do
-    return --[ Node ]--[
+    return --[[ Node ]][
             l,
             v,
             r,
@@ -323,10 +323,10 @@ function remove_min_elt(param) do
 end end
 
 function singleton(x) do
-  return --[ Node ]--[
-          --[ Empty ]--0,
+  return --[[ Node ]][
+          --[[ Empty ]]0,
           x,
-          --[ Empty ]--0,
+          --[[ Empty ]]0,
           1
         ];
 end end
@@ -403,7 +403,7 @@ function filter(p, param) do
       return internal_concat(l$prime, r$prime);
     end end 
   end else do
-    return --[ Empty ]--0;
+    return --[[ Empty ]]0;
   end end 
 end end
 
@@ -418,20 +418,20 @@ function partition(p, param) do
     rf = match$1[1];
     rt = match$1[0];
     if (pv) then do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               internal_join(lt, v, rt),
               internal_concat(lf, rf)
             ];
     end else do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               internal_concat(lt, rt),
               internal_join(lf, v, rf)
             ];
     end end 
   end else do
-    return --[ tuple ]--[
-            --[ Empty ]--0,
-            --[ Empty ]--0
+    return --[[ tuple ]][
+            --[[ Empty ]]0,
+            --[[ Empty ]]0
           ];
   end end 
 end end
@@ -441,17 +441,17 @@ function of_sorted_list(l) do
     local ___conditional___=(n);
     do
        if ___conditional___ = 0 then do
-          return --[ tuple ]--[
-                  --[ Empty ]--0,
+          return --[[ tuple ]][
+                  --[[ Empty ]]0,
                   l
                 ];end end end 
        if ___conditional___ = 1 then do
           if (l) then do
-            return --[ tuple ]--[
-                    --[ Node ]--[
-                      --[ Empty ]--0,
+            return --[[ tuple ]][
+                    --[[ Node ]][
+                      --[[ Empty ]]0,
                       l[0],
-                      --[ Empty ]--0,
+                      --[[ Empty ]]0,
                       1
                     ],
                     l[1]
@@ -462,16 +462,16 @@ function of_sorted_list(l) do
           if (l) then do
             match = l[1];
             if (match) then do
-              return --[ tuple ]--[
-                      --[ Node ]--[
-                        --[ Node ]--[
-                          --[ Empty ]--0,
+              return --[[ tuple ]][
+                      --[[ Node ]][
+                        --[[ Node ]][
+                          --[[ Empty ]]0,
                           l[0],
-                          --[ Empty ]--0,
+                          --[[ Empty ]]0,
                           1
                         ],
                         match[0],
-                        --[ Empty ]--0,
+                        --[[ Empty ]]0,
                         2
                       ],
                       match[1]
@@ -486,19 +486,19 @@ function of_sorted_list(l) do
             if (match$1) then do
               match$2 = match$1[1];
               if (match$2) then do
-                return --[ tuple ]--[
-                        --[ Node ]--[
-                          --[ Node ]--[
-                            --[ Empty ]--0,
+                return --[[ tuple ]][
+                        --[[ Node ]][
+                          --[[ Node ]][
+                            --[[ Empty ]]0,
                             l[0],
-                            --[ Empty ]--0,
+                            --[[ Empty ]]0,
                             1
                           ],
                           match$1[0],
-                          --[ Node ]--[
-                            --[ Empty ]--0,
+                          --[[ Node ]][
+                            --[[ Empty ]]0,
                             match$2[0],
-                            --[ Empty ]--0,
+                            --[[ Empty ]]0,
                             1
                           ],
                           2
@@ -521,14 +521,14 @@ function of_sorted_list(l) do
     l$1 = match$3[1];
     if (l$1) then do
       match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               create(match$3[0], l$1[0], match$4[0]),
               match$4[1]
             ];
     end else do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "set_gen.ml",
               361,
               14
@@ -542,45 +542,45 @@ end end
 function of_sorted_array(l) do
   sub = function (start, n, l) do
     if (n == 0) then do
-      return --[ Empty ]--0;
+      return --[[ Empty ]]0;
     end else if (n == 1) then do
       x0 = l[start];
-      return --[ Node ]--[
-              --[ Empty ]--0,
+      return --[[ Node ]][
+              --[[ Empty ]]0,
               x0,
-              --[ Empty ]--0,
+              --[[ Empty ]]0,
               1
             ];
     end else if (n == 2) then do
       x0$1 = l[start];
       x1 = l[start + 1 | 0];
-      return --[ Node ]--[
-              --[ Node ]--[
-                --[ Empty ]--0,
+      return --[[ Node ]][
+              --[[ Node ]][
+                --[[ Empty ]]0,
                 x0$1,
-                --[ Empty ]--0,
+                --[[ Empty ]]0,
                 1
               ],
               x1,
-              --[ Empty ]--0,
+              --[[ Empty ]]0,
               2
             ];
     end else if (n == 3) then do
       x0$2 = l[start];
       x1$1 = l[start + 1 | 0];
       x2 = l[start + 2 | 0];
-      return --[ Node ]--[
-              --[ Node ]--[
-                --[ Empty ]--0,
+      return --[[ Node ]][
+              --[[ Node ]][
+                --[[ Empty ]]0,
                 x0$2,
-                --[ Empty ]--0,
+                --[[ Empty ]]0,
                 1
               ],
               x1$1,
-              --[ Node ]--[
-                --[ Empty ]--0,
+              --[[ Node ]][
+                --[[ Empty ]]0,
                 x2,
-                --[ Empty ]--0,
+                --[[ Empty ]]0,
                 1
               ],
               2
@@ -608,32 +608,32 @@ function is_ordered(cmp, tree) do
           match$1 = is_ordered_min_max(r);
           if (typeof match$1 == "number") then do
             if (match$1 >= 50834029) then do
-              return --[ `V ]--[
+              return --[[ `V ]][
                       86,
-                      --[ tuple ]--[
+                      --[[ tuple ]][
                         v,
                         v
                       ]
                     ];
             end else do
-              return --[ No ]--17505;
+              return --[[ No ]]17505;
             end end 
           end else do
             match$2 = match$1[1];
             if (Curry._2(cmp, v, match$2[0]) < 0) then do
-              return --[ `V ]--[
+              return --[[ `V ]][
                       86,
-                      --[ tuple ]--[
+                      --[[ tuple ]][
                         v,
                         match$2[1]
                       ]
                     ];
             end else do
-              return --[ No ]--17505;
+              return --[[ No ]]17505;
             end end 
           end end 
         end else do
-          return --[ No ]--17505;
+          return --[[ No ]]17505;
         end end 
       end else do
         match$3 = match[1];
@@ -642,36 +642,36 @@ function is_ordered(cmp, tree) do
         match$4 = is_ordered_min_max(r);
         if (typeof match$4 == "number") then do
           if (match$4 >= 50834029 and Curry._2(cmp, max_v, v) < 0) then do
-            return --[ `V ]--[
+            return --[[ `V ]][
                     86,
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       min_v,
                       v
                     ]
                   ];
           end else do
-            return --[ No ]--17505;
+            return --[[ No ]]17505;
           end end 
         end else do
           match$5 = match$4[1];
           if (Curry._2(cmp, max_v, match$5[0]) < 0) then do
-            return --[ `V ]--[
+            return --[[ `V ]][
                     86,
-                    --[ tuple ]--[
+                    --[[ tuple ]][
                       min_v,
                       match$5[1]
                     ]
                   ];
           end else do
-            return --[ No ]--17505;
+            return --[[ No ]]17505;
           end end 
         end end 
       end end 
     end else do
-      return --[ Empty ]--50834029;
+      return --[[ Empty ]]50834029;
     end end 
   end end;
-  return is_ordered_min_max(tree) ~= --[ No ]--17505;
+  return is_ordered_min_max(tree) ~= --[[ No ]]17505;
 end end
 
 function invariant(cmp, t) do
@@ -705,10 +705,10 @@ function compare_aux(cmp, _e1, _e2) do
 end end
 
 function compare(cmp, s1, s2) do
-  return compare_aux(cmp, cons_enum(s1, --[ End ]--0), cons_enum(s2, --[ End ]--0));
+  return compare_aux(cmp, cons_enum(s1, --[[ End ]]0), cons_enum(s2, --[[ End ]]0));
 end end
 
-empty = --[ Empty ]--0;
+empty = --[[ Empty ]]0;
 
 choose = min_elt;
 
@@ -750,4 +750,4 @@ exports.is_ordered = is_ordered;
 exports.invariant = invariant;
 exports.compare_aux = compare_aux;
 exports.compare = compare;
---[ No side effect ]--
+--[[ No side effect ]]

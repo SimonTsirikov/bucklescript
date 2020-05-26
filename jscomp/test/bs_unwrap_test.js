@@ -3,7 +3,7 @@
 Curry = require("../../lib/js/curry.js");
 Caml_option = require("../../lib/js/caml_option.js");
 
-console.log(--[ tuple ]--[
+console.log(--[[ tuple ]][
       "hello world",
       1
     ]);
@@ -12,16 +12,16 @@ console.log(1337);
 
 console.log("hello world");
 
-arg_string = --[ `String ]--[
+arg_string = --[[ `String ]][
   -976970511,
   "hi runtime"
 ];
 
 console.log(arg_string[1]);
 
-arg_pair = --[ `Pair ]--[
+arg_pair = --[[ `Pair ]][
   892012602,
-  --[ tuple ]--[
+  --[[ tuple ]][
     "hi",
     1
   ]
@@ -29,7 +29,7 @@ arg_pair = --[ `Pair ]--[
 
 console.log(arg_pair[1]);
 
-console.log(--[ () ]--0);
+console.log(--[[ () ]]0);
 
 console.log(1, undefined);
 
@@ -39,7 +39,7 @@ console.log(3, "hi");
 
 console.log(4, undefined);
 
-some_arg = --[ `Bool ]--[
+some_arg = --[[ `Bool ]][
   737456202,
   true
 ];
@@ -52,16 +52,16 @@ console.log(7, Caml_option.option_get_unwrap((console.log("trace"), undefined)))
 
 function dyn_log3(prim, prim$1, prim$2) do
   console.log(prim[1], prim$1 ~= undefined and Caml_option.valFromOption(prim$1)[1] or undefined);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-dyn_log3(--[ `Int ]--[
+dyn_log3(--[[ `Int ]][
       3654863,
       8
-    ], --[ `Bool ]--[
+    ], --[[ `Bool ]][
       737456202,
       true
-    ], --[ () ]--0);
+    ], --[[ () ]]0);
 
 console.log("foo");
 
@@ -71,7 +71,7 @@ console.log(do
 
 function dyn_log4(prim) do
   console.log(prim[1]);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 console.log(do
@@ -80,17 +80,17 @@ console.log(do
 
 function f(x) do
   console.log(x[1]);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function ff0(x, p) do
   console.log(x ~= undefined and Caml_option.valFromOption(x)[1] or undefined, p);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function ff1(x, p) do
-  console.log(Caml_option.option_get_unwrap(Curry._1(x, --[ () ]--0)), p);
-  return --[ () ]--0;
+  console.log(Caml_option.option_get_unwrap(Curry._1(x, --[[ () ]]0)), p);
+  return --[[ () ]]0;
 end end
 
 none_arg = undefined;
@@ -104,4 +104,4 @@ exports.dyn_log4 = dyn_log4;
 exports.f = f;
 exports.ff0 = ff0;
 exports.ff1 = ff1;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

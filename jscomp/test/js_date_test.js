@@ -8,96 +8,96 @@ function date(param) do
   return new Date("1976-03-08T12:34:56.789+01:23");
 end end
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "valueOf",
   (function (param) do
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 195131516789,
                 new Date("1976-03-08T12:34:56.789+01:23").valueOf()
               ]);
     end end)
 ];
 
-suites_001 = --[ :: ]--[
-  --[ tuple ]--[
+suites_001 = --[[ :: ]][
+  --[[ tuple ]][
     "make",
     (function (param) do
-        return --[ Ok ]--Block.__(4, [new Date().getTime() > 1487223505382]);
+        return --[[ Ok ]]Block.__(4, [new Date().getTime() > 1487223505382]);
       end end)
   ],
-  --[ :: ]--[
-    --[ tuple ]--[
+  --[[ :: ]][
+    --[[ tuple ]][
       "parseAsFloat",
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     Date.parse("1976-03-08T12:34:56.789+01:23"),
                     195131516789
                   ]);
         end end)
     ],
-    --[ :: ]--[
-      --[ tuple ]--[
+    --[[ :: ]][
+      --[[ tuple ]][
         "parseAsFloat_invalid",
         (function (param) do
-            return --[ Ok ]--Block.__(4, [isNaN(Date.parse("gibberish"))]);
+            return --[[ Ok ]]Block.__(4, [isNaN(Date.parse("gibberish"))]);
           end end)
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "fromFloat",
           (function (param) do
-              return --[ Eq ]--Block.__(0, [
+              return --[[ Eq ]]Block.__(0, [
                         "1976-03-08T11:11:56.789Z",
                         new Date(195131516789).toISOString()
                       ]);
             end end)
         ],
-        --[ :: ]--[
-          --[ tuple ]--[
+        --[[ :: ]][
+          --[[ tuple ]][
             "fromString_valid",
             (function (param) do
-                return --[ Eq ]--Block.__(0, [
+                return --[[ Eq ]]Block.__(0, [
                           195131516789,
                           new Date("1976-03-08T12:34:56.789+01:23").getTime()
                         ]);
               end end)
           ],
-          --[ :: ]--[
-            --[ tuple ]--[
+          --[[ :: ]][
+            --[[ tuple ]][
               "fromString_invalid",
               (function (param) do
-                  return --[ Ok ]--Block.__(4, [isNaN(new Date("gibberish").getTime())]);
+                  return --[[ Ok ]]Block.__(4, [isNaN(new Date("gibberish").getTime())]);
                 end end)
             ],
-            --[ :: ]--[
-              --[ tuple ]--[
+            --[[ :: ]][
+              --[[ tuple ]][
                 "makeWithYM",
                 (function (param) do
                     d = new Date(1984, 4);
-                    return --[ Eq ]--Block.__(0, [
-                              --[ tuple ]--[
+                    return --[[ Eq ]]Block.__(0, [
+                              --[[ tuple ]][
                                 1984,
                                 4
                               ],
-                              --[ tuple ]--[
+                              --[[ tuple ]][
                                 d.getFullYear(),
                                 d.getMonth()
                               ]
                             ]);
                   end end)
               ],
-              --[ :: ]--[
-                --[ tuple ]--[
+              --[[ :: ]][
+                --[[ tuple ]][
                   "makeWithYMD",
                   (function (param) do
                       d = new Date(1984, 4, 6);
-                      return --[ Eq ]--Block.__(0, [
-                                --[ tuple ]--[
+                      return --[[ Eq ]]Block.__(0, [
+                                --[[ tuple ]][
                                   1984,
                                   4,
                                   6
                                 ],
-                                --[ tuple ]--[
+                                --[[ tuple ]][
                                   d.getFullYear(),
                                   d.getMonth(),
                                   d.getDate()
@@ -105,19 +105,19 @@ suites_001 = --[ :: ]--[
                               ]);
                     end end)
                 ],
-                --[ :: ]--[
-                  --[ tuple ]--[
+                --[[ :: ]][
+                  --[[ tuple ]][
                     "makeWithYMDH",
                     (function (param) do
                         d = new Date(1984, 4, 6, 3);
-                        return --[ Eq ]--Block.__(0, [
-                                  --[ tuple ]--[
+                        return --[[ Eq ]]Block.__(0, [
+                                  --[[ tuple ]][
                                     1984,
                                     4,
                                     6,
                                     3
                                   ],
-                                  --[ tuple ]--[
+                                  --[[ tuple ]][
                                     d.getFullYear(),
                                     d.getMonth(),
                                     d.getDate(),
@@ -126,20 +126,20 @@ suites_001 = --[ :: ]--[
                                 ]);
                       end end)
                   ],
-                  --[ :: ]--[
-                    --[ tuple ]--[
+                  --[[ :: ]][
+                    --[[ tuple ]][
                       "makeWithYMDHM",
                       (function (param) do
                           d = new Date(1984, 4, 6, 3, 59);
-                          return --[ Eq ]--Block.__(0, [
-                                    --[ tuple ]--[
+                          return --[[ Eq ]]Block.__(0, [
+                                    --[[ tuple ]][
                                       1984,
                                       4,
                                       6,
                                       3,
                                       59
                                     ],
-                                    --[ tuple ]--[
+                                    --[[ tuple ]][
                                       d.getFullYear(),
                                       d.getMonth(),
                                       d.getDate(),
@@ -149,13 +149,13 @@ suites_001 = --[ :: ]--[
                                   ]);
                         end end)
                     ],
-                    --[ :: ]--[
-                      --[ tuple ]--[
+                    --[[ :: ]][
+                      --[[ tuple ]][
                         "makeWithYMDHMS",
                         (function (param) do
                             d = new Date(1984, 4, 6, 3, 59, 27);
-                            return --[ Eq ]--Block.__(0, [
-                                      --[ tuple ]--[
+                            return --[[ Eq ]]Block.__(0, [
+                                      --[[ tuple ]][
                                         1984,
                                         4,
                                         6,
@@ -163,7 +163,7 @@ suites_001 = --[ :: ]--[
                                         59,
                                         27
                                       ],
-                                      --[ tuple ]--[
+                                      --[[ tuple ]][
                                         d.getFullYear(),
                                         d.getMonth(),
                                         d.getDate(),
@@ -174,37 +174,37 @@ suites_001 = --[ :: ]--[
                                     ]);
                           end end)
                       ],
-                      --[ :: ]--[
-                        --[ tuple ]--[
+                      --[[ :: ]][
+                        --[[ tuple ]][
                           "utcWithYM",
                           (function (param) do
                               d = Date.UTC(1984, 4);
                               d$1 = new Date(d);
-                              return --[ Eq ]--Block.__(0, [
-                                        --[ tuple ]--[
+                              return --[[ Eq ]]Block.__(0, [
+                                        --[[ tuple ]][
                                           1984,
                                           4
                                         ],
-                                        --[ tuple ]--[
+                                        --[[ tuple ]][
                                           d$1.getUTCFullYear(),
                                           d$1.getUTCMonth()
                                         ]
                                       ]);
                             end end)
                         ],
-                        --[ :: ]--[
-                          --[ tuple ]--[
+                        --[[ :: ]][
+                          --[[ tuple ]][
                             "utcWithYMD",
                             (function (param) do
                                 d = Date.UTC(1984, 4, 6);
                                 d$1 = new Date(d);
-                                return --[ Eq ]--Block.__(0, [
-                                          --[ tuple ]--[
+                                return --[[ Eq ]]Block.__(0, [
+                                          --[[ tuple ]][
                                             1984,
                                             4,
                                             6
                                           ],
-                                          --[ tuple ]--[
+                                          --[[ tuple ]][
                                             d$1.getUTCFullYear(),
                                             d$1.getUTCMonth(),
                                             d$1.getUTCDate()
@@ -212,20 +212,20 @@ suites_001 = --[ :: ]--[
                                         ]);
                               end end)
                           ],
-                          --[ :: ]--[
-                            --[ tuple ]--[
+                          --[[ :: ]][
+                            --[[ tuple ]][
                               "utcWithYMDH",
                               (function (param) do
                                   d = Date.UTC(1984, 4, 6, 3);
                                   d$1 = new Date(d);
-                                  return --[ Eq ]--Block.__(0, [
-                                            --[ tuple ]--[
+                                  return --[[ Eq ]]Block.__(0, [
+                                            --[[ tuple ]][
                                               1984,
                                               4,
                                               6,
                                               3
                                             ],
-                                            --[ tuple ]--[
+                                            --[[ tuple ]][
                                               d$1.getUTCFullYear(),
                                               d$1.getUTCMonth(),
                                               d$1.getUTCDate(),
@@ -234,21 +234,21 @@ suites_001 = --[ :: ]--[
                                           ]);
                                 end end)
                             ],
-                            --[ :: ]--[
-                              --[ tuple ]--[
+                            --[[ :: ]][
+                              --[[ tuple ]][
                                 "utcWithYMDHM",
                                 (function (param) do
                                     d = Date.UTC(1984, 4, 6, 3, 59);
                                     d$1 = new Date(d);
-                                    return --[ Eq ]--Block.__(0, [
-                                              --[ tuple ]--[
+                                    return --[[ Eq ]]Block.__(0, [
+                                              --[[ tuple ]][
                                                 1984,
                                                 4,
                                                 6,
                                                 3,
                                                 59
                                               ],
-                                              --[ tuple ]--[
+                                              --[[ tuple ]][
                                                 d$1.getUTCFullYear(),
                                                 d$1.getUTCMonth(),
                                                 d$1.getUTCDate(),
@@ -258,14 +258,14 @@ suites_001 = --[ :: ]--[
                                             ]);
                                   end end)
                               ],
-                              --[ :: ]--[
-                                --[ tuple ]--[
+                              --[[ :: ]][
+                                --[[ tuple ]][
                                   "utcWithYMDHMS",
                                   (function (param) do
                                       d = Date.UTC(1984, 4, 6, 3, 59, 27);
                                       d$1 = new Date(d);
-                                      return --[ Eq ]--Block.__(0, [
-                                                --[ tuple ]--[
+                                      return --[[ Eq ]]Block.__(0, [
+                                                --[[ tuple ]][
                                                   1984,
                                                   4,
                                                   6,
@@ -273,7 +273,7 @@ suites_001 = --[ :: ]--[
                                                   59,
                                                   27
                                                 ],
-                                                --[ tuple ]--[
+                                                --[[ tuple ]][
                                                   d$1.getUTCFullYear(),
                                                   d$1.getUTCMonth(),
                                                   d$1.getUTCDate(),
@@ -284,191 +284,191 @@ suites_001 = --[ :: ]--[
                                               ]);
                                     end end)
                                 ],
-                                --[ :: ]--[
-                                  --[ tuple ]--[
+                                --[[ :: ]][
+                                  --[[ tuple ]][
                                     "getFullYear",
                                     (function (param) do
-                                        return --[ Eq ]--Block.__(0, [
+                                        return --[[ Eq ]]Block.__(0, [
                                                   1976,
                                                   new Date("1976-03-08T12:34:56.789+01:23").getFullYear()
                                                 ]);
                                       end end)
                                   ],
-                                  --[ :: ]--[
-                                    --[ tuple ]--[
+                                  --[[ :: ]][
+                                    --[[ tuple ]][
                                       "getMilliseconds",
                                       (function (param) do
-                                          return --[ Eq ]--Block.__(0, [
+                                          return --[[ Eq ]]Block.__(0, [
                                                     789,
                                                     new Date("1976-03-08T12:34:56.789+01:23").getMilliseconds()
                                                   ]);
                                         end end)
                                     ],
-                                    --[ :: ]--[
-                                      --[ tuple ]--[
+                                    --[[ :: ]][
+                                      --[[ tuple ]][
                                         "getSeconds",
                                         (function (param) do
-                                            return --[ Eq ]--Block.__(0, [
+                                            return --[[ Eq ]]Block.__(0, [
                                                       56,
                                                       new Date("1976-03-08T12:34:56.789+01:23").getSeconds()
                                                     ]);
                                           end end)
                                       ],
-                                      --[ :: ]--[
-                                        --[ tuple ]--[
+                                      --[[ :: ]][
+                                        --[[ tuple ]][
                                           "getTime",
                                           (function (param) do
-                                              return --[ Eq ]--Block.__(0, [
+                                              return --[[ Eq ]]Block.__(0, [
                                                         195131516789,
                                                         new Date("1976-03-08T12:34:56.789+01:23").getTime()
                                                       ]);
                                             end end)
                                         ],
-                                        --[ :: ]--[
-                                          --[ tuple ]--[
+                                        --[[ :: ]][
+                                          --[[ tuple ]][
                                             "getUTCDate",
                                             (function (param) do
-                                                return --[ Eq ]--Block.__(0, [
+                                                return --[[ Eq ]]Block.__(0, [
                                                           8,
                                                           new Date("1976-03-08T12:34:56.789+01:23").getUTCDate()
                                                         ]);
                                               end end)
                                           ],
-                                          --[ :: ]--[
-                                            --[ tuple ]--[
+                                          --[[ :: ]][
+                                            --[[ tuple ]][
                                               "getUTCDay",
                                               (function (param) do
-                                                  return --[ Eq ]--Block.__(0, [
+                                                  return --[[ Eq ]]Block.__(0, [
                                                             1,
                                                             new Date("1976-03-08T12:34:56.789+01:23").getUTCDay()
                                                           ]);
                                                 end end)
                                             ],
-                                            --[ :: ]--[
-                                              --[ tuple ]--[
+                                            --[[ :: ]][
+                                              --[[ tuple ]][
                                                 "getUTCFUllYear",
                                                 (function (param) do
-                                                    return --[ Eq ]--Block.__(0, [
+                                                    return --[[ Eq ]]Block.__(0, [
                                                               1976,
                                                               new Date("1976-03-08T12:34:56.789+01:23").getUTCFullYear()
                                                             ]);
                                                   end end)
                                               ],
-                                              --[ :: ]--[
-                                                --[ tuple ]--[
+                                              --[[ :: ]][
+                                                --[[ tuple ]][
                                                   "getUTCHours",
                                                   (function (param) do
-                                                      return --[ Eq ]--Block.__(0, [
+                                                      return --[[ Eq ]]Block.__(0, [
                                                                 11,
                                                                 new Date("1976-03-08T12:34:56.789+01:23").getUTCHours()
                                                               ]);
                                                     end end)
                                                 ],
-                                                --[ :: ]--[
-                                                  --[ tuple ]--[
+                                                --[[ :: ]][
+                                                  --[[ tuple ]][
                                                     "getUTCMilliseconds",
                                                     (function (param) do
-                                                        return --[ Eq ]--Block.__(0, [
+                                                        return --[[ Eq ]]Block.__(0, [
                                                                   789,
                                                                   new Date("1976-03-08T12:34:56.789+01:23").getUTCMilliseconds()
                                                                 ]);
                                                       end end)
                                                   ],
-                                                  --[ :: ]--[
-                                                    --[ tuple ]--[
+                                                  --[[ :: ]][
+                                                    --[[ tuple ]][
                                                       "getUTCMinutes",
                                                       (function (param) do
-                                                          return --[ Eq ]--Block.__(0, [
+                                                          return --[[ Eq ]]Block.__(0, [
                                                                     11,
                                                                     new Date("1976-03-08T12:34:56.789+01:23").getUTCMinutes()
                                                                   ]);
                                                         end end)
                                                     ],
-                                                    --[ :: ]--[
-                                                      --[ tuple ]--[
+                                                    --[[ :: ]][
+                                                      --[[ tuple ]][
                                                         "getUTCMonth",
                                                         (function (param) do
-                                                            return --[ Eq ]--Block.__(0, [
+                                                            return --[[ Eq ]]Block.__(0, [
                                                                       2,
                                                                       new Date("1976-03-08T12:34:56.789+01:23").getUTCMonth()
                                                                     ]);
                                                           end end)
                                                       ],
-                                                      --[ :: ]--[
-                                                        --[ tuple ]--[
+                                                      --[[ :: ]][
+                                                        --[[ tuple ]][
                                                           "getUTCSeconds",
                                                           (function (param) do
-                                                              return --[ Eq ]--Block.__(0, [
+                                                              return --[[ Eq ]]Block.__(0, [
                                                                         56,
                                                                         new Date("1976-03-08T12:34:56.789+01:23").getUTCSeconds()
                                                                       ]);
                                                             end end)
                                                         ],
-                                                        --[ :: ]--[
-                                                          --[ tuple ]--[
+                                                        --[[ :: ]][
+                                                          --[[ tuple ]][
                                                             "getYear",
                                                             (function (param) do
-                                                                return --[ Eq ]--Block.__(0, [
+                                                                return --[[ Eq ]]Block.__(0, [
                                                                           1976,
                                                                           new Date("1976-03-08T12:34:56.789+01:23").getFullYear()
                                                                         ]);
                                                               end end)
                                                           ],
-                                                          --[ :: ]--[
-                                                            --[ tuple ]--[
+                                                          --[[ :: ]][
+                                                            --[[ tuple ]][
                                                               "setDate",
                                                               (function (param) do
                                                                   d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                   d.setDate(12);
-                                                                  return --[ Eq ]--Block.__(0, [
+                                                                  return --[[ Eq ]]Block.__(0, [
                                                                             12,
                                                                             d.getDate()
                                                                           ]);
                                                                 end end)
                                                             ],
-                                                            --[ :: ]--[
-                                                              --[ tuple ]--[
+                                                            --[[ :: ]][
+                                                              --[[ tuple ]][
                                                                 "setFullYear",
                                                                 (function (param) do
                                                                     d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                     d.setFullYear(1986);
-                                                                    return --[ Eq ]--Block.__(0, [
+                                                                    return --[[ Eq ]]Block.__(0, [
                                                                               1986,
                                                                               d.getFullYear()
                                                                             ]);
                                                                   end end)
                                                               ],
-                                                              --[ :: ]--[
-                                                                --[ tuple ]--[
+                                                              --[[ :: ]][
+                                                                --[[ tuple ]][
                                                                   "setFullYearM",
                                                                   (function (param) do
                                                                       d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                       d.setFullYear(1986, 7);
-                                                                      return --[ Eq ]--Block.__(0, [
-                                                                                --[ tuple ]--[
+                                                                      return --[[ Eq ]]Block.__(0, [
+                                                                                --[[ tuple ]][
                                                                                   1986,
                                                                                   7
                                                                                 ],
-                                                                                --[ tuple ]--[
+                                                                                --[[ tuple ]][
                                                                                   d.getFullYear(),
                                                                                   d.getMonth()
                                                                                 ]
                                                                               ]);
                                                                     end end)
                                                                 ],
-                                                                --[ :: ]--[
-                                                                  --[ tuple ]--[
+                                                                --[[ :: ]][
+                                                                  --[[ tuple ]][
                                                                     "setFullYearMD",
                                                                     (function (param) do
                                                                         d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                         d.setFullYear(1986, 7, 23);
-                                                                        return --[ Eq ]--Block.__(0, [
-                                                                                  --[ tuple ]--[
+                                                                        return --[[ Eq ]]Block.__(0, [
+                                                                                  --[[ tuple ]][
                                                                                     1986,
                                                                                     7,
                                                                                     23
                                                                                   ],
-                                                                                  --[ tuple ]--[
+                                                                                  --[[ tuple ]][
                                                                                     d.getFullYear(),
                                                                                     d.getMonth(),
                                                                                     d.getDate()
@@ -476,49 +476,49 @@ suites_001 = --[ :: ]--[
                                                                                 ]);
                                                                       end end)
                                                                   ],
-                                                                  --[ :: ]--[
-                                                                    --[ tuple ]--[
+                                                                  --[[ :: ]][
+                                                                    --[[ tuple ]][
                                                                       "setHours",
                                                                       (function (param) do
                                                                           d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                           d.setHours(22);
-                                                                          return --[ Eq ]--Block.__(0, [
+                                                                          return --[[ Eq ]]Block.__(0, [
                                                                                     22,
                                                                                     d.getHours()
                                                                                   ]);
                                                                         end end)
                                                                     ],
-                                                                    --[ :: ]--[
-                                                                      --[ tuple ]--[
+                                                                    --[[ :: ]][
+                                                                      --[[ tuple ]][
                                                                         "setHoursM",
                                                                         (function (param) do
                                                                             d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                             d.setHours(22, 48);
-                                                                            return --[ Eq ]--Block.__(0, [
-                                                                                      --[ tuple ]--[
+                                                                            return --[[ Eq ]]Block.__(0, [
+                                                                                      --[[ tuple ]][
                                                                                         22,
                                                                                         48
                                                                                       ],
-                                                                                      --[ tuple ]--[
+                                                                                      --[[ tuple ]][
                                                                                         d.getHours(),
                                                                                         d.getMinutes()
                                                                                       ]
                                                                                     ]);
                                                                           end end)
                                                                       ],
-                                                                      --[ :: ]--[
-                                                                        --[ tuple ]--[
+                                                                      --[[ :: ]][
+                                                                        --[[ tuple ]][
                                                                           "setHoursMS",
                                                                           (function (param) do
                                                                               d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                               d.setHours(22, 48, 54);
-                                                                              return --[ Eq ]--Block.__(0, [
-                                                                                        --[ tuple ]--[
+                                                                              return --[[ Eq ]]Block.__(0, [
+                                                                                        --[[ tuple ]][
                                                                                           22,
                                                                                           48,
                                                                                           54
                                                                                         ],
-                                                                                        --[ tuple ]--[
+                                                                                        --[[ tuple ]][
                                                                                           d.getHours(),
                                                                                           d.getMinutes(),
                                                                                           d.getSeconds()
@@ -526,61 +526,61 @@ suites_001 = --[ :: ]--[
                                                                                       ]);
                                                                             end end)
                                                                         ],
-                                                                        --[ :: ]--[
-                                                                          --[ tuple ]--[
+                                                                        --[[ :: ]][
+                                                                          --[[ tuple ]][
                                                                             "setMilliseconds",
                                                                             (function (param) do
                                                                                 d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                 d.setMilliseconds(543);
-                                                                                return --[ Eq ]--Block.__(0, [
+                                                                                return --[[ Eq ]]Block.__(0, [
                                                                                           543,
                                                                                           d.getMilliseconds()
                                                                                         ]);
                                                                               end end)
                                                                           ],
-                                                                          --[ :: ]--[
-                                                                            --[ tuple ]--[
+                                                                          --[[ :: ]][
+                                                                            --[[ tuple ]][
                                                                               "setMinutes",
                                                                               (function (param) do
                                                                                   d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                   d.setMinutes(18);
-                                                                                  return --[ Eq ]--Block.__(0, [
+                                                                                  return --[[ Eq ]]Block.__(0, [
                                                                                             18,
                                                                                             d.getMinutes()
                                                                                           ]);
                                                                                 end end)
                                                                             ],
-                                                                            --[ :: ]--[
-                                                                              --[ tuple ]--[
+                                                                            --[[ :: ]][
+                                                                              --[[ tuple ]][
                                                                                 "setMinutesS",
                                                                                 (function (param) do
                                                                                     d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                     d.setMinutes(18, 42);
-                                                                                    return --[ Eq ]--Block.__(0, [
-                                                                                              --[ tuple ]--[
+                                                                                    return --[[ Eq ]]Block.__(0, [
+                                                                                              --[[ tuple ]][
                                                                                                 18,
                                                                                                 42
                                                                                               ],
-                                                                                              --[ tuple ]--[
+                                                                                              --[[ tuple ]][
                                                                                                 d.getMinutes(),
                                                                                                 d.getSeconds()
                                                                                               ]
                                                                                             ]);
                                                                                   end end)
                                                                               ],
-                                                                              --[ :: ]--[
-                                                                                --[ tuple ]--[
+                                                                              --[[ :: ]][
+                                                                                --[[ tuple ]][
                                                                                   "setMinutesSMs",
                                                                                   (function (param) do
                                                                                       d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                       d.setMinutes(18, 42, 311);
-                                                                                      return --[ Eq ]--Block.__(0, [
-                                                                                                --[ tuple ]--[
+                                                                                      return --[[ Eq ]]Block.__(0, [
+                                                                                                --[[ tuple ]][
                                                                                                   18,
                                                                                                   42,
                                                                                                   311
                                                                                                 ],
-                                                                                                --[ tuple ]--[
+                                                                                                --[[ tuple ]][
                                                                                                   d.getMinutes(),
                                                                                                   d.getSeconds(),
                                                                                                   d.getMilliseconds()
@@ -588,121 +588,121 @@ suites_001 = --[ :: ]--[
                                                                                               ]);
                                                                                     end end)
                                                                                 ],
-                                                                                --[ :: ]--[
-                                                                                  --[ tuple ]--[
+                                                                                --[[ :: ]][
+                                                                                  --[[ tuple ]][
                                                                                     "setMonth",
                                                                                     (function (param) do
                                                                                         d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                         d.setMonth(10);
-                                                                                        return --[ Eq ]--Block.__(0, [
+                                                                                        return --[[ Eq ]]Block.__(0, [
                                                                                                   10,
                                                                                                   d.getMonth()
                                                                                                 ]);
                                                                                       end end)
                                                                                   ],
-                                                                                  --[ :: ]--[
-                                                                                    --[ tuple ]--[
+                                                                                  --[[ :: ]][
+                                                                                    --[[ tuple ]][
                                                                                       "setMonthD",
                                                                                       (function (param) do
                                                                                           d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                           d.setMonth(10, 14);
-                                                                                          return --[ Eq ]--Block.__(0, [
-                                                                                                    --[ tuple ]--[
+                                                                                          return --[[ Eq ]]Block.__(0, [
+                                                                                                    --[[ tuple ]][
                                                                                                       10,
                                                                                                       14
                                                                                                     ],
-                                                                                                    --[ tuple ]--[
+                                                                                                    --[[ tuple ]][
                                                                                                       d.getMonth(),
                                                                                                       d.getDate()
                                                                                                     ]
                                                                                                   ]);
                                                                                         end end)
                                                                                     ],
-                                                                                    --[ :: ]--[
-                                                                                      --[ tuple ]--[
+                                                                                    --[[ :: ]][
+                                                                                      --[[ tuple ]][
                                                                                         "setSeconds",
                                                                                         (function (param) do
                                                                                             d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                             d.setSeconds(36);
-                                                                                            return --[ Eq ]--Block.__(0, [
+                                                                                            return --[[ Eq ]]Block.__(0, [
                                                                                                       36,
                                                                                                       d.getSeconds()
                                                                                                     ]);
                                                                                           end end)
                                                                                       ],
-                                                                                      --[ :: ]--[
-                                                                                        --[ tuple ]--[
+                                                                                      --[[ :: ]][
+                                                                                        --[[ tuple ]][
                                                                                           "setSecondsMs",
                                                                                           (function (param) do
                                                                                               d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                               d.setSeconds(36, 420);
-                                                                                              return --[ Eq ]--Block.__(0, [
-                                                                                                        --[ tuple ]--[
+                                                                                              return --[[ Eq ]]Block.__(0, [
+                                                                                                        --[[ tuple ]][
                                                                                                           36,
                                                                                                           420
                                                                                                         ],
-                                                                                                        --[ tuple ]--[
+                                                                                                        --[[ tuple ]][
                                                                                                           d.getSeconds(),
                                                                                                           d.getMilliseconds()
                                                                                                         ]
                                                                                                       ]);
                                                                                             end end)
                                                                                         ],
-                                                                                        --[ :: ]--[
-                                                                                          --[ tuple ]--[
+                                                                                        --[[ :: ]][
+                                                                                          --[[ tuple ]][
                                                                                             "setUTCDate",
                                                                                             (function (param) do
                                                                                                 d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                 d.setUTCDate(12);
-                                                                                                return --[ Eq ]--Block.__(0, [
+                                                                                                return --[[ Eq ]]Block.__(0, [
                                                                                                           12,
                                                                                                           d.getUTCDate()
                                                                                                         ]);
                                                                                               end end)
                                                                                           ],
-                                                                                          --[ :: ]--[
-                                                                                            --[ tuple ]--[
+                                                                                          --[[ :: ]][
+                                                                                            --[[ tuple ]][
                                                                                               "setUTCFullYear",
                                                                                               (function (param) do
                                                                                                   d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                   d.setUTCFullYear(1986);
-                                                                                                  return --[ Eq ]--Block.__(0, [
+                                                                                                  return --[[ Eq ]]Block.__(0, [
                                                                                                             1986,
                                                                                                             d.getUTCFullYear()
                                                                                                           ]);
                                                                                                 end end)
                                                                                             ],
-                                                                                            --[ :: ]--[
-                                                                                              --[ tuple ]--[
+                                                                                            --[[ :: ]][
+                                                                                              --[[ tuple ]][
                                                                                                 "setUTCFullYearM",
                                                                                                 (function (param) do
                                                                                                     d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                     d.setUTCFullYear(1986, 7);
-                                                                                                    return --[ Eq ]--Block.__(0, [
-                                                                                                              --[ tuple ]--[
+                                                                                                    return --[[ Eq ]]Block.__(0, [
+                                                                                                              --[[ tuple ]][
                                                                                                                 1986,
                                                                                                                 7
                                                                                                               ],
-                                                                                                              --[ tuple ]--[
+                                                                                                              --[[ tuple ]][
                                                                                                                 d.getUTCFullYear(),
                                                                                                                 d.getUTCMonth()
                                                                                                               ]
                                                                                                             ]);
                                                                                                   end end)
                                                                                               ],
-                                                                                              --[ :: ]--[
-                                                                                                --[ tuple ]--[
+                                                                                              --[[ :: ]][
+                                                                                                --[[ tuple ]][
                                                                                                   "setUTCFullYearMD",
                                                                                                   (function (param) do
                                                                                                       d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                       d.setUTCFullYear(1986, 7, 23);
-                                                                                                      return --[ Eq ]--Block.__(0, [
-                                                                                                                --[ tuple ]--[
+                                                                                                      return --[[ Eq ]]Block.__(0, [
+                                                                                                                --[[ tuple ]][
                                                                                                                   1986,
                                                                                                                   7,
                                                                                                                   23
                                                                                                                 ],
-                                                                                                                --[ tuple ]--[
+                                                                                                                --[[ tuple ]][
                                                                                                                   d.getUTCFullYear(),
                                                                                                                   d.getUTCMonth(),
                                                                                                                   d.getUTCDate()
@@ -710,49 +710,49 @@ suites_001 = --[ :: ]--[
                                                                                                               ]);
                                                                                                     end end)
                                                                                                 ],
-                                                                                                --[ :: ]--[
-                                                                                                  --[ tuple ]--[
+                                                                                                --[[ :: ]][
+                                                                                                  --[[ tuple ]][
                                                                                                     "setUTCHours",
                                                                                                     (function (param) do
                                                                                                         d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                         d.setUTCHours(22);
-                                                                                                        return --[ Eq ]--Block.__(0, [
+                                                                                                        return --[[ Eq ]]Block.__(0, [
                                                                                                                   22,
                                                                                                                   d.getUTCHours()
                                                                                                                 ]);
                                                                                                       end end)
                                                                                                   ],
-                                                                                                  --[ :: ]--[
-                                                                                                    --[ tuple ]--[
+                                                                                                  --[[ :: ]][
+                                                                                                    --[[ tuple ]][
                                                                                                       "setUTCHoursM",
                                                                                                       (function (param) do
                                                                                                           d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                           d.setUTCHours(22, 48);
-                                                                                                          return --[ Eq ]--Block.__(0, [
-                                                                                                                    --[ tuple ]--[
+                                                                                                          return --[[ Eq ]]Block.__(0, [
+                                                                                                                    --[[ tuple ]][
                                                                                                                       22,
                                                                                                                       48
                                                                                                                     ],
-                                                                                                                    --[ tuple ]--[
+                                                                                                                    --[[ tuple ]][
                                                                                                                       d.getUTCHours(),
                                                                                                                       d.getUTCMinutes()
                                                                                                                     ]
                                                                                                                   ]);
                                                                                                         end end)
                                                                                                     ],
-                                                                                                    --[ :: ]--[
-                                                                                                      --[ tuple ]--[
+                                                                                                    --[[ :: ]][
+                                                                                                      --[[ tuple ]][
                                                                                                         "setUTCHoursMS",
                                                                                                         (function (param) do
                                                                                                             d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                             d.setUTCHours(22, 48, 54);
-                                                                                                            return --[ Eq ]--Block.__(0, [
-                                                                                                                      --[ tuple ]--[
+                                                                                                            return --[[ Eq ]]Block.__(0, [
+                                                                                                                      --[[ tuple ]][
                                                                                                                         22,
                                                                                                                         48,
                                                                                                                         54
                                                                                                                       ],
-                                                                                                                      --[ tuple ]--[
+                                                                                                                      --[[ tuple ]][
                                                                                                                         d.getUTCHours(),
                                                                                                                         d.getUTCMinutes(),
                                                                                                                         d.getUTCSeconds()
@@ -760,61 +760,61 @@ suites_001 = --[ :: ]--[
                                                                                                                     ]);
                                                                                                           end end)
                                                                                                       ],
-                                                                                                      --[ :: ]--[
-                                                                                                        --[ tuple ]--[
+                                                                                                      --[[ :: ]][
+                                                                                                        --[[ tuple ]][
                                                                                                           "setUTCMilliseconds",
                                                                                                           (function (param) do
                                                                                                               d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                               d.setUTCMilliseconds(543);
-                                                                                                              return --[ Eq ]--Block.__(0, [
+                                                                                                              return --[[ Eq ]]Block.__(0, [
                                                                                                                         543,
                                                                                                                         d.getUTCMilliseconds()
                                                                                                                       ]);
                                                                                                             end end)
                                                                                                         ],
-                                                                                                        --[ :: ]--[
-                                                                                                          --[ tuple ]--[
+                                                                                                        --[[ :: ]][
+                                                                                                          --[[ tuple ]][
                                                                                                             "setUTCMinutes",
                                                                                                             (function (param) do
                                                                                                                 d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                 d.setUTCMinutes(18);
-                                                                                                                return --[ Eq ]--Block.__(0, [
+                                                                                                                return --[[ Eq ]]Block.__(0, [
                                                                                                                           18,
                                                                                                                           d.getUTCMinutes()
                                                                                                                         ]);
                                                                                                               end end)
                                                                                                           ],
-                                                                                                          --[ :: ]--[
-                                                                                                            --[ tuple ]--[
+                                                                                                          --[[ :: ]][
+                                                                                                            --[[ tuple ]][
                                                                                                               "setUTCMinutesS",
                                                                                                               (function (param) do
                                                                                                                   d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                   d.setUTCMinutes(18, 42);
-                                                                                                                  return --[ Eq ]--Block.__(0, [
-                                                                                                                            --[ tuple ]--[
+                                                                                                                  return --[[ Eq ]]Block.__(0, [
+                                                                                                                            --[[ tuple ]][
                                                                                                                               18,
                                                                                                                               42
                                                                                                                             ],
-                                                                                                                            --[ tuple ]--[
+                                                                                                                            --[[ tuple ]][
                                                                                                                               d.getUTCMinutes(),
                                                                                                                               d.getUTCSeconds()
                                                                                                                             ]
                                                                                                                           ]);
                                                                                                                 end end)
                                                                                                             ],
-                                                                                                            --[ :: ]--[
-                                                                                                              --[ tuple ]--[
+                                                                                                            --[[ :: ]][
+                                                                                                              --[[ tuple ]][
                                                                                                                 "setUTCMinutesSMs",
                                                                                                                 (function (param) do
                                                                                                                     d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                     d.setUTCMinutes(18, 42, 311);
-                                                                                                                    return --[ Eq ]--Block.__(0, [
-                                                                                                                              --[ tuple ]--[
+                                                                                                                    return --[[ Eq ]]Block.__(0, [
+                                                                                                                              --[[ tuple ]][
                                                                                                                                 18,
                                                                                                                                 42,
                                                                                                                                 311
                                                                                                                               ],
-                                                                                                                              --[ tuple ]--[
+                                                                                                                              --[[ tuple ]][
                                                                                                                                 d.getUTCMinutes(),
                                                                                                                                 d.getUTCSeconds(),
                                                                                                                                 d.getUTCMilliseconds()
@@ -822,137 +822,137 @@ suites_001 = --[ :: ]--[
                                                                                                                             ]);
                                                                                                                   end end)
                                                                                                               ],
-                                                                                                              --[ :: ]--[
-                                                                                                                --[ tuple ]--[
+                                                                                                              --[[ :: ]][
+                                                                                                                --[[ tuple ]][
                                                                                                                   "setUTCMonth",
                                                                                                                   (function (param) do
                                                                                                                       d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                       d.setUTCMonth(10);
-                                                                                                                      return --[ Eq ]--Block.__(0, [
+                                                                                                                      return --[[ Eq ]]Block.__(0, [
                                                                                                                                 10,
                                                                                                                                 d.getUTCMonth()
                                                                                                                               ]);
                                                                                                                     end end)
                                                                                                                 ],
-                                                                                                                --[ :: ]--[
-                                                                                                                  --[ tuple ]--[
+                                                                                                                --[[ :: ]][
+                                                                                                                  --[[ tuple ]][
                                                                                                                     "setUTCMonthD",
                                                                                                                     (function (param) do
                                                                                                                         d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                         d.setUTCMonth(10, 14);
-                                                                                                                        return --[ Eq ]--Block.__(0, [
-                                                                                                                                  --[ tuple ]--[
+                                                                                                                        return --[[ Eq ]]Block.__(0, [
+                                                                                                                                  --[[ tuple ]][
                                                                                                                                     10,
                                                                                                                                     14
                                                                                                                                   ],
-                                                                                                                                  --[ tuple ]--[
+                                                                                                                                  --[[ tuple ]][
                                                                                                                                     d.getUTCMonth(),
                                                                                                                                     d.getUTCDate()
                                                                                                                                   ]
                                                                                                                                 ]);
                                                                                                                       end end)
                                                                                                                   ],
-                                                                                                                  --[ :: ]--[
-                                                                                                                    --[ tuple ]--[
+                                                                                                                  --[[ :: ]][
+                                                                                                                    --[[ tuple ]][
                                                                                                                       "setUTCSeconds",
                                                                                                                       (function (param) do
                                                                                                                           d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                           d.setUTCSeconds(36);
-                                                                                                                          return --[ Eq ]--Block.__(0, [
+                                                                                                                          return --[[ Eq ]]Block.__(0, [
                                                                                                                                     36,
                                                                                                                                     d.getUTCSeconds()
                                                                                                                                   ]);
                                                                                                                         end end)
                                                                                                                     ],
-                                                                                                                    --[ :: ]--[
-                                                                                                                      --[ tuple ]--[
+                                                                                                                    --[[ :: ]][
+                                                                                                                      --[[ tuple ]][
                                                                                                                         "setUTCSecondsMs",
                                                                                                                         (function (param) do
                                                                                                                             d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                             d.setUTCSeconds(36, 420);
-                                                                                                                            return --[ Eq ]--Block.__(0, [
-                                                                                                                                      --[ tuple ]--[
+                                                                                                                            return --[[ Eq ]]Block.__(0, [
+                                                                                                                                      --[[ tuple ]][
                                                                                                                                         36,
                                                                                                                                         420
                                                                                                                                       ],
-                                                                                                                                      --[ tuple ]--[
+                                                                                                                                      --[[ tuple ]][
                                                                                                                                         d.getUTCSeconds(),
                                                                                                                                         d.getUTCMilliseconds()
                                                                                                                                       ]
                                                                                                                                     ]);
                                                                                                                           end end)
                                                                                                                       ],
-                                                                                                                      --[ :: ]--[
-                                                                                                                        --[ tuple ]--[
+                                                                                                                      --[[ :: ]][
+                                                                                                                        --[[ tuple ]][
                                                                                                                           "toDateString",
                                                                                                                           (function (param) do
-                                                                                                                              return --[ Eq ]--Block.__(0, [
+                                                                                                                              return --[[ Eq ]]Block.__(0, [
                                                                                                                                         "Mon Mar 08 1976",
                                                                                                                                         new Date("1976-03-08T12:34:56.789+01:23").toDateString()
                                                                                                                                       ]);
                                                                                                                             end end)
                                                                                                                         ],
-                                                                                                                        --[ :: ]--[
-                                                                                                                          --[ tuple ]--[
+                                                                                                                        --[[ :: ]][
+                                                                                                                          --[[ tuple ]][
                                                                                                                             "toGMTString",
                                                                                                                             (function (param) do
-                                                                                                                                return --[ Eq ]--Block.__(0, [
+                                                                                                                                return --[[ Eq ]]Block.__(0, [
                                                                                                                                           "Mon, 08 Mar 1976 11:11:56 GMT",
                                                                                                                                           new Date("1976-03-08T12:34:56.789+01:23").toUTCString()
                                                                                                                                         ]);
                                                                                                                               end end)
                                                                                                                           ],
-                                                                                                                          --[ :: ]--[
-                                                                                                                            --[ tuple ]--[
+                                                                                                                          --[[ :: ]][
+                                                                                                                            --[[ tuple ]][
                                                                                                                               "toISOString",
                                                                                                                               (function (param) do
-                                                                                                                                  return --[ Eq ]--Block.__(0, [
+                                                                                                                                  return --[[ Eq ]]Block.__(0, [
                                                                                                                                             "1976-03-08T11:11:56.789Z",
                                                                                                                                             new Date("1976-03-08T12:34:56.789+01:23").toISOString()
                                                                                                                                           ]);
                                                                                                                                 end end)
                                                                                                                             ],
-                                                                                                                            --[ :: ]--[
-                                                                                                                              --[ tuple ]--[
+                                                                                                                            --[[ :: ]][
+                                                                                                                              --[[ tuple ]][
                                                                                                                                 "toJSON",
                                                                                                                                 (function (param) do
-                                                                                                                                    return --[ Eq ]--Block.__(0, [
+                                                                                                                                    return --[[ Eq ]]Block.__(0, [
                                                                                                                                               "1976-03-08T11:11:56.789Z",
                                                                                                                                               new Date("1976-03-08T12:34:56.789+01:23").toJSON()
                                                                                                                                             ]);
                                                                                                                                   end end)
                                                                                                                               ],
-                                                                                                                              --[ :: ]--[
-                                                                                                                                --[ tuple ]--[
+                                                                                                                              --[[ :: ]][
+                                                                                                                                --[[ tuple ]][
                                                                                                                                   "toJSONUnsafe",
                                                                                                                                   (function (param) do
-                                                                                                                                      return --[ Eq ]--Block.__(0, [
+                                                                                                                                      return --[[ Eq ]]Block.__(0, [
                                                                                                                                                 "1976-03-08T11:11:56.789Z",
                                                                                                                                                 new Date("1976-03-08T12:34:56.789+01:23").toJSON()
                                                                                                                                               ]);
                                                                                                                                     end end)
                                                                                                                                 ],
-                                                                                                                                --[ :: ]--[
-                                                                                                                                  --[ tuple ]--[
+                                                                                                                                --[[ :: ]][
+                                                                                                                                  --[[ tuple ]][
                                                                                                                                     "toUTCString",
                                                                                                                                     (function (param) do
-                                                                                                                                        return --[ Eq ]--Block.__(0, [
+                                                                                                                                        return --[[ Eq ]]Block.__(0, [
                                                                                                                                                   "Mon, 08 Mar 1976 11:11:56 GMT",
                                                                                                                                                   new Date("1976-03-08T12:34:56.789+01:23").toUTCString()
                                                                                                                                                 ]);
                                                                                                                                       end end)
                                                                                                                                   ],
-                                                                                                                                  --[ :: ]--[
-                                                                                                                                    --[ tuple ]--[
+                                                                                                                                  --[[ :: ]][
+                                                                                                                                    --[[ tuple ]][
                                                                                                                                       "eq",
                                                                                                                                       (function (param) do
                                                                                                                                           a = new Date("2013-03-01T01:10:00");
                                                                                                                                           b = new Date("2013-03-01T01:10:00");
                                                                                                                                           c = new Date("2013-03-01T01:10:01");
-                                                                                                                                          return --[ Ok ]--Block.__(4, [Caml_obj.caml_equal(a, b) and Caml_obj.caml_notequal(b, c) and Caml_obj.caml_greaterthan(c, b)]);
+                                                                                                                                          return --[[ Ok ]]Block.__(4, [Caml_obj.caml_equal(a, b) and Caml_obj.caml_notequal(b, c) and Caml_obj.caml_greaterthan(c, b)]);
                                                                                                                                         end end)
                                                                                                                                     ],
-                                                                                                                                    --[ [] ]--0
+                                                                                                                                    --[[ [] ]]0
                                                                                                                                   ]
                                                                                                                                 ]
                                                                                                                               ]
@@ -1020,16 +1020,16 @@ suites_001 = --[ :: ]--[
   ]
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
   suites_001
 ];
 
 Mt.from_pair_suites("Js_date_test", suites);
 
-N = --[ alias ]--0;
+N = --[[ alias ]]0;
 
 exports.N = N;
 exports.date = date;
 exports.suites = suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

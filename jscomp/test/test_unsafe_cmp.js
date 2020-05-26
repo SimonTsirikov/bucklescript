@@ -2,7 +2,7 @@
 
 
 function f(x, y) do
-  return --[ tuple ]--[
+  return --[[ tuple ]][
           x < y,
           x <= y,
           x > y,
@@ -20,4 +20,4 @@ end end
 
 exports.f = f;
 exports.ff = ff;
---[ No side effect ]--
+--[[ No side effect ]]

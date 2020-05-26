@@ -40,23 +40,23 @@ end end
 
 function basename(param) do
   return generic_basename((function (s, i) do
-                return Caml_string.get(s, i) == --[ "/" ]--47;
+                return Caml_string.get(s, i) == --[[ "/" ]]47;
               end end), Filename.current_dir_name, param);
 end end
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "basename",
   (function (param) do
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 basename("b/c/a.b"),
                 "a.b"
               ]);
     end end)
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
-  --[ [] ]--0
+  --[[ [] ]]0
 ];
 
 Mt.from_pair_suites("Inline_regression_test", suites);
@@ -64,4 +64,4 @@ Mt.from_pair_suites("Inline_regression_test", suites);
 exports.generic_basename = generic_basename;
 exports.basename = basename;
 exports.suites = suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

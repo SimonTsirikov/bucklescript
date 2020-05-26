@@ -37,7 +37,7 @@ function with_file_as_pp(filename, f) do
   return $$finally(Pervasives.open_out_bin(filename), Pervasives.close_out, (function (chan) do
                 fmt = Format.formatter_of_out_channel(chan);
                 v = Curry._1(f, fmt);
-                Format.pp_print_flush(fmt, --[ () ]--0);
+                Format.pp_print_flush(fmt, --[[ () ]]0);
                 return v;
               end end));
 end end
@@ -106,7 +106,7 @@ function dump(r) do
         if (n ~= 0) then do
           n$1 = n - 1 | 0;
           _n = n$1;
-          _acc = --[ :: ]--[
+          _acc = --[[ :: ]][
             r[n$1],
             acc
           ];
@@ -135,11 +135,11 @@ function dump(r) do
     end end;
     get_list = function (r) do
       if (typeof r == "number") then do
-        return --[ [] ]--0;
+        return --[[ [] ]]0;
       end else do
         h = r[0];
         t = get_list(r[1]);
-        return --[ :: ]--[
+        return --[[ :: ]][
                 h,
                 t
               ];
@@ -156,12 +156,12 @@ function dump(r) do
       end else if (t == Obj.closure_tag) then do
         return "<closure>";
       end else if (t == Obj.object_tag) then do
-        fields$1 = get_fields(--[ [] ]--0, s);
+        fields$1 = get_fields(--[[ [] ]]0, s);
         match;
         if (fields$1) then do
           match$1 = fields$1[1];
           if (match$1) then do
-            match = --[ tuple ]--[
+            match = --[[ tuple ]][
               fields$1[0],
               match$1[0],
               match$1[1]
@@ -169,7 +169,7 @@ function dump(r) do
           end else do
             throw [
                   Caml_builtin_exceptions.assert_failure,
-                  --[ tuple ]--[
+                  --[[ tuple ]][
                     "ext_pervasives_test.ml",
                     118,
                     15
@@ -179,7 +179,7 @@ function dump(r) do
         end else do
           throw [
                 Caml_builtin_exceptions.assert_failure,
-                --[ tuple ]--[
+                --[[ tuple ]][
                   "ext_pervasives_test.ml",
                   118,
                   15
@@ -192,7 +192,7 @@ function dump(r) do
       end else if (t == Obj.forward_tag) then do
         return "<forward>";
       end else if (t < Obj.no_scan_tag) then do
-        fields$2 = get_fields(--[ [] ]--0, s);
+        fields$2 = get_fields(--[[ [] ]]0, s);
         return "Tag" .. (String(t) .. (" (" .. ($$String.concat(", ", List.map(dump, fields$2)) .. ")")));
       end else if (t == Obj.string_tag) then do
         return "\"" .. ($$String.escaped(r) .. "\"");
@@ -207,20 +207,20 @@ function dump(r) do
       end else if (t == Obj.double_array_tag) then do
         return "[|" .. ($$String.concat(";", $$Array.to_list($$Array.map(Pervasives.string_of_float, r))) .. "|]");
       end else do
-        name = Curry._2(Printf.sprintf(--[ Format ]--[
-                  --[ String_literal ]--Block.__(11, [
+        name = Curry._2(Printf.sprintf(--[[ Format ]][
+                  --[[ String_literal ]]Block.__(11, [
                       "unknown: tag ",
-                      --[ Int ]--Block.__(4, [
-                          --[ Int_d ]--0,
-                          --[ No_padding ]--0,
-                          --[ No_precision ]--0,
-                          --[ String_literal ]--Block.__(11, [
+                      --[[ Int ]]Block.__(4, [
+                          --[[ Int_d ]]0,
+                          --[[ No_padding ]]0,
+                          --[[ No_precision ]]0,
+                          --[[ String_literal ]]Block.__(11, [
                               " size ",
-                              --[ Int ]--Block.__(4, [
-                                  --[ Int_d ]--0,
-                                  --[ No_padding ]--0,
-                                  --[ No_precision ]--0,
-                                  --[ End_of_format ]--0
+                              --[[ Int ]]Block.__(4, [
+                                  --[[ Int_d ]]0,
+                                  --[[ No_padding ]]0,
+                                  --[[ No_precision ]]0,
+                                  --[[ End_of_format ]]0
                                 ])
                             ])
                         ])
@@ -230,7 +230,7 @@ function dump(r) do
         return "<" .. (name .. ">");
       end end  end  end  end  end  end  end  end  end  end  end  end 
     end else do
-      fields$3 = get_fields(--[ [] ]--0, s);
+      fields$3 = get_fields(--[[ [] ]]0, s);
       return "(" .. ($$String.concat(", ", List.map(dump, fields$3)) .. ")");
     end end  end 
   end end 
@@ -239,17 +239,17 @@ end end
 dump$1 = dump;
 
 function pp_any(fmt, v) do
-  return Curry._1(Format.fprintf(fmt, --[ Format ]--[
-                  --[ Formatting_gen ]--Block.__(18, [
-                      --[ Open_box ]--Block.__(1, [--[ Format ]--[
-                            --[ End_of_format ]--0,
+  return Curry._1(Format.fprintf(fmt, --[[ Format ]][
+                  --[[ Formatting_gen ]]Block.__(18, [
+                      --[[ Open_box ]]Block.__(1, [--[[ Format ]][
+                            --[[ End_of_format ]]0,
                             ""
                           ]]),
-                      --[ String ]--Block.__(2, [
-                          --[ No_padding ]--0,
-                          --[ Formatting_lit ]--Block.__(17, [
-                              --[ Close_box ]--0,
-                              --[ End_of_format ]--0
+                      --[[ String ]]Block.__(2, [
+                          --[[ No_padding ]]0,
+                          --[[ Formatting_lit ]]Block.__(17, [
+                              --[[ Close_box ]]0,
+                              --[[ End_of_format ]]0
                             ])
                         ])
                     ]),
@@ -280,4 +280,4 @@ exports.bad_argf = bad_argf;
 exports.dump = dump$1;
 exports.pp_any = pp_any;
 exports.hash_variant = hash_variant;
---[ Format Not a pure module ]--
+--[[ Format Not a pure module ]]

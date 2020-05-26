@@ -6,7 +6,7 @@ Path = require("path");
 Block = require("../../lib/js/block.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -17,11 +17,11 @@ function eq(loc, param) do
   y = param[1];
   x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -29,7 +29,7 @@ function eq(loc, param) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 match = typeof __filename == "undefined" and undefined or __filename;
@@ -49,11 +49,11 @@ pathobj = Path.parse(current_dir_name);
 match$2 = typeof module == "undefined" and undefined or module;
 
 if (match$2 ~= undefined) then do
-  console.log(--[ tuple ]--[
+  console.log(--[[ tuple ]][
         match$2.id,
         match$2.paths
       ]);
-  eq("File \"fs_test.ml\", line 45, characters 7-14", --[ tuple ]--[
+  eq("File \"fs_test.ml\", line 45, characters 7-14", --[[ tuple ]][
         pathobj.name,
         "test"
       ]);
@@ -65,4 +65,4 @@ Mt.from_pair_suites("Fs_test", suites.contents);
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
---[ match Not a pure module ]--
+--[[ match Not a pure module ]]

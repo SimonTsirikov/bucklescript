@@ -4,7 +4,7 @@ Mt = require("./mt.js");
 Caml_option = require("../../lib/js/caml_option.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -36,7 +36,7 @@ function makeWrapper(foo, param) do
   end
    end 
   console.log(tmp);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function makeWrapper2(foo, param) do
@@ -53,10 +53,10 @@ function makeWrapper2(foo, param) do
               end
             end end)()
       end);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-makeWrapper2(--[ a ]--97, --[ () ]--0);
+makeWrapper2(--[[ a ]]97, --[[ () ]]0);
 
 function makeWrapper3(foo, param) do
   console.log(2);
@@ -82,7 +82,7 @@ function makeWrapper4(foo, param) do
   console.log(2);
   tmp = { };
   tmp$1 = foo > 100 and undefined or (
-      foo > 10 and --[ b ]--98 or --[ a ]--97
+      foo > 10 and --[[ b ]]98 or --[[ a ]]97
     );
   if (tmp$1 ~= undefined) then do
     tmp.foo = (function () do
@@ -101,15 +101,15 @@ function makeWrapper4(foo, param) do
   return tmp;
 end end
 
-b("File \"gpr_2503_test.ml\", line 31, characters 5-12", "a" == makeWrapper3(--[ a ]--97, --[ () ]--0).foo);
+b("File \"gpr_2503_test.ml\", line 31, characters 5-12", "a" == makeWrapper3(--[[ a ]]97, --[[ () ]]0).foo);
 
-b("File \"gpr_2503_test.ml\", line 34, characters 5-12", undefined == makeWrapper3(undefined, --[ () ]--0).foo);
+b("File \"gpr_2503_test.ml\", line 34, characters 5-12", undefined == makeWrapper3(undefined, --[[ () ]]0).foo);
 
-b("File \"gpr_2503_test.ml\", line 37, characters 5-12", "a" == makeWrapper4(1, --[ () ]--0).foo);
+b("File \"gpr_2503_test.ml\", line 37, characters 5-12", "a" == makeWrapper4(1, --[[ () ]]0).foo);
 
-b("File \"gpr_2503_test.ml\", line 40, characters 5-12", "b" == makeWrapper4(11, --[ () ]--0).foo);
+b("File \"gpr_2503_test.ml\", line 40, characters 5-12", "b" == makeWrapper4(11, --[[ () ]]0).foo);
 
-b("File \"gpr_2503_test.ml\", line 43, characters 5-12", undefined == makeWrapper4(111, --[ () ]--0).foo);
+b("File \"gpr_2503_test.ml\", line 43, characters 5-12", undefined == makeWrapper4(111, --[[ () ]]0).foo);
 
 Mt.from_pair_suites("Gpr_2503_test", suites.contents);
 
@@ -121,4 +121,4 @@ exports.makeWrapper = makeWrapper;
 exports.makeWrapper2 = makeWrapper2;
 exports.makeWrapper3 = makeWrapper3;
 exports.makeWrapper4 = makeWrapper4;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

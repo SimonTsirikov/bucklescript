@@ -18,7 +18,7 @@ x3 = /ghoghos/;
 
 function f(x) do
   --eslint-disable
-  --[hgosgh ]--
+  --[[hgosgh ]]
   return x;
 end end
 
@@ -29,4 +29,4 @@ exports.x2 = x2;
 exports.x3 = x3;
 exports.hh = hh;
 exports.f = f;
---[ No side effect ]--
+--[[ No side effect ]]

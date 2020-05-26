@@ -17,4 +17,4 @@ even = odd;
 
 exports.odd = odd;
 exports.even = even;
---[ No side effect ]--
+--[[ No side effect ]]

@@ -5,7 +5,7 @@ Caml_option = require("../../lib/js/caml_option.js");
 Gpr_3566_test = require("./gpr_3566_test.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -34,4 +34,4 @@ exports.eq = eq;
 exports.H = H;
 exports.Caml_option = Caml_option$1;
 exports.f = f;
---[ H Not a pure module ]--
+--[[ H Not a pure module ]]

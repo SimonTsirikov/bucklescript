@@ -25,4 +25,4 @@ console.log((do
 
 exports.x = x;
 exports.zz = zz;
---[ x Not a pure module ]--
+--[[ x Not a pure module ]]

@@ -49,19 +49,19 @@ function translate(lexbuf) do
   return __ocaml_lex_translate_rec(lexbuf, 0);
 end end
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "translate",
   (function (param) do
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 __ocaml_lex_translate_rec(Lexing.from_string("-- current_directory --"), 0),
                 "-- . --"
               ]);
     end end)
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
-  --[ [] ]--0
+  --[[ [] ]]0
 ];
 
 Mt.from_pair_suites("Simple_lexer_test", suites);
@@ -70,4 +70,4 @@ exports.__ocaml_lex_tables = __ocaml_lex_tables;
 exports.translate = translate;
 exports.__ocaml_lex_translate_rec = __ocaml_lex_translate_rec;
 exports.suites = suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

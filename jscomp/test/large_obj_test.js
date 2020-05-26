@@ -594,7 +594,7 @@ raw_object = obj_init(0);
 if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "large_obj_test.ml",
           124,
           10
@@ -922,7 +922,7 @@ v = Curry._2(raw_class[0], 0, 3);
 if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "large_obj_test.ml",
           251,
           2
@@ -934,4 +934,4 @@ end
 exports.raw_object = raw_object;
 exports.raw_class = raw_class;
 exports.v = v;
---[ class Not a pure module ]--
+--[[ class Not a pure module ]]

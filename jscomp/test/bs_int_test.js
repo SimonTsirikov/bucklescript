@@ -5,7 +5,7 @@ Block = require("../../lib/js/block.js");
 Belt_Int = require("../../lib/js/belt_Int.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -26,11 +26,11 @@ end end
 
 function neq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Neq ]--Block.__(1, [
+          return --[[ Neq ]]Block.__(1, [
                     x,
                     y
                   ]);
@@ -38,7 +38,7 @@ function neq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 eq("File \"bs_int_test.ml\", line 14, characters 5-12", 1, 1.0);
@@ -85,7 +85,7 @@ eq("File \"bs_int_test.ml\", line 43, characters 5-12", 0, 0);
 
 Mt.from_pair_suites("File \"bs_int_test.ml\", line 45, characters 23-30", suites.contents);
 
-I = --[ alias ]--0;
+I = --[[ alias ]]0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -94,4 +94,4 @@ exports.b = b;
 exports.$$throw = $$throw;
 exports.neq = neq;
 exports.I = I;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

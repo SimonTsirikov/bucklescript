@@ -10,7 +10,7 @@ Caml_primitive = require("../../lib/js/caml_primitive.js");
 Array_data_util = require("./array_data_util.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -45,7 +45,7 @@ end end
 function mergeInter(s1, s2) do
   m = Belt_Map.merge(s1, s2, (function (k, v1, v2) do
           if (v1 ~= undefined and v2 ~= undefined) then do
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end
            end 
         end end));
@@ -56,7 +56,7 @@ end end
 function mergeUnion(s1, s2) do
   m = Belt_Map.merge(s1, s2, (function (k, v1, v2) do
           if (v1 ~= undefined or v2 ~= undefined) then do
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end
            end 
         end end));
@@ -67,7 +67,7 @@ end end
 function mergeDiff(s1, s2) do
   m = Belt_Map.merge(s1, s2, (function (k, v1, v2) do
           if (v1 ~= undefined and v2 == undefined) then do
-            return --[ () ]--0;
+            return --[[ () ]]0;
           end
            end 
         end end));
@@ -77,7 +77,7 @@ end end
 
 function randomRange(i, j) do
   return Belt_Array.map(Array_data_util.randomRange(i, j), (function (x) do
-                return --[ tuple ]--[
+                return --[[ tuple ]][
                         x,
                         x
                       ];
@@ -206,7 +206,7 @@ end;
 m1 = acc(m, Belt_Array.concat(Array_data_util.randomRange(0, 20), Array_data_util.randomRange(10, 30)));
 
 x$8 = Belt_Array.makeBy(31, (function (i) do
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 i,
                 i >= 10 and i <= 20 and 2 or 1
               ];
@@ -222,14 +222,14 @@ v0 = do
 end;
 
 v1 = Belt_Map.mergeMany(v0, Belt_Array.map(Array_data_util.randomRange(0, 10000), (function (x) do
-            return --[ tuple ]--[
+            return --[[ tuple ]][
                     x,
                     x
                   ];
           end end)));
 
 x$9 = Belt_Array.map(Array_data_util.randomRange(0, 10000), (function (x) do
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 x,
                 x
               ];
@@ -321,13 +321,13 @@ b("File \"bs_poly_map_test.ml\", line 139, characters 4-11", Belt_Array.eq(Belt_
 
 Mt.from_pair_suites("Bs_poly_map_test", suites.contents);
 
-M = --[ alias ]--0;
+M = --[[ alias ]]0;
 
-N = --[ alias ]--0;
+N = --[[ alias ]]0;
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
-I = --[ alias ]--0;
+I = --[[ alias ]]0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -346,4 +346,4 @@ exports.mergeUnion = mergeUnion;
 exports.mergeDiff = mergeDiff;
 exports.randomRange = randomRange;
 exports.acc = acc;
---[ Icmp Not a pure module ]--
+--[[ Icmp Not a pure module ]]

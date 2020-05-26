@@ -27,7 +27,7 @@ node_parent = "..";
 node_current = ".";
 
 cwd = Caml_obj.caml_lazy_make((function (param) do
-        return Caml_sys.caml_sys_getcwd(--[ () ]--0);
+        return Caml_sys.caml_sys_getcwd(--[[ () ]]0);
       end end));
 
 function path_as_directory(x) do
@@ -69,18 +69,18 @@ function chop_extension(locOpt, name) do
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
-      return Curry._2(Format.ksprintf(Pervasives.invalid_arg, --[ Format ]--[
-                      --[ String_literal ]--Block.__(11, [
+      return Curry._2(Format.ksprintf(Pervasives.invalid_arg, --[[ Format ]][
+                      --[[ String_literal ]]Block.__(11, [
                           "Filename.chop_extension ( ",
-                          --[ String ]--Block.__(2, [
-                              --[ No_padding ]--0,
-                              --[ String_literal ]--Block.__(11, [
+                          --[[ String ]]Block.__(2, [
+                              --[[ No_padding ]]0,
+                              --[[ String_literal ]]Block.__(11, [
                                   " : ",
-                                  --[ String ]--Block.__(2, [
-                                      --[ No_padding ]--0,
-                                      --[ String_literal ]--Block.__(11, [
+                                  --[[ String ]]Block.__(2, [
+                                      --[[ No_padding ]]0,
+                                      --[[ String_literal ]]Block.__(11, [
                                           " )",
-                                          --[ End_of_format ]--0
+                                          --[[ End_of_format ]]0
                                         ])
                                     ])
                                 ])
@@ -134,7 +134,7 @@ function relative_path(file_or_dir_1, file_or_dir_2) do
   if (ys and ys[0] == node_parent) then do
     return $$String.concat(node_sep, ys);
   end else do
-    return $$String.concat(node_sep, --[ :: ]--[
+    return $$String.concat(node_sep, --[[ :: ]][
                 node_current,
                 ys
               ]);
@@ -150,19 +150,19 @@ function node_relative_path(node_modules_shorten, file1, dep_file) do
       while(true) do
         i = _i;
         if (i >= len) then do
-          return Curry._1(Ext_pervasives_test.failwithf("File \"ext_filename_test.ml\", line 162, characters 43-50", --[ Format ]--[
-                          --[ String_literal ]--Block.__(11, [
+          return Curry._1(Ext_pervasives_test.failwithf("File \"ext_filename_test.ml\", line 162, characters 43-50", --[[ Format ]][
+                          --[[ String_literal ]]Block.__(11, [
                               "invalid path: ",
-                              --[ String ]--Block.__(2, [
-                                  --[ No_padding ]--0,
-                                  --[ End_of_format ]--0
+                              --[[ String ]]Block.__(2, [
+                                  --[[ No_padding ]]0,
+                                  --[[ End_of_format ]]0
                                 ])
                             ]),
                           "invalid path: %s"
                         ]), file2);
         end else do
           curr_char = file2.charCodeAt(i);
-          if (curr_char == os_path_separator_char or curr_char == --[ "." ]--46) then do
+          if (curr_char == os_path_separator_char or curr_char == --[[ "." ]]46) then do
             _i = i + 1 | 0;
             continue ;
           end else do
@@ -173,16 +173,16 @@ function node_relative_path(node_modules_shorten, file1, dep_file) do
     end end;
     return Ext_string_test.tail_from(file2, skip(v + Test_literals.node_modules_length | 0));
   end else do
-    return relative_path(dep_file[0] >= 781515420 and --[ `File ]--[
+    return relative_path(dep_file[0] >= 781515420 and --[[ `File ]][
                   781515420,
                   absolute_path(dep_file[1])
-                ] or --[ `Dir ]--[
+                ] or --[[ `Dir ]][
                   3405101,
                   absolute_path(dep_file[1])
-                ], file1[0] >= 781515420 and --[ `File ]--[
+                ], file1[0] >= 781515420 and --[[ `File ]][
                   781515420,
                   absolute_path(file1[1])
-                ] or --[ `Dir ]--[
+                ] or --[[ `Dir ]][
                   3405101,
                   absolute_path(file1[1])
                 ]) .. (node_sep .. Curry._1(Filename.basename, file2));
@@ -200,14 +200,14 @@ function find_root_filename(_cwd, filename) do
         _cwd = cwd$prime;
         continue ;
       end else do
-        return Curry._2(Ext_pervasives_test.failwithf("File \"ext_filename_test.ml\", line 205, characters 13-20", --[ Format ]--[
-                        --[ String ]--Block.__(2, [
-                            --[ No_padding ]--0,
-                            --[ String_literal ]--Block.__(11, [
+        return Curry._2(Ext_pervasives_test.failwithf("File \"ext_filename_test.ml\", line 205, characters 13-20", --[[ Format ]][
+                        --[[ String ]]Block.__(2, [
+                            --[[ No_padding ]]0,
+                            --[[ String_literal ]]Block.__(11, [
                                 " not found from ",
-                                --[ String ]--Block.__(2, [
-                                    --[ No_padding ]--0,
-                                    --[ End_of_format ]--0
+                                --[[ String ]]Block.__(2, [
+                                    --[[ No_padding ]]0,
+                                    --[[ End_of_format ]]0
                                   ])
                               ])
                           ]),
@@ -251,13 +251,13 @@ end end
 
 function split_aux(p) do
   _p = p;
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   while(true) do
     acc = _acc;
     p$1 = _p;
     dir = Curry._1(Filename.dirname, p$1);
     if (dir == p$1) then do
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               dir,
               acc
             ];
@@ -267,7 +267,7 @@ function split_aux(p) do
         _p = dir;
         continue ;
       end else do
-        _acc = --[ :: ]--[
+        _acc = --[[ :: ]][
           new_path,
           acc
         ];
@@ -322,7 +322,7 @@ function normalize_absolute_path(x) do
     if (xs) then do
       return xs[1];
     end else do
-      return --[ [] ]--0;
+      return --[[ [] ]]0;
     end end 
   end end;
   normalize_list = function (_acc, _paths) do
@@ -339,7 +339,7 @@ function normalize_absolute_path(x) do
           _acc = drop_if_exist(acc);
           continue ;
         end else do
-          _acc = --[ :: ]--[
+          _acc = --[[ :: ]][
             x,
             acc
           ];
@@ -352,7 +352,7 @@ function normalize_absolute_path(x) do
   end end;
   match = split_aux(x);
   root = match[0];
-  rev_paths = normalize_list(--[ [] ]--0, match[1]);
+  rev_paths = normalize_list(--[[ [] ]]0, match[1]);
   if (rev_paths) then do
     _acc = rev_paths[0];
     _rev_paths = rev_paths[1];
@@ -373,7 +373,7 @@ function normalize_absolute_path(x) do
 end end
 
 function get_extension(x) do
-  pos = Ext_string_test.rindex_neg(x, --[ "." ]--46);
+  pos = Ext_string_test.rindex_neg(x, --[[ "." ]]46);
   if (pos < 0) then do
     return "";
   end else do
@@ -422,4 +422,4 @@ exports.rel_normalized_absolute_path = rel_normalized_absolute_path;
 exports.normalize_absolute_path = normalize_absolute_path;
 exports.get_extension = get_extension;
 exports.simple_convert_node_path_to_os_path = simple_convert_node_path_to_os_path;
---[ simple_convert_node_path_to_os_path Not a pure module ]--
+--[[ simple_convert_node_path_to_os_path Not a pure module ]]

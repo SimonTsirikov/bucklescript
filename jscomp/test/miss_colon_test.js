@@ -15,28 +15,28 @@ function $plus$colon(_f, _g) do
         end
          end 
       end else do
-        return --[ Int ]--Block.__(0, [n + g[0] | 0]);
+        return --[[ Int ]]Block.__(0, [n + g[0] | 0]);
       end end 
     end
      end 
     local ___conditional___=(g.tag | 0);
     do
-       if ___conditional___ = 0--[ Int ]-- then do
+       if ___conditional___ = 0--[[ Int ]] then do
           if (g[0] ~= 0) then do
-            return --[ Add ]--Block.__(2, [
+            return --[[ Add ]]Block.__(2, [
                       f,
                       g
                     ]);
           end else do
             return f;
           end end end end end 
-       if ___conditional___ = 2--[ Add ]-- then do
+       if ___conditional___ = 2--[[ Add ]] then do
           _g = g[1];
           _f = $plus$colon(f, g[0]);
           continue ;end end end 
-       if ___conditional___ = 1--[ Var ]--
-       or ___conditional___ = 3--[ Mul ]-- then do
-          return --[ Add ]--Block.__(2, [
+       if ___conditional___ = 1--[[ Var ]]
+       or ___conditional___ = 3--[[ Mul ]] then do
+          return --[[ Add ]]Block.__(2, [
                     f,
                     g
                   ]);end end end 
@@ -60,17 +60,17 @@ function $star$colon(_f, _g) do
         if (n ~= 0) then do
           exit$1 = 3;
         end else do
-          return --[ Int ]--Block.__(0, [0]);
+          return --[[ Int ]]Block.__(0, [0]);
         end end 
       end else do
-        return --[ Int ]--Block.__(0, [Caml_int32.imul(n, g[0])]);
+        return --[[ Int ]]Block.__(0, [Caml_int32.imul(n, g[0])]);
       end end 
     end end 
     if (exit$1 == 3) then do
       if (g.tag or g[0] ~= 0) then do
         exit = 2;
       end else do
-        return --[ Int ]--Block.__(0, [0]);
+        return --[[ Int ]]Block.__(0, [0]);
       end end 
     end
      end 
@@ -80,22 +80,22 @@ function $star$colon(_f, _g) do
      end 
     local ___conditional___=(g.tag | 0);
     do
-       if ___conditional___ = 0--[ Int ]-- then do
+       if ___conditional___ = 0--[[ Int ]] then do
           if (g[0] ~= 1) then do
-            return --[ Mul ]--Block.__(3, [
+            return --[[ Mul ]]Block.__(3, [
                       f,
                       g
                     ]);
           end else do
             return f;
           end end end end end 
-       if ___conditional___ = 1--[ Var ]--
-       or ___conditional___ = 2--[ Add ]-- then do
-          return --[ Mul ]--Block.__(3, [
+       if ___conditional___ = 1--[[ Var ]]
+       or ___conditional___ = 2--[[ Add ]] then do
+          return --[[ Mul ]]Block.__(3, [
                     f,
                     g
                   ]);end end end 
-       if ___conditional___ = 3--[ Mul ]-- then do
+       if ___conditional___ = 3--[[ Mul ]] then do
           _g = g[1];
           _f = $star$colon(f, g[0]);
           continue ;end end end 
@@ -108,12 +108,12 @@ end end
 function simplify(f) do
   local ___conditional___=(f.tag | 0);
   do
-     if ___conditional___ = 0--[ Int ]--
-     or ___conditional___ = 1--[ Var ]-- then do
+     if ___conditional___ = 0--[[ Int ]]
+     or ___conditional___ = 1--[[ Var ]] then do
         return f;end end end 
-     if ___conditional___ = 2--[ Add ]-- then do
+     if ___conditional___ = 2--[[ Add ]] then do
         return $plus$colon(simplify(f[0]), simplify(f[1]));end end end 
-     if ___conditional___ = 3--[ Mul ]-- then do
+     if ___conditional___ = 3--[[ Mul ]] then do
         return $star$colon(simplify(f[0]), simplify(f[1]));end end end 
      do
     
@@ -123,4 +123,4 @@ end end
 exports.$plus$colon = $plus$colon;
 exports.$star$colon = $star$colon;
 exports.simplify = simplify;
---[ No side effect ]--
+--[[ No side effect ]]

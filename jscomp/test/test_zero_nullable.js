@@ -6,7 +6,7 @@ Curry = require("../../lib/js/curry.js");
 Caml_option = require("../../lib/js/caml_option.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -15,11 +15,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -27,7 +27,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function f1(x) do
@@ -305,4 +305,4 @@ exports.eq = eq;
 exports.Test_null = Test_null;
 exports.Test_def = Test_def;
 exports.Test_null_def = Test_null_def;
---[ u Not a pure module ]--
+--[[ u Not a pure module ]]

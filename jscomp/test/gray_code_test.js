@@ -23,14 +23,14 @@ function gray_decode(n) do
 end end
 
 function bool_string(len, n) do
-  s = Bytes.make(len, --[ "0" ]--48);
+  s = Bytes.make(len, --[[ "0" ]]48);
   _i = len - 1 | 0;
   _n = n;
   while(true) do
     n$1 = _n;
     i = _i;
     if ((n$1 & 1) == 1) then do
-      s[i] = --[ "1" ]--49;
+      s[i] = --[[ "1" ]]49;
     end
      end 
     if (i <= 0) then do
@@ -57,4 +57,4 @@ exports.gray_encode = gray_encode;
 exports.gray_decode = gray_decode;
 exports.bool_string = bool_string;
 exports.next_power = next_power;
---[ No side effect ]--
+--[[ No side effect ]]

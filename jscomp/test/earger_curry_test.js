@@ -65,13 +65,13 @@ function f2(param) do
           return prim + prim$1;
         end end), 0, b);
   console.log(Pervasives.string_of_float(v));
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-f2(--[ () ]--0);
+f2(--[[ () ]]0);
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -80,11 +80,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -92,7 +92,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 v = do
@@ -100,18 +100,18 @@ v = do
 end;
 
 all_v = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 function add5(a0, a1, a2, a3, a4) do
-  console.log(--[ tuple ]--[
+  console.log(--[[ tuple ]][
         a0,
         a1,
         a2,
         a3,
         a4
       ]);
-  all_v.contents = --[ :: ]--[
+  all_v.contents = --[[ :: ]][
     v.contents,
     all_v.contents
   ];
@@ -136,7 +136,7 @@ function g(x) do
   u = function (param, param$1) do
     return add5(x, partial_arg$1, partial_arg, param, param$1);
   end end;
-  all_v.contents = --[ :: ]--[
+  all_v.contents = --[[ :: ]][
     v.contents,
     all_v.contents
   ];
@@ -159,19 +159,19 @@ eq("File \"earger_curry_test.ml\", line 120, characters 7-14", c, 10);
 
 eq("File \"earger_curry_test.ml\", line 121, characters 7-14", d, 11);
 
-eq("File \"earger_curry_test.ml\", line 122, characters 7-14", all_v.contents, --[ :: ]--[
+eq("File \"earger_curry_test.ml\", line 122, characters 7-14", all_v.contents, --[[ :: ]][
       8,
-      --[ :: ]--[
+      --[[ :: ]][
         8,
-        --[ :: ]--[
+        --[[ :: ]][
           6,
-          --[ :: ]--[
+          --[[ :: ]][
             6,
-            --[ :: ]--[
+            --[[ :: ]][
               4,
-              --[ :: ]--[
+              --[[ :: ]][
                 2,
-                --[ [] ]--0
+                --[[ [] ]]0
               ]
             ]
           ]
@@ -197,4 +197,4 @@ exports.a = a;
 exports.b = b;
 exports.c = c;
 exports.d = d;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

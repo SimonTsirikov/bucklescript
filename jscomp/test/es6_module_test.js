@@ -8,35 +8,35 @@ function length(param) do
   return 3;
 end end
 
-Mt.from_pair_suites("Es6_module_test", --[ :: ]--[
-      --[ tuple ]--[
+Mt.from_pair_suites("Es6_module_test", --[[ :: ]][
+      --[[ tuple ]][
         "list_length",
         (function (param) do
-            return --[ Eq ]--Block.__(0, [
-                      List.length(--[ :: ]--[
+            return --[[ Eq ]]Block.__(0, [
+                      List.length(--[[ :: ]][
                             1,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               2,
-                              --[ [] ]--0
+                              --[[ [] ]]0
                             ]
                           ]),
                       2
                     ]);
           end end)
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "length",
           (function (param) do
-              return --[ Eq ]--Block.__(0, [
+              return --[[ Eq ]]Block.__(0, [
                         3,
                         3
                       ]);
             end end)
         ],
-        --[ [] ]--0
+        --[[ [] ]]0
       ]
     ]);
 
 exports.length = length;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

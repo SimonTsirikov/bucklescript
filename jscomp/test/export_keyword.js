@@ -10,4 +10,4 @@ $$switch = 3;
 exports.$$case = $$case;
 exports.$$window = $$window;
 exports.$$switch = $$switch;
---[ No side effect ]--
+--[[ No side effect ]]

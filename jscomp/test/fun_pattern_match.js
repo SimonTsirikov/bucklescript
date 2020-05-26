@@ -19,7 +19,7 @@ function f3(param) do
       if (typeof lhs == "number") then do
         throw [
               Caml_builtin_exceptions.assert_failure,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "fun_pattern_match.ml",
                 44,
                 9
@@ -30,7 +30,7 @@ function f3(param) do
       if (typeof rhs == "number") then do
         throw [
               Caml_builtin_exceptions.assert_failure,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "fun_pattern_match.ml",
                 44,
                 9
@@ -49,7 +49,7 @@ function f4(param) do
       if (typeof lhs == "number") then do
         throw [
               Caml_builtin_exceptions.assert_failure,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "fun_pattern_match.ml",
                 52,
                 9
@@ -60,7 +60,7 @@ function f4(param) do
       if (typeof rhs == "number") then do
         throw [
               Caml_builtin_exceptions.assert_failure,
-              --[ tuple ]--[
+              --[[ tuple ]][
                 "fun_pattern_match.ml",
                 52,
                 9
@@ -72,7 +72,7 @@ function f4(param) do
     end end);
 end end
 
-x = --[ `A ]--[
+x = --[[ `A ]][
   65,
   r
 ];
@@ -81,9 +81,9 @@ function r(param) do
   return x;
 end end
 
-match = r(--[ () ]--0);
+match = r(--[[ () ]]0);
 
-v = Curry._1(match[1], --[ () ]--0);
+v = Curry._1(match[1], --[[ () ]]0);
 
 console.log(v);
 
@@ -93,4 +93,4 @@ exports.f3 = f3;
 exports.f4 = f4;
 exports.r = r;
 exports.v = v;
---[ match Not a pure module ]--
+--[[ match Not a pure module ]]

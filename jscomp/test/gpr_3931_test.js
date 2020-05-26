@@ -5,21 +5,21 @@ Block = require("../../lib/js/block.js");
 Curry = require("../../lib/js/curry.js");
 Caml_module = require("../../lib/js/caml_module.js");
 
-PA = Caml_module.init_mod(--[ tuple ]--[
+PA = Caml_module.init_mod(--[[ tuple ]][
       "gpr_3931_test.ml",
       3,
       6
-    ], --[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Function ]--0,
+    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Function ]]0,
             "print"
           ]]]));
 
-P = Caml_module.init_mod(--[ tuple ]--[
+P = Caml_module.init_mod(--[[ tuple ]][
       "gpr_3931_test.ml",
       11,
       6
-    ], --[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Function ]--0,
+    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Function ]]0,
             "print"
           ]]]));
 
@@ -27,8 +27,8 @@ function print(a) do
   return $$Array.iter(P.print, a);
 end end
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Function ]--0,
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Function ]]0,
             "print"
           ]]]), PA, do
       print: print
@@ -36,11 +36,11 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
 
 function print$1(i) do
   console.log(String(i));
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Function ]--0,
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Function ]]0,
             "print"
           ]]]), P, do
       print: print$1
@@ -53,4 +53,4 @@ Curry._1(PA.print, [
 
 exports.PA = PA;
 exports.P = P;
---[ PA Not a pure module ]--
+--[[ PA Not a pure module ]]

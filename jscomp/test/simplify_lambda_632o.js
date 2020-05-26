@@ -11,4 +11,4 @@ end end
 
 exports.f = f;
 exports.f2 = f2;
---[ No side effect ]--
+--[[ No side effect ]]

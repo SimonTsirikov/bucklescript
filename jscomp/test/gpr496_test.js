@@ -6,7 +6,7 @@ Curry = require("../../lib/js/curry.js");
 Caml_primitive = require("../../lib/js/caml_primitive.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -15,11 +15,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -27,10 +27,10 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-expected = --[ tuple ]--[
+expected = --[[ tuple ]][
   false,
   false,
   true,
@@ -41,7 +41,7 @@ expected = --[ tuple ]--[
   0
 ];
 
-expected2 = --[ tuple ]--[
+expected2 = --[[ tuple ]][
   false,
   false,
   true,
@@ -52,7 +52,7 @@ expected2 = --[ tuple ]--[
   0
 ];
 
-u = --[ tuple ]--[
+u = --[[ tuple ]][
   false,
   false,
   true,
@@ -68,7 +68,7 @@ eq("File \"gpr496_test.ml\", line 42, characters 12-19", expected, u);
 eq("File \"gpr496_test.ml\", line 44, characters 12-19", expected, expected2);
 
 function ff(x, y) do
-  return Caml_primitive.caml_bool_min(x, Curry._1(y, --[ () ]--0));
+  return Caml_primitive.caml_bool_min(x, Curry._1(y, --[[ () ]]0));
 end end
 
 eq("File \"gpr496_test.ml\", line 48, characters 5-12", true < false and true or false, false);
@@ -82,4 +82,4 @@ exports.expected = expected;
 exports.expected2 = expected2;
 exports.u = u;
 exports.ff = ff;
---[ expected Not a pure module ]--
+--[[ expected Not a pure module ]]

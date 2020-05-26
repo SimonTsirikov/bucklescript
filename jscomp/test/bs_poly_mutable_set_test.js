@@ -10,7 +10,7 @@ Belt_MutableSet = require("../../lib/js/belt_MutableSet.js");
 Belt_internalAVLset = require("../../lib/js/belt_internalAVLset.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -306,17 +306,17 @@ b("File \"bs_poly_mutable_set_test.ml\", line 162, characters 4-11", Belt_Mutabl
 
 b("File \"bs_poly_mutable_set_test.ml\", line 163, characters 4-11", Belt_MutableSet.eq(a2, a4));
 
-Belt_List.forEach(--[ :: ]--[
+Belt_List.forEach(--[[ :: ]][
       a0,
-      --[ :: ]--[
+      --[[ :: ]][
         a1,
-        --[ :: ]--[
+        --[[ :: ]][
           a2,
-          --[ :: ]--[
+          --[[ :: ]][
             a3,
-            --[ :: ]--[
+            --[[ :: ]][
               a4,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ]
         ]
@@ -327,13 +327,13 @@ Belt_List.forEach(--[ :: ]--[
 
 Mt.from_pair_suites("Bs_poly_mutable_set_test", suites.contents);
 
-N = --[ alias ]--0;
+N = --[[ alias ]]0;
 
-I = --[ alias ]--0;
+I = --[[ alias ]]0;
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
-L = --[ alias ]--0;
+L = --[[ alias ]]0;
 
 $plus$plus = Belt_MutableSet.union;
 
@@ -355,4 +355,4 @@ exports.empty = empty;
 exports.$plus$plus = $plus$plus;
 exports.f = f;
 exports.$eq$tilde = $eq$tilde;
---[ IntCmp Not a pure module ]--
+--[[ IntCmp Not a pure module ]]

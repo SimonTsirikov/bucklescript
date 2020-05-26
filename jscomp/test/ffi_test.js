@@ -38,4 +38,4 @@ exports.Textarea = Textarea;
 exports.$$Int32Array = $$Int32Array;
 exports.v = v;
 exports.f = f;
---[ No side effect ]--
+--[[ No side effect ]]

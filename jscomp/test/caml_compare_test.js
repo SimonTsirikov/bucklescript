@@ -21,168 +21,168 @@ catch (raw_exn)do
 end
 
 suites = do
-  contents: --[ :: ]--[
-    --[ tuple ]--[
+  contents: --[[ :: ]][
+    --[[ tuple ]][
       "File \"caml_compare_test.ml\", line 9, characters 4-11",
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     true,
                     Caml_obj.caml_lessthan(undefined, 1)
                   ]);
         end end)
     ],
-    --[ :: ]--[
-      --[ tuple ]--[
+    --[[ :: ]][
+      --[[ tuple ]][
         "option2",
         (function (param) do
-            return --[ Eq ]--Block.__(0, [
+            return --[[ Eq ]]Block.__(0, [
                       true,
                       Caml_obj.caml_lessthan(1, 2)
                     ]);
           end end)
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "File \"caml_compare_test.ml\", line 11, characters 4-11",
           (function (param) do
-              return --[ Eq ]--Block.__(0, [
+              return --[[ Eq ]]Block.__(0, [
                         true,
-                        Caml_obj.caml_greaterthan(--[ :: ]--[
+                        Caml_obj.caml_greaterthan(--[[ :: ]][
                               1,
-                              --[ [] ]--0
-                            ], --[ [] ]--0)
+                              --[[ [] ]]0
+                            ], --[[ [] ]]0)
                       ]);
             end end)
         ],
-        --[ :: ]--[
-          --[ tuple ]--[
+        --[[ :: ]][
+          --[[ tuple ]][
             "listeq",
             (function (param) do
-                return --[ Eq ]--Block.__(0, [
+                return --[[ Eq ]]Block.__(0, [
                           true,
-                          Caml_obj.caml_equal(--[ :: ]--[
+                          Caml_obj.caml_equal(--[[ :: ]][
                                 1,
-                                --[ :: ]--[
+                                --[[ :: ]][
                                   2,
-                                  --[ :: ]--[
+                                  --[[ :: ]][
                                     3,
-                                    --[ [] ]--0
+                                    --[[ [] ]]0
                                   ]
                                 ]
-                              ], --[ :: ]--[
+                              ], --[[ :: ]][
                                 1,
-                                --[ :: ]--[
+                                --[[ :: ]][
                                   2,
-                                  --[ :: ]--[
+                                  --[[ :: ]][
                                     3,
-                                    --[ [] ]--0
+                                    --[[ [] ]]0
                                   ]
                                 ]
                               ])
                         ]);
               end end)
           ],
-          --[ :: ]--[
-            --[ tuple ]--[
+          --[[ :: ]][
+            --[[ tuple ]][
               "listneq",
               (function (param) do
-                  return --[ Eq ]--Block.__(0, [
+                  return --[[ Eq ]]Block.__(0, [
                             true,
-                            Caml_obj.caml_greaterthan(--[ :: ]--[
+                            Caml_obj.caml_greaterthan(--[[ :: ]][
                                   1,
-                                  --[ :: ]--[
+                                  --[[ :: ]][
                                     2,
-                                    --[ :: ]--[
+                                    --[[ :: ]][
                                       3,
-                                      --[ [] ]--0
+                                      --[[ [] ]]0
                                     ]
                                   ]
-                                ], --[ :: ]--[
+                                ], --[[ :: ]][
                                   1,
-                                  --[ :: ]--[
+                                  --[[ :: ]][
                                     2,
-                                    --[ :: ]--[
+                                    --[[ :: ]][
                                       2,
-                                      --[ [] ]--0
+                                      --[[ [] ]]0
                                     ]
                                   ]
                                 ])
                           ]);
                 end end)
             ],
-            --[ :: ]--[
-              --[ tuple ]--[
+            --[[ :: ]][
+              --[[ tuple ]][
                 "custom_u",
                 (function (param) do
-                    return --[ Eq ]--Block.__(0, [
+                    return --[[ Eq ]]Block.__(0, [
                               true,
-                              Caml_obj.caml_greaterthan(--[ tuple ]--[
-                                    --[ A ]--Block.__(0, [3]),
-                                    --[ B ]--Block.__(1, [
+                              Caml_obj.caml_greaterthan(--[[ tuple ]][
+                                    --[[ A ]]Block.__(0, [3]),
+                                    --[[ B ]]Block.__(1, [
                                         2,
                                         false
                                       ]),
-                                    --[ C ]--Block.__(2, [1])
-                                  ], --[ tuple ]--[
-                                    --[ A ]--Block.__(0, [3]),
-                                    --[ B ]--Block.__(1, [
+                                    --[[ C ]]Block.__(2, [1])
+                                  ], --[[ tuple ]][
+                                    --[[ A ]]Block.__(0, [3]),
+                                    --[[ B ]]Block.__(1, [
                                         2,
                                         false
                                       ]),
-                                    --[ C ]--Block.__(2, [0])
+                                    --[[ C ]]Block.__(2, [0])
                                   ])
                             ]);
                   end end)
               ],
-              --[ :: ]--[
-                --[ tuple ]--[
+              --[[ :: ]][
+                --[[ tuple ]][
                   "custom_u2",
                   (function (param) do
-                      return --[ Eq ]--Block.__(0, [
+                      return --[[ Eq ]]Block.__(0, [
                                 true,
-                                Caml_obj.caml_equal(--[ tuple ]--[
-                                      --[ A ]--Block.__(0, [3]),
-                                      --[ B ]--Block.__(1, [
+                                Caml_obj.caml_equal(--[[ tuple ]][
+                                      --[[ A ]]Block.__(0, [3]),
+                                      --[[ B ]]Block.__(1, [
                                           2,
                                           false
                                         ]),
-                                      --[ C ]--Block.__(2, [1])
-                                    ], --[ tuple ]--[
-                                      --[ A ]--Block.__(0, [3]),
-                                      --[ B ]--Block.__(1, [
+                                      --[[ C ]]Block.__(2, [1])
+                                    ], --[[ tuple ]][
+                                      --[[ A ]]Block.__(0, [3]),
+                                      --[[ B ]]Block.__(1, [
                                           2,
                                           false
                                         ]),
-                                      --[ C ]--Block.__(2, [1])
+                                      --[[ C ]]Block.__(2, [1])
                                     ])
                               ]);
                     end end)
                 ],
-                --[ :: ]--[
-                  --[ tuple ]--[
+                --[[ :: ]][
+                  --[[ tuple ]][
                     "function",
                     (function (param) do
-                        return --[ Eq ]--Block.__(0, [
+                        return --[[ Eq ]]Block.__(0, [
                                   true,
                                   function_equal_test
                                 ]);
                       end end)
                   ],
-                  --[ :: ]--[
-                    --[ tuple ]--[
+                  --[[ :: ]][
+                    --[[ tuple ]][
                       "File \"caml_compare_test.ml\", line 17, characters 4-11",
                       (function (param) do
-                          return --[ Eq ]--Block.__(0, [
+                          return --[[ Eq ]]Block.__(0, [
                                     true,
                                     Caml_obj.caml_lessthan(undefined, 1)
                                   ]);
                         end end)
                     ],
-                    --[ :: ]--[
-                      --[ tuple ]--[
+                    --[[ :: ]][
+                      --[[ tuple ]][
                         "File \"caml_compare_test.ml\", line 28, characters 4-11",
                         (function (param) do
-                            return --[ Eq ]--Block.__(0, [
+                            return --[[ Eq ]]Block.__(0, [
                                       true,
                                       Caml_obj.caml_lessthan(undefined, [
                                             1,
@@ -191,11 +191,11 @@ suites = do
                                     ]);
                           end end)
                       ],
-                      --[ :: ]--[
-                        --[ tuple ]--[
+                      --[[ :: ]][
+                        --[[ tuple ]][
                           "File \"caml_compare_test.ml\", line 31, characters 4-11",
                           (function (param) do
-                              return --[ Eq ]--Block.__(0, [
+                              return --[[ Eq ]]Block.__(0, [
                                         true,
                                         Caml_obj.caml_greaterthan([
                                               1,
@@ -204,31 +204,31 @@ suites = do
                                       ]);
                             end end)
                         ],
-                        --[ :: ]--[
-                          --[ tuple ]--[
+                        --[[ :: ]][
+                          --[[ tuple ]][
                             "File \"caml_compare_test.ml\", line 34, characters 4-11",
                             (function (param) do
-                                return --[ Eq ]--Block.__(0, [
+                                return --[[ Eq ]]Block.__(0, [
                                           true,
-                                          Caml_obj.caml_lessthan(--[ :: ]--[
+                                          Caml_obj.caml_lessthan(--[[ :: ]][
                                                 2,
-                                                --[ :: ]--[
+                                                --[[ :: ]][
                                                   6,
-                                                  --[ :: ]--[
+                                                  --[[ :: ]][
                                                     1,
-                                                    --[ :: ]--[
+                                                    --[[ :: ]][
                                                       1,
-                                                      --[ :: ]--[
+                                                      --[[ :: ]][
                                                         2,
-                                                        --[ :: ]--[
+                                                        --[[ :: ]][
                                                           1,
-                                                          --[ :: ]--[
+                                                          --[[ :: ]][
                                                             4,
-                                                            --[ :: ]--[
+                                                            --[[ :: ]][
                                                               2,
-                                                              --[ :: ]--[
+                                                              --[[ :: ]][
                                                                 1,
-                                                                --[ [] ]--0
+                                                                --[[ [] ]]0
                                                               ]
                                                             ]
                                                           ]
@@ -237,27 +237,27 @@ suites = do
                                                     ]
                                                   ]
                                                 ]
-                                              ], --[ :: ]--[
+                                              ], --[[ :: ]][
                                                 2,
-                                                --[ :: ]--[
+                                                --[[ :: ]][
                                                   6,
-                                                  --[ :: ]--[
+                                                  --[[ :: ]][
                                                     1,
-                                                    --[ :: ]--[
+                                                    --[[ :: ]][
                                                       1,
-                                                      --[ :: ]--[
+                                                      --[[ :: ]][
                                                         2,
-                                                        --[ :: ]--[
+                                                        --[[ :: ]][
                                                           1,
-                                                          --[ :: ]--[
+                                                          --[[ :: ]][
                                                             4,
-                                                            --[ :: ]--[
+                                                            --[[ :: ]][
                                                               2,
-                                                              --[ :: ]--[
+                                                              --[[ :: ]][
                                                                 1,
-                                                                --[ :: ]--[
+                                                                --[[ :: ]][
                                                                   409,
-                                                                  --[ [] ]--0
+                                                                  --[[ [] ]]0
                                                                 ]
                                                               ]
                                                             ]
@@ -271,65 +271,65 @@ suites = do
                                         ]);
                               end end)
                           ],
-                          --[ :: ]--[
-                            --[ tuple ]--[
+                          --[[ :: ]][
+                            --[[ tuple ]][
                               "File \"caml_compare_test.ml\", line 37, characters 4-11",
                               (function (param) do
-                                  return --[ Eq ]--Block.__(0, [
+                                  return --[[ Eq ]]Block.__(0, [
                                             true,
-                                            Caml_obj.caml_lessthan(--[ :: ]--[
+                                            Caml_obj.caml_lessthan(--[[ :: ]][
                                                   1,
-                                                  --[ [] ]--0
-                                                ], --[ :: ]--[
+                                                  --[[ [] ]]0
+                                                ], --[[ :: ]][
                                                   1,
-                                                  --[ :: ]--[
+                                                  --[[ :: ]][
                                                     409,
-                                                    --[ [] ]--0
+                                                    --[[ [] ]]0
                                                   ]
                                                 ])
                                           ]);
                                 end end)
                             ],
-                            --[ :: ]--[
-                              --[ tuple ]--[
+                            --[[ :: ]][
+                              --[[ tuple ]][
                                 "File \"caml_compare_test.ml\", line 40, characters 4-11",
                                 (function (param) do
-                                    return --[ Eq ]--Block.__(0, [
+                                    return --[[ Eq ]]Block.__(0, [
                                               true,
-                                              Caml_obj.caml_lessthan(--[ [] ]--0, --[ :: ]--[
+                                              Caml_obj.caml_lessthan(--[[ [] ]]0, --[[ :: ]][
                                                     409,
-                                                    --[ [] ]--0
+                                                    --[[ [] ]]0
                                                   ])
                                             ]);
                                   end end)
                               ],
-                              --[ :: ]--[
-                                --[ tuple ]--[
+                              --[[ :: ]][
+                                --[[ tuple ]][
                                   "File \"caml_compare_test.ml\", line 43, characters 4-11",
                                   (function (param) do
-                                      return --[ Eq ]--Block.__(0, [
+                                      return --[[ Eq ]]Block.__(0, [
                                                 true,
-                                                Caml_obj.caml_greaterthan(--[ :: ]--[
+                                                Caml_obj.caml_greaterthan(--[[ :: ]][
                                                       2,
-                                                      --[ :: ]--[
+                                                      --[[ :: ]][
                                                         6,
-                                                        --[ :: ]--[
+                                                        --[[ :: ]][
                                                           1,
-                                                          --[ :: ]--[
+                                                          --[[ :: ]][
                                                             1,
-                                                            --[ :: ]--[
+                                                            --[[ :: ]][
                                                               2,
-                                                              --[ :: ]--[
+                                                              --[[ :: ]][
                                                                 1,
-                                                                --[ :: ]--[
+                                                                --[[ :: ]][
                                                                   4,
-                                                                  --[ :: ]--[
+                                                                  --[[ :: ]][
                                                                     2,
-                                                                    --[ :: ]--[
+                                                                    --[[ :: ]][
                                                                       1,
-                                                                      --[ :: ]--[
+                                                                      --[[ :: ]][
                                                                         409,
-                                                                        --[ [] ]--0
+                                                                        --[[ [] ]]0
                                                                       ]
                                                                     ]
                                                                   ]
@@ -339,25 +339,25 @@ suites = do
                                                           ]
                                                         ]
                                                       ]
-                                                    ], --[ :: ]--[
+                                                    ], --[[ :: ]][
                                                       2,
-                                                      --[ :: ]--[
+                                                      --[[ :: ]][
                                                         6,
-                                                        --[ :: ]--[
+                                                        --[[ :: ]][
                                                           1,
-                                                          --[ :: ]--[
+                                                          --[[ :: ]][
                                                             1,
-                                                            --[ :: ]--[
+                                                            --[[ :: ]][
                                                               2,
-                                                              --[ :: ]--[
+                                                              --[[ :: ]][
                                                                 1,
-                                                                --[ :: ]--[
+                                                                --[[ :: ]][
                                                                   4,
-                                                                  --[ :: ]--[
+                                                                  --[[ :: ]][
                                                                     2,
-                                                                    --[ :: ]--[
+                                                                    --[[ :: ]][
                                                                       1,
-                                                                      --[ [] ]--0
+                                                                      --[[ [] ]]0
                                                                     ]
                                                                   ]
                                                                 ]
@@ -370,51 +370,51 @@ suites = do
                                               ]);
                                     end end)
                                 ],
-                                --[ :: ]--[
-                                  --[ tuple ]--[
+                                --[[ :: ]][
+                                  --[[ tuple ]][
                                     "File \"caml_compare_test.ml\", line 47, characters 4-11",
                                     (function (param) do
-                                        return --[ Eq ]--Block.__(0, [
+                                        return --[[ Eq ]]Block.__(0, [
                                                   false,
                                                   false
                                                 ]);
                                       end end)
                                   ],
-                                  --[ :: ]--[
-                                    --[ tuple ]--[
+                                  --[[ :: ]][
+                                    --[[ tuple ]][
                                       "File \"caml_compare_test.ml\", line 50, characters 4-11",
                                       (function (param) do
-                                          return --[ Eq ]--Block.__(0, [
+                                          return --[[ Eq ]]Block.__(0, [
                                                     false,
                                                     false
                                                   ]);
                                         end end)
                                     ],
-                                    --[ :: ]--[
-                                      --[ tuple ]--[
+                                    --[[ :: ]][
+                                      --[[ tuple ]][
                                         "File \"caml_compare_test.ml\", line 53, characters 4-11",
                                         (function (param) do
-                                            return --[ Eq ]--Block.__(0, [
+                                            return --[[ Eq ]]Block.__(0, [
                                                       false,
-                                                      Caml_obj.caml_equal(--[ :: ]--[
+                                                      Caml_obj.caml_equal(--[[ :: ]][
                                                             2,
-                                                            --[ :: ]--[
+                                                            --[[ :: ]][
                                                               6,
-                                                              --[ :: ]--[
+                                                              --[[ :: ]][
                                                                 1,
-                                                                --[ :: ]--[
+                                                                --[[ :: ]][
                                                                   1,
-                                                                  --[ :: ]--[
+                                                                  --[[ :: ]][
                                                                     2,
-                                                                    --[ :: ]--[
+                                                                    --[[ :: ]][
                                                                       1,
-                                                                      --[ :: ]--[
+                                                                      --[[ :: ]][
                                                                         4,
-                                                                        --[ :: ]--[
+                                                                        --[[ :: ]][
                                                                           2,
-                                                                          --[ :: ]--[
+                                                                          --[[ :: ]][
                                                                             1,
-                                                                            --[ [] ]--0
+                                                                            --[[ [] ]]0
                                                                           ]
                                                                         ]
                                                                       ]
@@ -423,27 +423,27 @@ suites = do
                                                                 ]
                                                               ]
                                                             ]
-                                                          ], --[ :: ]--[
+                                                          ], --[[ :: ]][
                                                             2,
-                                                            --[ :: ]--[
+                                                            --[[ :: ]][
                                                               6,
-                                                              --[ :: ]--[
+                                                              --[[ :: ]][
                                                                 1,
-                                                                --[ :: ]--[
+                                                                --[[ :: ]][
                                                                   1,
-                                                                  --[ :: ]--[
+                                                                  --[[ :: ]][
                                                                     2,
-                                                                    --[ :: ]--[
+                                                                    --[[ :: ]][
                                                                       1,
-                                                                      --[ :: ]--[
+                                                                      --[[ :: ]][
                                                                         4,
-                                                                        --[ :: ]--[
+                                                                        --[[ :: ]][
                                                                           2,
-                                                                          --[ :: ]--[
+                                                                          --[[ :: ]][
                                                                             1,
-                                                                            --[ :: ]--[
+                                                                            --[[ :: ]][
                                                                               409,
-                                                                              --[ [] ]--0
+                                                                              --[[ [] ]]0
                                                                             ]
                                                                           ]
                                                                         ]
@@ -457,33 +457,33 @@ suites = do
                                                     ]);
                                           end end)
                                       ],
-                                      --[ :: ]--[
-                                        --[ tuple ]--[
+                                      --[[ :: ]][
+                                        --[[ tuple ]][
                                           "File \"caml_compare_test.ml\", line 56, characters 4-11",
                                           (function (param) do
-                                              return --[ Eq ]--Block.__(0, [
+                                              return --[[ Eq ]]Block.__(0, [
                                                         false,
-                                                        Caml_obj.caml_equal(--[ :: ]--[
+                                                        Caml_obj.caml_equal(--[[ :: ]][
                                                               2,
-                                                              --[ :: ]--[
+                                                              --[[ :: ]][
                                                                 6,
-                                                                --[ :: ]--[
+                                                                --[[ :: ]][
                                                                   1,
-                                                                  --[ :: ]--[
+                                                                  --[[ :: ]][
                                                                     1,
-                                                                    --[ :: ]--[
+                                                                    --[[ :: ]][
                                                                       2,
-                                                                      --[ :: ]--[
+                                                                      --[[ :: ]][
                                                                         1,
-                                                                        --[ :: ]--[
+                                                                        --[[ :: ]][
                                                                           4,
-                                                                          --[ :: ]--[
+                                                                          --[[ :: ]][
                                                                             2,
-                                                                            --[ :: ]--[
+                                                                            --[[ :: ]][
                                                                               1,
-                                                                              --[ :: ]--[
+                                                                              --[[ :: ]][
                                                                                 409,
-                                                                                --[ [] ]--0
+                                                                                --[[ [] ]]0
                                                                               ]
                                                                             ]
                                                                           ]
@@ -493,25 +493,25 @@ suites = do
                                                                   ]
                                                                 ]
                                                               ]
-                                                            ], --[ :: ]--[
+                                                            ], --[[ :: ]][
                                                               2,
-                                                              --[ :: ]--[
+                                                              --[[ :: ]][
                                                                 6,
-                                                                --[ :: ]--[
+                                                                --[[ :: ]][
                                                                   1,
-                                                                  --[ :: ]--[
+                                                                  --[[ :: ]][
                                                                     1,
-                                                                    --[ :: ]--[
+                                                                    --[[ :: ]][
                                                                       2,
-                                                                      --[ :: ]--[
+                                                                      --[[ :: ]][
                                                                         1,
-                                                                        --[ :: ]--[
+                                                                        --[[ :: ]][
                                                                           4,
-                                                                          --[ :: ]--[
+                                                                          --[[ :: ]][
                                                                             2,
-                                                                            --[ :: ]--[
+                                                                            --[[ :: ]][
                                                                               1,
-                                                                              --[ [] ]--0
+                                                                              --[[ [] ]]0
                                                                             ]
                                                                           ]
                                                                         ]
@@ -524,11 +524,11 @@ suites = do
                                                       ]);
                                             end end)
                                         ],
-                                        --[ :: ]--[
-                                          --[ tuple ]--[
+                                        --[[ :: ]][
+                                          --[[ tuple ]][
                                             "cmp_id",
                                             (function (param) do
-                                                return --[ Eq ]--Block.__(0, [
+                                                return --[[ Eq ]]Block.__(0, [
                                                           Caml_obj.caml_compare(do
                                                                 x: 1,
                                                                 y: 2
@@ -540,11 +540,11 @@ suites = do
                                                         ]);
                                               end end)
                                           ],
-                                          --[ :: ]--[
-                                            --[ tuple ]--[
+                                          --[[ :: ]][
+                                            --[[ tuple ]][
                                               "cmp_val",
                                               (function (param) do
-                                                  return --[ Eq ]--Block.__(0, [
+                                                  return --[[ Eq ]]Block.__(0, [
                                                             Caml_obj.caml_compare(do
                                                                   x: 1
                                                                 end, do
@@ -554,11 +554,11 @@ suites = do
                                                           ]);
                                                 end end)
                                             ],
-                                            --[ :: ]--[
-                                              --[ tuple ]--[
+                                            --[[ :: ]][
+                                              --[[ tuple ]][
                                                 "cmp_val2",
                                                 (function (param) do
-                                                    return --[ Eq ]--Block.__(0, [
+                                                    return --[[ Eq ]]Block.__(0, [
                                                               Caml_obj.caml_compare(do
                                                                     x: 2
                                                                   end, do
@@ -568,31 +568,31 @@ suites = do
                                                             ]);
                                                   end end)
                                               ],
-                                              --[ :: ]--[
-                                                --[ tuple ]--[
+                                              --[[ :: ]][
+                                                --[[ tuple ]][
                                                   "cmp_empty",
                                                   (function (param) do
-                                                      return --[ Eq ]--Block.__(0, [
+                                                      return --[[ Eq ]]Block.__(0, [
                                                                 Caml_obj.caml_compare(({}), ({})),
                                                                 0
                                                               ]);
                                                     end end)
                                                 ],
-                                                --[ :: ]--[
-                                                  --[ tuple ]--[
+                                                --[[ :: ]][
+                                                  --[[ tuple ]][
                                                     "cmp_empty2",
                                                     (function (param) do
-                                                        return --[ Eq ]--Block.__(0, [
+                                                        return --[[ Eq ]]Block.__(0, [
                                                                   Caml_obj.caml_compare(({}), ({x:1})),
                                                                   -1
                                                                 ]);
                                                       end end)
                                                   ],
-                                                  --[ :: ]--[
-                                                    --[ tuple ]--[
+                                                  --[[ :: ]][
+                                                    --[[ tuple ]][
                                                       "cmp_swap",
                                                       (function (param) do
-                                                          return --[ Eq ]--Block.__(0, [
+                                                          return --[[ Eq ]]Block.__(0, [
                                                                     Caml_obj.caml_compare(do
                                                                           x: 1,
                                                                           y: 2
@@ -604,31 +604,31 @@ suites = do
                                                                   ]);
                                                         end end)
                                                     ],
-                                                    --[ :: ]--[
-                                                      --[ tuple ]--[
+                                                    --[[ :: ]][
+                                                      --[[ tuple ]][
                                                         "cmp_size",
                                                         (function (param) do
-                                                            return --[ Eq ]--Block.__(0, [
+                                                            return --[[ Eq ]]Block.__(0, [
                                                                       Caml_obj.caml_compare(({x:1}), ({x:1, y:2})),
                                                                       -1
                                                                     ]);
                                                           end end)
                                                       ],
-                                                      --[ :: ]--[
-                                                        --[ tuple ]--[
+                                                      --[[ :: ]][
+                                                        --[[ tuple ]][
                                                           "cmp_size2",
                                                           (function (param) do
-                                                              return --[ Eq ]--Block.__(0, [
+                                                              return --[[ Eq ]]Block.__(0, [
                                                                         Caml_obj.caml_compare(({x:1, y:2}), ({x:1})),
                                                                         1
                                                                       ]);
                                                             end end)
                                                         ],
-                                                        --[ :: ]--[
-                                                          --[ tuple ]--[
+                                                        --[[ :: ]][
+                                                          --[[ tuple ]][
                                                             "cmp_order",
                                                             (function (param) do
-                                                                return --[ Eq ]--Block.__(0, [
+                                                                return --[[ Eq ]]Block.__(0, [
                                                                           Caml_obj.caml_compare(do
                                                                                 x: 0,
                                                                                 y: 1
@@ -640,11 +640,11 @@ suites = do
                                                                         ]);
                                                               end end)
                                                           ],
-                                                          --[ :: ]--[
-                                                            --[ tuple ]--[
+                                                          --[[ :: ]][
+                                                            --[[ tuple ]][
                                                               "cmp_order2",
                                                               (function (param) do
-                                                                  return --[ Eq ]--Block.__(0, [
+                                                                  return --[[ Eq ]]Block.__(0, [
                                                                             Caml_obj.caml_compare(do
                                                                                   x: 1,
                                                                                   y: 0
@@ -656,91 +656,91 @@ suites = do
                                                                           ]);
                                                                 end end)
                                                             ],
-                                                            --[ :: ]--[
-                                                              --[ tuple ]--[
+                                                            --[[ :: ]][
+                                                              --[[ tuple ]][
                                                                 "cmp_in_list",
                                                                 (function (param) do
-                                                                    return --[ Eq ]--Block.__(0, [
-                                                                              Caml_obj.caml_compare(--[ :: ]--[
+                                                                    return --[[ Eq ]]Block.__(0, [
+                                                                              Caml_obj.caml_compare(--[[ :: ]][
                                                                                     do
                                                                                       x: 1
                                                                                     end,
-                                                                                    --[ [] ]--0
-                                                                                  ], --[ :: ]--[
+                                                                                    --[[ [] ]]0
+                                                                                  ], --[[ :: ]][
                                                                                     do
                                                                                       x: 2
                                                                                     end,
-                                                                                    --[ [] ]--0
+                                                                                    --[[ [] ]]0
                                                                                   ]),
                                                                               -1
                                                                             ]);
                                                                   end end)
                                                               ],
-                                                              --[ :: ]--[
-                                                                --[ tuple ]--[
+                                                              --[[ :: ]][
+                                                                --[[ tuple ]][
                                                                   "cmp_in_list2",
                                                                   (function (param) do
-                                                                      return --[ Eq ]--Block.__(0, [
-                                                                                Caml_obj.caml_compare(--[ :: ]--[
+                                                                      return --[[ Eq ]]Block.__(0, [
+                                                                                Caml_obj.caml_compare(--[[ :: ]][
                                                                                       do
                                                                                         x: 2
                                                                                       end,
-                                                                                      --[ [] ]--0
-                                                                                    ], --[ :: ]--[
+                                                                                      --[[ [] ]]0
+                                                                                    ], --[[ :: ]][
                                                                                       do
                                                                                         x: 1
                                                                                       end,
-                                                                                      --[ [] ]--0
+                                                                                      --[[ [] ]]0
                                                                                     ]),
                                                                                 1
                                                                               ]);
                                                                     end end)
                                                                 ],
-                                                                --[ :: ]--[
-                                                                  --[ tuple ]--[
+                                                                --[[ :: ]][
+                                                                  --[[ tuple ]][
                                                                     "cmp_with_list",
                                                                     (function (param) do
-                                                                        return --[ Eq ]--Block.__(0, [
+                                                                        return --[[ Eq ]]Block.__(0, [
                                                                                   Caml_obj.caml_compare(do
-                                                                                        x: --[ :: ]--[
+                                                                                        x: --[[ :: ]][
                                                                                           0,
-                                                                                          --[ [] ]--0
+                                                                                          --[[ [] ]]0
                                                                                         ]
                                                                                       end, do
-                                                                                        x: --[ :: ]--[
+                                                                                        x: --[[ :: ]][
                                                                                           1,
-                                                                                          --[ [] ]--0
+                                                                                          --[[ [] ]]0
                                                                                         ]
                                                                                       end),
                                                                                   -1
                                                                                 ]);
                                                                       end end)
                                                                   ],
-                                                                  --[ :: ]--[
-                                                                    --[ tuple ]--[
+                                                                  --[[ :: ]][
+                                                                    --[[ tuple ]][
                                                                       "cmp_with_list2",
                                                                       (function (param) do
-                                                                          return --[ Eq ]--Block.__(0, [
+                                                                          return --[[ Eq ]]Block.__(0, [
                                                                                     Caml_obj.caml_compare(do
-                                                                                          x: --[ :: ]--[
+                                                                                          x: --[[ :: ]][
                                                                                             1,
-                                                                                            --[ [] ]--0
+                                                                                            --[[ [] ]]0
                                                                                           ]
                                                                                         end, do
-                                                                                          x: --[ :: ]--[
+                                                                                          x: --[[ :: ]][
                                                                                             0,
-                                                                                            --[ [] ]--0
+                                                                                            --[[ [] ]]0
                                                                                           ]
                                                                                         end),
                                                                                     1
                                                                                   ]);
                                                                         end end)
                                                                     ],
-                                                                    --[ :: ]--[
-                                                                      --[ tuple ]--[
+                                                                    --[[ :: ]][
+                                                                      --[[ tuple ]][
                                                                         "eq_id",
                                                                         (function (param) do
-                                                                            return --[ Ok ]--Block.__(4, [Caml_obj.caml_equal(do
+                                                                            return --[[ Ok ]]Block.__(4, [Caml_obj.caml_equal(do
                                                                                             x: 1,
                                                                                             y: 2
                                                                                           end, do
@@ -749,11 +749,11 @@ suites = do
                                                                                           end)]);
                                                                           end end)
                                                                       ],
-                                                                      --[ :: ]--[
-                                                                        --[ tuple ]--[
+                                                                      --[[ :: ]][
+                                                                        --[[ tuple ]][
                                                                           "eq_val",
                                                                           (function (param) do
-                                                                              return --[ Eq ]--Block.__(0, [
+                                                                              return --[[ Eq ]]Block.__(0, [
                                                                                         Caml_obj.caml_equal(do
                                                                                               x: 1
                                                                                             end, do
@@ -763,11 +763,11 @@ suites = do
                                                                                       ]);
                                                                             end end)
                                                                         ],
-                                                                        --[ :: ]--[
-                                                                          --[ tuple ]--[
+                                                                        --[[ :: ]][
+                                                                          --[[ tuple ]][
                                                                             "eq_val2",
                                                                             (function (param) do
-                                                                                return --[ Eq ]--Block.__(0, [
+                                                                                return --[[ Eq ]]Block.__(0, [
                                                                                           Caml_obj.caml_equal(do
                                                                                                 x: 2
                                                                                               end, do
@@ -777,31 +777,31 @@ suites = do
                                                                                         ]);
                                                                               end end)
                                                                           ],
-                                                                          --[ :: ]--[
-                                                                            --[ tuple ]--[
+                                                                          --[[ :: ]][
+                                                                            --[[ tuple ]][
                                                                               "eq_empty",
                                                                               (function (param) do
-                                                                                  return --[ Eq ]--Block.__(0, [
+                                                                                  return --[[ Eq ]]Block.__(0, [
                                                                                             Caml_obj.caml_equal(({}), ({})),
                                                                                             true
                                                                                           ]);
                                                                                 end end)
                                                                             ],
-                                                                            --[ :: ]--[
-                                                                              --[ tuple ]--[
+                                                                            --[[ :: ]][
+                                                                              --[[ tuple ]][
                                                                                 "eq_empty2",
                                                                                 (function (param) do
-                                                                                    return --[ Eq ]--Block.__(0, [
+                                                                                    return --[[ Eq ]]Block.__(0, [
                                                                                               Caml_obj.caml_equal(({}), ({x:1})),
                                                                                               false
                                                                                             ]);
                                                                                   end end)
                                                                               ],
-                                                                              --[ :: ]--[
-                                                                                --[ tuple ]--[
+                                                                              --[[ :: ]][
+                                                                                --[[ tuple ]][
                                                                                   "eq_swap",
                                                                                   (function (param) do
-                                                                                      return --[ Ok ]--Block.__(4, [Caml_obj.caml_equal(do
+                                                                                      return --[[ Ok ]]Block.__(4, [Caml_obj.caml_equal(do
                                                                                                       x: 1,
                                                                                                       y: 2
                                                                                                     end, do
@@ -810,173 +810,173 @@ suites = do
                                                                                                     end)]);
                                                                                     end end)
                                                                                 ],
-                                                                                --[ :: ]--[
-                                                                                  --[ tuple ]--[
+                                                                                --[[ :: ]][
+                                                                                  --[[ tuple ]][
                                                                                     "eq_size",
                                                                                     (function (param) do
-                                                                                        return --[ Eq ]--Block.__(0, [
+                                                                                        return --[[ Eq ]]Block.__(0, [
                                                                                                   Caml_obj.caml_equal(({x:1}), ({x:1, y:2})),
                                                                                                   false
                                                                                                 ]);
                                                                                       end end)
                                                                                   ],
-                                                                                  --[ :: ]--[
-                                                                                    --[ tuple ]--[
+                                                                                  --[[ :: ]][
+                                                                                    --[[ tuple ]][
                                                                                       "eq_size2",
                                                                                       (function (param) do
-                                                                                          return --[ Eq ]--Block.__(0, [
+                                                                                          return --[[ Eq ]]Block.__(0, [
                                                                                                     Caml_obj.caml_equal(({x:1, y:2}), ({x:1})),
                                                                                                     false
                                                                                                   ]);
                                                                                         end end)
                                                                                     ],
-                                                                                    --[ :: ]--[
-                                                                                      --[ tuple ]--[
+                                                                                    --[[ :: ]][
+                                                                                      --[[ tuple ]][
                                                                                         "eq_in_list",
                                                                                         (function (param) do
-                                                                                            return --[ Eq ]--Block.__(0, [
-                                                                                                      Caml_obj.caml_equal(--[ :: ]--[
+                                                                                            return --[[ Eq ]]Block.__(0, [
+                                                                                                      Caml_obj.caml_equal(--[[ :: ]][
                                                                                                             do
                                                                                                               x: 1
                                                                                                             end,
-                                                                                                            --[ [] ]--0
-                                                                                                          ], --[ :: ]--[
+                                                                                                            --[[ [] ]]0
+                                                                                                          ], --[[ :: ]][
                                                                                                             do
                                                                                                               x: 2
                                                                                                             end,
-                                                                                                            --[ [] ]--0
+                                                                                                            --[[ [] ]]0
                                                                                                           ]),
                                                                                                       false
                                                                                                     ]);
                                                                                           end end)
                                                                                       ],
-                                                                                      --[ :: ]--[
-                                                                                        --[ tuple ]--[
+                                                                                      --[[ :: ]][
+                                                                                        --[[ tuple ]][
                                                                                           "eq_in_list2",
                                                                                           (function (param) do
-                                                                                              return --[ Eq ]--Block.__(0, [
-                                                                                                        Caml_obj.caml_equal(--[ :: ]--[
+                                                                                              return --[[ Eq ]]Block.__(0, [
+                                                                                                        Caml_obj.caml_equal(--[[ :: ]][
                                                                                                               do
                                                                                                                 x: 2
                                                                                                               end,
-                                                                                                              --[ [] ]--0
-                                                                                                            ], --[ :: ]--[
+                                                                                                              --[[ [] ]]0
+                                                                                                            ], --[[ :: ]][
                                                                                                               do
                                                                                                                 x: 2
                                                                                                               end,
-                                                                                                              --[ [] ]--0
+                                                                                                              --[[ [] ]]0
                                                                                                             ]),
                                                                                                         true
                                                                                                       ]);
                                                                                             end end)
                                                                                         ],
-                                                                                        --[ :: ]--[
-                                                                                          --[ tuple ]--[
+                                                                                        --[[ :: ]][
+                                                                                          --[[ tuple ]][
                                                                                             "eq_with_list",
                                                                                             (function (param) do
-                                                                                                return --[ Eq ]--Block.__(0, [
+                                                                                                return --[[ Eq ]]Block.__(0, [
                                                                                                           Caml_obj.caml_equal(do
-                                                                                                                x: --[ :: ]--[
+                                                                                                                x: --[[ :: ]][
                                                                                                                   0,
-                                                                                                                  --[ [] ]--0
+                                                                                                                  --[[ [] ]]0
                                                                                                                 ]
                                                                                                               end, do
-                                                                                                                x: --[ :: ]--[
+                                                                                                                x: --[[ :: ]][
                                                                                                                   0,
-                                                                                                                  --[ [] ]--0
+                                                                                                                  --[[ [] ]]0
                                                                                                                 ]
                                                                                                               end),
                                                                                                           true
                                                                                                         ]);
                                                                                               end end)
                                                                                           ],
-                                                                                          --[ :: ]--[
-                                                                                            --[ tuple ]--[
+                                                                                          --[[ :: ]][
+                                                                                            --[[ tuple ]][
                                                                                               "eq_with_list2",
                                                                                               (function (param) do
-                                                                                                  return --[ Eq ]--Block.__(0, [
+                                                                                                  return --[[ Eq ]]Block.__(0, [
                                                                                                             Caml_obj.caml_equal(do
-                                                                                                                  x: --[ :: ]--[
+                                                                                                                  x: --[[ :: ]][
                                                                                                                     0,
-                                                                                                                    --[ [] ]--0
+                                                                                                                    --[[ [] ]]0
                                                                                                                   ]
                                                                                                                 end, do
-                                                                                                                  x: --[ :: ]--[
+                                                                                                                  x: --[[ :: ]][
                                                                                                                     1,
-                                                                                                                    --[ [] ]--0
+                                                                                                                    --[[ [] ]]0
                                                                                                                   ]
                                                                                                                 end),
                                                                                                             false
                                                                                                           ]);
                                                                                                 end end)
                                                                                             ],
-                                                                                            --[ :: ]--[
-                                                                                              --[ tuple ]--[
+                                                                                            --[[ :: ]][
+                                                                                              --[[ tuple ]][
                                                                                                 "File \"caml_compare_test.ml\", line 87, characters 4-11",
                                                                                                 (function (param) do
-                                                                                                    return --[ Eq ]--Block.__(0, [
-                                                                                                              Caml_obj.caml_compare(null, --[ :: ]--[
+                                                                                                    return --[[ Eq ]]Block.__(0, [
+                                                                                                              Caml_obj.caml_compare(null, --[[ :: ]][
                                                                                                                     3,
-                                                                                                                    --[ [] ]--0
+                                                                                                                    --[[ [] ]]0
                                                                                                                   ]),
                                                                                                               -1
                                                                                                             ]);
                                                                                                   end end)
                                                                                               ],
-                                                                                              --[ :: ]--[
-                                                                                                --[ tuple ]--[
+                                                                                              --[[ :: ]][
+                                                                                                --[[ tuple ]][
                                                                                                   "File \"caml_compare_test.ml\", line 90, characters 4-11",
                                                                                                   (function (param) do
-                                                                                                      return --[ Eq ]--Block.__(0, [
-                                                                                                                Caml_obj.caml_compare(--[ :: ]--[
+                                                                                                      return --[[ Eq ]]Block.__(0, [
+                                                                                                                Caml_obj.caml_compare(--[[ :: ]][
                                                                                                                       3,
-                                                                                                                      --[ [] ]--0
+                                                                                                                      --[[ [] ]]0
                                                                                                                     ], null),
                                                                                                                 1
                                                                                                               ]);
                                                                                                     end end)
                                                                                                 ],
-                                                                                                --[ :: ]--[
-                                                                                                  --[ tuple ]--[
+                                                                                                --[[ :: ]][
+                                                                                                  --[[ tuple ]][
                                                                                                     "File \"caml_compare_test.ml\", line 93, characters 4-11",
                                                                                                     (function (param) do
-                                                                                                        return --[ Eq ]--Block.__(0, [
+                                                                                                        return --[[ Eq ]]Block.__(0, [
                                                                                                                   Caml_obj.caml_compare(null, 0),
                                                                                                                   -1
                                                                                                                 ]);
                                                                                                       end end)
                                                                                                   ],
-                                                                                                  --[ :: ]--[
-                                                                                                    --[ tuple ]--[
+                                                                                                  --[[ :: ]][
+                                                                                                    --[[ tuple ]][
                                                                                                       "File \"caml_compare_test.ml\", line 96, characters 4-11",
                                                                                                       (function (param) do
-                                                                                                          return --[ Eq ]--Block.__(0, [
+                                                                                                          return --[[ Eq ]]Block.__(0, [
                                                                                                                     Caml_obj.caml_compare(0, null),
                                                                                                                     1
                                                                                                                   ]);
                                                                                                         end end)
                                                                                                     ],
-                                                                                                    --[ :: ]--[
-                                                                                                      --[ tuple ]--[
+                                                                                                    --[[ :: ]][
+                                                                                                      --[[ tuple ]][
                                                                                                         "File \"caml_compare_test.ml\", line 99, characters 4-11",
                                                                                                         (function (param) do
-                                                                                                            return --[ Eq ]--Block.__(0, [
+                                                                                                            return --[[ Eq ]]Block.__(0, [
                                                                                                                       Caml_obj.caml_compare(undefined, 0),
                                                                                                                       -1
                                                                                                                     ]);
                                                                                                           end end)
                                                                                                       ],
-                                                                                                      --[ :: ]--[
-                                                                                                        --[ tuple ]--[
+                                                                                                      --[[ :: ]][
+                                                                                                        --[[ tuple ]][
                                                                                                           "File \"caml_compare_test.ml\", line 102, characters 4-11",
                                                                                                           (function (param) do
-                                                                                                              return --[ Eq ]--Block.__(0, [
+                                                                                                              return --[[ Eq ]]Block.__(0, [
                                                                                                                         Caml_obj.caml_compare(0, undefined),
                                                                                                                         1
                                                                                                                       ]);
                                                                                                             end end)
                                                                                                         ],
-                                                                                                        --[ [] ]--0
+                                                                                                        --[[ [] ]]0
                                                                                                       ]
                                                                                                     ]
                                                                                                   ]
@@ -1040,9 +1040,9 @@ end end
 
 eq("File \"caml_compare_test.ml\", line 112, characters 6-13", true, Caml_obj.caml_greaterthan(1, undefined));
 
-eq("File \"caml_compare_test.ml\", line 113, characters 6-13", true, Caml_obj.caml_lessthan(--[ [] ]--0, --[ :: ]--[
+eq("File \"caml_compare_test.ml\", line 113, characters 6-13", true, Caml_obj.caml_lessthan(--[[ [] ]]0, --[[ :: ]][
           1,
-          --[ [] ]--0
+          --[[ [] ]]0
         ]));
 
 eq("File \"caml_compare_test.ml\", line 114, characters 6-13", false, Caml_obj.caml_greaterthan(undefined, 1));
@@ -1063,4 +1063,4 @@ exports.function_equal_test = function_equal_test;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
---[ function_equal_test Not a pure module ]--
+--[[ function_equal_test Not a pure module ]]

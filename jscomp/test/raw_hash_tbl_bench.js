@@ -12,7 +12,7 @@ function bench(param) do
     if (!Hashtbl.mem(table, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "raw_hash_tbl_bench.ml",
               9,
               4
@@ -24,13 +24,13 @@ function bench(param) do
   for i$2 = 0 , 1000000 , 1 do
     Hashtbl.remove(table, i$2);
   end
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-bench(--[ () ]--0);
+bench(--[[ () ]]0);
 
 count = 1000000;
 
 exports.count = count;
 exports.bench = bench;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

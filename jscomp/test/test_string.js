@@ -15,7 +15,7 @@ function f(param) do
     else do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "test_string.ml",
               4,
               18
@@ -39,7 +39,7 @@ function c(x, y) do
 end end
 
 function h(s, b) do
-  if (Caml_string.get(s, 0) == --[ "a" ]--97 and Caml_bytes.get(b, 0) == --[ "b" ]--98) then do
+  if (Caml_string.get(s, 0) == --[[ "a" ]]97 and Caml_bytes.get(b, 0) == --[[ "b" ]]98) then do
     return Caml_string.get(s, 1) == Caml_bytes.get(b, 2);
   end else do
     return false;
@@ -54,4 +54,4 @@ exports.b = b;
 exports.c = c;
 exports.v = v;
 exports.h = h;
---[ No side effect ]--
+--[[ No side effect ]]

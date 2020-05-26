@@ -37,19 +37,19 @@ function f(g, h) do
         end;
 end end
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "eq_with",
   (function (param) do
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 v,
                 u_v
               ]);
     end end)
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
-  --[ [] ]--0
+  --[[ [] ]]0
 ];
 
 Mt.from_pair_suites("Record_with_test", suites);
@@ -69,4 +69,4 @@ exports.uv = uv;
 exports.u_v = u_v;
 exports.f = f;
 exports.suites = suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

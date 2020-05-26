@@ -8,4 +8,4 @@ ff = Caml_bytes.bytes_to_string;
 
 exports.f = f;
 exports.ff = ff;
---[ No side effect ]--
+--[[ No side effect ]]

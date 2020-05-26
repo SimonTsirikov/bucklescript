@@ -14,7 +14,7 @@ ExtUnixAll = do
 end;
 
 ExtUnix = do
-  All: --[ alias ]--0
+  All: --[[ alias ]]0
 end;
 
 function test_endian_string(x) do
@@ -31,4 +31,4 @@ end;
 exports.ExtUnixAll = ExtUnixAll;
 exports.ExtUnix = ExtUnix;
 exports.Test = Test;
---[ No side effect ]--
+--[[ No side effect ]]

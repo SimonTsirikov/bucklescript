@@ -9,7 +9,7 @@ Exception_def = require("./exception_def.js");
 Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -18,11 +18,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -30,7 +30,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 Hi = Caml_exceptions.create("Exception_repr_test.Hi");
@@ -43,16 +43,16 @@ Printexc.register_printer((function (param) do
         if (param == Hi) then do
           return "hey";
         end else if (param[0] == A) then do
-          return Curry._1(Format.asprintf(--[ Format ]--[
-                          --[ String_literal ]--Block.__(11, [
+          return Curry._1(Format.asprintf(--[[ Format ]][
+                          --[[ String_literal ]]Block.__(11, [
                               "A(",
-                              --[ Int ]--Block.__(4, [
-                                  --[ Int_d ]--0,
-                                  --[ No_padding ]--0,
-                                  --[ No_precision ]--0,
-                                  --[ Char_literal ]--Block.__(12, [
-                                      --[ ")" ]--41,
-                                      --[ End_of_format ]--0
+                              --[[ Int ]]Block.__(4, [
+                                  --[[ Int_d ]]0,
+                                  --[[ No_padding ]]0,
+                                  --[[ No_precision ]]0,
+                                  --[[ Char_literal ]]Block.__(12, [
+                                      --[[ ")" ]]41,
+                                      --[[ End_of_format ]]0
                                     ])
                                 ])
                             ]),
@@ -88,4 +88,4 @@ exports.Hi = Hi;
 exports.Hello = Hello;
 exports.A = A;
 exports.AAA = AAA;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

@@ -51,4 +51,4 @@ exports.XX = XX;
 exports.u = u;
 exports.hh = hh;
 exports.ghh = ghh;
---[ ghh Not a pure module ]--
+--[[ ghh Not a pure module ]]

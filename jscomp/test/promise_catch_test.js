@@ -9,7 +9,7 @@ Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -18,11 +18,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -30,7 +30,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function handler(e) do
@@ -43,7 +43,7 @@ function handler(e) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "promise_catch_test.ml",
             22,
             9
@@ -87,7 +87,7 @@ end
 if (exit == 1) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "promise_catch_test.ml",
           39,
           9
@@ -104,4 +104,4 @@ exports.eq = eq;
 exports.handler = handler;
 exports.myHandler = myHandler;
 exports.f = f;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

@@ -3,19 +3,19 @@
 
 function fff(x) do
   x.height = 2;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function ff(x, z) do
-  return --[ :: ]--[
+  return --[[ :: ]][
           x.height,
-          --[ :: ]--[
+          --[[ :: ]][
             z.height,
-            --[ [] ]--0
+            --[[ [] ]]0
           ]
         ];
 end end
 
 exports.fff = fff;
 exports.ff = ff;
---[ No side effect ]--
+--[[ No side effect ]]

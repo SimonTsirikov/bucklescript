@@ -10,4 +10,4 @@ function f(x, y, param) do
 end end
 
 exports.f = f;
---[ No side effect ]--
+--[[ No side effect ]]

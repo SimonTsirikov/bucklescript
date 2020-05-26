@@ -14,7 +14,7 @@ function assert_f(x) do
   if (x <= 3) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "exception_value_test.ml",
             9,
             12
@@ -42,7 +42,7 @@ u = [
 
 function test_not_found(f, param) do
   try do
-    return Curry._1(f, --[ () ]--0);
+    return Curry._1(f, --[[ () ]]0);
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
@@ -88,4 +88,4 @@ exports.u = u;
 exports.test_not_found = test_not_found;
 exports.test_js_error2 = test_js_error2;
 exports.test_js_error3 = test_js_error3;
---[ No side effect ]--
+--[[ No side effect ]]

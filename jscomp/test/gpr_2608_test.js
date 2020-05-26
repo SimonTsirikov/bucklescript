@@ -4,7 +4,7 @@ Mt = require("./mt.js");
 List = require("../../lib/js/list.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -15,16 +15,16 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end end
 
-oppHeroes = --[ :: ]--[
+oppHeroes = --[[ :: ]][
   0,
-  --[ [] ]--0
+  --[[ [] ]]0
 ];
 
 huntGrootCondition = false;
 
-if (List.length(--[ [] ]--0) > 0) then do
+if (List.length(--[[ [] ]]0) > 0) then do
   x = List.filter((function (h) do
-            return List.hd(--[ [] ]--0) <= 1000;
+            return List.hd(--[[ [] ]]0) <= 1000;
           end end))(oppHeroes);
   huntGrootCondition = List.length(x) == 0;
 end
@@ -32,9 +32,9 @@ end
 
 huntGrootCondition2 = true;
 
-if (List.length(--[ [] ]--0) < 0) then do
+if (List.length(--[[ [] ]]0) < 0) then do
   x$1 = List.filter((function (h) do
-            return List.hd(--[ [] ]--0) <= 1000;
+            return List.hd(--[[ [] ]]0) <= 1000;
           end end))(oppHeroes);
   huntGrootCondition2 = List.length(x$1) == 0;
 end
@@ -46,7 +46,7 @@ eq("File \"gpr_2608_test.ml\", line 24, characters 5-12", huntGrootCondition2, t
 
 Mt.from_pair_suites("Gpr_2608_test", suites.contents);
 
-nearestGroots = --[ [] ]--0;
+nearestGroots = --[[ [] ]]0;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -55,4 +55,4 @@ exports.nearestGroots = nearestGroots;
 exports.oppHeroes = oppHeroes;
 exports.huntGrootCondition = huntGrootCondition;
 exports.huntGrootCondition2 = huntGrootCondition2;
---[ huntGrootCondition Not a pure module ]--
+--[[ huntGrootCondition Not a pure module ]]

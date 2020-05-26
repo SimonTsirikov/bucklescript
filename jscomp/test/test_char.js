@@ -18,7 +18,7 @@ function chr(n) do
 end end
 
 function lowercase(c) do
-  if (c >= --[ "A" ]--65 and c <= --[ "Z" ]--90 or c >= --[ "\192" ]--192 and c <= --[ "\214" ]--214 or c >= --[ "\216" ]--216 and c <= --[ "\222" ]--222) then do
+  if (c >= --[[ "A" ]]65 and c <= --[[ "Z" ]]90 or c >= --[[ "\192" ]]192 and c <= --[[ "\214" ]]214 or c >= --[[ "\216" ]]216 and c <= --[[ "\222" ]]222) then do
     return c + 32 | 0;
   end else do
     return c;
@@ -26,7 +26,7 @@ function lowercase(c) do
 end end
 
 function uppercase(c) do
-  if (c >= --[ "a" ]--97 and c <= --[ "z" ]--122 or c >= --[ "\224" ]--224 and c <= --[ "\246" ]--246 or c >= --[ "\248" ]--248 and c <= --[ "\254" ]--254) then do
+  if (c >= --[[ "a" ]]97 and c <= --[[ "z" ]]122 or c >= --[[ "\224" ]]224 and c <= --[[ "\246" ]]246 or c >= --[[ "\248" ]]248 and c <= --[[ "\254" ]]254) then do
     return c - 32 | 0;
   end else do
     return c;
@@ -42,4 +42,4 @@ exports.chr = chr;
 exports.lowercase = lowercase;
 exports.uppercase = uppercase;
 exports.compare = compare;
---[ No side effect ]--
+--[[ No side effect ]]

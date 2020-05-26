@@ -3,7 +3,7 @@
 Mt = require("./mt.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -57,4 +57,4 @@ exports.f3 = f3;
 exports.f4 = f4;
 exports.f5 = f5;
 exports.f6 = f6;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

@@ -4,7 +4,7 @@ Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
 
 function f(x) do
   x.case = 3;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function g(x) do
@@ -13,4 +13,4 @@ end end
 
 exports.f = f;
 exports.g = g;
---[ No side effect ]--
+--[[ No side effect ]]

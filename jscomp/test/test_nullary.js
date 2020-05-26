@@ -3,8 +3,8 @@
 
 function f(param) do
   console.log("hey");
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 exports.f = f;
---[ No side effect ]--
+--[[ No side effect ]]

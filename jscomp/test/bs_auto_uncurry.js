@@ -37,28 +37,28 @@ xs = Array.prototype.map.call([
 
 function f_0(param) do
   return hi((function () do
-                return --[ () ]--0;
+                return --[[ () ]]0;
               end end));
 end end
 
 function f_01(param) do
   return hi((function () do
                 console.log("x");
-                return --[ () ]--0;
+                return --[[ () ]]0;
               end end));
 end end
 
 function f_02(xs) do
   return hi((function () do
-                xs.contents = --[ () ]--0;
+                xs.contents = --[[ () ]]0;
                 console.log("x");
-                return --[ () ]--0;
+                return --[[ () ]]0;
               end end));
 end end
 
 function f_03(xs, u) do
   return hi((function () do
-                return Curry._1(u, --[ () ]--0);
+                return Curry._1(u, --[[ () ]]0);
               end end));
 end end
 
@@ -104,7 +104,7 @@ function h5(x) do
 end end
 
 function add(x, y) do
-  console.log(--[ tuple ]--[
+  console.log(--[[ tuple ]][
         x,
         y
       ]);
@@ -121,7 +121,7 @@ function unit_magic(param) do
   return 3;
 end end
 
-f_unit_magic = unit_magic(--[ () ]--0);
+f_unit_magic = unit_magic(--[[ () ]]0);
 
 function hh(xs) do
   return (function (param) do
@@ -129,7 +129,7 @@ function hh(xs) do
             xs,
             param
           ]);
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end end);
 end end
 
@@ -155,4 +155,4 @@ exports.h6 = h6;
 exports.unit_magic = unit_magic;
 exports.f_unit_magic = f_unit_magic;
 exports.hh = hh;
---[ xbs Not a pure module ]--
+--[[ xbs Not a pure module ]]

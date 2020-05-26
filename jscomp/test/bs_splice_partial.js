@@ -29,11 +29,11 @@ end end
 
 function f(x) do
   v(x);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 exports.test_hi = test_hi;
 exports.test_hi__2 = test_hi__2;
 exports.test_cb = test_cb;
 exports.f = f;
---[ No side effect ]--
+--[[ No side effect ]]

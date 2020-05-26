@@ -7,7 +7,7 @@ Caml_string = require("../../lib/js/caml_string.js");
 Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -16,11 +16,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -28,7 +28,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 console.log("你好，\n世界");
@@ -43,7 +43,7 @@ function convert(s) do
                     end else do
                       throw [
                             Caml_builtin_exceptions.assert_failure,
-                            --[ tuple ]--[
+                            --[[ tuple ]][
                               "chn_test.ml",
                               20,
                               18
@@ -55,45 +55,45 @@ end end
 
 eq("File \"chn_test.ml\", line 25, characters 7-14", "你好，\n世界", "你好，\n世界");
 
-eq("File \"chn_test.ml\", line 27, characters 7-14", convert("汉字是世界上最美丽的character"), --[ :: ]--[
+eq("File \"chn_test.ml\", line 27, characters 7-14", convert("汉字是世界上最美丽的character"), --[[ :: ]][
       27721,
-      --[ :: ]--[
+      --[[ :: ]][
         23383,
-        --[ :: ]--[
+        --[[ :: ]][
           26159,
-          --[ :: ]--[
+          --[[ :: ]][
             19990,
-            --[ :: ]--[
+            --[[ :: ]][
               30028,
-              --[ :: ]--[
+              --[[ :: ]][
                 19978,
-                --[ :: ]--[
+                --[[ :: ]][
                   26368,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     32654,
-                    --[ :: ]--[
+                    --[[ :: ]][
                       20029,
-                      --[ :: ]--[
+                      --[[ :: ]][
                         30340,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           99,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             104,
-                            --[ :: ]--[
+                            --[[ :: ]][
                               97,
-                              --[ :: ]--[
+                              --[[ :: ]][
                                 114,
-                                --[ :: ]--[
+                                --[[ :: ]][
                                   97,
-                                  --[ :: ]--[
+                                  --[[ :: ]][
                                     99,
-                                    --[ :: ]--[
+                                    --[[ :: ]][
                                       116,
-                                      --[ :: ]--[
+                                      --[[ :: ]][
                                         101,
-                                        --[ :: ]--[
+                                        --[[ :: ]][
                                           114,
-                                          --[ [] ]--0
+                                          --[[ [] ]]0
                                         ]
                                       ]
                                     ]
@@ -114,73 +114,73 @@ eq("File \"chn_test.ml\", line 27, characters 7-14", convert("汉字是世界上
       ]
     ]);
 
-eq("File \"chn_test.ml\", line 48, characters 5-12", convert("\x3f\x3fa"), --[ :: ]--[
+eq("File \"chn_test.ml\", line 48, characters 5-12", convert("\x3f\x3fa"), --[[ :: ]][
       63,
-      --[ :: ]--[
+      --[[ :: ]][
         63,
-        --[ :: ]--[
+        --[[ :: ]][
           97,
-          --[ [] ]--0
+          --[[ [] ]]0
         ]
       ]
     ]);
 
-eq("File \"chn_test.ml\", line 50, characters 5-12", convert("??a"), --[ :: ]--[
+eq("File \"chn_test.ml\", line 50, characters 5-12", convert("??a"), --[[ :: ]][
       63,
-      --[ :: ]--[
+      --[[ :: ]][
         63,
-        --[ :: ]--[
+        --[[ :: ]][
           97,
-          --[ [] ]--0
+          --[[ [] ]]0
         ]
       ]
     ]);
 
-eq("File \"chn_test.ml\", line 52, characters 5-12", convert("\u003f\x3fa"), --[ :: ]--[
+eq("File \"chn_test.ml\", line 52, characters 5-12", convert("\u003f\x3fa"), --[[ :: ]][
       63,
-      --[ :: ]--[
+      --[[ :: ]][
         63,
-        --[ :: ]--[
+        --[[ :: ]][
           97,
-          --[ [] ]--0
+          --[[ [] ]]0
         ]
       ]
     ]);
 
-eq("File \"chn_test.ml\", line 54, characters 5-12", convert("🚀🚀a"), --[ :: ]--[
+eq("File \"chn_test.ml\", line 54, characters 5-12", convert("🚀🚀a"), --[[ :: ]][
       128640,
-      --[ :: ]--[
+      --[[ :: ]][
         128640,
-        --[ :: ]--[
+        --[[ :: ]][
           97,
-          --[ [] ]--0
+          --[[ [] ]]0
         ]
       ]
     ]);
 
-eq("File \"chn_test.ml\", line 56, characters 5-12", convert("\uD83D\uDE80a"), --[ :: ]--[
+eq("File \"chn_test.ml\", line 56, characters 5-12", convert("\uD83D\uDE80a"), --[[ :: ]][
       128640,
-      --[ :: ]--[
+      --[[ :: ]][
         97,
-        --[ [] ]--0
+        --[[ [] ]]0
       ]
     ]);
 
-eq("File \"chn_test.ml\", line 58, characters 5-12", convert("\uD83D\uDE80\x3f"), --[ :: ]--[
+eq("File \"chn_test.ml\", line 58, characters 5-12", convert("\uD83D\uDE80\x3f"), --[[ :: ]][
       128640,
-      --[ :: ]--[
+      --[[ :: ]][
         63,
-        --[ [] ]--0
+        --[[ [] ]]0
       ]
     ]);
 
-eq("File \"chn_test.ml\", line 63, characters 5-12", convert("\uD83D\uDE80\uD83D\uDE80a"), --[ :: ]--[
+eq("File \"chn_test.ml\", line 63, characters 5-12", convert("\uD83D\uDE80\uD83D\uDE80a"), --[[ :: ]][
       128640,
-      --[ :: ]--[
+      --[[ :: ]][
         128640,
-        --[ :: ]--[
+        --[[ :: ]][
           97,
-          --[ [] ]--0
+          --[[ [] ]]0
         ]
       ]
     ]);
@@ -189,36 +189,36 @@ eq("No inline string length", #"\uD83D\uDE80\0", 3);
 
 eq("No inline string access", Caml_string.get("\uD83D\uDE80\0", 0) & 255, 61);
 
-eq("File \"chn_test.ml\", line 79, characters 5-12", convert("\uD83D\uDE80"), --[ :: ]--[
+eq("File \"chn_test.ml\", line 79, characters 5-12", convert("\uD83D\uDE80"), --[[ :: ]][
       128640,
-      --[ [] ]--0
+      --[[ [] ]]0
     ]);
 
-eq("File \"chn_test.ml\", line 81, characters 5-12", convert("\uD83D\uDE80\uD83D\uDE80"), --[ :: ]--[
+eq("File \"chn_test.ml\", line 81, characters 5-12", convert("\uD83D\uDE80\uD83D\uDE80"), --[[ :: ]][
       128640,
-      --[ :: ]--[
+      --[[ :: ]][
         128640,
-        --[ [] ]--0
+        --[[ [] ]]0
       ]
     ]);
 
-eq("File \"chn_test.ml\", line 82, characters 5-12", convert(" \b\t\n\v\f\ra"), --[ :: ]--[
+eq("File \"chn_test.ml\", line 82, characters 5-12", convert(" \b\t\n\v\f\ra"), --[[ :: ]][
       32,
-      --[ :: ]--[
+      --[[ :: ]][
         8,
-        --[ :: ]--[
+        --[[ :: ]][
           9,
-          --[ :: ]--[
+          --[[ :: ]][
             10,
-            --[ :: ]--[
+            --[[ :: ]][
               11,
-              --[ :: ]--[
+              --[[ :: ]][
                 12,
-                --[ :: ]--[
+                --[[ :: ]][
                   13,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     97,
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ]
               ]
@@ -228,31 +228,31 @@ eq("File \"chn_test.ml\", line 82, characters 5-12", convert(" \b\t\n\v\f\ra"), 
       ]
     ]);
 
-eq("File \"chn_test.ml\", line 89, characters 6-13", convert(" \b\t\n\v\f\r\"\'\\\0a"), --[ :: ]--[
+eq("File \"chn_test.ml\", line 89, characters 6-13", convert(" \b\t\n\v\f\r\"\'\\\0a"), --[[ :: ]][
       32,
-      --[ :: ]--[
+      --[[ :: ]][
         8,
-        --[ :: ]--[
+        --[[ :: ]][
           9,
-          --[ :: ]--[
+          --[[ :: ]][
             10,
-            --[ :: ]--[
+            --[[ :: ]][
               11,
-              --[ :: ]--[
+              --[[ :: ]][
                 12,
-                --[ :: ]--[
+                --[[ :: ]][
                   13,
-                  --[ :: ]--[
+                  --[[ :: ]][
                     34,
-                    --[ :: ]--[
+                    --[[ :: ]][
                       39,
-                      --[ :: ]--[
+                      --[[ :: ]][
                         92,
-                        --[ :: ]--[
+                        --[[ :: ]][
                           0,
-                          --[ :: ]--[
+                          --[[ :: ]][
                             97,
-                            --[ [] ]--0
+                            --[[ [] ]]0
                           ]
                         ]
                       ]
@@ -272,4 +272,4 @@ exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.convert = convert;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

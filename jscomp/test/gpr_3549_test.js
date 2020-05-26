@@ -3,7 +3,7 @@
 Mt = require("./mt.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -14,7 +14,7 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end end
 
-others = --[ tuple ]--[
+others = --[[ tuple ]][
   0,
   0,
   1,
@@ -30,7 +30,7 @@ eq("File \"gpr_3549_test.ml\", line 20, characters 5-12", 0.2, 0.2);
 
 eq("File \"gpr_3549_test.ml\", line 21, characters 5-12", 32, 32);
 
-eq("File \"gpr_3549_test.ml\", line 22, characters 5-12", others, --[ tuple ]--[
+eq("File \"gpr_3549_test.ml\", line 22, characters 5-12", others, --[[ tuple ]][
       0.0,
       0.0,
       1.0,
@@ -56,4 +56,4 @@ exports.x = x;
 exports.y = y;
 exports.z = z;
 exports.others = others;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

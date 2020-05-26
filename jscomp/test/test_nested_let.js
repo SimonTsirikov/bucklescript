@@ -4,4 +4,4 @@
 v = 68;
 
 exports.v = v;
---[ No side effect ]--
+--[[ No side effect ]]

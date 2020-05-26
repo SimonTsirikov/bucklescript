@@ -11,4 +11,4 @@ end end
 
 exports.make = make;
 exports.from = from;
---[ No side effect ]--
+--[[ No side effect ]]

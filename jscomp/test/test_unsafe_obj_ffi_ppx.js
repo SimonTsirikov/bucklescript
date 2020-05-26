@@ -8,7 +8,7 @@ end end
 function h(x) do
   x.height = 3;
   x.width = 3;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function chain(x) do
@@ -24,4 +24,4 @@ exports.f = f;
 exports.h = h;
 exports.chain = chain;
 exports.g = g;
---[ No side effect ]--
+--[[ No side effect ]]

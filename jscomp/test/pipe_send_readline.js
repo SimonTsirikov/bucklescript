@@ -4,10 +4,10 @@
 function u(rl) do
   return rl.on("line", (function (x) do
                   console.log(x);
-                  return --[ () ]--0;
+                  return --[[ () ]]0;
                 end end)).on("close", (function () do
                 console.log("finished");
-                return --[ () ]--0;
+                return --[[ () ]]0;
               end end));
 end end
 
@@ -22,4 +22,4 @@ end end
 exports.u = u;
 exports.xx = xx;
 exports.yy = yy;
---[ No side effect ]--
+--[[ No side effect ]]

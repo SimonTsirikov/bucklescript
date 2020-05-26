@@ -5,12 +5,12 @@ u = do
   x: 3,
   y: 32,
   bark: (function ($$this, x, y) do
-      console.log(--[ tuple ]--[
+      console.log(--[[ tuple ]][
             $$this.length,
             $$this.x,
             $$this.y
           ]);
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end end),
   length: 32
 end;
@@ -27,7 +27,7 @@ js_obj = do
   y: 32,
   bark: (function (x, y) do
       o = this ;
-      console.log(--[ tuple ]--[
+      console.log(--[[ tuple ]][
             o.length,
             o.x,
             o.y,
@@ -41,4 +41,4 @@ end;
 
 exports.js_obj = js_obj;
 exports.uux_this = uux_this;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

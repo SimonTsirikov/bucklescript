@@ -59,34 +59,34 @@ end end
 
 min_int = -2147483648;
 
-infinity = Caml_int64.float_of_bits(--[ int64 ]--[
-      --[ hi ]--2146435072,
-      --[ lo ]--0
+infinity = Caml_int64.float_of_bits(--[[ int64 ]][
+      --[[ hi ]]2146435072,
+      --[[ lo ]]0
     ]);
 
-neg_infinity = Caml_int64.float_of_bits(--[ int64 ]--[
-      --[ hi ]---1048576,
-      --[ lo ]--0
+neg_infinity = Caml_int64.float_of_bits(--[[ int64 ]][
+      --[[ hi ]]-1048576,
+      --[[ lo ]]0
     ]);
 
-nan = Caml_int64.float_of_bits(--[ int64 ]--[
-      --[ hi ]--2146435072,
-      --[ lo ]--1
+nan = Caml_int64.float_of_bits(--[[ int64 ]][
+      --[[ hi ]]2146435072,
+      --[[ lo ]]1
     ]);
 
-max_float = Caml_int64.float_of_bits(--[ int64 ]--[
-      --[ hi ]--2146435071,
-      --[ lo ]--4294967295
+max_float = Caml_int64.float_of_bits(--[[ int64 ]][
+      --[[ hi ]]2146435071,
+      --[[ lo ]]4294967295
     ]);
 
-min_float = Caml_int64.float_of_bits(--[ int64 ]--[
-      --[ hi ]--1048576,
-      --[ lo ]--0
+min_float = Caml_int64.float_of_bits(--[[ int64 ]][
+      --[[ hi ]]1048576,
+      --[[ lo ]]0
     ]);
 
-epsilon_float = Caml_int64.float_of_bits(--[ int64 ]--[
-      --[ hi ]--1018167296,
-      --[ lo ]--0
+epsilon_float = Caml_int64.float_of_bits(--[[ int64 ]][
+      --[[ hi ]]1018167296,
+      --[[ lo ]]0
     ]);
 
 function $caret(s1, s2) do
@@ -171,7 +171,7 @@ end end
 
 function $at(l1, l2) do
   if (l1) then do
-    return --[ :: ]--[
+    return --[[ :: ]][
             l1[0],
             $at(l1[1], l2)
           ];
@@ -191,15 +191,15 @@ function open_out_gen(mode, perm, name) do
 end end
 
 function open_out(name) do
-  return open_out_gen(--[ :: ]--[
-              --[ Open_wronly ]--1,
-              --[ :: ]--[
-                --[ Open_creat ]--3,
-                --[ :: ]--[
-                  --[ Open_trunc ]--4,
-                  --[ :: ]--[
-                    --[ Open_text ]--7,
-                    --[ [] ]--0
+  return open_out_gen(--[[ :: ]][
+              --[[ Open_wronly ]]1,
+              --[[ :: ]][
+                --[[ Open_creat ]]3,
+                --[[ :: ]][
+                  --[[ Open_trunc ]]4,
+                  --[[ :: ]][
+                    --[[ Open_text ]]7,
+                    --[[ [] ]]0
                   ]
                 ]
               ]
@@ -207,15 +207,15 @@ function open_out(name) do
 end end
 
 function open_out_bin(name) do
-  return open_out_gen(--[ :: ]--[
-              --[ Open_wronly ]--1,
-              --[ :: ]--[
-                --[ Open_creat ]--3,
-                --[ :: ]--[
-                  --[ Open_trunc ]--4,
-                  --[ :: ]--[
-                    --[ Open_binary ]--6,
-                    --[ [] ]--0
+  return open_out_gen(--[[ :: ]][
+              --[[ Open_wronly ]]1,
+              --[[ :: ]][
+                --[[ Open_creat ]]3,
+                --[[ :: ]][
+                  --[[ Open_trunc ]]4,
+                  --[[ :: ]][
+                    --[[ Open_binary ]]6,
+                    --[[ [] ]]0
                   ]
                 ]
               ]
@@ -223,7 +223,7 @@ function open_out_bin(name) do
 end end
 
 function flush_all(param) do
-  _param = Caml_io.caml_ml_out_channels_list(--[ () ]--0);
+  _param = Caml_io.caml_ml_out_channels_list(--[[ () ]]0);
   while(true) do
     param$1 = _param;
     if (param$1) then do
@@ -236,7 +236,7 @@ function flush_all(param) do
       _param = param$1[1];
       continue ;
     end else do
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end end 
   end;
 end end
@@ -272,7 +272,7 @@ function output_substring(oc, s, ofs, len) do
 end end
 
 function output_value(chan, v) do
-  return Caml_external_polyfill.resolve("caml_output_value")(chan, v, --[ [] ]--0);
+  return Caml_external_polyfill.resolve("caml_output_value")(chan, v, --[[ [] ]]0);
 end end
 
 function close_out(oc) do
@@ -291,7 +291,7 @@ function close_out_noerr(oc) do
     return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
   end
   catch (exn$1)do
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end
 end end
 
@@ -300,21 +300,21 @@ function open_in_gen(mode, perm, name) do
 end end
 
 function open_in(name) do
-  return open_in_gen(--[ :: ]--[
-              --[ Open_rdonly ]--0,
-              --[ :: ]--[
-                --[ Open_text ]--7,
-                --[ [] ]--0
+  return open_in_gen(--[[ :: ]][
+              --[[ Open_rdonly ]]0,
+              --[[ :: ]][
+                --[[ Open_text ]]7,
+                --[[ [] ]]0
               ]
             ], 0, name);
 end end
 
 function open_in_bin(name) do
-  return open_in_gen(--[ :: ]--[
-              --[ Open_rdonly ]--0,
-              --[ :: ]--[
-                --[ Open_binary ]--6,
-                --[ [] ]--0
+  return open_in_gen(--[[ :: ]][
+              --[[ Open_rdonly ]]0,
+              --[[ :: ]][
+                --[[ Open_binary ]]6,
+                --[[ [] ]]0
               ]
             ], 0, name);
 end end
@@ -335,7 +335,7 @@ function unsafe_really_input(ic, s, _ofs, _len) do
     len = _len;
     ofs = _ofs;
     if (len <= 0) then do
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end else do
       r = Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
       if (r == 0) then do
@@ -383,7 +383,7 @@ function input_line(chan) do
       end end 
     end;
   end end;
-  _accu = --[ [] ]--0;
+  _accu = --[[ [] ]]0;
   _len = 0;
   while(true) do
     len = _len;
@@ -401,7 +401,7 @@ function input_line(chan) do
       Caml_external_polyfill.resolve("caml_ml_input_char")(chan);
       if (accu) then do
         len$1 = (len + n | 0) - 1 | 0;
-        return build_result(Caml_bytes.caml_create_bytes(len$1), len$1, --[ :: ]--[
+        return build_result(Caml_bytes.caml_create_bytes(len$1), len$1, --[[ :: ]][
                     res,
                     accu
                   ]);
@@ -412,7 +412,7 @@ function input_line(chan) do
       beg = Caml_bytes.caml_create_bytes(-n | 0);
       Caml_external_polyfill.resolve("caml_ml_input")(chan, beg, 0, -n | 0);
       _len = len - n | 0;
-      _accu = --[ :: ]--[
+      _accu = --[[ :: ]][
         beg,
         accu
       ];
@@ -426,7 +426,7 @@ function close_in_noerr(ic) do
     return Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
   end
   catch (exn)do
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end
 end end
 
@@ -452,12 +452,12 @@ end end
 
 function print_endline(s) do
   output_string(stdout, s);
-  Caml_io.caml_ml_output_char(stdout, --[ "\n" ]--10);
+  Caml_io.caml_ml_output_char(stdout, --[[ "\n" ]]10);
   return Caml_io.caml_ml_flush(stdout);
 end end
 
 function print_newline(param) do
-  Caml_io.caml_ml_output_char(stdout, --[ "\n" ]--10);
+  Caml_io.caml_ml_output_char(stdout, --[[ "\n" ]]10);
   return Caml_io.caml_ml_flush(stdout);
 end end
 
@@ -483,12 +483,12 @@ end end
 
 function prerr_endline(s) do
   output_string(stderr, s);
-  Caml_io.caml_ml_output_char(stderr, --[ "\n" ]--10);
+  Caml_io.caml_ml_output_char(stderr, --[[ "\n" ]]10);
   return Caml_io.caml_ml_flush(stderr);
 end end
 
 function prerr_newline(param) do
-  Caml_io.caml_ml_output_char(stderr, --[ "\n" ]--10);
+  Caml_io.caml_ml_output_char(stderr, --[[ "\n" ]]10);
   return Caml_io.caml_ml_flush(stderr);
 end end
 
@@ -512,7 +512,7 @@ function string_of_format(param) do
 end end
 
 function $caret$caret(param, param$1) do
-  return --[ Format ]--[
+  return --[[ Format ]][
           CamlinternalFormatBasics.concat_fmt(param[0], param$1[0]),
           $caret(param[1], $caret("%,", param$1[1]))
         ];
@@ -525,18 +525,18 @@ end;
 function at_exit(f) do
   g = exit_function[0];
   exit_function[0] = (function (param) do
-      Curry._1(f, --[ () ]--0);
-      return Curry._1(g, --[ () ]--0);
+      Curry._1(f, --[[ () ]]0);
+      return Curry._1(g, --[[ () ]]0);
     end end);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function do_at_exit(param) do
-  return Curry._1(exit_function[0], --[ () ]--0);
+  return Curry._1(exit_function[0], --[[ () ]]0);
 end end
 
 function exit(retcode) do
-  Curry._1(exit_function[0], --[ () ]--0);
+  Curry._1(exit_function[0], --[[ () ]]0);
   return Caml_sys.caml_sys_exit(retcode);
 end end
 
@@ -612,4 +612,4 @@ exports.exit_function = exit_function;
 exports.at_exit = at_exit;
 exports.do_at_exit = do_at_exit;
 exports.exit = exit;
---[ No side effect ]--
+--[[ No side effect ]]

@@ -14,7 +14,7 @@ end
 function bark(param) do
   return (function (x, y) do
       o = this ;
-      console.log(--[ tuple ]--[
+      console.log(--[[ tuple ]][
             o.length,
             o.x,
             o.y,
@@ -37,12 +37,12 @@ function f(x) do
   x.onload = (function () do
       o = this ;
       console.log(o);
-      return --[ () ]--0; end
+      return --[[ () ]]0; end
     end);
   return x.addEventListener("onload", (function () do
                 o = this ;
                 console.log(o.response);
-                return --[ () ]--0; end
+                return --[[ () ]]0; end
               end));
 end end
 
@@ -56,4 +56,4 @@ exports.bark = bark;
 exports.js_obj = js_obj;
 exports.f = f;
 exports.u = u;
---[ uux_this Not a pure module ]--
+--[[ uux_this Not a pure module ]]

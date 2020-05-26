@@ -18,10 +18,10 @@ function finish(param) do
   match = all_tests_ok.contents;
   if (match) then do
     console.log("\nAll tests succeeded.");
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end else do
     console.log("\n\n********* Test suite failed. ***********\n");
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end end 
 end end
 
@@ -39,16 +39,16 @@ end end
 
 function print_failure_test_fail(param) do
   all_tests_ok.contents = false;
-  return Pervasives.print_string(Curry._1(Printf.sprintf(--[ Format ]--[
-                      --[ String_literal ]--Block.__(11, [
+  return Pervasives.print_string(Curry._1(Printf.sprintf(--[[ Format ]][
+                      --[[ String_literal ]]Block.__(11, [
                           "\n********* Failure Test number ",
-                          --[ Int ]--Block.__(4, [
-                              --[ Int_i ]--3,
-                              --[ No_padding ]--0,
-                              --[ No_precision ]--0,
-                              --[ String_literal ]--Block.__(11, [
+                          --[[ Int ]]Block.__(4, [
+                              --[[ Int_i ]]3,
+                              --[[ No_padding ]]0,
+                              --[[ No_precision ]]0,
+                              --[[ String_literal ]]Block.__(11, [
                                   " incorrectly failed ***********\n",
-                                  --[ End_of_format ]--0
+                                  --[[ End_of_format ]]0
                                 ])
                             ])
                         ]),
@@ -58,16 +58,16 @@ end end
 
 function print_failure_test_succeed(param) do
   all_tests_ok.contents = false;
-  return Pervasives.print_string(Curry._1(Printf.sprintf(--[ Format ]--[
-                      --[ String_literal ]--Block.__(11, [
+  return Pervasives.print_string(Curry._1(Printf.sprintf(--[[ Format ]][
+                      --[[ String_literal ]]Block.__(11, [
                           "\n********* Failure Test number ",
-                          --[ Int ]--Block.__(4, [
-                              --[ Int_i ]--3,
-                              --[ No_padding ]--0,
-                              --[ No_precision ]--0,
-                              --[ String_literal ]--Block.__(11, [
+                          --[[ Int ]]Block.__(4, [
+                              --[[ Int_i ]]3,
+                              --[[ No_padding ]]0,
+                              --[[ No_precision ]]0,
+                              --[[ String_literal ]]Block.__(11, [
                                   " failed to fail ***********\n",
-                                  --[ End_of_format ]--0
+                                  --[[ End_of_format ]]0
                                 ])
                             ])
                         ]),
@@ -77,21 +77,21 @@ end end
 
 function test(b) do
   test_num.contents = test_num.contents + 1 | 0;
-  print_test_number(--[ () ]--0);
+  print_test_number(--[[ () ]]0);
   if (b) then do
     return 0;
   end else do
     all_tests_ok.contents = false;
-    return Pervasives.print_string(Curry._1(Printf.sprintf(--[ Format ]--[
-                        --[ String_literal ]--Block.__(11, [
+    return Pervasives.print_string(Curry._1(Printf.sprintf(--[[ Format ]][
+                        --[[ String_literal ]]Block.__(11, [
                             "\n********* Test number ",
-                            --[ Int ]--Block.__(4, [
-                                --[ Int_i ]--3,
-                                --[ No_padding ]--0,
-                                --[ No_precision ]--0,
-                                --[ String_literal ]--Block.__(11, [
+                            --[[ Int ]]Block.__(4, [
+                                --[[ Int_i ]]3,
+                                --[[ No_padding ]]0,
+                                --[[ No_precision ]]0,
+                                --[[ String_literal ]]Block.__(11, [
                                     " failed ***********\n",
-                                    --[ End_of_format ]--0
+                                    --[[ End_of_format ]]0
                                   ])
                               ])
                           ]),
@@ -102,10 +102,10 @@ end end
 
 function test_raises_exc_p(pred, f, x) do
   test_num.contents = test_num.contents + 1 | 0;
-  print_test_number(--[ () ]--0);
+  print_test_number(--[[ () ]]0);
   try do
     Curry._1(f, x);
-    print_failure_test_succeed(--[ () ]--0);
+    print_failure_test_succeed(--[[ () ]]0);
     return false;
   end
   catch (raw_x)do
@@ -113,7 +113,7 @@ function test_raises_exc_p(pred, f, x) do
     if (Curry._1(pred, x$1)) then do
       return true;
     end else do
-      print_failure_test_fail(--[ () ]--0);
+      print_failure_test_fail(--[[ () ]]0);
       return false;
     end end 
   end
@@ -159,4 +159,4 @@ exports.test_raises_some_exc = test_raises_some_exc;
 exports.test_raises_this_exc = test_raises_this_exc;
 exports.test_raises_exc_p = test_raises_exc_p;
 exports.scan_failure_test = scan_failure_test;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

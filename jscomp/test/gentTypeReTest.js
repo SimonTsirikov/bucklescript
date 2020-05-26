@@ -7,4 +7,4 @@ function f(prim) do
 end end
 
 exports.f = f;
---[ ./gentTypeReTest.gen Not a pure module ]--
+--[[ ./gentTypeReTest.gen Not a pure module ]]

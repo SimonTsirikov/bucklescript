@@ -7,4 +7,4 @@ v = Nightmare(do
     end);
 
 exports.v = v;
---[ v Not a pure module ]--
+--[[ v Not a pure module ]]

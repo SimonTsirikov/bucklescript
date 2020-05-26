@@ -4,7 +4,7 @@ Mt = require("./mt.js");
 Block = require("../../lib/js/block.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 counter = do
@@ -14,19 +14,19 @@ end;
 function add_test(loc, test) do
   counter.contents = counter.contents + 1 | 0;
   id = loc .. (" id " .. String(counter.contents));
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       id,
       test
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function eq(loc, x, y) do
   return add_test(loc, (function (param) do
-                return --[ Eq ]--Block.__(0, [
+                return --[[ Eq ]]Block.__(0, [
                           x,
                           y
                         ]);
@@ -48,4 +48,4 @@ Mt.from_pair_suites("Js_cast_test", suites.contents);
 exports.suites = suites;
 exports.add_test = add_test;
 exports.eq = eq;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

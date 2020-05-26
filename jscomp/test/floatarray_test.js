@@ -4,7 +4,7 @@ Mt = require("./mt.js");
 Caml_array = require("../../lib/js/caml_array.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -23,11 +23,11 @@ end
 
 Caml_array.caml_array_set(v, 2, 15.5);
 
-eq("File \"floatarray_test.ml\", line 17, characters 5-12", --[ tuple ]--[
+eq("File \"floatarray_test.ml\", line 17, characters 5-12", --[[ tuple ]][
       #v,
       v[2],
       Caml_array.caml_array_get(v, 1)
-    ], --[ tuple ]--[
+    ], --[[ tuple ]][
       5,
       15.5,
       0
@@ -35,10 +35,10 @@ eq("File \"floatarray_test.ml\", line 17, characters 5-12", --[ tuple ]--[
 
 Mt.from_pair_suites("Floatarray_test", suites.contents);
 
-K = --[ alias ]--0;
+K = --[[ alias ]]0;
 
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.K = K;
---[ v Not a pure module ]--
+--[[ v Not a pure module ]]

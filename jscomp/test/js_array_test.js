@@ -5,7 +5,7 @@ Block = require("../../lib/js/block.js");
 Js_vector = require("../../lib/js/js_vector.js");
 Caml_option = require("../../lib/js/caml_option.js");
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "File \"js_array_test.ml\", line 3, characters 4-11",
   (function (param) do
       x = [
@@ -15,7 +15,7 @@ suites_000 = --[ tuple ]--[
         4,
         5
       ];
-      return --[ Eq ]--Block.__(0, [
+      return --[[ Eq ]]Block.__(0, [
                 [
                   2,
                   4
@@ -27,8 +27,8 @@ suites_000 = --[ tuple ]--[
     end end)
 ];
 
-suites_001 = --[ :: ]--[
-  --[ tuple ]--[
+suites_001 = --[[ :: ]][
+  --[[ tuple ]][
     "File \"js_array_test.ml\", line 11, characters 4-11",
     (function (param) do
         x = [
@@ -38,7 +38,7 @@ suites_001 = --[ :: ]--[
           4,
           5
         ];
-        return --[ Eq ]--Block.__(0, [
+        return --[[ Eq ]]Block.__(0, [
                   true,
                   (Js_vector.filterInPlace((function (x) do
                             return x > 10;
@@ -46,31 +46,31 @@ suites_001 = --[ :: ]--[
                 ]);
       end end)
   ],
-  --[ :: ]--[
-    --[ tuple ]--[
+  --[[ :: ]][
+    --[[ tuple ]][
       "isArray_array",
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     true,
                     Array.isArray([])
                   ]);
         end end)
     ],
-    --[ :: ]--[
-      --[ tuple ]--[
+    --[[ :: ]][
+      --[[ tuple ]][
         "isArray_int",
         (function (param) do
-            return --[ Eq ]--Block.__(0, [
+            return --[[ Eq ]]Block.__(0, [
                       false,
                       Array.isArray(34)
                     ]);
           end end)
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "length",
           (function (param) do
-              return --[ Eq ]--Block.__(0, [
+              return --[[ Eq ]]Block.__(0, [
                         3,
                         [
                           1,
@@ -80,11 +80,11 @@ suites_001 = --[ :: ]--[
                       ]);
             end end)
         ],
-        --[ :: ]--[
-          --[ tuple ]--[
+        --[[ :: ]][
+          --[[ tuple ]][
             "copyWithin",
             (function (param) do
-                return --[ Eq ]--Block.__(0, [
+                return --[[ Eq ]]Block.__(0, [
                           [
                             1,
                             2,
@@ -102,11 +102,11 @@ suites_001 = --[ :: ]--[
                         ]);
               end end)
           ],
-          --[ :: ]--[
-            --[ tuple ]--[
+          --[[ :: ]][
+            --[[ tuple ]][
               "copyWithinFrom",
               (function (param) do
-                  return --[ Eq ]--Block.__(0, [
+                  return --[[ Eq ]]Block.__(0, [
                             [
                               4,
                               5,
@@ -124,11 +124,11 @@ suites_001 = --[ :: ]--[
                           ]);
                 end end)
             ],
-            --[ :: ]--[
-              --[ tuple ]--[
+            --[[ :: ]][
+              --[[ tuple ]][
                 "copyWithinFromRange",
                 (function (param) do
-                    return --[ Eq ]--Block.__(0, [
+                    return --[[ Eq ]]Block.__(0, [
                               [
                                 4,
                                 2,
@@ -146,11 +146,11 @@ suites_001 = --[ :: ]--[
                             ]);
                   end end)
               ],
-              --[ :: ]--[
-                --[ tuple ]--[
+              --[[ :: ]][
+                --[[ tuple ]][
                   "fillInPlace",
                   (function (param) do
-                      return --[ Eq ]--Block.__(0, [
+                      return --[[ Eq ]]Block.__(0, [
                                 [
                                   4,
                                   4,
@@ -164,11 +164,11 @@ suites_001 = --[ :: ]--[
                               ]);
                     end end)
                 ],
-                --[ :: ]--[
-                  --[ tuple ]--[
+                --[[ :: ]][
+                  --[[ tuple ]][
                     "fillFromInPlace",
                     (function (param) do
-                        return --[ Eq ]--Block.__(0, [
+                        return --[[ Eq ]]Block.__(0, [
                                   [
                                     1,
                                     4,
@@ -182,11 +182,11 @@ suites_001 = --[ :: ]--[
                                 ]);
                       end end)
                   ],
-                  --[ :: ]--[
-                    --[ tuple ]--[
+                  --[[ :: ]][
+                    --[[ tuple ]][
                       "fillRangeInPlace",
                       (function (param) do
-                          return --[ Eq ]--Block.__(0, [
+                          return --[[ Eq ]]Block.__(0, [
                                     [
                                       1,
                                       4,
@@ -200,11 +200,11 @@ suites_001 = --[ :: ]--[
                                   ]);
                         end end)
                     ],
-                    --[ :: ]--[
-                      --[ tuple ]--[
+                    --[[ :: ]][
+                      --[[ tuple ]][
                         "pop",
                         (function (param) do
-                            return --[ Eq ]--Block.__(0, [
+                            return --[[ Eq ]]Block.__(0, [
                                       3,
                                       Caml_option.undefined_to_opt([
                                               1,
@@ -214,21 +214,21 @@ suites_001 = --[ :: ]--[
                                     ]);
                           end end)
                       ],
-                      --[ :: ]--[
-                        --[ tuple ]--[
+                      --[[ :: ]][
+                        --[[ tuple ]][
                           "pop - empty array",
                           (function (param) do
-                              return --[ Eq ]--Block.__(0, [
+                              return --[[ Eq ]]Block.__(0, [
                                         undefined,
                                         Caml_option.undefined_to_opt([].pop())
                                       ]);
                             end end)
                         ],
-                        --[ :: ]--[
-                          --[ tuple ]--[
+                        --[[ :: ]][
+                          --[[ tuple ]][
                             "push",
                             (function (param) do
-                                return --[ Eq ]--Block.__(0, [
+                                return --[[ Eq ]]Block.__(0, [
                                           4,
                                           [
                                               1,
@@ -238,11 +238,11 @@ suites_001 = --[ :: ]--[
                                         ]);
                               end end)
                           ],
-                          --[ :: ]--[
-                            --[ tuple ]--[
+                          --[[ :: ]][
+                            --[[ tuple ]][
                               "pushMany",
                               (function (param) do
-                                  return --[ Eq ]--Block.__(0, [
+                                  return --[[ Eq ]]Block.__(0, [
                                             5,
                                             [
                                                 1,
@@ -252,11 +252,11 @@ suites_001 = --[ :: ]--[
                                           ]);
                                 end end)
                             ],
-                            --[ :: ]--[
-                              --[ tuple ]--[
+                            --[[ :: ]][
+                              --[[ tuple ]][
                                 "reverseInPlace",
                                 (function (param) do
-                                    return --[ Eq ]--Block.__(0, [
+                                    return --[[ Eq ]]Block.__(0, [
                                               [
                                                 3,
                                                 2,
@@ -270,11 +270,11 @@ suites_001 = --[ :: ]--[
                                             ]);
                                   end end)
                               ],
-                              --[ :: ]--[
-                                --[ tuple ]--[
+                              --[[ :: ]][
+                                --[[ tuple ]][
                                   "shift",
                                   (function (param) do
-                                      return --[ Eq ]--Block.__(0, [
+                                      return --[[ Eq ]]Block.__(0, [
                                                 1,
                                                 Caml_option.undefined_to_opt([
                                                         1,
@@ -284,21 +284,21 @@ suites_001 = --[ :: ]--[
                                               ]);
                                     end end)
                                 ],
-                                --[ :: ]--[
-                                  --[ tuple ]--[
+                                --[[ :: ]][
+                                  --[[ tuple ]][
                                     "shift - empty array",
                                     (function (param) do
-                                        return --[ Eq ]--Block.__(0, [
+                                        return --[[ Eq ]]Block.__(0, [
                                                   undefined,
                                                   Caml_option.undefined_to_opt([].shift())
                                                 ]);
                                       end end)
                                   ],
-                                  --[ :: ]--[
-                                    --[ tuple ]--[
+                                  --[[ :: ]][
+                                    --[[ tuple ]][
                                       "sortInPlace",
                                       (function (param) do
-                                          return --[ Eq ]--Block.__(0, [
+                                          return --[[ Eq ]]Block.__(0, [
                                                     [
                                                       1,
                                                       2,
@@ -312,11 +312,11 @@ suites_001 = --[ :: ]--[
                                                   ]);
                                         end end)
                                     ],
-                                    --[ :: ]--[
-                                      --[ tuple ]--[
+                                    --[[ :: ]][
+                                      --[[ tuple ]][
                                         "sortInPlaceWith",
                                         (function (param) do
-                                            return --[ Eq ]--Block.__(0, [
+                                            return --[[ Eq ]]Block.__(0, [
                                                       [
                                                         3,
                                                         2,
@@ -332,8 +332,8 @@ suites_001 = --[ :: ]--[
                                                     ]);
                                           end end)
                                       ],
-                                      --[ :: ]--[
-                                        --[ tuple ]--[
+                                      --[[ :: ]][
+                                        --[[ tuple ]][
                                           "spliceInPlace",
                                           (function (param) do
                                               arr = [
@@ -343,8 +343,8 @@ suites_001 = --[ :: ]--[
                                                 4
                                               ];
                                               removed = arr.splice(2, 0, 5);
-                                              return --[ Eq ]--Block.__(0, [
-                                                        --[ tuple ]--[
+                                              return --[[ Eq ]]Block.__(0, [
+                                                        --[[ tuple ]][
                                                           [
                                                             1,
                                                             2,
@@ -354,15 +354,15 @@ suites_001 = --[ :: ]--[
                                                           ],
                                                           []
                                                         ],
-                                                        --[ tuple ]--[
+                                                        --[[ tuple ]][
                                                           arr,
                                                           removed
                                                         ]
                                                       ]);
                                             end end)
                                         ],
-                                        --[ :: ]--[
-                                          --[ tuple ]--[
+                                        --[[ :: ]][
+                                          --[[ tuple ]][
                                             "removeFromInPlace",
                                             (function (param) do
                                                 arr = [
@@ -372,8 +372,8 @@ suites_001 = --[ :: ]--[
                                                   4
                                                 ];
                                                 removed = arr.splice(2);
-                                                return --[ Eq ]--Block.__(0, [
-                                                          --[ tuple ]--[
+                                                return --[[ Eq ]]Block.__(0, [
+                                                          --[[ tuple ]][
                                                             [
                                                               1,
                                                               2
@@ -383,15 +383,15 @@ suites_001 = --[ :: ]--[
                                                               4
                                                             ]
                                                           ],
-                                                          --[ tuple ]--[
+                                                          --[[ tuple ]][
                                                             arr,
                                                             removed
                                                           ]
                                                         ]);
                                               end end)
                                           ],
-                                          --[ :: ]--[
-                                            --[ tuple ]--[
+                                          --[[ :: ]][
+                                            --[[ tuple ]][
                                               "removeCountInPlace",
                                               (function (param) do
                                                   arr = [
@@ -401,8 +401,8 @@ suites_001 = --[ :: ]--[
                                                     4
                                                   ];
                                                   removed = arr.splice(2, 1);
-                                                  return --[ Eq ]--Block.__(0, [
-                                                            --[ tuple ]--[
+                                                  return --[[ Eq ]]Block.__(0, [
+                                                            --[[ tuple ]][
                                                               [
                                                                 1,
                                                                 2,
@@ -410,18 +410,18 @@ suites_001 = --[ :: ]--[
                                                               ],
                                                               [3]
                                                             ],
-                                                            --[ tuple ]--[
+                                                            --[[ tuple ]][
                                                               arr,
                                                               removed
                                                             ]
                                                           ]);
                                                 end end)
                                             ],
-                                            --[ :: ]--[
-                                              --[ tuple ]--[
+                                            --[[ :: ]][
+                                              --[[ tuple ]][
                                                 "unshift",
                                                 (function (param) do
-                                                    return --[ Eq ]--Block.__(0, [
+                                                    return --[[ Eq ]]Block.__(0, [
                                                               4,
                                                               [
                                                                   1,
@@ -431,11 +431,11 @@ suites_001 = --[ :: ]--[
                                                             ]);
                                                   end end)
                                               ],
-                                              --[ :: ]--[
-                                                --[ tuple ]--[
+                                              --[[ :: ]][
+                                                --[[ tuple ]][
                                                   "unshiftMany",
                                                   (function (param) do
-                                                      return --[ Eq ]--Block.__(0, [
+                                                      return --[[ Eq ]]Block.__(0, [
                                                                 5,
                                                                 [
                                                                     1,
@@ -445,11 +445,11 @@ suites_001 = --[ :: ]--[
                                                               ]);
                                                     end end)
                                                 ],
-                                                --[ :: ]--[
-                                                  --[ tuple ]--[
+                                                --[[ :: ]][
+                                                  --[[ tuple ]][
                                                     "append",
                                                     (function (param) do
-                                                        return --[ Eq ]--Block.__(0, [
+                                                        return --[[ Eq ]]Block.__(0, [
                                                                   [
                                                                     1,
                                                                     2,
@@ -464,11 +464,11 @@ suites_001 = --[ :: ]--[
                                                                 ]);
                                                       end end)
                                                   ],
-                                                  --[ :: ]--[
-                                                    --[ tuple ]--[
+                                                  --[[ :: ]][
+                                                    --[[ tuple ]][
                                                       "concat",
                                                       (function (param) do
-                                                          return --[ Eq ]--Block.__(0, [
+                                                          return --[[ Eq ]]Block.__(0, [
                                                                     [
                                                                       1,
                                                                       2,
@@ -487,11 +487,11 @@ suites_001 = --[ :: ]--[
                                                                   ]);
                                                         end end)
                                                     ],
-                                                    --[ :: ]--[
-                                                      --[ tuple ]--[
+                                                    --[[ :: ]][
+                                                      --[[ tuple ]][
                                                         "concatMany",
                                                         (function (param) do
-                                                            return --[ Eq ]--Block.__(0, [
+                                                            return --[[ Eq ]]Block.__(0, [
                                                                       [
                                                                         1,
                                                                         2,
@@ -515,11 +515,11 @@ suites_001 = --[ :: ]--[
                                                                     ]);
                                                           end end)
                                                       ],
-                                                      --[ :: ]--[
-                                                        --[ tuple ]--[
+                                                      --[[ :: ]][
+                                                        --[[ tuple ]][
                                                           "includes",
                                                           (function (param) do
-                                                              return --[ Eq ]--Block.__(0, [
+                                                              return --[[ Eq ]]Block.__(0, [
                                                                         true,
                                                                         [
                                                                             1,
@@ -529,11 +529,11 @@ suites_001 = --[ :: ]--[
                                                                       ]);
                                                             end end)
                                                         ],
-                                                        --[ :: ]--[
-                                                          --[ tuple ]--[
+                                                        --[[ :: ]][
+                                                          --[[ tuple ]][
                                                             "indexOf",
                                                             (function (param) do
-                                                                return --[ Eq ]--Block.__(0, [
+                                                                return --[[ Eq ]]Block.__(0, [
                                                                           1,
                                                                           [
                                                                               1,
@@ -543,11 +543,11 @@ suites_001 = --[ :: ]--[
                                                                         ]);
                                                               end end)
                                                           ],
-                                                          --[ :: ]--[
-                                                            --[ tuple ]--[
+                                                          --[[ :: ]][
+                                                            --[[ tuple ]][
                                                               "indexOfFrom",
                                                               (function (param) do
-                                                                  return --[ Eq ]--Block.__(0, [
+                                                                  return --[[ Eq ]]Block.__(0, [
                                                                             3,
                                                                             [
                                                                                 1,
@@ -558,11 +558,11 @@ suites_001 = --[ :: ]--[
                                                                           ]);
                                                                 end end)
                                                             ],
-                                                            --[ :: ]--[
-                                                              --[ tuple ]--[
+                                                            --[[ :: ]][
+                                                              --[[ tuple ]][
                                                                 "join",
                                                                 (function (param) do
-                                                                    return --[ Eq ]--Block.__(0, [
+                                                                    return --[[ Eq ]]Block.__(0, [
                                                                               "1,2,3",
                                                                               [
                                                                                   1,
@@ -572,11 +572,11 @@ suites_001 = --[ :: ]--[
                                                                             ]);
                                                                   end end)
                                                               ],
-                                                              --[ :: ]--[
-                                                                --[ tuple ]--[
+                                                              --[[ :: ]][
+                                                                --[[ tuple ]][
                                                                   "joinWith",
                                                                   (function (param) do
-                                                                      return --[ Eq ]--Block.__(0, [
+                                                                      return --[[ Eq ]]Block.__(0, [
                                                                                 "1;2;3",
                                                                                 [
                                                                                     1,
@@ -586,11 +586,11 @@ suites_001 = --[ :: ]--[
                                                                               ]);
                                                                     end end)
                                                                 ],
-                                                                --[ :: ]--[
-                                                                  --[ tuple ]--[
+                                                                --[[ :: ]][
+                                                                  --[[ tuple ]][
                                                                     "lastIndexOf",
                                                                     (function (param) do
-                                                                        return --[ Eq ]--Block.__(0, [
+                                                                        return --[[ Eq ]]Block.__(0, [
                                                                                   1,
                                                                                   [
                                                                                       1,
@@ -600,11 +600,11 @@ suites_001 = --[ :: ]--[
                                                                                 ]);
                                                                       end end)
                                                                   ],
-                                                                  --[ :: ]--[
-                                                                    --[ tuple ]--[
+                                                                  --[[ :: ]][
+                                                                    --[[ tuple ]][
                                                                       "lastIndexOfFrom",
                                                                       (function (param) do
-                                                                          return --[ Eq ]--Block.__(0, [
+                                                                          return --[[ Eq ]]Block.__(0, [
                                                                                     1,
                                                                                     [
                                                                                         1,
@@ -615,11 +615,11 @@ suites_001 = --[ :: ]--[
                                                                                   ]);
                                                                         end end)
                                                                     ],
-                                                                    --[ :: ]--[
-                                                                      --[ tuple ]--[
+                                                                    --[[ :: ]][
+                                                                      --[[ tuple ]][
                                                                         "slice",
                                                                         (function (param) do
-                                                                            return --[ Eq ]--Block.__(0, [
+                                                                            return --[[ Eq ]]Block.__(0, [
                                                                                       [
                                                                                         2,
                                                                                         3
@@ -634,11 +634,11 @@ suites_001 = --[ :: ]--[
                                                                                     ]);
                                                                           end end)
                                                                       ],
-                                                                      --[ :: ]--[
-                                                                        --[ tuple ]--[
+                                                                      --[[ :: ]][
+                                                                        --[[ tuple ]][
                                                                           "copy",
                                                                           (function (param) do
-                                                                              return --[ Eq ]--Block.__(0, [
+                                                                              return --[[ Eq ]]Block.__(0, [
                                                                                         [
                                                                                           1,
                                                                                           2,
@@ -656,11 +656,11 @@ suites_001 = --[ :: ]--[
                                                                                       ]);
                                                                             end end)
                                                                         ],
-                                                                        --[ :: ]--[
-                                                                          --[ tuple ]--[
+                                                                        --[[ :: ]][
+                                                                          --[[ tuple ]][
                                                                             "sliceFrom",
                                                                             (function (param) do
-                                                                                return --[ Eq ]--Block.__(0, [
+                                                                                return --[[ Eq ]]Block.__(0, [
                                                                                           [
                                                                                             3,
                                                                                             4,
@@ -676,11 +676,11 @@ suites_001 = --[ :: ]--[
                                                                                         ]);
                                                                               end end)
                                                                           ],
-                                                                          --[ :: ]--[
-                                                                            --[ tuple ]--[
+                                                                          --[[ :: ]][
+                                                                            --[[ tuple ]][
                                                                               "toString",
                                                                               (function (param) do
-                                                                                  return --[ Eq ]--Block.__(0, [
+                                                                                  return --[[ Eq ]]Block.__(0, [
                                                                                             "1,2,3",
                                                                                             [
                                                                                                 1,
@@ -690,11 +690,11 @@ suites_001 = --[ :: ]--[
                                                                                           ]);
                                                                                 end end)
                                                                             ],
-                                                                            --[ :: ]--[
-                                                                              --[ tuple ]--[
+                                                                            --[[ :: ]][
+                                                                              --[[ tuple ]][
                                                                                 "toLocaleString",
                                                                                 (function (param) do
-                                                                                    return --[ Eq ]--Block.__(0, [
+                                                                                    return --[[ Eq ]]Block.__(0, [
                                                                                               "1,2,3",
                                                                                               [
                                                                                                   1,
@@ -704,11 +704,11 @@ suites_001 = --[ :: ]--[
                                                                                             ]);
                                                                                   end end)
                                                                               ],
-                                                                              --[ :: ]--[
-                                                                                --[ tuple ]--[
+                                                                              --[[ :: ]][
+                                                                                --[[ tuple ]][
                                                                                   "every",
                                                                                   (function (param) do
-                                                                                      return --[ Eq ]--Block.__(0, [
+                                                                                      return --[[ Eq ]]Block.__(0, [
                                                                                                 true,
                                                                                                 [
                                                                                                     1,
@@ -720,11 +720,11 @@ suites_001 = --[ :: ]--[
                                                                                               ]);
                                                                                     end end)
                                                                                 ],
-                                                                                --[ :: ]--[
-                                                                                  --[ tuple ]--[
+                                                                                --[[ :: ]][
+                                                                                  --[[ tuple ]][
                                                                                     "everyi",
                                                                                     (function (param) do
-                                                                                        return --[ Eq ]--Block.__(0, [
+                                                                                        return --[[ Eq ]]Block.__(0, [
                                                                                                   false,
                                                                                                   [
                                                                                                       1,
@@ -736,11 +736,11 @@ suites_001 = --[ :: ]--[
                                                                                                 ]);
                                                                                       end end)
                                                                                   ],
-                                                                                  --[ :: ]--[
-                                                                                    --[ tuple ]--[
+                                                                                  --[[ :: ]][
+                                                                                    --[[ tuple ]][
                                                                                       "filter",
                                                                                       (function (param) do
-                                                                                          return --[ Eq ]--Block.__(0, [
+                                                                                          return --[[ Eq ]]Block.__(0, [
                                                                                                     [
                                                                                                       2,
                                                                                                       4
@@ -756,11 +756,11 @@ suites_001 = --[ :: ]--[
                                                                                                   ]);
                                                                                         end end)
                                                                                     ],
-                                                                                    --[ :: ]--[
-                                                                                      --[ tuple ]--[
+                                                                                    --[[ :: ]][
+                                                                                      --[[ tuple ]][
                                                                                         "filteri",
                                                                                         (function (param) do
-                                                                                            return --[ Eq ]--Block.__(0, [
+                                                                                            return --[[ Eq ]]Block.__(0, [
                                                                                                       [
                                                                                                         1,
                                                                                                         3
@@ -776,11 +776,11 @@ suites_001 = --[ :: ]--[
                                                                                                     ]);
                                                                                           end end)
                                                                                       ],
-                                                                                      --[ :: ]--[
-                                                                                        --[ tuple ]--[
+                                                                                      --[[ :: ]][
+                                                                                        --[[ tuple ]][
                                                                                           "find",
                                                                                           (function (param) do
-                                                                                              return --[ Eq ]--Block.__(0, [
+                                                                                              return --[[ Eq ]]Block.__(0, [
                                                                                                         2,
                                                                                                         Caml_option.undefined_to_opt([
                                                                                                                 1,
@@ -793,11 +793,11 @@ suites_001 = --[ :: ]--[
                                                                                                       ]);
                                                                                             end end)
                                                                                         ],
-                                                                                        --[ :: ]--[
-                                                                                          --[ tuple ]--[
+                                                                                        --[[ :: ]][
+                                                                                          --[[ tuple ]][
                                                                                             "find - no match",
                                                                                             (function (param) do
-                                                                                                return --[ Eq ]--Block.__(0, [
+                                                                                                return --[[ Eq ]]Block.__(0, [
                                                                                                           undefined,
                                                                                                           Caml_option.undefined_to_opt([
                                                                                                                   1,
@@ -810,11 +810,11 @@ suites_001 = --[ :: ]--[
                                                                                                         ]);
                                                                                               end end)
                                                                                           ],
-                                                                                          --[ :: ]--[
-                                                                                            --[ tuple ]--[
+                                                                                          --[[ :: ]][
+                                                                                            --[[ tuple ]][
                                                                                               "findi",
                                                                                               (function (param) do
-                                                                                                  return --[ Eq ]--Block.__(0, [
+                                                                                                  return --[[ Eq ]]Block.__(0, [
                                                                                                             1,
                                                                                                             Caml_option.undefined_to_opt([
                                                                                                                     1,
@@ -827,11 +827,11 @@ suites_001 = --[ :: ]--[
                                                                                                           ]);
                                                                                                 end end)
                                                                                             ],
-                                                                                            --[ :: ]--[
-                                                                                              --[ tuple ]--[
+                                                                                            --[[ :: ]][
+                                                                                              --[[ tuple ]][
                                                                                                 "findi - no match",
                                                                                                 (function (param) do
-                                                                                                    return --[ Eq ]--Block.__(0, [
+                                                                                                    return --[[ Eq ]]Block.__(0, [
                                                                                                               undefined,
                                                                                                               Caml_option.undefined_to_opt([
                                                                                                                       1,
@@ -844,11 +844,11 @@ suites_001 = --[ :: ]--[
                                                                                                             ]);
                                                                                                   end end)
                                                                                               ],
-                                                                                              --[ :: ]--[
-                                                                                                --[ tuple ]--[
+                                                                                              --[[ :: ]][
+                                                                                                --[[ tuple ]][
                                                                                                   "findIndex",
                                                                                                   (function (param) do
-                                                                                                      return --[ Eq ]--Block.__(0, [
+                                                                                                      return --[[ Eq ]]Block.__(0, [
                                                                                                                 1,
                                                                                                                 [
                                                                                                                     1,
@@ -861,11 +861,11 @@ suites_001 = --[ :: ]--[
                                                                                                               ]);
                                                                                                     end end)
                                                                                                 ],
-                                                                                                --[ :: ]--[
-                                                                                                  --[ tuple ]--[
+                                                                                                --[[ :: ]][
+                                                                                                  --[[ tuple ]][
                                                                                                     "findIndexi",
                                                                                                     (function (param) do
-                                                                                                        return --[ Eq ]--Block.__(0, [
+                                                                                                        return --[[ Eq ]]Block.__(0, [
                                                                                                                   0,
                                                                                                                   [
                                                                                                                       1,
@@ -878,8 +878,8 @@ suites_001 = --[ :: ]--[
                                                                                                                 ]);
                                                                                                       end end)
                                                                                                   ],
-                                                                                                  --[ :: ]--[
-                                                                                                    --[ tuple ]--[
+                                                                                                  --[[ :: ]][
+                                                                                                    --[[ tuple ]][
                                                                                                       "forEach",
                                                                                                       (function (param) do
                                                                                                           sum = do
@@ -891,16 +891,16 @@ suites_001 = --[ :: ]--[
                                                                                                               3
                                                                                                             ].forEach((function (n) do
                                                                                                                   sum.contents = sum.contents + n | 0;
-                                                                                                                  return --[ () ]--0;
+                                                                                                                  return --[[ () ]]0;
                                                                                                                 end end));
-                                                                                                          return --[ Eq ]--Block.__(0, [
+                                                                                                          return --[[ Eq ]]Block.__(0, [
                                                                                                                     6,
                                                                                                                     sum.contents
                                                                                                                   ]);
                                                                                                         end end)
                                                                                                     ],
-                                                                                                    --[ :: ]--[
-                                                                                                      --[ tuple ]--[
+                                                                                                    --[[ :: ]][
+                                                                                                      --[[ tuple ]][
                                                                                                         "forEachi",
                                                                                                         (function (param) do
                                                                                                             sum = do
@@ -912,19 +912,19 @@ suites_001 = --[ :: ]--[
                                                                                                                 3
                                                                                                               ].forEach((function (param, i) do
                                                                                                                     sum.contents = sum.contents + i | 0;
-                                                                                                                    return --[ () ]--0;
+                                                                                                                    return --[[ () ]]0;
                                                                                                                   end end));
-                                                                                                            return --[ Eq ]--Block.__(0, [
+                                                                                                            return --[[ Eq ]]Block.__(0, [
                                                                                                                       3,
                                                                                                                       sum.contents
                                                                                                                     ]);
                                                                                                           end end)
                                                                                                       ],
-                                                                                                      --[ :: ]--[
-                                                                                                        --[ tuple ]--[
+                                                                                                      --[[ :: ]][
+                                                                                                        --[[ tuple ]][
                                                                                                           "map",
                                                                                                           (function (param) do
-                                                                                                              return --[ Eq ]--Block.__(0, [
+                                                                                                              return --[[ Eq ]]Block.__(0, [
                                                                                                                         [
                                                                                                                           2,
                                                                                                                           4,
@@ -942,11 +942,11 @@ suites_001 = --[ :: ]--[
                                                                                                                       ]);
                                                                                                             end end)
                                                                                                         ],
-                                                                                                        --[ :: ]--[
-                                                                                                          --[ tuple ]--[
+                                                                                                        --[[ :: ]][
+                                                                                                          --[[ tuple ]][
                                                                                                             "map",
                                                                                                             (function (param) do
-                                                                                                                return --[ Eq ]--Block.__(0, [
+                                                                                                                return --[[ Eq ]]Block.__(0, [
                                                                                                                           [
                                                                                                                             0,
                                                                                                                             2,
@@ -964,11 +964,11 @@ suites_001 = --[ :: ]--[
                                                                                                                         ]);
                                                                                                               end end)
                                                                                                           ],
-                                                                                                          --[ :: ]--[
-                                                                                                            --[ tuple ]--[
+                                                                                                          --[[ :: ]][
+                                                                                                            --[[ tuple ]][
                                                                                                               "reduce",
                                                                                                               (function (param) do
-                                                                                                                  return --[ Eq ]--Block.__(0, [
+                                                                                                                  return --[[ Eq ]]Block.__(0, [
                                                                                                                             -10,
                                                                                                                             [
                                                                                                                                 1,
@@ -981,11 +981,11 @@ suites_001 = --[ :: ]--[
                                                                                                                           ]);
                                                                                                                 end end)
                                                                                                             ],
-                                                                                                            --[ :: ]--[
-                                                                                                              --[ tuple ]--[
+                                                                                                            --[[ :: ]][
+                                                                                                              --[[ tuple ]][
                                                                                                                 "reducei",
                                                                                                                 (function (param) do
-                                                                                                                    return --[ Eq ]--Block.__(0, [
+                                                                                                                    return --[[ Eq ]]Block.__(0, [
                                                                                                                               -6,
                                                                                                                               [
                                                                                                                                   1,
@@ -998,11 +998,11 @@ suites_001 = --[ :: ]--[
                                                                                                                             ]);
                                                                                                                   end end)
                                                                                                               ],
-                                                                                                              --[ :: ]--[
-                                                                                                                --[ tuple ]--[
+                                                                                                              --[[ :: ]][
+                                                                                                                --[[ tuple ]][
                                                                                                                   "reduceRight",
                                                                                                                   (function (param) do
-                                                                                                                      return --[ Eq ]--Block.__(0, [
+                                                                                                                      return --[[ Eq ]]Block.__(0, [
                                                                                                                                 -10,
                                                                                                                                 [
                                                                                                                                     1,
@@ -1015,11 +1015,11 @@ suites_001 = --[ :: ]--[
                                                                                                                               ]);
                                                                                                                     end end)
                                                                                                                 ],
-                                                                                                                --[ :: ]--[
-                                                                                                                  --[ tuple ]--[
+                                                                                                                --[[ :: ]][
+                                                                                                                  --[[ tuple ]][
                                                                                                                     "reduceRighti",
                                                                                                                     (function (param) do
-                                                                                                                        return --[ Eq ]--Block.__(0, [
+                                                                                                                        return --[[ Eq ]]Block.__(0, [
                                                                                                                                   -6,
                                                                                                                                   [
                                                                                                                                       1,
@@ -1032,11 +1032,11 @@ suites_001 = --[ :: ]--[
                                                                                                                                 ]);
                                                                                                                       end end)
                                                                                                                   ],
-                                                                                                                  --[ :: ]--[
-                                                                                                                    --[ tuple ]--[
+                                                                                                                  --[[ :: ]][
+                                                                                                                    --[[ tuple ]][
                                                                                                                       "some",
                                                                                                                       (function (param) do
-                                                                                                                          return --[ Eq ]--Block.__(0, [
+                                                                                                                          return --[[ Eq ]]Block.__(0, [
                                                                                                                                     false,
                                                                                                                                     [
                                                                                                                                         1,
@@ -1049,11 +1049,11 @@ suites_001 = --[ :: ]--[
                                                                                                                                   ]);
                                                                                                                         end end)
                                                                                                                     ],
-                                                                                                                    --[ :: ]--[
-                                                                                                                      --[ tuple ]--[
+                                                                                                                    --[[ :: ]][
+                                                                                                                      --[[ tuple ]][
                                                                                                                         "somei",
                                                                                                                         (function (param) do
-                                                                                                                            return --[ Eq ]--Block.__(0, [
+                                                                                                                            return --[[ Eq ]]Block.__(0, [
                                                                                                                                       true,
                                                                                                                                       [
                                                                                                                                           1,
@@ -1066,7 +1066,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                     ]);
                                                                                                                           end end)
                                                                                                                       ],
-                                                                                                                      --[ [] ]--0
+                                                                                                                      --[[ [] ]]0
                                                                                                                     ]
                                                                                                                   ]
                                                                                                                 ]
@@ -1127,7 +1127,7 @@ suites_001 = --[ :: ]--[
   ]
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
   suites_001
 ];
@@ -1135,4 +1135,4 @@ suites = --[ :: ]--[
 Mt.from_pair_suites("Js_array_test", suites);
 
 exports.suites = suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

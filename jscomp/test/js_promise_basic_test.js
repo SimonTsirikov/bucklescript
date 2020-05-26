@@ -9,7 +9,7 @@ Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -18,11 +18,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -30,12 +30,12 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function assert_bool(b) do
   if (b) then do
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
@@ -47,7 +47,7 @@ end end
 function fail(param) do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "js_promise_basic_test.ml",
           19,
           2
@@ -71,7 +71,7 @@ function andThenTest(param) do
               end end));
 end end
 
-h = Promise.resolve(--[ () ]--0);
+h = Promise.resolve(--[[ () ]]0);
 
 function assertIsNotFound(x) do
   match = Caml_exceptions.caml_is_extension(x) and x == Caml_builtin_exceptions.not_found and 0 or undefined;
@@ -80,7 +80,7 @@ function assertIsNotFound(x) do
   end else do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "js_promise_basic_test.ml",
             36,
             9
@@ -141,7 +141,7 @@ function orElseRejectedRejectTest(param) do
                 end else do
                   throw [
                         Caml_builtin_exceptions.assert_failure,
-                        --[ tuple ]--[
+                        --[[ tuple ]][
                           "js_promise_basic_test.ml",
                           77,
                           18
@@ -239,48 +239,48 @@ function createPromiseFulfillTest(param) do
                 end end)).catch(fail);
 end end
 
-thenTest(--[ () ]--0);
+thenTest(--[[ () ]]0);
 
-andThenTest(--[ () ]--0);
+andThenTest(--[[ () ]]0);
 
-catchTest(--[ () ]--0);
+catchTest(--[[ () ]]0);
 
-orResolvedTest(--[ () ]--0);
+orResolvedTest(--[[ () ]]0);
 
-orRejectedTest(--[ () ]--0);
+orRejectedTest(--[[ () ]]0);
 
-orElseResolvedTest(--[ () ]--0);
+orElseResolvedTest(--[[ () ]]0);
 
-orElseRejectedResolveTest(--[ () ]--0);
+orElseRejectedResolveTest(--[[ () ]]0);
 
-orElseRejectedRejectTest(--[ () ]--0);
+orElseRejectedRejectTest(--[[ () ]]0);
 
-thenCatchChainResolvedTest(--[ () ]--0);
+thenCatchChainResolvedTest(--[[ () ]]0);
 
-thenCatchChainRejectedTest(--[ () ]--0);
+thenCatchChainRejectedTest(--[[ () ]]0);
 
-allResolvedTest(--[ () ]--0);
+allResolvedTest(--[[ () ]]0);
 
-allRejectTest(--[ () ]--0);
+allRejectTest(--[[ () ]]0);
 
-raceTest(--[ () ]--0);
+raceTest(--[[ () ]]0);
 
-createPromiseRejectTest(--[ () ]--0);
+createPromiseRejectTest(--[[ () ]]0);
 
-createPromiseFulfillTest(--[ () ]--0);
+createPromiseFulfillTest(--[[ () ]]0);
 
-Promise.all(--[ tuple ]--[
+Promise.all(--[[ tuple ]][
         Promise.resolve(2),
         Promise.resolve(3)
       ]).then((function (param) do
-        eq("File \"js_promise_basic_test.ml\", line 169, characters 7-14", --[ tuple ]--[
+        eq("File \"js_promise_basic_test.ml\", line 169, characters 7-14", --[[ tuple ]][
               param[0],
               param[1]
-            ], --[ tuple ]--[
+            ], --[[ tuple ]][
               2,
               3
             ]);
-        return Promise.resolve(--[ () ]--0);
+        return Promise.resolve(--[[ () ]]0);
       end end));
 
 console.log(List.length(suites.contents));
@@ -299,27 +299,27 @@ function re(prim) do
   return Promise.resolve(prim);
 end end
 
-Mt.from_promise_suites("Js_promise_basic_test", --[ :: ]--[
-      --[ tuple ]--[
+Mt.from_promise_suites("Js_promise_basic_test", --[[ :: ]][
+      --[[ tuple ]][
         "File \"js_promise_basic_test.ml\", line 187, characters 4-11",
         twop.then((function (x) do
-                return Promise.resolve(--[ Eq ]--Block.__(0, [
+                return Promise.resolve(--[[ Eq ]]Block.__(0, [
                               x,
                               2
                             ]));
               end end))
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           "File \"js_promise_basic_test.ml\", line 190, characters 4-11",
           twop.then((function (x) do
-                  return Promise.resolve(--[ Neq ]--Block.__(1, [
+                  return Promise.resolve(--[[ Neq ]]Block.__(1, [
                                 x,
                                 3
                               ]));
                 end end))
         ],
-        --[ [] ]--0
+        --[[ [] ]]0
       ]
     ]);
 
@@ -350,4 +350,4 @@ exports.createPromiseFulfillTest = createPromiseFulfillTest;
 exports.twop = twop;
 exports.then_ = then_;
 exports.re = re;
---[ h Not a pure module ]--
+--[[ h Not a pure module ]]

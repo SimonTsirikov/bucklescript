@@ -63,13 +63,13 @@ function f2(param) do
           return prim + prim$1;
         end end), 0, b);
   console.log(Pervasives.string_of_float(v));
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
-f2(--[ () ]--0);
+f2(--[[ () ]]0);
 
 exports.map = map;
 exports.init = init;
 exports.fold_left = fold_left;
 exports.f2 = f2;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

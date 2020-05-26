@@ -12,7 +12,7 @@ Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
 Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -29,35 +29,35 @@ Xx = do
     end end)
 end;
 
-Int3 = Caml_module.init_mod(--[ tuple ]--[
+Int3 = Caml_module.init_mod(--[[ tuple ]][
       "recursive_module.ml",
       27,
       6
-    ], --[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Function ]--0,
+    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Function ]]0,
             "u"
           ]]]));
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Function ]--0,
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Function ]]0,
             "u"
           ]]]), Int3, Int3);
 
-Inta = Caml_module.init_mod(--[ tuple ]--[
+Inta = Caml_module.init_mod(--[[ tuple ]][
       "recursive_module.ml",
       31,
       6
-    ], --[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Lazy ]--1,
+    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Lazy ]]1,
             "a"
           ]]]));
 
-Intb = Caml_module.init_mod(--[ tuple ]--[
+Intb = Caml_module.init_mod(--[[ tuple ]][
       "recursive_module.ml",
       36,
       6
-    ], --[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Lazy ]--1,
+    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Lazy ]]1,
             "a"
           ]]]));
 
@@ -65,8 +65,8 @@ a = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Intb.a);
       end end));
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Lazy ]--1,
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Lazy ]]1,
             "a"
           ]]]), Inta, do
       a: a
@@ -76,8 +76,8 @@ a$1 = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Inta.a) + 1 | 0;
       end end));
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Lazy ]--1,
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Lazy ]]1,
             "a"
           ]]]), Intb, do
       a: a$1
@@ -98,21 +98,21 @@ end
 
 eq("File \"recursive_module.ml\", line 41, characters 3-10", -1, tmp);
 
-Inta$1 = Caml_module.init_mod(--[ tuple ]--[
+Inta$1 = Caml_module.init_mod(--[[ tuple ]][
       "recursive_module.ml",
       48,
       8
-    ], --[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Lazy ]--1,
+    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Lazy ]]1,
             "a"
           ]]]));
 
-Intb$1 = Caml_module.init_mod(--[ tuple ]--[
+Intb$1 = Caml_module.init_mod(--[[ tuple ]][
       "recursive_module.ml",
       53,
       8
-    ], --[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Lazy ]--1,
+    ], --[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Lazy ]]1,
             "a"
           ]]]));
 
@@ -120,15 +120,15 @@ a$2 = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Intb$1.a) + 1 | 0;
       end end));
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Lazy ]--1,
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Lazy ]]1,
             "a"
           ]]]), Inta$1, do
       a: a$2
     end);
 
-Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
-            --[ Lazy ]--1,
+Caml_module.update_mod(--[[ Module ]]Block.__(0, [[--[[ tuple ]][
+            --[[ Lazy ]]1,
             "a"
           ]]]), Intb$1, do
       a: 2
@@ -160,7 +160,7 @@ eq("File \"recursive_module.ml\", line 60, characters 6-13", 4, tmp$1);
 
 Mt.from_pair_suites("Recursive_module", suites.contents);
 
-Int32 = --[ () ]--0;
+Int32 = --[[ () ]]0;
 
 uuu = Xx.f;
 
@@ -174,4 +174,4 @@ exports.Int3 = Int3;
 exports.Inta = Inta;
 exports.Intb = Intb;
 exports.A = A;
---[ Int3 Not a pure module ]--
+--[[ Int3 Not a pure module ]]

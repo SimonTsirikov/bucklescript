@@ -51,4 +51,4 @@ v = test0(10);
 test0(10) + 2 | 0;
 
 exports.v = v;
---[ v Not a pure module ]--
+--[[ v Not a pure module ]]

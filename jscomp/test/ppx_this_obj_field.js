@@ -4,7 +4,7 @@ Mt = require("./mt.js");
 Block = require("../../lib/js/block.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -15,11 +15,11 @@ function eq(loc, param) do
   y = param[1];
   x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -27,7 +27,7 @@ function eq(loc, param) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 v5 = do
@@ -36,7 +36,7 @@ v5 = do
   setY: (function (v) do
       self = this ;
       self.y = 2;
-      return --[ tuple ]--[
+      return --[[ tuple ]][
               self.y,
               v
             ]; end
@@ -51,7 +51,7 @@ v5 = do
     end),
   bark: (function () do
       console.log("bark");
-      return --[ () ]--0; end
+      return --[[ () ]]0; end
     end),
   xz: (function () do
       return 3; end
@@ -64,12 +64,12 @@ v = do
   reset: (function () do
       self = this ;
       self.y = 0;
-      return --[ () ]--0; end
+      return --[[ () ]]0; end
     end),
   incr: (function () do
       self = this ;
       self.y = self.y + 1 | 0;
-      return --[ () ]--0; end
+      return --[[ () ]]0; end
     end),
   getY: (function () do
       self = this ;
@@ -84,7 +84,7 @@ end;
 u = do
   incr: (function () do
       console.log("hey");
-      return --[ () ]--0; end
+      return --[[ () ]]0; end
     end),
   getY: (function () do
       return 3; end
@@ -94,12 +94,12 @@ u = do
     end)
 end;
 
-test_type_001 = --[ :: ]--[
+test_type_001 = --[[ :: ]][
   v,
-  --[ [] ]--0
+  --[[ [] ]]0
 ];
 
-test_type = --[ :: ]--[
+test_type = --[[ :: ]][
   u,
   test_type_001
 ];
@@ -111,7 +111,7 @@ z = do
   setX: (function (x) do
       self = this ;
       self.x.contents = x;
-      return --[ () ]--0; end
+      return --[[ () ]]0; end
     end),
   getX: (function () do
       self = this ;
@@ -125,13 +125,13 @@ eventObj = do
       self = this ;
       a = self.events;
       a.splice(0);
-      return --[ () ]--0; end
+      return --[[ () ]]0; end
     end),
   push: (function (a) do
       self = this ;
       xs = self.events;
       xs.push(a);
-      return --[ () ]--0; end
+      return --[[ () ]]0; end
     end),
   needRebuild: (function () do
       self = this ;
@@ -148,7 +148,7 @@ zz = do
   setX: (function (x) do
       self = this ;
       self.x = x;
-      return --[ () ]--0; end
+      return --[[ () ]]0; end
     end),
   getX: (function () do
       self = this ;
@@ -156,17 +156,17 @@ zz = do
     end)
 end;
 
-test_type2_001 = --[ :: ]--[
+test_type2_001 = --[[ :: ]][
   zz,
-  --[ [] ]--0
+  --[[ [] ]]0
 ];
 
-test_type2 = --[ :: ]--[
+test_type2 = --[[ :: ]][
   z,
   test_type2_001
 ];
 
-eq("File \"ppx_this_obj_field.ml\", line 92, characters 5-12", --[ tuple ]--[
+eq("File \"ppx_this_obj_field.ml\", line 92, characters 5-12", --[[ tuple ]][
       6,
       v5.say()
     ]);
@@ -183,13 +183,13 @@ c = v.say();
 
 v.incr();
 
-eq("File \"ppx_this_obj_field.ml\", line 99, characters 5-12", --[ tuple ]--[
-      --[ tuple ]--[
+eq("File \"ppx_this_obj_field.ml\", line 99, characters 5-12", --[[ tuple ]][
+      --[[ tuple ]][
         3,
         4,
         5
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         a,
         b,
         c
@@ -202,12 +202,12 @@ z.setX(32);
 
 bb = z.getX();
 
-eq("File \"ppx_this_obj_field.ml\", line 103, characters 5-12", --[ tuple ]--[
-      --[ tuple ]--[
+eq("File \"ppx_this_obj_field.ml\", line 103, characters 5-12", --[[ tuple ]][
+      --[[ tuple ]][
         3,
         32
       ],
-      --[ tuple ]--[
+      --[[ tuple ]][
         aa,
         bb
       ]
@@ -227,4 +227,4 @@ exports.eventObj = eventObj;
 exports.test__ = test__;
 exports.zz = zz;
 exports.test_type2 = test_type2;
---[ v5 Not a pure module ]--
+--[[ v5 Not a pure module ]]

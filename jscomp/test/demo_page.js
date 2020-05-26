@@ -22,12 +22,12 @@ end end
 
 function map(f, param) do
   if (param) then do
-    return --[ Cons ]--[
+    return --[[ Cons ]][
             Curry._1(f, param[0]),
             map(f, param[1])
           ];
   end else do
-    return --[ Nil ]--0;
+    return --[[ Nil ]]0;
   end end 
 end end
 
@@ -52,4 +52,4 @@ exports.sum = sum;
 exports.map = map;
 exports.test_curry = test_curry;
 exports.f = f;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

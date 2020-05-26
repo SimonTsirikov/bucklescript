@@ -13,14 +13,14 @@ catch (raw_exn)do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
     console.log(exn[1]);
-    hh = --[ "a" ]--97;
+    hh = --[[ "a" ]]97;
   end else do
     throw exn;
   end end 
 end
 
-f = --[ "o" ]--111;
+f = --[[ "o" ]]111;
 
 exports.f = f;
 exports.hh = hh;
---[ hh Not a pure module ]--
+--[[ hh Not a pure module ]]

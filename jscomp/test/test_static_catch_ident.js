@@ -16,9 +16,9 @@ function scanf_bad_input(ib, x) do
     console.log(s);
     console.log("don't inlinie");
   end
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 exports.Scan_failure = Scan_failure;
 exports.scanf_bad_input = scanf_bad_input;
---[ No side effect ]--
+--[[ No side effect ]]

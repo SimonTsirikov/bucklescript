@@ -5,7 +5,7 @@ Block = require("../../lib/js/block.js");
 Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -14,11 +14,11 @@ end;
 
 function eq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -26,7 +26,7 @@ function eq(loc, x, y) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function tToJs(param) do
@@ -58,15 +58,15 @@ v1 = do
 end;
 
 jsMapperConstantArray = [
-  --[ tuple ]--[
+  --[[ tuple ]][
     97,
     "a"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     98,
     "b"
   ],
-  --[ tuple ]--[
+  --[[ tuple ]][
     99,
     "c"
   ]
@@ -84,15 +84,15 @@ function idx(v) do
   return eq("File \"ast_abstract_test.ml\", line 32, characters 17-24", xFromJs(xToJs(v)), v);
 end end
 
-x0 = xToJs(--[ a ]--97);
+x0 = xToJs(--[[ a ]]97);
 
-x1 = xToJs(--[ b ]--98);
+x1 = xToJs(--[[ b ]]98);
 
-idx(--[ a ]--97);
+idx(--[[ a ]]97);
 
-idx(--[ b ]--98);
+idx(--[[ b ]]98);
 
-idx(--[ c ]--99);
+idx(--[[ c ]]99);
 
 jsMapperConstantArray$1 = [
   0,
@@ -112,15 +112,15 @@ function id(x) do
   return eq("File \"ast_abstract_test.ml\", line 49, characters 8-15", aFromJs(aToJs(x)), x);
 end end
 
-a0 = aToJs(--[ A ]--0);
+a0 = aToJs(--[[ A ]]0);
 
-a1 = aToJs(--[ B ]--1);
+a1 = aToJs(--[[ B ]]1);
 
-id(--[ A ]--0);
+id(--[[ A ]]0);
 
-id(--[ B ]--1);
+id(--[[ B ]]1);
 
-id(--[ C ]--2);
+id(--[[ C ]]2);
 
 function bToJs(param) do
   return param + 0 | 0;
@@ -142,13 +142,13 @@ function idb(v) do
   return eq("File \"ast_abstract_test.ml\", line 71, characters 5-12", bFromJs(v + 0 | 0), v);
 end end
 
-idb(--[ D0 ]--0);
+idb(--[[ D0 ]]0);
 
-idb(--[ D1 ]--1);
+idb(--[[ D1 ]]1);
 
-idb(--[ D2 ]--2);
+idb(--[[ D2 ]]2);
 
-idb(--[ D3 ]--3);
+idb(--[[ D3 ]]3);
 
 function cToJs(param) do
   return param + 3 | 0;
@@ -168,13 +168,13 @@ function idc(v) do
   return eq("File \"ast_abstract_test.ml\", line 83, characters 15-22", cFromJs(v + 3 | 0), v);
 end end
 
-idc(--[ D0 ]--0);
+idc(--[[ D0 ]]0);
 
-idc(--[ D1 ]--1);
+idc(--[[ D1 ]]1);
 
-idc(--[ D2 ]--2);
+idc(--[[ D2 ]]2);
 
-idc(--[ D3 ]--3);
+idc(--[[ D3 ]]3);
 
 function hToJs(param) do
   return param + 0 | 0;
@@ -201,11 +201,11 @@ end end
 
 Mt.from_pair_suites("Ast_abstract_test", suites.contents);
 
-jsMapperEraseType = --[ JsMapperEraseType ]--0;
+jsMapperEraseType = --[[ JsMapperEraseType ]]0;
 
-b = --[ B ]--1;
+b = --[[ B ]]1;
 
-zXx = --[ ZXx ]--2;
+zXx = --[[ ZXx ]]2;
 
 exports.suites = suites;
 exports.test_id = test_id;
@@ -240,4 +240,4 @@ exports.hFromJs = hFromJs;
 exports.zXx = zXx;
 exports.zToJs = zToJs;
 exports.zFromJs = zFromJs;
---[ x0 Not a pure module ]--
+--[[ x0 Not a pure module ]]

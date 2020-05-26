@@ -6,7 +6,7 @@ JoinClasses = require("./joinClasses");
 Caml_splice_call = require("../../lib/js/caml_splice_call.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -17,11 +17,11 @@ function eq(loc, param) do
   y = param[1];
   x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
-  suites.contents = --[ :: ]--[
-    --[ tuple ]--[
+  suites.contents = --[[ :: ]][
+    --[[ tuple ]][
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     x,
                     y
                   ]);
@@ -29,7 +29,7 @@ function eq(loc, param) do
     ],
     suites.contents
   ];
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function joinClasses(prim) do
@@ -38,7 +38,7 @@ end end
 
 a = JoinClasses(1, 2, 3);
 
-pair = --[ tuple ]--[
+pair = --[[ tuple ]][
   a,
   6
 ];
@@ -54,4 +54,4 @@ exports.test_id = test_id;
 exports.eq = eq;
 exports.joinClasses = joinClasses;
 exports.a = a;
---[ a Not a pure module ]--
+--[[ a Not a pure module ]]

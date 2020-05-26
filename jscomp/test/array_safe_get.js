@@ -26,4 +26,4 @@ end
 
 exports.x = x;
 exports.y = y;
---[ y Not a pure module ]--
+--[[ y Not a pure module ]]

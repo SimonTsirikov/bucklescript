@@ -17,4 +17,4 @@ a = f((CamlinternalOO.set_method($$class, hi, (function (self$1, x, y, z) do
 
 exports.f = f;
 exports.a = a;
---[ a Not a pure module ]--
+--[[ a Not a pure module ]]

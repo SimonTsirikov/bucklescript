@@ -16,70 +16,70 @@ compare = Caml_obj.caml_compare;
 hash = Hashtbl.hash;
 
 function of_int(x) do
-  return --[ `Atom ]--[
+  return --[[ `Atom ]][
           726615281,
           String(x)
         ];
 end end
 
 function of_float(x) do
-  return --[ `Atom ]--[
+  return --[[ `Atom ]][
           726615281,
           Pervasives.string_of_float(x)
         ];
 end end
 
 function of_bool(x) do
-  return --[ `Atom ]--[
+  return --[[ `Atom ]][
           726615281,
           x and "true" or "false"
         ];
 end end
 
 function atom(x) do
-  return --[ `Atom ]--[
+  return --[[ `Atom ]][
           726615281,
           x
         ];
 end end
 
 function of_list(l) do
-  return --[ `List ]--[
+  return --[[ `List ]][
           848054398,
           l
         ];
 end end
 
 function of_rev_list(l) do
-  return --[ `List ]--[
+  return --[[ `List ]][
           848054398,
           List.rev(l)
         ];
 end end
 
 function of_pair(param) do
-  return --[ `List ]--[
+  return --[[ `List ]][
           848054398,
-          --[ :: ]--[
+          --[[ :: ]][
             param[0],
-            --[ :: ]--[
+            --[[ :: ]][
               param[1],
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ]
         ];
 end end
 
 function of_triple(param) do
-  return --[ `List ]--[
+  return --[[ `List ]][
           848054398,
-          --[ :: ]--[
+          --[[ :: ]][
             param[0],
-            --[ :: ]--[
+            --[[ :: ]][
               param[1],
-              --[ :: ]--[
+              --[[ :: ]][
                 param[2],
-                --[ [] ]--0
+                --[[ [] ]]0
               ]
             ]
           ]
@@ -87,17 +87,17 @@ function of_triple(param) do
 end end
 
 function of_quad(param) do
-  return --[ `List ]--[
+  return --[[ `List ]][
           848054398,
-          --[ :: ]--[
+          --[[ :: ]][
             param[0],
-            --[ :: ]--[
+            --[[ :: ]][
               param[1],
-              --[ :: ]--[
+              --[[ :: ]][
                 param[2],
-                --[ :: ]--[
+                --[[ :: ]][
                   param[3],
-                  --[ [] ]--0
+                  --[[ [] ]]0
                 ]
               ]
             ]
@@ -106,10 +106,10 @@ function of_quad(param) do
 end end
 
 function of_variant(name, args) do
-  return --[ `List ]--[
+  return --[[ `List ]][
           848054398,
-          --[ :: ]--[
-            --[ `Atom ]--[
+          --[[ :: ]][
+            --[[ `Atom ]][
               726615281,
               name
             ],
@@ -119,23 +119,23 @@ function of_variant(name, args) do
 end end
 
 function of_field(name, t) do
-  return --[ `List ]--[
+  return --[[ `List ]][
           848054398,
-          --[ :: ]--[
-            --[ `Atom ]--[
+          --[[ :: ]][
+            --[[ `Atom ]][
               726615281,
               name
             ],
-            --[ :: ]--[
+            --[[ :: ]][
               t,
-              --[ [] ]--0
+              --[[ [] ]]0
             ]
           ]
         ];
 end end
 
 function of_record(l) do
-  return --[ `List ]--[
+  return --[[ `List ]][
           848054398,
           List.map((function (param) do
                   return of_field(param[0], param[1]);
@@ -162,7 +162,7 @@ function $great$great$eq(e, f) do
 end end
 
 function map_opt(f, l) do
-  _acc = --[ [] ]--0;
+  _acc = --[[ [] ]]0;
   _l = l;
   while(true) do
     l$1 = _l;
@@ -171,7 +171,7 @@ function map_opt(f, l) do
       match = Curry._1(f, l$1[0]);
       if (match ~= undefined) then do
         _l = l$1[1];
-        _acc = --[ :: ]--[
+        _acc = --[[ :: ]][
           Caml_option.valFromOption(match),
           acc
         ];
@@ -210,7 +210,7 @@ end end
 function list_all(f, e) do
   if (e[0] >= 848054398) then do
     f$1 = f;
-    _acc = --[ [] ]--0;
+    _acc = --[[ [] ]]0;
     _l = e[1];
     while(true) do
       l = _l;
@@ -220,7 +220,7 @@ function list_all(f, e) do
         match = Curry._1(f$1, l[0]);
         _l = tl;
         if (match ~= undefined) then do
-          _acc = --[ :: ]--[
+          _acc = --[[ :: ]][
             Caml_option.valFromOption(match),
             acc
           ];
@@ -233,7 +233,7 @@ function list_all(f, e) do
       end end 
     end;
   end else do
-    return --[ [] ]--0;
+    return --[[ [] ]]0;
   end end 
 end end
 
@@ -276,7 +276,7 @@ function to_pair(e) do
     if (match) then do
       match$1 = match[1];
       if (match$1 and !match$1[1]) then do
-        return --[ tuple ]--[
+        return --[[ tuple ]][
                 match[0],
                 match$1[0]
               ];
@@ -294,7 +294,7 @@ function to_pair_with(f1, f2, e) do
                 y = param[1];
                 return $great$great$eq(Curry._1(f1, param[0]), (function (x) do
                               return $great$great$eq(Curry._1(f2, y), (function (y) do
-                                            return --[ tuple ]--[
+                                            return --[[ tuple ]][
                                                     x,
                                                     y
                                                   ];
@@ -313,7 +313,7 @@ function to_triple(e) do
       if (match$1) then do
         match$2 = match$1[1];
         if (match$2 and !match$2[1]) then do
-          return --[ tuple ]--[
+          return --[[ tuple ]][
                   match[0],
                   match$1[0],
                   match$2[0]
@@ -337,7 +337,7 @@ function to_triple_with(f1, f2, f3, e) do
                 return $great$great$eq(Curry._1(f1, param[0]), (function (x) do
                               return $great$great$eq(Curry._1(f2, y), (function (y) do
                                             return $great$great$eq(Curry._1(f3, z), (function (z) do
-                                                          return --[ tuple ]--[
+                                                          return --[[ tuple ]][
                                                                   x,
                                                                   y,
                                                                   z
@@ -496,7 +496,7 @@ function get_variant(l, e) do
       return ;
     end end 
   end else do
-    return _get_variant(e[1], --[ [] ]--0, l);
+    return _get_variant(e[1], --[[ [] ]]0, l);
   end end 
 end end
 
@@ -511,9 +511,9 @@ function get_exn(e) do
   end end 
 end end
 
-of_unit = --[ `List ]--[
+of_unit = --[[ `List ]][
   848054398,
-  --[ [] ]--0
+  --[[ [] ]]0
 ];
 
 Traverse = do
@@ -557,4 +557,4 @@ exports.of_variant = of_variant;
 exports.of_field = of_field;
 exports.of_record = of_record;
 exports.Traverse = Traverse;
---[ No side effect ]--
+--[[ No side effect ]]

@@ -9,7 +9,7 @@ if (match ~= undefined) then do
   if (match ~= 1) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
-          --[ tuple ]--[
+          --[[ tuple ]][
             "gpr_3980_test.ml",
             16,
             10
@@ -22,7 +22,7 @@ if (match ~= undefined) then do
     if (match$1 ~= 2) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
-            --[ tuple ]--[
+            --[[ tuple ]][
               "gpr_3980_test.ml",
               14,
               12
@@ -39,7 +39,7 @@ if (match ~= undefined) then do
 end else do
   throw [
         Caml_builtin_exceptions.assert_failure,
-        --[ tuple ]--[
+        --[[ tuple ]][
           "gpr_3980_test.ml",
           16,
           10
@@ -47,4 +47,4 @@ end else do
       ];
 end end 
 
---[  Not a pure module ]--
+--[[  Not a pure module ]]

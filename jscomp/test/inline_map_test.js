@@ -17,7 +17,7 @@ end end
 function create(l, x, d, r) do
   hl = height(l);
   hr = height(r);
-  return --[ Node ]--[
+  return --[[ Node ]][
           l,
           x,
           d,
@@ -74,7 +74,7 @@ function bal(l, x, d, r) do
           ];
     end end 
   end else do
-    return --[ Node ]--[
+    return --[[ Node ]][
             l,
             x,
             d,
@@ -92,7 +92,7 @@ function add(x, data, param) do
     l = param[0];
     c = Caml_primitive.caml_int_compare(x, v);
     if (c == 0) then do
-      return --[ Node ]--[
+      return --[[ Node ]][
               l,
               x,
               data,
@@ -105,11 +105,11 @@ function add(x, data, param) do
       return bal(l, v, d, add(x, data, r));
     end end  end 
   end else do
-    return --[ Node ]--[
-            --[ Empty ]--0,
+    return --[[ Node ]][
+            --[[ Empty ]]0,
             x,
             data,
-            --[ Empty ]--0,
+            --[[ Empty ]]0,
             1
           ];
   end end 
@@ -134,43 +134,43 @@ end end
 
 m = List.fold_left((function (acc, param) do
         return add(param[0], param[1], acc);
-      end end), --[ Empty ]--0, --[ :: ]--[
-      --[ tuple ]--[
+      end end), --[[ Empty ]]0, --[[ :: ]][
+      --[[ tuple ]][
         10,
-        --[ "a" ]--97
+        --[[ "a" ]]97
       ],
-      --[ :: ]--[
-        --[ tuple ]--[
+      --[[ :: ]][
+        --[[ tuple ]][
           3,
-          --[ "b" ]--98
+          --[[ "b" ]]98
         ],
-        --[ :: ]--[
-          --[ tuple ]--[
+        --[[ :: ]][
+          --[[ tuple ]][
             7,
-            --[ "c" ]--99
+            --[[ "c" ]]99
           ],
-          --[ :: ]--[
-            --[ tuple ]--[
+          --[[ :: ]][
+            --[[ tuple ]][
               20,
-              --[ "d" ]--100
+              --[[ "d" ]]100
             ],
-            --[ [] ]--0
+            --[[ [] ]]0
           ]
         ]
       ]
     ]);
 
-Mt.from_pair_suites("Inline_map_test", --[ :: ]--[
-      --[ tuple ]--[
+Mt.from_pair_suites("Inline_map_test", --[[ :: ]][
+      --[[ tuple ]][
         "find",
         (function (param) do
-            return --[ Eq ]--Block.__(0, [
+            return --[[ Eq ]]Block.__(0, [
                       find(10, m),
-                      --[ "a" ]--97
+                      --[[ "a" ]]97
                     ]);
           end end)
       ],
-      --[ [] ]--0
+      --[[ [] ]]0
     ]);
 
---[ m Not a pure module ]--
+--[[ m Not a pure module ]]

@@ -5,11 +5,11 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 a0 = Caml_builtin_exceptions.not_found;
 
-b = List.length(--[ :: ]--[
+b = List.length(--[[ :: ]][
       1,
-      --[ :: ]--[
+      --[[ :: ]][
         2,
-        --[ [] ]--0
+        --[[ [] ]]0
       ]
     ]);
 
@@ -86,4 +86,4 @@ exports.a3 = a3;
 exports.a4 = a4;
 exports.a5 = a5;
 exports.List = List$1;
---[ b Not a pure module ]--
+--[[ b Not a pure module ]]

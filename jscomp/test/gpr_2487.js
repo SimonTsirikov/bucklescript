@@ -14,8 +14,8 @@ b = Belt_Array.eq([
         return prim == prim$1;
       end end));
 
-A = --[ alias ]--0;
+A = --[[ alias ]]0;
 
 exports.A = A;
 exports.b = b;
---[ b Not a pure module ]--
+--[[ b Not a pure module ]]

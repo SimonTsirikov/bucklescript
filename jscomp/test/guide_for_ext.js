@@ -9,4 +9,4 @@ function mk(param) do
 end end
 
 exports.mk = mk;
---[ No side effect ]--
+--[[ No side effect ]]

@@ -6,4 +6,4 @@ function x(prim, prim$1) do
 end end
 
 exports.x = x;
---[ No side effect ]--
+--[[ No side effect ]]

@@ -9,7 +9,7 @@ end;
 
 function log(x) do
   result.contents = x;
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 Xx = do
@@ -27,33 +27,33 @@ function compilerBug(a, b, c, f) do
       if (b ~= "x") then do
         if (c) then do
           result.contents = "No x, c is true";
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end else do
           result.contents = "No x, c is false";
-          return --[ () ]--0;
+          return --[[ () ]]0;
         end end 
       end
        end 
     end else if (c) then do
       result.contents = "No x, c is true";
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end else do
       result.contents = "No x, c is false";
-      return --[ () ]--0;
+      return --[[ () ]]0;
     end end  end 
   end
    end 
-  if (Curry._1(f, --[ () ]--0)) then do
+  if (Curry._1(f, --[[ () ]]0)) then do
     result.contents = "Some x, f returns true";
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end else do
     result.contents = "Some x, f returns false";
-    return --[ () ]--0;
+    return --[[ () ]]0;
   end end 
 end end
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -78,4 +78,4 @@ exports.compilerBug = compilerBug;
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

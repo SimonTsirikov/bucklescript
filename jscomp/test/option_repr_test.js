@@ -6,7 +6,7 @@ Belt_List = require("../../lib/js/belt_List.js");
 Caml_option = require("../../lib/js/caml_option.js");
 
 suites = do
-  contents: --[ [] ]--0
+  contents: --[[ [] ]]0
 end;
 
 test_id = do
@@ -89,7 +89,7 @@ function create(randomOpt, param) do
   end end 
 end end
 
-ff = create(false, --[ () ]--0);
+ff = create(false, --[[ () ]]0);
 
 function f13(xOpt, yOpt, param) do
   x = xOpt ~= undefined and xOpt or 3;
@@ -97,7 +97,7 @@ function f13(xOpt, yOpt, param) do
   return x + y | 0;
 end end
 
-a = f13(2, undefined, --[ () ]--0);
+a = f13(2, undefined, --[[ () ]]0);
 
 function f12(x) do
   return x;
@@ -112,13 +112,13 @@ length_10_id = Belt_List.makeBy(10, (function (x) do
       end end));
 
 function f13$1(param) do
-  return Caml_obj.caml_equal(Belt_List.take(length_10_id, 8), --[ :: ]--[
+  return Caml_obj.caml_equal(Belt_List.take(length_10_id, 8), --[[ :: ]][
               1,
-              --[ :: ]--[
+              --[[ :: ]][
                 2,
-                --[ :: ]--[
+                --[[ :: ]][
                   3,
-                  --[ [] ]--0
+                  --[[ [] ]]0
                 ]
               ]
             ]);
@@ -176,9 +176,9 @@ end end
 
 xs_000 = gtx(Caml_option.some(null), Caml_option.some(undefined));
 
-xs = --[ :: ]--[
+xs = --[[ :: ]][
   xs_000,
-  --[ [] ]--0
+  --[[ [] ]]0
 ];
 
 b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs, (function (x) do
@@ -187,29 +187,29 @@ b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs,
 
 xs_000$1 = ltx(Caml_option.some(undefined), 3);
 
-xs_001 = --[ :: ]--[
+xs_001 = --[[ :: ]][
   ltx(Caml_option.some(undefined), Caml_option.some(Caml_option.some(undefined))),
-  --[ :: ]--[
+  --[[ :: ]][
     ltx(Caml_option.some(undefined), "3"),
-    --[ :: ]--[
+    --[[ :: ]][
       ltx(Caml_option.some(undefined), true),
-      --[ :: ]--[
+      --[[ :: ]][
         ltx(Caml_option.some(undefined), false),
-        --[ :: ]--[
+        --[[ :: ]][
           ltx(false, true),
-          --[ :: ]--[
+          --[[ :: ]][
             ltx(false, true),
-            --[ :: ]--[
+            --[[ :: ]][
               ltx(undefined, Caml_option.some(undefined)),
-              --[ :: ]--[
+              --[[ :: ]][
                 ltx(undefined, null),
-                --[ :: ]--[
+                --[[ :: ]][
                   ltx(undefined, (function (x) do
                           return x;
                         end end)),
-                  --[ :: ]--[
+                  --[[ :: ]][
                     ltx(null, 3),
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ]
               ]
@@ -221,7 +221,7 @@ xs_001 = --[ :: ]--[
   ]
 ];
 
-xs$1 = --[ :: ]--[
+xs$1 = --[[ :: ]][
   xs_000$1,
   xs_001
 ];
@@ -232,21 +232,21 @@ b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs$
 
 xs_000$2 = eqx(undefined, undefined);
 
-xs_001$1 = --[ :: ]--[
+xs_001$1 = --[[ :: ]][
   neqx(undefined, null),
-  --[ :: ]--[
+  --[[ :: ]][
     eqx(Caml_option.some(undefined), Caml_option.some(undefined)),
-    --[ :: ]--[
+    --[[ :: ]][
       eqx(Caml_option.some(Caml_option.some(undefined)), Caml_option.some(Caml_option.some(undefined))),
-      --[ :: ]--[
+      --[[ :: ]][
         neqx(Caml_option.some(Caml_option.some(Caml_option.some(undefined))), Caml_option.some(Caml_option.some(undefined))),
-        --[ [] ]--0
+        --[[ [] ]]0
       ]
     ]
   ]
 ];
 
-xs$2 = --[ :: ]--[
+xs$2 = --[[ :: ]][
   xs_000$2,
   xs_001$1
 ];
@@ -276,7 +276,7 @@ f8 = Caml_option.some(undefined);
 
 f9 = Caml_option.some(Caml_option.some(undefined));
 
-N = --[ alias ]--0;
+N = --[[ alias ]]0;
 
 none_arg = undefined;
 
@@ -312,4 +312,4 @@ exports.eqx = eqx;
 exports.neqx = neqx;
 exports.all_true = all_true;
 exports.N0 = N0;
---[ ff Not a pure module ]--
+--[[ ff Not a pure module ]]

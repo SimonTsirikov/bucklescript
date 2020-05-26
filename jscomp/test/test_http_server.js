@@ -12,10 +12,10 @@ function create_server(http) do
         end end));
   return server.listen(3000, hostname, (function () do
                 console.log("Server running at http://" .. (hostname .. (":" .. (String(3000) .. "/"))));
-                return --[ () ]--0;
+                return --[[ () ]]0;
               end end));
 end end
 
 create_server(Http);
 
---[  Not a pure module ]--
+--[[  Not a pure module ]]

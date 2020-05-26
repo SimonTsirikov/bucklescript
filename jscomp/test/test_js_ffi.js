@@ -6,7 +6,7 @@ function v(u) do
   t(do
         compare: $$String.compare
       end);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 function u(v) do
@@ -18,4 +18,4 @@ s = $$String;
 exports.v = v;
 exports.u = u;
 exports.s = s;
---[ No side effect ]--
+--[[ No side effect ]]

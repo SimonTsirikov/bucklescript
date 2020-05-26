@@ -5,7 +5,7 @@ Lexing = require("../../lib/js/lexing.js");
 
 function l(prim) do
   console.log(prim);
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 __ocaml_lex_tables = do
@@ -87,4 +87,4 @@ exports.l = l;
 exports.__ocaml_lex_tables = __ocaml_lex_tables;
 exports.token = token;
 exports.__ocaml_lex_token_rec = __ocaml_lex_token_rec;
---[ No side effect ]--
+--[[ No side effect ]]

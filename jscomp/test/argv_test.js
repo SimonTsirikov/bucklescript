@@ -4,7 +4,7 @@ Arg = require("../../lib/js/arg.js");
 Block = require("../../lib/js/block.js");
 
 function anno_fun(arg) do
-  return --[ () ]--0;
+  return --[[ () ]]0;
 end end
 
 usage_msg = "Usage:\n";
@@ -17,22 +17,22 @@ test = do
   contents: true
 end;
 
-arg_spec_000 = --[ tuple ]--[
+arg_spec_000 = --[[ tuple ]][
   "-c",
-  --[ Set ]--Block.__(2, [compile]),
+  --[[ Set ]]Block.__(2, [compile]),
   " Compile"
 ];
 
-arg_spec_001 = --[ :: ]--[
-  --[ tuple ]--[
+arg_spec_001 = --[[ :: ]][
+  --[[ tuple ]][
     "-d",
-    --[ Clear ]--Block.__(3, [test]),
+    --[[ Clear ]]Block.__(3, [test]),
     " Test"
   ],
-  --[ [] ]--0
+  --[[ [] ]]0
 ];
 
-arg_spec = --[ :: ]--[
+arg_spec = --[[ :: ]][
   arg_spec_000,
   arg_spec_001
 ];
@@ -44,4 +44,4 @@ exports.usage_msg = usage_msg;
 exports.compile = compile;
 exports.test = test;
 exports.arg_spec = arg_spec;
---[  Not a pure module ]--
+--[[  Not a pure module ]]

@@ -11,20 +11,20 @@ Caml_primitive = require("../../lib/js/caml_primitive.js");
 
 function to_list(tbl) do
   return Hashtbl.fold((function (k, v, acc) do
-                return --[ :: ]--[
-                        --[ tuple ]--[
+                return --[[ :: ]][
+                        --[[ tuple ]][
                           k,
                           v
                         ],
                         acc
                       ];
-              end end), tbl, --[ [] ]--0);
+              end end), tbl, --[[ [] ]]0);
 end end
 
 function f(param) do
   tbl = Hashtbl.create(undefined, 17);
-  Hashtbl.add(tbl, 1, --[ "1" ]--49);
-  Hashtbl.add(tbl, 2, --[ "2" ]--50);
+  Hashtbl.add(tbl, 1, --[[ "1" ]]49);
+  Hashtbl.add(tbl, 2, --[[ "2" ]]50);
   return List.sort((function (param, param$1) do
                 return Caml_primitive.caml_int_compare(param[0], param$1[0]);
               end end), to_list(tbl));
@@ -44,35 +44,35 @@ function g(count) do
                   end end), v));
 end end
 
-suites_000 = --[ tuple ]--[
+suites_000 = --[[ tuple ]][
   "simple",
   (function (param) do
-      return --[ Eq ]--Block.__(0, [
-                --[ :: ]--[
-                  --[ tuple ]--[
+      return --[[ Eq ]]Block.__(0, [
+                --[[ :: ]][
+                  --[[ tuple ]][
                     1,
-                    --[ "1" ]--49
+                    --[[ "1" ]]49
                   ],
-                  --[ :: ]--[
-                    --[ tuple ]--[
+                  --[[ :: ]][
+                    --[[ tuple ]][
                       2,
-                      --[ "2" ]--50
+                      --[[ "2" ]]50
                     ],
-                    --[ [] ]--0
+                    --[[ [] ]]0
                   ]
                 ],
-                f(--[ () ]--0)
+                f(--[[ () ]]0)
               ]);
     end end)
 ];
 
-suites_001 = --[ :: ]--[
-  --[ tuple ]--[
+suites_001 = --[[ :: ]][
+  --[[ tuple ]][
     "more_iterations",
     (function (param) do
-        return --[ Eq ]--Block.__(0, [
+        return --[[ Eq ]]Block.__(0, [
                   $$Array.init(1001, (function (i) do
-                          return --[ tuple ]--[
+                          return --[[ tuple ]][
                                   (i << 1),
                                   String(i)
                                 ];
@@ -81,23 +81,23 @@ suites_001 = --[ :: ]--[
                 ]);
       end end)
   ],
-  --[ :: ]--[
-    --[ tuple ]--[
+  --[[ :: ]][
+    --[[ tuple ]][
       "More_labels_regressionfix_374",
       (function (param) do
           tbl = Curry._2(MoreLabels.Hashtbl.create, undefined, 30);
           Hashtbl.add(tbl, 3, 3);
-          return --[ Eq ]--Block.__(0, [
+          return --[[ Eq ]]Block.__(0, [
                     tbl.size,
                     1
                   ]);
         end end)
     ],
-    --[ [] ]--0
+    --[[ [] ]]0
   ]
 ];
 
-suites = --[ :: ]--[
+suites = --[[ :: ]][
   suites_000,
   suites_001
 ];
@@ -108,4 +108,4 @@ exports.to_list = to_list;
 exports.f = f;
 exports.g = g;
 exports.suites = suites;
---[  Not a pure module ]--
+--[[  Not a pure module ]]
