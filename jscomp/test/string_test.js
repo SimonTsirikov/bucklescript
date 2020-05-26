@@ -64,7 +64,7 @@ function rev_split_by_char(c, s) do
     try do
       var i$prime = $$String.index_from(s, i, c);
       var s$prime = $$String.sub(s, i, i$prime - i | 0);
-      return loop(i$prime + 1 | 0, s$prime == "" ? l : --[ :: ]--[
+      return loop(i$prime + 1 | 0, s$prime == "" and l or --[ :: ]--[
                     s$prime,
                     l
                   ]);
@@ -111,10 +111,10 @@ function xsplit(delim, s) do
           l_000,
           l
         ];
-        var l$2 = i$prime == 0 ? --[ :: ]--[
+        var l$2 = i$prime == 0 and --[ :: ]--[
             "",
             l$1
-          ] : l$1;
+          ] or l$1;
         _i = i$prime;
         _l = l$2;
         continue ;

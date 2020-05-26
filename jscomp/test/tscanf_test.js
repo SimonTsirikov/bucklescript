@@ -362,7 +362,7 @@ function test4(param) do
                 ]),
               "%f %f %f"
             ]), (function (b0, b1, b2) do
-            return b0 == 0.0 and b1 == 1.0 ? b2 == 1.3 : false;
+            return b0 == 0.0 and b1 == 1.0 and b2 == 1.3 or false;
           end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0.113"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
@@ -503,7 +503,7 @@ function test5(param) do
                 ]),
               "%e %e %e"
             ]), (function (b1, b2, b3) do
-            return b1 == 10.0 and b2 == b1 ? b3 == 0.13 : false;
+            return b1 == 10.0 and b2 == b1 and b3 == 0.13 or false;
           end))) then do
     return Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1 1.1 0e+1 1.3e-1"), --[ Format ]--[
                     --[ Float ]--Block.__(8, [
@@ -666,7 +666,7 @@ function test7(param) do
                     ])]),
               "%C %C %C %C %C"
             ]), (function (c1, c2, c3, c4, c5) do
-            return c1 == --[ "a" ]--97 and c2 == --[ "\n" ]--10 and c3 == --[ "\t" ]--9 and c4 == --[ "\000" ]--0 ? c5 == --[ " " ]--32 : false;
+            return c1 == --[ "a" ]--97 and c2 == --[ "\n" ]--10 and c3 == --[ "\t" ]--9 and c4 == --[ "\000" ]--0 and c5 == --[ " " ]--32 or false;
           end))) then do
     return Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("a \n \t \0  b"), --[ Format ]--[
                     --[ Char ]--Block.__(0, [--[ Char_literal ]--Block.__(12, [
@@ -896,7 +896,7 @@ function test11(param) do
                 ]),
               "%s %s %s"
             ]), (function (prenom, nom, poids) do
-            return prenom == "Pierre" and nom == "Weis" ? Caml_format.caml_int_of_string(poids) == 70 : false;
+            return prenom == "Pierre" and nom == "Weis" and Caml_format.caml_int_of_string(poids) == 70 or false;
           end)) and Curry._1(Scanf.sscanf("Jean-Luc\tde Leage\t68", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
@@ -920,7 +920,7 @@ function test11(param) do
                 ]),
               "%[^\t] %[^\t] %d"
             ]), (function (prenom, nom, poids) do
-            return prenom == "Jean-Luc" and nom == "de Leage" ? poids == 68 : false;
+            return prenom == "Jean-Luc" and nom == "de Leage" and poids == 68 or false;
           end))) then do
     return Curry._1(Scanf.sscanf("Daniel\tde Rauglaudre\t66", --[ Format ]--[
                     --[ String ]--Block.__(2, [
@@ -987,7 +987,7 @@ function test110(param) do
                 ]),
               "%s%s"
             ]), (function (x, y) do
-            return x == "" ? y == "" : false;
+            return x == "" and y == "" or false;
           end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -1063,7 +1063,7 @@ function test110(param) do
                 ]),
               "%s%s"
             ]), (function (x, y) do
-            return x == "" ? y == "" : false;
+            return x == "" and y == "" or false;
           end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
@@ -1094,7 +1094,7 @@ function test110(param) do
                 ]),
               " %s %s"
             ]), (function (x, y) do
-            return x == "" ? x == y : false;
+            return x == "" and x == y or false;
           end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
@@ -1115,7 +1115,7 @@ function test110(param) do
                 ]),
               " %s@ %s"
             ]), (function (x, y) do
-            return x == "" ? x == y : false;
+            return x == "" and x == y or false;
           end)) and Curry._1(Scanf.sscanf(" poi !", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
@@ -1139,7 +1139,7 @@ function test110(param) do
                 ]),
               " %s@ %s@."
             ]), (function (x, y) do
-            return x == "poi" ? y == "!" : false;
+            return x == "poi" and y == "!" or false;
           end))) then do
     return Curry._1(Scanf.sscanf(" poi !", --[ Format ]--[
                     --[ String ]--Block.__(2, [
@@ -3567,7 +3567,7 @@ function test49(param) do
                 ]),
               "%[\\]%s"
             ]), (function (s, t) do
-            return s == "" ? t == "as" : false;
+            return s == "" and t == "as" or false;
           end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
@@ -3579,7 +3579,7 @@ function test49(param) do
                 ]),
               "%[\\]%s%!"
             ]), (function (s, t) do
-            return s == "" ? t == "as" : false;
+            return s == "" and t == "as" or false;
           end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
@@ -3609,7 +3609,7 @@ function test49(param) do
                 ]),
               "%[a..z]%s"
             ]), (function (s, t) do
-            return s == "a" ? t == "s" : false;
+            return s == "a" and t == "s" or false;
           end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
@@ -3621,7 +3621,7 @@ function test49(param) do
                 ]),
               "%[a-z]%s"
             ]), (function (s, t) do
-            return s == "as" ? t == "" : false;
+            return s == "as" and t == "" or false;
           end)) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
@@ -3850,7 +3850,7 @@ function test51(param) do
                 ]),
               "%s%s\n"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "" : false;
+            return s1 == "Hello" and s2 == "" or false;
           end)) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -3864,7 +3864,7 @@ function test51(param) do
                 ]),
               "%s\n%s%!"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "World" : false;
+            return s1 == "Hello" and s2 == "World" or false;
           end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -3878,7 +3878,7 @@ function test51(param) do
                 ]),
               "%s\n%s"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "World!" : false;
+            return s1 == "Hello" and s2 == "World!" or false;
           end)) and Curry._1(Scanf.sscanf("Hello\n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -3892,7 +3892,7 @@ function test51(param) do
                 ]),
               "%s@\n%s"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "" : false;
+            return s1 == "Hello" and s2 == "" or false;
           end))) then do
     return Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
                     --[ String ]--Block.__(2, [
@@ -3952,7 +3952,7 @@ function test52(param) do
                 ]),
               "%s%s@\n"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "" : false;
+            return s1 == "Hello" and s2 == "" or false;
           end)) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -3966,7 +3966,7 @@ function test52(param) do
                 ]),
               "%s@\n%s%!"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "World" : false;
+            return s1 == "Hello" and s2 == "World" or false;
           end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -3983,7 +3983,7 @@ function test52(param) do
                 ]),
               "%s@\n%s@\n"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "World!" : false;
+            return s1 == "Hello" and s2 == "World!" or false;
           end)) and Curry._1(Scanf.sscanf("Hello\n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -3997,7 +3997,7 @@ function test52(param) do
                 ]),
               "%s@\n%s"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "" : false;
+            return s1 == "Hello" and s2 == "" or false;
           end)) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -4011,7 +4011,7 @@ function test52(param) do
                 ]),
               "%s%s@\n"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == " " : false;
+            return s1 == "Hello" and s2 == " " or false;
           end)) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -4031,7 +4031,7 @@ function test52(param) do
                 ]),
               "%s%s%_1[ ]\n"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "" : false;
+            return s1 == "Hello" and s2 == "" or false;
           end)) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -4051,7 +4051,7 @@ function test52(param) do
                 ]),
               "%s%_1[ ]%s\n"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "" : false;
+            return s1 == "Hello" and s2 == "" or false;
           end)) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -4065,7 +4065,7 @@ function test52(param) do
                 ]),
               "%s\n%s%!"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "World" : false;
+            return s1 == "Hello" and s2 == "World" or false;
           end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -4079,7 +4079,7 @@ function test52(param) do
                 ]),
               "%s\n%s%!"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "World!" : false;
+            return s1 == "Hello" and s2 == "World!" or false;
           end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -4096,7 +4096,7 @@ function test52(param) do
                 ]),
               "%s\n%s@!%!"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "World" : false;
+            return s1 == "Hello" and s2 == "World" or false;
           end)) and Curry._1(Scanf.sscanf("Hello{foo}", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
@@ -4113,7 +4113,7 @@ function test52(param) do
                 ]),
               "%s@{%s"
             ]), (function (s1, s2) do
-            return s1 == "Hello" ? s2 == "foo}" : false;
+            return s1 == "Hello" and s2 == "foo}" or false;
           end))) then do
     return Curry._1(Scanf.sscanf("Hello[foo]", --[ Format ]--[
                     --[ String ]--Block.__(2, [
@@ -4540,7 +4540,7 @@ function test60(param) do
                             ])])])]),
               "%0c%0c%c%n"
             ]), (function (c1, c2, c3, n) do
-            return c1 == --[ "a" ]--97 and c2 == --[ "a" ]--97 and c3 == --[ "a" ]--97 ? n == 1 : false;
+            return c1 == --[ "a" ]--97 and c2 == --[ "a" ]--97 and c3 == --[ "a" ]--97 and n == 1 or false;
           end)) and Curry._1(Scanf.sscanf("abc", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ Lit_padding ]--Block.__(0, [
@@ -4554,7 +4554,7 @@ function test60(param) do
                 ]),
               "%0s%s"
             ]), (function (s1, s2) do
-            return s1 == "" ? s2 == "abc" : false;
+            return s1 == "" and s2 == "abc" or false;
           end))) then do
     return Curry._1(Scanf.sscanf("abc", --[ Format ]--[
                     --[ String ]--Block.__(2, [

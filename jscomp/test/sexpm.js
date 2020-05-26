@@ -350,8 +350,8 @@ var ID_MONAD = do
 end;
 
 function make(bufsizeOpt, refill) do
-  var bufsize = bufsizeOpt ~= undefined ? bufsizeOpt : 1024;
-  var bufsize$1 = Caml_primitive.caml_int_min(bufsize > 16 ? bufsize : 16, Sys.max_string_length);
+  var bufsize = bufsizeOpt ~= undefined and bufsizeOpt or 1024;
+  var bufsize$1 = Caml_primitive.caml_int_min(bufsize > 16 and bufsize or 16, Sys.max_string_length);
   return do
           buf: Caml_bytes.caml_create_bytes(bufsize$1),
           refill: refill,
@@ -633,7 +633,7 @@ function atom(k, t) do
                       ]);
           end end 
         end else do
-          exit = c >= 40 ? 2 : 1;
+          exit = c >= 40 and 2 or 1;
         end end 
       end else if (c >= 11) then do
         if (c >= 32) then do
@@ -658,7 +658,7 @@ function atom(k, t) do
           exit = 1;
         end end 
       end else do
-        exit = c >= 9 ? 2 : 1;
+        exit = c >= 9 and 2 or 1;
       end end  end 
       local ___conditional___=(exit);
       do
@@ -962,8 +962,8 @@ end
 function MakeDecode(funarg) do
   var $great$great$eq = funarg.$great$great$eq;
   var make = function (bufsizeOpt, refill) do
-    var bufsize = bufsizeOpt ~= undefined ? bufsizeOpt : 1024;
-    var bufsize$1 = Caml_primitive.caml_int_min(bufsize > 16 ? bufsize : 16, Sys.max_string_length);
+    var bufsize = bufsizeOpt ~= undefined and bufsizeOpt or 1024;
+    var bufsize$1 = Caml_primitive.caml_int_min(bufsize > 16 and bufsize or 16, Sys.max_string_length);
     return do
             buf: Caml_bytes.caml_create_bytes(bufsize$1),
             refill: refill,
@@ -1236,7 +1236,7 @@ function MakeDecode(funarg) do
                         ]);
             end end 
           end else do
-            exit = c >= 40 ? 2 : 1;
+            exit = c >= 40 and 2 or 1;
           end end 
         end else if (c >= 11) then do
           if (c >= 32) then do
@@ -1261,7 +1261,7 @@ function MakeDecode(funarg) do
             exit = 1;
           end end 
         end else do
-          exit = c >= 9 ? 2 : 1;
+          exit = c >= 9 and 2 or 1;
         end end  end 
         local ___conditional___=(exit);
         do

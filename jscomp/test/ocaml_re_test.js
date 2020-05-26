@@ -79,7 +79,7 @@ function union(_l, _l$prime) do
         end else if (c2 < c2$prime) then do
           _l$prime = --[ :: ]--[
             --[ tuple ]--[
-              c1 < c1$prime ? c1 : c1$prime,
+              c1 < c1$prime and c1 or c1$prime,
               c2$prime
             ],
             r$prime
@@ -90,7 +90,7 @@ function union(_l, _l$prime) do
           _l$prime = r$prime;
           _l = --[ :: ]--[
             --[ tuple ]--[
-              c1 < c1$prime ? c1 : c1$prime,
+              c1 < c1$prime and c1 or c1$prime,
               c2
             ],
             r
@@ -174,13 +174,13 @@ function diff(_l, _l$prime) do
           _l$prime = r$prime;
           continue ;
         end else do
-          var r$prime$prime = c2$prime < c2 ? --[ :: ]--[
+          var r$prime$prime = c2$prime < c2 and --[ :: ]--[
               --[ tuple ]--[
                 c2$prime + 1 | 0,
                 c2
               ],
               r
-            ] : r;
+            ] or r;
           if (c1 < c1$prime) then do
             return --[ :: ]--[
                     --[ tuple ]--[
@@ -313,13 +313,13 @@ function create(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -370,7 +370,7 @@ function bal(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -494,19 +494,19 @@ function height$1(param) do
 end
 
 function create$1(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$1(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--2];
@@ -554,7 +554,7 @@ function bal$1(l, v, r) do
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -675,7 +675,7 @@ function mk_expr(ids, def) do
 end
 
 function cst(ids, s) do
-  if (s ? false : true) then do
+  if (s and false or true) then do
     return mk_expr(ids, --[ Alt ]--Block.__(1, [--[ [] ]--0]));
   end else do
     return mk_expr(ids, --[ Cst ]--Block.__(0, [s]));
@@ -1245,10 +1245,10 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
                     
                   end
                 end), y$prime$1);
-          var match$2 = match$1 ~= undefined ? --[ tuple ]--[
+          var match$2 = match$1 ~= undefined and --[ tuple ]--[
               Curry._1(remove_matches, y$prime$1),
               match$1
-            ] : --[ tuple ]--[
+            ] or --[ tuple ]--[
               y$prime$1,
               marks
             ];
@@ -1491,11 +1491,11 @@ end;
 
 function mk_state(ncol, desc) do
   var match = status(desc);
-  var break_state = typeof match == "number" ? match == 0 : true;
+  var break_state = typeof match == "number" and match == 0 or true;
   return do
-          idx: break_state ? -3 : desc.idx,
+          idx: break_state and -3 or desc.idx,
           real_idx: desc.idx,
-          next: break_state ? dummy_next : Caml_array.caml_make_vect(ncol, unknown_state),
+          next: break_state and dummy_next or Caml_array.caml_make_vect(ncol, unknown_state),
           final: --[ [] ]--0,
           desc: desc
         end;
@@ -1735,7 +1735,7 @@ function trans_set(cache, cm, s) do
           if (c == 0) then do
             return param[--[ d ]--2];
           end else do
-            _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+            _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
             continue ;
           end end 
         end else do
@@ -2355,7 +2355,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
             var cr = match$1[0];
             var rem;
             if (j ~= undefined) then do
-              var f = greedy >= 620821490 ? (function(cr,kind$prime)do
+              var f = greedy >= 620821490 and (function(cr,kind$prime)do
                 return function (rem) do
                   return alt(ids, --[ :: ]--[
                               mk_expr(ids, --[ Eps ]--0),
@@ -2365,7 +2365,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                               ]
                             ]);
                 end
-                end(cr,kind$prime)) : (function(cr,kind$prime)do
+                end(cr,kind$prime)) or (function(cr,kind$prime)do
                 return function (rem) do
                   return alt(ids, --[ :: ]--[
                               seq$1(ids, kind$prime, rename(ids, cr), rem),
@@ -2520,7 +2520,7 @@ function handle_case(_ign_case, _r) do
       do
          if ___conditional___ = 0--[ Set ]-- then do
             var s = r[0];
-            return --[ Set ]--Block.__(0, [ign_case ? case_insens(s) : s]);end end end 
+            return --[ Set ]--Block.__(0, [ign_case and case_insens(s) or s]);end end end 
          if ___conditional___ = 1--[ Sequence ]-- then do
             return --[ Sequence ]--Block.__(1, [List.map((function(ign_case)do
                           return function (param) do
@@ -2922,7 +2922,7 @@ var xdigit = alt$1(--[ :: ]--[
     ]);
 
 function compile(r) do
-  var regexp = anchored(r) ? --[ Group ]--Block.__(6, [r]) : seq$2(--[ :: ]--[
+  var regexp = anchored(r) and --[ Group ]--Block.__(6, [r]) or seq$2(--[ :: ]--[
           --[ Sem ]--Block.__(4, [
               --[ Shortest ]---1034406550,
               repn(any, 0, undefined)
@@ -2938,8 +2938,8 @@ function compile(r) do
   var match = flatten_cmap(c);
   var ncol = match[2];
   var col = match[0];
-  var lnl = need_lnl ? ncol : -1;
-  var ncol$1 = need_lnl ? ncol + 1 | 0 : ncol;
+  var lnl = need_lnl and ncol or -1;
+  var ncol$1 = need_lnl and ncol + 1 | 0 or ncol;
   var ids = do
     contents: 0
   end;
@@ -2972,8 +2972,8 @@ function compile(r) do
 end
 
 function exec_internal(name, posOpt, lenOpt, groups, re, s) do
-  var pos = posOpt ~= undefined ? posOpt : 0;
-  var len = lenOpt ~= undefined ? lenOpt : -1;
+  var pos = posOpt ~= undefined and posOpt or 0;
+  var len = lenOpt ~= undefined and lenOpt or -1;
   if (pos < 0 or len < -1 or (pos + len | 0) > #s) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
@@ -2988,11 +2988,11 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) do
   var pos$1 = pos;
   var len$1 = len;
   var slen = #s$1;
-  var last = len$1 == -1 ? slen : pos$1 + len$1 | 0;
+  var last = len$1 == -1 and slen or pos$1 + len$1 | 0;
   var tmp;
   if (groups$1) then do
     var n = #re$1.tbl.contents + 1 | 0;
-    tmp = n <= 10 ? [
+    tmp = n <= 10 and [
         0,
         0,
         0,
@@ -3003,7 +3003,7 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) do
         0,
         0,
         0
-      ] : Caml_array.caml_make_vect(n, 0);
+      ] or Caml_array.caml_make_vect(n, 0);
   end else do
     tmp = [];
   end end 
@@ -3014,14 +3014,14 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) do
     pos: pos$1,
     last: last
   end;
-  var initial_cat = pos$1 == 0 ? Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, Re_automata_Category.inexistant) : Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, category(re$1, get_color(re$1, s$1, pos$1 - 1 | 0)));
+  var initial_cat = pos$1 == 0 and Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, Re_automata_Category.inexistant) or Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, category(re$1, get_color(re$1, s$1, pos$1 - 1 | 0)));
   var initial_state = find_initial_state(re$1, initial_cat);
   var st = scan_str(info, s$1, initial_state, groups$1);
   var res;
   if (st.idx == -3 or partial) then do
     res = status(st.desc);
   end else do
-    var final_cat = last == slen ? Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, Re_automata_Category.inexistant) : Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, category(re$1, get_color(re$1, s$1, last)));
+    var final_cat = last == slen and Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, Re_automata_Category.inexistant) or Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.search_boundary, category(re$1, get_color(re$1, s$1, last)));
     var match = $$final(info, st, final_cat);
     if (groups$1) then do
       Caml_array.caml_array_set(info.positions, match[0], last + 1 | 0);
@@ -3167,7 +3167,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
   end;
   var greedy_mod = function (r) do
     var gr = accept(--[ "?" ]--63);
-    var gr$1 = ungreedy ? !gr : gr;
+    var gr$1 = ungreedy and !gr or gr;
     if (gr$1) then do
       return --[ Sem_greedy ]--Block.__(5, [
                 --[ Non_greedy ]--620821490,
@@ -3609,10 +3609,10 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
         end
          end 
         var posix_class = posix_class_of_string(cls);
-        var re = compl$1 ? compl(--[ :: ]--[
+        var re = compl$1 and compl(--[ :: ]--[
                 posix_class,
                 --[ [] ]--0
-              ]) : posix_class;
+              ]) or posix_class;
         return --[ `Set ]--[
                 4150146,
                 re
@@ -3825,7 +3825,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
       var match = integer(--[ () ]--0);
       if (match ~= undefined) then do
         var i$1 = match;
-        var j = accept(--[ "," ]--44) ? integer(--[ () ]--0) : i$1;
+        var j = accept(--[ "," ]--44) and integer(--[ () ]--0) or i$1;
         if (!accept(--[ "}" ]--125)) then do
           throw Parse_error;
         end
@@ -3852,7 +3852,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
 end
 
 function re(flagsOpt, pat) do
-  var flags = flagsOpt ~= undefined ? flagsOpt : --[ [] ]--0;
+  var flags = flagsOpt ~= undefined and flagsOpt or --[ [] ]--0;
   var opts = List.map((function (param) do
           if (param ~= 601676297) then do
             if (param >= 613575188) then do
@@ -3866,15 +3866,15 @@ function re(flagsOpt, pat) do
         end), flags);
   var optsOpt = opts;
   var s = pat;
-  var opts$1 = optsOpt ~= undefined ? optsOpt : --[ [] ]--0;
+  var opts$1 = optsOpt ~= undefined and optsOpt or --[ [] ]--0;
   var r = parse(List.memq(--[ Multiline ]--1071952589, opts$1), List.memq(--[ Dollar_endonly ]---712595228, opts$1), List.memq(--[ Dotall ]---424303016, opts$1), List.memq(--[ Ungreedy ]---243745063, opts$1), s);
-  var r$1 = List.memq(--[ Anchored ]--616470068, opts$1) ? seq$2(--[ :: ]--[
+  var r$1 = List.memq(--[ Anchored ]--616470068, opts$1) and seq$2(--[ :: ]--[
           --[ Start ]--8,
           --[ :: ]--[
             r,
             --[ [] ]--0
           ]
-        ]) : r;
+        ]) or r;
   if (List.memq(--[ Caseless ]--604571177, opts$1)) then do
     return --[ No_case ]--Block.__(10, [r$1]);
   end else do

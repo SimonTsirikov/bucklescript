@@ -43,12 +43,12 @@ function ok(loc, x) do
   return --[ () ]--0;
 end
 
-var match = typeof ___undefined_value == "undefined" ? undefined : ___undefined_value;
+var match = typeof ___undefined_value == "undefined" and undefined or ___undefined_value;
 
-var a = match ~= undefined ? 2 : 1;
+var a = match ~= undefined and 2 or 1;
 
 function test(param) do
-  var match = typeof __DEV__ == "undefined" ? undefined : __DEV__;
+  var match = typeof __DEV__ == "undefined" and undefined or __DEV__;
   if (match ~= undefined) then do
     console.log("dev mode");
     return --[ () ]--0;
@@ -59,7 +59,7 @@ function test(param) do
 end
 
 function test2(param) do
-  var match = typeof __filename == "undefined" ? undefined : __filename;
+  var match = typeof __filename == "undefined" and undefined or __filename;
   if (match ~= undefined) then do
     console.log(match);
     return --[ () ]--0;
@@ -70,7 +70,7 @@ function test2(param) do
 end
 
 function test3(param) do
-  if (Caml_option.undefined_to_opt(typeof __DEV__ == "undefined" ? undefined : __DEV__) == undefined) then do
+  if (Caml_option.undefined_to_opt(typeof __DEV__ == "undefined" and undefined or __DEV__) == undefined) then do
     console.log("production mode");
     return --[ () ]--0;
   end else do

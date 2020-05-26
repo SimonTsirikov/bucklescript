@@ -44,14 +44,14 @@ var some_arg = --[ `Bool ]--[
   true
 ];
 
-console.log(5, some_arg ~= undefined ? Caml_option.valFromOption(some_arg)[1] : undefined);
+console.log(5, some_arg ~= undefined and Caml_option.valFromOption(some_arg)[1] or undefined);
 
 console.log(6, undefined);
 
 console.log(7, Caml_option.option_get_unwrap((console.log("trace"), undefined)));
 
 function dyn_log3(prim, prim$1, prim$2) do
-  console.log(prim[1], prim$1 ~= undefined ? Caml_option.valFromOption(prim$1)[1] : undefined);
+  console.log(prim[1], prim$1 ~= undefined and Caml_option.valFromOption(prim$1)[1] or undefined);
   return --[ () ]--0;
 end
 
@@ -84,7 +84,7 @@ function f(x) do
 end
 
 function ff0(x, p) do
-  console.log(x ~= undefined ? Caml_option.valFromOption(x)[1] : undefined, p);
+  console.log(x ~= undefined and Caml_option.valFromOption(x)[1] or undefined, p);
   return --[ () ]--0;
 end
 

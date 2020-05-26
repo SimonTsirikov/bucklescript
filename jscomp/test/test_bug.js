@@ -28,7 +28,7 @@ function escaped(s) do
       exit = 1;
     end end  end  end 
     if (exit == 1) then do
-      tmp = Caml_char.caml_is_printable(c) ? 1 : 4;
+      tmp = Caml_char.caml_is_printable(c) and 1 or 4;
     end
      end 
     n = n + tmp | 0;

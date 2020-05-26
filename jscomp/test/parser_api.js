@@ -1061,7 +1061,7 @@ function copy_file_chunk(ic, oc, len) do
     if (n <= 0) then do
       return --[ () ]--0;
     end else do
-      var r = Pervasives.input(ic, buff, 0, n < 4096 ? n : 4096);
+      var r = Pervasives.input(ic, buff, 0, n < 4096 and n or 4096);
       if (r == 0) then do
         throw Caml_builtin_exceptions.end_of_file;
       end
@@ -1371,7 +1371,7 @@ end;
 function edit_distance(a, b, cutoff) do
   var la = #a;
   var lb = #b;
-  var cutoff$1 = Caml_primitive.caml_int_min(la > lb ? la : lb, cutoff);
+  var cutoff$1 = Caml_primitive.caml_int_min(la > lb and la or lb, cutoff);
   if (Pervasives.abs(la - lb | 0) > cutoff$1) then do
     return ;
   end else do
@@ -1385,9 +1385,9 @@ function edit_distance(a, b, cutoff) do
     end
     for(var i$1 = 1; i$1 <= la; ++i$1)do
       for(var j$1 = Caml_primitive.caml_int_max(1, (i$1 - cutoff$1 | 0) - 1 | 0) ,j_finish = Caml_primitive.caml_int_min(lb, (i$1 + cutoff$1 | 0) + 1 | 0); j$1 <= j_finish; ++j$1)do
-        var cost = Caml_string.get(a, i$1 - 1 | 0) == Caml_string.get(b, j$1 - 1 | 0) ? 0 : 1;
+        var cost = Caml_string.get(a, i$1 - 1 | 0) == Caml_string.get(b, j$1 - 1 | 0) and 0 or 1;
         var best = Caml_primitive.caml_int_min(1 + Caml_primitive.caml_int_min(Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1 - 1 | 0), j$1), Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1), j$1 - 1 | 0)) | 0, Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1 - 1 | 0), j$1 - 1 | 0) + cost | 0);
-        var best$1 = i$1 > 1 and j$1 > 1 and Caml_string.get(a, i$1 - 1 | 0) == Caml_string.get(b, j$1 - 2 | 0) and Caml_string.get(a, i$1 - 2 | 0) == Caml_string.get(b, j$1 - 1 | 0) ? Caml_primitive.caml_int_min(best, Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1 - 2 | 0), j$1 - 2 | 0) + cost | 0) : best;
+        var best$1 = i$1 > 1 and j$1 > 1 and Caml_string.get(a, i$1 - 1 | 0) == Caml_string.get(b, j$1 - 2 | 0) and Caml_string.get(a, i$1 - 2 | 0) == Caml_string.get(b, j$1 - 1 | 0) and Caml_primitive.caml_int_min(best, Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1 - 2 | 0), j$1 - 2 | 0) + cost | 0) or best;
         Caml_array.caml_array_set(Caml_array.caml_array_get(m, i$1), j$1, best$1);
       end
     end
@@ -1504,9 +1504,9 @@ function code_of_style(param) do
 end
 
 function ansi_of_style_l(l) do
-  var s = l ? (
-      l[1] ? $$String.concat(";", List.map(code_of_style, l)) : code_of_style(l[0])
-    ) : "0";
+  var s = l and (
+      l[1] and $$String.concat(";", List.map(code_of_style, l)) or code_of_style(l[0])
+    ) or "0";
   return "\x1b[" .. (s .. "m");
 end
 
@@ -2249,7 +2249,7 @@ end
 function parse_options(errflag, s) do
   var error = $$Array.copy(current.contents.error);
   var active = $$Array.copy(current.contents.active);
-  parse_opt(error, active, errflag ? error : active, s);
+  parse_opt(error, active, errflag and error or active, s);
   current.contents = do
     active: active,
     error: error
@@ -2615,7 +2615,7 @@ function message(param) do
                                 ])
                             ]),
                           "implicit elimination of optional argument%s %s"
-                        ]), List.length(sl) == 1 ? "" : "s", $$String.concat(", ", sl));end end end 
+                        ]), List.length(sl) == 1 and "" or "s", $$String.concat(", ", sl));end end end 
        if ___conditional___ = 32--[ No_cmi_file ]-- then do
           return "no cmi file was found in path for module " .. param[0];end end end 
        if ___conditional___ = 33--[ Bad_docstring ]-- then do
@@ -3443,7 +3443,7 @@ function highlight_locations(ppf, locs) do
 end
 
 function absolute_path(s) do
-  var s$1 = Curry._1(Filename.is_relative, s) ? Filename.concat(Caml_sys.caml_sys_getcwd(--[ () ]--0), s) : s;
+  var s$1 = Curry._1(Filename.is_relative, s) and Filename.concat(Caml_sys.caml_sys_getcwd(--[ () ]--0), s) or s;
   var aux = function (_s) do
     while(true) do
       var s = _s;
@@ -3500,7 +3500,7 @@ function print_loc(ppf, loc) do
   var match = get_pos_info(loc.loc_start);
   var startchar = match[2];
   var file = match[0];
-  var startchar$1 = bs_vscode ? startchar + 1 | 0 : startchar;
+  var startchar$1 = bs_vscode and startchar + 1 | 0 or startchar;
   var endchar = (loc.loc_end.pos_cnum - loc.loc_start.pos_cnum | 0) + startchar$1 | 0;
   if (file == "//toplevel//") then do
     if (highlight_locations(ppf, --[ :: ]--[
@@ -3748,9 +3748,9 @@ function print_phanton_error_prefix(ppf) do
 end
 
 function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
-  var loc = locOpt ~= undefined ? locOpt : none;
-  var sub = subOpt ~= undefined ? subOpt : --[ [] ]--0;
-  var if_highlight = if_highlightOpt ~= undefined ? if_highlightOpt : "";
+  var loc = locOpt ~= undefined and locOpt or none;
+  var sub = subOpt ~= undefined and subOpt or --[ [] ]--0;
+  var if_highlight = if_highlightOpt ~= undefined and if_highlightOpt or "";
   return pp_ksprintf(print_phanton_error_prefix, (function (msg) do
                 return do
                         loc: loc,
@@ -3762,9 +3762,9 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
 end
 
 function error(locOpt, subOpt, if_highlightOpt, msg) do
-  var loc = locOpt ~= undefined ? locOpt : none;
-  var sub = subOpt ~= undefined ? subOpt : --[ [] ]--0;
-  var if_highlight = if_highlightOpt ~= undefined ? if_highlightOpt : "";
+  var loc = locOpt ~= undefined and locOpt or none;
+  var sub = subOpt ~= undefined and subOpt or --[ [] ]--0;
+  var if_highlight = if_highlightOpt ~= undefined and if_highlightOpt or "";
   return do
           loc: loc,
           msg: msg,
@@ -3961,9 +3961,9 @@ register_error_of_exn((function (param) do
       end));
 
 function raise_errorf(locOpt, subOpt, if_highlightOpt) do
-  var loc = locOpt ~= undefined ? locOpt : none;
-  var sub = subOpt ~= undefined ? subOpt : --[ [] ]--0;
-  var if_highlight = if_highlightOpt ~= undefined ? if_highlightOpt : "";
+  var loc = locOpt ~= undefined and locOpt or none;
+  var sub = subOpt ~= undefined and subOpt or --[ [] ]--0;
+  var if_highlight = if_highlightOpt ~= undefined and if_highlightOpt or "";
   var partial_arg = print_phanton_error_prefix;
   return (function (param) do
       return pp_ksprintf(partial_arg, (function (msg) do
@@ -4204,10 +4204,10 @@ end
 
 function add_docs_attrs(docs, attrs) do
   var match = docs.docs_pre;
-  var attrs$1 = match ~= undefined ? --[ :: ]--[
+  var attrs$1 = match ~= undefined and --[ :: ]--[
       docs_attr(match),
       attrs
-    ] : attrs;
+    ] or attrs;
   var match$1 = docs.docs_post;
   if (match$1 ~= undefined) then do
     return Pervasives.$at(attrs$1, --[ :: ]--[
@@ -4276,7 +4276,7 @@ function get_docstring(info, dsl) do
       var ds = param[0];
       var match = ds.ds_attached;
       if (match ~= 1) then do
-        ds.ds_attached = info ? --[ Info ]--1 : --[ Docs ]--2;
+        ds.ds_attached = info and --[ Info ]--1 or --[ Docs ]--2;
         return ds;
       end else do
         _param = param[1];
@@ -4645,8 +4645,8 @@ function with_default_loc(l, f) do
 end
 
 function mk(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           ptyp_desc: d,
           ptyp_loc: loc,
@@ -4767,8 +4767,8 @@ var Typ = do
 end;
 
 function mk$1(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           ppat_desc: d,
           ppat_loc: loc,
@@ -4899,8 +4899,8 @@ var Pat = do
 end;
 
 function mk$2(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pexp_desc: d,
           pexp_loc: loc,
@@ -5141,8 +5141,8 @@ function $$case(lhs, guard, rhs) do
 end
 
 function mk$3(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pmty_desc: d,
           pmty_loc: loc,
@@ -5209,8 +5209,8 @@ var Mty = do
 end;
 
 function mk$4(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pmod_desc: d,
           pmod_loc: loc,
@@ -5280,7 +5280,7 @@ var Mod = do
 end;
 
 function mk$5(locOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
   return do
           psig_desc: d,
           psig_loc: loc
@@ -5332,7 +5332,7 @@ function class_type(loc, a) do
 end
 
 function extension$5(loc, attrsOpt, a) do
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return mk$5(loc, --[ Psig_extension ]--Block.__(12, [
                 a,
                 attrs
@@ -5370,7 +5370,7 @@ var Sig = do
 end;
 
 function mk$6(locOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
   return do
           pstr_desc: d,
           pstr_loc: loc
@@ -5378,7 +5378,7 @@ function mk$6(locOpt, d) do
 end
 
 function $$eval(loc, attrsOpt, a) do
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return mk$6(loc, --[ Pstr_eval ]--Block.__(0, [
                 a,
                 attrs
@@ -5437,7 +5437,7 @@ function include_$1(loc, a) do
 end
 
 function extension$6(loc, attrsOpt, a) do
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return mk$6(loc, --[ Pstr_extension ]--Block.__(14, [
                 a,
                 attrs
@@ -5477,8 +5477,8 @@ var Str = do
 end;
 
 function mk$7(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pcl_desc: d,
           pcl_loc: loc,
@@ -5556,8 +5556,8 @@ var Cl = do
 end;
 
 function mk$8(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pcty_desc: d,
           pcty_loc: loc,
@@ -5609,9 +5609,9 @@ var Cty = do
 end;
 
 function mk$9(locOpt, attrsOpt, docsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
   return do
           pctf_desc: d,
           pctf_loc: loc,
@@ -5674,9 +5674,9 @@ function attr$7(d, a) do
 end
 
 function mk$10(locOpt, attrsOpt, docsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
   return do
           pcf_desc: d,
           pcf_loc: loc,
@@ -5756,10 +5756,10 @@ function attr$8(d, a) do
 end
 
 function mk$11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var prim = primOpt ~= undefined ? primOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var prim = primOpt ~= undefined and primOpt or --[ [] ]--0;
   return do
           pval_name: name,
           pval_type: typ,
@@ -5774,10 +5774,10 @@ var Val = do
 end;
 
 function mk$12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
   return do
           pmd_name: name,
           pmd_type: typ,
@@ -5791,10 +5791,10 @@ var Md = do
 end;
 
 function mk$13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
   return do
           pmtd_name: name,
           pmtd_type: typ,
@@ -5808,10 +5808,10 @@ var Mtd = do
 end;
 
 function mk$14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
   return do
           pmb_name: name,
           pmb_expr: expr,
@@ -5825,10 +5825,10 @@ var Mb = do
 end;
 
 function mk$15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var override = overrideOpt ~= undefined ? overrideOpt : --[ Fresh ]--1;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var override = overrideOpt ~= undefined and overrideOpt or --[ Fresh ]--1;
   return do
           popen_lid: lid,
           popen_override: override,
@@ -5842,9 +5842,9 @@ var Opn = do
 end;
 
 function mk$16(locOpt, attrsOpt, docsOpt, mexpr) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
   return do
           pincl_mod: mexpr,
           pincl_loc: loc,
@@ -5857,10 +5857,10 @@ var Incl = do
 end;
 
 function mk$17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
   return do
           pvb_pat: pat,
           pvb_expr: expr,
@@ -5874,12 +5874,12 @@ var Vb = do
 end;
 
 function mk$18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, expr) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
-  var virt = virtOpt ~= undefined ? virtOpt : --[ Concrete ]--1;
-  var params = paramsOpt ~= undefined ? paramsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
+  var virt = virtOpt ~= undefined and virtOpt or --[ Concrete ]--1;
+  var params = paramsOpt ~= undefined and paramsOpt or --[ [] ]--0;
   return do
           pci_virt: virt,
           pci_params: params,
@@ -5895,14 +5895,14 @@ var Ci = do
 end;
 
 function mk$19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt, privOpt, manifest, name) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
-  var params = paramsOpt ~= undefined ? paramsOpt : --[ [] ]--0;
-  var cstrs = cstrsOpt ~= undefined ? cstrsOpt : --[ [] ]--0;
-  var kind = kindOpt ~= undefined ? kindOpt : --[ Ptype_abstract ]--0;
-  var priv = privOpt ~= undefined ? privOpt : --[ Public ]--1;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
+  var params = paramsOpt ~= undefined and paramsOpt or --[ [] ]--0;
+  var cstrs = cstrsOpt ~= undefined and cstrsOpt or --[ [] ]--0;
+  var kind = kindOpt ~= undefined and kindOpt or --[ Ptype_abstract ]--0;
+  var priv = privOpt ~= undefined and privOpt or --[ Public ]--1;
   return do
           ptype_name: name,
           ptype_params: params,
@@ -5916,10 +5916,10 @@ function mk$19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt,
 end
 
 function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
-  var args = argsOpt ~= undefined ? argsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  var args = argsOpt ~= undefined and argsOpt or --[ [] ]--0;
   return do
           pcd_name: name,
           pcd_args: args,
@@ -5930,10 +5930,10 @@ function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) do
 end
 
 function field$1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
-  var mut = mutOpt ~= undefined ? mutOpt : --[ Immutable ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  var mut = mutOpt ~= undefined and mutOpt or --[ Immutable ]--0;
   return do
           pld_name: name,
           pld_mutable: mut,
@@ -5950,10 +5950,10 @@ var Type = do
 end;
 
 function mk$20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) do
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var params = paramsOpt ~= undefined ? paramsOpt : --[ [] ]--0;
-  var priv = privOpt ~= undefined ? privOpt : --[ Public ]--1;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var params = paramsOpt ~= undefined and paramsOpt or --[ [] ]--0;
+  var priv = privOpt ~= undefined and privOpt or --[ Public ]--1;
   return do
           ptyext_path: path,
           ptyext_params: params,
@@ -5964,10 +5964,10 @@ function mk$20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) do
 end
 
 function constructor$1(locOpt, attrsOpt, docsOpt, infoOpt, name, kind) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
   return do
           pext_name: name,
           pext_kind: kind,
@@ -5977,11 +5977,11 @@ function constructor$1(locOpt, attrsOpt, docsOpt, infoOpt, name, kind) do
 end
 
 function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
-  var args = argsOpt ~= undefined ? argsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  var args = argsOpt ~= undefined and argsOpt or --[ [] ]--0;
   return do
           pext_name: name,
           pext_kind: --[ Pext_decl ]--Block.__(0, [
@@ -5994,10 +5994,10 @@ function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) do
 end
 
 function rebind(locOpt, attrsOpt, docsOpt, infoOpt, name, lid) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
   return do
           pext_name: name,
           pext_kind: --[ Pext_rebind ]--Block.__(1, [lid]),
@@ -6592,7 +6592,7 @@ function array_function(str, name) do
   return do
           txt: --[ Ldot ]--Block.__(1, [
               --[ Lident ]--Block.__(0, [str]),
-              fast.contents ? "unsafe_" .. name : name
+              fast.contents and "unsafe_" .. name or name
             ]),
           loc: symbol_gloc(--[ () ]--0)
         end;
@@ -9142,7 +9142,7 @@ var yyact = [
       var arr = _1;
       var arg = _4;
       var newval = _7;
-      var set = fast.contents ? "unsafe_set" : "set";
+      var set = fast.contents and "unsafe_set" or "set";
       var coords = bigarray_untuplify(arg);
       if (coords) then do
         var match = coords[1];
@@ -9448,7 +9448,7 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var arr = _1;
       var arg = _4;
-      var get = fast.contents ? "unsafe_get" : "get";
+      var get = fast.contents and "unsafe_get" or "get";
       var coords = bigarray_untuplify(arg);
       if (coords) then do
         var match = coords[1];
@@ -10896,7 +10896,7 @@ var yyact = [
       var _5 = Parsing.peek_val(__caml_parser_env, 2);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
       var info_before_semi = get_info(Parsing.rhs_end_pos(5));
-      var info = info_before_semi ~= undefined ? info_before_semi : get_info(Parsing.symbol_end_pos(--[ () ]--0));
+      var info = info_before_semi ~= undefined and info_before_semi or get_info(Parsing.symbol_end_pos(--[ () ]--0));
       return field$1(symbol_rloc(--[ () ]--0), Pervasives.$at(_5, _7), Caml_option.some(info), _1, do
                   txt: _2,
                   loc: rhs_loc(2)
@@ -12674,10 +12674,10 @@ function semver(loc, lhs, str) do
                   ];
             end
              end 
-            match = str[1] == "=" ? --[ tuple ]--[
+            match = str[1] == "=" and --[ tuple ]--[
                 --[ Le ]--17049,
                 semantic_version_parse(str, 2, last_index)
-              ] : --[ tuple ]--[
+              ] or --[ tuple ]--[
                 --[ Lt ]--17064,
                 semantic_version_parse(str, 1, last_index)
               ];end else 
@@ -12692,10 +12692,10 @@ function semver(loc, lhs, str) do
                   ];
             end
              end 
-            match = str[1] == "=" ? --[ tuple ]--[
+            match = str[1] == "=" and --[ tuple ]--[
                 --[ Ge ]--15934,
                 semantic_version_parse(str, 2, last_index)
-              ] : --[ tuple ]--[
+              ] or --[ tuple ]--[
                 --[ Gt ]--15949,
                 semantic_version_parse(str, 1, last_index)
               ];end else 
@@ -13815,12 +13815,12 @@ end
 
 function char_for_hexadecimal_code(lexbuf, i) do
   var d1 = Lexing.lexeme_char(lexbuf, i);
-  var val1 = d1 >= 97 ? d1 - 87 | 0 : (
-      d1 >= 65 ? d1 - 55 | 0 : d1 - 48 | 0
+  var val1 = d1 >= 97 and d1 - 87 | 0 or (
+      d1 >= 65 and d1 - 55 | 0 or d1 - 48 | 0
     );
   var d2 = Lexing.lexeme_char(lexbuf, i + 1 | 0);
-  var val2 = d2 >= 97 ? d2 - 87 | 0 : (
-      d2 >= 65 ? d2 - 55 | 0 : d2 - 48 | 0
+  var val2 = d2 >= 97 and d2 - 87 | 0 or (
+      d2 >= 65 and d2 - 55 | 0 or d2 - 48 | 0
     );
   return Char.chr((val1 << 4) + val2 | 0);
 end
@@ -13886,10 +13886,10 @@ end
 
 function update_loc(lexbuf, file, line, absolute, chars) do
   var pos = lexbuf.lex_curr_p;
-  var new_file = file ~= undefined ? file : pos.pos_fname;
+  var new_file = file ~= undefined and file or pos.pos_fname;
   lexbuf.lex_curr_p = do
     pos_fname: new_file,
-    pos_lnum: absolute ? line : pos.pos_lnum + line | 0,
+    pos_lnum: absolute and line or pos.pos_lnum + line | 0,
     pos_bol: pos.pos_cnum - chars | 0,
     pos_cnum: pos.pos_cnum
   end;
@@ -15053,7 +15053,7 @@ function token$1(lexbuf) do
               end
                end end else 
            if ___conditional___ = 100--[ EOL ]-- then do
-              var lines$prime = lines ~= 0 ? --[ BlankLine ]--2 : --[ NewLine ]--1;
+              var lines$prime = lines ~= 0 and --[ BlankLine ]--2 or --[ NewLine ]--1;
               _lines = lines$prime;
               continue ;end end end 
            do end
@@ -15070,7 +15070,7 @@ function token$1(lexbuf) do
                     match[0],
                     match[1]
                   ]);
-              var lines$prime$1 = lines >= 2 ? --[ BlankLine ]--2 : --[ NoLine ]--0;
+              var lines$prime$1 = lines >= 2 and --[ BlankLine ]--2 or --[ NoLine ]--0;
               _lines = lines$prime$1;
               continue ;end end end 
            if ___conditional___ = 19--[ DOCSTRING ]-- then do
@@ -15078,14 +15078,14 @@ function token$1(lexbuf) do
               add_docstring_comment(doc);
               var docs$prime;
               if (typeof docs == "number") then do
-                docs$prime = lines >= 2 ? --[ Before ]--Block.__(1, [
+                docs$prime = lines >= 2 and --[ Before ]--Block.__(1, [
                       --[ [] ]--0,
                       --[ [] ]--0,
                       --[ :: ]--[
                         doc,
                         --[ [] ]--0
                       ]
-                    ]) : --[ After ]--Block.__(0, [--[ :: ]--[
+                    ]) or --[ After ]--Block.__(0, [--[ :: ]--[
                         doc,
                         --[ [] ]--0
                       ]]);
@@ -15093,14 +15093,14 @@ function token$1(lexbuf) do
                 var b = docs[2];
                 var f = docs[1];
                 var a = docs[0];
-                docs$prime = lines >= 2 ? --[ Before ]--Block.__(1, [
+                docs$prime = lines >= 2 and --[ Before ]--Block.__(1, [
                       a,
                       Pervasives.$at(b, f),
                       --[ :: ]--[
                         doc,
                         --[ [] ]--0
                       ]
-                    ]) : --[ Before ]--Block.__(1, [
+                    ]) or --[ Before ]--Block.__(1, [
                       a,
                       f,
                       --[ :: ]--[
@@ -15110,14 +15110,14 @@ function token$1(lexbuf) do
                     ]);
               end else do
                 var a$1 = docs[0];
-                docs$prime = lines >= 2 ? --[ Before ]--Block.__(1, [
+                docs$prime = lines >= 2 and --[ Before ]--Block.__(1, [
                       a$1,
                       --[ [] ]--0,
                       --[ :: ]--[
                         doc,
                         --[ [] ]--0
                       ]
-                    ]) : --[ After ]--Block.__(0, [--[ :: ]--[
+                    ]) or --[ After ]--Block.__(0, [--[ :: ]--[
                         doc,
                         a$1
                       ]]);

@@ -40,7 +40,7 @@ end
 
 function absolute_path(s) do
   var s$1 = s;
-  var s$2 = Curry._1(Filename.is_relative, s$1) ? Filename.concat(CamlinternalLazy.force(cwd), s$1) : s$1;
+  var s$2 = Curry._1(Filename.is_relative, s$1) and Filename.concat(CamlinternalLazy.force(cwd), s$1) or s$1;
   var aux = function (_s) do
     while(true) do
       var s = _s;
@@ -62,7 +62,7 @@ function absolute_path(s) do
 end
 
 function chop_extension(locOpt, name) do
-  var loc = locOpt ~= undefined ? locOpt : "";
+  var loc = locOpt ~= undefined and locOpt or "";
   try do
     return Filename.chop_extension(name);
   end
@@ -111,8 +111,8 @@ end
 var os_path_separator_char = Filename.dir_sep.charCodeAt(0);
 
 function relative_path(file_or_dir_1, file_or_dir_2) do
-  var relevant_dir1 = file_or_dir_1[0] >= 781515420 ? Curry._1(Filename.dirname, file_or_dir_1[1]) : file_or_dir_1[1];
-  var relevant_dir2 = file_or_dir_2[0] >= 781515420 ? Curry._1(Filename.dirname, file_or_dir_2[1]) : file_or_dir_2[1];
+  var relevant_dir1 = file_or_dir_1[0] >= 781515420 and Curry._1(Filename.dirname, file_or_dir_1[1]) or file_or_dir_1[1];
+  var relevant_dir2 = file_or_dir_2[0] >= 781515420 and Curry._1(Filename.dirname, file_or_dir_2[1]) or file_or_dir_2[1];
   var dir1 = Ext_string_test.split(undefined, relevant_dir1, os_path_separator_char);
   var dir2 = Ext_string_test.split(undefined, relevant_dir2, os_path_separator_char);
   var go = function (_dir1, _dir2) do
@@ -173,16 +173,16 @@ function node_relative_path(node_modules_shorten, file1, dep_file) do
     end;
     return Ext_string_test.tail_from(file2, skip(v + Test_literals.node_modules_length | 0));
   end else do
-    return relative_path(dep_file[0] >= 781515420 ? --[ `File ]--[
+    return relative_path(dep_file[0] >= 781515420 and --[ `File ]--[
                   781515420,
                   absolute_path(dep_file[1])
-                ] : --[ `Dir ]--[
+                ] or --[ `Dir ]--[
                   3405101,
                   absolute_path(dep_file[1])
-                ], file1[0] >= 781515420 ? --[ `File ]--[
+                ], file1[0] >= 781515420 and --[ `File ]--[
                   781515420,
                   absolute_path(file1[1])
-                ] : --[ `Dir ]--[
+                ] or --[ `Dir ]--[
                   3405101,
                   absolute_path(file1[1])
                 ]) .. (node_sep .. Curry._1(Filename.basename, file2));

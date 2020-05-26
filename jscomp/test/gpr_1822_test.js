@@ -33,7 +33,7 @@ var myShape = --[ Circle ]--Block.__(0, [10]);
 
 var area;
 
-area = myShape.tag ? Caml_int32.imul(10, myShape[1]) : 100 * 3.14;
+area = myShape.tag and Caml_int32.imul(10, myShape[1]) or 100 * 3.14;
 
 eq("File \"gpr_1822_test.ml\", line 21, characters 6-13", area, 314);
 

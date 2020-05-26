@@ -148,10 +148,10 @@ function tolist_aux(a, f, _i, _res) do
     end else do
       var v = a[i];
       var match = Curry._1(f, v);
-      _res = match ~= undefined ? --[ :: ]--[
+      _res = match ~= undefined and --[ :: ]--[
           Caml_option.valFromOption(match),
           res
-        ] : res;
+        ] or res;
       _i = i - 1 | 0;
       continue ;
     end end 

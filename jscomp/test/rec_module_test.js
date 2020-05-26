@@ -165,19 +165,19 @@ function height(param) do
 end
 
 function create(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--2];
@@ -225,7 +225,7 @@ function bal(l, v, r) do
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -456,7 +456,7 @@ function mem(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--2];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
         continue ;
       end end 
     end else do
@@ -819,7 +819,7 @@ function find(x, _param) do
       if (c == 0) then do
         return v;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--2];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
         continue ;
       end end 
     end else do
@@ -981,7 +981,7 @@ function find_opt(x, _param) do
       if (c == 0) then do
         return Caml_option.some(v);
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--2];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
         continue ;
       end end 
     end else do

@@ -140,7 +140,7 @@ function mem(x, _tree) do
       if (c == 0) then do
         return true;
       end else do
-        _tree = c < 0 ? tree[0] : tree[2];
+        _tree = c < 0 and tree[0] or tree[2];
         continue ;
       end end 
     end else do
@@ -236,7 +236,7 @@ function find(x, _tree) do
       if (c == 0) then do
         return v;
       end else do
-        _tree = c < 0 ? tree[0] : tree[2];
+        _tree = c < 0 and tree[0] or tree[2];
         continue ;
       end end 
     end else do

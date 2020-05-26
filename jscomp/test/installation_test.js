@@ -33,7 +33,7 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var match = typeof __dirname == "undefined" ? undefined : __dirname;
+var match = typeof __dirname == "undefined" and undefined or __dirname;
 
 if (match ~= undefined) then do
   var root = App_root_finder.find_package_json(match);

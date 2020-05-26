@@ -81,8 +81,8 @@ end
 function makeWrapper4(foo, param) do
   console.log(2);
   var tmp = { };
-  var tmp$1 = foo > 100 ? undefined : (
-      foo > 10 ? --[ b ]--98 : --[ a ]--97
+  var tmp$1 = foo > 100 and undefined or (
+      foo > 10 and --[ b ]--98 or --[ a ]--97
     );
   if (tmp$1 ~= undefined) then do
     tmp.foo = (function () do

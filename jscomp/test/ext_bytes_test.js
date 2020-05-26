@@ -26,16 +26,16 @@ function escaped(s) do
     var tmp;
     if (match >= 32) then do
       var switcher = match - 34 | 0;
-      tmp = switcher > 58 or switcher < 0 ? (
-          switcher >= 93 ? 4 : 1
-        ) : (
-          switcher > 57 or switcher < 1 ? 2 : 1
+      tmp = switcher > 58 or switcher < 0 and (
+          switcher >= 93 and 4 or 1
+        ) or (
+          switcher > 57 or switcher < 1 and 2 or 1
         );
     end else do
-      tmp = match >= 11 ? (
-          match ~= 13 ? 4 : 2
-        ) : (
-          match >= 8 ? 2 : 4
+      tmp = match >= 11 and (
+          match ~= 13 and 4 or 2
+        ) or (
+          match >= 8 and 2 or 4
         );
     end end 
     n = n + tmp | 0;

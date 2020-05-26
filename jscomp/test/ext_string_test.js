@@ -12,7 +12,7 @@ var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function split_by(keep_emptyOpt, is_delim, str) do
-  var keep_empty = keep_emptyOpt ~= undefined ? keep_emptyOpt : false;
+  var keep_empty = keep_emptyOpt ~= undefined and keep_emptyOpt or false;
   var len = #str;
   var _acc = --[ [] ]--0;
   var _last_pos = len;
@@ -277,7 +277,7 @@ end
 var Local_exit = Caml_exceptions.create("Ext_string_test.Local_exit");
 
 function find(startOpt, sub, s) do
-  var start = startOpt ~= undefined ? startOpt : 0;
+  var start = startOpt ~= undefined and startOpt or 0;
   var n = #sub;
   var s_len = #s;
   var i = start;

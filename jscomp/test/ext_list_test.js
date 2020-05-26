@@ -101,7 +101,7 @@ function exclude_with_fact(p, l) do
   var v = aux(--[ [] ]--0, l);
   return --[ tuple ]--[
           excluded.contents,
-          excluded.contents ~= undefined ? v : l
+          excluded.contents ~= undefined and v or l
         ];
 end
 
@@ -144,7 +144,7 @@ function exclude_with_fact2(p1, p2, l) do
   return --[ tuple ]--[
           excluded1.contents,
           excluded2.contents,
-          excluded1.contents ~= undefined and excluded2.contents ~= undefined ? v : l
+          excluded1.contents ~= undefined and excluded2.contents ~= undefined and v or l
         ];
 end
 

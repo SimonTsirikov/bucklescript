@@ -32,13 +32,13 @@ function eq(loc, param) do
   return --[ () ]--0;
 end
 
-var match = typeof __filename == "undefined" ? undefined : __filename;
+var match = typeof __filename == "undefined" and undefined or __filename;
 
-var current_file = match ~= undefined ? match : "<Not Node JS>";
+var current_file = match ~= undefined and match or "<Not Node JS>";
 
-var match$1 = typeof __dirname == "undefined" ? undefined : __dirname;
+var match$1 = typeof __dirname == "undefined" and undefined or __dirname;
 
-var current_dir_name = match$1 ~= undefined ? match$1 : "<Not Node Js>";
+var current_dir_name = match$1 ~= undefined and match$1 or "<Not Node Js>";
 
 Fs.readFileSync(current_file, "utf8");
 
@@ -46,7 +46,7 @@ Fs.readdirSync(current_dir_name);
 
 var pathobj = Path.parse(current_dir_name);
 
-var match$2 = typeof module == "undefined" ? undefined : module;
+var match$2 = typeof module == "undefined" and undefined or module;
 
 if (match$2 ~= undefined) then do
   console.log(--[ tuple ]--[

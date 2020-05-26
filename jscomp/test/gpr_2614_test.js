@@ -62,7 +62,7 @@ end;
 
 var match = u["xx-yy"];
 
-var v$1 = match ~= undefined ? match : 0;
+var v$1 = match ~= undefined and match or 0;
 
 exports.b = b;
 exports.c = c;

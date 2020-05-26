@@ -15,7 +15,7 @@ function eq(loc, x, y) do
 end
 
 function f(xOpt, y) do
-  var x = xOpt ~= undefined ? xOpt : 3;
+  var x = xOpt ~= undefined and xOpt or 3;
   var xOpt$1 = x + 2 | 0;
   console.log(xOpt$1);
   return xOpt$1 + y | 0;

@@ -72,7 +72,7 @@ function Make(funarg) do
         if (successors) then do
           var successor = successors[0];
           if (find_default(already_processed, successor)) then do
-            var x = find_default(on_the_stack, successor) ? Curry._2(H.find, n_labels, successor) : Curry._2(H.find, l_labels, successor);
+            var x = find_default(on_the_stack, successor) and Curry._2(H.find, n_labels, successor) or Curry._2(H.find, l_labels, successor);
             Curry._3(H.add, l_labels, top$1, Caml_primitive.caml_int_max(Curry._2(H.find, l_labels, top$1), x));
             _successors = successors[1];
             continue ;

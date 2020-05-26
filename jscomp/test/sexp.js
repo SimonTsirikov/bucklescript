@@ -32,7 +32,7 @@ end
 function of_bool(x) do
   return --[ `Atom ]--[
           726615281,
-          x ? "true" : "false"
+          x and "true" or "false"
         ];
 end
 

@@ -208,7 +208,7 @@ var m1 = acc(m, Belt_Array.concat(Array_data_util.randomRange(0, 20), Array_data
 var x$8 = Belt_Array.makeBy(31, (function (i) do
         return --[ tuple ]--[
                 i,
-                i >= 10 and i <= 20 ? 2 : 1
+                i >= 10 and i <= 20 and 2 or 1
               ];
       end));
 
@@ -261,7 +261,7 @@ var match$1 = match[0];
 
 var match$2 = Belt_Map.get(v3, 10);
 
-b("File \"bs_poly_map_test.ml\", line 126, characters 4-11", match$2 ~= undefined ? match$2 == 11 : false);
+b("File \"bs_poly_map_test.ml\", line 126, characters 4-11", match$2 ~= undefined and match$2 == 11 or false);
 
 var match$3 = Belt_Map.get(v3, -10);
 
@@ -269,7 +269,7 @@ b("File \"bs_poly_map_test.ml\", line 127, characters 4-11", match$3 == undefine
 
 var match$4 = Belt_Map.get(v4, -10);
 
-b("File \"bs_poly_map_test.ml\", line 128, characters 4-11", match$4 ~= undefined ? match$4 == 0 : false);
+b("File \"bs_poly_map_test.ml\", line 128, characters 4-11", match$4 ~= undefined and match$4 == 0 or false);
 
 var map = Belt_Map.remove(do
       cmp: Icmp.cmp,
@@ -285,7 +285,7 @@ var map$1 = Belt_Map.removeMany(do
 
 b("File \"bs_poly_map_test.ml\", line 130, characters 4-11", Belt_MapDict.isEmpty(map$1.data));
 
-b("File \"bs_poly_map_test.ml\", line 131, characters 4-11", pres ~= undefined ? pres == 5000 : false);
+b("File \"bs_poly_map_test.ml\", line 131, characters 4-11", pres ~= undefined and pres == 5000 or false);
 
 b("File \"bs_poly_map_test.ml\", line 132, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match$1[0].data), Belt_Array.makeBy(5000, (function (i) do
                 return i;

@@ -51,7 +51,7 @@ function from_suites(name, suite) do
 end
 
 function close_enough(thresholdOpt, a, b) do
-  var threshold = thresholdOpt ~= undefined ? thresholdOpt : 0.0000001;
+  var threshold = thresholdOpt ~= undefined and thresholdOpt or 0.0000001;
   return Math.abs(a - b) < threshold;
 end
 

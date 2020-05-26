@@ -6,10 +6,10 @@ var r = 0;
 
 for(var k = 1; k <= 10; ++k)do
   for(var i = 1; i <= 10; ++i)do
-    var match = i % 2 == 0 ? --[ tuple ]--[
+    var match = i % 2 == 0 and --[ tuple ]--[
         1,
         (i << 1)
-      ] : --[ tuple ]--[
+      ] or --[ tuple ]--[
         2,
         Caml_int32.imul(i, 3)
       ];

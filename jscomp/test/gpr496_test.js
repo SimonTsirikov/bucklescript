@@ -71,7 +71,7 @@ function ff(x, y) do
   return Caml_primitive.caml_bool_min(x, Curry._1(y, --[ () ]--0));
 end
 
-eq("File \"gpr496_test.ml\", line 48, characters 5-12", true < false ? true : false, false);
+eq("File \"gpr496_test.ml\", line 48, characters 5-12", true < false and true or false, false);
 
 Mt.from_pair_suites("Gpr496_test", suites.contents);
 

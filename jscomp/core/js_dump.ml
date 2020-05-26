@@ -966,10 +966,10 @@ and expression_desc cxt ~(level:int) f x : cxt  =
                 | Some el  -> arguments cxt f el
                 | None -> cxt)))
   | Cond (e, e1, e2) ->
-    let action () =      
+    let action () =  
       let cxt =  expression ~level:3 cxt f e in
       P.space f;
-      P.string f L.question;
+      P.string f L.and_;
       P.space f;
       (*
             [level 1] is correct, however
@@ -978,7 +978,7 @@ and expression_desc cxt ~(level:int) f x : cxt  =
       let cxt = P.group f 1 (fun _ -> expression ~level:3 cxt f e1) in
 
       P.space f;
-      P.string f L.colon;
+      P.string f L.or_;
       P.space f ;
       (* idem *)
       P.group f 1 (fun _ -> expression ~level:3 cxt f e2)

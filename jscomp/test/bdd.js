@@ -372,7 +372,7 @@ function test_hwb(bdd, vars) do
     end
      end 
   end
-  return bool_equal($$eval(bdd, vars), ntrue > 0 ? Caml_array.caml_array_get(vars, ntrue - 1 | 0) : false);
+  return bool_equal($$eval(bdd, vars), ntrue > 0 and Caml_array.caml_array_get(vars, ntrue - 1 | 0) or false);
 end
 
 function main(param) do

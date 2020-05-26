@@ -32,13 +32,13 @@ function create(l, x, d, r) do
           x,
           d,
           r,
-          hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal(l, x, d, r) do
-  var hl = l ? l[4] : 0;
-  var hr = r ? r[4] : 0;
+  var hl = l and l[4] or 0;
+  var hr = r and r[4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[3];
@@ -89,7 +89,7 @@ function bal(l, x, d, r) do
             x,
             d,
             r,
-            hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end

@@ -54,7 +54,7 @@ function u(b) do
 end
 
 function f2(h, b, param) do
-  return Curry._1(h, b ? 32 : 7);
+  return Curry._1(h, b and 32 or 7);
 end
 
 Caml_array.caml_array_set(v, 1, 3.0);

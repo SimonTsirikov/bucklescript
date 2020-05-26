@@ -39,7 +39,7 @@ function f1(u) do
 end
 
 function f2(x, y, zOpt, param) do
-  var z = zOpt ~= undefined ? zOpt : 3;
+  var z = zOpt ~= undefined and zOpt or 3;
   console.log(x);
   if (y ~= undefined) then do
     return y + z | 0;
@@ -81,7 +81,7 @@ var randomized = do
 end;
 
 function create(randomOpt, param) do
-  var random = randomOpt ~= undefined ? randomOpt : randomized.contents;
+  var random = randomOpt ~= undefined and randomOpt or randomized.contents;
   if (random) then do
     return 2;
   end else do
@@ -92,8 +92,8 @@ end
 var ff = create(false, --[ () ]--0);
 
 function f13(xOpt, yOpt, param) do
-  var x = xOpt ~= undefined ? xOpt : 3;
-  var y = yOpt ~= undefined ? yOpt : 4;
+  var x = xOpt ~= undefined and xOpt or 3;
+  var y = yOpt ~= undefined and yOpt or 4;
   return x + y | 0;
 end
 

@@ -23,7 +23,7 @@ var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function field(optionsOpt, label, number, type_, name) do
-  var options = optionsOpt ~= undefined ? optionsOpt : --[ [] ]--0;
+  var options = optionsOpt ~= undefined and optionsOpt or --[ [] ]--0;
   return do
           field_name: name,
           field_number: number,
@@ -34,7 +34,7 @@ function field(optionsOpt, label, number, type_, name) do
 end
 
 function map(map_optionsOpt, number, key_type, value_type, name) do
-  var map_options = map_optionsOpt ~= undefined ? map_optionsOpt : --[ [] ]--0;
+  var map_options = map_optionsOpt ~= undefined and map_optionsOpt or --[ [] ]--0;
   return do
           map_name: name,
           map_number: number,
@@ -45,7 +45,7 @@ function map(map_optionsOpt, number, key_type, value_type, name) do
 end
 
 function oneof_field(optionsOpt, number, type_, name) do
-  var options = optionsOpt ~= undefined ? optionsOpt : --[ [] ]--0;
+  var options = optionsOpt ~= undefined and optionsOpt or --[ [] ]--0;
   return do
           field_name: name,
           field_number: number,
@@ -60,7 +60,7 @@ var message_counter = do
 end;
 
 function extension_range_range(from, to_) do
-  var to_$1 = typeof to_ == "number" ? --[ To_max ]--0 : --[ To_number ]--[to_[1]];
+  var to_$1 = typeof to_ == "number" and --[ To_max ]--0 or --[ To_number ]--[to_[1]];
   return --[ Extension_range ]--Block.__(1, [
             from,
             to_$1
@@ -93,7 +93,7 @@ function extend(extend_name, extend_body) do
 end
 
 function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$1, extend, param) do
-  var proto$2 = proto$1 ~= undefined ? proto$1 : (do
+  var proto$2 = proto$1 ~= undefined and proto$1 or (do
         syntax: syntax,
         imports: --[ [] ]--0,
         file_options: --[ [] ]--0,
@@ -102,7 +102,7 @@ function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$
         enums: --[ [] ]--0,
         extends: --[ [] ]--0
       end);
-  var proto$3 = syntax ~= undefined ? (do
+  var proto$3 = syntax ~= undefined and (do
         syntax: syntax,
         imports: proto$2.imports,
         file_options: proto$2.file_options,
@@ -110,8 +110,8 @@ function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$
         messages: proto$2.messages,
         enums: proto$2.enums,
         extends: proto$2.extends
-      end) : proto$2;
-  var proto$4 = $$package ~= undefined ? (do
+      end) or proto$2;
+  var proto$4 = $$package ~= undefined and (do
         syntax: proto$3.syntax,
         imports: proto$3.imports,
         file_options: proto$3.file_options,
@@ -119,8 +119,8 @@ function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$
         messages: proto$3.messages,
         enums: proto$3.enums,
         extends: proto$3.extends
-      end) : proto$3;
-  var proto$5 = message ~= undefined ? (do
+      end) or proto$3;
+  var proto$5 = message ~= undefined and (do
         syntax: proto$4.syntax,
         imports: proto$4.imports,
         file_options: proto$4.file_options,
@@ -131,8 +131,8 @@ function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$
         ],
         enums: proto$4.enums,
         extends: proto$4.extends
-      end) : proto$4;
-  var proto$6 = $$enum ~= undefined ? (do
+      end) or proto$4;
+  var proto$6 = $$enum ~= undefined and (do
         syntax: proto$5.syntax,
         imports: proto$5.imports,
         file_options: proto$5.file_options,
@@ -143,8 +143,8 @@ function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$
           proto$2.enums
         ],
         extends: proto$5.extends
-      end) : proto$5;
-  var proto$7 = $$import ~= undefined ? (do
+      end) or proto$5;
+  var proto$7 = $$import ~= undefined and (do
         syntax: proto$6.syntax,
         imports: --[ :: ]--[
           $$import,
@@ -155,8 +155,8 @@ function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$
         messages: proto$6.messages,
         enums: proto$6.enums,
         extends: proto$6.extends
-      end) : proto$6;
-  var proto$8 = file_option ~= undefined ? (do
+      end) or proto$6;
+  var proto$8 = file_option ~= undefined and (do
         syntax: proto$7.syntax,
         imports: proto$7.imports,
         file_options: --[ :: ]--[
@@ -167,7 +167,7 @@ function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$
         messages: proto$7.messages,
         enums: proto$7.enums,
         extends: proto$7.extends
-      end) : proto$7;
+      end) or proto$7;
   if (extend ~= undefined) then do
     return do
             syntax: proto$8.syntax,
@@ -206,7 +206,7 @@ function rev_split_by_char(c, s) do
     try do
       var i$prime = $$String.index_from(s, i, c);
       var s$prime = $$String.sub(s, i, i$prime - i | 0);
-      return loop(i$prime + 1 | 0, s$prime == "" ? l : --[ :: ]--[
+      return loop(i$prime + 1 | 0, s$prime == "" and l or --[ :: ]--[
                     s$prime,
                     l
                   ]);
@@ -304,7 +304,7 @@ end
 
 function from_lexbuf(lexbuf) do
   var x = lexbuf.lex_curr_p.pos_fname;
-  var file_name = x == "" ? undefined : x;
+  var file_name = x == "" and undefined or x;
   var line = lexbuf.lex_curr_p.pos_lnum;
   return do
           file_name: file_name,
@@ -1275,7 +1275,7 @@ var yyact = [
       Parsing.peek_val(__caml_parser_env, 0);
       var enum_valuesOpt = _4;
       var enum_name = _2[1];
-      var enum_values = enum_valuesOpt ~= undefined ? enum_valuesOpt : --[ [] ]--0;
+      var enum_values = enum_valuesOpt ~= undefined and enum_valuesOpt or --[ [] ]--0;
       message_counter.contents = message_counter.contents + 1 | 0;
       return do
               enum_id: message_counter.contents,
@@ -1766,7 +1766,7 @@ function string_of_record_field_type(param) do
      if ___conditional___ = 2--[ Rft_repeated_field ]-- then do
         var match = param[0];
         return string_of_field_type(match[1]) .. (" " .. (
-                  match[0] ? "Pbrt.Repeated_field.t" : "list"
+                  match[0] and "Pbrt.Repeated_field.t" or "list"
                 ));end end end 
      if ___conditional___ = 3--[ Rft_associative_field ]-- then do
         var match$1 = param[0];
@@ -1869,16 +1869,16 @@ function string_of_payload_kind(capitalize, payload_kind, packed) do
     local ___conditional___=(payload_kind);
     do
        if ___conditional___ = 0--[ Pk_bits32 ]-- then do
-          s = packed ? "bytes" : "bits32";end else 
+          s = packed and "bytes" or "bits32";end else 
        if ___conditional___ = 1--[ Pk_bits64 ]-- then do
-          s = packed ? "bytes" : "bits64";end else 
+          s = packed and "bytes" or "bits64";end else 
        if ___conditional___ = 2--[ Pk_bytes ]-- then do
           s = "bytes";end else 
        do end end end end
       
     end
   end else do
-    s = packed ? "bytes" : "varint";
+    s = packed and "bytes" or "varint";
   end end 
   if (capitalize ~= undefined) then do
     return Caml_bytes.bytes_to_string(Bytes.capitalize(Caml_bytes.bytes_of_string(s)));
@@ -3201,7 +3201,7 @@ function gen_pp_record(and_, param, sc) do
                                       end end end end end 
                                    if ___conditional___ = 3--[ Rft_associative_field ]-- then do
                                       var match$1 = rf_field_type[0];
-                                      var pp_runtime_function = match$1[0] ? "pp_hastable" : "pp_associative_list";
+                                      var pp_runtime_function = match$1[0] and "pp_hastable" or "pp_associative_list";
                                       var pp_key = gen_pp_field(--[ Ft_basic_type ]--Block.__(0, [match$1[2][0]]));
                                       var pp_value = gen_pp_field(match$1[3][0]);
                                       return line$1(sc, Curry._5(Printf.sprintf(--[ Format ]--[
@@ -3518,13 +3518,13 @@ function create(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -3575,7 +3575,7 @@ function bal(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -3633,7 +3633,7 @@ function find(x, _param) do
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -4828,7 +4828,7 @@ function gen_type_record(mutable_, and_, param, sc) do
       return "";
     end end 
   end;
-  var r_name$1 = mutable_$1 ? r_name .. "_mutable" : r_name;
+  var r_name$1 = mutable_$1 and r_name .. "_mutable" or r_name;
   line$1(sc, Curry._2(Printf.sprintf(--[ Format ]--[
                 --[ String ]--Block.__(2, [
                     --[ No_padding ]--0,
@@ -5543,7 +5543,7 @@ function gen_encode_const_variant(and_, param, sc) do
                 return List.iter((function (param) do
                               var value = param[1];
                               var name = param[0];
-                              return line$1(sc, value > 0 ? Curry._2(Printf.sprintf(--[ Format ]--[
+                              return line$1(sc, value > 0 and Curry._2(Printf.sprintf(--[ Format ]--[
                                                     --[ String_literal ]--Block.__(11, [
                                                         "| ",
                                                         --[ String ]--Block.__(2, [
@@ -5563,7 +5563,7 @@ function gen_encode_const_variant(and_, param, sc) do
                                                           ])
                                                       ]),
                                                     "| %s -> Pbrt.Encoder.int_as_varint %i encoder"
-                                                  ]), name, value) : Curry._2(Printf.sprintf(--[ Format ]--[
+                                                  ]), name, value) or Curry._2(Printf.sprintf(--[ Format ]--[
                                                     --[ String_literal ]--Block.__(11, [
                                                         "| ",
                                                         --[ String ]--Block.__(2, [
@@ -5841,7 +5841,7 @@ function record_field_default_info(record_field) do
      if ___conditional___ = 1--[ Rft_optional ]-- then do
         var match$1 = rf_field_type[0];
         var default_value$1 = match$1[3];
-        default_value = default_value$1 ~= undefined ? Curry._1(Printf.sprintf(--[ Format ]--[
+        default_value = default_value$1 ~= undefined and Curry._1(Printf.sprintf(--[ Format ]--[
                     --[ String_literal ]--Block.__(11, [
                         "Some (",
                         --[ String ]--Block.__(2, [
@@ -5853,10 +5853,10 @@ function record_field_default_info(record_field) do
                           ])
                       ]),
                     "Some (%s)"
-                  ]), dfvft(match$1[0], default_value$1)) : "None";end else 
+                  ]), dfvft(match$1[0], default_value$1)) or "None";end else 
      if ___conditional___ = 2--[ Rft_repeated_field ]-- then do
         var match$2 = rf_field_type[0];
-        default_value = match$2[0] ? Curry._1(Printf.sprintf(--[ Format ]--[
+        default_value = match$2[0] and Curry._1(Printf.sprintf(--[ Format ]--[
                     --[ String_literal ]--Block.__(11, [
                         "Pbrt.Repeated_field.make (",
                         --[ String ]--Block.__(2, [
@@ -5868,16 +5868,16 @@ function record_field_default_info(record_field) do
                           ])
                       ]),
                     "Pbrt.Repeated_field.make (%s)"
-                  ]), dfvft(match$2[1], undefined)) : "[]";end else 
+                  ]), dfvft(match$2[1], undefined)) or "[]";end else 
      if ___conditional___ = 3--[ Rft_associative_field ]-- then do
-        default_value = rf_field_type[0][0] ? "Hashtbl.create 128" : "[]";end else 
+        default_value = rf_field_type[0][0] and "Hashtbl.create 128" or "[]";end else 
      if ___conditional___ = 4--[ Rft_variant_field ]-- then do
         var v_constructors = rf_field_type[0].v_constructors;
         if (v_constructors) then do
           var match$3 = v_constructors[0];
           var vc_field_type = match$3.vc_field_type;
           var vc_constructor = match$3.vc_constructor;
-          default_value = vc_field_type ? Curry._2(Printf.sprintf(--[ Format ]--[
+          default_value = vc_field_type and Curry._2(Printf.sprintf(--[ Format ]--[
                       --[ String ]--Block.__(2, [
                           --[ No_padding ]--0,
                           --[ String_literal ]--Block.__(11, [
@@ -5892,7 +5892,7 @@ function record_field_default_info(record_field) do
                             ])
                         ]),
                       "%s (%s)"
-                    ]), vc_constructor, dfvft(vc_field_type[0], undefined)) : vc_constructor;
+                    ]), vc_constructor, dfvft(vc_field_type[0], undefined)) or vc_constructor;
         end else do
           throw [
                 Caml_builtin_exceptions.assert_failure,
@@ -6564,7 +6564,7 @@ function compile_field_type(field_name, all_types, file_options, field_options, 
   var ocaml_type;
   if (match ~= undefined) then do
     var match$1 = match;
-    ocaml_type = match$1.tag == --[ Constant_litteral ]--4 and match$1[0] == "int_t" ? --[ Int_t ]---783406652 : --[ None ]--870530776;
+    ocaml_type = match$1.tag == --[ Constant_litteral ]--4 and match$1[0] == "int_t" and --[ Int_t ]---783406652 or --[ None ]--870530776;
   end else do
     ocaml_type = --[ None ]--870530776;
   end end 
@@ -6572,7 +6572,7 @@ function compile_field_type(field_name, all_types, file_options, field_options, 
   var int32_type;
   if (match$2 ~= undefined) then do
     var match$3 = match$2;
-    int32_type = match$3.tag == --[ Constant_litteral ]--4 and match$3[0] == "int_t" ? --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int ]--2]) : --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int32 ]--3]);
+    int32_type = match$3.tag == --[ Constant_litteral ]--4 and match$3[0] == "int_t" and --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int ]--2]) or --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int32 ]--3]);
   end else do
     int32_type = --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int32 ]--3]);
   end end 
@@ -6580,7 +6580,7 @@ function compile_field_type(field_name, all_types, file_options, field_options, 
   var int64_type;
   if (match$4 ~= undefined) then do
     var match$5 = match$4;
-    int64_type = match$5.tag == --[ Constant_litteral ]--4 and match$5[0] == "int_t" ? --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int ]--2]) : --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int64 ]--4]);
+    int64_type = match$5.tag == --[ Constant_litteral ]--4 and match$5[0] == "int_t" and --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int ]--2]) or --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int64 ]--4]);
   end else do
     int64_type = --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int64 ]--4]);
   end end 
@@ -6644,7 +6644,7 @@ function compile_field_type(field_name, all_types, file_options, field_options, 
       return --[ Ft_unit ]--0;
     end else do
       var udt_nested;
-      udt_nested = t.spec.tag ? true : false;
+      udt_nested = t.spec.tag and true or false;
       var field_type_module = module_of_file_name(t.file_name);
       var match$6 = type_scope_of_type(t);
       var udt_type_name = type_name(match$6.message_names, type_name_of_type(t));
@@ -6703,12 +6703,12 @@ function variant_of_oneof(include_oneof_name, outer_message_names, all_types, fi
           var vc_constructor = constructor_name(field_name(field));
           return do
                   vc_constructor: vc_constructor,
-                  vc_field_type: typeof field_type$1 == "number" ? --[ Vct_nullary ]--0 : --[ Vct_non_nullary_constructor ]--[field_type$1],
+                  vc_field_type: typeof field_type$1 == "number" and --[ Vct_nullary ]--0 or --[ Vct_non_nullary_constructor ]--[field_type$1],
                   vc_encoding_number: match[1],
                   vc_payload_kind: match[0]
                 end;
         end), oneof_field.oneof_fields);
-  var v_name = include_oneof_name ~= undefined ? type_name(outer_message_names, oneof_field.oneof_name) : type_name(outer_message_names, "");
+  var v_name = include_oneof_name ~= undefined and type_name(outer_message_names, oneof_field.oneof_name) or type_name(outer_message_names, "");
   return do
           v_name: v_name,
           v_constructors: v_constructors
@@ -7072,7 +7072,7 @@ function compile(proto_definition) do
                    end 
                   return List.iter((function (types) do
                                 List.fold_left((function (first, type_) do
-                                        var has_encoded = first ? Curry._3(f, undefined, type_, sc) : Curry._3(f, --[ () ]--0, type_, sc);
+                                        var has_encoded = first and Curry._3(f, undefined, type_, sc) or Curry._3(f, --[ () ]--0, type_, sc);
                                         line$1(sc, "");
                                         if (first) then do
                                           return !has_encoded;

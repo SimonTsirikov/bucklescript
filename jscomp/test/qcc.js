@@ -380,7 +380,7 @@ function patch(rel, loc, n) do
   if (loc ~= 0) then do
     var i = opos.contents;
     var loc$prime = get32(loc);
-    var x = rel ? n - (loc + 4 | 0) | 0 : n;
+    var x = rel and n - (loc + 4 | 0) | 0 or n;
     if (dbg.contents) then do
       Curry._3(Printf.eprintf(--[ Format ]--[
                 --[ String_literal ]--Block.__(11, [
@@ -866,10 +866,10 @@ function unary(stk) do
               var t = Curry._1(next$1, --[ () ]--0);
               var match$1;
               if (Caml_obj.caml_equal(t, tokint)) then do
-                match$1 = Caml_obj.caml_equal(Curry._1(next$1, --[ () ]--0), --[ Op ]--Block.__(0, ["*"])) ? --[ tuple ]--[
+                match$1 = Caml_obj.caml_equal(Curry._1(next$1, --[ () ]--0), --[ Op ]--Block.__(0, ["*"])) and --[ tuple ]--[
                     --[ Int ]--0,
                     1
-                  ] : --[ tuple ]--[
+                  ] or --[ tuple ]--[
                     --[ Int ]--0,
                     5
                   ];
@@ -1134,7 +1134,7 @@ function decl(g, _n, _stk) do
     var n = _n;
     var t = Curry._1(next$1, --[ () ]--0);
     if (Caml_obj.caml_equal(t, tokint)) then do
-      var top = stk ? stk[0][1] : 0;
+      var top = stk and stk[0][1] or 0;
       var vars = (function(top)do
       return function vars(_n, _stk) do
         while(true) do
@@ -1690,7 +1690,7 @@ function elfgen(outf) do
   var n$2 = ((rel - symtab | 0) / 24 | 0) - 1 | 0;
   le(32, 1);
   le(32, n$2 + 1 | 0);
-  le(32, n$2 > 0 ? 1 : 0);
+  le(32, n$2 > 0 and 1 or 0);
   for(var i = 1; i <= n$2; ++i)do
     le(32, i);
   end
@@ -1854,7 +1854,7 @@ function main(param) do
       
     end
   end;
-  var f = #Sys.argv < 2 ? "-blk" : Caml_array.caml_array_get(Sys.argv, 1);
+  var f = #Sys.argv < 2 and "-blk" or Caml_array.caml_array_get(Sys.argv, 1);
   local ___conditional___=(f);
   do
      if ___conditional___ = "-blk" then do

@@ -67,7 +67,7 @@ try do
 end
 catch (raw_exn)do
   var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  f = exn[0] == A ? exn[1] : 2;
+  f = exn[0] == A and exn[1] or 2;
 end
 
 var ff;
@@ -77,7 +77,7 @@ try do
 end
 catch (raw_exn$1)do
   var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-  ff = exn$1[0] == A ? exn$1[1] : 2;
+  ff = exn$1[0] == A and exn$1[1] or 2;
 end
 
 var fff;
@@ -87,7 +87,7 @@ try do
 end
 catch (raw_exn$2)do
   var exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
-  fff = exn$2[0] == A ? exn$2[1] : 2;
+  fff = exn$2[0] == A and exn$2[1] or 2;
 end
 
 var a0;

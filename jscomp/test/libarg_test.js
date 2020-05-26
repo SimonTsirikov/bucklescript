@@ -456,7 +456,7 @@ function test(argv) do
                             ])
                         ]),
                       "%20s %c %-20s\n%!"
-                    ]), x, x == y ? --[ "=" ]--61 : --[ "#" ]--35, y);
+                    ]), x, x == y and --[ "=" ]--61 or --[ "#" ]--35, y);
     end;
     List.iter2(f, result, reference);
   end

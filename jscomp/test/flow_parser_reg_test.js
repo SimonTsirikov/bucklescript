@@ -1397,13 +1397,13 @@ end
 
 function get_and_clear_state(env) do
   var state = env.lex_state;
-  var env$1 = state ~= empty_lex_state ? (do
+  var env$1 = state ~= empty_lex_state and (do
         lex_source: env.lex_source,
         lex_lb: env.lex_lb,
         lex_in_comment_syntax: env.lex_in_comment_syntax,
         lex_enable_comment_syntax: env.lex_enable_comment_syntax,
         lex_state: empty_lex_state
-      end) : env;
+      end) or env;
   return --[ tuple ]--[
           env$1,
           state
@@ -1702,7 +1702,7 @@ function parse_body(_f) do
       end end  end  end 
       var value = c - ref_char_code | 0;
       var match$1 = f.decimal_exponent;
-      var decimal_exponent = match$1 ~= undefined ? match$1 - 4 | 0 : undefined;
+      var decimal_exponent = match$1 ~= undefined and match$1 - 4 | 0 or undefined;
       var mantissa = (f.mantissa << 4) + value | 0;
       var init$1 = eat(f);
       _f = do
@@ -1740,8 +1740,8 @@ function float_of_string(str) do
          end 
         var ret = f.mantissa;
         var match = f.decimal_exponent;
-        var exponent = match ~= undefined ? f.exponent + match | 0 : f.exponent;
-        var ret$1 = exponent == 0 ? ret : Math.pow(ret, exponent);
+        var exponent = match ~= undefined and f.exponent + match | 0 or f.exponent;
+        var ret$1 = exponent == 0 and ret or Math.pow(ret, exponent);
         if (f.negative) then do
           return -ret$1;
         end else do
@@ -1764,7 +1764,7 @@ end
 function save_comment(env, start, _end, buf, multiline) do
   var loc = btwn(start, _end);
   var s = $$Buffer.contents(buf);
-  var c = multiline ? --[ Block ]--Block.__(0, [s]) : --[ Line ]--Block.__(1, [s]);
+  var c = multiline and --[ Block ]--Block.__(0, [s]) or --[ Line ]--Block.__(1, [s]);
   var lex_comments_acc_000 = --[ tuple ]--[
     loc,
     c
@@ -1796,7 +1796,7 @@ function unicode_fix_cols(lb) do
         return acc;
       end else do
         var c = Caml_bytes.get(lb.lex_buffer, start);
-        var acc$1 = (c & 192) == 128 ? acc + 1 | 0 : acc;
+        var acc$1 = (c & 192) == 128 and acc + 1 | 0 or acc;
         _acc = acc$1;
         _start = start + 1 | 0;
         continue ;
@@ -1914,7 +1914,7 @@ function mk_num_singleton(number_type, num, neg) do
   end else do
     value = Caml_format.caml_int_of_string(num);
   end end 
-  var value$1 = neg == "" ? value : -value;
+  var value$1 = neg == "" and value or -value;
   return --[ T_NUMBER_SINGLETON_TYPE ]--Block.__(5, [
             number_type,
             value$1
@@ -2953,7 +2953,7 @@ function comment(env, buf, lexbuf) do
           return comment(env$1, buf$1, lexbuf$1);end end end 
        if ___conditional___ = 2 then do
           var loc = from_lb(env$1.lex_source, lexbuf$1);
-          var env$3 = env$1.lex_in_comment_syntax ? unexpected_error_w_suggest(env$1, loc, "]--", "]--") : env$1;
+          var env$3 = env$1.lex_in_comment_syntax and unexpected_error_w_suggest(env$1, loc, "]--", "]--") or env$1;
           return --[ tuple ]--[
                   env$3,
                   loc
@@ -3273,7 +3273,7 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
           var buf$2 = $$Buffer.create(127);
           var raw = $$Buffer.create(127);
           $$Buffer.add_char(raw, quote);
-          var mode = quote == --[ "'" ]--39 ? --[ JSX_SINGLE_QUOTED_TEXT ]--0 : --[ JSX_DOUBLE_QUOTED_TEXT ]--1;
+          var mode = quote == --[ "'" ]--39 and --[ JSX_SINGLE_QUOTED_TEXT ]--0 or --[ JSX_DOUBLE_QUOTED_TEXT ]--1;
           var match$2 = jsx_text(env, mode, buf$2, raw, lexbuf);
           $$Buffer.add_char(raw, quote);
           var value = $$Buffer.contents(buf$2);
@@ -4430,7 +4430,7 @@ function string_escape(env, buf, lexbuf) do
        if ___conditional___ = 14 then do
           var hex_code = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos + 2 | 0, lexbuf$1.lex_curr_pos - 1 | 0);
           var code$6 = Caml_format.caml_int_of_string("0x" .. hex_code);
-          var env$2 = code$6 > 1114111 ? lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"])) : env$1;
+          var env$2 = code$6 > 1114111 and lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"])) or env$1;
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
                 end), utf16to8(code$6));
@@ -4647,19 +4647,19 @@ function height(param) do
 end
 
 function create(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--2];
@@ -4707,7 +4707,7 @@ function bal(l, v, r) do
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -4753,7 +4753,7 @@ function mem(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--2];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
         continue ;
       end end 
     end else do
@@ -4883,8 +4883,8 @@ var default_parse_options = do
 end;
 
 function init_env(token_sinkOpt, parse_optionsOpt, source, content) do
-  var token_sink = token_sinkOpt ~= undefined ? Caml_option.valFromOption(token_sinkOpt) : undefined;
-  var parse_options = parse_optionsOpt ~= undefined ? Caml_option.valFromOption(parse_optionsOpt) : undefined;
+  var token_sink = token_sinkOpt ~= undefined and Caml_option.valFromOption(token_sinkOpt) or undefined;
+  var parse_options = parse_optionsOpt ~= undefined and Caml_option.valFromOption(parse_optionsOpt) or undefined;
   var lb = Lexing.from_string(content);
   if (source ~= undefined) then do
     var match = source;
@@ -4900,7 +4900,7 @@ function init_env(token_sinkOpt, parse_optionsOpt, source, content) do
      end 
   end
    end 
-  var parse_options$1 = parse_options ~= undefined ? parse_options : default_parse_options;
+  var parse_options$1 = parse_options ~= undefined and parse_options or default_parse_options;
   var enable_types_in_comments = parse_options$1.types;
   var lex_env = new_lex_env(source, lb, enable_types_in_comments);
   return do
@@ -4992,7 +4992,7 @@ function record_export(env, param) do
 end
 
 function lookahead(iOpt, env) do
-  var i = iOpt ~= undefined ? iOpt : 0;
+  var i = iOpt ~= undefined and iOpt or 0;
   if (i >= 2) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
@@ -5152,32 +5152,32 @@ function is_restricted(param) do
 end
 
 function token$2(iOpt, env) do
-  var i = iOpt ~= undefined ? iOpt : 0;
+  var i = iOpt ~= undefined and iOpt or 0;
   return lookahead(i, env).lex_token;
 end
 
 function value(iOpt, env) do
-  var i = iOpt ~= undefined ? iOpt : 0;
+  var i = iOpt ~= undefined and iOpt or 0;
   return lookahead(i, env).lex_value;
 end
 
 function loc(iOpt, env) do
-  var i = iOpt ~= undefined ? iOpt : 0;
+  var i = iOpt ~= undefined and iOpt or 0;
   return lookahead(i, env).lex_loc;
 end
 
 function errors(iOpt, env) do
-  var i = iOpt ~= undefined ? iOpt : 0;
+  var i = iOpt ~= undefined and iOpt or 0;
   return lookahead(i, env).lex_errors;
 end
 
 function comments(iOpt, env) do
-  var i = iOpt ~= undefined ? iOpt : 0;
+  var i = iOpt ~= undefined and iOpt or 0;
   return lookahead(i, env).lex_comments;
 end
 
 function lex_env(iOpt, env) do
-  var i = iOpt ~= undefined ? iOpt : 0;
+  var i = iOpt ~= undefined and iOpt or 0;
   var t = env.lookahead.contents;
   var i$1 = i;
   lex_until(t, i$1);
@@ -5222,7 +5222,7 @@ function is_implicit_semicolon(env) do
 end
 
 function semicolon_loc(iOpt, env) do
-  var i = iOpt ~= undefined ? iOpt : 0;
+  var i = iOpt ~= undefined and iOpt or 0;
   if (token$2(i, env) == --[ T_SEMICOLON ]--7) then do
     return loc(i, env);
   end
@@ -5230,7 +5230,7 @@ function semicolon_loc(iOpt, env) do
 end
 
 function is_identifier(iOpt, env) do
-  var i = iOpt ~= undefined ? iOpt : 0;
+  var i = iOpt ~= undefined and iOpt or 0;
   var name = value(i, env);
   var match = token$2(i, env);
   if (is_strict_reserved(name) or is_restricted(name) or is_future_reserved(name)) then do
@@ -5248,7 +5248,7 @@ function is_identifier(iOpt, env) do
 end
 
 function is_function(iOpt, env) do
-  var i = iOpt ~= undefined ? iOpt : 0;
+  var i = iOpt ~= undefined and iOpt or 0;
   if (token$2(i, env) == --[ T_FUNCTION ]--13) then do
     return true;
   end else if (token$2(i, env) == --[ T_ASYNC ]--61) then do
@@ -5259,7 +5259,7 @@ function is_function(iOpt, env) do
 end
 
 function is_class(iOpt, env) do
-  var i = iOpt ~= undefined ? iOpt : 0;
+  var i = iOpt ~= undefined and iOpt or 0;
   var match = token$2(i, env);
   if (typeof match == "number") then do
     if (match ~= 12) then do
@@ -5570,19 +5570,19 @@ function height$1(param) do
 end
 
 function create$2(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$1(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--2];
@@ -5630,7 +5630,7 @@ function bal$1(l, v, r) do
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -5676,7 +5676,7 @@ function mem$1(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--2];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
         continue ;
       end end 
     end else do
@@ -5701,13 +5701,13 @@ function create$3(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$2(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -5758,7 +5758,7 @@ function bal$2(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -5816,7 +5816,7 @@ function find(x, _param) do
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -5843,19 +5843,19 @@ function height$3(param) do
 end
 
 function create$4(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$3(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--2];
@@ -5903,7 +5903,7 @@ function bal$3(l, v, r) do
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -5949,7 +5949,7 @@ function mem$2(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--2];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
         continue ;
       end end 
     end else do
@@ -5988,7 +5988,7 @@ function with_loc(fn, env) do
   var start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   var result = Curry._1(fn, env);
   var match = env.last_loc.contents;
-  var end_loc = match ~= undefined ? match : (error$1(env, --[ Assertion ]--Block.__(0, ["did not consume any tokens"])), Curry._2(Parser_env_Peek.loc, undefined, env));
+  var end_loc = match ~= undefined and match or (error$1(env, --[ Assertion ]--Block.__(0, ["did not consume any tokens"])), Curry._2(Parser_env_Peek.loc, undefined, env));
   return --[ tuple ]--[
           btwn(start_loc, end_loc),
           result
@@ -6749,7 +6749,7 @@ function properties(allow_static, env, _param) do
           var key$1 = match$2[1][1];
           var $$static$1 = match$2[0];
           var match$3 = Curry._2(Parser_env_Peek.token, undefined, env);
-          var property$1 = typeof match$3 == "number" and !(match$3 ~= 3 and match$3 ~= 89) ? method_property(env, start_loc, $$static$1, key$1) : property(env, start_loc, $$static$1, key$1);
+          var property$1 = typeof match$3 == "number" and !(match$3 ~= 3 and match$3 ~= 89) and method_property(env, start_loc, $$static$1, key$1) or property(env, start_loc, $$static$1, key$1);
           semicolon$1(env);
           _param = --[ tuple ]--[
             --[ :: ]--[
@@ -6785,7 +6785,7 @@ function properties(allow_static, env, _param) do
 end
 
 function _object(allow_staticOpt, env) do
-  var allow_static = allow_staticOpt ~= undefined ? allow_staticOpt : false;
+  var allow_static = allow_staticOpt ~= undefined and allow_staticOpt or false;
   var start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   token$4(env, --[ T_LCURLY ]--1);
   var match = properties(allow_static, env, --[ tuple ]--[
@@ -6842,10 +6842,10 @@ function function_param_list_without_parens(env) do
         var exit = 0;
         if (typeof t == "number") then do
           var switcher = t - 4 | 0;
-          exit = switcher > 7 or switcher < 0 ? (
-              switcher ~= 101 ? 1 : 2
-            ) : (
-              switcher > 6 or switcher < 1 ? 2 : 1
+          exit = switcher > 7 or switcher < 0 and (
+              switcher ~= 101 and 1 or 2
+            ) or (
+              switcher > 6 or switcher < 1 and 2 or 1
             );
         end else do
           exit = 1;
@@ -6865,7 +6865,7 @@ function function_param_list_without_parens(env) do
               _acc = acc$1;
               continue ;end end end 
            if ___conditional___ = 2 then do
-              var rest = t == --[ T_ELLIPSIS ]--11 ? (token$4(env$1, --[ T_ELLIPSIS ]--11), param(env$1)) : undefined;
+              var rest = t == --[ T_ELLIPSIS ]--11 and (token$4(env$1, --[ T_ELLIPSIS ]--11), param(env$1)) or undefined;
               return --[ tuple ]--[
                       rest,
                       List.rev(acc)
@@ -6951,11 +6951,11 @@ function params$1(env, allow_default, _require_default, _acc) do
     var acc = _acc;
     var require_default = _require_default;
     var match = Curry._2(Parser_env_Peek.token, undefined, env);
-    var variance = typeof match == "number" ? (
-        match ~= 94 ? (
-            match ~= 95 ? undefined : (token$3(env), --[ Minus ]--1)
-          ) : (token$3(env), --[ Plus ]--0)
-      ) : undefined;
+    var variance = typeof match == "number" and (
+        match ~= 94 and (
+            match ~= 95 and undefined or (token$3(env), --[ Minus ]--1)
+          ) or (token$3(env), --[ Plus ]--0)
+      ) or undefined;
     var match$1 = Curry._2(Parse.identifier_with_type, env, --[ StrictParamName ]--28);
     var id = match$1[1];
     var loc = match$1[0];
@@ -7083,7 +7083,7 @@ function raw_generic_with_identifier(env, id) do
   var match = identifier(env, id$1);
   var id_loc = match[0];
   var typeParameters = Curry._1(type_parameter_instantiation, env);
-  var loc = typeParameters ~= undefined ? btwn(id_loc, typeParameters[0]) : id_loc;
+  var loc = typeParameters ~= undefined and btwn(id_loc, typeParameters[0]) or id_loc;
   return --[ tuple ]--[
           loc,
           do
@@ -7152,7 +7152,7 @@ function type_parameter_declaration$1(param) do
 end
 
 function _object$1(allow_staticOpt, env) do
-  var allow_static = allow_staticOpt ~= undefined ? allow_staticOpt : false;
+  var allow_static = allow_staticOpt ~= undefined and allow_staticOpt or false;
   return wrap(Curry._1(_object, allow_static), env);
 end
 
@@ -7266,7 +7266,7 @@ end
 
 function strict_post_check(env, strict, simple, id, params) do
   if (strict or !simple) then do
-    var env$1 = strict ? with_strict(!env.in_strict_mode, env) : env;
+    var env$1 = strict and with_strict(!env.in_strict_mode, env) or env;
     if (id ~= undefined) then do
       var match = id;
       var name = match[1].name;
@@ -7324,10 +7324,10 @@ function param_list(env, _param) do
     var exit = 0;
     if (typeof t == "number") then do
       var switcher = t - 4 | 0;
-      exit = switcher > 7 or switcher < 0 ? (
-          switcher ~= 101 ? 1 : 2
-        ) : (
-          switcher > 6 or switcher < 1 ? 2 : 1
+      exit = switcher > 7 or switcher < 0 and (
+          switcher ~= 101 and 1 or 2
+        ) or (
+          switcher > 6 or switcher < 1 and 2 or 1
         );
     end else do
       exit = 1;
@@ -7355,14 +7355,14 @@ function param_list(env, _param) do
           ];
           continue ;end end end 
        if ___conditional___ = 2 then do
-          var rest = t == --[ T_ELLIPSIS ]--11 ? (token$4(env, --[ T_ELLIPSIS ]--11), Curry._2(Parse.identifier_with_type, env, --[ StrictParamName ]--28)) : undefined;
+          var rest = t == --[ T_ELLIPSIS ]--11 and (token$4(env, --[ T_ELLIPSIS ]--11), Curry._2(Parse.identifier_with_type, env, --[ StrictParamName ]--28)) or undefined;
           if (Curry._2(Parser_env_Peek.token, undefined, env) ~= --[ T_RPAREN ]--4) then do
             error$1(env, --[ ParameterAfterRestParameter ]--47);
           end
            end 
           return --[ tuple ]--[
                   List.rev(params),
-                  has_default ? List.rev(defaults) : --[ [] ]--0,
+                  has_default and List.rev(defaults) or --[ [] ]--0,
                   rest
                 ];end end end 
        do
@@ -7441,7 +7441,7 @@ function _function(env) do
         exit = 1;
       end else do
         var typeParams = Curry._1(type_parameter_declaration$1, env);
-        var id = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_LPAREN ]--3 ? undefined : Curry._2(Parse.identifier, --[ StrictFunctionName ]--30, env);
+        var id = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_LPAREN ]--3 and undefined or Curry._2(Parse.identifier, --[ StrictFunctionName ]--30, env);
         match$2 = --[ tuple ]--[
           typeParams,
           id
@@ -7476,10 +7476,10 @@ function _function(env) do
   var simple = is_simple_function_params(params, defaults, rest);
   strict_post_check(env, match$4[2], simple, id$2, params);
   var match$5;
-  match$5 = body.tag ? --[ tuple ]--[
+  match$5 = body.tag and --[ tuple ]--[
       body[0][0],
       true
-    ] : --[ tuple ]--[
+    ] or --[ tuple ]--[
       body[0][0],
       false
     ];
@@ -7511,10 +7511,10 @@ function variable_declaration(env) do
       --[ [] ]--0
     ];
   end else do
-    match = id[1].tag == --[ Identifier ]--3 ? --[ tuple ]--[
+    match = id[1].tag == --[ Identifier ]--3 and --[ tuple ]--[
         undefined,
         --[ [] ]--0
-      ] : --[ tuple ]--[
+      ] or --[ tuple ]--[
         undefined,
         --[ :: ]--[
           --[ tuple ]--[
@@ -7526,7 +7526,7 @@ function variable_declaration(env) do
       ];
   end end 
   var init = match[0];
-  var end_loc = init ~= undefined ? init[0] : id[0];
+  var end_loc = init ~= undefined and init[0] or id[0];
   return --[ tuple ]--[
           --[ tuple ]--[
             btwn(id[0], end_loc),
@@ -7656,7 +7656,7 @@ end
 
 function is_tighter(a, b) do
   var a_prec;
-  a_prec = a.tag ? a[0] - 1 | 0 : a[0];
+  a_prec = a.tag and a[0] - 1 | 0 or a[0];
   return a_prec >= b[0];
 end
 
@@ -7851,11 +7851,11 @@ function unary(env) do
           ];
   end else do
     var match = Curry._2(Parser_env_Peek.token, undefined, env);
-    var op$1 = typeof match == "number" ? (
-        match ~= 102 ? (
-            match ~= 103 ? undefined : --[ Decrement ]--1
-          ) : --[ Increment ]--0
-      ) : undefined;
+    var op$1 = typeof match == "number" and (
+        match ~= 102 and (
+            match ~= 103 and undefined or --[ Decrement ]--1
+          ) or --[ Increment ]--0
+      ) or undefined;
     if (op$1 ~= undefined) then do
       token$3(env);
       var argument$1 = unary(env);
@@ -7886,11 +7886,11 @@ function unary(env) do
         return argument$2;
       end else do
         var match$2 = Curry._2(Parser_env_Peek.token, undefined, env$1);
-        var op$2 = typeof match$2 == "number" ? (
-            match$2 ~= 102 ? (
-                match$2 ~= 103 ? undefined : --[ Decrement ]--1
-              ) : --[ Increment ]--0
-          ) : undefined;
+        var op$2 = typeof match$2 == "number" and (
+            match$2 ~= 102 and (
+                match$2 ~= 103 and undefined or --[ Decrement ]--1
+              ) or --[ Increment ]--0
+          ) or undefined;
         if (op$2 ~= undefined) then do
           if (!is_lhs(argument$2)) then do
             error_at(env$1, --[ tuple ]--[
@@ -7934,7 +7934,7 @@ function left_hand_side(env) do
     exit = 1;
   end end 
   if (exit == 1) then do
-    expr = Curry._2(Parser_env_Peek.is_function, undefined, env) ? _function$1(env) : primary$1(env);
+    expr = Curry._2(Parser_env_Peek.is_function, undefined, env) and _function$1(env) or primary$1(env);
   end
    end 
   var expr$1 = member(env, expr);
@@ -8054,13 +8054,13 @@ function _new(env, _finish_fn) do
     end
      end 
     Curry._2(Parser_env_Peek.token, undefined, env);
-    var expr = Curry._2(Parser_env_Peek.is_function, undefined, env) ? _function$1(env) : primary$1(env);
+    var expr = Curry._2(Parser_env_Peek.is_function, undefined, env) and _function$1(env) or primary$1(env);
     var callee = member(with_no_call(true, env), expr);
     var match$1 = Curry._2(Parser_env_Peek.token, undefined, env);
     var callee$1;
-    callee$1 = typeof match$1 == "number" or match$1.tag ~= --[ T_TEMPLATE_PART ]--2 ? callee : tagged_template(env, callee, match$1[0]);
+    callee$1 = typeof match$1 == "number" or match$1.tag ~= --[ T_TEMPLATE_PART ]--2 and callee or tagged_template(env, callee, match$1[0]);
     var match$2 = Curry._2(Parser_env_Peek.token, undefined, env);
-    var args = typeof match$2 == "number" and match$2 == 3 ? Curry._1($$arguments, env) : undefined;
+    var args = typeof match$2 == "number" and match$2 == 3 and Curry._1($$arguments, env) or undefined;
     return Curry._2(finish_fn, callee$1, args);
   end;
 end
@@ -8116,7 +8116,7 @@ function _function$1(env) do
     ];
   end else do
     var match$1 = Curry._2(Parser_env_Peek.token, undefined, env);
-    var id = typeof match$1 == "number" and match$1 == 89 ? undefined : Curry._2(Parse.identifier, --[ StrictFunctionName ]--30, env);
+    var id = typeof match$1 == "number" and match$1 == 89 and undefined or Curry._2(Parse.identifier, --[ StrictFunctionName ]--30, env);
     match = --[ tuple ]--[
       id,
       Curry._1(type_parameter_declaration$1, env)
@@ -8134,7 +8134,7 @@ function _function$1(env) do
   var simple = is_simple_function_params(params, defaults, rest);
   strict_post_check(env, match$3[2], simple, id$1, params);
   var expression;
-  expression = body.tag ? true : false;
+  expression = body.tag and true or false;
   return --[ tuple ]--[
           btwn(start_loc, match$3[0]),
           --[ Function ]--Block.__(2, [do
@@ -8480,9 +8480,9 @@ function sequence(env, _acc) do
       continue ;
     end
      end 
-    var last_loc = acc ? acc[0][0] : none;
+    var last_loc = acc and acc[0][0] or none;
     var expressions = List.rev(acc);
-    var first_loc = expressions ? expressions[0][0] : none;
+    var first_loc = expressions and expressions[0][0] or none;
     return --[ tuple ]--[
             btwn(first_loc, last_loc),
             --[ Sequence ]--Block.__(4, [do
@@ -8663,13 +8663,13 @@ function assignment(env) do
        end 
       var delegate = maybe(env$1, --[ T_MULT ]--97);
       var has_argument = !(Curry._2(Parser_env_Peek.token, undefined, env$1) == --[ T_SEMICOLON ]--7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env$1));
-      var argument = delegate or has_argument ? Curry._1(assignment, env$1) : undefined;
+      var argument = delegate or has_argument and Curry._1(assignment, env$1) or undefined;
       var end_loc;
       if (argument ~= undefined) then do
         end_loc = argument[0];
       end else do
         var match$2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$1);
-        var end_loc$1 = match$2 ~= undefined ? match$2 : start_loc;
+        var end_loc$1 = match$2 ~= undefined and match$2 or start_loc;
         semicolon(env$1);
         end_loc = end_loc$1;
       end end 
@@ -8767,11 +8767,11 @@ function binary_op(env) do
   if (typeof match == "number") then do
     var switcher = match - 15 | 0;
     if (switcher == 0 or switcher == 1) then do
-      ret = switcher ~= 0 ? --[ tuple ]--[
+      ret = switcher ~= 0 and --[ tuple ]--[
           --[ Instanceof ]--21,
           --[ Left_assoc ]--Block.__(0, [6])
-        ] : (
-          env.no_in ? undefined : --[ tuple ]--[
+        ] or (
+          env.no_in and undefined or --[ tuple ]--[
               --[ In ]--20,
               --[ Left_assoc ]--Block.__(0, [6])
             ]
@@ -8968,7 +8968,7 @@ function binary(env) do
     var is_unary = peek_unary_op(env$1) ~= undefined;
     var right = unary(with_no_in(false, env$1));
     var match = env$1.last_loc.contents;
-    var end_loc = match ~= undefined ? match : right[0];
+    var end_loc = match ~= undefined and match or right[0];
     var right_loc = btwn(start_loc, end_loc);
     if (Curry._2(Parser_env_Peek.token, undefined, env$1) == --[ T_LESS_THAN ]--89) then do
       var tmp = right[1];
@@ -9181,14 +9181,14 @@ function template_literal(env, part) do
     start_loc,
     head_001
   ];
-  var match$1 = is_tail ? --[ tuple ]--[
+  var match$1 = is_tail and --[ tuple ]--[
       start_loc,
       --[ :: ]--[
         head,
         --[ [] ]--0
       ],
       --[ [] ]--0
-    ] : template_parts(env, --[ :: ]--[
+    ] or template_parts(env, --[ :: ]--[
           head,
           --[ [] ]--0
         ], --[ [] ]--0);
@@ -9337,7 +9337,7 @@ function try_arrow_function(env) do
   var defaults = match[1];
   var params = match[0];
   var predicate = Curry._1(Parse.predicate, env$1);
-  var env$2 = params == --[ [] ]--0 or rest ~= undefined ? without_error_callback(env$1) : env$1;
+  var env$2 = params == --[ [] ]--0 or rest ~= undefined and without_error_callback(env$1) or env$1;
   if (Curry._1(Parser_env_Peek.is_line_terminator, env$2) and Curry._2(Parser_env_Peek.token, undefined, env$2) == --[ T_ARROW ]--10) then do
     error$1(env$2, --[ NewlineBeforeArrow ]--44);
   end
@@ -9370,7 +9370,7 @@ function try_arrow_function(env) do
   var simple = is_simple_function_params(params, defaults, rest);
   strict_post_check(env$3, match$3[1], simple, undefined, params);
   var expression;
-  expression = body.tag ? true : false;
+  expression = body.tag and true or false;
   var loc = btwn(start_loc, match$2[0]);
   return --[ tuple ]--[
           loc,
@@ -9492,7 +9492,7 @@ end
 function _method(env, kind) do
   var generator$1 = generator(env, false);
   var match = key(env);
-  var typeParameters = kind ~= 0 ? undefined : Curry._1(type_parameter_declaration$1, env);
+  var typeParameters = kind ~= 0 and undefined or Curry._1(type_parameter_declaration$1, env);
   token$4(env, --[ T_LPAREN ]--3);
   var params;
   local ___conditional___=(kind);
@@ -9527,10 +9527,10 @@ function _method(env, kind) do
   var simple = is_simple_function_params(params, --[ [] ]--0, undefined);
   strict_post_check(env, match$1[2], simple, undefined, params);
   var match$2;
-  match$2 = body.tag ? --[ tuple ]--[
+  match$2 = body.tag and --[ tuple ]--[
       body[0][0],
       true
-    ] : --[ tuple ]--[
+    ] or --[ tuple ]--[
       body[0][0],
       false
     ];
@@ -9588,10 +9588,10 @@ function property$1(env) do
                   var match$2 = Curry._2(Parser_env_Peek.token, undefined, env);
                   if (typeof match$2 == "number") then do
                     var switcher = match$2 - 3 | 0;
-                    tmp = switcher > 74 or switcher < 0 ? (
-                        switcher ~= 86 ? get(env, start_loc) : init(env, start_loc, key$1, false, false)
-                      ) : (
-                        switcher > 73 or switcher < 1 ? init(env, start_loc, key$1, false, false) : get(env, start_loc)
+                    tmp = switcher > 74 or switcher < 0 and (
+                        switcher ~= 86 and get(env, start_loc) or init(env, start_loc, key$1, false, false)
+                      ) or (
+                        switcher > 73 or switcher < 1 and init(env, start_loc, key$1, false, false) or get(env, start_loc)
                       );
                   end else do
                     tmp = get(env, start_loc);
@@ -9600,10 +9600,10 @@ function property$1(env) do
                   var match$3 = Curry._2(Parser_env_Peek.token, undefined, env);
                   if (typeof match$3 == "number") then do
                     var switcher$1 = match$3 - 3 | 0;
-                    tmp = switcher$1 > 74 or switcher$1 < 0 ? (
-                        switcher$1 ~= 86 ? set(env, start_loc) : init(env, start_loc, key$1, false, false)
-                      ) : (
-                        switcher$1 > 73 or switcher$1 < 1 ? init(env, start_loc, key$1, false, false) : set(env, start_loc)
+                    tmp = switcher$1 > 74 or switcher$1 < 0 and (
+                        switcher$1 ~= 86 and set(env, start_loc) or init(env, start_loc, key$1, false, false)
+                      ) or (
+                        switcher$1 > 73 or switcher$1 < 1 and init(env, start_loc, key$1, false, false) or set(env, start_loc)
                       );
                   end else do
                     tmp = set(env, start_loc);
@@ -9751,10 +9751,10 @@ function init(env, start_loc, key, async, generator) do
         var simple = is_simple_function_params(params, defaults, rest);
         strict_post_check(env, match$3[2], simple, undefined, params);
         var match$4;
-        match$4 = body.tag ? --[ tuple ]--[
+        match$4 = body.tag and --[ tuple ]--[
             body[0][0],
             true
-          ] : --[ tuple ]--[
+          ] or --[ tuple ]--[
             body[0][0],
             false
           ];
@@ -9831,7 +9831,7 @@ function check_property(env, prop_map, prop) do
                     key = match$2[0];end else 
                  if ___conditional___ = 1--[ Boolean ]-- then do
                     var b = match$2[0];
-                    key = b ? "true" : "false";end else 
+                    key = b and "true" or "false";end else 
                  if ___conditional___ = 2--[ Number ]-- then do
                     key = Pervasives.string_of_float(match$2[0]);end else 
                  if ___conditional___ = 3--[ RegExp ]-- then do
@@ -9975,7 +9975,7 @@ function class_implements(env, _acc) do
     var acc = _acc;
     var id = Curry._2(Parse.identifier, undefined, env);
     var typeParameters = wrap(type_parameter_instantiation, env);
-    var loc = typeParameters ~= undefined ? btwn(id[0], typeParameters[0]) : id[0];
+    var loc = typeParameters ~= undefined and btwn(id[0], typeParameters[0]) or id[0];
     var implement_001 = do
       id: id,
       typeParameters: typeParameters
@@ -10018,7 +10018,7 @@ function init$1(env, start_loc, decorators, key, async, generator, $$static) do
   if (exit == 2 and !async and !generator) then do
     var typeAnnotation = wrap(annotation_opt, env);
     var options = env.parse_options;
-    var value = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_ASSIGN ]--75 and ($$static and options.esproposal_class_static_fields or !$$static and options.esproposal_class_instance_fields) ? (token$4(env, --[ T_ASSIGN ]--75), Curry._1(Parse.expression, env)) : undefined;
+    var value = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_ASSIGN ]--75 and ($$static and options.esproposal_class_static_fields or !$$static and options.esproposal_class_instance_fields) and (token$4(env, --[ T_ASSIGN ]--75), Curry._1(Parse.expression, env)) or undefined;
     var end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
     if (!maybe(env, --[ T_SEMICOLON ]--7)) then do
       if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_LBRACKET ]--5 or Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_LPAREN ]--3) then do
@@ -10050,10 +10050,10 @@ function init$1(env, start_loc, decorators, key, async, generator, $$static) do
   var simple = is_simple_function_params(params, defaults, rest);
   strict_post_check(env, match$2[2], simple, undefined, params);
   var match$3;
-  match$3 = body.tag ? --[ tuple ]--[
+  match$3 = body.tag and --[ tuple ]--[
       body[0][0],
       true
-    ] : --[ tuple ]--[
+    ] or --[ tuple ]--[
       body[0][0],
       false
     ];
@@ -10080,9 +10080,9 @@ function init$1(env, start_loc, decorators, key, async, generator, $$static) do
   do
      if ___conditional___ = 0--[ Literal ]-- then do
         var match$4 = key[0][1].value;
-        kind = typeof match$4 == "number" or match$4.tag or match$4[0] ~= "constructor" ? --[ Method ]--1 : --[ Constructor ]--0;end else 
+        kind = typeof match$4 == "number" or match$4.tag or match$4[0] ~= "constructor" and --[ Method ]--1 or --[ Constructor ]--0;end else 
      if ___conditional___ = 1--[ Identifier ]-- then do
-        kind = key[0][1].name == "constructor" ? --[ Constructor ]--0 : --[ Method ]--1;end else 
+        kind = key[0][1].name == "constructor" and --[ Constructor ]--0 or --[ Method ]--1;end else 
      if ___conditional___ = 2--[ Computed ]-- then do
         kind = --[ Method ]--1;end else 
      do end end end end
@@ -10117,17 +10117,17 @@ function class_element(env) do
              if ___conditional___ = "get" then do
                 var match$1 = Curry._2(Parser_env_Peek.token, undefined, env);
                 var exit = 0;
-                exit = typeof match$1 == "number" ? (
-                    match$1 >= 75 ? (
-                        match$1 >= 78 ? (
-                            match$1 ~= 89 ? 2 : 3
-                          ) : (
-                            match$1 ~= 76 ? 3 : 2
+                exit = typeof match$1 == "number" and (
+                    match$1 >= 75 and (
+                        match$1 >= 78 and (
+                            match$1 ~= 89 and 2 or 3
+                          ) or (
+                            match$1 ~= 76 and 3 or 2
                           )
-                      ) : (
-                        match$1 ~= 3 and match$1 ~= 7 ? 2 : 3
+                      ) or (
+                        match$1 ~= 3 and match$1 ~= 7 and 2 or 3
                       )
-                  ) : 2;
+                  ) or 2;
                 local ___conditional___=(exit);
                 do
                    if ___conditional___ = 2 then do
@@ -10155,17 +10155,17 @@ function class_element(env) do
              if ___conditional___ = "set" then do
                 var match$3 = Curry._2(Parser_env_Peek.token, undefined, env);
                 var exit$1 = 0;
-                exit$1 = typeof match$3 == "number" ? (
-                    match$3 >= 75 ? (
-                        match$3 >= 78 ? (
-                            match$3 ~= 89 ? 2 : 3
-                          ) : (
-                            match$3 ~= 76 ? 3 : 2
+                exit$1 = typeof match$3 == "number" and (
+                    match$3 >= 75 and (
+                        match$3 >= 78 and (
+                            match$3 ~= 89 and 2 or 3
+                          ) or (
+                            match$3 ~= 76 and 3 or 2
                           )
-                      ) : (
-                        match$3 ~= 3 and match$3 ~= 7 ? 2 : 3
+                      ) or (
+                        match$3 ~= 3 and match$3 ~= 7 and 2 or 3
                       )
-                  ) : 2;
+                  ) or 2;
                 local ___conditional___=(exit$1);
                 do
                    if ___conditional___ = 2 then do
@@ -10289,7 +10289,7 @@ function class_declaration(env, decorators) do
   var tmp_env = with_no_let(true, env$1);
   var match = env$1.in_export;
   var match$1 = Curry._2(Parser_env_Peek.is_identifier, undefined, tmp_env);
-  var id = match and !match$1 ? undefined : Curry._2(Parse.identifier, undefined, tmp_env);
+  var id = match and !match$1 and undefined or Curry._2(Parse.identifier, undefined, tmp_env);
   var typeParameters = Curry._1(type_parameter_declaration_with_defaults, env$1);
   var match$2 = _class(env$1);
   var body = match$2[0];
@@ -10410,7 +10410,7 @@ end
 function expression(env) do
   var expression$1 = Curry._1(Parse.expression, env);
   var match = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
-  var end_loc = match ~= undefined ? match : expression$1[0];
+  var end_loc = match ~= undefined and match or expression$1[0];
   semicolon(env);
   return --[ tuple ]--[
           btwn(expression$1[0], end_loc),
@@ -10456,7 +10456,7 @@ function declare_function(env, start_loc) do
     id_001
   ];
   var match$1 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
-  var end_loc$1 = match$1 ~= undefined ? match$1 : end_loc;
+  var end_loc$1 = match$1 ~= undefined and match$1 or end_loc;
   var predicate = Curry._1(Parse.predicate, env);
   semicolon(env);
   var loc$1 = btwn(start_loc, end_loc$1);
@@ -10523,10 +10523,10 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
       token$4(env, --[ T_COMMA ]--8);
     end
      end 
-    var errs$1 = err ~= undefined ? --[ :: ]--[
+    var errs$1 = err ~= undefined and --[ :: ]--[
         err,
         errs
-      ] : errs;
+      ] or errs;
     _errs = errs$1;
     _specifiers = --[ :: ]--[
       specifier,
@@ -10549,7 +10549,7 @@ function type_alias_helper(env) do
   token$4(env, --[ T_ASSIGN ]--75);
   var right = wrap(_type, env);
   var match = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
-  var end_loc = match ~= undefined ? match : right[0];
+  var end_loc = match ~= undefined and match or right[0];
   semicolon(env);
   pop_lex_mode(env);
   return --[ tuple ]--[
@@ -10566,7 +10566,7 @@ function declare_var(env, start_loc) do
   token$4(env, --[ T_VAR ]--22);
   var id = Curry._2(Parse.identifier_with_type, env, --[ StrictVarName ]--27);
   var match = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
-  var end_loc = match ~= undefined ? match : id[0];
+  var end_loc = match ~= undefined and match or id[0];
   var loc = btwn(start_loc, end_loc);
   semicolon(env);
   return --[ tuple ]--[
@@ -10590,7 +10590,7 @@ function $$interface(env) do
 end
 
 function declare_export_declaration(allow_export_typeOpt, env) do
-  var allow_export_type = allow_export_typeOpt ~= undefined ? allow_export_typeOpt : false;
+  var allow_export_type = allow_export_typeOpt ~= undefined and allow_export_typeOpt or false;
   if (!env.parse_options.types) then do
     error$1(env, --[ UnexpectedTypeDeclaration ]--7);
   end
@@ -10610,14 +10610,14 @@ function declare_export_declaration(allow_export_typeOpt, env) do
           var loc = Curry._2(Parser_env_Peek.loc, undefined, env$1);
           token$4(env$1, --[ T_MULT ]--97);
           var parse_export_star_as = env$1.parse_options.esproposal_export_star_as;
-          var local_name = Curry._2(Parser_env_Peek.value, undefined, env$1) == "as" ? (contextual(env$1, "as"), parse_export_star_as ? Curry._2(Parse.identifier, undefined, env$1) : (error$1(env$1, --[ UnexpectedTypeDeclaration ]--7), undefined)) : undefined;
+          var local_name = Curry._2(Parser_env_Peek.value, undefined, env$1) == "as" and (contextual(env$1, "as"), parse_export_star_as and Curry._2(Parse.identifier, undefined, env$1) or (error$1(env$1, --[ UnexpectedTypeDeclaration ]--7), undefined)) or undefined;
           var specifiers = --[ ExportBatchSpecifier ]--Block.__(1, [
               loc,
               local_name
             ]);
           var source = export_source(env$1);
           var match$1 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$1);
-          var end_loc = match$1 ~= undefined ? match$1 : source[0];
+          var end_loc = match$1 ~= undefined and match$1 or source[0];
           var source$1 = source;
           semicolon(env$1);
           return --[ tuple ]--[
@@ -10701,7 +10701,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
             if (exit$1 == 3) then do
               var _type$1 = wrap(_type, env$1);
               var match$6 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$1);
-              var end_loc$1 = match$6 ~= undefined ? match$6 : _type$1[0];
+              var end_loc$1 = match$6 ~= undefined and match$6 or _type$1[0];
               semicolon(env$1);
               match$5 = --[ tuple ]--[
                 end_loc$1,
@@ -10775,12 +10775,12 @@ function declare_export_declaration(allow_export_typeOpt, env) do
         var specifiers$1 = --[ ExportSpecifiers ]--Block.__(0, [match$8[0]]);
         var end_loc$2 = Curry._2(Parser_env_Peek.loc, undefined, env$1);
         token$4(env$1, --[ T_RCURLY ]--2);
-        var source$2 = Curry._2(Parser_env_Peek.value, undefined, env$1) == "from" ? export_source(env$1) : (List.iter((function (param) do
+        var source$2 = Curry._2(Parser_env_Peek.value, undefined, env$1) == "from" and export_source(env$1) or (List.iter((function (param) do
                     return error_at(env$1, param);
                   end), match$8[1]), undefined);
         var match$9 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$1);
-        var end_loc$3 = match$9 ~= undefined ? match$9 : (
-            source$2 ~= undefined ? source$2[0] : end_loc$2
+        var end_loc$3 = match$9 ~= undefined and match$9 or (
+            source$2 ~= undefined and source$2[0] or end_loc$2
           );
         semicolon(env$1);
         return --[ tuple ]--[
@@ -10809,10 +10809,10 @@ function declare_export_declaration(allow_export_typeOpt, env) do
                 ];
               end end 
             end else do
-              exit$2 = token$5 >= 25 ? 4 : 3;
+              exit$2 = token$5 >= 25 and 4 or 3;
             end end 
           end else if (token$5 ~= 13) then do
-            exit$2 = token$5 >= 22 ? 4 : 3;
+            exit$2 = token$5 >= 22 and 4 or 3;
           end else do
             var fn$1 = declare_function(env$1, start_loc);
             match$10 = --[ tuple ]--[
@@ -10898,7 +10898,7 @@ function declare_var_statement(env, start_loc) do
 end
 
 function declare(in_moduleOpt, env) do
-  var in_module = in_moduleOpt ~= undefined ? in_moduleOpt : false;
+  var in_module = in_moduleOpt ~= undefined and in_moduleOpt or false;
   if (!env.parse_options.types) then do
     error$1(env, --[ UnexpectedTypeDeclaration ]--7);
   end
@@ -10976,7 +10976,7 @@ function declare(in_moduleOpt, env) do
           contextual(env$2, "exports");
           var type_annot = wrap(annotation, env$2);
           var match$2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$2);
-          var end_loc = match$2 ~= undefined ? match$2 : type_annot[0];
+          var end_loc = match$2 ~= undefined and match$2 or type_annot[0];
           semicolon(env$2);
           var loc = btwn(start_loc$2, end_loc);
           return --[ tuple ]--[
@@ -11030,7 +11030,7 @@ function declare(in_moduleOpt, env) do
             body_001
           ];
           var loc$2 = btwn(start_loc$3, body_loc);
-          var kind = module_kind ~= undefined ? module_kind : --[ CommonJS ]--Block.__(0, [loc$2]);
+          var kind = module_kind ~= undefined and module_kind or --[ CommonJS ]--Block.__(0, [loc$2]);
           return --[ tuple ]--[
                   loc$2,
                   --[ DeclareModule ]--Block.__(25, [do
@@ -11088,7 +11088,7 @@ function interface_helper(env) do
   token$4(env, --[ T_INTERFACE ]--51);
   var id = Curry._2(Parse.identifier, undefined, env);
   var typeParameters = Curry._1(type_parameter_declaration_with_defaults, env);
-  var $$extends = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_EXTENDS ]--39 ? (token$4(env, --[ T_EXTENDS ]--39), supers(env, --[ [] ]--0)) : --[ [] ]--0;
+  var $$extends = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_EXTENDS ]--39 and (token$4(env, --[ T_EXTENDS ]--39), supers(env, --[ [] ]--0)) or --[ [] ]--0;
   var body = _object$1(true, env);
   var loc = btwn(start_loc, body[0]);
   return --[ tuple ]--[
@@ -11127,8 +11127,8 @@ function declare_class(env, start_loc) do
   token$4(env$1, --[ T_CLASS ]--38);
   var id = Curry._2(Parse.identifier, undefined, env$1);
   var typeParameters = Curry._1(type_parameter_declaration_with_defaults, env$1);
-  var $$extends = Curry._2(Parser_env_Peek.token, undefined, env$1) == --[ T_EXTENDS ]--39 ? (token$4(env$1, --[ T_EXTENDS ]--39), supers$1(env$1, --[ [] ]--0)) : --[ [] ]--0;
-  var mixins = Curry._2(Parser_env_Peek.value, undefined, env$1) == "mixins" ? (contextual(env$1, "mixins"), supers$1(env$1, --[ [] ]--0)) : --[ [] ]--0;
+  var $$extends = Curry._2(Parser_env_Peek.token, undefined, env$1) == --[ T_EXTENDS ]--39 and (token$4(env$1, --[ T_EXTENDS ]--39), supers$1(env$1, --[ [] ]--0)) or --[ [] ]--0;
+  var mixins = Curry._2(Parser_env_Peek.value, undefined, env$1) == "mixins" and (contextual(env$1, "mixins"), supers$1(env$1, --[ [] ]--0)) or --[ [] ]--0;
   var body = _object$1(true, env$1);
   var loc = btwn(start_loc, body[0]);
   return --[ tuple ]--[
@@ -11330,9 +11330,9 @@ function _if(env) do
   var test = Curry._1(Parse.expression, env);
   token$4(env, --[ T_RPAREN ]--4);
   Curry._2(Parser_env_Peek.token, undefined, env);
-  var consequent = Curry._2(Parser_env_Peek.is_function, undefined, env) ? (strict_error(env, --[ StrictFunctionStatement ]--45), _function(env)) : Curry._1(Parse.statement, env);
-  var alternate = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_ELSE ]--41 ? (token$4(env, --[ T_ELSE ]--41), Curry._1(Parse.statement, env)) : undefined;
-  var end_loc = alternate ~= undefined ? alternate[0] : consequent[0];
+  var consequent = Curry._2(Parser_env_Peek.is_function, undefined, env) and (strict_error(env, --[ StrictFunctionStatement ]--45), _function(env)) or Curry._1(Parse.statement, env);
+  var alternate = Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_ELSE ]--41 and (token$4(env, --[ T_ELSE ]--41), Curry._1(Parse.statement, env)) or undefined;
+  var end_loc = alternate ~= undefined and alternate[0] or consequent[0];
   return --[ tuple ]--[
           btwn(start_loc, end_loc),
           --[ If ]--Block.__(2, [do
@@ -11384,7 +11384,7 @@ function case_list(env, _param) do
     end;
     var consequent = Curry._2(Parse.statement_list, term_fn, with_in_switch(true, env));
     var match$2 = List.rev(consequent);
-    var end_loc$1 = match$2 ? match$2[0][0] : end_loc;
+    var end_loc$1 = match$2 and match$2[0][0] or end_loc;
     var acc_000 = --[ tuple ]--[
       btwn(start_loc, end_loc$1),
       do
@@ -11409,7 +11409,7 @@ function var_or_const(env) do
   var match$1 = match[0];
   var start_loc = match$1[0];
   var match$2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env);
-  var end_loc = match$2 ~= undefined ? match$2 : start_loc;
+  var end_loc = match$2 ~= undefined and match$2 or start_loc;
   semicolon(env);
   List.iter((function (param) do
           return error_at(env, param);
@@ -12329,7 +12329,7 @@ function normalize(name) do
         var match$1 = name[0][1];
         var _object = match$1._object;
         var _object$1;
-        _object$1 = _object.tag ? normalize(--[ MemberExpression ]--Block.__(2, [_object[0]])) : _object[0][1].name;
+        _object$1 = _object.tag and normalize(--[ MemberExpression ]--Block.__(2, [_object[0]])) or _object[0][1].name;
         return _object$1 .. ("." .. match$1.property[1].name);end end end 
      do
     
@@ -12338,10 +12338,10 @@ end
 
 function element_without_lt(env, start_loc) do
   var openingElement = opening_element_without_lt(env, start_loc);
-  var match = openingElement[1].selfClosing ? --[ tuple ]--[
+  var match = openingElement[1].selfClosing and --[ tuple ]--[
       --[ [] ]--0,
       undefined
-    ] : (push_lex_mode(env, --[ JSX_CHILD ]--3), children_and_closing(env, --[ [] ]--0));
+    ] or (push_lex_mode(env, --[ JSX_CHILD ]--3), children_and_closing(env, --[ [] ]--0));
   var closingElement = match[1];
   var end_loc;
   if (closingElement ~= undefined) then do
@@ -12366,7 +12366,7 @@ function element_without_lt(env, start_loc) do
 end
 
 function statement_list_item(decoratorsOpt, env) do
-  var decorators = decoratorsOpt ~= undefined ? decoratorsOpt : --[ [] ]--0;
+  var decorators = decoratorsOpt ~= undefined and decoratorsOpt or --[ [] ]--0;
   if (!Curry._2(Parser_env_Peek.is_class, undefined, env)) then do
     error_on_decorators(env)(decorators);
   end
@@ -12391,7 +12391,7 @@ function statement_list_item(decoratorsOpt, env) do
           token$4(env$1, --[ T_RPAREN ]--4);
           var body = Curry._1(Parse.statement, env$1);
           var match$2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$1);
-          var end_loc = match$2 ~= undefined ? match$2 : match$1[0];
+          var end_loc = match$2 ~= undefined and match$2 or match$1[0];
           semicolon(env$1);
           List.iter((function (param) do
                   return error_at(env$1, param);
@@ -12410,7 +12410,7 @@ function statement_list_item(decoratorsOpt, env) do
                 kind: --[ Let ]--1
               end]);
           var match$4 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$1);
-          var end_loc$1 = match$4 ~= undefined ? match$4 : match$3[0];
+          var end_loc$1 = match$4 ~= undefined and match$4 or match$3[0];
           semicolon(env$1);
           List.iter((function (param) do
                   return error_at(env$1, param);
@@ -12571,14 +12571,14 @@ function module_item(env) do
                 var loc = Curry._2(Parser_env_Peek.loc, undefined, env$2);
                 token$4(env$2, --[ T_MULT ]--97);
                 var parse_export_star_as = env$2.parse_options.esproposal_export_star_as;
-                var local_name = Curry._2(Parser_env_Peek.value, undefined, env$2) == "as" ? (contextual(env$2, "as"), parse_export_star_as ? Curry._2(Parse.identifier, undefined, env$2) : (error$1(env$2, --[ UnexpectedTypeDeclaration ]--7), undefined)) : undefined;
+                var local_name = Curry._2(Parser_env_Peek.value, undefined, env$2) == "as" and (contextual(env$2, "as"), parse_export_star_as and Curry._2(Parse.identifier, undefined, env$2) or (error$1(env$2, --[ UnexpectedTypeDeclaration ]--7), undefined)) or undefined;
                 var specifiers = --[ ExportBatchSpecifier ]--Block.__(1, [
                     loc,
                     local_name
                   ]);
                 var source$1 = export_source(env$2);
                 var match$4 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$2);
-                var end_loc$2 = match$4 ~= undefined ? match$4 : source$1[0];
+                var end_loc$2 = match$4 ~= undefined and match$4 or source$1[0];
                 var source$2 = source$1;
                 semicolon(env$2);
                 return --[ tuple ]--[
@@ -12623,7 +12623,7 @@ function module_item(env) do
                       end else do
                         var expr = Curry._1(Parse.assignment, env$2);
                         var match$7 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$2);
-                        var end_loc$3 = match$7 ~= undefined ? match$7 : expr[0];
+                        var end_loc$3 = match$7 ~= undefined and match$7 or expr[0];
                         semicolon(env$2);
                         match$6 = --[ tuple ]--[
                           end_loc$3,
@@ -12684,18 +12684,18 @@ function module_item(env) do
           do
              if ___conditional___ = 1 then do
                 var match$8 = Curry._2(Parser_env_Peek.token, undefined, env$2);
-                var exportKind = typeof match$8 == "number" and match$8 == 59 ? (token$3(env$2), --[ ExportType ]--0) : --[ ExportValue ]--1;
+                var exportKind = typeof match$8 == "number" and match$8 == 59 and (token$3(env$2), --[ ExportType ]--0) or --[ ExportValue ]--1;
                 token$4(env$2, --[ T_LCURLY ]--1);
                 var match$9 = export_specifiers_and_errs(env$2, --[ [] ]--0, --[ [] ]--0);
                 var specifiers$1 = --[ ExportSpecifiers ]--Block.__(0, [match$9[0]]);
                 var end_loc$4 = Curry._2(Parser_env_Peek.loc, undefined, env$2);
                 token$4(env$2, --[ T_RCURLY ]--2);
-                var source$3 = Curry._2(Parser_env_Peek.value, undefined, env$2) == "from" ? export_source(env$2) : (List.iter((function (param) do
+                var source$3 = Curry._2(Parser_env_Peek.value, undefined, env$2) == "from" and export_source(env$2) or (List.iter((function (param) do
                             return error_at(env$2, param);
                           end), match$9[1]), undefined);
                 var match$10 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$2);
-                var end_loc$5 = match$10 ~= undefined ? match$10 : (
-                    source$3 ~= undefined ? source$3[0] : end_loc$4
+                var end_loc$5 = match$10 ~= undefined and match$10 or (
+                    source$3 ~= undefined and source$3[0] or end_loc$4
                   );
                 semicolon(env$2);
                 return --[ tuple ]--[
@@ -12872,7 +12872,7 @@ function module_item(env) do
               source_001
             ];
             var match$19 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$4);
-            var end_loc$6 = match$19 ~= undefined ? match$19 : str_loc;
+            var end_loc$6 = match$19 ~= undefined and match$19 or str_loc;
             semicolon(env$4);
             return --[ tuple ]--[
                     btwn(start_loc$1, end_loc$6),
@@ -12892,7 +12892,7 @@ function module_item(env) do
               var specifiers$2 = named_or_namespace_specifier(env$4);
               var source$5 = source(env$4);
               var match$20 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$4);
-              var end_loc$7 = match$20 ~= undefined ? match$20 : source$5[0];
+              var end_loc$7 = match$20 ~= undefined and match$20 or source$5[0];
               semicolon(env$4);
               return --[ tuple ]--[
                       btwn(start_loc$1, end_loc$7),
@@ -12931,10 +12931,10 @@ function module_item(env) do
             end
              end 
             var match$24 = Curry._2(Parser_env_Peek.token, undefined, env$4);
-            var additional_specifiers = typeof match$24 == "number" and match$24 == 8 ? (token$4(env$4, --[ T_COMMA ]--8), named_or_namespace_specifier(env$4)) : --[ [] ]--0;
+            var additional_specifiers = typeof match$24 == "number" and match$24 == 8 and (token$4(env$4, --[ T_COMMA ]--8), named_or_namespace_specifier(env$4)) or --[ [] ]--0;
             var source$6 = source(env$4);
             var match$25 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$4);
-            var end_loc$8 = match$25 ~= undefined ? match$25 : source$6[0];
+            var end_loc$8 = match$25 ~= undefined and match$25 or source$6[0];
             semicolon(env$4);
             return --[ tuple ]--[
                     btwn(start_loc$1, end_loc$8),
@@ -13013,10 +13013,10 @@ function statement(env) do
                  end 
                 var start_loc = Curry._2(Parser_env_Peek.loc, undefined, env$3);
                 token$4(env$3, --[ T_RETURN ]--17);
-                var argument = Curry._2(Parser_env_Peek.token, undefined, env$3) == --[ T_SEMICOLON ]--7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env$3) ? undefined : Curry._1(Parse.expression, env$3);
+                var argument = Curry._2(Parser_env_Peek.token, undefined, env$3) == --[ T_SEMICOLON ]--7 or Curry._1(Parser_env_Peek.is_implicit_semicolon, env$3) and undefined or Curry._1(Parse.expression, env$3);
                 var match$2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$3);
-                var end_loc = match$2 ~= undefined ? match$2 : (
-                    argument ~= undefined ? argument[0] : start_loc
+                var end_loc = match$2 ~= undefined and match$2 or (
+                    argument ~= undefined and argument[0] or start_loc
                   );
                 semicolon(env$3);
                 return --[ tuple ]--[
@@ -13060,7 +13060,7 @@ function statement(env) do
                  end 
                 var argument$1 = Curry._1(Parse.expression, env$5);
                 var match$3 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$5);
-                var end_loc$2 = match$3 ~= undefined ? match$3 : argument$1[0];
+                var end_loc$2 = match$3 ~= undefined and match$3 or argument$1[0];
                 semicolon(env$5);
                 return --[ tuple ]--[
                         btwn(start_loc$2, end_loc$2),
@@ -13101,9 +13101,9 @@ function statement(env) do
                   handler = undefined;
                 end end 
                 var match$5 = Curry._2(Parser_env_Peek.token, undefined, env$6);
-                var finalizer = typeof match$5 == "number" and match$5 == 36 ? (token$4(env$6, --[ T_FINALLY ]--36), Curry._1(Parse.block_body, env$6)) : undefined;
-                var end_loc$3 = finalizer ~= undefined ? finalizer[0] : (
-                    handler ~= undefined ? handler[0] : (error_at(env$6, --[ tuple ]--[
+                var finalizer = typeof match$5 == "number" and match$5 == 36 and (token$4(env$6, --[ T_FINALLY ]--36), Curry._1(Parse.block_body, env$6)) or undefined;
+                var end_loc$3 = finalizer ~= undefined and finalizer[0] or (
+                    handler ~= undefined and handler[0] or (error_at(env$6, --[ tuple ]--[
                               block[0],
                               --[ NoCatchOrFinally ]--20
                             ]), block[0])
@@ -13171,8 +13171,8 @@ function statement(env) do
                   label = label$1;
                 end end 
                 var match$6 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$9);
-                var end_loc$4 = match$6 ~= undefined ? match$6 : (
-                    label ~= undefined ? label[0] : start_loc$7
+                var end_loc$4 = match$6 ~= undefined and match$6 or (
+                    label ~= undefined and label[0] or start_loc$7
                   );
                 var loc$3 = btwn(start_loc$7, end_loc$4);
                 if (label == undefined and !(env$9.in_loop or env$9.in_switch)) then do
@@ -13206,8 +13206,8 @@ function statement(env) do
                   label$2 = label$3;
                 end end 
                 var match$7 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$10);
-                var end_loc$5 = match$7 ~= undefined ? match$7 : (
-                    label$2 ~= undefined ? label$2[0] : start_loc$8
+                var end_loc$5 = match$7 ~= undefined and match$7 or (
+                    label$2 ~= undefined and label$2[0] or start_loc$8
                   );
                 var loc$4 = btwn(start_loc$8, end_loc$5);
                 if (!env$10.in_loop) then do
@@ -13235,7 +13235,7 @@ function statement(env) do
                 var end_loc$6 = Curry._2(Parser_env_Peek.loc, undefined, env$11);
                 token$4(env$11, --[ T_RPAREN ]--4);
                 var match$8 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$11);
-                var end_loc$7 = match$8 ~= undefined ? match$8 : end_loc$6;
+                var end_loc$7 = match$8 ~= undefined and match$8 or end_loc$6;
                 if (Curry._2(Parser_env_Peek.token, undefined, env$11) == --[ T_SEMICOLON ]--7) then do
                   semicolon(env$11);
                 end
@@ -13315,7 +13315,7 @@ function statement(env) do
                       var left;
                       if (init ~= undefined) then do
                         var match$15 = init;
-                        left = match$15.tag ? --[ LeftExpression ]--Block.__(1, [match$15[0]]) : --[ LeftDeclaration ]--Block.__(0, [match$15[0]]);
+                        left = match$15.tag and --[ LeftExpression ]--Block.__(1, [match$15[0]]) or --[ LeftDeclaration ]--Block.__(0, [match$15[0]]);
                       end else do
                         throw [
                               Caml_builtin_exceptions.assert_failure,
@@ -13345,7 +13345,7 @@ function statement(env) do
                     var left$1;
                     if (init ~= undefined) then do
                       var match$16 = init;
-                      left$1 = match$16.tag ? --[ LeftExpression ]--Block.__(1, [match$16[0]]) : --[ LeftDeclaration ]--Block.__(0, [match$16[0]]);
+                      left$1 = match$16.tag and --[ LeftExpression ]--Block.__(1, [match$16[0]]) or --[ LeftDeclaration ]--Block.__(0, [match$16[0]]);
                     end else do
                       throw [
                             Caml_builtin_exceptions.assert_failure,
@@ -13379,10 +13379,10 @@ function statement(env) do
                     end(env$12)), match$10[1]);
                 token$4(env$12, --[ T_SEMICOLON ]--7);
                 var match$17 = Curry._2(Parser_env_Peek.token, undefined, env$12);
-                var test$2 = typeof match$17 == "number" and match$17 == 7 ? undefined : Curry._1(Parse.expression, env$12);
+                var test$2 = typeof match$17 == "number" and match$17 == 7 and undefined or Curry._1(Parse.expression, env$12);
                 token$4(env$12, --[ T_SEMICOLON ]--7);
                 var match$18 = Curry._2(Parser_env_Peek.token, undefined, env$12);
-                var update = typeof match$18 == "number" and match$18 == 4 ? undefined : Curry._1(Parse.expression, env$12);
+                var update = typeof match$18 == "number" and match$18 == 4 and undefined or Curry._1(Parse.expression, env$12);
                 token$4(env$12, --[ T_RPAREN ]--4);
                 var body$6 = Curry._1(Parse.statement, with_in_loop(true, env$12));
                 return --[ tuple ]--[
@@ -13443,7 +13443,7 @@ function statement(env) do
                 var start_loc$11 = Curry._2(Parser_env_Peek.loc, undefined, env$13);
                 token$4(env$13, --[ T_DEBUGGER ]--57);
                 var match$19 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$13);
-                var end_loc$8 = match$19 ~= undefined ? match$19 : start_loc$11;
+                var end_loc$8 = match$19 ~= undefined and match$19 or start_loc$11;
                 semicolon(env$13);
                 return --[ tuple ]--[
                         btwn(start_loc$11, end_loc$8),
@@ -13497,7 +13497,7 @@ function statement(env) do
         end
          end 
         var match$23 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$14);
-        var end_loc$9 = match$23 ~= undefined ? match$23 : expr$1[0];
+        var end_loc$9 = match$23 ~= undefined and match$23 or expr$1[0];
         semicolon(env$14);
         return --[ tuple ]--[
                 btwn(expr$1[0], end_loc$9),
@@ -13821,7 +13821,7 @@ function program(env) do
         end));
   var end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   token$4(env, --[ T_EOF ]--105);
-  var loc = stmts ? btwn(List.hd(stmts)[0], List.hd(List.rev(stmts))[0]) : end_loc;
+  var loc = stmts and btwn(List.hd(stmts)[0], List.hd(List.rev(stmts))[0]) or end_loc;
   var comments = List.rev(env.comments.contents);
   return --[ tuple ]--[
           loc,
@@ -14069,16 +14069,16 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[
     end);
 
 function program$1(failOpt, token_sinkOpt, parse_optionsOpt, content) do
-  var fail = failOpt ~= undefined ? failOpt : true;
-  var token_sink = token_sinkOpt ~= undefined ? Caml_option.valFromOption(token_sinkOpt) : undefined;
-  var parse_options = parse_optionsOpt ~= undefined ? Caml_option.valFromOption(parse_optionsOpt) : undefined;
+  var fail = failOpt ~= undefined and failOpt or true;
+  var token_sink = token_sinkOpt ~= undefined and Caml_option.valFromOption(token_sinkOpt) or undefined;
+  var parse_options = parse_optionsOpt ~= undefined and Caml_option.valFromOption(parse_optionsOpt) or undefined;
   var fail$1 = fail;
   var token_sinkOpt$1 = Caml_option.some(token_sink);
   var parse_optionsOpt$1 = Caml_option.some(parse_options);
   var filename = undefined;
   var content$1 = content;
-  var token_sink$1 = token_sinkOpt$1 ~= undefined ? Caml_option.valFromOption(token_sinkOpt$1) : undefined;
-  var parse_options$1 = parse_optionsOpt$1 ~= undefined ? Caml_option.valFromOption(parse_optionsOpt$1) : undefined;
+  var token_sink$1 = token_sinkOpt$1 ~= undefined and Caml_option.valFromOption(token_sinkOpt$1) or undefined;
+  var parse_options$1 = parse_optionsOpt$1 ~= undefined and Caml_option.valFromOption(parse_optionsOpt$1) or undefined;
   var env = init_env(Caml_option.some(token_sink$1), Caml_option.some(parse_options$1), filename, content$1);
   var env$1 = env;
   var parser = Parse.program;
@@ -14161,7 +14161,7 @@ function parse(content, options) do
       var source;
       if (match ~= undefined) then do
         var match$1 = match;
-        source = typeof match$1 == "number" ? string("(global)") : string(match$1[0]);
+        source = typeof match$1 == "number" and string("(global)") or string(match$1[0]);
       end else do
         source = $$null;
       end end 
@@ -14282,7 +14282,7 @@ function parse(content, options) do
               var g = param$1[1];
               var match = g.id;
               var id;
-              id = match.tag ? generic_type_qualified_identifier(match[0]) : identifier(match[0]);
+              id = match.tag and generic_type_qualified_identifier(match[0]) or identifier(match[0]);
               return node("GenericTypeAnnotation", param$1[0], [
                           --[ tuple ]--[
                             "id",
@@ -14426,7 +14426,7 @@ function parse(content, options) do
       var g = param[1];
       var match = g.id;
       var id;
-      id = match.tag ? generic_type_qualified_identifier(match[0]) : identifier(match[0]);
+      id = match.tag and generic_type_qualified_identifier(match[0]) or identifier(match[0]);
       return node("InterfaceExtends", param[0], [
                   --[ tuple ]--[
                     "id",
@@ -14486,7 +14486,7 @@ function parse(content, options) do
               var arrow = match[0];
               var match$1 = arrow.body;
               var body;
-              body = match$1.tag ? expression(match$1[0]) : block(match$1[0]);
+              body = match$1.tag and expression(match$1[0]) or block(match$1[0]);
               return node("ArrowFunctionExpression", loc, [
                           --[ tuple ]--[
                             "id",
@@ -14704,7 +14704,7 @@ function parse(content, options) do
            if ___conditional___ = 8--[ Update ]-- then do
               var update = match[0];
               var match$6 = update.operator;
-              var operator$3 = match$6 ? "--" : "++";
+              var operator$3 = match$6 and "--" or "++";
               return node("UpdateExpression", loc, [
                           --[ tuple ]--[
                             "operator",
@@ -14722,7 +14722,7 @@ function parse(content, options) do
            if ___conditional___ = 9--[ Logical ]-- then do
               var logical = match[0];
               var match$7 = logical.operator;
-              var operator$4 = match$7 ? "and" : "or";
+              var operator$4 = match$7 and "and" or "or";
               return node("LogicalExpression", loc, [
                           --[ tuple ]--[
                             "operator",
@@ -14781,7 +14781,7 @@ function parse(content, options) do
               var member = match[0];
               var match$8 = member.property;
               var property;
-              property = match$8.tag ? expression(match$8[0]) : identifier(match$8[0]);
+              property = match$8.tag and expression(match$8[0]) or identifier(match$8[0]);
               return node("MemberExpression", loc, [
                           --[ tuple ]--[
                             "object",
@@ -14942,7 +14942,7 @@ function parse(content, options) do
         var attribute = param$2[1];
         var match = attribute.name;
         var name;
-        name = match.tag ? jsx_namespaced_name(match[0]) : jsx_identifier(match[0]);
+        name = match.tag and jsx_namespaced_name(match[0]) or jsx_identifier(match[0]);
         return node("JSXAttribute", param$2[0], [
                     --[ tuple ]--[
                       "name",
@@ -15041,7 +15041,7 @@ function parse(content, options) do
     var jsx_expression_container = function (param) do
       var match = param[1].expression;
       var expression$1;
-      expression$1 = match.tag ? node("JSXEmptyExpression", match[0], []) : expression(match[0]);
+      expression$1 = match.tag and node("JSXEmptyExpression", match[0], []) or expression(match[0]);
       return node("JSXExpressionContainer", param[0], [--[ tuple ]--[
                     "expression",
                     expression$1
@@ -15070,7 +15070,7 @@ function parse(content, options) do
       var member_expression = param[1];
       var match = member_expression._object;
       var _object;
-      _object = match.tag ? jsx_member_expression(match[0]) : jsx_identifier(match[0]);
+      _object = match.tag and jsx_member_expression(match[0]) or jsx_identifier(match[0]);
       return node("JSXMemberExpression", param[0], [
                   --[ tuple ]--[
                     "object",
@@ -15092,7 +15092,7 @@ function parse(content, options) do
       var q = param[1];
       var match = q.qualification;
       var qualification;
-      qualification = match.tag ? generic_type_qualified_identifier(match[0]) : identifier(match[0]);
+      qualification = match.tag and generic_type_qualified_identifier(match[0]) or identifier(match[0]);
       return node("QualifiedTypeIdentifier", param[0], [
                   --[ tuple ]--[
                     "qualification",
@@ -15522,7 +15522,7 @@ function parse(content, options) do
               var forin = match[0];
               var match$1 = forin.left;
               var left;
-              left = match$1.tag ? expression(match$1[0]) : variable_declaration(match$1[0]);
+              left = match$1.tag and expression(match$1[0]) or variable_declaration(match$1[0]);
               return node("ForInStatement", loc, [
                           --[ tuple ]--[
                             "left",
@@ -15545,7 +15545,7 @@ function parse(content, options) do
               var forof = match[0];
               var match$2 = forof.left;
               var left$1;
-              left$1 = match$2.tag ? expression(match$2[0]) : variable_declaration(match$2[0]);
+              left$1 = match$2.tag and expression(match$2[0]) or variable_declaration(match$2[0]);
               return node("ForOfStatement", loc, [
                           --[ tuple ]--[
                             "left",
@@ -15575,16 +15575,16 @@ function parse(content, options) do
            if ___conditional___ = 18--[ FunctionDeclaration ]-- then do
               var fn = match[0];
               var match$3 = fn.id;
-              var match$4 = match$3 ~= undefined ? --[ tuple ]--[
+              var match$4 = match$3 ~= undefined and --[ tuple ]--[
                   "FunctionDeclaration",
                   identifier(match$3)
-                ] : --[ tuple ]--[
+                ] or --[ tuple ]--[
                   "FunctionExpression",
                   $$null
                 ];
               var match$5 = fn.body;
               var body;
-              body = match$5.tag ? expression(match$5[0]) : block(match$5[0]);
+              body = match$5.tag and expression(match$5[0]) or block(match$5[0]);
               return node(match$4[0], loc, [
                           --[ tuple ]--[
                             "id",
@@ -15641,10 +15641,10 @@ function parse(content, options) do
               ];
               var c = param$1[1];
               var match$6 = c.id;
-              var match$7 = match$6 ~= undefined ? --[ tuple ]--[
+              var match$7 = match$6 ~= undefined and --[ tuple ]--[
                   "ClassDeclaration",
                   identifier(match$6)
-                ] : --[ tuple ]--[
+                ] or --[ tuple ]--[
                   "ClassExpression",
                   $$null
                 ];
@@ -15702,10 +15702,10 @@ function parse(content, options) do
               var m = match[0];
               var match$8 = m.id;
               var id;
-              id = match$8.tag ? literal(match$8[0]) : identifier(match$8[0]);
+              id = match$8.tag and literal(match$8[0]) or identifier(match$8[0]);
               var match$9 = m.kind;
               var tmp;
-              tmp = match$9.tag ? string("ES") : string("CommonJS");
+              tmp = match$9.tag and string("ES") or string("CommonJS");
               return node("DeclareModule", loc, [
                           --[ tuple ]--[
                             "id",
@@ -15775,7 +15775,7 @@ function parse(content, options) do
               var declaration$1;
               if (match$12 ~= undefined) then do
                 var match$13 = match$12;
-                declaration$1 = match$13.tag ? expression(match$13[0]) : statement(match$13[0]);
+                declaration$1 = match$13.tag and expression(match$13[0]) or statement(match$13[0]);
               end else do
                 declaration$1 = $$null;
               end end 
@@ -15798,7 +15798,7 @@ function parse(content, options) do
                           ],
                           --[ tuple ]--[
                             "exportKind",
-                            string($$export$1.exportKind ? "value" : "type")
+                            string($$export$1.exportKind and "value" or "type")
                           ]
                         ]);end end end 
            if ___conditional___ = 29--[ ImportDeclaration ]-- then do
@@ -15810,7 +15810,7 @@ function parse(content, options) do
                             var match = param[0];
                             var local_id = match.local;
                             var remote_id = match.remote;
-                            var span_loc = local_id ~= undefined ? btwn(remote_id[0], local_id[0]) : remote_id[0];
+                            var span_loc = local_id ~= undefined and btwn(remote_id[0], local_id[0]) or remote_id[0];
                             return node("ImportSpecifier", span_loc, [
                                         --[ tuple ]--[
                                           "id",
@@ -16171,10 +16171,10 @@ function parse(content, options) do
     var comment = function (param) do
       var c = param[1];
       var match;
-      match = c.tag ? --[ tuple ]--[
+      match = c.tag and --[ tuple ]--[
           "Line",
           c[0]
-        ] : --[ tuple ]--[
+        ] or --[ tuple ]--[
           "Block",
           c[0]
         ];
@@ -16309,7 +16309,7 @@ function parse(content, options) do
       var _function = param[1];
       var match = _function.body;
       var body;
-      body = match.tag ? expression(match[0]) : block(match[0]);
+      body = match.tag and expression(match[0]) or block(match[0]);
       return node("FunctionExpression", param[0], [
                   --[ tuple ]--[
                     "id",
@@ -16532,7 +16532,7 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var match = typeof __dirname == "undefined" ? undefined : __dirname;
+var match = typeof __dirname == "undefined" and undefined or __dirname;
 
 if (match ~= undefined) then do
   var f = Path.join(match, "flow_parser_sample.js");

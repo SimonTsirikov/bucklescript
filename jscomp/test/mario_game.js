@@ -17,19 +17,19 @@ var Actors = { };
 var Dom_html = { };
 
 function setup_sprite(loopOpt, bbox_offsetOpt, bbox_sizeOpt, img_src, max_frames, max_ticks, frame_size, src_offset) do
-  var loop = loopOpt ~= undefined ? loopOpt : true;
-  var bbox_offset = bbox_offsetOpt ~= undefined ? bbox_offsetOpt : --[ tuple ]--[
+  var loop = loopOpt ~= undefined and loopOpt or true;
+  var bbox_offset = bbox_offsetOpt ~= undefined and bbox_offsetOpt or --[ tuple ]--[
       0,
       0
     ];
-  var bbox_size = bbox_sizeOpt ~= undefined ? bbox_sizeOpt : --[ tuple ]--[
+  var bbox_size = bbox_sizeOpt ~= undefined and bbox_sizeOpt or --[ tuple ]--[
       0,
       0
     ];
   var bbox_size$1 = Caml_obj.caml_equal(bbox_size, --[ tuple ]--[
         0,
         0
-      ]) ? frame_size : bbox_size;
+      ]) and frame_size or bbox_size;
   var img_src$1 = "./sprites/" .. img_src;
   return do
           max_frames: max_frames,
@@ -740,11 +740,11 @@ function make_type$1(typ, ctx) do
 end
 
 function make$1(velOpt, accOpt, part_type, pos, ctx) do
-  var vel = velOpt ~= undefined ? velOpt : --[ tuple ]--[
+  var vel = velOpt ~= undefined and velOpt or --[ tuple ]--[
       0,
       0
     ];
-  var acc = accOpt ~= undefined ? accOpt : --[ tuple ]--[
+  var acc = accOpt ~= undefined and accOpt or --[ tuple ]--[
       0,
       0
     ];
@@ -764,23 +764,23 @@ function make$1(velOpt, accOpt, part_type, pos, ctx) do
 end
 
 function make_score(score, pos, ctx) do
-  var t = score >= 801 ? (
-      score >= 2001 ? (
-          score ~= 4000 ? (
-              score ~= 8000 ? --[ Score100 ]--3 : --[ Score8000 ]--10
-            ) : --[ Score4000 ]--9
-        ) : (
-          score ~= 1000 ? (
-              score >= 2000 ? --[ Score2000 ]--8 : --[ Score100 ]--3
-            ) : --[ Score1000 ]--7
+  var t = score >= 801 and (
+      score >= 2001 and (
+          score ~= 4000 and (
+              score ~= 8000 and --[ Score100 ]--3 or --[ Score8000 ]--10
+            ) or --[ Score4000 ]--9
+        ) or (
+          score ~= 1000 and (
+              score >= 2000 and --[ Score2000 ]--8 or --[ Score100 ]--3
+            ) or --[ Score1000 ]--7
         )
-    ) : (
-      score >= 201 ? (
-          score ~= 400 ? (
-              score >= 800 ? --[ Score800 ]--6 : --[ Score100 ]--3
-            ) : --[ Score400 ]--5
-        ) : (
-          score ~= 100 and score >= 200 ? --[ Score200 ]--4 : --[ Score100 ]--3
+    ) or (
+      score >= 201 and (
+          score ~= 400 and (
+              score >= 800 and --[ Score800 ]--6 or --[ Score100 ]--3
+            ) or --[ Score400 ]--5
+        ) or (
+          score ~= 100 and score >= 200 and --[ Score200 ]--4 or --[ Score100 ]--3
         )
     );
   return make$1(--[ tuple ]--[
@@ -819,8 +819,8 @@ var id_counter = do
 end;
 
 function setup_obj(has_gravityOpt, speedOpt, param) do
-  var has_gravity = has_gravityOpt ~= undefined ? has_gravityOpt : true;
-  var speed = speedOpt ~= undefined ? speedOpt : 1;
+  var has_gravity = has_gravityOpt ~= undefined and has_gravityOpt or true;
+  var speed = speedOpt ~= undefined and speedOpt or 1;
   return do
           has_gravity: has_gravity,
           speed: speed
@@ -871,11 +871,11 @@ function new_id(param) do
 end
 
 function make$2($staropt$star, $staropt$star$1, spawnable, context, param) do
-  var id = $staropt$star ~= undefined ? Caml_option.valFromOption($staropt$star) : undefined;
-  var dir = $staropt$star$1 ~= undefined ? $staropt$star$1 : --[ Left ]--0;
+  var id = $staropt$star ~= undefined and Caml_option.valFromOption($staropt$star) or undefined;
+  var dir = $staropt$star$1 ~= undefined and $staropt$star$1 or --[ Left ]--0;
   var spr = make(spawnable, dir, context);
   var params = make_type$2(spawnable);
-  var id$1 = id ~= undefined ? id : new_id(--[ () ]--0);
+  var id$1 = id ~= undefined and id or new_id(--[ () ]--0);
   var obj = do
     params: params,
     pos: do
@@ -1032,9 +1032,9 @@ function update_player(player, keys, context) do
           end
         end), keys);
   var v = player.vel.x * 0.9;
-  var vel_damped = Math.abs(v) < 0.1 ? 0 : v;
+  var vel_damped = Math.abs(v) < 0.1 and 0 or v;
   player.vel.x = vel_damped;
-  var pl_typ = player.health <= 1 ? --[ SmallM ]--1 : --[ BigM ]--0;
+  var pl_typ = player.health <= 1 and --[ SmallM ]--1 or --[ BigM ]--0;
   if (!prev_jumping and player.jumping) then do
     return --[ tuple ]--[
             pl_typ,
@@ -1123,7 +1123,7 @@ function normalize_origin(pos, spr) do
 end
 
 function collide_block(check_xOpt, dir, obj) do
-  var check_x = check_xOpt ~= undefined ? check_xOpt : true;
+  var check_x = check_xOpt ~= undefined and check_xOpt or true;
   if (dir ~= 1) then do
     if (dir ~= 0) then do
       if (check_x) then do
@@ -1146,7 +1146,7 @@ end
 
 function reverse_left_right(obj) do
   obj.vel.x = -obj.vel.x;
-  obj.dir = obj.dir ? --[ Left ]--0 : --[ Right ]--1;
+  obj.dir = obj.dir and --[ Left ]--0 or --[ Right ]--1;
   return --[ () ]--0;
 end
 
@@ -1236,7 +1236,7 @@ function spawn_above(player_dir, obj, typ, context) do
       ]);
   var item_obj = item[2];
   item_obj.pos.y = item_obj.pos.y - item[1].params.frame_size[1];
-  item_obj.dir = player_dir ? --[ Left ]--0 : --[ Right ]--1;
+  item_obj.dir = player_dir and --[ Left ]--0 or --[ Right ]--1;
   set_vel_to_speed(item_obj);
   return item;
 end
@@ -1269,9 +1269,9 @@ function col_bypass(c1, c2) do
   local ___conditional___=(c1.tag | 0);
   do
      if ___conditional___ = 0--[ Player ]-- then do
-        ctypes = c2.tag == --[ Enemy ]--1 ? c1[2].invuln > 0 : false;end else 
+        ctypes = c2.tag == --[ Enemy ]--1 and c1[2].invuln > 0 or false;end else 
      if ___conditional___ = 1--[ Enemy ]-- then do
-        ctypes = c2.tag == --[ Item ]--2 ? true : false;end else 
+        ctypes = c2.tag == --[ Item ]--2 and true or false;end else 
      if ___conditional___ = 2--[ Item ]-- then do
         local ___conditional___=(c2.tag | 0);
         do
@@ -1344,11 +1344,11 @@ function kill(collid, ctx) do
           pos_000,
           pos_001
         ];
-        var score = o.score > 0 ? --[ :: ]--[
+        var score = o.score > 0 and --[ :: ]--[
             make_score(o.score, pos, ctx),
             --[ [] ]--0
-          ] : --[ [] ]--0;
-        var remains = collid[0] ~= 0 ? --[ [] ]--0 : --[ :: ]--[
+          ] or --[ [] ]--0;
+        var remains = collid[0] ~= 0 and --[ [] ]--0 or --[ :: ]--[
             make$1(undefined, undefined, --[ GoombaSquish ]--0, pos, ctx),
             --[ [] ]--0
           ];
@@ -1991,7 +1991,7 @@ function process_collision(dir, c1, c2, state) do
         var o2$9 = o2$1;
         var context$2 = context;
         if (t2$4 >= 3) then do
-          var r2$1 = o2$9.vel.x == 0 ? evolve_enemy(o1$8.dir, t2$4, s2$5, o2$9, context$2) : (dec_health(o1$8), o1$8.invuln = 60, undefined);
+          var r2$1 = o2$9.vel.x == 0 and evolve_enemy(o1$8.dir, t2$4, s2$5, o2$9, context$2) or (dec_health(o1$8), o1$8.invuln = 60, undefined);
           return --[ tuple ]--[
                   undefined,
                   r2$1
@@ -2079,7 +2079,7 @@ function check_collisions(collid, all_collids, state) do
           ];
         end else do
           var match = check_collision(c$1, h);
-          new_objs = match ~= undefined and h[2].id ~= c_obj.id ? process_collision(match, c$1, h, state$2) : --[ tuple ]--[
+          new_objs = match ~= undefined and h[2].id ~= c_obj.id and process_collision(match, c$1, h, state$2) or --[ tuple ]--[
               undefined,
               undefined
             ];
@@ -2089,22 +2089,22 @@ function check_collisions(collid, all_collids, state) do
         if (match$1 ~= undefined) then do
           var match$2 = new_objs[1];
           var o = match$1;
-          acc$1 = match$2 ~= undefined ? --[ :: ]--[
+          acc$1 = match$2 ~= undefined and --[ :: ]--[
               o,
               --[ :: ]--[
                 match$2,
                 acc
               ]
-            ] : --[ :: ]--[
+            ] or --[ :: ]--[
               o,
               acc
             ];
         end else do
           var match$3 = new_objs[1];
-          acc$1 = match$3 ~= undefined ? --[ :: ]--[
+          acc$1 = match$3 ~= undefined and --[ :: ]--[
               match$3,
               acc
-            ] : acc;
+            ] or acc;
         end end 
         _acc = acc$1;
         _cs = cs$1[1];
@@ -2119,7 +2119,7 @@ end
 function update_collidable(state, collid, all_collids) do
   var obj = collid[2];
   var spr = collid[1];
-  obj.invuln = obj.invuln > 0 ? obj.invuln - 1 | 0 : 0;
+  obj.invuln = obj.invuln > 0 and obj.invuln - 1 | 0 or 0;
   var viewport_filter = in_viewport(state.vpt, obj.pos) or is_player(collid) or out_of_viewport_below(state.vpt, obj.pos.y);
   if (!obj.kill and viewport_filter) then do
     obj.grounded = false;
@@ -2198,7 +2198,7 @@ function run_update_collid(state, collid, all_collids) do
       ];
     end
      end 
-    var new_parts = obj.kill ? kill(collid, state.ctx) : --[ [] ]--0;
+    var new_parts = obj.kill and kill(collid, state.ctx) or --[ [] ]--0;
     particles.contents = Pervasives.$at(particles.contents, new_parts);
     return collid;
   end else do
@@ -2598,7 +2598,7 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
     var block_typ = Random.$$int(4);
     var stair_typ = Random.$$int(2);
     var life_block_chance = Random.$$int(5);
-    var middle_block = life_block_chance == 0 ? 3 : stair_typ;
+    var middle_block = life_block_chance == 0 and 3 or stair_typ;
     local ___conditional___=(prob);
     do
        if ___conditional___ = 0 then do

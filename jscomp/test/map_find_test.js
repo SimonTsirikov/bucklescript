@@ -22,13 +22,13 @@ function create(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -79,7 +79,7 @@ function bal(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -137,7 +137,7 @@ function find(x, _param) do
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -190,13 +190,13 @@ function create$1(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$1(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -247,7 +247,7 @@ function bal$1(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -305,7 +305,7 @@ function find$1(x, _param) do
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do

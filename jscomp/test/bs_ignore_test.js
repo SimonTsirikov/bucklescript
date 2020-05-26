@@ -27,7 +27,7 @@ function string_of_kind(kind) do
 end
 
 function add2(k, x, y) do
-  return add_dyn(k ? "string" : "float", x, y);
+  return add_dyn(k and "string" or "float", x, y);
 end
 
 console.log(add2(--[ Float ]--0, 3.0, 2.0));

@@ -16,7 +16,7 @@ function create(l, v, r) do
           l,
           v,
           r,
-          hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
@@ -58,7 +58,7 @@ function bal(l, v, r) do
             l,
             v,
             r,
-            hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -162,7 +162,7 @@ function mem(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[0] : param[2];
+        _param = c < 0 and param[0] or param[2];
         continue ;
       end end 
     end else do

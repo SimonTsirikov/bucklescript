@@ -328,7 +328,7 @@ end
 function edit_distance(a, b, cutoff) do
   var la = #a;
   var lb = #b;
-  var cutoff$1 = Caml_primitive.caml_int_min(la > lb ? la : lb, cutoff);
+  var cutoff$1 = Caml_primitive.caml_int_min(la > lb and la or lb, cutoff);
   if (Pervasives.abs(la - lb | 0) > cutoff$1) then do
     return ;
   end else do
@@ -342,9 +342,9 @@ function edit_distance(a, b, cutoff) do
     end
     for(var i$1 = 1; i$1 <= la; ++i$1)do
       for(var j$1 = Caml_primitive.caml_int_max(1, (i$1 - cutoff$1 | 0) - 1 | 0) ,j_finish = Caml_primitive.caml_int_min(lb, (i$1 + cutoff$1 | 0) + 1 | 0); j$1 <= j_finish; ++j$1)do
-        var cost = Caml_string.get(a, i$1 - 1 | 0) == Caml_string.get(b, j$1 - 1 | 0) ? 0 : 1;
+        var cost = Caml_string.get(a, i$1 - 1 | 0) == Caml_string.get(b, j$1 - 1 | 0) and 0 or 1;
         var best = Caml_primitive.caml_int_min(1 + Caml_primitive.caml_int_min(Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1 - 1 | 0), j$1), Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1), j$1 - 1 | 0)) | 0, Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1 - 1 | 0), j$1 - 1 | 0) + cost | 0);
-        var best$1 = i$1 > 1 and j$1 > 1 and Caml_string.get(a, i$1 - 1 | 0) == Caml_string.get(b, j$1 - 2 | 0) and Caml_string.get(a, i$1 - 2 | 0) == Caml_string.get(b, j$1 - 1 | 0) ? Caml_primitive.caml_int_min(best, Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1 - 2 | 0), j$1 - 2 | 0) + cost | 0) : best;
+        var best$1 = i$1 > 1 and j$1 > 1 and Caml_string.get(a, i$1 - 1 | 0) == Caml_string.get(b, j$1 - 2 | 0) and Caml_string.get(a, i$1 - 2 | 0) == Caml_string.get(b, j$1 - 1 | 0) and Caml_primitive.caml_int_min(best, Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1 - 2 | 0), j$1 - 2 | 0) + cost | 0) or best;
         Caml_array.caml_array_set(Caml_array.caml_array_get(m, i$1), j$1, best$1);
       end
     end
@@ -402,9 +402,9 @@ function code_of_style(param) do
 end
 
 function ansi_of_style_l(l) do
-  var s = l ? (
-      l[1] ? $$String.concat(";", List.map(code_of_style, l)) : code_of_style(l[0])
-    ) : "0";
+  var s = l and (
+      l[1] and $$String.concat(";", List.map(code_of_style, l)) or code_of_style(l[0])
+    ) or "0";
   return "\x1b[" .. (s .. "m");
 end
 
@@ -1085,7 +1085,7 @@ end
 function parse_options(errflag, s) do
   var error = $$Array.copy(current.contents.error);
   var active = $$Array.copy(current.contents.active);
-  parse_opt(error, active, errflag ? error : active, s);
+  parse_opt(error, active, errflag and error or active, s);
   current.contents = do
     active: active,
     error: error
@@ -1447,7 +1447,7 @@ function message(param) do
                                 ])
                             ]),
                           "implicit elimination of optional argument%s %s"
-                        ]), List.length(sl) == 1 ? "" : "s", $$String.concat(", ", sl));end end end 
+                        ]), List.length(sl) == 1 and "" or "s", $$String.concat(", ", sl));end end end 
        if ___conditional___ = 32--[ No_cmi_file ]-- then do
           return "no cmi file was found in path for module " .. param[0];end end end 
        if ___conditional___ = 33--[ Bad_docstring ]-- then do
@@ -1803,7 +1803,7 @@ end
 function show_filename(file) do
   if (absname.contents) then do
     var s = file;
-    var s$1 = Curry._1(Filename.is_relative, s) ? Filename.concat(Caml_sys.caml_sys_getcwd(--[ () ]--0), s) : s;
+    var s$1 = Curry._1(Filename.is_relative, s) and Filename.concat(Caml_sys.caml_sys_getcwd(--[ () ]--0), s) or s;
     var aux = function (_s) do
       while(true) do
         var s = _s;
@@ -1850,7 +1850,7 @@ function print_loc(ppf, loc) do
   var match = get_pos_info(loc.loc_start);
   var startchar = match[2];
   var file = match[0];
-  var startchar$1 = bs_vscode ? startchar + 1 | 0 : startchar;
+  var startchar$1 = bs_vscode and startchar + 1 | 0 or startchar;
   var endchar = (loc.loc_end.pos_cnum - loc.loc_start.pos_cnum | 0) + startchar$1 | 0;
   if (file == "//toplevel//") then do
     if (highlight_locations(ppf, --[ :: ]--[
@@ -2089,9 +2089,9 @@ function print_phanton_error_prefix(ppf) do
 end
 
 function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
-  var loc = locOpt ~= undefined ? locOpt : none;
-  var sub = subOpt ~= undefined ? subOpt : --[ [] ]--0;
-  var if_highlight = if_highlightOpt ~= undefined ? if_highlightOpt : "";
+  var loc = locOpt ~= undefined and locOpt or none;
+  var sub = subOpt ~= undefined and subOpt or --[ [] ]--0;
+  var if_highlight = if_highlightOpt ~= undefined and if_highlightOpt or "";
   var before = print_phanton_error_prefix;
   var k = function (msg) do
     return do
@@ -2116,9 +2116,9 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
 end
 
 function error(locOpt, subOpt, if_highlightOpt, msg) do
-  var loc = locOpt ~= undefined ? locOpt : none;
-  var sub = subOpt ~= undefined ? subOpt : --[ [] ]--0;
-  var if_highlight = if_highlightOpt ~= undefined ? if_highlightOpt : "";
+  var loc = locOpt ~= undefined and locOpt or none;
+  var sub = subOpt ~= undefined and subOpt or --[ [] ]--0;
+  var if_highlight = if_highlightOpt ~= undefined and if_highlightOpt or "";
   return do
           loc: loc,
           msg: msg,
@@ -2235,7 +2235,7 @@ function equal(i1, i2) do
 end
 
 function set_current_time(t) do
-  currentstamp.contents = currentstamp.contents > t ? currentstamp.contents : t;
+  currentstamp.contents = currentstamp.contents > t and currentstamp.contents or t;
   return --[ () ]--0;
 end
 
@@ -2277,7 +2277,7 @@ function print$2(ppf, i) do
                             ])
                         ]),
                       "%s/%i%s"
-                    ]), i.name, n, $$global(i) ? "g" : "");
+                    ]), i.name, n, $$global(i) and "g" or "");
     end else do
       return Curry._1(Format.fprintf(ppf, --[ Format ]--[
                       --[ String ]--Block.__(2, [
@@ -2305,28 +2305,28 @@ function print$2(ppf, i) do
 end
 
 function mknode(l, d, r) do
-  var hl = l ? l[3] : 0;
-  var hr = r ? r[3] : 0;
+  var hl = l and l[3] or 0;
+  var hr = r and r[3] or 0;
   return --[ Node ]--[
           l,
           d,
           r,
-          hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function balance(l, d, r) do
-  var hl = l ? l[3] : 0;
-  var hr = r ? r[3] : 0;
+  var hl = l and l[3] or 0;
+  var hr = r and r[3] or 0;
   if (hl > (hr + 1 | 0)) then do
     if (l) then do
       var lr = l[2];
       var ld = l[1];
       var ll = l[0];
       if ((
-          ll ? ll[3] : 0
+          ll and ll[3] or 0
         ) >= (
-          lr ? lr[3] : 0
+          lr and lr[3] or 0
         )) then do
         return mknode(ll, ld, mknode(lr, d, r));
       end else if (lr) then do
@@ -2356,9 +2356,9 @@ function balance(l, d, r) do
       var rl = r[0];
       var rr = r[2];
       if ((
-          rr ? rr[3] : 0
+          rr and rr[3] or 0
         ) >= (
-          rl ? rl[3] : 0
+          rl and rl[3] or 0
         )) then do
         return mknode(mknode(l, d, rl), r[1], rr);
       end else if (rl) then do
@@ -2452,7 +2452,7 @@ function find_same(id, _param) do
           end;
         end end 
       end else do
-        _param = c < 0 ? param[0] : param[2];
+        _param = c < 0 and param[0] or param[2];
         continue ;
       end end 
     end else do
@@ -2470,7 +2470,7 @@ function find_name(name, _param) do
       if (c == 0) then do
         return k.data;
       end else do
-        _param = c < 0 ? param[0] : param[2];
+        _param = c < 0 and param[0] or param[2];
         continue ;
       end end 
     end else do
@@ -2503,7 +2503,7 @@ function find_all(name, _param) do
                 get_all(k.previous)
               ];
       end else do
-        _param = c < 0 ? param[0] : param[2];
+        _param = c < 0 and param[0] or param[2];
         continue ;
       end end 
     end else do
@@ -2630,7 +2630,7 @@ function kfalse(x) do
 end
 
 function name($staropt$star, param) do
-  var paren = $staropt$star ~= undefined ? $staropt$star : kfalse;
+  var paren = $staropt$star ~= undefined and $staropt$star or kfalse;
   local ___conditional___=(param.tag | 0);
   do
      if ___conditional___ = 0--[ Pident ]-- then do
@@ -2638,7 +2638,7 @@ function name($staropt$star, param) do
      if ___conditional___ = 1--[ Pdot ]-- then do
         var s = param[1];
         return name(paren, param[0]) .. (
-                Curry._1(paren, s) ? ".( " .. (s .. " )") : "." .. s
+                Curry._1(paren, s) and ".( " .. (s .. " )") or "." .. s
               );end end end 
      if ___conditional___ = 2--[ Papply ]-- then do
         return name(paren, param[0]) .. ("(" .. (name(paren, param[1]) .. ")"));end end end 
@@ -2814,18 +2814,18 @@ function description_list(p) do
     list_000,
     --[ [] ]--0
   ];
-  var list$1 = p.prim_alloc ? list : --[ :: ]--[
+  var list$1 = p.prim_alloc and list or --[ :: ]--[
       "noalloc",
       list
     ];
-  var list$2 = p.prim_native_name ~= "" ? --[ :: ]--[
+  var list$2 = p.prim_native_name ~= "" and --[ :: ]--[
       p.prim_native_name,
       list$1
-    ] : list$1;
-  return List.rev(p.prim_native_float ? --[ :: ]--[
+    ] or list$1;
+  return List.rev(p.prim_native_float and --[ :: ]--[
                 "float",
                 list$2
-              ] : list$2);
+              ] or list$2);
 end
 
 function compare(t1, t2) do
@@ -2856,13 +2856,13 @@ function create$1(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -2913,7 +2913,7 @@ function bal(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -2971,7 +2971,7 @@ function find(x, _param) do
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -2988,7 +2988,7 @@ function mem(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -3125,19 +3125,19 @@ function height$1(param) do
 end
 
 function create$2(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$1(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--2];
@@ -3185,7 +3185,7 @@ function bal$1(l, v, r) do
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -3357,7 +3357,7 @@ function mem$2(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--2];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
         continue ;
       end end 
     end else do
@@ -3589,19 +3589,19 @@ function height$2(param) do
 end
 
 function create$3(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$2(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--2];
@@ -3649,7 +3649,7 @@ function bal$2(l, v, r) do
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -3821,7 +3821,7 @@ function mem$3(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--2];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
         continue ;
       end end 
     end else do
@@ -4013,13 +4013,13 @@ function create$4(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$3(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -4070,7 +4070,7 @@ function bal$3(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -4128,7 +4128,7 @@ function find$1(x, _param) do
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -4327,7 +4327,7 @@ function row_repr_aux(_ll, _row) do
     if (typeof match ~= "number" and match.tag == --[ Tvariant ]--8) then do
       var f = row.row_fields;
       _row = match[0];
-      _ll = f == --[ [] ]--0 ? ll : --[ :: ]--[
+      _ll = f == --[ [] ]--0 and ll or --[ :: ]--[
           f,
           ll
         ];
@@ -4864,10 +4864,10 @@ function copy_row(f, fixed, row, keep, more) do
           if (typeof match == "number") then do
             tmp = fi;
           end else if (match.tag) then do
-            var e = keep ? match[3] : (do
+            var e = keep and match[3] or (do
                   contents: undefined
                 end);
-            var m = row.row_fixed ? fixed : match[2];
+            var m = row.row_fixed and fixed or match[2];
             var tl = List.map(f, match[1]);
             tmp = --[ Reither ]--Block.__(1, [
                 match[0],
@@ -4877,7 +4877,7 @@ function copy_row(f, fixed, row, keep, more) do
               ]);
           end else do
             var match$1 = match[0];
-            tmp = match$1 ~= undefined ? --[ Rpresent ]--Block.__(0, [Curry._1(f, match$1)]) : fi;
+            tmp = match$1 ~= undefined and --[ Rpresent ]--Block.__(0, [Curry._1(f, match$1)]) or fi;
           end end  end 
           return --[ tuple ]--[
                   param[0],
@@ -4949,7 +4949,7 @@ function copy_type_desc(_keep_namesOpt, f, _ty) do
   while(true) do
     var keep_namesOpt = _keep_namesOpt;
     var ty = _ty;
-    var keep_names = keep_namesOpt ~= undefined ? keep_namesOpt : false;
+    var keep_names = keep_namesOpt ~= undefined and keep_namesOpt or false;
     if (typeof ty == "number") then do
       return --[ Tnil ]--0;
     end else do
@@ -5610,7 +5610,7 @@ function read_cmi(filename) do
       Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
       var pre_len = #cmi_magic_number - 3 | 0;
       if ($$String.sub(buffer, 0, pre_len) == $$String.sub(cmi_magic_number, 0, pre_len)) then do
-        var msg = buffer < cmi_magic_number ? "an older" : "a newer";
+        var msg = buffer < cmi_magic_number and "an older" or "a newer";
         throw [
               $$Error$1,
               --[ Wrong_version_interface ]--Block.__(1, [
@@ -5847,7 +5847,7 @@ var optional_shape = --[ tuple ]--[
 
 function extension_descr(path_ext, ext) do
   var match = ext.ext_ret_type;
-  var ty_res = match ~= undefined ? match : newty2(100000000, --[ Tconstr ]--Block.__(3, [
+  var ty_res = match ~= undefined and match or newty2(100000000, --[ Tconstr ]--Block.__(3, [
             ext.ext_type_path,
             ext.ext_type_params,
             do
@@ -6544,10 +6544,10 @@ end
 
 function add_docs_attrs(docs, attrs) do
   var match = docs.docs_pre;
-  var attrs$1 = match ~= undefined ? --[ :: ]--[
+  var attrs$1 = match ~= undefined and --[ :: ]--[
       docs_attr(match),
       attrs
-    ] : attrs;
+    ] or attrs;
   var match$1 = docs.docs_post;
   if (match$1 ~= undefined) then do
     return Pervasives.$at(attrs$1, --[ :: ]--[
@@ -6616,7 +6616,7 @@ function get_docstring(info, dsl) do
       var ds = param[0];
       var match = ds.ds_attached;
       if (match ~= 1) then do
-        ds.ds_attached = info ? --[ Info ]--1 : --[ Docs ]--2;
+        ds.ds_attached = info and --[ Info ]--1 or --[ Docs ]--2;
         return ds;
       end else do
         _param = param[1];
@@ -6876,8 +6876,8 @@ var default_loc = do
 end;
 
 function mk(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           ptyp_desc: d,
           ptyp_loc: loc,
@@ -6976,8 +6976,8 @@ function force_poly(t) do
 end
 
 function mk$1(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           ppat_desc: d,
           ppat_loc: loc,
@@ -7082,8 +7082,8 @@ function extension$1(loc, attrs, a) do
 end
 
 function mk$2(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pexp_desc: d,
           pexp_loc: loc,
@@ -7324,8 +7324,8 @@ function $$case(lhs, guard, rhs) do
 end
 
 function mk$3(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pmty_desc: d,
           pmty_loc: loc,
@@ -7380,8 +7380,8 @@ function extension$3(loc, attrs, a) do
 end
 
 function mk$4(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pmod_desc: d,
           pmod_loc: loc,
@@ -7439,7 +7439,7 @@ function extension$4(loc, attrs, a) do
 end
 
 function mk$5(locOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
   return do
           psig_desc: d,
           psig_loc: loc
@@ -7447,7 +7447,7 @@ function mk$5(locOpt, d) do
 end
 
 function extension$5(loc, attrsOpt, a) do
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return mk$5(loc, --[ Psig_extension ]--Block.__(12, [
                 a,
                 attrs
@@ -7463,7 +7463,7 @@ function text(txt) do
 end
 
 function mk$6(locOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
   return do
           pstr_desc: d,
           pstr_loc: loc
@@ -7471,7 +7471,7 @@ function mk$6(locOpt, d) do
 end
 
 function $$eval(loc, attrsOpt, a) do
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return mk$6(loc, --[ Pstr_eval ]--Block.__(0, [
                 a,
                 attrs
@@ -7486,7 +7486,7 @@ function value(loc, a, b) do
 end
 
 function extension$6(loc, attrsOpt, a) do
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return mk$6(loc, --[ Pstr_extension ]--Block.__(14, [
                 a,
                 attrs
@@ -7502,8 +7502,8 @@ function text$1(txt) do
 end
 
 function mk$7(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pcl_desc: d,
           pcl_loc: loc,
@@ -7569,8 +7569,8 @@ function extension$7(loc, attrs, a) do
 end
 
 function mk$8(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pcty_desc: d,
           pcty_loc: loc,
@@ -7613,9 +7613,9 @@ function extension$8(loc, attrs, a) do
 end
 
 function mk$9(locOpt, attrsOpt, docsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
   return do
           pctf_desc: d,
           pctf_loc: loc,
@@ -7678,9 +7678,9 @@ function attr$7(d, a) do
 end
 
 function mk$10(locOpt, attrsOpt, docsOpt, d) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
   return do
           pcf_desc: d,
           pcf_loc: loc,
@@ -7760,10 +7760,10 @@ function attr$8(d, a) do
 end
 
 function mk$11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var prim = primOpt ~= undefined ? primOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var prim = primOpt ~= undefined and primOpt or --[ [] ]--0;
   return do
           pval_name: name,
           pval_type: typ,
@@ -7774,10 +7774,10 @@ function mk$11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) do
 end
 
 function mk$12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
   return do
           pmd_name: name,
           pmd_type: typ,
@@ -7787,10 +7787,10 @@ function mk$12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) do
 end
 
 function mk$13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
   return do
           pmtd_name: name,
           pmtd_type: typ,
@@ -7800,10 +7800,10 @@ function mk$13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) do
 end
 
 function mk$14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
   return do
           pmb_name: name,
           pmb_expr: expr,
@@ -7813,10 +7813,10 @@ function mk$14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) do
 end
 
 function mk$15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var override = overrideOpt ~= undefined ? overrideOpt : --[ Fresh ]--1;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var override = overrideOpt ~= undefined and overrideOpt or --[ Fresh ]--1;
   return do
           popen_lid: lid,
           popen_override: override,
@@ -7826,9 +7826,9 @@ function mk$15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) do
 end
 
 function mk$16(locOpt, attrsOpt, docsOpt, mexpr) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
   return do
           pincl_mod: mexpr,
           pincl_loc: loc,
@@ -7837,10 +7837,10 @@ function mk$16(locOpt, attrsOpt, docsOpt, mexpr) do
 end
 
 function mk$17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
   return do
           pvb_pat: pat,
           pvb_expr: expr,
@@ -7850,12 +7850,12 @@ function mk$17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) do
 end
 
 function mk$18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, expr) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
-  var virt = virtOpt ~= undefined ? virtOpt : --[ Concrete ]--1;
-  var params = paramsOpt ~= undefined ? paramsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
+  var virt = virtOpt ~= undefined and virtOpt or --[ Concrete ]--1;
+  var params = paramsOpt ~= undefined and paramsOpt or --[ [] ]--0;
   return do
           pci_virt: virt,
           pci_params: params,
@@ -7867,14 +7867,14 @@ function mk$18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, exp
 end
 
 function mk$19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt, privOpt, manifest, name) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var text = textOpt ~= undefined ? textOpt : --[ [] ]--0;
-  var params = paramsOpt ~= undefined ? paramsOpt : --[ [] ]--0;
-  var cstrs = cstrsOpt ~= undefined ? cstrsOpt : --[ [] ]--0;
-  var kind = kindOpt ~= undefined ? kindOpt : --[ Ptype_abstract ]--0;
-  var priv = privOpt ~= undefined ? privOpt : --[ Public ]--1;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
+  var params = paramsOpt ~= undefined and paramsOpt or --[ [] ]--0;
+  var cstrs = cstrsOpt ~= undefined and cstrsOpt or --[ [] ]--0;
+  var kind = kindOpt ~= undefined and kindOpt or --[ Ptype_abstract ]--0;
+  var priv = privOpt ~= undefined and privOpt or --[ Public ]--1;
   return do
           ptype_name: name,
           ptype_params: params,
@@ -7888,10 +7888,10 @@ function mk$19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt,
 end
 
 function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
-  var args = argsOpt ~= undefined ? argsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  var args = argsOpt ~= undefined and argsOpt or --[ [] ]--0;
   return do
           pcd_name: name,
           pcd_args: args,
@@ -7902,10 +7902,10 @@ function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) do
 end
 
 function field$1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
-  var mut = mutOpt ~= undefined ? mutOpt : --[ Immutable ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  var mut = mutOpt ~= undefined and mutOpt or --[ Immutable ]--0;
   return do
           pld_name: name,
           pld_mutable: mut,
@@ -7916,10 +7916,10 @@ function field$1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) do
 end
 
 function mk$20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) do
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var params = paramsOpt ~= undefined ? paramsOpt : --[ [] ]--0;
-  var priv = privOpt ~= undefined ? privOpt : --[ Public ]--1;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var params = paramsOpt ~= undefined and paramsOpt or --[ [] ]--0;
+  var priv = privOpt ~= undefined and privOpt or --[ Public ]--1;
   return do
           ptyext_path: path,
           ptyext_params: params,
@@ -7930,10 +7930,10 @@ function mk$20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) do
 end
 
 function constructor$1(locOpt, attrsOpt, docsOpt, infoOpt, name, kind) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
   return do
           pext_name: name,
           pext_kind: kind,
@@ -7943,11 +7943,11 @@ function constructor$1(locOpt, attrsOpt, docsOpt, infoOpt, name, kind) do
 end
 
 function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
-  var args = argsOpt ~= undefined ? argsOpt : --[ [] ]--0;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  var args = argsOpt ~= undefined and argsOpt or --[ [] ]--0;
   return do
           pext_name: name,
           pext_kind: --[ Pext_decl ]--Block.__(0, [
@@ -7960,10 +7960,10 @@ function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) do
 end
 
 function rebind(locOpt, attrsOpt, docsOpt, infoOpt, name, lid) do
-  var loc = locOpt ~= undefined ? locOpt : default_loc.contents;
-  var attrs = attrsOpt ~= undefined ? attrsOpt : --[ [] ]--0;
-  var docs = docsOpt ~= undefined ? docsOpt : empty_docs;
-  var info = infoOpt ~= undefined ? Caml_option.valFromOption(infoOpt) : undefined;
+  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
   return do
           pext_name: name,
           pext_kind: --[ Pext_rebind ]--Block.__(1, [lid]),
@@ -8824,7 +8824,7 @@ function create$5(l, x, d, r) do
           x,
           d,
           r,
-          hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
@@ -8933,7 +8933,7 @@ function find$2(x, _param) do
       if (c == 0) then do
         return param[2];
       end else do
-        _param = c < 0 ? param[0] : param[3];
+        _param = c < 0 and param[0] or param[3];
         continue ;
       end end 
     end else do
@@ -8950,7 +8950,7 @@ function mem$4(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[0] : param[3];
+        _param = c < 0 and param[0] or param[3];
         continue ;
       end end 
     end else do
@@ -9061,7 +9061,7 @@ function is_not_doc(param) do
 end
 
 function attrs(s, x) do
-  var x$1 = s.for_saving and !keep_docs.contents ? List.filter(is_not_doc)(x) : x;
+  var x$1 = s.for_saving and !keep_docs.contents and List.filter(is_not_doc)(x) or x;
   if (s.for_saving and !keep_locs.contents) then do
     return Curry._2(newrecord.attributes, newrecord, x$1);
   end else do
@@ -9224,7 +9224,7 @@ function typexp(s, ty) do
      if ___conditional___ = 1 then do
         var desc$1 = ty$1.desc;
         save_desc(ty$1, desc$1);
-        var ty$prime = s.for_saving ? newpersty(--[ Tvar ]--Block.__(0, [undefined])) : newty2(100000000, --[ Tvar ]--Block.__(0, [undefined]));
+        var ty$prime = s.for_saving and newpersty(--[ Tvar ]--Block.__(0, [undefined])) or newty2(100000000, --[ Tvar ]--Block.__(0, [undefined]));
         ty$1.desc = --[ Tsubst ]--Block.__(7, [ty$prime]);
         var tmp;
         var exit$1 = 0;
@@ -9315,7 +9315,7 @@ function typexp(s, ty) do
                       if (!static_row(row)) then do
                         var match$6 = more.desc;
                         var tmp$4;
-                        tmp$4 = typeof match$6 == "number" or match$6.tag ~= --[ Tconstr ]--3 ? false : true;
+                        tmp$4 = typeof match$6 == "number" or match$6.tag ~= --[ Tconstr ]--3 and false or true;
                         tmp$3 = tmp$4;
                       end
                        end 
@@ -9356,8 +9356,8 @@ function typexp(s, ty) do
                   end end 
                   if (exit$3 == 5) then do
                     save_desc(more, more.desc);
-                    more$prime = s.for_saving ? newpersty(norm(more.desc)) : (
-                        dup and is_Tvar(more) ? newty2(100000000, more.desc) : more
+                    more$prime = s.for_saving and newpersty(norm(more.desc)) or (
+                        dup and is_Tvar(more) and newty2(100000000, more.desc) or more
                       );
                   end
                    end 
@@ -9415,7 +9415,7 @@ function typexp(s, ty) do
         return ty$prime;end end end 
      if ___conditional___ = 2 then do
         if (s.for_saving or ty$1.id < 0) then do
-          var ty$prime$1 = s.for_saving ? newpersty(norm(desc)) : newty2(ty$1.level, desc);
+          var ty$prime$1 = s.for_saving and newpersty(norm(desc)) or newty2(ty$1.level, desc);
           save_desc(ty$1, desc);
           ty$1.desc = --[ Tsubst ]--Block.__(7, [ty$prime$1]);
           return ty$prime$1;
@@ -9436,10 +9436,10 @@ end
 function type_declaration(s, decl) do
   var match = decl.type_kind;
   var tmp;
-  tmp = typeof match == "number" ? (
-      match == --[ Type_abstract ]--0 ? --[ Type_abstract ]--0 : --[ Type_open ]--1
-    ) : (
-      match.tag ? --[ Type_variant ]--Block.__(1, [List.map((function (c) do
+  tmp = typeof match == "number" and (
+      match == --[ Type_abstract ]--0 and --[ Type_abstract ]--0 or --[ Type_open ]--1
+    ) or (
+      match.tag and --[ Type_variant ]--Block.__(1, [List.map((function (c) do
                     return do
                             cd_id: c.cd_id,
                             cd_args: List.map((function (param) do
@@ -9451,7 +9451,7 @@ function type_declaration(s, decl) do
                             cd_loc: loc(s, c.cd_loc),
                             cd_attributes: attrs(s, c.cd_attributes)
                           end;
-                  end), match[0])]) : --[ Type_record ]--Block.__(0, [
+                  end), match[0])]) or --[ Type_record ]--Block.__(0, [
             List.map((function (l) do
                     return do
                             ld_id: l.ld_id,
@@ -9470,7 +9470,7 @@ function type_declaration(s, decl) do
         end), decl.type_params);
   var decl_type_arity = decl.type_arity;
   var decl_type_private = decl.type_private;
-  var decl_type_manifest = match$1 ~= undefined ? typexp(s, match$1) : undefined;
+  var decl_type_manifest = match$1 ~= undefined and typexp(s, match$1) or undefined;
   var decl_type_variance = decl.type_variance;
   var decl_type_loc = loc(s, decl.type_loc);
   var decl_type_attributes = attrs(s, decl.type_attributes);
@@ -9543,7 +9543,7 @@ function class_declaration(s, decl) do
           end), decl.cty_params),
     cty_type: class_type(s, decl.cty_type),
     cty_path: type_path(s, decl.cty_path),
-    cty_new: match ~= undefined ? typexp(s, match) : undefined,
+    cty_new: match ~= undefined and typexp(s, match) or undefined,
     cty_variance: decl.cty_variance,
     cty_loc: loc(s, decl.cty_loc),
     cty_attributes: attrs(s, decl.cty_attributes)
@@ -9603,7 +9603,7 @@ function extension_constructor(s, ext) do
           return typexp(s, param);
         end), ext.ext_ret_type);
   var ext_ext_private = ext.ext_private;
-  var ext_ext_loc = s.for_saving ? none : ext.ext_loc;
+  var ext_ext_loc = s.for_saving and none or ext.ext_loc;
   var ext_ext_attributes = attrs(s, ext.ext_attributes);
   var ext$1 = do
     ext_type_path: ext_ext_type_path,
@@ -10109,19 +10109,19 @@ function height$5(param) do
 end
 
 function create$6(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$5(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--2];
@@ -10169,7 +10169,7 @@ function bal$5(l, v, r) do
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -10366,7 +10366,7 @@ function read_pers_struct(modname, filename) do
 end
 
 function find_pers_struct(checkOpt, name) do
-  var check = checkOpt ~= undefined ? checkOpt : true;
+  var check = checkOpt ~= undefined and checkOpt or true;
   if (name == "*predef*") then do
     throw Caml_builtin_exceptions.not_found;
   end
@@ -11912,11 +11912,11 @@ function constructors_of_type(ty_path, decl) do
         var cd_res = match.cd_res;
         var cd_args = match.cd_args;
         var cd_id = match.cd_id;
-        var ty_res$1 = cd_res ~= undefined ? cd_res : ty_res;
-        var match$1 = cd_args ? --[ tuple ]--[
+        var ty_res$1 = cd_res ~= undefined and cd_res or ty_res;
+        var match$1 = cd_args and --[ tuple ]--[
             --[ Cstr_block ]--Block.__(1, [idx_nonconst]),
             describe_constructors(idx_const, idx_nonconst + 1 | 0, rem)
-          ] : --[ tuple ]--[
+          ] or --[ tuple ]--[
             --[ Cstr_constant ]--Block.__(0, [idx_const]),
             describe_constructors(idx_const + 1 | 0, idx_nonconst, rem)
           ];
@@ -12152,7 +12152,7 @@ function prefix_idents(root, pos, sub, param) do
             ]);
           var match$1 = match[1].val_kind;
           var nextpos;
-          nextpos = typeof match$1 == "number" or match$1.tag ? pos + 1 | 0 : pos;
+          nextpos = typeof match$1 == "number" or match$1.tag and pos + 1 | 0 or pos;
           var match$2 = prefix_idents(root, nextpos, sub, param[1]);
           return --[ tuple ]--[
                   --[ :: ]--[
@@ -12997,7 +12997,7 @@ function add_module_declaration(arg, id, md, env) do
   var argOpt = arg;
   var id$1 = id;
   var env$2 = env$1;
-  var arg$1 = argOpt ~= undefined ? argOpt : false;
+  var arg$1 = argOpt ~= undefined and argOpt or false;
   if (arg$1) then do
     return do
             values: env$2.values,
@@ -13223,8 +13223,8 @@ function open_signature(slot, root, sg, env0) do
 end
 
 function open_signature$1(locOpt, toplevelOpt, ovf, root, sg, env) do
-  var loc = locOpt ~= undefined ? locOpt : none;
-  var toplevel = toplevelOpt ~= undefined ? toplevelOpt : false;
+  var loc = locOpt ~= undefined and locOpt or none;
+  var toplevel = toplevelOpt ~= undefined and toplevelOpt or false;
   if (!toplevel and ovf == --[ Fresh ]--1 and !loc.loc_ghost and (is_active(--[ Unused_open ]--Block.__(17, [""])) or is_active(--[ Open_shadow_identifier ]--Block.__(27, [
               "",
               ""
@@ -13322,10 +13322,10 @@ function save_signature(sg, modname, filename) do
   var sg$2 = signature$2(for_saving(identity), sg$1);
   var oc = Pervasives.open_out_bin(filename$1);
   try do
-    var cmi_cmi_flags = recursive_types.contents ? --[ :: ]--[
+    var cmi_cmi_flags = recursive_types.contents and --[ :: ]--[
         --[ Rectypes ]--0,
         --[ [] ]--0
-      ] : --[ [] ]--0;
+      ] or --[ [] ]--0;
     var cmi = do
       cmi_name: modname$1,
       cmi_sign: sg$2,
@@ -13922,7 +13922,7 @@ function is_mocha(param) do
 end
 
 function close_enough(thresholdOpt, a, b) do
-  var threshold = thresholdOpt ~= undefined ? thresholdOpt : 0.0000001;
+  var threshold = thresholdOpt ~= undefined and thresholdOpt or 0.0000001;
   return Math.abs(a - b) < threshold;
 end
 
@@ -14521,7 +14521,7 @@ function array_function(str, name) do
   return do
           txt: --[ Ldot ]--Block.__(1, [
               --[ Lident ]--Block.__(0, [str]),
-              fast.contents ? "unsafe_" .. name : name
+              fast.contents and "unsafe_" .. name or name
             ]),
           loc: symbol_gloc(--[ () ]--0)
         end;
@@ -17071,7 +17071,7 @@ var yyact = [
       var arr = _1;
       var arg = _4;
       var newval = _7;
-      var set = fast.contents ? "unsafe_set" : "set";
+      var set = fast.contents and "unsafe_set" or "set";
       var coords = bigarray_untuplify(arg);
       if (coords) then do
         var match = coords[1];
@@ -17377,7 +17377,7 @@ var yyact = [
       var _4 = Parsing.peek_val(__caml_parser_env, 1);
       var arr = _1;
       var arg = _4;
-      var get = fast.contents ? "unsafe_get" : "get";
+      var get = fast.contents and "unsafe_get" or "get";
       var coords = bigarray_untuplify(arg);
       if (coords) then do
         var match = coords[1];
@@ -18825,7 +18825,7 @@ var yyact = [
       var _5 = Parsing.peek_val(__caml_parser_env, 2);
       var _7 = Parsing.peek_val(__caml_parser_env, 0);
       var info_before_semi = get_info(Parsing.rhs_end_pos(5));
-      var info = info_before_semi ~= undefined ? info_before_semi : get_info(Parsing.symbol_end_pos(--[ () ]--0));
+      var info = info_before_semi ~= undefined and info_before_semi or get_info(Parsing.symbol_end_pos(--[ () ]--0));
       return field$1(symbol_rloc(--[ () ]--0), Pervasives.$at(_5, _7), Caml_option.some(info), _1, do
                   txt: _2,
                   loc: rhs_loc(2)
@@ -20759,10 +20759,10 @@ function directive_parse(token_with_comments, lexbuf) do
                                   ];
                             end
                              end 
-                            match = str[1] == "=" ? --[ tuple ]--[
+                            match = str[1] == "=" and --[ tuple ]--[
                                 --[ Le ]--17049,
                                 semantic_version_parse(str, 2, last_index)
-                              ] : --[ tuple ]--[
+                              ] or --[ tuple ]--[
                                 --[ Lt ]--17064,
                                 semantic_version_parse(str, 1, last_index)
                               ];end else 
@@ -20777,10 +20777,10 @@ function directive_parse(token_with_comments, lexbuf) do
                                   ];
                             end
                              end 
-                            match = str[1] == "=" ? --[ tuple ]--[
+                            match = str[1] == "=" and --[ tuple ]--[
                                 --[ Ge ]--15934,
                                 semantic_version_parse(str, 2, last_index)
-                              ] : --[ tuple ]--[
+                              ] or --[ tuple ]--[
                                 --[ Gt ]--15949,
                                 semantic_version_parse(str, 1, last_index)
                               ];end else 
@@ -21607,12 +21607,12 @@ end
 
 function char_for_hexadecimal_code(lexbuf, i) do
   var d1 = Lexing.lexeme_char(lexbuf, i);
-  var val1 = d1 >= 97 ? d1 - 87 | 0 : (
-      d1 >= 65 ? d1 - 55 | 0 : d1 - 48 | 0
+  var val1 = d1 >= 97 and d1 - 87 | 0 or (
+      d1 >= 65 and d1 - 55 | 0 or d1 - 48 | 0
     );
   var d2 = Lexing.lexeme_char(lexbuf, i + 1 | 0);
-  var val2 = d2 >= 97 ? d2 - 87 | 0 : (
-      d2 >= 65 ? d2 - 55 | 0 : d2 - 48 | 0
+  var val2 = d2 >= 97 and d2 - 87 | 0 or (
+      d2 >= 65 and d2 - 55 | 0 or d2 - 48 | 0
     );
   return Char.chr((val1 << 4) + val2 | 0);
 end
@@ -21678,10 +21678,10 @@ end
 
 function update_loc(lexbuf, file, line, absolute, chars) do
   var pos = lexbuf.lex_curr_p;
-  var new_file = file ~= undefined ? file : pos.pos_fname;
+  var new_file = file ~= undefined and file or pos.pos_fname;
   lexbuf.lex_curr_p = do
     pos_fname: new_file,
-    pos_lnum: absolute ? line : pos.pos_lnum + line | 0,
+    pos_lnum: absolute and line or pos.pos_lnum + line | 0,
     pos_bol: pos.pos_cnum - chars | 0,
     pos_cnum: pos.pos_cnum
   end;
@@ -22815,7 +22815,7 @@ function token$1(lexbuf) do
               end
                end end else 
            if ___conditional___ = 100--[ EOL ]-- then do
-              var lines$prime = lines ~= 0 ? --[ BlankLine ]--2 : --[ NewLine ]--1;
+              var lines$prime = lines ~= 0 and --[ BlankLine ]--2 or --[ NewLine ]--1;
               _lines = lines$prime;
               continue ;end end end 
            do end
@@ -22832,7 +22832,7 @@ function token$1(lexbuf) do
                     match$1[0],
                     match$1[1]
                   ]);
-              var lines$prime$1 = lines >= 2 ? --[ BlankLine ]--2 : --[ NoLine ]--0;
+              var lines$prime$1 = lines >= 2 and --[ BlankLine ]--2 or --[ NoLine ]--0;
               _lines = lines$prime$1;
               continue ;end end end 
            if ___conditional___ = 19--[ DOCSTRING ]-- then do
@@ -22840,14 +22840,14 @@ function token$1(lexbuf) do
               add_docstring_comment(doc);
               var docs$prime;
               if (typeof docs == "number") then do
-                docs$prime = lines >= 2 ? --[ Before ]--Block.__(1, [
+                docs$prime = lines >= 2 and --[ Before ]--Block.__(1, [
                       --[ [] ]--0,
                       --[ [] ]--0,
                       --[ :: ]--[
                         doc,
                         --[ [] ]--0
                       ]
-                    ]) : --[ After ]--Block.__(0, [--[ :: ]--[
+                    ]) or --[ After ]--Block.__(0, [--[ :: ]--[
                         doc,
                         --[ [] ]--0
                       ]]);
@@ -22855,14 +22855,14 @@ function token$1(lexbuf) do
                 var b = docs[2];
                 var f = docs[1];
                 var a = docs[0];
-                docs$prime = lines >= 2 ? --[ Before ]--Block.__(1, [
+                docs$prime = lines >= 2 and --[ Before ]--Block.__(1, [
                       a,
                       Pervasives.$at(b, f),
                       --[ :: ]--[
                         doc,
                         --[ [] ]--0
                       ]
-                    ]) : --[ Before ]--Block.__(1, [
+                    ]) or --[ Before ]--Block.__(1, [
                       a,
                       f,
                       --[ :: ]--[
@@ -22872,14 +22872,14 @@ function token$1(lexbuf) do
                     ]);
               end else do
                 var a$1 = docs[0];
-                docs$prime = lines >= 2 ? --[ Before ]--Block.__(1, [
+                docs$prime = lines >= 2 and --[ Before ]--Block.__(1, [
                       a$1,
                       --[ [] ]--0,
                       --[ :: ]--[
                         doc,
                         --[ [] ]--0
                       ]
-                    ]) : --[ After ]--Block.__(0, [--[ :: ]--[
+                    ]) or --[ After ]--Block.__(0, [--[ :: ]--[
                         doc,
                         a$1
                       ]]);
@@ -23529,7 +23529,7 @@ function TypedtreeMap_MakeMap(funarg) do
     var match = decl$1.typ_kind;
     var typ_kind;
     if (typeof match == "number") then do
-      typ_kind = match == --[ Ttype_abstract ]--0 ? --[ Ttype_abstract ]--0 : --[ Ttype_open ]--1;
+      typ_kind = match == --[ Ttype_abstract ]--0 and --[ Ttype_abstract ]--0 or --[ Ttype_open ]--1;
     end else if (match.tag) then do
       var list = List.map((function (ld) do
               return do
@@ -23629,12 +23629,12 @@ function TypedtreeMap_MakeMap(funarg) do
           var match$1 = match[2];
           var mod_type = match[1];
           var mexpr$2 = match[0];
-          mod_desc = match$1 ? --[ Tmod_constraint ]--Block.__(4, [
+          mod_desc = match$1 and --[ Tmod_constraint ]--Block.__(4, [
                 map_module_expr(mexpr$2),
                 mod_type,
                 --[ Tmodtype_explicit ]--[map_module_type(match$1[0])],
                 match[3]
-              ]) : --[ Tmod_constraint ]--Block.__(4, [
+              ]) or --[ Tmod_constraint ]--Block.__(4, [
                 map_module_expr(mexpr$2),
                 mod_type,
                 --[ Tmodtype_implicit ]--0,
@@ -23843,13 +23843,13 @@ function TypedtreeMap_MakeMap(funarg) do
        if ___conditional___ = 5--[ Tcl_constraint ]-- then do
           var match$1 = match[1];
           var cl = match[0];
-          cl_desc = match$1 ~= undefined ? --[ Tcl_constraint ]--Block.__(5, [
+          cl_desc = match$1 ~= undefined and --[ Tcl_constraint ]--Block.__(5, [
                 map_class_expr(cl),
                 map_class_type(match$1),
                 match[2],
                 match[3],
                 match[4]
-              ]) : --[ Tcl_constraint ]--Block.__(5, [
+              ]) or --[ Tcl_constraint ]--Block.__(5, [
                 map_class_expr(cl),
                 undefined,
                 match[2],
@@ -23893,7 +23893,7 @@ function TypedtreeMap_MakeMap(funarg) do
               ]);end else 
          if ___conditional___ = 5--[ Tpat_variant ]-- then do
             var pato = match[1];
-            var pato$1 = pato ~= undefined ? map_pattern(pato) : pato;
+            var pato$1 = pato ~= undefined and map_pattern(pato) or pato;
             pat_desc = --[ Tpat_variant ]--Block.__(5, [
                 match[0],
                 pato$1,
@@ -23972,7 +23972,7 @@ function TypedtreeMap_MakeMap(funarg) do
               map_expression(match[0]),
               List.map((function (param) do
                       var expo = param[1];
-                      var expo$1 = expo ~= undefined ? map_expression(expo) : expo;
+                      var expo$1 = expo ~= undefined and map_expression(expo) or expo;
                       return --[ tuple ]--[
                               param[0],
                               expo$1,
@@ -24002,7 +24002,7 @@ function TypedtreeMap_MakeMap(funarg) do
             ]);end else 
        if ___conditional___ = 9--[ Texp_variant ]-- then do
           var expo = match[1];
-          var expo$1 = expo ~= undefined ? map_expression(expo) : expo;
+          var expo$1 = expo ~= undefined and map_expression(expo) or expo;
           exp_desc = --[ Texp_variant ]--Block.__(9, [
               match[0],
               expo$1
@@ -24016,7 +24016,7 @@ function TypedtreeMap_MakeMap(funarg) do
                           map_expression(param[2])
                         ];
                 end), match[0]);
-          var expo$3 = expo$2 ~= undefined ? map_expression(expo$2) : expo$2;
+          var expo$3 = expo$2 ~= undefined and map_expression(expo$2) or expo$2;
           exp_desc = --[ Texp_record ]--Block.__(10, [
               list,
               expo$3
@@ -24041,7 +24041,7 @@ function TypedtreeMap_MakeMap(funarg) do
           exp_desc = --[ Texp_ifthenelse ]--Block.__(14, [
               map_expression(match[0]),
               map_expression(match[1]),
-              expo$4 ~= undefined ? map_expression(expo$4) : expo$4
+              expo$4 ~= undefined and map_expression(expo$4) or expo$4
             ]);end else 
        if ___conditional___ = 15--[ Texp_sequence ]-- then do
           exp_desc = --[ Texp_sequence ]--Block.__(15, [
@@ -24230,7 +24230,7 @@ function TypedtreeMap_MakeMap(funarg) do
           var ident = x[2];
           var mut = x[1];
           var lab = x[0];
-          cf_desc = match.tag ? --[ Tcf_val ]--Block.__(1, [
+          cf_desc = match.tag and --[ Tcf_val ]--Block.__(1, [
                 lab,
                 mut,
                 ident,
@@ -24239,7 +24239,7 @@ function TypedtreeMap_MakeMap(funarg) do
                     map_expression(match[1])
                   ]),
                 x[4]
-              ]) : --[ Tcf_val ]--Block.__(1, [
+              ]) or --[ Tcf_val ]--Block.__(1, [
                 lab,
                 mut,
                 ident,
@@ -24250,14 +24250,14 @@ function TypedtreeMap_MakeMap(funarg) do
           var match$1 = x[2];
           var priv = x[1];
           var lab$1 = x[0];
-          cf_desc = match$1.tag ? --[ Tcf_method ]--Block.__(2, [
+          cf_desc = match$1.tag and --[ Tcf_method ]--Block.__(2, [
                 lab$1,
                 priv,
                 --[ Tcfk_concrete ]--Block.__(1, [
                     match$1[0],
                     map_expression(match$1[1])
                   ])
-              ]) : --[ Tcf_method ]--Block.__(2, [
+              ]) or --[ Tcf_method ]--Block.__(2, [
                 lab$1,
                 priv,
                 --[ Tcfk_virtual ]--Block.__(0, [map_core_type(match$1[0])])
@@ -24808,10 +24808,10 @@ function save_cmt(filename, modname, binary_annots, sourcefile, initial_env, sg)
     var oc = Pervasives.open_out_bin(filename);
     var this_crc;
     if (sg ~= undefined) then do
-      var cmi_cmi_flags = recursive_types.contents ? --[ :: ]--[
+      var cmi_cmi_flags = recursive_types.contents and --[ :: ]--[
           --[ Rectypes ]--0,
           --[ [] ]--0
-        ] : --[ [] ]--0;
+        ] or --[ [] ]--0;
       var cmi = do
         cmi_name: modname,
         cmi_sign: sg,
@@ -24828,7 +24828,7 @@ function save_cmt(filename, modname, binary_annots, sourcefile, initial_env, sg)
     var cmt_cmt_comments = List.rev(comment_list.contents);
     var cmt_cmt_builddir = Caml_sys.caml_sys_getcwd(--[ () ]--0);
     var cmt_cmt_loadpath = load_path.contents;
-    var cmt_cmt_initial_env = need_to_clear_env ? keep_only_summary(initial_env) : initial_env;
+    var cmt_cmt_initial_env = need_to_clear_env and keep_only_summary(initial_env) or initial_env;
     var cmt_cmt_imports = List.sort(Caml_obj.caml_compare, imports$1);
     var cmt = do
       cmt_modname: modname,
@@ -24859,7 +24859,7 @@ function save_cmt(filename, modname, binary_annots, sourcefile, initial_env, sg)
     end
     if (exit == 1) then do
       Caml_sys.caml_sys_system_command(cmd .. (" -cmt-add " .. (filename .. (
-                sourcefile ~= undefined ? ":" .. sourcefile : ""
+                sourcefile ~= undefined and ":" .. sourcefile or ""
               ))));
     end
      end 
@@ -26136,7 +26136,7 @@ function generalize_structure(var_level, ty) do
       if (ty$1.level > current_level.contents) then do
         var match = ty$1.desc;
         var tmp$1;
-        tmp$1 = typeof match == "number" or match.tag ~= --[ Tconstr ]--3 ? true : !is_object_type(match[0]) and (match[2].contents = --[ Mnil ]--0, true);
+        tmp$1 = typeof match == "number" or match.tag ~= --[ Tconstr ]--3 and true or !is_object_type(match[0]) and (match[2].contents = --[ Mnil ]--0, true);
         tmp = tmp$1;
       end
        end 
@@ -26728,10 +26728,10 @@ function copy(env, partial, keep_names, ty) do
         var match$1 = partial;
         var param = Curry._1(match$1[0], ty$1);
         forget = (
-          param ? false : true
-        ) ? (
-            match$1[1] ? ty$1.level : current_level.contents
-          ) : 100000000;
+          param and false or true
+        ) and (
+            match$1[1] and ty$1.level or current_level.contents
+          ) or 100000000;
       end else do
         throw [
               Caml_builtin_exceptions.assert_failure,
@@ -26789,7 +26789,7 @@ function copy(env, partial, keep_names, ty) do
                 if (exit$1 == 2) then do
                   var abbrev = abbreviations.contents.contents;
                   var tmp$1;
-                  tmp$1 = typeof abbrev == "number" or abbrev.tag ? abbrev : --[ Mlink ]--Block.__(1, [abbreviations.contents]);
+                  tmp$1 = typeof abbrev == "number" or abbrev.tag and abbrev or --[ Mlink ]--Block.__(1, [abbreviations.contents]);
                   tmp = --[ Tconstr ]--Block.__(3, [
                       p,
                       List.map(copy$1, tl),
@@ -26800,16 +26800,16 @@ function copy(env, partial, keep_names, ty) do
                 end
                  end end else 
              if ___conditional___ = 4--[ Tobject ]-- then do
-                tmp = partial ~= undefined ? --[ Tobject ]--Block.__(4, [
+                tmp = partial ~= undefined and --[ Tobject ]--Block.__(4, [
                       copy$1(desc[0]),
                       do
                         contents: undefined
                       end
-                    ]) : copy_type_desc(keep_names, copy$1, desc);end else 
+                    ]) or copy_type_desc(keep_names, copy$1, desc);end else 
              if ___conditional___ = 5--[ Tfield ]-- then do
                 var match$4 = field_kind_repr(desc[1]);
                 if (typeof match$4 == "number") then do
-                  tmp = match$4 ~= 0 ? --[ Tlink ]--Block.__(6, [copy$1(desc[3])]) : copy_type_desc(undefined, copy$1, desc);
+                  tmp = match$4 ~= 0 and --[ Tlink ]--Block.__(6, [copy$1(desc[3])]) or copy_type_desc(undefined, copy$1, desc);
                 end else do
                   dup_kind(match$4[0]);
                   tmp = copy_type_desc(undefined, copy$1, desc);
@@ -26882,14 +26882,14 @@ function copy(env, partial, keep_names, ty) do
                         more$prime = copy$1(more);end else 
                      if ___conditional___ = 4 then do
                         save_desc(more, more.desc);
-                        more$prime = keep ? more : newty2(current_level.contents, more.desc);end else 
+                        more$prime = keep and more or newty2(current_level.contents, more.desc);end else 
                      do end end end
                     
                   end
                   var match$10 = repr(more$prime);
                   var match$11 = match$10.desc;
                   var row$1;
-                  row$1 = typeof match$11 == "number" or !(match$11.tag == --[ Tconstr ]--3 and !row.row_fixed) ? row : (do
+                  row$1 = typeof match$11 == "number" or !(match$11.tag == --[ Tconstr ]--3 and !row.row_fixed) and row or (do
                         row_fields: row.row_fields,
                         row_more: row.row_more,
                         row_bound: row.row_bound,
@@ -26910,7 +26910,7 @@ function copy(env, partial, keep_names, ty) do
                       if (more.id ~= more$prime.id) then do
                         more$prime$1 = more$prime;
                       end else do
-                        var lv = keep ? more.level : current_level.contents;
+                        var lv = keep and more.level or current_level.contents;
                         more$prime$1 = newty2(lv, --[ Tvar ]--Block.__(0, [undefined]));
                       end end 
                       var not_reither = function (param) do
@@ -26927,14 +26927,14 @@ function copy(env, partial, keep_names, ty) do
                         if (!row$1.row_fixed) then do
                           var param$1 = Curry._1(match$13[0], ty$1);
                           tmp$3 = (
-                            param$1 ? false : true
+                            param$1 and false or true
                           ) and !List.for_all(not_reither, row$1.row_fields);
                         end
                          end 
                         tmp$2 = tmp$3;
                       end
                        end 
-                      match$12 = tmp$2 ? --[ tuple ]--[
+                      match$12 = tmp$2 and --[ tuple ]--[
                           more$prime$1,
                           do
                             row_fields: List.filter(not_reither)(row$1.row_fields),
@@ -26944,7 +26944,7 @@ function copy(env, partial, keep_names, ty) do
                             row_fixed: false,
                             row_name: undefined
                           end
-                        ] : --[ tuple ]--[
+                        ] or --[ tuple ]--[
                           more$prime$1,
                           row$1
                         ];
@@ -26994,10 +26994,10 @@ end
 
 function instance(partial, env, sch) do
   var env$1 = gadt_env(env);
-  var partial$1 = partial ~= undefined ? --[ tuple ]--[
+  var partial$1 = partial ~= undefined and --[ tuple ]--[
       compute_univars(sch),
       partial
-    ] : undefined;
+    ] or undefined;
   var ty = copy(env$1, partial$1, undefined, sch);
   cleanup_types(--[ () ]--0);
   return ty;
@@ -27083,7 +27083,7 @@ function instance_constructor(in_pattern, cstr) do
         name = "ex";
       end else do
         var match$2 = match$1[0];
-        name = match$2 ~= undefined ? match$2 : "ex";
+        name = match$2 ~= undefined and match$2 or "ex";
       end end 
       var match$3 = enter_type(get_new_abstract_name(name), decl, env.contents);
       env.contents = match$3[1];
@@ -27135,10 +27135,10 @@ end
 function instance_declaration(decl) do
   var match = decl.type_kind;
   var tmp;
-  tmp = typeof match == "number" ? (
-      match == --[ Type_abstract ]--0 ? --[ Type_abstract ]--0 : --[ Type_open ]--1
-    ) : (
-      match.tag ? --[ Type_variant ]--Block.__(1, [List.map((function (c) do
+  tmp = typeof match == "number" and (
+      match == --[ Type_abstract ]--0 and --[ Type_abstract ]--0 or --[ Type_open ]--1
+    ) or (
+      match.tag and --[ Type_variant ]--Block.__(1, [List.map((function (c) do
                     return do
                             cd_id: c.cd_id,
                             cd_args: List.map(simple_copy, c.cd_args),
@@ -27146,7 +27146,7 @@ function instance_declaration(decl) do
                             cd_loc: c.cd_loc,
                             cd_attributes: c.cd_attributes
                           end;
-                  end), match[0])]) : --[ Type_record ]--Block.__(0, [
+                  end), match[0])]) or --[ Type_record ]--Block.__(0, [
             List.map((function (l) do
                     return do
                             ld_id: l.ld_id,
@@ -27260,7 +27260,7 @@ end;
 function copy_sep(fixed, free, bound, visited, ty) do
   var ty$1 = repr(ty);
   var univars = Curry._1(free, ty$1);
-  if (univars ? false : true) then do
+  if (univars and false or true) then do
     if (ty$1.level ~= 100000000) then do
       return ty$1;
     end else do
@@ -27277,7 +27277,7 @@ function copy_sep(fixed, free, bound, visited, ty) do
   end else do
     try do
       var match = List.assq(ty$1, visited);
-      var dl = is_Tunivar(ty$1) ? --[ [] ]--0 : diff_list(bound, match[1]);
+      var dl = is_Tunivar(ty$1) and --[ [] ]--0 or diff_list(bound, match[1]);
       if (dl ~= --[ [] ]--0 and conflicts(univars, dl)) then do
         throw Caml_builtin_exceptions.not_found;
       end
@@ -27376,7 +27376,7 @@ function copy_sep(fixed, free, bound, visited, ty) do
 end
 
 function instance_poly(keep_namesOpt, fixed, univars, sch) do
-  var keep_names = keep_namesOpt ~= undefined ? keep_namesOpt : false;
+  var keep_names = keep_namesOpt ~= undefined and keep_namesOpt or false;
   var univars$1 = List.map(repr, univars);
   var copy_var = function (ty) do
     var match = ty.desc;
@@ -28104,10 +28104,10 @@ function occur(env, ty0, ty) do
   catch (raw_exn)do
     var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     merge(type_changed, old);
-    throw exn == Occur ? [
+    throw exn == Occur and [
             Unify,
             --[ [] ]--0
-          ] : exn;
+          ] or exn;
   end
 end
 
@@ -28217,7 +28217,7 @@ function occur_univar(env, ty) do
       var tmp = false;
       if (ty$1.level >= 0) then do
         var tmp$1;
-        if (bound ? false : true) then do
+        if (bound and false or true) then do
           ty$1.level = pivot_level - ty$1.level | 0;
           tmp$1 = true;
         end else do
@@ -28642,7 +28642,7 @@ function reify(env, t) do
         do
            if ___conditional___ = 0--[ Tvar ]-- then do
               var o = match[0];
-              var name = o ~= undefined ? o : "ex";
+              var name = o ~= undefined and o or "ex";
               var t = create_fresh_constr(ty$1.level, name);
               return link_type(ty$1, t);end end end 
            if ___conditional___ = 3--[ Tconstr ]-- then do
@@ -28679,7 +28679,7 @@ function reify(env, t) do
                         ];
                   end else do
                     var o$1 = match$1[0];
-                    var name$1 = o$1 ~= undefined ? o$1 : "ex";
+                    var name$1 = o$1 ~= undefined and o$1 or "ex";
                     var t$1 = create_fresh_constr(m.level, name$1);
                     var row_row_bound = r.row_bound;
                     var row_row_closed = r.row_closed;
@@ -29800,7 +29800,7 @@ function nondep_instance(env, level, id, ty) do
 end
 
 function complete_type_list(allow_absentOpt, env, nl1, lv2, mty2, nl2, tl2) do
-  var allow_absent = allow_absentOpt ~= undefined ? allow_absentOpt : false;
+  var allow_absent = allow_absentOpt ~= undefined and allow_absentOpt or false;
   var id2 = create("Pkg");
   var env$prime = add_module$1(undefined, id2, mty2, env);
   var complete = function (_nl1, ntl2) do
@@ -29816,7 +29816,7 @@ function complete_type_list(allow_absentOpt, env, nl1, lv2, mty2, nl2, tl2) do
           if (Caml_obj.caml_greaterequal(n, n2)) then do
             return --[ :: ]--[
                     nt2,
-                    complete(Caml_obj.caml_equal(n, n2) ? nl : nl1, ntl2[1])
+                    complete(Caml_obj.caml_equal(n, n2) and nl or nl1, ntl2[1])
                   ];
           end else do
             exit = 1;
@@ -30124,7 +30124,7 @@ function make_rowvar(level, use1, rest1, use2, rest2) do
       end else do
         var name2 = match$1[0];
         if (name2 ~= undefined) then do
-          name = rest1.level <= rest2.level ? name1 : name2;
+          name = rest1.level <= rest2.level and name1 or name2;
         end else do
           exit$1 = 2;
         end end 
@@ -30177,7 +30177,7 @@ function unify_fields(env, ty1, ty2) do
   var miss1 = match$2[1];
   var l1 = repr(ty1).level;
   var l2 = repr(ty2).level;
-  var va = make_rowvar(l1 < l2 ? l1 : l2, miss2 == --[ [] ]--0, rest1, miss1 == --[ [] ]--0, rest2);
+  var va = make_rowvar(l1 < l2 and l1 or l2, miss2 == --[ [] ]--0, rest1, miss1 == --[ [] ]--0, rest2);
   var d1 = rest1.desc;
   var d2 = rest2.desc;
   try do
@@ -30291,8 +30291,8 @@ function unify_row(env, row1, row2) do
      end 
     var fixed1 = row_fixed(row1$1);
     var fixed2 = row_fixed(row2$1);
-    var more = fixed1 ? rm1 : (
-        fixed2 ? rm2 : newty2(rm1.level < rm2.level ? rm1.level : rm2.level, --[ Tvar ]--Block.__(0, [undefined]))
+    var more = fixed1 and rm1 or (
+        fixed2 and rm2 or newty2(rm1.level < rm2.level and rm1.level or rm2.level, --[ Tvar ]--Block.__(0, [undefined]))
       );
     var fixed = fixed1 or fixed2;
     var closed = row1$1.row_closed or row2$1.row_closed;
@@ -30335,26 +30335,26 @@ function unify_row(env, row1, row2) do
                       f1,
                       f2
                     ];
-            end)) and empty(r1)) ? row1$1.row_name : (
+            end)) and empty(r1)) and row1$1.row_name or (
         row2$1.row_name ~= undefined and (row2$1.row_closed or empty(r1)) and (!row1$1.row_closed or keep((function (f1, f2) do
                   return --[ tuple ]--[
                           f2,
                           f1
                         ];
-                end)) and empty(r2)) ? row2$1.row_name : undefined
+                end)) and empty(r2)) and row2$1.row_name or undefined
       );
     var set_more = function (row, rest) do
-      var rest$1 = closed ? filter_row_fields(row.row_closed, rest) : rest;
+      var rest$1 = closed and filter_row_fields(row.row_closed, rest) or rest;
       if (rest$1 ~= --[ [] ]--0 and (row.row_closed or row_fixed(row)) or closed and row_fixed(row) and !row.row_closed) then do
         var t1 = mkvariant(--[ [] ]--0, true);
         var t2 = mkvariant(rest$1, false);
         throw [
               Unify,
               --[ :: ]--[
-                row == row1$1 ? --[ tuple ]--[
+                row == row1$1 and --[ tuple ]--[
                     t1,
                     t2
-                  ] : --[ tuple ]--[
+                  ] or --[ tuple ]--[
                     t2,
                     t1
                   ],
@@ -31009,10 +31009,10 @@ function unify3(env, t1, t1$prime, t2, t2$prime) do
                                 if (d2[1] or !(is_newtype(env.contents, p1) and is_newtype(env.contents, path$prime) and generate_equations.contents)) then do
                                   exit$6 = 7;
                                 end else do
-                                  var match$3 = Caml_obj.caml_greaterthan(find_newtype_level(env.contents, p1), find_newtype_level(env.contents, path$prime)) ? --[ tuple ]--[
+                                  var match$3 = Caml_obj.caml_greaterthan(find_newtype_level(env.contents, p1), find_newtype_level(env.contents, path$prime)) and --[ tuple ]--[
                                       p,
                                       t2$prime
-                                    ] : --[ tuple ]--[
+                                    ] or --[ tuple ]--[
                                       path$prime[0],
                                       t1$prime
                                     ];
@@ -31409,7 +31409,7 @@ function unify2(env, t1, t2) do
   var match = expand_both(t1, t2);
   var t2$prime = match[1];
   var t1$prime = match[0];
-  var lv = t1$prime.level < t2$prime.level ? t1$prime.level : t2$prime.level;
+  var lv = t1$prime.level < t2$prime.level and t1$prime.level or t2$prime.level;
   update_level(env.contents, lv, t2);
   update_level(env.contents, lv, t1);
   if (unify_eq(env.contents, t1$prime, t2$prime)) then do
@@ -31440,10 +31440,10 @@ function unify2(env, t1, t2) do
     if (principal.contents and (find_lowest_level(t1$prime) < lv or find_lowest_level(t2$prime) < lv)) then do
       var match$2 = t1$1.desc;
       var tmp;
-      tmp = typeof match$2 == "number" or !(match$2.tag == --[ Tconstr ]--3 and !match$2[1]) ? t1$1 : t1$prime;
+      tmp = typeof match$2 == "number" or !(match$2.tag == --[ Tconstr ]--3 and !match$2[1]) and t1$1 or t1$prime;
       var match$3 = t2$1.desc;
       var tmp$1;
-      tmp$1 = typeof match$3 == "number" or !(match$3.tag == --[ Tconstr ]--3 and !match$3[1]) ? t2$1 : t2$prime;
+      tmp$1 = typeof match$3 == "number" or !(match$3.tag == --[ Tconstr ]--3 and !match$3[1]) and t2$1 or t2$prime;
       match$1 = --[ tuple ]--[
         tmp,
         tmp$1
@@ -31644,7 +31644,7 @@ function filter_method_field(env, name, priv, _ty) do
             var ty2 = newty2(level, --[ Tvar ]--Block.__(0, [undefined]));
             var ty$prime = newty2(level, --[ Tfield ]--Block.__(5, [
                     name,
-                    priv ? --[ Fpresent ]--0 : --[ Fvar ]--[do
+                    priv and --[ Fpresent ]--0 or --[ Fvar ]--[do
                           contents: undefined
                         end],
                     ty1,
@@ -31978,10 +31978,10 @@ function moregen(inst_nongen, type_pairs, env, t1, t2) do
                             var match$4 = merge_row_fields(row1$1.row_fields, row2$1.row_fields);
                             var r2 = match$4[1];
                             var r1 = match$4[0];
-                            var match$5 = row2$1.row_closed ? --[ tuple ]--[
+                            var match$5 = row2$1.row_closed and --[ tuple ]--[
                                 filter_row_fields(may_inst, r1),
                                 filter_row_fields(false, r2)
-                              ] : --[ tuple ]--[
+                              ] or --[ tuple ]--[
                                 r1,
                                 r2
                               ];
@@ -32613,7 +32613,7 @@ function normalize_subst(subst) do
             end
              end 
             var match$1 = param[1].desc;
-            return typeof match$1 == "number" or match$1.tag ~= --[ Tlink ]--6 ? false : true;
+            return typeof match$1 == "number" or match$1.tag ~= --[ Tlink ]--6 and false or true;
           end), subst.contents)) then do
     subst.contents = List.map((function (param) do
             return --[ tuple ]--[
@@ -33487,7 +33487,7 @@ function moregen_clty(trace, type_pairs, env, cty1, cty2) do
 end
 
 function match_class_types(traceOpt, env, pat_sch, subj_sch) do
-  var trace = traceOpt ~= undefined ? traceOpt : true;
+  var trace = traceOpt ~= undefined and traceOpt or true;
   var type_pairs = Curry._1(TypePairs.create, 53);
   var old_level = current_level.contents;
   current_level.contents = 99999999;
@@ -33510,10 +33510,10 @@ function match_class_types(traceOpt, env, pat_sch, subj_sch) do
   var error = List.fold_right((function (param, err) do
           var lab = param[0];
           var k = field_kind_repr(param[1]);
-          var err$1 = typeof k == "number" ? --[ :: ]--[
+          var err$1 = typeof k == "number" and --[ :: ]--[
               --[ CM_Hide_public ]--Block.__(10, [lab]),
               err
-            ] : (set_kind(k[0], --[ Fabsent ]--1), err);
+            ] or (set_kind(k[0], --[ Fabsent ]--1), err);
           if (mem$2(lab, sign1.csig_concr)) then do
             return err$1;
           end else do
@@ -33762,7 +33762,7 @@ function equal_clty(trace, type_pairs, subst, env, cty1, cty2) do
        if ___conditional___ = 2 then do
           throw [
                 Failure,
-                trace ? --[ [] ]--0 : --[ :: ]--[
+                trace and --[ [] ]--0 or --[ :: ]--[
                     --[ CM_Class_type_mismatch ]--Block.__(2, [
                         env,
                         cty1,
@@ -33818,10 +33818,10 @@ function match_class_declarations(env, patt_params, patt_type, subj_params, subj
   var error = List.fold_right((function (param, err) do
           var lab = param[0];
           var k = field_kind_repr(param[1]);
-          var err$1 = typeof k == "number" ? --[ :: ]--[
+          var err$1 = typeof k == "number" and --[ :: ]--[
               --[ CM_Hide_public ]--Block.__(10, [lab]),
               err
-            ] : err;
+            ] or err;
           if (mem$2(lab, sign1.csig_concr)) then do
             return err$1;
           end else do
@@ -34059,7 +34059,7 @@ function memq_warn(t, visited) do
 end
 
 function lid_of_path($staropt$star, param) do
-  var sharp = $staropt$star ~= undefined ? $staropt$star : "";
+  var sharp = $staropt$star ~= undefined and $staropt$star or "";
   local ___conditional___=(param.tag | 0);
   do
      if ___conditional___ = 0--[ Pident ]-- then do
@@ -34294,7 +34294,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                         ];
                   end
                    end 
-                  var nm = match$9[1] > --[ Equiv ]--1 or deep_occur(ty$1, ty1$prime) ? undefined : --[ tuple ]--[
+                  var nm = match$9[1] > --[ Equiv ]--1 or deep_occur(ty$1, ty1$prime) and undefined or --[ tuple ]--[
                       p,
                       tl1
                     ];
@@ -34424,7 +34424,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                   ];
           end else do
             var level$prime$1 = pred_enlarge(level);
-            var visited_001 = level$prime$1 < level ? --[ [] ]--0 : filter_visited(visited);
+            var visited_001 = level$prime$1 < level and --[ [] ]--0 or filter_visited(visited);
             var visited$4 = --[ :: ]--[
               t$1,
               visited_001
@@ -34487,7 +34487,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                   ];
           end else do
             var level$prime$2 = pred_enlarge(level);
-            var visited_001$1 = level$prime$2 < level ? --[ [] ]--0 : filter_visited(visited);
+            var visited_001$1 = level$prime$2 < level and --[ [] ]--0 or filter_visited(visited);
             var visited$5 = --[ :: ]--[
               t$1,
               visited_001$1
@@ -34519,7 +34519,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                       if (match$1 ~= undefined) then do
                         var match$2 = build_subtype(env, visited$5, loops, posi, level$prime$2, match$1);
                         var t$prime = match$2[0];
-                        var f = posi and level > 0 ? --[ Reither ]--Block.__(1, [
+                        var f = posi and level > 0 and --[ Reither ]--Block.__(1, [
                               false,
                               --[ :: ]--[
                                 t$prime,
@@ -34529,7 +34529,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                               do
                                 contents: undefined
                               end
-                            ]) : --[ Rpresent ]--Block.__(0, [t$prime]);
+                            ]) or --[ Rpresent ]--Block.__(0, [t$prime]);
                         return --[ tuple ]--[
                                 --[ tuple ]--[
                                   l,
@@ -34565,7 +34565,7 @@ function build_subtype(env, visited, loops, posi, level, t) do
                     return prim[0];
                   end), fields$1);
             var row_row_more = newvar(undefined, --[ () ]--0);
-            var row_row_name = c$6 > --[ Unchanged ]--0 ? undefined : row.row_name;
+            var row_row_name = c$6 > --[ Unchanged ]--0 and undefined or row.row_name;
             var row$1 = do
               row_fields: row_row_fields,
               row_more: row_row_more,
@@ -34808,14 +34808,14 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                             var match$4 = associate_fields(match$2[0], match$3[0]);
                             var miss2 = match$4[2];
                             var miss1 = match$4[1];
-                            var cstrs$4 = rest2.desc == --[ Tnil ]--0 ? cstrs$3 : (
-                                miss1 == --[ [] ]--0 ? subtype_rec(env$2, --[ :: ]--[
+                            var cstrs$4 = rest2.desc == --[ Tnil ]--0 and cstrs$3 or (
+                                miss1 == --[ [] ]--0 and subtype_rec(env$2, --[ :: ]--[
                                         --[ tuple ]--[
                                           rest1,
                                           rest2
                                         ],
                                         trace$2
-                                      ], rest1, rest2, cstrs$3) : --[ :: ]--[
+                                      ], rest1, rest2, cstrs$3) or --[ :: ]--[
                                     --[ tuple ]--[
                                       trace$2,
                                       build_fields(repr(ty1).level)(miss1, rest1),
@@ -34825,7 +34825,7 @@ function subtype_rec(env, _trace, _t1, _t2, _cstrs) do
                                     cstrs$3
                                   ]
                               );
-                            var cstrs$5 = miss2 == --[ [] ]--0 ? cstrs$4 : --[ :: ]--[
+                            var cstrs$5 = miss2 == --[ [] ]--0 and cstrs$4 or --[ :: ]--[
                                 --[ tuple ]--[
                                   trace$2,
                                   rest1,
@@ -35706,12 +35706,12 @@ function normalize_type_rec(env, visited, ty) do
                                 match[0],
                                 --[ [] ]--0
                               ], tyl);
-                          tmp = f ~= f0 or List.length(tyl$prime) < List.length(tyl) ? --[ Reither ]--Block.__(1, [
+                          tmp = f ~= f0 or List.length(tyl$prime) < List.length(tyl) and --[ Reither ]--Block.__(1, [
                                 f[0],
                                 List.rev(tyl$prime),
                                 f[2],
                                 f[3]
-                              ]) : f;
+                              ]) or f;
                         end else do
                           tmp = f;
                         end end 
@@ -35835,7 +35835,7 @@ function nondep_type_rec(env, id, _ty) do
                   if (match$2 ~= undefined) then do
                     var match$3 = match$2;
                     var p$1 = match$3[0];
-                    tmp$1 = isfree(id, p$1) ? undefined : --[ tuple ]--[
+                    tmp$1 = isfree(id, p$1) and undefined or --[ tuple ]--[
                         p$1,
                         List.map((function (param) do
                                 return nondep_type_rec(env, id, param);
@@ -35862,19 +35862,19 @@ function nondep_type_rec(env, id, _ty) do
                     if (exn$2 == Caml_builtin_exceptions.not_found) then do
                       Curry._3(TypeHash.add, nondep_variants, more, ty$prime);
                       var $$static = static_row(row);
-                      var more$prime = $$static ? newty2(100000000, --[ Tnil ]--0) : more;
+                      var more$prime = $$static and newty2(100000000, --[ Tnil ]--0) or more;
                       var row$1 = copy_row((function (param) do
                               return nondep_type_rec(env, id, param);
                             end), true, row, true, more$prime);
                       var match$4 = row$1.row_name;
-                      tmp = match$4 ~= undefined and isfree(id, match$4[0]) ? --[ Tvariant ]--Block.__(8, [do
+                      tmp = match$4 ~= undefined and isfree(id, match$4[0]) and --[ Tvariant ]--Block.__(8, [do
                               row_fields: row$1.row_fields,
                               row_more: row$1.row_more,
                               row_bound: row$1.row_bound,
                               row_closed: row$1.row_closed,
                               row_fixed: row$1.row_fixed,
                               row_name: undefined
-                            end]) : --[ Tvariant ]--Block.__(8, [row$1]);
+                            end]) or --[ Tvariant ]--Block.__(8, [row$1]);
                     end else do
                       throw exn$2;
                     end end 
@@ -35969,10 +35969,10 @@ function nondep_type_decl(env, mid, id, is_covariant, decl) do
     var tk;
     try do
       var match = decl.type_kind;
-      tk = typeof match == "number" ? (
-          match == --[ Type_abstract ]--0 ? --[ Type_abstract ]--0 : --[ Type_open ]--1
-        ) : (
-          match.tag ? --[ Type_variant ]--Block.__(1, [List.map((function (c) do
+      tk = typeof match == "number" and (
+          match == --[ Type_abstract ]--0 and --[ Type_abstract ]--0 or --[ Type_open ]--1
+        ) or (
+          match.tag and --[ Type_variant ]--Block.__(1, [List.map((function (c) do
                         return do
                                 cd_id: c.cd_id,
                                 cd_args: List.map((function (param) do
@@ -35984,7 +35984,7 @@ function nondep_type_decl(env, mid, id, is_covariant, decl) do
                                 cd_loc: c.cd_loc,
                                 cd_attributes: c.cd_attributes
                               end;
-                      end), match[0])]) : --[ Type_record ]--Block.__(0, [
+                      end), match[0])]) or --[ Type_record ]--Block.__(0, [
                 List.map((function (l) do
                         return do
                                 ld_id: l.ld_id,
@@ -36012,7 +36012,7 @@ function nondep_type_decl(env, mid, id, is_covariant, decl) do
     var tm;
     try do
       var match$1 = decl.type_manifest;
-      tm = match$1 ~= undefined ? unroll_abbrev(id, params, nondep_type_rec(env, mid, match$1)) : undefined;
+      tm = match$1 ~= undefined and unroll_abbrev(id, params, nondep_type_rec(env, mid, match$1)) or undefined;
     end
     catch (exn$1)do
       if (exn$1 == Caml_builtin_exceptions.not_found) then do
@@ -36027,7 +36027,7 @@ function nondep_type_decl(env, mid, id, is_covariant, decl) do
     end
     Curry._1(TypeHash.clear, nondep_hash);
     Curry._1(TypeHash.clear, nondep_variants);
-    var priv = tm ~= undefined and has_constr_row(tm) ? --[ Private ]--0 : decl.type_private;
+    var priv = tm ~= undefined and has_constr_row(tm) and --[ Private ]--0 or decl.type_private;
     return do
             type_params: params,
             type_arity: decl.type_arity,
@@ -36187,7 +36187,7 @@ function nondep_class_declaration(env, id, decl) do
           end), decl.cty_params),
     cty_type: nondep_class_type(env, id, decl.cty_type),
     cty_path: decl.cty_path,
-    cty_new: match ~= undefined ? nondep_type_rec(env, id, match) : undefined,
+    cty_new: match ~= undefined and nondep_type_rec(env, id, match) or undefined,
     cty_variance: decl.cty_variance,
     cty_loc: decl.cty_loc,
     cty_attributes: decl.cty_attributes
@@ -36599,7 +36599,7 @@ function print_simple_out_type(ppf, ty) do
                                     ])])
                             ]),
                           "@[%a%s#%a@]"
-                        ]), print_typargs, ty[2], ty[0] ? "_" : "", print_ident, ty[1]);end end end 
+                        ]), print_typargs, ty[2], ty[0] and "_" or "", print_ident, ty[1]);end end end 
        if ___conditional___ = 3--[ Otyp_constr ]-- then do
           var id = ty[0];
           var exit = 0;
@@ -37002,7 +37002,7 @@ function print_simple_out_type(ppf, ty) do
                                 ])
                             ]),
                           "'%s%s"
-                        ]), ty[0] ? "_" : "", ty[1]);end end end 
+                        ]), ty[0] and "_" or "", ty[1]);end end end 
        if ___conditional___ = 11--[ Otyp_variant ]-- then do
           var tags = ty[3];
           var print_present = function (ppf, param) do
@@ -37115,10 +37115,10 @@ function print_simple_out_type(ppf, ty) do
                                 ])
                             ]),
                           "%s[%s@[<hv>@[<hv>%a@]%a ]@]"
-                        ]), ty[0] ? "_" : "", ty[2] ? (
-                        tags == undefined ? " " : "< "
-                      ) : (
-                        tags == undefined ? "> " : "? "
+                        ]), ty[0] and "_" or "", ty[2] and (
+                        tags == undefined and " " or "< "
+                      ) or (
+                        tags == undefined and "> " or "? "
                       ), print_fields$1, ty[1], print_present, tags);end end end 
        if ___conditional___ = 0--[ Otyp_alias ]--
        or ___conditional___ = 1--[ Otyp_arrow ]--
@@ -37148,7 +37148,7 @@ function print_simple_out_type(ppf, ty) do
             contents: true
           end;
           List.iter2((function (s, t) do
-                  var sep = first.contents ? (first.contents = false, "with") : "and";
+                  var sep = first.contents and (first.contents = false, "with") or "and";
                   return Curry._4(Format.fprintf(ppf, --[ Format ]--[
                                   --[ Char_literal ]--Block.__(12, [
                                       --[ " " ]--32,
@@ -37265,7 +37265,7 @@ function print_fields(rest, ppf, _param) do
                             ])
                         ]),
                       "%s.."
-                    ]), rest ? "_" : "");
+                    ]), rest and "_" or "");
     end else do
       return --[ () ]--0;
     end end  end 
@@ -37404,9 +37404,9 @@ function type_parameter(ppf, param) do
                         ])
                     ]),
                   "%s%s"
-                ]), match[1] ? (
-                match[0] ? "" : "-"
-              ) : "+", ty == "_" ? ty : "'" .. ty);
+                ]), match[1] and (
+                match[0] and "" or "-"
+              ) or "+", ty == "_" and ty or "'" .. ty);
 end
 
 function print_out_class_params(ppf, tyl) do
@@ -37537,7 +37537,7 @@ function print_out_class_type(ppf, param) do
                               ])
                           ]),
                         "@[%s%a ->@ %a@]"
-                      ]), lab ~= "" ? lab .. ":" : "", print_out_type_2, param[1], print_out_class_type, param[2]);end end end 
+                      ]), lab ~= "" and lab .. ":" or "", print_out_type_2, param[1], print_out_class_type, param[2]);end end end 
      if ___conditional___ = 2--[ Octy_signature ]-- then do
         var pr_param = function (ppf, param) do
           if (param ~= undefined) then do
@@ -37709,7 +37709,7 @@ function print_out_class_sig_item(ppf, param) do
                               ])
                           ]),
                         "@[<2>method %s%s%s :@ %a@]"
-                      ]), param[1] ? "private " : "", param[2] ? "virtual " : "", param[0], out_type.contents, param[3]);end end end 
+                      ]), param[1] and "private " or "", param[2] and "virtual " or "", param[0], out_type.contents, param[3]);end end end 
      if ___conditional___ = 2--[ Ocsg_value ]-- then do
         return Curry._5(Format.fprintf(ppf, --[ Format ]--[
                         --[ Formatting_gen ]--Block.__(18, [
@@ -37748,7 +37748,7 @@ function print_out_class_sig_item(ppf, param) do
                               ])
                           ]),
                         "@[<2>val %s%s%s :@ %a@]"
-                      ]), param[1] ? "mutable " : "", param[2] ? "virtual " : "", param[0], out_type.contents, param[3]);end end end 
+                      ]), param[1] and "mutable " or "", param[2] and "virtual " or "", param[0], out_type.contents, param[3]);end end end 
      do
     
   end
@@ -37985,7 +37985,7 @@ function print_out_label(ppf, param) do
                         ])
                     ]),
                   "@[<2>%s%s :@ %a@];"
-                ]), param[1] ? "mutable " : "", param[0], out_type.contents, param[2]);
+                ]), param[1] and "mutable " or "", param[0], out_type.contents, param[2]);
 end
 
 function print_out_signature(ppf, param) do
@@ -38220,7 +38220,7 @@ function print_out_sig_item(ppf, param) do
                               ])
                           ]),
                         "@[<2>%s%s@ %a%s@ :@ %a@]"
-                      ]), param[4] == --[ Orec_next ]--2 ? "and" : "class", param[0] ? " virtual" : "", print_out_class_params, param[2], param[1], out_class_type.contents, param[3]);end end end 
+                      ]), param[4] == --[ Orec_next ]--2 and "and" or "class", param[0] and " virtual" or "", print_out_class_params, param[2], param[1], out_class_type.contents, param[3]);end end end 
      if ___conditional___ = 1--[ Osig_class_type ]-- then do
         return Curry._7(Format.fprintf(ppf, --[ Format ]--[
                         --[ Formatting_gen ]--Block.__(18, [
@@ -38270,7 +38270,7 @@ function print_out_sig_item(ppf, param) do
                               ])
                           ]),
                         "@[<2>%s%s@ %a%s@ =@ %a@]"
-                      ]), param[4] == --[ Orec_next ]--2 ? "and" : "class type", param[0] ? " virtual" : "", print_out_class_params, param[2], param[1], out_class_type.contents, param[3]);end end end 
+                      ]), param[4] == --[ Orec_next ]--2 and "and" or "class type", param[0] and " virtual" or "", print_out_class_params, param[2], param[1], out_class_type.contents, param[3]);end end end 
      if ___conditional___ = 2--[ Osig_typext ]-- then do
         var ext = param[0];
         if (param[1] >= 2) then do
@@ -38308,7 +38308,7 @@ function print_out_sig_item(ppf, param) do
                                   --[ End_of_format ]--0
                                 ]),
                               "%s"
-                            ]), ty == "_" ? ty : "'" .. ty);
+                            ]), ty == "_" and ty or "'" .. ty);
             end;
             var match = ext$1.oext_type_params;
             if (match) then do
@@ -38434,7 +38434,7 @@ function print_out_sig_item(ppf, param) do
                                 ])
                             ]),
                           "@[<hv 2>type %t +=%s@;<1 2>%a@]"
-                        ]), print_extended_type, ext$1.oext_private == --[ Private ]--0 ? " private" : "", print_out_constr, --[ tuple ]--[
+                        ]), print_extended_type, ext$1.oext_private == --[ Private ]--0 and " private" or "", print_out_constr, --[ tuple ]--[
                       ext$1.oext_name,
                       ext$1.oext_args,
                       ext$1.oext_ret_type
@@ -38763,7 +38763,7 @@ function print_out_sig_item(ppf, param) do
         end;
         var match = td.otype_type;
         var ty;
-        ty = typeof match == "number" or match.tag ~= --[ Otyp_manifest ]--4 ? td.otype_type : match[1];
+        ty = typeof match == "number" or match.tag ~= --[ Otyp_manifest ]--4 and td.otype_type or match[1];
         var print_private = function (ppf, param) do
           if (param) then do
             return --[ () ]--0;
@@ -38925,7 +38925,7 @@ function print_out_sig_item(ppf, param) do
                       ]), print_name_params, print_out_tkind, ty, print_constraints);end end end 
      if ___conditional___ = 6--[ Osig_value ]-- then do
         var prims = param[2];
-        var kwd$1 = prims == --[ [] ]--0 ? "val" : "external";
+        var kwd$1 = prims == --[ [] ]--0 and "val" or "external";
         var pr_prims = function (ppf, param) do
           if (param) then do
             Curry._1(Format.fprintf(ppf, --[ Format ]--[
@@ -39038,7 +39038,7 @@ function print_out_type_extension(ppf, te) do
                           --[ End_of_format ]--0
                         ]),
                       "%s"
-                    ]), ty == "_" ? ty : "'" .. ty);
+                    ]), ty == "_" and ty or "'" .. ty);
     end;
     var match = te.otyext_params;
     if (match) then do
@@ -39164,7 +39164,7 @@ function print_out_type_extension(ppf, te) do
                         ])
                     ]),
                   "@[<hv 2>type %t +=%s@;<1 2>%a@]"
-                ]), print_extended_type, te.otyext_private == --[ Private ]--0 ? " private" : "", (function (param, param$1) do
+                ]), print_extended_type, te.otyext_private == --[ Private ]--0 and " private" or "", (function (param, param$1) do
                 return print_list(print_out_constr, (function (ppf) do
                               return Format.fprintf(ppf, --[ Format ]--[
                                           --[ Formatting_lit ]--Block.__(17, [
@@ -40603,13 +40603,13 @@ function create$7(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$6(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -40660,7 +40660,7 @@ function bal$6(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -40718,7 +40718,7 @@ function find$4(x, _param) do
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -40765,7 +40765,7 @@ function uniq(_param) do
 end
 
 function normalize_type_path(cacheOpt, env, p) do
-  var cache = cacheOpt ~= undefined ? cacheOpt : false;
+  var cache = cacheOpt ~= undefined and cacheOpt or false;
   try do
     var match = find_type_expansion(p, env);
     var params = List.map(repr, match[0]);
@@ -40819,7 +40819,7 @@ function path_size(param) do
         var id = param[0];
         var s = id.name;
         return --[ tuple ]--[
-                s ~= "" and Caml_string.get(s, 0) == --[ "_" ]--95 ? 10 : 1,
+                s ~= "" and Caml_string.get(s, 0) == --[ "_" ]--95 and 10 or 1,
                 -id.stamp | 0
               ];end end end 
      if ___conditional___ = 1--[ Pdot ]-- then do
@@ -40849,7 +40849,7 @@ function same_printing_env(env) do
 end
 
 function set_printing_env(env) do
-  printing_env.contents = real_paths.contents ? empty : env;
+  printing_env.contents = real_paths.contents and empty or env;
   if (printing_env.contents == empty or same_printing_env(env)) then do
     return --[ () ]--0;
   end else do
@@ -41457,7 +41457,7 @@ function tree_of_typexp(sch, ty) do
               var l = match[0];
               var ty1 = match[1];
               var ty2 = match[2];
-              var lab = print_labels.contents and l ~= "" or is_optional(l) ? l : "";
+              var lab = print_labels.contents and l ~= "" or is_optional(l) and l or "";
               var t1;
               if (is_optional(l)) then do
                 var match$1 = repr(ty1).desc;
@@ -41465,7 +41465,7 @@ function tree_of_typexp(sch, ty) do
                   t1 = --[ Otyp_stuff ]--Block.__(7, ["<hidden>"]);
                 end else do
                   var match$2 = match$1[1];
-                  t1 = match$2 and !(match$2[1] or !same(match$1[0], path_option)) ? tree_of_typexp(sch, match$2[0]) : --[ Otyp_stuff ]--Block.__(7, ["<hidden>"]);
+                  t1 = match$2 and !(match$2[1] or !same(match$1[0], path_option)) and tree_of_typexp(sch, match$2[0]) or --[ Otyp_stuff ]--Block.__(7, ["<hidden>"]);
                 end end 
               end else do
                 t1 = tree_of_typexp(sch, ty1);
@@ -41503,9 +41503,9 @@ function tree_of_typexp(sch, ty) do
               return tree_of_typexp(sch, match[0]);end end end 
            if ___conditional___ = 8--[ Tvariant ]-- then do
               var row = row_repr_aux(--[ [] ]--0, match[0]);
-              var fields = row.row_closed ? List.filter((function (param) do
+              var fields = row.row_closed and List.filter((function (param) do
                           return row_field_repr_aux(--[ [] ]--0, param[1]) ~= --[ Rabsent ]--0;
-                        end))(row.row_fields) : row.row_fields;
+                        end))(row.row_fields) or row.row_fields;
               var present = List.filter((function (param) do
                         var match = row_field_repr_aux(--[ [] ]--0, param[1]);
                         if (typeof match == "number" or match.tag) then do
@@ -41539,7 +41539,7 @@ function tree_of_typexp(sch, ty) do
                     end end 
                   end else do
                     var non_gen = is_non_gen(sch, px);
-                    var tags = all_present ? undefined : List.map((function (prim) do
+                    var tags = all_present and undefined or List.map((function (prim) do
                               return prim[0];
                             end), present);
                     var inh;
@@ -41637,7 +41637,7 @@ function tree_of_typexp(sch, ty) do
                         end end 
                       end end  end 
                     end), fields);
-              var tags$1 = all_present ? undefined : List.map((function (prim) do
+              var tags$1 = all_present and undefined or List.map((function (prim) do
                         return prim[0];
                       end), present);
               return --[ Otyp_variant ]--Block.__(11, [
@@ -41951,14 +41951,14 @@ function tree_of_type_decl(id, decl) do
         local ___conditional___=(match$5.tag | 0);
         do
            if ___conditional___ = 0--[ Pident ]-- then do
-              ty$1 = Caml_obj.caml_equal(id, match$5[0]) ? newty2(100000000, --[ Tvariant ]--Block.__(8, [do
+              ty$1 = Caml_obj.caml_equal(id, match$5[0]) and newty2(100000000, --[ Tvariant ]--Block.__(8, [do
                           row_fields: row.row_fields,
                           row_more: row.row_more,
                           row_bound: row.row_bound,
                           row_closed: row.row_closed,
                           row_fixed: row.row_fixed,
                           row_name: undefined
-                        end])) : ty;end else 
+                        end])) or ty;end else 
            if ___conditional___ = 1--[ Pdot ]--
            or ___conditional___ = 2--[ Papply ]-- then do
               ty$1 = ty;end else 
@@ -41997,12 +41997,12 @@ function tree_of_type_decl(id, decl) do
   var type_defined = function (decl) do
     var match = decl.type_kind;
     var abstr;
-    abstr = typeof match == "number" ? (
-        match == --[ Type_abstract ]--0 ? decl.type_manifest == undefined or decl.type_private == --[ Private ]--0 : decl.type_manifest == undefined
-      ) : (
-        match.tag ? decl.type_private == --[ Private ]--0 or List.exists((function (cd) do
+    abstr = typeof match == "number" and (
+        match == --[ Type_abstract ]--0 and decl.type_manifest == undefined or decl.type_private == --[ Private ]--0 or decl.type_manifest == undefined
+      ) or (
+        match.tag and decl.type_private == --[ Private ]--0 or List.exists((function (cd) do
                   return cd.cd_res ~= undefined;
-                end), match[0]) : decl.type_private == --[ Private ]--0
+                end), match[0]) or decl.type_private == --[ Private ]--0
       );
     var vari = List.map2((function (ty, v) do
             if (abstr or !is_Tvar(repr(ty))) then do
@@ -42038,24 +42038,24 @@ function tree_of_type_decl(id, decl) do
   var constraints = tree_of_constraints(params);
   var match$8 = decl.type_kind;
   var match$9;
-  match$9 = typeof match$8 == "number" ? (
-      match$8 == --[ Type_abstract ]--0 ? (
-          ty_manifest ~= undefined ? --[ tuple ]--[
+  match$9 = typeof match$8 == "number" and (
+      match$8 == --[ Type_abstract ]--0 and (
+          ty_manifest ~= undefined and --[ tuple ]--[
               tree_of_typexp(false, ty_manifest),
               decl.type_private
-            ] : --[ tuple ]--[
+            ] or --[ tuple ]--[
               --[ Otyp_abstract ]--0,
               --[ Public ]--1
             ]
-        ) : --[ tuple ]--[
+        ) or --[ tuple ]--[
           tree_of_manifest(--[ Otyp_open ]--1),
           --[ Public ]--1
         ]
-    ) : (
-      match$8.tag ? --[ tuple ]--[
+    ) or (
+      match$8.tag and --[ tuple ]--[
           tree_of_manifest(--[ Otyp_sum ]--Block.__(8, [List.map(tree_of_constructor, match$8[0])])),
           decl.type_private
-        ] : --[ tuple ]--[
+        ] or --[ tuple ]--[
           tree_of_manifest(--[ Otyp_record ]--Block.__(6, [List.map(tree_of_label, match$8[0])])),
           decl.type_private
         ]
@@ -42146,7 +42146,7 @@ function tree_of_value_description(id, decl) do
   var ty = tree_of_type_scheme(decl.val_type);
   var match = decl.val_kind;
   var prims;
-  prims = typeof match == "number" or match.tag ? --[ [] ]--0 : description_list(match[0]);
+  prims = typeof match == "number" or match.tag and --[ [] ]--0 or description_list(match[0]);
   return --[ Osig_value ]--Block.__(6, [
             id$1,
             ty,
@@ -42252,10 +42252,10 @@ function tree_of_class_type(sch, params, _param) do
        if ___conditional___ = 1--[ Cty_signature ]-- then do
           var sign = param[0];
           var sty$1 = repr(sign.csig_self);
-          var self_ty = is_aliased(sty$1) ? --[ Otyp_var ]--Block.__(10, [
+          var self_ty = is_aliased(sty$1) and --[ Otyp_var ]--Block.__(10, [
                 false,
                 name_of_type(proxy(sty$1))
-              ]) : undefined;
+              ]) or undefined;
           var match = flatten_fields(object_fields(sign.csig_self));
           var csil = List.fold_left((function (csil, param) do
                   return --[ :: ]--[
@@ -42329,7 +42329,7 @@ function tree_of_class_type(sch, params, _param) do
        if ___conditional___ = 2--[ Cty_arrow ]-- then do
           var ty = param[1];
           var l = param[0];
-          var lab = print_labels.contents and l ~= "" or is_optional(l) ? l : "";
+          var lab = print_labels.contents and l ~= "" or is_optional(l) and l or "";
           var ty$1;
           if (is_optional(l)) then do
             var match$1 = repr(ty).desc;
@@ -42372,13 +42372,13 @@ end
 function tree_of_class_param(param, variance) do
   var match = tree_of_typexp(true, param);
   var tmp;
-  tmp = typeof match == "number" or match.tag ~= --[ Otyp_var ]--10 ? "?" : match[1];
+  tmp = typeof match == "number" or match.tag ~= --[ Otyp_var ]--10 and "?" or match[1];
   return --[ tuple ]--[
           tmp,
-          is_Tvar(repr(param)) ? --[ tuple ]--[
+          is_Tvar(repr(param)) and --[ tuple ]--[
               true,
               true
-            ] : variance
+            ] or variance
         ];
 end
 
@@ -42655,7 +42655,7 @@ function tree_of_signature_rec(env$prime, in_type_group, param) do
     end end 
     if (exit == 1) then do
       set_printing_env(env$prime);
-      in_type_group$1 = item.tag == --[ Sig_type ]--1 and item[2] < 2 ? true : false;
+      in_type_group$1 = item.tag == --[ Sig_type ]--1 and item[2] < 2 and true or false;
     end
      end 
     var match = filter_rem_sig(item, param[1]);
@@ -42729,7 +42729,7 @@ end
 
 function tree_of_modtype_declaration(id, decl) do
   var match = decl.mtd_type;
-  var mty = match ~= undefined ? tree_of_modtype(match) : --[ Omty_abstract ]--0;
+  var mty = match ~= undefined and tree_of_modtype(match) or --[ Omty_abstract ]--0;
   return --[ Osig_modtype ]--Block.__(3, [
             id.name,
             mty
@@ -42819,7 +42819,7 @@ function type_expansion(t, ppf, t$prime) do
   if (same_path(t, t$prime)) then do
     return type_expr$1(ppf, t);
   end else do
-    var t$prime$1 = proxy(t) == proxy(t$prime) ? unalias(t$prime) : t$prime;
+    var t$prime$1 = proxy(t) == proxy(t$prime) and unalias(t$prime) or t$prime;
     return Curry._4(Format.fprintf(ppf, --[ Format ]--[
                     --[ Formatting_gen ]--Block.__(18, [
                         --[ Open_box ]--Block.__(1, [--[ Format ]--[
@@ -43357,7 +43357,7 @@ function explanation(unif, mis, ppf) do
               local ___conditional___=(match$2.tag | 0);
               do
                  if ___conditional___ = 2--[ Ttuple ]-- then do
-                    exit$1 = match$2[0] ? 5 : 3;end else 
+                    exit$1 = match$2[0] and 5 or 3;end else 
                  if ___conditional___ = 3--[ Tconstr ]-- then do
                     var p = match$2[0];
                     if (unif$1 and t3.level < binding_time(p)) then do
@@ -43747,12 +43747,12 @@ function explanation(unif, mis, ppf) do
                                 ])
                             ]),
                           "@,The universal variable %a would escape its scope"
-                        ]), type_expr$1, is_Tunivar(t3) ? t3 : t4);end end end 
+                        ]), type_expr$1, is_Tunivar(t3) and t3 or t4);end end end 
        if ___conditional___ = 5 then do
-          var match$7 = is_Tvar(t3) ? --[ tuple ]--[
+          var match$7 = is_Tvar(t3) and --[ tuple ]--[
               t3,
               t4
-            ] : --[ tuple ]--[
+            ] or --[ tuple ]--[
               t4,
               t3
             ];
@@ -43889,7 +43889,7 @@ function explanation(unif, mis, ppf) do
                                 ])
                             ]),
                           "@,@[The %s object type has an abstract row, it cannot be closed@]"
-                        ]), t4.desc == --[ Tnil ]--0 ? "first" : "second");end end end 
+                        ]), t4.desc == --[ Tnil ]--0 and "first" or "second");end end end 
        if ___conditional___ = 2 then do
           if (typeof match$1 ~= "number") then do
             local ___conditional___=(match$1.tag | 0);
@@ -44116,7 +44116,7 @@ function trace_same_names(_param) do
 end
 
 function report_unification_error(ppf, env, unifOpt, tr, txt1, txt2) do
-  var unif = unifOpt ~= undefined ? unifOpt : true;
+  var unif = unifOpt ~= undefined and unifOpt or true;
   return wrap_printing_env(env, (function (param) do
                 var unif$1 = unif;
                 var tr$1 = tr;
@@ -45134,7 +45134,7 @@ function report_type_mismatch(first, second, decl, ppf) do
                                                                   ])
                                                               ]),
                                                             "The field %s is only present in %s %s"
-                                                          ]), err[1].name, err[0] ? second$1 : first$1, decl$1);end end end 
+                                                          ]), err[1].name, err[0] and second$1 or first$1, decl$1);end end end 
                                          if ___conditional___ = 5--[ Record_representation ]-- then do
                                             return Curry._3(Format.fprintf(ppf, --[ Format ]--[
                                                             --[ String_literal ]--Block.__(11, [
@@ -45164,7 +45164,7 @@ function report_type_mismatch(first, second, decl, ppf) do
                                                                   ])
                                                               ]),
                                                             "Their internal representations differ:@ %s %s %s"
-                                                          ]), err[0] ? second$1 : first$1, decl$1, "uses unboxed float representation");end end end 
+                                                          ]), err[0] and second$1 or first$1, decl$1, "uses unboxed float representation");end end end 
                                          do
                                         
                                       end
@@ -45335,7 +45335,7 @@ function compare_records(env, decl1, decl2, _n, _labels1, _labels2) do
 end
 
 function type_declarations$1(equalityOpt, env, name, decl1, id, decl2) do
-  var equality = equalityOpt ~= undefined ? equalityOpt : false;
+  var equality = equalityOpt ~= undefined and equalityOpt or false;
   if (decl1.type_arity ~= decl2.type_arity) then do
     return --[ :: ]--[
             --[ Arity ]--0,
@@ -45353,10 +45353,10 @@ function type_declarations$1(equalityOpt, env, name, decl1, id, decl2) do
     end end 
     if (exit == 1) then do
       if (typeof match == "number") then do
-        err = match == --[ Type_abstract ]--0 or typeof match$1 ~= "number" ? --[ :: ]--[
+        err = match == --[ Type_abstract ]--0 or typeof match$1 ~= "number" and --[ :: ]--[
             --[ Kind ]--2,
             --[ [] ]--0
-          ] : --[ [] ]--0;
+          ] or --[ [] ]--0;
       end else if (match.tag) then do
         var cstrs1 = match[0];
         if (typeof match$1 == "number" or !match$1.tag) then do
@@ -45371,7 +45371,7 @@ function type_declarations$1(equalityOpt, env, name, decl1, id, decl2) do
                           return mark_constructor_used(usage, env, name, decl, c.cd_id.name);
                         end), cstrs);
           end;
-          var usage = decl1.type_private == --[ Private ]--0 or decl2.type_private == --[ Public ]--1 ? --[ Positive ]--0 : --[ Privatize ]--2;
+          var usage = decl1.type_private == --[ Private ]--0 or decl2.type_private == --[ Public ]--1 and --[ Positive ]--0 or --[ Privatize ]--2;
           mark(cstrs1, usage, name, decl1);
           if (equality) then do
             mark(cstrs2, --[ Positive ]--0, id.name, decl2);
@@ -45387,7 +45387,7 @@ function type_declarations$1(equalityOpt, env, name, decl1, id, decl2) do
       end else do
         var rep2 = match$1[1];
         var err$1 = compare_records(env, decl1, decl2, 1, match[0], match$1[0]);
-        err = err$1 ~= --[ [] ]--0 or match[1] == rep2 ? err$1 : --[ :: ]--[
+        err = err$1 ~= --[ [] ]--0 or match[1] == rep2 and err$1 or --[ :: ]--[
             --[ Record_representation ]--Block.__(5, [rep2 == --[ Record_float ]--1]),
             --[ [] ]--0
           ];
@@ -45402,7 +45402,7 @@ function type_declarations$1(equalityOpt, env, name, decl1, id, decl2) do
       var err$2;
       if (match$3 ~= undefined) then do
         if (match$2 ~= undefined) then do
-          err$2 = type_manifest(env, match$2, decl1.type_params, match$3, decl2.type_params, decl2.type_private) ? --[ [] ]--0 : --[ :: ]--[
+          err$2 = type_manifest(env, match$2, decl1.type_params, match$3, decl2.type_params, decl2.type_private) and --[ [] ]--0 or --[ :: ]--[
               --[ Manifest ]--4,
               --[ [] ]--0
             ];
@@ -45414,24 +45414,24 @@ function type_declarations$1(equalityOpt, env, name, decl1, id, decl2) do
                     contents: --[ Mnil ]--0
                   end
                 ]));
-          err$2 = equal$4(env, true, decl1.type_params, decl2.type_params) ? (
+          err$2 = equal$4(env, true, decl1.type_params, decl2.type_params) and (
               equal$4(env, false, --[ :: ]--[
                     ty1,
                     --[ [] ]--0
                   ], --[ :: ]--[
                     match$3,
                     --[ [] ]--0
-                  ]) ? --[ [] ]--0 : --[ :: ]--[
+                  ]) and --[ [] ]--0 or --[ :: ]--[
                   --[ Manifest ]--4,
                   --[ [] ]--0
                 ]
-            ) : --[ :: ]--[
+            ) or --[ :: ]--[
               --[ Constraint ]--3,
               --[ [] ]--0
             ];
         end end 
       end else do
-        err$2 = equal$4(env, true, decl1.type_params, decl2.type_params) ? --[ [] ]--0 : --[ :: ]--[
+        err$2 = equal$4(env, true, decl1.type_params, decl2.type_params) and --[ [] ]--0 or --[ :: ]--[
             --[ Constraint ]--3,
             --[ [] ]--0
           ];
@@ -45450,13 +45450,13 @@ function type_declarations$1(equalityOpt, env, name, decl1, id, decl2) do
                   var match$1 = Curry._1(Types_Variance.get_upper, v2);
                   var cn2 = match$1[1];
                   var co2 = match$1[0];
-                  if (abstr ? (!co1 or co2) and (!cn1 or cn2) : (
-                        opn or !is_Tvar(repr(ty)) ? co1 == co2 and cn1 == cn2 : true
+                  if (abstr and (!co1 or co2) and (!cn1 or cn2) or (
+                        opn or !is_Tvar(repr(ty)) and co1 == co2 and cn1 == cn2 or true
                       )) then do
                     var match$2 = Curry._1(Types_Variance.get_lower, v1);
                     var match$3 = Curry._1(Types_Variance.get_lower, v2);
                     var b = (!match$3[0] or match$2[0]) and (!match$3[1] or match$2[1]) and (!match$3[2] or match$2[2]) and (!match$3[3] or match$2[3]);
-                    return abstr ? b : true;
+                    return abstr and b or true;
                   end else do
                     return false;
                   end end 
@@ -45479,7 +45479,7 @@ function type_declarations$1(equalityOpt, env, name, decl1, id, decl2) do
 end
 
 function extension_constructors(env, id, ext1, ext2) do
-  var usage = ext1.ext_private == --[ Private ]--0 or ext2.ext_private == --[ Public ]--1 ? --[ Positive ]--0 : --[ Privatize ]--2;
+  var usage = ext1.ext_private == --[ Private ]--0 or ext2.ext_private == --[ Public ]--1 and --[ Positive ]--0 or --[ Privatize ]--2;
   mark_extension_used(usage, env, ext1, id.name);
   var ty1 = newty2(100000000, --[ Tconstr ]--Block.__(3, [
           ext1.ext_type_path,
@@ -45626,7 +45626,7 @@ function strengthen_sig(env, sg, p) do
                       contents: --[ Mnil ]--0
                     end
                   ]));
-            newdecl = decl.type_kind == --[ Type_abstract ]--0 ? (do
+            newdecl = decl.type_kind == --[ Type_abstract ]--0 and (do
                   type_params: decl.type_params,
                   type_arity: decl.type_arity,
                   type_kind: decl.type_kind,
@@ -45636,7 +45636,7 @@ function strengthen_sig(env, sg, p) do
                   type_newtype_level: decl.type_newtype_level,
                   type_loc: decl.type_loc,
                   type_attributes: decl.type_attributes
-                end) : (do
+                end) or (do
                   type_params: decl.type_params,
                   type_arity: decl.type_arity,
                   type_kind: decl.type_kind,
@@ -45677,7 +45677,7 @@ function strengthen_sig(env, sg, p) do
           var decl$1 = sigelt[1];
           var id$2 = sigelt[0];
           var match$3 = decl$1.mtd_type;
-          var newdecl$1 = match$3 ~= undefined ? decl$1 : (do
+          var newdecl$1 = match$3 ~= undefined and decl$1 or (do
                 mtd_type: --[ Mty_ident ]--Block.__(0, [--[ Pdot ]--Block.__(1, [
                         p,
                         id$2.name,
@@ -45999,7 +45999,7 @@ function type_paths_sig(_env, p, _pos, _sg) do
          if ___conditional___ = 0--[ Sig_value ]-- then do
             var match$1 = match[1].val_kind;
             var pos$prime;
-            pos$prime = typeof match$1 == "number" or match$1.tag ? pos + 1 | 0 : pos;
+            pos$prime = typeof match$1 == "number" or match$1.tag and pos + 1 | 0 or pos;
             _sg = sg[1];
             _pos = pos$prime;
             continue ;end end end 
@@ -46139,19 +46139,19 @@ function height$7(param) do
 end
 
 function create$8(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$7(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--2];
@@ -46199,7 +46199,7 @@ function bal$7(l, v, r) do
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -46376,13 +46376,13 @@ function create$9(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$8(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -46433,7 +46433,7 @@ function bal$8(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -46491,7 +46491,7 @@ function find$5(x, _param) do
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -46509,19 +46509,19 @@ function height$9(param) do
 end
 
 function create$10(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$9(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--2];
@@ -46569,7 +46569,7 @@ function bal$9(l, v, r) do
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -46696,7 +46696,7 @@ function mem$5(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--2];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
         continue ;
       end end 
     end else do
@@ -46937,7 +46937,7 @@ function remove_aliases_sig(env, excl, sg) do
           var id = it[0];
           var mty = md.md_type;
           var mty$1;
-          mty$1 = mty.tag == --[ Mty_alias ]--3 and mem$5(id, excl) ? md.md_type : remove_aliases(env, excl, mty);
+          mty$1 = mty.tag == --[ Mty_alias ]--3 and mem$5(id, excl) and md.md_type or remove_aliases(env, excl, mty);
           return --[ :: ]--[
                   --[ Sig_module ]--Block.__(3, [
                       id,
@@ -47040,7 +47040,7 @@ function value_descriptions(env, cxt, subst, id, vd1, vd2) do
 end
 
 function type_declarations$2(env, old_envOpt, cxt, subst, id, decl1, decl2) do
-  var old_env = old_envOpt ~= undefined ? Caml_option.valFromOption(old_envOpt) : env;
+  var old_env = old_envOpt ~= undefined and Caml_option.valFromOption(old_envOpt) or env;
   mark_type_used(env, id.name, decl1);
   var decl2$1 = type_declaration(subst, decl2);
   var err = type_declarations$1(undefined, env, id.name, decl1, id, decl2$1);
@@ -47565,7 +47565,7 @@ function signatures(env, cxt, subst, sig1, sig2) do
           end else do
             return --[ tuple ]--[
                     l,
-                    is_runtime_component(item) ? pos + 1 | 0 : pos
+                    is_runtime_component(item) and pos + 1 | 0 or pos
                   ];
           end end 
         end), --[ tuple ]--[
@@ -47581,7 +47581,7 @@ function signatures(env, cxt, subst, sig1, sig2) do
       if (param) then do
         var item = param[0];
         var match = item_ident_name(item);
-        var nextpos = is_runtime_component(item) ? pos + 1 | 0 : pos;
+        var nextpos = is_runtime_component(item) and pos + 1 | 0 or pos;
         _param = param[1];
         _tbl = add$5(match[2], --[ tuple ]--[
               match[0],
@@ -47622,10 +47622,10 @@ function signatures(env, cxt, subst, sig1, sig2) do
         if (item2.tag == --[ Sig_type ]--1 and !(item2[1].type_manifest ~= undefined or name2.tag ~= --[ Field_type ]--1)) then do
           var s = name2[0];
           var l = #s;
-          match$1 = l >= 4 and $$String.sub(s, l - 4 | 0, 4) == "#row" ? --[ tuple ]--[
+          match$1 = l >= 4 and $$String.sub(s, l - 4 | 0, 4) == "#row" and --[ tuple ]--[
               --[ Field_type ]--Block.__(1, [$$String.sub(s, 0, #s - 4 | 0)]),
               false
-            ] : --[ tuple ]--[
+            ] or --[ tuple ]--[
               name2,
               true
             ];
@@ -47665,7 +47665,7 @@ function signatures(env, cxt, subst, sig1, sig2) do
         end
         catch (exn)do
           if (exn == Caml_builtin_exceptions.not_found) then do
-            var unpaired$1 = match$1[1] ? --[ :: ]--[
+            var unpaired$1 = match$1[1] and --[ :: ]--[
                 --[ tuple ]--[
                   cxt,
                   env,
@@ -47676,7 +47676,7 @@ function signatures(env, cxt, subst, sig1, sig2) do
                     ])
                 ],
                 unpaired
-              ] : unpaired;
+              ] or unpaired;
             _param = rem;
             _unpaired = unpaired$1;
             continue ;
@@ -48797,7 +48797,7 @@ function context$1(ppf, cxt) do
   if (cxt == --[ [] ]--0) then do
     return --[ () ]--0;
   end else if (List.for_all((function (param) do
-            return param.tag ? false : true;
+            return param.tag and false or true;
           end), cxt)) then do
     return Curry._2(Format.fprintf(ppf, --[ Format ]--[
                     --[ String_literal ]--Block.__(11, [
@@ -50717,7 +50717,7 @@ function do_set_args(erase_mutable, q, r) do
                                   var tmp = false;
                                   if (erase_mutable) then do
                                     var match = lbl.lbl_mut;
-                                    tmp = match ? true : false;
+                                    tmp = match and true or false;
                                   end
                                    end 
                                   if (tmp) then do
@@ -51896,7 +51896,7 @@ function build_other(ext, env) do
                   end), env);
             var row = row_of_pat(p);
             var make_other_pat = function (tag, $$const) do
-              var arg = $$const ? undefined : omega;
+              var arg = $$const and undefined or omega;
               return make_pat(--[ Tpat_variant ]--Block.__(5, [
                             tag,
                             arg,
@@ -52471,7 +52471,7 @@ function pressure_variants(_tdefs, _pss) do
             continue ;
           end else do
             var full = full_match(true, true, constrs);
-            var ok = full ? try_non_omega(constrs) : try_non_omega(filter_all(q0, mark_partial(pss)));
+            var ok = full and try_non_omega(constrs) or try_non_omega(filter_all(q0, mark_partial(pss)));
             if (constrs) then do
               var p = constrs[0][0];
               var tmp = p.pat_desc;
@@ -52963,10 +52963,10 @@ function every_both(pss, qs, q1, q2) do
     active: qs2_active
   end;
   var r1 = every_satisfiables(pss, qs1);
-  var r2 = every_satisfiables(compat(q1, q2) ? --[ :: ]--[
+  var r2 = every_satisfiables(compat(q1, q2) and --[ :: ]--[
           qs1,
           pss
-        ] : pss, qs2);
+        ] or pss, qs2);
   if (typeof r1 == "number") then do
     if (r1 ~= 0) then do
       if (typeof r2 == "number") then do
@@ -53565,7 +53565,7 @@ function conv(typed) do
                           return function (lst) do
                             var arg;
                             if (lst) then do
-                              arg = lst[1] ? mk$1(undefined, undefined, --[ Ppat_tuple ]--Block.__(4, [lst])) : lst[0];
+                              arg = lst[1] and mk$1(undefined, undefined, --[ Ppat_tuple ]--Block.__(4, [lst])) or lst[0];
                             end else do
                               throw [
                                     Caml_builtin_exceptions.assert_failure,
@@ -53782,7 +53782,7 @@ function collect_paths_from_pat(_r, _p) do
               
             end
             var path = get_type_path(p.pat_type, p.pat_env);
-            return List.fold_left(collect_paths_from_pat, extendable_path(path) ? add_path(path, r) : r, match[2]);end end end 
+            return List.fold_left(collect_paths_from_pat, extendable_path(path) and add_path(path, r) or r, match[2]);end end end 
          if ___conditional___ = 5--[ Tpat_variant ]-- then do
             var match$1 = match[1];
             if (match$1 ~= undefined) then do
@@ -54338,7 +54338,7 @@ function find_value$1(env, loc, lid) do
 end
 
 function lookup_module$1(loadOpt, env, loc, lid) do
-  var load = loadOpt ~= undefined ? loadOpt : false;
+  var load = loadOpt ~= undefined and loadOpt or false;
   return find_component((function (lid, env) do
                   return --[ tuple ]--[
                           lookup_module(load, lid, env),
@@ -54436,7 +54436,7 @@ function create_package_mty(fake, loc, env, param) do
                     txt: last$1(s.txt),
                     loc: s.loc
                   end;
-                  var d_ptype_manifest = fake ? undefined : param[1];
+                  var d_ptype_manifest = fake and undefined or param[1];
                   var d = do
                     ptype_name: d_ptype_name,
                     ptype_params: --[ [] ]--0,
@@ -54659,7 +54659,7 @@ function transl_type(env, policy, styp) do
               end
               catch (exn$1)do
                 if (exn$1 == Caml_builtin_exceptions.not_found) then do
-                  var v = policy == --[ Univars ]--2 ? new_pre_univar(name, --[ () ]--0) : newvar(validate_name(name), --[ () ]--0);
+                  var v = policy == --[ Univars ]--2 and new_pre_univar(name, --[ () ]--0) or newvar(validate_name(name), --[ () ]--0);
                   used_variables.contents = add$5(name, --[ tuple ]--[
                         v,
                         styp.ptyp_loc
@@ -54712,9 +54712,9 @@ function transl_type(env, policy, styp) do
           var stl$2;
           if (stl$1) then do
             var t = stl$1[0];
-            stl$2 = typeof t.ptyp_desc == "number" and !(stl$1[1] or decl.type_arity <= 1) ? List.map((function (param) do
+            stl$2 = typeof t.ptyp_desc == "number" and !(stl$1[1] or decl.type_arity <= 1) and List.map((function (param) do
                       return t;
-                    end), decl.type_params) : stl$1;
+                    end), decl.type_params) or stl$1;
           end else do
             stl$2 = stl$1;
           end end 
@@ -54736,7 +54736,7 @@ function transl_type(env, policy, styp) do
                 end), stl$2);
           var params = instance_list(empty, decl.type_params);
           var match$2 = decl.type_manifest;
-          var unify_param = match$2 ~= undefined and repr(match$2).level ~= 100000000 ? unify$2 : unify_var;
+          var unify_param = match$2 ~= undefined and repr(match$2).level ~= 100000000 and unify$2 or unify_var;
           List.iter2((function (param, ty$prime) do
                   try do
                     return Curry._3(unify_param, env, ty$prime, param[1].ctyp_type);
@@ -54976,7 +54976,7 @@ function transl_type(env, policy, styp) do
                             tmp = f;
                           end else do
                             var match$1 = match[0];
-                            tmp = match$1 ~= undefined ? --[ Reither ]--Block.__(1, [
+                            tmp = match$1 ~= undefined and --[ Reither ]--Block.__(1, [
                                   false,
                                   --[ :: ]--[
                                     match$1,
@@ -54986,7 +54986,7 @@ function transl_type(env, policy, styp) do
                                   do
                                     contents: undefined
                                   end
-                                ]) : --[ Reither ]--Block.__(1, [
+                                ]) or --[ Reither ]--Block.__(1, [
                                   true,
                                   --[ [] ]--0,
                                   false,
@@ -55014,15 +55014,15 @@ function transl_type(env, policy, styp) do
                     row_name: row_row_name
                   end;
                   var $$static = static_row(row$1);
-                  var row$2 = $$static ? (do
+                  var row$2 = $$static and (do
                         row_fields: fields$1,
                         row_more: newty2(current_level.contents, --[ Tnil ]--0),
                         row_bound: --[ () ]--0,
                         row_closed: true,
                         row_fixed: false,
                         row_name: row_row_name
-                      end) : (
-                      policy ~= --[ Univars ]--2 ? row$1 : (do
+                      end) or (
+                      policy ~= --[ Univars ]--2 and row$1 or (do
                             row_fields: fields$1,
                             row_more: new_pre_univar(undefined, --[ () ]--0),
                             row_bound: --[ () ]--0,
@@ -55253,7 +55253,7 @@ function transl_type(env, policy, styp) do
               var match = repr(cty.ctyp_type);
               var match$1 = match.desc;
               var nm;
-              nm = typeof match$1 == "number" or match$1.tag ~= --[ Tconstr ]--3 ? undefined : --[ tuple ]--[
+              nm = typeof match$1 == "number" or match$1.tag ~= --[ Tconstr ]--3 and undefined or --[ tuple ]--[
                   match$1[0],
                   match$1[1]
                 ];
@@ -55338,7 +55338,7 @@ function transl_type(env, policy, styp) do
                               ];
                         end else do
                           var match = f[0];
-                          f$1 = match ~= undefined ? --[ Reither ]--Block.__(1, [
+                          f$1 = match ~= undefined and --[ Reither ]--Block.__(1, [
                                 false,
                                 --[ :: ]--[
                                   match,
@@ -55348,7 +55348,7 @@ function transl_type(env, policy, styp) do
                                 do
                                   contents: undefined
                                 end
-                              ]) : --[ Reither ]--Block.__(1, [
+                              ]) or --[ Reither ]--Block.__(1, [
                                 true,
                                 --[ [] ]--0,
                                 false,
@@ -55398,7 +55398,7 @@ function transl_type(env, policy, styp) do
                       ];
                 end
                  end 
-                f = tl ? --[ Rpresent ]--Block.__(0, [tl[0].ctyp_type]) : --[ Rpresent ]--Block.__(0, [undefined]);
+                f = tl and --[ Rpresent ]--Block.__(0, [tl[0].ctyp_type]) or --[ Rpresent ]--Block.__(0, [undefined]);
               end
                end 
               add_typed_field(styp.ptyp_loc, l, f);
@@ -55445,15 +55445,15 @@ function transl_type(env, policy, styp) do
             row_name: row_row_name$1
           end;
           var $$static$1 = static_row(row$3);
-          var row$4 = $$static$1 ? (do
+          var row$4 = $$static$1 and (do
                 row_fields: row_row_fields,
                 row_more: newty2(current_level.contents, --[ Tnil ]--0),
                 row_bound: --[ () ]--0,
                 row_closed: row_row_closed,
                 row_fixed: false,
                 row_name: row_row_name$1
-              end) : (
-              policy ~= --[ Univars ]--2 ? row$3 : (do
+              end) or (
+              policy ~= --[ Univars ]--2 and row$3 or (do
                     row_fields: row_row_fields,
                     row_more: new_pre_univar(undefined, --[ () ]--0),
                     row_bound: --[ () ]--0,
@@ -55733,7 +55733,7 @@ end
 function transl_simple_type(env, fixed, styp) do
   univars.contents = --[ [] ]--0;
   used_variables.contents = --[ Empty ]--0;
-  var typ = transl_type(env, fixed ? --[ Fixed ]--0 : --[ Extensible ]--1, styp);
+  var typ = transl_type(env, fixed and --[ Fixed ]--0 or --[ Extensible ]--1, styp);
   globalize_used_variables(env, fixed)(--[ () ]--0);
   var ty = typ.ctyp_type;
   make_fixed_univars(ty);
@@ -55817,10 +55817,10 @@ end
 function spellcheck(ppf, fold, env, lid) do
   var match = #last$1(lid);
   var switcher = match - 1 | 0;
-  var cutoff = switcher > 3 or switcher < 0 ? (
-      switcher == 5 or switcher == 4 ? 2 : 3
-    ) : (
-      switcher >= 2 ? 1 : 0
+  var cutoff = switcher > 3 or switcher < 0 and (
+      switcher == 5 or switcher == 4 and 2 or 3
+    ) or (
+      switcher >= 2 and 1 or 0
     );
   var compare = function (target, head, acc) do
     var best_dist = acc[1];
@@ -55828,18 +55828,18 @@ function spellcheck(ppf, fold, env, lid) do
     var match = edit_distance(target, head, cutoff);
     if (match ~= undefined) then do
       var dist = match;
-      var choice = dist < best_dist ? --[ :: ]--[
+      var choice = dist < best_dist and --[ :: ]--[
           head,
           --[ [] ]--0
-        ] : (
-          dist == best_dist ? --[ :: ]--[
+        ] or (
+          dist == best_dist and --[ :: ]--[
               head,
               best_choice
-            ] : best_choice
+            ] or best_choice
         );
       return --[ tuple ]--[
               choice,
-              dist < best_dist ? dist : best_dist
+              dist < best_dist and dist or best_dist
             ];
     end else do
       return --[ tuple ]--[
@@ -55877,7 +55877,7 @@ function spellcheck(ppf, fold, env, lid) do
                             ])
                         ]),
                       "@\nHint: Did you mean %s%s%s?"
-                    ]), $$String.concat(", ", List.rev(rev_rest)), rev_rest == --[ [] ]--0 ? "" : " or ", match[0]);
+                    ]), $$String.concat(", ", List.rev(rev_rest)), rev_rest == --[ [] ]--0 and "" or " or ", match[0]);
     end else do
       return --[ () ]--0;
     end end 
@@ -56321,8 +56321,8 @@ register_error_of_exn((function (param) do
                                                       ])
                                                   ]),
                                                 "@[<hov>The universal type variable '%s cannot be generalized:@ %s.@]"
-                                              ]), param$2[0], is_Tvar(v) ? "it escapes its scope" : (
-                                              is_Tunivar(v) ? "it is already bound to another variable" : "it is not a variable"
+                                              ]), param$2[0], is_Tvar(v) and "it escapes its scope" or (
+                                              is_Tunivar(v) and "it is already bound to another variable" or "it is not a variable"
                                             ));end end end 
                              if ___conditional___ = 15--[ Multiple_constraints_on_type ]-- then do
                                 return Curry._2(Format.fprintf(ppf, --[ Format ]--[
@@ -57275,8 +57275,8 @@ function reset_pattern(scope, allow) do
 end
 
 function enter_variable(is_moduleOpt, is_as_variableOpt, loc, name, ty) do
-  var is_module = is_moduleOpt ~= undefined ? is_moduleOpt : false;
-  var is_as_variable = is_as_variableOpt ~= undefined ? is_as_variableOpt : false;
+  var is_module = is_moduleOpt ~= undefined and is_moduleOpt or false;
+  var is_as_variable = is_as_variableOpt ~= undefined and is_as_variableOpt or false;
   if (List.exists((function (param) do
             return param[0].name == name.txt;
           end), pattern_variables.contents)) then do
@@ -57383,7 +57383,7 @@ function enter_orpat_variables(loc, env, p1_vs, p2_vs) do
                     ];
             end end 
           end else do
-            var min_var = x1.name < x2.name ? x1 : x2;
+            var min_var = x1.name < x2.name and x1 or x2;
             throw [
                   $$Error$7,
                   loc,
@@ -57508,7 +57508,7 @@ function build_as_type(env, _p) do
                   if (List.mem_assoc(lbl.lbl_pos, ppl)) then do
                     var match$1 = repr(lbl.lbl_arg).desc;
                     var tmp$1;
-                    tmp$1 = typeof match$1 == "number" or match$1.tag ~= --[ Tpoly ]--10 ? true : false;
+                    tmp$1 = typeof match$1 == "number" or match$1.tag ~= --[ Tpoly ]--10 and true or false;
                     tmp = tmp$1;
                   end
                    end 
@@ -57959,18 +57959,18 @@ function disambiguate_by_type(env, tpath, lbls) do
 end
 
 function disambiguate(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
-  var warn = warnOpt ~= undefined ? warnOpt : prerr_warning;
-  var check_lk = check_lkOpt ~= undefined ? check_lkOpt : (function (param, param$1) do
+  var warn = warnOpt ~= undefined and warnOpt or prerr_warning;
+  var check_lk = check_lkOpt ~= undefined and check_lkOpt or (function (param, param$1) do
         return --[ () ]--0;
       end);
-  var scope$1 = scope ~= undefined ? scope : lbls;
+  var scope$1 = scope ~= undefined and scope or lbls;
   var lbl;
   if (opath ~= undefined) then do
     var match = opath;
     var pr = match[2];
     var tpath = match[1];
     var warn_pr = function (param) do
-      var kind = type_kind == "record" ? "field" : "constructor";
+      var kind = type_kind == "record" and "field" or "constructor";
       return Curry._2(warn, lid.loc, --[ Not_principal ]--Block.__(8, ["this type-based " .. (kind .. " disambiguation")]));
     end;
     try do
@@ -58541,18 +58541,18 @@ function disambiguate_by_type$1(env, tpath, lbls) do
 end
 
 function disambiguate$1(warnOpt, check_lkOpt, scope, lid, env, opath, lbls) do
-  var warn = warnOpt ~= undefined ? warnOpt : prerr_warning;
-  var check_lk = check_lkOpt ~= undefined ? check_lkOpt : (function (param, param$1) do
+  var warn = warnOpt ~= undefined and warnOpt or prerr_warning;
+  var check_lk = check_lkOpt ~= undefined and check_lkOpt or (function (param, param$1) do
         return --[ () ]--0;
       end);
-  var scope$1 = scope ~= undefined ? scope : lbls;
+  var scope$1 = scope ~= undefined and scope or lbls;
   var lbl;
   if (opath ~= undefined) then do
     var match = opath;
     var pr = match[2];
     var tpath = match[1];
     var warn_pr = function (param) do
-      var kind = type_kind$1 == "record" ? "field" : "constructor";
+      var kind = type_kind$1 == "record" and "field" or "constructor";
       return Curry._2(warn, lid.loc, --[ Not_principal ]--Block.__(8, ["this type-based " .. (kind .. " disambiguation")]));
     end;
     try do
@@ -58709,8 +58709,8 @@ end
 
 function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) do
   var type_pat$1 = function (modeOpt, envOpt) do
-    var mode$1 = modeOpt ~= undefined ? modeOpt : mode;
-    var env$1 = envOpt ~= undefined ? envOpt : env;
+    var mode$1 = modeOpt ~= undefined and modeOpt or mode;
+    var env$1 = envOpt ~= undefined and envOpt or env;
     return (function (param, param$1) do
         return type_pat(constrs, labels, no_existentials, mode$1, env$1, param, param$1);
       end);
@@ -58797,7 +58797,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                   return or_(gloc, undefined, constant(gloc, undefined, --[ Const_char ]--Block.__(1, [c1])), loop(Char.chr(c1 + 1 | 0), c2));
                 end end 
               end;
-              var p = c1 <= c2 ? loop(c1, c2) : loop(c2, c1);
+              var p = c1 <= c2 and loop(c1, c2) or loop(c2, c1);
               var p_ppat_desc = p.ppat_desc;
               var p_ppat_attributes = p.ppat_attributes;
               var p$1 = do
@@ -58957,7 +58957,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
                 ];
               end end 
             end else do
-              sargs = match$5.tag == --[ Ppat_tuple ]--4 and (constr.cstr_arity > 1 or explicit_arity(sp.ppat_attributes)) ? match$5[0] : --[ :: ]--[
+              sargs = match$5.tag == --[ Ppat_tuple ]--4 and (constr.cstr_arity > 1 or explicit_arity(sp.ppat_attributes)) and match$5[0] or --[ :: ]--[
                   sp$1,
                   --[ [] ]--0
                 ];
@@ -59006,10 +59006,10 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
        if ___conditional___ = 6--[ Ppat_variant ]-- then do
           var sarg$1 = match[1];
           var l = match[0];
-          var arg_type = sarg$1 ~= undefined ? --[ :: ]--[
+          var arg_type = sarg$1 ~= undefined and --[ :: ]--[
               newvar(undefined, --[ () ]--0),
               --[ [] ]--0
-            ] : --[ [] ]--0;
+            ] or --[ [] ]--0;
           var row_row_fields = --[ :: ]--[
             --[ tuple ]--[
               l,
@@ -59034,7 +59034,7 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
             row_name: undefined
           end;
           unify_pat_types(loc, env.contents, newty2(current_level.contents, --[ Tvariant ]--Block.__(8, [row])), expected_ty);
-          var arg = sarg$1 ~= undefined and arg_type and !arg_type[1] ? type_pat$1(undefined, undefined)(sarg$1, arg_type[0]) : undefined;
+          var arg = sarg$1 ~= undefined and arg_type and !arg_type[1] and type_pat$1(undefined, undefined)(sarg$1, arg_type[0]) or undefined;
           return rp(do
                       pat_desc: --[ Tpat_variant ]--Block.__(5, [
                           l,
@@ -59415,8 +59415,8 @@ function type_pat(constrs, labels, no_existentials, mode, env, sp, expected_ty) 
 end
 
 function type_pat$1(allow_existentialsOpt, constrs, labels, levOpt, env, sp, expected_ty) do
-  var allow_existentials = allow_existentialsOpt ~= undefined ? allow_existentialsOpt : false;
-  var lev = levOpt ~= undefined ? levOpt : current_level.contents;
+  var allow_existentials = allow_existentialsOpt ~= undefined and allow_existentialsOpt or false;
+  var lev = levOpt ~= undefined and levOpt or current_level.contents;
   newtype_level$1.contents = lev;
   try do
     var r = type_pat(constrs, labels, !allow_existentials, --[ Normal ]--0, env, sp, expected_ty);
@@ -59450,7 +59450,7 @@ function partial_pred(lev, env, expected_ty, constrs, labels, p) do
 end
 
 function check_partial$1(levOpt, env, expected_ty) do
-  var lev = levOpt ~= undefined ? levOpt : current_level.contents;
+  var lev = levOpt ~= undefined and levOpt or current_level.contents;
   return (function (param, param$1) do
       var pred = function (param, param$1, param$2) do
         return partial_pred(lev, env, expected_ty, param, param$1, param$2);
@@ -59476,7 +59476,7 @@ function add_pattern_variables(check, check_as, env) do
   var pv = get_ref(pattern_variables);
   return --[ tuple ]--[
           List.fold_right((function (param, env) do
-                  var check$1 = param[4] ? check_as : check;
+                  var check$1 = param[4] and check_as or check;
                   return add_value(check$1, param[0], do
                               val_type: param[1],
                               val_kind: --[ Val_reg ]--0,
@@ -59777,7 +59777,7 @@ function is_nonexpansive(_exp) do
           return is_nonexpansive_opt(match[1]);end end end 
        if ___conditional___ = 10--[ Texp_record ]-- then do
           if (List.for_all((function (param) do
-                    return param[1].lbl_mut == --[ Immutable ]--0 ? is_nonexpansive(param[2]) : false;
+                    return param[1].lbl_mut == --[ Immutable ]--0 and is_nonexpansive(param[2]) or false;
                   end), match[0])) then do
             return is_nonexpansive_opt(match[1]);
           end else do
@@ -59826,7 +59826,7 @@ function is_nonexpansive(_exp) do
                      if ___conditional___ = 1--[ Tcf_val ]-- then do
                         var match$1 = match[3];
                         count.contents = count.contents + 1 | 0;
-                        return match$1.tag ? is_nonexpansive(match$1[1]) : true;end end end 
+                        return match$1.tag and is_nonexpansive(match$1[1]) or true;end end end 
                      if ___conditional___ = 4--[ Tcf_initializer ]-- then do
                         return is_nonexpansive(match[0]);end end end 
                      do
@@ -59839,7 +59839,7 @@ function is_nonexpansive(_exp) do
                 end(count)), match$2.cstr_fields) and fold((function(count)do
                 return function (param, param$1, b) do
                   count.contents = count.contents - 1 | 0;
-                  return b ? param$1[0] == --[ Immutable ]--0 : false;
+                  return b and param$1[0] == --[ Immutable ]--0 or false;
                 end
                 end(count)), match$2.cstr_type.csig_vars, true)) then do
             return count.contents == 0;
@@ -59940,7 +59940,7 @@ function approx_type(env, _sty) do
       do
          if ___conditional___ = 1--[ Ptyp_arrow ]-- then do
             var p = match[0];
-            var ty1 = is_optional(p) ? type_option$1(newvar(undefined, --[ () ]--0)) : newvar(undefined, --[ () ]--0);
+            var ty1 = is_optional(p) and type_option$1(newvar(undefined, --[ () ]--0)) or newvar(undefined, --[ () ]--0);
             var desc_002 = approx_type(env, match[2]);
             var desc = --[ Tarrow ]--Block.__(1, [
                 p,
@@ -60446,10 +60446,10 @@ function check_absent_variant(env) do
                               end), row.row_fields) or !row.row_fixed and !static_row(row)) then do
                         return --[ () ]--0;
                       end else do
-                        var ty_arg = arg ~= undefined ? --[ :: ]--[
+                        var ty_arg = arg ~= undefined and --[ :: ]--[
                             type_expr(identity, arg.pat_type),
                             --[ [] ]--0
-                          ] : --[ [] ]--0;
+                          ] or --[ [] ]--0;
                         var row$prime_row_fields = --[ :: ]--[
                           --[ tuple ]--[
                             s,
@@ -60565,7 +60565,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         var path = match$1[0];
         if (annotations.contents) then do
           var dloc = desc.val_loc;
-          var annot = dloc.loc_ghost ? --[ Iref_external ]--0 : --[ Iref_internal ]--Block.__(0, [dloc]);
+          var annot = dloc.loc_ghost and --[ Iref_external ]--0 or --[ Iref_internal ]--Block.__(0, [dloc]);
           var name$1 = name(parenthesized_ident, path);
           record$2(--[ An_ident ]--Block.__(5, [
                   loc,
@@ -60749,7 +60749,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
             exit$1 = 2;
           end end 
           if (exit$1 == 2) then do
-            scp = rec_flag ? --[ Idef ]--Block.__(1, [loc]) : --[ Idef ]--Block.__(1, [sbody.pexp_loc]);
+            scp = rec_flag and --[ Idef ]--Block.__(1, [loc]) or --[ Idef ]--Block.__(1, [sbody.pexp_loc]);
           end
            end 
           var match$10 = type_let(undefined, undefined, env, rec_flag, match[1], scp, true);
@@ -61067,7 +61067,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         if (sarg ~= undefined) then do
           var se = sarg;
           var match$18 = se.pexp_desc;
-          sargs$1 = match$18.tag == --[ Pexp_tuple ]--8 and (constr.cstr_arity > 1 or explicit_arity(attrs)) ? match$18[0] : --[ :: ]--[
+          sargs$1 = match$18.tag == --[ Pexp_tuple ]--8 and (constr.cstr_arity > 1 or explicit_arity(attrs)) and match$18[0] or --[ :: ]--[
               se,
               --[ [] ]--0
             ];
@@ -61519,7 +61519,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         var lid$3 = match[1];
         var match$33 = type_label_access(env, loc, match[0], lid$3);
         var record$4 = match$33[0];
-        var ty_record$1 = match$33[2] == undefined ? newvar(undefined, --[ () ]--0) : record$4.exp_type;
+        var ty_record$1 = match$33[2] == undefined and newvar(undefined, --[ () ]--0) or record$4.exp_type;
         var match$34 = type_label_exp(false, env, loc, ty_record$1, --[ tuple ]--[
               lid$3,
               match$33[1],
@@ -62348,7 +62348,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
         var cond$2 = type_expect(undefined, env, match[0], type_bool);
         var match$66 = cond$2.exp_desc;
         var exp_type;
-        exp_type = match$66.tag == --[ Texp_construct ]--8 and match$66[1].cstr_name == "false" ? instance(undefined, env, ty_expected) : instance_def(type_unit);
+        exp_type = match$66.tag == --[ Texp_construct ]--8 and match$66[1].cstr_name == "false" and instance(undefined, env, ty_expected) or instance_def(type_unit);
         return rue(do
                     exp_desc: --[ Texp_assert ]--Block.__(24, [cond$2]),
                     exp_loc: loc,
@@ -62682,7 +62682,7 @@ function type_expect_(in_function, env, sexp, ty_expected) do
 end
 
 function type_function(in_function, loc, attrs, env, ty_expected, l, caselist) do
-  var match = in_function ~= undefined ? in_function : --[ tuple ]--[
+  var match = in_function ~= undefined and in_function or --[ tuple ]--[
       loc,
       instance(undefined, env, ty_expected)
     ];
@@ -62918,7 +62918,7 @@ function type_label_exp(create, env, loc, ty_expected, param) do
         ];
   end
    end 
-  var snap = vars == --[ [] ]--0 ? undefined : Caml_option.some(snapshot(--[ () ]--0));
+  var snap = vars == --[ [] ]--0 and undefined or Caml_option.some(snapshot(--[ () ]--0));
   var arg = type_argument(env, sarg, ty_arg$1, instance(undefined, env, ty_arg$1));
   end_def(--[ () ]--0);
   var arg$1;
@@ -63328,7 +63328,7 @@ function type_application(env, funct, sargs) do
             end
             end(lv));
             var name = label_name(l);
-            var optional = is_optional(l) ? --[ Optional ]--1 : --[ Required ]--0;
+            var optional = is_optional(l) and --[ Optional ]--1 or --[ Required ]--0;
             var match$4;
             if (ignore_labels and !is_optional(l)) then do
               if (sargs) then do
@@ -63423,11 +63423,11 @@ function type_application(env, funct, sargs) do
                 match$4 = --[ tuple ]--[
                   match$7[2],
                   match$7[3],
-                  optional == --[ Required ]--0 or is_optional(l$prime$1) ? (function(ty,ty0,sarg0$3)do
+                  optional == --[ Required ]--0 or is_optional(l$prime$1) and (function(ty,ty0,sarg0$3)do
                     return function (param) do
                       return type_argument(env, sarg0$3, ty, ty0);
                     end
-                    end(ty,ty0,sarg0$3)) : (may_warn(sarg0$3.pexp_loc, --[ Not_principal ]--Block.__(8, ["using an optional argument here"])), (function(ty,ty0,sarg0$3)do
+                    end(ty,ty0,sarg0$3)) or (may_warn(sarg0$3.pexp_loc, --[ Not_principal ]--Block.__(8, ["using an optional argument here"])), (function(ty,ty0,sarg0$3)do
                       return function (param) do
                         return option_some(type_argument(env, sarg0$3, extract_option_type(env, ty), extract_option_type(env, ty0)));
                       end
@@ -63439,7 +63439,7 @@ function type_application(env, funct, sargs) do
                   match$4 = --[ tuple ]--[
                     sargs,
                     more_sargs,
-                    optional == --[ Optional ]--1 and (List.mem_assoc("", sargs) or List.mem_assoc("", more_sargs)) ? (may_warn(funct.exp_loc, --[ Without_principality ]--Block.__(9, ["eliminated optional argument"])), ignored.contents = --[ :: ]--[
+                    optional == --[ Optional ]--1 and (List.mem_assoc("", sargs) or List.mem_assoc("", more_sargs)) and (may_warn(funct.exp_loc, --[ Without_principality ]--Block.__(9, ["eliminated optional argument"])), ignored.contents = --[ :: ]--[
                           --[ tuple ]--[
                             l,
                             ty,
@@ -63450,7 +63450,7 @@ function type_application(env, funct, sargs) do
                         return function (param) do
                           return option_none(instance(undefined, env, ty), none);
                         end
-                        end(ty))) : (may_warn(funct.exp_loc, --[ Without_principality ]--Block.__(9, ["commuted an argument"])), undefined)
+                        end(ty))) or (may_warn(funct.exp_loc, --[ Without_principality ]--Block.__(9, ["commuted an argument"])), undefined)
                   ];
                 end else do
                   throw exn$1;
@@ -63459,15 +63459,15 @@ function type_application(env, funct, sargs) do
             end end 
             var arg = match$4[2];
             var sargs$1 = match$4[0];
-            var omitted$1 = arg == undefined ? --[ :: ]--[
+            var omitted$1 = arg == undefined and --[ :: ]--[
                 --[ tuple ]--[
                   l,
                   ty,
                   lv
                 ],
                 omitted
-              ] : omitted;
-            var ty_old$1 = sargs$1 == --[ [] ]--0 ? ty_fun$1 : ty_old;
+              ] or omitted;
+            var ty_old$1 = sargs$1 == --[ [] ]--0 and ty_fun$1 or ty_old;
             _more_sargs = match$4[1];
             _sargs = sargs$1;
             _ty_old = ty_old$1;
@@ -63573,7 +63573,7 @@ function type_application(env, funct, sargs) do
             end end 
             if (exit$1 == 1) then do
               var ty_fun$4;
-              ty_fun$4 = typeof td == "number" or td.tag ~= --[ Tarrow ]--1 ? ty_fun$3 : newty2(current_level.contents, td);
+              ty_fun$4 = typeof td == "number" or td.tag ~= --[ Tarrow ]--1 and ty_fun$3 or newty2(current_level.contents, td);
               var ty_res = result_type(Pervasives.$at(omitted$2, ignored.contents), ty_fun$4);
               var match$13 = ty_res.desc;
               var exit$2 = 0;
@@ -63611,7 +63611,7 @@ function type_application(env, funct, sargs) do
             end
              end 
             var ty1 = match$12[0];
-            var optional$1 = is_optional(l1) ? --[ Optional ]--1 : --[ Required ]--0;
+            var optional$1 = is_optional(l1) and --[ Optional ]--1 or --[ Required ]--0;
             var arg1 = (function(sarg1,ty1,optional$1)do
             return function arg1(param) do
               var arg1$1 = type_expect(undefined, env, sarg1, ty1);
@@ -63763,11 +63763,11 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
   var has_gadts = List.exists((function (param) do
           return contains_gadt(env, param);
         end), patterns);
-  var ty_arg$1 = (has_gadts or erase_either) and !principal.contents ? type_expr(identity, ty_arg) : ty_arg;
-  var match = has_gadts and !principal.contents ? --[ tuple ]--[
+  var ty_arg$1 = (has_gadts or erase_either) and !principal.contents and type_expr(identity, ty_arg) or ty_arg;
+  var match = has_gadts and !principal.contents and --[ tuple ]--[
       type_expr(identity, ty_res),
       duplicate_ident_types(loc, caselist, env)
-    ] : --[ tuple ]--[
+    ] or --[ tuple ]--[
       ty_res,
       env
     ];
@@ -63815,12 +63815,12 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
           end
            end 
           var scope = --[ Idef ]--Block.__(1, [loc]);
-          var partial = principal.contents or erase_either ? false : undefined;
+          var partial = principal.contents or erase_either and false or undefined;
           var ty_arg$2 = instance(partial, env$2, ty_arg$1);
           var match = type_pattern(lev$1, env$2, param.pc_lhs, scope, ty_arg$2);
           var pat = match[0];
           pattern_force.contents = Pervasives.$at(match[2], pattern_force.contents);
-          var pat$1 = principal.contents ? (end_def(--[ () ]--0), iter_pattern((function (param) do
+          var pat$1 = principal.contents and (end_def(--[ () ]--0), iter_pattern((function (param) do
                       return generalize_structure$1(current_level.contents, param.pat_type);
                     end), pat), do
                 pat_desc: pat.pat_desc,
@@ -63829,7 +63829,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
                 pat_type: instance(undefined, env$2, pat.pat_type),
                 pat_env: pat.pat_env,
                 pat_attributes: pat.pat_attributes
-              end) : pat;
+              end) or pat;
           return --[ tuple ]--[
                   pat$1,
                   --[ tuple ]--[
@@ -63870,7 +63870,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
                                   end, param.pat_type);
                       end), param);
         end), patl);
-  var in_function$1 = List.length(caselist) == 1 ? in_function : undefined;
+  var in_function$1 = List.length(caselist) == 1 and in_function or undefined;
   var cases = List.map2((function (param, param$1) do
           var pc_guard = param$1.pc_guard;
           var match = param[1];
@@ -63885,9 +63885,9 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
             generalize_structure$1(current_level.contents, ty);
             ty_res$prime = ty;
           end else do
-            ty_res$prime = contains_gadt(env$2, param$1.pc_lhs) ? type_expr(identity, ty_res$1) : ty_res$1;
+            ty_res$prime = contains_gadt(env$2, param$1.pc_lhs) and type_expr(identity, ty_res$1) or ty_res$1;
           end end 
-          var guard = pc_guard ~= undefined ? type_expect(undefined, ext_env, wrap_unpacks(pc_guard, unpacks), type_bool) : undefined;
+          var guard = pc_guard ~= undefined and type_expect(undefined, ext_env, wrap_unpacks(pc_guard, unpacks), type_bool) or undefined;
           var exp = type_expect(in_function$1, ext_env, sexp, ty_res$prime);
           return do
                   c_lhs: param[0],
@@ -63909,7 +63909,7 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
           end), cases);
   end
    end 
-  var partial = partial_flag ? check_partial$1(lev$1, env$2, ty_arg$1)(loc, cases) : --[ Partial ]--0;
+  var partial = partial_flag and check_partial$1(lev$1, env$2, ty_arg$1)(loc, cases) or --[ Partial ]--0;
   add_delayed_check((function (param) do
           List.iter((function (param) do
                   return check_absent_variant(param[1][0])(param[0]);
@@ -64004,10 +64004,10 @@ function type_cases(in_function, env, ty_arg, ty_res, partial_flag, loc, caselis
 end
 
 function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scope, allow) do
-  var check = checkOpt ~= undefined ? checkOpt : (function (s) do
+  var check = checkOpt ~= undefined and checkOpt or (function (s) do
         return --[ Unused_var ]--Block.__(12, [s]);
       end);
-  var check_strict = check_strictOpt ~= undefined ? check_strictOpt : (function (s) do
+  var check_strict = check_strictOpt ~= undefined and check_strictOpt or (function (s) do
         return --[ Unused_var_strict ]--Block.__(13, [s]);
       end);
   begin_def(--[ () ]--0);
@@ -64027,7 +64027,7 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
         local ___conditional___=(match$2.tag | 0);
         do
            if ___conditional___ = 0--[ Lident ]-- then do
-              is_fake_let = match$2[0] == "*opt*" and !spat_sexp_list[1] ? true : false;end else 
+              is_fake_let = match$2[0] == "*opt*" and !spat_sexp_list[1] and true or false;end else 
            if ___conditional___ = 1--[ Ldot ]--
            or ___conditional___ = 2--[ Lapply ]-- then do
               is_fake_let = false;end else 
@@ -64041,7 +64041,7 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
   end else do
     is_fake_let = false;
   end end 
-  var check$1 = is_fake_let ? check_strict : check;
+  var check$1 = is_fake_let and check_strict or check;
   var spatl = List.map((function (param) do
           var spat = param.pvb_pat;
           var match = spat.ppat_desc;
@@ -64086,7 +64086,7 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
     List.iter2((function (pat, binding) do
             var match = pat.pat_type.desc;
             var pat$1;
-            pat$1 = typeof match == "number" or match.tag ~= --[ Tpoly ]--10 ? pat : (do
+            pat$1 = typeof match == "number" or match.tag ~= --[ Tpoly ]--10 and pat or (do
                   pat_desc: pat.pat_desc,
                   pat_loc: pat.pat_loc,
                   pat_extra: pat.pat_extra,
@@ -64109,7 +64109,7 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
             return 0;
           end end 
         end), pat_list);
-  var pat_list$1 = principal.contents ? (end_def(--[ () ]--0), List.map((function (pat) do
+  var pat_list$1 = principal.contents and (end_def(--[ () ]--0), List.map((function (pat) do
               iter_pattern((function (pat) do
                       return generalize_structure$1(current_level.contents, pat.pat_type);
                     end), pat);
@@ -64121,11 +64121,11 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
                       pat_env: pat.pat_env,
                       pat_attributes: pat.pat_attributes
                     end;
-            end), pat_list)) : pat_list;
+            end), pat_list)) or pat_list;
   List.iter((function (f) do
           return Curry._1(f, --[ () ]--0);
         end), match$3[2]);
-  var exp_env = is_recursive ? new_env : env;
+  var exp_env = is_recursive and new_env or env;
   var current_slot = do
     contents: undefined
   end;
@@ -64153,7 +64153,7 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
                               if (used.contents) then do
                                 return 0;
                               end else do
-                                return prerr_warning(vd.val_loc, Curry._1(some_used.contents ? check_strict : check$1, name));
+                                return prerr_warning(vd.val_loc, Curry._1(some_used.contents and check_strict or check$1, name));
                               end end 
                             end));
                     end
@@ -64216,7 +64216,7 @@ function type_let(checkOpt, check_strictOpt, env, rec_flag, spat_sexp_list, scop
   var exp_list = List.map2((function (param, param$1) do
           var pat = param$1[0];
           var sexp = param.pvb_expr;
-          var sexp$1 = rec_flag == --[ Recursive ]--1 ? wrap_unpacks(sexp, unpacks) : sexp;
+          var sexp$1 = rec_flag == --[ Recursive ]--1 and wrap_unpacks(sexp, unpacks) or sexp;
           if (is_recursive) then do
             current_slot.contents = param$1[1];
           end
@@ -65025,7 +65025,7 @@ register_error_of_exn((function (param) do
                                                               ])
                                                           ]),
                                                         "The %s %a does not belong to type %a@]"
-                                                      ]), kind == "record" ? "field" : "constructor", longident, lid$1, path, p);
+                                                      ]), kind == "record" and "field" or "constructor", longident, lid$1, path, p);
                                               if (kind == "record") then do
                                                 var ppf$2 = ppf$1;
                                                 var env$3 = env$2;
@@ -65054,7 +65054,7 @@ register_error_of_exn((function (param) do
                                            if ___conditional___ = 14--[ Name_type_mismatch ]-- then do
                                               var lid$4 = param$1[1];
                                               var kind$1 = param$1[0];
-                                              var name = kind$1 == "record" ? "field" : "constructor";
+                                              var name = kind$1 == "record" and "field" or "constructor";
                                               var ppf$4 = ppf$1;
                                               var env$5 = env$2;
                                               var param$2 = param$1[2];
@@ -65866,7 +65866,7 @@ function enter_type$1(env, sdecl, id) do
         end), sdecl.ptype_params);
   var decl_type_arity = List.length(sdecl.ptype_params);
   var decl_type_private = sdecl.ptype_private;
-  var decl_type_manifest = match ~= undefined ? newvar(undefined, --[ () ]--0) : undefined;
+  var decl_type_manifest = match ~= undefined and newvar(undefined, --[ () ]--0) or undefined;
   var decl_type_variance = List.map((function (param) do
           return Types_Variance.full;
         end), sdecl.ptype_params);
@@ -65966,7 +65966,7 @@ function set_fixed_row(env, loc, p, decl) do
                 row_fixed: true,
                 row_name: row.row_name
               end]);
-          rv = static_row(row) ? newty2(100000000, --[ Tnil ]--0) : row.row_more;end else 
+          rv = static_row(row) and newty2(100000000, --[ Tnil ]--0) or row.row_more;end else 
        do end end end
       else do
         throw [
@@ -66005,19 +66005,19 @@ function height$10(param) do
 end
 
 function create$11(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$10(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--2];
@@ -66065,7 +66065,7 @@ function bal$10(l, v, r) do
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -66111,7 +66111,7 @@ function mem$6(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--2];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
         continue ;
       end end 
     end else do
@@ -66320,13 +66320,13 @@ function create$12(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$11(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -66377,7 +66377,7 @@ function bal$11(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -66435,7 +66435,7 @@ function find$6(x, _param) do
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -66468,11 +66468,11 @@ function check_coherence(env, loc, id, decl) do
       var path = match$2[0];
       try do
         var decl$prime = find_type_full(path, env)[0];
-        var err = List.length(args) ~= List.length(decl.type_params) ? --[ :: ]--[
+        var err = List.length(args) ~= List.length(decl.type_params) and --[ :: ]--[
             --[ Arity ]--0,
             --[ [] ]--0
-          ] : (
-            equal$4(env, false, args, decl.type_params) ? type_declarations$1(true, env, last(path), decl$prime, id, type_declaration(add_type(id, path, identity), decl)) : --[ :: ]--[
+          ] or (
+            equal$4(env, false, args, decl.type_params) and type_declarations$1(true, env, last(path), decl$prime, id, type_declaration(add_type(id, path, identity), decl)) or --[ :: ]--[
                 --[ Constraint ]--3,
                 --[ [] ]--0
               ]
@@ -66525,7 +66525,7 @@ function check_well_founded(env, loc, path, to_check, ty) do
     if (mem$3(ty$1, exp_nodes)) then do
       var match = ty0.desc;
       var tmp;
-      tmp = typeof match == "number" or match.tag ~= --[ Tconstr ]--3 ? false : same(match[0], path);
+      tmp = typeof match == "number" or match.tag ~= --[ Tconstr ]--3 and false or same(match[0], path);
       if (tmp) then do
         throw [
               $$Error$8,
@@ -66547,10 +66547,10 @@ function check_well_founded(env, loc, path, to_check, ty) do
     var match$1;
     try do
       var prev = find$1(ty$1, visited.contents);
-      match$1 = subset$1(exp_nodes, prev) ? --[ tuple ]--[
+      match$1 = subset$1(exp_nodes, prev) and --[ tuple ]--[
           true,
           exp_nodes
-        ] : --[ tuple ]--[
+        ] or --[ tuple ]--[
           false,
           union$2(exp_nodes, prev)
         ];
@@ -66577,12 +66577,12 @@ function check_well_founded(env, loc, path, to_check, ty) do
           throw Cannot_expand;
         end else if (match$2.tag == --[ Tconstr ]--3) then do
           if (!(
-              exp_nodes$1 ? false : true
+              exp_nodes$1 and false or true
             ) or Curry._1(to_check, match$2[0])) then do
             var ty$prime = try_expand_once_opt(env, ty$1);
             var ty0$1 = (
-              exp_nodes$1 ? false : true
-            ) ? ty$1 : ty0;
+              exp_nodes$1 and false or true
+            ) and ty$1 or ty0;
             return check(ty0$1, add$3(ty$1, exp_nodes$1), ty$prime);
           end else do
             throw Cannot_expand;
@@ -66616,7 +66616,7 @@ function check_well_founded(env, loc, path, to_check, ty) do
             tmp$1 = tmp$2;
           end
            end 
-          var nodes = tmp$1 ? --[ Empty ]--0 : exp_nodes$1;
+          var nodes = tmp$1 and --[ Empty ]--0 or exp_nodes$1;
           return iter_type_expr((function (param) do
                         return check(ty0, nodes, param);
                       end), ty$1);
@@ -66803,7 +66803,7 @@ function compute_variance(env, visited, vari, ty) do
           do
              if ___conditional___ = 1--[ Tarrow ]-- then do
                 var v = Curry._1(Types_Variance.conjugate, vari$1);
-                var v1 = Curry._2(Types_Variance.mem, --[ May_pos ]--0, v) or Curry._2(Types_Variance.mem, --[ May_neg ]--1, v) ? Curry._3(Types_Variance.set, --[ May_weak ]--2, true, v) : v;
+                var v1 = Curry._2(Types_Variance.mem, --[ May_pos ]--0, v) or Curry._2(Types_Variance.mem, --[ May_neg ]--1, v) and Curry._3(Types_Variance.set, --[ May_weak ]--2, true, v) or v;
                 compute_variance_rec(v1, match[1]);
                 _ty = match[2];
                 _vari = vari$1;
@@ -66892,7 +66892,7 @@ function compute_variance(env, visited, vari, ty) do
                 _vari = vari$1;
                 continue ;end end end 
              if ___conditional___ = 11--[ Tpackage ]-- then do
-                var v$1 = Curry._2(Types_Variance.mem, --[ Pos ]--4, vari$1) or Curry._2(Types_Variance.mem, --[ Neg ]--5, vari$1) ? Types_Variance.full : Types_Variance.may_inv;
+                var v$1 = Curry._2(Types_Variance.mem, --[ Pos ]--4, vari$1) or Curry._2(Types_Variance.mem, --[ Neg ]--5, vari$1) and Types_Variance.full or Types_Variance.may_inv;
                 return List.iter((function(v$1)do
                           return function (param) do
                             return compute_variance_rec(v$1, param);
@@ -66940,7 +66940,7 @@ function compute_variance_type(env, check, param, decl, tyl) do
     contents: --[ Empty ]--0
   end;
   List.iter((function (param) do
-          return compute_variance(env, tvl, param[0] ? Types_Variance.full : Types_Variance.covariant, param[1]);
+          return compute_variance(env, tvl, param[0] and Types_Variance.full or Types_Variance.covariant, param[1]);
         end), tyl);
   if (check) then do
     var pos = do
@@ -66991,9 +66991,9 @@ function compute_variance_type(env, check, param, decl, tyl) do
               if (is_Tvar(ty)) then do
                 return --[ () ]--0;
               end else do
-                var v = param[0] ? (
-                    param[1] ? Types_Variance.full : Types_Variance.covariant
-                  ) : Curry._1(Types_Variance.conjugate, Types_Variance.covariant);
+                var v = param[0] and (
+                    param[1] and Types_Variance.full or Types_Variance.covariant
+                  ) or Curry._1(Types_Variance.conjugate, Types_Variance.covariant);
                 return compute_variance(env, tvl2, v, ty);
               end end 
             end), params, required);
@@ -67031,9 +67031,9 @@ function compute_variance_type(env, check, param, decl, tyl) do
           var c2 = match$1[0];
           if (c1 and !c2 or n1 and !n2) then do
             if (List.memq(ty$1, fvl$1)) then do
-              var code = match$1[3] ? (
-                  c2 or n2 ? -1 : -3
-                ) : -2;
+              var code = match$1[3] and (
+                  c2 or n2 and -1 or -3
+                ) or -2;
               throw [
                     $$Error$8,
                     loc,
@@ -67070,10 +67070,10 @@ function compute_variance_type(env, check, param, decl, tyl) do
                 var v = get_variance(ty, tvl);
                 var tr = decl.type_private;
                 var concr = decl.type_kind ~= --[ Type_abstract ]--0;
-                var match = tr == --[ Private ]--0 or !is_Tvar(ty) ? --[ tuple ]--[
+                var match = tr == --[ Private ]--0 or !is_Tvar(ty) and --[ tuple ]--[
                     param[0],
                     param[1]
-                  ] : --[ tuple ]--[
+                  ] or --[ tuple ]--[
                     false,
                     false
                   ];
@@ -67081,13 +67081,13 @@ function compute_variance_type(env, check, param, decl, tyl) do
                 var p = match[0];
                 var i = concr or param[2] and tr == --[ Private ]--0;
                 var v$1 = Curry._2(Types_Variance.union, v, make(p, n, i));
-                var v$2 = concr ? (
-                    Curry._2(Types_Variance.mem, --[ Pos ]--4, v$1) and Curry._2(Types_Variance.mem, --[ Neg ]--5, v$1) ? Types_Variance.full : (
-                        is_Tvar(ty) ? v$1 : Curry._2(Types_Variance.union, v$1, p ? (
-                                  n ? Types_Variance.full : Types_Variance.covariant
-                                ) : Curry._1(Types_Variance.conjugate, Types_Variance.covariant))
+                var v$2 = concr and (
+                    Curry._2(Types_Variance.mem, --[ Pos ]--4, v$1) and Curry._2(Types_Variance.mem, --[ Neg ]--5, v$1) and Types_Variance.full or (
+                        is_Tvar(ty) and v$1 or Curry._2(Types_Variance.union, v$1, p and (
+                                  n and Types_Variance.full or Types_Variance.covariant
+                                ) or Curry._1(Types_Variance.conjugate, Types_Variance.covariant))
                       )
-                  ) : v$1;
+                  ) or v$1;
                 if (decl.type_kind == --[ Type_abstract ]--0 and tr == --[ Public ]--1) then do
                   return v$2;
                 end else do
@@ -67231,13 +67231,13 @@ function compute_variance_decl(env, check, decl, rloc) do
                 end), rloc[0]);
   end else do
     var match = decl.type_manifest;
-    var mn = match ~= undefined ? --[ :: ]--[
+    var mn = match ~= undefined and --[ :: ]--[
         --[ tuple ]--[
           false,
           match
         ],
         --[ [] ]--0
-      ] : --[ [] ]--0;
+      ] or --[ [] ]--0;
     var match$1 = decl.type_kind;
     if (typeof match$1 == "number") then do
       return compute_variance_type(env, check, rloc, decl, mn);
@@ -67585,7 +67585,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
         end), sdecl_list$1);
   init_def(currentstamp.contents);
   begin_def(--[ () ]--0);
-  var temp_env = rec_flag ? List.fold_left2(enter_type$1, env, sdecl_list$1, id_list) : env;
+  var temp_env = rec_flag and List.fold_left2(enter_type$1, env, sdecl_list$1, id_list) or env;
   var current_slot = do
     contents: undefined
   end;
@@ -67648,10 +67648,10 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
     var match = sdecl.ptype_kind;
     var match$1;
     if (typeof match == "number") then do
-      match$1 = match == --[ Ptype_abstract ]--0 ? --[ tuple ]--[
+      match$1 = match == --[ Ptype_abstract ]--0 and --[ tuple ]--[
           --[ Ttype_abstract ]--0,
           --[ Type_abstract ]--0
-        ] : --[ tuple ]--[
+        ] or --[ tuple ]--[
           --[ Ttype_open ]--1,
           --[ Type_open ]--1
         ];
@@ -67694,7 +67694,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
               var ty = ld.ld_type.ctyp_type;
               var match = ty.desc;
               var ty$1;
-              ty$1 = typeof match == "number" or !(match.tag == --[ Tpoly ]--10 and !match[1]) ? ty : match[0];
+              ty$1 = typeof match == "number" or !(match.tag == --[ Tpoly ]--10 and !match[1]) and ty or match[0];
               return do
                       ld_id: ld.ld_id,
                       ld_mutable: ld.ld_mutable,
@@ -67713,7 +67713,7 @@ function transl_type_decl(env, rec_flag, sdecl_list) do
               end else do
                 return same(match$1[0], path_float);
               end end 
-            end), lbls$prime) ? --[ Record_float ]--1 : --[ Record_regular ]--0;
+            end), lbls$prime) and --[ Record_float ]--1 or --[ Record_regular ]--0;
       match$1 = --[ tuple ]--[
         --[ Ttype_record ]--Block.__(1, [lbls$1]),
         --[ Type_record ]--Block.__(0, [
@@ -68203,7 +68203,7 @@ function transl_extension_constructor(env, check_open, type_path, type_params, t
   if (match.tag) then do
     var lid = match[0];
     var cdescr = find_constructor(env, sext.pext_loc, lid.txt);
-    var usage = cdescr.cstr_private == --[ Private ]--0 or priv == --[ Public ]--1 ? --[ Positive ]--0 : --[ Privatize ]--2;
+    var usage = cdescr.cstr_private == --[ Private ]--0 or priv == --[ Public ]--1 and --[ Positive ]--0 or --[ Privatize ]--2;
     mark_constructor(usage, env, last$1(lid.txt), cdescr);
     var match$2 = instance_constructor(undefined, cdescr);
     var args = match$2[0];
@@ -68439,10 +68439,10 @@ function transl_type_extension(check_open, env, loc, styext) do
                   false
                 ];
         end), type_decl.type_variance);
-  var err = type_decl.type_arity ~= List.length(styext.ptyext_params) ? --[ :: ]--[
+  var err = type_decl.type_arity ~= List.length(styext.ptyext_params) and --[ :: ]--[
       --[ Arity ]--0,
       --[ [] ]--0
-    ] : (
+    ] or (
       List.for_all2((function (param, param$1) do
               if (!param$1[0] or param[0]) then do
                 if (param$1[1]) then do
@@ -68455,7 +68455,7 @@ function transl_type_extension(check_open, env, loc, styext) do
               end end 
             end), type_variance, add_injectivity(List.map((function (prim) do
                       return prim[1];
-                    end), styext.ptyext_params))) ? --[ [] ]--0 : --[ :: ]--[
+                    end), styext.ptyext_params))) and --[ [] ]--0 or --[ :: ]--[
           --[ Variance ]--5,
           --[ [] ]--0
         ]
@@ -68731,15 +68731,15 @@ function transl_with_constraint(env, id, row_path, orig_decl, sdecl) do
     ];
   end end 
   var man = match$1[1];
-  var priv = sdecl.ptype_private == --[ Private ]--0 ? --[ Private ]--0 : (
-      arity_ok and orig_decl$1.type_kind ~= --[ Type_abstract ]--0 ? orig_decl$1.type_private : sdecl.ptype_private
+  var priv = sdecl.ptype_private == --[ Private ]--0 and --[ Private ]--0 or (
+      arity_ok and orig_decl$1.type_kind ~= --[ Type_abstract ]--0 and orig_decl$1.type_private or sdecl.ptype_private
     );
   if (arity_ok and orig_decl$1.type_kind ~= --[ Type_abstract ]--0 and sdecl.ptype_private == --[ Private ]--0) then do
     prerr_warning(sdecl.ptype_loc, --[ Deprecated ]--Block.__(0, ["spurious use of private"]));
   end
    end 
   var decl_type_arity = List.length(params);
-  var decl_type_kind = arity_ok and man ~= undefined ? orig_decl$1.type_kind : --[ Type_abstract ]--0;
+  var decl_type_kind = arity_ok and man ~= undefined and orig_decl$1.type_kind or --[ Type_abstract ]--0;
   var decl_type_loc = sdecl.ptype_loc;
   var decl_type_attributes = sdecl.ptype_attributes;
   var decl = do
@@ -69703,7 +69703,7 @@ function report_error$5(ppf, param) do
           var n = param[0];
           var variance = function (param) do
             var n = param[1];
-            var inj = param[2] ? "injective " : "";
+            var inj = param[2] and "injective " or "";
             if (param[0]) then do
               if (n) then do
                 return inj .. "invariant";
@@ -70267,8 +70267,8 @@ function enter_val(cl_num, vars, inh, lab, mut, virt, ty, val_env, met_env, par_
      end 
     unify$2(val_env, instance(undefined, val_env, ty), instance(undefined, val_env, match$1[3]));
     match = --[ tuple ]--[
-      inh ? undefined : match$1[0],
-      virt$prime == --[ Concrete ]--1 ? virt$prime : virt
+      inh and undefined or match$1[0],
+      virt$prime == --[ Concrete ]--1 and virt$prime or virt
     ];
   end
   catch (raw_exn)do
@@ -70296,12 +70296,12 @@ function enter_val(cl_num, vars, inh, lab, mut, virt, ty, val_env, met_env, par_
     end end 
   end
   var id = match[0];
-  var result = id ~= undefined ? --[ tuple ]--[
+  var result = id ~= undefined and --[ tuple ]--[
       id,
       val_env,
       met_env,
       par_env
-    ] : enter_met_env(undefined, none, lab, --[ Val_ivar ]--Block.__(1, [
+    ] or enter_met_env(undefined, none, lab, --[ Val_ivar ]--Block.__(1, [
             mut,
             cl_num
           ]), ty, val_env, met_env, par_env);
@@ -70404,7 +70404,7 @@ function inheritance(self_type, env, ovf, concr_meths, warn_vals, loc, parent) d
               
             end
             if (!(
-                over_meths ? false : true
+                over_meths and false or true
               )) then do
               prerr_warning(loc, --[ Method_override ]--Block.__(2, [--[ :: ]--[
                         cname,
@@ -70413,7 +70413,7 @@ function inheritance(self_type, env, ovf, concr_meths, warn_vals, loc, parent) d
             end
              end 
             if (!(
-                over_vals ? false : true
+                over_vals and false or true
               )) then do
               prerr_warning(loc, --[ Instance_variable_override ]--Block.__(5, [--[ :: ]--[
                         cname,
@@ -70422,9 +70422,9 @@ function inheritance(self_type, env, ovf, concr_meths, warn_vals, loc, parent) d
             end
              end 
           end else if ((
-              over_meths ? false : true
+              over_meths and false or true
             ) and (
-              over_vals ? false : true
+              over_vals and false or true
             )) then do
             throw [
                   $$Error$9,
@@ -70587,7 +70587,7 @@ function add_val(env, loc, lab, param, val_sig) do
   try do
     var match = find(lab, val_sig);
     var virt$prime = match[1];
-    virt$1 = virt$prime == --[ Concrete ]--1 ? virt$prime : virt;
+    virt$1 = virt$prime == --[ Concrete ]--1 and virt$prime or virt;
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
@@ -70723,7 +70723,7 @@ function class_signature$1(env, param) do
                 var priv = match$4[1];
                 var lab$1 = match$4[0];
                 var cty$1 = declare_method(env$1, meths$1, self_type$1, lab$1, priv, match$4[3], ctf.pctf_loc);
-                var concr_meths$1 = virt$1 ? add$2(lab$1, concr_meths) : concr_meths;
+                var concr_meths$1 = virt$1 and add$2(lab$1, concr_meths) or concr_meths;
                 return --[ tuple ]--[
                         --[ :: ]--[
                           mkctf(--[ Tctf_method ]--Block.__(2, [--[ tuple ]--[
@@ -70924,7 +70924,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
   end;
   var self_type = newvar(undefined, --[ () ]--0);
   unify$2(val_env, filter_method(val_env, dummy_method, --[ Private ]--0, self_type), newty2(current_level.contents, --[ Ttuple ]--Block.__(2, [--[ [] ]--0])));
-  var private_self = $$final ? newvar(undefined, --[ () ]--0) : self_type;
+  var private_self = $$final and newvar(undefined, --[ () ]--0) or self_type;
   var match = type_self_pattern(cl_num, private_self, val_env, met_env, met_env, spat);
   var val_env$1 = match[3];
   var vars = match[2];
@@ -70966,7 +70966,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
   end;
   if ($$final) then do
     List.iter((function (param) do
-            var k = field_kind_repr(param[1]) == --[ Fpresent ]--0 ? --[ Public ]--1 : --[ Private ]--0;
+            var k = field_kind_repr(param[1]) == --[ Fpresent ]--0 and --[ Public ]--1 or --[ Private ]--0;
             try do
               return unify$2(val_env$1, param[2], filter_method(val_env$1, param[0], k, self_type));
             end
@@ -71262,7 +71262,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
                   var ovf$2 = match$12[0];
                   var match$13 = expr.pexp_desc;
                   var expr$1;
-                  expr$1 = match$13.tag == --[ Pexp_poly ]--28 ? expr : Curry._4(Ast_helper_Exp.poly, expr.pexp_loc, undefined, expr, undefined);
+                  expr$1 = match$13.tag == --[ Pexp_poly ]--28 and expr or Curry._4(Ast_helper_Exp.poly, expr.pexp_loc, undefined, expr, undefined);
                   if (mem$2(lab$1.txt, local_meths)) then do
                     throw [
                           $$Error$9,
@@ -71664,7 +71664,7 @@ function class_structure(cl_num, $$final, val_env, met_env, loc, param) do
     prerr_warning(loc, --[ Implicit_public_methods ]--Block.__(6, [added]));
   end
    end 
-  var sign$1 = $$final ? sign : (do
+  var sign$1 = $$final and sign or (do
         csig_self: expand_head(val_env$1, public_self),
         csig_vars: sign_csig_vars,
         csig_concr: concr_meths,
@@ -71993,7 +71993,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                           if (sargs ~= --[ [] ]--0 or more_sargs ~= --[ [] ]--0) then do
                             var ty0 = ty_fun0[1];
                             var name = label_name(l);
-                            var optional = is_optional(l) ? --[ Optional ]--1 : --[ Required ]--0;
+                            var optional = is_optional(l) and --[ Optional ]--1 or --[ Required ]--0;
                             var match;
                             if (ignore_labels and !is_optional(l)) then do
                               if (sargs) then do
@@ -72083,7 +72083,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                                   match = --[ tuple ]--[
                                     sargs,
                                     more_sargs,
-                                    is_optional(l) and (List.mem_assoc("", sargs) or List.mem_assoc("", more_sargs)) ? option_none(ty0, none) : undefined
+                                    is_optional(l) and (List.mem_assoc("", sargs) or List.mem_assoc("", more_sargs)) and option_none(ty0, none) or undefined
                                   ];
                                 end else do
                                   throw exn$1;
@@ -72091,13 +72091,13 @@ function class_expr(cl_num, val_env, met_env, _scl) do
                               end
                             end end 
                             var arg$1 = match[2];
-                            var omitted$1 = arg$1 == undefined ? --[ :: ]--[
+                            var omitted$1 = arg$1 == undefined and --[ :: ]--[
                                 --[ tuple ]--[
                                   l,
                                   ty0
                                 ],
                                 omitted
-                              ] : omitted;
+                              ] or omitted;
                             _more_sargs = match[1];
                             _sargs = match[0];
                             _ty_fun0 = ty_fun0[2];
@@ -72155,7 +72155,7 @@ function class_expr(cl_num, val_env, met_env, _scl) do
           end(cl$2,ignore_labels));
           var match$7 = instance_class(--[ [] ]--0, cl$2.cl_type);
           var ty_fun0 = match$7[1];
-          var match$8 = ignore_labels ? type_args(--[ [] ]--0, --[ [] ]--0, cl$2.cl_type, ty_fun0, --[ [] ]--0, sargs) : type_args(--[ [] ]--0, --[ [] ]--0, cl$2.cl_type, ty_fun0, sargs, --[ [] ]--0);
+          var match$8 = ignore_labels and type_args(--[ [] ]--0, --[ [] ]--0, cl$2.cl_type, ty_fun0, --[ [] ]--0, sargs) or type_args(--[ [] ]--0, --[ [] ]--0, cl$2.cl_type, ty_fun0, sargs, --[ [] ]--0);
           return rc(do
                       cl_desc: --[ Tcl_apply ]--Block.__(3, [
                           cl$2,
@@ -72321,7 +72321,7 @@ function approx_declaration(_cl) do
     do
        if ___conditional___ = 2--[ Pcl_fun ]-- then do
           var l = match[0];
-          var arg = is_optional(l) ? instance_def(var_option) : newvar(undefined, --[ () ]--0);
+          var arg = is_optional(l) and instance_def(var_option) or newvar(undefined, --[ () ]--0);
           var desc_002 = approx_declaration(match[3]);
           var desc = --[ Tarrow ]--Block.__(1, [
               l,
@@ -72349,7 +72349,7 @@ function approx_description(ct) do
   var match = ct.pcty_desc;
   if (match.tag == --[ Pcty_arrow ]--2) then do
     var l = match[0];
-    var arg = is_optional(l) ? instance_def(var_option) : newvar(undefined, --[ () ]--0);
+    var arg = is_optional(l) and instance_def(var_option) or newvar(undefined, --[ () ]--0);
     var desc_002 = approx_description(match[2]);
     var desc = --[ Tarrow ]--Block.__(1, [
         l,
@@ -72465,7 +72465,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             cty_params: --[ [] ]--0,
             cty_type: dummy_cty,
             cty_path: unbound_class,
-            cty_new: match$2 ? constr_type : undefined,
+            cty_new: match$2 and constr_type or undefined,
             cty_variance: --[ [] ]--0,
             cty_loc: none,
             cty_attributes: --[ [] ]--0
@@ -72477,7 +72477,7 @@ function type_classes(define_class, approx, kind, env, cls) do
                 clty_variance: --[ [] ]--0,
                 clty_loc: none,
                 clty_attributes: --[ [] ]--0
-              end, define_class$1 ? add_class(id, dummy_class, env) : env);
+              end, define_class$1 and add_class(id, dummy_class, env) or env);
           return --[ tuple ]--[
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -72718,13 +72718,13 @@ function type_classes(define_class, approx, kind, env, cls) do
             cty_params: params,
             cty_type: typ,
             cty_path: --[ Pident ]--Block.__(0, [obj_id]),
-            cty_new: match$4 ? constr_type : undefined,
+            cty_new: match$4 and constr_type or undefined,
             cty_variance: cty_variance,
             cty_loc: cl.pci_loc,
             cty_attributes: cl.pci_attributes
           end;
           param$2[10].cty_type = typ;
-          var env$1 = add_cltype(ty_id, cltydef, define_class$1 ? add_class(id, clty, env) : env);
+          var env$1 = add_cltype(ty_id, cltydef, define_class$1 and add_class(id, clty, env) or env);
           if (cl.pci_virt == --[ Concrete ]--1) then do
             var sign = signature_of_class_type(typ);
             var mets = virtual_methods(sign);
@@ -72779,7 +72779,7 @@ function type_classes(define_class, approx, kind, env, cls) do
             cty_params: params$prime,
             cty_type: typ$prime,
             cty_path: --[ Pident ]--Block.__(0, [obj_id]),
-            cty_new: match$7 ? instance(undefined, env$1, constr_type) : undefined,
+            cty_new: match$7 and instance(undefined, env$1, constr_type) or undefined,
             cty_variance: cty_variance,
             cty_loc: cl.pci_loc,
             cty_attributes: cl.pci_attributes
@@ -72908,9 +72908,9 @@ function type_classes(define_class, approx, kind, env, cls) do
            end 
           var match = closed_class(clty.cty_params, signature_of_class_type(clty.cty_type));
           if (match ~= undefined) then do
-            var printer = define_class$1 ? (function (ppf) do
+            var printer = define_class$1 and (function (ppf) do
                   return class_declaration$1(id, ppf, clty);
-                end) : (function (ppf) do
+                end) or (function (ppf) do
                   return cltype_declaration$1(id, ppf, cltydef);
                 end);
             throw [
@@ -72961,7 +72961,7 @@ function type_classes(define_class, approx, kind, env, cls) do
           var define_class$1 = define_class;
           var env = param;
           var param$2 = param$1;
-          return add_type$1(true, param$2[5], type_declaration(identity, param$2[6]), add_type$1(true, param$2[7], type_declaration(identity, param$2[8]), add_cltype(param$2[3], cltype_declaration(identity, param$2[4]), define_class$1 ? add_class(param$2[0], class_declaration(identity, param$2[2]), env) : env)));
+          return add_type$1(true, param$2[5], type_declaration(identity, param$2[6]), add_type$1(true, param$2[7], type_declaration(identity, param$2[8]), add_cltype(param$2[3], cltype_declaration(identity, param$2[4]), define_class$1 and add_class(param$2[0], class_declaration(identity, param$2[2]), env) or env)));
         end), env$1, res$1);
   var res$2 = List.map((function (param) do
           var env$3 = env$2;
@@ -73561,9 +73561,9 @@ register_error_of_exn((function (param) do
                                                                             ]), met);
                                                             end), mets);
                                               end;
-                                              var missings = mets ? (
-                                                  vals ? "methods and variables" : "methods"
-                                                ) : "variables";
+                                              var missings = mets and (
+                                                  vals and "methods and variables" or "methods"
+                                                ) or "variables";
                                               var print_msg = function (ppf) do
                                                 if (imm) then do
                                                   return Curry._1(Format.fprintf(ppf, --[ Format ]--[
@@ -73784,7 +73784,7 @@ register_error_of_exn((function (param) do
                                                             ]), param$1[0]);end end end 
                                            if ___conditional___ = 16--[ Unbound_type_var ]-- then do
                                               var print_common = function (ppf, kind, ty0, real, lab, ty) do
-                                                var ty1 = real ? ty0 : newty2(100000000, --[ Tobject ]--Block.__(4, [
+                                                var ty1 = real and ty0 or newty2(100000000, --[ Tobject ]--Block.__(4, [
                                                           ty0,
                                                           do
                                                             contents: undefined
@@ -74116,10 +74116,10 @@ register_error_of_exn((function (param) do
                                                                       ]);
                                                           end));end end end 
                                            if ___conditional___ = 22--[ Mutability_mismatch ]-- then do
-                                              var match = param$1[1] == --[ Immutable ]--0 ? --[ tuple ]--[
+                                              var match = param$1[1] == --[ Immutable ]--0 and --[ tuple ]--[
                                                   "mutable",
                                                   "immutable"
-                                                ] : --[ tuple ]--[
+                                                ] or --[ tuple ]--[
                                                   "immutable",
                                                   "mutable"
                                                 ];
@@ -74409,8 +74409,8 @@ end
 
 function check_type_decl(env, loc, id, row_id, newdecl, decl, rs, rem) do
   var env$1 = add_type$1(true, id, newdecl, env);
-  var env$2 = row_id ~= undefined ? add_type$1(true, row_id, newdecl, env$1) : env$1;
-  var env$3 = rs == --[ Trec_not ]--0 ? env$2 : add_rec_types(env$2, rem);
+  var env$2 = row_id ~= undefined and add_type$1(true, row_id, newdecl, env$1) or env$1;
+  var env$3 = rs == --[ Trec_not ]--0 and env$2 or add_rec_types(env$2, rem);
   type_declarations$3(env$3, id, newdecl, decl);
   return check_coherence(env$3, loc, id, newdecl);
 end
@@ -74568,7 +74568,7 @@ function merge_constraint(initial_env, loc, sg, constr) do
                           type_loc: decl_row_type_loc$1,
                           type_attributes: --[ [] ]--0
                         end;
-                        var rs$prime = rs == --[ Trec_first ]--1 ? --[ Trec_not ]--0 : rs;
+                        var rs$prime = rs == --[ Trec_first ]--1 and --[ Trec_not ]--0 or rs;
                         return --[ tuple ]--[
                                 --[ tuple ]--[
                                   --[ Pident ]--Block.__(0, [id]),
@@ -74942,7 +74942,7 @@ end
 
 function map_rec_type(rec_flag, fn, decls, rem) do
   if (decls) then do
-    var first = rec_flag ? --[ Trec_first ]--1 : --[ Trec_not ]--0;
+    var first = rec_flag and --[ Trec_first ]--1 or --[ Trec_not ]--0;
     return --[ :: ]--[
             Curry._2(fn, first, decls[0]),
             map_end(Curry._1(fn, --[ Trec_next ]--2), decls[1], rem)
@@ -75199,19 +75199,19 @@ function height$12(param) do
 end
 
 function create$13(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
 function bal$12(l, v, r) do
-  var hl = l ? l[--[ h ]--3] : 0;
-  var hr = r ? r[--[ h ]--3] : 0;
+  var hl = l and l[--[ h ]--3] or 0;
+  var hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--2];
@@ -75259,7 +75259,7 @@ function bal$12(l, v, r) do
             --[ l ]--l,
             --[ v ]--v,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -75305,7 +75305,7 @@ function mem$7(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--2];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--2];
         continue ;
       end end 
     end else do
@@ -75604,7 +75604,7 @@ function transl_signature(env, sg) do
                     ],
                     List.exists((function (param) do
                             return equal(partial_arg, param);
-                          end), get_values(rem)) ? rem : --[ :: ]--[
+                          end), get_values(rem)) and rem or --[ :: ]--[
                         --[ Sig_value ]--Block.__(0, [
                             tdesc.val_id,
                             tdesc.val_val
@@ -75675,7 +75675,7 @@ function transl_signature(env, sg) do
                       mksig$1(--[ Tsig_exception ]--Block.__(3, [ext]), env, loc),
                       match$8[0]
                     ],
-                    shadowed ? rem$2 : --[ :: ]--[
+                    shadowed and rem$2 or --[ :: ]--[
                         --[ Sig_typext ]--Block.__(2, [
                             ext.ext_id,
                             ext.ext_type,
@@ -76269,7 +76269,7 @@ function check_recmodule_inclusion(env, bindings) do
       var env$prime = List.fold_left((function(first_time,s)do
           return function (env, param) do
             var mty_actual = param[2];
-            var mty_actual$prime = first_time ? mty_actual : subst_and_strengthen(env, s, param[0], mty_actual);
+            var mty_actual$prime = first_time and mty_actual or subst_and_strengthen(env, s, param[0], mty_actual);
             return add_module$1(false, param[1], mty_actual$prime, env);
           end
           end(first_time,s)), env$1, bindings1);
@@ -76533,7 +76533,7 @@ function wrap_constraint(env, arg, mty, explicit) do
 end
 
 function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
-  var alias = aliasOpt ~= undefined ? aliasOpt : false;
+  var alias = aliasOpt ~= undefined and aliasOpt or false;
   var match = smod.pmod_desc;
   local ___conditional___=(match.tag | 0);
   do
@@ -76575,7 +76575,7 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
                     ])
                 ]),
               mod_loc: md_mod_loc,
-              mod_type: sttn ? strengthen$1(env, mty$1, p1) : mty$1,
+              mod_type: sttn and strengthen$1(env, mty$1, p1) or mty$1,
               mod_env: env,
               mod_attributes: md_mod_attributes
             end;
@@ -76583,7 +76583,7 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
             exit = 1;
           end end 
           if (exit == 1) then do
-            var mty$2 = sttn ? strengthen$1(env, mty, path) : mty;
+            var mty$2 = sttn and strengthen$1(env, mty, path) or mty;
             node = do
               mod_desc: md_mod_desc,
               mod_loc: md_mod_loc,
@@ -76625,10 +76625,10 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
         var ty_arg = may_map((function (m) do
                 return m.mty_type;
               end), mty$3);
-        var match$2 = ty_arg ~= undefined ? --[ tuple ]--[
+        var match$2 = ty_arg ~= undefined and --[ tuple ]--[
             enter_module(true, name.txt, ty_arg, env),
             true
-          ] : --[ tuple ]--[
+          ] or --[ tuple ]--[
             --[ tuple ]--[
               create("*"),
               env
@@ -76871,7 +76871,7 @@ function type_module$1(aliasOpt, sttn, funct_body, anchor, env, smod) do
 end
 
 function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
-  var toplevel = toplevelOpt ~= undefined ? toplevelOpt : false;
+  var toplevel = toplevelOpt ~= undefined and toplevelOpt or false;
   var type_names = do
     contents: --[ Empty ]--0
   end;
@@ -76906,7 +76906,7 @@ function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
                   loc_ghost: scope.loc_ghost
                 end]);
           end else do
-            var start = srem ? srem[0].pstr_loc.loc_start : loc.loc_end;
+            var start = srem and srem[0].pstr_loc.loc_start or loc.loc_end;
             scope$1 = --[ Idef ]--Block.__(1, [do
                   loc_start: start,
                   loc_end: scope.loc_end,
@@ -77128,7 +77128,7 @@ function type_structure(toplevelOpt, funct_body, anchor, env, sstr, scope) do
           var classes = match$10[0];
           return --[ tuple ]--[
                   --[ Tstr_class ]--Block.__(10, [List.map((function (param) do
-                              var vf = param[2].cty_new == undefined ? --[ Virtual ]--0 : --[ Concrete ]--1;
+                              var vf = param[2].cty_new == undefined and --[ Virtual ]--0 or --[ Concrete ]--1;
                               return --[ tuple ]--[
                                       param[11],
                                       param[10],

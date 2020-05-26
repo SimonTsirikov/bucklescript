@@ -26,7 +26,7 @@ end
 
 function f(x) do
   var y;
-  y = x.tag ? 4 : 3;
+  y = x.tag and 4 or 3;
   return y + 32 | 0;
 end
 
@@ -48,7 +48,7 @@ function f3(x) do
   var v = 0;
   var y;
   v = 1;
-  y = x.tag ? 4 : 3;
+  y = x.tag and 4 or 3;
   return y + 32 | 0;
 end
 

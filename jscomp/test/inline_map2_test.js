@@ -24,7 +24,7 @@ function Make(Ord) do
             x,
             d,
             r,
-            hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end;
   var singleton = function (x, d) do
@@ -37,8 +37,8 @@ function Make(Ord) do
           ];
   end;
   var bal = function (l, x, d, r) do
-    var hl = l ? l[4] : 0;
-    var hr = r ? r[4] : 0;
+    var hl = l and l[4] or 0;
+    var hr = r and r[4] or 0;
     if (hl > (hr + 2 | 0)) then do
       if (l) then do
         var lr = l[3];
@@ -89,7 +89,7 @@ function Make(Ord) do
               x,
               d,
               r,
-              hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+              hl >= hr and hl + 1 | 0 or hr + 1 | 0
             ];
     end end  end 
   end;
@@ -138,7 +138,7 @@ function Make(Ord) do
         if (c == 0) then do
           return param[2];
         end else do
-          _param = c < 0 ? param[0] : param[3];
+          _param = c < 0 and param[0] or param[3];
           continue ;
         end end 
       end else do
@@ -154,7 +154,7 @@ function Make(Ord) do
         if (c == 0) then do
           return true;
         end else do
-          _param = c < 0 ? param[0] : param[3];
+          _param = c < 0 and param[0] or param[3];
           continue ;
         end end 
       end else do
@@ -647,7 +647,7 @@ function create(l, x, d, r) do
           x,
           d,
           r,
-          hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
@@ -662,8 +662,8 @@ function singleton(x, d) do
 end
 
 function bal(l, x, d, r) do
-  var hl = l ? l[4] : 0;
-  var hr = r ? r[4] : 0;
+  var hl = l and l[4] or 0;
+  var hr = r and r[4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[3];
@@ -714,7 +714,7 @@ function bal(l, x, d, r) do
             x,
             d,
             r,
-            hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -766,7 +766,7 @@ function find(x, _param) do
       if (c == 0) then do
         return param[2];
       end else do
-        _param = c < 0 ? param[0] : param[3];
+        _param = c < 0 and param[0] or param[3];
         continue ;
       end end 
     end else do
@@ -783,7 +783,7 @@ function mem(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[0] : param[3];
+        _param = c < 0 and param[0] or param[3];
         continue ;
       end end 
     end else do
@@ -1329,7 +1329,7 @@ function create$1(l, x, d, r) do
           x,
           d,
           r,
-          hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
@@ -1344,8 +1344,8 @@ function singleton$1(x, d) do
 end
 
 function bal$1(l, x, d, r) do
-  var hl = l ? l[4] : 0;
-  var hr = r ? r[4] : 0;
+  var hl = l and l[4] or 0;
+  var hr = r and r[4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[3];
@@ -1396,7 +1396,7 @@ function bal$1(l, x, d, r) do
             x,
             d,
             r,
-            hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -1448,7 +1448,7 @@ function find$1(x, _param) do
       if (c == 0) then do
         return param[2];
       end else do
-        _param = c < 0 ? param[0] : param[3];
+        _param = c < 0 and param[0] or param[3];
         continue ;
       end end 
     end else do
@@ -1465,7 +1465,7 @@ function mem$1(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[0] : param[3];
+        _param = c < 0 and param[0] or param[3];
         continue ;
       end end 
     end else do

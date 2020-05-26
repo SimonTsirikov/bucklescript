@@ -58,7 +58,7 @@ function create(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
@@ -73,8 +73,8 @@ function singleton(x, d) do
 end
 
 function bal(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -125,7 +125,7 @@ function bal(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -191,7 +191,7 @@ function find(x, _param) do
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -376,7 +376,7 @@ function find_opt(x, _param) do
       if (c == 0) then do
         return Caml_option.some(param[--[ d ]--2]);
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -393,7 +393,7 @@ function mem(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -1060,7 +1060,7 @@ function create$1(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
@@ -1075,8 +1075,8 @@ function singleton$1(x, d) do
 end
 
 function bal$1(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -1127,7 +1127,7 @@ function bal$1(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -1193,7 +1193,7 @@ function find$1(x, _param) do
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -1378,7 +1378,7 @@ function find_opt$1(x, _param) do
       if (c == 0) then do
         return Caml_option.some(param[--[ d ]--2]);
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -1395,7 +1395,7 @@ function mem$1(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -2062,7 +2062,7 @@ function create$2(l, x, d, r) do
           --[ v ]--x,
           --[ d ]--d,
           --[ r ]--r,
-          --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+          --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
 end
 
@@ -2077,8 +2077,8 @@ function singleton$2(x, d) do
 end
 
 function bal$2(l, x, d, r) do
-  var hl = l ? l[--[ h ]--4] : 0;
-  var hr = r ? r[--[ h ]--4] : 0;
+  var hl = l and l[--[ h ]--4] or 0;
+  var hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
       var lr = l[--[ r ]--3];
@@ -2129,7 +2129,7 @@ function bal$2(l, x, d, r) do
             --[ v ]--x,
             --[ d ]--d,
             --[ r ]--r,
-            --[ h ]--hl >= hr ? hl + 1 | 0 : hr + 1 | 0
+            --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
 end
@@ -2195,7 +2195,7 @@ function find$2(x, _param) do
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -2380,7 +2380,7 @@ function find_opt$2(x, _param) do
       if (c == 0) then do
         return Caml_option.some(param[--[ d ]--2]);
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -2397,7 +2397,7 @@ function mem$2(x, _param) do
       if (c == 0) then do
         return true;
       end else do
-        _param = c < 0 ? param[--[ l ]--0] : param[--[ r ]--3];
+        _param = c < 0 and param[--[ l ]--0] or param[--[ r ]--3];
         continue ;
       end end 
     end else do
@@ -3381,7 +3381,7 @@ end
 function inherits(cla, vals, virt_meths, concr_meths, param, top) do
   var $$super = param[1];
   narrow(cla, vals, virt_meths, concr_meths);
-  var init = top ? Curry._2($$super, cla, param[3]) : Curry._1($$super, cla);
+  var init = top and Curry._2($$super, cla, param[3]) or Curry._1($$super, cla);
   widen(cla);
   return Caml_array.caml_array_concat(--[ :: ]--[
               [init],
@@ -3698,7 +3698,7 @@ end
 
 function new_cache(table) do
   var n = new_method(table);
-  var n$1 = n % 2 == 0 or n > (2 + Caml_int32.div((Caml_array.caml_array_get(table.methods, 1) << 4), Sys.word_size) | 0) ? n : new_method(table);
+  var n$1 = n % 2 == 0 or n > (2 + Caml_int32.div((Caml_array.caml_array_get(table.methods, 1) << 4), Sys.word_size) | 0) and n or new_method(table);
   Caml_array.caml_array_set(table.methods, n$1, 0);
   return n$1;
 end
