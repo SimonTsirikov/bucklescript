@@ -5,15 +5,15 @@ function get_uint8(str, off) do
   return 33;
 end
 
-var BigEndian = do
+BigEndian = do
   get_uint8: get_uint8
 end;
 
-var ExtUnixAll = do
+ExtUnixAll = do
   BigEndian: BigEndian
 end;
 
-var ExtUnix = do
+ExtUnix = do
   All: --[ alias ]--0
 end;
 
@@ -21,9 +21,9 @@ function test_endian_string(x) do
   return 33;
 end
 
-var v = 33;
+v = 33;
 
-var Test = do
+Test = do
   test_endian_string: test_endian_string,
   v: v
 end;

@@ -1,11 +1,11 @@
 'use strict';
 
-var Block = require("../../lib/js/block.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Block = require("../../lib/js/block.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function is_number(_expr) do
   while(true) do
-    var expr = _expr;
+    expr = _expr;
     local ___conditional___=(expr.tag | 0);
     do
        if ___conditional___ = 0--[ Val ]-- then do
@@ -30,16 +30,16 @@ end
 
 function compare(context, state, _a, _b) do
   while(true) do
-    var b = _b;
-    var a = _a;
-    var exit = 0;
-    var na;
-    var da;
-    var nb;
-    var db;
-    var exit$1 = 0;
-    var exit$2 = 0;
-    var exit$3 = 0;
+    b = _b;
+    a = _a;
+    exit = 0;
+    na;
+    da;
+    nb;
+    db;
+    exit$1 = 0;
+    exit$2 = 0;
+    exit$3 = 0;
     local ___conditional___=(a.tag | 0);
     do
        if ___conditional___ = 0--[ Val ]-- then do
@@ -173,7 +173,7 @@ function compare(context, state, _a, _b) do
               
           endend end end 
        if ___conditional___ = 2 then do
-          var denom = compare(context, state, da, db);
+          denom = compare(context, state, da, db);
           if (denom == 0) then do
             _b = nb;
             _a = na;
@@ -187,7 +187,7 @@ function compare(context, state, _a, _b) do
   end;
 end
 
-var a = --[ Sum ]--Block.__(2, [--[ :: ]--[
+a = --[ Sum ]--Block.__(2, [--[ :: ]--[
       --[ Val ]--Block.__(0, [--[ Symbol ]--Block.__(1, ["a"])]),
       --[ :: ]--[
         --[ Val ]--Block.__(0, [--[ Natural ]--Block.__(0, [2])]),
@@ -195,7 +195,7 @@ var a = --[ Sum ]--Block.__(2, [--[ :: ]--[
       ]
     ]]);
 
-var b = --[ Val ]--Block.__(0, [--[ Symbol ]--Block.__(1, ["x"])]);
+b = --[ Val ]--Block.__(0, [--[ Symbol ]--Block.__(1, ["x"])]);
 
 console.log(compare(--[ InSum ]--0, do
           complex: true

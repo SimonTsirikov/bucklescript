@@ -1,23 +1,23 @@
 'use strict';
 
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var Bad = Caml_exceptions.create("Test_seq.Bad");
+Bad = Caml_exceptions.create("Test_seq.Bad");
 
-var Help = Caml_exceptions.create("Test_seq.Help");
+Help = Caml_exceptions.create("Test_seq.Help");
 
-var Stop = Caml_exceptions.create("Test_seq.Stop");
+Stop = Caml_exceptions.create("Test_seq.Stop");
 
 function assoc3(x, _l) do
   while(true) do
-    var l = _l;
+    l = _l;
     if (l) then do
-      var match = l[0];
+      match = l[0];
       if (Caml_obj.caml_equal(match[0], x)) then do
         return match[1];
       end else do
@@ -47,7 +47,7 @@ function f(g, speclist) do
 end
 
 function add_help(speclist) do
-  var add1;
+  add1;
   try do
     assoc3("-help", speclist);
     add1 = --[ [] ]--0;
@@ -66,7 +66,7 @@ function add_help(speclist) do
       throw exn;
     end end 
   end
-  var add2;
+  add2;
   try do
     assoc3("--help", speclist);
     add2 = --[ [] ]--0;

@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -43,12 +43,12 @@ function ok(loc, x) do
   return --[ () ]--0;
 end
 
-var match = typeof ___undefined_value == "undefined" and undefined or ___undefined_value;
+match = typeof ___undefined_value == "undefined" and undefined or ___undefined_value;
 
-var a = match ~= undefined and 2 or 1;
+a = match ~= undefined and 2 or 1;
 
 function test(param) do
-  var match = typeof __DEV__ == "undefined" and undefined or __DEV__;
+  match = typeof __DEV__ == "undefined" and undefined or __DEV__;
   if (match ~= undefined) then do
     console.log("dev mode");
     return --[ () ]--0;
@@ -59,7 +59,7 @@ function test(param) do
 end
 
 function test2(param) do
-  var match = typeof __filename == "undefined" and undefined or __filename;
+  match = typeof __filename == "undefined" and undefined or __filename;
   if (match ~= undefined) then do
     console.log(match);
     return --[ () ]--0;

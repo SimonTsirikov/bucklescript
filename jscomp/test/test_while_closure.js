@@ -1,22 +1,22 @@
 'use strict';
 
-var $$Array = require("../../lib/js/array.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+$$Array = require("../../lib/js/array.js");
+Curry = require("../../lib/js/curry.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var v = do
+v = do
   contents: 0
 end;
 
-var arr = Caml_array.caml_make_vect(10, (function (param) do
+arr = Caml_array.caml_make_vect(10, (function (param) do
         return --[ () ]--0;
       end));
 
 function f(param) do
-  var n = 0;
+  n = 0;
   while(n < 10) do
-    var j = n;
+    j = n;
     Caml_array.caml_array_set(arr, j, (function(j)do
         return function (param) do
           v.contents = v.contents + j | 0;
@@ -48,7 +48,7 @@ if (v.contents ~= 45) then do
 end
  end 
 
-var count = 10;
+count = 10;
 
 exports.v = v;
 exports.count = count;

@@ -1,13 +1,13 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Caml_splice_call = require("../../lib/js/caml_splice_call.js");
+Curry = require("../../lib/js/curry.js");
+Caml_splice_call = require("../../lib/js/caml_splice_call.js");
 
-var Curry$1 = { };
+Curry$1 = { };
 
-var Block = { };
+Block = { };
 
-var xbs = Array.prototype.map.call([
+xbs = Array.prototype.map.call([
       1,
       2,
       3,
@@ -25,7 +25,7 @@ function f(cb) do
             ], Curry.__1(cb));
 end
 
-var xs = Array.prototype.map.call([
+xs = Array.prototype.map.call([
       1,
       1,
       2
@@ -71,7 +71,7 @@ function h(x, y, z) do
 end
 
 function h1(x, y, u, z) do
-  var partial_arg = Curry._1(z, u);
+  partial_arg = Curry._1(z, u);
   return map2(x, y, Curry.__2(partial_arg));
 end
 
@@ -121,7 +121,7 @@ function unit_magic(param) do
   return 3;
 end
 
-var f_unit_magic = unit_magic(--[ () ]--0);
+f_unit_magic = unit_magic(--[ () ]--0);
 
 function hh(xs) do
   return (function (param) do

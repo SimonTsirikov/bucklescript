@@ -1,21 +1,21 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Printf = require("../../lib/js/printf.js");
-var Mt_global = require("./mt_global.js");
-var Caml_float = require("../../lib/js/caml_float.js");
-var Caml_int64 = require("../../lib/js/caml_int64.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
+Mt = require("./mt.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Printf = require("../../lib/js/printf.js");
+Mt_global = require("./mt_global.js");
+Caml_float = require("../../lib/js/caml_float.js");
+Caml_int64 = require("../../lib/js/caml_int64.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
@@ -31,18 +31,18 @@ function approx(loc) do
     end);
 end
 
-var epsilon_float = Caml_int64.float_of_bits(--[ int64 ]--[
+epsilon_float = Caml_int64.float_of_bits(--[ int64 ]--[
       --[ hi ]--1018167296,
       --[ lo ]--0
     ]);
 
-var match = Caml_float.caml_frexp_float(12.0);
+match = Caml_float.caml_frexp_float(12.0);
 
-var match$1 = Caml_float.caml_frexp_float(0);
+match$1 = Caml_float.caml_frexp_float(0);
 
-var match$2 = Caml_float.caml_frexp_float(-12.0);
+match$2 = Caml_float.caml_frexp_float(-12.0);
 
-var results = $$Array.append([
+results = $$Array.append([
       --[ tuple ]--[
         Math.log10(2),
         0.301029995663981198
@@ -124,8 +124,8 @@ var results = $$Array.append([
 
 function from_pairs(ps) do
   return $$Array.to_list($$Array.mapi((function (i, param) do
-                    var b = param[1];
-                    var a = param[0];
+                    b = param[1];
+                    a = param[0];
                     return --[ tuple ]--[
                             Curry._1(Printf.sprintf(--[ Format ]--[
                                       --[ String_literal ]--Block.__(11, [
@@ -149,26 +149,26 @@ function from_pairs(ps) do
                   end), ps));
 end
 
-var float_compare = Caml_primitive.caml_float_compare;
+float_compare = Caml_primitive.caml_float_compare;
 
-var param = Pervasives.classify_float(3);
+param = Pervasives.classify_float(3);
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 47, characters 5-12", param, --[ FP_normal ]--0);
 
-var param$1 = Caml_float.caml_modf_float(-3.125);
+param$1 = Caml_float.caml_modf_float(-3.125);
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 48, characters 5-12", param$1, --[ tuple ]--[
       -0.125,
       -3
     ]);
 
-var match$3 = Caml_float.caml_modf_float(Number.NaN);
+match$3 = Caml_float.caml_modf_float(Number.NaN);
 
-var param_000 = isNaN(match$3[0]);
+param_000 = isNaN(match$3[0]);
 
-var param_001 = isNaN(match$3[1]);
+param_001 = isNaN(match$3[1]);
 
-var param$2 = --[ tuple ]--[
+param$2 = --[ tuple ]--[
   param_000,
   param_001
 ];
@@ -178,13 +178,13 @@ Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 49, characte
       true
     ]);
 
-var param$3 = [
+param$3 = [
   -1,
   1,
   1
 ];
 
-var param$4 = $$Array.map((function (x) do
+param$4 = $$Array.map((function (x) do
         if (x > 0) then do
           return 1;
         end else if (x < 0) then do
@@ -211,35 +211,35 @@ var param$4 = $$Array.map((function (x) do
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 52, characters 5-12", param$4, param$3);
 
-var param$5 = Caml_float.caml_copysign_float(-3, 0);
+param$5 = Caml_float.caml_copysign_float(-3, 0);
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 56, characters 5-12", param$5, 3);
 
-var param$6 = Caml_float.caml_copysign_float(3, 0);
+param$6 = Caml_float.caml_copysign_float(3, 0);
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 57, characters 5-12", param$6, 3);
 
-var param$7 = Math.log10(10);
+param$7 = Math.log10(10);
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 58, characters 5-12", param$7, 1);
 
-var param$8 = Caml_float.caml_expm1_float(0);
+param$8 = Caml_float.caml_expm1_float(0);
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 59, characters 5-12", param$8, 0);
 
-var param$9 = Number("3.0");
+param$9 = Number("3.0");
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 60, characters 5-12", param$9, 3.0);
 
-var param$10 = Caml_float.caml_expm1_float(2);
+param$10 = Caml_float.caml_expm1_float(2);
 
 Mt_global.collect_approx(test_id, suites, "File \"float_test.ml\", line 61, characters 9-16", param$10, 6.38905609893065);
 
-var match$4 = Caml_float.caml_modf_float(32.3);
+match$4 = Caml_float.caml_modf_float(32.3);
 
-var b = match$4[1];
+b = match$4[1];
 
-var a = match$4[0];
+a = match$4[0];
 
 Mt.from_pair_suites("Float_test", Pervasives.$at(--[ :: ]--[
           --[ tuple ]--[

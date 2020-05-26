@@ -1,10 +1,10 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Pervasives = require("../../lib/js/pervasives.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Pervasives = require("../../lib/js/pervasives.js");
 
-var ff = Pervasives.string_of_float;
+ff = Pervasives.string_of_float;
 
 function f(v) do
   return String(v);

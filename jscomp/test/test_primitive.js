@@ -1,9 +1,9 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
+Curry = require("../../lib/js/curry.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Pervasives = require("../../lib/js/pervasives.js");
+CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
 
 function a4(prim) do
   return --[ tuple ]--[
@@ -31,18 +31,18 @@ function a6(prim) do
         ];
 end
 
-var test_float = 3;
+test_float = 3;
 
-var test_abs = Math.abs(3.0);
+test_abs = Math.abs(3.0);
 
-var v = [
+v = [
   1.0,
   2.0
 ];
 
-var xxx = "a";
+xxx = "a";
 
-var a = --[ "a" ]--97;
+a = --[ "a" ]--97;
 
 function u(b) do
   if (b) then do
@@ -59,7 +59,7 @@ end
 
 Caml_array.caml_array_set(v, 1, 3.0);
 
-var unboxed_x = do
+unboxed_x = do
   u: 0,
   v: 0
 end;
@@ -73,27 +73,27 @@ function f(x) do
   return #x;
 end
 
-var is_lazy_force = CamlinternalLazy.force;
+is_lazy_force = CamlinternalLazy.force;
 
 function fib(n) do
   if (n == 0 or n == 1) then do
     return 1;
   end else do
-    var fib1 = fib(n - 1 | 0);
-    var fib2 = fib(n - 2 | 0);
+    fib1 = fib(n - 1 | 0);
+    fib2 = fib(n - 2 | 0);
     return (fib1 + fib2 | 0) + 3 | 0;
   end end 
 end
 
-var a0 = "File \"test_primitive.ml\", line 26, characters 9-16";
+a0 = "File \"test_primitive.ml\", line 26, characters 9-16";
 
-var a1 = "Test_primitive";
+a1 = "Test_primitive";
 
-var a2 = 28;
+a2 = 28;
 
-var a3 = "Test_primitive";
+a3 = "Test_primitive";
 
-var xx = --[ tuple ]--[
+xx = --[ tuple ]--[
   0,
   0
 ];

@@ -5,9 +5,9 @@ function Make($star) do
   return { };
 end
 
-var U = { };
+U = { };
 
-var V = { };
+V = { };
 
 exports.Make = Make;
 exports.U = U;

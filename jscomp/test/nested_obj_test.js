@@ -1,7 +1,7 @@
 'use strict';
 
 
-var f = do
+f = do
   x: do
     y: do
       z: 3
@@ -9,7 +9,7 @@ var f = do
   end
 end;
 
-var f2_000 = --[ :: ]--[
+f2_000 = --[ :: ]--[
   do
     x: do
       y: do
@@ -29,7 +29,7 @@ var f2_000 = --[ :: ]--[
   ]
 ];
 
-var f2_001 = [
+f2_001 = [
   do
     x: do
       y: do
@@ -46,12 +46,12 @@ var f2_001 = [
   end
 ];
 
-var f2 = --[ tuple ]--[
+f2 = --[ tuple ]--[
   f2_000,
   f2_001
 ];
 
-var f3 = do
+f3 = do
   x: do
     y: do
       z: 3
@@ -59,7 +59,7 @@ var f3 = do
   end
 end;
 
-var f_record = do
+f_record = do
   x: do
     y: do
       z: 3

@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -33,16 +33,16 @@ function add(x,y){
 }
 ;
 
-var v = do
+v = do
   contents: 0
 end;
 
-var h = (v.contents = v.contents + 1 | 0, do
+h = (v.contents = v.contents + 1 | 0, do
     hi: 2,
     lo: 0
   end);
 
-var z = (v.contents = v.contents + 1 | 0, add(3.0, 2.0));
+z = (v.contents = v.contents + 1 | 0, add(3.0, 2.0));
 
 eq("File \"bs_ignore_effect.ml\", line 26, characters 5-12", v.contents, 2);
 

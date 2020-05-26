@@ -6,7 +6,7 @@ function f(x) do
 end
 
 function M(S) do
-  var f = function (x) do
+  f = function (x) do
     return x;
   end;
   return do

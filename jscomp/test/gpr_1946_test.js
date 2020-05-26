@@ -1,7 +1,7 @@
 'use strict';
 
 
-var x = (do
+x = (do
     x: 3,
     y: 4
   end).x;
@@ -11,7 +11,7 @@ var x = (do
     y: 4
   end).x;
 
-var zz = (do
+zz = (do
     "5": 3
   end)["5"];
 

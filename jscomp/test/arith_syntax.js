@@ -1,6 +1,6 @@
 'use strict';
 
-var Pervasives = require("../../lib/js/pervasives.js");
+Pervasives = require("../../lib/js/pervasives.js");
 
 function str(e) do
   local ___conditional___=(e.tag | 0);

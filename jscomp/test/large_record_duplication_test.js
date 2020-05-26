@@ -1,17 +1,17 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -20,12 +20,12 @@ function eq(loc, x, y) do
 end
 
 function f0(x) do
-  var newrecord = Caml_obj.caml_obj_dup(x);
+  newrecord = Caml_obj.caml_obj_dup(x);
   newrecord.x0 = 1;
   return newrecord;
 end
 
-var v1 = --[ A0 ]--[
+v1 = --[ A0 ]--[
   --[ x0 ]--9,
   --[ x1 ]--9,
   --[ x2 ]--9,
@@ -60,7 +60,7 @@ end
 
 function f1(x) do
   if (x) then do
-    var newrecord = Caml_array.caml_array_dup(x);
+    newrecord = Caml_array.caml_array_dup(x);
     newrecord[--[ x0 ]--0] = 1;
     return newrecord;
   end else do
@@ -70,7 +70,7 @@ end
 
 eq("File \"large_record_duplication_test.ml\", line 129, characters 6-13", get_x0(f1(v1)), 1);
 
-var v2 = --[ A0 ]--Block.__(0, [
+v2 = --[ A0 ]--Block.__(0, [
     --[ x0 ]--9,
     --[ x1 ]--9,
     --[ x2 ]--9,
@@ -108,7 +108,7 @@ function f2(x) do
   if (x.tag) then do
     return x;
   end else do
-    var newrecord = Caml_obj.caml_obj_dup(x);
+    newrecord = Caml_obj.caml_obj_dup(x);
     newrecord[--[ x0 ]--0] = 1;
     return newrecord;
   end end 
@@ -116,11 +116,11 @@ end
 
 eq("File \"large_record_duplication_test.ml\", line 194, characters 6-13", get_x0$1(f2(v2)), 1);
 
-var A0 = Caml_exceptions.create("Large_record_duplication_test.A0");
+A0 = Caml_exceptions.create("Large_record_duplication_test.A0");
 
 function f3(x) do
   if (x[0] == A0) then do
-    var newrecord = Caml_array.caml_array_dup(x);
+    newrecord = Caml_array.caml_array_dup(x);
     newrecord[--[ x0 ]--1] = 1;
     return newrecord;
   end else do
@@ -135,7 +135,7 @@ function get_x0$2(x) do
    end 
 end
 
-var v3 = [
+v3 = [
   A0,
   --[ x0 ]--9,
   --[ x1 ]--9,
@@ -170,7 +170,7 @@ eq("File \"large_record_duplication_test.ml\", line 262, characters 6-13", get_x
 
 Mt.from_pair_suites("Large_record_duplication_test", suites.contents);
 
-var v0 = do
+v0 = do
   x0: 9,
   x1: 9,
   x2: 9,

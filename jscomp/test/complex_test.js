@@ -1,10 +1,10 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Complex = require("../../lib/js/complex.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Complex = require("../../lib/js/complex.js");
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "basic_add",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -17,7 +17,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   --[ [] ]--0
 ];

@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Int32 = require("../../lib/js/int32.js");
-var Pervasives = require("../../lib/js/pervasives.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Int32 = require("../../lib/js/int32.js");
+Pervasives = require("../../lib/js/pervasives.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 

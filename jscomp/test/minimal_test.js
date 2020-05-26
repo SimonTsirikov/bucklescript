@@ -1,7 +1,7 @@
 'use strict';
 
 
-var fake_y = --[ :: ]--[
+fake_y = --[ :: ]--[
   2,
   --[ :: ]--[
     3,
@@ -9,7 +9,7 @@ var fake_y = --[ :: ]--[
   ]
 ];
 
-var fake_z = --[ :: ]--[
+fake_z = --[ :: ]--[
   1,
   fake_y
 ];

@@ -1,10 +1,10 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Format = require("../../lib/js/format.js");
-var Printf = require("../../lib/js/printf.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Format = require("../../lib/js/format.js");
+Printf = require("../../lib/js/printf.js");
 
 function print_pair(fmt, param) do
   return Curry._2(Format.fprintf(fmt, --[ Format ]--[
@@ -32,7 +32,7 @@ function print_pair(fmt, param) do
                 ]), param[0], param[1]);
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "sprintf_simple",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -53,7 +53,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "print_asprintf",
     (function (param) do
@@ -89,12 +89,12 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
 
-var v = Format.asprintf(--[ Format ]--[
+v = Format.asprintf(--[ Format ]--[
       --[ String_literal ]--Block.__(11, [
           "xx",
           --[ End_of_format ]--0

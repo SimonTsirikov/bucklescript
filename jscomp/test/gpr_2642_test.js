@@ -3,7 +3,7 @@
 
 function isfree(id, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     local ___conditional___=(param.tag | 0);
     do
        if ___conditional___ = 0--[ Pident ]-- then do

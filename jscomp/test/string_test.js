@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Bytes = require("../../lib/js/bytes.js");
-var $$String = require("../../lib/js/string.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
-var Ext_string_test = require("./ext_string_test.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Bytes = require("../../lib/js/bytes.js");
+$$String = require("../../lib/js/string.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
+Ext_string_test = require("./ext_string_test.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function ff(x) do
-  var a;
+  a;
   local ___conditional___=(x);
   do
      if ___conditional___ = "0"
@@ -33,7 +33,7 @@ function ff(x) do
 end
 
 function gg(x) do
-  var a;
+  a;
   local ___conditional___=(x);
   do
      if ___conditional___ = 0
@@ -60,10 +60,10 @@ function gg(x) do
 end
 
 function rev_split_by_char(c, s) do
-  var loop = function (i, l) do
+  loop = function (i, l) do
     try do
-      var i$prime = $$String.index_from(s, i, c);
-      var s$prime = $$String.sub(s, i, i$prime - i | 0);
+      i$prime = $$String.index_from(s, i, c);
+      s$prime = $$String.sub(s, i, i$prime - i | 0);
       return loop(i$prime + 1 | 0, s$prime == "" and l or --[ :: ]--[
                     s$prime,
                     l
@@ -84,15 +84,15 @@ function rev_split_by_char(c, s) do
 end
 
 function xsplit(delim, s) do
-  var len = #s;
+  len = #s;
   if (len ~= 0) then do
-    var _l = --[ [] ]--0;
-    var _i = len;
+    _l = --[ [] ]--0;
+    _i = len;
     while(true) do
-      var i = _i;
-      var l = _l;
+      i = _i;
+      l = _l;
       if (i ~= 0) then do
-        var i$prime;
+        i$prime;
         try do
           i$prime = $$String.rindex_from(s, i - 1 | 0, delim);
         end
@@ -106,12 +106,12 @@ function xsplit(delim, s) do
             throw exn;
           end end 
         end
-        var l_000 = $$String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
-        var l$1 = --[ :: ]--[
+        l_000 = $$String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
+        l$1 = --[ :: ]--[
           l_000,
           l
         ];
-        var l$2 = i$prime == 0 and --[ :: ]--[
+        l$2 = i$prime == 0 and --[ :: ]--[
             "",
             l$1
           ] or l$1;

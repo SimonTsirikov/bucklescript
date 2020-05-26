@@ -1,8 +1,8 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
-var v = do
+v = do
   contents: 0
 end;
 
@@ -16,7 +16,7 @@ function $$return(param) do
 end
 
 function Make(U) do
-  var h = function (x, x$1) do
+  h = function (x, x$1) do
     console.log(f(x$1, x$1));
     return Curry._2(U.say, x$1, x$1);
   end;

@@ -1,7 +1,7 @@
 'use strict';
 
 
-var ff = "B";
+ff = "B";
 
 console.log(--[ tuple ]--[
       "A",

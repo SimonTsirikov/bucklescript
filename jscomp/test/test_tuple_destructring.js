@@ -1,19 +1,19 @@
 'use strict';
 
 
-var N = do
+N = do
   b: 3
 end;
 
-var v = 3;
+v = 3;
 
-var u = 3;
+u = 3;
 
-var h = 4;
+h = 4;
 
-var g = 3;
+g = 3;
 
-var gg = 4;
+gg = 4;
 
 exports.N = N;
 exports.v = v;

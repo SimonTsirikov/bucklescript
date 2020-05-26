@@ -1,6 +1,6 @@
 'use strict';
 
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function blackify(s) do
   if (s and s[0]) then do
@@ -31,9 +31,9 @@ end
 
 function mem(x, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var y = param[2];
+      y = param[2];
       if (x == y) then do
         return true;
       end else if (x < y) then do
@@ -50,17 +50,17 @@ function mem(x, _param) do
 end
 
 function balance_left(l, x, r) do
-  var exit = 0;
-  var a;
-  var x$1;
-  var b;
-  var y;
-  var c;
-  var z;
-  var d;
+  exit = 0;
+  a;
+  x$1;
+  b;
+  y;
+  c;
+  z;
+  d;
   if (l and l[0]) then do
-    var a$1 = l[1];
-    var exit$1 = 0;
+    a$1 = l[1];
+    exit$1 = 0;
     if (a$1 and a$1[0]) then do
       a = a$1[1];
       x$1 = a$1[2];
@@ -74,7 +74,7 @@ function balance_left(l, x, r) do
       exit$1 = 3;
     end end 
     if (exit$1 == 3) then do
-      var match = l[3];
+      match = l[3];
       if (match and match[0]) then do
         a = a$1;
         x$1 = l[2];
@@ -124,17 +124,17 @@ function balance_left(l, x, r) do
 end
 
 function balance_right(l, x, r) do
-  var exit = 0;
-  var a;
-  var x$1;
-  var b;
-  var y;
-  var c;
-  var z;
-  var d;
+  exit = 0;
+  a;
+  x$1;
+  b;
+  y;
+  c;
+  z;
+  d;
   if (r and r[0]) then do
-    var b$1 = r[1];
-    var exit$1 = 0;
+    b$1 = r[1];
+    exit$1 = 0;
     if (b$1 and b$1[0]) then do
       a = l;
       x$1 = x;
@@ -148,7 +148,7 @@ function balance_right(l, x, r) do
       exit$1 = 3;
     end end 
     if (exit$1 == 3) then do
-      var match = r[3];
+      match = r[3];
       if (match and match[0]) then do
         a = l;
         x$1 = x;
@@ -209,7 +209,7 @@ end
 function unbalanced_left(param) do
   if (param) then do
     if (param[0]) then do
-      var match = param[1];
+      match = param[1];
       if (match and !match[0]) then do
         return --[ tuple ]--[
                 balance_left(--[ Node ]--[
@@ -223,10 +223,10 @@ function unbalanced_left(param) do
       end
        end 
     end else do
-      var match$1 = param[1];
+      match$1 = param[1];
       if (match$1) then do
         if (match$1[0]) then do
-          var match$2 = match$1[3];
+          match$2 = match$1[3];
           if (match$2 and !match$2[0]) then do
             return --[ tuple ]--[
                     --[ Node ]--[
@@ -273,7 +273,7 @@ end
 function unbalanced_right(param) do
   if (param) then do
     if (param[0]) then do
-      var match = param[3];
+      match = param[3];
       if (match and !match[0]) then do
         return --[ tuple ]--[
                 balance_right(param[1], param[2], --[ Node ]--[
@@ -287,12 +287,12 @@ function unbalanced_right(param) do
       end
        end 
     end else do
-      var match$1 = param[3];
+      match$1 = param[3];
       if (match$1) then do
-        var x = param[2];
-        var a = param[1];
+        x = param[2];
+        a = param[1];
         if (match$1[0]) then do
-          var match$2 = match$1[1];
+          match$2 = match$1[1];
           if (match$2 and !match$2[0]) then do
             return --[ tuple ]--[
                     --[ Node ]--[
@@ -338,8 +338,8 @@ end
 
 function lbalance(x1, x2, x3) do
   if (x1 and x1[0]) then do
-    var r = x1[3];
-    var l = x1[1];
+    r = x1[3];
+    l = x1[1];
     if (l and l[0]) then do
       return --[ Node ]--[
               --[ Red ]--1,
@@ -360,7 +360,7 @@ function lbalance(x1, x2, x3) do
     end
      end 
     if (r and r[0]) then do
-      var y = r[2];
+      y = r[2];
       return --[ Node ]--[
               --[ Red ]--1,
               --[ Node ]--[
@@ -397,8 +397,8 @@ end
 
 function rbalance(x1, x2, x3) do
   if (x3 and x3[0]) then do
-    var b = x3[1];
-    var exit = 0;
+    b = x3[1];
+    exit = 0;
     if (b and b[0]) then do
       return --[ Node ]--[
               --[ Red ]--1,
@@ -420,7 +420,7 @@ function rbalance(x1, x2, x3) do
       exit = 2;
     end end 
     if (exit == 2) then do
-      var match = x3[3];
+      match = x3[3];
       if (match and match[0]) then do
         return --[ Node ]--[
                 --[ Red ]--1,
@@ -455,12 +455,12 @@ end
 function ins(x, s) do
   if (s) then do
     if (s[0]) then do
-      var y = s[2];
+      y = s[2];
       if (x == y) then do
         return s;
       end else do
-        var b = s[3];
-        var a = s[1];
+        b = s[3];
+        a = s[1];
         if (x < y) then do
           return --[ Node ]--[
                   --[ Red ]--1,
@@ -478,12 +478,12 @@ function ins(x, s) do
         end end 
       end end 
     end else do
-      var y$1 = s[2];
+      y$1 = s[2];
       if (x == y$1) then do
         return s;
       end else do
-        var b$1 = s[3];
-        var a$1 = s[1];
+        b$1 = s[3];
+        a$1 = s[1];
         if (x < y$1) then do
           return lbalance(ins(x, a$1), y$1, b$1);
         end else do
@@ -502,7 +502,7 @@ function ins(x, s) do
 end
 
 function add(x, s) do
-  var s$1 = ins(x, s);
+  s$1 = ins(x, s);
   if (s$1 and s$1[0]) then do
     return --[ Node ]--[
             --[ Black ]--0,
@@ -517,7 +517,7 @@ end
 
 function remove_min(param) do
   if (param) then do
-    var c = param[0];
+    c = param[0];
     if (c) then do
       if (!param[1]) then do
         return --[ tuple ]--[
@@ -528,8 +528,8 @@ function remove_min(param) do
       end
        end 
     end else if (!param[1]) then do
-      var match = param[3];
-      var x = param[2];
+      match = param[3];
+      x = param[2];
       if (match) then do
         if (match[0]) then do
           return --[ tuple ]--[
@@ -561,19 +561,19 @@ function remove_min(param) do
       end end 
     end
      end  end 
-    var match$1 = remove_min(param[1]);
-    var y = match$1[1];
-    var s_001 = match$1[0];
-    var s_002 = param[2];
-    var s_003 = param[3];
-    var s = --[ Node ]--[
+    match$1 = remove_min(param[1]);
+    y = match$1[1];
+    s_001 = match$1[0];
+    s_002 = param[2];
+    s_003 = param[3];
+    s = --[ Node ]--[
       c,
       s_001,
       s_002,
       s_003
     ];
     if (match$1[2]) then do
-      var match$2 = unbalanced_right(s);
+      match$2 = unbalanced_right(s);
       return --[ tuple ]--[
               match$2[0],
               y,
@@ -600,16 +600,16 @@ end
 
 function remove_aux(x, n) do
   if (n) then do
-    var r = n[3];
-    var y = n[2];
-    var l = n[1];
-    var c = n[0];
+    r = n[3];
+    y = n[2];
+    l = n[1];
+    c = n[0];
     if (x == y) then do
       if (r) then do
-        var match = remove_min(r);
-        var n_002 = match[1];
-        var n_003 = match[0];
-        var n$1 = --[ Node ]--[
+        match = remove_min(r);
+        n_002 = match[1];
+        n_003 = match[0];
+        n$1 = --[ Node ]--[
           c,
           l,
           n_002,
@@ -632,9 +632,9 @@ function remove_aux(x, n) do
         return blackify(l);
       end end  end 
     end else if (x < y) then do
-      var match$1 = remove_aux(x, l);
-      var n_001 = match$1[0];
-      var n$2 = --[ Node ]--[
+      match$1 = remove_aux(x, l);
+      n_001 = match$1[0];
+      n$2 = --[ Node ]--[
         c,
         n_001,
         y,
@@ -649,9 +649,9 @@ function remove_aux(x, n) do
               ];
       end end 
     end else do
-      var match$2 = remove_aux(x, r);
-      var n_003$1 = match$2[0];
-      var n$3 = --[ Node ]--[
+      match$2 = remove_aux(x, r);
+      n_003$1 = match$2[0];
+      n$3 = --[ Node ]--[
         c,
         l,
         y,
@@ -686,7 +686,7 @@ function cardinal(param) do
   end end 
 end
 
-var empty = --[ Empty ]--0;
+empty = --[ Empty ]--0;
 
 exports.blackify = blackify;
 exports.empty = empty;

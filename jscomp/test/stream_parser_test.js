@@ -1,23 +1,23 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Queue = require("../../lib/js/queue.js");
-var Genlex = require("../../lib/js/genlex.js");
-var Stream = require("../../lib/js/stream.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Queue = require("../../lib/js/queue.js");
+Genlex = require("../../lib/js/genlex.js");
+Stream = require("../../lib/js/stream.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var Parse_error = Caml_exceptions.create("Stream_parser_test.Parse_error");
+Parse_error = Caml_exceptions.create("Stream_parser_test.Parse_error");
 
 function parse(token) do
-  var look_ahead = do
+  look_ahead = do
     length: 0,
     first: --[ Nil ]--0,
     last: --[ Nil ]--0
   end;
-  var token$1 = function (param) do
+  token$1 = function (param) do
     if (look_ahead.length == 0) then do
       try do
         return Curry._1(token, --[ () ]--0);
@@ -29,14 +29,14 @@ function parse(token) do
       return Queue.pop(look_ahead);
     end end 
   end;
-  var parse_atom = function (param) do
-    var e = token$1(--[ () ]--0);
+  parse_atom = function (param) do
+    e = token$1(--[ () ]--0);
     local ___conditional___=(e.tag | 0);
     do
        if ___conditional___ = 0--[ Kwd ]-- then do
           if (e[0] == "(") then do
-            var v = parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0)));
-            var match = token$1(--[ () ]--0);
+            v = parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0)));
+            match = token$1(--[ () ]--0);
             if (match.tag) then do
               throw [
                     Parse_error,
@@ -70,8 +70,8 @@ function parse(token) do
         
     end
   end;
-  var parse_term_aux = function (e1) do
-    var e = token$1(--[ () ]--0);
+  parse_term_aux = function (e1) do
+    e = token$1(--[ () ]--0);
     if (e.tag) then do
       Queue.push(e, look_ahead);
       return e1;
@@ -91,8 +91,8 @@ function parse(token) do
       end
     end end 
   end;
-  var parse_expr_aux = function (e1) do
-    var e = token$1(--[ () ]--0);
+  parse_expr_aux = function (e1) do
+    e = token$1(--[ () ]--0);
     if (e.tag) then do
       Queue.push(e, look_ahead);
       return e1;
@@ -112,7 +112,7 @@ function parse(token) do
       end
     end end 
   end;
-  var r = parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0)));
+  r = parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0)));
   return --[ tuple ]--[
           r,
           Queue.fold((function (acc, x) do
@@ -124,7 +124,7 @@ function parse(token) do
         ];
 end
 
-var lexer = Genlex.make_lexer(--[ :: ]--[
+lexer = Genlex.make_lexer(--[ :: ]--[
       "(",
       --[ :: ]--[
         "*",
@@ -145,19 +145,19 @@ var lexer = Genlex.make_lexer(--[ :: ]--[
     ]);
 
 function token(chars) do
-  var strm = lexer(chars);
+  strm = lexer(chars);
   return (function (param) do
       return Stream.next(strm);
     end);
 end
 
 function l_parse(token) do
-  var look_ahead = do
+  look_ahead = do
     length: 0,
     first: --[ Nil ]--0,
     last: --[ Nil ]--0
   end;
-  var token$1 = function (param) do
+  token$1 = function (param) do
     if (look_ahead.length == 0) then do
       try do
         return Curry._1(token, --[ () ]--0);
@@ -169,10 +169,10 @@ function l_parse(token) do
       return Queue.pop(look_ahead);
     end end 
   end;
-  var parse_f_aux = function (_a) do
+  parse_f_aux = function (_a) do
     while(true) do
-      var a = _a;
-      var t = token$1(--[ () ]--0);
+      a = _a;
+      t = token$1(--[ () ]--0);
       if (t.tag) then do
         Queue.push(t, look_ahead);
         return a;
@@ -195,14 +195,14 @@ function l_parse(token) do
       end end 
     end;
   end;
-  var parse_f = function (param) do
-    var t = token$1(--[ () ]--0);
+  parse_f = function (param) do
+    t = token$1(--[ () ]--0);
     local ___conditional___=(t.tag | 0);
     do
        if ___conditional___ = 0--[ Kwd ]-- then do
           if (t[0] == "(") then do
-            var v = parse_t_aux(parse_f_aux(parse_f(--[ () ]--0)));
-            var t$1 = token$1(--[ () ]--0);
+            v = parse_t_aux(parse_f_aux(parse_f(--[ () ]--0)));
+            t$1 = token$1(--[ () ]--0);
             if (t$1.tag) then do
               throw [
                     Parse_error,
@@ -234,10 +234,10 @@ function l_parse(token) do
         
     end
   end;
-  var parse_t_aux = function (_a) do
+  parse_t_aux = function (_a) do
     while(true) do
-      var a = _a;
-      var t = token$1(--[ () ]--0);
+      a = _a;
+      t = token$1(--[ () ]--0);
       if (t.tag) then do
         Queue.push(t, look_ahead);
         return a;
@@ -260,7 +260,7 @@ function l_parse(token) do
       end end 
     end;
   end;
-  var r = parse_t_aux(parse_f_aux(parse_f(--[ () ]--0)));
+  r = parse_t_aux(parse_f_aux(parse_f(--[ () ]--0)));
   return --[ tuple ]--[
           r,
           Queue.fold((function (acc, x) do
@@ -272,11 +272,11 @@ function l_parse(token) do
         ];
 end
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -297,7 +297,7 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var match = parse(token(Stream.of_string("1 + 2 + (3  - 2) * 3 * 3  - 2 a")));
+match = parse(token(Stream.of_string("1 + 2 + (3  - 2) * 3 * 3  - 2 a")));
 
 eq("File \"stream_parser_test.ml\", line 132, characters 5-12", --[ tuple ]--[
       match[0],

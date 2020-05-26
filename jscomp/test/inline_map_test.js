@@ -1,10 +1,10 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function height(param) do
   if (param) then do
@@ -15,8 +15,8 @@ function height(param) do
 end
 
 function create(l, x, d, r) do
-  var hl = height(l);
-  var hr = height(r);
+  hl = height(l);
+  hr = height(r);
   return --[ Node ]--[
           l,
           x,
@@ -27,14 +27,14 @@ function create(l, x, d, r) do
 end
 
 function bal(l, x, d, r) do
-  var hl = l and l[4] or 0;
-  var hr = r and r[4] or 0;
+  hl = l and l[4] or 0;
+  hr = r and r[4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      var lr = l[3];
-      var ld = l[2];
-      var lv = l[1];
-      var ll = l[0];
+      lr = l[3];
+      ld = l[2];
+      lv = l[1];
+      ll = l[0];
       if (height(ll) >= height(lr)) then do
         return create(ll, lv, ld, create(lr, x, d, r));
       end else if (lr) then do
@@ -53,10 +53,10 @@ function bal(l, x, d, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      var rr = r[3];
-      var rd = r[2];
-      var rv = r[1];
-      var rl = r[0];
+      rr = r[3];
+      rd = r[2];
+      rv = r[1];
+      rl = r[0];
       if (height(rr) >= height(rl)) then do
         return create(create(l, x, d, rl), rv, rd, rr);
       end else if (rl) then do
@@ -86,11 +86,11 @@ end
 
 function add(x, data, param) do
   if (param) then do
-    var r = param[3];
-    var d = param[2];
-    var v = param[1];
-    var l = param[0];
-    var c = Caml_primitive.caml_int_compare(x, v);
+    r = param[3];
+    d = param[2];
+    v = param[1];
+    l = param[0];
+    c = Caml_primitive.caml_int_compare(x, v);
     if (c == 0) then do
       return --[ Node ]--[
               l,
@@ -117,9 +117,9 @@ end
 
 function find(x, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var c = Caml_primitive.caml_int_compare(x, param[1]);
+      c = Caml_primitive.caml_int_compare(x, param[1]);
       if (c == 0) then do
         return param[2];
       end else do
@@ -132,7 +132,7 @@ function find(x, _param) do
   end;
 end
 
-var m = List.fold_left((function (acc, param) do
+m = List.fold_left((function (acc, param) do
         return add(param[0], param[1], acc);
       end), --[ Empty ]--0, --[ :: ]--[
       --[ tuple ]--[

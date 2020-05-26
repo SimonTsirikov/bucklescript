@@ -1,22 +1,22 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Sexpm = require("./sexpm.js");
-var Format = require("../../lib/js/format.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Sexpm = require("./sexpm.js");
+Format = require("../../lib/js/format.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
 function eq(loc, param) do
-  var y = param[1];
-  var x = param[0];
+  y = param[1];
+  x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
@@ -80,7 +80,7 @@ function print_or_error(fmt, x) do
   end end 
 end
 
-var a = Sexpm.parse_string("(x x gh 3 3)");
+a = Sexpm.parse_string("(x x gh 3 3)");
 
 eq("File \"sexpm_test.ml\", line 17, characters 7-14", --[ tuple ]--[
       --[ `Ok ]--[

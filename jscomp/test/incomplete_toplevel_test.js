@@ -10,13 +10,13 @@ function f(param) do
         ];
 end
 
-var match = f(--[ () ]--0);
+match = f(--[ () ]--0);
 
-var a = match[0];
+a = match[0];
 
-var b = match[1];
+b = match[1];
 
-var c = match[2];
+c = match[2];
 
 exports.f = f;
 exports.a = a;

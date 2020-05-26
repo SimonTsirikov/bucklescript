@@ -1,9 +1,9 @@
 'use strict';
 
-var Caml_option = require("../../lib/js/caml_option.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
 function v(displayName, param) do
-  var tmp = do
+  tmp = do
     test: 3,
     config: 3,
     hi: "ghos"
@@ -15,13 +15,13 @@ function v(displayName, param) do
   return tmp;
 end
 
-var v2 = do
+v2 = do
   test: 3,
   config: 3,
   hi: "ghos"
 end;
 
-var v3 = do
+v3 = do
   displayName: "display",
   test: 3,
   config: 3,

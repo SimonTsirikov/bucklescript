@@ -1,7 +1,7 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Test_bool_equal = require("./test_bool_equal.js");
+Mt = require("./mt.js");
+Test_bool_equal = require("./test_bool_equal.js");
 
 Mt.from_suites("boolean", --[ :: ]--[
       --[ tuple ]--[

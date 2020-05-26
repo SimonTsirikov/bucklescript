@@ -1,8 +1,8 @@
 'use strict';
 
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var u = 3;
+u = 3;
 
 function f(param) do
   throw [

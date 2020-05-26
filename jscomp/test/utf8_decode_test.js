@@ -1,12 +1,12 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Stream = require("../../lib/js/stream.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Stream = require("../../lib/js/stream.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function classify(chr) do
   if ((chr & 128) == 0) then do
@@ -45,10 +45,10 @@ end
 
 function utf8_decode(strm) do
   return Stream.slazy((function (param) do
-                var match = Stream.peek(strm);
+                match = Stream.peek(strm);
                 if (match ~= undefined) then do
                   Stream.junk(strm);
-                  var match$1 = classify(match);
+                  match$1 = classify(match);
                   if (typeof match$1 == "number") then do
                     throw [
                           Stream.$$Error,
@@ -65,14 +65,14 @@ function utf8_decode(strm) do
                                 "Unexpected continuation byte"
                               ];end end end 
                        if ___conditional___ = 2--[ Leading ]-- then do
-                          var follow = function (strm, _n, _c) do
+                          follow = function (strm, _n, _c) do
                             while(true) do
-                              var c = _c;
-                              var n = _n;
+                              c = _c;
+                              n = _n;
                               if (n == 0) then do
                                 return c;
                               end else do
-                                var match = classify(Stream.next(strm));
+                                match = classify(Stream.next(strm));
                                 if (typeof match == "number") then do
                                   throw [
                                         Stream.$$Error,
@@ -102,7 +102,7 @@ function utf8_decode(strm) do
 end
 
 function to_list(xs) do
-  var v = do
+  v = do
     contents: --[ [] ]--0
   end;
   Stream.iter((function (x) do
@@ -120,8 +120,8 @@ function utf8_list(s) do
 end
 
 function decode(bytes, offset) do
-  var offset$1 = offset;
-  var match = classify(Caml_bytes.get(bytes, offset$1));
+  offset$1 = offset;
+  match = classify(Caml_bytes.get(bytes, offset$1));
   if (typeof match == "number") then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
@@ -141,20 +141,20 @@ function decode(bytes, offset) do
                 "decode"
               ];end end end 
        if ___conditional___ = 2--[ Leading ]-- then do
-          var _n = match[0];
-          var _c = match[1];
-          var _offset = offset$1 + 1 | 0;
+          _n = match[0];
+          _c = match[1];
+          _offset = offset$1 + 1 | 0;
           while(true) do
-            var offset$2 = _offset;
-            var c = _c;
-            var n = _n;
+            offset$2 = _offset;
+            c = _c;
+            n = _n;
             if (n == 0) then do
               return --[ tuple ]--[
                       c,
                       offset$2
                     ];
             end else do
-              var match$1 = classify(Caml_bytes.get(bytes, offset$2));
+              match$1 = classify(Caml_bytes.get(bytes, offset$2));
               if (typeof match$1 == "number") then do
                 throw [
                       Caml_builtin_exceptions.invalid_argument,
@@ -181,8 +181,8 @@ end
 
 function eq_list(cmp, _xs, _ys) do
   while(true) do
-    var ys = _ys;
-    var xs = _xs;
+    ys = _ys;
+    xs = _xs;
     if (xs) then do
       if (ys and Curry._2(cmp, xs[0], ys[0])) then do
         _ys = ys[1];
@@ -199,17 +199,17 @@ function eq_list(cmp, _xs, _ys) do
   end;
 end
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
 function eq(loc, param) do
-  var y = param[1];
-  var x = param[0];
+  y = param[1];
+  x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   console.log(--[ tuple ]--[
         x,

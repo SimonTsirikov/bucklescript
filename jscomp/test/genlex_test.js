@@ -1,12 +1,12 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Genlex = require("../../lib/js/genlex.js");
-var Stream = require("../../lib/js/stream.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Genlex = require("../../lib/js/genlex.js");
+Stream = require("../../lib/js/stream.js");
 
-var lexer = Genlex.make_lexer(--[ :: ]--[
+lexer = Genlex.make_lexer(--[ :: ]--[
       "+",
       --[ :: ]--[
         "-",
@@ -33,10 +33,10 @@ var lexer = Genlex.make_lexer(--[ :: ]--[
     ]);
 
 function to_list(s) do
-  var _acc = --[ [] ]--0;
+  _acc = --[ [] ]--0;
   while(true) do
-    var acc = _acc;
-    var v;
+    acc = _acc;
+    v;
     try do
       v = Stream.next(s);
     end
@@ -55,7 +55,7 @@ function to_list(s) do
   end;
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "lexer_stream_genlex",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -86,7 +86,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   --[ [] ]--0
 ];

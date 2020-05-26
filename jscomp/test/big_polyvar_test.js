@@ -1,9 +1,9 @@
 'use strict';
 
-var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Js_mapperRt = require("../../lib/js/js_mapperRt.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var jsMapperConstantArray = [
+jsMapperConstantArray = [
   --[ tuple ]--[
     -384420853,
     "variant0"

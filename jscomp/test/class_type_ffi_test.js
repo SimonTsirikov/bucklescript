@@ -1,26 +1,26 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
 function sum_float_array(arr) do
-  var v = 0;
-  for var i = 0 , arr.length - 1 | 0 , 1 do
+  v = 0;
+  for i = 0 , arr.length - 1 | 0 , 1 do
     v = v + arr.case(i);
   end
   return v;
 end
 
 function sum_int_array(arr) do
-  var v = 0;
-  for var i = 0 , arr.length - 1 | 0 , 1 do
+  v = 0;
+  for i = 0 , arr.length - 1 | 0 , 1 do
     v = v + arr.case(i) | 0;
   end
   return v;
 end
 
 function sum_poly(zero, add, arr) do
-  var v = zero;
-  for var i = 0 , arr.length - 1 | 0 , 1 do
+  v = zero;
+  for i = 0 , arr.length - 1 | 0 , 1 do
     v = add(v, arr.case(i));
   end
   return v;

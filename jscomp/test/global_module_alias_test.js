@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -30,7 +30,7 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var v = do
+v = do
   contents: 0
 end;
 
@@ -83,7 +83,7 @@ v.contents = v.contents + 1 | 0;
 
 v.contents = v.contents + 1 | 0;
 
-var H = List;
+H = List;
 
 eq("File \"global_module_alias_test.ml\", line 57, characters 5-12", v.contents, 12);
 
@@ -112,7 +112,7 @@ end
 
 eq("File \"global_module_alias_test.ml\", line 86, characters 5-12", g(--[ () ]--0), 4);
 
-var V = xx(--[ () ]--0);
+V = xx(--[ () ]--0);
 
 eq("File \"global_module_alias_test.ml\", line 92, characters 5-12", Curry._1(V.length, --[ :: ]--[
           1,
@@ -127,7 +127,7 @@ eq("File \"global_module_alias_test.ml\", line 92, characters 5-12", Curry._1(V.
 
 eq("File \"global_module_alias_test.ml\", line 93, characters 5-12", v.contents, 15);
 
-var H$1 = f(--[ () ]--0);
+H$1 = f(--[ () ]--0);
 
 eq("File \"global_module_alias_test.ml\", line 95, characters 5-12", Curry._1(H$1.length, --[ :: ]--[
           1,
@@ -141,17 +141,17 @@ eq("File \"global_module_alias_test.ml\", line 96, characters 5-12", v.contents,
 
 Mt.from_pair_suites("Global_module_alias_test", suites.contents);
 
-var A = --[ alias ]--0;
+A = --[ alias ]--0;
 
-var B = --[ alias ]--0;
+B = --[ alias ]--0;
 
-var C = --[ alias ]--0;
+C = --[ alias ]--0;
 
-var D = --[ alias ]--0;
+D = --[ alias ]--0;
 
-var E = --[ alias ]--0;
+E = --[ alias ]--0;
 
-var F = --[ alias ]--0;
+F = --[ alias ]--0;
 
 exports.suites = suites;
 exports.test_id = test_id;

@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Mt = require("./mt.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -20,7 +20,7 @@ function b(loc, b$1) do
 end
 
 function makeWrapper(foo, param) do
-  var tmp = { };
+  tmp = { };
   if (foo ~= undefined) then do
     tmp.foo = (function () do
           local ___conditional___=(Caml_option.valFromOption(foo));
@@ -60,7 +60,7 @@ makeWrapper2(--[ a ]--97, --[ () ]--0);
 
 function makeWrapper3(foo, param) do
   console.log(2);
-  var tmp = { };
+  tmp = { };
   if (foo ~= undefined) then do
     tmp.foo = (function () do
           local ___conditional___=(Caml_option.valFromOption(foo));
@@ -80,8 +80,8 @@ end
 
 function makeWrapper4(foo, param) do
   console.log(2);
-  var tmp = { };
-  var tmp$1 = foo > 100 and undefined or (
+  tmp = { };
+  tmp$1 = foo > 100 and undefined or (
       foo > 10 and --[ b ]--98 or --[ a ]--97
     );
   if (tmp$1 ~= undefined) then do

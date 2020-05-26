@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Fs = require("fs");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Fs = require("fs");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -49,13 +49,13 @@ function hey_int (option){
  }
 ;
 
-var uu = [
+uu = [
   hey_string("on_open"),
   hey_string("on_closed"),
   hey_string("in")
 ];
 
-var vv = [
+vv = [
   hey_int(3),
   hey_int(0),
   hey_int(4)
@@ -152,7 +152,7 @@ function on2(prim, prim$1) do
   return --[ () ]--0;
 end
 
-var readN = read$1;
+readN = read$1;
 
 exports.uu = uu;
 exports.vv = vv;

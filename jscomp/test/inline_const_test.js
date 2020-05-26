@@ -1,12 +1,12 @@
 'use strict';
 
-var Mt = require("./mt.js");
+Mt = require("./mt.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -14,17 +14,17 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end
 
-var H = { };
+H = { };
 
-var f = "hello";
+f = "hello";
 
-var f1 = "a";
+f1 = "a";
 
-var f2 = "中文";
+f2 = "中文";
 
-var f3 = "中文";
+f3 = "中文";
 
-var f4 = "中文";
+f4 = "中文";
 
 eq("File \"inline_const_test.ml\", line 27, characters 5-12", f, "hello");
 
@@ -42,9 +42,9 @@ eq("File \"inline_const_test.ml\", line 33, characters 5-12", 1, 1);
 
 Mt.from_pair_suites("File \"inline_const_test.ml\", line 36, characters 22-29", suites.contents);
 
-var f5 = true;
+f5 = true;
 
-var f6 = 1;
+f6 = 1;
 
 exports.suites = suites;
 exports.test_id = test_id;

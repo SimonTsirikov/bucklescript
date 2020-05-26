@@ -1,18 +1,18 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "captures",
   (function (param) do
-      var re = /(\d+)-(?:(\d+))?/g;
-      var match = re.exec("3-");
+      re = /(\d+)-(?:(\d+))?/g;
+      match = re.exec("3-");
       if (match ~= null) then do
-        var defined = Caml_array.caml_array_get(match, 1);
-        var $$undefined = Caml_array.caml_array_get(match, 2);
+        defined = Caml_array.caml_array_get(match, 1);
+        $$undefined = Caml_array.caml_array_get(match, 2);
         return --[ Eq ]--Block.__(0, [
                   --[ tuple ]--[
                     "3",
@@ -29,12 +29,12 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "fromString",
     (function (param) do
-        var contentOf = function (tag, xmlString) do
-          var param = new RegExp("<" .. (tag .. (">(.*?)<\\/" .. (tag .. ">")))).exec(xmlString);
+        contentOf = function (tag, xmlString) do
+          param = new RegExp("<" .. (tag .. (">(.*?)<\\/" .. (tag .. ">")))).exec(xmlString);
           if (param ~= null) then do
             return Caml_option.nullable_to_opt(Caml_array.caml_array_get(param, 1));
           end
@@ -50,7 +50,7 @@ var suites_001 = --[ :: ]--[
     --[ tuple ]--[
       "exec_literal",
       (function (param) do
-          var match = /[^.]+/.exec("http://xxx.domain.com");
+          match = /[^.]+/.exec("http://xxx.domain.com");
           if (match ~= null) then do
             return --[ Eq ]--Block.__(0, [
                       "http://xxx",
@@ -65,7 +65,7 @@ var suites_001 = --[ :: ]--[
       --[ tuple ]--[
         "exec_no_match",
         (function (param) do
-            var match = /https:\/\/(.*)/.exec("http://xxx.domain.com");
+            match = /https:\/\/(.*)/.exec("http://xxx.domain.com");
             if (match ~= null) then do
               return --[ FailWith ]--Block.__(9, ["regex should not match"]);
             end else do
@@ -77,7 +77,7 @@ var suites_001 = --[ :: ]--[
         --[ tuple ]--[
           "test_str",
           (function (param) do
-              var res = new RegExp("foo").test("#foo#");
+              res = new RegExp("foo").test("#foo#");
               return --[ Eq ]--Block.__(0, [
                         true,
                         res
@@ -88,7 +88,7 @@ var suites_001 = --[ :: ]--[
           --[ tuple ]--[
             "fromStringWithFlags",
             (function (param) do
-                var res = new RegExp("foo", "g");
+                res = new RegExp("foo", "g");
                 return --[ Eq ]--Block.__(0, [
                           true,
                           res.global
@@ -99,7 +99,7 @@ var suites_001 = --[ :: ]--[
             --[ tuple ]--[
               "result_index",
               (function (param) do
-                  var match = new RegExp("zbar").exec("foobarbazbar");
+                  match = new RegExp("zbar").exec("foobarbazbar");
                   if (match ~= null) then do
                     return --[ Eq ]--Block.__(0, [
                               8,
@@ -114,8 +114,8 @@ var suites_001 = --[ :: ]--[
               --[ tuple ]--[
                 "result_input",
                 (function (param) do
-                    var input = "foobar";
-                    var match = /foo/g.exec(input);
+                    input = "foobar";
+                    match = /foo/g.exec(input);
                     if (match ~= null) then do
                       return --[ Eq ]--Block.__(0, [
                                 input,
@@ -160,7 +160,7 @@ var suites_001 = --[ :: ]--[
                       --[ tuple ]--[
                         "t_lastIndex",
                         (function (param) do
-                            var re = /na/g;
+                            re = /na/g;
                             re.exec("banana");
                             return --[ Eq ]--Block.__(0, [
                                       4,
@@ -172,10 +172,10 @@ var suites_001 = --[ :: ]--[
                         --[ tuple ]--[
                           "t_setLastIndex",
                           (function (param) do
-                              var re = /na/g;
-                              var before = re.lastIndex;
+                              re = /na/g;
+                              before = re.lastIndex;
                               re.lastIndex = 42;
-                              var after = re.lastIndex;
+                              after = re.lastIndex;
                               return --[ Eq ]--Block.__(0, [
                                         --[ tuple ]--[
                                           0,
@@ -246,7 +246,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

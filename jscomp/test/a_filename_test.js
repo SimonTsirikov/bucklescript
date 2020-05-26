@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Ext_filename_test = require("./ext_filename_test.js");
+Mt = require("./mt.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Ext_filename_test = require("./ext_filename_test.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 

@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Printexc = require("../../lib/js/printexc.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Printexc = require("../../lib/js/printexc.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -31,9 +31,9 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var A = Caml_exceptions.create("Gpr_1501_test.A");
+A = Caml_exceptions.create("Gpr_1501_test.A");
 
-var B = Caml_exceptions.create("Gpr_1501_test.B");
+B = Caml_exceptions.create("Gpr_1501_test.B");
 
 eq("File \"gpr_1501_test.ml\", line 15, characters 7-14", "Not_found", Printexc.to_string(Caml_builtin_exceptions.not_found));
 

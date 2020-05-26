@@ -1,20 +1,20 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_array = require("../../lib/js/caml_array.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_array = require("../../lib/js/caml_array.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
 function eq(loc, param) do
-  var y = param[1];
-  var x = param[0];
+  y = param[1];
+  x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
@@ -31,7 +31,7 @@ function eq(loc, param) do
   return --[ () ]--0;
 end
 
-var v = [
+v = [
   1,
   2,
   3,
@@ -80,7 +80,7 @@ eq("File \"array_subtle_test.ml\", line 29, characters 5-12", --[ tuple ]--[
     ]);
 
 function f(v) do
-  var match = v.pop();
+  match = v.pop();
   if (match ~= undefined) then do
     console.log("hi");
   end else do

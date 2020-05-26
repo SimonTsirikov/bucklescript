@@ -1,7 +1,7 @@
 'use strict';
 
-var $$Array = require("../../lib/js/array.js");
-var Caml_array = require("../../lib/js/caml_array.js");
+$$Array = require("../../lib/js/array.js");
+Caml_array = require("../../lib/js/caml_array.js");
 
 function f(a, b, param) do
   return a + b | 0;
@@ -13,15 +13,15 @@ function f2(a) do
     end);
 end
 
-var a = String(3);
+a = String(3);
 
-var b = 101;
+b = 101;
 
-var arr = $$Array.init(2, (function (param) do
+arr = $$Array.init(2, (function (param) do
         return 0;
       end));
 
-for var i = 0 , 1 , 1 do
+for i = 0 , 1 , 1 do
   Caml_array.caml_array_set(arr, i, i + 1 | 0);
 end
 
@@ -31,7 +31,7 @@ console.log(--[ tuple ]--[
       arr
     ]);
 
-var c = arr;
+c = arr;
 
 exports.f = f;
 exports.f2 = f2;

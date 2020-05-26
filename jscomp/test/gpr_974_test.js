@@ -1,8 +1,8 @@
 'use strict';
 
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_option = require("../../lib/js/caml_option.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_option = require("../../lib/js/caml_option.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 if (!Caml_obj.caml_equal(Caml_option.nullable_to_opt(""), "")) then do
   throw [

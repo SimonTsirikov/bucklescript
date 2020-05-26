@@ -1,21 +1,21 @@
 'use strict';
 
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Scanf = require("../../lib/js/scanf.js");
-var Printf = require("../../lib/js/printf.js");
-var Caml_io = require("../../lib/js/caml_io.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Scanf = require("../../lib/js/scanf.js");
+Printf = require("../../lib/js/printf.js");
+Caml_io = require("../../lib/js/caml_io.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var all_tests_ok = do
+all_tests_ok = do
   contents: true
 end;
 
 function finish(param) do
-  var match = all_tests_ok.contents;
+  match = all_tests_ok.contents;
   if (match) then do
     console.log("\nAll tests succeeded.");
     return --[ () ]--0;
@@ -27,7 +27,7 @@ end
 
 Pervasives.at_exit(finish);
 
-var test_num = do
+test_num = do
   contents: -1
 end;
 
@@ -109,7 +109,7 @@ function test_raises_exc_p(pred, f, x) do
     return false;
   end
   catch (raw_x)do
-    var x$1 = Caml_js_exceptions.internalToOCamlException(raw_x);
+    x$1 = Caml_js_exceptions.internalToOCamlException(raw_x);
     if (Curry._1(pred, x$1)) then do
       return true;
     end else do
@@ -136,9 +136,9 @@ function test_raises_this_exc(exc) do
 end
 
 function failure_test(f, x, s) do
-  var s$1 = s;
-  var f$1 = f;
-  var x$1 = x;
+  s$1 = s;
+  f$1 = f;
+  x$1 = x;
   return test_raises_exc_p((function (x) do
                 return Caml_obj.caml_equal(x, [
                             Caml_builtin_exceptions.failure,

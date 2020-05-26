@@ -1,8 +1,8 @@
 'use strict';
 
-var $$Array = require("../../lib/js/array.js");
+$$Array = require("../../lib/js/array.js");
 
-var const_v = $$Array.append([
+const_v = $$Array.append([
       1,
       2
     ], [3]);

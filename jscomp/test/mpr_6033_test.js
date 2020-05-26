@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -30,15 +30,15 @@ function eq(loc, x, y) do
 end
 
 function f(x) do
-  var y = CamlinternalLazy.force(x);
+  y = CamlinternalLazy.force(x);
   return y .. "abc";
 end
 
-var x = "def";
+x = "def";
 
 CamlinternalLazy.force(x);
 
-var u = f(x);
+u = f(x);
 
 eq("File \"mpr_6033_test.ml\", line 20, characters 6-13", u, "defabc");
 

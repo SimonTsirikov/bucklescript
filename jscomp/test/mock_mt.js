@@ -1,7 +1,7 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Curry = require("../../lib/js/curry.js");
+List = require("../../lib/js/list.js");
+Curry = require("../../lib/js/curry.js");
 
 function from_pair_suites(name, suites) do
   console.log(--[ tuple ]--[
@@ -9,8 +9,8 @@ function from_pair_suites(name, suites) do
         "testing"
       ]);
   return List.iter((function (param) do
-                var name = param[0];
-                var match = Curry._1(param[1], --[ () ]--0);
+                name = param[0];
+                match = Curry._1(param[1], --[ () ]--0);
                 local ___conditional___=(match.tag | 0);
                 do
                    if ___conditional___ = 0--[ Eq ]-- then do

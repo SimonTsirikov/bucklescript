@@ -1,12 +1,12 @@
 'use strict';
 
-var Mt = require("./mt.js");
+Mt = require("./mt.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -15,8 +15,8 @@ function eq(loc, x, y) do
 end
 
 function f(xOpt, y) do
-  var x = xOpt ~= undefined and xOpt or 3;
-  var xOpt$1 = x + 2 | 0;
+  x = xOpt ~= undefined and xOpt or 3;
+  xOpt$1 = x + 2 | 0;
   console.log(xOpt$1);
   return xOpt$1 + y | 0;
 end

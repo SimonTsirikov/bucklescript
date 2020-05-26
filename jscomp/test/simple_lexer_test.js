@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Bytes = require("../../lib/js/bytes.js");
-var Curry = require("../../lib/js/curry.js");
-var Lexing = require("../../lib/js/lexing.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Bytes = require("../../lib/js/bytes.js");
+Curry = require("../../lib/js/curry.js");
+Lexing = require("../../lib/js/lexing.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
 
-var __ocaml_lex_tables = do
+__ocaml_lex_tables = do
   lex_base: "\0\0\xfd\xff\xfe\xff\0\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\x04\0\x01\0\x04\0\x03\0\0\0\x06\0\0\0\xff\xff",
   lex_backtrk: "\xff\xff\xff\xff\xff\xff\x01\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
   lex_default: "\x02\0\0\0\0\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\0\0",
@@ -23,14 +23,14 @@ end;
 
 function __ocaml_lex_translate_rec(lexbuf, ___ocaml_lex_state) do
   while(true) do
-    var __ocaml_lex_state = ___ocaml_lex_state;
-    var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
+    __ocaml_lex_state = ___ocaml_lex_state;
+    __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
     local ___conditional___=(__ocaml_lex_state$1);
     do
        if ___conditional___ = 0 then do
           return "." .. __ocaml_lex_translate_rec(lexbuf, 0);end end end 
        if ___conditional___ = 1 then do
-          var c = Caml_bytes.get(lexbuf.lex_buffer, lexbuf.lex_start_pos);
+          c = Caml_bytes.get(lexbuf.lex_buffer, lexbuf.lex_start_pos);
           return Caml_bytes.bytes_to_string(Bytes.make(1, c)) .. __ocaml_lex_translate_rec(lexbuf, 0);end end end 
        if ___conditional___ = 2 then do
           return "";end end end 
@@ -49,7 +49,7 @@ function translate(lexbuf) do
   return __ocaml_lex_translate_rec(lexbuf, 0);
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "translate",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -59,7 +59,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   --[ [] ]--0
 ];

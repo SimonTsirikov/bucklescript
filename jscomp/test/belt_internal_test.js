@@ -11,11 +11,11 @@ end
 
 function copy(n) do
   if (n ~= undefined) then do
-    var match = n;
-    var v = match.value;
-    var h = match.height;
-    var l = match.left;
-    var r = match.right;
+    match = n;
+    v = match.value;
+    h = match.height;
+    l = match.left;
+    r = match.right;
     return do
             value: v,
             height: h,

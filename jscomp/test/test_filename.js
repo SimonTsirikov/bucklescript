@@ -1,11 +1,11 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Filename = require("../../lib/js/filename.js");
+List = require("../../lib/js/list.js");
+Filename = require("../../lib/js/filename.js");
 
-var u = Filename.chop_extension;
+u = Filename.chop_extension;
 
-var v = List.length;
+v = List.length;
 
 exports.u = u;
 exports.v = v;

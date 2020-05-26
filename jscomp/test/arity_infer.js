@@ -1,10 +1,10 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Curry = require("../../lib/js/curry.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f0(x) do
-  var tmp;
+  tmp;
   if (x > 3) then do
     tmp = (function (x) do
         return x + 1 | 0;
@@ -21,7 +21,7 @@ function f1(x) do
 end
 
 function f3(x) do
-  var tmp;
+  tmp;
   local ___conditional___=(x);
   do
      if ___conditional___ = 0 then do

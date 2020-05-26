@@ -1,10 +1,10 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "make",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -14,7 +14,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "fromCharCode",
     (function (param) do
@@ -301,7 +301,7 @@ var suites_001 = --[ :: ]--[
                                                           --[ tuple ]--[
                                                             "unsafeReplaceBy0",
                                                             (function (param) do
-                                                                var replace = function (whole, offset, s) do
+                                                                replace = function (whole, offset, s) do
                                                                   if (whole == "bar") then do
                                                                     return "BORK";
                                                                   end else do
@@ -318,7 +318,7 @@ var suites_001 = --[ :: ]--[
                                                             --[ tuple ]--[
                                                               "unsafeReplaceBy1",
                                                               (function (param) do
-                                                                  var replace = function (whole, p1, offset, s) do
+                                                                  replace = function (whole, p1, offset, s) do
                                                                     if (whole == "bar") then do
                                                                       return "BORK";
                                                                     end else do
@@ -335,7 +335,7 @@ var suites_001 = --[ :: ]--[
                                                               --[ tuple ]--[
                                                                 "unsafeReplaceBy2",
                                                                 (function (param) do
-                                                                    var replace = function (whole, p1, p2, offset, s) do
+                                                                    replace = function (whole, p1, p2, offset, s) do
                                                                       if (whole == "bar") then do
                                                                         return "BORK";
                                                                       end else do
@@ -352,7 +352,7 @@ var suites_001 = --[ :: ]--[
                                                                 --[ tuple ]--[
                                                                   "unsafeReplaceBy3",
                                                                   (function (param) do
-                                                                      var replace = function (whole, p1, p2, p3, offset, s) do
+                                                                      replace = function (whole, p1, p2, p3, offset, s) do
                                                                         if (whole == "bar") then do
                                                                           return "BORK";
                                                                         end else do
@@ -646,7 +646,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

@@ -1,13 +1,13 @@
 'use strict';
 
-var Block = require("../../lib/js/block.js");
-var Caml_module = require("../../lib/js/caml_module.js");
+Block = require("../../lib/js/block.js");
+Caml_module = require("../../lib/js/caml_module.js");
 
 function Make(X) do
-  var f = function (param) do
+  f = function (param) do
     return --[ () ]--0;
   end;
-  var M = do
+  M = do
     f: f
   end;
   return do
@@ -15,7 +15,7 @@ function Make(X) do
         end;
 end
 
-var B = Caml_module.init_mod(--[ tuple ]--[
+B = Caml_module.init_mod(--[ tuple ]--[
       "recursive_unbound_module_test.ml",
       18,
       0
@@ -31,7 +31,7 @@ function f(param) do
   return --[ () ]--0;
 end
 
-var M = do
+M = do
   f: f
 end;
 
@@ -45,7 +45,7 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
       M: M
     end);
 
-var A = --[ () ]--0;
+A = --[ () ]--0;
 
 exports.Make = Make;
 exports.A = A;

@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Int32 = require("../../lib/js/int32.js");
-var Format = require("../../lib/js/format.js");
-var Caml_float = require("../../lib/js/caml_float.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Ext_array_test = require("./ext_array_test.js");
+Mt = require("./mt.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Int32 = require("../../lib/js/int32.js");
+Format = require("../../lib/js/format.js");
+Caml_float = require("../../lib/js/caml_float.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Ext_array_test = require("./ext_array_test.js");
 
 function f(x) do
   return --[ tuple ]--[
@@ -19,11 +19,11 @@ function f(x) do
         ];
 end
 
-var shift_right_logical_tests_000 = $$Array.map((function (x) do
+shift_right_logical_tests_000 = $$Array.map((function (x) do
         return (-1 >>> x) | 0;
       end), Ext_array_test.range(0, 31));
 
-var shift_right_logical_tests_001 = [
+shift_right_logical_tests_001 = [
   -1,
   2147483647,
   1073741823,
@@ -58,16 +58,16 @@ var shift_right_logical_tests_001 = [
   1
 ];
 
-var shift_right_logical_tests = --[ tuple ]--[
+shift_right_logical_tests = --[ tuple ]--[
   shift_right_logical_tests_000,
   shift_right_logical_tests_001
 ];
 
-var shift_right_tests_000 = $$Array.map((function (x) do
+shift_right_tests_000 = $$Array.map((function (x) do
         return (Int32.min_int >> x);
       end), Ext_array_test.range(0, 31));
 
-var shift_right_tests_001 = [
+shift_right_tests_001 = [
   -2147483648,
   -1073741824,
   -536870912,
@@ -102,16 +102,16 @@ var shift_right_tests_001 = [
   -1
 ];
 
-var shift_right_tests = --[ tuple ]--[
+shift_right_tests = --[ tuple ]--[
   shift_right_tests_000,
   shift_right_tests_001
 ];
 
-var shift_left_tests_000 = $$Array.map((function (x) do
+shift_left_tests_000 = $$Array.map((function (x) do
         return (1 << x);
       end), Ext_array_test.range(0, 31));
 
-var shift_left_tests_001 = [
+shift_left_tests_001 = [
   1,
   2,
   4,
@@ -146,14 +146,14 @@ var shift_left_tests_001 = [
   -2147483648
 ];
 
-var shift_left_tests = --[ tuple ]--[
+shift_left_tests = --[ tuple ]--[
   shift_left_tests_000,
   shift_left_tests_001
 ];
 
-var $star$tilde = Caml_int32.imul;
+$star$tilde = Caml_int32.imul;
 
-var suites = do
+suites = do
   contents: Pervasives.$at(--[ :: ]--[
         --[ tuple ]--[
           "File \"int32_test.ml\", line 31, characters 2-9",
@@ -242,7 +242,7 @@ var suites = do
                         end), shift_left_tests_000, shift_left_tests_001)))))
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -256,7 +256,7 @@ eq("File \"int32_test.ml\", line 48, characters 5-12", Caml_float.caml_int32_flo
 
 Mt.from_pair_suites("Int32_test", suites.contents);
 
-var test_div = 30;
+test_div = 30;
 
 exports.f = f;
 exports.shift_right_logical_tests = shift_right_logical_tests;

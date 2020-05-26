@@ -1,18 +1,18 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -56,14 +56,14 @@ function fail(param) do
 end
 
 function thenTest(param) do
-  var p = Promise.resolve(4);
+  p = Promise.resolve(4);
   return p.then((function (x) do
                 return Promise.resolve(assert_bool(x == 4));
               end));
 end
 
 function andThenTest(param) do
-  var p = Promise.resolve(6);
+  p = Promise.resolve(6);
   return p.then((function (param) do
                   return Promise.resolve(12);
                 end)).then((function (y) do
@@ -71,10 +71,10 @@ function andThenTest(param) do
               end));
 end
 
-var h = Promise.resolve(--[ () ]--0);
+h = Promise.resolve(--[ () ]--0);
 
 function assertIsNotFound(x) do
-  var match = Caml_exceptions.caml_is_extension(x) and x == Caml_builtin_exceptions.not_found and 0 or undefined;
+  match = Caml_exceptions.caml_is_extension(x) and x == Caml_builtin_exceptions.not_found and 0 or undefined;
   if (match ~= undefined) then do
     return h;
   end else do
@@ -90,12 +90,12 @@ function assertIsNotFound(x) do
 end
 
 function catchTest(param) do
-  var p = Promise.reject(Caml_builtin_exceptions.not_found);
+  p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.then(fail).catch(assertIsNotFound);
 end
 
 function orResolvedTest(param) do
-  var p = Promise.resolve(42);
+  p = Promise.resolve(42);
   return p.catch((function (param) do
                     return Promise.resolve(22);
                   end)).then((function (value) do
@@ -104,7 +104,7 @@ function orResolvedTest(param) do
 end
 
 function orRejectedTest(param) do
-  var p = Promise.reject(Caml_builtin_exceptions.not_found);
+  p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.catch((function (param) do
                     return Promise.resolve(22);
                   end)).then((function (value) do
@@ -113,7 +113,7 @@ function orRejectedTest(param) do
 end
 
 function orElseResolvedTest(param) do
-  var p = Promise.resolve(42);
+  p = Promise.resolve(42);
   return p.catch((function (param) do
                     return Promise.resolve(22);
                   end)).then((function (value) do
@@ -122,7 +122,7 @@ function orElseResolvedTest(param) do
 end
 
 function orElseRejectedResolveTest(param) do
-  var p = Promise.reject(Caml_builtin_exceptions.not_found);
+  p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.catch((function (param) do
                     return Promise.resolve(22);
                   end)).then((function (value) do
@@ -131,11 +131,11 @@ function orElseRejectedResolveTest(param) do
 end
 
 function orElseRejectedRejectTest(param) do
-  var p = Promise.reject(Caml_builtin_exceptions.not_found);
+  p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.catch((function (param) do
                     return Promise.reject(Caml_builtin_exceptions.stack_overflow);
                   end)).then(fail).catch((function (error) do
-                var match = Caml_exceptions.caml_is_extension(error) and error == Caml_builtin_exceptions.stack_overflow and 0 or undefined;
+                match = Caml_exceptions.caml_is_extension(error) and error == Caml_builtin_exceptions.stack_overflow and 0 or undefined;
                 if (match ~= undefined) then do
                   return h;
                 end else do
@@ -152,34 +152,34 @@ function orElseRejectedRejectTest(param) do
 end
 
 function resolveTest(param) do
-  var p1 = Promise.resolve(10);
+  p1 = Promise.resolve(10);
   return p1.then((function (x) do
                 return Promise.resolve(assert_bool(x == 10));
               end));
 end
 
 function rejectTest(param) do
-  var p = Promise.reject(Caml_builtin_exceptions.not_found);
+  p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.catch(assertIsNotFound);
 end
 
 function thenCatchChainResolvedTest(param) do
-  var p = Promise.resolve(20);
+  p = Promise.resolve(20);
   return p.then((function (value) do
                   return Promise.resolve(assert_bool(value == 20));
                 end)).catch(fail);
 end
 
 function thenCatchChainRejectedTest(param) do
-  var p = Promise.reject(Caml_builtin_exceptions.not_found);
+  p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.then(fail).catch(assertIsNotFound);
 end
 
 function allResolvedTest(param) do
-  var p1 = Promise.resolve(1);
-  var p2 = Promise.resolve(2);
-  var p3 = Promise.resolve(3);
-  var promises = [
+  p1 = Promise.resolve(1);
+  p2 = Promise.resolve(2);
+  p3 = Promise.resolve(3);
+  promises = [
     p1,
     p2,
     p3
@@ -193,10 +193,10 @@ function allResolvedTest(param) do
 end
 
 function allRejectTest(param) do
-  var p1 = Promise.resolve(1);
-  var p2 = Promise.resolve(3);
-  var p3 = Promise.reject(Caml_builtin_exceptions.not_found);
-  var promises = [
+  p1 = Promise.resolve(1);
+  p2 = Promise.resolve(3);
+  p3 = Promise.reject(Caml_builtin_exceptions.not_found);
+  promises = [
     p1,
     p2,
     p3
@@ -208,10 +208,10 @@ function allRejectTest(param) do
 end
 
 function raceTest(param) do
-  var p1 = Promise.resolve("first");
-  var p2 = Promise.resolve("second");
-  var p3 = Promise.resolve("third");
-  var promises = [
+  p1 = Promise.resolve("first");
+  p2 = Promise.resolve("second");
+  p3 = Promise.resolve("third");
+  promises = [
     p1,
     p2,
     p3
@@ -289,7 +289,7 @@ console.log("hey");
 
 Mt.from_pair_suites("Js_promise_basic_test", suites.contents);
 
-var twop = Promise.resolve(2);
+twop = Promise.resolve(2);
 
 function then_(prim, prim$1) do
   return prim$1.then(Curry.__1(prim));

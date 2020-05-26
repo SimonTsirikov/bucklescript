@@ -1,18 +1,18 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Fs = require("fs");
-var Path = require("path");
-var Block = require("../../lib/js/block.js");
-var Child_process = require("child_process");
-var App_root_finder = require("./app_root_finder.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Fs = require("fs");
+Path = require("path");
+Block = require("../../lib/js/block.js");
+Child_process = require("child_process");
+App_root_finder = require("./app_root_finder.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -33,13 +33,13 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var match = typeof __dirname == "undefined" and undefined or __dirname;
+match = typeof __dirname == "undefined" and undefined or __dirname;
 
 if (match ~= undefined) then do
-  var root = App_root_finder.find_package_json(match);
-  var bsc_exe = Path.join(root, "bsc");
-  var exit = 0;
-  var output;
+  root = App_root_finder.find_package_json(match);
+  bsc_exe = Path.join(root, "bsc");
+  exit = 0;
+  output;
   try do
     output = Child_process.execSync(bsc_exe .. " -where ", do
           encoding: "utf8"
@@ -57,11 +57,11 @@ if (match ~= undefined) then do
         ];
   end
   if (exit == 1) then do
-    var dir = output.trim();
-    var files = Fs.readdirSync(dir);
-    var exists = files.indexOf("pervasives.cmi");
-    var non_exists = files.indexOf("pervasive.cmi");
-    var v = exists >= 0 and non_exists < 0;
+    dir = output.trim();
+    files = Fs.readdirSync(dir);
+    exists = files.indexOf("pervasives.cmi");
+    non_exists = files.indexOf("pervasive.cmi");
+    v = exists >= 0 and non_exists < 0;
     console.log(v);
   end
    end 

@@ -2,7 +2,7 @@
 
 
 function ff(x) do
-  var a;
+  a;
   local ___conditional___=(x);
   do
      if ___conditional___ = "0"
@@ -25,28 +25,28 @@ function ff(x) do
 end
 
 function f(x) do
-  var y;
+  y;
   y = x.tag and 4 or 3;
   return y + 32 | 0;
 end
 
 function f2(x) do
-  var v = 0;
-  var y;
+  v = 0;
+  y;
   v = 1;
   if (x.tag) then do
-    var z = 33;
+    z = 33;
     y = z + 4 | 0;
   end else do
-    var z$1 = 33;
+    z$1 = 33;
     y = z$1 + 3 | 0;
   end end 
   return y + 32 | 0;
 end
 
 function f3(x) do
-  var v = 0;
-  var y;
+  v = 0;
+  y;
   v = 1;
   y = x.tag and 4 or 3;
   return y + 32 | 0;

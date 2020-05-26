@@ -1,17 +1,17 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Curry = require("../../lib/js/curry.js");
-var Stack = require("../../lib/js/stack.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Mt_global = require("./mt_global.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Curry = require("../../lib/js/curry.js");
+Stack = require("../../lib/js/stack.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Mt_global = require("./mt_global.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -27,7 +27,7 @@ function assert_(loc, v) do
 end
 
 function to_list(s) do
-  var l = do
+  l = do
     contents: --[ [] ]--0
   end;
   List.iter((function (x) do
@@ -40,7 +40,7 @@ function to_list(s) do
   return l.contents;
 end
 
-var S = do
+S = do
   Empty: Stack.Empty,
   create: Stack.create,
   push: Stack.push,
@@ -69,7 +69,7 @@ function does_raise(f, s) do
   end
 end
 
-var s = do
+s = do
   c: --[ [] ]--0,
   len: 0
 end;
@@ -158,7 +158,7 @@ assert_("File \"stack_comp_test.ml\", line 41, characters 41-48", to_list(s) == 
 
 assert_("File \"stack_comp_test.ml\", line 42, characters 10-17", does_raise(Stack.pop, s));
 
-var s$1 = do
+s$1 = do
   c: --[ [] ]--0,
   len: 0
 end;
@@ -177,7 +177,7 @@ assert_("File \"stack_comp_test.ml\", line 48, characters 53-60", does_raise(Sta
 
 assert_("File \"stack_comp_test.ml\", line 49, characters 10-17", s$1.len == 0);
 
-var s$2 = do
+s$2 = do
   c: --[ [] ]--0,
   len: 0
 end;
@@ -210,12 +210,12 @@ assert_("File \"stack_comp_test.ml\", line 60, characters 10-17", does_raise(Sta
 
 assert_("File \"stack_comp_test.ml\", line 61, characters 10-17", does_raise(Stack.top, s$2));
 
-var s$3 = do
+s$3 = do
   c: --[ [] ]--0,
   len: 0
 end;
 
-for var i = 1 , 10 , 1 do
+for i = 1 , 10 , 1 do
   Stack.push(i, s$3);
 end
 
@@ -234,16 +234,16 @@ Stack.push(42, s$3);
 
 assert_("File \"stack_comp_test.ml\", line 72, characters 10-17", Stack.pop(s$3) == 42);
 
-var s1 = do
+s1 = do
   c: --[ [] ]--0,
   len: 0
 end;
 
-for var i$1 = 1 , 10 , 1 do
+for i$1 = 1 , 10 , 1 do
   Stack.push(i$1, s1);
 end
 
-var s2 = Stack.copy(s1);
+s2 = Stack.copy(s1);
 
 assert_("File \"stack_comp_test.ml\", line 79, characters 10-17", Caml_obj.caml_equal(to_list(s1), --[ :: ]--[
           1,
@@ -313,28 +313,28 @@ assert_("File \"stack_comp_test.ml\", line 81, characters 10-17", s1.len == 10);
 
 assert_("File \"stack_comp_test.ml\", line 82, characters 10-17", s2.len == 10);
 
-for var i$2 = 10 , 1 , -1 do
+for i$2 = 10 , 1 , -1 do
   assert_("File \"stack_comp_test.ml\", line 84, characters 12-19", Stack.pop(s1) == i$2);
 end
 
-for var i$3 = 10 , 1 , -1 do
+for i$3 = 10 , 1 , -1 do
   assert_("File \"stack_comp_test.ml\", line 87, characters 12-19", Stack.pop(s2) == i$3);
 end
 
-var s$4 = do
+s$4 = do
   c: --[ [] ]--0,
   len: 0
 end;
 
 assert_("File \"stack_comp_test.ml\", line 93, characters 10-17", s$4.c == --[ [] ]--0);
 
-for var i$4 = 1 , 10 , 1 do
+for i$4 = 1 , 10 , 1 do
   Stack.push(i$4, s$4);
   assert_("File \"stack_comp_test.ml\", line 96, characters 12-19", s$4.len == i$4);
   assert_("File \"stack_comp_test.ml\", line 97, characters 12-19", s$4.c ~= --[ [] ]--0);
 end
 
-for var i$5 = 10 , 1 , -1 do
+for i$5 = 10 , 1 , -1 do
   assert_("File \"stack_comp_test.ml\", line 100, characters 12-19", s$4.len == i$5);
   assert_("File \"stack_comp_test.ml\", line 101, characters 12-19", s$4.c ~= --[ [] ]--0);
   Stack.pop(s$4);
@@ -344,16 +344,16 @@ assert_("File \"stack_comp_test.ml\", line 104, characters 10-17", s$4.len == 0)
 
 assert_("File \"stack_comp_test.ml\", line 105, characters 10-17", s$4.c == --[ [] ]--0);
 
-var s$5 = do
+s$5 = do
   c: --[ [] ]--0,
   len: 0
 end;
 
-for var i$6 = 10 , 1 , -1 do
+for i$6 = 10 , 1 , -1 do
   Stack.push(i$6, s$5);
 end
 
-var i$7 = do
+i$7 = do
   contents: 1
 end;
 
@@ -363,7 +363,7 @@ List.iter((function (j) do
         return --[ () ]--0;
       end), s$5.c);
 
-var s1$1 = do
+s1$1 = do
   c: --[ [] ]--0,
   len: 0
 end;
@@ -372,7 +372,7 @@ assert_("File \"stack_comp_test.ml\", line 117, characters 10-17", s1$1.len == 0
 
 assert_("File \"stack_comp_test.ml\", line 117, characters 45-52", to_list(s1$1) == --[ [] ]--0);
 
-var s2$1 = Stack.copy(s1$1);
+s2$1 = Stack.copy(s1$1);
 
 assert_("File \"stack_comp_test.ml\", line 119, characters 10-17", s1$1.len == 0);
 
@@ -382,12 +382,12 @@ assert_("File \"stack_comp_test.ml\", line 120, characters 10-17", s2$1.len == 0
 
 assert_("File \"stack_comp_test.ml\", line 120, characters 45-52", to_list(s2$1) == --[ [] ]--0);
 
-var s1$2 = do
+s1$2 = do
   c: --[ [] ]--0,
   len: 0
 end;
 
-for var i$8 = 1 , 4 , 1 do
+for i$8 = 1 , 4 , 1 do
   Stack.push(i$8, s1$2);
 end
 
@@ -407,7 +407,7 @@ assert_("File \"stack_comp_test.ml\", line 126, characters 45-52", Caml_obj.caml
           ]
         ]));
 
-var s2$2 = Stack.copy(s1$2);
+s2$2 = Stack.copy(s1$2);
 
 assert_("File \"stack_comp_test.ml\", line 128, characters 10-17", s1$2.len == 4);
 

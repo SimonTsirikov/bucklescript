@@ -7,7 +7,7 @@ function M($star) do
         end;
 end
 
-var V = do
+V = do
   v: 3
 end;
 

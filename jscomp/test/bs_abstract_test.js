@@ -1,15 +1,15 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
-var v = do
+v = do
   hd: 3,
   tl: null
 end;
 
 v.tl = v;
 
-var f = do
+f = do
   k: (function (x, y) do
       return x == y;
     end),
@@ -37,7 +37,7 @@ function uff2(f) do
 end
 
 function uff3(f) do
-  var match = f.yyyy2;
+  match = f.yyyy2;
   if (match ~= undefined) then do
     return Curry._1(match, 0);
   end else do

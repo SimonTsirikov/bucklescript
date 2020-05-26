@@ -1,21 +1,21 @@
 'use strict';
 
-var Exception_def = require("./exception_def.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Exception_def = require("./exception_def.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var E = Caml_exceptions.create("Exception_rebind_test.A.E");
+E = Caml_exceptions.create("Exception_rebind_test.A.E");
 
-var A = do
+A = do
   E: E
 end;
 
-var B = do
+B = do
   F: E
 end;
 
-var A0 = Caml_exceptions.create("Exception_rebind_test.A0");
+A0 = Caml_exceptions.create("Exception_rebind_test.A0");
 
-var H = Exception_def.A;
+H = Exception_def.A;
 
 exports.A = A;
 exports.B = B;

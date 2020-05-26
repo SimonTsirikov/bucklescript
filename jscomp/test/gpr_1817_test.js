@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -30,8 +30,8 @@ function eq(loc, x, y) do
 end
 
 function f(param) do
-  var x = new Date();
-  var y = new Date();
+  x = new Date();
+  y = new Date();
   return --[ tuple ]--[
           Caml_obj.caml_greaterthan(y, x),
           Caml_obj.caml_lessthan(y, x),
@@ -39,13 +39,13 @@ function f(param) do
         ];
 end
 
-var match = f(--[ () ]--0);
+match = f(--[ () ]--0);
 
-var a2 = match[2];
+a2 = match[2];
 
-var a1 = match[1];
+a1 = match[1];
 
-var a0 = match[0];
+a0 = match[0];
 
 console.log(a0, a1);
 

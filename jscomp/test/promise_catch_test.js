@@ -1,18 +1,18 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Js_exn = require("../../lib/js/js_exn.js");
-var Js_option = require("../../lib/js/js_option.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Js_exn = require("../../lib/js/js_exn.js");
+Js_option = require("../../lib/js/js_option.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -69,16 +69,16 @@ function f(x) do
   return x.catch(handler);
 end
 
-var exit = 0;
+exit = 0;
 
-var val;
+val;
 
 try do
   val = JSON.parse(" 1. +  ");
   exit = 1;
 end
 catch (raw_e)do
-  var e = Caml_js_exceptions.internalToOCamlException(raw_e);
+  e = Caml_js_exceptions.internalToOCamlException(raw_e);
   eq("File \"promise_catch_test.ml\", line 36, characters 7-14", true, Js_option.isSomeValue((function (xxx, y) do
               return xxx == y;
             end), 2, myHandler(e)));

@@ -5,7 +5,7 @@ function add(x, y) do
   return x + y | 0;
 end
 
-var N = do
+N = do
   add: add
 end;
 
@@ -21,7 +21,7 @@ function f3(param, param$1, param$2) do
   return --[ () ]--0;
 end
 
-var N0 = do
+N0 = do
   f1: f1,
   f2: f2,
   f3: f3
@@ -35,7 +35,7 @@ function f3$1(param, param$1, param$2) do
   return --[ () ]--0;
 end
 
-var N1 = do
+N1 = do
   f2: f2$1,
   f3: f3$1
 end;

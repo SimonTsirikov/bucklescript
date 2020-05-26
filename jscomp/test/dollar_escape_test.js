@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -33,7 +33,7 @@ function $$(x, y) do
   return x + y | 0;
 end
 
-var $$$plus = Caml_int32.imul;
+$$$plus = Caml_int32.imul;
 
 eq("File \"dollar_escape_test.ml\", line 20, characters 6-13", 3, 3);
 
@@ -41,9 +41,9 @@ eq("File \"dollar_escape_test.ml\", line 21, characters 6-13", 3, 3);
 
 Mt.from_pair_suites("Dollar_escape_test", suites.contents);
 
-var v = 3;
+v = 3;
 
-var u = 3;
+u = 3;
 
 exports.suites = suites;
 exports.test_id = test_id;

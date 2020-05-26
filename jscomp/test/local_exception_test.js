@@ -1,25 +1,25 @@
 'use strict';
 
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var A = Caml_exceptions.create("Local_exception_test.A");
+A = Caml_exceptions.create("Local_exception_test.A");
 
-var v = [
+v = [
   A,
   3,
   true
 ];
 
-var B = Caml_exceptions.create("Local_exception_test.B");
+B = Caml_exceptions.create("Local_exception_test.B");
 
-var D = Caml_exceptions.create("Local_exception_test.D");
+D = Caml_exceptions.create("Local_exception_test.D");
 
-var d = [
+d = [
   D,
   3
 ];
 
-var u = B;
+u = B;
 
 exports.A = A;
 exports.v = v;

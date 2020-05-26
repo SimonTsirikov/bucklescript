@@ -234,8 +234,6 @@ let pp_paren_params
       id) *)
 
 let pp_var_assign cxt f id  =       
-  P.string f L.var ; 
-  P.space f ; 
   let acxt = Ext_pp_scope.ident cxt f id in 
   P.space f ; 
   P.string f L.eq ; 
@@ -257,8 +255,6 @@ let pp_var_assign_this cxt f id =
   cxt 
 
 let pp_var_declare cxt f id = 
-  P.string f L.var ; 
-  P.space f ; 
   let acxt = Ext_pp_scope.ident cxt f id in 
   semi f ;
   acxt 

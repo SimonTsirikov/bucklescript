@@ -1,9 +1,9 @@
 'use strict';
 
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
 function eq_A(x, y) do
   if (x.tag or y.tag) then do
@@ -15,9 +15,9 @@ end
 
 function Test($star) do
   console.log("no inline");
-  var u = --[ A ]--Block.__(0, [3]);
-  var Block$1 = { };
-  var b = eq_A(--[ A ]--Block.__(0, [3]), u);
+  u = --[ A ]--Block.__(0, [3]);
+  Block$1 = { };
+  b = eq_A(--[ A ]--Block.__(0, [3]), u);
   return do
           u: u,
           Block: Block$1,
@@ -28,8 +28,8 @@ end
 
 function Test2($star) do
   console.log("no inline");
-  var Block$1 = { };
-  var b = eq_A(--[ A ]--Block.__(0, [3]), --[ A ]--Block.__(0, [3]));
+  Block$1 = { };
+  b = eq_A(--[ A ]--Block.__(0, [3]), --[ A ]--Block.__(0, [3]));
   return do
           Block: Block$1,
           y: 32,
@@ -38,13 +38,13 @@ function Test2($star) do
 end
 
 function f(i, y) do
-  var x = --[ A ]--Block.__(0, [i]);
+  x = --[ A ]--Block.__(0, [i]);
   return eq_A(x, y);
 end
 
 function Test3($star) do
-  var f = Caml_obj.caml_equal;
-  var Caml_obj$1 = { };
+  f = Caml_obj.caml_equal;
+  Caml_obj$1 = { };
   return do
           f: f,
           Caml_obj: Caml_obj$1
@@ -52,8 +52,8 @@ function Test3($star) do
 end
 
 function Test4($star) do
-  var Caml_obj$1 = { };
-  var f = Caml_obj.caml_equal;
+  Caml_obj$1 = { };
+  f = Caml_obj.caml_equal;
   return do
           Caml_obj: Caml_obj$1,
           f: f
@@ -61,10 +61,10 @@ function Test4($star) do
 end
 
 function Test5($star) do
-  var f = function (x) do
+  f = function (x) do
     return Caml_option.some(x);
   end;
-  var Caml_option$1 = { };
+  Caml_option$1 = { };
   return do
           f: f,
           Caml_option: Caml_option$1
@@ -72,8 +72,8 @@ function Test5($star) do
 end
 
 function Test6($star) do
-  var Caml_option$1 = { };
-  var f = function (x) do
+  Caml_option$1 = { };
+  f = function (x) do
     return Caml_option.some(x);
   end;
   return do
@@ -83,15 +83,15 @@ function Test6($star) do
 end
 
 function Test7($star) do
-  var Caml_option = { };
+  Caml_option = { };
   return do
           Caml_option: Caml_option
         end;
 end
 
 function Test8($star) do
-  var Curry$1 = { };
-  var f = function (x) do
+  Curry$1 = { };
+  f = function (x) do
     return Curry._1(x, 1);
   end;
   return do
@@ -101,10 +101,10 @@ function Test8($star) do
 end
 
 function Test9($star) do
-  var f = function (x) do
+  f = function (x) do
     return Curry._1(x, 1);
   end;
-  var Curry$1 = { };
+  Curry$1 = { };
   return do
           f: f,
           Curry: Curry$1
@@ -112,13 +112,13 @@ function Test9($star) do
 end
 
 function Test10($star) do
-  var Curry = { };
+  Curry = { };
   return do
           Curry: Curry
         end;
 end
 
-var x = 3;
+x = 3;
 
 exports.eq_A = eq_A;
 exports.Test = Test;

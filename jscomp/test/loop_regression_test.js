@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
 function f(param) do
-  var v = do
+  v = do
     contents: 0
   end;
-  var acc = do
+  acc = do
     contents: 0
   end;
-  var n = 10;
+  n = 10;
   while(true) do
     if (v.contents > n) then do
       return acc.contents;
@@ -22,7 +22,7 @@ function f(param) do
   end;
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "sum",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -32,7 +32,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   --[ [] ]--0
 ];

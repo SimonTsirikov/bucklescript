@@ -1,12 +1,12 @@
 'use strict';
 
 
-var v1 = do
+v1 = do
   stdio: "inherit",
   v: 3
 end;
 
-var v2 = do
+v2 = do
   stdio: 1,
   v: 2
 end;
@@ -59,7 +59,7 @@ function register(p) do
   return --[ () ]--0;
 end
 
-var config = do
+config = do
   stdio: "inherit",
   cwd: "."
 end;

@@ -1,9 +1,9 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
 
 function f(v) do
   if (v % 2 == 0) then do
@@ -17,7 +17,7 @@ function f(v) do
   end end 
 end
 
-var v = [
+v = [
     1,
     2,
     3
@@ -25,7 +25,7 @@ var v = [
         return f(param)(param$1);
       end));
 
-var vv = [
+vv = [
     1,
     2,
     3
@@ -33,7 +33,7 @@ var vv = [
         return prim + prim$1 | 0;
       end));
 
-var hh = [
+hh = [
     "1",
     "2",
     "3"
@@ -45,7 +45,7 @@ function u() do
   return 3;
 end
 
-var vvv = do
+vvv = do
   contents: 0
 end;
 
@@ -66,7 +66,7 @@ function abc(x, y, z) do
   return (x + y | 0) + z | 0;
 end
 
-var abc_u = abc;
+abc_u = abc;
 
 g();
 
@@ -146,7 +146,7 @@ Mt.from_pair_suites("Ffi_arity_test", --[ :: ]--[
                                   2,
                                   3
                                 ].map((function (x, param) do
-                                      var y = Caml_int32.imul(x, x);
+                                      y = Caml_int32.imul(x, x);
                                       return (function (i) do
                                                   return y + i | 0;
                                                 end)(param);

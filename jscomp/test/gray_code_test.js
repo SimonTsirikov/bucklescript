@@ -1,17 +1,17 @@
 'use strict';
 
-var Bytes = require("../../lib/js/bytes.js");
+Bytes = require("../../lib/js/bytes.js");
 
 function gray_encode(b) do
   return b ^ (b >>> 1);
 end
 
 function gray_decode(n) do
-  var _p = n;
-  var _n = (n >>> 1);
+  _p = n;
+  _n = (n >>> 1);
   while(true) do
-    var n$1 = _n;
-    var p = _p;
+    n$1 = _n;
+    p = _p;
     if (n$1 == 0) then do
       return p;
     end else do
@@ -23,12 +23,12 @@ function gray_decode(n) do
 end
 
 function bool_string(len, n) do
-  var s = Bytes.make(len, --[ "0" ]--48);
-  var _i = len - 1 | 0;
-  var _n = n;
+  s = Bytes.make(len, --[ "0" ]--48);
+  _i = len - 1 | 0;
+  _n = n;
   while(true) do
-    var n$1 = _n;
-    var i = _i;
+    n$1 = _n;
+    i = _i;
     if ((n$1 & 1) == 1) then do
       s[i] = --[ "1" ]--49;
     end
@@ -44,12 +44,12 @@ function bool_string(len, n) do
 end
 
 function next_power(v) do
-  var v$1 = v - 1 | 0;
-  var v$2 = (v$1 >>> 1) | v$1;
-  var v$3 = (v$2 >>> 2) | v$2;
-  var v$4 = (v$3 >>> 4) | v$3;
-  var v$5 = (v$4 >>> 8) | v$4;
-  var v$6 = (v$5 >>> 16) | v$5;
+  v$1 = v - 1 | 0;
+  v$2 = (v$1 >>> 1) | v$1;
+  v$3 = (v$2 >>> 2) | v$2;
+  v$4 = (v$3 >>> 4) | v$3;
+  v$5 = (v$4 >>> 8) | v$4;
+  v$6 = (v$5 >>> 16) | v$5;
   return v$6 + 1 | 0;
 end
 

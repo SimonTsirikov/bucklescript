@@ -1,7 +1,7 @@
 'use strict';
 
 
-var v1 = do
+v1 = do
   localeMatcher: "best fit",
   formatMatcher: "basic",
   day: "2-digit",

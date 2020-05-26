@@ -1,26 +1,26 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Lazy = require("../../lib/js/lazy.js");
-var Block = require("../../lib/js/block.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Lazy = require("../../lib/js/lazy.js");
+Block = require("../../lib/js/block.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var u = do
+u = do
   contents: 3
 end;
 
-var v = Caml_obj.caml_lazy_make((function (param) do
+v = Caml_obj.caml_lazy_make((function (param) do
         u.contents = 32;
         return --[ () ]--0;
       end));
 
 function lazy_test(param) do
-  var h = u.contents;
+  h = u.contents;
   CamlinternalLazy.force(v);
-  var g = u.contents;
+  g = u.contents;
   return --[ tuple ]--[
           h,
           g
@@ -29,10 +29,10 @@ end
 
 function f(param) do
   CamlinternalLazy.force(param[0]);
-  var match = param[2].contents;
+  match = param[2].contents;
   if (match ~= undefined) then do
     CamlinternalLazy.force(param[1]);
-    var match$1 = param[2].contents;
+    match$1 = param[2].contents;
     if (match$1 ~= undefined) then do
       return 1;
     end else do
@@ -50,21 +50,21 @@ function f(param) do
   end end 
 end
 
-var s = do
+s = do
   contents: undefined
 end;
 
-var set_true = Caml_obj.caml_lazy_make((function (param) do
+set_true = Caml_obj.caml_lazy_make((function (param) do
         s.contents = 1;
         return --[ () ]--0;
       end));
 
-var set_false = Caml_obj.caml_lazy_make((function (param) do
+set_false = Caml_obj.caml_lazy_make((function (param) do
         s.contents = undefined;
         return --[ () ]--0;
       end));
 
-var h;
+h;
 
 try do
   h = f(--[ tuple ]--[
@@ -74,7 +74,7 @@ try do
       ]);
 end
 catch (raw_exn)do
-  var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+  exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   if (exn[0] == Caml_builtin_exceptions.match_failure) then do
     h = 2;
   end else do
@@ -82,44 +82,44 @@ catch (raw_exn)do
   end end 
 end
 
-var u_v = do
+u_v = do
   contents: 0
 end;
 
-var u$1 = Caml_obj.caml_lazy_make((function (param) do
+u$1 = Caml_obj.caml_lazy_make((function (param) do
         u_v.contents = 2;
         return --[ () ]--0;
       end));
 
 CamlinternalLazy.force(u$1);
 
-var exotic = CamlinternalLazy.force;
+exotic = CamlinternalLazy.force;
 
-var l_from_fun = Lazy.from_fun((function (param) do
+l_from_fun = Lazy.from_fun((function (param) do
         return 3;
       end));
 
-var forward_test = Caml_obj.caml_lazy_make((function (param) do
-        var u = 3;
+forward_test = Caml_obj.caml_lazy_make((function (param) do
+        u = 3;
         u = u + 1 | 0;
         return u;
       end));
 
-var f005 = Caml_obj.caml_lazy_make((function (param) do
+f005 = Caml_obj.caml_lazy_make((function (param) do
         return 6;
       end));
 
-var f006 = Caml_obj.caml_lazy_make((function (param) do
+f006 = Caml_obj.caml_lazy_make((function (param) do
         return (function (param) do
             return 3;
           end);
       end));
 
-var f007 = Caml_obj.caml_lazy_make((function (param) do
+f007 = Caml_obj.caml_lazy_make((function (param) do
         throw Caml_builtin_exceptions.not_found;
       end));
 
-var f008 = Caml_obj.caml_lazy_make((function (param) do
+f008 = Caml_obj.caml_lazy_make((function (param) do
         console.log("hi");
         throw Caml_builtin_exceptions.not_found;
       end));

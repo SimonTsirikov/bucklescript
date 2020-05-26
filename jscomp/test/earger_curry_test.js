@@ -1,21 +1,21 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function map(f, a) do
-  var f$1 = Curry.__1(f);
-  var a$1 = a;
-  var l = #a$1;
+  f$1 = Curry.__1(f);
+  a$1 = a;
+  l = #a$1;
   if (l == 0) then do
     return [];
   end else do
-    var r = Caml_array.caml_make_vect(l, f$1(a$1[0]));
-    for var i = 1 , l - 1 | 0 , 1 do
+    r = Caml_array.caml_make_vect(l, f$1(a$1[0]));
+    for i = 1 , l - 1 | 0 , 1 do
       r[i] = f$1(a$1[i]);
     end
     return r;
@@ -23,8 +23,8 @@ function map(f, a) do
 end
 
 function init(l, f) do
-  var l$1 = l;
-  var f$1 = Curry.__1(f);
+  l$1 = l;
+  f$1 = Curry.__1(f);
   if (l$1 == 0) then do
     return [];
   end else do
@@ -35,8 +35,8 @@ function init(l, f) do
           ];
     end
      end 
-    var res = Caml_array.caml_make_vect(l$1, f$1(0));
-    for var i = 1 , l$1 - 1 | 0 , 1 do
+    res = Caml_array.caml_make_vect(l$1, f$1(0));
+    for i = 1 , l$1 - 1 | 0 , 1 do
       res[i] = f$1(i);
     end
     return res;
@@ -44,24 +44,24 @@ function init(l, f) do
 end
 
 function fold_left(f, x, a) do
-  var f$1 = Curry.__2(f);
-  var x$1 = x;
-  var a$1 = a;
-  var r = x$1;
-  for var i = 0 , #a$1 - 1 | 0 , 1 do
+  f$1 = Curry.__2(f);
+  x$1 = x;
+  a$1 = a;
+  r = x$1;
+  for i = 0 , #a$1 - 1 | 0 , 1 do
     r = f$1(r, a$1[i]);
   end
   return r;
 end
 
 function f2(param) do
-  var arr = init(30000000, (function (i) do
+  arr = init(30000000, (function (i) do
           return i;
         end));
-  var b = map((function (i) do
+  b = map((function (i) do
           return i + i - 1;
         end), arr);
-  var v = fold_left((function (prim, prim$1) do
+  v = fold_left((function (prim, prim$1) do
           return prim + prim$1;
         end), 0, b);
   console.log(Pervasives.string_of_float(v));
@@ -70,11 +70,11 @@ end
 
 f2(--[ () ]--0);
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -95,11 +95,11 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var v = do
+v = do
   contents: 0
 end;
 
-var all_v = do
+all_v = do
   contents: --[ [] ]--0
 end;
 
@@ -120,9 +120,9 @@ end
 
 function f(x) do
   v.contents = v.contents + 1 | 0;
-  var partial_arg = 2;
+  partial_arg = 2;
   v.contents = v.contents + 1 | 0;
-  var partial_arg$1 = 1;
+  partial_arg$1 = 1;
   return (function (param, param$1) do
       return add5(x, partial_arg$1, partial_arg, param, param$1);
     end);
@@ -130,10 +130,10 @@ end
 
 function g(x) do
   v.contents = v.contents + 1 | 0;
-  var partial_arg = 2;
+  partial_arg = 2;
   v.contents = v.contents + 1 | 0;
-  var partial_arg$1 = 1;
-  var u = function (param, param$1) do
+  partial_arg$1 = 1;
+  u = function (param, param$1) do
     return add5(x, partial_arg$1, partial_arg, param, param$1);
   end;
   all_v.contents = --[ :: ]--[
@@ -143,13 +143,13 @@ function g(x) do
   return u;
 end
 
-var a = f(0)(3, 4);
+a = f(0)(3, 4);
 
-var b = f(0)(3, 5);
+b = f(0)(3, 5);
 
-var c = Curry._2(g(0), 3, 4);
+c = Curry._2(g(0), 3, 4);
 
-var d = Curry._2(g(0), 3, 5);
+d = Curry._2(g(0), 3, 5);
 
 eq("File \"earger_curry_test.ml\", line 118, characters 7-14", a, 10);
 

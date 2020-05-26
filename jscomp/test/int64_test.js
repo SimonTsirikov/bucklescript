@@ -1,26 +1,26 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Int32 = require("../../lib/js/int32.js");
-var Int64 = require("../../lib/js/int64.js");
-var Format = require("../../lib/js/format.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_int64 = require("../../lib/js/caml_int64.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Ext_array_test = require("./ext_array_test.js");
+Mt = require("./mt.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Int32 = require("../../lib/js/int32.js");
+Int64 = require("../../lib/js/int64.js");
+Format = require("../../lib/js/format.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_int64 = require("../../lib/js/caml_int64.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Ext_array_test = require("./ext_array_test.js");
 
 function f(u, v) do
   return u > v;
 end
 
-var v = Caml_int64.add(Caml_int64.of_int32(Int32.max_int), Int64.one);
+v = Caml_int64.add(Caml_int64.of_int32(Int32.max_int), Int64.one);
 
-var h = Caml_int64.neg(v);
+h = Caml_int64.neg(v);
 
-var a = --[ int64 ]--[
+a = --[ int64 ]--[
   --[ hi ]--0,
   --[ lo ]--2147483647
 ];
@@ -38,16 +38,16 @@ function commutative_add(result, a, b) do
           ]);
 end
 
-var generic_compare = Caml_obj.caml_compare;
+generic_compare = Caml_obj.caml_compare;
 
-var shift_left_tests_000 = $$Array.map((function (i) do
+shift_left_tests_000 = $$Array.map((function (i) do
         return Caml_int64.lsl_(--[ int64 ]--[
                     --[ hi ]--0,
                     --[ lo ]--1
                   ], i);
       end), Ext_array_test.range(0, 63));
 
-var shift_left_tests_001 = [
+shift_left_tests_001 = [
   --[ int64 ]--[
     --[ hi ]--0,
     --[ lo ]--1
@@ -306,19 +306,19 @@ var shift_left_tests_001 = [
   ]
 ];
 
-var shift_left_tests = --[ tuple ]--[
+shift_left_tests = --[ tuple ]--[
   shift_left_tests_000,
   shift_left_tests_001
 ];
 
-var shift_right_tests_000 = $$Array.map((function (i) do
+shift_right_tests_000 = $$Array.map((function (i) do
         return Caml_int64.asr_(--[ int64 ]--[
                     --[ hi ]---2147483648,
                     --[ lo ]--0
                   ], i);
       end), Ext_array_test.range(0, 63));
 
-var shift_right_tests_001 = [
+shift_right_tests_001 = [
   --[ int64 ]--[
     --[ hi ]---2147483648,
     --[ lo ]--0
@@ -577,19 +577,19 @@ var shift_right_tests_001 = [
   ]
 ];
 
-var shift_right_tests = --[ tuple ]--[
+shift_right_tests = --[ tuple ]--[
   shift_right_tests_000,
   shift_right_tests_001
 ];
 
-var shift_right_logical_suites_000 = $$Array.map((function (i) do
+shift_right_logical_suites_000 = $$Array.map((function (i) do
         return Caml_int64.lsr_(--[ int64 ]--[
                     --[ hi ]---2147483648,
                     --[ lo ]--0
                   ], i);
       end), Ext_array_test.range(0, 63));
 
-var shift_right_logical_suites_001 = [
+shift_right_logical_suites_001 = [
   --[ int64 ]--[
     --[ hi ]---2147483648,
     --[ lo ]--0
@@ -848,16 +848,16 @@ var shift_right_logical_suites_001 = [
   ]
 ];
 
-var shift_right_logical_suites = --[ tuple ]--[
+shift_right_logical_suites = --[ tuple ]--[
   shift_right_logical_suites_000,
   shift_right_logical_suites_001
 ];
 
 function fib(_n, _a, _b) do
   while(true) do
-    var b = _b;
-    var a = _a;
-    var n = _n;
+    b = _b;
+    a = _a;
+    n = _n;
     if (n == 0) then do
       return a;
     end else do
@@ -871,8 +871,8 @@ end
 
 function fac(_n, _acc) do
   while(true) do
-    var acc = _acc;
-    var n = _n;
+    acc = _acc;
+    n = _n;
     if (n == 0) then do
       return acc;
     end else do
@@ -883,7 +883,7 @@ function fac(_n, _acc) do
   end;
 end
 
-var suites = Pervasives.$at(--[ :: ]--[
+suites = Pervasives.$at(--[ :: ]--[
       --[ tuple ]--[
         "add_one",
         (function (param) do
@@ -2383,11 +2383,11 @@ var suites = Pervasives.$at(--[ :: ]--[
                               ];
                       end), shift_right_logical_suites_000, shift_right_logical_suites_001)))));
 
-var suites$1 = do
+suites$1 = do
   contents: suites
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -2396,8 +2396,8 @@ function eq(loc, x, y) do
 end
 
 function id(loc, x) do
-  var float_value = Caml_int64.float_of_bits(x);
-  var match = Pervasives.classify_float(float_value);
+  float_value = Caml_int64.float_of_bits(x);
+  match = Pervasives.classify_float(float_value);
   if (match >= 4) then do
     return --[ () ]--0;
   end else do

@@ -1,8 +1,8 @@
 'use strict';
 
-var Sys = require("../../lib/js/sys.js");
+Sys = require("../../lib/js/sys.js");
 
-var os_version;
+os_version;
 
 local ___conditional___=(Sys.os_type);
 do

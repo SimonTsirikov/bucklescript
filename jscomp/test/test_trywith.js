@@ -1,8 +1,8 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Curry = require("../../lib/js/curry.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function ff(g, x) do
   try do
@@ -27,7 +27,7 @@ function ff(g, x) do
     Curry._1(g, x);
   end
   catch (raw_exn)do
-    var exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
+    exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn$2[0] ~= Caml_builtin_exceptions.sys_error) then do
       throw exn$2;
     end
@@ -37,7 +37,7 @@ function ff(g, x) do
     Curry._1(g, x);
   end
   catch (raw_exn$1)do
-    var exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
+    exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
     if (exn$3[0] ~= Caml_builtin_exceptions.invalid_argument) then do
       throw exn$3;
     end
@@ -56,7 +56,7 @@ function ff(g, x) do
     Curry._1(g, x);
   end
   catch (raw_exn$2)do
-    var exn$5 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
+    exn$5 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
     if (exn$5[0] ~= Caml_builtin_exceptions.match_failure) then do
       throw exn$5;
     end
@@ -84,7 +84,7 @@ function ff(g, x) do
     Curry._1(g, x);
   end
   catch (raw_exn$3)do
-    var exn$8 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
+    exn$8 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
     if (exn$8[0] ~= Caml_builtin_exceptions.assert_failure) then do
       throw exn$8;
     end
@@ -94,7 +94,7 @@ function ff(g, x) do
     return Curry._1(g, x);
   end
   catch (raw_exn$4)do
-    var exn$9 = Caml_js_exceptions.internalToOCamlException(raw_exn$4);
+    exn$9 = Caml_js_exceptions.internalToOCamlException(raw_exn$4);
     if (exn$9[0] == Caml_builtin_exceptions.undefined_recursive_module) then do
       return --[ () ]--0;
     end else do
@@ -124,9 +124,9 @@ function f(x) do
   end end  end 
 end
 
-var u1 = "bad character decimal encoding \\";
+u1 = "bad character decimal encoding \\";
 
-var v = "bad character decimal encoding \\%c%c%c";
+v = "bad character decimal encoding \\%c%c%c";
 
 exports.ff = ff;
 exports.u = u;

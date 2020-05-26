@@ -1,12 +1,12 @@
 'use strict';
 
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function $$eval(_bdd, vars) do
   while(true) do
-    var bdd = _bdd;
+    bdd = _bdd;
     if (typeof bdd == "number") then do
       return bdd == 0;
     end else if (Caml_array.caml_array_get(vars, bdd[1])) then do
@@ -31,19 +31,19 @@ function getId(bdd) do
   end end 
 end
 
-var nodeC = do
+nodeC = do
   contents: 1
 end;
 
-var sz_1 = do
+sz_1 = do
   contents: 8191
 end;
 
-var htab = do
+htab = do
   contents: Caml_array.caml_make_vect(sz_1.contents + 1 | 0, --[ [] ]--0)
 end;
 
-var n_items = do
+n_items = do
   contents: 0
 end;
 
@@ -52,14 +52,14 @@ function hashVal(x, y, v) do
 end
 
 function resize(newSize) do
-  var arr = htab.contents;
-  var newSz_1 = newSize - 1 | 0;
-  var newArr = Caml_array.caml_make_vect(newSize, --[ [] ]--0);
-  var copyBucket = function (_bucket) do
+  arr = htab.contents;
+  newSz_1 = newSize - 1 | 0;
+  newArr = Caml_array.caml_make_vect(newSize, --[ [] ]--0);
+  copyBucket = function (_bucket) do
     while(true) do
-      var bucket = _bucket;
+      bucket = _bucket;
       if (bucket) then do
-        var n = bucket[0];
+        n = bucket[0];
         if (typeof n == "number") then do
           throw [
                 Caml_builtin_exceptions.assert_failure,
@@ -71,7 +71,7 @@ function resize(newSize) do
               ];
         end
          end 
-        var ind = hashVal(getId(n[0]), getId(n[3]), n[1]) & newSz_1;
+        ind = hashVal(getId(n[0]), getId(n[3]), n[1]) & newSz_1;
         Caml_array.caml_array_set(newArr, ind, --[ :: ]--[
               n,
               Caml_array.caml_array_get(newArr, ind)
@@ -83,7 +83,7 @@ function resize(newSize) do
       end end 
     end;
   end;
-  for var n = 0 , sz_1.contents , 1 do
+  for n = 0 , sz_1.contents , 1 do
     copyBucket(Caml_array.caml_array_get(arr, n));
   end
   htab.contents = newArr;
@@ -101,7 +101,7 @@ function insert(idl, idh, v, ind, bucket, newNode) do
     return --[ () ]--0;
   end else do
     resize((sz_1.contents + sz_1.contents | 0) + 2 | 0);
-    var ind$1 = hashVal(idl, idh, v) & sz_1.contents;
+    ind$1 = hashVal(idl, idh, v) & sz_1.contents;
     return Caml_array.caml_array_set(htab.contents, ind$1, --[ :: ]--[
                 newNode,
                 Caml_array.caml_array_get(htab.contents, ind$1)
@@ -118,18 +118,18 @@ function resetUnique(param) do
 end
 
 function mkNode(low, v, high) do
-  var idl = getId(low);
-  var idh = getId(high);
+  idl = getId(low);
+  idh = getId(high);
   if (idl == idh) then do
     return low;
   end else do
-    var ind = hashVal(idl, idh, v) & sz_1.contents;
-    var bucket = Caml_array.caml_array_get(htab.contents, ind);
-    var _b = bucket;
+    ind = hashVal(idl, idh, v) & sz_1.contents;
+    bucket = Caml_array.caml_array_get(htab.contents, ind);
+    _b = bucket;
     while(true) do
-      var b = _b;
+      b = _b;
       if (b) then do
-        var n = b[0];
+        n = b[0];
         if (typeof n == "number") then do
           throw [
                 Caml_builtin_exceptions.assert_failure,
@@ -148,8 +148,8 @@ function mkNode(low, v, high) do
           continue ;
         end end 
       end else do
-        var n_002 = (nodeC.contents = nodeC.contents + 1 | 0, nodeC.contents);
-        var n$1 = --[ Node ]--[
+        n_002 = (nodeC.contents = nodeC.contents + 1 | 0, nodeC.contents);
+        n$1 = --[ Node ]--[
           low,
           v,
           n_002,
@@ -176,21 +176,21 @@ function mkVar(x) do
   return mkNode(--[ Zero ]--1, x, --[ One ]--0);
 end
 
-var andslot1 = Caml_array.caml_make_vect(1999, 0);
+andslot1 = Caml_array.caml_make_vect(1999, 0);
 
-var andslot2 = Caml_array.caml_make_vect(1999, 0);
+andslot2 = Caml_array.caml_make_vect(1999, 0);
 
-var andslot3 = Caml_array.caml_make_vect(1999, --[ Zero ]--1);
+andslot3 = Caml_array.caml_make_vect(1999, --[ Zero ]--1);
 
-var xorslot1 = Caml_array.caml_make_vect(1999, 0);
+xorslot1 = Caml_array.caml_make_vect(1999, 0);
 
-var xorslot2 = Caml_array.caml_make_vect(1999, 0);
+xorslot2 = Caml_array.caml_make_vect(1999, 0);
 
-var xorslot3 = Caml_array.caml_make_vect(1999, --[ Zero ]--1);
+xorslot3 = Caml_array.caml_make_vect(1999, --[ Zero ]--1);
 
-var notslot1 = Caml_array.caml_make_vect(1999, 0);
+notslot1 = Caml_array.caml_make_vect(1999, 0);
 
-var notslot2 = Caml_array.caml_make_vect(1999, --[ One ]--0);
+notslot2 = Caml_array.caml_make_vect(1999, --[ One ]--0);
 
 function hash(x, y) do
   return ((x << 1) + y | 0) % 1999;
@@ -204,12 +204,12 @@ function not(n) do
       return --[ Zero ]--1;
     end end 
   end else do
-    var id = n[2];
-    var h = id % 1999;
+    id = n[2];
+    h = id % 1999;
     if (id == Caml_array.caml_array_get(notslot1, h)) then do
       return Caml_array.caml_array_get(notslot2, h);
     end else do
-      var f = mkNode(not(n[0]), n[1], not(n[3]));
+      f = mkNode(not(n[0]), n[1], not(n[3]));
       Caml_array.caml_array_set(notslot1, h, id);
       Caml_array.caml_array_set(notslot2, h, f);
       return f;
@@ -225,10 +225,10 @@ function and2(n1, n2) do
       return n2;
     end end 
   end else do
-    var r1 = n1[3];
-    var i1 = n1[2];
-    var v1 = n1[1];
-    var l1 = n1[0];
+    r1 = n1[3];
+    i1 = n1[2];
+    v1 = n1[1];
+    l1 = n1[0];
     if (typeof n2 == "number") then do
       if (n2 ~= 0) then do
         return --[ Zero ]--1;
@@ -236,16 +236,16 @@ function and2(n1, n2) do
         return n1;
       end end 
     end else do
-      var r2 = n2[3];
-      var i2 = n2[2];
-      var v2 = n2[1];
-      var l2 = n2[0];
-      var h = hash(i1, i2);
+      r2 = n2[3];
+      i2 = n2[2];
+      v2 = n2[1];
+      l2 = n2[0];
+      h = hash(i1, i2);
       if (i1 == Caml_array.caml_array_get(andslot1, h) and i2 == Caml_array.caml_array_get(andslot2, h)) then do
         return Caml_array.caml_array_get(andslot3, h);
       end else do
-        var match = cmpVar(v1, v2);
-        var f;
+        match = cmpVar(v1, v2);
+        f;
         local ___conditional___=(match);
         do
            if ___conditional___ = 0--[ LESS ]-- then do
@@ -274,10 +274,10 @@ function xor(n1, n2) do
       return not(n2);
     end end 
   end else do
-    var r1 = n1[3];
-    var i1 = n1[2];
-    var v1 = n1[1];
-    var l1 = n1[0];
+    r1 = n1[3];
+    i1 = n1[2];
+    v1 = n1[1];
+    l1 = n1[0];
     if (typeof n2 == "number") then do
       if (n2 ~= 0) then do
         return n1;
@@ -285,16 +285,16 @@ function xor(n1, n2) do
         return not(n1);
       end end 
     end else do
-      var r2 = n2[3];
-      var i2 = n2[2];
-      var v2 = n2[1];
-      var l2 = n2[0];
-      var h = hash(i1, i2);
+      r2 = n2[3];
+      i2 = n2[2];
+      v2 = n2[1];
+      l2 = n2[0];
+      h = hash(i1, i2);
       if (i1 == Caml_array.caml_array_get(andslot1, h) and i2 == Caml_array.caml_array_get(andslot2, h)) then do
         return Caml_array.caml_array_get(andslot3, h);
       end else do
-        var match = cmpVar(v1, v2);
-        var f;
+        match = cmpVar(v1, v2);
+        f;
         local ___conditional___=(match);
         do
            if ___conditional___ = 0--[ LESS ]-- then do
@@ -316,14 +316,14 @@ function xor(n1, n2) do
 end
 
 function hwb(n) do
-  var h = function (i, j) do
+  h = function (i, j) do
     if (i == j) then do
       return mkNode(--[ Zero ]--1, i, --[ One ]--0);
     end else do
       return xor(and2(not(mkNode(--[ Zero ]--1, j, --[ One ]--0)), h(i, j - 1 | 0)), and2(mkNode(--[ Zero ]--1, j, --[ One ]--0), g(i, j - 1 | 0)));
     end end 
   end;
-  var g = function (i, j) do
+  g = function (i, j) do
     if (i == j) then do
       return mkNode(--[ Zero ]--1, i, --[ One ]--0);
     end else do
@@ -333,7 +333,7 @@ function hwb(n) do
   return h(0, n - 1 | 0);
 end
 
-var seed = do
+seed = do
   contents: 0
 end;
 
@@ -343,8 +343,8 @@ function random(param) do
 end
 
 function random_vars(n) do
-  var vars = Caml_array.caml_make_vect(n, false);
-  for var i = 0 , n - 1 | 0 , 1 do
+  vars = Caml_array.caml_make_vect(n, false);
+  for i = 0 , n - 1 | 0 , 1 do
     Caml_array.caml_array_set(vars, i, random(--[ () ]--0));
   end
   return vars;
@@ -365,8 +365,8 @@ function bool_equal(a, b) do
 end
 
 function test_hwb(bdd, vars) do
-  var ntrue = 0;
-  for var i = 0 , #vars - 1 | 0 , 1 do
+  ntrue = 0;
+  for i = 0 , #vars - 1 | 0 , 1 do
     if (Caml_array.caml_array_get(vars, i)) then do
       ntrue = ntrue + 1 | 0;
     end
@@ -376,9 +376,9 @@ function test_hwb(bdd, vars) do
 end
 
 function main(param) do
-  var bdd = hwb(22);
-  var succeeded = true;
-  for var i = 1 , 100 , 1 do
+  bdd = hwb(22);
+  succeeded = true;
+  for i = 1 , 100 , 1 do
     succeeded = succeeded and test_hwb(bdd, random_vars(22));
   end
   if (succeeded) then do
@@ -397,13 +397,13 @@ end
 
 main(--[ () ]--0);
 
-var initSize_1 = 8191;
+initSize_1 = 8191;
 
-var zero = --[ Zero ]--1;
+zero = --[ Zero ]--1;
 
-var one = --[ One ]--0;
+one = --[ One ]--0;
 
-var cacheSize = 1999;
+cacheSize = 1999;
 
 exports.$$eval = $$eval;
 exports.getId = getId;

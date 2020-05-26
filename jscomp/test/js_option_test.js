@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Js_option = require("../../lib/js/js_option.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Js_option = require("../../lib/js/js_option.js");
 
 function simpleEq(a, b) do
   return a == b;
 end
 
-var option_suites_000 = --[ tuple ]--[
+option_suites_000 = --[ tuple ]--[
   "option_isSome_Some",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -18,7 +18,7 @@ var option_suites_000 = --[ tuple ]--[
     end)
 ];
 
-var option_suites_001 = --[ :: ]--[
+option_suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "option_isSome_None",
     (function (param) do
@@ -276,7 +276,7 @@ var option_suites_001 = --[ :: ]--[
   ]
 ];
 
-var option_suites = --[ :: ]--[
+option_suites = --[ :: ]--[
   option_suites_000,
   option_suites_001
 ];

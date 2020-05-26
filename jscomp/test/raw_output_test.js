@@ -1,6 +1,6 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
 function mk(fn) do
   return Curry._1(fn, --[ () ]--0);

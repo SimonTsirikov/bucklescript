@@ -1,6 +1,6 @@
 'use strict';
 
-var Block = require("../../lib/js/block.js");
+Block = require("../../lib/js/block.js");
 
 function f(param) do
   return --[ Format ]--[

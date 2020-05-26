@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
 
 function date(param) do
   return new Date("1976-03-08T12:34:56.789+01:23");
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "valueOf",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -18,7 +18,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "make",
     (function (param) do
@@ -73,7 +73,7 @@ var suites_001 = --[ :: ]--[
               --[ tuple ]--[
                 "makeWithYM",
                 (function (param) do
-                    var d = new Date(1984, 4);
+                    d = new Date(1984, 4);
                     return --[ Eq ]--Block.__(0, [
                               --[ tuple ]--[
                                 1984,
@@ -90,7 +90,7 @@ var suites_001 = --[ :: ]--[
                 --[ tuple ]--[
                   "makeWithYMD",
                   (function (param) do
-                      var d = new Date(1984, 4, 6);
+                      d = new Date(1984, 4, 6);
                       return --[ Eq ]--Block.__(0, [
                                 --[ tuple ]--[
                                   1984,
@@ -109,7 +109,7 @@ var suites_001 = --[ :: ]--[
                   --[ tuple ]--[
                     "makeWithYMDH",
                     (function (param) do
-                        var d = new Date(1984, 4, 6, 3);
+                        d = new Date(1984, 4, 6, 3);
                         return --[ Eq ]--Block.__(0, [
                                   --[ tuple ]--[
                                     1984,
@@ -130,7 +130,7 @@ var suites_001 = --[ :: ]--[
                     --[ tuple ]--[
                       "makeWithYMDHM",
                       (function (param) do
-                          var d = new Date(1984, 4, 6, 3, 59);
+                          d = new Date(1984, 4, 6, 3, 59);
                           return --[ Eq ]--Block.__(0, [
                                     --[ tuple ]--[
                                       1984,
@@ -153,7 +153,7 @@ var suites_001 = --[ :: ]--[
                       --[ tuple ]--[
                         "makeWithYMDHMS",
                         (function (param) do
-                            var d = new Date(1984, 4, 6, 3, 59, 27);
+                            d = new Date(1984, 4, 6, 3, 59, 27);
                             return --[ Eq ]--Block.__(0, [
                                       --[ tuple ]--[
                                         1984,
@@ -178,8 +178,8 @@ var suites_001 = --[ :: ]--[
                         --[ tuple ]--[
                           "utcWithYM",
                           (function (param) do
-                              var d = Date.UTC(1984, 4);
-                              var d$1 = new Date(d);
+                              d = Date.UTC(1984, 4);
+                              d$1 = new Date(d);
                               return --[ Eq ]--Block.__(0, [
                                         --[ tuple ]--[
                                           1984,
@@ -196,8 +196,8 @@ var suites_001 = --[ :: ]--[
                           --[ tuple ]--[
                             "utcWithYMD",
                             (function (param) do
-                                var d = Date.UTC(1984, 4, 6);
-                                var d$1 = new Date(d);
+                                d = Date.UTC(1984, 4, 6);
+                                d$1 = new Date(d);
                                 return --[ Eq ]--Block.__(0, [
                                           --[ tuple ]--[
                                             1984,
@@ -216,8 +216,8 @@ var suites_001 = --[ :: ]--[
                             --[ tuple ]--[
                               "utcWithYMDH",
                               (function (param) do
-                                  var d = Date.UTC(1984, 4, 6, 3);
-                                  var d$1 = new Date(d);
+                                  d = Date.UTC(1984, 4, 6, 3);
+                                  d$1 = new Date(d);
                                   return --[ Eq ]--Block.__(0, [
                                             --[ tuple ]--[
                                               1984,
@@ -238,8 +238,8 @@ var suites_001 = --[ :: ]--[
                               --[ tuple ]--[
                                 "utcWithYMDHM",
                                 (function (param) do
-                                    var d = Date.UTC(1984, 4, 6, 3, 59);
-                                    var d$1 = new Date(d);
+                                    d = Date.UTC(1984, 4, 6, 3, 59);
+                                    d$1 = new Date(d);
                                     return --[ Eq ]--Block.__(0, [
                                               --[ tuple ]--[
                                                 1984,
@@ -262,8 +262,8 @@ var suites_001 = --[ :: ]--[
                                 --[ tuple ]--[
                                   "utcWithYMDHMS",
                                   (function (param) do
-                                      var d = Date.UTC(1984, 4, 6, 3, 59, 27);
-                                      var d$1 = new Date(d);
+                                      d = Date.UTC(1984, 4, 6, 3, 59, 27);
+                                      d$1 = new Date(d);
                                       return --[ Eq ]--Block.__(0, [
                                                 --[ tuple ]--[
                                                   1984,
@@ -418,7 +418,7 @@ var suites_001 = --[ :: ]--[
                                                             --[ tuple ]--[
                                                               "setDate",
                                                               (function (param) do
-                                                                  var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                  d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                   d.setDate(12);
                                                                   return --[ Eq ]--Block.__(0, [
                                                                             12,
@@ -430,7 +430,7 @@ var suites_001 = --[ :: ]--[
                                                               --[ tuple ]--[
                                                                 "setFullYear",
                                                                 (function (param) do
-                                                                    var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                    d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                     d.setFullYear(1986);
                                                                     return --[ Eq ]--Block.__(0, [
                                                                               1986,
@@ -442,7 +442,7 @@ var suites_001 = --[ :: ]--[
                                                                 --[ tuple ]--[
                                                                   "setFullYearM",
                                                                   (function (param) do
-                                                                      var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                      d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                       d.setFullYear(1986, 7);
                                                                       return --[ Eq ]--Block.__(0, [
                                                                                 --[ tuple ]--[
@@ -460,7 +460,7 @@ var suites_001 = --[ :: ]--[
                                                                   --[ tuple ]--[
                                                                     "setFullYearMD",
                                                                     (function (param) do
-                                                                        var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                        d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                         d.setFullYear(1986, 7, 23);
                                                                         return --[ Eq ]--Block.__(0, [
                                                                                   --[ tuple ]--[
@@ -480,7 +480,7 @@ var suites_001 = --[ :: ]--[
                                                                     --[ tuple ]--[
                                                                       "setHours",
                                                                       (function (param) do
-                                                                          var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                          d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                           d.setHours(22);
                                                                           return --[ Eq ]--Block.__(0, [
                                                                                     22,
@@ -492,7 +492,7 @@ var suites_001 = --[ :: ]--[
                                                                       --[ tuple ]--[
                                                                         "setHoursM",
                                                                         (function (param) do
-                                                                            var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                            d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                             d.setHours(22, 48);
                                                                             return --[ Eq ]--Block.__(0, [
                                                                                       --[ tuple ]--[
@@ -510,7 +510,7 @@ var suites_001 = --[ :: ]--[
                                                                         --[ tuple ]--[
                                                                           "setHoursMS",
                                                                           (function (param) do
-                                                                              var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                              d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                               d.setHours(22, 48, 54);
                                                                               return --[ Eq ]--Block.__(0, [
                                                                                         --[ tuple ]--[
@@ -530,7 +530,7 @@ var suites_001 = --[ :: ]--[
                                                                           --[ tuple ]--[
                                                                             "setMilliseconds",
                                                                             (function (param) do
-                                                                                var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                 d.setMilliseconds(543);
                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                           543,
@@ -542,7 +542,7 @@ var suites_001 = --[ :: ]--[
                                                                             --[ tuple ]--[
                                                                               "setMinutes",
                                                                               (function (param) do
-                                                                                  var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                  d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                   d.setMinutes(18);
                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                             18,
@@ -554,7 +554,7 @@ var suites_001 = --[ :: ]--[
                                                                               --[ tuple ]--[
                                                                                 "setMinutesS",
                                                                                 (function (param) do
-                                                                                    var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                    d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                     d.setMinutes(18, 42);
                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                               --[ tuple ]--[
@@ -572,7 +572,7 @@ var suites_001 = --[ :: ]--[
                                                                                 --[ tuple ]--[
                                                                                   "setMinutesSMs",
                                                                                   (function (param) do
-                                                                                      var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                      d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                       d.setMinutes(18, 42, 311);
                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                 --[ tuple ]--[
@@ -592,7 +592,7 @@ var suites_001 = --[ :: ]--[
                                                                                   --[ tuple ]--[
                                                                                     "setMonth",
                                                                                     (function (param) do
-                                                                                        var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                        d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                         d.setMonth(10);
                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                   10,
@@ -604,7 +604,7 @@ var suites_001 = --[ :: ]--[
                                                                                     --[ tuple ]--[
                                                                                       "setMonthD",
                                                                                       (function (param) do
-                                                                                          var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                          d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                           d.setMonth(10, 14);
                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                     --[ tuple ]--[
@@ -622,7 +622,7 @@ var suites_001 = --[ :: ]--[
                                                                                       --[ tuple ]--[
                                                                                         "setSeconds",
                                                                                         (function (param) do
-                                                                                            var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                            d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                             d.setSeconds(36);
                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                       36,
@@ -634,7 +634,7 @@ var suites_001 = --[ :: ]--[
                                                                                         --[ tuple ]--[
                                                                                           "setSecondsMs",
                                                                                           (function (param) do
-                                                                                              var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                              d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                               d.setSeconds(36, 420);
                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                         --[ tuple ]--[
@@ -652,7 +652,7 @@ var suites_001 = --[ :: ]--[
                                                                                           --[ tuple ]--[
                                                                                             "setUTCDate",
                                                                                             (function (param) do
-                                                                                                var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                 d.setUTCDate(12);
                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                           12,
@@ -664,7 +664,7 @@ var suites_001 = --[ :: ]--[
                                                                                             --[ tuple ]--[
                                                                                               "setUTCFullYear",
                                                                                               (function (param) do
-                                                                                                  var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                  d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                   d.setUTCFullYear(1986);
                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                             1986,
@@ -676,7 +676,7 @@ var suites_001 = --[ :: ]--[
                                                                                               --[ tuple ]--[
                                                                                                 "setUTCFullYearM",
                                                                                                 (function (param) do
-                                                                                                    var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                    d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                     d.setUTCFullYear(1986, 7);
                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                               --[ tuple ]--[
@@ -694,7 +694,7 @@ var suites_001 = --[ :: ]--[
                                                                                                 --[ tuple ]--[
                                                                                                   "setUTCFullYearMD",
                                                                                                   (function (param) do
-                                                                                                      var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                      d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                       d.setUTCFullYear(1986, 7, 23);
                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                 --[ tuple ]--[
@@ -714,7 +714,7 @@ var suites_001 = --[ :: ]--[
                                                                                                   --[ tuple ]--[
                                                                                                     "setUTCHours",
                                                                                                     (function (param) do
-                                                                                                        var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                        d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                         d.setUTCHours(22);
                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                   22,
@@ -726,7 +726,7 @@ var suites_001 = --[ :: ]--[
                                                                                                     --[ tuple ]--[
                                                                                                       "setUTCHoursM",
                                                                                                       (function (param) do
-                                                                                                          var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                          d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                           d.setUTCHours(22, 48);
                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                     --[ tuple ]--[
@@ -744,7 +744,7 @@ var suites_001 = --[ :: ]--[
                                                                                                       --[ tuple ]--[
                                                                                                         "setUTCHoursMS",
                                                                                                         (function (param) do
-                                                                                                            var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                            d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                             d.setUTCHours(22, 48, 54);
                                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                                       --[ tuple ]--[
@@ -764,7 +764,7 @@ var suites_001 = --[ :: ]--[
                                                                                                         --[ tuple ]--[
                                                                                                           "setUTCMilliseconds",
                                                                                                           (function (param) do
-                                                                                                              var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                              d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                               d.setUTCMilliseconds(543);
                                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                                         543,
@@ -776,7 +776,7 @@ var suites_001 = --[ :: ]--[
                                                                                                           --[ tuple ]--[
                                                                                                             "setUTCMinutes",
                                                                                                             (function (param) do
-                                                                                                                var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                                d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                 d.setUTCMinutes(18);
                                                                                                                 return --[ Eq ]--Block.__(0, [
                                                                                                                           18,
@@ -788,7 +788,7 @@ var suites_001 = --[ :: ]--[
                                                                                                             --[ tuple ]--[
                                                                                                               "setUTCMinutesS",
                                                                                                               (function (param) do
-                                                                                                                  var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                                  d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                   d.setUTCMinutes(18, 42);
                                                                                                                   return --[ Eq ]--Block.__(0, [
                                                                                                                             --[ tuple ]--[
@@ -806,7 +806,7 @@ var suites_001 = --[ :: ]--[
                                                                                                               --[ tuple ]--[
                                                                                                                 "setUTCMinutesSMs",
                                                                                                                 (function (param) do
-                                                                                                                    var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                                    d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                     d.setUTCMinutes(18, 42, 311);
                                                                                                                     return --[ Eq ]--Block.__(0, [
                                                                                                                               --[ tuple ]--[
@@ -826,7 +826,7 @@ var suites_001 = --[ :: ]--[
                                                                                                                 --[ tuple ]--[
                                                                                                                   "setUTCMonth",
                                                                                                                   (function (param) do
-                                                                                                                      var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                                      d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                       d.setUTCMonth(10);
                                                                                                                       return --[ Eq ]--Block.__(0, [
                                                                                                                                 10,
@@ -838,7 +838,7 @@ var suites_001 = --[ :: ]--[
                                                                                                                   --[ tuple ]--[
                                                                                                                     "setUTCMonthD",
                                                                                                                     (function (param) do
-                                                                                                                        var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                                        d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                         d.setUTCMonth(10, 14);
                                                                                                                         return --[ Eq ]--Block.__(0, [
                                                                                                                                   --[ tuple ]--[
@@ -856,7 +856,7 @@ var suites_001 = --[ :: ]--[
                                                                                                                     --[ tuple ]--[
                                                                                                                       "setUTCSeconds",
                                                                                                                       (function (param) do
-                                                                                                                          var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                                          d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                           d.setUTCSeconds(36);
                                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                                     36,
@@ -868,7 +868,7 @@ var suites_001 = --[ :: ]--[
                                                                                                                       --[ tuple ]--[
                                                                                                                         "setUTCSecondsMs",
                                                                                                                         (function (param) do
-                                                                                                                            var d = new Date("1976-03-08T12:34:56.789+01:23");
+                                                                                                                            d = new Date("1976-03-08T12:34:56.789+01:23");
                                                                                                                             d.setUTCSeconds(36, 420);
                                                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                                                       --[ tuple ]--[
@@ -946,9 +946,9 @@ var suites_001 = --[ :: ]--[
                                                                                                                                     --[ tuple ]--[
                                                                                                                                       "eq",
                                                                                                                                       (function (param) do
-                                                                                                                                          var a = new Date("2013-03-01T01:10:00");
-                                                                                                                                          var b = new Date("2013-03-01T01:10:00");
-                                                                                                                                          var c = new Date("2013-03-01T01:10:01");
+                                                                                                                                          a = new Date("2013-03-01T01:10:00");
+                                                                                                                                          b = new Date("2013-03-01T01:10:00");
+                                                                                                                                          c = new Date("2013-03-01T01:10:01");
                                                                                                                                           return --[ Ok ]--Block.__(4, [Caml_obj.caml_equal(a, b) and Caml_obj.caml_notequal(b, c) and Caml_obj.caml_greaterthan(c, b)]);
                                                                                                                                         end)
                                                                                                                                     ],
@@ -1020,14 +1020,14 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
 
 Mt.from_pair_suites("Js_date_test", suites);
 
-var N = --[ alias ]--0;
+N = --[ alias ]--0;
 
 exports.N = N;
 exports.date = date;

@@ -1,21 +1,21 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Bytes = require("../../lib/js/bytes.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Bytes = require("../../lib/js/bytes.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
 function eq(loc, param) do
-  var y = param[1];
-  var x = param[0];
+  y = param[1];
+  x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
@@ -32,7 +32,7 @@ function eq(loc, param) do
   return --[ () ]--0;
 end
 
-var b = [
+b = [
   0,
   0,
   0
@@ -46,7 +46,7 @@ b[2] = --[ "c" ]--99;
 
 Bytes.blit(b, 0, b, 1, 2);
 
-var res = Caml_bytes.bytes_to_string(b);
+res = Caml_bytes.bytes_to_string(b);
 
 console.log(res);
 
@@ -55,7 +55,7 @@ eq("File \"bytes_split_gpr_743_test.ml\", line 17, characters 5-12", --[ tuple ]
       res
     ]);
 
-var b$1 = [
+b$1 = [
   0,
   0,
   0
@@ -69,7 +69,7 @@ b$1[2] = --[ "c" ]--99;
 
 Bytes.blit(b$1, 1, b$1, 0, 2);
 
-var res2 = Caml_bytes.bytes_to_string(b$1);
+res2 = Caml_bytes.bytes_to_string(b$1);
 
 console.log(res2);
 

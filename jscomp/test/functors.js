@@ -1,12 +1,12 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
 function O(X) do
-  var cow = function (x) do
+  cow = function (x) do
     return Curry._1(X.foo, x);
   end;
-  var sheep = function (x) do
+  sheep = function (x) do
     return 1 + Curry._1(X.foo, x) | 0;
   end;
   return do
@@ -16,10 +16,10 @@ function O(X) do
 end
 
 function F(X, Y) do
-  var cow = function (x) do
+  cow = function (x) do
     return Curry._1(Y.foo, Curry._1(X.foo, x));
   end;
-  var sheep = function (x) do
+  sheep = function (x) do
     return 1 + Curry._1(Y.foo, Curry._1(X.foo, x)) | 0;
   end;
   return do
@@ -29,7 +29,7 @@ function F(X, Y) do
 end
 
 function F1(X, Y) do
-  var sheep = function (x) do
+  sheep = function (x) do
     return 1 + Curry._1(Y.foo, Curry._1(X.foo, x)) | 0;
   end;
   return do
@@ -38,7 +38,7 @@ function F1(X, Y) do
 end
 
 function F2(X, Y) do
-  var sheep = function (x) do
+  sheep = function (x) do
     return 1 + Curry._1(Y.foo, Curry._1(X.foo, x)) | 0;
   end;
   return do
@@ -46,9 +46,9 @@ function F2(X, Y) do
         end;
 end
 
-var M = do
+M = do
   F: (function (funarg, funarg$1) do
-      var sheep = function (x) do
+      sheep = function (x) do
         return 1 + Curry._1(funarg$1.foo, Curry._1(funarg.foo, x)) | 0;
       end;
       return do

@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_format = require("../../lib/js/caml_format.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_format = require("../../lib/js/caml_format.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -34,7 +34,7 @@ function foo(x) do
 end
 
 function badInlining(obj) do
-  var x = obj.field;
+  x = obj.field;
   Caml_format.caml_int_of_string(x) ~= 3;
   return --[ () ]--0;
 end

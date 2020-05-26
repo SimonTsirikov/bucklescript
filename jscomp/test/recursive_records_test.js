@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -18,14 +18,14 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end
 
-var rec_cell = { };
+rec_cell = { };
 
 rec_cell.content = 3;
 
 rec_cell.next = rec_cell;
 
 function f0(x) do
-  var rec_cell = { };
+  rec_cell = { };
   Caml_obj.caml_update_dummy(rec_cell, do
         content: Caml_int32.imul(x, x) - 6 | 0,
         next: rec_cell
@@ -41,14 +41,14 @@ eq("File \"recursive_records_test.ml\", line 29, characters 5-12", a0(rec_cell),
 
 eq("File \"recursive_records_test.ml\", line 30, characters 5-12", a0(f0(3)), 9);
 
-var rec_cell2 = [];
+rec_cell2 = [];
 
 rec_cell2[0] = 3;
 
 rec_cell2[1] = rec_cell2;
 
 function f2(x) do
-  var rec_cell2 = [];
+  rec_cell2 = [];
   Caml_obj.caml_update_dummy(rec_cell2, --[ Cons ]--[
         --[ content ]--Caml_int32.imul(x, x) - 6 | 0,
         --[ next ]--rec_cell2
@@ -81,18 +81,18 @@ end
 
 eq("File \"recursive_records_test.ml\", line 56, characters 6-13", (hd(rec_cell2) + hd(tl_exn(rec_cell2)) | 0) + hd(tl_exn(tl_exn(rec_cell2))) | 0, 9);
 
-var rec_cell2$1 = f2(3);
+rec_cell2$1 = f2(3);
 
 eq("File \"recursive_records_test.ml\", line 60, characters 5-12", (hd(rec_cell2$1) + hd(tl_exn(rec_cell2$1)) | 0) + hd(tl_exn(tl_exn(rec_cell2$1))) | 0, 9);
 
-var rec_cell3 = [];
+rec_cell3 = [];
 
 rec_cell3[0] = 3;
 
 rec_cell3[1] = rec_cell3;
 
 function f3(x) do
-  var rec_cell3 = [];
+  rec_cell3 = [];
   Caml_obj.caml_update_dummy(rec_cell3, --[ :: ]--[
         Caml_int32.imul(x, x) - 6 | 0,
         rec_cell3
@@ -102,7 +102,7 @@ end
 
 eq("File \"recursive_records_test.ml\", line 74, characters 5-12", (List.hd(rec_cell3) + List.hd(List.tl(rec_cell3)) | 0) + List.hd(List.tl(List.tl(rec_cell3))) | 0, 9);
 
-var rec_cell3$1 = f3(3);
+rec_cell3$1 = f3(3);
 
 eq("File \"recursive_records_test.ml\", line 77, characters 5-12", (List.hd(rec_cell3$1) + List.hd(List.tl(rec_cell3$1)) | 0) + List.hd(List.tl(List.tl(rec_cell3$1))) | 0, 9);
 

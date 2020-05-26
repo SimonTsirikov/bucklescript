@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -18,12 +18,12 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end
 
-var v = --[ A0 ]--Block.__(0, [
+v = --[ A0 ]--Block.__(0, [
     --[ lbl ]--3,
     --[ more : [] ]--0
   ]);
 
-var v1 = --[ A1 ]--Block.__(1, [--[ more : :: ]--[
+v1 = --[ A1 ]--Block.__(1, [--[ more : :: ]--[
       1,
       --[ :: ]--[
         2,
@@ -51,15 +51,15 @@ console.log(f(v));
 
 console.log(f(v1));
 
-var A0 = Caml_exceptions.create("Inline_record_test.A0");
+A0 = Caml_exceptions.create("Inline_record_test.A0");
 
-var v3 = [
+v3 = [
   A0,
   --[ lbl ]--3,
   --[ more : [] ]--0
 ];
 
-var tmp;
+tmp;
 
 if (A0 == A0) then do
   tmp = 3;
@@ -86,20 +86,20 @@ function ff(x) do
   end end 
 end
 
-var v4 = --[ A0 ]--Block.__(0, [
+v4 = --[ A0 ]--Block.__(0, [
     --[ x ]--0,
     --[ y ]--0,
     --[ z ]--0
   ]);
 
-var v5 = --[ A1 ]--Block.__(1, [--[ z ]--0]);
+v5 = --[ A1 ]--Block.__(1, [--[ z ]--0]);
 
-for var i = 0 , 10 , 1 do
+for i = 0 , 10 , 1 do
   ff(v4);
   ff(v5);
 end
 
-var tmp$1;
+tmp$1;
 
 if (v4.tag) then do
   throw [
@@ -116,7 +116,7 @@ end end
 
 eq("File \"inline_record_test.ml\", line 69, characters 6-13", tmp$1, 11);
 
-var tmp$2;
+tmp$2;
 
 if (v5.tag) then do
   tmp$2 = v5[--[ z ]--0];
@@ -133,9 +133,9 @@ end end
 
 eq("File \"inline_record_test.ml\", line 71, characters 6-13", tmp$2, 22);
 
-var A4 = Caml_exceptions.create("Inline_record_test.A4");
+A4 = Caml_exceptions.create("Inline_record_test.A4");
 
-var v6 = [
+v6 = [
   A4,
   --[ x ]--0,
   --[ y ]--0,
@@ -152,11 +152,11 @@ function ff0(x) do
   end end 
 end
 
-for var i$1 = 0 , 10 , 1 do
+for i$1 = 0 , 10 , 1 do
   ff0(v6);
 end
 
-var tmp$3;
+tmp$3;
 
 if (v6[0] == A4) then do
   tmp$3 = v6[--[ x ]--1];
@@ -186,12 +186,12 @@ end
 
 Mt.from_pair_suites("Inline_record_test", suites.contents);
 
-var v2 = --[ A0 ]--[
+v2 = --[ A0 ]--[
   --[ lbl ]--3,
   --[ more : [] ]--0
 ];
 
-var vvv = --[ A0 ]--[
+vvv = --[ A0 ]--[
   --[ lbl ]--3,
   --[ more : [] ]--0
 ];

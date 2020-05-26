@@ -1,19 +1,19 @@
 'use strict';
 
-var Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
 
 function odd(_z) do
   while(true) do
-    var z = _z;
-    var even = Caml_int32.imul(z, z);
-    var a = (even + 4 | 0) + even | 0;
+    z = _z;
+    even = Caml_int32.imul(z, z);
+    a = (even + 4 | 0) + even | 0;
     console.log(String(a));
     _z = 32;
     continue ;
   end;
 end
 
-var even = odd;
+even = odd;
 
 exports.odd = odd;
 exports.even = even;

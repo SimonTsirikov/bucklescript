@@ -10,8 +10,8 @@ function height(param) do
 end
 
 function create(l, v, r) do
-  var hl = height(l);
-  var hr = height(r);
+  hl = height(l);
+  hr = height(r);
   return --[ Node ]--[
           l,
           v,
@@ -21,13 +21,13 @@ function create(l, v, r) do
 end
 
 function bal(l, v, r) do
-  var hl = height(l);
-  var hr = height(r);
+  hl = height(l);
+  hr = height(r);
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      var lr = l[2];
-      var lv = l[1];
-      var ll = l[0];
+      lr = l[2];
+      lv = l[1];
+      ll = l[0];
       if (height(ll) >= height(lr)) then do
         return create(ll, lv, create(lr, v, r));
       end else if (lr) then do
@@ -40,9 +40,9 @@ function bal(l, v, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      var rr = r[2];
-      var rv = r[1];
-      var rl = r[0];
+      rr = r[2];
+      rv = r[1];
+      rl = r[0];
       if (height(rr) >= height(rl)) then do
         return create(create(l, v, rl), rv, rr);
       end else if (rl) then do
@@ -75,10 +75,10 @@ end
 
 function add(x, t) do
   if (t) then do
-    var r = t[2];
-    var v = t[1];
-    var l = t[0];
-    var c = compare_int(x, v);
+    r = t[2];
+    v = t[1];
+    l = t[0];
+    c = compare_int(x, v);
     if (c == 0) then do
       return t;
     end else if (c < 0) then do
@@ -98,10 +98,10 @@ end
 
 function min_elt(_def, _param) do
   while(true) do
-    var param = _param;
-    var def = _def;
+    param = _param;
+    def = _def;
     if (param) then do
-      var l = param[0];
+      l = param[0];
       if (l) then do
         _param = l;
         _def = param[1];
@@ -126,7 +126,7 @@ end
 function internal_merge(l, r) do
   if (l) then do
     if (r) then do
-      var rv = r[1];
+      rv = r[1];
       return bal(l, min_elt(rv, r), remove_min_elt(r[0], rv, r[2]));
     end else do
       return l;
@@ -138,10 +138,10 @@ end
 
 function remove(x, tree) do
   if (tree) then do
-    var r = tree[2];
-    var v = tree[1];
-    var l = tree[0];
-    var c = compare_int(x, v);
+    r = tree[2];
+    v = tree[1];
+    l = tree[0];
+    c = compare_int(x, v);
     if (c == 0) then do
       return internal_merge(l, r);
     end else if (c < 0) then do
@@ -156,9 +156,9 @@ end
 
 function mem(x, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var c = compare_int(x, param[1]);
+      c = compare_int(x, param[1]);
       if (c == 0) then do
         return true;
       end else do
@@ -171,24 +171,24 @@ function mem(x, _param) do
   end;
 end
 
-var v = --[ Empty ]--0;
+v = --[ Empty ]--0;
 
-for var i = 0 , 100000 , 1 do
+for i = 0 , 100000 , 1 do
   v = add(i, v);
 end
 
-for var i$1 = 0 , 100000 , 1 do
+for i$1 = 0 , 100000 , 1 do
   if (!mem(i$1, v)) then do
     console.log("impossible");
   end
    end 
 end
 
-for var i$2 = 0 , 100000 , 1 do
+for i$2 = 0 , 100000 , 1 do
   v = remove(i$2, v);
 end
 
-var match = v;
+match = v;
 
 if (match) then do
   console.log("impossible");

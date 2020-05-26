@@ -1,6 +1,6 @@
 'use strict';
 
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(x) do
   if (x ~= 98) then do
@@ -39,7 +39,7 @@ function ff(x) do
 end
 
 function test(x) do
-  var match;
+  match;
   local ___conditional___=(x);
   do
      if ___conditional___ = "a" then do
@@ -72,13 +72,13 @@ function test(x) do
   end end 
 end
 
-var test_poly = "a";
+test_poly = "a";
 
-var c = f(--[ a ]--97);
+c = f(--[ a ]--97);
 
-var d = f(--[ b ]--98);
+d = f(--[ b ]--98);
 
-var e = f(--[ c ]--99);
+e = f(--[ c ]--99);
 
 exports.f = f;
 exports.ff = ff;

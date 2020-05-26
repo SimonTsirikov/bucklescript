@@ -1,18 +1,18 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Char = require("../../lib/js/char.js");
-var $$Array = require("../../lib/js/array.js");
-var Bytes = require("../../lib/js/bytes.js");
-var Hashtbl = require("../../lib/js/hashtbl.js");
-var Mt_global = require("./mt_global.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
+Mt = require("./mt.js");
+Char = require("../../lib/js/char.js");
+$$Array = require("../../lib/js/array.js");
+Bytes = require("../../lib/js/bytes.js");
+Hashtbl = require("../../lib/js/hashtbl.js");
+Mt_global = require("./mt_global.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -22,12 +22,12 @@ function eq(f) do
     end);
 end
 
-var test_strings = $$Array.init(32, (function (i) do
-        var c = Char.chr(i);
+test_strings = $$Array.init(32, (function (i) do
+        c = Char.chr(i);
         return Caml_bytes.bytes_to_string(Bytes.make(i, c));
       end));
 
-var test_strings_hash_results = [
+test_strings_hash_results = [
   0,
   904391063,
   889600889,
@@ -70,34 +70,34 @@ function caml_hash(x) do
   return Hashtbl.hash(x) & 1073741823;
 end
 
-var param = $$Array.map(caml_hash, test_strings);
+param = $$Array.map(caml_hash, test_strings);
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 18, characters 5-12", param, test_strings_hash_results);
 
-var param$1 = Hashtbl.hash(0) & 1073741823;
+param$1 = Hashtbl.hash(0) & 1073741823;
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 24, characters 5-12", param$1, 129913994);
 
-var param$2 = Hashtbl.hash("x") & 1073741823;
+param$2 = Hashtbl.hash("x") & 1073741823;
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 27, characters 5-12", param$2, 780510073);
 
-var param$3 = Hashtbl.hash("xy") & 1073741823;
+param$3 = Hashtbl.hash("xy") & 1073741823;
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 30, characters 5-12", param$3, 194127723);
 
-var param$4 = Hashtbl.hash(--[ A ]--65) & 1073741823;
+param$4 = Hashtbl.hash(--[ A ]--65) & 1073741823;
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 33, characters 5-12", param$4, 381663642);
 
-var param$5 = Hashtbl.hash(--[ `A ]--[
+param$5 = Hashtbl.hash(--[ `A ]--[
       65,
       3
     ]) & 1073741823;
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 34, characters 5-12", param$5, 294279345);
 
-var param$6 = Hashtbl.hash(--[ :: ]--[
+param$6 = Hashtbl.hash(--[ :: ]--[
       --[ `A ]--[
         65,
         3
@@ -119,7 +119,7 @@ var param$6 = Hashtbl.hash(--[ :: ]--[
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 35, characters 5-12", param$6, 1017654909);
 
-var param$7 = Hashtbl.hash(--[ :: ]--[
+param$7 = Hashtbl.hash(--[ :: ]--[
       --[ tuple ]--[
         --[ `A ]--[
           65,
@@ -147,7 +147,7 @@ var param$7 = Hashtbl.hash(--[ :: ]--[
 
 Mt_global.collect_eq(test_id, suites, "File \"hash_test.ml\", line 36, characters 5-12", param$7, 81986873);
 
-var param$8 = Hashtbl.hash(--[ :: ]--[
+param$8 = Hashtbl.hash(--[ :: ]--[
       --[ tuple ]--[
         --[ `A ]--[
           65,

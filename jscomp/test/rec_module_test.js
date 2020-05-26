@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_module = require("../../lib/js/caml_module.js");
-var Caml_option = require("../../lib/js/caml_option.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_module = require("../../lib/js/caml_module.js");
+Caml_option = require("../../lib/js/caml_option.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var A = Caml_module.init_mod(--[ tuple ]--[
+A = Caml_module.init_mod(--[ tuple ]--[
       "rec_module_test.ml",
       3,
       6
@@ -18,7 +18,7 @@ var A = Caml_module.init_mod(--[ tuple ]--[
             "even"
           ]]]));
 
-var B = Caml_module.init_mod(--[ tuple ]--[
+B = Caml_module.init_mod(--[ tuple ]--[
       "rec_module_test.ml",
       11,
       6
@@ -61,7 +61,7 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
       odd: odd
     end);
 
-var AA = Caml_module.init_mod(--[ tuple ]--[
+AA = Caml_module.init_mod(--[ tuple ]--[
       "rec_module_test.ml",
       21,
       6
@@ -76,7 +76,7 @@ var AA = Caml_module.init_mod(--[ tuple ]--[
           ]
         ]]));
 
-var BB = Caml_module.init_mod(--[ tuple ]--[
+BB = Caml_module.init_mod(--[ tuple ]--[
       "rec_module_test.ml",
       31,
       6
@@ -147,7 +147,7 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[
       y: y
     end);
 
-var AAA = Caml_module.init_mod(--[ tuple ]--[
+AAA = Caml_module.init_mod(--[ tuple ]--[
       "rec_module_test.ml",
       55,
       2
@@ -165,8 +165,8 @@ function height(param) do
 end
 
 function create(l, v, r) do
-  var hl = l and l[--[ h ]--3] or 0;
-  var hr = r and r[--[ h ]--3] or 0;
+  hl = l and l[--[ h ]--3] or 0;
+  hr = r and r[--[ h ]--3] or 0;
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--v,
@@ -176,13 +176,13 @@ function create(l, v, r) do
 end
 
 function bal(l, v, r) do
-  var hl = l and l[--[ h ]--3] or 0;
-  var hr = r and r[--[ h ]--3] or 0;
+  hl = l and l[--[ h ]--3] or 0;
+  hr = r and r[--[ h ]--3] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      var lr = l[--[ r ]--2];
-      var lv = l[--[ v ]--1];
-      var ll = l[--[ l ]--0];
+      lr = l[--[ r ]--2];
+      lv = l[--[ v ]--1];
+      ll = l[--[ l ]--0];
       if (height(ll) >= height(lr)) then do
         return create(ll, lv, create(lr, v, r));
       end else if (lr) then do
@@ -201,9 +201,9 @@ function bal(l, v, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      var rr = r[--[ r ]--2];
-      var rv = r[--[ v ]--1];
-      var rl = r[--[ l ]--0];
+      rr = r[--[ r ]--2];
+      rv = r[--[ v ]--1];
+      rl = r[--[ l ]--0];
       if (height(rr) >= height(rl)) then do
         return create(create(l, v, rl), rv, rr);
       end else if (rl) then do
@@ -232,21 +232,21 @@ end
 
 function add(x, t) do
   if (t) then do
-    var r = t[--[ r ]--2];
-    var v = t[--[ v ]--1];
-    var l = t[--[ l ]--0];
-    var c = Curry._2(AAA.compare, x, v);
+    r = t[--[ r ]--2];
+    v = t[--[ v ]--1];
+    l = t[--[ l ]--0];
+    c = Curry._2(AAA.compare, x, v);
     if (c == 0) then do
       return t;
     end else if (c < 0) then do
-      var ll = add(x, l);
+      ll = add(x, l);
       if (l == ll) then do
         return t;
       end else do
         return bal(ll, v, r);
       end end 
     end else do
-      var rr = add(x, r);
+      rr = add(x, r);
       if (r == rr) then do
         return t;
       end else do
@@ -291,8 +291,8 @@ end
 function join(l, v, r) do
   if (l) then do
     if (r) then do
-      var rh = r[--[ h ]--3];
-      var lh = l[--[ h ]--3];
+      rh = r[--[ h ]--3];
+      lh = l[--[ h ]--3];
       if (lh > (rh + 2 | 0)) then do
         return bal(l[--[ l ]--0], l[--[ v ]--1], join(l[--[ r ]--2], v, r));
       end else if (rh > (lh + 2 | 0)) then do
@@ -310,9 +310,9 @@ end
 
 function min_elt(_param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var l = param[--[ l ]--0];
+      l = param[--[ l ]--0];
       if (l) then do
         _param = l;
         continue ;
@@ -327,9 +327,9 @@ end
 
 function min_elt_opt(_param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var l = param[--[ l ]--0];
+      l = param[--[ l ]--0];
       if (l) then do
         _param = l;
         continue ;
@@ -344,9 +344,9 @@ end
 
 function max_elt(_param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var r = param[--[ r ]--2];
+      r = param[--[ r ]--2];
       if (r) then do
         _param = r;
         continue ;
@@ -361,9 +361,9 @@ end
 
 function max_elt_opt(_param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var r = param[--[ r ]--2];
+      r = param[--[ r ]--2];
       if (r) then do
         _param = r;
         continue ;
@@ -378,7 +378,7 @@ end
 
 function remove_min_elt(param) do
   if (param) then do
-    var l = param[--[ l ]--0];
+    l = param[--[ l ]--0];
     if (l) then do
       return bal(remove_min_elt(l), param[--[ v ]--1], param[--[ r ]--2]);
     end else do
@@ -406,10 +406,10 @@ end
 
 function split(x, param) do
   if (param) then do
-    var r = param[--[ r ]--2];
-    var v = param[--[ v ]--1];
-    var l = param[--[ l ]--0];
-    var c = Curry._2(AAA.compare, x, v);
+    r = param[--[ r ]--2];
+    v = param[--[ v ]--1];
+    l = param[--[ l ]--0];
+    c = Curry._2(AAA.compare, x, v);
     if (c == 0) then do
       return --[ tuple ]--[
               l,
@@ -417,14 +417,14 @@ function split(x, param) do
               r
             ];
     end else if (c < 0) then do
-      var match = split(x, l);
+      match = split(x, l);
       return --[ tuple ]--[
               match[0],
               match[1],
               join(match[2], v, r)
             ];
     end else do
-      var match$1 = split(x, r);
+      match$1 = split(x, r);
       return --[ tuple ]--[
               join(l, v, match$1[0]),
               match$1[1],
@@ -450,9 +450,9 @@ end
 
 function mem(x, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var c = Curry._2(AAA.compare, x, param[--[ v ]--1]);
+      c = Curry._2(AAA.compare, x, param[--[ v ]--1]);
       if (c == 0) then do
         return true;
       end else do
@@ -467,13 +467,13 @@ end
 
 function remove(x, t) do
   if (t) then do
-    var r = t[--[ r ]--2];
-    var v = t[--[ v ]--1];
-    var l = t[--[ l ]--0];
-    var c = Curry._2(AAA.compare, x, v);
+    r = t[--[ r ]--2];
+    v = t[--[ v ]--1];
+    l = t[--[ l ]--0];
+    c = Curry._2(AAA.compare, x, v);
     if (c == 0) then do
-      var t1 = l;
-      var t2 = r;
+      t1 = l;
+      t2 = r;
       if (t1) then do
         if (t2) then do
           return bal(t1, min_elt(t2), remove_min_elt(t2));
@@ -484,14 +484,14 @@ function remove(x, t) do
         return t2;
       end end 
     end else if (c < 0) then do
-      var ll = remove(x, l);
+      ll = remove(x, l);
       if (l == ll) then do
         return t;
       end else do
         return bal(ll, v, r);
       end end 
     end else do
-      var rr = remove(x, r);
+      rr = remove(x, r);
       if (r == rr) then do
         return t;
       end else do
@@ -506,21 +506,21 @@ end
 function union(s1, s2) do
   if (s1) then do
     if (s2) then do
-      var h2 = s2[--[ h ]--3];
-      var v2 = s2[--[ v ]--1];
-      var h1 = s1[--[ h ]--3];
-      var v1 = s1[--[ v ]--1];
+      h2 = s2[--[ h ]--3];
+      v2 = s2[--[ v ]--1];
+      h1 = s1[--[ h ]--3];
+      v1 = s1[--[ v ]--1];
       if (h1 >= h2) then do
         if (h2 == 1) then do
           return add(v2, s1);
         end else do
-          var match = split(v1, s2);
+          match = split(v1, s2);
           return join(union(s1[--[ l ]--0], match[0]), v1, union(s1[--[ r ]--2], match[2]));
         end end 
       end else if (h1 == 1) then do
         return add(v1, s2);
       end else do
-        var match$1 = split(v2, s1);
+        match$1 = split(v2, s1);
         return join(union(match$1[0], s2[--[ l ]--0]), v2, union(match$1[2], s2[--[ r ]--2]));
       end end  end 
     end else do
@@ -533,11 +533,11 @@ end
 
 function inter(s1, s2) do
   if (s1 and s2) then do
-    var r1 = s1[--[ r ]--2];
-    var v1 = s1[--[ v ]--1];
-    var l1 = s1[--[ l ]--0];
-    var match = split(v1, s2);
-    var l2 = match[0];
+    r1 = s1[--[ r ]--2];
+    v1 = s1[--[ v ]--1];
+    l1 = s1[--[ l ]--0];
+    match = split(v1, s2);
+    l2 = match[0];
     if (match[1]) then do
       return join(inter(l1, l2), v1, inter(r1, match[2]));
     end else do
@@ -551,11 +551,11 @@ end
 function diff(s1, s2) do
   if (s1) then do
     if (s2) then do
-      var r1 = s1[--[ r ]--2];
-      var v1 = s1[--[ v ]--1];
-      var l1 = s1[--[ l ]--0];
-      var match = split(v1, s2);
-      var l2 = match[0];
+      r1 = s1[--[ r ]--2];
+      v1 = s1[--[ v ]--1];
+      l1 = s1[--[ l ]--0];
+      match = split(v1, s2);
+      l2 = match[0];
       if (match[1]) then do
         return concat(diff(l1, l2), diff(r1, match[2]));
       end else do
@@ -571,8 +571,8 @@ end
 
 function cons_enum(_s, _e) do
   while(true) do
-    var e = _e;
-    var s = _s;
+    e = _e;
+    s = _s;
     if (s) then do
       _e = --[ More ]--[
         s[--[ v ]--1],
@@ -588,14 +588,14 @@ function cons_enum(_s, _e) do
 end
 
 function compare(s1, s2) do
-  var _e1 = cons_enum(s1, --[ End ]--0);
-  var _e2 = cons_enum(s2, --[ End ]--0);
+  _e1 = cons_enum(s1, --[ End ]--0);
+  _e2 = cons_enum(s2, --[ End ]--0);
   while(true) do
-    var e2 = _e2;
-    var e1 = _e1;
+    e2 = _e2;
+    e1 = _e1;
     if (e1) then do
       if (e2) then do
-        var c = Curry._2(AAA.compare, e1[0], e2[0]);
+        c = Curry._2(AAA.compare, e1[0], e2[0]);
         if (c ~= 0) then do
           return c;
         end else do
@@ -620,16 +620,16 @@ end
 
 function subset(_s1, _s2) do
   while(true) do
-    var s2 = _s2;
-    var s1 = _s1;
+    s2 = _s2;
+    s1 = _s1;
     if (s1) then do
       if (s2) then do
-        var r2 = s2[--[ r ]--2];
-        var l2 = s2[--[ l ]--0];
-        var r1 = s1[--[ r ]--2];
-        var v1 = s1[--[ v ]--1];
-        var l1 = s1[--[ l ]--0];
-        var c = Curry._2(AAA.compare, v1, s2[--[ v ]--1]);
+        r2 = s2[--[ r ]--2];
+        l2 = s2[--[ l ]--0];
+        r1 = s1[--[ r ]--2];
+        v1 = s1[--[ v ]--1];
+        l1 = s1[--[ l ]--0];
+        c = Curry._2(AAA.compare, v1, s2[--[ v ]--1]);
         if (c == 0) then do
           if (subset(l1, l2)) then do
             _s2 = r2;
@@ -672,7 +672,7 @@ end
 
 function iter(f, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
       iter(f, param[--[ l ]--0]);
       Curry._1(f, param[--[ v ]--1]);
@@ -686,8 +686,8 @@ end
 
 function fold(f, _s, _accu) do
   while(true) do
-    var accu = _accu;
-    var s = _s;
+    accu = _accu;
+    s = _s;
     if (s) then do
       _accu = Curry._2(f, s[--[ v ]--1], fold(f, s[--[ l ]--0], accu));
       _s = s[--[ r ]--2];
@@ -700,7 +700,7 @@ end
 
 function for_all(p, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
       if (Curry._1(p, param[--[ v ]--1]) and for_all(p, param[--[ l ]--0])) then do
         _param = param[--[ r ]--2];
@@ -716,7 +716,7 @@ end
 
 function exists(p, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
       if (Curry._1(p, param[--[ v ]--1]) or exists(p, param[--[ l ]--0])) then do
         return true;
@@ -732,12 +732,12 @@ end
 
 function filter(p, t) do
   if (t) then do
-    var r = t[--[ r ]--2];
-    var v = t[--[ v ]--1];
-    var l = t[--[ l ]--0];
-    var l$prime = filter(p, l);
-    var pv = Curry._1(p, v);
-    var r$prime = filter(p, r);
+    r = t[--[ r ]--2];
+    v = t[--[ v ]--1];
+    l = t[--[ l ]--0];
+    l$prime = filter(p, l);
+    pv = Curry._1(p, v);
+    r$prime = filter(p, r);
     if (pv) then do
       if (l == l$prime and r == r$prime) then do
         return t;
@@ -754,14 +754,14 @@ end
 
 function partition(p, param) do
   if (param) then do
-    var v = param[--[ v ]--1];
-    var match = partition(p, param[--[ l ]--0]);
-    var lf = match[1];
-    var lt = match[0];
-    var pv = Curry._1(p, v);
-    var match$1 = partition(p, param[--[ r ]--2]);
-    var rf = match$1[1];
-    var rt = match$1[0];
+    v = param[--[ v ]--1];
+    match = partition(p, param[--[ l ]--0]);
+    lf = match[1];
+    lt = match[0];
+    pv = Curry._1(p, v);
+    match$1 = partition(p, param[--[ r ]--2]);
+    rf = match$1[1];
+    rt = match$1[0];
     if (pv) then do
       return --[ tuple ]--[
               join(lt, v, rt),
@@ -791,8 +791,8 @@ end
 
 function elements_aux(_accu, _param) do
   while(true) do
-    var param = _param;
-    var accu = _accu;
+    param = _param;
+    accu = _accu;
     if (param) then do
       _param = param[--[ l ]--0];
       _accu = --[ :: ]--[
@@ -812,10 +812,10 @@ end
 
 function find(x, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var v = param[--[ v ]--1];
-      var c = Curry._2(AAA.compare, x, v);
+      v = param[--[ v ]--1];
+      c = Curry._2(AAA.compare, x, v);
       if (c == 0) then do
         return v;
       end else do
@@ -830,18 +830,18 @@ end
 
 function find_first(f, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var v = param[--[ v ]--1];
+      v = param[--[ v ]--1];
       if (Curry._1(f, v)) then do
-        var _v0 = v;
-        var f$1 = f;
-        var _param$1 = param[--[ l ]--0];
+        _v0 = v;
+        f$1 = f;
+        _param$1 = param[--[ l ]--0];
         while(true) do
-          var param$1 = _param$1;
-          var v0 = _v0;
+          param$1 = _param$1;
+          v0 = _v0;
           if (param$1) then do
-            var v$1 = param$1[--[ v ]--1];
+            v$1 = param$1[--[ v ]--1];
             if (Curry._1(f$1, v$1)) then do
               _param$1 = param$1[--[ l ]--0];
               _v0 = v$1;
@@ -866,18 +866,18 @@ end
 
 function find_first_opt(f, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var v = param[--[ v ]--1];
+      v = param[--[ v ]--1];
       if (Curry._1(f, v)) then do
-        var _v0 = v;
-        var f$1 = f;
-        var _param$1 = param[--[ l ]--0];
+        _v0 = v;
+        f$1 = f;
+        _param$1 = param[--[ l ]--0];
         while(true) do
-          var param$1 = _param$1;
-          var v0 = _v0;
+          param$1 = _param$1;
+          v0 = _v0;
           if (param$1) then do
-            var v$1 = param$1[--[ v ]--1];
+            v$1 = param$1[--[ v ]--1];
             if (Curry._1(f$1, v$1)) then do
               _param$1 = param$1[--[ l ]--0];
               _v0 = v$1;
@@ -902,18 +902,18 @@ end
 
 function find_last(f, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var v = param[--[ v ]--1];
+      v = param[--[ v ]--1];
       if (Curry._1(f, v)) then do
-        var _v0 = v;
-        var f$1 = f;
-        var _param$1 = param[--[ r ]--2];
+        _v0 = v;
+        f$1 = f;
+        _param$1 = param[--[ r ]--2];
         while(true) do
-          var param$1 = _param$1;
-          var v0 = _v0;
+          param$1 = _param$1;
+          v0 = _v0;
           if (param$1) then do
-            var v$1 = param$1[--[ v ]--1];
+            v$1 = param$1[--[ v ]--1];
             if (Curry._1(f$1, v$1)) then do
               _param$1 = param$1[--[ r ]--2];
               _v0 = v$1;
@@ -938,18 +938,18 @@ end
 
 function find_last_opt(f, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var v = param[--[ v ]--1];
+      v = param[--[ v ]--1];
       if (Curry._1(f, v)) then do
-        var _v0 = v;
-        var f$1 = f;
-        var _param$1 = param[--[ r ]--2];
+        _v0 = v;
+        f$1 = f;
+        _param$1 = param[--[ r ]--2];
         while(true) do
-          var param$1 = _param$1;
-          var v0 = _v0;
+          param$1 = _param$1;
+          v0 = _v0;
           if (param$1) then do
-            var v$1 = param$1[--[ v ]--1];
+            v$1 = param$1[--[ v ]--1];
             if (Curry._1(f$1, v$1)) then do
               _param$1 = param$1[--[ r ]--2];
               _v0 = v$1;
@@ -974,10 +974,10 @@ end
 
 function find_opt(x, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var v = param[--[ v ]--1];
-      var c = Curry._2(AAA.compare, x, v);
+      v = param[--[ v ]--1];
+      c = Curry._2(AAA.compare, x, v);
       if (c == 0) then do
         return Caml_option.some(v);
       end else do
@@ -992,18 +992,18 @@ end
 
 function map(f, t) do
   if (t) then do
-    var r = t[--[ r ]--2];
-    var v = t[--[ v ]--1];
-    var l = t[--[ l ]--0];
-    var l$prime = map(f, l);
-    var v$prime = Curry._1(f, v);
-    var r$prime = map(f, r);
+    r = t[--[ r ]--2];
+    v = t[--[ v ]--1];
+    l = t[--[ l ]--0];
+    l$prime = map(f, l);
+    v$prime = Curry._1(f, v);
+    r$prime = map(f, r);
     if (l == l$prime and v == v$prime and r == r$prime) then do
       return t;
     end else do
-      var l$1 = l$prime;
-      var v$1 = v$prime;
-      var r$1 = r$prime;
+      l$1 = l$prime;
+      v$1 = v$prime;
+      r$1 = r$prime;
       if ((l$1 == --[ Empty ]--0 or Curry._2(AAA.compare, max_elt(l$1), v$1) < 0) and (r$1 == --[ Empty ]--0 or Curry._2(AAA.compare, v$1, min_elt(r$1)) < 0)) then do
         return join(l$1, v$1, r$1);
       end else do
@@ -1017,21 +1017,21 @@ end
 
 function of_list(l) do
   if (l) then do
-    var match = l[1];
-    var x0 = l[0];
+    match = l[1];
+    x0 = l[0];
     if (match) then do
-      var match$1 = match[1];
-      var x1 = match[0];
+      match$1 = match[1];
+      x1 = match[0];
       if (match$1) then do
-        var match$2 = match$1[1];
-        var x2 = match$1[0];
+        match$2 = match$1[1];
+        x2 = match$1[0];
         if (match$2) then do
-          var match$3 = match$2[1];
-          var x3 = match$2[0];
+          match$3 = match$2[1];
+          x3 = match$2[0];
           if (match$3) then do
             if (match$3[1]) then do
-              var l$1 = List.sort_uniq(AAA.compare, l);
-              var sub = function (n, l) do
+              l$1 = List.sort_uniq(AAA.compare, l);
+              sub = function (n, l) do
                 local ___conditional___=(n);
                 do
                    if ___conditional___ = 0 then do
@@ -1054,7 +1054,7 @@ function of_list(l) do
                        end end else 
                    if ___conditional___ = 2 then do
                       if (l) then do
-                        var match = l[1];
+                        match = l[1];
                         if (match) then do
                           return --[ tuple ]--[
                                   --[ Node ]--[
@@ -1076,9 +1076,9 @@ function of_list(l) do
                        end end else 
                    if ___conditional___ = 3 then do
                       if (l) then do
-                        var match$1 = l[1];
+                        match$1 = l[1];
                         if (match$1) then do
-                          var match$2 = match$1[1];
+                          match$2 = match$1[1];
                           if (match$2) then do
                             return --[ tuple ]--[
                                     --[ Node ]--[
@@ -1110,11 +1110,11 @@ function of_list(l) do
                     end end
                     
                 end
-                var nl = n / 2 | 0;
-                var match$3 = sub(nl, l);
-                var l$1 = match$3[1];
+                nl = n / 2 | 0;
+                match$3 = sub(nl, l);
+                l$1 = match$3[1];
                 if (l$1) then do
-                  var match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
+                  match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
                   return --[ tuple ]--[
                           create(match$3[0], l$1[0], match$4[0]),
                           match$4[1]
@@ -1151,7 +1151,7 @@ function of_list(l) do
   end end 
 end
 
-var ASet = do
+ASet = do
   empty: --[ Empty ]--0,
   is_empty: is_empty,
   mem: mem,
@@ -1210,7 +1210,7 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
       compare: compare$1
     end);
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "test1",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -1230,7 +1230,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "test2",
     (function (param) do
@@ -1307,16 +1307,16 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
 
 Mt.from_pair_suites("Rec_module_test", suites);
 
-var Even = --[ () ]--0;
+Even = --[ () ]--0;
 
-var Odd = --[ () ]--0;
+Odd = --[ () ]--0;
 
 exports.A = A;
 exports.B = B;

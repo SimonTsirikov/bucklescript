@@ -1,6 +1,6 @@
 'use strict';
 
-var Rebind_module = require("./rebind_module.js");
+Rebind_module = require("./rebind_module.js");
 
 function x(v) do
   if (v == Rebind_module.AA) then do

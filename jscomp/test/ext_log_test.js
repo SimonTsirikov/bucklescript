@@ -1,9 +1,9 @@
 'use strict';
 
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Format = require("../../lib/js/format.js");
-var Pervasives = require("../../lib/js/pervasives.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Format = require("../../lib/js/format.js");
+Pervasives = require("../../lib/js/pervasives.js");
 
 function err(str, f) do
   return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[

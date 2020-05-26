@@ -1,7 +1,7 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Curry = require("../../lib/js/curry.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(g, x) do
   try do

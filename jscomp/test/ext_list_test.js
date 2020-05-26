@@ -1,18 +1,18 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var $$Array = require("../../lib/js/array.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_option = require("../../lib/js/caml_option.js");
-var Ext_string_test = require("./ext_string_test.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+List = require("../../lib/js/list.js");
+$$Array = require("../../lib/js/array.js");
+Curry = require("../../lib/js/curry.js");
+Caml_option = require("../../lib/js/caml_option.js");
+Ext_string_test = require("./ext_string_test.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function filter_map(f, _xs) do
   while(true) do
-    var xs = _xs;
+    xs = _xs;
     if (xs) then do
-      var ys = xs[1];
-      var match = Curry._1(f, xs[0]);
+      ys = xs[1];
+      match = Curry._1(f, xs[0]);
       if (match ~= undefined) then do
         return --[ :: ]--[
                 Caml_option.valFromOption(match),
@@ -29,16 +29,16 @@ function filter_map(f, _xs) do
 end
 
 function excludes(p, l) do
-  var excluded = do
+  excluded = do
     contents: false
   end;
-  var aux = function (_accu, _param) do
+  aux = function (_accu, _param) do
     while(true) do
-      var param = _param;
-      var accu = _accu;
+      param = _param;
+      accu = _accu;
       if (param) then do
-        var l = param[1];
-        var x = param[0];
+        l = param[1];
+        x = param[0];
         if (Curry._1(p, x)) then do
           excluded.contents = true;
           _param = l;
@@ -56,7 +56,7 @@ function excludes(p, l) do
       end end 
     end;
   end;
-  var v = aux(--[ [] ]--0, l);
+  v = aux(--[ [] ]--0, l);
   if (excluded.contents) then do
     return --[ tuple ]--[
             true,
@@ -71,16 +71,16 @@ function excludes(p, l) do
 end
 
 function exclude_with_fact(p, l) do
-  var excluded = do
+  excluded = do
     contents: undefined
   end;
-  var aux = function (_accu, _param) do
+  aux = function (_accu, _param) do
     while(true) do
-      var param = _param;
-      var accu = _accu;
+      param = _param;
+      accu = _accu;
       if (param) then do
-        var l = param[1];
-        var x = param[0];
+        l = param[1];
+        x = param[0];
         if (Curry._1(p, x)) then do
           excluded.contents = Caml_option.some(x);
           _param = l;
@@ -98,7 +98,7 @@ function exclude_with_fact(p, l) do
       end end 
     end;
   end;
-  var v = aux(--[ [] ]--0, l);
+  v = aux(--[ [] ]--0, l);
   return --[ tuple ]--[
           excluded.contents,
           excluded.contents ~= undefined and v or l
@@ -106,19 +106,19 @@ function exclude_with_fact(p, l) do
 end
 
 function exclude_with_fact2(p1, p2, l) do
-  var excluded1 = do
+  excluded1 = do
     contents: undefined
   end;
-  var excluded2 = do
+  excluded2 = do
     contents: undefined
   end;
-  var aux = function (_accu, _param) do
+  aux = function (_accu, _param) do
     while(true) do
-      var param = _param;
-      var accu = _accu;
+      param = _param;
+      accu = _accu;
       if (param) then do
-        var l = param[1];
-        var x = param[0];
+        l = param[1];
+        x = param[0];
         if (Curry._1(p1, x)) then do
           excluded1.contents = Caml_option.some(x);
           _param = l;
@@ -140,7 +140,7 @@ function exclude_with_fact2(p1, p2, l) do
       end end 
     end;
   end;
-  var v = aux(--[ [] ]--0, l);
+  v = aux(--[ [] ]--0, l);
   return --[ tuple ]--[
           excluded1.contents,
           excluded2.contents,
@@ -150,8 +150,8 @@ end
 
 function same_length(_xs, _ys) do
   while(true) do
-    var ys = _ys;
-    var xs = _xs;
+    ys = _ys;
+    xs = _xs;
     if (xs) then do
       if (ys) then do
         _ys = ys[1];
@@ -169,13 +169,13 @@ function same_length(_xs, _ys) do
 end
 
 function filter_mapi(f, xs) do
-  var aux = function (_i, _xs) do
+  aux = function (_i, _xs) do
     while(true) do
-      var xs = _xs;
-      var i = _i;
+      xs = _xs;
+      i = _i;
       if (xs) then do
-        var ys = xs[1];
-        var match = Curry._2(f, i, xs[0]);
+        ys = xs[1];
+        match = Curry._2(f, i, xs[0]);
         if (match ~= undefined) then do
           return --[ :: ]--[
                   Caml_option.valFromOption(match),
@@ -196,13 +196,13 @@ end
 
 function filter_map2(f, _xs, _ys) do
   while(true) do
-    var ys = _ys;
-    var xs = _xs;
+    ys = _ys;
+    xs = _xs;
     if (xs) then do
       if (ys) then do
-        var vs = ys[1];
-        var us = xs[1];
-        var match = Curry._2(f, xs[0], ys[0]);
+        vs = ys[1];
+        us = xs[1];
+        match = Curry._2(f, xs[0], ys[0]);
         if (match ~= undefined) then do
           return --[ :: ]--[
                   Caml_option.valFromOption(match),
@@ -231,16 +231,16 @@ function filter_map2(f, _xs, _ys) do
 end
 
 function filter_map2i(f, xs, ys) do
-  var aux = function (_i, _xs, _ys) do
+  aux = function (_i, _xs, _ys) do
     while(true) do
-      var ys = _ys;
-      var xs = _xs;
-      var i = _i;
+      ys = _ys;
+      xs = _xs;
+      i = _i;
       if (xs) then do
         if (ys) then do
-          var vs = ys[1];
-          var us = xs[1];
-          var match = Curry._3(f, i, xs[0], ys[0]);
+          vs = ys[1];
+          us = xs[1];
+          match = Curry._3(f, i, xs[0], ys[0]);
           if (match ~= undefined) then do
             return --[ :: ]--[
                     Caml_option.valFromOption(match),
@@ -273,8 +273,8 @@ end
 
 function rev_map_append(f, _l1, _l2) do
   while(true) do
-    var l2 = _l2;
-    var l1 = _l1;
+    l2 = _l2;
+    l1 = _l1;
     if (l1) then do
       _l2 = --[ :: ]--[
         Curry._1(f, l1[0]),
@@ -289,13 +289,13 @@ function rev_map_append(f, _l1, _l2) do
 end
 
 function flat_map2(f, lx, ly) do
-  var _acc = --[ [] ]--0;
-  var _lx = lx;
-  var _ly = ly;
+  _acc = --[ [] ]--0;
+  _lx = lx;
+  _ly = ly;
   while(true) do
-    var ly$1 = _ly;
-    var lx$1 = _lx;
-    var acc = _acc;
+    ly$1 = _ly;
+    lx$1 = _lx;
+    acc = _acc;
     if (lx$1) then do
       if (ly$1) then do
         _ly = ly$1[1];
@@ -323,8 +323,8 @@ end
 
 function flat_map_aux(f, _acc, append, _lx) do
   while(true) do
-    var lx = _lx;
-    var acc = _acc;
+    lx = _lx;
+    acc = _acc;
     if (lx) then do
       _lx = lx[1];
       _acc = List.rev_append(Curry._1(f, lx[0]), acc);
@@ -345,8 +345,8 @@ end
 
 function map2_last(f, l1, l2) do
   if (l1) then do
-    var l1$1 = l1[1];
-    var u = l1[0];
+    l1$1 = l1[1];
+    u = l1[0];
     if (!l1$1) then do
       if (l2) then do
         if (!l2[1]) then do
@@ -365,7 +365,7 @@ function map2_last(f, l1, l2) do
     end
      end 
     if (l2) then do
-      var r = Curry._3(f, false, u, l2[0]);
+      r = Curry._3(f, false, u, l2[0]);
       return --[ :: ]--[
               r,
               map2_last(f, l1$1, l2[1])
@@ -388,10 +388,10 @@ end
 
 function map_last(f, l1) do
   if (l1) then do
-    var l1$1 = l1[1];
-    var u = l1[0];
+    l1$1 = l1[1];
+    u = l1[0];
     if (l1$1) then do
-      var r = Curry._2(f, false, u);
+      r = Curry._2(f, false, u);
       return --[ :: ]--[
               r,
               map_last(f, l1$1)
@@ -409,8 +409,8 @@ end
 
 function fold_right2_last(f, l1, l2, accu) do
   if (l1) then do
-    var l1$1 = l1[1];
-    var last1 = l1[0];
+    l1$1 = l1[1];
+    last1 = l1[0];
     if (!l1$1) then do
       if (l2) then do
         if (!l2[1]) then do
@@ -450,8 +450,8 @@ function init(n, f) do
 end
 
 function take(n, l) do
-  var arr = $$Array.of_list(l);
-  var arr_length = #arr;
+  arr = $$Array.of_list(l);
+  arr_length = #arr;
   if (arr_length < n) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
@@ -466,8 +466,8 @@ function take(n, l) do
 end
 
 function try_take(n, l) do
-  var arr = $$Array.of_list(l);
-  var arr_length = #arr;
+  arr = $$Array.of_list(l);
+  arr_length = #arr;
   if (arr_length <= n) then do
     return --[ tuple ]--[
             l,
@@ -485,8 +485,8 @@ end
 
 function length_compare(_l, _n) do
   while(true) do
-    var n = _n;
-    var l = _l;
+    n = _n;
+    l = _l;
     if (n < 0) then do
       return --[ Gt ]--15949;
     end else if (l) then do
@@ -503,8 +503,8 @@ end
 
 function length_larger_than_n(n, _xs, _ys) do
   while(true) do
-    var ys = _ys;
-    var xs = _xs;
+    ys = _ys;
+    xs = _xs;
     if (ys) then do
       if (xs) then do
         _ys = ys[1];
@@ -520,14 +520,14 @@ function length_larger_than_n(n, _xs, _ys) do
 end
 
 function exclude_tail(x) do
-  var _acc = --[ [] ]--0;
-  var _x = x;
+  _acc = --[ [] ]--0;
+  _x = x;
   while(true) do
-    var x$1 = _x;
-    var acc = _acc;
+    x$1 = _x;
+    acc = _acc;
     if (x$1) then do
-      var ys = x$1[1];
-      var x$2 = x$1[0];
+      ys = x$1[1];
+      x$2 = x$1[0];
       if (ys) then do
         _x = ys;
         _acc = --[ :: ]--[
@@ -560,8 +560,8 @@ end
 
 function aux(cmp, x, xss) do
   if (xss) then do
-    var ys = xss[1];
-    var y = xss[0];
+    ys = xss[1];
+    y = xss[0];
     if (Curry._2(cmp, x, List.hd(y))) then do
       return --[ :: ]--[
               --[ :: ]--[
@@ -593,8 +593,8 @@ end
 
 function drop(_n, _h) do
   while(true) do
-    var h = _h;
-    var n = _n;
+    h = _h;
+    n = _n;
     if (n < 0) then do
       throw [
             Caml_builtin_exceptions.invalid_argument,
@@ -621,9 +621,9 @@ end
 
 function find_first_not(p, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var a = param[0];
+      a = param[0];
       if (Curry._1(p, a)) then do
         _param = param[1];
         continue ;
@@ -638,9 +638,9 @@ end
 
 function for_all_opt(p, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var v = Curry._1(p, param[0]);
+      v = Curry._1(p, param[0]);
       if (v ~= undefined) then do
         return v;
       end else do
@@ -660,11 +660,11 @@ function fold(f, l, init) do
 end
 
 function rev_map_acc(acc, f, l) do
-  var _accu = acc;
-  var _param = l;
+  _accu = acc;
+  _param = l;
   while(true) do
-    var param = _param;
-    var accu = _accu;
+    param = _param;
+    accu = _accu;
     if (param) then do
       _param = param[1];
       _accu = --[ :: ]--[
@@ -700,8 +700,8 @@ end
 
 function for_all2_no_exn(p, _l1, _l2) do
   while(true) do
-    var l2 = _l2;
-    var l1 = _l1;
+    l2 = _l2;
+    l1 = _l1;
     if (l1) then do
       if (l2 and Curry._2(p, l1[0], l2[0])) then do
         _l2 = l2[1];
@@ -720,9 +720,9 @@ end
 
 function find_no_exn(p, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var x = param[0];
+      x = param[0];
       if (Curry._1(p, x)) then do
         return Caml_option.some(x);
       end else do
@@ -737,9 +737,9 @@ end
 
 function find_opt(p, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var v = Curry._1(p, param[0]);
+      v = Curry._1(p, param[0]);
       if (v ~= undefined) then do
         return v;
       end else do
@@ -753,15 +753,15 @@ function find_opt(p, _param) do
 end
 
 function split_map(f, xs) do
-  var _bs = --[ [] ]--0;
-  var _cs = --[ [] ]--0;
-  var _xs = xs;
+  _bs = --[ [] ]--0;
+  _cs = --[ [] ]--0;
+  _xs = xs;
   while(true) do
-    var xs$1 = _xs;
-    var cs = _cs;
-    var bs = _bs;
+    xs$1 = _xs;
+    cs = _cs;
+    bs = _bs;
     if (xs$1) then do
-      var match = Curry._1(f, xs$1[0]);
+      match = Curry._1(f, xs$1[0]);
       _xs = xs$1[1];
       _cs = --[ :: ]--[
         match[1],
@@ -782,7 +782,7 @@ function split_map(f, xs) do
 end
 
 function reduce_from_right(fn, lst) do
-  var match = List.rev(lst);
+  match = List.rev(lst);
   if (match) then do
     return List.fold_left((function (x, y) do
                   return Curry._2(fn, y, x);
@@ -813,7 +813,7 @@ function create_ref_empty(param) do
 end
 
 function ref_top(x) do
-  var match = x.contents;
+  match = x.contents;
   if (match) then do
     return match[0];
   end else do
@@ -825,7 +825,7 @@ function ref_top(x) do
 end
 
 function ref_empty(x) do
-  var match = x.contents;
+  match = x.contents;
   if (match) then do
     return false;
   end else do
@@ -842,7 +842,7 @@ function ref_push(x, refs) do
 end
 
 function ref_pop(refs) do
-  var match = refs.contents;
+  match = refs.contents;
   if (match) then do
     refs.contents = match[1];
     return match[0];
@@ -855,14 +855,14 @@ function ref_pop(refs) do
 end
 
 function rev_except_last(xs) do
-  var _acc = --[ [] ]--0;
-  var _xs = xs;
+  _acc = --[ [] ]--0;
+  _xs = xs;
   while(true) do
-    var xs$1 = _xs;
-    var acc = _acc;
+    xs$1 = _xs;
+    acc = _acc;
     if (xs$1) then do
-      var xs$2 = xs$1[1];
-      var x = xs$1[0];
+      xs$2 = xs$1[1];
+      x = xs$1[0];
       if (xs$2) then do
         _xs = xs$2;
         _acc = --[ :: ]--[
@@ -886,16 +886,16 @@ function rev_except_last(xs) do
 end
 
 function sort_via_array(cmp, lst) do
-  var arr = $$Array.of_list(lst);
+  arr = $$Array.of_list(lst);
   $$Array.sort(cmp, arr);
   return $$Array.to_list(arr);
 end
 
 function last(_xs) do
   while(true) do
-    var xs = _xs;
+    xs = _xs;
     if (xs) then do
-      var tl = xs[1];
+      tl = xs[1];
       if (tl) then do
         _xs = tl;
         continue ;
@@ -913,9 +913,9 @@ end
 
 function assoc_by_string(def, k, _lst) do
   while(true) do
-    var lst = _lst;
+    lst = _lst;
     if (lst) then do
-      var match = lst[0];
+      match = lst[0];
       if (match[0] == k) then do
         return match[1];
       end else do
@@ -939,9 +939,9 @@ end
 
 function assoc_by_int(def, k, _lst) do
   while(true) do
-    var lst = _lst;
+    lst = _lst;
     if (lst) then do
-      var match = lst[0];
+      match = lst[0];
       if (match[0] == k) then do
         return match[1];
       end else do

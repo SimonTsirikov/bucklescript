@@ -1,9 +1,9 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
 function test_hi(x) do
-  var match = x.hi(1, 2, 3);
+  match = x.hi(1, 2, 3);
   if (match ~= null) then do
     console.log(match);
     return 2;
@@ -13,7 +13,7 @@ function test_hi(x) do
 end
 
 function test_hi__2(x) do
-  var match = x.hi__2();
+  match = x.hi__2();
   if (match == null) then do
     return 1;
   end else do

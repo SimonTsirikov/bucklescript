@@ -1,21 +1,21 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var JoinClasses = require("./joinClasses");
-var Caml_splice_call = require("../../lib/js/caml_splice_call.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+JoinClasses = require("./joinClasses");
+Caml_splice_call = require("../../lib/js/caml_splice_call.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
 function eq(loc, param) do
-  var y = param[1];
-  var x = param[0];
+  y = param[1];
+  x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
@@ -36,9 +36,9 @@ function joinClasses(prim) do
   return Caml_splice_call.spliceApply(JoinClasses, [prim]);
 end
 
-var a = JoinClasses(1, 2, 3);
+a = JoinClasses(1, 2, 3);
 
-var pair = --[ tuple ]--[
+pair = --[ tuple ]--[
   a,
   6
 ];

@@ -10,13 +10,13 @@ function fib(n) do
 end
 
 function fib2(n) do
-  var _a = 1;
-  var _b = 1;
-  var _i = 0;
+  _a = 1;
+  _b = 1;
+  _i = 0;
   while(true) do
-    var i = _i;
-    var b = _b;
-    var a = _a;
+    i = _i;
+    b = _b;
+    a = _a;
     if (n == i) then do
       return a;
     end else do
@@ -29,10 +29,10 @@ function fib2(n) do
 end
 
 function fib3(n) do
-  var a = 1;
-  var b = 1;
-  for var i = 1 , n , 1 do
-    var tmp = a;
+  a = 1;
+  b = 1;
+  for i = 1 , n , 1 do
+    tmp = a;
     a = b;
     b = b + tmp | 0;
   end

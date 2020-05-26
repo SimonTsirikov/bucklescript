@@ -1,9 +1,9 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var keys = (function (x){return Object.keys(x)});
+keys = (function (x){return Object.keys(x)});
 
 function $$higher_order(x){
    return function(y,z){
@@ -12,17 +12,17 @@ function $$higher_order(x){
   }
 ;
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
 function eq(loc, param) do
-  var y = param[1];
-  var x = param[0];
+  y = param[1];
+  x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
@@ -39,12 +39,12 @@ function eq(loc, param) do
   return --[ () ]--0;
 end
 
-var int_config = do
+int_config = do
   hi: 3,
   low: 32
 end;
 
-var string_config = do
+string_config = do
   hi: 3,
   low: "32"
 end;
@@ -54,7 +54,7 @@ eq("File \"ffi_js_test.ml\", line 32, characters 5-12", --[ tuple ]--[
       $$higher_order(1)(2, 3)
     ]);
 
-var same_type_000 = --[ :: ]--[
+same_type_000 = --[ :: ]--[
   int_config,
   --[ :: ]--[
     do
@@ -65,7 +65,7 @@ var same_type_000 = --[ :: ]--[
   ]
 ];
 
-var same_type_001 = --[ :: ]--[
+same_type_001 = --[ :: ]--[
   string_config,
   --[ :: ]--[
     do
@@ -76,12 +76,12 @@ var same_type_001 = --[ :: ]--[
   ]
 ];
 
-var same_type = --[ tuple ]--[
+same_type = --[ tuple ]--[
   same_type_000,
   same_type_001
 ];
 
-var v_obj = do
+v_obj = do
   hi: (function () do
       console.log("hei");
       return --[ () ]--0;
@@ -108,11 +108,11 @@ eq("File \"ffi_js_test.ml\", line 47, characters 5-12", --[ tuple ]--[
       0
     ]);
 
-var u = do
+u = do
   contents: 3
 end;
 
-var side_effect_config = (u.contents = u.contents + 1 | 0, do
+side_effect_config = (u.contents = u.contents + 1 | 0, do
     hi: 3,
     low: 32
   end);
@@ -156,15 +156,15 @@ function ffff(x) do
     "3",
     3
   ];
-  var match = x[3];
+  match = x[3];
   console.log(--[ tuple ]--[
         match[0],
         match[1]
       ]);
   console.log(x.getGADT);
-  var match$1 = x.getGADT2;
+  match$1 = x.getGADT2;
   console.log(match$1[0], match$1[1]);
-  var match$2 = x[0];
+  match$2 = x[0];
   console.log(match$2[0], match$2[1]);
   x[0] = --[ tuple ]--[
     1,

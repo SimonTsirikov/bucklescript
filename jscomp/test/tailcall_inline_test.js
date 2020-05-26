@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Caml_array = require("../../lib/js/caml_array.js");
+Mt = require("./mt.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Caml_array = require("../../lib/js/caml_array.js");
 
 function f(param) do
-  var f$1 = function (_acc, _n) do
+  f$1 = function (_acc, _n) do
     while(true) do
-      var n = _n;
-      var acc = _acc;
+      n = _n;
+      acc = _acc;
       if (n > 0) then do
         _n = n - 1 | 0;
         _acc = acc + n | 0;
@@ -19,14 +19,14 @@ function f(param) do
       end end 
     end;
   end;
-  var v = Caml_array.caml_make_vect(10, 0);
-  for var i = 0 , 9 , 1 do
+  v = Caml_array.caml_make_vect(10, 0);
+  for i = 0 , 9 , 1 do
     Caml_array.caml_array_set(v, i, f$1(0, i));
   end
   return v;
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "acc",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -47,7 +47,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "array_to_list",
     (function (param) do
@@ -73,7 +73,7 @@ var suites_001 = --[ :: ]--[
   --[ [] ]--0
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

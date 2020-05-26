@@ -1,11 +1,11 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
 
 function u(param) do
-  var n;
+  n;
   try do
     n = 3;
   end

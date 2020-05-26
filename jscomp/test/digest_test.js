@@ -1,22 +1,22 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Bytes = require("../../lib/js/bytes.js");
-var Curry = require("../../lib/js/curry.js");
-var Digest = require("../../lib/js/digest.js");
-var Printf = require("../../lib/js/printf.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Ext_array_test = require("./ext_array_test.js");
+Mt = require("./mt.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Bytes = require("../../lib/js/bytes.js");
+Curry = require("../../lib/js/curry.js");
+Digest = require("../../lib/js/digest.js");
+Printf = require("../../lib/js/printf.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Ext_array_test = require("./ext_array_test.js");
 
 function f(x) do
   return Digest.to_hex(Digest.string(x));
 end
 
-var ref = [
+ref = [
   "d41d8cd98f00b204e9800998ecf8427e",
   "0cc175b9c0f1b6a831c399e269772661",
   "4124bc0a9335c27f086f24ba207a4912",

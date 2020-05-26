@@ -2,8 +2,8 @@
 
 
 function f(x) do
-  var v = x;
-  var sum = 0;
+  v = x;
+  sum = 0;
   while(v > 0) do
     sum = sum + v | 0;
     v = v - 1 | 0;

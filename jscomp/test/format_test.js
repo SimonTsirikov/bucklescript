@@ -1,20 +1,20 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Scanf = require("../../lib/js/scanf.js");
-var Format = require("../../lib/js/format.js");
-var Printf = require("../../lib/js/printf.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_format = require("../../lib/js/caml_format.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Scanf = require("../../lib/js/scanf.js");
+Format = require("../../lib/js/format.js");
+Printf = require("../../lib/js/printf.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_format = require("../../lib/js/caml_format.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -60,7 +60,7 @@ function u(param) do
             ]);
 end
 
-var M = { };
+M = { };
 
 eq("File \"format_test.ml\", line 26, characters 5-12", Curry._1(Format.asprintf(u(--[ () ]--0)), "x"), "xx xyy");
 
@@ -144,12 +144,12 @@ function aux_list(loc, ls) do
               end), ls);
 end
 
-var literals_000 = --[ tuple ]--[
+literals_000 = --[ tuple ]--[
   7.875,
   "0x1.f8p+2"
 ];
 
-var literals_001 = --[ :: ]--[
+literals_001 = --[ :: ]--[
   --[ tuple ]--[
     0.3,
     "0x1.3333333333333p-2"
@@ -199,7 +199,7 @@ var literals_001 = --[ :: ]--[
   ]
 ];
 
-var literals = --[ :: ]--[
+literals = --[ :: ]--[
   literals_000,
   literals_001
 ];

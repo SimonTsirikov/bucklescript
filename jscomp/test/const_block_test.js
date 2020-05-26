@@ -1,22 +1,22 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_array = require("../../lib/js/caml_array.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_array = require("../../lib/js/caml_array.js");
 
-var a = [
+a = [
   0,
   1,
   2
 ];
 
-var b = [
+b = [
   0,
   1,
   2
 ];
 
-var c = [
+c = [
   0,
   1,
   2,
@@ -48,12 +48,12 @@ function g(param) do
           ]);
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "const_block_test",
   g
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "avoid_mutable_inline_test",
     (function (param) do
@@ -75,14 +75,14 @@ var suites_001 = --[ :: ]--[
   --[ [] ]--0
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
 
 Mt.from_pair_suites("Const_block_test", suites);
 
-var v = --[ tuple ]--[
+v = --[ tuple ]--[
   0,
   1,
   2,

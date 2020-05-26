@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -34,7 +34,7 @@ function hi (cb){
 }
 ;
 
-var xs = do
+xs = do
   contents: --[ [] ]--0
 end;
 

@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Int32 = require("../../lib/js/int32.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Caml_string = require("../../lib/js/caml_string.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Int32 = require("../../lib/js/int32.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_string = require("../../lib/js/caml_string.js");
 
 function hash_variant(s) do
-  var accu = 0;
-  for var i = 0 , #s - 1 | 0 , 1 do
+  accu = 0;
+  for i = 0 , #s - 1 | 0 , 1 do
     accu = Caml_int32.imul(223, accu) + Caml_string.get(s, i) & 2147483647;
   end
   if (accu > 1073741823) then do
@@ -19,8 +19,8 @@ function hash_variant(s) do
 end
 
 function hash_variant2(s) do
-  var accu = 0;
-  for var i = 0 , #s - 1 | 0 , 1 do
+  accu = 0;
+  for i = 0 , #s - 1 | 0 , 1 do
     accu = Caml_int32.imul(223, accu) + Caml_string.get(s, i) | 0;
   end
   accu = accu & 2147483647;

@@ -6,13 +6,13 @@ function x(v){return [v]}
 
 x("3");
 
-var v = x(3);
+v = x(3);
 
-var xxx = x;
+xxx = x;
 
-var u = xxx(3);
+u = xxx(3);
 
-var xx = xxx("3");
+xx = xxx("3");
 
 exports.v = v;
 exports.xxx = xxx;

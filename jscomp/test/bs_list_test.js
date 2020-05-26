@@ -1,17 +1,17 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Belt_List = require("../../lib/js/belt_List.js");
-var Belt_Array = require("../../lib/js/belt_Array.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
+Mt = require("./mt.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Belt_List = require("../../lib/js/belt_List.js");
+Belt_Array = require("../../lib/js/belt_Array.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -28,7 +28,7 @@ function $$throw(loc, x) do
 end
 
 function sum(xs) do
-  var v = do
+  v = do
     contents: 0
   end;
   Belt_List.forEach(xs, (function (x) do
@@ -39,7 +39,7 @@ function sum(xs) do
 end
 
 function sum2(xs, ys) do
-  var v = do
+  v = do
     contents: 0
   end;
   Belt_List.forEach2(xs, ys, (function (x, y) do
@@ -49,7 +49,7 @@ function sum2(xs, ys) do
   return v.contents;
 end
 
-var u = Belt_List.makeBy(5, (function (i) do
+u = Belt_List.makeBy(5, (function (i) do
         return Caml_int32.imul(i, i);
       end));
 
@@ -57,7 +57,7 @@ function f(i) do
   return eq("File \"bs_list_test.ml\", line 26, characters 7-14", Belt_List.getExn(u, i), Caml_int32.imul(i, i));
 end
 
-for var i = 0 , 4 , 1 do
+for i = 0 , 4 , 1 do
   f(i);
 end
 
@@ -763,11 +763,11 @@ function add(a, b) do
   return a + b | 0;
 end
 
-var length_10_id = Belt_List.makeBy(10, id);
+length_10_id = Belt_List.makeBy(10, id);
 
-var length_8_id = Belt_List.makeBy(8, id);
+length_8_id = Belt_List.makeBy(8, id);
 
-var d = Belt_List.makeBy(10, (function (x) do
+d = Belt_List.makeBy(10, (function (x) do
         return (x << 1);
       end));
 
@@ -803,7 +803,7 @@ eq("MAP2", Belt_List.reverse(Belt_List.mapReverse2(length_10_id, length_10_id, a
             return (x << 1);
           end)));
 
-var xs = Belt_List.reverse(Belt_List.mapReverse2(length_8_id, length_10_id, add));
+xs = Belt_List.reverse(Belt_List.mapReverse2(length_8_id, length_10_id, add));
 
 eq("File \"bs_list_test.ml\", line 144, characters 5-12", Belt_List.length(xs), 8);
 
@@ -895,7 +895,7 @@ eq("DROP", Belt_List.drop(length_10_id, 0), length_10_id);
 
 eq("DROP", Belt_List.drop(length_8_id, -1), undefined);
 
-var a = Belt_List.makeBy(5, id);
+a = Belt_List.makeBy(5, id);
 
 eq("SPLIT", Belt_List.splitAt(--[ [] ]--0, 1), undefined);
 
@@ -1307,7 +1307,7 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[ :: ]--[
 
 eq("REMOVEASSOQ", Belt_List.removeAssoc(--[ [] ]--0, 2, eqx), --[ [] ]--0);
 
-var ll = --[ :: ]--[
+ll = --[ :: ]--[
   --[ tuple ]--[
     1,
     "1"
@@ -1327,11 +1327,11 @@ var ll = --[ :: ]--[
   ]
 ];
 
-var ll0 = Belt_List.removeAssoc(ll, 0, eqx);
+ll0 = Belt_List.removeAssoc(ll, 0, eqx);
 
 b("File \"bs_list_test.ml\", line 196, characters 5-12", ll == ll0);
 
-var ll1 = Belt_List.setAssoc(ll, 2, "22", (function (prim, prim$1) do
+ll1 = Belt_List.setAssoc(ll, 2, "22", (function (prim, prim$1) do
         return prim == prim$1;
       end));
 
@@ -1355,7 +1355,7 @@ eq("File \"bs_list_test.ml\", line 198, characters 5-12", ll1, --[ :: ]--[
       ]
     ]);
 
-var ll2 = Belt_List.setAssoc(ll1, 22, "2", (function (prim, prim$1) do
+ll2 = Belt_List.setAssoc(ll1, 22, "2", (function (prim, prim$1) do
         return prim == prim$1;
       end));
 
@@ -1934,7 +1934,7 @@ b("File \"bs_list_test.ml\", line 279, characters 4-11", Belt_List.reduceReverse
             return (acc + x | 0) + y | 0;
           end)) == 6);
 
-var a$1 = Belt_List.makeBy(10000, (function (i) do
+a$1 = Belt_List.makeBy(10000, (function (i) do
         return i;
       end));
 
@@ -2449,11 +2449,11 @@ b("File \"bs_list_test.ml\", line 340, characters 4-11", !Belt_List.eq(--[ :: ]-
             return prim == prim$1;
           end)));
 
-var u0 = Belt_List.makeBy(20, (function (x) do
+u0 = Belt_List.makeBy(20, (function (x) do
         return x;
       end));
 
-var u1 = Belt_List.keepMap(u0, (function (x) do
+u1 = Belt_List.keepMap(u0, (function (x) do
         if (x % 7 == 0) then do
           return x + 1 | 0;
         end
@@ -2517,11 +2517,11 @@ b("File \"bs_list_test.ml\", line 349, characters 4-11", Belt_List.keepMap(--[ :
 
 Mt.from_pair_suites("Bs_list_test", suites.contents);
 
-var N = --[ alias ]--0;
+N = --[ alias ]--0;
 
-var A = --[ alias ]--0;
+A = --[ alias ]--0;
 
-var J = --[ alias ]--0;
+J = --[ alias ]--0;
 
 exports.suites = suites;
 exports.test_id = test_id;

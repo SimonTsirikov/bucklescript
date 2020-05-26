@@ -1,9 +1,9 @@
 'use strict';
 
 
-var fib = 3;
+fib = 3;
 
-var u = 3;
+u = 3;
 
 exports.fib = fib;
 exports.u = u;

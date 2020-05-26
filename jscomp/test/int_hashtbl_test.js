@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Hashtbl = require("../../lib/js/hashtbl.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Hashtbl = require("../../lib/js/hashtbl.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
 
 function f(H) do
-  var tbl = Curry._1(H.create, 17);
+  tbl = Curry._1(H.create, 17);
   Curry._3(H.add, tbl, 1, --[ "1" ]--49);
   Curry._3(H.add, tbl, 2, --[ "2" ]--50);
   return List.sort((function (param, param$1) do
@@ -26,14 +26,14 @@ function f(H) do
 end
 
 function g(H, count) do
-  var tbl = Curry._1(H.create, 17);
-  for var i = 0 , count , 1 do
+  tbl = Curry._1(H.create, 17);
+  for i = 0 , count , 1 do
     Curry._3(H.replace, tbl, (i << 1), String(i));
   end
-  for var i$1 = 0 , count , 1 do
+  for i$1 = 0 , count , 1 do
     Curry._3(H.replace, tbl, (i$1 << 1), String(i$1));
   end
-  var v = Curry._3(H.fold, (function (k, v, acc) do
+  v = Curry._3(H.fold, (function (k, v, acc) do
           return --[ :: ]--[
                   --[ tuple ]--[
                     k,
@@ -47,18 +47,18 @@ function g(H, count) do
                   end), v));
 end
 
-var hash = Hashtbl.hash;
+hash = Hashtbl.hash;
 
 function equal(x, y) do
   return x == y;
 end
 
-var Int_hash = Hashtbl.Make(do
+Int_hash = Hashtbl.Make(do
       equal: equal,
       hash: hash
     end);
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "simple",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -80,7 +80,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "more_iterations",
     (function (param) do
@@ -98,7 +98,7 @@ var suites_001 = --[ :: ]--[
   --[ [] ]--0
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

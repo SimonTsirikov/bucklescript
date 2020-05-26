@@ -1,6 +1,6 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
 function fib(n) do
   if (n == 0 or n == 1) then do
@@ -18,21 +18,21 @@ function fib2(n) do
   end end 
 end
 
-var v = 0;
+v = 0;
 
-for var i = 0 , 10 , 1 do
+for i = 0 , 10 , 1 do
   v = v + i | 0;
 end
 
-var sum = v;
+sum = v;
 
-var v$1 = 0;
+v$1 = 0;
 
-for var i$1 = 10 , 0 , -1 do
+for i$1 = 10 , 0 , -1 do
   v$1 = v$1 + i$1 | 0;
 end
 
-var sumdown = v$1;
+sumdown = v$1;
 
 function cons(x, y) do
   return --[ Cons ]--[
@@ -61,8 +61,8 @@ function map(f, x) do
 end
 
 function f(x) do
-  var v = x;
-  var sum = 0;
+  v = x;
+  sum = 0;
   while(v > 0) do
     sum = sum + v | 0;
     v = v - 1 | 0;
@@ -71,13 +71,13 @@ function f(x) do
 end
 
 function fib3(n) do
-  var _a = 0;
-  var _b = 1;
-  var _n = n;
+  _a = 0;
+  _b = 1;
+  _n = n;
   while(true) do
-    var n$1 = _n;
-    var b = _b;
-    var a = _a;
+    n$1 = _n;
+    b = _b;
+    a = _a;
     if (n$1 > 0) then do
       _n = n$1 - 1 | 0;
       _b = a + b | 0;
@@ -89,7 +89,7 @@ function fib3(n) do
   end;
 end
 
-var b = fib;
+b = fib;
 
 exports.fib = fib;
 exports.fib2 = fib2;

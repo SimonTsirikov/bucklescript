@@ -1,10 +1,10 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Stack = require("../../lib/js/stack.js");
-var Pervasives = require("../../lib/js/pervasives.js");
+List = require("../../lib/js/list.js");
+Stack = require("../../lib/js/stack.js");
+Pervasives = require("../../lib/js/pervasives.js");
 
-var List$1 = do
+List$1 = do
   length: List.length,
   compare_lengths: List.compare_lengths,
   compare_length_with: List.compare_length_with,
@@ -144,7 +144,7 @@ var List$1 = do
   do_at_exit: Pervasives.do_at_exit
 end;
 
-var U = do
+U = do
   Empty: Stack.Empty,
   create: Stack.create,
   push: Stack.push,
@@ -243,11 +243,11 @@ var U = do
   do_at_exit: Pervasives.do_at_exit
 end;
 
-var f = Pervasives.$at;
+f = Pervasives.$at;
 
-var ff = List.length;
+ff = List.length;
 
-var fff = Pervasives.$at;
+fff = Pervasives.$at;
 
 exports.List = List$1;
 exports.U = U;

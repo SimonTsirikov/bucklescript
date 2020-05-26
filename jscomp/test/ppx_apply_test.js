@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -28,7 +28,7 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var u = 3;
+u = 3;
 
 function nullary() do
   return 3;
@@ -38,7 +38,7 @@ function unary(a) do
   return a + 3 | 0;
 end
 
-var xx = unary(3);
+xx = unary(3);
 
 eq("File \"ppx_apply_test.ml\", line 17, characters 5-12", u, 3);
 

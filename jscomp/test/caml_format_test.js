@@ -1,18 +1,18 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Int64 = require("../../lib/js/int64.js");
-var $$Buffer = require("../../lib/js/buffer.js");
-var Format = require("../../lib/js/format.js");
-var Printf = require("../../lib/js/printf.js");
-var Caml_int64 = require("../../lib/js/caml_int64.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_format = require("../../lib/js/caml_format.js");
+Mt = require("./mt.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Int64 = require("../../lib/js/int64.js");
+$$Buffer = require("../../lib/js/buffer.js");
+Format = require("../../lib/js/format.js");
+Printf = require("../../lib/js/printf.js");
+Caml_int64 = require("../../lib/js/caml_int64.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_format = require("../../lib/js/caml_format.js");
 
-var of_string = [
+of_string = [
   --[ tuple ]--[
     0,
     "0"
@@ -91,8 +91,8 @@ end
 
 function from_of_string(xs) do
   return $$Array.to_list($$Array.mapi((function (i, param) do
-                    var b = param[1];
-                    var a = param[0];
+                    b = param[1];
+                    a = param[0];
                     return --[ tuple ]--[
                             Curry._1(Printf.sprintf(--[ Format ]--[
                                       --[ String_literal ]--Block.__(11, [
@@ -129,9 +129,9 @@ function u(v) do
                 ]), v);
 end
 
-var to_str = Caml_format.caml_int_of_string;
+to_str = Caml_format.caml_int_of_string;
 
-var v = Curry._1(Printf.sprintf(--[ Format ]--[
+v = Curry._1(Printf.sprintf(--[ Format ]--[
           --[ Int ]--Block.__(4, [
               --[ Int_d ]--0,
               --[ Lit_padding ]--Block.__(0, [
@@ -144,7 +144,7 @@ var v = Curry._1(Printf.sprintf(--[ Format ]--[
           "%3d"
         ]), 3333);
 
-var pairs = [
+pairs = [
   --[ tuple ]--[
     --[ FP_infinite ]--3,
     "infinity"
@@ -167,7 +167,7 @@ var pairs = [
   ]
 ];
 
-var pairs$1 = [
+pairs$1 = [
   --[ tuple ]--[
     3232,
     "32_32.0"
@@ -182,7 +182,7 @@ var pairs$1 = [
   ]
 ];
 
-var suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[ :: ]--[
+suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[ :: ]--[
           --[ tuple ]--[
             "isnan_of_string",
             (function (param) do
@@ -194,8 +194,8 @@ var suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[ :: ]--
           ],
           --[ [] ]--0
         ], Pervasives.$at($$Array.to_list($$Array.mapi((function (i, param) do
-                        var b = param[1];
-                        var a = param[0];
+                        b = param[1];
+                        a = param[0];
                         return --[ tuple ]--[
                                 Curry._1(Printf.sprintf(--[ Format ]--[
                                           --[ String_literal ]--Block.__(11, [
@@ -239,8 +239,8 @@ var suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[ :: ]--
                     --[ [] ]--0
                   ]
                 ], $$Array.to_list($$Array.mapi((function (i, param) do
-                            var b = param[1];
-                            var a = param[0];
+                            b = param[1];
+                            a = param[0];
                             return --[ tuple ]--[
                                     Curry._1(Printf.sprintf(--[ Format ]--[
                                               --[ String_literal ]--Block.__(11, [
@@ -267,7 +267,7 @@ function ff(param) do
   return Caml_format.caml_format_int("%32d", param);
 end
 
-var formatter_suites_000 = --[ tuple ]--[
+formatter_suites_000 = --[ tuple ]--[
   "fmt_concat",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -323,7 +323,7 @@ var formatter_suites_000 = --[ tuple ]--[
     end)
 ];
 
-var formatter_suites_001 = --[ :: ]--[
+formatter_suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "fmt_gen",
     (function (param) do
@@ -1303,12 +1303,12 @@ var formatter_suites_001 = --[ :: ]--[
   ]
 ];
 
-var formatter_suites = --[ :: ]--[
+formatter_suites = --[ :: ]--[
   formatter_suites_000,
   formatter_suites_001
 ];
 
-var float_data = [
+float_data = [
   --[ tuple ]--[
     "%f",
     32,
@@ -1550,12 +1550,12 @@ function pr_lambda(ppf, e) do
   end
 end
 
-var string_of_lambda = Curry._1(Format.asprintf(--[ Format ]--[
+string_of_lambda = Curry._1(Format.asprintf(--[ Format ]--[
           --[ Alpha ]--Block.__(15, [--[ End_of_format ]--0]),
           "%a"
         ]), pr_lambda);
 
-var Lambda_suites = do
+Lambda_suites = do
   ident: ident,
   kwd: kwd,
   pr_exp0: pr_exp0,
@@ -1565,7 +1565,7 @@ var Lambda_suites = do
   string_of_lambda: string_of_lambda
 end;
 
-var lambda_suites = [
+lambda_suites = [
   --[ tuple ]--[
     --[ Var ]--Block.__(1, ["x"]),
     "x"
@@ -1604,8 +1604,8 @@ var lambda_suites = [
 
 function from_lambda_pairs(p) do
   return $$Array.to_list($$Array.mapi((function (i, param) do
-                    var b = param[1];
-                    var a = param[0];
+                    b = param[1];
+                    a = param[0];
                     return --[ tuple ]--[
                             Curry._1(Printf.sprintf(--[ Format ]--[
                                       --[ String_literal ]--Block.__(11, [
@@ -1629,10 +1629,10 @@ function from_lambda_pairs(p) do
                   end), lambda_suites));
 end
 
-var ksprintf_suites_000 = --[ tuple ]--[
+ksprintf_suites_000 = --[ tuple ]--[
   "ksprintf",
   (function (param) do
-      var f = function (fmt) do
+      f = function (fmt) do
         return Format.ksprintf((function (x) do
                       return x .. x;
                     end), fmt);
@@ -1659,7 +1659,7 @@ var ksprintf_suites_000 = --[ tuple ]--[
     end)
 ];
 
-var ksprintf_suites_001 = --[ :: ]--[
+ksprintf_suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "sprintf",
     (function (param) do
@@ -1684,12 +1684,12 @@ var ksprintf_suites_001 = --[ :: ]--[
   --[ [] ]--0
 ];
 
-var ksprintf_suites = --[ :: ]--[
+ksprintf_suites = --[ :: ]--[
   ksprintf_suites_000,
   ksprintf_suites_001
 ];
 
-var int64_suites_000 = --[ tuple ]--[
+int64_suites_000 = --[ tuple ]--[
   "i32_simple",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -1707,7 +1707,7 @@ var int64_suites_000 = --[ tuple ]--[
     end)
 ];
 
-var int64_suites_001 = --[ :: ]--[
+int64_suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "i32_simple1",
     (function (param) do
@@ -2220,7 +2220,7 @@ var int64_suites_001 = --[ :: ]--[
                                                   --[ tuple ]--[
                                                     "missing_newline2",
                                                     (function (param) do
-                                                        var buf = $$Buffer.create(30);
+                                                        buf = $$Buffer.create(30);
                                                         return --[ Eq ]--Block.__(0, [
                                                                   (Curry._1(Printf.bprintf(buf, --[ Format ]--[
                                                                               --[ Int64 ]--Block.__(7, [
@@ -2268,12 +2268,12 @@ var int64_suites_001 = --[ :: ]--[
   ]
 ];
 
-var int64_suites = --[ :: ]--[
+int64_suites = --[ :: ]--[
   int64_suites_000,
   int64_suites_001
 ];
 
-var of_string_data = [
+of_string_data = [
   --[ tuple ]--[
     --[ int64 ]--[
       --[ hi ]--0,
@@ -2340,9 +2340,9 @@ var of_string_data = [
 ];
 
 Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(formatter_suites, Pervasives.$at(from_lambda_pairs(lambda_suites), Pervasives.$at(ksprintf_suites, Pervasives.$at($$Array.to_list($$Array.mapi((function (i, param) do
-                                    var str_result = param[2];
-                                    var f = param[1];
-                                    var fmt = param[0];
+                                    str_result = param[2];
+                                    f = param[1];
+                                    fmt = param[0];
                                     return --[ tuple ]--[
                                             Curry._1(Printf.sprintf(--[ Format ]--[
                                                       --[ String_literal ]--Block.__(11, [
@@ -2364,8 +2364,8 @@ Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(fo
                                               end)
                                           ];
                                   end), float_data)), Pervasives.$at(int64_suites, $$Array.to_list($$Array.mapi((function (i, param) do
-                                        var b = param[1];
-                                        var a = param[0];
+                                        b = param[1];
+                                        a = param[0];
                                         return --[ tuple ]--[
                                                 Curry._1(Printf.sprintf(--[ Format ]--[
                                                           --[ String_literal ]--Block.__(11, [
@@ -2391,19 +2391,19 @@ Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(fo
                                               ];
                                       end), of_string_data)))))))));
 
-var a = Format.asprintf;
+a = Format.asprintf;
 
-var float_suites = --[ :: ]--[
+float_suites = --[ :: ]--[
   "float_nan",
   --[ [] ]--0
 ];
 
-var hh = --[ int64 ]--[
+hh = --[ int64 ]--[
   --[ hi ]--214748364,
   --[ lo ]--3435973836
 ];
 
-var hhh = --[ int64 ]--[
+hhh = --[ int64 ]--[
   --[ hi ]--268435456,
   --[ lo ]--0
 ];

@@ -1,16 +1,16 @@
 'use strict';
 
 
-var u = do
+u = do
   y: 3
 end;
 
-var v_ice_cream3_000 = do
+v_ice_cream3_000 = do
   flavor: "vanilla",
   num: 3
 end;
 
-var v_ice_cream3_001 = --[ :: ]--[
+v_ice_cream3_001 = --[ :: ]--[
   do
     flavor: "x",
     num: 3
@@ -24,17 +24,17 @@ var v_ice_cream3_001 = --[ :: ]--[
   ]
 ];
 
-var v_ice_cream3 = --[ :: ]--[
+v_ice_cream3 = --[ :: ]--[
   v_ice_cream3_000,
   v_ice_cream3_001
 ];
 
-var v_ice_cream4_000 = do
+v_ice_cream4_000 = do
   flavor: "vanilla",
   num: 3
 end;
 
-var v_ice_cream4_001 = --[ :: ]--[
+v_ice_cream4_001 = --[ :: ]--[
   do
     flavor: "x",
     num: 3
@@ -42,26 +42,26 @@ var v_ice_cream4_001 = --[ :: ]--[
   --[ [] ]--0
 ];
 
-var v_ice_cream4 = --[ :: ]--[
+v_ice_cream4 = --[ :: ]--[
   v_ice_cream4_000,
   v_ice_cream4_001
 ];
 
-var vv = do
+vv = do
   x: 3
 end;
 
-var int_expect = do
+int_expect = do
   x: 0
 end;
 
-var int_expect2 = do
+int_expect2 = do
   x: 0
 end;
 
-var int_expects_000 = { };
+int_expects_000 = { };
 
-var int_expects_001 = --[ :: ]--[
+int_expects_001 = --[ :: ]--[
   do
     x: 2
   end,
@@ -73,52 +73,52 @@ var int_expects_001 = --[ :: ]--[
   ]
 ];
 
-var int_expects = --[ :: ]--[
+int_expects = --[ :: ]--[
   int_expects_000,
   int_expects_001
 ];
 
-var mk_ice = do
+mk_ice = do
   flavour: "vanilla",
   num: 3
 end;
 
-var my_ice2 = do
+my_ice2 = do
   flavour: "vanilla",
   num: 1
 end;
 
-var my_ice3 = do
+my_ice3 = do
   num: 2
 end;
 
-var v_mk4 = do
+v_mk4 = do
   y: 3
 end;
 
-var v_mk5 = do
+v_mk5 = do
   x: --[ () ]--0,
   y: 3
 end;
 
-var v_mk6 = do
+v_mk6 = do
   y: 3
 end;
 
-var v_mk6_1 = do
+v_mk6_1 = do
   x: --[ () ]--0,
   y: 3
 end;
 
-var mk_u = do
+mk_u = do
   x: 0
 end;
 
-var v_mk7_000 = do
+v_mk7_000 = do
   y: 3
 end;
 
-var v_mk7_001 = --[ :: ]--[
+v_mk7_001 = --[ :: ]--[
   do
     y: 2
   end,
@@ -130,7 +130,7 @@ var v_mk7_001 = --[ :: ]--[
   ]
 ];
 
-var v_mk7 = --[ :: ]--[
+v_mk7 = --[ :: ]--[
   v_mk7_000,
   v_mk7_001
 ];
@@ -149,7 +149,7 @@ again3(3);
 
 again3(2);
 
-var side_effect = do
+side_effect = do
   contents: 0
 end;
 

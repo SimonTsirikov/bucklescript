@@ -1,17 +1,17 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Sys = require("../../lib/js/sys.js");
-var Block = require("../../lib/js/block.js");
-var Caml_sys = require("../../lib/js/caml_sys.js");
-var Node_process = require("../../lib/js/node_process.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Sys = require("../../lib/js/sys.js");
+Block = require("../../lib/js/block.js");
+Caml_sys = require("../../lib/js/caml_sys.js");
+Node_process = require("../../lib/js/node_process.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -34,19 +34,19 @@ end
 
 Node_process.putEnvVar("Caml_sys_poly_fill_test", "X");
 
-var v = Caml_sys.caml_sys_getenv("Caml_sys_poly_fill_test");
+v = Caml_sys.caml_sys_getenv("Caml_sys_poly_fill_test");
 
 eq("File \"caml_sys_poly_fill_test.ml\", line 11, characters 5-12", "X", (Node_process.deleteEnvVar("Caml_sys_poly_fill_test"), v));
 
 Node_process.putEnvVar("Caml_sys_poly_fill_test", "Y");
 
-var v$1 = Caml_sys.caml_sys_getenv("Caml_sys_poly_fill_test");
+v$1 = Caml_sys.caml_sys_getenv("Caml_sys_poly_fill_test");
 
 eq("File \"caml_sys_poly_fill_test.ml\", line 17, characters 5-12", "Y", (Node_process.deleteEnvVar("Caml_sys_poly_fill_test"), v$1));
 
 Node_process.deleteEnvVar("Caml_sys_poly_fill_test");
 
-var tmp;
+tmp;
 
 try do
   tmp = Caml_sys.caml_sys_getenv("Caml_sys_poly_fill_test");

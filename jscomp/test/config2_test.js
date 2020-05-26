@@ -6,7 +6,7 @@ function test_v(x) do
 end
 
 function test_vv(h) do
-  var hey = h.hey;
+  hey = h.hey;
   return hey(1, 2);
 end
 

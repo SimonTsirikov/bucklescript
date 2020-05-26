@@ -1,17 +1,17 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var String_set = require("./string_set.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Mt = require("./mt.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+String_set = require("./string_set.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -32,9 +32,9 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var a = { };
+a = { };
 
-var b = do
+b = do
   foo: "42"
 end;
 
@@ -46,11 +46,11 @@ function map(f, x) do
 end
 
 function make(foo) do
-  var partial_arg = map((function (prim) do
+  partial_arg = map((function (prim) do
           return String(prim);
         end), foo);
   return (function (param) do
-      var tmp = { };
+      tmp = { };
       if (partial_arg ~= undefined) then do
         tmp.foo = Caml_option.valFromOption(partial_arg);
       end
@@ -59,9 +59,9 @@ function make(foo) do
     end);
 end
 
-var a_ = make(undefined)(--[ () ]--0);
+a_ = make(undefined)(--[ () ]--0);
 
-var b_ = make(42)(--[ () ]--0);
+b_ = make(42)(--[ () ]--0);
 
 eq("File \"gpr_1409_test.ml\", line 30, characters 6-13", b_.foo, "42");
 
@@ -71,13 +71,13 @@ console.log(a, b, a_, b_);
 
 eq("File \"gpr_1409_test.ml\", line 36, characters 6-13", #Object.keys(a_), 0);
 
-var test2 = do
+test2 = do
   hi: 2
 end;
 
 function test3(_open, xx__hi) do
   console.log("no inlin");
-  var tmp = do
+  tmp = do
     hi: 2
   end;
   if (_open ~= undefined) then do
@@ -93,7 +93,7 @@ end
 
 function test4(_open, xx__hi) do
   console.log("no inlin");
-  var tmp = do
+  tmp = do
     open: _open,
     hi: 2
   end;
@@ -106,15 +106,15 @@ end
 
 function test5(f, x) do
   console.log("no inline");
-  var tmp = do
+  tmp = do
     hi: 2
   end;
-  var tmp$1 = Curry._1(f, x);
+  tmp$1 = Curry._1(f, x);
   if (tmp$1 ~= undefined) then do
     tmp.open = Caml_option.valFromOption(tmp$1);
   end
    end 
-  var tmp$2 = Curry._1(f, x);
+  tmp$2 = Curry._1(f, x);
   if (tmp$2 ~= undefined) then do
     tmp.xx = Caml_option.valFromOption(tmp$2);
   end
@@ -124,18 +124,18 @@ end
 
 function test6(f, x) do
   console.log("no inline");
-  var x$1 = do
+  x$1 = do
     contents: 3
   end;
-  var tmp = do
+  tmp = do
     hi: 2
   end;
-  var tmp$1 = (x$1.contents = x$1.contents + 1 | 0, x$1.contents);
+  tmp$1 = (x$1.contents = x$1.contents + 1 | 0, x$1.contents);
   if (tmp$1 ~= undefined) then do
     tmp.open = Caml_option.valFromOption(tmp$1);
   end
    end 
-  var tmp$2 = f(x$1);
+  tmp$2 = f(x$1);
   if (tmp$2 ~= undefined) then do
     tmp.xx = Caml_option.valFromOption(tmp$2);
   end

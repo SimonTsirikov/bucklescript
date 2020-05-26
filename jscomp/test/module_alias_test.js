@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -36,9 +36,9 @@ function f(x) do
   return List;
 end
 
-var h = f(--[ [] ]--0);
+h = f(--[ [] ]--0);
 
-var a = Curry._1(h.length, --[ :: ]--[
+a = Curry._1(h.length, --[ :: ]--[
       1,
       --[ :: ]--[
         2,
@@ -53,11 +53,11 @@ eq("File \"module_alias_test.ml\", line 30, characters 6-13", a, 3);
 
 Mt.from_pair_suites("Module_alias_test", suites.contents);
 
-var N = --[ alias ]--0;
+N = --[ alias ]--0;
 
-var V = --[ alias ]--0;
+V = --[ alias ]--0;
 
-var J = --[ alias ]--0;
+J = --[ alias ]--0;
 
 exports.suites = suites;
 exports.test_id = test_id;

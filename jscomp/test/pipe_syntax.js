@@ -1,8 +1,8 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Belt_Array = require("../../lib/js/belt_Array.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Curry = require("../../lib/js/curry.js");
+Belt_Array = require("../../lib/js/belt_Array.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
 function t0(x, f) do
   return Curry._1(f, Curry._1(f, Curry._1(f, x)));
@@ -28,7 +28,7 @@ function f(a, b, c) do
 end
 
 function f1(a, b, c, d) do
-  var __ocaml_internal_obj = Curry._1(a, b);
+  __ocaml_internal_obj = Curry._1(a, b);
   return --[ tuple ]--[
           Curry._1(c, __ocaml_internal_obj),
           Curry._1(d, __ocaml_internal_obj)
@@ -36,17 +36,17 @@ function f1(a, b, c, d) do
 end
 
 function f2(a, b, c, d) do
-  var __ocaml_internal_obj = Curry._1(a, b);
-  var u = Curry._1(c, __ocaml_internal_obj);
-  var v = Curry._1(d, __ocaml_internal_obj);
+  __ocaml_internal_obj = Curry._1(a, b);
+  u = Curry._1(c, __ocaml_internal_obj);
+  v = Curry._1(d, __ocaml_internal_obj);
   return u + v | 0;
 end
 
 function f3(a, b, c, d, e) do
-  var __ocaml_internal_obj = Curry._1(a, b);
-  var u = Curry._2(c, __ocaml_internal_obj, d);
-  var v = Curry._3(d, __ocaml_internal_obj, 1, 2);
-  var h = Curry._1(e, __ocaml_internal_obj);
+  __ocaml_internal_obj = Curry._1(a, b);
+  u = Curry._2(c, __ocaml_internal_obj, d);
+  v = Curry._3(d, __ocaml_internal_obj, 1, 2);
+  h = Curry._1(e, __ocaml_internal_obj);
   return (u + v | 0) + h | 0;
 end
 
@@ -58,9 +58,9 @@ function f4(a, b, c) do
 end
 
 function f5(a, b, c, d) do
-  var v0 = Curry._3(b, a, c, c);
-  var v1 = Curry._3(b, a, c, c);
-  var v2 = Curry._3(b, a, d, d);
+  v0 = Curry._3(b, a, c, c);
+  v1 = Curry._3(b, a, c, c);
+  v2 = Curry._3(b, a, d, d);
   return (v0 + v1 | 0) + v2 | 0;
 end
 
@@ -86,7 +86,7 @@ function hi(x) do
               end));
 end
 
-var with_poly = --[ `Foo ]--[
+with_poly = --[ `Foo ]--[
   3505894,
   1
 ];

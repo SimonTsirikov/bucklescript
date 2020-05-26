@@ -1,22 +1,22 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Lexing = require("../../lib/js/lexing.js");
-var Arith_lexer = require("./arith_lexer.js");
-var Arith_parser = require("./arith_parser.js");
-var Arith_syntax = require("./arith_syntax.js");
-var Number_lexer = require("./number_lexer.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Lexing = require("../../lib/js/lexing.js");
+Arith_lexer = require("./arith_lexer.js");
+Arith_parser = require("./arith_parser.js");
+Arith_syntax = require("./arith_syntax.js");
+Number_lexer = require("./number_lexer.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function get_tokens(lex, str) do
-  var buf = Lexing.from_string(str);
-  var _acc = --[ [] ]--0;
+  buf = Lexing.from_string(str);
+  _acc = --[ [] ]--0;
   while(true) do
-    var acc = _acc;
-    var v = Curry._1(lex, buf);
+    acc = _acc;
+    v = Curry._1(lex, buf);
     if (v == --[ EOF ]--7) then do
       return List.rev(acc);
     end else do
@@ -34,11 +34,11 @@ function f(param) do
 end
 
 function from_tokens(lst) do
-  var l = do
+  l = do
     contents: lst
   end;
   return (function (param) do
-      var match = l.contents;
+      match = l.contents;
       if (match) then do
         l.contents = match[1];
         return match[0];
@@ -48,7 +48,7 @@ function from_tokens(lst) do
     end);
 end
 
-var lexer_suites_000 = --[ tuple ]--[
+lexer_suites_000 = --[ tuple ]--[
   "arith_token",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -79,7 +79,7 @@ var lexer_suites_000 = --[ tuple ]--[
     end)
 ];
 
-var lexer_suites_001 = --[ :: ]--[
+lexer_suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "simple token",
     (function (param) do
@@ -93,10 +93,10 @@ var lexer_suites_001 = --[ :: ]--[
     --[ tuple ]--[
       "number_lexer",
       (function (param) do
-          var v = do
+          v = do
             contents: --[ [] ]--0
           end;
-          var add = function (t) do
+          add = function (t) do
             v.contents = --[ :: ]--[
               t,
               v.contents
@@ -187,7 +187,7 @@ var lexer_suites_001 = --[ :: ]--[
   ]
 ];
 
-var lexer_suites = --[ :: ]--[
+lexer_suites = --[ :: ]--[
   lexer_suites_000,
   lexer_suites_001
 ];

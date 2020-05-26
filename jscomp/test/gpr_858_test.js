@@ -1,11 +1,11 @@
 'use strict';
 
 
-var direct = do
+direct = do
   contents: --[ [] ]--0
 end;
 
-var indirect = do
+indirect = do
   contents: --[ [] ]--0
 end;
 

@@ -1,12 +1,12 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var function_equal_test;
+function_equal_test;
 
 try do
   function_equal_test = Caml_obj.caml_equal((function (x) do
@@ -16,11 +16,11 @@ try do
         end));
 end
 catch (raw_exn)do
-  var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+  exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   function_equal_test = exn[0] == Caml_builtin_exceptions.invalid_argument and exn[1] == "equal: functional value" and true or false;
 end
 
-var suites = do
+suites = do
   contents: --[ :: ]--[
     --[ tuple ]--[
       "File \"caml_compare_test.ml\", line 9, characters 4-11",
@@ -1030,7 +1030,7 @@ var suites = do
   ]
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 

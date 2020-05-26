@@ -1,9 +1,9 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Bytes = require("../../lib/js/bytes.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Bytes = require("../../lib/js/bytes.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
 
 function fib(n) do
   if (n ~= 1 and n ~= 23) then do
@@ -14,12 +14,12 @@ function fib(n) do
 end
 
 function escaped(s) do
-  var n = 0;
-  for var i = 0 , #s - 1 | 0 , 1 do
-    var match = s[i];
-    var tmp;
+  n = 0;
+  for i = 0 , #s - 1 | 0 , 1 do
+    match = s[i];
+    tmp;
     if (match >= 32) then do
-      var switcher = match - 34 | 0;
+      switcher = match - 34 | 0;
       tmp = switcher > 58 or switcher < 0 and (
           switcher >= 93 and 4 or 1
         ) or (
@@ -37,11 +37,11 @@ function escaped(s) do
   if (n == #s) then do
     return Bytes.copy(s);
   end else do
-    var s$prime = Caml_bytes.caml_create_bytes(n);
+    s$prime = Caml_bytes.caml_create_bytes(n);
     n = 0;
-    for var i$1 = 0 , #s - 1 | 0 , 1 do
-      var c = s[i$1];
-      var exit = 0;
+    for i$1 = 0 , #s - 1 | 0 , 1 do
+      c = s[i$1];
+      exit = 0;
       if (c >= 35) then do
         if (c ~= 92) then do
           if (c >= 127) then do
@@ -121,7 +121,7 @@ function string_escaped(s) do
   return Bytes.to_string(escaped(Bytes.of_string(s)));
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "complete_escape",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -131,7 +131,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   --[ [] ]--0
 ];

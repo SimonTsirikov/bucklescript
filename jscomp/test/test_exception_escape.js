@@ -1,10 +1,10 @@
 'use strict';
 
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var A = Caml_exceptions.create("Test_exception_escape.N.A");
+A = Caml_exceptions.create("Test_exception_escape.N.A");
 
-var f;
+f;
 
 try do
   throw [
@@ -16,7 +16,7 @@ catch (exn)do
   f = 3;
 end
 
-var N = do
+N = do
   f: f
 end;
 

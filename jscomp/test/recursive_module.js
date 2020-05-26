@@ -1,21 +1,21 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Lazy = require("../../lib/js/lazy.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_module = require("../../lib/js/caml_module.js");
-var CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Lazy = require("../../lib/js/lazy.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_module = require("../../lib/js/caml_module.js");
+CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -23,13 +23,13 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end
 
-var Xx = do
+Xx = do
   f: (function (prim, prim$1) do
       return Caml_external_polyfill.resolve("hfiehi")(prim, prim$1);
     end)
 end;
 
-var Int3 = Caml_module.init_mod(--[ tuple ]--[
+Int3 = Caml_module.init_mod(--[ tuple ]--[
       "recursive_module.ml",
       27,
       6
@@ -43,7 +43,7 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
             "u"
           ]]]), Int3, Int3);
 
-var Inta = Caml_module.init_mod(--[ tuple ]--[
+Inta = Caml_module.init_mod(--[ tuple ]--[
       "recursive_module.ml",
       31,
       6
@@ -52,7 +52,7 @@ var Inta = Caml_module.init_mod(--[ tuple ]--[
             "a"
           ]]]));
 
-var Intb = Caml_module.init_mod(--[ tuple ]--[
+Intb = Caml_module.init_mod(--[ tuple ]--[
       "recursive_module.ml",
       36,
       6
@@ -61,7 +61,7 @@ var Intb = Caml_module.init_mod(--[ tuple ]--[
             "a"
           ]]]));
 
-var a = Caml_obj.caml_lazy_make((function (param) do
+a = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Intb.a);
       end));
 
@@ -72,7 +72,7 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
       a: a
     end);
 
-var a$1 = Caml_obj.caml_lazy_make((function (param) do
+a$1 = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Inta.a) + 1 | 0;
       end));
 
@@ -83,7 +83,7 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
       a: a$1
     end);
 
-var tmp;
+tmp;
 
 try do
   tmp = CamlinternalLazy.force(Intb.a);
@@ -98,7 +98,7 @@ end
 
 eq("File \"recursive_module.ml\", line 41, characters 3-10", -1, tmp);
 
-var Inta$1 = Caml_module.init_mod(--[ tuple ]--[
+Inta$1 = Caml_module.init_mod(--[ tuple ]--[
       "recursive_module.ml",
       48,
       8
@@ -107,7 +107,7 @@ var Inta$1 = Caml_module.init_mod(--[ tuple ]--[
             "a"
           ]]]));
 
-var Intb$1 = Caml_module.init_mod(--[ tuple ]--[
+Intb$1 = Caml_module.init_mod(--[ tuple ]--[
       "recursive_module.ml",
       53,
       8
@@ -116,7 +116,7 @@ var Intb$1 = Caml_module.init_mod(--[ tuple ]--[
             "a"
           ]]]));
 
-var a$2 = Caml_obj.caml_lazy_make((function (param) do
+a$2 = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Intb$1.a) + 1 | 0;
       end));
 
@@ -134,21 +134,21 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
       a: 2
     end);
 
-var A = do
+A = do
   Inta: Inta$1,
   Intb: Intb$1
 end;
 
 eq("File \"recursive_module.ml\", line 58, characters 6-13", CamlinternalLazy.force(Inta$1.a), 3);
 
-var tmp$1;
+tmp$1;
 
 try do
   Curry._1(Int3.u, 3);
   tmp$1 = 3;
 end
 catch (raw_exn)do
-  var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
+  exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
   if (exn$1[0] == Caml_builtin_exceptions.undefined_recursive_module) then do
     tmp$1 = 4;
   end else do
@@ -160,9 +160,9 @@ eq("File \"recursive_module.ml\", line 60, characters 6-13", 4, tmp$1);
 
 Mt.from_pair_suites("Recursive_module", suites.contents);
 
-var Int32 = --[ () ]--0;
+Int32 = --[ () ]--0;
 
-var uuu = Xx.f;
+uuu = Xx.f;
 
 exports.suites = suites;
 exports.test_id = test_id;

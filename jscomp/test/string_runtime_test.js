@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Bytes = require("../../lib/js/bytes.js");
-var Caml_char = require("../../lib/js/caml_char.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Bytes = require("../../lib/js/bytes.js");
+Caml_char = require("../../lib/js/caml_char.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "caml_is_printable",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -17,13 +17,13 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "caml_string_of_bytes",
     (function (param) do
-        var match = List.split(List.map((function (x) do
-                    var len = x;
-                    var b = Caml_bytes.caml_create_bytes(1000);
+        match = List.split(List.map((function (x) do
+                    len = x;
+                    b = Caml_bytes.caml_create_bytes(1000);
                     Caml_bytes.caml_fill_bytes(b, 0, len, --[ "c" ]--99);
                     return --[ tuple ]--[
                             Caml_bytes.bytes_to_string(b),
@@ -62,16 +62,16 @@ var suites_001 = --[ :: ]--[
   --[ [] ]--0
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
 
 Mt.from_pair_suites("String_runtime_test", suites);
 
-var S = --[ alias ]--0;
+S = --[ alias ]--0;
 
-var B = --[ alias ]--0;
+B = --[ alias ]--0;
 
 exports.S = S;
 exports.B = B;

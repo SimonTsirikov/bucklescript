@@ -1,9 +1,9 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Pervasives = require("../../lib/js/pervasives.js");
+List = require("../../lib/js/list.js");
+Pervasives = require("../../lib/js/pervasives.js");
 
-var Pervasives$1 = do
+Pervasives$1 = do
   length: List.length,
   compare_lengths: List.compare_lengths,
   compare_length_with: List.compare_length_with,
@@ -219,7 +219,7 @@ function a18(prim, prim$1) do
   return Math.pow(prim, prim$1);
 end
 
-var f = Pervasives.$at;
+f = Pervasives.$at;
 
 exports.Pervasives = Pervasives$1;
 exports.f = f;

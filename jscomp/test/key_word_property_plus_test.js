@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Global_mangles = require("./global_mangles.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Global_mangles = require("./global_mangles.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 

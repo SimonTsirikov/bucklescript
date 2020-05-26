@@ -1,19 +1,19 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
 function eq(loc, param) do
-  var y = param[1];
-  var x = param[0];
+  y = param[1];
+  x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
@@ -30,22 +30,22 @@ function eq(loc, param) do
   return --[ () ]--0;
 end
 
-var u = do
+u = do
   say: (function (x, y) do
       return x + y | 0;
     end)
 end;
 
-var v = do
+v = do
   hi: (function (x, y) do
-      var self = this ;
-      var u = do
+      self = this ;
+      u = do
         x: x
       end;
       return self.say(u.x) + y + x;
     end),
   say: (function (x) do
-      var self = this ;
+      self = this ;
       return x * self.x();
     end),
   x: (function () do
@@ -53,9 +53,9 @@ var v = do
     end)
 end;
 
-var p_001 = u.say(1, 2);
+p_001 = u.say(1, 2);
 
-var p = --[ tuple ]--[
+p = --[ tuple ]--[
   3,
   p_001
 ];

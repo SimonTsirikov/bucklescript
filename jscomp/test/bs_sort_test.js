@@ -1,18 +1,18 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Belt_Array = require("../../lib/js/belt_Array.js");
-var Belt_Range = require("../../lib/js/belt_Range.js");
-var Belt_SortArray = require("../../lib/js/belt_SortArray.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
-var Array_data_util = require("./array_data_util.js");
-var Belt_SortArrayInt = require("../../lib/js/belt_SortArrayInt.js");
+Mt = require("./mt.js");
+Belt_Array = require("../../lib/js/belt_Array.js");
+Belt_Range = require("../../lib/js/belt_Range.js");
+Belt_SortArray = require("../../lib/js/belt_SortArray.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
+Array_data_util = require("./array_data_util.js");
+Belt_SortArrayInt = require("../../lib/js/belt_SortArrayInt.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -29,28 +29,28 @@ function cmp(x, y) do
 end
 
 function unions(xs, ys) do
-  var lenX = #xs;
-  var lenY = #ys;
-  var o = new Array(lenX + lenY | 0);
-  var v = Belt_SortArray.union(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
+  lenX = #xs;
+  lenY = #ys;
+  o = new Array(lenX + lenY | 0);
+  v = Belt_SortArray.union(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
   return o;
 end
 
 function inters(xs, ys) do
-  var lenX = #xs;
-  var lenY = #ys;
-  var o = new Array(lenX);
-  var v = Belt_SortArray.intersect(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
+  lenX = #xs;
+  lenY = #ys;
+  o = new Array(lenX);
+  v = Belt_SortArray.intersect(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
   return o;
 end
 
 function diffs(xs, ys) do
-  var lenX = #xs;
-  var lenY = #ys;
-  var o = new Array(lenX);
-  var v = Belt_SortArray.diff(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
+  lenX = #xs;
+  lenY = #ys;
+  o = new Array(lenX);
+  v = Belt_SortArray.diff(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
   return o;
 end
@@ -92,13 +92,13 @@ eq("File \"bs_sort_test.ml\", line 48, characters 5-12", diffs(Array_data_util.r
     ]);
 
 b("File \"bs_sort_test.ml\", line 50, characters 4-11", Belt_Range.every(0, 200, (function (i) do
-            var v = Array_data_util.randomRange(0, i);
+            v = Array_data_util.randomRange(0, i);
             Belt_SortArray.stableSortInPlaceBy(v, cmp);
             return Belt_SortArray.isSorted(v, cmp);
           end)));
 
 b("File \"bs_sort_test.ml\", line 56, characters 4-11", Belt_Range.every(0, 200, (function (i) do
-            var v = Array_data_util.randomRange(0, i);
+            v = Array_data_util.randomRange(0, i);
             Belt_SortArray.stableSortInPlaceBy(v, cmp);
             return Belt_SortArray.isSorted(v, cmp);
           end)));
@@ -117,11 +117,11 @@ b("File \"bs_sort_test.ml\", line 70, characters 4-11", !Belt_SortArray.isSorted
           0
         ], cmp));
 
-var u = Array_data_util.randomRange(0, 1000000);
+u = Array_data_util.randomRange(0, 1000000);
 
-var u1 = u.slice(0);
+u1 = u.slice(0);
 
-var u2 = u.slice(0);
+u2 = u.slice(0);
 
 console.time("test/bs_sort_test.ml 80");
 
@@ -147,7 +147,7 @@ console.timeEnd("test/bs_sort_test.ml 84");
 
 b("File \"bs_sort_test.ml\", line 85, characters 4-11", Belt_SortArray.isSorted(u1, cmp));
 
-var u$1 = [
+u$1 = [
   --[ tuple ]--[
     1,
     "a"
@@ -179,7 +179,7 @@ eq("File \"bs_sort_test.ml\", line 90, characters 5-12", Belt_SortArray.stableSo
       ]
     ]);
 
-var u$2 = [
+u$2 = [
   --[ tuple ]--[
     1,
     "b"
@@ -219,7 +219,7 @@ eq("File \"bs_sort_test.ml\", line 96, characters 5-12", Belt_SortArray.stableSo
       ]
     ]);
 
-var u$3 = [
+u$3 = [
   --[ tuple ]--[
     1,
     "c"
@@ -332,13 +332,13 @@ eq("File \"bs_sort_test.ml\", line 116, characters 5-12", Belt_SortArray.binaryS
           36
         ], 4, cmp), 3);
 
-var aa = Array_data_util.range(0, 1000);
+aa = Array_data_util.range(0, 1000);
 
 b("File \"bs_sort_test.ml\", line 118, characters 4-11", Belt_Range.every(0, 1000, (function (i) do
             return Belt_SortArray.binarySearchBy(aa, i, cmp) == i;
           end)));
 
-var cc = Belt_Array.map(Array_data_util.range(0, 2000), (function (x) do
+cc = Belt_Array.map(Array_data_util.range(0, 2000), (function (x) do
         return (x << 1);
       end));
 
@@ -411,15 +411,15 @@ eq("File \"bs_sort_test.ml\", line 143, characters 5-12", Belt_SortArray.strictl
 
 Mt.from_pair_suites("Bs_sort_test", suites.contents);
 
-var I = --[ alias ]--0;
+I = --[ alias ]--0;
 
-var S = --[ alias ]--0;
+S = --[ alias ]--0;
 
-var R = --[ alias ]--0;
+R = --[ alias ]--0;
 
-var A = --[ alias ]--0;
+A = --[ alias ]--0;
 
-var SI = --[ alias ]--0;
+SI = --[ alias ]--0;
 
 exports.suites = suites;
 exports.test_id = test_id;

@@ -1,20 +1,20 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
 function eq(loc, param) do
-  var y = param[1];
-  var x = param[0];
+  y = param[1];
+  x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
@@ -37,9 +37,9 @@ function hey(x, y) {
   }
 ;
 
-var u = hey(undefined, 3);
+u = hey(undefined, 3);
 
-var z = hey(5, 3);
+z = hey(5, 3);
 
 eq("File \"optional_ffi_test.ml\", line 23, characters 5-12", --[ tuple ]--[
       --[ tuple ]--[
@@ -52,7 +52,7 @@ eq("File \"optional_ffi_test.ml\", line 23, characters 5-12", --[ tuple ]--[
       ]
     ]);
 
-var counter = do
+counter = do
   contents: 0
 end;
 
@@ -69,7 +69,7 @@ function bug_to_fix2(f, x) do
   return hey(Caml_option.option_get(f(x)), 3);
 end
 
-var counter2 = do
+counter2 = do
   contents: 0
 end;
 
@@ -78,36 +78,36 @@ function side_effect2(x) do
   return x.contents;
 end
 
-var v = bug_to_fix(side_effect, counter);
+v = bug_to_fix(side_effect, counter);
 
-var pair_000 = --[ tuple ]--[
+pair_000 = --[ tuple ]--[
   v,
   counter.contents
 ];
 
-var pair_001 = --[ tuple ]--[
+pair_001 = --[ tuple ]--[
   4,
   1
 ];
 
-var pair = --[ tuple ]--[
+pair = --[ tuple ]--[
   pair_000,
   pair_001
 ];
 
-var v2 = bug_to_fix2(side_effect2, counter2);
+v2 = bug_to_fix2(side_effect2, counter2);
 
-var pair2_000 = --[ tuple ]--[
+pair2_000 = --[ tuple ]--[
   v2,
   counter.contents
 ];
 
-var pair2_001 = --[ tuple ]--[
+pair2_001 = --[ tuple ]--[
   4,
   1
 ];
 
-var pair2 = --[ tuple ]--[
+pair2 = --[ tuple ]--[
   pair2_000,
   pair2_001
 ];
@@ -122,9 +122,9 @@ function heystr(x, y) {
   }
 ;
 
-var pair_001$1 = heystr("name", "4");
+pair_001$1 = heystr("name", "4");
 
-var pair$1 = --[ tuple ]--[
+pair$1 = --[ tuple ]--[
   "name4",
   pair_001$1
 ];

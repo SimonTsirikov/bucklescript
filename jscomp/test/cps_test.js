@@ -1,19 +1,19 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_array = require("../../lib/js/caml_array.js");
+Mt = require("./mt.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_array = require("../../lib/js/caml_array.js");
 
 function test(param) do
-  var v = do
+  v = do
     contents: 0
   end;
-  var f = function (_n, _acc) do
+  f = function (_n, _acc) do
     while(true) do
-      var acc = _acc;
-      var n = _n;
+      acc = _acc;
+      n = _n;
       if (n == 0) then do
         return Curry._1(acc, --[ () ]--0);
       end else do
@@ -35,13 +35,13 @@ function test(param) do
 end
 
 function test_closure(param) do
-  var v = do
+  v = do
     contents: 0
   end;
-  var arr = Caml_array.caml_make_vect(6, (function (x) do
+  arr = Caml_array.caml_make_vect(6, (function (x) do
           return x;
         end));
-  for var i = 0 , 5 , 1 do
+  for i = 0 , 5 , 1 do
     Caml_array.caml_array_set(arr, i, (function(i)do
         return function (param) do
           return i;
@@ -56,14 +56,14 @@ function test_closure(param) do
 end
 
 function test_closure2(param) do
-  var v = do
+  v = do
     contents: 0
   end;
-  var arr = Caml_array.caml_make_vect(6, (function (x) do
+  arr = Caml_array.caml_make_vect(6, (function (x) do
           return x;
         end));
-  for var i = 0 , 5 , 1 do
-    var j = i + i | 0;
+  for i = 0 , 5 , 1 do
+    j = i + i | 0;
     Caml_array.caml_array_set(arr, i, (function(j)do
         return function (param) do
           return j;

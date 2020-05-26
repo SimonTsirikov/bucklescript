@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
-var CamlinternalOO = require("../../lib/js/camlinternalOO.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
+CamlinternalOO = require("../../lib/js/camlinternalOO.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -31,13 +31,13 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var class_tables = --[ Cons ]--[
+class_tables = --[ Cons ]--[
   0,
   0,
   0
 ];
 
-var class_tables$1 = --[ Cons ]--[
+class_tables$1 = --[ Cons ]--[
   0,
   0,
   0
@@ -45,19 +45,19 @@ var class_tables$1 = --[ Cons ]--[
 
 function step1(param) do
   if (!class_tables[0]) then do
-    var $$class = CamlinternalOO.create_table(["step2"]);
-    var env = CamlinternalOO.new_variable($$class, "");
-    var step2 = CamlinternalOO.get_method_label($$class, "step2");
+    $$class = CamlinternalOO.create_table(["step2"]);
+    env = CamlinternalOO.new_variable($$class, "");
+    step2 = CamlinternalOO.get_method_label($$class, "step2");
     CamlinternalOO.set_method($$class, step2, (function (self$1) do
             if (!class_tables$1[0]) then do
-              var $$class = CamlinternalOO.create_table(["step3"]);
-              var env = CamlinternalOO.new_variable($$class, "");
-              var step3 = CamlinternalOO.get_method_label($$class, "step3");
+              $$class = CamlinternalOO.create_table(["step3"]);
+              env = CamlinternalOO.new_variable($$class, "");
+              step3 = CamlinternalOO.get_method_label($$class, "step3");
               CamlinternalOO.set_method($$class, step3, (function (self$2) do
                       return 33;
                     end));
-              var env_init = function (env$1) do
-                var self = CamlinternalOO.create_object_opt(0, $$class);
+              env_init = function (env$1) do
+                self = CamlinternalOO.create_object_opt(0, $$class);
                 self[env] = env$1;
                 return self;
               end;
@@ -67,8 +67,8 @@ function step1(param) do
              end 
             return Curry._1(class_tables$1[0], 0);
           end));
-    var env_init = function (env$1) do
-      var self = CamlinternalOO.create_object_opt(0, $$class);
+    env_init = function (env$1) do
+      self = CamlinternalOO.create_object_opt(0, $$class);
       self[env] = env$1;
       return self;
     end;
@@ -79,11 +79,11 @@ function step1(param) do
   return Curry._1(class_tables[0], 0);
 end
 
-var tmp = step1(--[ () ]--0);
+tmp = step1(--[ () ]--0);
 
-var tmp$1 = Caml_oo_curry.js1(68057958, 1, tmp);
+tmp$1 = Caml_oo_curry.js1(68057958, 1, tmp);
 
-var x = Caml_oo_curry.js1(68057959, 2, tmp$1);
+x = Caml_oo_curry.js1(68057959, 2, tmp$1);
 
 eq("File \"gpr_1285_test.ml\", line 20, characters 5-12", x, 33);
 

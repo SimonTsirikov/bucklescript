@@ -1,19 +1,19 @@
 'use strict';
 
-var $$Array = require("../../lib/js/array.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+$$Array = require("../../lib/js/array.js");
+Curry = require("../../lib/js/curry.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var v = do
+v = do
   contents: 0
 end;
 
 function f(param) do
-  var arr = Caml_array.caml_make_vect(10, (function (param) do
+  arr = Caml_array.caml_make_vect(10, (function (param) do
           return --[ () ]--0;
         end));
-  for var i = 0 , 9 , 1 do
+  for i = 0 , 9 , 1 do
     Caml_array.caml_array_set(arr, i, (function(i)do
         return function (param) do
           v.contents = v.contents + i | 0;
@@ -24,7 +24,7 @@ function f(param) do
   return arr;
 end
 
-var u = f(--[ () ]--0);
+u = f(--[ () ]--0);
 
 $$Array.iter((function (x) do
         return Curry._1(x, --[ () ]--0);

@@ -1,36 +1,36 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Printf = require("../../lib/js/printf.js");
-var Random = require("../../lib/js/random.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_option = require("../../lib/js/caml_option.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Printf = require("../../lib/js/printf.js");
+Random = require("../../lib/js/random.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_option = require("../../lib/js/caml_option.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var Actors = { };
+Actors = { };
 
-var Dom_html = { };
+Dom_html = { };
 
 function setup_sprite(loopOpt, bbox_offsetOpt, bbox_sizeOpt, img_src, max_frames, max_ticks, frame_size, src_offset) do
-  var loop = loopOpt ~= undefined and loopOpt or true;
-  var bbox_offset = bbox_offsetOpt ~= undefined and bbox_offsetOpt or --[ tuple ]--[
+  loop = loopOpt ~= undefined and loopOpt or true;
+  bbox_offset = bbox_offsetOpt ~= undefined and bbox_offsetOpt or --[ tuple ]--[
       0,
       0
     ];
-  var bbox_size = bbox_sizeOpt ~= undefined and bbox_sizeOpt or --[ tuple ]--[
+  bbox_size = bbox_sizeOpt ~= undefined and bbox_sizeOpt or --[ tuple ]--[
       0,
       0
     ];
-  var bbox_size$1 = Caml_obj.caml_equal(bbox_size, --[ tuple ]--[
+  bbox_size$1 = Caml_obj.caml_equal(bbox_size, --[ tuple ]--[
         0,
         0
       ]) and frame_size or bbox_size;
-  var img_src$1 = "./sprites/" .. img_src;
+  img_src$1 = "./sprites/" .. img_src;
   return do
           max_frames: max_frames,
           max_ticks: max_ticks,
@@ -44,7 +44,7 @@ function setup_sprite(loopOpt, bbox_offsetOpt, bbox_sizeOpt, img_src, max_frames
 end
 
 function make_enemy(param) do
-  var dir = param[1];
+  dir = param[1];
   local ___conditional___=(param[0]);
   do
      if ___conditional___ = 0--[ Goomba ]-- then do
@@ -254,14 +254,14 @@ function make_type(typ, dir) do
   local ___conditional___=(typ.tag | 0);
   do
      if ___conditional___ = 0--[ SPlayer ]-- then do
-        var pt = typ[0];
-        var spr_type = --[ tuple ]--[
+        pt = typ[0];
+        spr_type = --[ tuple ]--[
           typ[1],
           dir
         ];
         if (pt) then do
-          var param = spr_type;
-          var typ$1 = param[0];
+          param = spr_type;
+          typ$1 = param[0];
           if (param[1]) then do
             local ___conditional___=(typ$1);
             do
@@ -388,8 +388,8 @@ function make_type(typ, dir) do
             end
           end end 
         end else do
-          var param$1 = spr_type;
-          var typ$2 = param$1[0];
+          param$1 = spr_type;
+          typ$2 = param$1[0];
           if (param$1[1]) then do
             local ___conditional___=(typ$2);
             do
@@ -522,7 +522,7 @@ function make_type(typ, dir) do
                     dir
                   ]);end end end 
      if ___conditional___ = 2--[ SItem ]-- then do
-        var param$2 = typ[0];
+        param$2 = typ[0];
         local ___conditional___=(param$2);
         do
            if ___conditional___ = 0--[ Mushroom ]-- then do
@@ -573,7 +573,7 @@ function make_type(typ, dir) do
           
         endend end end 
      if ___conditional___ = 3--[ SBlock ]-- then do
-        var param$3 = typ[0];
+        param$3 = typ[0];
         if (typeof param$3 == "number") then do
           local ___conditional___=(param$3);
           do
@@ -643,7 +643,7 @@ function make_type(typ, dir) do
 end
 
 function make_from_params(params, context) do
-  var img = document.createElement("img");
+  img = document.createElement("img");
   img.src = params.img_src;
   return do
           params: params,
@@ -659,12 +659,12 @@ function make_from_params(params, context) do
 end
 
 function make(spawn, dir, context) do
-  var params = make_type(spawn, dir);
+  params = make_type(spawn, dir);
   return make_from_params(params, context);
 end
 
 function make_bgd(context) do
-  var params = setup_sprite(undefined, undefined, undefined, "bgd-1.png", 1, 0, --[ tuple ]--[
+  params = setup_sprite(undefined, undefined, undefined, "bgd-1.png", 1, 0, --[ tuple ]--[
         512,
         256
       ], --[ tuple ]--[
@@ -675,16 +675,16 @@ function make_bgd(context) do
 end
 
 function make_particle$1(ptyp, context) do
-  var params = make_particle(ptyp);
+  params = make_particle(ptyp);
   return make_from_params(params, context);
 end
 
 function transform_enemy(enemy_typ, spr, dir) do
-  var params = make_enemy(--[ tuple ]--[
+  params = make_enemy(--[ tuple ]--[
         enemy_typ,
         dir
       ]);
-  var img = document.createElement("img");
+  img = document.createElement("img");
   img.src = params.img_src;
   spr.params = params;
   spr.img = img;
@@ -692,7 +692,7 @@ function transform_enemy(enemy_typ, spr, dir) do
 end
 
 function update_animation(spr) do
-  var curr_ticks = spr.ticks.contents;
+  curr_ticks = spr.ticks.contents;
   if (curr_ticks >= spr.params.max_ticks) then do
     spr.ticks.contents = 0;
     if (spr.params.loop) then do
@@ -707,7 +707,7 @@ function update_animation(spr) do
   end end 
 end
 
-var Sprite = do
+Sprite = do
   setup_sprite: setup_sprite,
   make: make,
   make_bgd: make_bgd,
@@ -740,18 +740,18 @@ function make_type$1(typ, ctx) do
 end
 
 function make$1(velOpt, accOpt, part_type, pos, ctx) do
-  var vel = velOpt ~= undefined and velOpt or --[ tuple ]--[
+  vel = velOpt ~= undefined and velOpt or --[ tuple ]--[
       0,
       0
     ];
-  var acc = accOpt ~= undefined and accOpt or --[ tuple ]--[
+  acc = accOpt ~= undefined and accOpt or --[ tuple ]--[
       0,
       0
     ];
-  var params = make_type$1(part_type, ctx);
-  var pos$1 = pair_to_xy(pos);
-  var vel$1 = pair_to_xy(vel);
-  var acc$1 = pair_to_xy(acc);
+  params = make_type$1(part_type, ctx);
+  pos$1 = pair_to_xy(pos);
+  vel$1 = pair_to_xy(vel);
+  acc$1 = pair_to_xy(acc);
   return do
           params: params,
           part_type: part_type,
@@ -764,7 +764,7 @@ function make$1(velOpt, accOpt, part_type, pos, ctx) do
 end
 
 function make_score(score, pos, ctx) do
-  var t = score >= 801 and (
+  t = score >= 801 and (
       score >= 2001 and (
           score ~= 4000 and (
               score ~= 8000 and --[ Score100 ]--3 or --[ Score8000 ]--10
@@ -802,25 +802,25 @@ function $$process(part) do
   end
    end 
   update_vel(part);
-  var part$1 = part;
+  part$1 = part;
   part$1.pos.x = part$1.vel.x + part$1.pos.x;
   part$1.pos.y = part$1.vel.y + part$1.pos.y;
   return --[ () ]--0;
 end
 
-var Particle = do
+Particle = do
   make: make$1,
   make_score: make_score,
   $$process: $$process
 end;
 
-var id_counter = do
+id_counter = do
   contents: Pervasives.min_int
 end;
 
 function setup_obj(has_gravityOpt, speedOpt, param) do
-  var has_gravity = has_gravityOpt ~= undefined and has_gravityOpt or true;
-  var speed = speedOpt ~= undefined and speedOpt or 1;
+  has_gravity = has_gravityOpt ~= undefined and has_gravityOpt or true;
+  speed = speedOpt ~= undefined and speedOpt or 1;
   return do
           has_gravity: has_gravity,
           speed: speed
@@ -828,8 +828,8 @@ function setup_obj(has_gravityOpt, speedOpt, param) do
 end
 
 function set_vel_to_speed(obj) do
-  var speed = obj.params.speed;
-  var match = obj.dir;
+  speed = obj.params.speed;
+  match = obj.dir;
   if (match) then do
     obj.vel.x = speed;
     return --[ () ]--0;
@@ -845,14 +845,14 @@ function make_type$2(param) do
      if ___conditional___ = 0--[ SPlayer ]-- then do
         return setup_obj(undefined, 2.8, --[ () ]--0);end end end 
      if ___conditional___ = 1--[ SEnemy ]-- then do
-        var param$1 = param[0];
+        param$1 = param[0];
         if (param$1 >= 3) then do
           return setup_obj(undefined, 3, --[ () ]--0);
         end else do
           return setup_obj(undefined, undefined, --[ () ]--0);
         end end end end end 
      if ___conditional___ = 2--[ SItem ]-- then do
-        var param$2 = param[0];
+        param$2 = param[0];
         if (param$2 >= 3) then do
           return setup_obj(false, undefined, --[ () ]--0);
         end else do
@@ -871,12 +871,12 @@ function new_id(param) do
 end
 
 function make$2($staropt$star, $staropt$star$1, spawnable, context, param) do
-  var id = $staropt$star ~= undefined and Caml_option.valFromOption($staropt$star) or undefined;
-  var dir = $staropt$star$1 ~= undefined and $staropt$star$1 or --[ Left ]--0;
-  var spr = make(spawnable, dir, context);
-  var params = make_type$2(spawnable);
-  var id$1 = id ~= undefined and id or new_id(--[ () ]--0);
-  var obj = do
+  id = $staropt$star ~= undefined and Caml_option.valFromOption($staropt$star) or undefined;
+  dir = $staropt$star$1 ~= undefined and $staropt$star$1 or --[ Left ]--0;
+  spr = make(spawnable, dir, context);
+  params = make_type$2(spawnable);
+  id$1 = id ~= undefined and id or new_id(--[ () ]--0);
+  obj = do
     params: params,
     pos: do
       x: param[0],
@@ -903,12 +903,12 @@ function make$2($staropt$star, $staropt$star$1, spawnable, context, param) do
 end
 
 function spawn(spawnable, context, param) do
-  var match = make$2(undefined, undefined, spawnable, context, --[ tuple ]--[
+  match = make$2(undefined, undefined, spawnable, context, --[ tuple ]--[
         param[0],
         param[1]
       ]);
-  var obj = match[1];
-  var spr = match[0];
+  obj = match[1];
+  spr = match[0];
   local ___conditional___=(spawnable.tag | 0);
   do
      if ___conditional___ = 0--[ SPlayer ]-- then do
@@ -970,23 +970,23 @@ function equals(col1, col2) do
 end
 
 function normalize_pos(pos, p1, p2) do
-  var match = p1.bbox_offset;
-  var match$1 = p2.bbox_offset;
-  var match$2 = p1.bbox_size;
-  var match$3 = p2.bbox_size;
+  match = p1.bbox_offset;
+  match$1 = p2.bbox_offset;
+  match$2 = p1.bbox_size;
+  match$3 = p2.bbox_size;
   pos.x = pos.x - (match$3[0] + match$1[0]) + (match$2[0] + match[0]);
   pos.y = pos.y - (match$3[1] + match$1[1]) + (match$2[1] + match[1]);
   return --[ () ]--0;
 end
 
 function update_player(player, keys, context) do
-  var prev_jumping = player.jumping;
-  var prev_dir = player.dir;
-  var prev_vx = Math.abs(player.vel.x);
+  prev_jumping = player.jumping;
+  prev_dir = player.dir;
+  prev_vx = Math.abs(player.vel.x);
   List.iter((function (param) do
-          var player$1 = player;
-          var controls = param;
-          var lr_acc = player$1.vel.x * 0.2;
+          player$1 = player;
+          controls = param;
+          lr_acc = player$1.vel.x * 0.2;
           local ___conditional___=(controls);
           do
              if ___conditional___ = 0--[ CLeft ]-- then do
@@ -1031,10 +1031,10 @@ function update_player(player, keys, context) do
             
           end
         end), keys);
-  var v = player.vel.x * 0.9;
-  var vel_damped = Math.abs(v) < 0.1 and 0 or v;
+  v = player.vel.x * 0.9;
+  vel_damped = Math.abs(v) < 0.1 and 0 or v;
   player.vel.x = vel_damped;
-  var pl_typ = player.health <= 1 and --[ SmallM ]--1 or --[ BigM ]--0;
+  pl_typ = player.health <= 1 and --[ SmallM ]--1 or --[ BigM ]--0;
   if (!prev_jumping and player.jumping) then do
     return --[ tuple ]--[
             pl_typ,
@@ -1114,16 +1114,16 @@ function process_obj(obj, mapy) do
 end
 
 function normalize_origin(pos, spr) do
-  var p = spr.params;
-  var match = p.bbox_offset;
-  var match$1 = p.bbox_size;
+  p = spr.params;
+  match = p.bbox_offset;
+  match$1 = p.bbox_size;
   pos.x = pos.x - match[0];
   pos.y = pos.y - (match[1] + match$1[1]);
   return --[ () ]--0;
 end
 
 function collide_block(check_xOpt, dir, obj) do
-  var check_x = check_xOpt ~= undefined and check_xOpt or true;
+  check_x = check_xOpt ~= undefined and check_xOpt or true;
   if (dir ~= 1) then do
     if (dir ~= 0) then do
       if (check_x) then do
@@ -1157,12 +1157,12 @@ function evolve_enemy(player_dir, typ, spr, obj, context) do
         obj.kill = true;
         return ;end end end 
      if ___conditional___ = 1--[ GKoopa ]-- then do
-        var match = make$2(undefined, obj.dir, --[ SEnemy ]--Block.__(1, [--[ GKoopaShell ]--3]), context, --[ tuple ]--[
+        match = make$2(undefined, obj.dir, --[ SEnemy ]--Block.__(1, [--[ GKoopaShell ]--3]), context, --[ tuple ]--[
               obj.pos.x,
               obj.pos.y
             ]);
-        var new_obj = match[1];
-        var new_spr = match[0];
+        new_obj = match[1];
+        new_spr = match[0];
         normalize_pos(new_obj.pos, spr.params, new_spr.params);
         return --[ Enemy ]--Block.__(1, [
                   --[ GKoopaShell ]--3,
@@ -1170,12 +1170,12 @@ function evolve_enemy(player_dir, typ, spr, obj, context) do
                   new_obj
                 ]);end end end 
      if ___conditional___ = 2--[ RKoopa ]-- then do
-        var match$1 = make$2(undefined, obj.dir, --[ SEnemy ]--Block.__(1, [--[ RKoopaShell ]--4]), context, --[ tuple ]--[
+        match$1 = make$2(undefined, obj.dir, --[ SEnemy ]--Block.__(1, [--[ RKoopaShell ]--4]), context, --[ tuple ]--[
               obj.pos.x,
               obj.pos.y
             ]);
-        var new_obj$1 = match$1[1];
-        var new_spr$1 = match$1[0];
+        new_obj$1 = match$1[1];
+        new_spr$1 = match$1[0];
         normalize_pos(new_obj$1.pos, spr.params, new_spr$1.params);
         return --[ Enemy ]--Block.__(1, [
                   --[ RKoopaShell ]--4,
@@ -1198,13 +1198,13 @@ end
 
 function rev_dir(o, t, s) do
   reverse_left_right(o);
-  var old_params = s.params;
+  old_params = s.params;
   transform_enemy(t, s, o.dir);
   return normalize_pos(o.pos, old_params, s.params);
 end
 
 function dec_health(obj) do
-  var health = obj.health - 1 | 0;
+  health = obj.health - 1 | 0;
   if (health == 0) then do
     obj.kill = true;
     return --[ () ]--0;
@@ -1218,7 +1218,7 @@ end
 
 function evolve_block(obj, context) do
   dec_health(obj);
-  var match = make$2(undefined, undefined, --[ SBlock ]--Block.__(3, [--[ QBlockUsed ]--0]), context, --[ tuple ]--[
+  match = make$2(undefined, undefined, --[ SBlock ]--Block.__(3, [--[ QBlockUsed ]--0]), context, --[ tuple ]--[
         obj.pos.x,
         obj.pos.y
       ]);
@@ -1230,11 +1230,11 @@ function evolve_block(obj, context) do
 end
 
 function spawn_above(player_dir, obj, typ, context) do
-  var item = spawn(--[ SItem ]--Block.__(2, [typ]), context, --[ tuple ]--[
+  item = spawn(--[ SItem ]--Block.__(2, [typ]), context, --[ tuple ]--[
         obj.pos.x,
         obj.pos.y
       ]);
-  var item_obj = item[2];
+  item_obj = item[2];
   item_obj.pos.y = item_obj.pos.y - item[1].params.frame_size[1];
   item_obj.dir = player_dir and --[ Left ]--0 or --[ Right ]--1;
   set_vel_to_speed(item_obj);
@@ -1242,14 +1242,14 @@ function spawn_above(player_dir, obj, typ, context) do
 end
 
 function get_aabb(obj) do
-  var spr = obj[1].params;
-  var obj$1 = obj[2];
-  var match = spr.bbox_offset;
-  var box = obj$1.pos.x + match[0];
-  var boy = obj$1.pos.y + match[1];
-  var match$1 = spr.bbox_size;
-  var sy = match$1[1];
-  var sx = match$1[0];
+  spr = obj[1].params;
+  obj$1 = obj[2];
+  match = spr.bbox_offset;
+  box = obj$1.pos.x + match[0];
+  boy = obj$1.pos.y + match[1];
+  match$1 = spr.bbox_size;
+  sy = match$1[1];
+  sx = match$1[0];
   return do
           center: do
             x: box + sx / 2,
@@ -1263,9 +1263,9 @@ function get_aabb(obj) do
 end
 
 function col_bypass(c1, c2) do
-  var o1 = c1[2];
-  var o2 = c2[2];
-  var ctypes;
+  o1 = c1[2];
+  o2 = c2[2];
+  ctypes;
   local ___conditional___=(c1.tag | 0);
   do
      if ___conditional___ = 0--[ Player ]-- then do
@@ -1297,19 +1297,19 @@ function col_bypass(c1, c2) do
 end
 
 function check_collision(c1, c2) do
-  var b1 = get_aabb(c1);
-  var b2 = get_aabb(c2);
-  var o1 = c1[2];
+  b1 = get_aabb(c1);
+  b2 = get_aabb(c2);
+  o1 = c1[2];
   if (col_bypass(c1, c2)) then do
     return ;
   end else do
-    var vx = b1.center.x - b2.center.x;
-    var vy = b1.center.y - b2.center.y;
-    var hwidths = b1.half.x + b2.half.x;
-    var hheights = b1.half.y + b2.half.y;
+    vx = b1.center.x - b2.center.x;
+    vy = b1.center.y - b2.center.y;
+    hwidths = b1.half.x + b2.half.x;
+    hheights = b1.half.y + b2.half.y;
     if (Math.abs(vx) < hwidths and Math.abs(vy) < hheights) then do
-      var ox = hwidths - Math.abs(vx);
-      var oy = hheights - Math.abs(vy);
+      ox = hwidths - Math.abs(vx);
+      oy = hheights - Math.abs(vy);
       if (ox >= oy) then do
         if (vy > 0) then do
           o1.pos.y = o1.pos.y + oy;
@@ -1337,24 +1337,24 @@ function kill(collid, ctx) do
      if ___conditional___ = 0--[ Player ]-- then do
         return --[ [] ]--0;end end end 
      if ___conditional___ = 1--[ Enemy ]-- then do
-        var o = collid[2];
-        var pos_000 = o.pos.x;
-        var pos_001 = o.pos.y;
-        var pos = --[ tuple ]--[
+        o = collid[2];
+        pos_000 = o.pos.x;
+        pos_001 = o.pos.y;
+        pos = --[ tuple ]--[
           pos_000,
           pos_001
         ];
-        var score = o.score > 0 and --[ :: ]--[
+        score = o.score > 0 and --[ :: ]--[
             make_score(o.score, pos, ctx),
             --[ [] ]--0
           ] or --[ [] ]--0;
-        var remains = collid[0] ~= 0 and --[ [] ]--0 or --[ :: ]--[
+        remains = collid[0] ~= 0 and --[ [] ]--0 or --[ :: ]--[
             make$1(undefined, undefined, --[ GoombaSquish ]--0, pos, ctx),
             --[ [] ]--0
           ];
         return Pervasives.$at(score, remains);end end end 
      if ___conditional___ = 2--[ Item ]-- then do
-        var o$1 = collid[2];
+        o$1 = collid[2];
         if (collid[0] ~= 0) then do
           return --[ [] ]--0;
         end else do
@@ -1367,37 +1367,37 @@ function kill(collid, ctx) do
                 ];
         end end end end end 
      if ___conditional___ = 3--[ Block ]-- then do
-        var o$2 = collid[2];
-        var t = collid[0];
+        o$2 = collid[2];
+        t = collid[0];
         if (typeof t == "number" and t == 1) then do
-          var pos_000$1 = o$2.pos.x;
-          var pos_001$1 = o$2.pos.y;
-          var pos$1 = --[ tuple ]--[
+          pos_000$1 = o$2.pos.x;
+          pos_001$1 = o$2.pos.y;
+          pos$1 = --[ tuple ]--[
             pos_000$1,
             pos_001$1
           ];
-          var p1 = make$1(--[ tuple ]--[
+          p1 = make$1(--[ tuple ]--[
                 -5,
                 -5
               ], --[ tuple ]--[
                 0,
                 0.2
               ], --[ BrickChunkL ]--1, pos$1, ctx);
-          var p2 = make$1(--[ tuple ]--[
+          p2 = make$1(--[ tuple ]--[
                 -3,
                 -4
               ], --[ tuple ]--[
                 0,
                 0.2
               ], --[ BrickChunkL ]--1, pos$1, ctx);
-          var p3 = make$1(--[ tuple ]--[
+          p3 = make$1(--[ tuple ]--[
                 3,
                 -4
               ], --[ tuple ]--[
                 0,
                 0.2
               ], --[ BrickChunkR ]--2, pos$1, ctx);
-          var p4 = make$1(--[ tuple ]--[
+          p4 = make$1(--[ tuple ]--[
                 5,
                 -5
               ], --[ tuple ]--[
@@ -1425,7 +1425,7 @@ function kill(collid, ctx) do
   end
 end
 
-var $$Object = do
+$$Object = do
   invuln: 60,
   dampen_jump: 4,
   get_sprite: get_sprite,
@@ -1450,20 +1450,20 @@ var $$Object = do
 end;
 
 function render_bbox(sprite, param) do
-  var context = sprite.context;
-  var match = sprite.params.bbox_offset;
-  var match$1 = sprite.params.bbox_size;
+  context = sprite.context;
+  match = sprite.params.bbox_offset;
+  match$1 = sprite.params.bbox_size;
   context.strokeStyle = "#FF0000";
   return context.strokeRect(param[0] + match[0], param[1] + match[1], match$1[0], match$1[1]);
 end
 
 function render(sprite, param) do
-  var context = sprite.context;
-  var match = sprite.params.src_offset;
-  var match$1 = sprite.params.frame_size;
-  var sw = match$1[0];
-  var match$2 = sprite.params.frame_size;
-  var sx = match[0] + sprite.frame.contents * sw;
+  context = sprite.context;
+  match = sprite.params.src_offset;
+  match$1 = sprite.params.frame_size;
+  sw = match$1[0];
+  match$2 = sprite.params.frame_size;
+  sx = match[0] + sprite.frame.contents * sw;
   return context.drawImage(sprite.img, sx, match[1], sw, match$1[1], param[0], param[1], match$2[0], match$2[1]);
 end
 
@@ -1479,17 +1479,17 @@ function draw_bgd(bgd, off_x) do
 end
 
 function clear_canvas(canvas) do
-  var context = canvas.getContext("2d");
-  var cwidth = canvas.width;
-  var cheight = canvas.height;
+  context = canvas.getContext("2d");
+  cwidth = canvas.width;
+  cheight = canvas.height;
   context.clearRect(0, 0, cwidth, cheight);
   return --[ () ]--0;
 end
 
 function hud(canvas, score, coins) do
-  var score_string = String(score);
-  var coin_string = String(coins);
-  var context = canvas.getContext("2d");
+  score_string = String(score);
+  coin_string = String(coins);
+  context = canvas.getContext("2d");
   context.font = "10px 'Press Start 2P'";
   context.fillText("Score: " .. score_string, canvas.width - 140, 18);
   context.fillText("Coins: " .. coin_string, 120, 18);
@@ -1497,8 +1497,8 @@ function hud(canvas, score, coins) do
 end
 
 function fps(canvas, fps_val) do
-  var fps_str = String(fps_val | 0);
-  var context = canvas.getContext("2d");
+  fps_str = String(fps_val | 0);
+  context = canvas.getContext("2d");
   context.fillText(fps_str, 10, 18);
   return --[ () ]--0;
 end
@@ -1529,7 +1529,7 @@ function game_loss(ctx) do
       ];
 end
 
-var Draw = do
+Draw = do
   render: render,
   clear_canvas: clear_canvas,
   draw_bgd: draw_bgd,
@@ -1558,17 +1558,17 @@ function make$3(param, param$1) do
 end
 
 function calc_viewport_point(cc, vc, mc) do
-  var vc_half = vc / 2;
+  vc_half = vc / 2;
   return Caml_primitive.caml_float_min(Caml_primitive.caml_float_max(cc - vc_half, 0), Caml_primitive.caml_float_min(mc - vc, Math.abs(cc - vc_half)));
 end
 
 function in_viewport(v, pos) do
-  var v_min_x = v.pos.x - 32;
-  var v_max_x = v.pos.x + v.v_dim.x;
-  var v_min_y = v.pos.y - 32;
-  var v_max_y = v.pos.y + v.v_dim.y;
-  var x = pos.x;
-  var y = pos.y;
+  v_min_x = v.pos.x - 32;
+  v_max_x = v.pos.x + v.v_dim.x;
+  v_min_y = v.pos.y - 32;
+  v_max_y = v.pos.y + v.v_dim.y;
+  x = pos.x;
+  y = pos.y;
   if (x >= v_min_x and x <= v_max_x and y >= v_min_y) then do
     return y <= v_max_y;
   end else do
@@ -1577,7 +1577,7 @@ function in_viewport(v, pos) do
 end
 
 function out_of_viewport_below(v, y) do
-  var v_max_y = v.pos.y + v.v_dim.y;
+  v_max_y = v.pos.y + v.v_dim.y;
   return y >= v_max_y;
 end
 
@@ -1589,9 +1589,9 @@ function coord_to_viewport(viewport, coord) do
 end
 
 function update(vpt, ctr) do
-  var new_x = calc_viewport_point(ctr.x, vpt.v_dim.x, vpt.m_dim.x);
-  var new_y = calc_viewport_point(ctr.y, vpt.v_dim.y, vpt.m_dim.y);
-  var pos = do
+  new_x = calc_viewport_point(ctr.x, vpt.v_dim.x, vpt.m_dim.x);
+  new_y = calc_viewport_point(ctr.y, vpt.v_dim.y, vpt.m_dim.y);
+  pos = do
     x: new_x,
     y: new_y
   end;
@@ -1602,7 +1602,7 @@ function update(vpt, ctr) do
         end;
 end
 
-var Viewport = do
+Viewport = do
   make: make$3,
   calc_viewport_point: calc_viewport_point,
   in_viewport: in_viewport,
@@ -1611,7 +1611,7 @@ var Viewport = do
   update: update
 end;
 
-var pressed_keys = do
+pressed_keys = do
   left: false,
   right: false,
   up: false,
@@ -1619,20 +1619,20 @@ var pressed_keys = do
   bbox: 0
 end;
 
-var collid_objs = do
+collid_objs = do
   contents: --[ [] ]--0
 end;
 
-var particles = do
+particles = do
   contents: --[ [] ]--0
 end;
 
-var last_time = do
+last_time = do
   contents: 0
 end;
 
 function calc_fps(t0, t1) do
-  var delta = (t1 - t0) / 1000;
+  delta = (t1 - t0) / 1000;
   return 1 / delta;
 end
 
@@ -1642,26 +1642,26 @@ function update_score(state, i) do
 end
 
 function process_collision(dir, c1, c2, state) do
-  var context = state.ctx;
-  var exit = 0;
-  var s1;
-  var o1;
-  var typ;
-  var s2;
-  var o2;
-  var s1$1;
-  var o1$1;
-  var t2;
-  var s2$1;
-  var o2$1;
-  var o1$2;
-  var t2$1;
-  var o2$2;
+  context = state.ctx;
+  exit = 0;
+  s1;
+  o1;
+  typ;
+  s2;
+  o2;
+  s1$1;
+  o1$1;
+  t2;
+  s2$1;
+  o2$1;
+  o1$2;
+  t2$1;
+  o2$2;
   local ___conditional___=(c1.tag | 0);
   do
      if ___conditional___ = 0--[ Player ]-- then do
-        var o1$3 = c1[2];
-        var s1$2 = c1[1];
+        o1$3 = c1[2];
+        s1$2 = c1[1];
         local ___conditional___=(c2.tag | 0);
         do
            if ___conditional___ = 0--[ Player ]-- then do
@@ -1670,9 +1670,9 @@ function process_collision(dir, c1, c2, state) do
                       undefined
                     ];end end end 
            if ___conditional___ = 1--[ Enemy ]-- then do
-              var o2$3 = c2[2];
-              var s2$2 = c2[1];
-              var typ$1 = c2[0];
+              o2$3 = c2[2];
+              s2$2 = c2[1];
+              typ$1 = c2[0];
               if (dir ~= 1) then do
                 s1$1 = s1$2;
                 o1$1 = o1$3;
@@ -1694,8 +1694,8 @@ function process_collision(dir, c1, c2, state) do
               o2$2 = c2[2];
               exit = 3;end else 
            if ___conditional___ = 3--[ Block ]-- then do
-              var o2$4 = c2[2];
-              var t = c2[0];
+              o2$4 = c2[2];
+              t = c2[0];
               if (dir ~= 0) then do
                 if (typeof t == "number" and t == 4) then do
                   game_win(state.ctx);
@@ -1749,8 +1749,8 @@ function process_collision(dir, c1, c2, state) do
                         ];
                 end end  end 
               end else do
-                var updated_block = evolve_block(o2$4, context);
-                var spawned_item = spawn_above(o1$3.dir, o2$4, t[0], context);
+                updated_block = evolve_block(o2$4, context);
+                spawned_item = spawn_above(o1$3.dir, o2$4, t[0], context);
                 collide_block(undefined, dir, o1$3);
                 return --[ tuple ]--[
                         spawned_item,
@@ -1761,14 +1761,14 @@ function process_collision(dir, c1, c2, state) do
           
         endend else 
      if ___conditional___ = 1--[ Enemy ]-- then do
-        var o1$4 = c1[2];
-        var s1$3 = c1[1];
-        var t1 = c1[0];
+        o1$4 = c1[2];
+        s1$3 = c1[1];
+        t1 = c1[0];
         local ___conditional___=(c2.tag | 0);
         do
            if ___conditional___ = 0--[ Player ]-- then do
-              var o1$5 = c2[2];
-              var s1$4 = c2[1];
+              o1$5 = c2[2];
+              s1$4 = c2[1];
               if (dir ~= 0) then do
                 s1$1 = s1$4;
                 o1$1 = o1$5;
@@ -1785,13 +1785,13 @@ function process_collision(dir, c1, c2, state) do
                 exit = 1;
               end end end else 
            if ___conditional___ = 1--[ Enemy ]-- then do
-              var t1$1 = t1;
-              var s1$5 = s1$3;
-              var o1$6 = o1$4;
-              var t2$2 = c2[0];
-              var s2$3 = c2[1];
-              var o2$5 = c2[2];
-              var dir$1 = dir;
+              t1$1 = t1;
+              s1$5 = s1$3;
+              o1$6 = o1$4;
+              t2$2 = c2[0];
+              s2$3 = c2[1];
+              o2$5 = c2[2];
+              dir$1 = dir;
               if (t1$1 ~= 3) then do
                 if (t1$1 >= 4) then do
                   if (t2$2 >= 3) then do
@@ -1858,8 +1858,8 @@ function process_collision(dir, c1, c2, state) do
                       undefined
                     ];end end end 
            if ___conditional___ = 3--[ Block ]-- then do
-              var o2$6 = c2[2];
-              var t2$3 = c2[0];
+              o2$6 = c2[2];
+              t2$3 = c2[0];
               if (dir >= 2) then do
                 if (t1 >= 3) then do
                   if (typeof t2$3 == "number") then do
@@ -1878,8 +1878,8 @@ function process_collision(dir, c1, c2, state) do
                             ];
                     end end 
                   end else do
-                    var updated_block$1 = evolve_block(o2$6, context);
-                    var spawned_item$1 = spawn_above(o1$4.dir, o2$6, t2$3[0], context);
+                    updated_block$1 = evolve_block(o2$6, context);
+                    spawned_item$1 = spawn_above(o1$4.dir, o2$6, t2$3[0], context);
                     rev_dir(o1$4, t1, s1$3);
                     return --[ tuple ]--[
                             updated_block$1,
@@ -1904,7 +1904,7 @@ function process_collision(dir, c1, c2, state) do
           
         endend else 
      if ___conditional___ = 2--[ Item ]-- then do
-        var o2$7 = c1[2];
+        o2$7 = c1[2];
         local ___conditional___=(c2.tag | 0);
         do
            if ___conditional___ = 0--[ Player ]-- then do
@@ -1946,17 +1946,17 @@ function process_collision(dir, c1, c2, state) do
   local ___conditional___=(exit);
   do
      if ___conditional___ = 1 then do
-        var o1$7 = o1;
-        var typ$2 = typ;
-        var s2$4 = s2;
-        var o2$8 = o2;
-        var state$1 = state;
-        var context$1 = context;
+        o1$7 = o1;
+        typ$2 = typ;
+        s2$4 = s2;
+        o2$8 = o2;
+        state$1 = state;
+        context$1 = context;
         o1$7.invuln = 10;
         o1$7.jumping = false;
         o1$7.grounded = true;
         if (typ$2 >= 3) then do
-          var r2 = evolve_enemy(o1$7.dir, typ$2, s2$4, o2$8, context$1);
+          r2 = evolve_enemy(o1$7.dir, typ$2, s2$4, o2$8, context$1);
           o1$7.vel.y = -4;
           o1$7.pos.y = o1$7.pos.y - 5;
           return --[ tuple ]--[
@@ -1974,7 +1974,7 @@ function process_collision(dir, c1, c2, state) do
                     evolve_enemy(o1$7.dir, typ$2, s2$4, o2$8, context$1)
                   ];
           end else do
-            var score = Caml_int32.imul(100, state$1.multiplier);
+            score = Caml_int32.imul(100, state$1.multiplier);
             update_score(state$1, score);
             o2$8.score = score;
             state$1.multiplier = (state$1.multiplier << 1);
@@ -1985,13 +1985,13 @@ function process_collision(dir, c1, c2, state) do
           end end 
         end end end end end 
      if ___conditional___ = 2 then do
-        var o1$8 = o1$1;
-        var t2$4 = t2;
-        var s2$5 = s2$1;
-        var o2$9 = o2$1;
-        var context$2 = context;
+        o1$8 = o1$1;
+        t2$4 = t2;
+        s2$5 = s2$1;
+        o2$9 = o2$1;
+        context$2 = context;
         if (t2$4 >= 3) then do
-          var r2$1 = o2$9.vel.x == 0 and evolve_enemy(o1$8.dir, t2$4, s2$5, o2$9, context$2) or (dec_health(o1$8), o1$8.invuln = 60, undefined);
+          r2$1 = o2$9.vel.x == 0 and evolve_enemy(o1$8.dir, t2$4, s2$5, o2$9, context$2) or (dec_health(o1$8), o1$8.invuln = 60, undefined);
           return --[ tuple ]--[
                   undefined,
                   r2$1
@@ -2043,7 +2043,7 @@ function process_collision(dir, c1, c2, state) do
 end
 
 function broad_phase(collid, all_collids, state) do
-  var obj = collid[2];
+  obj = collid[2];
   return List.filter((function (c) do
                   if (in_viewport(state.vpt, obj.pos) or is_player(collid)) then do
                     return true;
@@ -2057,38 +2057,38 @@ function check_collisions(collid, all_collids, state) do
   if (collid.tag == --[ Block ]--3) then do
     return --[ [] ]--0;
   end else do
-    var broad = broad_phase(collid, all_collids, state);
-    var c = collid;
-    var cs = broad;
-    var state$1 = state;
-    var c$1 = c;
-    var _cs = cs;
-    var state$2 = state$1;
-    var _acc = --[ [] ]--0;
+    broad = broad_phase(collid, all_collids, state);
+    c = collid;
+    cs = broad;
+    state$1 = state;
+    c$1 = c;
+    _cs = cs;
+    state$2 = state$1;
+    _acc = --[ [] ]--0;
     while(true) do
-      var acc = _acc;
-      var cs$1 = _cs;
+      acc = _acc;
+      cs$1 = _cs;
       if (cs$1) then do
-        var h = cs$1[0];
-        var c_obj = c$1[2];
-        var new_objs;
+        h = cs$1[0];
+        c_obj = c$1[2];
+        new_objs;
         if (equals(c$1, h)) then do
           new_objs = --[ tuple ]--[
             undefined,
             undefined
           ];
         end else do
-          var match = check_collision(c$1, h);
+          match = check_collision(c$1, h);
           new_objs = match ~= undefined and h[2].id ~= c_obj.id and process_collision(match, c$1, h, state$2) or --[ tuple ]--[
               undefined,
               undefined
             ];
         end end 
-        var match$1 = new_objs[0];
-        var acc$1;
+        match$1 = new_objs[0];
+        acc$1;
         if (match$1 ~= undefined) then do
-          var match$2 = new_objs[1];
-          var o = match$1;
+          match$2 = new_objs[1];
+          o = match$1;
           acc$1 = match$2 ~= undefined and --[ :: ]--[
               o,
               --[ :: ]--[
@@ -2100,7 +2100,7 @@ function check_collisions(collid, all_collids, state) do
               acc
             ];
         end else do
-          var match$3 = new_objs[1];
+          match$3 = new_objs[1];
           acc$1 = match$3 ~= undefined and --[ :: ]--[
               match$3,
               acc
@@ -2117,15 +2117,15 @@ function check_collisions(collid, all_collids, state) do
 end
 
 function update_collidable(state, collid, all_collids) do
-  var obj = collid[2];
-  var spr = collid[1];
+  obj = collid[2];
+  spr = collid[1];
   obj.invuln = obj.invuln > 0 and obj.invuln - 1 | 0 or 0;
-  var viewport_filter = in_viewport(state.vpt, obj.pos) or is_player(collid) or out_of_viewport_below(state.vpt, obj.pos.y);
+  viewport_filter = in_viewport(state.vpt, obj.pos) or is_player(collid) or out_of_viewport_below(state.vpt, obj.pos.y);
   if (!obj.kill and viewport_filter) then do
     obj.grounded = false;
     process_obj(obj, state.map);
-    var evolved = check_collisions(collid, all_collids, state);
-    var vpt_adj_xy = coord_to_viewport(state.vpt, obj.pos);
+    evolved = check_collisions(collid, all_collids, state);
+    vpt_adj_xy = coord_to_viewport(state.vpt, obj.pos);
     render(spr, --[ tuple ]--[
           vpt_adj_xy.x,
           vpt_adj_xy.y
@@ -2148,11 +2148,11 @@ function update_collidable(state, collid, all_collids) do
 end
 
 function translate_keys(param) do
-  var ctrls_000 = --[ tuple ]--[
+  ctrls_000 = --[ tuple ]--[
     pressed_keys.left,
     --[ CLeft ]--0
   ];
-  var ctrls_001 = --[ :: ]--[
+  ctrls_001 = --[ :: ]--[
     --[ tuple ]--[
       pressed_keys.right,
       --[ CRight ]--1
@@ -2171,7 +2171,7 @@ function translate_keys(param) do
       ]
     ]
   ];
-  var ctrls = --[ :: ]--[
+  ctrls = --[ :: ]--[
     ctrls_000,
     ctrls_001
   ];
@@ -2189,8 +2189,8 @@ end
 
 function run_update_collid(state, collid, all_collids) do
   if (collid.tag) then do
-    var obj = collid[2];
-    var evolved = update_collidable(state, collid, all_collids);
+    obj = collid[2];
+    evolved = update_collidable(state, collid, all_collids);
     if (!obj.kill) then do
       collid_objs.contents = --[ :: ]--[
         collid,
@@ -2198,18 +2198,18 @@ function run_update_collid(state, collid, all_collids) do
       ];
     end
      end 
-    var new_parts = obj.kill and kill(collid, state.ctx) or --[ [] ]--0;
+    new_parts = obj.kill and kill(collid, state.ctx) or --[ [] ]--0;
     particles.contents = Pervasives.$at(particles.contents, new_parts);
     return collid;
   end else do
-    var o = collid[2];
-    var keys = translate_keys(--[ () ]--0);
+    o = collid[2];
+    keys = translate_keys(--[ () ]--0);
     o.crouch = false;
-    var match = update_player(o, keys, state.ctx);
-    var player;
+    match = update_player(o, keys, state.ctx);
+    player;
     if (match ~= undefined) then do
-      var match$1 = match;
-      var new_spr = match$1[1];
+      match$1 = match;
+      new_spr = match$1[1];
       normalize_pos(o.pos, collid[1].params, new_spr.params);
       player = --[ Player ]--Block.__(0, [
           match$1[0],
@@ -2219,22 +2219,22 @@ function run_update_collid(state, collid, all_collids) do
     end else do
       player = collid;
     end end 
-    var evolved$1 = update_collidable(state, player, all_collids);
+    evolved$1 = update_collidable(state, player, all_collids);
     collid_objs.contents = Pervasives.$at(collid_objs.contents, evolved$1);
     return player;
   end end 
 end
 
 function update_loop(canvas, param, map_dim) do
-  var player = param[0];
-  var ctx = canvas.getContext("2d");
-  var cwidth = canvas.width / 1;
-  var cheight = canvas.height / 1;
-  var viewport = make$3(--[ tuple ]--[
+  player = param[0];
+  ctx = canvas.getContext("2d");
+  cwidth = canvas.width / 1;
+  cheight = canvas.height / 1;
+  viewport = make$3(--[ tuple ]--[
         cwidth,
         cheight
       ], map_dim);
-  var state = do
+  state = do
     bgd: make_bgd(ctx),
     ctx: ctx,
     vpt: update(viewport, player[2].pos),
@@ -2245,23 +2245,23 @@ function update_loop(canvas, param, map_dim) do
     game_over: false
   end;
   state.ctx.scale(1, 1);
-  var update_helper = function (time, state, player, objs, parts) do
+  update_helper = function (time, state, player, objs, parts) do
     if (state.game_over == true) then do
       return game_win(state.ctx);
     end else do
       collid_objs.contents = --[ [] ]--0;
       particles.contents = --[ [] ]--0;
-      var fps$1 = calc_fps(last_time.contents, time);
+      fps$1 = calc_fps(last_time.contents, time);
       last_time.contents = time;
       clear_canvas(canvas);
-      var vpos_x_int = state.vpt.pos.x / 5 | 0;
-      var bgd_width = state.bgd.params.frame_size[0] | 0;
+      vpos_x_int = state.vpt.pos.x / 5 | 0;
+      bgd_width = state.bgd.params.frame_size[0] | 0;
       draw_bgd(state.bgd, Caml_int32.mod_(vpos_x_int, bgd_width));
-      var player$1 = run_update_collid(state, player, objs);
+      player$1 = run_update_collid(state, player, objs);
       if (player$1[2].kill == true) then do
         return game_loss(state.ctx);
       end else do
-        var state$1 = do
+        state$1 = do
           bgd: state.bgd,
           ctx: state.ctx,
           vpt: update(state.vpt, player$1[2].pos),
@@ -2276,11 +2276,11 @@ function update_loop(canvas, param, map_dim) do
                 return --[ () ]--0;
               end), objs);
         List.iter((function (part) do
-                var state$2 = state$1;
-                var part$1 = part;
+                state$2 = state$1;
+                part$1 = part;
                 $$process(part$1);
-                var x = part$1.pos.x - state$2.vpt.pos.x;
-                var y = part$1.pos.y - state$2.vpt.pos.y;
+                x = part$1.pos.x - state$2.vpt.pos.x;
+                y = part$1.pos.y - state$2.vpt.pos.y;
                 render(part$1.params.sprite, --[ tuple ]--[
                       x,
                       y
@@ -2308,7 +2308,7 @@ function update_loop(canvas, param, map_dim) do
 end
 
 function keydown(evt) do
-  var match = evt.keyCode;
+  match = evt.keyCode;
   if (match >= 41) then do
     local ___conditional___=(match);
     do
@@ -2370,7 +2370,7 @@ function keydown(evt) do
 end
 
 function keyup(evt) do
-  var match = evt.keyCode;
+  match = evt.keyCode;
   if (match >= 68) then do
     if (match ~= 83) then do
       if (match ~= 87) then do
@@ -2414,7 +2414,7 @@ function keyup(evt) do
   return true;
 end
 
-var Director = do
+Director = do
   update_loop: update_loop,
   keydown: keydown,
   keyup: keyup
@@ -2422,7 +2422,7 @@ end;
 
 function mem_loc(checkloc, _loclist) do
   while(true) do
-    var loclist = _loclist;
+    loclist = _loclist;
     if (loclist) then do
       if (Caml_obj.caml_equal(checkloc, loclist[0][1])) then do
         return true;
@@ -2438,7 +2438,7 @@ end
 
 function convert_list(lst) do
   if (lst) then do
-    var h = lst[0];
+    h = lst[0];
     return Pervasives.$at(--[ :: ]--[
                 --[ tuple ]--[
                   h[0],
@@ -2500,10 +2500,10 @@ end
 
 function avoid_overlap(_lst, currentLst) do
   while(true) do
-    var lst = _lst;
+    lst = _lst;
     if (lst) then do
-      var t = lst[1];
-      var h = lst[0];
+      t = lst[1];
+      h = lst[0];
       if (mem_loc(h[1], currentLst)) then do
         _lst = t;
         continue ;
@@ -2521,14 +2521,14 @@ end
 
 function trim_edges(_lst, blockw, blockh) do
   while(true) do
-    var lst = _lst;
+    lst = _lst;
     if (lst) then do
-      var t = lst[1];
-      var h = lst[0];
-      var cx = h[1][0];
-      var cy = h[1][1];
-      var pixx = blockw * 16;
-      var pixy = blockh * 16;
+      t = lst[1];
+      h = lst[0];
+      cx = h[1][0];
+      cy = h[1][1];
+      pixx = blockw * 16;
+      pixy = blockh * 16;
       if (cx < 128 or pixx - cx < 528 or cy == 0 or pixy - cy < 48) then do
         _lst = t;
         continue ;
@@ -2563,14 +2563,14 @@ end
 
 function generate_coins(_block_coord) do
   while(true) do
-    var block_coord = _block_coord;
-    var place_coin = Random.$$int(2);
+    block_coord = _block_coord;
+    place_coin = Random.$$int(2);
     if (block_coord) then do
-      var t = block_coord[1];
-      var h = block_coord[0];
+      t = block_coord[1];
+      h = block_coord[0];
       if (place_coin == 0) then do
-        var xc = h[1][0];
-        var yc = h[1][1];
+        xc = h[1][0];
+        yc = h[1][1];
         return Pervasives.$at(--[ :: ]--[
                     --[ tuple ]--[
                       0,
@@ -2595,10 +2595,10 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
   if (cbx > blockw or cby > blockh) then do
     return --[ [] ]--0;
   end else do
-    var block_typ = Random.$$int(4);
-    var stair_typ = Random.$$int(2);
-    var life_block_chance = Random.$$int(5);
-    var middle_block = life_block_chance == 0 and 3 or stair_typ;
+    block_typ = Random.$$int(4);
+    stair_typ = Random.$$int(2);
+    life_block_chance = Random.$$int(5);
+    middle_block = life_block_chance == 0 and 3 or stair_typ;
     local ___conditional___=(prob);
     do
        if ___conditional___ = 0 then do
@@ -2664,7 +2664,7 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
                   ];
           end end  end end end end 
        if ___conditional___ = 1 then do
-          var num_clouds = Random.$$int(5) + 5 | 0;
+          num_clouds = Random.$$int(5) + 5 | 0;
           if (cby < 5) then do
             return generate_clouds(cbx, cby, 2, num_clouds);
           end else do
@@ -2672,17 +2672,17 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
           end end end end end 
        if ___conditional___ = 2 then do
           if (blockh - cby == 1) then do
-            var cbx$1 = cbx;
-            var cby$1 = cby;
-            var typ = stair_typ;
-            var four_000 = --[ tuple ]--[
+            cbx$1 = cbx;
+            cby$1 = cby;
+            typ = stair_typ;
+            four_000 = --[ tuple ]--[
               typ,
               --[ tuple ]--[
                 cbx$1,
                 cby$1
               ]
             ];
-            var four_001 = --[ :: ]--[
+            four_001 = --[ :: ]--[
               --[ tuple ]--[
                 typ,
                 --[ tuple ]--[
@@ -2710,18 +2710,18 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
                 ]
               ]
             ];
-            var four = --[ :: ]--[
+            four = --[ :: ]--[
               four_000,
               four_001
             ];
-            var three_000 = --[ tuple ]--[
+            three_000 = --[ tuple ]--[
               typ,
               --[ tuple ]--[
                 cbx$1 + 1,
                 cby$1 - 1
               ]
             ];
-            var three_001 = --[ :: ]--[
+            three_001 = --[ :: ]--[
               --[ tuple ]--[
                 typ,
                 --[ tuple ]--[
@@ -2740,18 +2740,18 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
                 --[ [] ]--0
               ]
             ];
-            var three = --[ :: ]--[
+            three = --[ :: ]--[
               three_000,
               three_001
             ];
-            var two_000 = --[ tuple ]--[
+            two_000 = --[ tuple ]--[
               typ,
               --[ tuple ]--[
                 cbx$1 + 2,
                 cby$1 - 2
               ]
             ];
-            var two_001 = --[ :: ]--[
+            two_001 = --[ :: ]--[
               --[ tuple ]--[
                 typ,
                 --[ tuple ]--[
@@ -2761,18 +2761,18 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
               ],
               --[ [] ]--0
             ];
-            var two = --[ :: ]--[
+            two = --[ :: ]--[
               two_000,
               two_001
             ];
-            var one_000 = --[ tuple ]--[
+            one_000 = --[ tuple ]--[
               typ,
               --[ tuple ]--[
                 cbx$1 + 3,
                 cby$1 - 3
               ]
             ];
-            var one = --[ :: ]--[
+            one = --[ :: ]--[
               one_000,
               --[ [] ]--0
             ];
@@ -2782,17 +2782,17 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
           end end end end end 
        if ___conditional___ = 3 then do
           if (stair_typ == 0 and blockh - cby > 3) then do
-            var cbx$2 = cbx;
-            var cby$2 = cby;
-            var typ$1 = stair_typ;
-            var three_000$1 = --[ tuple ]--[
+            cbx$2 = cbx;
+            cby$2 = cby;
+            typ$1 = stair_typ;
+            three_000$1 = --[ tuple ]--[
               typ$1,
               --[ tuple ]--[
                 cbx$2,
                 cby$2
               ]
             ];
-            var three_001$1 = --[ :: ]--[
+            three_001$1 = --[ :: ]--[
               --[ tuple ]--[
                 typ$1,
                 --[ tuple ]--[
@@ -2811,18 +2811,18 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
                 --[ [] ]--0
               ]
             ];
-            var three$1 = --[ :: ]--[
+            three$1 = --[ :: ]--[
               three_000$1,
               three_001$1
             ];
-            var two_000$1 = --[ tuple ]--[
+            two_000$1 = --[ tuple ]--[
               typ$1,
               --[ tuple ]--[
                 cbx$2 + 2,
                 cby$2 + 1
               ]
             ];
-            var two_001$1 = --[ :: ]--[
+            two_001$1 = --[ :: ]--[
               --[ tuple ]--[
                 typ$1,
                 --[ tuple ]--[
@@ -2832,18 +2832,18 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
               ],
               --[ [] ]--0
             ];
-            var two$1 = --[ :: ]--[
+            two$1 = --[ :: ]--[
               two_000$1,
               two_001$1
             ];
-            var one_000$1 = --[ tuple ]--[
+            one_000$1 = --[ tuple ]--[
               typ$1,
               --[ tuple ]--[
                 cbx$2 + 5,
                 cby$2 + 2
               ]
             ];
-            var one_001 = --[ :: ]--[
+            one_001 = --[ :: ]--[
               --[ tuple ]--[
                 typ$1,
                 --[ tuple ]--[
@@ -2853,23 +2853,23 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
               ],
               --[ [] ]--0
             ];
-            var one$1 = --[ :: ]--[
+            one$1 = --[ :: ]--[
               one_000$1,
               one_001
             ];
             return Pervasives.$at(three$1, Pervasives.$at(two$1, one$1));
           end else if (blockh - cby > 2) then do
-            var cbx$3 = cbx;
-            var cby$3 = cby;
-            var typ$2 = stair_typ;
-            var one_000$2 = --[ tuple ]--[
+            cbx$3 = cbx;
+            cby$3 = cby;
+            typ$2 = stair_typ;
+            one_000$2 = --[ tuple ]--[
               typ$2,
               --[ tuple ]--[
                 cbx$3,
                 cby$3
               ]
             ];
-            var one_001$1 = --[ :: ]--[
+            one_001$1 = --[ :: ]--[
               --[ tuple ]--[
                 typ$2,
                 --[ tuple ]--[
@@ -2879,18 +2879,18 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
               ],
               --[ [] ]--0
             ];
-            var one$2 = --[ :: ]--[
+            one$2 = --[ :: ]--[
               one_000$2,
               one_001$1
             ];
-            var two_000$2 = --[ tuple ]--[
+            two_000$2 = --[ tuple ]--[
               typ$2,
               --[ tuple ]--[
                 cbx$3 + 3,
                 cby$3 - 1
               ]
             ];
-            var two_001$2 = --[ :: ]--[
+            two_001$2 = --[ :: ]--[
               --[ tuple ]--[
                 typ$2,
                 --[ tuple ]--[
@@ -2900,18 +2900,18 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
               ],
               --[ [] ]--0
             ];
-            var two$2 = --[ :: ]--[
+            two$2 = --[ :: ]--[
               two_000$2,
               two_001$2
             ];
-            var three_000$2 = --[ tuple ]--[
+            three_000$2 = --[ tuple ]--[
               typ$2,
               --[ tuple ]--[
                 cbx$3 + 4,
                 cby$3 - 2
               ]
             ];
-            var three_001$2 = --[ :: ]--[
+            three_001$2 = --[ :: ]--[
               --[ tuple ]--[
                 typ$2,
                 --[ tuple ]--[
@@ -2930,7 +2930,7 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
                 --[ [] ]--0
               ]
             ];
-            var three$2 = --[ :: ]--[
+            three$2 = --[ :: ]--[
               three_000$2,
               three_001$2
             ];
@@ -3034,8 +3034,8 @@ end
 
 function generate_enemies(blockw, blockh, _cbx, _cby, acc) do
   while(true) do
-    var cby = _cby;
-    var cbx = _cbx;
+    cby = _cby;
+    cbx = _cbx;
     if (cbx > blockw - 32) then do
       return --[ [] ]--0;
     end else if (cby > blockh - 1 or cbx < 15) then do
@@ -3049,16 +3049,16 @@ function generate_enemies(blockw, blockh, _cbx, _cby, acc) do
       _cby = cby + 1;
       continue ;
     end else do
-      var prob = Random.$$int(30);
+      prob = Random.$$int(30);
       if (prob < 3 and blockh - 1 == cby) then do
-        var enemy_000 = --[ tuple ]--[
+        enemy_000 = --[ tuple ]--[
           prob,
           --[ tuple ]--[
             cbx * 16,
             cby * 16
           ]
         ];
-        var enemy = --[ :: ]--[
+        enemy = --[ :: ]--[
           enemy_000,
           --[ [] ]--0
         ];
@@ -3073,15 +3073,15 @@ end
 
 function generate_block_enemies(_block_coord) do
   while(true) do
-    var block_coord = _block_coord;
-    var place_enemy = Random.$$int(20);
-    var enemy_typ = Random.$$int(3);
+    block_coord = _block_coord;
+    place_enemy = Random.$$int(20);
+    enemy_typ = Random.$$int(3);
     if (block_coord) then do
-      var t = block_coord[1];
-      var h = block_coord[0];
+      t = block_coord[1];
+      h = block_coord[0];
       if (place_enemy == 0) then do
-        var xc = h[1][0];
-        var yc = h[1][1];
+        xc = h[1][0];
+        yc = h[1][1];
         return Pervasives.$at(--[ :: ]--[
                     --[ tuple ]--[
                       enemy_typ,
@@ -3104,9 +3104,9 @@ end
 
 function generate_block_locs(blockw, blockh, _cbx, _cby, _acc) do
   while(true) do
-    var acc = _acc;
-    var cby = _cby;
-    var cbx = _cbx;
+    acc = _acc;
+    cby = _cby;
+    cbx = _cbx;
     if (blockw - cbx < 33) then do
       return acc;
     end else if (cby > blockh - 1) then do
@@ -3120,11 +3120,11 @@ function generate_block_locs(blockw, blockh, _cbx, _cby, _acc) do
       _cby = cby + 1;
       continue ;
     end else do
-      var prob = Random.$$int(100);
+      prob = Random.$$int(100);
       if (prob < 5) then do
-        var newacc = choose_block_pattern(blockw, blockh, cbx, cby, prob);
-        var undup_lst = avoid_overlap(newacc, acc);
-        var called_acc = Pervasives.$at(acc, undup_lst);
+        newacc = choose_block_pattern(blockw, blockh, cbx, cby, prob);
+        undup_lst = avoid_overlap(newacc, acc);
+        called_acc = Pervasives.$at(acc, undup_lst);
         _acc = called_acc;
         _cby = cby + 1;
         continue ;
@@ -3145,13 +3145,13 @@ end
 
 function generate_ground(blockw, blockh, _inc, _acc) do
   while(true) do
-    var acc = _acc;
-    var inc = _inc;
+    acc = _acc;
+    inc = _inc;
     if (inc > blockw) then do
       return acc;
     end else if (inc > 10) then do
-      var skip = Random.$$int(10);
-      var newacc = Pervasives.$at(acc, --[ :: ]--[
+      skip = Random.$$int(10);
+      newacc = Pervasives.$at(acc, --[ :: ]--[
             --[ tuple ]--[
               4,
               --[ tuple ]--[
@@ -3170,7 +3170,7 @@ function generate_ground(blockw, blockh, _inc, _acc) do
         continue ;
       end end 
     end else do
-      var newacc$1 = Pervasives.$at(acc, --[ :: ]--[
+      newacc$1 = Pervasives.$at(acc, --[ :: ]--[
             --[ tuple ]--[
               4,
               --[ tuple ]--[
@@ -3189,9 +3189,9 @@ end
 
 function convert_to_block_obj(lst, context) do
   if (lst) then do
-    var h = lst[0];
-    var sblock_typ = choose_sblock_typ(h[0]);
-    var ob = spawn(--[ SBlock ]--Block.__(3, [sblock_typ]), context, h[1]);
+    h = lst[0];
+    sblock_typ = choose_sblock_typ(h[0]);
+    ob = spawn(--[ SBlock ]--Block.__(3, [sblock_typ]), context, h[1]);
     return Pervasives.$at(--[ :: ]--[
                 ob,
                 --[ [] ]--0
@@ -3203,9 +3203,9 @@ end
 
 function convert_to_enemy_obj(lst, context) do
   if (lst) then do
-    var h = lst[0];
-    var senemy_typ = choose_enemy_typ(h[0]);
-    var ob = spawn(--[ SEnemy ]--Block.__(1, [senemy_typ]), context, h[1]);
+    h = lst[0];
+    senemy_typ = choose_enemy_typ(h[0]);
+    ob = spawn(--[ SEnemy ]--Block.__(1, [senemy_typ]), context, h[1]);
     return Pervasives.$at(--[ :: ]--[
                 ob,
                 --[ [] ]--0
@@ -3217,7 +3217,7 @@ end
 
 function convert_to_coin_obj(lst, context) do
   if (lst) then do
-    var ob = spawn(--[ SItem ]--Block.__(2, [--[ Coin ]--3]), context, lst[0][1]);
+    ob = spawn(--[ SItem ]--Block.__(2, [--[ Coin ]--3]), context, lst[0][1]);
     return Pervasives.$at(--[ :: ]--[
                 ob,
                 --[ [] ]--0
@@ -3228,23 +3228,23 @@ function convert_to_coin_obj(lst, context) do
 end
 
 function generate_helper(blockw, blockh, cx, cy, context) do
-  var block_locs = generate_block_locs(blockw, blockh, 0, 0, --[ [] ]--0);
-  var converted_block_locs = trim_edges(convert_list(block_locs), blockw, blockh);
-  var obj_converted_block_locs = convert_to_block_obj(converted_block_locs, context);
-  var ground_blocks = generate_ground(blockw, blockh, 0, --[ [] ]--0);
-  var obj_converted_ground_blocks = convert_to_block_obj(ground_blocks, context);
-  var block_locations = Pervasives.$at(block_locs, ground_blocks);
-  var all_blocks = Pervasives.$at(obj_converted_block_locs, obj_converted_ground_blocks);
-  var enemy_locs = generate_enemies(blockw, blockh, 0, 0, block_locations);
-  var obj_converted_enemies = convert_to_enemy_obj(enemy_locs, context);
-  var coin_locs = generate_coins(converted_block_locs);
-  var undup_coin_locs = trim_edges(avoid_overlap(coin_locs, converted_block_locs), blockw, blockh);
-  var converted_block_coin_locs = Pervasives.$at(converted_block_locs, coin_locs);
-  var enemy_block_locs = generate_block_enemies(converted_block_locs);
-  var undup_enemy_block_locs = avoid_overlap(enemy_block_locs, converted_block_coin_locs);
-  var obj_enemy_blocks = convert_to_enemy_obj(undup_enemy_block_locs, context);
-  var coin_objects = convert_to_coin_obj(undup_coin_locs, context);
-  var obj_panel = generate_panel(context, blockw, blockh);
+  block_locs = generate_block_locs(blockw, blockh, 0, 0, --[ [] ]--0);
+  converted_block_locs = trim_edges(convert_list(block_locs), blockw, blockh);
+  obj_converted_block_locs = convert_to_block_obj(converted_block_locs, context);
+  ground_blocks = generate_ground(blockw, blockh, 0, --[ [] ]--0);
+  obj_converted_ground_blocks = convert_to_block_obj(ground_blocks, context);
+  block_locations = Pervasives.$at(block_locs, ground_blocks);
+  all_blocks = Pervasives.$at(obj_converted_block_locs, obj_converted_ground_blocks);
+  enemy_locs = generate_enemies(blockw, blockh, 0, 0, block_locations);
+  obj_converted_enemies = convert_to_enemy_obj(enemy_locs, context);
+  coin_locs = generate_coins(converted_block_locs);
+  undup_coin_locs = trim_edges(avoid_overlap(coin_locs, converted_block_locs), blockw, blockh);
+  converted_block_coin_locs = Pervasives.$at(converted_block_locs, coin_locs);
+  enemy_block_locs = generate_block_enemies(converted_block_locs);
+  undup_enemy_block_locs = avoid_overlap(enemy_block_locs, converted_block_coin_locs);
+  obj_enemy_blocks = convert_to_enemy_obj(undup_enemy_block_locs, context);
+  coin_objects = convert_to_coin_obj(undup_coin_locs, context);
+  obj_panel = generate_panel(context, blockw, blockh);
   return Pervasives.$at(all_blocks, Pervasives.$at(obj_converted_enemies, Pervasives.$at(coin_objects, Pervasives.$at(obj_enemy_blocks, --[ :: ]--[
                           obj_panel,
                           --[ [] ]--0
@@ -3252,10 +3252,10 @@ function generate_helper(blockw, blockh, cx, cy, context) do
 end
 
 function generate(w, h, context) do
-  var blockw = w / 16;
-  var blockh = h / 16 - 1;
-  var collide_list = generate_helper(blockw, blockh, 0, 0, context);
-  var player = spawn(--[ SPlayer ]--Block.__(0, [
+  blockw = w / 16;
+  blockh = h / 16 - 1;
+  collide_list = generate_helper(blockw, blockh, 0, 0, context);
+  player = spawn(--[ SPlayer ]--Block.__(0, [
           --[ SmallM ]--1,
           --[ Standing ]--0
         ]), context, --[ tuple ]--[
@@ -3272,20 +3272,20 @@ function init(param) do
   return Random.self_init(--[ () ]--0);
 end
 
-var Procedural_generator = do
+Procedural_generator = do
   init: init,
   generate: generate
 end;
 
-var loadCount = do
+loadCount = do
   contents: 0
 end;
 
 function load(param) do
   Random.self_init(--[ () ]--0);
-  var canvas_id = "canvas";
-  var match = document.getElementById(canvas_id);
-  var canvas;
+  canvas_id = "canvas";
+  match = document.getElementById(canvas_id);
+  canvas;
   if (match ~= null) then do
     canvas = match;
   end else do
@@ -3307,7 +3307,7 @@ function load(param) do
           "fail"
         ];
   end end 
-  var context = canvas.getContext("2d");
+  context = canvas.getContext("2d");
   document.addEventListener("keydown", keydown, true);
   document.addEventListener("keyup", keyup, true);
   Random.self_init(--[ () ]--0);
@@ -3330,8 +3330,8 @@ end
 
 function preload(param) do
   return List.map((function (img_src) do
-                var img_src$1 = "sprites/" .. img_src;
-                var img = document.createElement("img");
+                img_src$1 = "sprites/" .. img_src;
+                img = document.createElement("img");
                 img.src = img_src$1;
                 img.addEventListener("load", (function (ev) do
                         inc_counter(--[ () ]--0);
@@ -3358,7 +3358,7 @@ window.onload = (function (param) do
     return true;
   end);
 
-var Main = do
+Main = do
   Html: --[ alias ]--0,
   Pg: --[ alias ]--0,
   loadCount: loadCount,

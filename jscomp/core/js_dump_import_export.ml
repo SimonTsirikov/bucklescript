@@ -101,8 +101,6 @@ let requires require_lit cxt f (modules : (Ident.t * string) list ) =
   in
   P.force_newline f ;    
   Ext_list.rev_iter reversed_list (fun (s,file) ->
-      P.string f L.var;
-      P.space f ;
       P.string f s ;
       P.space f ;
       P.string f L.eq;

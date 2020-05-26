@@ -1,7 +1,7 @@
 'use strict';
 
 
-var a = do
+a = do
   x: 3,
   y: --[ :: ]--[
     1,

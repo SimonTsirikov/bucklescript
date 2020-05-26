@@ -1,6 +1,6 @@
 'use strict';
 
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function bool_equal(x, y) do
   if (x) then do

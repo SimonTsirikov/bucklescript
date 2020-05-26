@@ -1,14 +1,14 @@
 'use strict';
 
-var FileJs = require("./File.js");
+FileJs = require("./File.js");
 
-var foo = FileJs.foo;
+foo = FileJs.foo;
 
 function foo2(prim) do
   return FileJs.foo2(prim);
 end
 
-var bar = foo;
+bar = foo;
 
 exports.foo = foo;
 exports.foo2 = foo2;

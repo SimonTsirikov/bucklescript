@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -38,7 +38,7 @@ function aFromJs(param) do
   return param - 0 | 0;
 end
 
-var jsMapperConstantArray = [
+jsMapperConstantArray = [
   0,
   3,
   4
@@ -52,7 +52,7 @@ function bFromJs(param) do
   return Js_mapperRt.fromIntAssert(3, jsMapperConstantArray, param);
 end
 
-var jsMapperConstantArray$1 = [
+jsMapperConstantArray$1 = [
   --[ tuple ]--[
     22125,
     "c0"

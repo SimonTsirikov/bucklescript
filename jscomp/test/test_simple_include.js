@@ -1,84 +1,84 @@
 'use strict';
 
-var $$Array = require("../../lib/js/array.js");
+$$Array = require("../../lib/js/array.js");
 
-var v = do
+v = do
   contents: 32
 end;
 
 v.contents = 0;
 
-var N = do
+N = do
   a: 3,
   v: v
 end;
 
-var v$1 = do
+v$1 = do
   contents: 32
 end;
 
-var NN = do
+NN = do
   a: 3,
   v: v$1
 end;
 
-var make_float = $$Array.make_float;
+make_float = $$Array.make_float;
 
-var init = $$Array.init;
+init = $$Array.init;
 
-var make_matrix = $$Array.make_matrix;
+make_matrix = $$Array.make_matrix;
 
-var create_matrix = $$Array.create_matrix;
+create_matrix = $$Array.create_matrix;
 
-var append = $$Array.append;
+append = $$Array.append;
 
-var concat = $$Array.concat;
+concat = $$Array.concat;
 
-var sub = $$Array.sub;
+sub = $$Array.sub;
 
-var copy = $$Array.copy;
+copy = $$Array.copy;
 
-var fill = $$Array.fill;
+fill = $$Array.fill;
 
-var blit = $$Array.blit;
+blit = $$Array.blit;
 
-var to_list = $$Array.to_list;
+to_list = $$Array.to_list;
 
-var of_list = $$Array.of_list;
+of_list = $$Array.of_list;
 
-var iter = $$Array.iter;
+iter = $$Array.iter;
 
-var iteri = $$Array.iteri;
+iteri = $$Array.iteri;
 
-var map = $$Array.map;
+map = $$Array.map;
 
-var mapi = $$Array.mapi;
+mapi = $$Array.mapi;
 
-var fold_left = $$Array.fold_left;
+fold_left = $$Array.fold_left;
 
-var fold_right = $$Array.fold_right;
+fold_right = $$Array.fold_right;
 
-var iter2 = $$Array.iter2;
+iter2 = $$Array.iter2;
 
-var map2 = $$Array.map2;
+map2 = $$Array.map2;
 
-var for_all = $$Array.for_all;
+for_all = $$Array.for_all;
 
-var exists = $$Array.exists;
+exists = $$Array.exists;
 
-var mem = $$Array.mem;
+mem = $$Array.mem;
 
-var memq = $$Array.memq;
+memq = $$Array.memq;
 
-var sort = $$Array.sort;
+sort = $$Array.sort;
 
-var stable_sort = $$Array.stable_sort;
+stable_sort = $$Array.stable_sort;
 
-var fast_sort = $$Array.fast_sort;
+fast_sort = $$Array.fast_sort;
 
-var Floatarray = $$Array.Floatarray;
+Floatarray = $$Array.Floatarray;
 
-var a = 3;
+a = 3;
 
 exports.make_float = make_float;
 exports.init = init;

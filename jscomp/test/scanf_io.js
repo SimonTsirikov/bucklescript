@@ -1,24 +1,24 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Bytes = require("../../lib/js/bytes.js");
-var Curry = require("../../lib/js/curry.js");
-var Scanf = require("../../lib/js/scanf.js");
-var $$Buffer = require("../../lib/js/buffer.js");
-var Digest = require("../../lib/js/digest.js");
-var Printf = require("../../lib/js/printf.js");
-var Caml_io = require("../../lib/js/caml_io.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Bytes = require("../../lib/js/bytes.js");
+Curry = require("../../lib/js/curry.js");
+Scanf = require("../../lib/js/scanf.js");
+$$Buffer = require("../../lib/js/buffer.js");
+Digest = require("../../lib/js/digest.js");
+Printf = require("../../lib/js/printf.js");
+Caml_io = require("../../lib/js/caml_io.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var tscanf_data_file = "tscanf_data";
+tscanf_data_file = "tscanf_data";
 
-var tscanf_data_file_lines = --[ :: ]--[
+tscanf_data_file_lines = --[ :: ]--[
   --[ tuple ]--[
     "Objective",
     "Caml"
@@ -27,7 +27,7 @@ var tscanf_data_file_lines = --[ :: ]--[
 ];
 
 function create_tscanf_data(ob, lines) do
-  var add_line = function (param) do
+  add_line = function (param) do
     $$Buffer.add_string(ob, Curry._1(Printf.sprintf(--[ Format ]--[
                   --[ Caml_string ]--Block.__(3, [
                       --[ No_padding ]--0,
@@ -49,8 +49,8 @@ function create_tscanf_data(ob, lines) do
 end
 
 function write_tscanf_data_file(fname, lines) do
-  var oc = Pervasives.open_out(fname);
-  var ob = $$Buffer.create(42);
+  oc = Pervasives.open_out(fname);
+  ob = $$Buffer.create(42);
   create_tscanf_data(ob, lines);
   $$Buffer.output_buffer(oc, ob);
   Caml_io.caml_ml_flush(oc);
@@ -58,8 +58,8 @@ function write_tscanf_data_file(fname, lines) do
 end
 
 function get_lines(fname) do
-  var ib = Scanf.Scanning.from_file(fname);
-  var l = do
+  ib = Scanf.Scanning.from_file(fname);
+  l = do
     contents: --[ [] ]--0
   end;
   try do
@@ -96,9 +96,9 @@ function get_lines(fname) do
     return List.rev(l.contents);
   end
   catch (raw_exn)do
-    var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+    exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Scanf.Scan_failure) then do
-      var s = Curry._2(Printf.sprintf(--[ Format ]--[
+      s = Curry._2(Printf.sprintf(--[ Format ]--[
                 --[ String_literal ]--Block.__(11, [
                     "in file ",
                     --[ String ]--Block.__(2, [
@@ -119,7 +119,7 @@ function get_lines(fname) do
             s
           ];
     end else if (exn == Caml_builtin_exceptions.end_of_file) then do
-      var s$1 = Curry._1(Printf.sprintf(--[ Format ]--[
+      s$1 = Curry._1(Printf.sprintf(--[ Format ]--[
                 --[ String_literal ]--Block.__(11, [
                     "in file ",
                     --[ String ]--Block.__(2, [
@@ -143,7 +143,7 @@ function get_lines(fname) do
 end
 
 function add_digest_ib(ob, ib) do
-  var scan_line = function (ib, f) do
+  scan_line = function (ib, f) do
     return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                     --[ Scan_char_set ]--Block.__(20, [
                         undefined,
@@ -156,10 +156,10 @@ function add_digest_ib(ob, ib) do
                     "%[^\n\r]\n"
                   ]), f);
   end;
-  var output_line_digest = function (s) do
+  output_line_digest = function (s) do
     $$Buffer.add_string(ob, s);
     $$Buffer.add_char(ob, --[ "#" ]--35);
-    var s$1 = Digest.to_hex(Digest.string(s));
+    s$1 = Digest.to_hex(Digest.string(s));
     $$Buffer.add_string(ob, Caml_bytes.bytes_to_string(Bytes.uppercase(Caml_bytes.bytes_of_string(s$1))));
     return $$Buffer.add_char(ob, --[ "\n" ]--10);
   end;
@@ -179,8 +179,8 @@ function add_digest_ib(ob, ib) do
 end
 
 function digest_file(fname) do
-  var ib = Scanf.Scanning.from_file(fname);
-  var ob = $$Buffer.create(42);
+  ib = Scanf.Scanning.from_file(fname);
+  ob = $$Buffer.create(42);
   add_digest_ib(ob, ib);
   return $$Buffer.contents(ob);
 end
@@ -190,13 +190,13 @@ function test54(param) do
 end
 
 function test55(param) do
-  var ob = $$Buffer.create(42);
+  ob = $$Buffer.create(42);
   create_tscanf_data(ob, tscanf_data_file_lines);
-  var s = $$Buffer.contents(ob);
+  s = $$Buffer.contents(ob);
   ob.position = 0;
-  var ib = Scanf.Scanning.from_string(s);
+  ib = Scanf.Scanning.from_string(s);
   add_digest_ib(ob, ib);
-  var tscanf_data_file_lines_digest = $$Buffer.contents(ob);
+  tscanf_data_file_lines_digest = $$Buffer.contents(ob);
   return digest_file(tscanf_data_file) == tscanf_data_file_lines_digest;
 end
 

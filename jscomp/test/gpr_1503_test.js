@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Int64 = require("../../lib/js/int64.js");
-var Caml_format = require("../../lib/js/caml_format.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Int64 = require("../../lib/js/int64.js");
+Caml_format = require("../../lib/js/caml_format.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -34,14 +34,14 @@ function id(x) do
   return Caml_format.caml_int64_of_string(Caml_format.caml_int64_format("%d", x));
 end
 
-var i = --[ int64 ]--[
+i = --[ int64 ]--[
   --[ hi ]--2074848171,
   --[ lo ]--2880154539
 ];
 
-var s = Caml_format.caml_int64_format("%d", i);
+s = Caml_format.caml_int64_format("%d", i);
 
-var i$prime = Caml_format.caml_int64_of_string(s);
+i$prime = Caml_format.caml_int64_of_string(s);
 
 eq("File \"gpr_1503_test.ml\", line 18, characters 5-12", i, i$prime);
 

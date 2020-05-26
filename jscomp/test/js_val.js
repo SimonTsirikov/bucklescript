@@ -1,14 +1,14 @@
 'use strict';
 
-var X = require("x");
+X = require("x");
 
-var h = u;
+h = u;
 
-var hh = X.vv;
+hh = X.vv;
 
-var hhh = X.vv;
+hhh = X.vv;
 
-var hhhh = X.vvvv;
+hhhh = X.vvvv;
 
 exports.h = h;
 exports.hh = hh;

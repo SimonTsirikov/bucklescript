@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_int64 = require("../../lib/js/caml_int64.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
+Mt = require("./mt.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_int64 = require("../../lib/js/caml_int64.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -29,7 +29,7 @@ function f2(x, y) do
   return Caml_primitive.caml_int_compare(x + y | 0, y);
 end
 
-var f3 = Caml_primitive.caml_int_compare;
+f3 = Caml_primitive.caml_int_compare;
 
 function f4(x, y) do
   if (x < y) then do
@@ -39,9 +39,9 @@ function f4(x, y) do
   end end 
 end
 
-var f5_min = Caml_obj.caml_min;
+f5_min = Caml_obj.caml_min;
 
-var f5_max = Caml_obj.caml_max;
+f5_max = Caml_obj.caml_max;
 
 b("File \"bs_min_max_test.ml\", line 28, characters 4-11", Caml_int64.eq(Caml_int64.min(--[ int64 ]--[
               --[ hi ]--0,

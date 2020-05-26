@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Js_list = require("../../lib/js/js_list.js");
-var Js_vector = require("../../lib/js/js_vector.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Js_list = require("../../lib/js/js_list.js");
+Js_vector = require("../../lib/js/js_vector.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -178,13 +178,13 @@ function f(i) do
   return i;
 end
 
-var v = Js_vector.toList(Js_vector.init(100000, f));
+v = Js_vector.toList(Js_vector.init(100000, f));
 
 eq("File \"js_list_test.ml\", line 23, characters 7-14", Js_list.countBy((function (x) do
             return x % 2 == 0;
           end), v), 50000);
 
-var vv = Js_list.foldRight((function (x, y) do
+vv = Js_list.foldRight((function (x, y) do
         return --[ :: ]--[
                 x,
                 y
@@ -195,7 +195,7 @@ eq("File \"js_list_test.ml\", line 27, characters 7-14", true, Js_list.equal((fu
             return x == y;
           end), v, vv));
 
-var vvv = Js_list.filter((function (x) do
+vvv = Js_list.filter((function (x) do
         return x % 10 == 0;
       end), vv);
 

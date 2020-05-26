@@ -1,17 +1,17 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Char = require("../../lib/js/char.js");
-var Bytes = require("../../lib/js/bytes.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Mt = require("./mt.js");
+Char = require("../../lib/js/char.js");
+Bytes = require("../../lib/js/bytes.js");
+Curry = require("../../lib/js/curry.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -20,12 +20,12 @@ function eq(loc, x, y) do
 end
 
 function escaped(s) do
-  var n = 0;
-  for var i = 0 , #s - 1 | 0 , 1 do
-    var match = s[i];
-    var tmp;
+  n = 0;
+  for i = 0 , #s - 1 | 0 , 1 do
+    match = s[i];
+    tmp;
     if (match >= 32) then do
-      var switcher = match - 34 | 0;
+      switcher = match - 34 | 0;
       tmp = switcher > 58 or switcher < 0 and (
           switcher >= 93 and 4 or 1
         ) or (
@@ -43,11 +43,11 @@ function escaped(s) do
   if (n == #s) then do
     return Bytes.copy(s);
   end else do
-    var s$prime = Caml_bytes.caml_create_bytes(n);
+    s$prime = Caml_bytes.caml_create_bytes(n);
     n = 0;
-    for var i$1 = 0 , #s - 1 | 0 , 1 do
-      var c = s[i$1];
-      var exit = 0;
+    for i$1 = 0 , #s - 1 | 0 , 1 do
+      c = s[i$1];
+      exit = 0;
       if (c >= 35) then do
         if (c ~= 92) then do
           if (c >= 127) then do
@@ -124,14 +124,14 @@ function escaped(s) do
 end
 
 function starts_with(xs, prefix, p) do
-  var H = Caml_exceptions.create("H");
-  var len1 = #xs;
-  var len2 = #prefix;
+  H = Caml_exceptions.create("H");
+  len1 = #xs;
+  len2 = #prefix;
   if (len2 > len1) then do
     return false;
   end else do
     try do
-      for var i = 0 , len2 - 1 | 0 , 1 do
+      for i = 0 , len2 - 1 | 0 , 1 do
         if (!Curry._2(p, Caml_bytes.get(xs, i), Caml_bytes.get(prefix, i))) then do
           throw H;
         end
@@ -149,23 +149,23 @@ function starts_with(xs, prefix, p) do
   end end 
 end
 
-var a = Bytes.init(100, Char.chr);
+a = Bytes.init(100, Char.chr);
 
 Bytes.blit(a, 5, a, 10, 10);
 
 eq("File \"ext_bytes_test.ml\", line 96, characters 7-14", a, Bytes.of_string("\0\x01\x02\x03\x04\x05\x06\x07\b\t\x05\x06\x07\b\t\n\x0b\f\r\x0e\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"));
 
-var a$1 = Bytes.init(100, Char.chr);
+a$1 = Bytes.init(100, Char.chr);
 
 Bytes.blit(a$1, 10, a$1, 5, 10);
 
 eq("File \"ext_bytes_test.ml\", line 102, characters 7-14", a$1, Bytes.of_string("\0\x01\x02\x03\x04\n\x0b\f\r\x0e\x0f\x10\x11\x12\x13\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"));
 
-var f = Char.chr;
+f = Char.chr;
 
-var a$2 = Caml_bytes.bytes_to_string(Bytes.init(100, f));
+a$2 = Caml_bytes.bytes_to_string(Bytes.init(100, f));
 
-var b = Bytes.init(100, (function (i) do
+b = Bytes.init(100, (function (i) do
         return --[ "\000" ]--0;
       end));
 

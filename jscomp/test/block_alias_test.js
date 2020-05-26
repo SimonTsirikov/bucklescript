@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -21,34 +21,34 @@ function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
 end
 
-var Block$1 = { };
+Block$1 = { };
 
-var v0 = --[ A ]--Block.__(1, [
+v0 = --[ A ]--Block.__(1, [
     0,
     1
   ]);
 
-var Block$2 = { };
+Block$2 = { };
 
-var v1 = --[ A ]--Block.__(1, [
+v1 = --[ A ]--Block.__(1, [
     0,
     1
   ]);
 
-var N = do
+N = do
   Block: Block$2,
   v1: v1
 end;
 
-var Caml_obj$1 = { };
+Caml_obj$1 = { };
 
-var List$1 = { };
+List$1 = { };
 
-var V = do
+V = do
   List: List$1
 end;
 
-var f = Caml_obj.caml_equal;
+f = Caml_obj.caml_equal;
 
 eq("File \"block_alias_test.ml\", line 32, characters 6-13", List.length(--[ :: ]--[
           1,
@@ -67,7 +67,7 @@ eq("File \"block_alias_test.ml\", line 34, characters 6-13", v0, v1);
 
 Mt.from_pair_suites("Block_alias_test", suites.contents);
 
-var h = List.length;
+h = List.length;
 
 exports.suites = suites;
 exports.test_id = test_id;

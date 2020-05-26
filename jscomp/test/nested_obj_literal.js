@@ -1,7 +1,7 @@
 'use strict';
 
 
-var structural_obj = do
+structural_obj = do
   x: do
     y: do
       z: 3
@@ -9,7 +9,7 @@ var structural_obj = do
   end
 end;
 
-var f_record = do
+f_record = do
   x: do
     y: do
       z: 3

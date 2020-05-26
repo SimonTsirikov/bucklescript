@@ -1,6 +1,6 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
+List = require("../../lib/js/list.js");
 
 function v(x) do
   return --[ tuple ]--[
@@ -9,7 +9,7 @@ function v(x) do
         ];
 end
 
-var L = --[ alias ]--0;
+L = --[ alias ]--0;
 
 exports.L = L;
 exports.v = v;

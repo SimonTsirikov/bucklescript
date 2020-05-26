@@ -1,6 +1,6 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
 function foo(x) do
   if (typeof x == "number" or x[0] ~= 3505894 or x[1] ~= 3) then do

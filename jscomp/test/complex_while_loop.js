@@ -2,9 +2,9 @@
 
 
 function f(param) do
-  var n = 0;
+  n = 0;
   while((function () do
-          var fib = function (n) do
+          fib = function (n) do
             if (n == 0 or n == 1) then do
               return 1;
             end else do
@@ -21,7 +21,7 @@ end
 
 function ff(param) do
   while((function () do
-          var b = 9;
+          b = 9;
           return (3 + b | 0) > 10;
         end)()) do
     

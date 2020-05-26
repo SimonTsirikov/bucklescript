@@ -1,9 +1,9 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Curry = require("../../lib/js/curry.js");
+Mt = require("./mt.js");
+Curry = require("../../lib/js/curry.js");
 
-var result = do
+result = do
   contents: ""
 end;
 
@@ -12,12 +12,12 @@ function log(x) do
   return --[ () ]--0;
 end
 
-var Xx = do
+Xx = do
   log: log
 end;
 
 function compilerBug(a, b, c, f) do
-  var exit = 0;
+  exit = 0;
   if (a ~= "x") then do
     exit = 2;
   end
@@ -52,11 +52,11 @@ function compilerBug(a, b, c, f) do
   end end 
 end
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 

@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -52,9 +52,9 @@ function f(x) do
   return x.test("a", "b").test("a", "b");
 end
 
-var v = new Make(1, 2, 3, 4);
+v = new Make(1, 2, 3, 4);
 
-var u = v.sum();
+u = v.sum();
 
 eq("File \"ffi_splice_test.ml\", line 61, characters 12-19", u, 10);
 

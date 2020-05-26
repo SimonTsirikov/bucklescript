@@ -1,17 +1,17 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Format = require("../../lib/js/format.js");
-var Printf = require("../../lib/js/printf.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Caml_int64 = require("../../lib/js/caml_int64.js");
-var Pervasives = require("../../lib/js/pervasives.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Format = require("../../lib/js/format.js");
+Printf = require("../../lib/js/printf.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_int64 = require("../../lib/js/caml_int64.js");
+Pervasives = require("../../lib/js/pervasives.js");
 
-var tests_16 = [
+tests_16 = [
   --[ tuple ]--[
     1,
     256
@@ -78,7 +78,7 @@ var tests_16 = [
   ]
 ];
 
-var tests_32 = [
+tests_32 = [
   --[ tuple ]--[
     1,
     16777216
@@ -209,7 +209,7 @@ var tests_32 = [
   ]
 ];
 
-var tests_64 = [
+tests_64 = [
   --[ tuple ]--[
     --[ int64 ]--[
       --[ hi ]--0,
@@ -852,9 +852,9 @@ var tests_64 = [
   ]
 ];
 
-var suites_16 = List.map((function (param) do
-        var b = param[1];
-        var a = param[0];
+suites_16 = List.map((function (param) do
+        b = param[1];
+        a = param[0];
         return --[ tuple ]--[
                 Curry._1(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -877,9 +877,9 @@ var suites_16 = List.map((function (param) do
               ];
       end), $$Array.to_list(tests_16));
 
-var suites_32 = List.map((function (param) do
-        var b = param[1];
-        var a = param[0];
+suites_32 = List.map((function (param) do
+        b = param[1];
+        a = param[0];
         return --[ tuple ]--[
                 Curry._1(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -902,9 +902,9 @@ var suites_32 = List.map((function (param) do
               ];
       end), $$Array.to_list(tests_32));
 
-var suites_64 = List.map((function (param) do
-        var b = param[1];
-        var a = param[0];
+suites_64 = List.map((function (param) do
+        b = param[1];
+        a = param[0];
         return --[ tuple ]--[
                 Curry._1(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -927,7 +927,7 @@ var suites_64 = List.map((function (param) do
               ];
       end), $$Array.to_list(tests_64));
 
-var d16_000 = --[ Format ]--[
+d16_000 = --[ Format ]--[
   --[ Int ]--Block.__(4, [
       --[ Int_x ]--6,
       --[ No_padding ]--0,
@@ -937,9 +937,9 @@ var d16_000 = --[ Format ]--[
   "%x"
 ];
 
-var d16_001 = Caml_int32.caml_bswap16;
+d16_001 = Caml_int32.caml_bswap16;
 
-var d16_002 = [
+d16_002 = [
   --[ tuple ]--[
     287454020,
     "4433"
@@ -950,13 +950,13 @@ var d16_002 = [
   ]
 ];
 
-var d16 = --[ tuple ]--[
+d16 = --[ tuple ]--[
   d16_000,
   d16_001,
   d16_002
 ];
 
-var d32_000 = --[ Format ]--[
+d32_000 = --[ Format ]--[
   --[ Int32 ]--Block.__(5, [
       --[ Int_x ]--6,
       --[ No_padding ]--0,
@@ -966,9 +966,9 @@ var d32_000 = --[ Format ]--[
   "%lx"
 ];
 
-var d32_001 = Caml_int32.caml_int32_bswap;
+d32_001 = Caml_int32.caml_int32_bswap;
 
-var d32_002 = [
+d32_002 = [
   --[ tuple ]--[
     287454020,
     "44332211"
@@ -979,18 +979,18 @@ var d32_002 = [
   ]
 ];
 
-var d32 = --[ tuple ]--[
+d32 = --[ tuple ]--[
   d32_000,
   d32_001,
   d32_002
 ];
 
 function f(s, param) do
-  var swap = param[1];
-  var x = param[0];
+  swap = param[1];
+  x = param[0];
   return $$Array.to_list($$Array.mapi((function (i, param) do
-                    var b = param[1];
-                    var a = param[0];
+                    b = param[1];
+                    a = param[0];
                     return --[ tuple ]--[
                             Curry._2(Format.asprintf(--[ Format ]--[
                                       --[ String ]--Block.__(2, [

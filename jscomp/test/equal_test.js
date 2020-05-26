@@ -5,13 +5,13 @@ function str_equal(x, y) do
   return x == y;
 end
 
-var str_b = true;
+str_b = true;
 
 function int_equal(x, y) do
   return x == y;
 end
 
-var v = false;
+v = false;
 
 exports.str_equal = str_equal;
 exports.str_b = str_b;

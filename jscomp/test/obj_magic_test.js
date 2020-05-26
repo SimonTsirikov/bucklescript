@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Obj = require("../../lib/js/obj.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Obj = require("../../lib/js/obj.js");
+Block = require("../../lib/js/block.js");
 
-var empty_backtrace = --[ obj_block ]--Block.__(Obj.abstract_tag, []);
+empty_backtrace = --[ obj_block ]--Block.__(Obj.abstract_tag, []);
 
 function is_block(x) do
   return typeof x ~= "number";
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "is_block_test1",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -20,7 +20,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "is_block_test2",
     (function (param) do
@@ -58,7 +58,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

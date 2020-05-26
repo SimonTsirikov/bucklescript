@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -32,7 +32,7 @@ eq("File \"gpr_1749_test.ml\", line 18, characters 6-13", 0, 0);
 
 Mt.from_pair_suites("Gpr_1749_test", suites.contents);
 
-var a = 0;
+a = 0;
 
 exports.suites = suites;
 exports.test_id = test_id;

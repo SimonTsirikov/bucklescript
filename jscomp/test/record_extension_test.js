@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_format = require("../../lib/js/caml_format.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_format = require("../../lib/js/caml_format.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -17,7 +17,7 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end
 
-var Inline_record = Caml_exceptions.create("Record_extension_test.Inline_record");
+Inline_record = Caml_exceptions.create("Record_extension_test.Inline_record");
 
 function f(x) do
   if (x[0] == Inline_record) then do
@@ -26,7 +26,7 @@ function f(x) do
    end 
 end
 
-var v0 = [
+v0 = [
   Inline_record,
   --[ x ]--3,
   --[ y ]--"4"

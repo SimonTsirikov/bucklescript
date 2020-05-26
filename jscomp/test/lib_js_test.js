@@ -1,7 +1,7 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
 console.log(JSON.stringify(--[ :: ]--[
           1,
@@ -16,7 +16,7 @@ console.log(JSON.stringify(--[ :: ]--[
 
 console.log("hey");
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "anything_to_string",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -26,7 +26,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   --[ [] ]--0
 ];

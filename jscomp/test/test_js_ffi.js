@@ -1,6 +1,6 @@
 'use strict';
 
-var $$String = require("../../lib/js/string.js");
+$$String = require("../../lib/js/string.js");
 
 function v(u) do
   t(do
@@ -13,7 +13,7 @@ function u(v) do
   return v;
 end
 
-var s = $$String;
+s = $$String;
 
 exports.v = v;
 exports.u = u;

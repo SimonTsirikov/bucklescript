@@ -1,17 +1,17 @@
 'use strict';
 
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Format = require("../../lib/js/format.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Format = require("../../lib/js/format.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function sub(_tr, _k) do
   while(true) do
-    var k = _k;
-    var tr = _tr;
+    k = _k;
+    tr = _tr;
     if (tr) then do
       if (k == 1) then do
         return tr[0];
@@ -33,8 +33,8 @@ end
 
 function update(tr, k, w) do
   if (tr) then do
-    var r = tr[2];
-    var l = tr[1];
+    r = tr[2];
+    l = tr[1];
     if (k == 1) then do
       return --[ Br ]--[
               w,
@@ -42,7 +42,7 @@ function update(tr, k, w) do
               r
             ];
     end else do
-      var v = tr[0];
+      v = tr[0];
       if (k % 2 == 0) then do
         return --[ Br ]--[
                 v,
@@ -73,9 +73,9 @@ function $$delete(tr, n) do
     if (n == 1) then do
       return --[ Lf ]--0;
     end else do
-      var r = tr[2];
-      var l = tr[1];
-      var v = tr[0];
+      r = tr[2];
+      l = tr[1];
+      v = tr[0];
       if (n % 2 == 0) then do
         return --[ Br ]--[
                 v,
@@ -113,7 +113,7 @@ end
 
 function lorem(tr) do
   if (tr) then do
-    var l = tr[1];
+    l = tr[1];
     if (l) then do
       return --[ Br ]--[
               l[0],
@@ -137,7 +137,7 @@ function lorem(tr) do
   end end 
 end
 
-var empty = --[ tuple ]--[
+empty = --[ tuple ]--[
   --[ Lf ]--0,
   0
 ];
@@ -158,7 +158,7 @@ function get(param, i) do
 end
 
 function set(param, i, v) do
-  var k = param[1];
+  k = param[1];
   if (i >= 0 and i < k) then do
     return --[ tuple ]--[
             update(param[0], i + 1 | 0, v),
@@ -180,7 +180,7 @@ function push_front(param, v) do
 end
 
 function pop_front(param) do
-  var k = param[1];
+  k = param[1];
   if (k > 0) then do
     return --[ tuple ]--[
             lorem(param[0]),
@@ -195,7 +195,7 @@ function pop_front(param) do
 end
 
 function push_back(param, v) do
-  var k = param[1];
+  k = param[1];
   return --[ tuple ]--[
           update(param[0], k + 1 | 0, v),
           k + 1 | 0
@@ -203,7 +203,7 @@ function push_back(param, v) do
 end
 
 function pop_back(param) do
-  var k = param[1];
+  k = param[1];
   if (k > 0) then do
     return --[ tuple ]--[
             $$delete(param[0], k),
@@ -218,8 +218,8 @@ function pop_back(param) do
 end
 
 function pp(fmt, s) do
-  var v = "[ ";
-  for var i = 0 , length(s) - 1 | 0 , 1 do
+  v = "[ ";
+  for i = 0 , length(s) - 1 | 0 , 1 do
     v = v .. (", " .. String(get(s, i)));
   end
   v = v .. "]";
@@ -233,9 +233,9 @@ function pp(fmt, s) do
 end
 
 function filter_from(i, p, s) do
-  var u = empty;
-  for var i$1 = i , length(s) - 1 | 0 , 1 do
-    var ele = get(s, i$1);
+  u = empty;
+  for i$1 = i , length(s) - 1 | 0 , 1 do
+    ele = get(s, i$1);
     if (Curry._1(p, ele)) then do
       u = push_back(u, ele);
     end
@@ -245,26 +245,26 @@ function filter_from(i, p, s) do
 end
 
 function append(a, b) do
-  var empty$1 = empty;
-  for var i = 0 , length(a) - 1 | 0 , 1 do
+  empty$1 = empty;
+  for i = 0 , length(a) - 1 | 0 , 1 do
     empty$1 = push_back(empty$1, get(a, i));
   end
-  for var i$1 = 0 , length(b) - 1 | 0 , 1 do
+  for i$1 = 0 , length(b) - 1 | 0 , 1 do
     empty$1 = push_back(empty$1, get(b, i$1));
   end
   return empty$1;
 end
 
 function sort(s) do
-  var size = length(s);
+  size = length(s);
   if (size <= 1) then do
     return s;
   end else do
-    var head = get(s, 0);
-    var larger = sort(filter_from(1, (function (x) do
+    head = get(s, 0);
+    larger = sort(filter_from(1, (function (x) do
                 return Caml_obj.caml_greaterthan(x, head);
               end), s));
-    var smaller = sort(filter_from(1, (function (x) do
+    smaller = sort(filter_from(1, (function (x) do
                 return Caml_obj.caml_lessequal(x, head);
               end), s));
     return append(smaller, push_front(larger, head));
@@ -272,16 +272,16 @@ function sort(s) do
 end
 
 function of_array(arr) do
-  var v = empty;
-  for var i = 0 , #arr - 1 | 0 , 1 do
+  v = empty;
+  for i = 0 , #arr - 1 | 0 , 1 do
     v = push_back(v, Caml_array.caml_array_get(arr, i));
   end
   return v;
 end
 
-var equal = Caml_obj.caml_equal;
+equal = Caml_obj.caml_equal;
 
-var Int_array = do
+Int_array = do
   empty: empty,
   get: get,
   set: set,
@@ -300,7 +300,7 @@ function $eq$tilde(x, y) do
   return Caml_obj.caml_equal(x, of_array(y));
 end
 
-var u = of_array([
+u = of_array([
       1,
       2,
       2,
@@ -309,7 +309,7 @@ var u = of_array([
       6
     ]);
 
-var x = sort(u);
+x = sort(u);
 
 if (!Caml_obj.caml_equal(x, of_array([
             1,
@@ -330,15 +330,15 @@ if (!Caml_obj.caml_equal(x, of_array([
 end
  end 
 
-var v = $$Array.init(500, (function (i) do
+v = $$Array.init(500, (function (i) do
         return 500 - i | 0;
       end));
 
-var y = $$Array.init(500, (function (i) do
+y = $$Array.init(500, (function (i) do
         return i + 1 | 0;
       end));
 
-var x$1 = sort(of_array(v));
+x$1 = sort(of_array(v));
 
 Caml_obj.caml_equal(x$1, of_array(y));
 

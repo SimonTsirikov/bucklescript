@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -47,7 +47,7 @@ function f2(x) do
 end
 
 function f5(h, x) do
-  var u = Curry._1(h, 32);
+  u = Curry._1(h, 32);
   if (u ~= null) then do
     return u + 1 | 0;
   end else do
@@ -56,8 +56,8 @@ function f5(h, x) do
 end
 
 function f4(h, x) do
-  var u = Curry._1(h, 32);
-  var v = 32 + x | 0;
+  u = Curry._1(h, 32);
+  v = 32 + x | 0;
   if (u ~= null) then do
     return u + 1 | 0;
   end else do
@@ -85,7 +85,7 @@ function f8(x) do
   end end 
 end
 
-var u = f8(undefined);
+u = f8(undefined);
 
 function f9(x) do
   if (x == null) then do
@@ -99,9 +99,9 @@ function f10(x) do
   return x == null;
 end
 
-var f11 = false;
+f11 = false;
 
-var Test_null = do
+Test_null = do
   f1: f1,
   f2: f2,
   f5: f5,
@@ -132,7 +132,7 @@ function f2$1(x) do
 end
 
 function f5$1(h, x) do
-  var u = Curry._1(h, 32);
+  u = Curry._1(h, 32);
   if (u ~= undefined) then do
     return u + 1 | 0;
   end else do
@@ -141,8 +141,8 @@ function f5$1(h, x) do
 end
 
 function f4$1(h, x) do
-  var u = Curry._1(h, 32);
-  var v = 32 + x | 0;
+  u = Curry._1(h, 32);
+  v = 32 + x | 0;
   if (u ~= undefined) then do
     return u + 1 | 0;
   end else do
@@ -170,7 +170,7 @@ function f8$1(x) do
   end end 
 end
 
-var u$1 = f8$1(undefined);
+u$1 = f8$1(undefined);
 
 function f9$1(x) do
   if (x == undefined) then do
@@ -184,9 +184,9 @@ function f10$1(x) do
   return x == undefined;
 end
 
-var f11$1 = false;
+f11$1 = false;
 
-var Test_def = do
+Test_def = do
   f1: f1$1,
   f2: f2$1,
   f5: f5$1,
@@ -217,7 +217,7 @@ function f2$2(x) do
 end
 
 function f5$2(h, x) do
-  var u = Curry._1(h, 32);
+  u = Curry._1(h, 32);
   if (u == null) then do
     return 3;
   end else do
@@ -226,8 +226,8 @@ function f5$2(h, x) do
 end
 
 function f4$2(h, x) do
-  var u = Curry._1(h, 32);
-  var v = 32 + x | 0;
+  u = Curry._1(h, 32);
+  v = 32 + x | 0;
   if (u == null) then do
     return 1 + v | 0;
   end else do
@@ -253,7 +253,7 @@ function f8$2(x) do
   end end  end 
 end
 
-var u$2 = f8$2(undefined);
+u$2 = f8$2(undefined);
 
 function f9$2(x) do
   if (x == null) then do
@@ -267,9 +267,9 @@ function f10$2(x) do
   return x == null;
 end
 
-var f11$2 = false;
+f11$2 = false;
 
-var Test_null_def = do
+Test_null_def = do
   f1: f1$2,
   f2: f2$2,
   f5: f5$2,

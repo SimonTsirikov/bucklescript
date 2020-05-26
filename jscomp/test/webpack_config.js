@@ -1,22 +1,22 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var List$1 = require("List");
-var List$2 = require("reactV");
-var List$3 = require("reactX");
-var Local = require("./local");
-var WebpackConfigJs = require("../../../webpack.config.js");
-var WebpackMiddlewareConfigJs = require("../../../webpack.middleware.config.js");
+List = require("../../lib/js/list.js");
+List$1 = require("List");
+List$2 = require("reactV");
+List$3 = require("reactX");
+Local = require("./local");
+WebpackConfigJs = require("../../../webpack.config.js");
+WebpackMiddlewareConfigJs = require("../../../webpack.middleware.config.js");
 
-var configx = WebpackConfigJs;
+configx = WebpackConfigJs;
 
-var WebpackConfig = do
+WebpackConfig = do
   configx: configx
 end;
 
-var configx$1 = WebpackMiddlewareConfigJs;
+configx$1 = WebpackMiddlewareConfigJs;
 
-var WebpackDevMiddlewareConfig = do
+WebpackDevMiddlewareConfig = do
   configx: configx$1
 end;
 
@@ -28,13 +28,13 @@ function configX$1(prim) do
   return WebpackConfigJs.configX();
 end
 
-var U = do
+U = do
   configX: configX$1
 end;
 
-var A = { };
+A = { };
 
-var B = { };
+B = { };
 
 function f(param) do
   return --[ tuple ]--[

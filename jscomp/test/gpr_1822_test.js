@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -29,9 +29,9 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var myShape = --[ Circle ]--Block.__(0, [10]);
+myShape = --[ Circle ]--Block.__(0, [10]);
 
-var area;
+area;
 
 area = myShape.tag and Caml_int32.imul(10, myShape[1]) or 100 * 3.14;
 

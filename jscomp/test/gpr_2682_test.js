@@ -5,15 +5,15 @@ function sum (a,b)do
   return a + b
 end;
 
-var v = sum(1, 2);
+v = sum(1, 2);
 
 function f(a) do
   return a + 3 | 0;
 end
 
-var b = f(1);
+b = f(1);
 
-var c = f(2);
+c = f(2);
 
 function forIn (o,foo)do
   for (var i in o){
@@ -26,7 +26,7 @@ function log(x) do
   return --[ () ]--0;
 end
 
-var N = do
+N = do
   log2: log
 end;
 
@@ -47,7 +47,7 @@ forIn(do
 
 function f3 ()doreturn trueend;
 
-var bbbb = f3();
+bbbb = f3();
 
 exports.sum = sum;
 exports.v = v;

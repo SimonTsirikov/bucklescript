@@ -1,9 +1,9 @@
 'use strict';
 
-var Js_math = require("../../lib/js/js_math.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Js_math = require("../../lib/js/js_math.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var match = 1;
+match = 1;
 
 if (match ~= undefined) then do
   if (match ~= 1) then do
@@ -17,7 +17,7 @@ if (match ~= undefined) then do
         ];
   end
    end 
-  var match$1 = 1;
+  match$1 = 1;
   if (match$1 ~= 1) then do
     if (match$1 ~= 2) then do
       throw [

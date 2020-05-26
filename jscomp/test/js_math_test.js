@@ -1,10 +1,10 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Js_math = require("../../lib/js/js_math.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Js_math = require("../../lib/js/js_math.js");
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "_E",
   (function (param) do
       return --[ ApproxThreshold ]--Block.__(6, [
@@ -15,7 +15,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "_LN2",
     (function (param) do
@@ -473,7 +473,7 @@ var suites_001 = --[ :: ]--[
                                                                                         --[ tuple ]--[
                                                                                           "random",
                                                                                           (function (param) do
-                                                                                              var a = Math.random();
+                                                                                              a = Math.random();
                                                                                               return --[ Ok ]--Block.__(4, [a >= 0 and a < 1]);
                                                                                             end)
                                                                                         ],
@@ -481,7 +481,7 @@ var suites_001 = --[ :: ]--[
                                                                                           --[ tuple ]--[
                                                                                             "random_int",
                                                                                             (function (param) do
-                                                                                                var a = Js_math.random_int(1, 3);
+                                                                                                a = Js_math.random_int(1, 3);
                                                                                                 return --[ Ok ]--Block.__(4, [a >= 1 and a < 3]);
                                                                                               end)
                                                                                           ],
@@ -669,7 +669,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

@@ -1,11 +1,11 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+List = require("../../lib/js/list.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var Foo = Caml_exceptions.create("Gpr_1701_test.Foo");
+Foo = Caml_exceptions.create("Gpr_1701_test.Foo");
 
 function test(n) do
   if (n == 0) then do
@@ -27,10 +27,10 @@ end
 test(100);
 
 function read_lines(inc) do
-  var _acc = --[ [] ]--0;
+  _acc = --[ [] ]--0;
   while(true) do
-    var acc = _acc;
-    var match;
+    acc = _acc;
+    match;
     try do
       match = Pervasives.input_line(inc);
     end
@@ -54,10 +54,10 @@ function read_lines(inc) do
 end
 
 function read_lines2(inc) do
-  var _acc = --[ [] ]--0;
+  _acc = --[ [] ]--0;
   while(true) do
-    var acc = _acc;
-    var l;
+    acc = _acc;
+    l;
     try do
       l = Pervasives.input_line(inc);
     end
@@ -77,9 +77,9 @@ function read_lines2(inc) do
 end
 
 function read_lines3(inc) do
-  var loop = function (acc) do
+  loop = function (acc) do
     try do
-      var l = Pervasives.input_line(inc);
+      l = Pervasives.input_line(inc);
       return loop(--[ :: ]--[
                   l,
                   acc

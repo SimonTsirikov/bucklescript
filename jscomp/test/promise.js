@@ -1,12 +1,12 @@
 'use strict';
 
-var SysBluebird = require("sys-bluebird");
+SysBluebird = require("sys-bluebird");
 
 function f(p) do
   return p.catch(3);
 end
 
-var p = new SysBluebird.Promise();
+p = new SysBluebird.Promise();
 
 p.then((function (x) do
           return x + 3 | 0;
@@ -14,16 +14,16 @@ p.then((function (x) do
         return reason;
       end));
 
-var u = do
+u = do
   then: 3,
   catch: 32
 end;
 
-var uu = do
+uu = do
   "'x": 3
 end;
 
-var hh = uu["'x"];
+hh = uu["'x"];
 
 exports.f = f;
 exports.u = u;

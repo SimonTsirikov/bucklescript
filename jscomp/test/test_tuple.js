@@ -1,12 +1,12 @@
 'use strict';
 
-var Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
 
-var r = 0;
+r = 0;
 
-for var k = 1 , 10 , 1 do
-  for var i = 1 , 10 , 1 do
-    var match = i % 2 == 0 and --[ tuple ]--[
+for k = 1 , 10 , 1 do
+  for i = 1 , 10 , 1 do
+    match = i % 2 == 0 and --[ tuple ]--[
         1,
         (i << 1)
       ] or --[ tuple ]--[

@@ -1,15 +1,15 @@
 'use strict';
 
-var Immutable = require("immutable");
-var Belt_Array = require("../../lib/js/belt_Array.js");
-var Belt_MapInt = require("../../lib/js/belt_MapInt.js");
+Immutable = require("immutable");
+Belt_Array = require("../../lib/js/belt_Array.js");
+Belt_MapInt = require("../../lib/js/belt_MapInt.js");
 
-var empty = new Immutable.OrderedMap();
+empty = new Immutable.OrderedMap();
 
 function fromArray(kvs) do
-  var v = empty;
-  for var i = 0 , #kvs - 1 | 0 , 1 do
-    var match = kvs[i];
+  v = empty;
+  for i = 0 , #kvs - 1 | 0 , 1 do
+    match = kvs[i];
     v = v.set(match[0], match[1]);
   end
   return v;
@@ -23,7 +23,7 @@ function should(b) do
   end end 
 end
 
-var shuffledDataAdd = Belt_Array.makeByAndShuffle(1000001, (function (i) do
+shuffledDataAdd = Belt_Array.makeByAndShuffle(1000001, (function (i) do
         return --[ tuple ]--[
                 i,
                 i
@@ -31,16 +31,16 @@ var shuffledDataAdd = Belt_Array.makeByAndShuffle(1000001, (function (i) do
       end));
 
 function test(param) do
-  var v = fromArray(shuffledDataAdd);
-  for var j = 0 , 1000000 , 1 do
+  v = fromArray(shuffledDataAdd);
+  for j = 0 , 1000000 , 1 do
     should(v.has(j));
   end
   return --[ () ]--0;
 end
 
 function test2(param) do
-  var v = Belt_MapInt.fromArray(shuffledDataAdd);
-  for var j = 0 , 1000000 , 1 do
+  v = Belt_MapInt.fromArray(shuffledDataAdd);
+  for j = 0 , 1000000 , 1 do
     should(Belt_MapInt.has(v, j));
   end
   return --[ () ]--0;
@@ -58,11 +58,11 @@ test2(--[ () ]--0);
 
 console.timeEnd("test/imm_map_bench.ml 45");
 
-var A = --[ alias ]--0;
+A = --[ alias ]--0;
 
-var count = 1000000;
+count = 1000000;
 
-var M = --[ alias ]--0;
+M = --[ alias ]--0;
 
 exports.A = A;
 exports.empty = empty;

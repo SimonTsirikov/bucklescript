@@ -1,10 +1,10 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
-var CamlinternalOO = require("../../lib/js/camlinternalOO.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
+CamlinternalOO = require("../../lib/js/camlinternalOO.js");
 
 function f(u) do
   return Caml_oo_curry.js2(5740587, 1, u, 32);
@@ -14,24 +14,24 @@ function f_js(u) do
   return u.say(32);
 end
 
-var class_tables = --[ Cons ]--[
+class_tables = --[ Cons ]--[
   0,
   0,
   0
 ];
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "caml_obj",
   (function (param) do
       if (!class_tables[0]) then do
-        var $$class = CamlinternalOO.create_table(["say"]);
-        var env = CamlinternalOO.new_variable($$class, "");
-        var say = CamlinternalOO.get_method_label($$class, "say");
+        $$class = CamlinternalOO.create_table(["say"]);
+        env = CamlinternalOO.new_variable($$class, "");
+        say = CamlinternalOO.get_method_label($$class, "say");
         CamlinternalOO.set_method($$class, say, (function (self$1, x) do
                 return 1 + x | 0;
               end));
-        var env_init = function (env$1) do
-          var self = CamlinternalOO.create_object_opt(0, $$class);
+        env_init = function (env$1) do
+          self = CamlinternalOO.create_object_opt(0, $$class);
           self[env] = env$1;
           return self;
         end;
@@ -46,7 +46,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "js_obj",
     (function (param) do
@@ -104,7 +104,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

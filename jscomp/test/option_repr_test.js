@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Belt_List = require("../../lib/js/belt_List.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Mt = require("./mt.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Belt_List = require("../../lib/js/belt_List.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -22,7 +22,7 @@ function b(loc, v) do
 end
 
 function f0(x) do
-  var match = x[1];
+  match = x[1];
   if (match ~= undefined and match) then do
     return 1;
   end else do
@@ -39,7 +39,7 @@ function f1(u) do
 end
 
 function f2(x, y, zOpt, param) do
-  var z = zOpt ~= undefined and zOpt or 3;
+  z = zOpt ~= undefined and zOpt or 3;
   console.log(x);
   if (y ~= undefined) then do
     return y + z | 0;
@@ -72,16 +72,16 @@ function f6(a) do
   return true;
 end
 
-var f10 = Caml_option.some(Caml_option.some(Caml_option.some(Caml_option.some(undefined))));
+f10 = Caml_option.some(Caml_option.some(Caml_option.some(Caml_option.some(undefined))));
 
-var f11 = Caml_option.some(f10);
+f11 = Caml_option.some(f10);
 
-var randomized = do
+randomized = do
   contents: false
 end;
 
 function create(randomOpt, param) do
-  var random = randomOpt ~= undefined and randomOpt or randomized.contents;
+  random = randomOpt ~= undefined and randomOpt or randomized.contents;
   if (random) then do
     return 2;
   end else do
@@ -89,25 +89,25 @@ function create(randomOpt, param) do
   end end 
 end
 
-var ff = create(false, --[ () ]--0);
+ff = create(false, --[ () ]--0);
 
 function f13(xOpt, yOpt, param) do
-  var x = xOpt ~= undefined and xOpt or 3;
-  var y = yOpt ~= undefined and yOpt or 4;
+  x = xOpt ~= undefined and xOpt or 3;
+  y = yOpt ~= undefined and yOpt or 4;
   return x + y | 0;
 end
 
-var a = f13(2, undefined, --[ () ]--0);
+a = f13(2, undefined, --[ () ]--0);
 
 function f12(x) do
   return x;
 end
 
-var length_8_id = Belt_List.makeBy(8, (function (x) do
+length_8_id = Belt_List.makeBy(8, (function (x) do
         return x;
       end));
 
-var length_10_id = Belt_List.makeBy(10, (function (x) do
+length_10_id = Belt_List.makeBy(10, (function (x) do
         return x;
       end));
 
@@ -174,9 +174,9 @@ function all_true(xs) do
               end));
 end
 
-var xs_000 = gtx(Caml_option.some(null), Caml_option.some(undefined));
+xs_000 = gtx(Caml_option.some(null), Caml_option.some(undefined));
 
-var xs = --[ :: ]--[
+xs = --[ :: ]--[
   xs_000,
   --[ [] ]--0
 ];
@@ -185,9 +185,9 @@ b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs,
             return x;
           end)));
 
-var xs_000$1 = ltx(Caml_option.some(undefined), 3);
+xs_000$1 = ltx(Caml_option.some(undefined), 3);
 
-var xs_001 = --[ :: ]--[
+xs_001 = --[ :: ]--[
   ltx(Caml_option.some(undefined), Caml_option.some(Caml_option.some(undefined))),
   --[ :: ]--[
     ltx(Caml_option.some(undefined), "3"),
@@ -221,7 +221,7 @@ var xs_001 = --[ :: ]--[
   ]
 ];
 
-var xs$1 = --[ :: ]--[
+xs$1 = --[ :: ]--[
   xs_000$1,
   xs_001
 ];
@@ -230,9 +230,9 @@ b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs$
             return x;
           end)));
 
-var xs_000$2 = eqx(undefined, undefined);
+xs_000$2 = eqx(undefined, undefined);
 
-var xs_001$1 = --[ :: ]--[
+xs_001$1 = --[ :: ]--[
   neqx(undefined, null),
   --[ :: ]--[
     eqx(Caml_option.some(undefined), Caml_option.some(undefined)),
@@ -246,7 +246,7 @@ var xs_001$1 = --[ :: ]--[
   ]
 ];
 
-var xs$2 = --[ :: ]--[
+xs$2 = --[ :: ]--[
   xs_000$2,
   xs_001$1
 ];
@@ -263,22 +263,22 @@ function v0(x) do
   return x;
 end
 
-var N0 = do
+N0 = do
   v: v,
   v0: v0
 end;
 
 Mt.from_pair_suites("Option_repr_test", suites.contents);
 
-var f7 = undefined;
+f7 = undefined;
 
-var f8 = Caml_option.some(undefined);
+f8 = Caml_option.some(undefined);
 
-var f9 = Caml_option.some(Caml_option.some(undefined));
+f9 = Caml_option.some(Caml_option.some(undefined));
 
-var N = --[ alias ]--0;
+N = --[ alias ]--0;
 
-var none_arg = undefined;
+none_arg = undefined;
 
 exports.suites = suites;
 exports.test_id = test_id;

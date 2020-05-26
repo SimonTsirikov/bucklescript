@@ -5,29 +5,29 @@ function u(param) do
   return xx(3);
 end
 
-var Textarea = { };
+Textarea = { };
 
-var $$Int32Array = { };
+$$Int32Array = { };
 
 function v(param) do
-  var u = new TextArea();
+  u = new TextArea();
   u.minHeight = 3;
   return u.minHeight;
 end
 
 function f(param) do
-  var v = new Int32Array(32);
+  v = new Int32Array(32);
   v[0] = 3;
   return v[0];
 end
 
-var a = true;
+a = true;
 
-var b = false;
+b = false;
 
-var c = null;
+c = null;
 
-var d = undefined;
+d = undefined;
 
 exports.u = u;
 exports.a = a;

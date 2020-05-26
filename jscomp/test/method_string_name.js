@@ -1,7 +1,7 @@
 'use strict';
 
 
-var f = do
+f = do
   "Content-Type": 3
 end;
 

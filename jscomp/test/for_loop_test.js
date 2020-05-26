@@ -1,21 +1,21 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
+List = require("../../lib/js/list.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
 
 function for_3(x) do
-  var v = do
+  v = do
     contents: 0
   end;
-  var arr = $$Array.map((function (param, param$1) do
+  arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
         end), x);
-  for var i = 0 , #x - 1 | 0 , 1 do
-    var j = (i << 1);
+  for i = 0 , #x - 1 | 0 , 1 do
+    j = (i << 1);
     Caml_array.caml_array_set(arr, i, (function(j)do
         return function (param) do
           v.contents = v.contents + j | 0;
@@ -30,15 +30,15 @@ function for_3(x) do
 end
 
 function for_4(x) do
-  var v = do
+  v = do
     contents: 0
   end;
-  var arr = $$Array.map((function (param, param$1) do
+  arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
         end), x);
-  for var i = 0 , #x - 1 | 0 , 1 do
-    var j = (i << 1);
-    var k = (j << 1);
+  for i = 0 , #x - 1 | 0 , 1 do
+    j = (i << 1);
+    k = (j << 1);
     Caml_array.caml_array_set(arr, i, (function(k)do
         return function (param) do
           v.contents = v.contents + k | 0;
@@ -53,14 +53,14 @@ function for_4(x) do
 end
 
 function for_5(x, u) do
-  var v = do
+  v = do
     contents: 0
   end;
-  var arr = $$Array.map((function (param, param$1) do
+  arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
         end), x);
-  for var i = 0 , #x - 1 | 0 , 1 do
-    var k = Caml_int32.imul((u << 1), u);
+  for i = 0 , #x - 1 | 0 , 1 do
+    k = Caml_int32.imul((u << 1), u);
     Caml_array.caml_array_set(arr, i, (function(k)do
         return function (param) do
           v.contents = v.contents + k | 0;
@@ -75,29 +75,29 @@ function for_5(x, u) do
 end
 
 function for_6(x, u) do
-  var v = do
+  v = do
     contents: 0
   end;
-  var arr = $$Array.map((function (param, param$1) do
+  arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
         end), x);
-  var v4 = do
+  v4 = do
     contents: 0
   end;
-  var v5 = do
+  v5 = do
     contents: 0
   end;
-  var inspect_3 = -1;
+  inspect_3 = -1;
   v4.contents = v4.contents + 1 | 0;
-  for var j = 0 , 1 , 1 do
+  for j = 0 , 1 , 1 do
     v5.contents = v5.contents + 1 | 0;
-    var v2 = do
+    v2 = do
       contents: 0
     end;
     (function(v2)do
-    for var i = 0 , #x - 1 | 0 , 1 do
-      var k = Caml_int32.imul((u << 1), u);
-      var h = (v5.contents << 1);
+    for i = 0 , #x - 1 | 0 , 1 do
+      k = Caml_int32.imul((u << 1), u);
+      h = (v5.contents << 1);
       v2.contents = v2.contents + 1 | 0;
       Caml_array.caml_array_set(arr, i, (function(k,h)do
           return function (param) do
@@ -121,15 +121,15 @@ function for_6(x, u) do
 end
 
 function for_7(param) do
-  var v = do
+  v = do
     contents: 0
   end;
-  var arr = Caml_array.caml_make_vect(21, (function (param) do
+  arr = Caml_array.caml_make_vect(21, (function (param) do
           return --[ () ]--0;
         end));
-  for var i = 0 , 6 , 1 do
+  for i = 0 , 6 , 1 do
     (function(i)do
-    for var j = 0 , 2 , 1 do
+    for j = 0 , 2 , 1 do
       Caml_array.caml_array_set(arr, Caml_int32.imul(i, 3) + j | 0, (function(j)do
           return function (param) do
             v.contents = (v.contents + i | 0) + j | 0;
@@ -146,17 +146,17 @@ function for_7(param) do
 end
 
 function for_8(param) do
-  var v = do
+  v = do
     contents: 0
   end;
-  var arr = Caml_array.caml_make_vect(21, (function (param) do
+  arr = Caml_array.caml_make_vect(21, (function (param) do
           return --[ () ]--0;
         end));
-  for var i = 0 , 6 , 1 do
-    var k = (i << 1);
+  for i = 0 , 6 , 1 do
+    k = (i << 1);
     (function(i,k)do
-    for var j = 0 , 2 , 1 do
-      var h = i + j | 0;
+    for j = 0 , 2 , 1 do
+      h = i + j | 0;
       Caml_array.caml_array_set(arr, Caml_int32.imul(i, 3) + j | 0, (function(j,h)do
           return function (param) do
             v.contents = (((v.contents + i | 0) + j | 0) + h | 0) + k | 0;
@@ -173,35 +173,35 @@ function for_8(param) do
 end
 
 function for_9(param) do
-  var v = do
+  v = do
     contents: --[ [] ]--0
   end;
-  var collect = function (x) do
+  collect = function (x) do
     v.contents = --[ :: ]--[
       x,
       v.contents
     ];
     return --[ () ]--0;
   end;
-  var vv = do
+  vv = do
     contents: 0
   end;
-  var vv2 = do
+  vv2 = do
     contents: 0
   end;
-  var arr = Caml_array.caml_make_vect(4, (function (param) do
+  arr = Caml_array.caml_make_vect(4, (function (param) do
           return --[ () ]--0;
         end));
-  var arr2 = Caml_array.caml_make_vect(2, (function (param) do
+  arr2 = Caml_array.caml_make_vect(2, (function (param) do
           return --[ () ]--0;
         end));
-  for var i = 0 , 1 , 1 do
-    var v$1 = do
+  for i = 0 , 1 , 1 do
+    v$1 = do
       contents: 0
     end;
     v$1.contents = v$1.contents + i | 0;
     (function(v$1)do
-    for var j = 0 , 1 , 1 do
+    for j = 0 , 1 , 1 do
       v$1.contents = v$1.contents + 1 | 0;
       collect(v$1.contents);
       Caml_array.caml_array_set(arr, (i << 1) + j | 0, (function (param) do
@@ -230,7 +230,7 @@ function for_9(param) do
           ]];
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "for_loop_test_3",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -240,7 +240,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "for_loop_test_4",
     (function (param) do
@@ -322,7 +322,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

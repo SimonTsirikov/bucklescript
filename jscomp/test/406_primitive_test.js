@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Mt = require("./mt.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -18,14 +18,14 @@ end
 
 eq("File \"406_primitive_test.ml\", line 18, characters 6-13", 32, 32);
 
-var backend_type = --[ Other ]--["BS"];
+backend_type = --[ Other ]--["BS"];
 
 eq("File \"406_primitive_test.ml\", line 29, characters 6-13", backend_type, --[ Other ]--["BS"]);
 
 function f(param) do
-  var A = Caml_exceptions.create("A");
+  A = Caml_exceptions.create("A");
   try do
-    for var i = 0 , 200 , 1 do
+    for i = 0 , 200 , 1 do
       if (i == 10) then do
         throw [
               A,
@@ -37,7 +37,7 @@ function f(param) do
     return --[ () ]--0;
   end
   catch (raw_exn)do
-    var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+    exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == A) then do
       return --[ () ]--0;
     end else do
@@ -48,9 +48,9 @@ end
 
 Mt.from_pair_suites("406_primitive_test", suites.contents);
 
-var v = 32;
+v = 32;
 
-var max_array_length = 2147483647;
+max_array_length = 2147483647;
 
 exports.suites = suites;
 exports.test_id = test_id;

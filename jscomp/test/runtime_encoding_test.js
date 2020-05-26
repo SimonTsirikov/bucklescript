@@ -1,7 +1,7 @@
 'use strict';
 
 
-var v = [
+v = [
   0,
   1
 ];

@@ -1,6 +1,6 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
 function f0(g, x) do
   return Curry._1(g, x);
@@ -10,7 +10,7 @@ function f1(g, x) do
   return Curry._1(g, x);
 end
 
-var X = { };
+X = { };
 
 function f2(g, x) do
   return Curry._1(g, x);
@@ -37,7 +37,7 @@ function f7(g, x) do
   return Curry._1(g, x);
 end
 
-var X0 = { };
+X0 = { };
 
 function f8(g, x) do
   return Curry._1(g, x);
@@ -63,7 +63,7 @@ function f13(g, x) do
   return Curry._1(g, x);
 end
 
-var X2 = do
+X2 = do
   f13: f13
 end;
 

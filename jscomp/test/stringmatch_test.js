@@ -1,6 +1,6 @@
 'use strict';
 
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function tst01(s) do
   if (s == "") then do
@@ -47,7 +47,7 @@ end
  end 
 
 function tst02(s) do
-  var len = #s;
+  len = #s;
   if (s == "") then do
     if (len < 0) then do
       throw [
@@ -1340,373 +1340,373 @@ if (tst05("BBBBBBBD") ~= -1) then do
 end
  end 
 
-var s00 = "and";
+s00 = "and";
 
-var t00 = "nad";
+t00 = "nad";
 
-var s01 = "as";
+s01 = "as";
 
-var t01 = "sa";
+t01 = "sa";
 
-var s02 = "assert";
+s02 = "assert";
 
-var t02 = "asesrt";
+t02 = "asesrt";
 
-var s03 = "begin";
+s03 = "begin";
 
-var t03 = "negib";
+t03 = "negib";
 
-var s04 = "class";
+s04 = "class";
 
-var t04 = "lcass";
+t04 = "lcass";
 
-var s05 = "constraint";
+s05 = "constraint";
 
-var t05 = "constiarnt";
+t05 = "constiarnt";
 
-var s06 = "do";
+s06 = "do";
 
-var t06 = "od";
+t06 = "od";
 
-var s07 = "done";
+s07 = "done";
 
-var t07 = "eond";
+t07 = "eond";
 
-var s08 = "downto";
+s08 = "downto";
 
-var t08 = "dowtno";
+t08 = "dowtno";
 
-var s09 = "else";
+s09 = "else";
 
-var t09 = "lese";
+t09 = "lese";
 
-var s10 = "end";
+s10 = "end";
 
-var t10 = "edn";
+t10 = "edn";
 
-var s11 = "exception";
+s11 = "exception";
 
-var t11 = "exception";
+t11 = "exception";
 
-var s12 = "external";
+s12 = "external";
 
-var t12 = "external";
+t12 = "external";
 
-var s13 = "false";
+s13 = "false";
 
-var t13 = "fslae";
+t13 = "fslae";
 
-var s14 = "for";
+s14 = "for";
 
-var t14 = "ofr";
+t14 = "ofr";
 
-var s15 = "fun";
+s15 = "fun";
 
-var t15 = "fnu";
+t15 = "fnu";
 
-var s16 = "function";
+s16 = "function";
 
-var t16 = "function";
+t16 = "function";
 
-var s17 = "functor";
+s17 = "functor";
 
-var t17 = "ounctfr";
+t17 = "ounctfr";
 
-var s18 = "if";
+s18 = "if";
 
-var t18 = "fi";
+t18 = "fi";
 
-var s19 = "in";
+s19 = "in";
 
-var t19 = "in";
+t19 = "in";
 
-var s20 = "include";
+s20 = "include";
 
-var t20 = "inculde";
+t20 = "inculde";
 
-var s21 = "inherit";
+s21 = "inherit";
 
-var t21 = "iehnrit";
+t21 = "iehnrit";
 
-var s22 = "initializer";
+s22 = "initializer";
 
-var t22 = "enitializir";
+t22 = "enitializir";
 
-var s23 = "lazy";
+s23 = "lazy";
 
-var t23 = "zaly";
+t23 = "zaly";
 
-var s24 = "let";
+s24 = "let";
 
-var t24 = "elt";
+t24 = "elt";
 
-var s25 = "match";
+s25 = "match";
 
-var t25 = "match";
+t25 = "match";
 
-var s26 = "method";
+s26 = "method";
 
-var t26 = "methdo";
+t26 = "methdo";
 
-var s27 = "module";
+s27 = "module";
 
-var t27 = "modelu";
+t27 = "modelu";
 
-var s28 = "mutable";
+s28 = "mutable";
 
-var t28 = "butamle";
+t28 = "butamle";
 
-var s29 = "new";
+s29 = "new";
 
-var t29 = "wen";
+t29 = "wen";
 
-var s30 = "object";
+s30 = "object";
 
-var t30 = "objcet";
+t30 = "objcet";
 
-var s31 = "of";
+s31 = "of";
 
-var t31 = "of";
+t31 = "of";
 
-var s32 = "open";
+s32 = "open";
 
-var t32 = "epon";
+t32 = "epon";
 
-var s33 = "or";
+s33 = "or";
 
-var t33 = "ro";
+t33 = "ro";
 
-var s34 = "private";
+s34 = "private";
 
-var t34 = "privaet";
+t34 = "privaet";
 
-var s35 = "rec";
+s35 = "rec";
 
-var t35 = "rec";
+t35 = "rec";
 
-var s36 = "sig";
+s36 = "sig";
 
-var t36 = "gis";
+t36 = "gis";
 
-var s37 = "struct";
+s37 = "struct";
 
-var t37 = "scrutt";
+t37 = "scrutt";
 
-var s38 = "then";
+s38 = "then";
 
-var t38 = "hten";
+t38 = "hten";
 
-var s39 = "to";
+s39 = "to";
 
-var t39 = "to";
+t39 = "to";
 
-var s40 = "true";
+s40 = "true";
 
-var t40 = "teur";
+t40 = "teur";
 
-var s41 = "try";
+s41 = "try";
 
-var t41 = "try";
+t41 = "try";
 
-var s42 = "type";
+s42 = "type";
 
-var t42 = "pyte";
+t42 = "pyte";
 
-var s43 = "val";
+s43 = "val";
 
-var t43 = "val";
+t43 = "val";
 
-var s44 = "virtual";
+s44 = "virtual";
 
-var t44 = "vritual";
+t44 = "vritual";
 
-var s45 = "when";
+s45 = "when";
 
-var t45 = "whne";
+t45 = "whne";
 
-var s46 = "while";
+s46 = "while";
 
-var t46 = "wlihe";
+t46 = "wlihe";
 
-var s47 = "with";
+s47 = "with";
 
-var t47 = "iwth";
+t47 = "iwth";
 
-var s48 = "mod";
+s48 = "mod";
 
-var t48 = "mod";
+t48 = "mod";
 
-var s49 = "land";
+s49 = "land";
 
-var t49 = "alnd";
+t49 = "alnd";
 
-var s50 = "lor";
+s50 = "lor";
 
-var t50 = "rol";
+t50 = "rol";
 
-var s51 = "lxor";
+s51 = "lxor";
 
-var t51 = "lxor";
+t51 = "lxor";
 
-var s52 = "lsl";
+s52 = "lsl";
 
-var t52 = "lsl";
+t52 = "lsl";
 
-var s53 = "lsr";
+s53 = "lsr";
 
-var t53 = "lsr";
+t53 = "lsr";
 
-var s54 = "asr";
+s54 = "asr";
 
-var t54 = "sar";
+t54 = "sar";
 
-var s55 = "A";
+s55 = "A";
 
-var t55 = "A";
+t55 = "A";
 
-var s56 = "AA";
+s56 = "AA";
 
-var t56 = "AA";
+t56 = "AA";
 
-var s57 = "AAA";
+s57 = "AAA";
 
-var t57 = "AAA";
+t57 = "AAA";
 
-var s58 = "AAAA";
+s58 = "AAAA";
 
-var t58 = "AAAA";
+t58 = "AAAA";
 
-var s59 = "AAAAA";
+s59 = "AAAAA";
 
-var t59 = "AAAAA";
+t59 = "AAAAA";
 
-var s60 = "AAAAAA";
+s60 = "AAAAAA";
 
-var t60 = "AAAAAA";
+t60 = "AAAAAA";
 
-var s61 = "AAAAAAA";
+s61 = "AAAAAAA";
 
-var t61 = "AAAAAAA";
+t61 = "AAAAAAA";
 
-var s62 = "AAAAAAAA";
+s62 = "AAAAAAAA";
 
-var t62 = "AAAAAAAA";
+t62 = "AAAAAAAA";
 
-var s63 = "AAAAAAAAA";
+s63 = "AAAAAAAAA";
 
-var t63 = "AAAAAAAAA";
+t63 = "AAAAAAAAA";
 
-var s64 = "AAAAAAAAAA";
+s64 = "AAAAAAAAAA";
 
-var t64 = "AAAAAAAAAA";
+t64 = "AAAAAAAAAA";
 
-var s65 = "AAAAAAAAAAA";
+s65 = "AAAAAAAAAAA";
 
-var t65 = "AAAAAAAAAAA";
+t65 = "AAAAAAAAAAA";
 
-var s66 = "AAAAAAAAAAAA";
+s66 = "AAAAAAAAAAAA";
 
-var t66 = "AAAAAAAAAAAA";
+t66 = "AAAAAAAAAAAA";
 
-var s67 = "AAAAAAAAAAAAA";
+s67 = "AAAAAAAAAAAAA";
 
-var t67 = "AAAAAAAAAAAAA";
+t67 = "AAAAAAAAAAAAA";
 
-var s68 = "AAAAAAAAAAAAAA";
+s68 = "AAAAAAAAAAAAAA";
 
-var t68 = "AAAAAAAAAAAAAA";
+t68 = "AAAAAAAAAAAAAA";
 
-var s69 = "AAAAAAAAAAAAAAA";
+s69 = "AAAAAAAAAAAAAAA";
 
-var t69 = "AAAAAAAAAAAAAAA";
+t69 = "AAAAAAAAAAAAAAA";
 
-var s70 = "AAAAAAAAAAAAAAAA";
+s70 = "AAAAAAAAAAAAAAAA";
 
-var t70 = "AAAAAAAAAAAAAAAA";
+t70 = "AAAAAAAAAAAAAAAA";
 
-var s71 = "AAAAAAAAAAAAAAAAA";
+s71 = "AAAAAAAAAAAAAAAAA";
 
-var t71 = "AAAAAAAAAAAAAAAAA";
+t71 = "AAAAAAAAAAAAAAAAA";
 
-var s72 = "AAAAAAAAAAAAAAAAAA";
+s72 = "AAAAAAAAAAAAAAAAAA";
 
-var t72 = "AAAAAAAAAAAAAAAAAA";
+t72 = "AAAAAAAAAAAAAAAAAA";
 
-var s73 = "AAAAAAAAAAAAAAAAAAA";
+s73 = "AAAAAAAAAAAAAAAAAAA";
 
-var t73 = "AAAAAAAAAAAAAAAAAAA";
+t73 = "AAAAAAAAAAAAAAAAAAA";
 
-var s74 = "AAAAAAAAAAAAAAAAAAAA";
+s74 = "AAAAAAAAAAAAAAAAAAAA";
 
-var t74 = "AAAAAAAAAAAAAAAAAAAA";
+t74 = "AAAAAAAAAAAAAAAAAAAA";
 
-var s75 = "AAAAAAAAAAAAAAAAAAAAA";
+s75 = "AAAAAAAAAAAAAAAAAAAAA";
 
-var t75 = "AAAAAAAAAAAAAAAAAAAAA";
+t75 = "AAAAAAAAAAAAAAAAAAAAA";
 
-var s76 = "AAAAAAAAAAAAAAAAAAAAAA";
+s76 = "AAAAAAAAAAAAAAAAAAAAAA";
 
-var t76 = "AAAAAAAAAAAAAAAAAAAAAA";
+t76 = "AAAAAAAAAAAAAAAAAAAAAA";
 
-var s77 = "AAAAAAAAAAAAAAAAAAAAAAA";
+s77 = "AAAAAAAAAAAAAAAAAAAAAAA";
 
-var t77 = "AAAAAAAAAAAAAAAAAAAAAAA";
+t77 = "AAAAAAAAAAAAAAAAAAAAAAA";
 
-var s78 = "AAAAAAAAAAAAAAAAAAAAAAAA";
+s78 = "AAAAAAAAAAAAAAAAAAAAAAAA";
 
-var t78 = "AAAAAAAAAAAAAAAAAAAAAAAA";
+t78 = "AAAAAAAAAAAAAAAAAAAAAAAA";
 
-var s79 = "AAAAAAAAAAAAAAAAAAAAAAAAA";
+s79 = "AAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var t79 = "AAAAAAAAAAAAAAAAAAAAAAAAA";
+t79 = "AAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var s80 = "AAAAAAAAAAAAAAAAAAAAAAAAAA";
+s80 = "AAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var t80 = "AAAAAAAAAAAAAAAAAAAAAAAAAA";
+t80 = "AAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var s81 = "AAAAAAAAAAAAAAAAAAAAAAAAAAA";
+s81 = "AAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var t81 = "AAAAAAAAAAAAAAAAAAAAAAAAAAA";
+t81 = "AAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var s82 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+s82 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var t82 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+t82 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var s83 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+s83 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var t83 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+t83 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var s84 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+s84 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var t84 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+t84 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var s85 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+s85 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var t85 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+t85 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var s86 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+s86 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var t86 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+t86 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var s87 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+s87 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var t87 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+t87 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var s88 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+s88 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var t88 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+t88 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
-var s89 = "BBBBBBBBBBBBBBB";
+s89 = "BBBBBBBBBBBBBBB";
 
-var t89 = "BBBBBBBBBBBBBBB";
+t89 = "BBBBBBBBBBBBBBB";
 
-var s90 = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+s90 = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
 
-var t90 = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+t90 = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
 
-var s91 = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+s91 = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
 
-var t91 = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+t91 = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
 
 function tst06(s) do
   local ___conditional___=(s);

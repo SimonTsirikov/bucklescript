@@ -1,12 +1,12 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
 
-var list_suites_000 = --[ tuple ]--[
+list_suites_000 = --[ tuple ]--[
   "length",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -25,7 +25,7 @@ var list_suites_000 = --[ tuple ]--[
     end)
 ];
 
-var list_suites_001 = --[ :: ]--[
+list_suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "length2",
     (function (param) do
@@ -101,7 +101,7 @@ var list_suites_001 = --[ :: ]--[
   ]
 ];
 
-var list_suites = --[ :: ]--[
+list_suites = --[ :: ]--[
   list_suites_000,
   list_suites_001
 ];

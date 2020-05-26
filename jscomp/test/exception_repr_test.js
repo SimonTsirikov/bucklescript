@@ -1,18 +1,18 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Format = require("../../lib/js/format.js");
-var Printexc = require("../../lib/js/printexc.js");
-var Exception_def = require("./exception_def.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Format = require("../../lib/js/format.js");
+Printexc = require("../../lib/js/printexc.js");
+Exception_def = require("./exception_def.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -33,11 +33,11 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var Hi = Caml_exceptions.create("Exception_repr_test.Hi");
+Hi = Caml_exceptions.create("Exception_repr_test.Hi");
 
-var Hello = Caml_exceptions.create("Exception_repr_test.Hello");
+Hello = Caml_exceptions.create("Exception_repr_test.Hello");
 
-var A = Caml_exceptions.create("Exception_repr_test.A");
+A = Caml_exceptions.create("Exception_repr_test.A");
 
 Printexc.register_printer((function (param) do
         if (param == Hi) then do
@@ -79,7 +79,7 @@ eq("File \"exception_repr_test.ml\", line 27, characters 7-14", "A", Printexc.to
 
 Mt.from_pair_suites("Exception_repr_test", suites.contents);
 
-var AAA = Exception_def.A;
+AAA = Exception_def.A;
 
 exports.suites = suites;
 exports.test_id = test_id;

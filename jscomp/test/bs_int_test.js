@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Belt_Int = require("../../lib/js/belt_Int.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Belt_Int = require("../../lib/js/belt_Int.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -85,7 +85,7 @@ eq("File \"bs_int_test.ml\", line 43, characters 5-12", 0, 0);
 
 Mt.from_pair_suites("File \"bs_int_test.ml\", line 45, characters 23-30", suites.contents);
 
-var I = --[ alias ]--0;
+I = --[ alias ]--0;
 
 exports.suites = suites;
 exports.test_id = test_id;

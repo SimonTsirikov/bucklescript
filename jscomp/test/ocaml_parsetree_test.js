@@ -1,51 +1,51 @@
 'use strict';
 
-var Arg = require("../../lib/js/arg.js");
-var Sys = require("../../lib/js/sys.js");
-var Char = require("../../lib/js/char.js");
-var List = require("../../lib/js/list.js");
-var Path = require("path");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Bytes = require("../../lib/js/bytes.js");
-var Curry = require("../../lib/js/curry.js");
-var $$Buffer = require("../../lib/js/buffer.js");
-var Format = require("../../lib/js/format.js");
-var Lexing = require("../../lib/js/lexing.js");
-var Printf = require("../../lib/js/printf.js");
-var $$String = require("../../lib/js/string.js");
-var Assert = require("assert");
-var Caml_io = require("../../lib/js/caml_io.js");
-var Hashtbl = require("../../lib/js/hashtbl.js");
-var Parsing = require("../../lib/js/parsing.js");
-var Process = require("process");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_sys = require("../../lib/js/caml_sys.js");
-var Filename = require("../../lib/js/filename.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Caml_int64 = require("../../lib/js/caml_int64.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_format = require("../../lib/js/caml_format.js");
-var Caml_option = require("../../lib/js/caml_option.js");
-var Caml_string = require("../../lib/js/caml_string.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Arg = require("../../lib/js/arg.js");
+Sys = require("../../lib/js/sys.js");
+Char = require("../../lib/js/char.js");
+List = require("../../lib/js/list.js");
+Path = require("path");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Bytes = require("../../lib/js/bytes.js");
+Curry = require("../../lib/js/curry.js");
+$$Buffer = require("../../lib/js/buffer.js");
+Format = require("../../lib/js/format.js");
+Lexing = require("../../lib/js/lexing.js");
+Printf = require("../../lib/js/printf.js");
+$$String = require("../../lib/js/string.js");
+Assert = require("assert");
+Caml_io = require("../../lib/js/caml_io.js");
+Hashtbl = require("../../lib/js/hashtbl.js");
+Parsing = require("../../lib/js/parsing.js");
+Process = require("process");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_sys = require("../../lib/js/caml_sys.js");
+Filename = require("../../lib/js/filename.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_int64 = require("../../lib/js/caml_int64.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_format = require("../../lib/js/caml_format.js");
+Caml_option = require("../../lib/js/caml_option.js");
+Caml_string = require("../../lib/js/caml_string.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var fast = do
+fast = do
   contents: false
 end;
 
-var applicative_functors = do
+applicative_functors = do
   contents: true
 end;
 
-var bs_vscode;
+bs_vscode;
 
 try do
   Caml_sys.caml_sys_getenv("BS_VSCODE");
@@ -55,11 +55,11 @@ catch (exn)do
   bs_vscode = false;
 end
 
-var color = do
+color = do
   contents: undefined
 end;
 
-var Fatal_error = Caml_exceptions.create("Ocaml_parsetree_test.Misc.Fatal_error");
+Fatal_error = Caml_exceptions.create("Ocaml_parsetree_test.Misc.Fatal_error");
 
 function fatal_error(msg) do
   Pervasives.prerr_string(">> Fatal error: ");
@@ -68,7 +68,7 @@ function fatal_error(msg) do
 end
 
 function create_hashtable(size, init) do
-  var tbl = Hashtbl.create(undefined, size);
+  tbl = Hashtbl.create(undefined, size);
   List.iter((function (param) do
           return Hashtbl.add(tbl, param[0], param[1]);
         end), init);
@@ -120,13 +120,13 @@ function code_of_style(param) do
 end
 
 function ansi_of_style_l(l) do
-  var s = l and (
+  s = l and (
       l[1] and $$String.concat(";", List.map(code_of_style, l)) or code_of_style(l[0])
     ) or "0";
   return "\x1b[" .. (s .. "m");
 end
 
-var default_styles = do
+default_styles = do
   error: --[ :: ]--[
     --[ Bold ]--0,
     --[ :: ]--[
@@ -147,7 +147,7 @@ var default_styles = do
   ]
 end;
 
-var cur_styles = do
+cur_styles = do
   contents: default_styles
 end;
 
@@ -195,19 +195,19 @@ function style_of_tag(s) do
   end
 end
 
-var color_enabled = do
+color_enabled = do
   contents: true
 end;
 
 function set_color_tag_handling(ppf) do
-  var functions = Format.pp_get_formatter_tag_functions(ppf, --[ () ]--0);
-  var partial_arg = functions.mark_open_tag;
-  var partial_arg$1 = functions.mark_close_tag;
-  var functions$prime_mark_open_tag = function (param) do
-    var or_else = partial_arg;
-    var s = param;
+  functions = Format.pp_get_formatter_tag_functions(ppf, --[ () ]--0);
+  partial_arg = functions.mark_open_tag;
+  partial_arg$1 = functions.mark_close_tag;
+  functions$prime_mark_open_tag = function (param) do
+    or_else = partial_arg;
+    s = param;
     try do
-      var style = style_of_tag(s);
+      style = style_of_tag(s);
       if (color_enabled.contents) then do
         return ansi_of_style_l(style);
       end else do
@@ -222,9 +222,9 @@ function set_color_tag_handling(ppf) do
       end end 
     end
   end;
-  var functions$prime_mark_close_tag = function (param) do
-    var or_else = partial_arg$1;
-    var s = param;
+  functions$prime_mark_close_tag = function (param) do
+    or_else = partial_arg$1;
+    s = param;
     try do
       style_of_tag(s);
       if (color_enabled.contents) then do
@@ -244,9 +244,9 @@ function set_color_tag_handling(ppf) do
       end end 
     end
   end;
-  var functions$prime_print_open_tag = functions.print_open_tag;
-  var functions$prime_print_close_tag = functions.print_close_tag;
-  var functions$prime = do
+  functions$prime_print_open_tag = functions.print_open_tag;
+  functions$prime_print_close_tag = functions.print_close_tag;
+  functions$prime = do
     mark_open_tag: functions$prime_mark_open_tag,
     mark_close_tag: functions$prime_mark_close_tag,
     print_open_tag: functions$prime_print_open_tag,
@@ -256,11 +256,11 @@ function set_color_tag_handling(ppf) do
   return Format.pp_set_formatter_tag_functions(ppf, functions$prime);
 end
 
-var first = do
+first = do
   contents: true
 end;
 
-var formatter_l_001 = --[ :: ]--[
+formatter_l_001 = --[ :: ]--[
   Format.err_formatter,
   --[ :: ]--[
     Format.str_formatter,
@@ -268,7 +268,7 @@ var formatter_l_001 = --[ :: ]--[
   ]
 ];
 
-var formatter_l = --[ :: ]--[
+formatter_l = --[ :: ]--[
   Format.std_formatter,
   formatter_l_001
 ];
@@ -278,7 +278,7 @@ function setup(o) do
     first.contents = false;
     Format.set_mark_tags(true);
     List.iter(set_color_tag_handling, formatter_l);
-    var tmp;
+    tmp;
     if (o ~= undefined) then do
       local ___conditional___=(o);
       do
@@ -299,7 +299,7 @@ function setup(o) do
   return --[ () ]--0;
 end
 
-var Misc_Color = do
+Misc_Color = do
   ansi_of_style_l: ansi_of_style_l,
   default_styles: default_styles,
   get_styles: get_styles,
@@ -443,7 +443,7 @@ function loop(i) do
   end end 
 end
 
-var letter_all = loop(104);
+letter_all = loop(104);
 
 function letter(param) do
   local ___conditional___=(param);
@@ -614,7 +614,7 @@ function letter(param) do
   end
 end
 
-var current = do
+current = do
   contents: do
     active: Caml_array.caml_make_vect(105, true),
     error: Caml_array.caml_make_vect(105, false)
@@ -626,27 +626,27 @@ function is_active(x) do
 end
 
 function parse_opt(error, active, flags, s) do
-  var set = function (i) do
+  set = function (i) do
     return Caml_array.caml_array_set(flags, i, true);
   end;
-  var clear = function (i) do
+  clear = function (i) do
     return Caml_array.caml_array_set(flags, i, false);
   end;
-  var set_all = function (i) do
+  set_all = function (i) do
     Caml_array.caml_array_set(active, i, true);
     return Caml_array.caml_array_set(error, i, true);
   end;
-  var get_num = function (_n, _i) do
+  get_num = function (_n, _i) do
     while(true) do
-      var i = _i;
-      var n = _n;
+      i = _i;
+      n = _n;
       if (i >= #s) then do
         return --[ tuple ]--[
                 i,
                 n
               ];
       end else do
-        var match = Caml_string.get(s, i);
+        match = Caml_string.get(s, i);
         if (match > 57 or match < 48) then do
           return --[ tuple ]--[
                   i,
@@ -660,13 +660,13 @@ function parse_opt(error, active, flags, s) do
       end end 
     end;
   end;
-  var get_range = function (i) do
-    var match = get_num(0, i);
-    var n1 = match[1];
-    var i$1 = match[0];
+  get_range = function (i) do
+    match = get_num(0, i);
+    n1 = match[1];
+    i$1 = match[0];
     if ((i$1 + 2 | 0) < #s and Caml_string.get(s, i$1) == --[ "." ]--46 and Caml_string.get(s, i$1 + 1 | 0) == --[ "." ]--46) then do
-      var match$1 = get_num(0, i$1 + 2 | 0);
-      var n2 = match$1[1];
+      match$1 = get_num(0, i$1 + 2 | 0);
+      n2 = match$1[1];
       if (n2 < n1) then do
         throw [
               Arg.Bad,
@@ -687,13 +687,13 @@ function parse_opt(error, active, flags, s) do
             ];
     end end 
   end;
-  var loop = function (_i) do
+  loop = function (_i) do
     while(true) do
-      var i = _i;
+      i = _i;
       if (i >= #s) then do
         return --[ () ]--0;
       end else do
-        var c = Caml_string.get(s, i);
+        c = Caml_string.get(s, i);
         if (c >= 65) then do
           if (c >= 97) then do
             if (c >= 123) then do
@@ -751,7 +751,7 @@ function parse_opt(error, active, flags, s) do
       end end 
     end;
   end;
-  var loop_letter_num = function (myset, i) do
+  loop_letter_num = function (myset, i) do
     if (i >= #s) then do
       throw [
             Arg.Bad,
@@ -759,7 +759,7 @@ function parse_opt(error, active, flags, s) do
           ];
     end
      end 
-    var match = Caml_string.get(s, i);
+    match = Caml_string.get(s, i);
     if (match >= 65) then do
       if (match >= 97) then do
         if (match >= 123) then do
@@ -790,8 +790,8 @@ function parse_opt(error, active, flags, s) do
             ];
       end
        end 
-      var match$1 = get_range(i);
-      for var n = match$1[1] , Caml_primitive.caml_int_min(match$1[2], 104) , 1 do
+      match$1 = get_range(i);
+      for n = match$1[1] , Caml_primitive.caml_int_min(match$1[2], 104) , 1 do
         Curry._1(myset, n);
       end
       return loop(match$1[0]);
@@ -801,8 +801,8 @@ function parse_opt(error, active, flags, s) do
 end
 
 function parse_options(errflag, s) do
-  var error = $$Array.copy(current.contents.error);
-  var active = $$Array.copy(current.contents.active);
+  error = $$Array.copy(current.contents.error);
+  active = $$Array.copy(current.contents.active);
   parse_opt(error, active, errflag and error or active, s);
   current.contents = do
     active: active,
@@ -862,17 +862,17 @@ function message(param) do
        if ___conditional___ = 0--[ Deprecated ]-- then do
           return "deprecated: " .. param[0];end end end 
        if ___conditional___ = 1--[ Fragile_match ]-- then do
-          var s = param[0];
+          s = param[0];
           if (s == "") then do
             return "this pattern-matching is fragile.";
           end else do
             return "this pattern-matching is fragile.\nIt will remain exhaustive when constructors are added to type " .. (s .. ".");
           end end end end end 
        if ___conditional___ = 2--[ Method_override ]-- then do
-          var match = param[0];
+          match = param[0];
           if (match) then do
-            var slist = match[1];
-            var lab = match[0];
+            slist = match[1];
+            lab = match[0];
             if (slist) then do
               return $$String.concat(" ", --[ :: ]--[
                           "the following methods are overridden by the class",
@@ -898,7 +898,7 @@ function message(param) do
                 ];
           end end end end end 
        if ___conditional___ = 3--[ Partial_match ]-- then do
-          var s$1 = param[0];
+          s$1 = param[0];
           if (s$1 == "") then do
             return "this pattern-matching is not exhaustive.";
           end else do
@@ -907,10 +907,10 @@ function message(param) do
        if ___conditional___ = 4--[ Non_closed_record_pattern ]-- then do
           return "the following labels are not bound in this record pattern:\n" .. (param[0] .. "\nEither bind these labels explicitly or add '; _' to the pattern.");end end end 
        if ___conditional___ = 5--[ Instance_variable_override ]-- then do
-          var match$1 = param[0];
+          match$1 = param[0];
           if (match$1) then do
-            var slist$1 = match$1[1];
-            var lab$1 = match$1[0];
+            slist$1 = match$1[1];
+            lab$1 = match$1[0];
             if (slist$1) then do
               return $$String.concat(" ", --[ :: ]--[
                           "the following instance variables are overridden by the class",
@@ -1016,7 +1016,7 @@ function message(param) do
        if ___conditional___ = 20--[ Unused_ancestor ]-- then do
           return "unused ancestor variable " .. (param[0] .. ".");end end end 
        if ___conditional___ = 21--[ Unused_constructor ]-- then do
-          var s$2 = param[0];
+          s$2 = param[0];
           if (param[1]) then do
             return "constructor " .. (s$2 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
           end else if (param[2]) then do
@@ -1025,7 +1025,7 @@ function message(param) do
             return "unused constructor " .. (s$2 .. ".");
           end end  end end end end 
        if ___conditional___ = 22--[ Unused_extension ]-- then do
-          var s$3 = param[0];
+          s$3 = param[0];
           if (param[1]) then do
             return "extension constructor " .. (s$3 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
           end else if (param[2]) then do
@@ -1034,8 +1034,8 @@ function message(param) do
             return "unused extension constructor " .. (s$3 .. ".");
           end end  end end end end 
        if ___conditional___ = 23--[ Name_out_of_scope ]-- then do
-          var slist$2 = param[1];
-          var ty = param[0];
+          slist$2 = param[1];
+          ty = param[0];
           if (slist$2 and !slist$2[1] and !param[2]) then do
             return slist$2[0] .. (" was selected from type " .. (ty .. ".\nIt is not visible in the current scope, and will not \nbe selected if the type becomes unknown."));
           end
@@ -1053,7 +1053,7 @@ function message(param) do
                 ];
           end end end else 
        if ___conditional___ = 24--[ Ambiguous_name ]-- then do
-          var slist$3 = param[0];
+          slist$3 = param[0];
           if (slist$3 and !slist$3[1] and !param[2]) then do
             return slist$3[0] .. (" belongs to several types: " .. ($$String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong."));
           end
@@ -1149,7 +1149,7 @@ function message(param) do
                           "illegal payload for attribute '%s'.\n%s"
                         ]), param[0], param[1]);end end end 
        if ___conditional___ = 31--[ Eliminated_optional_arguments ]-- then do
-          var sl = param[0];
+          sl = param[0];
           return Curry._2(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "implicit elimination of optional argument",
@@ -1186,13 +1186,13 @@ function message(param) do
   end end 
 end
 
-var nerrors = do
+nerrors = do
   contents: 0
 end;
 
 function print(ppf, w) do
-  var msg = message(w);
-  var num = number(w);
+  msg = message(w);
+  num = number(w);
   Curry._2(Format.fprintf(ppf, --[ Format ]--[
             --[ Int ]--Block.__(4, [
                 --[ Int_d ]--0,
@@ -1217,14 +1217,14 @@ function print(ppf, w) do
   end end 
 end
 
-var Errors = Caml_exceptions.create("Ocaml_parsetree_test.Warnings.Errors");
+Errors = Caml_exceptions.create("Ocaml_parsetree_test.Warnings.Errors");
 
-var absname = do
+absname = do
   contents: false
 end;
 
 function in_file(name) do
-  var loc = do
+  loc = do
     pos_fname: name,
     pos_lnum: 1,
     pos_bol: 0,
@@ -1237,7 +1237,7 @@ function in_file(name) do
         end;
 end
 
-var none = in_file("_none_");
+none = in_file("_none_");
 
 function curr(lexbuf) do
   return do
@@ -1271,31 +1271,31 @@ function rhs_loc(n) do
         end;
 end
 
-var input_name = do
+input_name = do
   contents: "_none_"
 end;
 
-var input_lexbuf = do
+input_lexbuf = do
   contents: undefined
 end;
 
-var status = do
+status = do
   contents: --[ Uninitialised ]--0
 end;
 
-var num_loc_lines = do
+num_loc_lines = do
   contents: 0
 end;
 
 function highlight_terminfo(ppf, num_lines, lb, locs) do
   Format.pp_print_flush(ppf, --[ () ]--0);
-  var pos0 = -lb.lex_abs_pos | 0;
+  pos0 = -lb.lex_abs_pos | 0;
   if (pos0 < 0) then do
     throw Pervasives.Exit;
   end
    end 
-  var lines = num_loc_lines.contents;
-  for var i = pos0 , lb.lex_buffer_len - 1 | 0 , 1 do
+  lines = num_loc_lines.contents;
+  for i = pos0 , lb.lex_buffer_len - 1 | 0 , 1 do
     if (Caml_bytes.get(lb.lex_buffer, i) == --[ "\n" ]--10) then do
       lines = lines + 1 | 0;
     end
@@ -1307,9 +1307,9 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
    end 
   Caml_io.caml_ml_flush(Pervasives.stdout);
   Caml_external_polyfill.resolve("caml_terminfo_backup")(lines);
-  var bol = false;
+  bol = false;
   Pervasives.print_string("# ");
-  for var pos = 0 , (lb.lex_buffer_len - pos0 | 0) - 1 | 0 , 1 do
+  for pos = 0 , (lb.lex_buffer_len - pos0 | 0) - 1 | 0 , 1 do
     if (bol) then do
       Pervasives.print_string("  ");
       bol = false;
@@ -1331,7 +1331,7 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
       Caml_external_polyfill.resolve("caml_terminfo_standout")(false);
     end
      end 
-    var c = Caml_bytes.get(lb.lex_buffer, pos + pos0 | 0);
+    c = Caml_bytes.get(lb.lex_buffer, pos + pos0 | 0);
     Pervasives.print_char(c);
     bol = c == --[ "\n" ]--10;
   end
@@ -1341,15 +1341,15 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
 end
 
 function highlight_dumb(ppf, lb, loc) do
-  var pos0 = -lb.lex_abs_pos | 0;
+  pos0 = -lb.lex_abs_pos | 0;
   if (pos0 < 0) then do
     throw Pervasives.Exit;
   end
    end 
-  var end_pos = (lb.lex_buffer_len - pos0 | 0) - 1 | 0;
-  var line_start = 0;
-  var line_end = 0;
-  for var pos = 0 , end_pos , 1 do
+  end_pos = (lb.lex_buffer_len - pos0 | 0) - 1 | 0;
+  line_start = 0;
+  line_end = 0;
+  for pos = 0 , end_pos , 1 do
     if (Caml_bytes.get(lb.lex_buffer, pos + pos0 | 0) == --[ "\n" ]--10) then do
       if (loc.loc_start.pos_cnum > pos) then do
         line_start = line_start + 1 | 0;
@@ -1389,10 +1389,10 @@ function highlight_dumb(ppf, lb, loc) do
             "Characters %i-%i:@."
           ]), loc.loc_start.pos_cnum, loc.loc_end.pos_cnum);
   Format.pp_print_string(ppf, "  ");
-  var line = 0;
-  var pos_at_bol = 0;
-  for var pos$1 = 0 , end_pos , 1 do
-    var c = Caml_bytes.get(lb.lex_buffer, pos$1 + pos0 | 0);
+  line = 0;
+  pos_at_bol = 0;
+  for pos$1 = 0 , end_pos , 1 do
+    c = Caml_bytes.get(lb.lex_buffer, pos$1 + pos0 | 0);
     if (c ~= 10) then do
       if (c ~= 13) then do
         if (line == line_start and line == line_end) then do
@@ -1427,10 +1427,10 @@ function highlight_dumb(ppf, lb, loc) do
                 ]),
               "@.  "
             ]);
-        for var _i = pos_at_bol , loc.loc_start.pos_cnum - 1 | 0 , 1 do
+        for _i = pos_at_bol , loc.loc_start.pos_cnum - 1 | 0 , 1 do
           Format.pp_print_char(ppf, --[ " " ]--32);
         end
-        for var _i$1 = loc.loc_start.pos_cnum , loc.loc_end.pos_cnum - 1 | 0 , 1 do
+        for _i$1 = loc.loc_start.pos_cnum , loc.loc_end.pos_cnum - 1 | 0 , 1 do
           Format.pp_print_char(ppf, --[ "^" ]--94);
         end
       end
@@ -1458,12 +1458,12 @@ end
 
 function highlight_locations(ppf, locs) do
   while(true) do
-    var match = status.contents;
+    match = status.contents;
     if (typeof match == "number") then do
       if (match ~= 0) then do
-        var match$1 = input_lexbuf.contents;
+        match$1 = input_lexbuf.contents;
         if (match$1 ~= undefined) then do
-          var norepeat;
+          norepeat;
           try do
             norepeat = Caml_sys.caml_sys_getenv("TERM") == "norepeat";
           end
@@ -1477,7 +1477,7 @@ function highlight_locations(ppf, locs) do
           if (norepeat) then do
             return false;
           end else do
-            var loc1 = List.hd(locs);
+            loc1 = List.hd(locs);
             try do
               highlight_dumb(ppf, match$1, loc1);
               return true;
@@ -1498,7 +1498,7 @@ function highlight_locations(ppf, locs) do
         continue ;
       end end 
     end else do
-      var match$2 = input_lexbuf.contents;
+      match$2 = input_lexbuf.contents;
       if (match$2 ~= undefined) then do
         try do
           highlight_terminfo(ppf, match[0], match$2, locs);
@@ -1520,13 +1520,13 @@ end
 
 function show_filename(file) do
   if (absname.contents) then do
-    var s = file;
-    var s$1 = Curry._1(Filename.is_relative, s) and Filename.concat(Caml_sys.caml_sys_getcwd(--[ () ]--0), s) or s;
-    var aux = function (_s) do
+    s = file;
+    s$1 = Curry._1(Filename.is_relative, s) and Filename.concat(Caml_sys.caml_sys_getcwd(--[ () ]--0), s) or s;
+    aux = function (_s) do
       while(true) do
-        var s = _s;
-        var base = Curry._1(Filename.basename, s);
-        var dir = Curry._1(Filename.dirname, s);
+        s = _s;
+        base = Curry._1(Filename.basename, s);
+        dir = Curry._1(Filename.dirname, s);
         if (dir == s) then do
           return dir;
         end else if (base == Filename.current_dir_name) then do
@@ -1565,11 +1565,11 @@ end
 
 function print_loc(ppf, loc) do
   Curry._1(Misc_Color.setup, color.contents);
-  var match = get_pos_info(loc.loc_start);
-  var startchar = match[2];
-  var file = match[0];
-  var startchar$1 = bs_vscode and startchar + 1 | 0 or startchar;
-  var endchar = (loc.loc_end.pos_cnum - loc.loc_start.pos_cnum | 0) + startchar$1 | 0;
+  match = get_pos_info(loc.loc_start);
+  startchar = match[2];
+  file = match[0];
+  startchar$1 = bs_vscode and startchar + 1 | 0 or startchar;
+  endchar = (loc.loc_end.pos_cnum - loc.loc_start.pos_cnum | 0) + startchar$1 | 0;
   if (file == "//toplevel//") then do
     if (highlight_locations(ppf, --[ :: ]--[
             loc,
@@ -1689,11 +1689,11 @@ function print$1(ppf, loc) do
   end end 
 end
 
-var error_prefix = "Error";
+error_prefix = "Error";
 
 function print_error(ppf, loc) do
   print$1(ppf, loc);
-  var ppf$1 = ppf;
+  ppf$1 = ppf;
   Curry._1(Misc_Color.setup, color.contents);
   Curry._1(Format.fprintf(ppf$1, --[ Format ]--[
             --[ Formatting_gen ]--Block.__(18, [
@@ -1754,27 +1754,27 @@ function default_warning_printer(loc, ppf, w) do
   end end 
 end
 
-var warning_printer = do
+warning_printer = do
   contents: default_warning_printer
 end;
 
-var formatter_for_warnings = do
+formatter_for_warnings = do
   contents: Format.err_formatter
 end;
 
 function prerr_warning(loc, w) do
-  var loc$1 = loc;
-  var ppf = formatter_for_warnings.contents;
-  var w$1 = w;
-  var ppf$1 = ppf;
-  var f = Curry._1(warning_printer.contents, loc$1);
-  var arg = w$1;
-  var out_functions = Format.pp_get_formatter_out_functions(ppf$1, --[ () ]--0);
-  var out_string = function (str, start, len) do
-    var count = function (_i, _c) do
+  loc$1 = loc;
+  ppf = formatter_for_warnings.contents;
+  w$1 = w;
+  ppf$1 = ppf;
+  f = Curry._1(warning_printer.contents, loc$1);
+  arg = w$1;
+  out_functions = Format.pp_get_formatter_out_functions(ppf$1, --[ () ]--0);
+  out_string = function (str, start, len) do
+    count = function (_i, _c) do
       while(true) do
-        var c = _c;
-        var i = _i;
+        c = _c;
+        i = _i;
         if (i == (start + len | 0)) then do
           return c;
         end else if (Caml_string.get(str, i) == --[ "\n" ]--10) then do
@@ -1807,11 +1807,11 @@ function print_phanton_error_prefix(ppf) do
 end
 
 function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
-  var loc = locOpt ~= undefined and locOpt or none;
-  var sub = subOpt ~= undefined and subOpt or --[ [] ]--0;
-  var if_highlight = if_highlightOpt ~= undefined and if_highlightOpt or "";
-  var before = print_phanton_error_prefix;
-  var k = function (msg) do
+  loc = locOpt ~= undefined and locOpt or none;
+  sub = subOpt ~= undefined and subOpt or --[ [] ]--0;
+  if_highlight = if_highlightOpt ~= undefined and if_highlightOpt or "";
+  before = print_phanton_error_prefix;
+  k = function (msg) do
     return do
             loc: loc,
             msg: msg,
@@ -1819,9 +1819,9 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
             if_highlight: if_highlight
           end;
   end;
-  var fmt$1 = fmt;
-  var buf = $$Buffer.create(64);
-  var ppf = Format.formatter_of_buffer(buf);
+  fmt$1 = fmt;
+  buf = $$Buffer.create(64);
+  ppf = Format.formatter_of_buffer(buf);
   Curry._1(Misc_Color.set_color_tag_handling, ppf);
   if (before ~= undefined) then do
     Curry._1(before, ppf);
@@ -1833,7 +1833,7 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
               end), ppf, fmt$1);
 end
 
-var error_of_exn = do
+error_of_exn = do
   contents: --[ [] ]--0
 end;
 
@@ -1888,7 +1888,7 @@ register_error_of_exn((function (param) do
         end end  end 
       end));
 
-var $$Error = Caml_exceptions.create("Ocaml_parsetree_test.Location.Error");
+$$Error = Caml_exceptions.create("Ocaml_parsetree_test.Location.Error");
 
 register_error_of_exn((function (param) do
         if (param[0] == $$Error) then do
@@ -1917,11 +1917,11 @@ function assert_fail(msg) do
 end
 
 function is_mocha(param) do
-  var match = $$Array.to_list(Process.argv);
+  match = $$Array.to_list(Process.argv);
   if (match) then do
-    var match$1 = match[1];
+    match$1 = match[1];
     if (match$1) then do
-      var exec = Path.basename(match$1[0]);
+      exec = Path.basename(match$1[0]);
       if (exec == "mocha") then do
         return true;
       end else do
@@ -1936,19 +1936,19 @@ function is_mocha(param) do
 end
 
 function close_enough(thresholdOpt, a, b) do
-  var threshold = thresholdOpt ~= undefined and thresholdOpt or 0.0000001;
+  threshold = thresholdOpt ~= undefined and thresholdOpt or 0.0000001;
   return Math.abs(a - b) < threshold;
 end
 
 function from_pair_suites(name, suites) do
-  var match = $$Array.to_list(Process.argv);
+  match = $$Array.to_list(Process.argv);
   if (match) then do
     if (is_mocha(--[ () ]--0)) then do
       describe(name, (function () do
               return List.iter((function (param) do
-                            var code = param[1];
+                            code = param[1];
                             it(param[0], (function () do
-                                    var spec = Curry._1(code, --[ () ]--0);
+                                    spec = Curry._1(code, --[ () ]--0);
                                     local ___conditional___=(spec.tag | 0);
                                     do
                                        if ___conditional___ = 0--[ Eq ]-- then do
@@ -1967,8 +1967,8 @@ function from_pair_suites(name, suites) do
                                           Assert.ok(spec[0]);
                                           return --[ () ]--0;end end end 
                                        if ___conditional___ = 5--[ Approx ]-- then do
-                                          var b = spec[1];
-                                          var a = spec[0];
+                                          b = spec[1];
+                                          a = spec[0];
                                           if (close_enough(undefined, a, b)) then do
                                             return 0;
                                           end else do
@@ -1976,8 +1976,8 @@ function from_pair_suites(name, suites) do
                                             return --[ () ]--0;
                                           end end end end end 
                                        if ___conditional___ = 6--[ ApproxThreshold ]-- then do
-                                          var b$1 = spec[2];
-                                          var a$1 = spec[1];
+                                          b$1 = spec[2];
+                                          a$1 = spec[1];
                                           if (close_enough(spec[0], a$1, b$1)) then do
                                             return 0;
                                           end else do
@@ -2000,15 +2000,15 @@ function from_pair_suites(name, suites) do
             end));
       return --[ () ]--0;
     end else do
-      var name$1 = name;
-      var suites$1 = suites;
+      name$1 = name;
+      suites$1 = suites;
       console.log(--[ tuple ]--[
             name$1,
             "testing"
           ]);
       return List.iter((function (param) do
-                    var name = param[0];
-                    var match = Curry._1(param[1], --[ () ]--0);
+                    name = param[0];
+                    match = Curry._1(param[1], --[ () ]--0);
                     local ___conditional___=(match.tag | 0);
                     do
                        if ___conditional___ = 0--[ Eq ]-- then do
@@ -2089,14 +2089,14 @@ end
 
 Promise.resolve(--[ () ]--0);
 
-var docstrings = do
+docstrings = do
   contents: --[ [] ]--0
 end;
 
 function warn_bad_docstrings(param) do
   if (is_active(--[ Bad_docstring ]--Block.__(33, [true]))) then do
     return List.iter((function (ds) do
-                  var match = ds.ds_attached;
+                  match = ds.ds_attached;
                   local ___conditional___=(match);
                   do
                      if ___conditional___ = 0--[ Unattached ]-- then do
@@ -2104,7 +2104,7 @@ function warn_bad_docstrings(param) do
                      if ___conditional___ = 1--[ Info ]-- then do
                         return --[ () ]--0;end end end 
                      if ___conditional___ = 2--[ Docs ]-- then do
-                        var match$1 = ds.ds_associated;
+                        match$1 = ds.ds_associated;
                         if (match$1 >= 2) then do
                           return prerr_warning(ds.ds_loc, --[ Bad_docstring ]--Block.__(33, [false]));
                         end else do
@@ -2120,7 +2120,7 @@ function warn_bad_docstrings(param) do
 end
 
 function docstring(body, loc) do
-  var ds = do
+  ds = do
     ds_body: body,
     ds_loc: loc,
     ds_attached: --[ Unattached ]--0,
@@ -2133,33 +2133,33 @@ function docstring(body, loc) do
   return ds;
 end
 
-var empty_docs = do
+empty_docs = do
   docs_pre: undefined,
   docs_post: undefined
 end;
 
-var doc_loc = do
+doc_loc = do
   txt: "ocaml.doc",
   loc: none
 end;
 
 function docs_attr(ds) do
-  var exp_pexp_desc = --[ Pexp_constant ]--Block.__(1, [--[ Const_string ]--Block.__(2, [
+  exp_pexp_desc = --[ Pexp_constant ]--Block.__(1, [--[ Const_string ]--Block.__(2, [
           ds.ds_body,
           undefined
         ])]);
-  var exp_pexp_loc = ds.ds_loc;
-  var exp = do
+  exp_pexp_loc = ds.ds_loc;
+  exp = do
     pexp_desc: exp_pexp_desc,
     pexp_loc: exp_pexp_loc,
     pexp_attributes: --[ [] ]--0
   end;
-  var item_pstr_desc = --[ Pstr_eval ]--Block.__(0, [
+  item_pstr_desc = --[ Pstr_eval ]--Block.__(0, [
       exp,
       --[ [] ]--0
     ]);
-  var item_pstr_loc = exp_pexp_loc;
-  var item = do
+  item_pstr_loc = exp_pexp_loc;
+  item = do
     pstr_desc: item_pstr_desc,
     pstr_loc: item_pstr_loc
   end;
@@ -2173,12 +2173,12 @@ function docs_attr(ds) do
 end
 
 function add_docs_attrs(docs, attrs) do
-  var match = docs.docs_pre;
-  var attrs$1 = match ~= undefined and --[ :: ]--[
+  match = docs.docs_pre;
+  attrs$1 = match ~= undefined and --[ :: ]--[
       docs_attr(match),
       attrs
     ] or attrs;
-  var match$1 = docs.docs_post;
+  match$1 = docs.docs_post;
   if (match$1 ~= undefined) then do
     return Pervasives.$at(attrs$1, --[ :: ]--[
                 docs_attr(match$1),
@@ -2200,28 +2200,28 @@ function add_info_attrs(info, attrs) do
   end end 
 end
 
-var text_loc = do
+text_loc = do
   txt: "ocaml.text",
   loc: none
 end;
 
 function text_attr(ds) do
-  var exp_pexp_desc = --[ Pexp_constant ]--Block.__(1, [--[ Const_string ]--Block.__(2, [
+  exp_pexp_desc = --[ Pexp_constant ]--Block.__(1, [--[ Const_string ]--Block.__(2, [
           ds.ds_body,
           undefined
         ])]);
-  var exp_pexp_loc = ds.ds_loc;
-  var exp = do
+  exp_pexp_loc = ds.ds_loc;
+  exp = do
     pexp_desc: exp_pexp_desc,
     pexp_loc: exp_pexp_loc,
     pexp_attributes: --[ [] ]--0
   end;
-  var item_pstr_desc = --[ Pstr_eval ]--Block.__(0, [
+  item_pstr_desc = --[ Pstr_eval ]--Block.__(0, [
       exp,
       --[ [] ]--0
     ]);
-  var item_pstr_loc = exp_pexp_loc;
-  var item = do
+  item_pstr_loc = exp_pexp_loc;
+  item = do
     pstr_desc: item_pstr_desc,
     pstr_loc: item_pstr_loc
   end;
@@ -2239,12 +2239,12 @@ function add_text_attrs(dsl, attrs) do
 end
 
 function get_docstring(info, dsl) do
-  var _param = dsl;
+  _param = dsl;
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var ds = param[0];
-      var match = ds.ds_attached;
+      ds = param[0];
+      match = ds.ds_attached;
       if (match ~= 1) then do
         ds.ds_attached = info and --[ Info ]--1 or --[ Docs ]--2;
         return ds;
@@ -2259,14 +2259,14 @@ function get_docstring(info, dsl) do
 end
 
 function get_docstrings(dsl) do
-  var _acc = --[ [] ]--0;
-  var _param = dsl;
+  _acc = --[ [] ]--0;
+  _param = dsl;
   while(true) do
-    var param = _param;
-    var acc = _acc;
+    param = _param;
+    acc = _acc;
     if (param) then do
-      var ds = param[0];
-      var match = ds.ds_attached;
+      ds = param[0];
+      match = ds.ds_attached;
       if (match ~= 1) then do
         ds.ds_attached = --[ Docs ]--2;
         _param = param[1];
@@ -2287,7 +2287,7 @@ end
 
 function associate_docstrings(dsl) do
   return List.iter((function (ds) do
-                var match = ds.ds_associated;
+                match = ds.ds_associated;
                 if (match ~= 0) then do
                   ds.ds_associated = --[ Many ]--2;
                   return --[ () ]--0;
@@ -2298,7 +2298,7 @@ function associate_docstrings(dsl) do
               end), dsl);
 end
 
-var pre_table = Hashtbl.create(undefined, 50);
+pre_table = Hashtbl.create(undefined, 50);
 
 function set_pre_docstrings(pos, dsl) do
   if (dsl ~= --[ [] ]--0) then do
@@ -2310,7 +2310,7 @@ end
 
 function get_pre_docs(pos) do
   try do
-    var dsl = Hashtbl.find(pre_table, pos);
+    dsl = Hashtbl.find(pre_table, pos);
     associate_docstrings(dsl);
     return get_docstring(false, dsl);
   end
@@ -2336,7 +2336,7 @@ function mark_pre_docs(pos) do
   end
 end
 
-var post_table = Hashtbl.create(undefined, 50);
+post_table = Hashtbl.create(undefined, 50);
 
 function set_post_docstrings(pos, dsl) do
   if (dsl ~= --[ [] ]--0) then do
@@ -2348,7 +2348,7 @@ end
 
 function get_post_docs(pos) do
   try do
-    var dsl = Hashtbl.find(post_table, pos);
+    dsl = Hashtbl.find(post_table, pos);
     associate_docstrings(dsl);
     return get_docstring(false, dsl);
   end
@@ -2376,7 +2376,7 @@ end
 
 function get_info(pos) do
   try do
-    var dsl = Hashtbl.find(post_table, pos);
+    dsl = Hashtbl.find(post_table, pos);
     return get_docstring(true, dsl);
   end
   catch (exn)do
@@ -2388,7 +2388,7 @@ function get_info(pos) do
   end
 end
 
-var floating_table = Hashtbl.create(undefined, 50);
+floating_table = Hashtbl.create(undefined, 50);
 
 function set_floating_docstrings(pos, dsl) do
   if (dsl ~= --[ [] ]--0) then do
@@ -2411,7 +2411,7 @@ function get_text(pos) do
   end
 end
 
-var pre_extra_table = Hashtbl.create(undefined, 50);
+pre_extra_table = Hashtbl.create(undefined, 50);
 
 function set_pre_extra_docstrings(pos, dsl) do
   if (dsl ~= --[ [] ]--0) then do
@@ -2434,7 +2434,7 @@ function get_pre_extra_text(pos) do
   end
 end
 
-var post_extra_table = Hashtbl.create(undefined, 50);
+post_extra_table = Hashtbl.create(undefined, 50);
 
 function set_post_extra_docstrings(pos, dsl) do
   if (dsl ~= --[ [] ]--0) then do
@@ -2465,8 +2465,8 @@ function symbol_docs(param) do
 end
 
 function symbol_docs_lazy(param) do
-  var p1 = Parsing.symbol_start_pos(--[ () ]--0);
-  var p2 = Parsing.symbol_end_pos(--[ () ]--0);
+  p1 = Parsing.symbol_start_pos(--[ () ]--0);
+  p2 = Parsing.symbol_end_pos(--[ () ]--0);
   return Caml_obj.caml_lazy_make((function (param) do
                 return do
                         docs_pre: get_pre_docs(p1),
@@ -2486,7 +2486,7 @@ function mark_rhs_docs(pos1, pos2) do
 end
 
 function symbol_text_lazy(param) do
-  var pos = Parsing.symbol_start_pos(--[ () ]--0);
+  pos = Parsing.symbol_start_pos(--[ () ]--0);
   return Caml_obj.caml_lazy_make((function (param) do
                 return get_text(pos);
               end));
@@ -2501,13 +2501,13 @@ function init(param) do
   return Hashtbl.reset(post_extra_table);
 end
 
-var default_loc = do
+default_loc = do
   contents: none
 end;
 
 function mk(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           ptyp_desc: d,
           ptyp_loc: loc,
@@ -2527,8 +2527,8 @@ function attr(d, a) do
 end
 
 function mk$1(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           ppat_desc: d,
           ppat_loc: loc,
@@ -2548,8 +2548,8 @@ function attr$1(d, a) do
 end
 
 function mk$2(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pexp_desc: d,
           pexp_loc: loc,
@@ -2790,8 +2790,8 @@ function $$case(lhs, guard, rhs) do
 end
 
 function mk$3(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pmty_desc: d,
           pmty_loc: loc,
@@ -2815,8 +2815,8 @@ function alias(loc, attrs, a) do
 end
 
 function mk$4(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pmod_desc: d,
           pmod_loc: loc,
@@ -2836,7 +2836,7 @@ function attr$4(d, a) do
 end
 
 function mk$5(locOpt, d) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
   return do
           psig_desc: d,
           psig_loc: loc
@@ -2845,14 +2845,14 @@ end
 
 function text(txt) do
   return List.map((function (ds) do
-                var a = text_attr(ds);
-                var loc = ds.ds_loc;
+                a = text_attr(ds);
+                loc = ds.ds_loc;
                 return mk$5(loc, --[ Psig_attribute ]--Block.__(11, [a]));
               end), txt);
 end
 
 function mk$6(locOpt, d) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
   return do
           pstr_desc: d,
           pstr_loc: loc
@@ -2861,15 +2861,15 @@ end
 
 function text$1(txt) do
   return List.map((function (ds) do
-                var a = text_attr(ds);
-                var loc = ds.ds_loc;
+                a = text_attr(ds);
+                loc = ds.ds_loc;
                 return mk$6(loc, --[ Pstr_attribute ]--Block.__(13, [a]));
               end), txt);
 end
 
 function mk$7(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pcl_desc: d,
           pcl_loc: loc,
@@ -2889,8 +2889,8 @@ function attr$5(d, a) do
 end
 
 function mk$8(locOpt, attrsOpt, d) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
   return do
           pcty_desc: d,
           pcty_loc: loc,
@@ -2910,9 +2910,9 @@ function attr$6(d, a) do
 end
 
 function mk$9(locOpt, attrsOpt, docsOpt, d) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
   return do
           pctf_desc: d,
           pctf_loc: loc,
@@ -2975,9 +2975,9 @@ function attr$7(d, a) do
 end
 
 function mk$10(locOpt, attrsOpt, docsOpt, d) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
   return do
           pcf_desc: d,
           pcf_loc: loc,
@@ -3057,10 +3057,10 @@ function attr$8(d, a) do
 end
 
 function mk$11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  var prim = primOpt ~= undefined and primOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  prim = primOpt ~= undefined and primOpt or --[ [] ]--0;
   return do
           pval_name: name,
           pval_type: typ,
@@ -3071,10 +3071,10 @@ function mk$11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) do
 end
 
 function mk$12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  text = textOpt ~= undefined and textOpt or --[ [] ]--0;
   return do
           pmd_name: name,
           pmd_type: typ,
@@ -3084,10 +3084,10 @@ function mk$12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) do
 end
 
 function mk$13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  text = textOpt ~= undefined and textOpt or --[ [] ]--0;
   return do
           pmtd_name: name,
           pmtd_type: typ,
@@ -3097,10 +3097,10 @@ function mk$13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) do
 end
 
 function mk$14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  text = textOpt ~= undefined and textOpt or --[ [] ]--0;
   return do
           pmb_name: name,
           pmb_expr: expr,
@@ -3110,10 +3110,10 @@ function mk$14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) do
 end
 
 function mk$15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  var override = overrideOpt ~= undefined and overrideOpt or --[ Fresh ]--1;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  override = overrideOpt ~= undefined and overrideOpt or --[ Fresh ]--1;
   return do
           popen_lid: lid,
           popen_override: override,
@@ -3123,9 +3123,9 @@ function mk$15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) do
 end
 
 function mk$16(locOpt, attrsOpt, docsOpt, mexpr) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
   return do
           pincl_mod: mexpr,
           pincl_loc: loc,
@@ -3134,10 +3134,10 @@ function mk$16(locOpt, attrsOpt, docsOpt, mexpr) do
 end
 
 function mk$17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  text = textOpt ~= undefined and textOpt or --[ [] ]--0;
   return do
           pvb_pat: pat,
           pvb_expr: expr,
@@ -3147,12 +3147,12 @@ function mk$17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) do
 end
 
 function mk$18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, expr) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
-  var virt = virtOpt ~= undefined and virtOpt or --[ Concrete ]--1;
-  var params = paramsOpt ~= undefined and paramsOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  text = textOpt ~= undefined and textOpt or --[ [] ]--0;
+  virt = virtOpt ~= undefined and virtOpt or --[ Concrete ]--1;
+  params = paramsOpt ~= undefined and paramsOpt or --[ [] ]--0;
   return do
           pci_virt: virt,
           pci_params: params,
@@ -3164,14 +3164,14 @@ function mk$18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, exp
 end
 
 function mk$19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt, privOpt, manifest, name) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  var text = textOpt ~= undefined and textOpt or --[ [] ]--0;
-  var params = paramsOpt ~= undefined and paramsOpt or --[ [] ]--0;
-  var cstrs = cstrsOpt ~= undefined and cstrsOpt or --[ [] ]--0;
-  var kind = kindOpt ~= undefined and kindOpt or --[ Ptype_abstract ]--0;
-  var priv = privOpt ~= undefined and privOpt or --[ Public ]--1;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  text = textOpt ~= undefined and textOpt or --[ [] ]--0;
+  params = paramsOpt ~= undefined and paramsOpt or --[ [] ]--0;
+  cstrs = cstrsOpt ~= undefined and cstrsOpt or --[ [] ]--0;
+  kind = kindOpt ~= undefined and kindOpt or --[ Ptype_abstract ]--0;
+  priv = privOpt ~= undefined and privOpt or --[ Public ]--1;
   return do
           ptype_name: name,
           ptype_params: params,
@@ -3185,10 +3185,10 @@ function mk$19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt,
 end
 
 function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
-  var args = argsOpt ~= undefined and argsOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  args = argsOpt ~= undefined and argsOpt or --[ [] ]--0;
   return do
           pcd_name: name,
           pcd_args: args,
@@ -3199,10 +3199,10 @@ function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) do
 end
 
 function field$1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
-  var mut = mutOpt ~= undefined and mutOpt or --[ Immutable ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  mut = mutOpt ~= undefined and mutOpt or --[ Immutable ]--0;
   return do
           pld_name: name,
           pld_mutable: mut,
@@ -3213,10 +3213,10 @@ function field$1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) do
 end
 
 function mk$20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) do
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  var params = paramsOpt ~= undefined and paramsOpt or --[ [] ]--0;
-  var priv = privOpt ~= undefined and privOpt or --[ Public ]--1;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  params = paramsOpt ~= undefined and paramsOpt or --[ [] ]--0;
+  priv = privOpt ~= undefined and privOpt or --[ Public ]--1;
   return do
           ptyext_path: path,
           ptyext_params: params,
@@ -3227,11 +3227,11 @@ function mk$20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) do
 end
 
 function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
-  var args = argsOpt ~= undefined and argsOpt or --[ [] ]--0;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  args = argsOpt ~= undefined and argsOpt or --[ [] ]--0;
   return do
           pext_name: name,
           pext_kind: --[ Pext_decl ]--Block.__(0, [
@@ -3244,10 +3244,10 @@ function decl(locOpt, attrsOpt, docsOpt, infoOpt, argsOpt, res, name) do
 end
 
 function rebind(locOpt, attrsOpt, docsOpt, infoOpt, name, lid) do
-  var loc = locOpt ~= undefined and locOpt or default_loc.contents;
-  var attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
-  var docs = docsOpt ~= undefined and docsOpt or empty_docs;
-  var info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
+  loc = locOpt ~= undefined and locOpt or default_loc.contents;
+  attrs = attrsOpt ~= undefined and attrsOpt or --[ [] ]--0;
+  docs = docsOpt ~= undefined and docsOpt or empty_docs;
+  info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
   return do
           pext_name: name,
           pext_kind: --[ Pext_rebind ]--Block.__(1, [lid]),
@@ -3256,7 +3256,7 @@ function rebind(locOpt, attrsOpt, docsOpt, infoOpt, name, lid) do
         end;
 end
 
-var Ast_helper_Exp = do
+Ast_helper_Exp = do
   mk: mk$2,
   attr: attr$2,
   ident: ident,
@@ -3296,7 +3296,7 @@ var Ast_helper_Exp = do
   $$case: $$case
 end;
 
-var Ast_helper_Ctf = do
+Ast_helper_Ctf = do
   mk: mk$9,
   attr: attr$7,
   inherit_: inherit_,
@@ -3308,7 +3308,7 @@ var Ast_helper_Ctf = do
   text: text$2
 end;
 
-var Ast_helper_Cf = do
+Ast_helper_Cf = do
   mk: mk$10,
   attr: attr$8,
   inherit_: inherit_$1,
@@ -3323,16 +3323,16 @@ var Ast_helper_Cf = do
   concrete: concrete
 end;
 
-var $$Error$1 = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Error");
+$$Error$1 = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Error");
 
-var Escape_error = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Escape_error");
+Escape_error = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Escape_error");
 
 function prepare_error(param) do
   local ___conditional___=(param.tag | 0);
   do
      if ___conditional___ = 0--[ Unclosed ]-- then do
-        var closing = param[3];
-        var opening = param[1];
+        closing = param[3];
+        opening = param[1];
         return Curry._1(errorf(param[2], --[ :: ]--[
                         Curry._1(errorf(param[0], undefined, undefined, --[ Format ]--[
                                   --[ String_literal ]--Block.__(11, [
@@ -3416,7 +3416,7 @@ function prepare_error(param) do
                     "Syntax error: applicative paths of the form F(X).t are not supported when the option -no-app-func is set."
                   ]);end end end 
      if ___conditional___ = 4--[ Variable_in_scope ]-- then do
-        var $$var = param[1];
+        $$var = param[1];
         return Curry._2(errorf(param[0], undefined, undefined, --[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "In this scoped type, variable '",
@@ -3512,10 +3512,10 @@ function mkcf(attrs, docs, d) do
 end
 
 function mkoption(d) do
-  var init = d.ptyp_loc;
-  var loc_loc_start = init.loc_start;
-  var loc_loc_end = init.loc_end;
-  var loc = do
+  init = d.ptyp_loc;
+  loc_loc_start = init.loc_start;
+  loc_loc_end = init.loc_end;
+  loc = do
     loc_start: loc_loc_start,
     loc_end: loc_loc_end,
     loc_ghost: true
@@ -3552,7 +3552,7 @@ function reloc_exp(x) do
 end
 
 function mkoperator(name, pos) do
-  var loc = rhs_loc(pos);
+  loc = rhs_loc(pos);
   return Curry._3(Ast_helper_Exp.mk, loc, undefined, --[ Pexp_ident ]--Block.__(0, [do
                   txt: --[ Lident ]--Block.__(0, [name]),
                   loc: loc
@@ -3627,16 +3627,16 @@ end
 
 function mktailexp(nilloc, param) do
   if (param) then do
-    var e1 = param[0];
-    var exp_el = mktailexp(nilloc, param[1]);
-    var loc_loc_start = e1.pexp_loc.loc_start;
-    var loc_loc_end = exp_el.pexp_loc.loc_end;
-    var loc = do
+    e1 = param[0];
+    exp_el = mktailexp(nilloc, param[1]);
+    loc_loc_start = e1.pexp_loc.loc_start;
+    loc_loc_end = exp_el.pexp_loc.loc_end;
+    loc = do
       loc_start: loc_loc_start,
       loc_end: loc_loc_end,
       loc_ghost: true
     end;
-    var arg = Curry._3(Ast_helper_Exp.mk, loc, undefined, --[ Pexp_tuple ]--Block.__(8, [--[ :: ]--[
+    arg = Curry._3(Ast_helper_Exp.mk, loc, undefined, --[ Pexp_tuple ]--Block.__(8, [--[ :: ]--[
               e1,
               --[ :: ]--[
                 exp_el,
@@ -3649,15 +3649,15 @@ function mktailexp(nilloc, param) do
                 loc_ghost: true
               end, arg, loc);
   end else do
-    var loc_loc_start$1 = nilloc.loc_start;
-    var loc_loc_end$1 = nilloc.loc_end;
-    var loc$1 = do
+    loc_loc_start$1 = nilloc.loc_start;
+    loc_loc_end$1 = nilloc.loc_end;
+    loc$1 = do
       loc_start: loc_loc_start$1,
       loc_end: loc_loc_end$1,
       loc_ghost: true
     end;
-    var nil_txt = --[ Lident ]--Block.__(0, ["[]"]);
-    var nil = do
+    nil_txt = --[ Lident ]--Block.__(0, ["[]"]);
+    nil = do
       txt: nil_txt,
       loc: loc$1
     end;
@@ -3670,16 +3670,16 @@ end
 
 function mktailpat(nilloc, param) do
   if (param) then do
-    var p1 = param[0];
-    var pat_pl = mktailpat(nilloc, param[1]);
-    var loc_loc_start = p1.ppat_loc.loc_start;
-    var loc_loc_end = pat_pl.ppat_loc.loc_end;
-    var loc = do
+    p1 = param[0];
+    pat_pl = mktailpat(nilloc, param[1]);
+    loc_loc_start = p1.ppat_loc.loc_start;
+    loc_loc_end = pat_pl.ppat_loc.loc_end;
+    loc = do
       loc_start: loc_loc_start,
       loc_end: loc_loc_end,
       loc_ghost: true
     end;
-    var arg = mk$1(loc, undefined, --[ Ppat_tuple ]--Block.__(4, [--[ :: ]--[
+    arg = mk$1(loc, undefined, --[ Ppat_tuple ]--Block.__(4, [--[ :: ]--[
               p1,
               --[ :: ]--[
                 pat_pl,
@@ -3692,15 +3692,15 @@ function mktailpat(nilloc, param) do
                 loc_ghost: true
               end, arg, loc);
   end else do
-    var loc_loc_start$1 = nilloc.loc_start;
-    var loc_loc_end$1 = nilloc.loc_end;
-    var loc$1 = do
+    loc_loc_start$1 = nilloc.loc_start;
+    loc_loc_end$1 = nilloc.loc_end;
+    loc$1 = do
       loc_start: loc_loc_start$1,
       loc_end: loc_loc_end$1,
       loc_ghost: true
     end;
-    var nil_txt = --[ Lident ]--Block.__(0, ["[]"]);
-    var nil = do
+    nil_txt = --[ Lident ]--Block.__(0, ["[]"]);
+    nil = do
       txt: nil_txt,
       loc: loc$1
     end;
@@ -3722,8 +3722,8 @@ function mkstrexp(e, attrs) do
 end
 
 function mkexp_constraint(e, param) do
-  var t2 = param[1];
-  var t1 = param[0];
+  t2 = param[1];
+  t1 = param[0];
   if (t1 ~= undefined) then do
     if (t2 ~= undefined) then do
       return ghexp(--[ Pexp_coerce ]--Block.__(20, [
@@ -3811,7 +3811,7 @@ function bigarray_function(str, name) do
 end
 
 function bigarray_untuplify(exp) do
-  var match = exp.pexp_desc;
+  match = exp.pexp_desc;
   if (match.tag == --[ Pexp_tuple ]--8) then do
     return match[0];
   end else do
@@ -3823,7 +3823,7 @@ function bigarray_untuplify(exp) do
 end
 
 function exp_of_label(lbl, pos) do
-  var rhs = --[ Lident ]--Block.__(0, [last(lbl)]);
+  rhs = --[ Lident ]--Block.__(0, [last(lbl)]);
   return mkexp(--[ Pexp_ident ]--Block.__(0, [do
                   txt: rhs,
                   loc: rhs_loc(pos)
@@ -3831,7 +3831,7 @@ function exp_of_label(lbl, pos) do
 end
 
 function pat_of_label(lbl, pos) do
-  var rhs = last(lbl);
+  rhs = last(lbl);
   return mkpat(--[ Ppat_var ]--Block.__(0, [do
                   txt: rhs,
                   loc: rhs_loc(pos)
@@ -3853,16 +3853,16 @@ function check_variable(vl, loc, v) do
 end
 
 function varify_constructors(var_names, t) do
-  var loop = function (t) do
-    var match = t.ptyp_desc;
-    var desc;
+  loop = function (t) do
+    match = t.ptyp_desc;
+    desc;
     if (typeof match == "number") then do
       desc = --[ Ptyp_any ]--0;
     end else do
       local ___conditional___=(match.tag | 0);
       do
          if ___conditional___ = 0--[ Ptyp_var ]-- then do
-            var x = match[0];
+            x = match[0];
             check_variable(var_names, t.ptyp_loc, x);
             desc = --[ Ptyp_var ]--Block.__(0, [x]);end else 
          if ___conditional___ = 1--[ Ptyp_arrow ]-- then do
@@ -3874,16 +3874,16 @@ function varify_constructors(var_names, t) do
          if ___conditional___ = 2--[ Ptyp_tuple ]-- then do
             desc = --[ Ptyp_tuple ]--Block.__(2, [List.map(loop, match[0])]);end else 
          if ___conditional___ = 3--[ Ptyp_constr ]-- then do
-            var longident = match[0];
-            var match$1 = longident.txt;
-            var exit = 0;
+            longident = match[0];
+            match$1 = longident.txt;
+            exit = 0;
             local ___conditional___=(match$1.tag | 0);
             do
                if ___conditional___ = 0--[ Lident ]-- then do
                   if (match[1]) then do
                     exit = 1;
                   end else do
-                    var s = match$1[0];
+                    s = match$1[0];
                     if (List.mem(s, var_names)) then do
                       desc = --[ Ptyp_var ]--Block.__(0, [s]);
                     end else do
@@ -3920,7 +3920,7 @@ function varify_constructors(var_names, t) do
                 List.map(loop, match[1])
               ]);end else 
          if ___conditional___ = 6--[ Ptyp_alias ]-- then do
-            var string = match[1];
+            string = match[1];
             check_variable(var_names, t.ptyp_loc, string);
             desc = --[ Ptyp_alias ]--Block.__(6, [
                 loop(match[0]),
@@ -3933,8 +3933,8 @@ function varify_constructors(var_names, t) do
                 match[2]
               ]);end else 
          if ___conditional___ = 8--[ Ptyp_poly ]-- then do
-            var string_lst = match[0];
-            var partial_arg = t.ptyp_loc;
+            string_lst = match[0];
+            partial_arg = t.ptyp_loc;
             List.iter((function (param) do
                     return check_variable(var_names, partial_arg, param);
                   end), string_lst);
@@ -3943,7 +3943,7 @@ function varify_constructors(var_names, t) do
                 loop(match[1])
               ]);end else 
          if ___conditional___ = 9--[ Ptyp_package ]-- then do
-            var match$2 = match[0];
+            match$2 = match[0];
             desc = --[ Ptyp_package ]--Block.__(9, [--[ tuple ]--[
                   match$2[0],
                   List.map((function (param) do
@@ -3954,7 +3954,7 @@ function varify_constructors(var_names, t) do
                         end), match$2[1])
                 ]]);end else 
          if ___conditional___ = 10--[ Ptyp_extension ]-- then do
-            var match$3 = match[0];
+            match$3 = match[0];
             desc = --[ Ptyp_extension ]--Block.__(10, [--[ tuple ]--[
                   match$3[0],
                   match$3[1]
@@ -3969,7 +3969,7 @@ function varify_constructors(var_names, t) do
             ptyp_attributes: t.ptyp_attributes
           end;
   end;
-  var loop_row_field = function (param) do
+  loop_row_field = function (param) do
     if (param.tag) then do
       return --[ Rinherit ]--Block.__(1, [loop(param[0])]);
     end else do
@@ -3985,11 +3985,11 @@ function varify_constructors(var_names, t) do
 end
 
 function wrap_type_annotation(newtypes, core_type, body) do
-  var exp = mkexp(--[ Pexp_constraint ]--Block.__(19, [
+  exp = mkexp(--[ Pexp_constraint ]--Block.__(19, [
           body,
           core_type
         ]));
-  var exp$1 = List.fold_right((function (newtype, exp) do
+  exp$1 = List.fold_right((function (newtype, exp) do
           return mkexp(--[ Pexp_newtype ]--Block.__(30, [
                         newtype,
                         exp
@@ -4005,11 +4005,11 @@ function wrap_type_annotation(newtypes, core_type, body) do
 end
 
 function wrap_exp_attrs(body, param) do
-  var ext = param[0];
-  var body_pexp_desc = body.pexp_desc;
-  var body_pexp_loc = body.pexp_loc;
-  var body_pexp_attributes = Pervasives.$at(param[1], body.pexp_attributes);
-  var body$1 = do
+  ext = param[0];
+  body_pexp_desc = body.pexp_desc;
+  body_pexp_loc = body.pexp_loc;
+  body_pexp_attributes = Pervasives.$at(param[1], body.pexp_attributes);
+  body$1 = do
     pexp_desc: body_pexp_desc,
     pexp_loc: body_pexp_loc,
     pexp_attributes: body_pexp_attributes
@@ -4035,8 +4035,8 @@ function text_def(pos) do
 end
 
 function extra_text(text, pos, items) do
-  var pre_extras = get_pre_extra_text(Parsing.rhs_start_pos(pos));
-  var post_extras = get_post_extra_text(Parsing.rhs_end_pos(pos));
+  pre_extras = get_pre_extra_text(Parsing.rhs_start_pos(pos));
+  post_extras = get_post_extra_text(Parsing.rhs_end_pos(pos));
   return Pervasives.$at(Curry._1(text, pre_extras), Pervasives.$at(items, Curry._1(text, post_extras)));
 end
 
@@ -4052,8 +4052,8 @@ function add_nonrec(rf, attrs, pos) do
   if (rf) then do
     return attrs;
   end else do
-    var name_loc = rhs_loc(pos);
-    var name = do
+    name_loc = rhs_loc(pos);
+    name = do
       txt: "nonrec",
       loc: name_loc
     end;
@@ -4078,7 +4078,7 @@ function mklb(param, attrs) do
         end;
 end
 
-var yytransl_const = [
+yytransl_const = [
   257,
   258,
   259,
@@ -4183,7 +4183,7 @@ var yytransl_const = [
   0
 ];
 
-var yytransl_block = [
+yytransl_block = [
   268,
   287,
   298,
@@ -4207,7 +4207,7 @@ var yytransl_block = [
   0
 ];
 
-var yyact = [
+yyact = [
   (function (param) do
       throw [
             Caml_builtin_exceptions.failure,
@@ -4215,15 +4215,15 @@ var yyact = [
           ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
       return extra_text(text$1, 1, _1);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
       return extra_text(text, 1, _1);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ Ptop_def ]--Block.__(0, [extra_text(text$1, 1, _1)]);
     end),
   (function (__caml_parser_env) do
@@ -4233,8 +4233,8 @@ var yyact = [
       throw Caml_builtin_exceptions.end_of_file;
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[ :: ]--[
                   mkstrexp(_1, _2),
                   --[ [] ]--0
@@ -4247,17 +4247,17 @@ var yyact = [
       return --[ [] ]--0;
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[ :: ]--[
                   _1,
                   _2
                 ]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
-      var pos = 1;
-      var items = _1;
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
+      pos = 1;
+      items = _1;
       return extra_text((function (txt) do
                     return --[ :: ]--[
                             --[ Ptop_def ]--Block.__(0, [text$1(txt)]),
@@ -4269,9 +4269,9 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return Pervasives.$at(text_def(1), --[ :: ]--[
                   --[ Ptop_def ]--Block.__(0, [--[ :: ]--[
                         mkstrexp(_1, _2),
@@ -4287,9 +4287,9 @@ var yyact = [
       return text_def(1);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(2, 3);
       return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), --[ :: ]--[
                       --[ Ptop_def ]--Block.__(0, [--[ :: ]--[
@@ -4300,8 +4300,8 @@ var yyact = [
                     ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), --[ :: ]--[
                       --[ Ptop_def ]--Block.__(0, [--[ :: ]--[
                             _2,
@@ -4311,8 +4311,8 @@ var yyact = [
                     ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(2, 3);
       return Pervasives.$at(text_def(1), Pervasives.$at(text_def(2), --[ :: ]--[
                       _2,
@@ -4320,8 +4320,8 @@ var yyact = [
                     ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return Pervasives.$at(text_def(1), --[ :: ]--[
                   --[ Ptop_def ]--Block.__(0, [--[ :: ]--[
                         _1,
@@ -4331,8 +4331,8 @@ var yyact = [
                 ]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(1, 1);
       return Pervasives.$at(text_def(1), --[ :: ]--[
                   _1,
@@ -4358,8 +4358,8 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
               do
                 txt: _2,
@@ -4375,29 +4375,29 @@ var yyact = [
       return "_";
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkmod(--[ Pmod_ident ]--Block.__(0, [do
                       txt: _1,
                       loc: rhs_loc(1)
                     end]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
       return mkmod(--[ Pmod_structure ]--Block.__(1, [extra_text(text$1, 2, _2)]));
     end),
   (function (__caml_parser_env) do
@@ -4405,8 +4405,8 @@ var yyact = [
       return unclosed("struct", 1, "end", 3);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return List.fold_left((function (acc, param) do
                     return mkmod(--[ Pmod_functor ]--Block.__(2, [
                                   param[0],
@@ -4416,15 +4416,15 @@ var yyact = [
                   end), _4, _2);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _1 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return mkmod(--[ Pmod_apply ]--Block.__(3, [
                     _1,
                     _3
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
       return mkmod(--[ Pmod_apply ]--Block.__(3, [
                     _1,
                     mkmod(--[ Pmod_structure ]--Block.__(1, [--[ [] ]--0]))
@@ -4436,8 +4436,8 @@ var yyact = [
       return unclosed("(", 2, ")", 4);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
       return mkmod(--[ Pmod_constraint ]--Block.__(4, [
                     _2,
                     _4
@@ -4456,21 +4456,21 @@ var yyact = [
       return unclosed("(", 1, ")", 3);
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return mkmod(--[ Pmod_unpack ]--Block.__(5, [_3]));
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
       return mkmod(--[ Pmod_unpack ]--Block.__(5, [ghexp(--[ Pexp_constraint ]--Block.__(19, [
                             _3,
                             ghtyp(--[ Ptyp_package ]--Block.__(9, [_5]))
                           ]))]));
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 5);
-      var _5 = Parsing.peek_val(__caml_parser_env, 3);
-      var _7 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 5);
+      _5 = Parsing.peek_val(__caml_parser_env, 3);
+      _7 = Parsing.peek_val(__caml_parser_env, 1);
       return mkmod(--[ Pmod_unpack ]--Block.__(5, [ghexp(--[ Pexp_coerce ]--Block.__(20, [
                             _3,
                             ghtyp(--[ Ptyp_package ]--Block.__(9, [_5])),
@@ -4478,8 +4478,8 @@ var yyact = [
                           ]))]));
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
       return mkmod(--[ Pmod_unpack ]--Block.__(5, [ghexp(--[ Pexp_coerce ]--Block.__(20, [
                             _3,
                             undefined,
@@ -4499,18 +4499,18 @@ var yyact = [
       return unclosed("(", 1, ")", 4);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return attr$4(_1, _2);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkmod(--[ Pmod_extension ]--Block.__(6, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(1, 2);
       return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[ :: ]--[
                   mkstrexp(_1, _2),
@@ -4524,26 +4524,26 @@ var yyact = [
       return --[ [] ]--0;
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), _2);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[ :: ]--[
                   _1,
                   _2
                 ]);
     end),
   (function (__caml_parser_env) do
-      var lbs = Parsing.peek_val(__caml_parser_env, 0);
-      var bindings = lbs.lbs_bindings;
-      var str;
-      var exit = 0;
+      lbs = Parsing.peek_val(__caml_parser_env, 0);
+      bindings = lbs.lbs_bindings;
+      str;
+      exit = 0;
       if (bindings) then do
-        var lb = bindings[0];
+        lb = bindings[0];
         if (typeof lb.lb_pattern.ppat_desc == "number" and !bindings[1]) then do
-          var exp = wrap_exp_attrs(lb.lb_expression, --[ tuple ]--[
+          exp = wrap_exp_attrs(lb.lb_expression, --[ tuple ]--[
                 undefined,
                 lbs.lbs_attributes
               ]);
@@ -4568,7 +4568,7 @@ var yyact = [
               ];
         end
          end 
-        var bindings$1 = List.map((function (lb) do
+        bindings$1 = List.map((function (lb) do
                 return mk$17(lb.lb_loc, lb.lb_attributes, CamlinternalLazy.force(lb.lb_docs), CamlinternalLazy.force(lb.lb_text), lb.lb_pattern, lb.lb_expression);
               end), bindings);
         str = mkstr(--[ Pstr_value ]--Block.__(1, [
@@ -4577,9 +4577,9 @@ var yyact = [
               ]));
       end
        end 
-      var match = lbs.lbs_extension;
+      match = lbs.lbs_extension;
       if (match ~= undefined) then do
-        var d = --[ Pstr_extension ]--Block.__(14, [
+        d = --[ Pstr_extension ]--Block.__(14, [
             --[ tuple ]--[
               match,
               --[ PStr ]--Block.__(0, [--[ :: ]--[
@@ -4595,81 +4595,81 @@ var yyact = [
       end end 
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkstr(--[ Pstr_primitive ]--Block.__(2, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkstr(--[ Pstr_type ]--Block.__(3, [List.rev(_1)]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkstr(--[ Pstr_typext ]--Block.__(4, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkstr(--[ Pstr_exception ]--Block.__(5, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkstr(--[ Pstr_module ]--Block.__(6, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkstr(--[ Pstr_recmodule ]--Block.__(7, [List.rev(_1)]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkstr(--[ Pstr_modtype ]--Block.__(8, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkstr(--[ Pstr_open ]--Block.__(9, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkstr(--[ Pstr_class ]--Block.__(10, [List.rev(_1)]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkstr(--[ Pstr_class_type ]--Block.__(11, [List.rev(_1)]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkstr(--[ Pstr_include ]--Block.__(12, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkstr(--[ Pstr_extension ]--Block.__(14, [
                     _1,
                     add_docs_attrs(symbol_docs(--[ () ]--0), _2)
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       mark_symbol_docs(--[ () ]--0);
       return mkstr(--[ Pstr_attribute ]--Block.__(13, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$16(symbol_rloc(--[ () ]--0), _3, symbol_docs(--[ () ]--0), _2);
     end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mkmod(--[ Pmod_constraint ]--Block.__(4, [
                     _4,
                     _2
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkmod(--[ Pmod_functor ]--Block.__(2, [
                     _1[0],
                     _1[1],
@@ -4677,56 +4677,56 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$14(symbol_rloc(--[ () ]--0), _4, symbol_docs(--[ () ]--0), undefined, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$14(symbol_rloc(--[ () ]--0), _5, symbol_docs(--[ () ]--0), undefined, do
                   txt: _3,
                   loc: rhs_loc(3)
                 end, _4);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$14(symbol_rloc(--[ () ]--0), _4, symbol_docs(--[ () ]--0), get_text(Parsing.symbol_start_pos(--[ () ]--0)), do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkmty(--[ Pmty_ident ]--Block.__(0, [do
                       txt: _1,
                       loc: rhs_loc(1)
                     end]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
       return mkmty(--[ Pmty_signature ]--Block.__(1, [extra_text(text, 2, _2)]));
     end),
   (function (__caml_parser_env) do
@@ -4734,8 +4734,8 @@ var yyact = [
       return unclosed("sig", 1, "end", 3);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return List.fold_left((function (acc, param) do
                     return mkmty(--[ Pmty_functor ]--Block.__(2, [
                                   param[0],
@@ -4745,15 +4745,15 @@ var yyact = [
                   end), _4, _2);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkmty(--[ Pmty_with ]--Block.__(3, [
                     _1,
                     List.rev(_3)
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mkmty(--[ Pmty_typeof ]--Block.__(4, [_4]));
     end),
   (function (__caml_parser_env) do
@@ -4764,115 +4764,115 @@ var yyact = [
       return unclosed("(", 1, ")", 3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkmty(--[ Pmty_extension ]--Block.__(5, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return attr$3(_1, _2);
     end),
   (function (__caml_parser_env) do
       return --[ [] ]--0;
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return Pervasives.$at(text(get_text(Parsing.rhs_start_pos(1))), _2);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return Pervasives.$at(text(get_text(Parsing.rhs_start_pos(1))), --[ :: ]--[
                   _1,
                   _2
                 ]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_value ]--Block.__(0, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_value ]--Block.__(0, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_type ]--Block.__(1, [List.rev(_1)]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_typext ]--Block.__(2, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_exception ]--Block.__(3, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_module ]--Block.__(4, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_module ]--Block.__(4, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_recmodule ]--Block.__(5, [List.rev(_1)]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_modtype ]--Block.__(6, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_open ]--Block.__(7, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_include ]--Block.__(8, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_class ]--Block.__(9, [List.rev(_1)]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_class_type ]--Block.__(10, [List.rev(_1)]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mksig(--[ Psig_extension ]--Block.__(12, [
                     _1,
                     add_docs_attrs(symbol_docs(--[ () ]--0), _2)
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       mark_symbol_docs(--[ () ]--0);
       return mksig(--[ Psig_attribute ]--Block.__(11, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$15(symbol_rloc(--[ () ]--0), _4, symbol_docs(--[ () ]--0), _2, do
                   txt: _3,
                   loc: rhs_loc(3)
                 end);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$16(symbol_rloc(--[ () ]--0), _3, symbol_docs(--[ () ]--0), _2);
     end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
       return mkmty(--[ Pmty_functor ]--Block.__(2, [
                     do
                       txt: _2,
@@ -4883,7 +4883,7 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkmty(--[ Pmty_functor ]--Block.__(2, [
                     do
                       txt: "*",
@@ -4894,18 +4894,18 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$12(symbol_rloc(--[ () ]--0), _4, symbol_docs(--[ () ]--0), undefined, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _3);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$12(symbol_rloc(--[ () ]--0), _5, symbol_docs(--[ () ]--0), undefined, do
                   txt: _2,
                   loc: rhs_loc(2)
@@ -4915,33 +4915,33 @@ var yyact = [
                     end));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$12(symbol_rloc(--[ () ]--0), _6, symbol_docs(--[ () ]--0), undefined, do
                   txt: _3,
                   loc: rhs_loc(3)
                 end, _5);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$12(symbol_rloc(--[ () ]--0), _5, symbol_docs(--[ () ]--0), get_text(Parsing.symbol_start_pos(--[ () ]--0)), do
                   txt: _2,
                   loc: rhs_loc(2)
@@ -4954,46 +4954,46 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$13(symbol_rloc(--[ () ]--0), _5, symbol_docs(--[ () ]--0), undefined, _4, do
                   txt: _3,
                   loc: rhs_loc(3)
                 end);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$18(symbol_rloc(--[ () ]--0), _6, symbol_docs(--[ () ]--0), undefined, _2, _3, do
                   txt: _4,
                   loc: rhs_loc(4)
                 end, _5);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$18(symbol_rloc(--[ () ]--0), _6, symbol_docs(--[ () ]--0), get_text(Parsing.symbol_start_pos(--[ () ]--0)), _2, _3, do
                   txt: _4,
                   loc: rhs_loc(4)
@@ -5003,16 +5003,16 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mkclass(--[ Pcl_constraint ]--Block.__(5, [
                     _4,
                     _2
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkclass(--[ Pcl_fun ]--Block.__(2, [
                     _1[0],
                     _1[1],
@@ -5027,8 +5027,8 @@ var yyact = [
       return List.rev(Parsing.peek_val(__caml_parser_env, 1));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkclass(--[ Pcl_fun ]--Block.__(2, [
                     _1[0],
                     _1[1],
@@ -5037,8 +5037,8 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkclass(--[ Pcl_fun ]--Block.__(2, [
                     _1[0],
                     _1[1],
@@ -5053,19 +5053,19 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkclass(--[ Pcl_apply ]--Block.__(3, [
                     _1,
                     List.rev(_2)
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      var lbs = _1;
-      var body = _3;
-      var bindings = List.map((function (lb) do
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
+      lbs = _1;
+      body = _3;
+      bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[ [] ]--0) then do
                 throw [
                       $$Error$1,
@@ -5105,17 +5105,17 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return attr$5(_1, _2);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkclass(--[ Pcl_extension ]--Block.__(6, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mkclass(--[ Pcl_constr ]--Block.__(0, [
                     do
                       txt: _4,
@@ -5125,7 +5125,7 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkclass(--[ Pcl_constr ]--Block.__(0, [
                     do
                       txt: _1,
@@ -5135,7 +5135,7 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
       return mkclass(--[ Pcl_structure ]--Block.__(1, [_2]));
     end),
   (function (__caml_parser_env) do
@@ -5143,8 +5143,8 @@ var yyact = [
       return unclosed("object", 1, "end", 3);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
       return mkclass(--[ Pcl_constraint ]--Block.__(5, [
                     _2,
                     _4
@@ -5163,8 +5163,8 @@ var yyact = [
       return unclosed("(", 1, ")", 3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return do
               pcstr_self: _1,
               pcstr_fields: extra_cstr(2, List.rev(_2))
@@ -5174,8 +5174,8 @@ var yyact = [
       return reloc_pat(Parsing.peek_val(__caml_parser_env, 1));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
       return mkpat(--[ Ppat_constraint ]--Block.__(10, [
                     _2,
                     _4
@@ -5188,18 +5188,18 @@ var yyact = [
       return --[ [] ]--0;
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return Pervasives.$at(--[ :: ]--[
                   _2,
                   Curry._1(Ast_helper_Cf.text, get_text(Parsing.rhs_start_pos(2)))
                 ], _1);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcf(_5, symbol_docs(--[ () ]--0), --[ Pcf_inherit ]--Block.__(0, [
                     _2,
                     _3,
@@ -5207,32 +5207,32 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcf(_3, symbol_docs(--[ () ]--0), --[ Pcf_val ]--Block.__(1, [_2]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcf(_3, symbol_docs(--[ () ]--0), --[ Pcf_method ]--Block.__(2, [_2]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcf(_3, symbol_docs(--[ () ]--0), --[ Pcf_constraint ]--Block.__(3, [_2]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcf(_3, symbol_docs(--[ () ]--0), --[ Pcf_initializer ]--Block.__(4, [_2]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcf(_2, symbol_docs(--[ () ]--0), --[ Pcf_extension ]--Block.__(6, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       mark_symbol_docs(--[ () ]--0);
       return mkcf(undefined, undefined, --[ Pcf_attribute ]--Block.__(5, [_1]));
     end),
@@ -5243,9 +5243,9 @@ var yyact = [
       return ;
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 5);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 5);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
       if (_1 == --[ Override ]--0) then do
         throw Escape_error;
       end
@@ -5260,9 +5260,9 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               do
                 txt: _3,
@@ -5273,10 +5273,10 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               do
                 txt: _3,
@@ -5290,12 +5290,12 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 5);
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      var e = mkexp_constraint(_6, _4);
+      _1 = Parsing.peek_val(__caml_parser_env, 5);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
+      e = mkexp_constraint(_6, _4);
       return --[ tuple ]--[
               do
                 txt: _3,
@@ -5309,9 +5309,9 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 5);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 5);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
       if (_1 == --[ Override ]--0) then do
         throw Escape_error;
       end
@@ -5326,10 +5326,10 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 5);
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 5);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
       if (_1 == --[ Override ]--0) then do
         throw Escape_error;
       end
@@ -5344,10 +5344,10 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 3);
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 3);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               do
                 txt: _3,
@@ -5364,11 +5364,11 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 6);
-      var _2 = Parsing.peek_val(__caml_parser_env, 5);
-      var _3 = Parsing.peek_val(__caml_parser_env, 4);
-      var _5 = Parsing.peek_val(__caml_parser_env, 2);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 6);
+      _2 = Parsing.peek_val(__caml_parser_env, 5);
+      _3 = Parsing.peek_val(__caml_parser_env, 4);
+      _5 = Parsing.peek_val(__caml_parser_env, 2);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               do
                 txt: _3,
@@ -5385,13 +5385,13 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 9);
-      var _2 = Parsing.peek_val(__caml_parser_env, 8);
-      var _3 = Parsing.peek_val(__caml_parser_env, 7);
-      var _6 = Parsing.peek_val(__caml_parser_env, 4);
-      var _8 = Parsing.peek_val(__caml_parser_env, 2);
-      var _10 = Parsing.peek_val(__caml_parser_env, 0);
-      var match = wrap_type_annotation(_6, _8, _10);
+      _1 = Parsing.peek_val(__caml_parser_env, 9);
+      _2 = Parsing.peek_val(__caml_parser_env, 8);
+      _3 = Parsing.peek_val(__caml_parser_env, 7);
+      _6 = Parsing.peek_val(__caml_parser_env, 4);
+      _8 = Parsing.peek_val(__caml_parser_env, 2);
+      _10 = Parsing.peek_val(__caml_parser_env, 0);
+      match = wrap_type_annotation(_6, _8, _10);
       return --[ tuple ]--[
               do
                 txt: _3,
@@ -5411,9 +5411,9 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcty(--[ Pcty_arrow ]--Block.__(2, [
                     "?" .. _2,
                     mkoption(_4),
@@ -5421,9 +5421,9 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 3);
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 3);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcty(--[ Pcty_arrow ]--Block.__(2, [
                     "?" .. _1,
                     mkoption(_2),
@@ -5431,9 +5431,9 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcty(--[ Pcty_arrow ]--Block.__(2, [
                     _1,
                     _3,
@@ -5441,8 +5441,8 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcty(--[ Pcty_arrow ]--Block.__(2, [
                     "",
                     _1,
@@ -5450,8 +5450,8 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcty(--[ Pcty_constr ]--Block.__(0, [
                     do
                       txt: _4,
@@ -5461,7 +5461,7 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcty(--[ Pcty_constr ]--Block.__(0, [
                     do
                       txt: _1,
@@ -5471,7 +5471,7 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
       return mkcty(--[ Pcty_signature ]--Block.__(1, [_2]));
     end),
   (function (__caml_parser_env) do
@@ -5479,17 +5479,17 @@ var yyact = [
       return unclosed("object", 1, "end", 3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return attr$6(_1, _2);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkcty(--[ Pcty_extension ]--Block.__(3, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return do
               pcsig_self: _1,
               pcsig_fields: extra_csig(2, List.rev(_2))
@@ -5505,28 +5505,28 @@ var yyact = [
       return --[ [] ]--0;
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return Pervasives.$at(--[ :: ]--[
                   _2,
                   Curry._1(Ast_helper_Ctf.text, get_text(Parsing.rhs_start_pos(2)))
                 ], _1);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkctf(_3, symbol_docs(--[ () ]--0), --[ Pctf_inherit ]--Block.__(0, [_2]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkctf(_3, symbol_docs(--[ () ]--0), --[ Pctf_val ]--Block.__(1, [_2]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
       return mkctf(_6, symbol_docs(--[ () ]--0), --[ Pctf_method ]--Block.__(2, [--[ tuple ]--[
                       _3,
                       _2[0],
@@ -5535,24 +5535,24 @@ var yyact = [
                     ]]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkctf(_3, symbol_docs(--[ () ]--0), --[ Pctf_constraint ]--Block.__(3, [_2]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkctf(_2, symbol_docs(--[ () ]--0), --[ Pctf_extension ]--Block.__(5, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       mark_symbol_docs(--[ () ]--0);
       return mkctf(undefined, undefined, --[ Pctf_attribute ]--Block.__(4, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _3,
               _2,
@@ -5561,9 +5561,9 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _3,
               --[ Mutable ]--1,
@@ -5572,8 +5572,8 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _1,
               --[ Immutable ]--0,
@@ -5582,8 +5582,8 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _1,
               _3,
@@ -5591,82 +5591,82 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _1,
               _3
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 5);
-      var _3 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 3);
-      var _6 = Parsing.peek_val(__caml_parser_env, 1);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 5);
+      _3 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 3);
+      _6 = Parsing.peek_val(__caml_parser_env, 1);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$18(symbol_rloc(--[ () ]--0), _7, symbol_docs(--[ () ]--0), undefined, _2, _3, do
                   txt: _4,
                   loc: rhs_loc(4)
                 end, _6);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 5);
-      var _3 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 3);
-      var _6 = Parsing.peek_val(__caml_parser_env, 1);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 5);
+      _3 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 3);
+      _6 = Parsing.peek_val(__caml_parser_env, 1);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$18(symbol_rloc(--[ () ]--0), _7, symbol_docs(--[ () ]--0), get_text(Parsing.symbol_start_pos(--[ () ]--0)), _2, _3, do
                   txt: _4,
                   loc: rhs_loc(4)
                 end, _6);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 5);
-      var _4 = Parsing.peek_val(__caml_parser_env, 4);
-      var _5 = Parsing.peek_val(__caml_parser_env, 3);
-      var _7 = Parsing.peek_val(__caml_parser_env, 1);
-      var _8 = Parsing.peek_val(__caml_parser_env, 0);
+      _3 = Parsing.peek_val(__caml_parser_env, 5);
+      _4 = Parsing.peek_val(__caml_parser_env, 4);
+      _5 = Parsing.peek_val(__caml_parser_env, 3);
+      _7 = Parsing.peek_val(__caml_parser_env, 1);
+      _8 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$18(symbol_rloc(--[ () ]--0), _8, symbol_docs(--[ () ]--0), undefined, _3, _4, do
                   txt: _5,
                   loc: rhs_loc(5)
                 end, _7);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 5);
-      var _3 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 3);
-      var _6 = Parsing.peek_val(__caml_parser_env, 1);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 5);
+      _3 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 3);
+      _6 = Parsing.peek_val(__caml_parser_env, 1);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$18(symbol_rloc(--[ () ]--0), _7, symbol_docs(--[ () ]--0), get_text(Parsing.symbol_start_pos(--[ () ]--0)), _2, _3, do
                   txt: _4,
                   loc: rhs_loc(4)
@@ -5679,16 +5679,16 @@ var yyact = [
       return reloc_exp(Parsing.peek_val(__caml_parser_env, 1));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_sequence ]--Block.__(16, [
                     _1,
                     _3
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
               "?" .. _3[0],
               _4,
@@ -5696,7 +5696,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               "?" .. _2[0],
               undefined,
@@ -5704,9 +5704,9 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
               "?" .. _1,
               _4,
@@ -5714,8 +5714,8 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               "?" .. _1,
               undefined,
@@ -5723,7 +5723,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
               _3[0],
               undefined,
@@ -5731,7 +5731,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _2[0],
               undefined,
@@ -5739,8 +5739,8 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _1,
               undefined,
@@ -5748,7 +5748,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               "",
               undefined,
@@ -5756,7 +5756,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_var ]--Block.__(0, [do
                       txt: _1,
                       loc: rhs_loc(1)
@@ -5775,8 +5775,8 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _1[0],
               mkpat(--[ Ppat_constraint ]--Block.__(10, [
@@ -5786,7 +5786,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _1,
               mkpat(--[ Ppat_var ]--Block.__(0, [do
@@ -5799,8 +5799,8 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_constraint ]--Block.__(10, [
                     _1,
                     _3
@@ -5810,19 +5810,19 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     _1,
                     List.rev(_2)
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      var lbs = _1;
-      var body = _3;
-      var bindings = List.map((function (lb) do
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
+      lbs = _1;
+      body = _3;
+      bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[ [] ]--0) then do
                 throw [
                       $$Error$1,
@@ -5835,9 +5835,9 @@ var yyact = [
                end 
               return mk$17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
             end), lbs.lbs_bindings);
-      var d_000 = lbs.lbs_rec;
-      var d_001 = List.rev(bindings);
-      var d = --[ Pexp_let ]--Block.__(2, [
+      d_000 = lbs.lbs_rec;
+      d_001 = List.rev(bindings);
+      d = --[ Pexp_let ]--Block.__(2, [
           d_000,
           d_001,
           body
@@ -5848,15 +5848,15 @@ var yyact = [
                 ]);
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 2);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      var d_000 = do
+      _3 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 2);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
+      d_000 = do
         txt: _4,
         loc: rhs_loc(4)
       end;
-      var d = --[ Pexp_letmodule ]--Block.__(25, [
+      d = --[ Pexp_letmodule ]--Block.__(25, [
           d_000,
           _5,
           _7
@@ -5864,15 +5864,15 @@ var yyact = [
       return wrap_exp_attrs(mkexp(d), _3);
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 2);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      var d_001 = do
+      _3 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 2);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
+      d_001 = do
         txt: _5,
         loc: rhs_loc(5)
       end;
-      var d = --[ Pexp_open ]--Block.__(32, [
+      d = --[ Pexp_open ]--Block.__(32, [
           _3,
           d_001,
           _7
@@ -5880,16 +5880,16 @@ var yyact = [
       return wrap_exp_attrs(mkexp(d), _4);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
-      var d = --[ Pexp_function ]--Block.__(3, [List.rev(_4)]);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
+      d = --[ Pexp_function ]--Block.__(3, [List.rev(_4)]);
       return wrap_exp_attrs(mkexp(d), _2);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return wrap_exp_attrs(mkexp(--[ Pexp_fun ]--Block.__(4, [
                         _3[0],
                         _3[1],
@@ -5898,33 +5898,33 @@ var yyact = [
                       ])), _2);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 5);
-      var _5 = Parsing.peek_val(__caml_parser_env, 2);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 5);
+      _5 = Parsing.peek_val(__caml_parser_env, 2);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
       return wrap_exp_attrs(mkexp(--[ Pexp_newtype ]--Block.__(30, [
                         _5,
                         _7
                       ])), _2);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 1);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      var d_001 = List.rev(_6);
-      var d = --[ Pexp_match ]--Block.__(6, [
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
+      d_001 = List.rev(_6);
+      d = --[ Pexp_match ]--Block.__(6, [
           _3,
           d_001
         ]);
       return wrap_exp_attrs(mkexp(d), _2);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 1);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      var d_001 = List.rev(_6);
-      var d = --[ Pexp_try ]--Block.__(7, [
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
+      d_001 = List.rev(_6);
+      d = --[ Pexp_try ]--Block.__(7, [
           _3,
           d_001
         ]);
@@ -5936,12 +5936,12 @@ var yyact = [
       throw Escape_error;
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_tuple ]--Block.__(8, [List.rev(_1)]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_construct ]--Block.__(9, [
                     do
                       txt: _1,
@@ -5951,18 +5951,18 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_variant ]--Block.__(10, [
                     _1,
                     _2
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 5);
-      var _3 = Parsing.peek_val(__caml_parser_env, 4);
-      var _5 = Parsing.peek_val(__caml_parser_env, 2);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 5);
+      _3 = Parsing.peek_val(__caml_parser_env, 4);
+      _5 = Parsing.peek_val(__caml_parser_env, 2);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
       return wrap_exp_attrs(mkexp(--[ Pexp_ifthenelse ]--Block.__(15, [
                         _3,
                         _5,
@@ -5970,9 +5970,9 @@ var yyact = [
                       ])), _2);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return wrap_exp_attrs(mkexp(--[ Pexp_ifthenelse ]--Block.__(15, [
                         _3,
                         _5,
@@ -5980,21 +5980,21 @@ var yyact = [
                       ])), _2);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
       return wrap_exp_attrs(mkexp(--[ Pexp_while ]--Block.__(17, [
                         _3,
                         _5
                       ])), _2);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 8);
-      var _3 = Parsing.peek_val(__caml_parser_env, 7);
-      var _5 = Parsing.peek_val(__caml_parser_env, 5);
-      var _6 = Parsing.peek_val(__caml_parser_env, 4);
-      var _7 = Parsing.peek_val(__caml_parser_env, 3);
-      var _9 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 8);
+      _3 = Parsing.peek_val(__caml_parser_env, 7);
+      _5 = Parsing.peek_val(__caml_parser_env, 5);
+      _6 = Parsing.peek_val(__caml_parser_env, 4);
+      _7 = Parsing.peek_val(__caml_parser_env, 3);
+      _9 = Parsing.peek_val(__caml_parser_env, 1);
       return wrap_exp_attrs(mkexp(--[ Pexp_for ]--Block.__(18, [
                         _3,
                         _5,
@@ -6004,8 +6004,8 @@ var yyact = [
                       ])), _2);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp_cons(rhs_loc(2), ghexp(--[ Pexp_tuple ]--Block.__(8, [--[ :: ]--[
                           _1,
                           --[ :: ]--[
@@ -6015,8 +6015,8 @@ var yyact = [
                         ]])), symbol_rloc(--[ () ]--0));
     end),
   (function (__caml_parser_env) do
-      var _5 = Parsing.peek_val(__caml_parser_env, 3);
-      var _7 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 3);
+      _7 = Parsing.peek_val(__caml_parser_env, 1);
       return mkexp_cons(rhs_loc(2), ghexp(--[ Pexp_tuple ]--Block.__(8, [--[ :: ]--[
                           _5,
                           --[ :: ]--[
@@ -6026,122 +6026,122 @@ var yyact = [
                         ]])), symbol_rloc(--[ () ]--0));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, _2, _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, _2, _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, _2, _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, _2, _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, _2, _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "+", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "+.", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "+=", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "-", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "-.", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "*", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "%", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "=", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "<", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, ">", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "or", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "||", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "&", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, "&&", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, ":=", _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      var name = _1;
-      var arg = _2;
-      var match = arg.pexp_desc;
-      var exit = 0;
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
+      name = _1;
+      arg = _2;
+      match = arg.pexp_desc;
+      exit = 0;
       local ___conditional___=(name);
       do
          if ___conditional___ = "-" then do
             if (match.tag == --[ Pexp_constant ]--1) then do
-              var match$1 = match[0];
+              match$1 = match[0];
               local ___conditional___=(match$1.tag | 0);
               do
                  if ___conditional___ = 0--[ Const_int ]-- then do
@@ -6169,7 +6169,7 @@ var yyact = [
           
       end
       if (exit == 2 and match.tag == --[ Pexp_constant ]--1) then do
-        var match$2 = match[0];
+        match$2 = match[0];
         if (match$2.tag == --[ Const_float ]--3) then do
           return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_float ]--Block.__(3, [neg_float_string(match$2[0])])]));
         end
@@ -6188,12 +6188,12 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      var name = _1;
-      var arg = _2;
-      var desc = arg.pexp_desc;
-      var exit = 0;
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
+      name = _1;
+      arg = _2;
+      desc = arg.pexp_desc;
+      exit = 0;
       local ___conditional___=(name);
       do
          if ___conditional___ = "+" then do
@@ -6236,9 +6236,9 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_setfield ]--Block.__(13, [
                     _1,
                     do
@@ -6249,9 +6249,9 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 6);
-      var _4 = Parsing.peek_val(__caml_parser_env, 3);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 6);
+      _4 = Parsing.peek_val(__caml_parser_env, 3);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     ghexp(--[ Pexp_ident ]--Block.__(0, [array_function("Array", "set")])),
                     --[ :: ]--[
@@ -6276,9 +6276,9 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 6);
-      var _4 = Parsing.peek_val(__caml_parser_env, 3);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 6);
+      _4 = Parsing.peek_val(__caml_parser_env, 3);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     ghexp(--[ Pexp_ident ]--Block.__(0, [array_function("String", "set")])),
                     --[ :: ]--[
@@ -6303,20 +6303,20 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 6);
-      var _4 = Parsing.peek_val(__caml_parser_env, 3);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      var arr = _1;
-      var arg = _4;
-      var newval = _7;
-      var set = fast.contents and "unsafe_set" or "set";
-      var coords = bigarray_untuplify(arg);
+      _1 = Parsing.peek_val(__caml_parser_env, 6);
+      _4 = Parsing.peek_val(__caml_parser_env, 3);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
+      arr = _1;
+      arg = _4;
+      newval = _7;
+      set = fast.contents and "unsafe_set" or "set";
+      coords = bigarray_untuplify(arg);
       if (coords) then do
-        var match = coords[1];
-        var c1 = coords[0];
+        match = coords[1];
+        c1 = coords[0];
         if (match) then do
-          var match$1 = match[1];
-          var c2 = match[0];
+          match$1 = match[1];
+          c2 = match[0];
           if (match$1) then do
             if (!match$1[1]) then do
               return mkexp(--[ Pexp_apply ]--Block.__(5, [
@@ -6435,8 +6435,8 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_setinstvar ]--Block.__(23, [
                     do
                       txt: _1,
@@ -6446,18 +6446,18 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return wrap_exp_attrs(mkexp(--[ Pexp_assert ]--Block.__(26, [_3])), _2);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return wrap_exp_attrs(mkexp(--[ Pexp_lazy ]--Block.__(27, [_3])), _2);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return wrap_exp_attrs(mkexp(--[ Pexp_object ]--Block.__(29, [_3])), _2);
     end),
   (function (__caml_parser_env) do
@@ -6466,23 +6466,23 @@ var yyact = [
       return unclosed("object", 1, "end", 4);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return Curry._2(Ast_helper_Exp.attr, _1, _2);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_ident ]--Block.__(0, [do
                       txt: _1,
                       loc: rhs_loc(1)
                     end]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_constant ]--Block.__(1, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_construct ]--Block.__(9, [
                     do
                       txt: _1,
@@ -6492,7 +6492,7 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_variant ]--Block.__(10, [
                     _1,
                     undefined
@@ -6506,17 +6506,17 @@ var yyact = [
       return unclosed("(", 1, ")", 3);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return wrap_exp_attrs(reloc_exp(_3), _2);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var d_000 = do
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      d_000 = do
         txt: --[ Lident ]--Block.__(0, ["()"]),
         loc: symbol_rloc(--[ () ]--0)
       end;
-      var d = --[ Pexp_construct ]--Block.__(9, [
+      d = --[ Pexp_construct ]--Block.__(9, [
           d_000,
           undefined
         ]);
@@ -6528,13 +6528,13 @@ var yyact = [
       return unclosed("begin", 1, "end", 3);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return mkexp_constraint(_2, _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_field ]--Block.__(12, [
                     _1,
                     do
@@ -6544,8 +6544,8 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
       return mkexp(--[ Pexp_open ]--Block.__(32, [
                     --[ Fresh ]--1,
                     do
@@ -6561,8 +6561,8 @@ var yyact = [
       return unclosed("(", 3, ")", 5);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     ghexp(--[ Pexp_ident ]--Block.__(0, [array_function("Array", "get")])),
                     --[ :: ]--[
@@ -6586,8 +6586,8 @@ var yyact = [
       return unclosed("(", 3, ")", 5);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     ghexp(--[ Pexp_ident ]--Block.__(0, [array_function("String", "get")])),
                     --[ :: ]--[
@@ -6611,18 +6611,18 @@ var yyact = [
       return unclosed("[", 3, "]", 5);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var arr = _1;
-      var arg = _4;
-      var get = fast.contents and "unsafe_get" or "get";
-      var coords = bigarray_untuplify(arg);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      arr = _1;
+      arg = _4;
+      get = fast.contents and "unsafe_get" or "get";
+      coords = bigarray_untuplify(arg);
       if (coords) then do
-        var match = coords[1];
-        var c1 = coords[0];
+        match = coords[1];
+        c1 = coords[0];
         if (match) then do
-          var match$1 = match[1];
-          var c2 = match[0];
+          match$1 = match[1];
+          c2 = match[0];
           if (match$1) then do
             if (!match$1[1]) then do
               return mkexp(--[ Pexp_apply ]--Block.__(5, [
@@ -6722,7 +6722,7 @@ var yyact = [
       return unclosed("{", 3, "}", 5);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
       return mkexp(--[ Pexp_record ]--Block.__(11, [
                     _2[1],
                     _2[0]
@@ -6733,9 +6733,9 @@ var yyact = [
       return unclosed("{", 1, "}", 3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var rec_exp = mkexp(--[ Pexp_record ]--Block.__(11, [
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      rec_exp = mkexp(--[ Pexp_record ]--Block.__(11, [
               _4[1],
               _4[0]
             ]));
@@ -6754,7 +6754,7 @@ var yyact = [
       return unclosed("{", 3, "}", 5);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       return mkexp(--[ Pexp_array ]--Block.__(14, [List.rev(_2)]));
     end),
@@ -6767,8 +6767,8 @@ var yyact = [
       return mkexp(--[ Pexp_array ]--Block.__(14, [--[ [] ]--0]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 5);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _1 = Parsing.peek_val(__caml_parser_env, 5);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       return mkexp(--[ Pexp_open ]--Block.__(32, [
                     --[ Fresh ]--1,
@@ -6786,7 +6786,7 @@ var yyact = [
       return unclosed("[|", 3, "|]", 6);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       return reloc_exp(mktailexp(rhs_loc(4), List.rev(_2)));
     end),
@@ -6796,10 +6796,10 @@ var yyact = [
       return unclosed("[", 1, "]", 4);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 5);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _1 = Parsing.peek_val(__caml_parser_env, 5);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
-      var list_exp = reloc_exp(mktailexp(rhs_loc(6), List.rev(_4)));
+      list_exp = reloc_exp(mktailexp(rhs_loc(6), List.rev(_4)));
       return mkexp(--[ Pexp_open ]--Block.__(32, [
                     --[ Fresh ]--1,
                     do
@@ -6816,8 +6816,8 @@ var yyact = [
       return unclosed("[", 3, "]", 6);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     mkoperator(_1, 1),
                     --[ :: ]--[
@@ -6830,7 +6830,7 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_apply ]--Block.__(5, [
                     mkoperator("!", 1),
                     --[ :: ]--[
@@ -6843,16 +6843,16 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
-      var d = --[ Pexp_new ]--Block.__(22, [do
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
+      d = --[ Pexp_new ]--Block.__(22, [do
             txt: _3,
             loc: rhs_loc(3)
           end]);
       return wrap_exp_attrs(mkexp(d), _2);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       return mkexp(--[ Pexp_override ]--Block.__(24, [List.rev(_2)]));
     end),
@@ -6865,8 +6865,8 @@ var yyact = [
       return mkexp(--[ Pexp_override ]--Block.__(24, [--[ [] ]--0]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 5);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _1 = Parsing.peek_val(__caml_parser_env, 5);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       return mkexp(--[ Pexp_open ]--Block.__(32, [
                     --[ Fresh ]--1,
@@ -6884,26 +6884,26 @@ var yyact = [
       return unclosed("{<", 3, ">}", 6);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_send ]--Block.__(21, [
                     _1,
                     _3
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkinfix(_1, _2, _3);
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return mkexp(--[ Pexp_pack ]--Block.__(31, [_3]));
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
       return mkexp(--[ Pexp_constraint ]--Block.__(19, [
                     ghexp(--[ Pexp_pack ]--Block.__(31, [_3])),
                     ghtyp(--[ Ptyp_package ]--Block.__(9, [_5]))
@@ -6914,9 +6914,9 @@ var yyact = [
       return unclosed("(", 1, ")", 5);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 7);
-      var _5 = Parsing.peek_val(__caml_parser_env, 3);
-      var _7 = Parsing.peek_val(__caml_parser_env, 1);
+      _1 = Parsing.peek_val(__caml_parser_env, 7);
+      _5 = Parsing.peek_val(__caml_parser_env, 3);
+      _7 = Parsing.peek_val(__caml_parser_env, 1);
       return mkexp(--[ Pexp_open ]--Block.__(32, [
                     --[ Fresh ]--1,
                     do
@@ -6935,26 +6935,26 @@ var yyact = [
       return unclosed("(", 3, ")", 7);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_extension ]--Block.__(33, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               "",
               _1
@@ -6964,8 +6964,8 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _1,
               _2
@@ -6975,22 +6975,22 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               "?" .. _2[0],
               _2[1]
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               "?" .. _1,
               _2
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _1,
               mkexp(--[ Pexp_ident ]--Block.__(0, [do
@@ -7000,33 +7000,33 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               _2
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               mkpatvar(_1, 1),
               _2
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 6);
-      var _3 = Parsing.peek_val(__caml_parser_env, 4);
-      var _5 = Parsing.peek_val(__caml_parser_env, 2);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 6);
+      _3 = Parsing.peek_val(__caml_parser_env, 4);
+      _5 = Parsing.peek_val(__caml_parser_env, 2);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               ghpat(--[ Ppat_constraint ]--Block.__(10, [
                       mkpatvar(_1, 1),
@@ -7039,11 +7039,11 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 7);
-      var _4 = Parsing.peek_val(__caml_parser_env, 4);
-      var _6 = Parsing.peek_val(__caml_parser_env, 2);
-      var _8 = Parsing.peek_val(__caml_parser_env, 0);
-      var match = wrap_type_annotation(_4, _6, _8);
+      _1 = Parsing.peek_val(__caml_parser_env, 7);
+      _4 = Parsing.peek_val(__caml_parser_env, 4);
+      _6 = Parsing.peek_val(__caml_parser_env, 2);
+      _8 = Parsing.peek_val(__caml_parser_env, 0);
+      match = wrap_type_annotation(_4, _6, _8);
       return --[ tuple ]--[
               ghpat(--[ Ppat_constraint ]--Block.__(10, [
                       mkpatvar(_1, 1),
@@ -7053,17 +7053,17 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _1,
               _3
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               ghpat(--[ Ppat_constraint ]--Block.__(10, [
                       _1,
@@ -7076,10 +7076,10 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
-      var lbs = _1;
-      var lb = _2;
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
+      lbs = _1;
+      lb = _2;
       return do
               lbs_bindings: --[ :: ]--[
                 lb,
@@ -7092,13 +7092,13 @@ var yyact = [
             end;
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
-      var param = _2;
-      var rf = _3;
-      var lb = mklb(_4, _5);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
+      param = _2;
+      rf = _3;
+      lb = mklb(_4, _5);
       return do
               lbs_bindings: --[ :: ]--[
                 lb,
@@ -7111,24 +7111,24 @@ var yyact = [
             end;
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mklb(_2, _3);
     end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp_constraint(_3, _1);
     end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return ghexp(--[ Pexp_fun ]--Block.__(4, [
                     _1[0],
                     _1[1],
@@ -7137,45 +7137,45 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_newtype ]--Block.__(30, [
                     _3,
                     _5
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return Curry._3(Ast_helper_Exp.$$case, _1, undefined, _3);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return Curry._3(Ast_helper_Exp.$$case, _1, _3, _5);
     end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return ghexp(--[ Pexp_fun ]--Block.__(4, [
                     _1[0],
                     _1[1],
@@ -7184,24 +7184,24 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return mkexp(--[ Pexp_newtype ]--Block.__(30, [
                     _3,
                     _5
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               --[ :: ]--[
@@ -7211,45 +7211,45 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _1,
               _3
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               undefined,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               _3
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               do
                 txt: _1,
@@ -7259,7 +7259,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               do
                 txt: _1,
@@ -7269,8 +7269,8 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               --[ tuple ]--[
                 do
@@ -7283,9 +7283,9 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               --[ tuple ]--[
                 do
@@ -7298,37 +7298,37 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _2,
               undefined
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _2,
               _4
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               undefined,
               _2
@@ -7344,8 +7344,8 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_alias ]--Block.__(1, [
                     _1,
                     do
@@ -7359,12 +7359,12 @@ var yyact = [
       return expecting(3, "identifier");
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_tuple ]--Block.__(4, [List.rev(_1)]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_construct ]--Block.__(5, [
                     do
                       txt: _1,
@@ -7374,16 +7374,16 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_variant ]--Block.__(6, [
                     _1,
                     _2
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat_cons(rhs_loc(2), ghpat(--[ Ppat_tuple ]--Block.__(4, [--[ :: ]--[
                           _1,
                           --[ :: ]--[
@@ -7397,8 +7397,8 @@ var yyact = [
       return expecting(3, "pattern");
     end),
   (function (__caml_parser_env) do
-      var _5 = Parsing.peek_val(__caml_parser_env, 3);
-      var _7 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 3);
+      _7 = Parsing.peek_val(__caml_parser_env, 1);
       return mkpat_cons(rhs_loc(2), ghpat(--[ Ppat_tuple ]--Block.__(4, [--[ :: ]--[
                           _5,
                           --[ :: ]--[
@@ -7413,8 +7413,8 @@ var yyact = [
       return unclosed("(", 4, ")", 8);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_or ]--Block.__(9, [
                     _1,
                     _3
@@ -7425,20 +7425,20 @@ var yyact = [
       return expecting(3, "pattern");
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_lazy ]--Block.__(12, [_2]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_exception ]--Block.__(14, [_2]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return attr$1(_1, _2);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_var ]--Block.__(0, [do
                       txt: _1,
                       loc: rhs_loc(1)
@@ -7451,19 +7451,19 @@ var yyact = [
       return mkpat(--[ Ppat_any ]--0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_constant ]--Block.__(2, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_interval ]--Block.__(3, [
                     _1,
                     _3
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_construct ]--Block.__(5, [
                     do
                       txt: _1,
@@ -7473,21 +7473,21 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_variant ]--Block.__(6, [
                     _1,
                     undefined
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_type ]--Block.__(11, [do
                       txt: _2,
                       loc: rhs_loc(2)
                     end]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
       return mkpat(--[ Ppat_record ]--Block.__(7, [
                     _2[0],
                     _2[1]
@@ -7498,7 +7498,7 @@ var yyact = [
       return unclosed("{", 1, "}", 3);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       return reloc_pat(mktailpat(rhs_loc(4), List.rev(_2)));
     end),
@@ -7508,7 +7508,7 @@ var yyact = [
       return unclosed("[", 1, "]", 4);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 1);
       return mkpat(--[ Ppat_array ]--Block.__(8, [List.rev(_2)]));
     end),
@@ -7528,8 +7528,8 @@ var yyact = [
       return unclosed("(", 1, ")", 3);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
       return mkpat(--[ Ppat_constraint ]--Block.__(10, [
                     _2,
                     _4
@@ -7545,15 +7545,15 @@ var yyact = [
       return expecting(4, "type");
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return mkpat(--[ Ppat_unpack ]--Block.__(13, [do
                       txt: _3,
                       loc: rhs_loc(3)
                     end]));
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
       return mkpat(--[ Ppat_constraint ]--Block.__(10, [
                     mkpat(--[ Ppat_unpack ]--Block.__(13, [do
                               txt: _3,
@@ -7568,20 +7568,20 @@ var yyact = [
       return unclosed("(", 1, ")", 6);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mkpat(--[ Ppat_extension ]--Block.__(15, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               --[ :: ]--[
@@ -7595,22 +7595,22 @@ var yyact = [
       return expecting(3, "pattern");
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               --[ :: ]--[
                 _1,
@@ -7620,7 +7620,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
               --[ :: ]--[
                 _1,
@@ -7630,7 +7630,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 3);
+      _1 = Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               --[ :: ]--[
@@ -7641,8 +7641,8 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               --[ :: ]--[
                 _1,
@@ -7652,8 +7652,8 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               do
                 txt: _1,
@@ -7663,7 +7663,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               do
                 txt: _1,
@@ -7673,80 +7673,80 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$11(symbol_rloc(--[ () ]--0), _5, symbol_docs(--[ () ]--0), undefined, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _4);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1[0],
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1[0],
               _2
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 5);
-      var _4 = Parsing.peek_val(__caml_parser_env, 3);
-      var _6 = Parsing.peek_val(__caml_parser_env, 1);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 5);
+      _4 = Parsing.peek_val(__caml_parser_env, 3);
+      _6 = Parsing.peek_val(__caml_parser_env, 1);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$11(symbol_rloc(--[ () ]--0), _7, symbol_docs(--[ () ]--0), _6, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _4);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 5);
-      var _3 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 2);
-      var _6 = Parsing.peek_val(__caml_parser_env, 1);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 5);
+      _3 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 2);
+      _6 = Parsing.peek_val(__caml_parser_env, 1);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$19(symbol_rloc(--[ () ]--0), add_nonrec(_2, _7, 2), symbol_docs(--[ () ]--0), undefined, _3, List.rev(_6), _5[0], _5[1], _5[2], do
                   txt: _4,
                   loc: rhs_loc(4)
                 end);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
       return mk$19(symbol_rloc(--[ () ]--0), _6, symbol_docs(--[ () ]--0), get_text(Parsing.symbol_start_pos(--[ () ]--0)), _2, List.rev(_5), _4[0], _4[1], _4[2], do
                   txt: _3,
                   loc: rhs_loc(3)
                 end);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
@@ -7763,7 +7763,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               --[ Ptype_abstract ]--0,
               --[ Public ]--1,
@@ -7771,7 +7771,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               --[ Ptype_abstract ]--0,
               --[ Private ]--0,
@@ -7779,7 +7779,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               --[ Ptype_variant ]--Block.__(0, [List.rev(_2)]),
               --[ Public ]--1,
@@ -7787,7 +7787,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               --[ Ptype_variant ]--Block.__(0, [List.rev(_3)]),
               --[ Private ]--0,
@@ -7802,8 +7802,8 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
               --[ Ptype_record ]--Block.__(1, [_4]),
               _2,
@@ -7811,9 +7811,9 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               --[ Ptype_variant ]--Block.__(0, [List.rev(_5)]),
               _4,
@@ -7821,7 +7821,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
       return --[ tuple ]--[
               --[ Ptype_open ]--1,
               --[ Public ]--1,
@@ -7829,9 +7829,9 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 5);
-      var _4 = Parsing.peek_val(__caml_parser_env, 3);
-      var _6 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 5);
+      _4 = Parsing.peek_val(__caml_parser_env, 3);
+      _6 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
               --[ Ptype_record ]--Block.__(1, [_6]),
               _4,
@@ -7842,7 +7842,7 @@ var yyact = [
       return --[ [] ]--0;
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
@@ -7852,30 +7852,30 @@ var yyact = [
       return List.rev(Parsing.peek_val(__caml_parser_env, 1));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_var ]--Block.__(0, [_2]));
     end),
   (function (__caml_parser_env) do
@@ -7885,7 +7885,7 @@ var yyact = [
       return --[ [] ]--0;
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
@@ -7895,8 +7895,8 @@ var yyact = [
       return List.rev(Parsing.peek_val(__caml_parser_env, 1));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _2,
               _1
@@ -7912,59 +7912,59 @@ var yyact = [
       return --[ Contravariant ]--1;
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_var ]--Block.__(0, [_2]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return constructor(symbol_rloc(--[ () ]--0), _3, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), _2[0], _2[1], do
                   txt: _1,
                   loc: rhs_loc(1)
                 end);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return constructor(symbol_rloc(--[ () ]--0), _4, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), _3[0], _3[1], do
                   txt: _2,
                   loc: rhs_loc(2)
@@ -7974,10 +7974,10 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
       return rebind(symbol_rloc(--[ () ]--0), Pervasives.$at(_5, _6), symbol_docs(--[ () ]--0), undefined, do
                   txt: _2,
                   loc: rhs_loc(2)
@@ -7987,10 +7987,10 @@ var yyact = [
                 end);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return decl(symbol_rloc(--[ () ]--0), Pervasives.$at(_4, _5), symbol_docs(--[ () ]--0), undefined, _3[0], _3[1], do
                   txt: _2,
                   loc: rhs_loc(2)
@@ -8003,79 +8003,79 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               List.rev(_2),
               undefined
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               List.rev(_2),
               _4
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               --[ [] ]--0,
               _2
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               _2
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return field$1(symbol_rloc(--[ () ]--0), _5, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), _1, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _4);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 6);
-      var _2 = Parsing.peek_val(__caml_parser_env, 5);
-      var _4 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 2);
-      var _7 = Parsing.peek_val(__caml_parser_env, 0);
-      var info_before_semi = get_info(Parsing.rhs_end_pos(5));
-      var info = info_before_semi ~= undefined and info_before_semi or get_info(Parsing.symbol_end_pos(--[ () ]--0));
+      _1 = Parsing.peek_val(__caml_parser_env, 6);
+      _2 = Parsing.peek_val(__caml_parser_env, 5);
+      _4 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 2);
+      _7 = Parsing.peek_val(__caml_parser_env, 0);
+      info_before_semi = get_info(Parsing.rhs_end_pos(5));
+      info = info_before_semi ~= undefined and info_before_semi or get_info(Parsing.symbol_end_pos(--[ () ]--0));
       return field$1(symbol_rloc(--[ () ]--0), Pervasives.$at(_5, _7), Caml_option.some(info), _1, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _4);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 6);
-      var _3 = Parsing.peek_val(__caml_parser_env, 5);
-      var _4 = Parsing.peek_val(__caml_parser_env, 4);
-      var _6 = Parsing.peek_val(__caml_parser_env, 2);
-      var _7 = Parsing.peek_val(__caml_parser_env, 1);
-      var _8 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 6);
+      _3 = Parsing.peek_val(__caml_parser_env, 5);
+      _4 = Parsing.peek_val(__caml_parser_env, 4);
+      _6 = Parsing.peek_val(__caml_parser_env, 2);
+      _7 = Parsing.peek_val(__caml_parser_env, 1);
+      _8 = Parsing.peek_val(__caml_parser_env, 0);
       if (_2 ~= --[ Recursive ]--1) then do
         not_expecting(2, "nonrec flag");
       end
@@ -8086,12 +8086,12 @@ var yyact = [
                 end, List.rev(_7));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 6);
-      var _3 = Parsing.peek_val(__caml_parser_env, 5);
-      var _4 = Parsing.peek_val(__caml_parser_env, 4);
-      var _6 = Parsing.peek_val(__caml_parser_env, 2);
-      var _7 = Parsing.peek_val(__caml_parser_env, 1);
-      var _8 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 6);
+      _3 = Parsing.peek_val(__caml_parser_env, 5);
+      _4 = Parsing.peek_val(__caml_parser_env, 4);
+      _6 = Parsing.peek_val(__caml_parser_env, 2);
+      _7 = Parsing.peek_val(__caml_parser_env, 1);
+      _8 = Parsing.peek_val(__caml_parser_env, 0);
       if (_2 ~= --[ Recursive ]--1) then do
         not_expecting(2, "nonrec flag");
       end
@@ -8102,93 +8102,93 @@ var yyact = [
                 end, List.rev(_7));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return decl(symbol_rloc(--[ () ]--0), _3, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), _2[0], _2[1], do
                   txt: _1,
                   loc: rhs_loc(1)
                 end);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return decl(symbol_rloc(--[ () ]--0), _4, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), _3[0], _3[1], do
                   txt: _2,
                   loc: rhs_loc(2)
                 end);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return rebind(symbol_rloc(--[ () ]--0), _4, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), do
                   txt: _1,
                   loc: rhs_loc(1)
@@ -8198,9 +8198,9 @@ var yyact = [
                 end);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return rebind(symbol_rloc(--[ () ]--0), _5, undefined, Caml_option.some(get_info(Parsing.symbol_end_pos(--[ () ]--0))), do
                   txt: _2,
                   loc: rhs_loc(2)
@@ -8210,27 +8210,27 @@ var yyact = [
                 end);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
-      var rhs = last(_3);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
+      rhs = last(_3);
       return --[ Pwith_type ]--Block.__(0, [
                 do
                   txt: _3,
@@ -8243,17 +8243,17 @@ var yyact = [
               ]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Pwith_typesubst ]--Block.__(2, [mk$19(symbol_rloc(--[ () ]--0), undefined, undefined, undefined, _2, undefined, undefined, undefined, _5, do
                       txt: _3,
                       loc: rhs_loc(3)
                     end)]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Pwith_module ]--Block.__(1, [
                 do
                   txt: _2,
@@ -8266,8 +8266,8 @@ var yyact = [
               ]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Pwith_modsubst ]--Block.__(3, [
                 do
                   txt: _2,
@@ -8286,15 +8286,15 @@ var yyact = [
       return --[ Private ]--0;
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
@@ -8304,8 +8304,8 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_poly ]--Block.__(8, [
                     List.rev(_1),
                     _3
@@ -8315,8 +8315,8 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_poly ]--Block.__(8, [
                     List.rev(_1),
                     _3
@@ -8326,16 +8326,16 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return attr(_1, _2);
     end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_alias ]--Block.__(6, [
                     _1,
                     _4
@@ -8345,9 +8345,9 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 4);
-      var _4 = Parsing.peek_val(__caml_parser_env, 2);
-      var _6 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 4);
+      _4 = Parsing.peek_val(__caml_parser_env, 2);
+      _6 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_arrow ]--Block.__(1, [
                     "?" .. _2,
                     mkoption(_4),
@@ -8355,9 +8355,9 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 3);
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 3);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_arrow ]--Block.__(1, [
                     "?" .. _1,
                     mkoption(_2),
@@ -8365,9 +8365,9 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_arrow ]--Block.__(1, [
                     _1,
                     _3,
@@ -8375,8 +8375,8 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_arrow ]--Block.__(1, [
                     "",
                     _1,
@@ -8387,7 +8387,7 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
       if (_2) then do
         if (_2[1]) then do
           throw Parsing.Parse_error;
@@ -8402,7 +8402,7 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
       if (_2) then do
         if (_2[1]) then do
           throw Parsing.Parse_error;
@@ -8414,14 +8414,14 @@ var yyact = [
       end end 
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_var ]--Block.__(0, [_2]));
     end),
   (function (__caml_parser_env) do
       return mktyp(--[ Ptyp_any ]--0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_constr ]--Block.__(3, [
                     do
                       txt: _1,
@@ -8431,8 +8431,8 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_constr ]--Block.__(3, [
                     do
                       txt: _2,
@@ -8445,8 +8445,8 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_constr ]--Block.__(3, [
                     do
                       txt: _4,
@@ -8456,7 +8456,7 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
       return mktyp(--[ Ptyp_object ]--Block.__(4, [
                     _2[0],
                     _2[1]
@@ -8469,7 +8469,7 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_class ]--Block.__(5, [
                     do
                       txt: _2,
@@ -8479,8 +8479,8 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_class ]--Block.__(5, [
                     do
                       txt: _3,
@@ -8493,8 +8493,8 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_class ]--Block.__(5, [
                     do
                       txt: _5,
@@ -8504,7 +8504,7 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
       return mktyp(--[ Ptyp_variant ]--Block.__(7, [
                     --[ :: ]--[
                       _2,
@@ -8515,7 +8515,7 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return mktyp(--[ Ptyp_variant ]--Block.__(7, [
                     List.rev(_3),
                     --[ Closed ]--0,
@@ -8523,8 +8523,8 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 3);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 3);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
       return mktyp(--[ Ptyp_variant ]--Block.__(7, [
                     --[ :: ]--[
                       _2,
@@ -8536,7 +8536,7 @@ var yyact = [
     end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return mktyp(--[ Ptyp_variant ]--Block.__(7, [
                     List.rev(_3),
                     --[ Open ]--1,
@@ -8552,7 +8552,7 @@ var yyact = [
     end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return mktyp(--[ Ptyp_variant ]--Block.__(7, [
                     List.rev(_3),
                     --[ Closed ]--0,
@@ -8561,8 +8561,8 @@ var yyact = [
     end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 3);
-      var _5 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 3);
+      _5 = Parsing.peek_val(__caml_parser_env, 1);
       return mktyp(--[ Ptyp_variant ]--Block.__(7, [
                     List.rev(_3),
                     --[ Closed ]--0,
@@ -8570,15 +8570,15 @@ var yyact = [
                   ]));
     end),
   (function (__caml_parser_env) do
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return mktyp(--[ Ptyp_package ]--Block.__(9, [_3]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_extension ]--Block.__(10, [_1]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               do
                 txt: _1,
@@ -8588,8 +8588,8 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               do
                 txt: _1,
@@ -8599,8 +8599,8 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               do
                 txt: _2,
@@ -8610,30 +8610,30 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               _3
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
@@ -8643,14 +8643,14 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Rinherit ]--Block.__(1, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 4);
-      var _3 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 1);
-      var _5 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 4);
+      _3 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 1);
+      _5 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Rtag ]--Block.__(0, [
                 _1,
                 _5,
@@ -8659,8 +8659,8 @@ var yyact = [
               ]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Rtag ]--Block.__(0, [
                 _1,
                 _2,
@@ -8675,30 +8675,30 @@ var yyact = [
       return false;
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _2,
               _1
@@ -8708,8 +8708,8 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_tuple ]--Block.__(2, [--[ :: ]--[
                       _1,
                       List.rev(_3)
@@ -8719,61 +8719,61 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return mktyp(--[ Ptyp_tuple ]--Block.__(2, [--[ :: ]--[
                       _1,
                       List.rev(_3)
                     ]]));
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _3,
               _1
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               --[ :: ]--[
                 _1,
@@ -8783,7 +8783,7 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               --[ :: ]--[
@@ -8800,9 +8800,9 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _1,
               _4,
@@ -8813,77 +8813,77 @@ var yyact = [
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_int ]--Block.__(0, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_char ]--Block.__(1, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_string ]--Block.__(2, [
                 _1[0],
                 _1[1]
               ]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_float ]--Block.__(3, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_int32 ]--Block.__(4, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_int64 ]--Block.__(5, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_nativeint ]--Block.__(6, [_1]);
     end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_int ]--Block.__(0, [-_2 | 0]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_float ]--Block.__(3, ["-" .. _2]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_int32 ]--Block.__(4, [-_2 | 0]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_int64 ]--Block.__(5, [Caml_int64.neg(_2)]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_nativeint ]--Block.__(6, [-_2]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_int ]--Block.__(0, [_2]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_float ]--Block.__(3, [_2]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_int32 ]--Block.__(4, [_2]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_int64 ]--Block.__(5, [_2]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Const_nativeint ]--Block.__(6, [_2]);
     end),
   (function (__caml_parser_env) do
@@ -8993,12 +8993,12 @@ var yyact = [
       return "true";
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Lident ]--Block.__(0, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
@@ -9020,58 +9020,58 @@ var yyact = [
       return --[ Lident ]--Block.__(0, ["true"]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Lident ]--Block.__(0, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Lident ]--Block.__(0, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Lident ]--Block.__(0, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Lident ]--Block.__(0, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 3);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
-      var p1 = _1;
-      var p2 = _3;
+      _1 = Parsing.peek_val(__caml_parser_env, 3);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
+      p1 = _1;
+      p2 = _3;
       if (applicative_functors.contents) then do
         return --[ Lapply ]--Block.__(2, [
                   p1,
@@ -9085,89 +9085,89 @@ var yyact = [
       end end 
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Lident ]--Block.__(0, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Lident ]--Block.__(0, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Lident ]--Block.__(0, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ldot ]--Block.__(1, [
                 _1,
                 _3
               ]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ptop_dir ]--Block.__(1, [
                 _2,
                 --[ Pdir_none ]--0
               ]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ptop_dir ]--Block.__(1, [
                 _2,
                 --[ Pdir_string ]--Block.__(0, [_3[0]])
               ]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ptop_dir ]--Block.__(1, [
                 _2,
                 --[ Pdir_int ]--Block.__(1, [_3])
               ]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ptop_dir ]--Block.__(1, [
                 _2,
                 --[ Pdir_ident ]--Block.__(2, [_3])
               ]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Ptop_dir ]--Block.__(1, [
                 _2,
                 --[ Pdir_ident ]--Block.__(2, [_3])
               ]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ Ptop_dir ]--Block.__(1, [
                 _2,
                 --[ Pdir_bool ]--Block.__(3, [false])
               ]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ Ptop_dir ]--Block.__(1, [
                 _2,
                 --[ Pdir_bool ]--Block.__(3, [true])
@@ -9423,39 +9423,39 @@ var yyact = [
       return "with";
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return do
               txt: _1,
               loc: symbol_rloc(--[ () ]--0)
             end;
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return do
               txt: _1 .. ("." .. _3.txt),
               loc: symbol_rloc(--[ () ]--0)
             end;
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
               _2,
               _3
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
               _2,
               _3
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
               _2,
               _3
@@ -9465,8 +9465,8 @@ var yyact = [
       return --[ [] ]--0;
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               _2
@@ -9476,8 +9476,8 @@ var yyact = [
       return --[ [] ]--0;
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               _2
@@ -9490,8 +9490,8 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 1);
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               undefined,
               --[ :: ]--[
@@ -9501,47 +9501,47 @@ var yyact = [
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 1);
-      var _3 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 1);
+      _3 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ tuple ]--[
               _2,
               _3
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
               _2,
               _3
             ];
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _3 = Parsing.peek_val(__caml_parser_env, 1);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _3 = Parsing.peek_val(__caml_parser_env, 1);
       return --[ tuple ]--[
               _2,
               _3
             ];
     end),
   (function (__caml_parser_env) do
-      var _1 = Parsing.peek_val(__caml_parser_env, 0);
+      _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ PStr ]--Block.__(0, [_1]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ PTyp ]--Block.__(1, [_2]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ PPat ]--Block.__(2, [
                 _2,
                 undefined
               ]);
     end),
   (function (__caml_parser_env) do
-      var _2 = Parsing.peek_val(__caml_parser_env, 2);
-      var _4 = Parsing.peek_val(__caml_parser_env, 0);
+      _2 = Parsing.peek_val(__caml_parser_env, 2);
+      _4 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ PPat ]--Block.__(2, [
                 _2,
                 _4
@@ -9591,7 +9591,7 @@ var yyact = [
     end)
 ];
 
-var yytables = do
+yytables = do
   actions: yyact,
   transl_const: yytransl_const,
   transl_block: yytransl_block,
@@ -9652,11 +9652,11 @@ function string_of_type_directive(x) do
   end
 end
 
-var $$Error$2 = Caml_exceptions.create("Ocaml_parsetree_test.Lexer.Error");
+$$Error$2 = Caml_exceptions.create("Ocaml_parsetree_test.Lexer.Error");
 
 function assert_same_type(lexbuf, x, y) do
-  var lhs = type_of_directive(x);
-  var rhs = type_of_directive(y);
+  lhs = type_of_directive(x);
+  rhs = type_of_directive(y);
   if (lhs ~= rhs) then do
     throw [
           $$Error$2,
@@ -9671,15 +9671,15 @@ function assert_same_type(lexbuf, x, y) do
   return y;
 end
 
-var directive_built_in_values = Hashtbl.create(undefined, 51);
+directive_built_in_values = Hashtbl.create(undefined, 51);
 
 Hashtbl.replace(directive_built_in_values, "OCAML_VERSION", --[ Dir_string ]--Block.__(3, [Sys.ocaml_version]));
 
-var tmp;
+tmp;
 
-var exit = 0;
+exit = 0;
 
-var i;
+i;
 
 try do
   i = $$String.rindex(Sys.ocaml_version, --[ "+" ]--43);
@@ -9698,7 +9698,7 @@ if (exit == 1) then do
 end
  end 
 
-var v = --[ Dir_string ]--Block.__(3, [tmp]);
+v = --[ Dir_string ]--Block.__(3, [tmp]);
 
 Hashtbl.replace(directive_built_in_values, "OCAML_PATCH", v);
 
@@ -9709,19 +9709,19 @@ Hashtbl.replace(directive_built_in_values, "BIG_ENDIAN", --[ Dir_bool ]--Block._
 Hashtbl.replace(directive_built_in_values, "WORD_SIZE", --[ Dir_int ]--Block.__(2, [Sys.word_size]));
 
 function semantic_version_parse(str, start, last_index) do
-  var aux = function (_start, _acc, last_index) do
+  aux = function (_start, _acc, last_index) do
     while(true) do
-      var acc = _acc;
-      var start = _start;
+      acc = _acc;
+      start = _start;
       if (start <= last_index) then do
-        var c = str.charCodeAt(start);
+        c = str.charCodeAt(start);
         if (c == --[ "." ]--46) then do
           return --[ tuple ]--[
                   acc,
                   start + 1 | 0
                 ];
         end else do
-          var v = c - --[ "0" ]--48 | 0;
+          v = c - --[ "0" ]--48 | 0;
           if (v >= 0 and v <= 9) then do
             _acc = Caml_int32.imul(acc, 10) + v | 0;
             _start = start + 1 | 0;
@@ -9741,11 +9741,11 @@ function semantic_version_parse(str, start, last_index) do
       end end 
     end;
   end;
-  var match = aux(start, 0, last_index);
-  var match$1 = aux(match[1], 0, last_index);
-  var match$2 = aux(match$1[1], 0, last_index);
-  var patch_end = match$2[1];
-  var additional = $$String.sub(str, patch_end, (last_index - patch_end | 0) + 1 | 0);
+  match = aux(start, 0, last_index);
+  match$1 = aux(match[1], 0, last_index);
+  match$2 = aux(match$1[1], 0, last_index);
+  patch_end = match$2[1];
+  additional = $$String.sub(str, patch_end, (last_index - patch_end | 0) + 1 | 0);
   return --[ tuple ]--[
           --[ tuple ]--[
             match[0],
@@ -9757,7 +9757,7 @@ function semantic_version_parse(str, start, last_index) do
 end
 
 function defined(str) do
-  var val;
+  val;
   try do
     val = Hashtbl.find(directive_built_in_values, str);
   end
@@ -9778,14 +9778,14 @@ function defined(str) do
 end
 
 function query(loc, str) do
-  var v;
+  v;
   try do
     v = Hashtbl.find(directive_built_in_values, str);
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      var exit = 0;
-      var v$1;
+      exit = 0;
+      v$1;
       try do
         v$1 = Caml_sys.caml_sys_getenv(str);
         exit = 2;
@@ -9870,18 +9870,18 @@ function value_of_token(loc, t) do
 end
 
 function directive_parse(token_with_comments, lexbuf) do
-  var look_ahead = do
+  look_ahead = do
     contents: undefined
   end;
-  var token = function (param) do
-    var v = look_ahead.contents;
+  token = function (param) do
+    v = look_ahead.contents;
     if (v ~= undefined) then do
       look_ahead.contents = undefined;
       return v;
     end else do
-      var _param = --[ () ]--0;
+      _param = --[ () ]--0;
       while(true) do
-        var t = Curry._1(token_with_comments, lexbuf);
+        t = Curry._1(token_with_comments, lexbuf);
         if (typeof t == "number") then do
           local ___conditional___=(t);
           do
@@ -9917,7 +9917,7 @@ function directive_parse(token_with_comments, lexbuf) do
       end;
     end end 
   end;
-  var push = function (e) do
+  push = function (e) do
     if (look_ahead.contents ~= undefined) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
@@ -9932,9 +9932,9 @@ function directive_parse(token_with_comments, lexbuf) do
     look_ahead.contents = e;
     return --[ () ]--0;
   end;
-  var token_op = function (calc, no, lhs) do
-    var op = token(--[ () ]--0);
-    var exit = 0;
+  token_op = function (calc, no, lhs) do
+    op = token(--[ () ]--0);
+    exit = 0;
     if (typeof op == "number") then do
       local ___conditional___=(op);
       do
@@ -9954,16 +9954,16 @@ function directive_parse(token_with_comments, lexbuf) do
          if ___conditional___ = "=~" then do
             if (calc) then do
               if (typeof lhs ~= "number" and lhs.tag == --[ Dir_string ]--3) then do
-                var curr_loc = curr(lexbuf);
-                var rhs = value_of_token(curr_loc, token(--[ () ]--0));
-                var exit$1 = 0;
+                curr_loc = curr(lexbuf);
+                rhs = value_of_token(curr_loc, token(--[ () ]--0));
+                exit$1 = 0;
                 if (typeof rhs == "number" or rhs.tag ~= --[ Dir_string ]--3) then do
                   exit$1 = 3;
                 end else do
-                  var loc = curr_loc;
-                  var lhs$1 = lhs[0];
-                  var str = rhs[0];
-                  var last_index = #str - 1 | 0;
+                  loc = curr_loc;
+                  lhs$1 = lhs[0];
+                  str = rhs[0];
+                  last_index = #str - 1 | 0;
                   if (last_index < 0) then do
                     throw [
                           $$Error$2,
@@ -9972,9 +9972,9 @@ function directive_parse(token_with_comments, lexbuf) do
                         ];
                   end
                    end 
-                  var v = str.charCodeAt(0);
-                  var match;
-                  var exit$2 = 0;
+                  v = str.charCodeAt(0);
+                  match;
+                  exit$2 = 0;
                   if (v ~= 94) then do
                     if (v >= 63) then do
                       if (v ~= 126) then do
@@ -10041,12 +10041,12 @@ function directive_parse(token_with_comments, lexbuf) do
                     ];
                   end
                    end 
-                  var version = match[1][0];
-                  var major = version[0];
-                  var pred = match[0];
-                  var match$1 = semantic_version_parse(lhs$1, 0, #lhs$1 - 1 | 0);
-                  var lversion = match$1[0];
-                  var l_major = lversion[0];
+                  version = match[1][0];
+                  major = version[0];
+                  pred = match[0];
+                  match$1 = semantic_version_parse(lhs$1, 0, #lhs$1 - 1 | 0);
+                  lversion = match$1[0];
+                  l_major = lversion[0];
                   if (pred >= 17049) then do
                     if (pred >= 172069535) then do
                       if (pred >= 785637236) then do
@@ -10109,8 +10109,8 @@ function directive_parse(token_with_comments, lexbuf) do
       return Curry._1(no, op);
     end end  end 
     if (exit == 1) then do
-      var f;
-      var exit$3 = 0;
+      f;
+      exit$3 = 0;
       if (typeof op == "number") then do
         local ___conditional___=(op);
         do
@@ -10153,8 +10153,8 @@ function directive_parse(token_with_comments, lexbuf) do
             ];
       end
        end 
-      var curr_loc$1 = curr(lexbuf);
-      var rhs$1 = value_of_token(curr_loc$1, token(--[ () ]--0));
+      curr_loc$1 = curr(lexbuf);
+      rhs$1 = value_of_token(curr_loc$1, token(--[ () ]--0));
       if (calc) then do
         return Curry._2(f, lhs, assert_same_type(lexbuf, lhs, rhs$1));
       end else do
@@ -10163,11 +10163,11 @@ function directive_parse(token_with_comments, lexbuf) do
     end
      end 
   end;
-  var parse_and_aux = function (calc, v) do
-    var e = token(--[ () ]--0);
+  parse_and_aux = function (calc, v) do
+    e = token(--[ () ]--0);
     if (typeof e == "number" and e == 0) then do
-      var calc$1 = calc and v;
-      var b = parse_and_aux(calc$1, parse_relation(calc$1));
+      calc$1 = calc and v;
+      b = parse_and_aux(calc$1, parse_relation(calc$1));
       if (v) then do
         return b;
       end else do
@@ -10178,11 +10178,11 @@ function directive_parse(token_with_comments, lexbuf) do
       return v;
     end end 
   end;
-  var parse_or_aux = function (calc, v) do
-    var e = token(--[ () ]--0);
+  parse_or_aux = function (calc, v) do
+    e = token(--[ () ]--0);
     if (typeof e == "number" and e == 8) then do
-      var calc$1 = calc and !v;
-      var b = parse_or_aux(calc$1, parse_and_aux(calc$1, parse_relation(calc$1)));
+      calc$1 = calc and !v;
+      b = parse_or_aux(calc$1, parse_and_aux(calc$1, parse_relation(calc$1)));
       if (v) then do
         return true;
       end else do
@@ -10193,17 +10193,17 @@ function directive_parse(token_with_comments, lexbuf) do
       return v;
     end end 
   end;
-  var parse_relation = function (calc) do
-    var curr_token = token(--[ () ]--0);
-    var curr_loc = curr(lexbuf);
+  parse_relation = function (calc) do
+    curr_token = token(--[ () ]--0);
+    curr_loc = curr(lexbuf);
     if (typeof curr_token == "number") then do
       local ___conditional___=(curr_token);
       do
          if ___conditional___ = 29--[ FALSE ]-- then do
             return false;end end end 
          if ___conditional___ = 54--[ LPAREN ]-- then do
-            var v = parse_or_aux(calc, parse_and_aux(calc, parse_relation(calc)));
-            var match = token(--[ () ]--0);
+            v = parse_or_aux(calc, parse_and_aux(calc, parse_relation(calc)));
+            match = token(--[ () ]--0);
             if (typeof match == "number") then do
               if (match ~= 81) then do
                 throw [
@@ -10248,13 +10248,13 @@ function directive_parse(token_with_comments, lexbuf) do
                               ];
                         end), --[ Dir_float ]--Block.__(1, [Caml_format.caml_float_of_string(curr_token[0])]));end end end 
          if ___conditional___ = 7--[ INT ]-- then do
-            var v$1 = curr_token[0];
+            v$1 = curr_token[0];
             return token_op(calc, (function (e) do
                           push(e);
                           return v$1 ~= 0;
                         end), --[ Dir_int ]--Block.__(2, [v$1]));end end end 
          if ___conditional___ = 11--[ LIDENT ]-- then do
-            var r = curr_token[0];
+            r = curr_token[0];
             local ___conditional___=(r);
             do
                if ___conditional___ = "defined"
@@ -10269,8 +10269,8 @@ function directive_parse(token_with_comments, lexbuf) do
                 end end
                 
             end
-            var t = token(--[ () ]--0);
-            var loc = curr(lexbuf);
+            t = token(--[ () ]--0);
+            loc = curr(lexbuf);
             if (typeof t == "number") then do
               throw [
                     $$Error$2,
@@ -10278,7 +10278,7 @@ function directive_parse(token_with_comments, lexbuf) do
                     loc
                   ];
             end else if (t.tag == --[ UIDENT ]--17) then do
-              var s = t[0];
+              s = t[0];
               if (calc) then do
                 if (Caml_string.get(r, 0) == --[ "u" ]--117) then do
                   return !defined(s);
@@ -10307,14 +10307,14 @@ function directive_parse(token_with_comments, lexbuf) do
                               ];
                         end), --[ Dir_string ]--Block.__(3, [curr_token[0][0]]));end end end 
          if ___conditional___ = 17--[ UIDENT ]-- then do
-            var value_v = query(curr_loc, curr_token[0]);
+            value_v = query(curr_loc, curr_token[0]);
             return token_op(calc, (function (e) do
                           push(e);
                           if (typeof value_v ~= "number" and !value_v.tag) then do
                             return value_v[0];
                           end
                            end 
-                          var ty = type_of_directive(value_v);
+                          ty = type_of_directive(value_v);
                           throw [
                                 $$Error$2,
                                 --[ Conditional_expr_expected_type ]--Block.__(7, [
@@ -10336,8 +10336,8 @@ function directive_parse(token_with_comments, lexbuf) do
       end
     end end 
   end;
-  var v = parse_or_aux(true, parse_and_aux(true, parse_relation(true)));
-  var match = token(--[ () ]--0);
+  v = parse_or_aux(true, parse_and_aux(true, parse_relation(true)));
+  match = token(--[ () ]--0);
   if (typeof match == "number") then do
     if (match ~= 88) then do
       throw [
@@ -10365,7 +10365,7 @@ function is_elif(i) do
   end end 
 end
 
-var keyword_table = create_hashtable(149, --[ :: ]--[
+keyword_table = create_hashtable(149, --[ :: ]--[
       --[ tuple ]--[
         "and",
         --[ AND ]--2
@@ -10703,13 +10703,13 @@ var keyword_table = create_hashtable(149, --[ :: ]--[
       ]
     ]);
 
-var initial_string_buffer = Caml_bytes.caml_create_bytes(256);
+initial_string_buffer = Caml_bytes.caml_create_bytes(256);
 
-var string_buff = do
+string_buff = do
   contents: initial_string_buffer
 end;
 
-var string_index = do
+string_index = do
   contents: 0
 end;
 
@@ -10721,7 +10721,7 @@ end
 
 function store_string_char(c) do
   if (string_index.contents >= #string_buff.contents) then do
-    var new_buff = Caml_bytes.caml_create_bytes((#string_buff.contents << 1));
+    new_buff = Caml_bytes.caml_create_bytes((#string_buff.contents << 1));
     Bytes.blit(string_buff.contents, 0, new_buff, 0, #string_buff.contents);
     string_buff.contents = new_buff;
   end
@@ -10732,56 +10732,56 @@ function store_string_char(c) do
 end
 
 function store_string(s) do
-  for var i = 0 , #s - 1 | 0 , 1 do
+  for i = 0 , #s - 1 | 0 , 1 do
     store_string_char(Caml_string.get(s, i));
   end
   return --[ () ]--0;
 end
 
 function get_stored_string(param) do
-  var s = Bytes.sub_string(string_buff.contents, 0, string_index.contents);
+  s = Bytes.sub_string(string_buff.contents, 0, string_index.contents);
   string_buff.contents = initial_string_buffer;
   return s;
 end
 
-var string_start_loc = do
+string_start_loc = do
   contents: none
 end;
 
-var comment_start_loc = do
+comment_start_loc = do
   contents: --[ [] ]--0
 end;
 
-var is_in_string = do
+is_in_string = do
   contents: false
 end;
 
-var print_warnings = do
+print_warnings = do
   contents: true
 end;
 
-var if_then_else = do
+if_then_else = do
   contents: --[ Dir_out ]--2
 end;
 
-var sharp_look_ahead = do
+sharp_look_ahead = do
   contents: undefined
 end;
 
 function with_comment_buffer(comment, lexbuf) do
-  var start_loc = curr(lexbuf);
+  start_loc = curr(lexbuf);
   comment_start_loc.contents = --[ :: ]--[
     start_loc,
     --[ [] ]--0
   ];
   reset_string_buffer(--[ () ]--0);
-  var end_loc = Curry._1(comment, lexbuf);
-  var s = get_stored_string(--[ () ]--0);
+  end_loc = Curry._1(comment, lexbuf);
+  s = get_stored_string(--[ () ]--0);
   reset_string_buffer(--[ () ]--0);
-  var loc_loc_start = start_loc.loc_start;
-  var loc_loc_end = end_loc.loc_end;
-  var loc_loc_ghost = start_loc.loc_ghost;
-  var loc = do
+  loc_loc_start = start_loc.loc_start;
+  loc_loc_end = end_loc.loc_end;
+  loc_loc_ghost = start_loc.loc_ghost;
+  loc = do
     loc_start: loc_loc_start,
     loc_end: loc_loc_end,
     loc_ghost: loc_loc_ghost
@@ -10822,7 +10822,7 @@ function char_for_backslash(c) do
 end
 
 function char_for_decimal_code(lexbuf, i) do
-  var c = (Caml_int32.imul(100, Lexing.lexeme_char(lexbuf, i) - 48 | 0) + Caml_int32.imul(10, Lexing.lexeme_char(lexbuf, i + 1 | 0) - 48 | 0) | 0) + (Lexing.lexeme_char(lexbuf, i + 2 | 0) - 48 | 0) | 0;
+  c = (Caml_int32.imul(100, Lexing.lexeme_char(lexbuf, i) - 48 | 0) + Caml_int32.imul(10, Lexing.lexeme_char(lexbuf, i + 1 | 0) - 48 | 0) | 0) + (Lexing.lexeme_char(lexbuf, i + 2 | 0) - 48 | 0) | 0;
   if (c < 0 or c > 255) then do
     if (comment_start_loc.contents ~= --[ [] ]--0) then do
       return --[ "x" ]--120;
@@ -10839,12 +10839,12 @@ function char_for_decimal_code(lexbuf, i) do
 end
 
 function char_for_hexadecimal_code(lexbuf, i) do
-  var d1 = Lexing.lexeme_char(lexbuf, i);
-  var val1 = d1 >= 97 and d1 - 87 | 0 or (
+  d1 = Lexing.lexeme_char(lexbuf, i);
+  val1 = d1 >= 97 and d1 - 87 | 0 or (
       d1 >= 65 and d1 - 55 | 0 or d1 - 48 | 0
     );
-  var d2 = Lexing.lexeme_char(lexbuf, i + 1 | 0);
-  var val2 = d2 >= 97 and d2 - 87 | 0 or (
+  d2 = Lexing.lexeme_char(lexbuf, i + 1 | 0);
+  val2 = d2 >= 97 and d2 - 87 | 0 or (
       d2 >= 65 and d2 - 55 | 0 or d2 - 48 | 0
     );
   return Char.chr((val1 << 4) + val2 | 0);
@@ -10867,13 +10867,13 @@ function cvt_nativeint_literal(s) do
 end
 
 function remove_underscores(s) do
-  var l = #s;
-  var b = Caml_bytes.caml_create_bytes(l);
-  var _src = 0;
-  var _dst = 0;
+  l = #s;
+  b = Caml_bytes.caml_create_bytes(l);
+  _src = 0;
+  _dst = 0;
   while(true) do
-    var dst = _dst;
-    var src = _src;
+    dst = _dst;
+    src = _src;
     if (src >= l) then do
       if (dst >= l) then do
         return s;
@@ -10881,7 +10881,7 @@ function remove_underscores(s) do
         return Bytes.sub_string(b, 0, dst);
       end end 
     end else do
-      var c = Caml_string.get(s, src);
+      c = Caml_string.get(s, src);
       if (c ~= 95) then do
         b[dst] = c;
         _dst = dst + 1 | 0;
@@ -10896,8 +10896,8 @@ function remove_underscores(s) do
 end
 
 function get_label_name(lexbuf) do
-  var s = Lexing.lexeme(lexbuf);
-  var name = $$String.sub(s, 1, #s - 2 | 0);
+  s = Lexing.lexeme(lexbuf);
+  name = $$String.sub(s, 1, #s - 2 | 0);
   if (Hashtbl.mem(keyword_table, name)) then do
     throw [
           $$Error$2,
@@ -10910,8 +10910,8 @@ function get_label_name(lexbuf) do
 end
 
 function update_loc(lexbuf, file, line, absolute, chars) do
-  var pos = lexbuf.lex_curr_p;
-  var new_file = file ~= undefined and file or pos.pos_fname;
+  pos = lexbuf.lex_curr_p;
+  new_file = file ~= undefined and file or pos.pos_fname;
   lexbuf.lex_curr_p = do
     pos_fname: new_file,
     pos_lnum: absolute and line or pos.pos_lnum + line | 0,
@@ -10921,15 +10921,15 @@ function update_loc(lexbuf, file, line, absolute, chars) do
   return --[ () ]--0;
 end
 
-var preprocessor = do
+preprocessor = do
   contents: undefined
 end;
 
-var escaped_newlines = do
+escaped_newlines = do
   contents: false
 end;
 
-var comment_list = do
+comment_list = do
   contents: --[ [] ]--0
 end;
 
@@ -11133,7 +11133,7 @@ register_error_of_exn((function (param) do
          end 
       end));
 
-var __ocaml_lex_tables = do
+__ocaml_lex_tables = do
   lex_base: "\0\0\xa4\xff\xa5\xff\xe0\0\x03\x01&\x01I\x01l\x01\x8f\x01\xbc\xff\xb2\x01\xd7\x01\xc4\xff[\0\xfc\x01\x1f\x02D\0G\0T\0B\x02\xd5\xff\xd7\xff\xda\xffe\x02\xc4\x02\xe7\x02Y\0\xff\0\x05\x03\xec\xffR\x03s\x03\xbc\x03\x8c\x04\\\x05,\x06\x0b\x07g\x077\b}\0\xfe\xff\x01\0\x05\0\xff\xff\x06\0\x07\0\x16\t4\t\x04\n\xfa\xff\xf9\xff\xd4\n\xa4\x0b\xf7\xff\xf6\xff\xed\xff\xee\xff\xef\xff]\0v\x02[\0n\0\xe7\x02\x07\x04\xd7\x04e\x02\xfe\x02v\0\xc2\xff\xeb\xffx\x05\x84\f`\0q\0\x0b\0\xea\xff\xe9\xff\xe5\xff\xe5\x04\x80\0s\0\xe8\xff\xe0\0u\0\xe7\xffw\x06\x93\0\xe6\xff\x92\0\xe1\xff\x94\0\xe0\xff\xd9\0\x84\f\xdf\xff\xab\f\xaf\b\xae\x06\xde\xff\f\0\x18\x01,\x01P\x01-\x01\xde\xff\r\0\xd9\f\0\r#\rI\r\xd2\xff\xce\xff\xcf\xff\xd0\xff\xcc\xffl\r\x9a\0\xb7\0\xc5\xff\xc6\xff\xc7\xff\xc7\0\xb6\xff\xb8\xff\xbf\xff\x8f\r\xbb\xff\xbd\xff\xb2\r\xd5\r\xf8\r\x1b\x0e\xeb\x05\xf3\xff\xf4\xff\x11\0\xf5\xff>\x02\xac\x07\xfd\xff\xdf\0\xf1\0\xff\xff\xfe\xff\xfc\xff\xc8\x07-\x0e\xfa\0\xfc\0\x12\0\xfb\xff\xfa\xff\xf9\xff\x80\t\x1e\x03\x03\x01\xf8\xff\\\x03\x04\x01\xf7\xffO\n\x05\x01\xf6\xff+\x01\xc7\x01\xf7\xff\xf8\xff\xf9\xff;\x01v\x0e\xff\xff\xfa\xff\x1f\x0b$\x04\xfd\xff&\x01E\x01^\x01\xfc\x04\xfc\xff\xef\x0b\xfb\xff_\x01\xb5\x01\xfc\xff\xee\x06\xfe\xff\xff\xffo\x01p\x01\xfd\xffJ\x07\x10\x01\x13\x012\x01?\x01\x1a\x01k\x01!\x01\x13\0\xff\xff",
   lex_backtrk: "\xff\xff\xff\xff\xff\xffX\0W\0T\0S\0L\0J\0\xff\xffA\0>\0\xff\xff7\x006\x004\x002\0.\0,\0O\0\xff\xff\xff\xff\xff\xff#\0\"\0)\0'\0&\0<\0\xff\xff\x0e\0\x0e\0\r\0\f\0\x0b\0\n\0\x07\0\x04\0\x03\0\x02\0\xff\xff[\0[\0\xff\xff\xff\xff\xff\xffR\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x0f\0\xff\xff\xff\xff\xff\xff\x0e\0\x0e\0\x0e\0\x0f\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x1a\0\x1a\0\x1a\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x1b\0\xff\xff\x1c\0\xff\xff\x1d\0V\0\xff\xffY\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff$\0U\0P\0+\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff5\0F\0E\0\xff\xff\xff\xff\xff\xffH\0\xff\xff\xff\xff\xff\xff?\0\xff\xff\xff\xffQ\0K\0N\0M\0\xff\xff\xff\xff\xff\xff\f\0\xff\xff\f\0\f\0\xff\xff\f\0\f\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\b\0\b\0\xff\xff\xff\xff\x05\0\x05\0\xff\xff\x01\0\x05\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\x03\0\xff\xff\xff\xff\x03\0\xff\xff\xff\xff\xff\xff\x02\0\xff\xff\xff\xff\x01\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
   lex_default: "\x01\0\0\0\0\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\0\0\xff\xff\xff\xff\0\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\0\0\0\0\0\0\xff\xff\xff\xff\xff\xff\xff\xffH\0\xff\xff\0\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\0\0\xff\xff\xff\xff\0\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\0\0\0\0\xff\xff\xff\xff\0\0\0\0\0\0\0\0\0\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\0\0\0\0\xff\xffM\0\xff\xff\xff\xff\xff\xff\0\0\0\0\0\0\xff\xff\xff\xff\xff\xff\0\0\xff\xff\xff\xff\0\0\xff\xff\xff\xff\0\0\xff\xff\0\0\xff\xff\0\0\xff\xff\xff\xff\0\0\xff\xffd\0\xff\xff\0\0\xff\xffd\0e\0d\0g\0\0\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\0\0\0\0\0\0\0\0\0\0\xff\xff\xff\xff\xff\xff\0\0\0\0\0\0\xff\xff\0\0\0\0\0\0\xff\xff\0\0\0\0\xff\xff\xff\xff\xff\xff\xff\xff\x85\0\0\0\0\0\xff\xff\0\0\x93\0\xff\xff\0\0\xff\xff\xff\xff\0\0\0\0\0\0\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\0\0\0\0\0\0\xff\xff\xff\xff\xff\xff\0\0\xff\xff\xff\xff\0\0\xff\xff\xff\xff\0\0\xff\xff\xa5\0\0\0\0\0\0\0\xff\xff\xab\0\0\0\0\0\xff\xff\xff\xff\0\0\xff\xff\xff\xff\xff\xff\xff\xff\0\0\xff\xff\0\0\xff\xff\xb8\0\0\0\xff\xff\0\0\0\0\xff\xff\xff\xff\0\0\xff\xff\xff\xff\xff\xff\xc2\0\xc5\0\xff\xff\xc5\0\xff\xff\xff\xff\0\0",
@@ -11149,11 +11149,11 @@ end;
 
 function token(lexbuf) do
   lexbuf.lex_mem = Caml_array.caml_make_vect(8, -1);
-  var lexbuf$1 = lexbuf;
-  var ___ocaml_lex_state = 0;
+  lexbuf$1 = lexbuf;
+  ___ocaml_lex_state = 0;
   while(true) do
-    var __ocaml_lex_state = ___ocaml_lex_state;
-    var __ocaml_lex_state$1 = Lexing.new_engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf$1);
+    __ocaml_lex_state = ___ocaml_lex_state;
+    __ocaml_lex_state$1 = Lexing.new_engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf$1);
     local ___conditional___=(__ocaml_lex_state$1);
     do
        if ___conditional___ = 0 then do
@@ -11189,7 +11189,7 @@ function token(lexbuf) do
           prerr_warning(curr(lexbuf$1), --[ Deprecated ]--Block.__(0, ["ISO-Latin1 characters in identifiers"]));
           return --[ OPTLABEL ]--Block.__(13, [get_label_name(lexbuf$1)]);end end end 
        if ___conditional___ = 10 then do
-          var s = Lexing.lexeme(lexbuf$1);
+          s = Lexing.lexeme(lexbuf$1);
           try do
             return Hashtbl.find(keyword_table, s);
           end
@@ -11213,7 +11213,7 @@ function token(lexbuf) do
             return --[ INT ]--Block.__(7, [cvt_int_literal(Lexing.lexeme(lexbuf$1))]);
           end
           catch (raw_exn)do
-            var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
+            exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn$1[0] == Caml_builtin_exceptions.failure) then do
               throw [
                     $$Error$2,
@@ -11231,7 +11231,7 @@ function token(lexbuf) do
             return --[ INT32 ]--Block.__(8, [cvt_int32_literal(Lexing.lexeme(lexbuf$1))]);
           end
           catch (raw_exn$1)do
-            var exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
+            exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$2[0] == Caml_builtin_exceptions.failure) then do
               throw [
                     $$Error$2,
@@ -11247,7 +11247,7 @@ function token(lexbuf) do
             return --[ INT64 ]--Block.__(9, [cvt_int64_literal(Lexing.lexeme(lexbuf$1))]);
           end
           catch (raw_exn$2)do
-            var exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
+            exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
             if (exn$3[0] == Caml_builtin_exceptions.failure) then do
               throw [
                     $$Error$2,
@@ -11263,7 +11263,7 @@ function token(lexbuf) do
             return --[ NATIVEINT ]--Block.__(12, [cvt_nativeint_literal(Lexing.lexeme(lexbuf$1))]);
           end
           catch (raw_exn$3)do
-            var exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
+            exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
             if (exn$4[0] == Caml_builtin_exceptions.failure) then do
               throw [
                     $$Error$2,
@@ -11277,7 +11277,7 @@ function token(lexbuf) do
        if ___conditional___ = 19 then do
           reset_string_buffer(--[ () ]--0);
           is_in_string.contents = true;
-          var string_start = lexbuf$1.lex_start_p;
+          string_start = lexbuf$1.lex_start_p;
           string_start_loc.contents = curr(lexbuf$1);
           string(lexbuf$1);
           is_in_string.contents = false;
@@ -11288,10 +11288,10 @@ function token(lexbuf) do
                     ]]);end end end 
        if ___conditional___ = 20 then do
           reset_string_buffer(--[ () ]--0);
-          var delim = Lexing.lexeme(lexbuf$1);
-          var delim$1 = $$String.sub(delim, 1, #delim - 2 | 0);
+          delim = Lexing.lexeme(lexbuf$1);
+          delim$1 = $$String.sub(delim, 1, #delim - 2 | 0);
           is_in_string.contents = true;
-          var string_start$1 = lexbuf$1.lex_start_p;
+          string_start$1 = lexbuf$1.lex_start_p;
           string_start_loc.contents = curr(lexbuf$1);
           __ocaml_lex_quoted_string_rec(delim$1, lexbuf$1, 183);
           is_in_string.contents = false;
@@ -11312,25 +11312,25 @@ function token(lexbuf) do
        if ___conditional___ = 25 then do
           return --[ CHAR ]--Block.__(0, [char_for_hexadecimal_code(lexbuf$1, 3)]);end end end 
        if ___conditional___ = 26 then do
-          var l = Lexing.lexeme(lexbuf$1);
-          var esc = $$String.sub(l, 1, #l - 1 | 0);
+          l = Lexing.lexeme(lexbuf$1);
+          esc = $$String.sub(l, 1, #l - 1 | 0);
           throw [
                 $$Error$2,
                 --[ Illegal_escape ]--Block.__(1, [esc]),
                 curr(lexbuf$1)
               ];end end end 
        if ___conditional___ = 27 then do
-          var match = with_comment_buffer(comment, lexbuf$1);
+          match = with_comment_buffer(comment, lexbuf$1);
           return --[ COMMENT ]--Block.__(18, [--[ tuple ]--[
                       match[0],
                       match[1]
                     ]]);end end end 
        if ___conditional___ = 28 then do
-          var match$1 = with_comment_buffer(comment, lexbuf$1);
+          match$1 = with_comment_buffer(comment, lexbuf$1);
           return --[ DOCSTRING ]--Block.__(19, [docstring(match$1[0], match$1[1])]);end end end 
        if ___conditional___ = 29 then do
-          var stars = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
-          var match$2 = with_comment_buffer((function(stars)do
+          stars = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
+          match$2 = with_comment_buffer((function(stars)do
               return function (lexbuf) do
                 store_string("*" .. stars);
                 return __ocaml_lex_comment_rec(lexbuf, 132);
@@ -11345,22 +11345,22 @@ function token(lexbuf) do
             prerr_warning(curr(lexbuf$1), --[ Comment_start ]--0);
           end
            end 
-          var match$3 = with_comment_buffer(comment, lexbuf$1);
+          match$3 = with_comment_buffer(comment, lexbuf$1);
           return --[ COMMENT ]--Block.__(18, [--[ tuple ]--[
                       match$3[0],
                       match$3[1]
                     ]]);end end end 
        if ___conditional___ = 31 then do
-          var stars$1 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos - 2 | 0);
+          stars$1 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos - 2 | 0);
           return --[ COMMENT ]--Block.__(18, [--[ tuple ]--[
                       stars$1,
                       curr(lexbuf$1)
                     ]]);end end end 
        if ___conditional___ = 32 then do
-          var loc = curr(lexbuf$1);
+          loc = curr(lexbuf$1);
           prerr_warning(loc, --[ Comment_not_end ]--1);
           lexbuf$1.lex_curr_pos = lexbuf$1.lex_curr_pos - 1 | 0;
-          var curpos = lexbuf$1.lex_curr_p;
+          curpos = lexbuf$1.lex_curr_p;
           lexbuf$1.lex_curr_p = do
             pos_fname: curpos.pos_fname,
             pos_lnum: curpos.pos_lnum,
@@ -11369,8 +11369,8 @@ function token(lexbuf) do
           end;
           return --[ STAR ]--86;end end end 
        if ___conditional___ = 33 then do
-          var num = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), Caml_array.caml_array_get(lexbuf$1.lex_mem, 1));
-          var name = Lexing.sub_lexeme_opt(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 3), Caml_array.caml_array_get(lexbuf$1.lex_mem, 2));
+          num = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), Caml_array.caml_array_get(lexbuf$1.lex_mem, 1));
+          name = Lexing.sub_lexeme_opt(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 3), Caml_array.caml_array_get(lexbuf$1.lex_mem, 2));
           update_loc(lexbuf$1, name, Caml_format.caml_int_of_string(num), true, 0);
           return token(lexbuf$1);end end end 
        if ___conditional___ = 34 then do
@@ -11521,8 +11521,8 @@ end
 
 function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
   while(true) do
-    var __ocaml_lex_state = ___ocaml_lex_state;
-    var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
+    __ocaml_lex_state = ___ocaml_lex_state;
+    __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
     local ___conditional___=(__ocaml_lex_state$1);
     do
        if ___conditional___ = 0 then do
@@ -11538,8 +11538,8 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
                 string_start_loc.contents
               ];end end end 
        if ___conditional___ = 2 then do
-          var edelim = Lexing.lexeme(lexbuf);
-          var edelim$1 = $$String.sub(edelim, 1, #edelim - 2 | 0);
+          edelim = Lexing.lexeme(lexbuf);
+          edelim$1 = $$String.sub(edelim, 1, #edelim - 2 | 0);
           if (delim == edelim$1) then do
             return --[ () ]--0;
           end else do
@@ -11564,17 +11564,17 @@ end
 
 function string(lexbuf) do
   lexbuf.lex_mem = Caml_array.caml_make_vect(2, -1);
-  var lexbuf$1 = lexbuf;
-  var ___ocaml_lex_state = 164;
+  lexbuf$1 = lexbuf;
+  ___ocaml_lex_state = 164;
   while(true) do
-    var __ocaml_lex_state = ___ocaml_lex_state;
-    var __ocaml_lex_state$1 = Lexing.new_engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf$1);
+    __ocaml_lex_state = ___ocaml_lex_state;
+    __ocaml_lex_state$1 = Lexing.new_engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf$1);
     local ___conditional___=(__ocaml_lex_state$1);
     do
        if ___conditional___ = 0 then do
           return --[ () ]--0;end end end 
        if ___conditional___ = 1 then do
-          var space = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
+          space = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
           update_loc(lexbuf$1, undefined, 1, false, #space);
           return string(lexbuf$1);end end end 
        if ___conditional___ = 2 then do
@@ -11590,7 +11590,7 @@ function string(lexbuf) do
           if (comment_start_loc.contents ~= --[ [] ]--0) then do
             return string(lexbuf$1);
           end else do
-            var loc = curr(lexbuf$1);
+            loc = curr(lexbuf$1);
             prerr_warning(loc, --[ Illegal_backslash ]--7);
             store_string_char(Lexing.lexeme_char(lexbuf$1, 0));
             store_string_char(Lexing.lexeme_char(lexbuf$1, 1));
@@ -11627,8 +11627,8 @@ end
 
 function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
   while(true) do
-    var __ocaml_lex_state = ___ocaml_lex_state;
-    var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
+    __ocaml_lex_state = ___ocaml_lex_state;
+    __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
     local ___conditional___=(__ocaml_lex_state$1);
     do
        if ___conditional___ = 0 then do
@@ -11640,9 +11640,9 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           ___ocaml_lex_state = 132;
           continue ;end end end 
        if ___conditional___ = 1 then do
-          var match = comment_start_loc.contents;
+          match = comment_start_loc.contents;
           if (match) then do
-            var l = match[1];
+            l = match[1];
             if (l) then do
               comment_start_loc.contents = l;
               store_string(Lexing.lexeme(lexbuf));
@@ -11670,17 +11670,17 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
             string(lexbuf);
           end
           catch (raw_exn)do
-            var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+            exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
             if (exn[0] == $$Error$2) then do
-              var match$1 = exn[1];
+              match$1 = exn[1];
               if (typeof match$1 == "number") then do
                 if (match$1 ~= 0) then do
                   throw exn;
                 end
                  end 
-                var match$2 = comment_start_loc.contents;
+                match$2 = comment_start_loc.contents;
                 if (match$2) then do
-                  var start = List.hd(List.rev(comment_start_loc.contents));
+                  start = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[ [] ]--0;
                   throw [
                         $$Error$2,
@@ -11712,8 +11712,8 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           ___ocaml_lex_state = 132;
           continue ;end end end 
        if ___conditional___ = 3 then do
-          var delim = Lexing.lexeme(lexbuf);
-          var delim$1 = $$String.sub(delim, 1, #delim - 2 | 0);
+          delim = Lexing.lexeme(lexbuf);
+          delim$1 = $$String.sub(delim, 1, #delim - 2 | 0);
           string_start_loc.contents = curr(lexbuf);
           store_string(Lexing.lexeme(lexbuf));
           is_in_string.contents = true;
@@ -11721,17 +11721,17 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
             __ocaml_lex_quoted_string_rec(delim$1, lexbuf, 183);
           end
           catch (raw_exn$1)do
-            var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
+            exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
             if (exn$1[0] == $$Error$2) then do
-              var match$3 = exn$1[1];
+              match$3 = exn$1[1];
               if (typeof match$3 == "number") then do
                 if (match$3 ~= 0) then do
                   throw exn$1;
                 end
                  end 
-                var match$4 = comment_start_loc.contents;
+                match$4 = comment_start_loc.contents;
                 if (match$4) then do
-                  var start$1 = List.hd(List.rev(comment_start_loc.contents));
+                  start$1 = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[ [] ]--0;
                   throw [
                         $$Error$2,
@@ -11770,9 +11770,9 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           ___ocaml_lex_state = 132;
           continue ;end end end 
        if ___conditional___ = 10 then do
-          var match$5 = comment_start_loc.contents;
+          match$5 = comment_start_loc.contents;
           if (match$5) then do
-            var start$2 = List.hd(List.rev(comment_start_loc.contents));
+            start$2 = List.hd(List.rev(comment_start_loc.contents));
             comment_start_loc.contents = --[ [] ]--0;
             throw [
                   $$Error$2,
@@ -11819,12 +11819,12 @@ function comment(lexbuf) do
 end
 
 function at_bol(lexbuf) do
-  var pos = lexbuf.lex_start_p;
+  pos = lexbuf.lex_start_p;
   return pos.pos_cnum == pos.pos_bol;
 end
 
 function token_with_comments(lexbuf) do
-  var match = preprocessor.contents;
+  match = preprocessor.contents;
   if (match ~= undefined) then do
     return Curry._2(match[1], token, lexbuf);
   end else do
@@ -11833,14 +11833,14 @@ function token_with_comments(lexbuf) do
 end
 
 function token$1(lexbuf) do
-  var post_pos = lexbuf.lex_curr_p;
-  var attach = function (lines, docs, pre_pos) do
+  post_pos = lexbuf.lex_curr_p;
+  attach = function (lines, docs, pre_pos) do
     if (typeof docs == "number") then do
       return --[ () ]--0;
     end else if (docs.tag) then do
-      var b = docs[2];
-      var f = docs[1];
-      var a = docs[0];
+      b = docs[2];
+      f = docs[1];
+      a = docs[0];
       if (lines >= 2) then do
         set_post_docstrings(post_pos, List.rev(a));
         set_post_extra_docstrings(post_pos, List.rev_append(f, List.rev(b)));
@@ -11854,7 +11854,7 @@ function token$1(lexbuf) do
         return set_pre_docstrings(pre_pos, b);
       end end 
     end else do
-      var a$1 = docs[0];
+      a$1 = docs[0];
       if (lines >= 2) then do
         set_post_docstrings(post_pos, List.rev(a$1));
         return set_pre_extra_docstrings(pre_pos, List.rev(a$1));
@@ -11864,28 +11864,28 @@ function token$1(lexbuf) do
       end end 
     end end  end 
   end;
-  var loop = function (_lines, _docs, lexbuf) do
+  loop = function (_lines, _docs, lexbuf) do
     while(true) do
-      var docs = _docs;
-      var lines = _lines;
-      var tok = token_with_comments(lexbuf);
+      docs = _docs;
+      lines = _lines;
+      tok = token_with_comments(lexbuf);
       if (typeof tok == "number") then do
         local ___conditional___=(tok);
         do
            if ___conditional___ = 84--[ SHARP ]-- then do
               if (at_bol(lexbuf)) then do
-                var lexbuf$1 = lexbuf;
-                var cont = (function(lines,docs)do
+                lexbuf$1 = lexbuf;
+                cont = (function(lines,docs)do
                 return function cont(lexbuf) do
                   return loop(lines, docs, lexbuf);
                 end
                 end(lines,docs));
-                var look_ahead = function (token) do
+                look_ahead = function (token) do
                   sharp_look_ahead.contents = token;
                   return --[ SHARP ]--84;
                 end;
-                var if_then_else$1 = if_then_else.contents;
-                var match = token_with_comments(lexbuf$1);
+                if_then_else$1 = if_then_else.contents;
+                match = token_with_comments(lexbuf$1);
                 if (typeof match == "number") then do
                   local ___conditional___=(match);
                   do
@@ -11915,9 +11915,9 @@ function token$1(lexbuf) do
                             if_then_else.contents = --[ Dir_if_true ]--0;
                             return Curry._1(cont, lexbuf$1);
                           end else do
-                            var _param = --[ () ]--0;
+                            _param = --[ () ]--0;
                             while(true) do
-                              var token = token_with_comments(lexbuf$1);
+                              token = token_with_comments(lexbuf$1);
                               if (token == --[ EOF ]--25) then do
                                 throw [
                                       $$Error$2,
@@ -11927,9 +11927,9 @@ function token$1(lexbuf) do
                               end
                                end 
                               if (token == --[ SHARP ]--84 and at_bol(lexbuf$1)) then do
-                                var token$1 = token_with_comments(lexbuf$1);
+                                token$1 = token_with_comments(lexbuf$1);
                                 if (typeof token$1 == "number") then do
-                                  var switcher = token$1 - 23 | 0;
+                                  switcher = token$1 - 23 | 0;
                                   if (switcher == 0 or switcher == 1) then do
                                     if (switcher ~= 0) then do
                                       if_then_else.contents = --[ Dir_out ]--2;
@@ -11989,10 +11989,10 @@ function token$1(lexbuf) do
                 if (if_then_else$1 ~= 0) then do
                   return Curry._1(look_ahead, match);
                 end else do
-                  var _else_seen = match == --[ ELSE ]--23;
+                  _else_seen = match == --[ ELSE ]--23;
                   while(true) do
-                    var else_seen = _else_seen;
-                    var token$2 = token_with_comments(lexbuf$1);
+                    else_seen = _else_seen;
+                    token$2 = token_with_comments(lexbuf$1);
                     if (token$2 == --[ EOF ]--25) then do
                       throw [
                             $$Error$2,
@@ -12002,9 +12002,9 @@ function token$1(lexbuf) do
                     end
                      end 
                     if (token$2 == --[ SHARP ]--84 and at_bol(lexbuf$1)) then do
-                      var token$3 = token_with_comments(lexbuf$1);
+                      token$3 = token_with_comments(lexbuf$1);
                       if (typeof token$3 == "number") then do
-                        var switcher$1 = token$3 - 23 | 0;
+                        switcher$1 = token$3 - 23 | 0;
                         if (switcher$1 == 0 or switcher$1 == 1) then do
                           if (switcher$1 ~= 0) then do
                             if_then_else.contents = --[ Dir_out ]--2;
@@ -12048,7 +12048,7 @@ function token$1(lexbuf) do
               end
                end end else 
            if ___conditional___ = 100--[ EOL ]-- then do
-              var lines$prime = lines ~= 0 and --[ BlankLine ]--2 or --[ NewLine ]--1;
+              lines$prime = lines ~= 0 and --[ BlankLine ]--2 or --[ NewLine ]--1;
               _lines = lines$prime;
               continue ;end end end 
            do end
@@ -12060,18 +12060,18 @@ function token$1(lexbuf) do
         local ___conditional___=(tok.tag | 0);
         do
            if ___conditional___ = 18--[ COMMENT ]-- then do
-              var match$1 = tok[0];
+              match$1 = tok[0];
               add_comment(--[ tuple ]--[
                     match$1[0],
                     match$1[1]
                   ]);
-              var lines$prime$1 = lines >= 2 and --[ BlankLine ]--2 or --[ NoLine ]--0;
+              lines$prime$1 = lines >= 2 and --[ BlankLine ]--2 or --[ NoLine ]--0;
               _lines = lines$prime$1;
               continue ;end end end 
            if ___conditional___ = 19--[ DOCSTRING ]-- then do
-              var doc = tok[0];
+              doc = tok[0];
               add_docstring_comment(doc);
-              var docs$prime;
+              docs$prime;
               if (typeof docs == "number") then do
                 docs$prime = lines >= 2 and --[ Before ]--Block.__(1, [
                       --[ [] ]--0,
@@ -12085,9 +12085,9 @@ function token$1(lexbuf) do
                         --[ [] ]--0
                       ]]);
               end else if (docs.tag) then do
-                var b = docs[2];
-                var f = docs[1];
-                var a = docs[0];
+                b = docs[2];
+                f = docs[1];
+                a = docs[0];
                 docs$prime = lines >= 2 and --[ Before ]--Block.__(1, [
                       a,
                       Pervasives.$at(b, f),
@@ -12104,7 +12104,7 @@ function token$1(lexbuf) do
                       ]
                     ]);
               end else do
-                var a$1 = docs[0];
+                a$1 = docs[0];
                 docs$prime = lines >= 2 and --[ Before ]--Block.__(1, [
                       a$1,
                       --[ [] ]--0,
@@ -12130,7 +12130,7 @@ function token$1(lexbuf) do
       return tok;
     end;
   end;
-  var match = sharp_look_ahead.contents;
+  match = sharp_look_ahead.contents;
   if (match ~= undefined) then do
     sharp_look_ahead.contents = undefined;
     return match;
@@ -12145,7 +12145,7 @@ function init$1(param) do
   is_in_string.contents = false;
   comment_start_loc.contents = --[ [] ]--0;
   comment_list.contents = --[ [] ]--0;
-  var match = preprocessor.contents;
+  match = preprocessor.contents;
   if (match ~= undefined) then do
     return Curry._1(match[0], --[ () ]--0);
   end else do
@@ -12156,7 +12156,7 @@ end
 function skip_phrase(lexbuf) do
   while(true) do
     try do
-      var match = token$1(lexbuf);
+      match = token$1(lexbuf);
       if (typeof match == "number" and !(match ~= 25 and match ~= 83)) then do
         return --[ () ]--0;
       end else do
@@ -12164,9 +12164,9 @@ function skip_phrase(lexbuf) do
       end end 
     end
     catch (raw_exn)do
-      var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+      exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == $$Error$2) then do
-        var tmp = exn[1];
+        tmp = exn[1];
         if (typeof tmp == "number") then do
           if (tmp == --[ Unterminated_string ]--0) then do
             continue ;
@@ -12206,15 +12206,15 @@ function wrap(parsing_fun, lexbuf) do
   try do
     init(--[ () ]--0);
     init$1(--[ () ]--0);
-    var ast = Curry._2(parsing_fun, token$1, lexbuf);
+    ast = Curry._2(parsing_fun, token$1, lexbuf);
     Parsing.clear_parser(--[ () ]--0);
     warn_bad_docstrings(--[ () ]--0);
     return ast;
   end
   catch (raw_err)do
-    var err = Caml_js_exceptions.internalToOCamlException(raw_err);
+    err = Caml_js_exceptions.internalToOCamlException(raw_err);
     if (err[0] == $$Error$2) then do
-      var tmp = err[1];
+      tmp = err[1];
       if (typeof tmp == "number") then do
         throw err;
       end else if (tmp.tag) then do
@@ -12236,7 +12236,7 @@ function wrap(parsing_fun, lexbuf) do
       throw err;
     end
      end  end  end 
-    var loc = curr(lexbuf);
+    loc = curr(lexbuf);
     if (input_name.contents == "//toplevel//") then do
       maybe_skip_phrase(lexbuf);
     end
@@ -12248,11 +12248,11 @@ function wrap(parsing_fun, lexbuf) do
   end
 end
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -12273,205 +12273,205 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var match = wrap(implementation, Lexing.from_string("let v str = \n  str  \n  |> Lexing.from_string \n  |> Parse.implementation\n"));
+match = wrap(implementation, Lexing.from_string("let v str = \n  str  \n  |> Lexing.from_string \n  |> Parse.implementation\n"));
 
 if (match) then do
-  var match$1 = match[0].pstr_desc;
+  match$1 = match[0].pstr_desc;
   if (match$1.tag == --[ Pstr_value ]--1 and !match$1[0]) then do
-    var match$2 = match$1[1];
+    match$2 = match$1[1];
     if (match$2) then do
-      var match$3 = match$2[0];
-      var match$4 = match$3.pvb_pat;
-      var match$5 = match$4.ppat_desc;
+      match$3 = match$2[0];
+      match$4 = match$3.pvb_pat;
+      match$5 = match$4.ppat_desc;
       if (typeof match$5 == "number" or match$5.tag) then do
         eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
       end else do
-        var match$6 = match$5[0];
+        match$6 = match$5[0];
         if (match$6.txt == "v") then do
-          var match$7 = match$6.loc;
-          var match$8 = match$7.loc_start;
+          match$7 = match$6.loc;
+          match$8 = match$7.loc_start;
           if (match$8.pos_fname == "" and !(match$8.pos_lnum ~= 1 or match$8.pos_bol ~= 0 or match$8.pos_cnum ~= 4)) then do
-            var match$9 = match$7.loc_end;
+            match$9 = match$7.loc_end;
             if (match$9.pos_fname == "" and !(match$9.pos_lnum ~= 1 or match$9.pos_bol ~= 0 or match$9.pos_cnum ~= 5 or match$7.loc_ghost)) then do
-              var match$10 = match$4.ppat_loc;
-              var match$11 = match$10.loc_start;
+              match$10 = match$4.ppat_loc;
+              match$11 = match$10.loc_start;
               if (match$11.pos_fname == "" and !(match$11.pos_lnum ~= 1 or match$11.pos_bol ~= 0 or match$11.pos_cnum ~= 4)) then do
-                var match$12 = match$10.loc_end;
+                match$12 = match$10.loc_end;
                 if (match$12.pos_fname == "" and !(match$12.pos_lnum ~= 1 or match$12.pos_bol ~= 0 or match$12.pos_cnum ~= 5 or match$10.loc_ghost or match$4.ppat_attributes)) then do
-                  var match$13 = match$3.pvb_expr;
-                  var match$14 = match$13.pexp_desc;
+                  match$13 = match$3.pvb_expr;
+                  match$14 = match$13.pexp_desc;
                   if (match$14.tag == --[ Pexp_fun ]--4 and match$14[0] == "" and match$14[1] == undefined) then do
-                    var match$15 = match$14[2];
-                    var match$16 = match$15.ppat_desc;
+                    match$15 = match$14[2];
+                    match$16 = match$15.ppat_desc;
                     if (typeof match$16 == "number" or match$16.tag) then do
                       eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                     end else do
-                      var match$17 = match$16[0];
+                      match$17 = match$16[0];
                       if (match$17.txt == "str") then do
-                        var match$18 = match$17.loc;
-                        var match$19 = match$18.loc_start;
+                        match$18 = match$17.loc;
+                        match$19 = match$18.loc_start;
                         if (match$19.pos_fname == "" and !(match$19.pos_lnum ~= 1 or match$19.pos_bol ~= 0 or match$19.pos_cnum ~= 6)) then do
-                          var match$20 = match$18.loc_end;
+                          match$20 = match$18.loc_end;
                           if (match$20.pos_fname == "" and !(match$20.pos_lnum ~= 1 or match$20.pos_bol ~= 0 or match$20.pos_cnum ~= 9 or match$18.loc_ghost)) then do
-                            var match$21 = match$15.ppat_loc;
-                            var match$22 = match$21.loc_start;
+                            match$21 = match$15.ppat_loc;
+                            match$22 = match$21.loc_start;
                             if (match$22.pos_fname == "" and !(match$22.pos_lnum ~= 1 or match$22.pos_bol ~= 0 or match$22.pos_cnum ~= 6)) then do
-                              var match$23 = match$21.loc_end;
+                              match$23 = match$21.loc_end;
                               if (match$23.pos_fname == "" and !(match$23.pos_lnum ~= 1 or match$23.pos_bol ~= 0 or match$23.pos_cnum ~= 9 or match$21.loc_ghost or match$15.ppat_attributes)) then do
-                                var match$24 = match$14[3];
-                                var match$25 = match$24.pexp_desc;
+                                match$24 = match$14[3];
+                                match$25 = match$24.pexp_desc;
                                 if (match$25.tag == --[ Pexp_apply ]--5) then do
-                                  var match$26 = match$25[0];
-                                  var match$27 = match$26.pexp_desc;
+                                  match$26 = match$25[0];
+                                  match$27 = match$26.pexp_desc;
                                   if (match$27.tag) then do
                                     eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                   end else do
-                                    var match$28 = match$27[0];
-                                    var match$29 = match$28.txt;
+                                    match$28 = match$27[0];
+                                    match$29 = match$28.txt;
                                     local ___conditional___=(match$29.tag | 0);
                                     do
                                        if ___conditional___ = 0--[ Lident ]-- then do
                                           if (match$29[0] == "|>") then do
-                                            var match$30 = match$28.loc;
-                                            var match$31 = match$30.loc_start;
+                                            match$30 = match$28.loc;
+                                            match$31 = match$30.loc_start;
                                             if (match$31.pos_fname == "" and !(match$31.pos_lnum ~= 4 or match$31.pos_bol ~= 46 or match$31.pos_cnum ~= 48)) then do
-                                              var match$32 = match$30.loc_end;
+                                              match$32 = match$30.loc_end;
                                               if (match$32.pos_fname == "" and !(match$32.pos_lnum ~= 4 or match$32.pos_bol ~= 46 or match$32.pos_cnum ~= 50 or match$30.loc_ghost)) then do
-                                                var match$33 = match$26.pexp_loc;
-                                                var match$34 = match$33.loc_start;
+                                                match$33 = match$26.pexp_loc;
+                                                match$34 = match$33.loc_start;
                                                 if (match$34.pos_fname == "" and !(match$34.pos_lnum ~= 4 or match$34.pos_bol ~= 46 or match$34.pos_cnum ~= 48)) then do
-                                                  var match$35 = match$33.loc_end;
+                                                  match$35 = match$33.loc_end;
                                                   if (match$35.pos_fname == "" and !(match$35.pos_lnum ~= 4 or match$35.pos_bol ~= 46 or match$35.pos_cnum ~= 50 or match$33.loc_ghost or match$26.pexp_attributes)) then do
-                                                    var match$36 = match$25[1];
+                                                    match$36 = match$25[1];
                                                     if (match$36) then do
-                                                      var match$37 = match$36[0];
+                                                      match$37 = match$36[0];
                                                       if (match$37[0] == "") then do
-                                                        var match$38 = match$37[1];
-                                                        var match$39 = match$38.pexp_desc;
+                                                        match$38 = match$37[1];
+                                                        match$39 = match$38.pexp_desc;
                                                         if (match$39.tag == --[ Pexp_apply ]--5) then do
-                                                          var match$40 = match$39[0];
-                                                          var match$41 = match$40.pexp_desc;
+                                                          match$40 = match$39[0];
+                                                          match$41 = match$40.pexp_desc;
                                                           if (match$41.tag) then do
                                                             eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                           end else do
-                                                            var match$42 = match$41[0];
-                                                            var match$43 = match$42.txt;
+                                                            match$42 = match$41[0];
+                                                            match$43 = match$42.txt;
                                                             local ___conditional___=(match$43.tag | 0);
                                                             do
                                                                if ___conditional___ = 0--[ Lident ]-- then do
                                                                   if (match$43[0] == "|>") then do
-                                                                    var match$44 = match$42.loc;
-                                                                    var match$45 = match$44.loc_start;
+                                                                    match$44 = match$42.loc;
+                                                                    match$45 = match$44.loc_start;
                                                                     if (match$45.pos_fname == "" and !(match$45.pos_lnum ~= 3 or match$45.pos_bol ~= 21 or match$45.pos_cnum ~= 23)) then do
-                                                                      var match$46 = match$44.loc_end;
+                                                                      match$46 = match$44.loc_end;
                                                                       if (match$46.pos_fname == "" and !(match$46.pos_lnum ~= 3 or match$46.pos_bol ~= 21 or match$46.pos_cnum ~= 25 or match$44.loc_ghost)) then do
-                                                                        var match$47 = match$40.pexp_loc;
-                                                                        var match$48 = match$47.loc_start;
+                                                                        match$47 = match$40.pexp_loc;
+                                                                        match$48 = match$47.loc_start;
                                                                         if (match$48.pos_fname == "" and !(match$48.pos_lnum ~= 3 or match$48.pos_bol ~= 21 or match$48.pos_cnum ~= 23)) then do
-                                                                          var match$49 = match$47.loc_end;
+                                                                          match$49 = match$47.loc_end;
                                                                           if (match$49.pos_fname == "" and !(match$49.pos_lnum ~= 3 or match$49.pos_bol ~= 21 or match$49.pos_cnum ~= 25 or match$47.loc_ghost or match$40.pexp_attributes)) then do
-                                                                            var match$50 = match$39[1];
+                                                                            match$50 = match$39[1];
                                                                             if (match$50) then do
-                                                                              var match$51 = match$50[0];
+                                                                              match$51 = match$50[0];
                                                                               if (match$51[0] == "") then do
-                                                                                var match$52 = match$51[1];
-                                                                                var match$53 = match$52.pexp_desc;
+                                                                                match$52 = match$51[1];
+                                                                                match$53 = match$52.pexp_desc;
                                                                                 if (match$53.tag) then do
                                                                                   eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                 end else do
-                                                                                  var match$54 = match$53[0];
-                                                                                  var match$55 = match$54.txt;
+                                                                                  match$54 = match$53[0];
+                                                                                  match$55 = match$54.txt;
                                                                                   local ___conditional___=(match$55.tag | 0);
                                                                                   do
                                                                                      if ___conditional___ = 0--[ Lident ]-- then do
                                                                                         if (match$55[0] == "str") then do
-                                                                                          var match$56 = match$54.loc;
-                                                                                          var match$57 = match$56.loc_start;
+                                                                                          match$56 = match$54.loc;
+                                                                                          match$57 = match$56.loc_start;
                                                                                           if (match$57.pos_fname == "" and !(match$57.pos_lnum ~= 2 or match$57.pos_bol ~= 13 or match$57.pos_cnum ~= 15)) then do
-                                                                                            var match$58 = match$56.loc_end;
+                                                                                            match$58 = match$56.loc_end;
                                                                                             if (match$58.pos_fname == "" and !(match$58.pos_lnum ~= 2 or match$58.pos_bol ~= 13 or match$58.pos_cnum ~= 18 or match$56.loc_ghost)) then do
-                                                                                              var match$59 = match$52.pexp_loc;
-                                                                                              var match$60 = match$59.loc_start;
+                                                                                              match$59 = match$52.pexp_loc;
+                                                                                              match$60 = match$59.loc_start;
                                                                                               if (match$60.pos_fname == "" and !(match$60.pos_lnum ~= 2 or match$60.pos_bol ~= 13 or match$60.pos_cnum ~= 15)) then do
-                                                                                                var match$61 = match$59.loc_end;
+                                                                                                match$61 = match$59.loc_end;
                                                                                                 if (match$61.pos_fname == "" and !(match$61.pos_lnum ~= 2 or match$61.pos_bol ~= 13 or match$61.pos_cnum ~= 18 or match$59.loc_ghost or match$52.pexp_attributes)) then do
-                                                                                                  var match$62 = match$50[1];
+                                                                                                  match$62 = match$50[1];
                                                                                                   if (match$62) then do
-                                                                                                    var match$63 = match$62[0];
+                                                                                                    match$63 = match$62[0];
                                                                                                     if (match$63[0] == "") then do
-                                                                                                      var match$64 = match$63[1];
-                                                                                                      var match$65 = match$64.pexp_desc;
+                                                                                                      match$64 = match$63[1];
+                                                                                                      match$65 = match$64.pexp_desc;
                                                                                                       if (match$65.tag) then do
                                                                                                         eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                                       end else do
-                                                                                                        var match$66 = match$65[0];
-                                                                                                        var match$67 = match$66.txt;
+                                                                                                        match$66 = match$65[0];
+                                                                                                        match$67 = match$66.txt;
                                                                                                         local ___conditional___=(match$67.tag | 0);
                                                                                                         do
                                                                                                            if ___conditional___ = 1--[ Ldot ]-- then do
-                                                                                                              var match$68 = match$67[0];
+                                                                                                              match$68 = match$67[0];
                                                                                                               local ___conditional___=(match$68.tag | 0);
                                                                                                               do
                                                                                                                  if ___conditional___ = 0--[ Lident ]-- then do
                                                                                                                     if (match$68[0] == "Lexing" and match$67[1] == "from_string") then do
-                                                                                                                      var match$69 = match$66.loc;
-                                                                                                                      var match$70 = match$69.loc_start;
+                                                                                                                      match$69 = match$66.loc;
+                                                                                                                      match$70 = match$69.loc_start;
                                                                                                                       if (match$70.pos_fname == "" and !(match$70.pos_lnum ~= 3 or match$70.pos_bol ~= 21 or match$70.pos_cnum ~= 26)) then do
-                                                                                                                        var match$71 = match$69.loc_end;
+                                                                                                                        match$71 = match$69.loc_end;
                                                                                                                         if (match$71.pos_fname == "" and !(match$71.pos_lnum ~= 3 or match$71.pos_bol ~= 21 or match$71.pos_cnum ~= 44 or match$69.loc_ghost)) then do
-                                                                                                                          var match$72 = match$64.pexp_loc;
-                                                                                                                          var match$73 = match$72.loc_start;
+                                                                                                                          match$72 = match$64.pexp_loc;
+                                                                                                                          match$73 = match$72.loc_start;
                                                                                                                           if (match$73.pos_fname == "" and !(match$73.pos_lnum ~= 3 or match$73.pos_bol ~= 21 or match$73.pos_cnum ~= 26)) then do
-                                                                                                                            var match$74 = match$72.loc_end;
+                                                                                                                            match$74 = match$72.loc_end;
                                                                                                                             if (match$74.pos_fname == "" and !(match$74.pos_lnum ~= 3 or match$74.pos_bol ~= 21 or match$74.pos_cnum ~= 44 or match$72.loc_ghost or match$64.pexp_attributes or match$62[1])) then do
-                                                                                                                              var match$75 = match$38.pexp_loc;
-                                                                                                                              var match$76 = match$75.loc_start;
+                                                                                                                              match$75 = match$38.pexp_loc;
+                                                                                                                              match$76 = match$75.loc_start;
                                                                                                                               if (match$76.pos_fname == "" and !(match$76.pos_lnum ~= 2 or match$76.pos_bol ~= 13 or match$76.pos_cnum ~= 15)) then do
-                                                                                                                                var match$77 = match$75.loc_end;
+                                                                                                                                match$77 = match$75.loc_end;
                                                                                                                                 if (match$77.pos_fname == "" and !(match$77.pos_lnum ~= 3 or match$77.pos_bol ~= 21 or match$77.pos_cnum ~= 44 or match$75.loc_ghost or match$38.pexp_attributes)) then do
-                                                                                                                                  var match$78 = match$36[1];
+                                                                                                                                  match$78 = match$36[1];
                                                                                                                                   if (match$78) then do
-                                                                                                                                    var match$79 = match$78[0];
+                                                                                                                                    match$79 = match$78[0];
                                                                                                                                     if (match$79[0] == "") then do
-                                                                                                                                      var match$80 = match$79[1];
-                                                                                                                                      var match$81 = match$80.pexp_desc;
+                                                                                                                                      match$80 = match$79[1];
+                                                                                                                                      match$81 = match$80.pexp_desc;
                                                                                                                                       if (match$81.tag) then do
                                                                                                                                         eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                                                                       end else do
-                                                                                                                                        var match$82 = match$81[0];
-                                                                                                                                        var match$83 = match$82.txt;
+                                                                                                                                        match$82 = match$81[0];
+                                                                                                                                        match$83 = match$82.txt;
                                                                                                                                         local ___conditional___=(match$83.tag | 0);
                                                                                                                                         do
                                                                                                                                            if ___conditional___ = 1--[ Ldot ]-- then do
-                                                                                                                                              var match$84 = match$83[0];
+                                                                                                                                              match$84 = match$83[0];
                                                                                                                                               local ___conditional___=(match$84.tag | 0);
                                                                                                                                               do
                                                                                                                                                  if ___conditional___ = 0--[ Lident ]-- then do
                                                                                                                                                     if (match$84[0] == "Parse" and match$83[1] == "implementation") then do
-                                                                                                                                                      var match$85 = match$82.loc;
-                                                                                                                                                      var match$86 = match$85.loc_start;
+                                                                                                                                                      match$85 = match$82.loc;
+                                                                                                                                                      match$86 = match$85.loc_start;
                                                                                                                                                       if (match$86.pos_fname == "" and !(match$86.pos_lnum ~= 4 or match$86.pos_bol ~= 46 or match$86.pos_cnum ~= 51)) then do
-                                                                                                                                                        var match$87 = match$85.loc_end;
+                                                                                                                                                        match$87 = match$85.loc_end;
                                                                                                                                                         if (match$87.pos_fname == "" and !(match$87.pos_lnum ~= 4 or match$87.pos_bol ~= 46 or match$87.pos_cnum ~= 71 or match$85.loc_ghost)) then do
-                                                                                                                                                          var match$88 = match$80.pexp_loc;
-                                                                                                                                                          var match$89 = match$88.loc_start;
+                                                                                                                                                          match$88 = match$80.pexp_loc;
+                                                                                                                                                          match$89 = match$88.loc_start;
                                                                                                                                                           if (match$89.pos_fname == "" and !(match$89.pos_lnum ~= 4 or match$89.pos_bol ~= 46 or match$89.pos_cnum ~= 51)) then do
-                                                                                                                                                            var match$90 = match$88.loc_end;
+                                                                                                                                                            match$90 = match$88.loc_end;
                                                                                                                                                             if (match$90.pos_fname == "" and !(match$90.pos_lnum ~= 4 or match$90.pos_bol ~= 46 or match$90.pos_cnum ~= 71 or match$88.loc_ghost or match$80.pexp_attributes or match$78[1])) then do
-                                                                                                                                                              var match$91 = match$24.pexp_loc;
-                                                                                                                                                              var match$92 = match$91.loc_start;
+                                                                                                                                                              match$91 = match$24.pexp_loc;
+                                                                                                                                                              match$92 = match$91.loc_start;
                                                                                                                                                               if (match$92.pos_fname == "" and !(match$92.pos_lnum ~= 2 or match$92.pos_bol ~= 13 or match$92.pos_cnum ~= 15)) then do
-                                                                                                                                                                var match$93 = match$91.loc_end;
+                                                                                                                                                                match$93 = match$91.loc_end;
                                                                                                                                                                 if (match$93.pos_fname == "" and !(match$93.pos_lnum ~= 4 or match$93.pos_bol ~= 46 or match$93.pos_cnum ~= 71 or match$91.loc_ghost or match$24.pexp_attributes)) then do
-                                                                                                                                                                  var match$94 = match$13.pexp_loc;
-                                                                                                                                                                  var match$95 = match$94.loc_start;
+                                                                                                                                                                  match$94 = match$13.pexp_loc;
+                                                                                                                                                                  match$95 = match$94.loc_start;
                                                                                                                                                                   if (match$95.pos_fname == "" and !(match$95.pos_lnum ~= 1 or match$95.pos_bol ~= 0 or match$95.pos_cnum ~= 6)) then do
-                                                                                                                                                                    var match$96 = match$94.loc_end;
+                                                                                                                                                                    match$96 = match$94.loc_end;
                                                                                                                                                                     if (match$96.pos_fname == "" and !(match$96.pos_lnum ~= 4 or match$96.pos_bol ~= 46 or match$96.pos_cnum ~= 71 or !(match$94.loc_ghost and !(match$13.pexp_attributes or match$3.pvb_attributes)))) then do
-                                                                                                                                                                      var match$97 = match$3.pvb_loc;
-                                                                                                                                                                      var match$98 = match$97.loc_start;
+                                                                                                                                                                      match$97 = match$3.pvb_loc;
+                                                                                                                                                                      match$98 = match$97.loc_start;
                                                                                                                                                                       if (match$98.pos_fname == "" and !(match$98.pos_lnum ~= 1 or match$98.pos_bol ~= 0 or match$98.pos_cnum ~= 0)) then do
-                                                                                                                                                                        var match$99 = match$97.loc_end;
+                                                                                                                                                                        match$99 = match$97.loc_end;
                                                                                                                                                                         if (match$99.pos_fname == "" and !(match$99.pos_lnum ~= 4 or match$99.pos_bol ~= 46 or match$99.pos_cnum ~= 71 or match$97.loc_ghost or match$2[1])) then do
                                                                                                                                                                           eq("File \"ocaml_parsetree_main_bspack.ml\", line 215, characters 10-17", true, true);
                                                                                                                                                                         end else do

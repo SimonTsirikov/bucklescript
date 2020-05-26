@@ -31,39 +31,39 @@ function a4(x, y) do
   return a3(x, y) + 1 | 0;
 end
 
-var A4 = do
+A4 = do
   a4: a4
 end;
 
-var A3 = do
+A3 = do
   a3: a3,
   A4: A4
 end;
 
-var A2 = do
+A2 = do
   a2: a2,
   A3: A3
 end;
 
-var A1 = do
+A1 = do
   a1: a1,
   A2: A2
 end;
 
-var A0 = do
+A0 = do
   a0: a0,
   A1: A1
 end;
 
-var v1 = a1(1, 2);
+v1 = a1(1, 2);
 
-var v2 = a2(1, 2);
+v2 = a2(1, 2);
 
-var v3 = a3(1, 2);
+v3 = a3(1, 2);
 
-var v4 = a4(1, 2);
+v4 = a4(1, 2);
 
-var v0 = 4;
+v0 = 4;
 
 exports.A0 = A0;
 exports.v0 = v0;

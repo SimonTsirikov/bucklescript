@@ -1,6 +1,6 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
 function f(value) do
   if (value == null) then do
@@ -11,7 +11,7 @@ function f(value) do
 end
 
 function fxx(v) do
-  var match = Curry._1(v, --[ () ]--0);
+  match = Curry._1(v, --[ () ]--0);
   local ___conditional___=(match);
   do
      if ___conditional___ = 1 then do

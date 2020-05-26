@@ -9,16 +9,16 @@ function name(param) do
   return 2;
 end
 
-var Language = do
+Language = do
   toString: toString,
   name: name
 end;
 
-var language = "a";
+language = "a";
 
-var shortName = "a";
+shortName = "a";
 
-var name$1 = 2;
+name$1 = 2;
 
 exports.Language = Language;
 exports.language = language;

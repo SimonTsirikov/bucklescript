@@ -1,11 +1,11 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Curry = require("../../lib/js/curry.js");
-var Offset = require("./offset.js");
-var Mt_global = require("./mt_global.js");
+Mt = require("./mt.js");
+Curry = require("../../lib/js/curry.js");
+Offset = require("./offset.js");
+Mt_global = require("./mt_global.js");
 
-var count = do
+count = do
   contents: 0
 end;
 
@@ -16,11 +16,11 @@ end
 
 test(Curry._1(Offset.M.$$Set.singleton, "42"));
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 

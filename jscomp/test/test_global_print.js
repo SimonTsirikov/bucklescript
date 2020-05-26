@@ -1,17 +1,17 @@
 'use strict';
 
 
-var List = do
+List = do
   u: 3
 end;
 
-var X = do
+X = do
   List: List
 end;
 
-var Hashtbl = --[ alias ]--0;
+Hashtbl = --[ alias ]--0;
 
-var V = --[ alias ]--0;
+V = --[ alias ]--0;
 
 exports.X = X;
 exports.Hashtbl = Hashtbl;

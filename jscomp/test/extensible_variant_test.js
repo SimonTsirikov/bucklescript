@@ -1,19 +1,19 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var Str = Caml_exceptions.create("Extensible_variant_test.Str");
+Str = Caml_exceptions.create("Extensible_variant_test.Str");
 
-var Int = Caml_exceptions.create("Extensible_variant_test.N.Int");
+Int = Caml_exceptions.create("Extensible_variant_test.N.Int");
 
-var N = do
+N = do
   Int: Int
 end;
 
-var Int$1 = Caml_exceptions.create("Extensible_variant_test.Int");
+Int$1 = Caml_exceptions.create("Extensible_variant_test.Int");
 
 function to_int(x) do
   if (x[0] == Str) then do
@@ -34,7 +34,7 @@ function to_int(x) do
   end end  end  end 
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "test_int",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -48,7 +48,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "test_int2",
     (function (param) do
@@ -79,7 +79,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

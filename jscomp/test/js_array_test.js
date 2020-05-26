@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Js_vector = require("../../lib/js/js_vector.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Js_vector = require("../../lib/js/js_vector.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "File \"js_array_test.ml\", line 3, characters 4-11",
   (function (param) do
-      var x = [
+      x = [
         1,
         2,
         3,
@@ -27,11 +27,11 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "File \"js_array_test.ml\", line 11, characters 4-11",
     (function (param) do
-        var x = [
+        x = [
           1,
           2,
           3,
@@ -336,13 +336,13 @@ var suites_001 = --[ :: ]--[
                                         --[ tuple ]--[
                                           "spliceInPlace",
                                           (function (param) do
-                                              var arr = [
+                                              arr = [
                                                 1,
                                                 2,
                                                 3,
                                                 4
                                               ];
-                                              var removed = arr.splice(2, 0, 5);
+                                              removed = arr.splice(2, 0, 5);
                                               return --[ Eq ]--Block.__(0, [
                                                         --[ tuple ]--[
                                                           [
@@ -365,13 +365,13 @@ var suites_001 = --[ :: ]--[
                                           --[ tuple ]--[
                                             "removeFromInPlace",
                                             (function (param) do
-                                                var arr = [
+                                                arr = [
                                                   1,
                                                   2,
                                                   3,
                                                   4
                                                 ];
-                                                var removed = arr.splice(2);
+                                                removed = arr.splice(2);
                                                 return --[ Eq ]--Block.__(0, [
                                                           --[ tuple ]--[
                                                             [
@@ -394,13 +394,13 @@ var suites_001 = --[ :: ]--[
                                             --[ tuple ]--[
                                               "removeCountInPlace",
                                               (function (param) do
-                                                  var arr = [
+                                                  arr = [
                                                     1,
                                                     2,
                                                     3,
                                                     4
                                                   ];
-                                                  var removed = arr.splice(2, 1);
+                                                  removed = arr.splice(2, 1);
                                                   return --[ Eq ]--Block.__(0, [
                                                             --[ tuple ]--[
                                                               [
@@ -882,7 +882,7 @@ var suites_001 = --[ :: ]--[
                                                                                                     --[ tuple ]--[
                                                                                                       "forEach",
                                                                                                       (function (param) do
-                                                                                                          var sum = do
+                                                                                                          sum = do
                                                                                                             contents: 0
                                                                                                           end;
                                                                                                           [
@@ -903,7 +903,7 @@ var suites_001 = --[ :: ]--[
                                                                                                       --[ tuple ]--[
                                                                                                         "forEachi",
                                                                                                         (function (param) do
-                                                                                                            var sum = do
+                                                                                                            sum = do
                                                                                                               contents: 0
                                                                                                             end;
                                                                                                             [
@@ -1127,7 +1127,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

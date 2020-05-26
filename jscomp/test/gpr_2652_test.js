@@ -1,8 +1,8 @@
 'use strict';
 
-var $$Buffer = require("../../lib/js/buffer.js");
+$$Buffer = require("../../lib/js/buffer.js");
 
-var foo = $$Buffer.contents;
+foo = $$Buffer.contents;
 
 function bar(str) do
   return Buffer.from(str);

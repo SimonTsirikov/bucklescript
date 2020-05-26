@@ -1,7 +1,7 @@
 'use strict';
 
 
-var React = do
+React = do
   $$null: --[ () ]--0
 end;
 
@@ -9,7 +9,7 @@ function make(param, param$1) do
   return --[ () ]--0;
 end
 
-var Foo = do
+Foo = do
   make: make
 end;
 

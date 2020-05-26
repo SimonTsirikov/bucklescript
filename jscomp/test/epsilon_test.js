@@ -1,12 +1,12 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Pervasives = require("../../lib/js/pervasives.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Pervasives = require("../../lib/js/pervasives.js");
 
-var v = (Number.EPSILON?Number.EPSILON:2.220446049250313e-16);
+v = (Number.EPSILON?Number.EPSILON:2.220446049250313e-16);
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "epsilon",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -16,7 +16,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "raw_epsilon",
     (function (param) do
@@ -29,7 +29,7 @@ var suites_001 = --[ :: ]--[
   --[ [] ]--0
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

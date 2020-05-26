@@ -1,6 +1,6 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
 function map_pair(r, param) do
   return --[ tuple ]--[
@@ -18,7 +18,7 @@ map_pair(u, --[ tuple ]--[
       true
     ]);
 
-var hi = [
+hi = [
   3,
   2,
   "x"
@@ -28,13 +28,13 @@ console.log(3);
 
 console.log("x");
 
-var v0 = [];
+v0 = [];
 
 v0[0] = 65;
 
 v0[1] = v0;
 
-var v1 = --[ `A ]--[
+v1 = --[ `A ]--[
   65,
   --[ B ]--66
 ];

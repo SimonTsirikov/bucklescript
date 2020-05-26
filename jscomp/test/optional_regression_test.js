@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Mt = require("./mt.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -17,7 +17,7 @@ end
 
 function make(s, b, i) do
   return (function (param) do
-      var tmp = { };
+      tmp = { };
       if (s ~= undefined) then do
         tmp.s = Caml_option.valFromOption(s);
       end
@@ -34,7 +34,7 @@ function make(s, b, i) do
     end);
 end
 
-var hh = do
+hh = do
   s: "",
   b: false,
   i: 0

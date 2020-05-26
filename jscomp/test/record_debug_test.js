@@ -1,9 +1,9 @@
 'use strict';
 
-var Format = require("../../lib/js/format.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Format = require("../../lib/js/format.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var v = do
+v = do
   a: 3,
   b: do
     xx: 2,
@@ -11,34 +11,34 @@ var v = do
   end
 end;
 
-var u_a = 2;
+u_a = 2;
 
-var u_b = do
+u_b = do
   xx: 2,
   yy: 3
 end;
 
-var u = do
+u = do
   a: u_a,
   b: u_b
 end;
 
-var A = Caml_exceptions.create("Record_debug_test.A");
+A = Caml_exceptions.create("Record_debug_test.A");
 
-var B = Caml_exceptions.create("Record_debug_test.B");
+B = Caml_exceptions.create("Record_debug_test.B");
 
-var v0 = [
+v0 = [
   A,
   3
 ];
 
-var v1 = [
+v1 = [
   B,
   3,
   2
 ];
 
-var N = do
+N = do
   a: 0,
   b: 1
 end;
@@ -47,7 +47,7 @@ function N0_f(prim) do
   return prim;
 end
 
-var N0 = do
+N0 = do
   a: 0,
   b: 1,
   f: N0_f
@@ -55,7 +55,7 @@ end;
 
 console.log(" hei " .. (String(v) .. " "));
 
-var a = --[ tuple ]--[
+a = --[ tuple ]--[
   1,
   2,
   2,
@@ -63,7 +63,7 @@ var a = --[ tuple ]--[
   3
 ];
 
-var c = [
+c = [
   1,
   2,
   3,
@@ -73,7 +73,7 @@ var c = [
 
 console.log(" " .. (String(Format.std_formatter) .. (" " .. (String(a) .. (" " .. (String(c) .. " "))))));
 
-var h = --[ :: ]--[
+h = --[ :: ]--[
   1,
   --[ :: ]--[
     2,
@@ -87,12 +87,12 @@ var h = --[ :: ]--[
   ]
 ];
 
-var v2 = --[ `C ]--[
+v2 = --[ `C ]--[
   67,
   2
 ];
 
-var v3 = --[ `C ]--[
+v3 = --[ `C ]--[
   67,
   --[ tuple ]--[
     2,
@@ -100,7 +100,7 @@ var v3 = --[ `C ]--[
   ]
 ];
 
-var fmt = Format.std_formatter;
+fmt = Format.std_formatter;
 
 exports.v = v;
 exports.u = u;

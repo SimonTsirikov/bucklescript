@@ -1,7 +1,7 @@
 'use strict';
 
 
-var switcher = -299;
+switcher = -299;
 
 if (switcher > 99 or switcher < 0) then do
   if (switcher == -300 or switcher == -299) then do
@@ -15,7 +15,7 @@ end else do
   console.log("the catch all");
 end end  end 
 
-var httpResponseCode = 201;
+httpResponseCode = 201;
 
 exports.httpResponseCode = httpResponseCode;
 --[  Not a pure module ]--

@@ -1,14 +1,14 @@
 'use strict';
 
-var Gpr_3865_foo = require("./gpr_3865_foo.js");
+Gpr_3865_foo = require("./gpr_3865_foo.js");
 
-var B = Gpr_3865_foo;
-
-console.log(Gpr_3865_foo.$$return);
+B = Gpr_3865_foo;
 
 console.log(Gpr_3865_foo.$$return);
 
-var F = --[ alias ]--0;
+console.log(Gpr_3865_foo.$$return);
+
+F = --[ alias ]--0;
 
 exports.F = F;
 exports.B = B;

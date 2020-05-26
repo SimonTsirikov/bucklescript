@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Int64 = require("../../lib/js/int64.js");
-var Printf = require("../../lib/js/printf.js");
-var Caml_int64 = require("../../lib/js/caml_int64.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_format = require("../../lib/js/caml_format.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Int64 = require("../../lib/js/int64.js");
+Printf = require("../../lib/js/printf.js");
+Caml_int64 = require("../../lib/js/caml_int64.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_format = require("../../lib/js/caml_format.js");
 
 function commutative_mul(result, a, b) do
   return --[ Eq ]--Block.__(0, [
@@ -24,7 +24,7 @@ function commutative_mul(result, a, b) do
           ]);
 end
 
-var pairs = [
+pairs = [
   --[ tuple ]--[
     --[ int64 ]--[
       --[ hi ]---1482940033,
@@ -309,9 +309,9 @@ var pairs = [
 
 function from_pairs(prefix, pairs) do
   return $$Array.to_list($$Array.mapi((function (i, param) do
-                    var b = param[2];
-                    var a = param[1];
-                    var result = param[0];
+                    b = param[2];
+                    a = param[1];
+                    result = param[0];
                     return --[ tuple ]--[
                             Curry._2(Printf.sprintf(--[ Format ]--[
                                       --[ String ]--Block.__(2, [
@@ -335,7 +335,7 @@ function from_pairs(prefix, pairs) do
                   end), pairs));
 end
 
-var small_pairs = [
+small_pairs = [
   --[ tuple ]--[
     --[ int64 ]--[
       --[ hi ]--0,
@@ -422,7 +422,7 @@ var small_pairs = [
   ]
 ];
 
-var to_floats = [
+to_floats = [
   --[ tuple ]--[
     --[ int64 ]--[
       --[ hi ]--0,
@@ -873,7 +873,7 @@ var to_floats = [
   ]
 ];
 
-var check_complete_compare = [
+check_complete_compare = [
   true,
   true,
   true,
@@ -884,7 +884,7 @@ var check_complete_compare = [
   true
 ];
 
-var of_float_pairs = [
+of_float_pairs = [
   --[ tuple ]--[
     6853066956871844,
     --[ int64 ]--[
@@ -1167,7 +1167,7 @@ var of_float_pairs = [
   ]
 ];
 
-var simple_divs = [
+simple_divs = [
   --[ tuple ]--[
     --[ int64 ]--[
       --[ hi ]--0,
@@ -1586,10 +1586,10 @@ var simple_divs = [
 
 function from(xs) do
   return List.mapi((function (i, param) do
-                var d = param[3];
-                var c = param[2];
-                var b = param[1];
-                var a = param[0];
+                d = param[3];
+                c = param[2];
+                b = param[1];
+                a = param[0];
                 return --[ tuple ]--[
                         Curry._1(Printf.sprintf(--[ Format ]--[
                                   --[ String_literal ]--Block.__(11, [
@@ -1617,7 +1617,7 @@ function from(xs) do
               end), $$Array.to_list(xs));
 end
 
-var to_string = [--[ tuple ]--[
+to_string = [--[ tuple ]--[
     --[ int64 ]--[
       --[ hi ]--0,
       --[ lo ]--0
@@ -1625,7 +1625,7 @@ var to_string = [--[ tuple ]--[
     "0"
   ]];
 
-var int64_compare_tests = [
+int64_compare_tests = [
   --[ tuple ]--[
     --[ int64 ]--[
       --[ hi ]--0,
@@ -1663,9 +1663,9 @@ var int64_compare_tests = [
 
 function from_compare(xs) do
   return List.mapi((function (i, param) do
-                var c = param[2];
-                var b = param[1];
-                var a = param[0];
+                c = param[2];
+                b = param[1];
+                a = param[0];
                 return --[ tuple ]--[
                         Curry._1(Printf.sprintf(--[ Format ]--[
                                   --[ String_literal ]--Block.__(11, [
@@ -1689,8 +1689,8 @@ end
 
 function from_to_string(xs) do
   return List.mapi((function (i, param) do
-                var str_a = param[1];
-                var a = param[0];
+                str_a = param[1];
+                a = param[0];
                 return --[ tuple ]--[
                         Curry._1(Printf.sprintf(--[ Format ]--[
                                   --[ String_literal ]--Block.__(11, [
@@ -1713,8 +1713,8 @@ function from_to_string(xs) do
 end
 
 Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pairs), Pervasives.$at(from_pairs("small", small_pairs), Pervasives.$at(List.mapi((function (i, param) do
-                        var f = param[1];
-                        var i64 = param[0];
+                        f = param[1];
+                        i64 = param[0];
                         return --[ tuple ]--[
                                 Curry._1(Printf.sprintf(--[ Format ]--[
                                           --[ String_literal ]--Block.__(11, [
@@ -1736,8 +1736,8 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                   end)
                               ];
                       end), $$Array.to_list(to_floats)), Pervasives.$at(List.mapi((function (i, param) do
-                            var i64 = param[1];
-                            var f = param[0];
+                            i64 = param[1];
+                            f = param[0];
                             return --[ tuple ]--[
                                     Curry._1(Printf.sprintf(--[ Format ]--[
                                               --[ String_literal ]--Block.__(11, [

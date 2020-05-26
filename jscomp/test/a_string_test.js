@@ -1,11 +1,11 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Ext_string_test = require("./ext_string_test.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Ext_string_test = require("./ext_string_test.js");
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "split",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -24,7 +24,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "split_non_empty",
     (function (param) do
@@ -105,16 +105,16 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
 
 Mt.from_pair_suites("A_string_test", suites);
 
-var split = Ext_string_test.split;
+split = Ext_string_test.split;
 
-var split_by = Ext_string_test.split_by;
+split_by = Ext_string_test.split_by;
 
 exports.split = split;
 exports.split_by = split_by;

@@ -1,7 +1,7 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
 function f(x) do
   if (x) then do
@@ -27,11 +27,11 @@ function f4(x) do
   end end 
 end
 
-var u = 1;
+u = 1;
 
-var v = true;
+v = true;
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "caml_bool_eq_caml_bool",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -41,7 +41,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "js_bool_eq_js_bool",
     (function (param) do
@@ -65,7 +65,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -111,7 +111,7 @@ function bb(x) do
         ];
 end
 
-var consts = --[ tuple ]--[
+consts = --[ tuple ]--[
   false,
   false,
   true,
@@ -122,14 +122,14 @@ var consts = --[ tuple ]--[
   true
 ];
 
-var bool_array = [
+bool_array = [
   true,
   false
 ];
 
 Mt.from_pair_suites("Js_bool_test", suites);
 
-var f3 = true;
+f3 = true;
 
 exports.f = f;
 exports.f2 = f2;

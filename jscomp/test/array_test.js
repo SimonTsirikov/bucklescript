@@ -1,24 +1,24 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
 function starts_with(xs, prefix, p) do
-  var H = Caml_exceptions.create("H");
-  var len1 = #xs;
-  var len2 = #prefix;
+  H = Caml_exceptions.create("H");
+  len1 = #xs;
+  len2 = #prefix;
   if (len2 > len1) then do
     return false;
   end else do
     try do
-      for var i = 0 , len2 - 1 | 0 , 1 do
+      for i = 0 , len2 - 1 | 0 , 1 do
         if (!Curry._2(p, Caml_array.caml_array_get(xs, i), Caml_array.caml_array_get(prefix, i))) then do
           throw H;
         end
@@ -37,10 +37,10 @@ function starts_with(xs, prefix, p) do
 end
 
 function is_sorted(x) do
-  var len = #x;
-  var _i = 0;
+  len = #x;
+  _i = 0;
   while(true) do
-    var i = _i;
+    i = _i;
     if (i >= (len - 1 | 0)) then do
       return true;
     end else if (Caml_obj.caml_lessthan(Caml_array.caml_array_get(x, i), Caml_array.caml_array_get(x, i + 1 | 0))) then do
@@ -52,7 +52,7 @@ function is_sorted(x) do
   end;
 end
 
-var array_suites_000 = --[ tuple ]--[
+array_suites_000 = --[ tuple ]--[
   "init",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -70,11 +70,11 @@ var array_suites_000 = --[ tuple ]--[
     end)
 ];
 
-var array_suites_001 = --[ :: ]--[
+array_suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "toList",
     (function (param) do
-        var aux = function (xs) do
+        aux = function (xs) do
           return List.fold_left((function (acc, param) do
                         return --[ :: ]--[
                                 --[ tuple ]--[
@@ -85,7 +85,7 @@ var array_suites_001 = --[ :: ]--[
                               ];
                       end), --[ [] ]--0, xs);
         end;
-        var match = List.split(aux(--[ :: ]--[
+        match = List.split(aux(--[ :: ]--[
                   --[ tuple ]--[
                     [],
                     --[ [] ]--0
@@ -177,12 +177,12 @@ var array_suites_001 = --[ :: ]--[
           --[ tuple ]--[
             "blit",
             (function (param) do
-                var u = [
+                u = [
                   100,
                   0,
                   0
                 ];
-                var v = $$Array.init(3, (function (x) do
+                v = $$Array.init(3, (function (x) do
                         return (x << 1);
                       end));
                 $$Array.blit(v, 1, u, 1, 2);
@@ -210,7 +210,7 @@ var array_suites_001 = --[ :: ]--[
             --[ tuple ]--[
               "File \"array_test.ml\", line 63, characters 2-9",
               (function (param) do
-                  var a0 = $$Array.init(100, (function (i) do
+                  a0 = $$Array.init(100, (function (i) do
                           return (i << 0);
                         end));
                   $$Array.blit(a0, 10, a0, 5, 20);
@@ -251,7 +251,7 @@ var array_suites_001 = --[ :: ]--[
               --[ tuple ]--[
                 "File \"array_test.ml\", line 72, characters 2-9",
                 (function (param) do
-                    var a0 = $$Array.init(100, (function (i) do
+                    a0 = $$Array.init(100, (function (i) do
                             return (i << 0);
                           end));
                     $$Array.blit(a0, 5, a0, 10, 20);
@@ -307,7 +307,7 @@ var array_suites_001 = --[ :: ]--[
                   --[ tuple ]--[
                     "sort",
                     (function (param) do
-                        var u = [
+                        u = [
                           3,
                           0,
                           1
@@ -327,7 +327,7 @@ var array_suites_001 = --[ :: ]--[
                     --[ tuple ]--[
                       "sort_large",
                       (function (param) do
-                          var v = $$Array.init(4, (function (i) do
+                          v = $$Array.init(4, (function (i) do
                                   return i % 17;
                                 end));
                           $$Array.sort(Caml_primitive.caml_int_compare, v);
@@ -349,7 +349,7 @@ var array_suites_001 = --[ :: ]--[
   ]
 ];
 
-var array_suites = --[ :: ]--[
+array_suites = --[ :: ]--[
   array_suites_000,
   array_suites_001
 ];

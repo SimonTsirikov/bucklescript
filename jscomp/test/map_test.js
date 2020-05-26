@@ -1,11 +1,11 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function height(param) do
   if (param) then do
@@ -16,8 +16,8 @@ function height(param) do
 end
 
 function create(l, x, d, r) do
-  var hl = height(l);
-  var hr = height(r);
+  hl = height(l);
+  hr = height(r);
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--x,
@@ -28,14 +28,14 @@ function create(l, x, d, r) do
 end
 
 function bal(l, x, d, r) do
-  var hl = l and l[--[ h ]--4] or 0;
-  var hr = r and r[--[ h ]--4] or 0;
+  hl = l and l[--[ h ]--4] or 0;
+  hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      var lr = l[--[ r ]--3];
-      var ld = l[--[ d ]--2];
-      var lv = l[--[ v ]--1];
-      var ll = l[--[ l ]--0];
+      lr = l[--[ r ]--3];
+      ld = l[--[ d ]--2];
+      lv = l[--[ v ]--1];
+      ll = l[--[ l ]--0];
       if (height(ll) >= height(lr)) then do
         return create(ll, lv, ld, create(lr, x, d, r));
       end else if (lr) then do
@@ -54,10 +54,10 @@ function bal(l, x, d, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      var rr = r[--[ r ]--3];
-      var rd = r[--[ d ]--2];
-      var rv = r[--[ v ]--1];
-      var rl = r[--[ l ]--0];
+      rr = r[--[ r ]--3];
+      rd = r[--[ d ]--2];
+      rv = r[--[ v ]--1];
+      rl = r[--[ l ]--0];
       if (height(rr) >= height(rl)) then do
         return create(create(l, x, d, rl), rv, rd, rr);
       end else if (rl) then do
@@ -87,11 +87,11 @@ end
 
 function add(x, data, m) do
   if (m) then do
-    var r = m[--[ r ]--3];
-    var d = m[--[ d ]--2];
-    var v = m[--[ v ]--1];
-    var l = m[--[ l ]--0];
-    var c = Caml_primitive.caml_int_compare(x, v);
+    r = m[--[ r ]--3];
+    d = m[--[ d ]--2];
+    v = m[--[ v ]--1];
+    l = m[--[ l ]--0];
+    c = Caml_primitive.caml_int_compare(x, v);
     if (c == 0) then do
       if (d == data) then do
         return m;
@@ -105,14 +105,14 @@ function add(x, data, m) do
               ];
       end end 
     end else if (c < 0) then do
-      var ll = add(x, data, l);
+      ll = add(x, data, l);
       if (l == ll) then do
         return m;
       end else do
         return bal(ll, v, d, r);
       end end 
     end else do
-      var rr = add(x, data, r);
+      rr = add(x, data, r);
       if (r == rr) then do
         return m;
       end else do
@@ -132,8 +132,8 @@ end
 
 function cons_enum(_m, _e) do
   while(true) do
-    var e = _e;
-    var m = _m;
+    e = _e;
+    m = _m;
     if (m) then do
       _e = --[ More ]--[
         m[--[ v ]--1],
@@ -150,18 +150,18 @@ function cons_enum(_m, _e) do
 end
 
 function compare(cmp, m1, m2) do
-  var _e1 = cons_enum(m1, --[ End ]--0);
-  var _e2 = cons_enum(m2, --[ End ]--0);
+  _e1 = cons_enum(m1, --[ End ]--0);
+  _e2 = cons_enum(m2, --[ End ]--0);
   while(true) do
-    var e2 = _e2;
-    var e1 = _e1;
+    e2 = _e2;
+    e1 = _e1;
     if (e1) then do
       if (e2) then do
-        var c = Caml_primitive.caml_int_compare(e1[0], e2[0]);
+        c = Caml_primitive.caml_int_compare(e1[0], e2[0]);
         if (c ~= 0) then do
           return c;
         end else do
-          var c$1 = Curry._2(cmp, e1[1], e2[1]);
+          c$1 = Curry._2(cmp, e1[1], e2[1]);
           if (c$1 ~= 0) then do
             return c$1;
           end else do
@@ -182,11 +182,11 @@ function compare(cmp, m1, m2) do
 end
 
 function equal(cmp, m1, m2) do
-  var _e1 = cons_enum(m1, --[ End ]--0);
-  var _e2 = cons_enum(m2, --[ End ]--0);
+  _e1 = cons_enum(m1, --[ End ]--0);
+  _e2 = cons_enum(m2, --[ End ]--0);
   while(true) do
-    var e2 = _e2;
-    var e1 = _e1;
+    e2 = _e2;
+    e1 = _e1;
     if (e1) then do
       if (e2 and e1[0] == e2[0] and Curry._2(cmp, e1[1], e2[1])) then do
         _e2 = cons_enum(e2[2], e2[3]);
@@ -220,8 +220,8 @@ function height$1(param) do
 end
 
 function create$1(l, x, d, r) do
-  var hl = height$1(l);
-  var hr = height$1(r);
+  hl = height$1(l);
+  hr = height$1(r);
   return --[ Node ]--[
           --[ l ]--l,
           --[ v ]--x,
@@ -232,14 +232,14 @@ function create$1(l, x, d, r) do
 end
 
 function bal$1(l, x, d, r) do
-  var hl = l and l[--[ h ]--4] or 0;
-  var hr = r and r[--[ h ]--4] or 0;
+  hl = l and l[--[ h ]--4] or 0;
+  hr = r and r[--[ h ]--4] or 0;
   if (hl > (hr + 2 | 0)) then do
     if (l) then do
-      var lr = l[--[ r ]--3];
-      var ld = l[--[ d ]--2];
-      var lv = l[--[ v ]--1];
-      var ll = l[--[ l ]--0];
+      lr = l[--[ r ]--3];
+      ld = l[--[ d ]--2];
+      lv = l[--[ v ]--1];
+      ll = l[--[ l ]--0];
       if (height$1(ll) >= height$1(lr)) then do
         return create$1(ll, lv, ld, create$1(lr, x, d, r));
       end else if (lr) then do
@@ -258,10 +258,10 @@ function bal$1(l, x, d, r) do
     end end 
   end else if (hr > (hl + 2 | 0)) then do
     if (r) then do
-      var rr = r[--[ r ]--3];
-      var rd = r[--[ d ]--2];
-      var rv = r[--[ v ]--1];
-      var rl = r[--[ l ]--0];
+      rr = r[--[ r ]--3];
+      rd = r[--[ d ]--2];
+      rv = r[--[ v ]--1];
+      rl = r[--[ l ]--0];
       if (height$1(rr) >= height$1(rl)) then do
         return create$1(create$1(l, x, d, rl), rv, rd, rr);
       end else if (rl) then do
@@ -291,11 +291,11 @@ end
 
 function add$1(x, data, m) do
   if (m) then do
-    var r = m[--[ r ]--3];
-    var d = m[--[ d ]--2];
-    var v = m[--[ v ]--1];
-    var l = m[--[ l ]--0];
-    var c = Caml_primitive.caml_string_compare(x, v);
+    r = m[--[ r ]--3];
+    d = m[--[ d ]--2];
+    v = m[--[ v ]--1];
+    l = m[--[ l ]--0];
+    c = Caml_primitive.caml_string_compare(x, v);
     if (c == 0) then do
       if (d == data) then do
         return m;
@@ -309,14 +309,14 @@ function add$1(x, data, m) do
               ];
       end end 
     end else if (c < 0) then do
-      var ll = add$1(x, data, l);
+      ll = add$1(x, data, l);
       if (l == ll) then do
         return m;
       end else do
         return bal$1(ll, v, d, r);
       end end 
     end else do
-      var rr = add$1(x, data, r);
+      rr = add$1(x, data, r);
       if (r == rr) then do
         return m;
       end else do
@@ -336,9 +336,9 @@ end
 
 function find(x, _param) do
   while(true) do
-    var param = _param;
+    param = _param;
     if (param) then do
-      var c = Caml_primitive.caml_string_compare(x, param[--[ v ]--1]);
+      c = Caml_primitive.caml_string_compare(x, param[--[ v ]--1]);
       if (c == 0) then do
         return param[--[ d ]--2];
       end else do
@@ -357,10 +357,10 @@ function of_list(kvs) do
               end), --[ Empty ]--0, kvs);
 end
 
-var int_map_suites_000 = --[ tuple ]--[
+int_map_suites_000 = --[ tuple ]--[
   "add",
   (function (param) do
-      var v = of_list(--[ :: ]--[
+      v = of_list(--[ :: ]--[
             --[ tuple ]--[
               1,
               --[ "1" ]--49
@@ -386,11 +386,11 @@ var int_map_suites_000 = --[ tuple ]--[
     end)
 ];
 
-var int_map_suites_001 = --[ :: ]--[
+int_map_suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "equal",
     (function (param) do
-        var v = of_list(--[ :: ]--[
+        v = of_list(--[ :: ]--[
               --[ tuple ]--[
                 1,
                 --[ "1" ]--49
@@ -409,7 +409,7 @@ var int_map_suites_001 = --[ :: ]--[
                 ]
               ]
             ]);
-        var u = of_list(--[ :: ]--[
+        u = of_list(--[ :: ]--[
               --[ tuple ]--[
                 2,
                 --[ "3" ]--51
@@ -438,7 +438,7 @@ var int_map_suites_001 = --[ :: ]--[
     --[ tuple ]--[
       "equal2",
       (function (param) do
-          var v = of_list(--[ :: ]--[
+          v = of_list(--[ :: ]--[
                 --[ tuple ]--[
                   1,
                   --[ "1" ]--49
@@ -457,7 +457,7 @@ var int_map_suites_001 = --[ :: ]--[
                   ]
                 ]
               ]);
-          var u = of_list(--[ :: ]--[
+          u = of_list(--[ :: ]--[
                 --[ tuple ]--[
                   2,
                   --[ "3" ]--51
@@ -488,12 +488,12 @@ var int_map_suites_001 = --[ :: ]--[
       --[ tuple ]--[
         "iteration",
         (function (param) do
-            var m = --[ Empty ]--0;
-            for var i = 0 , 10000 , 1 do
+            m = --[ Empty ]--0;
+            for i = 0 , 10000 , 1 do
               m = add$1(String(i), String(i), m);
             end
-            var v = -1;
-            for var i$1 = 0 , 10000 , 1 do
+            v = -1;
+            for i$1 = 0 , 10000 , 1 do
               if (find(String(i$1), m) ~= String(i$1)) then do
                 v = i$1;
               end
@@ -510,7 +510,7 @@ var int_map_suites_001 = --[ :: ]--[
   ]
 ];
 
-var int_map_suites = --[ :: ]--[
+int_map_suites = --[ :: ]--[
   int_map_suites_000,
   int_map_suites_001
 ];

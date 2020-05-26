@@ -1,24 +1,24 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
-var CamlinternalOO = require("../../lib/js/camlinternalOO.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Mt = require("./mt.js");
+Curry = require("../../lib/js/curry.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
+CamlinternalOO = require("../../lib/js/camlinternalOO.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var shared = [
+shared = [
   "leq",
   "value"
 ];
 
-var shared$1 = ["repr"];
+shared$1 = ["repr"];
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -33,7 +33,7 @@ function comparable_001($$class) do
     end);
 end
 
-var comparable = --[ class ]--[
+comparable = --[ class ]--[
   0,
   comparable_001,
   0,
@@ -41,16 +41,16 @@ var comparable = --[ class ]--[
 ];
 
 function money_init($$class) do
-  var x = CamlinternalOO.new_variable($$class, "");
-  var ids = CamlinternalOO.new_methods_variables($$class, [
+  x = CamlinternalOO.new_variable($$class, "");
+  ids = CamlinternalOO.new_methods_variables($$class, [
         "value",
         "leq"
       ], shared$1);
-  var value = ids[0];
-  var leq = ids[1];
-  var repr = ids[2];
-  var inh = CamlinternalOO.inherits($$class, 0, ["leq"], 0, comparable, true);
-  var obj_init = inh[0];
+  value = ids[0];
+  leq = ids[1];
+  repr = ids[2];
+  inh = CamlinternalOO.inherits($$class, 0, ["leq"], 0, comparable, true);
+  obj_init = inh[0];
   CamlinternalOO.set_methods($$class, [
         value,
         (function (self$2) do
@@ -62,7 +62,7 @@ function money_init($$class) do
           end)
       ]);
   return (function (env, self, x$1) do
-      var self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x] = x$1;
       Curry._1(obj_init, self$1);
       self$1[repr] = x$1;
@@ -70,28 +70,28 @@ function money_init($$class) do
     end);
 end
 
-var money = CamlinternalOO.make_class(shared, money_init);
+money = CamlinternalOO.make_class(shared, money_init);
 
 function money2_init($$class) do
-  var x = CamlinternalOO.new_variable($$class, "");
-  var times = CamlinternalOO.get_method_label($$class, "times");
-  var inh = CamlinternalOO.inherits($$class, shared$1, 0, shared, money, true);
-  var obj_init = inh[0];
-  var repr = inh[1];
+  x = CamlinternalOO.new_variable($$class, "");
+  times = CamlinternalOO.get_method_label($$class, "times");
+  inh = CamlinternalOO.inherits($$class, shared$1, 0, shared, money, true);
+  obj_init = inh[0];
+  repr = inh[1];
   CamlinternalOO.set_method($$class, times, (function (self$3, k) do
-          var copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
+          copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
           copy[repr] = k * self$3[repr];
           return copy;
         end));
   return (function (env, self, x$1) do
-      var self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x] = x$1;
       Curry._2(obj_init, self$1, x$1);
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
     end);
 end
 
-var money2 = CamlinternalOO.make_class([
+money2 = CamlinternalOO.make_class([
       "leq",
       "times",
       "value"
@@ -105,11 +105,11 @@ function min(x, y) do
   end end 
 end
 
-var tmp = min(Curry._2(money[0], 0, 1.0), Curry._2(money[0], 0, 3.0));
+tmp = min(Curry._2(money[0], 0, 1.0), Curry._2(money[0], 0, 3.0));
 
 eq("File \"class8_test.ml\", line 30, characters 5-12", 1, Caml_oo_curry.js1(834174833, 3, tmp));
 
-var tmp$1 = min(Curry._2(money2[0], 0, 5.0), Curry._2(money2[0], 0, 3));
+tmp$1 = min(Curry._2(money2[0], 0, 5.0), Curry._2(money2[0], 0, 3));
 
 eq("File \"class8_test.ml\", line 35, characters 5-12", 3, Caml_oo_curry.js1(834174833, 4, tmp$1));
 

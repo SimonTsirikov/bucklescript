@@ -1,8 +1,8 @@
 'use strict';
 
-var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
+Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
-var jsMapperConstantArray = [
+jsMapperConstantArray = [
   --[ tuple ]--[
     -1010337642,
     "vertical"

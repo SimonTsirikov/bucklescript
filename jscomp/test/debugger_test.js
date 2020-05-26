@@ -20,7 +20,7 @@ end
 function exterme_g(param) do
   f(1, 2);
   debugger;
-  var v = --[ () ]--0;
+  v = --[ () ]--0;
   console.log(v);
   f(1, 2);
   debugger;

@@ -1,19 +1,19 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Scanf = require("../../lib/js/scanf.js");
-var Printf = require("../../lib/js/printf.js");
-var Mt_global = require("./mt_global.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Scanf = require("../../lib/js/scanf.js");
+Printf = require("../../lib/js/printf.js");
+Mt_global = require("./mt_global.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -33,8 +33,8 @@ function scan_rest(ib, accu) do
                 if (param == "]") then do
                   return accu;
                 end else do
-                  var ib$1 = ib;
-                  var accu$1 = accu;
+                  ib$1 = ib;
+                  accu$1 = accu;
                   return Curry._1(Scanf.bscanf(ib$1, --[ Format ]--[
                                   --[ Char_literal ]--Block.__(12, [
                                       --[ " " ]--32,
@@ -50,8 +50,8 @@ function scan_rest(ib, accu) do
                                     ]),
                                   " %i "
                                 ]), (function (i) do
-                                var ib$2 = ib$1;
-                                var accu$2 = --[ :: ]--[
+                                ib$2 = ib$1;
+                                accu$2 = --[ :: ]--[
                                   i,
                                   accu$1
                                 ];
@@ -71,7 +71,7 @@ function scan_rest(ib, accu) do
                                                     return accu$2;end end end 
                                                  do
                                                 else do
-                                                  var s = Printf.sprintf(--[ Format ]--[
+                                                  s = Printf.sprintf(--[ Format ]--[
                                                         --[ String_literal ]--Block.__(11, [
                                                             "scan_int_list",
                                                             --[ End_of_format ]--0

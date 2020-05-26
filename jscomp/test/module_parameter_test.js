@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var $$String = require("../../lib/js/string.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+$$String = require("../../lib/js/string.js");
 
 function u(v) do
   return v;
 end
 
-var s = $$String;
+s = $$String;
 
-var N = do
+N = do
   s: s
 end;
 
@@ -18,7 +18,7 @@ function v(x) do
   return #x;
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "const",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -28,7 +28,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "other",
     (function (param) do
@@ -41,14 +41,14 @@ var suites_001 = --[ :: ]--[
   --[ [] ]--0
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
 
 Mt.from_pair_suites("Module_parameter_test", suites);
 
-var v0 = 1;
+v0 = 1;
 
 exports.u = u;
 exports.N = N;

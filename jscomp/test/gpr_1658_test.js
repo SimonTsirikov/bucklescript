@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Js_types = require("../../lib/js/js_types.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Js_types = require("../../lib/js/js_types.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -31,7 +31,7 @@ end
 
 eq("File \"gpr_1658_test.ml\", line 11, characters 7-14", null, null);
 
-var match = Js_types.classify(null);
+match = Js_types.classify(null);
 
 if (typeof match == "number" and match == 2) then do
   eq("File \"gpr_1658_test.ml\", line 14, characters 11-18", true, true);

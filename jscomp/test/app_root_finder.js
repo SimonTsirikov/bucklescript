@@ -1,18 +1,18 @@
 'use strict';
 
-var Fs = require("fs");
-var Path = require("path");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Fs = require("fs");
+Path = require("path");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var package_json = "package.json";
+package_json = "package.json";
 
 function find_package_json(_dir) do
   while(true) do
-    var dir = _dir;
+    dir = _dir;
     if (Fs.existsSync(Path.join(dir, package_json))) then do
       return dir;
     end else do
-      var new_dir = Path.dirname(dir);
+      new_dir = Path.dirname(dir);
       if (new_dir == dir) then do
         throw Caml_builtin_exceptions.not_found;
       end
@@ -23,7 +23,7 @@ function find_package_json(_dir) do
   end;
 end
 
-var match = typeof __dirname == "undefined" and undefined or __dirname;
+match = typeof __dirname == "undefined" and undefined or __dirname;
 
 if (match ~= undefined) then do
   console.log(find_package_json(match));

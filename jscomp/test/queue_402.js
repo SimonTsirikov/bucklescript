@@ -1,10 +1,10 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Curry = require("../../lib/js/curry.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var Empty = Caml_exceptions.create("Queue_402.Empty");
+Empty = Caml_exceptions.create("Queue_402.Empty");
 
 function create(param) do
   return do
@@ -21,16 +21,16 @@ end
 
 function add(x, q) do
   if (q.length == 0) then do
-    var cell = { };
+    cell = { };
     cell.content = x;
     cell.next = cell;
     q.length = 1;
     q.tail = cell;
     return --[ () ]--0;
   end else do
-    var tail = q.tail;
-    var head = tail.next;
-    var cell$1 = do
+    tail = q.tail;
+    head = tail.next;
+    cell$1 = do
       content: x,
       next: head
     end;
@@ -55,8 +55,8 @@ function take(q) do
   end
    end 
   q.length = q.length - 1 | 0;
-  var tail = q.tail;
-  var head = tail.next;
+  tail = q.tail;
+  head = tail.next;
   if (head == tail) then do
     q.tail = undefined;
   end else do
@@ -72,18 +72,18 @@ function copy(q) do
             tail: undefined
           end;
   end else do
-    var tail = q.tail;
-    var tail$prime = { };
+    tail = q.tail;
+    tail$prime = { };
     Caml_obj.caml_update_dummy(tail$prime, do
           content: tail.content,
           next: tail$prime
         end);
-    var copy$1 = function (_prev, _cell) do
+    copy$1 = function (_prev, _cell) do
       while(true) do
-        var cell = _cell;
-        var prev = _prev;
+        cell = _cell;
+        prev = _prev;
         if (cell ~= tail) then do
-          var res = do
+          res = do
             content: cell.content,
             next: tail$prime
           end;
@@ -114,10 +114,10 @@ end
 
 function iter(f, q) do
   if (q.length > 0) then do
-    var tail = q.tail;
-    var _cell = tail.next;
+    tail = q.tail;
+    _cell = tail.next;
     while(true) do
-      var cell = _cell;
+      cell = _cell;
       Curry._1(f, cell.content);
       if (cell ~= tail) then do
         _cell = cell.next;
@@ -135,13 +135,13 @@ function fold(f, accu, q) do
   if (q.length == 0) then do
     return accu;
   end else do
-    var tail = q.tail;
-    var _accu = accu;
-    var _cell = tail.next;
+    tail = q.tail;
+    _accu = accu;
+    _cell = tail.next;
     while(true) do
-      var cell = _cell;
-      var accu$1 = _accu;
-      var accu$2 = Curry._2(f, accu$1, cell.content);
+      cell = _cell;
+      accu$1 = _accu;
+      accu$2 = Curry._2(f, accu$1, cell.content);
       if (cell == tail) then do
         return accu$2;
       end else do
@@ -154,14 +154,14 @@ function fold(f, accu, q) do
 end
 
 function transfer(q1, q2) do
-  var length1 = q1.length;
+  length1 = q1.length;
   if (length1 > 0) then do
-    var tail1 = q1.tail;
+    tail1 = q1.tail;
     clear(q1);
     if (q2.length > 0) then do
-      var tail2 = q2.tail;
-      var head1 = tail1.next;
-      var head2 = tail2.next;
+      tail2 = q2.tail;
+      head1 = tail1.next;
+      head2 = tail2.next;
       tail1.next = head2;
       tail2.next = head1;
     end
@@ -174,11 +174,11 @@ function transfer(q1, q2) do
   end end 
 end
 
-var push = add;
+push = add;
 
-var top = peek;
+top = peek;
 
-var pop = take;
+pop = take;
 
 exports.Empty = Empty;
 exports.create = create;

@@ -1,12 +1,12 @@
 'use strict';
 
-var Mt = require("./mt.js");
+Mt = require("./mt.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -14,7 +14,7 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end
 
-var others = --[ tuple ]--[
+others = --[ tuple ]--[
   0,
   0,
   1,
@@ -40,13 +40,13 @@ eq("File \"gpr_3549_test.ml\", line 22, characters 5-12", others, --[ tuple ]--[
 
 Mt.from_pair_suites("Gpr_3549_test", suites.contents);
 
-var u = 32;
+u = 32;
 
-var x = 7.0;
+x = 7.0;
 
-var y = 2e3;
+y = 2e3;
 
-var z = 0.2;
+z = 0.2;
 
 exports.suites = suites;
 exports.test_id = test_id;

@@ -5,13 +5,13 @@ function u(x, y) do
   return x + y | 0;
 end
 
-var h = u(1, 2);
+h = u(1, 2);
 
 function max2(x, y) do
   return x + y;
 end
 
-var hh = max2(1, 2);
+hh = max2(1, 2);
 
 function f(x) do
   des(x, (function () do

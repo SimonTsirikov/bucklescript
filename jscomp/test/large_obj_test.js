@@ -1,12 +1,12 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
-var CamlinternalOO = require("../../lib/js/camlinternalOO.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Curry = require("../../lib/js/curry.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
+CamlinternalOO = require("../../lib/js/camlinternalOO.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var shared = [
+shared = [
   "get0",
   "get1",
   "get2",
@@ -29,7 +29,7 @@ var shared = [
   "get19"
 ];
 
-var shared$1 = [
+shared$1 = [
   "get9",
   "get8",
   "get7",
@@ -52,7 +52,7 @@ var shared$1 = [
   "get0"
 ];
 
-var shared$2 = [
+shared$2 = [
   "field0",
   "field1",
   "field2",
@@ -155,249 +155,249 @@ var shared$2 = [
   "field99"
 ];
 
-var $$class = CamlinternalOO.create_table(shared);
+$$class = CamlinternalOO.create_table(shared);
 
-var ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared$2);
+ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared$2);
 
-var get9 = ids[0];
+get9 = ids[0];
 
-var get8 = ids[1];
+get8 = ids[1];
 
-var get7 = ids[2];
+get7 = ids[2];
 
-var get6 = ids[3];
+get6 = ids[3];
 
-var get5 = ids[4];
+get5 = ids[4];
 
-var get4 = ids[5];
+get4 = ids[5];
 
-var get3 = ids[6];
+get3 = ids[6];
 
-var get2 = ids[7];
+get2 = ids[7];
 
-var get19 = ids[8];
+get19 = ids[8];
 
-var get18 = ids[9];
+get18 = ids[9];
 
-var get17 = ids[10];
+get17 = ids[10];
 
-var get16 = ids[11];
+get16 = ids[11];
 
-var get15 = ids[12];
+get15 = ids[12];
 
-var get14 = ids[13];
+get14 = ids[13];
 
-var get13 = ids[14];
+get13 = ids[14];
 
-var get12 = ids[15];
+get12 = ids[15];
 
-var get11 = ids[16];
+get11 = ids[16];
 
-var get10 = ids[17];
+get10 = ids[17];
 
-var get1 = ids[18];
+get1 = ids[18];
 
-var get0 = ids[19];
+get0 = ids[19];
 
-var field0 = ids[20];
+field0 = ids[20];
 
-var field1 = ids[21];
+field1 = ids[21];
 
-var field2 = ids[22];
+field2 = ids[22];
 
-var field3 = ids[23];
+field3 = ids[23];
 
-var field4 = ids[24];
+field4 = ids[24];
 
-var field5 = ids[25];
+field5 = ids[25];
 
-var field6 = ids[26];
+field6 = ids[26];
 
-var field7 = ids[27];
+field7 = ids[27];
 
-var field8 = ids[28];
+field8 = ids[28];
 
-var field9 = ids[29];
+field9 = ids[29];
 
-var field10 = ids[30];
+field10 = ids[30];
 
-var field11 = ids[31];
+field11 = ids[31];
 
-var field12 = ids[32];
+field12 = ids[32];
 
-var field13 = ids[33];
+field13 = ids[33];
 
-var field14 = ids[34];
+field14 = ids[34];
 
-var field15 = ids[35];
+field15 = ids[35];
 
-var field16 = ids[36];
+field16 = ids[36];
 
-var field17 = ids[37];
+field17 = ids[37];
 
-var field18 = ids[38];
+field18 = ids[38];
 
-var field19 = ids[39];
+field19 = ids[39];
 
-var field20 = ids[40];
+field20 = ids[40];
 
-var field21 = ids[41];
+field21 = ids[41];
 
-var field22 = ids[42];
+field22 = ids[42];
 
-var field23 = ids[43];
+field23 = ids[43];
 
-var field24 = ids[44];
+field24 = ids[44];
 
-var field25 = ids[45];
+field25 = ids[45];
 
-var field26 = ids[46];
+field26 = ids[46];
 
-var field27 = ids[47];
+field27 = ids[47];
 
-var field28 = ids[48];
+field28 = ids[48];
 
-var field29 = ids[49];
+field29 = ids[49];
 
-var field30 = ids[50];
+field30 = ids[50];
 
-var field31 = ids[51];
+field31 = ids[51];
 
-var field32 = ids[52];
+field32 = ids[52];
 
-var field33 = ids[53];
+field33 = ids[53];
 
-var field34 = ids[54];
+field34 = ids[54];
 
-var field35 = ids[55];
+field35 = ids[55];
 
-var field36 = ids[56];
+field36 = ids[56];
 
-var field37 = ids[57];
+field37 = ids[57];
 
-var field38 = ids[58];
+field38 = ids[58];
 
-var field39 = ids[59];
+field39 = ids[59];
 
-var field40 = ids[60];
+field40 = ids[60];
 
-var field41 = ids[61];
+field41 = ids[61];
 
-var field42 = ids[62];
+field42 = ids[62];
 
-var field43 = ids[63];
+field43 = ids[63];
 
-var field44 = ids[64];
+field44 = ids[64];
 
-var field45 = ids[65];
+field45 = ids[65];
 
-var field46 = ids[66];
+field46 = ids[66];
 
-var field47 = ids[67];
+field47 = ids[67];
 
-var field48 = ids[68];
+field48 = ids[68];
 
-var field49 = ids[69];
+field49 = ids[69];
 
-var field50 = ids[70];
+field50 = ids[70];
 
-var field51 = ids[71];
+field51 = ids[71];
 
-var field52 = ids[72];
+field52 = ids[72];
 
-var field53 = ids[73];
+field53 = ids[73];
 
-var field54 = ids[74];
+field54 = ids[74];
 
-var field55 = ids[75];
+field55 = ids[75];
 
-var field56 = ids[76];
+field56 = ids[76];
 
-var field57 = ids[77];
+field57 = ids[77];
 
-var field58 = ids[78];
+field58 = ids[78];
 
-var field59 = ids[79];
+field59 = ids[79];
 
-var field60 = ids[80];
+field60 = ids[80];
 
-var field61 = ids[81];
+field61 = ids[81];
 
-var field62 = ids[82];
+field62 = ids[82];
 
-var field63 = ids[83];
+field63 = ids[83];
 
-var field64 = ids[84];
+field64 = ids[84];
 
-var field65 = ids[85];
+field65 = ids[85];
 
-var field66 = ids[86];
+field66 = ids[86];
 
-var field67 = ids[87];
+field67 = ids[87];
 
-var field68 = ids[88];
+field68 = ids[88];
 
-var field69 = ids[89];
+field69 = ids[89];
 
-var field70 = ids[90];
+field70 = ids[90];
 
-var field71 = ids[91];
+field71 = ids[91];
 
-var field72 = ids[92];
+field72 = ids[92];
 
-var field73 = ids[93];
+field73 = ids[93];
 
-var field74 = ids[94];
+field74 = ids[94];
 
-var field75 = ids[95];
+field75 = ids[95];
 
-var field76 = ids[96];
+field76 = ids[96];
 
-var field77 = ids[97];
+field77 = ids[97];
 
-var field78 = ids[98];
+field78 = ids[98];
 
-var field79 = ids[99];
+field79 = ids[99];
 
-var field80 = ids[100];
+field80 = ids[100];
 
-var field81 = ids[101];
+field81 = ids[101];
 
-var field82 = ids[102];
+field82 = ids[102];
 
-var field83 = ids[103];
+field83 = ids[103];
 
-var field84 = ids[104];
+field84 = ids[104];
 
-var field85 = ids[105];
+field85 = ids[105];
 
-var field86 = ids[106];
+field86 = ids[106];
 
-var field87 = ids[107];
+field87 = ids[107];
 
-var field88 = ids[108];
+field88 = ids[108];
 
-var field89 = ids[109];
+field89 = ids[109];
 
-var field90 = ids[110];
+field90 = ids[110];
 
-var field91 = ids[111];
+field91 = ids[111];
 
-var field92 = ids[112];
+field92 = ids[112];
 
-var field93 = ids[113];
+field93 = ids[113];
 
-var field94 = ids[114];
+field94 = ids[114];
 
-var field95 = ids[115];
+field95 = ids[115];
 
-var field96 = ids[116];
+field96 = ids[116];
 
-var field97 = ids[117];
+field97 = ids[117];
 
-var field98 = ids[118];
+field98 = ids[118];
 
-var field99 = ids[119];
+field99 = ids[119];
 
 CamlinternalOO.set_methods($$class, [
       get0,
@@ -483,7 +483,7 @@ CamlinternalOO.set_methods($$class, [
     ]);
 
 function obj_init(env) do
-  var self = CamlinternalOO.create_object_opt(0, $$class);
+  self = CamlinternalOO.create_object_opt(0, $$class);
   self[field0] = 0;
   self[field1] = 1;
   self[field2] = 2;
@@ -589,7 +589,7 @@ end
 
 CamlinternalOO.init_class($$class);
 
-var raw_object = obj_init(0);
+raw_object = obj_init(0);
 
 if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) then do
   throw [
@@ -604,128 +604,128 @@ end
  end 
 
 function raw_class_init($$class) do
-  var value = CamlinternalOO.new_variable($$class, "");
-  var ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared$2);
-  var get9 = ids[0];
-  var get8 = ids[1];
-  var get7 = ids[2];
-  var get6 = ids[3];
-  var get5 = ids[4];
-  var get4 = ids[5];
-  var get3 = ids[6];
-  var get2 = ids[7];
-  var get19 = ids[8];
-  var get18 = ids[9];
-  var get17 = ids[10];
-  var get16 = ids[11];
-  var get15 = ids[12];
-  var get14 = ids[13];
-  var get13 = ids[14];
-  var get12 = ids[15];
-  var get11 = ids[16];
-  var get10 = ids[17];
-  var get1 = ids[18];
-  var get0 = ids[19];
-  var field0 = ids[20];
-  var field1 = ids[21];
-  var field2 = ids[22];
-  var field3 = ids[23];
-  var field4 = ids[24];
-  var field5 = ids[25];
-  var field6 = ids[26];
-  var field7 = ids[27];
-  var field8 = ids[28];
-  var field9 = ids[29];
-  var field10 = ids[30];
-  var field11 = ids[31];
-  var field12 = ids[32];
-  var field13 = ids[33];
-  var field14 = ids[34];
-  var field15 = ids[35];
-  var field16 = ids[36];
-  var field17 = ids[37];
-  var field18 = ids[38];
-  var field19 = ids[39];
-  var field20 = ids[40];
-  var field21 = ids[41];
-  var field22 = ids[42];
-  var field23 = ids[43];
-  var field24 = ids[44];
-  var field25 = ids[45];
-  var field26 = ids[46];
-  var field27 = ids[47];
-  var field28 = ids[48];
-  var field29 = ids[49];
-  var field30 = ids[50];
-  var field31 = ids[51];
-  var field32 = ids[52];
-  var field33 = ids[53];
-  var field34 = ids[54];
-  var field35 = ids[55];
-  var field36 = ids[56];
-  var field37 = ids[57];
-  var field38 = ids[58];
-  var field39 = ids[59];
-  var field40 = ids[60];
-  var field41 = ids[61];
-  var field42 = ids[62];
-  var field43 = ids[63];
-  var field44 = ids[64];
-  var field45 = ids[65];
-  var field46 = ids[66];
-  var field47 = ids[67];
-  var field48 = ids[68];
-  var field49 = ids[69];
-  var field50 = ids[70];
-  var field51 = ids[71];
-  var field52 = ids[72];
-  var field53 = ids[73];
-  var field54 = ids[74];
-  var field55 = ids[75];
-  var field56 = ids[76];
-  var field57 = ids[77];
-  var field58 = ids[78];
-  var field59 = ids[79];
-  var field60 = ids[80];
-  var field61 = ids[81];
-  var field62 = ids[82];
-  var field63 = ids[83];
-  var field64 = ids[84];
-  var field65 = ids[85];
-  var field66 = ids[86];
-  var field67 = ids[87];
-  var field68 = ids[88];
-  var field69 = ids[89];
-  var field70 = ids[90];
-  var field71 = ids[91];
-  var field72 = ids[92];
-  var field73 = ids[93];
-  var field74 = ids[94];
-  var field75 = ids[95];
-  var field76 = ids[96];
-  var field77 = ids[97];
-  var field78 = ids[98];
-  var field79 = ids[99];
-  var field80 = ids[100];
-  var field81 = ids[101];
-  var field82 = ids[102];
-  var field83 = ids[103];
-  var field84 = ids[104];
-  var field85 = ids[105];
-  var field86 = ids[106];
-  var field87 = ids[107];
-  var field88 = ids[108];
-  var field89 = ids[109];
-  var field90 = ids[110];
-  var field91 = ids[111];
-  var field92 = ids[112];
-  var field93 = ids[113];
-  var field94 = ids[114];
-  var field95 = ids[115];
-  var field96 = ids[116];
-  var field97 = ids[117];
-  var field98 = ids[118];
-  var field99 = ids[119];
+  value = CamlinternalOO.new_variable($$class, "");
+  ids = CamlinternalOO.new_methods_variables($$class, shared$1, shared$2);
+  get9 = ids[0];
+  get8 = ids[1];
+  get7 = ids[2];
+  get6 = ids[3];
+  get5 = ids[4];
+  get4 = ids[5];
+  get3 = ids[6];
+  get2 = ids[7];
+  get19 = ids[8];
+  get18 = ids[9];
+  get17 = ids[10];
+  get16 = ids[11];
+  get15 = ids[12];
+  get14 = ids[13];
+  get13 = ids[14];
+  get12 = ids[15];
+  get11 = ids[16];
+  get10 = ids[17];
+  get1 = ids[18];
+  get0 = ids[19];
+  field0 = ids[20];
+  field1 = ids[21];
+  field2 = ids[22];
+  field3 = ids[23];
+  field4 = ids[24];
+  field5 = ids[25];
+  field6 = ids[26];
+  field7 = ids[27];
+  field8 = ids[28];
+  field9 = ids[29];
+  field10 = ids[30];
+  field11 = ids[31];
+  field12 = ids[32];
+  field13 = ids[33];
+  field14 = ids[34];
+  field15 = ids[35];
+  field16 = ids[36];
+  field17 = ids[37];
+  field18 = ids[38];
+  field19 = ids[39];
+  field20 = ids[40];
+  field21 = ids[41];
+  field22 = ids[42];
+  field23 = ids[43];
+  field24 = ids[44];
+  field25 = ids[45];
+  field26 = ids[46];
+  field27 = ids[47];
+  field28 = ids[48];
+  field29 = ids[49];
+  field30 = ids[50];
+  field31 = ids[51];
+  field32 = ids[52];
+  field33 = ids[53];
+  field34 = ids[54];
+  field35 = ids[55];
+  field36 = ids[56];
+  field37 = ids[57];
+  field38 = ids[58];
+  field39 = ids[59];
+  field40 = ids[60];
+  field41 = ids[61];
+  field42 = ids[62];
+  field43 = ids[63];
+  field44 = ids[64];
+  field45 = ids[65];
+  field46 = ids[66];
+  field47 = ids[67];
+  field48 = ids[68];
+  field49 = ids[69];
+  field50 = ids[70];
+  field51 = ids[71];
+  field52 = ids[72];
+  field53 = ids[73];
+  field54 = ids[74];
+  field55 = ids[75];
+  field56 = ids[76];
+  field57 = ids[77];
+  field58 = ids[78];
+  field59 = ids[79];
+  field60 = ids[80];
+  field61 = ids[81];
+  field62 = ids[82];
+  field63 = ids[83];
+  field64 = ids[84];
+  field65 = ids[85];
+  field66 = ids[86];
+  field67 = ids[87];
+  field68 = ids[88];
+  field69 = ids[89];
+  field70 = ids[90];
+  field71 = ids[91];
+  field72 = ids[92];
+  field73 = ids[93];
+  field74 = ids[94];
+  field75 = ids[95];
+  field76 = ids[96];
+  field77 = ids[97];
+  field78 = ids[98];
+  field79 = ids[99];
+  field80 = ids[100];
+  field81 = ids[101];
+  field82 = ids[102];
+  field83 = ids[103];
+  field84 = ids[104];
+  field85 = ids[105];
+  field86 = ids[106];
+  field87 = ids[107];
+  field88 = ids[108];
+  field89 = ids[109];
+  field90 = ids[110];
+  field91 = ids[111];
+  field92 = ids[112];
+  field93 = ids[113];
+  field94 = ids[114];
+  field95 = ids[115];
+  field96 = ids[116];
+  field97 = ids[117];
+  field98 = ids[118];
+  field99 = ids[119];
   CamlinternalOO.set_methods($$class, [
         get0,
         (function (self$2) do
@@ -809,7 +809,7 @@ function raw_class_init($$class) do
           end)
       ]);
   return (function (env, self, value$1) do
-      var self$1 = CamlinternalOO.create_object_opt(self, $$class);
+      self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[value] = value$1;
       self$1[field0] = 0;
       self$1[field1] = (value$1 << 0);
@@ -915,9 +915,9 @@ function raw_class_init($$class) do
     end);
 end
 
-var raw_class = CamlinternalOO.make_class(shared, raw_class_init);
+raw_class = CamlinternalOO.make_class(shared, raw_class_init);
 
-var v = Curry._2(raw_class[0], 0, 3);
+v = Curry._2(raw_class[0], 0, 3);
 
 if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) then do
   throw [

@@ -1,10 +1,10 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
 
-var v = do
+v = do
   syntax: undefined,
   imports: 0,
   file_options: 0,
@@ -14,7 +14,7 @@ var v = do
   extends: 0
 end;
 
-var u_v = do
+u_v = do
   syntax: undefined,
   imports: 0,
   file_options: 0,
@@ -25,7 +25,7 @@ var u_v = do
 end;
 
 function f(g, h) do
-  var init = Curry._1(g, h);
+  init = Curry._1(g, h);
   return do
           syntax: init.syntax,
           imports: 0,
@@ -37,7 +37,7 @@ function f(g, h) do
         end;
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "eq_with",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -47,14 +47,14 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   --[ [] ]--0
 ];
 
 Mt.from_pair_suites("Record_with_test", suites);
 
-var uv = do
+uv = do
   syntax: undefined,
   imports: 1,
   file_options: 0,

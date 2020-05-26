@@ -1,8 +1,8 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
-var v = do
+v = do
   contents: 0
 end;
 
@@ -16,7 +16,7 @@ function incr(param) do
   return --[ () ]--0;
 end
 
-var vv = do
+vv = do
   contents: 0
 end;
 
@@ -31,9 +31,9 @@ function incr2(param) do
 end
 
 function f(a, b, d, e) do
-  var h = Curry._1(a, b);
-  var u = Curry._1(d, h);
-  var v = Curry._1(e, h);
+  h = Curry._1(a, b);
+  u = Curry._1(d, h);
+  v = Curry._1(e, h);
   return u + v | 0;
 end
 

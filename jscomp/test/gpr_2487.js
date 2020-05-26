@@ -1,8 +1,8 @@
 'use strict';
 
-var Belt_Array = require("../../lib/js/belt_Array.js");
+Belt_Array = require("../../lib/js/belt_Array.js");
 
-var b = Belt_Array.eq([
+b = Belt_Array.eq([
       1,
       2,
       3
@@ -14,7 +14,7 @@ var b = Belt_Array.eq([
         return prim == prim$1;
       end));
 
-var A = --[ alias ]--0;
+A = --[ alias ]--0;
 
 exports.A = A;
 exports.b = b;

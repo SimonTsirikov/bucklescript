@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Caml_module = require("../../lib/js/caml_module.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_module = require("../../lib/js/caml_module.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -39,7 +39,7 @@ function add(suite) do
   return --[ () ]--0;
 end
 
-var Int3 = Caml_module.init_mod(--[ tuple ]--[
+Int3 = Caml_module.init_mod(--[ tuple ]--[
       "recursive_module_test.ml",
       13,
       6
@@ -53,7 +53,7 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
             "u"
           ]]]), Int3, Int3);
 
-var M = Caml_module.init_mod(--[ tuple ]--[
+M = Caml_module.init_mod(--[ tuple ]--[
       "recursive_module_test.ml",
       20,
       20
@@ -77,9 +77,9 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
       fact: fact
     end);
 
-var fact$1 = M.fact;
+fact$1 = M.fact;
 
-var Fact = do
+Fact = do
   M: M,
   fact: fact$1
 end;

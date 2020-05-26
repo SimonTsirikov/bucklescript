@@ -1,7 +1,7 @@
 'use strict';
 
 
-var v = --[ int64 ]--[
+v = --[ int64 ]--[
   --[ hi ]--0,
   --[ lo ]--0
 ];

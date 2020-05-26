@@ -1,10 +1,10 @@
 'use strict';
 
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
-var A = Caml_exceptions.create("Rebind_module.A");
+A = Caml_exceptions.create("Rebind_module.A");
 
-var AA = Caml_exceptions.create("Rebind_module.AA");
+AA = Caml_exceptions.create("Rebind_module.AA");
 
 exports.A = A;
 exports.AA = AA;

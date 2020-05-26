@@ -1,23 +1,23 @@
 'use strict';
 
-var Arg = require("../../lib/js/arg.js");
-var Obj = require("../../lib/js/obj.js");
-var List = require("../../lib/js/list.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Format = require("../../lib/js/format.js");
-var Printf = require("../../lib/js/printf.js");
-var $$String = require("../../lib/js/string.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_string = require("../../lib/js/caml_string.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Arg = require("../../lib/js/arg.js");
+Obj = require("../../lib/js/obj.js");
+List = require("../../lib/js/list.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Format = require("../../lib/js/format.js");
+Printf = require("../../lib/js/printf.js");
+$$String = require("../../lib/js/string.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_string = require("../../lib/js/caml_string.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function $$finally(v, action, f) do
-  var e;
+  e;
   try do
     e = Curry._1(f, v);
   end
@@ -35,21 +35,21 @@ end
 
 function with_file_as_pp(filename, f) do
   return $$finally(Pervasives.open_out_bin(filename), Pervasives.close_out, (function (chan) do
-                var fmt = Format.formatter_of_out_channel(chan);
-                var v = Curry._1(f, fmt);
+                fmt = Format.formatter_of_out_channel(chan);
+                v = Curry._1(f, fmt);
                 Format.pp_print_flush(fmt, --[ () ]--0);
                 return v;
               end));
 end
 
 function is_pos_pow(n) do
-  var E = Caml_exceptions.create("E");
+  E = Caml_exceptions.create("E");
   try do
-    var _c = 0;
-    var _n = n;
+    _c = 0;
+    _n = n;
     while(true) do
-      var n$1 = _n;
-      var c = _c;
+      n$1 = _n;
+      c = _c;
       if (n$1 <= 0) then do
         return -2;
       end else if (n$1 == 1) then do
@@ -74,7 +74,7 @@ end
 
 function failwithf(loc, fmt) do
   return Format.ksprintf((function (s) do
-                var s$1 = loc .. s;
+                s$1 = loc .. s;
                 throw [
                       Caml_builtin_exceptions.failure,
                       s$1
@@ -99,12 +99,12 @@ function dump(r) do
   if (typeof r == "number") then do
     return String(r);
   end else do
-    var get_fields = function (_acc, _n) do
+    get_fields = function (_acc, _n) do
       while(true) do
-        var n = _n;
-        var acc = _acc;
+        n = _n;
+        acc = _acc;
         if (n ~= 0) then do
-          var n$1 = n - 1 | 0;
+          n$1 = n - 1 | 0;
           _n = n$1;
           _acc = --[ :: ]--[
             r[n$1],
@@ -116,14 +116,14 @@ function dump(r) do
         end end 
       end;
     end;
-    var is_list = function (_r) do
+    is_list = function (_r) do
       while(true) do
-        var r = _r;
+        r = _r;
         if (typeof r == "number") then do
           return Caml_obj.caml_equal(r, 0);
         end else do
-          var s = #r;
-          var t = r.tag | 0;
+          s = #r;
+          t = r.tag | 0;
           if (t == 0 and s == 2) then do
             _r = r[1];
             continue ;
@@ -133,22 +133,22 @@ function dump(r) do
         end end 
       end;
     end;
-    var get_list = function (r) do
+    get_list = function (r) do
       if (typeof r == "number") then do
         return --[ [] ]--0;
       end else do
-        var h = r[0];
-        var t = get_list(r[1]);
+        h = r[0];
+        t = get_list(r[1]);
         return --[ :: ]--[
                 h,
                 t
               ];
       end end 
     end;
-    var s = #r;
-    var t = r.tag | 0;
+    s = #r;
+    t = r.tag | 0;
     if (is_list(r)) then do
-      var fields = get_list(r);
+      fields = get_list(r);
       return "[" .. ($$String.concat("; ", List.map(dump, fields)) .. "]");
     end else if (t ~= 0) then do
       if (t == Obj.lazy_tag) then do
@@ -156,10 +156,10 @@ function dump(r) do
       end else if (t == Obj.closure_tag) then do
         return "<closure>";
       end else if (t == Obj.object_tag) then do
-        var fields$1 = get_fields(--[ [] ]--0, s);
-        var match;
+        fields$1 = get_fields(--[ [] ]--0, s);
+        match;
         if (fields$1) then do
-          var match$1 = fields$1[1];
+          match$1 = fields$1[1];
           if (match$1) then do
             match = --[ tuple ]--[
               fields$1[0],
@@ -192,7 +192,7 @@ function dump(r) do
       end else if (t == Obj.forward_tag) then do
         return "<forward>";
       end else if (t < Obj.no_scan_tag) then do
-        var fields$2 = get_fields(--[ [] ]--0, s);
+        fields$2 = get_fields(--[ [] ]--0, s);
         return "Tag" .. (String(t) .. (" (" .. ($$String.concat(", ", List.map(dump, fields$2)) .. ")")));
       end else if (t == Obj.string_tag) then do
         return "\"" .. ($$String.escaped(r) .. "\"");
@@ -207,7 +207,7 @@ function dump(r) do
       end else if (t == Obj.double_array_tag) then do
         return "[|" .. ($$String.concat(";", $$Array.to_list($$Array.map(Pervasives.string_of_float, r))) .. "|]");
       end else do
-        var name = Curry._2(Printf.sprintf(--[ Format ]--[
+        name = Curry._2(Printf.sprintf(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
                       "unknown: tag ",
                       --[ Int ]--Block.__(4, [
@@ -230,13 +230,13 @@ function dump(r) do
         return "<" .. (name .. ">");
       end end  end  end  end  end  end  end  end  end  end  end  end 
     end else do
-      var fields$3 = get_fields(--[ [] ]--0, s);
+      fields$3 = get_fields(--[ [] ]--0, s);
       return "(" .. ($$String.concat(", ", List.map(dump, fields$3)) .. ")");
     end end  end 
   end end 
 end
 
-var dump$1 = dump;
+dump$1 = dump;
 
 function pp_any(fmt, v) do
   return Curry._1(Format.fprintf(fmt, --[ Format ]--[
@@ -258,8 +258,8 @@ function pp_any(fmt, v) do
 end
 
 function hash_variant(s) do
-  var accu = 0;
-  for var i = 0 , #s - 1 | 0 , 1 do
+  accu = 0;
+  for i = 0 , #s - 1 | 0 , 1 do
     accu = Caml_int32.imul(223, accu) + Caml_string.get(s, i) | 0;
   end
   accu = accu & 2147483647;

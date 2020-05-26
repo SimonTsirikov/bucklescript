@@ -1,9 +1,9 @@
 'use strict';
 
-var U = require("U");
-var VV = require("VV");
-var List = require("../../lib/js/list.js");
-var Curry = require("../../lib/js/curry.js");
+U = require("U");
+VV = require("VV");
+List = require("../../lib/js/list.js");
+Curry = require("../../lib/js/curry.js");
 
 function f(x) do
   return (function (param) do
@@ -23,18 +23,18 @@ function f2(param) do
   return 3 + param | 0;
 end
 
-var g = 7;
+g = 7;
 
 function ff(param) do
   return U.test_primit(3, param);
 end
 
-var fff = VV.test_primit2(3);
+fff = VV.test_primit2(3);
 
 function length_aux(_len, _param) do
   while(true) do
-    var param = _param;
-    var len = _len;
+    param = _param;
+    len = _len;
     if (param) then do
       _param = param[1];
       _len = len + 1 | 0;
@@ -45,109 +45,109 @@ function length_aux(_len, _param) do
   end;
 end
 
-var length = List.length;
+length = List.length;
 
-var compare_lengths = List.compare_lengths;
+compare_lengths = List.compare_lengths;
 
-var compare_length_with = List.compare_length_with;
+compare_length_with = List.compare_length_with;
 
-var cons = List.cons;
+cons = List.cons;
 
-var hd = List.hd;
+hd = List.hd;
 
-var tl = List.tl;
+tl = List.tl;
 
-var nth = List.nth;
+nth = List.nth;
 
-var nth_opt = List.nth_opt;
+nth_opt = List.nth_opt;
 
-var rev = List.rev;
+rev = List.rev;
 
-var init = List.init;
+init = List.init;
 
-var append = List.append;
+append = List.append;
 
-var rev_append = List.rev_append;
+rev_append = List.rev_append;
 
-var concat = List.concat;
+concat = List.concat;
 
-var flatten = List.flatten;
+flatten = List.flatten;
 
-var iter = List.iter;
+iter = List.iter;
 
-var iteri = List.iteri;
+iteri = List.iteri;
 
-var map = List.map;
+map = List.map;
 
-var mapi = List.mapi;
+mapi = List.mapi;
 
-var rev_map = List.rev_map;
+rev_map = List.rev_map;
 
-var fold_left = List.fold_left;
+fold_left = List.fold_left;
 
-var fold_right = List.fold_right;
+fold_right = List.fold_right;
 
-var iter2 = List.iter2;
+iter2 = List.iter2;
 
-var map2 = List.map2;
+map2 = List.map2;
 
-var rev_map2 = List.rev_map2;
+rev_map2 = List.rev_map2;
 
-var fold_left2 = List.fold_left2;
+fold_left2 = List.fold_left2;
 
-var fold_right2 = List.fold_right2;
+fold_right2 = List.fold_right2;
 
-var for_all = List.for_all;
+for_all = List.for_all;
 
-var exists = List.exists;
+exists = List.exists;
 
-var for_all2 = List.for_all2;
+for_all2 = List.for_all2;
 
-var exists2 = List.exists2;
+exists2 = List.exists2;
 
-var mem = List.mem;
+mem = List.mem;
 
-var memq = List.memq;
+memq = List.memq;
 
-var find = List.find;
+find = List.find;
 
-var find_opt = List.find_opt;
+find_opt = List.find_opt;
 
-var filter = List.filter;
+filter = List.filter;
 
-var find_all = List.find_all;
+find_all = List.find_all;
 
-var partition = List.partition;
+partition = List.partition;
 
-var assoc = List.assoc;
+assoc = List.assoc;
 
-var assoc_opt = List.assoc_opt;
+assoc_opt = List.assoc_opt;
 
-var assq = List.assq;
+assq = List.assq;
 
-var assq_opt = List.assq_opt;
+assq_opt = List.assq_opt;
 
-var mem_assoc = List.mem_assoc;
+mem_assoc = List.mem_assoc;
 
-var mem_assq = List.mem_assq;
+mem_assq = List.mem_assq;
 
-var remove_assoc = List.remove_assoc;
+remove_assoc = List.remove_assoc;
 
-var remove_assq = List.remove_assq;
+remove_assq = List.remove_assq;
 
-var split = List.split;
+split = List.split;
 
-var combine = List.combine;
+combine = List.combine;
 
-var sort = List.sort;
+sort = List.sort;
 
-var stable_sort = List.stable_sort;
+stable_sort = List.stable_sort;
 
-var fast_sort = List.fast_sort;
+fast_sort = List.fast_sort;
 
-var sort_uniq = List.sort_uniq;
+sort_uniq = List.sort_uniq;
 
-var merge = List.merge;
+merge = List.merge;
 
 exports.f = f;
 exports.f1 = f1;

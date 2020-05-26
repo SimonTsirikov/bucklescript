@@ -1,18 +1,18 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var $$Buffer = require("../../lib/js/buffer.js");
-var Format = require("../../lib/js/format.js");
-var Mt_global = require("./mt_global.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Float_array = require("./float_array.js");
+Mt = require("./mt.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+$$Buffer = require("../../lib/js/buffer.js");
+Format = require("../../lib/js/format.js");
+Mt_global = require("./mt_global.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Float_array = require("./float_array.js");
 
-var buf = $$Buffer.create(50);
+buf = $$Buffer.create(50);
 
-var fmt = Format.formatter_of_buffer(buf);
+fmt = Format.formatter_of_buffer(buf);
 
 function print_float(f) do
   return Curry._1(Format.fprintf(fmt, --[ Format ]--[
@@ -34,7 +34,7 @@ function print_newline(param) do
             ]);
 end
 
-var s = do
+s = do
   f: 1.0
 end;
 
@@ -42,9 +42,9 @@ print_float(1.0);
 
 print_newline(--[ () ]--0);
 
-var b = Float_array.small_float_array(12);
+b = Float_array.small_float_array(12);
 
-var c = Float_array.longer_float_array(34);
+c = Float_array.longer_float_array(34);
 
 function print_array(a) do
   $$Array.iter((function (f) do
@@ -58,11 +58,11 @@ print_array(b[0]);
 
 print_array(c[0]);
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 

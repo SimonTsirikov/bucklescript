@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
+Mt = require("./mt.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -30,7 +30,7 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var jsMapperConstantArray = [
+jsMapperConstantArray = [
   --[ tuple ]--[
     67,
     "C"
@@ -87,7 +87,7 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 29, characters 5-12", $$Array.map(
       "x"
     ]);
 
-var jsMapperConstantArray$1 = [
+jsMapperConstantArray$1 = [
   0,
   3,
   4,
@@ -264,7 +264,7 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 89, characters 5-12", $$Array.map(
 
 Mt.from_pair_suites("Ast_js_mapper_poly_test", suites.contents);
 
-var $plus$great = $$Array.append;
+$plus$great = $$Array.append;
 
 exports.suites = suites;
 exports.test_id = test_id;

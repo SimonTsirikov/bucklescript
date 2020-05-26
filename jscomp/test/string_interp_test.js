@@ -30,14 +30,14 @@ function ffff(a_1, a_2) do
 end
 
 function f(x, y) do
-  var sum = x + y | 0;
+  sum = x + y | 0;
   console.log(" " .. (String(x) .. (" + " .. (String(y) .. (" = " .. (String(sum) .. " "))))));
   return --[ () ]--0;
 end
 
-var world = "世界";
+world = "世界";
 
-var hello_world = "你好，" .. (String(world) .. "");
+hello_world = "你好，" .. (String(world) .. "");
 
 function test1(x0) do
   return "你好，" .. (String(x0) .. "");
@@ -51,19 +51,19 @@ function test5(x) do
   return "" .. (String(x) .. "");
 end
 
-var b = "test";
+b = "test";
 
-var c = "test";
+c = "test";
 
-var a = "test";
+a = "test";
 
-var a0 = "Hello \\";
+a0 = "Hello \\";
 
-var a1 = "Hello \\";
+a1 = "Hello \\";
 
-var a2 = "Hello \$";
+a2 = "Hello \$";
 
-var a4 = "";
+a4 = "";
 
 exports.hi2 = hi2;
 exports.hi = hi;

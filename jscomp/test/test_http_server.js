@@ -1,11 +1,11 @@
 'use strict';
 
-var Http = require("http");
+Http = require("http");
 
-var hostname = "127.0.0.1";
+hostname = "127.0.0.1";
 
 function create_server(http) do
-  var server = http.createServer((function (req, resp) do
+  server = http.createServer((function (req, resp) do
           resp.statusCode = 200;
           resp.setHeader("Content-Type", "text/plain");
           return resp.end("Hello world\n");

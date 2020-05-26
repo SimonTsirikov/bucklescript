@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Int32 = require("../../lib/js/int32.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Int32 = require("../../lib/js/int32.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -30,27 +30,27 @@ function eq(loc, x, y) do
 end
 
 function f(x) do
-  for var i = 0 , 100 , 1 do
+  for i = 0 , 100 , 1 do
     console.log(".");
   end
   return -x | 0;
 end
 
 function int32_f(x) do
-  for var i = 0 , 100 , 1 do
+  for i = 0 , 100 , 1 do
     console.log(".");
   end
   return -x | 0;
 end
 
 function nint32_f(x) do
-  for var i = 0 , 100 , 1 do
+  for i = 0 , 100 , 1 do
     console.log(".");
   end
   return -x;
 end
 
-var u = f(-2147483648);
+u = f(-2147483648);
 
 eq("File \"gpr_977_test.ml\", line 32, characters 5-12", -2147483648, u);
 
@@ -60,7 +60,7 @@ eq("File \"gpr_977_test.ml\", line 34, characters 5-12", nint32_f(-2147483648), 
 
 Mt.from_pair_suites("Gpr_977_test", suites.contents);
 
-var min_32_int = -2147483648;
+min_32_int = -2147483648;
 
 exports.suites = suites;
 exports.test_id = test_id;

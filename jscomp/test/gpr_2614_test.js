@@ -1,8 +1,8 @@
 'use strict';
 
-var Caml_option = require("../../lib/js/caml_option.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
-var v = do
+v = do
   "Content-Type": 3,
   l: 2,
   open: 2
@@ -10,9 +10,9 @@ end;
 
 v["Content-Type"];
 
-var b = v.l;
+b = v.l;
 
-var c = v.open;
+c = v.open;
 
 function ff(param) do
   v["Content-Type"] = 3;
@@ -20,10 +20,10 @@ function ff(param) do
   return --[ () ]--0;
 end
 
-var partial_arg = "x";
+partial_arg = "x";
 
 function h0(param) do
-  var tmp = do
+  tmp = do
     hi: 2
   end;
   if (partial_arg ~= undefined) then do
@@ -33,12 +33,12 @@ function h0(param) do
   return tmp;
 end
 
-var h1 = do
+h1 = do
   "lo-x": "x",
   hi: 2
 end;
 
-var h2 = do
+h2 = do
   hi: 2
 end;
 
@@ -48,7 +48,7 @@ function hh(x) do
 end
 
 function hh2(x) do
-  var match = x["lo-x"];
+  match = x["lo-x"];
   if (match ~= undefined) then do
     return 1;
   end else do
@@ -56,13 +56,13 @@ function hh2(x) do
   end end 
 end
 
-var u = do
+u = do
   "xx-yy": 3
 end;
 
-var match = u["xx-yy"];
+match = u["xx-yy"];
 
-var v$1 = match ~= undefined and match or 0;
+v$1 = match ~= undefined and match or 0;
 
 exports.b = b;
 exports.c = c;

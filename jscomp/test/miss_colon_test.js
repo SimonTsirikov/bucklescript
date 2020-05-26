@@ -1,14 +1,14 @@
 'use strict';
 
-var Block = require("../../lib/js/block.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
+Block = require("../../lib/js/block.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
 
 function $plus$colon(_f, _g) do
   while(true) do
-    var g = _g;
-    var f = _f;
+    g = _g;
+    f = _f;
     if (!f.tag) then do
-      var n = f[0];
+      n = f[0];
       if (g.tag) then do
         if (n == 0) then do
           return g;
@@ -48,14 +48,14 @@ end
 
 function $star$colon(_f, _g) do
   while(true) do
-    var g = _g;
-    var f = _f;
-    var exit = 0;
-    var exit$1 = 0;
+    g = _g;
+    f = _f;
+    exit = 0;
+    exit$1 = 0;
     if (f.tag) then do
       exit$1 = 3;
     end else do
-      var n = f[0];
+      n = f[0];
       if (g.tag) then do
         if (n ~= 0) then do
           exit$1 = 3;

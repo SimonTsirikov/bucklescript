@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -30,7 +30,7 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var expected = --[ tuple ]--[
+expected = --[ tuple ]--[
   false,
   false,
   true,
@@ -41,7 +41,7 @@ var expected = --[ tuple ]--[
   0
 ];
 
-var expected2 = --[ tuple ]--[
+expected2 = --[ tuple ]--[
   false,
   false,
   true,
@@ -52,7 +52,7 @@ var expected2 = --[ tuple ]--[
   0
 ];
 
-var u = --[ tuple ]--[
+u = --[ tuple ]--[
   false,
   false,
   true,

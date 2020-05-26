@@ -1,6 +1,6 @@
 'use strict';
 
-var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
+Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
 function tToJs(param) do
   return do
@@ -18,7 +18,7 @@ function tFromJs(param) do
         end;
 end
 
-var u = tToJs(do
+u = tToJs(do
       xx: 3,
       yy: "x",
       zz: --[ tuple ]--[
@@ -40,12 +40,12 @@ tFromJs(do
     end);
 
 function searchForSureExists(xs, k) do
-  var _i = 0;
-  var xs$1 = xs;
-  var k$1 = k;
+  _i = 0;
+  xs$1 = xs;
+  k$1 = k;
   while(true) do
-    var i = _i;
-    var match = xs$1[i];
+    i = _i;
+    match = xs$1[i];
     if (match[0] == k$1) then do
       return match[1];
     end else do
@@ -55,7 +55,7 @@ function searchForSureExists(xs, k) do
   end;
 end
 
-var jsMapperConstantArray = [
+jsMapperConstantArray = [
   0,
   3,
   4,
@@ -70,7 +70,7 @@ function aFromJs(param) do
   return Js_mapperRt.fromIntAssert(4, jsMapperConstantArray, param);
 end
 
-var jsMapperConstantArray$1 = [
+jsMapperConstantArray$1 = [
   --[ tuple ]--[
     21902,
     "b0"

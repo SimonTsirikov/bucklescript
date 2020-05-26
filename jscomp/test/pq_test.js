@@ -1,13 +1,13 @@
 'use strict';
 
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
 
 function insert(queue, prio, elt) do
   if (queue) then do
-    var right = queue[3];
-    var left = queue[2];
-    var e = queue[1];
-    var p = queue[0];
+    right = queue[3];
+    left = queue[2];
+    e = queue[1];
+    p = queue[0];
     if (prio <= p) then do
       return --[ Node ]--[
               prio,
@@ -33,16 +33,16 @@ function insert(queue, prio, elt) do
   end end 
 end
 
-var Queue_is_empty = Caml_exceptions.create("Pq_test.PrioQueue.Queue_is_empty");
+Queue_is_empty = Caml_exceptions.create("Pq_test.PrioQueue.Queue_is_empty");
 
 function remove_top(param) do
   if (param) then do
-    var left = param[2];
+    left = param[2];
     if (param[3]) then do
       if (left) then do
-        var right = param[3];
-        var rprio = right[0];
-        var lprio = left[0];
+        right = param[3];
+        rprio = right[0];
+        lprio = left[0];
         if (lprio <= rprio) then do
           return --[ Node ]--[
                   lprio,
@@ -81,7 +81,7 @@ function extract(queue) do
   end end 
 end
 
-var PrioQueue = do
+PrioQueue = do
   empty: --[ Empty ]--0,
   insert: insert,
   Queue_is_empty: Queue_is_empty,

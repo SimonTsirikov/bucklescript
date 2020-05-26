@@ -1,19 +1,19 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Curry = require("../../lib/js/curry.js");
-var Hashtbl = require("../../lib/js/hashtbl.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_format = require("../../lib/js/caml_format.js");
-var Caml_option = require("../../lib/js/caml_option.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+List = require("../../lib/js/list.js");
+Curry = require("../../lib/js/curry.js");
+Hashtbl = require("../../lib/js/hashtbl.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_format = require("../../lib/js/caml_format.js");
+Caml_option = require("../../lib/js/caml_option.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var equal = Caml_obj.caml_equal;
+equal = Caml_obj.caml_equal;
 
-var compare = Caml_obj.caml_compare;
+compare = Caml_obj.caml_compare;
 
-var hash = Hashtbl.hash;
+hash = Hashtbl.hash;
 
 function of_int(x) do
   return --[ `Atom ]--[
@@ -162,13 +162,13 @@ function $great$great$eq(e, f) do
 end
 
 function map_opt(f, l) do
-  var _acc = --[ [] ]--0;
-  var _l = l;
+  _acc = --[ [] ]--0;
+  _l = l;
   while(true) do
-    var l$1 = _l;
-    var acc = _acc;
+    l$1 = _l;
+    acc = _acc;
     if (l$1) then do
-      var match = Curry._1(f, l$1[0]);
+      match = Curry._1(f, l$1[0]);
       if (match ~= undefined) then do
         _l = l$1[1];
         _acc = --[ :: ]--[
@@ -187,12 +187,12 @@ end
 
 function list_any(f, e) do
   if (e[0] >= 848054398) then do
-    var f$1 = f;
-    var _l = e[1];
+    f$1 = f;
+    _l = e[1];
     while(true) do
-      var l = _l;
+      l = _l;
       if (l) then do
-        var res = Curry._1(f$1, l[0]);
+        res = Curry._1(f$1, l[0]);
         if (res ~= undefined) then do
           return res;
         end else do
@@ -209,15 +209,15 @@ end
 
 function list_all(f, e) do
   if (e[0] >= 848054398) then do
-    var f$1 = f;
-    var _acc = --[ [] ]--0;
-    var _l = e[1];
+    f$1 = f;
+    _acc = --[ [] ]--0;
+    _l = e[1];
     while(true) do
-      var l = _l;
-      var acc = _acc;
+      l = _l;
+      acc = _acc;
       if (l) then do
-        var tl = l[1];
-        var match = Curry._1(f$1, l[0]);
+        tl = l[1];
+        match = Curry._1(f$1, l[0]);
         _l = tl;
         if (match ~= undefined) then do
           _acc = --[ :: ]--[
@@ -272,9 +272,9 @@ function to_pair(e) do
   if (typeof e == "number" or e[0] ~= 848054398) then do
     return ;
   end else do
-    var match = e[1];
+    match = e[1];
     if (match) then do
-      var match$1 = match[1];
+      match$1 = match[1];
       if (match$1 and !match$1[1]) then do
         return --[ tuple ]--[
                 match[0],
@@ -291,7 +291,7 @@ end
 
 function to_pair_with(f1, f2, e) do
   return $great$great$eq(to_pair(e), (function (param) do
-                var y = param[1];
+                y = param[1];
                 return $great$great$eq(Curry._1(f1, param[0]), (function (x) do
                               return $great$great$eq(Curry._1(f2, y), (function (y) do
                                             return --[ tuple ]--[
@@ -307,11 +307,11 @@ function to_triple(e) do
   if (typeof e == "number" or e[0] ~= 848054398) then do
     return ;
   end else do
-    var match = e[1];
+    match = e[1];
     if (match) then do
-      var match$1 = match[1];
+      match$1 = match[1];
       if (match$1) then do
-        var match$2 = match$1[1];
+        match$2 = match$1[1];
         if (match$2 and !match$2[1]) then do
           return --[ tuple ]--[
                   match[0],
@@ -332,8 +332,8 @@ end
 
 function to_triple_with(f1, f2, f3, e) do
   return $great$great$eq(to_triple(e), (function (param) do
-                var z = param[2];
-                var y = param[1];
+                z = param[2];
+                y = param[1];
                 return $great$great$eq(Curry._1(f1, param[0]), (function (x) do
                               return $great$great$eq(Curry._1(f2, y), (function (y) do
                                             return $great$great$eq(Curry._1(f3, z), (function (z) do
@@ -364,12 +364,12 @@ end
 
 function get_field(name, e) do
   if (e[0] >= 848054398) then do
-    var name$1 = name;
-    var _l = e[1];
+    name$1 = name;
+    _l = e[1];
     while(true) do
-      var l = _l;
+      l = _l;
       if (l) then do
-        var match = l[0];
+        match = l[0];
         if (typeof match == "number") then do
           _l = l[1];
           continue ;
@@ -377,9 +377,9 @@ function get_field(name, e) do
           _l = l[1];
           continue ;
         end else do
-          var match$1 = match[1];
+          match$1 = match[1];
           if (match$1) then do
-            var match$2 = match$1[0];
+            match$2 = match$1[0];
             if (typeof match$2 == "number") then do
               _l = l[1];
               continue ;
@@ -387,7 +387,7 @@ function get_field(name, e) do
               _l = l[1];
               continue ;
             end else do
-              var match$3 = match$1[1];
+              match$3 = match$1[1];
               if (match$3) then do
                 if (match$3[1]) then do
                   _l = l[1];
@@ -422,9 +422,9 @@ end
 
 function _get_field_list(name, _l) do
   while(true) do
-    var l = _l;
+    l = _l;
     if (l) then do
-      var match = l[0];
+      match = l[0];
       if (typeof match == "number") then do
         _l = l[1];
         continue ;
@@ -432,9 +432,9 @@ function _get_field_list(name, _l) do
         _l = l[1];
         continue ;
       end else do
-        var match$1 = match[1];
+        match$1 = match[1];
         if (match$1) then do
-          var match$2 = match$1[0];
+          match$2 = match$1[0];
           if (typeof match$2 == "number") then do
             _l = l[1];
             continue ;
@@ -467,9 +467,9 @@ end
 
 function _get_variant(s, args, _l) do
   while(true) do
-    var l = _l;
+    l = _l;
     if (l) then do
-      var match = l[0];
+      match = l[0];
       if (Caml_obj.caml_equal(s, match[0])) then do
         return Curry._1(match[1], args);
       end else do
@@ -484,9 +484,9 @@ end
 
 function get_variant(l, e) do
   if (e[0] >= 848054398) then do
-    var match = e[1];
+    match = e[1];
     if (match) then do
-      var match$1 = match[0];
+      match$1 = match[0];
       if (typeof match$1 == "number" or match$1[0] ~= 726615281) then do
         return ;
       end else do
@@ -511,12 +511,12 @@ function get_exn(e) do
   end end 
 end
 
-var of_unit = --[ `List ]--[
+of_unit = --[ `List ]--[
   848054398,
   --[ [] ]--0
 ];
 
-var Traverse = do
+Traverse = do
   map_opt: map_opt,
   list_any: list_any,
   list_all: list_all,

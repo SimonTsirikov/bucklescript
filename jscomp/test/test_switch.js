@@ -1,7 +1,7 @@
 'use strict';
 
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
 
 function f(param) do
   if (typeof param == "number") then do

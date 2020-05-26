@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end
 
-var x = List.length(--[ :: ]--[
+x = List.length(--[ :: ]--[
       1,
       --[ :: ]--[
         2,
@@ -27,7 +27,7 @@ var x = List.length(--[ :: ]--[
       ]
     ]);
 
-var jsMapperConstantArray = [
+jsMapperConstantArray = [
   --[ tuple ]--[
     -988374136,
     "http"
@@ -54,7 +54,7 @@ eq("File \"re_first_test.re\", line 18, characters 3-10", adapterToJs(--[ idb ]-
 
 Mt.from_pair_suites("Re_first_test", suites.contents);
 
-var u = 3;
+u = 3;
 
 exports.suites = suites;
 exports.test_id = test_id;

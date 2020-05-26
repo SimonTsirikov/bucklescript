@@ -1,7 +1,7 @@
 'use strict';
 
 
-var $$default = "xx";
+$$default = "xx";
 
 exports.$$default = $$default;
 exports.default = $$default;

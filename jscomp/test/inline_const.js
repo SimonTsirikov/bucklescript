@@ -1,17 +1,17 @@
 'use strict';
 
 
-var N = { };
+N = { };
 
 function N1($star) do
   return { };
 end
 
-var x = true;
+x = true;
 
-var h = "hello";
+h = "hello";
 
-var hh = "hellohello";
+hh = "hellohello";
 
 exports.x = x;
 exports.N = N;

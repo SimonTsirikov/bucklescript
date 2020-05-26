@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Printf = require("../../lib/js/printf.js");
-var Mt_global = require("./mt_global.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Printf = require("../../lib/js/printf.js");
+Mt_global = require("./mt_global.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -18,7 +18,7 @@ function eq(f, param) do
   return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
 end
 
-var s = Curry._1(Printf.sprintf(--[ Format ]--[
+s = Curry._1(Printf.sprintf(--[ Format ]--[
           --[ Format_arg ]--Block.__(13, [
               undefined,
               --[ String_ty ]--Block.__(1, [--[ End_of_fmtty ]--0]),
@@ -44,7 +44,7 @@ eq("File \"sprintf_reg_test.ml\", line 8, characters 5-12", --[ tuple ]--[
       "%s."
     ]);
 
-var s$1 = Curry._2(Printf.sprintf(--[ Format ]--[
+s$1 = Curry._2(Printf.sprintf(--[ Format ]--[
           --[ Int ]--Block.__(4, [
               --[ Int_i ]--3,
               --[ No_padding ]--0,

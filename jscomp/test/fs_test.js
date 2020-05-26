@@ -1,21 +1,21 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Fs = require("fs");
-var Path = require("path");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Fs = require("fs");
+Path = require("path");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
 function eq(loc, param) do
-  var y = param[1];
-  var x = param[0];
+  y = param[1];
+  x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
@@ -32,21 +32,21 @@ function eq(loc, param) do
   return --[ () ]--0;
 end
 
-var match = typeof __filename == "undefined" and undefined or __filename;
+match = typeof __filename == "undefined" and undefined or __filename;
 
-var current_file = match ~= undefined and match or "<Not Node JS>";
+current_file = match ~= undefined and match or "<Not Node JS>";
 
-var match$1 = typeof __dirname == "undefined" and undefined or __dirname;
+match$1 = typeof __dirname == "undefined" and undefined or __dirname;
 
-var current_dir_name = match$1 ~= undefined and match$1 or "<Not Node Js>";
+current_dir_name = match$1 ~= undefined and match$1 or "<Not Node Js>";
 
 Fs.readFileSync(current_file, "utf8");
 
 Fs.readdirSync(current_dir_name);
 
-var pathobj = Path.parse(current_dir_name);
+pathobj = Path.parse(current_dir_name);
 
-var match$2 = typeof module == "undefined" and undefined or module;
+match$2 = typeof module == "undefined" and undefined or module;
 
 if (match$2 ~= undefined) then do
   console.log(--[ tuple ]--[

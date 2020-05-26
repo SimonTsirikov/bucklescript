@@ -1,21 +1,21 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Printf = require("../../lib/js/printf.js");
-var Caml_float = require("../../lib/js/caml_float.js");
-var Caml_int64 = require("../../lib/js/caml_int64.js");
-var Pervasives = require("../../lib/js/pervasives.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Printf = require("../../lib/js/printf.js");
+Caml_float = require("../../lib/js/caml_float.js");
+Caml_int64 = require("../../lib/js/caml_int64.js");
+Pervasives = require("../../lib/js/pervasives.js");
 
-var one_float = --[ int64 ]--[
+one_float = --[ int64 ]--[
   --[ hi ]--1072693248,
   --[ lo ]--0
 ];
 
-var int32_pairs = [
+int32_pairs = [
   --[ tuple ]--[
     32,
     4.48415508583941463e-44
@@ -28,8 +28,8 @@ var int32_pairs = [
 
 function from_pairs(pair) do
   return List.concat($$Array.to_list($$Array.mapi((function (i, param) do
-                        var f = param[1];
-                        var i32 = param[0];
+                        f = param[1];
+                        i32 = param[0];
                         return --[ :: ]--[
                                 --[ tuple ]--[
                                   Curry._1(Printf.sprintf(--[ Format ]--[
@@ -78,7 +78,7 @@ function from_pairs(pair) do
                       end), int32_pairs)));
 end
 
-var suites = Pervasives.$at(--[ :: ]--[
+suites = Pervasives.$at(--[ :: ]--[
       --[ tuple ]--[
         "one",
         (function (param) do

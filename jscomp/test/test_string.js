@@ -1,8 +1,8 @@
 'use strict';
 
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
-var Caml_string = require("../../lib/js/caml_string.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
+Caml_string = require("../../lib/js/caml_string.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(param) do
   local ___conditional___=(param);
@@ -46,7 +46,7 @@ function h(s, b) do
   end end 
 end
 
-var v = 2;
+v = 2;
 
 exports.f = f;
 exports.a = a;

@@ -1,29 +1,29 @@
 'use strict';
 
 
-var obj = do
+obj = do
   hi: (function (x) do
       console.log(x);
       return --[ () ]--0;
     end)
 end;
 
-var eventObj = do
+eventObj = do
   events: [],
   empty: (function () do
       return --[ () ]--0;
     end),
   push: (function (a) do
-      var self = this ;
+      self = this ;
       self.events[0] = a;
       return --[ () ]--0;
     end),
   needRebuild: (function () do
-      var self = this ;
+      self = this ;
       return #self.events ~= 0;
     end),
   currentEvents: (function () do
-      var self = this ;
+      self = this ;
       return self.events;
     end)
 end;

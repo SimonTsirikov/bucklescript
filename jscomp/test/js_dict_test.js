@@ -1,8 +1,8 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Js_dict = require("../../lib/js/js_dict.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Js_dict = require("../../lib/js/js_dict.js");
 
 function obj(param) do
   return do
@@ -11,7 +11,7 @@ function obj(param) do
         end;
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "empty",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -21,7 +21,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "get",
     (function (param) do
@@ -64,7 +64,7 @@ var suites_001 = --[ :: ]--[
         --[ tuple ]--[
           "set",
           (function (param) do
-              var o = do
+              o = do
                 foo: 43,
                 bar: 86
               end;
@@ -240,7 +240,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

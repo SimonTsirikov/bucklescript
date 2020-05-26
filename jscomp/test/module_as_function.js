@@ -1,8 +1,8 @@
 'use strict';
 
-var Nightmare = require("nightmare");
+Nightmare = require("nightmare");
 
-var v = Nightmare(do
+v = Nightmare(do
       show: true
     end);
 

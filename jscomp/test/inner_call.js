@@ -1,6 +1,6 @@
 'use strict';
 
-var Inner_define = require("./inner_define.js");
+Inner_define = require("./inner_define.js");
 
 console.log(Inner_define.N.add(1, 2));
 

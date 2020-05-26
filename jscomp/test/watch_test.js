@@ -1,6 +1,6 @@
 'use strict';
 
-var Fs = require("fs");
+Fs = require("fs");
 
 function test(path) do
   Fs.watch(path, do

@@ -1,11 +1,11 @@
 'use strict';
 
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_module = require("../../lib/js/caml_module.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_module = require("../../lib/js/caml_module.js");
 
-var PA = Caml_module.init_mod(--[ tuple ]--[
+PA = Caml_module.init_mod(--[ tuple ]--[
       "gpr_3931_test.ml",
       3,
       6
@@ -14,7 +14,7 @@ var PA = Caml_module.init_mod(--[ tuple ]--[
             "print"
           ]]]));
 
-var P = Caml_module.init_mod(--[ tuple ]--[
+P = Caml_module.init_mod(--[ tuple ]--[
       "gpr_3931_test.ml",
       11,
       6

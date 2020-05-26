@@ -1,21 +1,21 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var v = do
+v = do
   contents: 1
 end;
 
 v.contents = v.contents + 1 | 0;
 
-var a = v.contents;
+a = v.contents;
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -42,17 +42,17 @@ eq("File \"condition_compilation_test.ml\", line 99, characters 5-12", v.content
 
 Mt.from_pair_suites("Condition_compilation_test", suites.contents);
 
-var b = "u";
+b = "u";
 
-var buffer_size = 1;
+buffer_size = 1;
 
-var vv = 3;
+vv = 3;
 
-var version_gt_3 = true;
+version_gt_3 = true;
 
-var version = -1;
+version = -1;
 
-var ocaml_veriosn = "unknown";
+ocaml_veriosn = "unknown";
 
 exports.b = b;
 exports.buffer_size = buffer_size;

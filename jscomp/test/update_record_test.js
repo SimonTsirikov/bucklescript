@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -34,7 +34,7 @@ function eq(loc, x, y) do
 end
 
 function f(x) do
-  var y = Caml_obj.caml_obj_dup(x);
+  y = Caml_obj.caml_obj_dup(x);
   return do
           a0: 1,
           a1: y.a1,
@@ -54,7 +54,7 @@ eq("File \"update_record_test.ml\", line 30, characters 5-12", 1, f(do
           a5: 0
         end).a0);
 
-var val0 = do
+val0 = do
   "invalid_js_id'": 3,
   x: 2
 end;
@@ -66,7 +66,7 @@ function fff(x) do
         end;
 end
 
-var val1 = fff(val0);
+val1 = fff(val0);
 
 eq("File \"update_record_test.ml\", line 42, characters 5-12", 3, 3);
 

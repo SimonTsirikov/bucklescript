@@ -5,7 +5,7 @@ function f(obj) do
   if (typeof obj == "function") then do
     return --[ () ]--0;
   end else do
-    var size = obj.length;
+    size = obj.length;
     if (size ~= undefined) then do
       console.log(size);
       return --[ () ]--0;

@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -30,7 +30,7 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var y;
+y;
 
 try do
   throw [
@@ -39,7 +39,7 @@ try do
       ];
 end
 catch (raw_exn)do
-  var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+  exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   if (exn[0] == Caml_builtin_exceptions.failure) then do
     y = exn[1];
   end else do
@@ -47,9 +47,9 @@ catch (raw_exn)do
   end end 
 end
 
-var x;
+x;
 
-var exit = 0;
+exit = 0;
 
 try do
   throw [
@@ -58,7 +58,7 @@ try do
       ];
 end
 catch (raw_exn$1)do
-  var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
+  exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
   if (exn$1[0] == Caml_builtin_exceptions.failure) then do
     x = exn$1[1];
   end else do

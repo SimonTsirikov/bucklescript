@@ -1,6 +1,6 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
+Curry = require("../../lib/js/curry.js");
 
 function $pipe$great(x, f) do
   return Curry._1(f, x);
@@ -28,7 +28,7 @@ end
 
 function f(_x) do
   while(true) do
-    var x = _x;
+    x = _x;
     _x = x + 1 | 0;
     continue ;
   end;
@@ -36,8 +36,8 @@ end
 
 function ff(_x, _y) do
   while(true) do
-    var y = _y;
-    var x = _x;
+    y = _y;
+    x = _x;
     _y = x + 1 | 0;
     _x = y;
     continue ;
@@ -46,8 +46,8 @@ end
 
 function fff(_x, _y) do
   while(true) do
-    var y = _y;
-    var x = _x;
+    y = _y;
+    x = _x;
     _y = x;
     _x = y;
     continue ;

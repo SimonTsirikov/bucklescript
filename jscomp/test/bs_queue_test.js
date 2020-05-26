@@ -1,17 +1,17 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Belt_Array = require("../../lib/js/belt_Array.js");
-var Belt_MutableQueue = require("../../lib/js/belt_MutableQueue.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Curry = require("../../lib/js/curry.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Belt_Array = require("../../lib/js/belt_Array.js");
+Belt_MutableQueue = require("../../lib/js/belt_MutableQueue.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -38,7 +38,7 @@ function $plus$plus(q, x) do
   return q;
 end
 
-var q = Belt_MutableQueue.make(--[ () ]--0);
+q = Belt_MutableQueue.make(--[ () ]--0);
 
 if (!(Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), []) and q.length == 0)) then do
   throw [
@@ -227,7 +227,7 @@ if (!does_raise(Belt_MutableQueue.popExn, q)) then do
 end
  end 
 
-var q$1 = Belt_MutableQueue.make(--[ () ]--0);
+q$1 = Belt_MutableQueue.make(--[ () ]--0);
 
 if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q$1, 1), q$1)) ~= 1) then do
   throw [
@@ -289,7 +289,7 @@ if (q$1.length ~= 0) then do
 end
  end 
 
-var q$2 = Belt_MutableQueue.make(--[ () ]--0);
+q$2 = Belt_MutableQueue.make(--[ () ]--0);
 
 if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 1), q$2)) ~= 1) then do
   throw [
@@ -423,9 +423,9 @@ if (!does_raise(Belt_MutableQueue.peekExn, q$2)) then do
 end
  end 
 
-var q$3 = Belt_MutableQueue.make(--[ () ]--0);
+q$3 = Belt_MutableQueue.make(--[ () ]--0);
 
-for var i = 1 , 10 , 1 do
+for i = 1 , 10 , 1 do
   Belt_MutableQueue.add(q$3, i);
 end
 
@@ -481,13 +481,13 @@ if (Belt_MutableQueue.popExn(q$3) ~= 42) then do
 end
  end 
 
-var q1 = Belt_MutableQueue.make(--[ () ]--0);
+q1 = Belt_MutableQueue.make(--[ () ]--0);
 
-for var i$1 = 1 , 10 , 1 do
+for i$1 = 1 , 10 , 1 do
   Belt_MutableQueue.add(q1, i$1);
 end
 
-var q2 = Belt_MutableQueue.copy(q1);
+q2 = Belt_MutableQueue.copy(q1);
 
 if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1), [
         1,
@@ -559,7 +559,7 @@ if (q2.length ~= 10) then do
 end
  end 
 
-for var i$2 = 1 , 10 , 1 do
+for i$2 = 1 , 10 , 1 do
   if (Belt_MutableQueue.popExn(q1) ~= i$2) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
@@ -573,7 +573,7 @@ for var i$2 = 1 , 10 , 1 do
    end 
 end
 
-for var i$3 = 1 , 10 , 1 do
+for i$3 = 1 , 10 , 1 do
   if (Belt_MutableQueue.popExn(q2) ~= i$3) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
@@ -587,7 +587,7 @@ for var i$3 = 1 , 10 , 1 do
    end 
 end
 
-var q$4 = Belt_MutableQueue.make(--[ () ]--0);
+q$4 = Belt_MutableQueue.make(--[ () ]--0);
 
 if (q$4.length ~= 0) then do
   throw [
@@ -601,7 +601,7 @@ if (q$4.length ~= 0) then do
 end
  end 
 
-for var i$4 = 1 , 10 , 1 do
+for i$4 = 1 , 10 , 1 do
   Belt_MutableQueue.add(q$4, i$4);
   if (q$4.length ~= i$4) then do
     throw [
@@ -627,7 +627,7 @@ for var i$4 = 1 , 10 , 1 do
    end 
 end
 
-for var i$5 = 10 , 1 , -1 do
+for i$5 = 10 , 1 , -1 do
   if (q$4.length ~= i$5) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
@@ -677,13 +677,13 @@ if (q$4.length ~= 0) then do
 end
  end 
 
-var q$5 = Belt_MutableQueue.make(--[ () ]--0);
+q$5 = Belt_MutableQueue.make(--[ () ]--0);
 
-for var i$6 = 1 , 10 , 1 do
+for i$6 = 1 , 10 , 1 do
   Belt_MutableQueue.add(q$5, i$6);
 end
 
-var i$7 = do
+i$7 = do
   contents: 1
 end;
 
@@ -703,9 +703,9 @@ Belt_MutableQueue.forEach(q$5, (function (j) do
         return --[ () ]--0;
       end));
 
-var q1$1 = Belt_MutableQueue.make(--[ () ]--0);
+q1$1 = Belt_MutableQueue.make(--[ () ]--0);
 
-var q2$1 = Belt_MutableQueue.make(--[ () ]--0);
+q2$1 = Belt_MutableQueue.make(--[ () ]--0);
 
 if (q1$1.length ~= 0) then do
   throw [
@@ -805,11 +805,11 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$1), [])) then do
 end
  end 
 
-var q1$2 = Belt_MutableQueue.make(--[ () ]--0);
+q1$2 = Belt_MutableQueue.make(--[ () ]--0);
 
-var q2$2 = Belt_MutableQueue.make(--[ () ]--0);
+q2$2 = Belt_MutableQueue.make(--[ () ]--0);
 
-for var i$8 = 1 , 4 , 1 do
+for i$8 = 1 , 4 , 1 do
   Belt_MutableQueue.add(q1$2, i$8);
 end
 
@@ -921,11 +921,11 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$2), [
 end
  end 
 
-var q1$3 = Belt_MutableQueue.make(--[ () ]--0);
+q1$3 = Belt_MutableQueue.make(--[ () ]--0);
 
-var q2$3 = Belt_MutableQueue.make(--[ () ]--0);
+q2$3 = Belt_MutableQueue.make(--[ () ]--0);
 
-for var i$9 = 5 , 8 , 1 do
+for i$9 = 5 , 8 , 1 do
   Belt_MutableQueue.add(q2$3, i$9);
 end
 
@@ -1037,15 +1037,15 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$3), [
 end
  end 
 
-var q1$4 = Belt_MutableQueue.make(--[ () ]--0);
+q1$4 = Belt_MutableQueue.make(--[ () ]--0);
 
-var q2$4 = Belt_MutableQueue.make(--[ () ]--0);
+q2$4 = Belt_MutableQueue.make(--[ () ]--0);
 
-for var i$10 = 1 , 4 , 1 do
+for i$10 = 1 , 4 , 1 do
   Belt_MutableQueue.add(q1$4, i$10);
 end
 
-for var i$11 = 5 , 8 , 1 do
+for i$11 = 5 , 8 , 1 do
   Belt_MutableQueue.add(q2$4, i$11);
 end
 
@@ -1133,7 +1133,7 @@ if (!Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$4), [])) then do
 end
  end 
 
-var v = [
+v = [
   5,
   6,
   7,
@@ -1186,14 +1186,14 @@ end
 
 console.log("OK");
 
-var q$6 = Belt_MutableQueue.fromArray([
+q$6 = Belt_MutableQueue.fromArray([
       1,
       2,
       3,
       4
     ]);
 
-var q1$5 = Belt_MutableQueue.map(q$6, (function (x) do
+q1$5 = Belt_MutableQueue.map(q$6, (function (x) do
         return x - 1 | 0;
       end));
 
@@ -1204,11 +1204,11 @@ eq("File \"bs_queue_test.ml\", line 154, characters 5-12", Belt_MutableQueue.toA
       3
     ]);
 
-var q$7 = Belt_MutableQueue.fromArray([]);
+q$7 = Belt_MutableQueue.fromArray([]);
 
 b("File \"bs_queue_test.ml\", line 155, characters 4-11", q$7.length == 0);
 
-var q$8 = Belt_MutableQueue.map(Belt_MutableQueue.fromArray([]), (function (x) do
+q$8 = Belt_MutableQueue.map(Belt_MutableQueue.fromArray([]), (function (x) do
         return x + 1 | 0;
       end));
 
@@ -1216,7 +1216,7 @@ b("File \"bs_queue_test.ml\", line 156, characters 4-11", q$8.length == 0);
 
 Mt.from_pair_suites("Bs_queue_test", suites.contents);
 
-var Q = --[ alias ]--0;
+Q = --[ alias ]--0;
 
 exports.suites = suites;
 exports.test_id = test_id;

@@ -1,8 +1,8 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var React = require("react");
-var ReactDom = require("react-dom");
+Curry = require("../../lib/js/curry.js");
+React = require("react");
+ReactDom = require("react-dom");
 
 function fib(n) do
   if (n == 2 or n == 1) then do
@@ -13,8 +13,8 @@ function fib(n) do
 end
 
 function sum(n) do
-  var v = 0;
-  for var i = 0 , n , 1 do
+  v = 0;
+  for i = 0 , n , 1 do
     v = v + i | 0;
   end
   return v;

@@ -1,26 +1,26 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Bytes = require("../../lib/js/bytes.js");
-var Curry = require("../../lib/js/curry.js");
-var $$String = require("../../lib/js/string.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Caml_string = require("../../lib/js/caml_string.js");
-var Ext_bytes_test = require("./ext_bytes_test.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+List = require("../../lib/js/list.js");
+Bytes = require("../../lib/js/bytes.js");
+Curry = require("../../lib/js/curry.js");
+$$String = require("../../lib/js/string.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_string = require("../../lib/js/caml_string.js");
+Ext_bytes_test = require("./ext_bytes_test.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function split_by(keep_emptyOpt, is_delim, str) do
-  var keep_empty = keep_emptyOpt ~= undefined and keep_emptyOpt or false;
-  var len = #str;
-  var _acc = --[ [] ]--0;
-  var _last_pos = len;
-  var _pos = len - 1 | 0;
+  keep_empty = keep_emptyOpt ~= undefined and keep_emptyOpt or false;
+  len = #str;
+  _acc = --[ [] ]--0;
+  _last_pos = len;
+  _pos = len - 1 | 0;
   while(true) do
-    var pos = _pos;
-    var last_pos = _last_pos;
-    var acc = _acc;
+    pos = _pos;
+    last_pos = _last_pos;
+    acc = _acc;
     if (pos == -1) then do
       if (last_pos == 0 and !keep_empty) then do
         return acc;
@@ -31,9 +31,9 @@ function split_by(keep_emptyOpt, is_delim, str) do
               ];
       end end 
     end else if (Curry._1(is_delim, Caml_string.get(str, pos))) then do
-      var new_len = (last_pos - pos | 0) - 1 | 0;
+      new_len = (last_pos - pos | 0) - 1 | 0;
       if (new_len ~= 0 or keep_empty) then do
-        var v = $$String.sub(str, pos + 1 | 0, new_len);
+        v = $$String.sub(str, pos + 1 | 0, new_len);
         _pos = pos - 1 | 0;
         _last_pos = pos;
         _acc = --[ :: ]--[
@@ -54,12 +54,12 @@ function split_by(keep_emptyOpt, is_delim, str) do
 end
 
 function trim(s) do
-  var i = 0;
-  var j = #s;
+  i = 0;
+  j = #s;
   while((function () do
-          var tmp = false;
+          tmp = false;
           if (i < j) then do
-            var u = s.charCodeAt(i);
+            u = s.charCodeAt(i);
             tmp = u == --[ "\t" ]--9 or u == --[ "\n" ]--10 or u == --[ " " ]--32;
           end
            end 
@@ -67,11 +67,11 @@ function trim(s) do
         end)()) do
     i = i + 1 | 0;
   end;
-  var k = j - 1 | 0;
+  k = j - 1 | 0;
   while((function () do
-          var tmp = false;
+          tmp = false;
           if (k >= i) then do
-            var u = s.charCodeAt(k);
+            u = s.charCodeAt(k);
             tmp = u == --[ "\t" ]--9 or u == --[ "\n" ]--10 or u == --[ " " ]--32;
           end
            end 
@@ -103,10 +103,10 @@ function quick_split_by_ws(str) do
 end
 
 function starts_with(s, beg) do
-  var beg_len = #beg;
-  var s_len = #s;
+  beg_len = #beg;
+  s_len = #s;
   if (beg_len <= s_len) then do
-    var i = 0;
+    i = 0;
     while(i < beg_len and s[i] == beg[i]) do
       i = i + 1 | 0;
     end;
@@ -117,16 +117,16 @@ function starts_with(s, beg) do
 end
 
 function ends_with_index(s, end_) do
-  var s_finish = #s - 1 | 0;
-  var s_beg = #end_ - 1 | 0;
+  s_finish = #s - 1 | 0;
+  s_beg = #end_ - 1 | 0;
   if (s_beg > s_finish) then do
     return -1;
   end else do
-    var _j = s_finish;
-    var _k = s_beg;
+    _j = s_finish;
+    _k = s_beg;
     while(true) do
-      var k = _k;
-      var j = _j;
+      k = _k;
+      j = _j;
       if (k < 0) then do
         return j + 1 | 0;
       end else if (s[j] == end_[k]) then do
@@ -145,7 +145,7 @@ function ends_with(s, end_) do
 end
 
 function ends_with_then_chop(s, beg) do
-  var i = ends_with_index(s, beg);
+  i = ends_with_index(s, beg);
   if (i >= 0) then do
     return $$String.sub(s, 0, i);
   end
@@ -159,11 +159,11 @@ function check_any_suffix_case(s, suffixes) do
 end
 
 function check_any_suffix_case_then_chop(s, suffixes) do
-  var _suffixes = suffixes;
+  _suffixes = suffixes;
   while(true) do
-    var suffixes$1 = _suffixes;
+    suffixes$1 = _suffixes;
     if (suffixes$1) then do
-      var id = ends_with_index(s, suffixes$1[0]);
+      id = ends_with_index(s, suffixes$1[0]);
       if (id >= 0) then do
         return $$String.sub(s, 0, id);
       end else do
@@ -177,15 +177,15 @@ function check_any_suffix_case_then_chop(s, suffixes) do
 end
 
 function escaped(s) do
-  var needs_escape = function (_i) do
+  needs_escape = function (_i) do
     while(true) do
-      var i = _i;
+      i = _i;
       if (i >= #s) then do
         return false;
       end else do
-        var match = s.charCodeAt(i);
+        match = s.charCodeAt(i);
         if (match >= 32) then do
-          var switcher = match - 34 | 0;
+          switcher = match - 34 | 0;
           if (switcher > 58 or switcher < 0) then do
             if (switcher >= 93) then do
               return true;
@@ -214,7 +214,7 @@ end
 
 function unsafe_for_all_range(s, _start, finish, p) do
   while(true) do
-    var start = _start;
+    start = _start;
     if (start > finish) then do
       return true;
     end else if (Curry._1(p, s.charCodeAt(start))) then do
@@ -227,7 +227,7 @@ function unsafe_for_all_range(s, _start, finish, p) do
 end
 
 function for_all_range(s, start, finish, p) do
-  var len = #s;
+  len = #s;
   if (start < 0 or finish >= len) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
@@ -247,9 +247,9 @@ function is_empty(s) do
 end
 
 function repeat(n, s) do
-  var len = #s;
-  var res = Caml_bytes.caml_create_bytes(Caml_int32.imul(n, len));
-  for var i = 0 , n - 1 | 0 , 1 do
+  len = #s;
+  res = Caml_bytes.caml_create_bytes(Caml_int32.imul(n, len));
+  for i = 0 , n - 1 | 0 , 1 do
     $$String.blit(s, 0, res, Caml_int32.imul(i, len), len);
   end
   return Bytes.to_string(res);
@@ -257,9 +257,9 @@ end
 
 function unsafe_is_sub(sub, i, s, j, len) do
   if ((j + len | 0) <= #s) then do
-    var _k = 0;
+    _k = 0;
     while(true) do
-      var k = _k;
+      k = _k;
       if (k == len) then do
         return true;
       end else if (sub[i + k | 0] == s[j + k | 0]) then do
@@ -274,13 +274,13 @@ function unsafe_is_sub(sub, i, s, j, len) do
   end end 
 end
 
-var Local_exit = Caml_exceptions.create("Ext_string_test.Local_exit");
+Local_exit = Caml_exceptions.create("Ext_string_test.Local_exit");
 
 function find(startOpt, sub, s) do
-  var start = startOpt ~= undefined and startOpt or 0;
-  var n = #sub;
-  var s_len = #s;
-  var i = start;
+  start = startOpt ~= undefined and startOpt or 0;
+  n = #sub;
+  s_len = #s;
+  i = start;
   try do
     while((i + n | 0) <= s_len) do
       if (unsafe_is_sub(sub, 0, s, i, n)) then do
@@ -305,7 +305,7 @@ function contain_substring(s, sub) do
 end
 
 function non_overlap_count(sub, s) do
-  var sub_len = #sub;
+  sub_len = #sub;
   if (#sub == 0) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
@@ -313,12 +313,12 @@ function non_overlap_count(sub, s) do
         ];
   end
    end 
-  var _acc = 0;
-  var _off = 0;
+  _acc = 0;
+  _off = 0;
   while(true) do
-    var off = _off;
-    var acc = _acc;
-    var i = find(off, sub, s);
+    off = _off;
+    acc = _acc;
+    i = find(off, sub, s);
     if (i < 0) then do
       return acc;
     end else do
@@ -330,8 +330,8 @@ function non_overlap_count(sub, s) do
 end
 
 function rfind(sub, s) do
-  var n = #sub;
-  var i = #s - n | 0;
+  n = #sub;
+  i = #s - n | 0;
   try do
     while(i >= 0) do
       if (unsafe_is_sub(sub, 0, s, i, n)) then do
@@ -352,9 +352,9 @@ function rfind(sub, s) do
 end
 
 function tail_from(s, x) do
-  var len = #s;
+  len = #s;
   if (x > len) then do
-    var s$1 = "Ext_string_test.tail_from " .. (s .. (" : " .. String(x)));
+    s$1 = "Ext_string_test.tail_from " .. (s .. (" : " .. String(x)));
     throw [
           Caml_builtin_exceptions.invalid_argument,
           s$1
@@ -365,13 +365,13 @@ function tail_from(s, x) do
 end
 
 function digits_of_str(s, offset, x) do
-  var _i = 0;
-  var _acc = 0;
-  var s$1 = s;
-  var x$1 = x;
+  _i = 0;
+  _acc = 0;
+  s$1 = s;
+  x$1 = x;
   while(true) do
-    var acc = _acc;
-    var i = _i;
+    acc = _acc;
+    i = _i;
     if (i >= x$1) then do
       return acc;
     end else do
@@ -383,13 +383,13 @@ function digits_of_str(s, offset, x) do
 end
 
 function starts_with_and_number(s, offset, beg) do
-  var beg_len = #beg;
-  var s_len = #s;
-  var finish_delim = offset + beg_len | 0;
+  beg_len = #beg;
+  s_len = #s;
+  finish_delim = offset + beg_len | 0;
   if (finish_delim > s_len) then do
     return -1;
   end else do
-    var i = offset;
+    i = offset;
     while(i < finish_delim and s[i] == beg[i - offset | 0]) do
       i = i + 1 | 0;
     end;
@@ -407,16 +407,16 @@ end
 
 function unsafe_concat_with_length(len, sep, l) do
   if (l) then do
-    var hd = l[0];
-    var r = Caml_bytes.caml_create_bytes(len);
-    var hd_len = #hd;
-    var sep_len = #sep;
+    hd = l[0];
+    r = Caml_bytes.caml_create_bytes(len);
+    hd_len = #hd;
+    sep_len = #sep;
     Caml_bytes.caml_blit_string(hd, 0, r, 0, hd_len);
-    var pos = do
+    pos = do
       contents: hd_len
     end;
     List.iter((function (s) do
-            var s_len = #s;
+            s_len = #s;
             Caml_bytes.caml_blit_string(sep, 0, r, pos.contents, sep_len);
             pos.contents = pos.contents + sep_len | 0;
             Caml_bytes.caml_blit_string(s, 0, r, pos.contents, s_len);
@@ -431,7 +431,7 @@ end
 
 function rindex_rec(s, _i, c) do
   while(true) do
-    var i = _i;
+    i = _i;
     if (i < 0 or s.charCodeAt(i) == c) then do
       return i;
     end else do
@@ -443,7 +443,7 @@ end
 
 function rindex_rec_opt(s, _i, c) do
   while(true) do
-    var i = _i;
+    i = _i;
     if (i < 0) then do
       return ;
     end else if (s.charCodeAt(i) == c) then do
@@ -464,9 +464,9 @@ function rindex_opt(s, c) do
 end
 
 function is_valid_module_file(s) do
-  var len = #s;
+  len = #s;
   if (len > 0) then do
-    var match = s.charCodeAt(0);
+    match = s.charCodeAt(0);
     if (match >= 91) then do
       if (match > 122 or match < 97) then do
         return false;
@@ -478,7 +478,7 @@ function is_valid_module_file(s) do
      end  end 
     return unsafe_for_all_range(s, 1, len - 1 | 0, (function (x) do
                   if (x >= 65) then do
-                    var switcher = x - 91 | 0;
+                    switcher = x - 91 | 0;
                     if (switcher > 5 or switcher < 0) then do
                       return switcher < 32;
                     end else do
@@ -496,9 +496,9 @@ function is_valid_module_file(s) do
 end
 
 function is_valid_npm_package_name(s) do
-  var len = #s;
+  len = #s;
   if (len <= 214 and len > 0) then do
-    var match = s.charCodeAt(0);
+    match = s.charCodeAt(0);
     if (match >= 97) then do
       if (match >= 123) then do
         return false;
@@ -527,7 +527,7 @@ function is_valid_npm_package_name(s) do
 end
 
 function is_valid_source_name(name) do
-  var match = check_any_suffix_case_then_chop(name, --[ :: ]--[
+  match = check_any_suffix_case_then_chop(name, --[ :: ]--[
         ".ml",
         --[ :: ]--[
           ".re",
@@ -553,7 +553,7 @@ end
 
 function unsafe_no_char(x, ch, _i, last_idx) do
   while(true) do
-    var i = _i;
+    i = _i;
     if (i > last_idx) then do
       return true;
     end else if (x.charCodeAt(i) ~= ch) then do
@@ -567,7 +567,7 @@ end
 
 function unsafe_no_char_idx(x, ch, _i, last_idx) do
   while(true) do
-    var i = _i;
+    i = _i;
     if (i > last_idx) then do
       return -1;
     end else if (x.charCodeAt(i) ~= ch) then do
@@ -580,7 +580,7 @@ function unsafe_no_char_idx(x, ch, _i, last_idx) do
 end
 
 function no_char(x, ch, i, len) do
-  var str_len = #x;
+  str_len = #x;
   if (i < 0 or i >= str_len or len >= str_len) then do
     throw [
           Caml_builtin_exceptions.invalid_argument,
@@ -600,7 +600,7 @@ function no_slash_idx(x) do
 end
 
 function replace_slash_backward(x) do
-  var len = #x;
+  len = #x;
   if (unsafe_no_char(x, --[ "/" ]--47, 0, len - 1 | 0)) then do
     return x;
   end else do
@@ -615,7 +615,7 @@ function replace_slash_backward(x) do
 end
 
 function replace_backward_slash(x) do
-  var len = #x;
+  len = #x;
   if (unsafe_no_char(x, --[ "\\" ]--92, 0, len - 1 | 0)) then do
     return x;
   end else do
@@ -629,29 +629,29 @@ function replace_backward_slash(x) do
   end end 
 end
 
-var empty = "";
+empty = "";
 
-var single_space = " ";
+single_space = " ";
 
 function concat_array(sep, s) do
-  var s_len = #s;
+  s_len = #s;
   if (s_len ~= 0) then do
     if (s_len ~= 1) then do
-      var sep_len = #sep;
-      var len = 0;
-      for var i = 0 , s_len - 1 | 0 , 1 do
+      sep_len = #sep;
+      len = 0;
+      for i = 0 , s_len - 1 | 0 , 1 do
         len = len + #s[i] | 0;
       end
-      var target = Caml_bytes.caml_create_bytes(len + Caml_int32.imul(s_len - 1 | 0, sep_len) | 0);
-      var hd = s[0];
-      var hd_len = #hd;
+      target = Caml_bytes.caml_create_bytes(len + Caml_int32.imul(s_len - 1 | 0, sep_len) | 0);
+      hd = s[0];
+      hd_len = #hd;
       Caml_bytes.caml_blit_string(hd, 0, target, 0, hd_len);
-      var current_offset = hd_len;
-      for var i$1 = 1 , s_len - 1 | 0 , 1 do
+      current_offset = hd_len;
+      for i$1 = 1 , s_len - 1 | 0 , 1 do
         Caml_bytes.caml_blit_string(sep, 0, target, current_offset, sep_len);
-        var cur = s[i$1];
-        var cur_len = #cur;
-        var new_off_set = current_offset + sep_len | 0;
+        cur = s[i$1];
+        cur_len = #cur;
+        new_off_set = current_offset + sep_len | 0;
         Caml_bytes.caml_blit_string(cur, 0, target, new_off_set, cur_len);
         current_offset = new_off_set + cur_len | 0;
       end
@@ -665,11 +665,11 @@ function concat_array(sep, s) do
 end
 
 function concat3(a, b, c) do
-  var a_len = #a;
-  var b_len = #b;
-  var c_len = #c;
-  var len = (a_len + b_len | 0) + c_len | 0;
-  var target = Caml_bytes.caml_create_bytes(len);
+  a_len = #a;
+  b_len = #b;
+  c_len = #c;
+  len = (a_len + b_len | 0) + c_len | 0;
+  target = Caml_bytes.caml_create_bytes(len);
   Caml_bytes.caml_blit_string(a, 0, target, 0, a_len);
   Caml_bytes.caml_blit_string(b, 0, target, a_len, b_len);
   Caml_bytes.caml_blit_string(c, 0, target, a_len + b_len | 0, c_len);
@@ -677,12 +677,12 @@ function concat3(a, b, c) do
 end
 
 function concat4(a, b, c, d) do
-  var a_len = #a;
-  var b_len = #b;
-  var c_len = #c;
-  var d_len = #d;
-  var len = ((a_len + b_len | 0) + c_len | 0) + d_len | 0;
-  var target = Caml_bytes.caml_create_bytes(len);
+  a_len = #a;
+  b_len = #b;
+  c_len = #c;
+  d_len = #d;
+  len = ((a_len + b_len | 0) + c_len | 0) + d_len | 0;
+  target = Caml_bytes.caml_create_bytes(len);
   Caml_bytes.caml_blit_string(a, 0, target, 0, a_len);
   Caml_bytes.caml_blit_string(b, 0, target, a_len, b_len);
   Caml_bytes.caml_blit_string(c, 0, target, a_len + b_len | 0, c_len);
@@ -691,13 +691,13 @@ function concat4(a, b, c, d) do
 end
 
 function concat5(a, b, c, d, e) do
-  var a_len = #a;
-  var b_len = #b;
-  var c_len = #c;
-  var d_len = #d;
-  var e_len = #e;
-  var len = (((a_len + b_len | 0) + c_len | 0) + d_len | 0) + e_len | 0;
-  var target = Caml_bytes.caml_create_bytes(len);
+  a_len = #a;
+  b_len = #b;
+  c_len = #c;
+  d_len = #d;
+  e_len = #e;
+  len = (((a_len + b_len | 0) + c_len | 0) + d_len | 0) + e_len | 0;
+  target = Caml_bytes.caml_create_bytes(len);
   Caml_bytes.caml_blit_string(a, 0, target, 0, a_len);
   Caml_bytes.caml_blit_string(b, 0, target, a_len, b_len);
   Caml_bytes.caml_blit_string(c, 0, target, a_len + b_len | 0, c_len);
@@ -723,15 +723,15 @@ function inter4(a, b, c, d) do
             ]);
 end
 
-var check_suffix_case = ends_with;
+check_suffix_case = ends_with;
 
-var check_suffix_case_then_chop = ends_with_then_chop;
+check_suffix_case_then_chop = ends_with_then_chop;
 
-var single_colon = ":";
+single_colon = ":";
 
-var parent_dir_lit = "..";
+parent_dir_lit = "..";
 
-var current_dir_lit = ".";
+current_dir_lit = ".";
 
 exports.split_by = split_by;
 exports.trim = trim;

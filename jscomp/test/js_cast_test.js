@@ -1,19 +1,19 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var counter = do
+counter = do
   contents: 0
 end;
 
 function add_test(loc, test) do
   counter.contents = counter.contents + 1 | 0;
-  var id = loc .. (" id " .. String(counter.contents));
+  id = loc .. (" id " .. String(counter.contents));
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       id,

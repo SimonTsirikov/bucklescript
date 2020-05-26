@@ -1,21 +1,21 @@
 'use strict';
 
 
-var a10 = "hello world";
+a10 = "hello world";
 
-var v = 1;
+v = 1;
 
-var a21 = "hello worldnothello worldnot";
+a21 = "hello worldnothello worldnot";
 
 function ff(param) do
   return "cool test hello worldnothello worldnothello";
 end
 
-var a23 = ff(--[ () ]--0);
+a23 = ff(--[ () ]--0);
 
-var a15 = a10;
+a15 = a10;
 
-var b15 = 111;
+b15 = 111;
 
 exports.a15 = a15;
 exports.b15 = b15;

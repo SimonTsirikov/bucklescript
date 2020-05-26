@@ -1,29 +1,29 @@
 'use strict';
 
-var Arg = require("../../lib/js/arg.js");
-var Block = require("../../lib/js/block.js");
+Arg = require("../../lib/js/arg.js");
+Block = require("../../lib/js/block.js");
 
 function anno_fun(arg) do
   return --[ () ]--0;
 end
 
-var usage_msg = "Usage:\n";
+usage_msg = "Usage:\n";
 
-var compile = do
+compile = do
   contents: false
 end;
 
-var test = do
+test = do
   contents: true
 end;
 
-var arg_spec_000 = --[ tuple ]--[
+arg_spec_000 = --[ tuple ]--[
   "-c",
   --[ Set ]--Block.__(2, [compile]),
   " Compile"
 ];
 
-var arg_spec_001 = --[ :: ]--[
+arg_spec_001 = --[ :: ]--[
   --[ tuple ]--[
     "-d",
     --[ Clear ]--Block.__(3, [test]),
@@ -32,7 +32,7 @@ var arg_spec_001 = --[ :: ]--[
   --[ [] ]--0
 ];
 
-var arg_spec = --[ :: ]--[
+arg_spec = --[ :: ]--[
   arg_spec_000,
   arg_spec_001
 ];

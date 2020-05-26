@@ -17,7 +17,7 @@ function f3(x) do
   end end 
 end
 
-var v0 = --[ () ]--0;
+v0 = --[ () ]--0;
 
 exports.f0 = f0;
 exports.f1 = f1;

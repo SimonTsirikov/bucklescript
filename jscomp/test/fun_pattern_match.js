@@ -1,8 +1,8 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Curry = require("../../lib/js/curry.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(param, v) do
   return ((((param.x0 + param.x1 | 0) + param.x2 | 0) + param.x3 | 0) + param.x4 | 0) + v | 0;
@@ -13,9 +13,9 @@ function f2(param, param$1) do
 end
 
 function f3(param) do
-  var lhs = param.rank;
+  lhs = param.rank;
   return (function (param) do
-      var rhs = param.rank;
+      rhs = param.rank;
       if (typeof lhs == "number") then do
         throw [
               Caml_builtin_exceptions.assert_failure,
@@ -43,9 +43,9 @@ function f3(param) do
 end
 
 function f4(param) do
-  var lhs = param.rank;
+  lhs = param.rank;
   return (function (param) do
-      var rhs = param.rank;
+      rhs = param.rank;
       if (typeof lhs == "number") then do
         throw [
               Caml_builtin_exceptions.assert_failure,
@@ -72,7 +72,7 @@ function f4(param) do
     end);
 end
 
-var x = --[ `A ]--[
+x = --[ `A ]--[
   65,
   r
 ];
@@ -81,9 +81,9 @@ function r(param) do
   return x;
 end
 
-var match = r(--[ () ]--0);
+match = r(--[ () ]--0);
 
-var v = Curry._1(match[1], --[ () ]--0);
+v = Curry._1(match[1], --[ () ]--0);
 
 console.log(v);
 

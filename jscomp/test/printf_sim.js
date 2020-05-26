@@ -1,8 +1,8 @@
 'use strict';
 
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Printf = require("../../lib/js/printf.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Printf = require("../../lib/js/printf.js");
 
 Curry._1(Printf.printf(--[ Format ]--[
           --[ Int64 ]--Block.__(7, [

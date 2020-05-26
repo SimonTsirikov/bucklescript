@@ -1,7 +1,7 @@
 'use strict';
 
 
-var v = do
+v = do
   contents: 0
 end;
 
@@ -17,12 +17,12 @@ function fib(n) do
   end end 
 end
 
-var x = do
+x = do
   contents: 3
 end;
 
 while((function () do
-        var y = 3;
+        y = 3;
         console.log(String(x.contents));
         y = y + 1 | 0;
         x.contents = x.contents + 1 | 0;

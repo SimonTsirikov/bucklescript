@@ -1,17 +1,17 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var $$Array = require("../../lib/js/array.js");
-var Belt_Array = require("../../lib/js/belt_Array.js");
-var Belt_SetInt = require("../../lib/js/belt_SetInt.js");
-var Array_data_util = require("./array_data_util.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+$$Array = require("../../lib/js/array.js");
+Belt_Array = require("../../lib/js/belt_Array.js");
+Belt_SetInt = require("../../lib/js/belt_SetInt.js");
+Array_data_util = require("./array_data_util.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -41,7 +41,7 @@ b("File \"bs_set_int_test.ml\", line 17, characters 4-11", $eq$star([
           1
         ]));
 
-var u = Belt_SetInt.intersect(Belt_SetInt.fromArray([
+u = Belt_SetInt.intersect(Belt_SetInt.fromArray([
           1,
           2,
           3
@@ -65,21 +65,21 @@ function revRange(i, j) do
                           end)))));
 end
 
-var v = Belt_SetInt.fromArray($$Array.append(range(100, 1000), revRange(400, 1500)));
+v = Belt_SetInt.fromArray($$Array.append(range(100, 1000), revRange(400, 1500)));
 
-var i = range(100, 1500);
+i = range(100, 1500);
 
 b("File \"bs_set_int_test.ml\", line 36, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray(i), v));
 
-var match = Belt_SetInt.partition(v, (function (x) do
+match = Belt_SetInt.partition(v, (function (x) do
         return x % 3 == 0;
       end));
 
-var l = Belt_SetInt.empty;
+l = Belt_SetInt.empty;
 
-var r = Belt_SetInt.empty;
+r = Belt_SetInt.empty;
 
-for var i$1 = 100 , 1500 , 1 do
+for i$1 = 100 , 1500 , 1 do
   if (i$1 % 3 == 0) then do
     l = Belt_SetInt.add(l, i$1);
   end else do
@@ -87,51 +87,51 @@ for var i$1 = 100 , 1500 , 1 do
   end end 
 end
 
-var nl = l;
+nl = l;
 
-var nr = r;
+nr = r;
 
 b("File \"bs_set_int_test.ml\", line 47, characters 4-11", Belt_SetInt.eq(match[0], nl));
 
 b("File \"bs_set_int_test.ml\", line 48, characters 4-11", Belt_SetInt.eq(match[1], nr));
 
-var i$2 = range(50, 100);
+i$2 = range(50, 100);
 
-var s = Belt_SetInt.intersect(Belt_SetInt.fromArray(range(1, 100)), Belt_SetInt.fromArray(range(50, 200)));
+s = Belt_SetInt.intersect(Belt_SetInt.fromArray(range(1, 100)), Belt_SetInt.fromArray(range(50, 200)));
 
 b("File \"bs_set_int_test.ml\", line 51, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray(i$2), s));
 
-var i$3 = range(1, 200);
+i$3 = range(1, 200);
 
-var s$1 = Belt_SetInt.union(Belt_SetInt.fromArray(range(1, 100)), Belt_SetInt.fromArray(range(50, 200)));
+s$1 = Belt_SetInt.union(Belt_SetInt.fromArray(range(1, 100)), Belt_SetInt.fromArray(range(50, 200)));
 
 b("File \"bs_set_int_test.ml\", line 54, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray(i$3), s$1));
 
-var i$4 = range(1, 49);
+i$4 = range(1, 49);
 
-var s$2 = Belt_SetInt.diff(Belt_SetInt.fromArray(range(1, 100)), Belt_SetInt.fromArray(range(50, 200)));
+s$2 = Belt_SetInt.diff(Belt_SetInt.fromArray(range(1, 100)), Belt_SetInt.fromArray(range(50, 200)));
 
 b("File \"bs_set_int_test.ml\", line 57, characters 6-13", Belt_SetInt.eq(Belt_SetInt.fromArray(i$4), s$2));
 
-var i$5 = revRange(50, 100);
+i$5 = revRange(50, 100);
 
-var s$3 = Belt_SetInt.intersect(Belt_SetInt.fromArray(revRange(1, 100)), Belt_SetInt.fromArray(revRange(50, 200)));
+s$3 = Belt_SetInt.intersect(Belt_SetInt.fromArray(revRange(1, 100)), Belt_SetInt.fromArray(revRange(50, 200)));
 
 b("File \"bs_set_int_test.ml\", line 60, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray(i$5), s$3));
 
-var i$6 = revRange(1, 200);
+i$6 = revRange(1, 200);
 
-var s$4 = Belt_SetInt.union(Belt_SetInt.fromArray(revRange(1, 100)), Belt_SetInt.fromArray(revRange(50, 200)));
+s$4 = Belt_SetInt.union(Belt_SetInt.fromArray(revRange(1, 100)), Belt_SetInt.fromArray(revRange(50, 200)));
 
 b("File \"bs_set_int_test.ml\", line 63, characters 4-11", Belt_SetInt.eq(Belt_SetInt.fromArray(i$6), s$4));
 
-var i$7 = revRange(1, 49);
+i$7 = revRange(1, 49);
 
-var s$5 = Belt_SetInt.diff(Belt_SetInt.fromArray(revRange(1, 100)), Belt_SetInt.fromArray(revRange(50, 200)));
+s$5 = Belt_SetInt.diff(Belt_SetInt.fromArray(revRange(1, 100)), Belt_SetInt.fromArray(revRange(50, 200)));
 
 b("File \"bs_set_int_test.ml\", line 66, characters 6-13", Belt_SetInt.eq(Belt_SetInt.fromArray(i$7), s$5));
 
-var ss = [
+ss = [
   1,
   222,
   3,
@@ -142,7 +142,7 @@ var ss = [
   -1
 ];
 
-var v$1 = Belt_SetInt.fromArray([
+v$1 = Belt_SetInt.fromArray([
       1,
       222,
       3,
@@ -153,9 +153,9 @@ var v$1 = Belt_SetInt.fromArray([
       -1
     ]);
 
-var minv = Belt_SetInt.minUndefined(v$1);
+minv = Belt_SetInt.minUndefined(v$1);
 
-var maxv = Belt_SetInt.maxUndefined(v$1);
+maxv = Belt_SetInt.maxUndefined(v$1);
 
 function approx(loc, x, y) do
   return b(loc, x == y);
@@ -171,73 +171,73 @@ approx("File \"bs_set_int_test.ml\", line 75, characters 9-16", -1, minv);
 
 approx("File \"bs_set_int_test.ml\", line 76, characters 9-16", 222, maxv);
 
-var v$2 = Belt_SetInt.remove(v$1, 3);
+v$2 = Belt_SetInt.remove(v$1, 3);
 
-var minv$1 = Belt_SetInt.minimum(v$2);
+minv$1 = Belt_SetInt.minimum(v$2);
 
-var maxv$1 = Belt_SetInt.maximum(v$2);
+maxv$1 = Belt_SetInt.maximum(v$2);
 
 eq("File \"bs_set_int_test.ml\", line 79, characters 5-12", minv$1, -1);
 
 eq("File \"bs_set_int_test.ml\", line 80, characters 5-12", maxv$1, 222);
 
-var v$3 = Belt_SetInt.remove(v$2, 222);
+v$3 = Belt_SetInt.remove(v$2, 222);
 
-var minv$2 = Belt_SetInt.minimum(v$3);
+minv$2 = Belt_SetInt.minimum(v$3);
 
-var maxv$2 = Belt_SetInt.maximum(v$3);
+maxv$2 = Belt_SetInt.maximum(v$3);
 
 eq("File \"bs_set_int_test.ml\", line 83, characters 5-12", minv$2, -1);
 
 eq("File \"bs_set_int_test.ml\", line 84, characters 5-12", maxv$2, 33);
 
-var v$4 = Belt_SetInt.remove(v$3, -1);
+v$4 = Belt_SetInt.remove(v$3, -1);
 
-var minv$3 = Belt_SetInt.minimum(v$4);
+minv$3 = Belt_SetInt.minimum(v$4);
 
-var maxv$3 = Belt_SetInt.maximum(v$4);
+maxv$3 = Belt_SetInt.maximum(v$4);
 
 eq("File \"bs_set_int_test.ml\", line 87, characters 5-12", minv$3, 0);
 
 eq("File \"bs_set_int_test.ml\", line 88, characters 5-12", maxv$3, 33);
 
-var v$5 = Belt_SetInt.remove(v$4, 0);
+v$5 = Belt_SetInt.remove(v$4, 0);
 
-var v$6 = Belt_SetInt.remove(v$5, 33);
+v$6 = Belt_SetInt.remove(v$5, 33);
 
-var v$7 = Belt_SetInt.remove(v$6, 2);
+v$7 = Belt_SetInt.remove(v$6, 2);
 
-var v$8 = Belt_SetInt.remove(v$7, 3);
+v$8 = Belt_SetInt.remove(v$7, 3);
 
-var v$9 = Belt_SetInt.remove(v$8, 4);
+v$9 = Belt_SetInt.remove(v$8, 4);
 
-var v$10 = Belt_SetInt.remove(v$9, 1);
+v$10 = Belt_SetInt.remove(v$9, 1);
 
 b("File \"bs_set_int_test.ml\", line 95, characters 4-11", Belt_SetInt.isEmpty(v$10));
 
-var v$11 = Belt_Array.makeByAndShuffle(1000000, (function (i) do
+v$11 = Belt_Array.makeByAndShuffle(1000000, (function (i) do
         return i;
       end));
 
-var u$1 = Belt_SetInt.fromArray(v$11);
+u$1 = Belt_SetInt.fromArray(v$11);
 
 Belt_SetInt.checkInvariantInternal(u$1);
 
-var firstHalf = Belt_Array.slice(v$11, 0, 2000);
+firstHalf = Belt_Array.slice(v$11, 0, 2000);
 
-var xx = Belt_Array.reduce(firstHalf, u$1, Belt_SetInt.remove);
+xx = Belt_Array.reduce(firstHalf, u$1, Belt_SetInt.remove);
 
 Belt_SetInt.checkInvariantInternal(u$1);
 
 b("File \"bs_set_int_test.ml\", line 106, characters 4-11", Belt_SetInt.eq(Belt_SetInt.union(Belt_SetInt.fromArray(firstHalf), xx), u$1));
 
-var aa = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 100));
+aa = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 100));
 
-var bb = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 200));
+bb = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 200));
 
-var cc = Belt_SetInt.fromArray(Array_data_util.randomRange(120, 200));
+cc = Belt_SetInt.fromArray(Array_data_util.randomRange(120, 200));
 
-var dd = Belt_SetInt.union(aa, cc);
+dd = Belt_SetInt.union(aa, cc);
 
 b("File \"bs_set_int_test.ml\", line 113, characters 4-11", Belt_SetInt.subset(aa, bb));
 
@@ -251,15 +251,15 @@ b("File \"bs_set_int_test.ml\", line 117, characters 4-11", Belt_SetInt.add(dd, 
 
 b("File \"bs_set_int_test.ml\", line 118, characters 4-11", !Belt_SetInt.subset(Belt_SetInt.add(dd, 201), bb));
 
-var aa$1 = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 100));
+aa$1 = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 100));
 
-var bb$1 = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 100));
+bb$1 = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 100));
 
-var cc$1 = Belt_SetInt.add(bb$1, 101);
+cc$1 = Belt_SetInt.add(bb$1, 101);
 
-var dd$1 = Belt_SetInt.remove(bb$1, 99);
+dd$1 = Belt_SetInt.remove(bb$1, 99);
 
-var ee = Belt_SetInt.add(dd$1, 101);
+ee = Belt_SetInt.add(dd$1, 101);
 
 b("File \"bs_set_int_test.ml\", line 127, characters 4-11", Belt_SetInt.eq(aa$1, bb$1));
 
@@ -269,19 +269,19 @@ b("File \"bs_set_int_test.ml\", line 129, characters 4-11", !Belt_SetInt.eq(dd$1
 
 b("File \"bs_set_int_test.ml\", line 130, characters 4-11", !Belt_SetInt.eq(bb$1, ee));
 
-var a1 = Belt_SetInt.mergeMany(Belt_SetInt.empty, Array_data_util.randomRange(0, 100));
+a1 = Belt_SetInt.mergeMany(Belt_SetInt.empty, Array_data_util.randomRange(0, 100));
 
-var a2 = Belt_SetInt.removeMany(a1, Array_data_util.randomRange(40, 100));
+a2 = Belt_SetInt.removeMany(a1, Array_data_util.randomRange(40, 100));
 
-var a3 = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 39));
+a3 = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 39));
 
-var match$1 = Belt_SetInt.split(a1, 40);
+match$1 = Belt_SetInt.split(a1, 40);
 
-var match$2 = match$1[0];
+match$2 = match$1[0];
 
-var a5 = match$2[1];
+a5 = match$2[1];
 
-var a4 = match$2[0];
+a4 = match$2[0];
 
 b("File \"bs_set_int_test.ml\", line 138, characters 4-11", Belt_SetInt.eq(a1, Belt_SetInt.fromArray(Array_data_util.randomRange(0, 100))));
 
@@ -291,17 +291,17 @@ b("File \"bs_set_int_test.ml\", line 140, characters 4-11", match$1[1]);
 
 b("File \"bs_set_int_test.ml\", line 141, characters 4-11", Belt_SetInt.eq(a3, a4));
 
-var a6 = Belt_SetInt.remove(Belt_SetInt.removeMany(a1, Array_data_util.randomRange(0, 39)), 40);
+a6 = Belt_SetInt.remove(Belt_SetInt.removeMany(a1, Array_data_util.randomRange(0, 39)), 40);
 
 b("File \"bs_set_int_test.ml\", line 143, characters 4-11", Belt_SetInt.eq(a5, a6));
 
-var a7 = Belt_SetInt.remove(a1, 40);
+a7 = Belt_SetInt.remove(a1, 40);
 
-var match$3 = Belt_SetInt.split(a7, 40);
+match$3 = Belt_SetInt.split(a7, 40);
 
-var match$4 = match$3[0];
+match$4 = match$3[0];
 
-var a9 = match$4[1];
+a9 = match$4[1];
 
 b("File \"bs_set_int_test.ml\", line 146, characters 4-11", !match$3[1]);
 
@@ -309,17 +309,17 @@ b("File \"bs_set_int_test.ml\", line 147, characters 4-11", Belt_SetInt.eq(a4, m
 
 b("File \"bs_set_int_test.ml\", line 148, characters 4-11", Belt_SetInt.eq(a5, a9));
 
-var a10 = Belt_SetInt.removeMany(a9, Array_data_util.randomRange(42, 2000));
+a10 = Belt_SetInt.removeMany(a9, Array_data_util.randomRange(42, 2000));
 
 eq("File \"bs_set_int_test.ml\", line 150, characters 5-12", Belt_SetInt.size(a10), 1);
 
-var a11 = Belt_SetInt.removeMany(a9, Array_data_util.randomRange(0, 2000));
+a11 = Belt_SetInt.removeMany(a9, Array_data_util.randomRange(0, 2000));
 
 b("File \"bs_set_int_test.ml\", line 152, characters 4-11", Belt_SetInt.isEmpty(a11));
 
-var match$5 = Belt_SetInt.split(Belt_SetInt.empty, 0);
+match$5 = Belt_SetInt.split(Belt_SetInt.empty, 0);
 
-var match$6 = match$5[0];
+match$6 = match$5[0];
 
 b("File \"bs_set_int_test.ml\", line 156, characters 4-11", Belt_SetInt.isEmpty(match$6[0]));
 
@@ -327,24 +327,24 @@ b("File \"bs_set_int_test.ml\", line 157, characters 4-11", Belt_SetInt.isEmpty(
 
 b("File \"bs_set_int_test.ml\", line 158, characters 4-11", !match$5[1]);
 
-var v$12 = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 2000));
+v$12 = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 2000));
 
-var v0 = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 2000));
+v0 = Belt_SetInt.fromArray(Array_data_util.randomRange(0, 2000));
 
-var v1 = Belt_SetInt.fromArray(Array_data_util.randomRange(1, 2001));
+v1 = Belt_SetInt.fromArray(Array_data_util.randomRange(1, 2001));
 
-var v2 = Belt_SetInt.fromArray(Array_data_util.randomRange(3, 2002));
+v2 = Belt_SetInt.fromArray(Array_data_util.randomRange(3, 2002));
 
-var v3 = Belt_SetInt.removeMany(v2, [
+v3 = Belt_SetInt.removeMany(v2, [
       2002,
       2001
     ]);
 
-var us = Belt_Array.map(Array_data_util.randomRange(1000, 3000), (function (x) do
+us = Belt_Array.map(Array_data_util.randomRange(1000, 3000), (function (x) do
         return Belt_SetInt.has(v$12, x);
       end));
 
-var counted = Belt_Array.reduce(us, 0, (function (acc, x) do
+counted = Belt_Array.reduce(us, 0, (function (acc, x) do
         if (x) then do
           return acc + 1 | 0;
         end else do
@@ -372,13 +372,13 @@ eq("File \"bs_set_int_test.ml\", line 176, characters 5-12", Belt_SetInt.get(v$1
 
 Mt.from_pair_suites("Bs_set_int_test", suites.contents);
 
-var N = --[ alias ]--0;
+N = --[ alias ]--0;
 
-var I = --[ alias ]--0;
+I = --[ alias ]--0;
 
-var A = --[ alias ]--0;
+A = --[ alias ]--0;
 
-var ofA = Belt_SetInt.fromArray;
+ofA = Belt_SetInt.fromArray;
 
 exports.suites = suites;
 exports.test_id = test_id;

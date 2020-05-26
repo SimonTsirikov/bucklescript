@@ -1,15 +1,15 @@
 'use strict';
 
-var Bytes = require("../../lib/js/bytes.js");
-var Caml_char = require("../../lib/js/caml_char.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
+Bytes = require("../../lib/js/bytes.js");
+Caml_char = require("../../lib/js/caml_char.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
 
 function escaped(s) do
-  var n = 0;
-  for var i = 0 , #s - 1 | 0 , 1 do
-    var c = s[i];
-    var tmp;
-    var exit = 0;
+  n = 0;
+  for i = 0 , #s - 1 | 0 , 1 do
+    c = s[i];
+    tmp;
+    exit = 0;
     if (c >= 14) then do
       if (c ~= 34 and c ~= 92) then do
         exit = 1;
@@ -36,12 +36,12 @@ function escaped(s) do
   if (n == #s) then do
     return Bytes.copy(s);
   end else do
-    var s$prime = Caml_bytes.caml_create_bytes(n);
+    s$prime = Caml_bytes.caml_create_bytes(n);
     n = 0;
-    for var i$1 = 0 , #s - 1 | 0 , 1 do
-      var c$1 = s[i$1];
-      var exit$1 = 0;
-      var switcher = c$1 - 34 | 0;
+    for i$1 = 0 , #s - 1 | 0 , 1 do
+      c$1 = s[i$1];
+      exit$1 = 0;
+      switcher = c$1 - 34 | 0;
       if (switcher > 58 or switcher < 0) then do
         if (switcher >= -20) then do
           exit$1 = 1;

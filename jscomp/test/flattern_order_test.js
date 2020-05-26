@@ -3,7 +3,7 @@
 
 function even(_n) do
   while(true) do
-    var n = _n;
+    n = _n;
     if (n == 0) then do
       return true;
     end else do
@@ -17,7 +17,7 @@ function even2(n) do
   if (n == 0) then do
     return true;
   end else do
-    var n$1 = n - 1 | 0;
+    n$1 = n - 1 | 0;
     if (n$1 == 1) then do
       return true;
     end else do
@@ -26,7 +26,7 @@ function even2(n) do
   end end 
 end
 
-var v = do
+v = do
   contents: 0
 end;
 
@@ -39,7 +39,7 @@ function obj_set(i) do
   return --[ () ]--0;
 end
 
-var obj = do
+obj = do
   get: obj_get,
   set: obj_set
 end;

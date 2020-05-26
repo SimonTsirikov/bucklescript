@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var $$Array = require("../../lib/js/array.js");
-var Block = require("../../lib/js/block.js");
-var Caml_string = require("../../lib/js/caml_string.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+$$Array = require("../../lib/js/array.js");
+Block = require("../../lib/js/block.js");
+Caml_string = require("../../lib/js/caml_string.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -37,7 +37,7 @@ console.log("\x3f\u003f\b\t\n\v\f\r\0\"\'");
 
 function convert(s) do
   return $$Array.to_list(Array.from(s, (function (x) do
-                    var match = x.codePointAt(0);
+                    match = x.codePointAt(0);
                     if (match ~= undefined) then do
                       return match;
                     end else do

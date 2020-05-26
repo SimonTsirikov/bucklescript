@@ -1,19 +1,19 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Int64 = require("../../lib/js/int64.js");
-var Printf = require("../../lib/js/printf.js");
-var Random = require("../../lib/js/random.js");
-var Mt_global = require("./mt_global.js");
-var Caml_array = require("../../lib/js/caml_array.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Int64 = require("../../lib/js/int64.js");
+Printf = require("../../lib/js/printf.js");
+Random = require("../../lib/js/random.js");
+Mt_global = require("./mt_global.js");
+Caml_array = require("../../lib/js/caml_array.js");
 
-var id = do
+id = do
   contents: 0
 end;
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
@@ -37,23 +37,23 @@ end
 
 Random.self_init(--[ () ]--0);
 
-var param = Random.$$int(1000);
+param = Random.$$int(1000);
 
 Random.self_init(--[ () ]--0);
 
-var param$1 = Random.$$int(10000);
+param$1 = Random.$$int(10000);
 
 Mt_global.collect_neq(id, suites, "File \"random_test.ml\", line 12, characters 6-13", param$1, param);
 
 Random.init(0);
 
-var v = Caml_array.caml_make_vect(10, false);
+v = Caml_array.caml_make_vect(10, false);
 
-for var i = 0 , 9 , 1 do
+for i = 0 , 9 , 1 do
   Caml_array.caml_array_set(v, i, Random.bool(--[ () ]--0));
 end
 
-var param$2 = [
+param$2 = [
   true,
   true,
   true,
@@ -68,18 +68,18 @@ var param$2 = [
 
 Mt_global.collect_eq(id, suites, "File \"random_test.ml\", line 26, characters 5-12", v, param$2);
 
-var f = Random.int64(Int64.max_int);
+f = Random.int64(Int64.max_int);
 
-var h = Random.int64(--[ int64 ]--[
+h = Random.int64(--[ int64 ]--[
       --[ hi ]--0,
       --[ lo ]--3
     ]);
 
-var vv = Random.bits(--[ () ]--0);
+vv = Random.bits(--[ () ]--0);
 
-var xx = Random.$$float(3.0);
+xx = Random.$$float(3.0);
 
-var xxx = Random.int32(103);
+xxx = Random.int32(103);
 
 Curry._5(Printf.printf(--[ Format ]--[
           --[ Int64 ]--Block.__(7, [

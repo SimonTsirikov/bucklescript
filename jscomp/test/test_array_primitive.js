@@ -1,11 +1,11 @@
 'use strict';
 
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function caml_array_sub(x, offset, len) do
-  var result = new Array(len);
-  for var j = 0 , len - 1 | 0 , 1 do
+  result = new Array(len);
+  for j = 0 , len - 1 | 0 , 1 do
     Caml_array.caml_array_set(result, j, Caml_array.caml_array_get(x, offset + j | 0));
   end
   return result;
@@ -34,8 +34,8 @@ function caml_array_get(xs, index) do
 end
 
 function caml_make_vect(len, init) do
-  var b = new Array(len);
-  for var i = 0 , len - 1 | 0 , 1 do
+  b = new Array(len);
+  for i = 0 , len - 1 | 0 , 1 do
     Caml_array.caml_array_set(b, i, init);
   end
   return b;

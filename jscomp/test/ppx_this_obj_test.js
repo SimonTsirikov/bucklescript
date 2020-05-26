@@ -1,19 +1,19 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
 function eq(loc, param) do
-  var y = param[1];
-  var x = param[0];
+  y = param[1];
+  x = param[0];
   test_id.contents = test_id.contents + 1 | 0;
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
@@ -30,27 +30,27 @@ function eq(loc, param) do
   return --[ () ]--0;
 end
 
-var v = do
+v = do
   x: (function () do
       return 3;
     end),
   say: (function (x) do
-      var self = this ;
+      self = this ;
       return x * self.x();
     end),
   hi: (function (x, y) do
-      var self = this ;
+      self = this ;
       return self.say(x) + y;
     end)
 end;
 
-var v2 = do
+v2 = do
   hi: (function (x, y) do
-      var self = this ;
+      self = this ;
       return self.say(x) + y;
     end),
   say: (function (x) do
-      var self = this ;
+      self = this ;
       return x * self.x();
     end),
   x: (function () do
@@ -58,16 +58,16 @@ var v2 = do
     end)
 end;
 
-var v3 = do
+v3 = do
   hi: (function (x, y) do
-      var self = this ;
-      var u = do
+      self = this ;
+      u = do
         x: x
       end;
       return self.say(u.x) + y + x;
     end),
   say: (function (x) do
-      var self = this ;
+      self = this ;
       return x * self.x();
     end),
   x: (function () do
@@ -75,7 +75,7 @@ var v3 = do
     end)
 end;
 
-var v4 = do
+v4 = do
   hi: (function (x, y) do
       return x + y;
     end),
@@ -87,7 +87,7 @@ var v4 = do
     end)
 end;
 
-var collection = [
+collection = [
   v,
   v2,
   v3,

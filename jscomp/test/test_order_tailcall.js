@@ -3,8 +3,8 @@
 
 function f(_x, _y) do
   while(true) do
-    var y = _y;
-    var x = _x;
+    y = _y;
+    x = _x;
     _y = x;
     _x = y;
     continue ;
@@ -13,9 +13,9 @@ end
 
 function f1(_x, _y, _z) do
   while(true) do
-    var z = _z;
-    var y = _y;
-    var x = _x;
+    z = _z;
+    y = _y;
+    x = _x;
     console.log(z);
     _z = x;
     _y = z;
@@ -26,7 +26,7 @@ end
 
 function f2(x, _y) do
   while(true) do
-    var y = _y;
+    y = _y;
     _y = y + 10 | 0;
     continue ;
   end;
@@ -34,8 +34,8 @@ end
 
 function f3(_x, _y) do
   while(true) do
-    var y = _y;
-    var x = _x;
+    y = _y;
+    x = _x;
     _y = x + 10 | 0;
     _x = y;
     continue ;
@@ -44,8 +44,8 @@ end
 
 function f4(_x, _y) do
   while(true) do
-    var y = _y;
-    var x = _x;
+    y = _y;
+    x = _x;
     _y = y + x | 0;
     _x = x + 10 | 0;
     continue ;
@@ -54,7 +54,7 @@ end
 
 function f5(_x, _y, z) do
   while(true) do
-    var y = _y;
+    y = _y;
     _y = z + 20 | 0;
     _x = y + 10 | 0;
     continue ;
@@ -83,8 +83,8 @@ end
 
 function f8(_x, _y) do
   while(true) do
-    var y = _y;
-    var x = _x;
+    y = _y;
+    x = _x;
     if (x > 10) then do
       _y = y + 1 | 0;
       continue ;

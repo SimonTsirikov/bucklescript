@@ -1,6 +1,6 @@
 'use strict';
 
-var Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
 
 function min_int(prim, prim$1) do
   return Math.min(prim, prim$1);
@@ -10,7 +10,7 @@ function say(prim, prim$1) do
   return prim$1.say(prim);
 end
 
-var v = Caml_obj.caml_compare;
+v = Caml_obj.caml_compare;
 
 exports.min_int = min_int;
 exports.say = say;

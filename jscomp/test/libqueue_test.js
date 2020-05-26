@@ -1,10 +1,10 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Curry = require("../../lib/js/curry.js");
-var Queue = require("../../lib/js/queue.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+List = require("../../lib/js/list.js");
+Curry = require("../../lib/js/curry.js");
+Queue = require("../../lib/js/queue.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function to_list(q) do
   return List.rev(Queue.fold((function (l, x) do
@@ -15,7 +15,7 @@ function to_list(q) do
                   end), --[ [] ]--0, q));
 end
 
-var Q = do
+Q = do
   Empty: Queue.Empty,
   create: Queue.create,
   add: Queue.add,
@@ -48,7 +48,7 @@ function does_raise(f, q) do
   end
 end
 
-var q = do
+q = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
@@ -278,7 +278,7 @@ if (!does_raise(Queue.take, q)) then do
 end
  end 
 
-var q$1 = do
+q$1 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
@@ -348,7 +348,7 @@ if (q$1.length ~= 0) then do
 end
  end 
 
-var q$2 = do
+q$2 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
@@ -492,13 +492,13 @@ if (!does_raise(Queue.peek, q$2)) then do
 end
  end 
 
-var q$3 = do
+q$3 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
 end;
 
-for var i = 1 , 10 , 1 do
+for i = 1 , 10 , 1 do
   Queue.add(i, q$3);
 end
 
@@ -558,17 +558,17 @@ if (Queue.take(q$3) ~= 42) then do
 end
  end 
 
-var q1 = do
+q1 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
 end;
 
-for var i$1 = 1 , 10 , 1 do
+for i$1 = 1 , 10 , 1 do
   Queue.add(i$1, q1);
 end
 
-var q2 = Queue.copy(q1);
+q2 = Queue.copy(q1);
 
 if (!Caml_obj.caml_equal(to_list(q1), --[ :: ]--[
         1,
@@ -678,7 +678,7 @@ if (q2.length ~= 10) then do
 end
  end 
 
-for var i$2 = 1 , 10 , 1 do
+for i$2 = 1 , 10 , 1 do
   if (Queue.take(q1) ~= i$2) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
@@ -692,7 +692,7 @@ for var i$2 = 1 , 10 , 1 do
    end 
 end
 
-for var i$3 = 1 , 10 , 1 do
+for i$3 = 1 , 10 , 1 do
   if (Queue.take(q2) ~= i$3) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
@@ -706,7 +706,7 @@ for var i$3 = 1 , 10 , 1 do
    end 
 end
 
-var q$4 = do
+q$4 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
@@ -724,7 +724,7 @@ if (q$4.length ~= 0) then do
 end
  end 
 
-for var i$4 = 1 , 10 , 1 do
+for i$4 = 1 , 10 , 1 do
   Queue.add(i$4, q$4);
   if (q$4.length ~= i$4) then do
     throw [
@@ -750,7 +750,7 @@ for var i$4 = 1 , 10 , 1 do
    end 
 end
 
-for var i$5 = 10 , 1 , -1 do
+for i$5 = 10 , 1 , -1 do
   if (q$4.length ~= i$5) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
@@ -800,17 +800,17 @@ if (q$4.length ~= 0) then do
 end
  end 
 
-var q$5 = do
+q$5 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
 end;
 
-for var i$6 = 1 , 10 , 1 do
+for i$6 = 1 , 10 , 1 do
   Queue.add(i$6, q$5);
 end
 
-var i$7 = do
+i$7 = do
   contents: 1
 end;
 
@@ -830,13 +830,13 @@ Queue.iter((function (j) do
         return --[ () ]--0;
       end), q$5);
 
-var q1$1 = do
+q1$1 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
 end;
 
-var q2$1 = do
+q2$1 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
@@ -940,19 +940,19 @@ if (to_list(q2$1) ~= --[ [] ]--0) then do
 end
  end 
 
-var q1$2 = do
+q1$2 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
 end;
 
-var q2$2 = do
+q2$2 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
 end;
 
-for var i$8 = 1 , 4 , 1 do
+for i$8 = 1 , 4 , 1 do
   Queue.add(i$8, q1$2);
 end
 
@@ -1078,19 +1078,19 @@ if (!Caml_obj.caml_equal(to_list(q2$2), --[ :: ]--[
 end
  end 
 
-var q1$3 = do
+q1$3 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
 end;
 
-var q2$3 = do
+q2$3 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
 end;
 
-for var i$9 = 5 , 8 , 1 do
+for i$9 = 5 , 8 , 1 do
   Queue.add(i$9, q2$3);
 end
 
@@ -1216,23 +1216,23 @@ if (!Caml_obj.caml_equal(to_list(q2$3), --[ :: ]--[
 end
  end 
 
-var q1$4 = do
+q1$4 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
 end;
 
-var q2$4 = do
+q2$4 = do
   length: 0,
   first: --[ Nil ]--0,
   last: --[ Nil ]--0
 end;
 
-for var i$10 = 1 , 4 , 1 do
+for i$10 = 1 , 4 , 1 do
   Queue.add(i$10, q1$4);
 end
 
-for var i$11 = 5 , 8 , 1 do
+for i$11 = 5 , 8 , 1 do
   Queue.add(i$11, q2$4);
 end
 

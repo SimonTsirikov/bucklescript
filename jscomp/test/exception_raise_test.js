@@ -1,30 +1,30 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Js_exn = require("../../lib/js/js_exn.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Js_exn = require("../../lib/js/js_exn.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var Local = Caml_exceptions.create("Exception_raise_test.Local");
+Local = Caml_exceptions.create("Exception_raise_test.Local");
 
-var B = Caml_exceptions.create("Exception_raise_test.B");
+B = Caml_exceptions.create("Exception_raise_test.B");
 
-var C = Caml_exceptions.create("Exception_raise_test.C");
+C = Caml_exceptions.create("Exception_raise_test.C");
 
-var D = Caml_exceptions.create("Exception_raise_test.D");
+D = Caml_exceptions.create("Exception_raise_test.D");
 
 function appf(g, x) do
-  var A = Caml_exceptions.create("A");
+  A = Caml_exceptions.create("A");
   try do
     return Curry._1(g, x);
   end
   catch (raw_exn)do
-    var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+    exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn == Local) then do
       return 3;
     end else if (exn == Caml_builtin_exceptions.not_found) then do
@@ -32,11 +32,11 @@ function appf(g, x) do
     end else if (exn[0] == A) then do
       return 3;
     end else if (exn[0] == B) then do
-      var match = exn[1];
+      match = exn[1];
       if (match) then do
-        var match$1 = match[1];
+        match$1 = match[1];
         if (match$1) then do
-          var match$2 = match$1[1];
+          match$2 = match$1[1];
           if (match$2) then do
             return match$2[0];
           end else do
@@ -58,45 +58,45 @@ function appf(g, x) do
   end
 end
 
-var A = Caml_exceptions.create("Exception_raise_test.A");
+A = Caml_exceptions.create("Exception_raise_test.A");
 
-var f;
+f;
 
 try do
   f = (function () {throw (new Error ("x"))} ());
 end
 catch (raw_exn)do
-  var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+  exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   f = exn[0] == A and exn[1] or 2;
 end
 
-var ff;
+ff;
 
 try do
   ff = (function () {throw 3} ());
 end
 catch (raw_exn$1)do
-  var exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
+  exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
   ff = exn$1[0] == A and exn$1[1] or 2;
 end
 
-var fff;
+fff;
 
 try do
   fff = (function () {throw 2} ());
 end
 catch (raw_exn$2)do
-  var exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
+  exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
   fff = exn$2[0] == A and exn$2[1] or 2;
 end
 
-var a0;
+a0;
 
 try do
   a0 = (function (){throw 2} ());
 end
 catch (raw_exn$3)do
-  var exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
+  exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
   if (exn$3[0] == A or exn$3[0] == Js_exn.$$Error) then do
     a0 = exn$3[1];
   end else do
@@ -111,7 +111,7 @@ catch (raw_exn$3)do
   end end 
 end
 
-var a1;
+a1;
 
 try do
   a1 = (function (){throw 2} ());
@@ -120,7 +120,7 @@ catch (raw_e)do
   a1 = Caml_js_exceptions.internalToOCamlException(raw_e);
 end
 
-var a2;
+a2;
 
 try do
   a2 = (function (){throw (new Error("x"))} ());
@@ -129,7 +129,7 @@ catch (raw_e$1)do
   a2 = Caml_js_exceptions.internalToOCamlException(raw_e$1);
 end
 
-var suites = do
+suites = do
   contents: --[ :: ]--[
     --[ tuple ]--[
       "File \"exception_raise_test.ml\", line 114, characters 4-11",
@@ -176,7 +176,7 @@ var suites = do
   ]
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -188,7 +188,7 @@ try do
   (function (_)dothrow 2end(--[ () ]--0));
 end
 catch (raw_e$2)do
-  var e = Caml_js_exceptions.internalToOCamlException(raw_e$2);
+  e = Caml_js_exceptions.internalToOCamlException(raw_e$2);
   eq("File \"exception_raise_test.ml\", line 131, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e) ~= undefined, true);
 end
 
@@ -196,12 +196,12 @@ try do
   throw Caml_builtin_exceptions.not_found;
 end
 catch (raw_e$3)do
-  var e$1 = Caml_js_exceptions.internalToOCamlException(raw_e$3);
+  e$1 = Caml_js_exceptions.internalToOCamlException(raw_e$3);
   eq("File \"exception_raise_test.ml\", line 138, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e$1) ~= undefined, false);
 end
 
 function fff0(x, g) do
-  var val;
+  val;
   try do
     val = Curry._1(x, --[ () ]--0);
   end
@@ -213,8 +213,8 @@ end
 
 function input_lines(ic, _acc) do
   while(true) do
-    var acc = _acc;
-    var line;
+    acc = _acc;
+    line;
     try do
       line = Pervasives.input_line(ic);
     end

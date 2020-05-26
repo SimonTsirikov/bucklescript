@@ -1,9 +1,9 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Pervasives = require("../../lib/js/pervasives.js");
+List = require("../../lib/js/list.js");
+Pervasives = require("../../lib/js/pervasives.js");
 
-var Pervasives$1 = do
+Pervasives$1 = do
   invalid_arg: Pervasives.invalid_arg,
   failwith: Pervasives.failwith,
   Exit: Pervasives.Exit,
@@ -143,7 +143,7 @@ var Pervasives$1 = do
   merge: List.merge
 end;
 
-var v = Pervasives.$at;
+v = Pervasives.$at;
 
 exports.Pervasives = Pervasives$1;
 exports.v = v;

@@ -1,6 +1,6 @@
 'use strict';
 
-var Block = require("../../lib/js/block.js");
+Block = require("../../lib/js/block.js");
 
 function f(x) do
   return x;
@@ -11,7 +11,7 @@ function ff(x) do
 end
 
 function fff(x) do
-  var match = --[ A ]--Block.__(0, [x]);
+  match = --[ A ]--Block.__(0, [x]);
   local ___conditional___=(match.tag | 0);
   do
      if ___conditional___ = 0--[ A ]-- then do
@@ -41,7 +41,7 @@ function hh(param) do
   return 3;
 end
 
-var g = h(--[ A ]--65);
+g = h(--[ A ]--65);
 
 exports.f = f;
 exports.ff = ff;

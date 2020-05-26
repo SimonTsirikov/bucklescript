@@ -1,16 +1,16 @@
 'use strict';
 
-var Belt_Id = require("../../lib/js/belt_Id.js");
-var Hashtbl = require("../../lib/js/hashtbl.js");
-var Belt_HashMap = require("../../lib/js/belt_HashMap.js");
-var Belt_MapDict = require("../../lib/js/belt_MapDict.js");
-var Caml_primitive = require("../../lib/js/caml_primitive.js");
-var Belt_HashMapInt = require("../../lib/js/belt_HashMapInt.js");
-var Belt_HashSetInt = require("../../lib/js/belt_HashSetInt.js");
-var Belt_HashMapString = require("../../lib/js/belt_HashMapString.js");
-var Caml_hash_primitive = require("../../lib/js/caml_hash_primitive.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
-var Belt_internalBucketsType = require("../../lib/js/belt_internalBucketsType.js");
+Belt_Id = require("../../lib/js/belt_Id.js");
+Hashtbl = require("../../lib/js/hashtbl.js");
+Belt_HashMap = require("../../lib/js/belt_HashMap.js");
+Belt_MapDict = require("../../lib/js/belt_MapDict.js");
+Caml_primitive = require("../../lib/js/caml_primitive.js");
+Belt_HashMapInt = require("../../lib/js/belt_HashMapInt.js");
+Belt_HashSetInt = require("../../lib/js/belt_HashSetInt.js");
+Belt_HashMapString = require("../../lib/js/belt_HashMapString.js");
+Caml_hash_primitive = require("../../lib/js/caml_hash_primitive.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Belt_internalBucketsType = require("../../lib/js/belt_internalBucketsType.js");
 
 function hash_string(s) do
   return Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_string(0, s));
@@ -27,31 +27,31 @@ function hashString (str)do
                                               
                                             end;
 
-var $$String = Belt_Id.hashable(Hashtbl.hash, (function (x, y) do
+$$String = Belt_Id.hashable(Hashtbl.hash, (function (x, y) do
         return x == y;
       end));
 
-var String1 = Belt_Id.hashable(hashString, (function (x, y) do
+String1 = Belt_Id.hashable(hashString, (function (x, y) do
         return x == y;
       end));
 
-var String2 = Belt_Id.hashable((function (x) do
+String2 = Belt_Id.hashable((function (x) do
         return Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_string(0, x));
       end), (function (x, y) do
         return x == y;
       end));
 
-var Int = Belt_Id.hashable(Hashtbl.hash, (function (x, y) do
+Int = Belt_Id.hashable(Hashtbl.hash, (function (x, y) do
         return x == y;
       end));
 
-var empty = Belt_internalBucketsType.make(Int.hash, Int.eq, 500000);
+empty = Belt_internalBucketsType.make(Int.hash, Int.eq, 500000);
 
 function bench(param) do
-  for var i = 0 , 1000000 , 1 do
+  for i = 0 , 1000000 , 1 do
     Belt_HashMap.set(empty, i, i);
   end
-  for var i$1 = 0 , 1000000 , 1 do
+  for i$1 = 0 , 1000000 , 1 do
     if (!Belt_HashMap.has(empty, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
@@ -68,11 +68,11 @@ function bench(param) do
 end
 
 function bench2(m) do
-  var empty = Belt_internalBucketsType.make(m.hash, m.eq, 1000000);
-  for var i = 0 , 1000000 , 1 do
+  empty = Belt_internalBucketsType.make(m.hash, m.eq, 1000000);
+  for i = 0 , 1000000 , 1 do
     Belt_HashMap.set(empty, String(i), i);
   end
-  for var i$1 = 0 , 1000000 , 1 do
+  for i$1 = 0 , 1000000 , 1 do
     if (!Belt_HashMap.has(empty, String(i$1))) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
@@ -85,7 +85,7 @@ function bench2(m) do
     end
      end 
   end
-  for var i$2 = 0 , 1000000 , 1 do
+  for i$2 = 0 , 1000000 , 1 do
     Belt_HashMap.remove(empty, String(i$2));
   end
   if (empty.size == 0) then do
@@ -103,16 +103,16 @@ function bench2(m) do
 end
 
 function bench3(m) do
-  var empty = do
+  empty = do
     cmp: m.cmp,
     data: Belt_MapDict.empty
   end;
-  var cmp = m.cmp;
-  var table = empty.data;
-  for var i = 0 , 1000000 , 1 do
+  cmp = m.cmp;
+  table = empty.data;
+  for i = 0 , 1000000 , 1 do
     table = Belt_MapDict.set(table, String(i), i, cmp);
   end
-  for var i$1 = 0 , 1000000 , 1 do
+  for i$1 = 0 , 1000000 , 1 do
     if (!Belt_MapDict.has(table, String(i$1), cmp)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
@@ -125,7 +125,7 @@ function bench3(m) do
     end
      end 
   end
-  for var i$2 = 0 , 1000000 , 1 do
+  for i$2 = 0 , 1000000 , 1 do
     table = Belt_MapDict.remove(table, String(i$2), cmp);
   end
   if (Belt_MapDict.size(table) == 0) then do
@@ -142,14 +142,14 @@ function bench3(m) do
   end end 
 end
 
-var Sx = Belt_Id.comparable(Caml_primitive.caml_string_compare);
+Sx = Belt_Id.comparable(Caml_primitive.caml_string_compare);
 
 function bench4(param) do
-  var table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, 1000000);
-  for var i = 0 , 1000000 , 1 do
+  table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, 1000000);
+  for i = 0 , 1000000 , 1 do
     Belt_HashMapString.set(table, String(i), i);
   end
-  for var i$1 = 0 , 1000000 , 1 do
+  for i$1 = 0 , 1000000 , 1 do
     if (!Belt_HashMapString.has(table, String(i$1))) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
@@ -162,7 +162,7 @@ function bench4(param) do
     end
      end 
   end
-  for var i$2 = 0 , 1000000 , 1 do
+  for i$2 = 0 , 1000000 , 1 do
     Belt_HashMapString.remove(table, String(i$2));
   end
   if (Belt_HashMapString.isEmpty(table)) then do
@@ -180,14 +180,14 @@ function bench4(param) do
 end
 
 function bench5(param) do
-  var table = Belt_internalBucketsType.make(Int.hash, Int.eq, 1000000);
+  table = Belt_internalBucketsType.make(Int.hash, Int.eq, 1000000);
   console.time("test/bs_hashtbl_string_test.ml 133");
-  for var i = 0 , 1000000 , 1 do
+  for i = 0 , 1000000 , 1 do
     Belt_HashMap.set(table, i, i);
   end
   console.timeEnd("test/bs_hashtbl_string_test.ml 133");
   console.time("test/bs_hashtbl_string_test.ml 137");
-  for var i$1 = 0 , 1000000 , 1 do
+  for i$1 = 0 , 1000000 , 1 do
     if (!Belt_HashMap.has(table, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
@@ -202,7 +202,7 @@ function bench5(param) do
   end
   console.timeEnd("test/bs_hashtbl_string_test.ml 137");
   console.time("test/bs_hashtbl_string_test.ml 141");
-  for var i$2 = 0 , 1000000 , 1 do
+  for i$2 = 0 , 1000000 , 1 do
     Belt_HashMap.remove(table, i$2);
   end
   console.timeEnd("test/bs_hashtbl_string_test.ml 141");
@@ -221,11 +221,11 @@ function bench5(param) do
 end
 
 function bench6(param) do
-  var table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, 1000000);
-  for var i = 0 , 1000000 , 1 do
+  table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, 1000000);
+  for i = 0 , 1000000 , 1 do
     Belt_HashMapInt.set(table, i, i);
   end
-  for var i$1 = 0 , 1000000 , 1 do
+  for i$1 = 0 , 1000000 , 1 do
     if (!Belt_HashMapInt.has(table, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
@@ -238,7 +238,7 @@ function bench6(param) do
     end
      end 
   end
-  for var i$2 = 0 , 1000000 , 1 do
+  for i$2 = 0 , 1000000 , 1 do
     Belt_HashMapInt.remove(table, i$2);
   end
   if (table.size == 0) then do
@@ -256,12 +256,12 @@ function bench6(param) do
 end
 
 function bench7(param) do
-  var hintSize = 2000000;
-  var table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, hintSize);
-  for var i = 0 , 1000000 , 1 do
+  hintSize = 2000000;
+  table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, hintSize);
+  for i = 0 , 1000000 , 1 do
     Belt_HashSetInt.add(table, i);
   end
-  for var i$1 = 0 , 1000000 , 1 do
+  for i$1 = 0 , 1000000 , 1 do
     if (!Belt_HashSetInt.has(table, i$1)) then do
       throw [
             Caml_builtin_exceptions.assert_failure,
@@ -274,7 +274,7 @@ function bench7(param) do
     end
      end 
   end
-  for var i$2 = 0 , 1000000 , 1 do
+  for i$2 = 0 , 1000000 , 1 do
     Belt_HashSetInt.remove(table, i$2);
   end
   if (table.size == 0) then do
@@ -297,25 +297,25 @@ bench7(--[ () ]--0);
 
 console.timeEnd("test/bs_hashtbl_string_test.ml 203");
 
-var N = --[ alias ]--0;
+N = --[ alias ]--0;
 
-var count = 1000000;
+count = 1000000;
 
-var initial_size = 1000000;
+initial_size = 1000000;
 
-var M = --[ alias ]--0;
+M = --[ alias ]--0;
 
-var Md = --[ alias ]--0;
+Md = --[ alias ]--0;
 
-var Md0 = --[ alias ]--0;
+Md0 = --[ alias ]--0;
 
-var H = --[ alias ]--0;
+H = --[ alias ]--0;
 
-var H0 = --[ alias ]--0;
+H0 = --[ alias ]--0;
 
-var HI = --[ alias ]--0;
+HI = --[ alias ]--0;
 
-var S = --[ alias ]--0;
+S = --[ alias ]--0;
 
 exports.hash_string = hash_string;
 exports.hashString = hashString;

@@ -1,6 +1,6 @@
 'use strict';
 
-var Block = require("../../lib/js/block.js");
+Block = require("../../lib/js/block.js");
 
 function u_x(param) do
   return param.u_x;
@@ -41,9 +41,9 @@ function d(param) do
   return param.d;
 end
 
-var v = --[ D_int ]--Block.__(0, [3]);
+v = --[ D_int ]--Block.__(0, [3]);
 
-var h_001 = --[ :: ]--[
+h_001 = --[ :: ]--[
   --[ D_int ]--Block.__(0, [3]),
   --[ :: ]--[
     --[ D_tuple ]--Block.__(1, [
@@ -63,7 +63,7 @@ var h_001 = --[ :: ]--[
   ]
 ];
 
-var h = --[ :: ]--[
+h = --[ :: ]--[
   --[ D_empty ]--0,
   h_001
 ];
@@ -76,9 +76,9 @@ function a(param_0) do
   return --[ A ]--[param_0];
 end
 
-var d_empty = --[ D_empty ]--0;
+d_empty = --[ D_empty ]--0;
 
-var hei = --[ Hei ]--0;
+hei = --[ Hei ]--0;
 
 exports.u_x = u_x;
 exports.b_x = b_x;

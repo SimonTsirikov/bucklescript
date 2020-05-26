@@ -2,8 +2,8 @@
 
 
 function f(point) do
-  var y = point.y;
-  var x = point.x;
+  y = point.y;
+  x = point.x;
   return Math.pow(x * x + y * y, 2);
 end
 

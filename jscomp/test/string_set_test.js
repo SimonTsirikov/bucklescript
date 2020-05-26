@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var String_set = require("./string_set.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+String_set = require("./string_set.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -29,9 +29,9 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var s = String_set.empty;
+s = String_set.empty;
 
-for var i = 0 , 99999 , 1 do
+for i = 0 , 99999 , 1 do
   s = String_set.add(String(i), s);
 end
 

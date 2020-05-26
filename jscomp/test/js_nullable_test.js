@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -29,7 +29,7 @@ function eq(loc, x, y) do
 end
 
 function test(dom) do
-  var elem = dom.getElementById("haha");
+  elem = dom.getElementById("haha");
   if (elem == null) then do
     return 1;
   end else do

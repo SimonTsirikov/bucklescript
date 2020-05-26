@@ -1,8 +1,8 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
+List = require("../../lib/js/list.js");
+Curry = require("../../lib/js/curry.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
 
 function h0(x) do
   return x();
@@ -62,14 +62,14 @@ function a3(x, y, z) do
 end
 
 function a4(x, y, z, param) do
-  var u = (Caml_int32.imul(x, x) + Caml_int32.imul(y, y) | 0) + Caml_int32.imul(z, z) | 0;
+  u = (Caml_int32.imul(x, x) + Caml_int32.imul(y, y) | 0) + Caml_int32.imul(z, z) | 0;
   return (function (d) do
               return u + d | 0;
             end)(param);
 end
 
 function a44(x, y, z, d) do
-  var u = (Caml_int32.imul(x, x) + Caml_int32.imul(y, y) | 0) + Caml_int32.imul(z, z) | 0;
+  u = (Caml_int32.imul(x, x) + Caml_int32.imul(y, y) | 0) + Caml_int32.imul(z, z) | 0;
   return u + d | 0;
 end
 
@@ -91,7 +91,7 @@ function xx(param) do
     end);
 end
 
-var test_as = List.map;
+test_as = List.map;
 
 exports.h0 = h0;
 exports.h00 = h00;

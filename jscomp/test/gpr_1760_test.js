@@ -1,15 +1,15 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
-var Caml_int64 = require("../../lib/js/caml_int64.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
+Caml_int64 = require("../../lib/js/caml_int64.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -30,7 +30,7 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var a0;
+a0;
 
 try do
   Caml_int32.div(0, 0);
@@ -40,7 +40,7 @@ catch (exn)do
   a0 = 1;
 end
 
-var a1;
+a1;
 
 try do
   Caml_int32.mod_(0, 0);
@@ -50,7 +50,7 @@ catch (exn$1)do
   a1 = 1;
 end
 
-var a4;
+a4;
 
 try do
   Caml_int32.div(0, 0);
@@ -60,7 +60,7 @@ catch (exn$2)do
   a4 = 1;
 end
 
-var a5;
+a5;
 
 try do
   Caml_int32.mod_(0, 0);
@@ -70,7 +70,7 @@ catch (exn$3)do
   a5 = 1;
 end
 
-var a6;
+a6;
 
 try do
   Caml_int64.div(--[ int64 ]--[
@@ -86,7 +86,7 @@ catch (exn$4)do
   a6 = 1;
 end
 
-var a7;
+a7;
 
 try do
   Caml_int64.mod_(--[ int64 ]--[

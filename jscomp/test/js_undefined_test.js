@@ -1,11 +1,11 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Caml_option = require("../../lib/js/caml_option.js");
-var Js_undefined = require("../../lib/js/js_undefined.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Caml_option = require("../../lib/js/caml_option.js");
+Js_undefined = require("../../lib/js/js_undefined.js");
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "toOption - empty",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -15,7 +15,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "toOption - 'a",
     (function (param) do
@@ -83,7 +83,7 @@ var suites_001 = --[ :: ]--[
               --[ tuple ]--[
                 "iter - empty",
                 (function (param) do
-                    var hit = do
+                    hit = do
                       contents: false
                     end;
                     Js_undefined.iter(undefined, (function (param) do
@@ -100,7 +100,7 @@ var suites_001 = --[ :: ]--[
                 --[ tuple ]--[
                   "iter - 'a",
                   (function (param) do
-                      var hit = do
+                      hit = do
                         contents: 0
                       end;
                       Js_undefined.iter(2, (function (v) do
@@ -145,7 +145,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

@@ -1,30 +1,30 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Bytes = require("../../lib/js/bytes.js");
-var Curry = require("../../lib/js/curry.js");
-var Scanf = require("../../lib/js/scanf.js");
-var $$Buffer = require("../../lib/js/buffer.js");
-var Printf = require("../../lib/js/printf.js");
-var $$String = require("../../lib/js/string.js");
-var Testing = require("./testing.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Mt_global = require("./mt_global.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
-var Caml_int64 = require("../../lib/js/caml_int64.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Caml_format = require("../../lib/js/caml_format.js");
-var Caml_string = require("../../lib/js/caml_string.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Bytes = require("../../lib/js/bytes.js");
+Curry = require("../../lib/js/curry.js");
+Scanf = require("../../lib/js/scanf.js");
+$$Buffer = require("../../lib/js/buffer.js");
+Printf = require("../../lib/js/printf.js");
+$$String = require("../../lib/js/string.js");
+Testing = require("./testing.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Mt_global = require("./mt_global.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
+Caml_int64 = require("../../lib/js/caml_int64.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Caml_format = require("../../lib/js/caml_format.js");
+Caml_string = require("../../lib/js/caml_string.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -695,11 +695,11 @@ end
 test("File \"tscanf_test.ml\", line 168, characters 5-12", test7(--[ () ]--0));
 
 function verify_read(c) do
-  var s = Curry._1(Printf.sprintf(--[ Format ]--[
+  s = Curry._1(Printf.sprintf(--[ Format ]--[
             --[ Caml_char ]--Block.__(1, [--[ End_of_format ]--0]),
             "%C"
           ]), c);
-  var ib = Scanf.Scanning.from_string(s);
+  ib = Scanf.Scanning.from_string(s);
   if (Curry._1(Scanf.bscanf(ib, --[ Format ]--[
               --[ Caml_char ]--Block.__(1, [--[ End_of_format ]--0]),
               "%C"
@@ -718,7 +718,7 @@ function verify_read(c) do
 end
 
 function verify_scan_Chars(param) do
-  for var i = 0 , 255 , 1 do
+  for i = 0 , 255 , 1 do
     verify_read(Pervasives.char_of_int(i));
   end
   return --[ () ]--0;
@@ -731,7 +731,7 @@ end
 test("File \"tscanf_test.ml\", line 183, characters 5-12", verify_scan_Chars(--[ () ]--0) == --[ () ]--0);
 
 function unit(fmt, s) do
-  var ib = Scanf.Scanning.from_string(Curry._1(Printf.sprintf(--[ Format ]--[
+  ib = Scanf.Scanning.from_string(Curry._1(Printf.sprintf(--[ Format ]--[
                 --[ Caml_string ]--Block.__(3, [
                     --[ No_padding ]--0,
                     --[ End_of_format ]--0
@@ -745,9 +745,9 @@ function test_fmt(fmt, s) do
   return unit(fmt, s) == s;
 end
 
-var test9_string = "\xef\xbb\xbf";
+test9_string = "\xef\xbb\xbf";
 
-var partial_arg = --[ Format ]--[
+partial_arg = --[ Format ]--[
   --[ Caml_string ]--Block.__(3, [
       --[ No_padding ]--0,
       --[ End_of_format ]--0
@@ -818,8 +818,8 @@ end
 test("File \"tscanf_test.ml\", line 230, characters 5-12", test9(--[ () ]--0));
 
 function test10(param) do
-  var unit = function (s) do
-    var ib = Scanf.Scanning.from_string(s);
+  unit = function (s) do
+    ib = Scanf.Scanning.from_string(s);
     return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                     --[ Caml_string ]--Block.__(3, [
                         --[ No_padding ]--0,
@@ -828,7 +828,7 @@ function test10(param) do
                     "%S"
                   ]), id);
   end;
-  var res = Curry._1(Scanf.sscanf("Une chaine: \"celle-ci\" et \"celle-la\"!", --[ Format ]--[
+  res = Curry._1(Scanf.sscanf("Une chaine: \"celle-ci\" et \"celle-la\"!", --[ Format ]--[
             --[ String ]--Block.__(2, [
                 --[ No_padding ]--0,
                 --[ Char_literal ]--Block.__(12, [
@@ -1371,7 +1371,7 @@ function scan_int_list(ib) do
               ]),
             "[ "
           ]), --[ () ]--0);
-  var accu = scan_elems(ib, --[ [] ]--0);
+  accu = scan_elems(ib, --[ [] ]--0);
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 " ]",
@@ -1518,7 +1518,7 @@ function scan_elems$2(ib, accu) do
                 end));
   end
   catch (raw_exn)do
-    var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+    exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Scanf.Scan_failure) then do
       Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                 --[ Char_literal ]--Block.__(12, [
@@ -1804,11 +1804,11 @@ function scan_int_list$3(ib) do
 end
 
 function test18(param) do
-  var ib = Scanf.Scanning.from_string("[]");
+  ib = Scanf.Scanning.from_string("[]");
   if (List.rev(scan_elems$4(ib, --[ [] ]--0)) == --[ [] ]--0) then do
-    var ib$1 = Scanf.Scanning.from_string("[ ]");
+    ib$1 = Scanf.Scanning.from_string("[ ]");
     if (List.rev(scan_elems$4(ib$1, --[ [] ]--0)) == --[ [] ]--0) then do
-      var ib$2 = Scanf.Scanning.from_string("[1;2;3;4]");
+      ib$2 = Scanf.Scanning.from_string("[1;2;3;4]");
       if (Caml_obj.caml_equal(List.rev(scan_elems$4(ib$2, --[ [] ]--0)), --[ :: ]--[
               1,
               --[ :: ]--[
@@ -1822,7 +1822,7 @@ function test18(param) do
                 ]
               ]
             ])) then do
-        var ib$3 = Scanf.Scanning.from_string("[1;2;3;4; ]");
+        ib$3 = Scanf.Scanning.from_string("[1;2;3;4; ]");
         return Caml_obj.caml_equal(List.rev(scan_elems$4(ib$3, --[ [] ]--0)), --[ :: ]--[
                     1,
                     --[ :: ]--[
@@ -1879,8 +1879,8 @@ function scan_rest$1(ib, accu) do
                 if (param == "]") then do
                   return accu;
                 end else do
-                  var ib$1 = ib;
-                  var accu$1 = accu;
+                  ib$1 = ib;
+                  accu$1 = accu;
                   return Curry._1(Scanf.bscanf(ib$1, --[ Format ]--[
                                   --[ Char_literal ]--Block.__(12, [
                                       --[ " " ]--32,
@@ -1896,8 +1896,8 @@ function scan_rest$1(ib, accu) do
                                     ]),
                                   " %i "
                                 ]), (function (i) do
-                                var ib$2 = ib$1;
-                                var accu$2 = --[ :: ]--[
+                                ib$2 = ib$1;
+                                accu$2 = --[ :: ]--[
                                   i,
                                   accu$1
                                 ];
@@ -1917,7 +1917,7 @@ function scan_rest$1(ib, accu) do
                                                     return accu$2;end end end 
                                                  do
                                                 else do
-                                                  var s = Printf.sprintf(--[ Format ]--[
+                                                  s = Printf.sprintf(--[ Format ]--[
                                                         --[ String_literal ]--Block.__(11, [
                                                             "scan_int_list",
                                                             --[ End_of_format ]--0
@@ -1988,7 +1988,7 @@ test("File \"tscanf_test.ml\", line 506, characters 5-12", test22(--[ () ]--0));
 function scan_elems$5(ib, scan_elem, accu) do
   try do
     return Curry._2(scan_elem, ib, (function (i, s) do
-                  var accu$1 = --[ :: ]--[
+                  accu$1 = --[ :: ]--[
                     i,
                     accu
                   ];
@@ -2000,7 +2000,7 @@ function scan_elems$5(ib, scan_elem, accu) do
                 end));
   end
   catch (raw_exn)do
-    var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+    exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Scanf.Scan_failure) then do
       return accu;
     end else do
@@ -2017,7 +2017,7 @@ function scan_list(scan_elem, ib) do
               ]),
             "[ "
           ]), --[ () ]--0);
-  var accu = scan_elems$5(ib, scan_elem, --[ [] ]--0);
+  accu = scan_elems$5(ib, scan_elem, --[ [] ]--0);
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 " ]",
@@ -2222,7 +2222,7 @@ test("File \"tscanf_test.ml\", line 609, characters 5-12", test28(--[ () ]--0));
 
 function scan_elems$6(ib, scan_elem, accu) do
   return Curry._3(scan_elem, ib, (function (i, s) do
-                var accu$1 = --[ :: ]--[
+                accu$1 = --[ :: ]--[
                   i,
                   accu
                 ];
@@ -2244,7 +2244,7 @@ function scan_list$1(scan_elem, ib) do
               ]),
             "[ "
           ]), --[ () ]--0);
-  var accu = scan_elems$6(ib, scan_elem, --[ [] ]--0);
+  accu = scan_elems$6(ib, scan_elem, --[ [] ]--0);
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 " ]",
@@ -2377,7 +2377,7 @@ end
 
 function scan_elems$7(ib, scan_elem, accu) do
   return Curry._3(scan_elem, ib, (function (i) do
-                var accu$1 = --[ :: ]--[
+                accu$1 = --[ :: ]--[
                   i,
                   accu
                 ];
@@ -2413,7 +2413,7 @@ function scan_list$2(scan_elem, ib) do
               ]),
             "[ "
           ]), --[ () ]--0);
-  var accu = scan_elems$7(ib, scan_elem, --[ [] ]--0);
+  accu = scan_elems$7(ib, scan_elem, --[ [] ]--0);
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 " ]",
@@ -2424,7 +2424,7 @@ function scan_list$2(scan_elem, ib) do
   return List.rev(accu);
 end
 
-var partial_arg$1 = --[ Format ]--[
+partial_arg$1 = --[ Format ]--[
   --[ Char_literal ]--Block.__(12, [
       --[ " " ]--32,
       --[ Int ]--Block.__(4, [
@@ -2445,7 +2445,7 @@ function scan_int_list$6(param) do
   return scan_list$2(partial_arg$2, param);
 end
 
-var partial_arg$3 = --[ Format ]--[
+partial_arg$3 = --[ Format ]--[
   --[ Char_literal ]--Block.__(12, [
       --[ " " ]--32,
       --[ Caml_string ]--Block.__(3, [
@@ -2542,7 +2542,7 @@ function scan_elems$8(ib, scan_elem_fmt, accu) do
   return Curry._1(Scanf.kscanf(ib, (function (ib, exc) do
                     return accu;
                   end), scan_elem_fmt), (function (i) do
-                var accu$1 = --[ :: ]--[
+                accu$1 = --[ :: ]--[
                   i,
                   accu
                 ];
@@ -2577,7 +2577,7 @@ function scan_list$3(scan_elem_fmt, ib) do
               ]),
             "[ "
           ]), --[ () ]--0);
-  var accu = scan_elems$8(ib, scan_elem_fmt, --[ [] ]--0);
+  accu = scan_elems$8(ib, scan_elem_fmt, --[ [] ]--0);
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 " ]",
@@ -2588,7 +2588,7 @@ function scan_list$3(scan_elem_fmt, ib) do
   return List.rev(accu);
 end
 
-var partial_arg$5 = --[ Format ]--[
+partial_arg$5 = --[ Format ]--[
   --[ Int ]--Block.__(4, [
       --[ Int_i ]--3,
       --[ No_padding ]--0,
@@ -2602,7 +2602,7 @@ function scan_int_list$7(param) do
   return scan_list$3(partial_arg$5, param);
 end
 
-var partial_arg$6 = --[ Format ]--[
+partial_arg$6 = --[ Format ]--[
   --[ Caml_string ]--Block.__(3, [
       --[ No_padding ]--0,
       --[ End_of_format ]--0
@@ -2696,7 +2696,7 @@ function scan_elems$9(scan_elem, accu, ib) do
                   "%r"
                 ]), (function (ib) do
                 return Curry._2(scan_elem, ib, (function (elem) do
-                              var accu$1 = --[ :: ]--[
+                              accu$1 = --[ :: ]--[
                                 elem,
                                 accu
                               ];
@@ -2734,7 +2734,7 @@ function scan_list$4(scan_elem, ib) do
               ]),
             "[ "
           ]), --[ () ]--0);
-  var accu = scan_elems$9(scan_elem, --[ [] ]--0, ib);
+  accu = scan_elems$9(scan_elem, --[ [] ]--0, ib);
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 " ]",
@@ -3128,14 +3128,14 @@ end
 test("File \"tscanf_test.ml\", line 1020, characters 5-12", test38(--[ () ]--0));
 
 function test39(param) do
-  var is_empty_buff = function (ib) do
+  is_empty_buff = function (ib) do
     if (Scanf.Scanning.beginning_of_input(ib)) then do
       return Scanf.Scanning.end_of_input(ib);
     end else do
       return false;
     end end 
   end;
-  var ib = Scanf.Scanning.from_string("");
+  ib = Scanf.Scanning.from_string("");
   if (is_empty_buff(ib)) then do
     return is_empty_buff(ib);
   end else do
@@ -3146,7 +3146,7 @@ end
 test("File \"tscanf_test.ml\", line 1036, characters 5-12", test39(--[ () ]--0));
 
 function test40(param) do
-  var ib = Scanf.Scanning.from_string("cba");
+  ib = Scanf.Scanning.from_string("cba");
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ Scan_char_set ]--Block.__(20, [
                       undefined,
@@ -3169,7 +3169,7 @@ end
 test("File \"tscanf_test.ml\", line 1046, characters 5-12", test40(--[ () ]--0));
 
 function test41(param) do
-  var ib = Scanf.Scanning.from_string("cba");
+  ib = Scanf.Scanning.from_string("cba");
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ Scan_char_set ]--Block.__(20, [
                       undefined,
@@ -3193,8 +3193,8 @@ end
 test("File \"tscanf_test.ml\", line 1055, characters 5-12", test41(--[ () ]--0));
 
 function test42(param) do
-  var s = "defcbaaghi";
-  var ib = Scanf.Scanning.from_string(s);
+  s = "defcbaaghi";
+  ib = Scanf.Scanning.from_string(s);
   if (Curry._1(Scanf.bscanf(ib, --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
@@ -3216,7 +3216,7 @@ function test42(param) do
               return false;
             end end 
           end))) then do
-    var ib$1 = Scanf.Scanning.from_string(s);
+    ib$1 = Scanf.Scanning.from_string(s);
     return Curry._1(Scanf.bscanf(ib$1, --[ Format ]--[
                     --[ String ]--Block.__(2, [
                         --[ No_padding ]--0,
@@ -3236,7 +3236,7 @@ end
 
 test("File \"tscanf_test.ml\", line 1067, characters 5-12", test42(--[ () ]--0));
 
-var ib$1 = Scanf.Scanning.from_string("");
+ib$1 = Scanf.Scanning.from_string("");
 
 function test43(param) do
   return Curry._1(Scanf.bscanf(ib$1, --[ Format ]--[
@@ -3269,7 +3269,7 @@ end
 Testing.test_raises_this_exc(Caml_builtin_exceptions.end_of_file)(test43, --[ () ]--0) and Testing.test_raises_this_exc(Caml_builtin_exceptions.end_of_file)(test44, --[ () ]--0);
 
 function test45(param) do
-  var ib = Scanf.Scanning.from_string("12.2");
+  ib = Scanf.Scanning.from_string("12.2");
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                   --[ Scan_char_set ]--Block.__(20, [
                       undefined,
@@ -3371,10 +3371,10 @@ test("File \"tscanf_test.ml\", line 1104, characters 5-12", test46(--[ () ]--0) 
 test("File \"tscanf_test.ml\", line 1106, characters 5-12", test47(--[ () ]--0) == "1 %s, in english.");
 
 function test48(param) do
-  var test_meta_read = function (s, fmt, efmt) do
+  test_meta_read = function (s, fmt, efmt) do
     return Caml_obj.caml_equal(Scanf.format_from_string(s, fmt), efmt);
   end;
-  var fmt = --[ Format ]--[
+  fmt = --[ Format ]--[
     --[ Int ]--Block.__(4, [
         --[ Int_i ]--3,
         --[ No_padding ]--0,
@@ -3435,7 +3435,7 @@ function test48(param) do
               return false;
             end end 
           end))) then do
-    var k = function (s) do
+    k = function (s) do
       return Curry._1(Scanf.sscanf(s, --[ Format ]--[
                       --[ Format_subst ]--Block.__(14, [
                           undefined,
@@ -3448,7 +3448,7 @@ function test48(param) do
                   end));
     end;
     if (k("\" : %1f\": 987654321") == 9.0 and k("\" : %2f\": 987654321") == 98.0 and k("\" : %3f\": 9.87654321") == 9.8 and k("\" : %4f\": 9.87654321") == 9.87) then do
-      var h = function (s) do
+      h = function (s) do
         return Curry._1(Scanf.sscanf(s, --[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "Read integers with ",
@@ -3464,7 +3464,7 @@ function test48(param) do
                     end));
       end;
       if (h("Read integers with \"%1d\"987654321") == 9 and h("Read integers with \"%2d\"987654321") == 98 and h("Read integers with \"%3u\"987654321") == 987 and h("Read integers with \"%4x\"987654321") == 39030) then do
-        var i = function (s) do
+        i = function (s) do
           return Curry._1(Scanf.sscanf(s, --[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "with ",
@@ -3495,7 +3495,7 @@ function test48(param) do
                 801,
                 "yens"
               ])) then do
-          var j = function (s) do
+          j = function (s) do
             return Curry._1(Scanf.sscanf(s, --[ Format ]--[
                             --[ String_literal ]--Block.__(11, [
                                 "with ",
@@ -3708,13 +3708,13 @@ end
 test("File \"tscanf_test.ml\", line 1176, characters 5-12", test49(--[ () ]--0));
 
 function next_char(ob, param) do
-  var s = $$Buffer.contents(ob);
-  var len = #s;
+  s = $$Buffer.contents(ob);
+  len = #s;
   if (len == 0) then do
     throw Caml_builtin_exceptions.end_of_file;
   end
    end 
-  var c = Caml_string.get(s, 0);
+  c = Caml_string.get(s, 0);
   ob.position = 0;
   $$Buffer.add_string(ob, $$String.sub(s, 1, len - 1 | 0));
   return c;
@@ -3759,7 +3759,7 @@ function writer(ib, ob) do
                                   end));end end end 
                    do
                   else do
-                    var i = Caml_format.caml_int_of_string(s);
+                    i = Caml_format.caml_int_of_string(s);
                     send_string(ob, String(i));
                     return reader(ib, ob);
                     end end
@@ -3768,7 +3768,7 @@ function writer(ib, ob) do
               end));
 end
 
-var count = do
+count = do
   contents: 0
 end;
 
@@ -3793,7 +3793,7 @@ function reader(ib, ob) do
                     send_string(ob, "stop");
                     return writer(ib, ob);
                   end else do
-                    var l = #s;
+                    l = #s;
                     count.contents = l + count.contents | 0;
                     if (count.contents >= 100) then do
                       send_string(ob, "stop");
@@ -3808,8 +3808,8 @@ function reader(ib, ob) do
 end
 
 function go(param) do
-  var ob = $$Buffer.create(17);
-  var ib = Scanf.Scanning.from_function((function (param) do
+  ob = $$Buffer.create(17);
+  ib = Scanf.Scanning.from_function((function (param) do
           return next_char(ob, param);
         end));
   return reader(ib, ob);
@@ -4218,7 +4218,7 @@ end
 test("File \"tscanf_test.ml\", line 1301, characters 5-12", test53(--[ () ]--0));
 
 function test56(param) do
-  var g = function (s) do
+  g = function (s) do
     return Curry._1(Scanf.sscanf(s, --[ Format ]--[
                     --[ Int ]--Block.__(4, [
                         --[ Int_d ]--0,
@@ -4256,7 +4256,7 @@ end
 test("File \"tscanf_test.ml\", line 1316, characters 5-12", test56(--[ () ]--0));
 
 function test57(param) do
-  var test_format_scan = function (s, fmt, efmt) do
+  test_format_scan = function (s, fmt, efmt) do
     return Caml_obj.caml_equal(Scanf.format_from_string(s, fmt), efmt);
   end;
   if (test_format_scan(" %i ", --[ Format ]--[
@@ -4584,7 +4584,7 @@ test("File \"tscanf_test.ml\", line 1414, characters 5-12", test60(--[ () ]--0))
 
 Mt.from_pair_suites("Tscanf_test", suites.contents);
 
-var tscanf_data_file_lines = --[ :: ]--[
+tscanf_data_file_lines = --[ :: ]--[
   --[ tuple ]--[
     "Objective",
     "Caml"

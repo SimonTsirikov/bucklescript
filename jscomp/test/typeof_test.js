@@ -1,11 +1,11 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Js_types = require("../../lib/js/js_types.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Js_types = require("../../lib/js/js_types.js");
 
 function string_or_number(x) do
-  var ty = Js_types.classify(x);
+  ty = Js_types.classify(x);
   if (typeof ty == "number") then do
     local ___conditional___=(ty);
     do
@@ -39,7 +39,7 @@ function string_or_number(x) do
   end end 
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "int_type",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -49,7 +49,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "string_type",
     (function (param) do
@@ -178,7 +178,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

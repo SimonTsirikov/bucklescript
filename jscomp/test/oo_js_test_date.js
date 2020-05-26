@@ -1,22 +1,22 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var d = new Date(2016, 2);
+d = new Date(2016, 2);
 
 function d2(param) do
   return (function (param$1, param$2) do
-      var prim = param;
-      var prim$1 = 2;
-      var prim$2 = param$1;
+      prim = param;
+      prim$1 = 2;
+      prim$2 = param$1;
       return new Date(prim, prim$1, prim$2);
     end);
 end
 
-var d3 = d2(2016)(1, --[ () ]--0);
+d3 = d2(2016)(1, --[ () ]--0);
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "getMonth",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -26,7 +26,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "getYear",
     (function (param) do
@@ -47,7 +47,7 @@ var suites_001 = --[ :: ]--[
   --[ [] ]--0
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Bytes = require("../../lib/js/bytes.js");
-var $$Buffer = require("../../lib/js/buffer.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Bytes = require("../../lib/js/bytes.js");
+$$Buffer = require("../../lib/js/buffer.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
 
-var v = "gso";
+v = "gso";
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "equal",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -24,11 +24,11 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "equal2",
     (function (param) do
-        var u = Bytes.make(3, --[ "a" ]--97);
+        u = Bytes.make(3, --[ "a" ]--97);
         u[0] = --[ "b" ]--98;
         return --[ Eq ]--Block.__(0, [
                   --[ tuple ]--[
@@ -46,8 +46,8 @@ var suites_001 = --[ :: ]--[
     --[ tuple ]--[
       "buffer",
       (function (param) do
-          var v = $$Buffer.create(30);
-          for var i = 0 , 10 , 1 do
+          v = $$Buffer.create(30);
+          for i = 0 , 10 , 1 do
             $$Buffer.add_string(v, String(i));
           end
           return --[ Eq ]--Block.__(0, [
@@ -60,7 +60,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

@@ -1,17 +1,17 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -32,11 +32,11 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var A = Caml_exceptions.create("Exception_rebound_err_test.A");
+A = Caml_exceptions.create("Exception_rebound_err_test.A");
 
-var B = Caml_exceptions.create("Exception_rebound_err_test.B");
+B = Caml_exceptions.create("Exception_rebound_err_test.B");
 
-var C = Caml_exceptions.create("Exception_rebound_err_test.C");
+C = Caml_exceptions.create("Exception_rebound_err_test.C");
 
 function test_js_error4(param) do
   try do
@@ -44,7 +44,7 @@ function test_js_error4(param) do
     return 1;
   end
   catch (raw_e)do
-    var e = Caml_js_exceptions.internalToOCamlException(raw_e);
+    e = Caml_js_exceptions.internalToOCamlException(raw_e);
     if (e == Caml_builtin_exceptions.not_found) then do
       return 2;
     end else if (e[0] == Caml_builtin_exceptions.invalid_argument and e[1] == "x") then do

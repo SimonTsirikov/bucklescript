@@ -1,7 +1,7 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Curry = require("../../lib/js/curry.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function peek_queue(param) do
   throw [
@@ -49,9 +49,9 @@ end
 
 function advance_loop(state) do
   while(true) do
-    var match = peek_queue(state.pp_queue);
-    var size = match.elem_size;
-    var size$1 = int_of_size(size);
+    match = peek_queue(state.pp_queue);
+    size = match.elem_size;
+    size$1 = int_of_size(size);
     if (size$1 < 0 and (state.pp_right_total - state.pp_left_total | 0) < state.pp_space_left) then do
       return 0;
     end else do
@@ -63,7 +63,7 @@ function advance_loop(state) do
   end;
 end
 
-var pp_infinity = 1000000010;
+pp_infinity = 1000000010;
 
 exports.peek_queue = peek_queue;
 exports.int_of_size = int_of_size;

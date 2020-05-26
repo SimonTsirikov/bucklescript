@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -28,17 +28,17 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var uu = do
+uu = do
   "'x": 3
 end;
 
-var uu2 = do
+uu2 = do
   then: 1,
   catch: 2,
   "'x": 3
 end;
 
-var hh = uu["'x"];
+hh = uu["'x"];
 
 eq("File \"gpr_459_test.ml\", line 25, characters 12-19", hh, 3);
 

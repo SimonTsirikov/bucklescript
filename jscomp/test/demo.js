@@ -1,11 +1,11 @@
 'use strict';
 
-var UI = require("@ui");
-var Curry = require("../../lib/js/curry.js");
-var BUI = require("@blp/ui");
-var Runtime = require("@runtime");
+UI = require("@ui");
+Curry = require("../../lib/js/curry.js");
+BUI = require("@blp/ui");
+Runtime = require("@runtime");
 
-var data = [
+data = [
   do
     ticker: "GOOG",
     price: 700.0
@@ -21,20 +21,20 @@ var data = [
 ];
 
 function ui_layout(compile, lookup, appContext) do
-  var init = Curry._1(compile, "bid  - ask");
-  var computeFunction = do
+  init = Curry._1(compile, "bid  - ask");
+  computeFunction = do
     contents: (function (env) do
         return Curry._1(init, (function (key) do
                       return Curry._2(lookup, env, key);
                     end));
       end)
   end;
-  var hw1 = new BUI.HostedWindow();
-  var hc = new BUI.HostedContent();
-  var stackPanel = new UI.StackPanel();
-  var inputCode = new UI.TextArea();
-  var button = new UI.Button();
-  var grid = new UI.Grid();
+  hw1 = new BUI.HostedWindow();
+  hc = new BUI.HostedContent();
+  stackPanel = new UI.StackPanel();
+  inputCode = new UI.TextArea();
+  button = new UI.Button();
+  grid = new UI.Grid();
   hw1.appContext = appContext;
   hw1.title = "Test Application From OCaml";
   hw1.content = hc;
@@ -46,14 +46,14 @@ function ui_layout(compile, lookup, appContext) do
   stackPanel.addChild(grid);
   stackPanel.addChild(inputCode);
   stackPanel.addChild(button);
-  var mk_titleRow = function (text) do
+  mk_titleRow = function (text) do
     return do
             label: do
               text: text
             end
           end;
   end;
-  var u = do
+  u = do
     width: 200
   end;
   grid.minHeight = 300;
@@ -91,7 +91,7 @@ function ui_layout(compile, lookup, appContext) do
   button.minHeight = 20;
   button.on("click", (function (_event) do
           try do
-            var hot_function = Curry._1(compile, inputCode.text);
+            hot_function = Curry._1(compile, inputCode.text);
             computeFunction.contents = (function (env) do
                 return Curry._1(hot_function, (function (key) do
                               return Curry._2(lookup, env, key);
@@ -105,10 +105,10 @@ function ui_layout(compile, lookup, appContext) do
         end));
   Runtime.setInterval((function () do
           grid.dataSource = Array.prototype.map.call(data, (function (param) do
-                  var price = param.price;
-                  var bid = price + 20 * Math.random();
-                  var ask = price + 20 * Math.random();
-                  var result = Curry._1(computeFunction.contents, do
+                  price = param.price;
+                  bid = price + 20 * Math.random();
+                  ask = price + 20 * Math.random();
+                  result = Curry._1(computeFunction.contents, do
                         bid: bid,
                         ask: ask
                       end);

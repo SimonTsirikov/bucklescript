@@ -1,9 +1,9 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(match) do
   if (Caml_exceptions.caml_is_extension(match)) then do
@@ -20,9 +20,9 @@ function f(match) do
    end 
 end
 
-var A = Caml_exceptions.create("Exn_error_pattern.A");
+A = Caml_exceptions.create("Exn_error_pattern.A");
 
-var B = Caml_exceptions.create("Exn_error_pattern.B");
+B = Caml_exceptions.create("Exn_error_pattern.B");
 
 function g(match) do
   if (Caml_exceptions.caml_is_extension(match)) then do
@@ -39,11 +39,11 @@ function g(match) do
    end 
 end
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -65,7 +65,7 @@ eq("File \"exn_error_pattern.ml\", line 37, characters 5-12", f([
           ""
         ]), 2);
 
-var tmp;
+tmp;
 
 try do
   throw new Error("x");

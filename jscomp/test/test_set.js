@@ -1,20 +1,20 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+List = require("../../lib/js/list.js");
+Curry = require("../../lib/js/curry.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function Make(Ord) do
-  var height = function (param) do
+  height = function (param) do
     if (param) then do
       return param[3];
     end else do
       return 0;
     end end 
   end;
-  var create = function (l, v, r) do
-    var hl = l and l[3] or 0;
-    var hr = r and r[3] or 0;
+  create = function (l, v, r) do
+    hl = l and l[3] or 0;
+    hr = r and r[3] or 0;
     return --[ Node ]--[
             l,
             v,
@@ -22,14 +22,14 @@ function Make(Ord) do
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end;
-  var bal = function (l, v, r) do
-    var hl = l and l[3] or 0;
-    var hr = r and r[3] or 0;
+  bal = function (l, v, r) do
+    hl = l and l[3] or 0;
+    hr = r and r[3] or 0;
     if (hl > (hr + 2 | 0)) then do
       if (l) then do
-        var lr = l[2];
-        var lv = l[1];
-        var ll = l[0];
+        lr = l[2];
+        lv = l[1];
+        ll = l[0];
         if (height(ll) >= height(lr)) then do
           return create(ll, lv, create(lr, v, r));
         end else if (lr) then do
@@ -48,9 +48,9 @@ function Make(Ord) do
       end end 
     end else if (hr > (hl + 2 | 0)) then do
       if (r) then do
-        var rr = r[2];
-        var rv = r[1];
-        var rl = r[0];
+        rr = r[2];
+        rv = r[1];
+        rl = r[0];
         if (height(rr) >= height(rl)) then do
           return create(create(l, v, rl), rv, rr);
         end else if (rl) then do
@@ -76,12 +76,12 @@ function Make(Ord) do
             ];
     end end  end 
   end;
-  var add = function (x, t) do
+  add = function (x, t) do
     if (t) then do
-      var r = t[2];
-      var v = t[1];
-      var l = t[0];
-      var c = Curry._2(Ord.compare, x, v);
+      r = t[2];
+      v = t[1];
+      l = t[0];
+      c = Curry._2(Ord.compare, x, v);
       if (c == 0) then do
         return t;
       end else if (c < 0) then do
@@ -98,7 +98,7 @@ function Make(Ord) do
             ];
     end end 
   end;
-  var singleton = function (x) do
+  singleton = function (x) do
     return --[ Node ]--[
             --[ Empty ]--0,
             x,
@@ -106,25 +106,25 @@ function Make(Ord) do
             1
           ];
   end;
-  var add_min_element = function (v, param) do
+  add_min_element = function (v, param) do
     if (param) then do
       return bal(add_min_element(v, param[0]), param[1], param[2]);
     end else do
       return singleton(v);
     end end 
   end;
-  var add_max_element = function (v, param) do
+  add_max_element = function (v, param) do
     if (param) then do
       return bal(param[0], param[1], add_max_element(v, param[2]));
     end else do
       return singleton(v);
     end end 
   end;
-  var join = function (l, v, r) do
+  join = function (l, v, r) do
     if (l) then do
       if (r) then do
-        var rh = r[3];
-        var lh = l[3];
+        rh = r[3];
+        lh = l[3];
         if (lh > (rh + 2 | 0)) then do
           return bal(l[0], l[1], join(l[2], v, r));
         end else if (rh > (lh + 2 | 0)) then do
@@ -139,11 +139,11 @@ function Make(Ord) do
       return add_min_element(v, r);
     end end 
   end;
-  var min_elt = function (_param) do
+  min_elt = function (_param) do
     while(true) do
-      var param = _param;
+      param = _param;
       if (param) then do
-        var l = param[0];
+        l = param[0];
         if (l) then do
           _param = l;
           continue ;
@@ -155,11 +155,11 @@ function Make(Ord) do
       end end 
     end;
   end;
-  var max_elt = function (_param) do
+  max_elt = function (_param) do
     while(true) do
-      var param = _param;
+      param = _param;
       if (param) then do
-        var r = param[2];
+        r = param[2];
         if (r) then do
           _param = r;
           continue ;
@@ -171,9 +171,9 @@ function Make(Ord) do
       end end 
     end;
   end;
-  var remove_min_elt = function (param) do
+  remove_min_elt = function (param) do
     if (param) then do
-      var l = param[0];
+      l = param[0];
       if (l) then do
         return bal(remove_min_elt(l), param[1], param[2]);
       end else do
@@ -186,7 +186,7 @@ function Make(Ord) do
           ];
     end end 
   end;
-  var merge = function (t1, t2) do
+  merge = function (t1, t2) do
     if (t1) then do
       if (t2) then do
         return bal(t1, min_elt(t2), remove_min_elt(t2));
@@ -197,7 +197,7 @@ function Make(Ord) do
       return t2;
     end end 
   end;
-  var concat = function (t1, t2) do
+  concat = function (t1, t2) do
     if (t1) then do
       if (t2) then do
         return join(t1, min_elt(t2), remove_min_elt(t2));
@@ -208,12 +208,12 @@ function Make(Ord) do
       return t2;
     end end 
   end;
-  var split = function (x, param) do
+  split = function (x, param) do
     if (param) then do
-      var r = param[2];
-      var v = param[1];
-      var l = param[0];
-      var c = Curry._2(Ord.compare, x, v);
+      r = param[2];
+      v = param[1];
+      l = param[0];
+      c = Curry._2(Ord.compare, x, v);
       if (c == 0) then do
         return --[ tuple ]--[
                 l,
@@ -221,14 +221,14 @@ function Make(Ord) do
                 r
               ];
       end else if (c < 0) then do
-        var match = split(x, l);
+        match = split(x, l);
         return --[ tuple ]--[
                 match[0],
                 match[1],
                 join(match[2], v, r)
               ];
       end else do
-        var match$1 = split(x, r);
+        match$1 = split(x, r);
         return --[ tuple ]--[
                 join(l, v, match$1[0]),
                 match$1[1],
@@ -243,18 +243,18 @@ function Make(Ord) do
             ];
     end end 
   end;
-  var is_empty = function (param) do
+  is_empty = function (param) do
     if (param) then do
       return false;
     end else do
       return true;
     end end 
   end;
-  var mem = function (x, _param) do
+  mem = function (x, _param) do
     while(true) do
-      var param = _param;
+      param = _param;
       if (param) then do
-        var c = Curry._2(Ord.compare, x, param[1]);
+        c = Curry._2(Ord.compare, x, param[1]);
         if (c == 0) then do
           return true;
         end else do
@@ -266,12 +266,12 @@ function Make(Ord) do
       end end 
     end;
   end;
-  var remove = function (x, param) do
+  remove = function (x, param) do
     if (param) then do
-      var r = param[2];
-      var v = param[1];
-      var l = param[0];
-      var c = Curry._2(Ord.compare, x, v);
+      r = param[2];
+      v = param[1];
+      l = param[0];
+      c = Curry._2(Ord.compare, x, v);
       if (c == 0) then do
         return merge(l, r);
       end else if (c < 0) then do
@@ -283,24 +283,24 @@ function Make(Ord) do
       return --[ Empty ]--0;
     end end 
   end;
-  var union = function (s1, s2) do
+  union = function (s1, s2) do
     if (s1) then do
       if (s2) then do
-        var h2 = s2[3];
-        var v2 = s2[1];
-        var h1 = s1[3];
-        var v1 = s1[1];
+        h2 = s2[3];
+        v2 = s2[1];
+        h1 = s1[3];
+        v1 = s1[1];
         if (h1 >= h2) then do
           if (h2 == 1) then do
             return add(v2, s1);
           end else do
-            var match = split(v1, s2);
+            match = split(v1, s2);
             return join(union(s1[0], match[0]), v1, union(s1[2], match[2]));
           end end 
         end else if (h1 == 1) then do
           return add(v1, s2);
         end else do
-          var match$1 = split(v2, s1);
+          match$1 = split(v2, s1);
           return join(union(match$1[0], s2[0]), v2, union(match$1[2], s2[2]));
         end end  end 
       end else do
@@ -310,13 +310,13 @@ function Make(Ord) do
       return s2;
     end end 
   end;
-  var inter = function (s1, s2) do
+  inter = function (s1, s2) do
     if (s1 and s2) then do
-      var r1 = s1[2];
-      var v1 = s1[1];
-      var l1 = s1[0];
-      var match = split(v1, s2);
-      var l2 = match[0];
+      r1 = s1[2];
+      v1 = s1[1];
+      l1 = s1[0];
+      match = split(v1, s2);
+      l2 = match[0];
       if (match[1]) then do
         return join(inter(l1, l2), v1, inter(r1, match[2]));
       end else do
@@ -326,14 +326,14 @@ function Make(Ord) do
       return --[ Empty ]--0;
     end end 
   end;
-  var diff = function (s1, s2) do
+  diff = function (s1, s2) do
     if (s1) then do
       if (s2) then do
-        var r1 = s1[2];
-        var v1 = s1[1];
-        var l1 = s1[0];
-        var match = split(v1, s2);
-        var l2 = match[0];
+        r1 = s1[2];
+        v1 = s1[1];
+        l1 = s1[0];
+        match = split(v1, s2);
+        l2 = match[0];
         if (match[1]) then do
           return concat(diff(l1, l2), diff(r1, match[2]));
         end else do
@@ -346,10 +346,10 @@ function Make(Ord) do
       return --[ Empty ]--0;
     end end 
   end;
-  var cons_enum = function (_s, _e) do
+  cons_enum = function (_s, _e) do
     while(true) do
-      var e = _e;
-      var s = _s;
+      e = _e;
+      s = _s;
       if (s) then do
         _e = --[ More ]--[
           s[1],
@@ -363,13 +363,13 @@ function Make(Ord) do
       end end 
     end;
   end;
-  var compare_aux = function (_e1, _e2) do
+  compare_aux = function (_e1, _e2) do
     while(true) do
-      var e2 = _e2;
-      var e1 = _e1;
+      e2 = _e2;
+      e1 = _e1;
       if (e1) then do
         if (e2) then do
-          var c = Curry._2(Ord.compare, e1[0], e2[0]);
+          c = Curry._2(Ord.compare, e1[0], e2[0]);
           if (c ~= 0) then do
             return c;
           end else do
@@ -387,24 +387,24 @@ function Make(Ord) do
       end end  end 
     end;
   end;
-  var compare = function (s1, s2) do
+  compare = function (s1, s2) do
     return compare_aux(cons_enum(s1, --[ End ]--0), cons_enum(s2, --[ End ]--0));
   end;
-  var equal = function (s1, s2) do
+  equal = function (s1, s2) do
     return compare(s1, s2) == 0;
   end;
-  var subset = function (_s1, _s2) do
+  subset = function (_s1, _s2) do
     while(true) do
-      var s2 = _s2;
-      var s1 = _s1;
+      s2 = _s2;
+      s1 = _s1;
       if (s1) then do
         if (s2) then do
-          var r2 = s2[2];
-          var l2 = s2[0];
-          var r1 = s1[2];
-          var v1 = s1[1];
-          var l1 = s1[0];
-          var c = Curry._2(Ord.compare, v1, s2[1]);
+          r2 = s2[2];
+          l2 = s2[0];
+          r1 = s1[2];
+          v1 = s1[1];
+          l1 = s1[0];
+          c = Curry._2(Ord.compare, v1, s2[1]);
           if (c == 0) then do
             if (subset(l1, l2)) then do
               _s2 = r2;
@@ -444,9 +444,9 @@ function Make(Ord) do
       end end 
     end;
   end;
-  var iter = function (f, _param) do
+  iter = function (f, _param) do
     while(true) do
-      var param = _param;
+      param = _param;
       if (param) then do
         iter(f, param[0]);
         Curry._1(f, param[1]);
@@ -457,10 +457,10 @@ function Make(Ord) do
       end end 
     end;
   end;
-  var fold = function (f, _s, _accu) do
+  fold = function (f, _s, _accu) do
     while(true) do
-      var accu = _accu;
-      var s = _s;
+      accu = _accu;
+      s = _s;
       if (s) then do
         _accu = Curry._2(f, s[1], fold(f, s[0], accu));
         _s = s[2];
@@ -470,9 +470,9 @@ function Make(Ord) do
       end end 
     end;
   end;
-  var for_all = function (p, _param) do
+  for_all = function (p, _param) do
     while(true) do
-      var param = _param;
+      param = _param;
       if (param) then do
         if (Curry._1(p, param[1]) and for_all(p, param[0])) then do
           _param = param[2];
@@ -485,9 +485,9 @@ function Make(Ord) do
       end end 
     end;
   end;
-  var exists = function (p, _param) do
+  exists = function (p, _param) do
     while(true) do
-      var param = _param;
+      param = _param;
       if (param) then do
         if (Curry._1(p, param[1]) or exists(p, param[0])) then do
           return true;
@@ -500,12 +500,12 @@ function Make(Ord) do
       end end 
     end;
   end;
-  var filter = function (p, param) do
+  filter = function (p, param) do
     if (param) then do
-      var v = param[1];
-      var l$prime = filter(p, param[0]);
-      var pv = Curry._1(p, v);
-      var r$prime = filter(p, param[2]);
+      v = param[1];
+      l$prime = filter(p, param[0]);
+      pv = Curry._1(p, v);
+      r$prime = filter(p, param[2]);
       if (pv) then do
         return join(l$prime, v, r$prime);
       end else do
@@ -515,16 +515,16 @@ function Make(Ord) do
       return --[ Empty ]--0;
     end end 
   end;
-  var partition = function (p, param) do
+  partition = function (p, param) do
     if (param) then do
-      var v = param[1];
-      var match = partition(p, param[0]);
-      var lf = match[1];
-      var lt = match[0];
-      var pv = Curry._1(p, v);
-      var match$1 = partition(p, param[2]);
-      var rf = match$1[1];
-      var rt = match$1[0];
+      v = param[1];
+      match = partition(p, param[0]);
+      lf = match[1];
+      lt = match[0];
+      pv = Curry._1(p, v);
+      match$1 = partition(p, param[2]);
+      rf = match$1[1];
+      rt = match$1[0];
       if (pv) then do
         return --[ tuple ]--[
                 join(lt, v, rt),
@@ -543,17 +543,17 @@ function Make(Ord) do
             ];
     end end 
   end;
-  var cardinal = function (param) do
+  cardinal = function (param) do
     if (param) then do
       return (cardinal(param[0]) + 1 | 0) + cardinal(param[2]) | 0;
     end else do
       return 0;
     end end 
   end;
-  var elements_aux = function (_accu, _param) do
+  elements_aux = function (_accu, _param) do
     while(true) do
-      var param = _param;
-      var accu = _accu;
+      param = _param;
+      accu = _accu;
       if (param) then do
         _param = param[0];
         _accu = --[ :: ]--[
@@ -566,15 +566,15 @@ function Make(Ord) do
       end end 
     end;
   end;
-  var elements = function (s) do
+  elements = function (s) do
     return elements_aux(--[ [] ]--0, s);
   end;
-  var find = function (x, _param) do
+  find = function (x, _param) do
     while(true) do
-      var param = _param;
+      param = _param;
       if (param) then do
-        var v = param[1];
-        var c = Curry._2(Ord.compare, x, v);
+        v = param[1];
+        c = Curry._2(Ord.compare, x, v);
         if (c == 0) then do
           return v;
         end else do
@@ -586,8 +586,8 @@ function Make(Ord) do
       end end 
     end;
   end;
-  var of_sorted_list = function (l) do
-    var sub = function (n, l) do
+  of_sorted_list = function (l) do
+    sub = function (n, l) do
       local ___conditional___=(n);
       do
          if ___conditional___ = 0 then do
@@ -610,7 +610,7 @@ function Make(Ord) do
              end end else 
          if ___conditional___ = 2 then do
             if (l) then do
-              var match = l[1];
+              match = l[1];
               if (match) then do
                 return --[ tuple ]--[
                         --[ Node ]--[
@@ -632,9 +632,9 @@ function Make(Ord) do
              end end else 
          if ___conditional___ = 3 then do
             if (l) then do
-              var match$1 = l[1];
+              match$1 = l[1];
               if (match$1) then do
-                var match$2 = match$1[1];
+                match$2 = match$1[1];
                 if (match$2) then do
                   return --[ tuple ]--[
                           --[ Node ]--[
@@ -666,11 +666,11 @@ function Make(Ord) do
           end end
           
       end
-      var nl = n / 2 | 0;
-      var match$3 = sub(nl, l);
-      var l$1 = match$3[1];
+      nl = n / 2 | 0;
+      match$3 = sub(nl, l);
+      l$1 = match$3[1];
       if (l$1) then do
-        var match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
+        match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
         return --[ tuple ]--[
                 create(match$3[0], l$1[0], match$4[0]),
                 match$4[1]
@@ -688,19 +688,19 @@ function Make(Ord) do
     end;
     return sub(List.length(l), l)[0];
   end;
-  var of_list = function (l) do
+  of_list = function (l) do
     if (l) then do
-      var match = l[1];
-      var x0 = l[0];
+      match = l[1];
+      x0 = l[0];
       if (match) then do
-        var match$1 = match[1];
-        var x1 = match[0];
+        match$1 = match[1];
+        x1 = match[0];
         if (match$1) then do
-          var match$2 = match$1[1];
-          var x2 = match$1[0];
+          match$2 = match$1[1];
+          x2 = match$1[0];
           if (match$2) then do
-            var match$3 = match$2[1];
-            var x3 = match$2[0];
+            match$3 = match$2[1];
+            x3 = match$2[0];
             if (match$3) then do
               if (match$3[1]) then do
                 return of_sorted_list(List.sort_uniq(Ord.compare, l));
@@ -766,7 +766,7 @@ function Make(Ord) do
         end;
 end
 
-var N = do
+N = do
   a: 3
 end;
 

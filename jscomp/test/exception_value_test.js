@@ -1,10 +1,10 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Js_exn = require("../../lib/js/js_exn.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Curry = require("../../lib/js/curry.js");
+Js_exn = require("../../lib/js/js_exn.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(param) do
   throw Caml_builtin_exceptions.not_found;
@@ -29,13 +29,13 @@ function hh(param) do
   throw Caml_builtin_exceptions.not_found;
 end
 
-var A = Caml_exceptions.create("Exception_value_test.A");
+A = Caml_exceptions.create("Exception_value_test.A");
 
-var B = Caml_exceptions.create("Exception_value_test.B");
+B = Caml_exceptions.create("Exception_value_test.B");
 
-var C = Caml_exceptions.create("Exception_value_test.C");
+C = Caml_exceptions.create("Exception_value_test.C");
 
-var u = [
+u = [
   A,
   3
 ];
@@ -58,7 +58,7 @@ function test_js_error2(param) do
     return JSON.parse(" {\"x\" : }");
   end
   catch (raw_e)do
-    var e = Caml_js_exceptions.internalToOCamlException(raw_e);
+    e = Caml_js_exceptions.internalToOCamlException(raw_e);
     if (e[0] == Js_exn.$$Error) then do
       console.log(e[1].stack);
       throw e;

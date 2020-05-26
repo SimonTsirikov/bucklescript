@@ -1,7 +1,7 @@
 'use strict';
 
 
-var u = do
+u = do
   x: 3,
   y: 32,
   bark: (function ($$this, x, y) do
@@ -18,15 +18,15 @@ end;
 u.bark(u, 1, 2);
 
 function uux_this(x, y) do
-  var o = this ;
+  o = this ;
   return (o.length + x | 0) + y | 0;
 end
 
-var js_obj = do
+js_obj = do
   x: 3,
   y: 32,
   bark: (function (x, y) do
-      var o = this ;
+      o = this ;
       console.log(--[ tuple ]--[
             o.length,
             o.x,

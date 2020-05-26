@@ -1,6 +1,6 @@
 'use strict';
 
-var Export_keyword = require("./export_keyword.js");
+Export_keyword = require("./export_keyword.js");
 
 function test2(v) do
   return do
@@ -16,11 +16,11 @@ function test(p) do
         ];
 end
 
-var $$case = Export_keyword.$$case;
+$$case = Export_keyword.$$case;
 
-var $$window = Export_keyword.$$window;
+$$window = Export_keyword.$$window;
 
-var $$switch = Export_keyword.$$switch;
+$$switch = Export_keyword.$$switch;
 
 exports.test2 = test2;
 exports.test = test;

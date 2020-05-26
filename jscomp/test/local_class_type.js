@@ -1,6 +1,6 @@
 'use strict';
 
-var Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
+Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
 
 function f(x) do
   x.height = 3;

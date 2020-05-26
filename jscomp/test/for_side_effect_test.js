@@ -1,26 +1,26 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
 function tst(param) do
-  for var i = console.log("hi"), 0 , console.log("hello"), 3 , 1 do
+  for i = console.log("hi"), 0 , console.log("hello"), 3 , 1 do
     
   end
   return --[ () ]--0;
 end
 
 function test2(param) do
-  var v = 0;
+  v = 0;
   v = 3;
   v = 10;
-  for var i = 0 , 1 , 1 do
+  for i = 0 , 1 , 1 do
     
   end
   return v;
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "for_order",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -30,7 +30,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   --[ [] ]--0
 ];

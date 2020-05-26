@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_int32 = require("../../lib/js/caml_int32.js");
+Mt = require("./mt.js");
+Curry = require("../../lib/js/curry.js");
+Caml_int32 = require("../../lib/js/caml_int32.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end
 
-var X = { };
+X = { };
 
 function xx(obj, a0, a1, a2, a3, a4, a5) do
   return (Curry._2(a4, Curry._2(a2, Curry._2(a0, obj, a1), a3), a5) - 1 | 0) - 3 | 0;
@@ -32,9 +32,9 @@ eq("File \"gpr_3536_test.ml\", line 32, characters 6-13", xx(3, (function (prim,
 
 Mt.from_pair_suites("Gpr_3536_test", suites.contents);
 
-var v = 5;
+v = 5;
 
-var u = --[ Some ]--[3];
+u = --[ Some ]--[3];
 
 exports.suites = suites;
 exports.test_id = test_id;

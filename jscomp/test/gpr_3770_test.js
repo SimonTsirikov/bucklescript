@@ -2,7 +2,7 @@
 
 
 function show(param) do
-  var a = param[0];
+  a = param[0];
   if (a == 0 and param[1] == 0 and param[2] == 0) then do
     return "zeroes";
   end

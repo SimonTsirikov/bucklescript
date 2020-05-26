@@ -17,10 +17,10 @@ end
 
 function length(_acc, _x) do
   while(true) do
-    var x = _x;
-    var acc = _acc;
+    x = _x;
+    acc = _acc;
     if (x) then do
-      var tl = x[1];
+      tl = x[1];
       if (tl) then do
         return 1 + length(acc + 1 | 0, tl[1]) | 0;
       end else do

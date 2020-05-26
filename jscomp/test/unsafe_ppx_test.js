@@ -1,29 +1,29 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Pervasives = require("../../lib/js/pervasives.js");
-var Ffi_js_test = require("./ffi_js_test.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Pervasives = require("../../lib/js/pervasives.js");
+Ffi_js_test = require("./ffi_js_test.js");
 
-var x = "\x01\x02\x03";
+x = "\x01\x02\x03";
 
-var max = Math.max;
+max = Math.max;
 
 function $$test(x,y){
   return x + y;
 }
 ;
 
-var regression3 = Math.max;
+regression3 = Math.max;
 
-var regression4 = Math.max;
+regression4 = Math.max;
 
 function g(a) do
-  var regression = (function(x,y){
+  regression = (function(x,y){
    return ""
 });
-  var regression2 = Math.max;
+  regression2 = Math.max;
   regression(a, Pervasives.failwith);
   Curry._2(regression2, 3, 2);
   regression3(3, 2);
@@ -33,7 +33,7 @@ function g(a) do
   return --[ () ]--0;
 end
 
-var max2 = Math.max;
+max2 = Math.max;
 
 function umax(a, b) do
   return max2(a, b);
@@ -43,15 +43,15 @@ function u(h) do
   return max2(3, h);
 end
 
-var max3 = Math.max;
+max3 = Math.max;
 
 function uu(h) do
   return max2(3, h);
 end
 
-var empty = Object.keys(3);
+empty = Object.keys(3);
 
-var v = $$test(1, 2);
+v = $$test(1, 2);
 
 Mt.from_pair_suites("Unsafe_ppx_test", --[ :: ]--[
       --[ tuple ]--[

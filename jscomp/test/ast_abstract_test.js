@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -45,19 +45,19 @@ function tFromJs(param) do
         end;
 end
 
-var v0 = do
+v0 = do
   x: 3,
   y: false,
   z: false
 end;
 
-var v1 = do
+v1 = do
   x: 3,
   y: false,
   z: ""
 end;
 
-var jsMapperConstantArray = [
+jsMapperConstantArray = [
   --[ tuple ]--[
     97,
     "a"
@@ -84,9 +84,9 @@ function idx(v) do
   return eq("File \"ast_abstract_test.ml\", line 32, characters 17-24", xFromJs(xToJs(v)), v);
 end
 
-var x0 = xToJs(--[ a ]--97);
+x0 = xToJs(--[ a ]--97);
 
-var x1 = xToJs(--[ b ]--98);
+x1 = xToJs(--[ b ]--98);
 
 idx(--[ a ]--97);
 
@@ -94,7 +94,7 @@ idx(--[ b ]--98);
 
 idx(--[ c ]--99);
 
-var jsMapperConstantArray$1 = [
+jsMapperConstantArray$1 = [
   0,
   3,
   4
@@ -112,9 +112,9 @@ function id(x) do
   return eq("File \"ast_abstract_test.ml\", line 49, characters 8-15", aFromJs(aToJs(x)), x);
 end
 
-var a0 = aToJs(--[ A ]--0);
+a0 = aToJs(--[ A ]--0);
 
-var a1 = aToJs(--[ B ]--1);
+a1 = aToJs(--[ B ]--1);
 
 id(--[ A ]--0);
 
@@ -134,9 +134,9 @@ function bFromJs(param) do
   return param - 0 | 0;
 end
 
-var b0 = 0;
+b0 = 0;
 
-var b1 = 1;
+b1 = 1;
 
 function idb(v) do
   return eq("File \"ast_abstract_test.ml\", line 71, characters 5-12", bFromJs(v + 0 | 0), v);
@@ -162,7 +162,7 @@ function cFromJs(param) do
   return param - 3 | 0;
 end
 
-var c0 = 3;
+c0 = 3;
 
 function idc(v) do
   return eq("File \"ast_abstract_test.ml\", line 83, characters 15-22", cFromJs(v + 3 | 0), v);
@@ -201,11 +201,11 @@ end
 
 Mt.from_pair_suites("Ast_abstract_test", suites.contents);
 
-var jsMapperEraseType = --[ JsMapperEraseType ]--0;
+jsMapperEraseType = --[ JsMapperEraseType ]--0;
 
-var b = --[ B ]--1;
+b = --[ B ]--1;
 
-var zXx = --[ ZXx ]--2;
+zXx = --[ ZXx ]--2;
 
 exports.suites = suites;
 exports.test_id = test_id;

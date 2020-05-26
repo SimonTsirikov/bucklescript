@@ -3,7 +3,7 @@
 
 function map(f, param) do
   if (param) then do
-    var r = f(param[0]);
+    r = f(param[0]);
     return --[ :: ]--[
             r,
             map(f, param[1])

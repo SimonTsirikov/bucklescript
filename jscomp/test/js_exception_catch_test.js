@@ -1,24 +1,24 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Js_exn = require("../../lib/js/js_exn.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Js_exn = require("../../lib/js/js_exn.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var counter = do
+counter = do
   contents: 0
 end;
 
 function add_test(loc, test) do
   counter.contents = counter.contents + 1 | 0;
-  var id = loc .. (" id " .. String(counter.contents));
+  id = loc .. (" id " .. String(counter.contents));
   suites.contents = --[ :: ]--[
     --[ tuple ]--[
       id,
@@ -50,16 +50,16 @@ function true_(loc) do
               end));
 end
 
-var exit = 0;
+exit = 0;
 
-var e;
+e;
 
 try do
   e = JSON.parse(" {\"x\"}");
   exit = 1;
 end
 catch (raw_exn)do
-  var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+  exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   if (exn[0] == Js_exn.$$Error) then do
     add_test("File \"js_exception_catch_test.ml\", line 21, characters 10-17", (function (param) do
             return --[ Ok ]--Block.__(4, [true]);
@@ -76,11 +76,11 @@ if (exit == 1) then do
 end
  end 
 
-var A = Caml_exceptions.create("Js_exception_catch_test.A");
+A = Caml_exceptions.create("Js_exception_catch_test.A");
 
-var B = Caml_exceptions.create("Js_exception_catch_test.B");
+B = Caml_exceptions.create("Js_exception_catch_test.B");
 
-var C = Caml_exceptions.create("Js_exception_catch_test.C");
+C = Caml_exceptions.create("Js_exception_catch_test.C");
 
 function test(f) do
   try do
@@ -88,7 +88,7 @@ function test(f) do
     return --[ No_error ]---465676758;
   end
   catch (raw_e)do
-    var e = Caml_js_exceptions.internalToOCamlException(raw_e);
+    e = Caml_js_exceptions.internalToOCamlException(raw_e);
     if (e == Caml_builtin_exceptions.not_found) then do
       return --[ Not_found ]---358247754;
     end else if (e[0] == Caml_builtin_exceptions.invalid_argument) then do

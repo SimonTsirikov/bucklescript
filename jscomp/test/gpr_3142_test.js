@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Js_mapperRt = require("../../lib/js/js_mapperRt.js");
+Mt = require("./mt.js");
+Js_mapperRt = require("../../lib/js/js_mapperRt.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -15,7 +15,7 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end
 
-var jsMapperConstantArray = [
+jsMapperConstantArray = [
   --[ tuple ]--[
     97,
     "x"
@@ -62,9 +62,9 @@ eq("File \"gpr_3142_test.ml\", line 34, characters 6-13", tFromJs("xx"), undefin
 
 Mt.from_pair_suites("Gpr_3142_test", suites.contents);
 
-var v = tToJs;
+v = tToJs;
 
-var u = tFromJs;
+u = tFromJs;
 
 exports.suites = suites;
 exports.test_id = test_id;

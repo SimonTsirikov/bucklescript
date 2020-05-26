@@ -1,24 +1,24 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var x = [];
+x = [];
 
 x[0] = 1;
 
 x[1] = x;
 
-var a = [];
+a = [];
 
-var b = [];
+b = [];
 
-var c = [];
+c = [];
 
 Caml_obj.caml_update_dummy(a, --[ :: ]--[
       2,
@@ -35,7 +35,7 @@ Caml_obj.caml_update_dummy(c, --[ :: ]--[
       a
     ]);
 
-var xx = [];
+xx = [];
 
 xx[0] = 1;
 
@@ -49,15 +49,15 @@ function naive(n) do
   end end 
 end
 
-var four = do
+four = do
   contents: 2
 end;
 
-var three = do
+three = do
   contents: 3
 end;
 
-var v = do
+v = do
   contents: (function (param) do
       throw [
             Caml_builtin_exceptions.assert_failure,
@@ -94,12 +94,12 @@ function zs(param) do
   return List.hd(xs[0]);
 end
 
-var xs_000 = --[ :: ]--[
+xs_000 = --[ :: ]--[
   2,
   --[ [] ]--0
 ];
 
-var xs = --[ tuple ]--[
+xs = --[ tuple ]--[
   xs_000,
   zs
 ];
@@ -112,7 +112,7 @@ function fib2(n) do
   end end 
 end
 
-var two = 2;
+two = 2;
 
 function fib3(n) do
   if (n == 0 or n == 1) then do
@@ -126,7 +126,7 @@ function even(n) do
   if (n == 0) then do
     return true;
   end else do
-    var n$1 = n - 1 | 0;
+    n$1 = n - 1 | 0;
     if (n$1 == 1) then do
       return true;
     end else do
@@ -137,7 +137,7 @@ end
 
 function even2(_n) do
   while(true) do
-    var n = _n;
+    n = _n;
     if (n == 0) then do
       return true;
     end else do
@@ -154,8 +154,8 @@ end
 
 function sum(_acc, _n) do
   while(true) do
-    var n = _n;
-    var acc = _acc;
+    n = _n;
+    acc = _acc;
     if (n > 0) then do
       _n = n - 1 | 0;
       _acc = acc + n | 0;
@@ -166,7 +166,7 @@ function sum(_acc, _n) do
   end;
 end
 
-var fake_v = --[ :: ]--[
+fake_v = --[ :: ]--[
   1,
   --[ :: ]--[
     2,
@@ -174,7 +174,7 @@ var fake_v = --[ :: ]--[
   ]
 ];
 
-var fake_y = --[ :: ]--[
+fake_y = --[ :: ]--[
   2,
   --[ :: ]--[
     3,
@@ -182,12 +182,12 @@ var fake_y = --[ :: ]--[
   ]
 ];
 
-var fake_z = --[ :: ]--[
+fake_z = --[ :: ]--[
   1,
   fake_y
 ];
 
-var fake_y2 = --[ :: ]--[
+fake_y2 = --[ :: ]--[
   2,
   --[ :: ]--[
     3,
@@ -195,19 +195,19 @@ var fake_y2 = --[ :: ]--[
   ]
 ];
 
-var fake_z2_001 = --[ :: ]--[
+fake_z2_001 = --[ :: ]--[
   sum(0, 10),
   fake_y2
 ];
 
-var fake_z2 = --[ :: ]--[
+fake_z2 = --[ :: ]--[
   1,
   fake_z2_001
 ];
 
-var rec_variant_b = [];
+rec_variant_b = [];
 
-var rec_variant_a = [];
+rec_variant_a = [];
 
 Caml_obj.caml_update_dummy(rec_variant_b, --[ B ]--Block.__(0, [
         "gho",
@@ -223,7 +223,7 @@ Caml_obj.caml_update_dummy(rec_variant_a, --[ A ]--Block.__(1, [
           end)
       ]));
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "hd",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -233,13 +233,13 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "mutual",
     (function (param) do
-        var tmp;
+        tmp;
         if (a) then do
-          var match = a[1];
+          match = a[1];
           if (match) then do
             tmp = match[0];
           end else do
@@ -431,7 +431,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
@@ -441,19 +441,19 @@ function fake_minus(n) do
   return n + 1 | 0;
 end
 
-var fake_odd = fake_minus;
+fake_odd = fake_minus;
 
 function fake_inline_minus(n) do
   return n + 1 | 0;
 end
 
-var fake_inline = fake_inline_minus;
+fake_inline = fake_inline_minus;
 
-var fake_inline_inlie2 = fake_inline_minus(3);
+fake_inline_inlie2 = fake_inline_minus(3);
 
 Mt.from_pair_suites("Rec_value_test", suites);
 
-var v$1 = 3;
+v$1 = 3;
 
 exports.x = x;
 exports.a = a;

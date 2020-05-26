@@ -1,14 +1,14 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Caml_array = require("../../lib/js/caml_array.js");
-var Caml_splice_call = require("../../lib/js/caml_splice_call.js");
+Mt = require("./mt.js");
+Caml_array = require("../../lib/js/caml_array.js");
+Caml_splice_call = require("../../lib/js/caml_splice_call.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end
 
-var Caml_splice_call$1 = { };
+Caml_splice_call$1 = { };
 
 Math.max(1);
 
@@ -24,7 +24,7 @@ function f00(a, b) do
   return a.send(b);
 end
 
-var a = [];
+a = [];
 
 a.push(1, 2, 3, 4);
 
@@ -36,7 +36,7 @@ eq("File \"splice_test.ml\", line 29, characters 5-12", a, [
     ]);
 
 function dynamic(arr) do
-  var a = [];
+  a = [];
   Caml_splice_call.spliceObjApply(a, "push", [
         1,
         arr
@@ -64,7 +64,7 @@ dynamic([
       3
     ]);
 
-var a$1 = [];
+a$1 = [];
 
 a$1.push(1, 2, 3, 4);
 
@@ -76,7 +76,7 @@ eq("File \"splice_test.ml\", line 51, characters 7-14", a$1, [
     ]);
 
 function dynamic$1(arr) do
-  var a = [];
+  a = [];
   Caml_splice_call.spliceObjApply(a, "push", [
         1,
         arr
@@ -104,7 +104,7 @@ dynamic$1([
       3
     ]);
 
-var Pipe = do
+Pipe = do
   dynamic: dynamic$1
 end;
 

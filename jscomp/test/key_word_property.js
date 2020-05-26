@@ -1,11 +1,11 @@
 'use strict';
 
-var Vscode = require("vscode");
-var SomeEs6Module = require("some-es6-module");
+Vscode = require("vscode");
+SomeEs6Module = require("some-es6-module");
 
-var $$default = SomeEs6Module.default;
+$$default = SomeEs6Module.default;
 
-var $$window = Vscode.window;
+$$window = Vscode.window;
 
 function mk($$window, $$default) do
   return do
@@ -31,7 +31,7 @@ function des(v) do
         end;
 end
 
-var test = do
+test = do
   case: 3,
   window: 3
 end;
@@ -40,7 +40,7 @@ function u(param) do
   return $$window.switch();
 end
 
-var $$case = 3;
+$$case = 3;
 
 exports.$$default = $$default;
 exports.default = $$default;

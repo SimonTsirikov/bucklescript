@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Functor_def = require("./functor_def.js");
-var Functor_inst = require("./functor_inst.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Functor_def = require("./functor_def.js");
+Functor_inst = require("./functor_inst.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -31,15 +31,15 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var Y0 = Functor_def.Make(Functor_inst);
+Y0 = Functor_def.Make(Functor_inst);
 
-var Y1 = Functor_def.Make(Functor_inst);
+Y1 = Functor_def.Make(Functor_inst);
 
 eq("File \"functor_app_test.ml\", line 23, characters 6-13", Curry._2(Y0.h, 1, 2), 4);
 
 eq("File \"functor_app_test.ml\", line 24, characters 6-13", Curry._2(Y1.h, 2, 3), 6);
 
-var v = Functor_def.$$return(--[ () ]--0);
+v = Functor_def.$$return(--[ () ]--0);
 
 eq("File \"functor_app_test.ml\", line 29, characters 6-13", v, 2);
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var Belt_Array = require("../../lib/js/belt_Array.js");
+Belt_Array = require("../../lib/js/belt_Array.js");
 
 function range(i, j) do
   return Belt_Array.makeBy((j - i | 0) + 1 | 0, (function (k) do
@@ -9,14 +9,14 @@ function range(i, j) do
 end
 
 function randomRange(i, j) do
-  var v = Belt_Array.makeBy((j - i | 0) + 1 | 0, (function (k) do
+  v = Belt_Array.makeBy((j - i | 0) + 1 | 0, (function (k) do
           return k + i | 0;
         end));
   Belt_Array.shuffleInPlace(v);
   return v;
 end
 
-var A = --[ alias ]--0;
+A = --[ alias ]--0;
 
 exports.A = A;
 exports.range = range;

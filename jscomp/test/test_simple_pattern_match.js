@@ -1,8 +1,8 @@
 'use strict';
 
-var Sys = require("../../lib/js/sys.js");
+Sys = require("../../lib/js/sys.js");
 
-var match;
+match;
 
 local ___conditional___=(Sys.os_type);
 do
@@ -22,9 +22,9 @@ do
     
 end
 
-var a = match[0];
+a = match[0];
 
-var b = match[1];
+b = match[1];
 
 exports.a = a;
 exports.b = b;

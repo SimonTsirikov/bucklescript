@@ -1,52 +1,52 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var $$Buffer = require("../../lib/js/buffer.js");
-var Printf = require("../../lib/js/printf.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_int64 = require("../../lib/js/caml_int64.js");
-var Caml_format = require("../../lib/js/caml_format.js");
-var CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+$$Buffer = require("../../lib/js/buffer.js");
+Printf = require("../../lib/js/printf.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_int64 = require("../../lib/js/caml_int64.js");
+Caml_format = require("../../lib/js/caml_format.js");
+CamlinternalLazy = require("../../lib/js/camlinternalLazy.js");
 
-var n0 = --[ int64 ]--[
+n0 = --[ int64 ]--[
   --[ hi ]--0,
   --[ lo ]--0
 ];
 
-var n1 = --[ int64 ]--[
+n1 = --[ int64 ]--[
   --[ hi ]--0,
   --[ lo ]--1
 ];
 
-var n2 = --[ int64 ]--[
+n2 = --[ int64 ]--[
   --[ hi ]--0,
   --[ lo ]--2
 ];
 
-var n3 = --[ int64 ]--[
+n3 = --[ int64 ]--[
   --[ hi ]--0,
   --[ lo ]--3
 ];
 
-var n5 = --[ int64 ]--[
+n5 = --[ int64 ]--[
   --[ hi ]--0,
   --[ lo ]--5
 ];
 
-var $percent = Caml_int64.mod_;
+$percent = Caml_int64.mod_;
 
-var $star = Caml_int64.mul;
+$star = Caml_int64.mul;
 
-var $slash = Caml_int64.div;
+$slash = Caml_int64.div;
 
-var $plus = Caml_int64.add;
+$plus = Caml_int64.add;
 
-var digit = Caml_format.caml_int64_of_string("1000000000000000000");
+digit = Caml_format.caml_int64_of_string("1000000000000000000");
 
 function mul(n, param) do
-  var pl = param[0];
+  pl = param[0];
   return --[ tuple ]--[
           Caml_int64.mod_(Caml_int64.mul(n, pl), digit),
           Caml_int64.add(Caml_int64.mul(n, param[1]), Caml_int64.div(Caml_int64.mul(n, pl), digit))
@@ -54,15 +54,15 @@ function mul(n, param) do
 end
 
 function cmp(param, param$1) do
-  var ph = param$1[1];
-  var nh = param[1];
+  ph = param$1[1];
+  nh = param[1];
   if (Caml_obj.caml_lessthan(nh, ph)) then do
     return -1;
   end else if (Caml_obj.caml_greaterthan(nh, ph)) then do
     return 1;
   end else do
-    var pl = param$1[0];
-    var nl = param[0];
+    pl = param$1[0];
+    nl = param[0];
     if (Caml_obj.caml_lessthan(nl, pl)) then do
       return -1;
     end else if (Caml_obj.caml_greaterthan(nl, pl)) then do
@@ -85,16 +85,16 @@ function x5(p) do
   return mul(n5, p);
 end
 
-var nn1 = --[ tuple ]--[
+nn1 = --[ tuple ]--[
   n1,
   n0
 ];
 
-var buf = $$Buffer.create(5000);
+buf = $$Buffer.create(5000);
 
 function pr(param) do
-  var nh = param[1];
-  var nl = param[0];
+  nh = param[1];
+  nl = param[0];
   if (Caml_int64.compare(nh, n0) == 0) then do
     return Curry._1(Printf.bprintf(buf, --[ Format ]--[
                     --[ Int64 ]--Block.__(7, [
@@ -134,7 +134,7 @@ end
 
 function map(f, l) do
   return Caml_obj.caml_lazy_make((function (param) do
-                var match = CamlinternalLazy.force(l);
+                match = CamlinternalLazy.force(l);
                 return --[ Cons ]--[
                         Curry._1(f, match[0]),
                         map(f, match[1])
@@ -144,13 +144,13 @@ end
 
 function merge(cmp, l1, l2) do
   return Caml_obj.caml_lazy_make((function (param) do
-                var match = CamlinternalLazy.force(l1);
-                var match$1 = CamlinternalLazy.force(l2);
-                var ll2 = match$1[1];
-                var x2 = match$1[0];
-                var ll1 = match[1];
-                var x1 = match[0];
-                var c = Curry._2(cmp, x1, x2);
+                match = CamlinternalLazy.force(l1);
+                match$1 = CamlinternalLazy.force(l2);
+                ll2 = match$1[1];
+                x2 = match$1[0];
+                ll1 = match[1];
+                x1 = match[0];
+                c = Curry._2(cmp, x1, x2);
                 if (c == 0) then do
                   return --[ Cons ]--[
                           x1,
@@ -172,14 +172,14 @@ end
 
 function iter_interval(f, _l, _param) do
   while(true) do
-    var param = _param;
-    var l = _l;
-    var stop = param[1];
+    param = _param;
+    l = _l;
+    stop = param[1];
     if (stop == 0) then do
       return --[ () ]--0;
     end else do
-      var start = param[0];
-      var match = CamlinternalLazy.force(l);
+      start = param[0];
+      match = CamlinternalLazy.force(l);
       if (start <= 0) then do
         Curry._1(f, match[0]);
       end
@@ -194,22 +194,22 @@ function iter_interval(f, _l, _param) do
   end;
 end
 
-var hamming = Caml_obj.caml_lazy_make((function (param) do
+hamming = Caml_obj.caml_lazy_make((function (param) do
         return --[ Cons ]--[
                 nn1,
                 merge(cmp, ham2, merge(cmp, ham3, ham5))
               ];
       end));
 
-var ham2 = Caml_obj.caml_lazy_make((function (param) do
+ham2 = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(map(x2, hamming));
       end));
 
-var ham3 = Caml_obj.caml_lazy_make((function (param) do
+ham3 = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(map(x3, hamming));
       end));
 
-var ham5 = Caml_obj.caml_lazy_make((function (param) do
+ham5 = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(map(x5, hamming));
       end));
 

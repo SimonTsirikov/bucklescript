@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -45,11 +45,11 @@ function ff(x, i, v) do
   return x._open(3);
 end
 
-var u = do
+u = do
   "Content'type": "x"
 end;
 
-var h = do
+h = do
   open: 3,
   end: 32
 end;

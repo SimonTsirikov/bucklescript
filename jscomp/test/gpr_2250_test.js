@@ -1,16 +1,16 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
-var CamlinternalOO = require("../../lib/js/camlinternalOO.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
+CamlinternalOO = require("../../lib/js/camlinternalOO.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -31,7 +31,7 @@ function eq(loc, x, y) do
   return --[ () ]--0;
 end
 
-var class_tables = --[ Cons ]--[
+class_tables = --[ Cons ]--[
   0,
   0,
   0
@@ -39,18 +39,18 @@ var class_tables = --[ Cons ]--[
 
 function create(param) do
   if (!class_tables[0]) then do
-    var $$class = CamlinternalOO.create_table([
+    $$class = CamlinternalOO.create_table([
           "add",
           "get"
         ]);
-    var env = CamlinternalOO.new_variable($$class, "");
-    var ids = CamlinternalOO.new_methods_variables($$class, [
+    env = CamlinternalOO.new_variable($$class, "");
+    ids = CamlinternalOO.new_methods_variables($$class, [
           "get",
           "add"
         ], ["data"]);
-    var get = ids[0];
-    var add = ids[1];
-    var data = ids[2];
+    get = ids[0];
+    add = ids[1];
+    data = ids[2];
     CamlinternalOO.set_methods($$class, [
           add,
           (function (self$1, param) do
@@ -62,8 +62,8 @@ function create(param) do
               return self$1[data];
             end)
         ]);
-    var env_init = function (env$1) do
-      var self = CamlinternalOO.create_object_opt(0, $$class);
+    env_init = function (env$1) do
+      self = CamlinternalOO.create_object_opt(0, $$class);
       self[data] = 0;
       self[env] = env$1;
       return self;
@@ -75,21 +75,21 @@ function create(param) do
   return Curry._1(class_tables[0], 0);
 end
 
-var cxt1 = create(--[ () ]--0);
+cxt1 = create(--[ () ]--0);
 
-var tmp = Caml_oo_curry.js2(4846113, 1, cxt1, --[ () ]--0);
+tmp = Caml_oo_curry.js2(4846113, 1, cxt1, --[ () ]--0);
 
-var result = Caml_oo_curry.js2(5144726, 2, tmp, --[ () ]--0);
+result = Caml_oo_curry.js2(5144726, 2, tmp, --[ () ]--0);
 
 eq("File \"gpr_2250_test.ml\", line 26, characters 5-12", result, 1);
 
-var cxt2 = create(--[ () ]--0);
+cxt2 = create(--[ () ]--0);
 
-var tmp$1 = Caml_oo_curry.js2(4846113, 3, cxt2, --[ () ]--0);
+tmp$1 = Caml_oo_curry.js2(4846113, 3, cxt2, --[ () ]--0);
 
-var tmp$2 = Caml_oo_curry.js2(4846113, 4, tmp$1, --[ () ]--0);
+tmp$2 = Caml_oo_curry.js2(4846113, 4, tmp$1, --[ () ]--0);
 
-var result2 = Caml_oo_curry.js2(5144726, 5, tmp$2, --[ () ]--0);
+result2 = Caml_oo_curry.js2(5144726, 5, tmp$2, --[ () ]--0);
 
 eq("File \"gpr_2250_test.ml\", line 37, characters 5-12", result2, 2);
 

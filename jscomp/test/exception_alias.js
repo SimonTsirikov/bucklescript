@@ -1,11 +1,11 @@
 'use strict';
 
-var List = require("../../lib/js/list.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+List = require("../../lib/js/list.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var a0 = Caml_builtin_exceptions.not_found;
+a0 = Caml_builtin_exceptions.not_found;
 
-var b = List.length(--[ :: ]--[
+b = List.length(--[ :: ]--[
       1,
       --[ :: ]--[
         2,
@@ -13,7 +13,7 @@ var b = List.length(--[ :: ]--[
       ]
     ]);
 
-var List$1 = do
+List$1 = do
   compare_lengths: List.compare_lengths,
   compare_length_with: List.compare_length_with,
   cons: List.cons,
@@ -69,15 +69,15 @@ var List$1 = do
   length: 3
 end;
 
-var a1 = a0;
+a1 = a0;
 
-var a2 = a0;
+a2 = a0;
 
-var a3 = a0;
+a3 = a0;
 
-var a4 = a0;
+a4 = a0;
 
-var a5 = a0;
+a5 = a0;
 
 exports.a0 = a0;
 exports.a1 = a1;

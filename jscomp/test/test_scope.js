@@ -1,9 +1,9 @@
 'use strict';
 
 
-var h = x(3);
+h = x(3);
 
-var hh = x(3);
+hh = x(3);
 
 function f(x, y) do
   return x .. y;

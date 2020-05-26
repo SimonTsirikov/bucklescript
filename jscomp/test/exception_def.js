@@ -1,34 +1,34 @@
 'use strict';
 
-var Printexc = require("../../lib/js/printexc.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Printexc = require("../../lib/js/printexc.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var A = Caml_exceptions.create("Exception_def.A");
+A = Caml_exceptions.create("Exception_def.A");
 
-var A$1 = Caml_exceptions.create("Exception_def.U.A");
+A$1 = Caml_exceptions.create("Exception_def.U.A");
 
-var U = do
+U = do
   A: A$1
 end;
 
-var H = { };
+H = { };
 
-var Bx = Caml_exceptions.create("Exception_def.Bx");
+Bx = Caml_exceptions.create("Exception_def.Bx");
 
-var Ax = Caml_exceptions.create("Exception_def.Ax");
+Ax = Caml_exceptions.create("Exception_def.Ax");
 
-var XXX = Caml_exceptions.create("Exception_def.XXX");
+XXX = Caml_exceptions.create("Exception_def.XXX");
 
-var Aa = Caml_builtin_exceptions.match_failure;
+Aa = Caml_builtin_exceptions.match_failure;
 
-var v_001 = --[ tuple ]--[
+v_001 = --[ tuple ]--[
   "",
   0,
   0
 ];
 
-var v = [
+v = [
   Aa,
   v_001
 ];
@@ -40,9 +40,9 @@ Printexc.register_printer((function (param) do
          end 
       end));
 
-var a = 3;
+a = 3;
 
-var u = Bx;
+u = Bx;
 
 exports.A = A;
 exports.U = U;

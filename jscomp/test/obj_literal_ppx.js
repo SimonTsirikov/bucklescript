@@ -1,12 +1,12 @@
 'use strict';
 
 
-var a = do
+a = do
   x: 3,
   y: [1]
 end;
 
-var b = do
+b = do
   x: 3,
   y: [1],
   z: 3,
@@ -23,11 +23,11 @@ function h(obj) do
   return obj.u(1, 2);
 end
 
-var u = f(a);
+u = f(a);
 
-var v = f(b);
+v = f(b);
 
-var vv = h(b);
+vv = h(b);
 
 exports.a = a;
 exports.b = b;

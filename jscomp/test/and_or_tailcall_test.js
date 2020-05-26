@@ -1,11 +1,11 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
 function f(b, x, _n) do
   while(true) do
-    var n = _n;
+    n = _n;
     if (n > 100000 or !b) then do
       return false;
     end else do
@@ -17,7 +17,7 @@ end
 
 function or_f(b, x, _n) do
   while(true) do
-    var n = _n;
+    n = _n;
     if (n > 100000) then do
       return false;
     end else if (b) then do
@@ -29,7 +29,7 @@ function or_f(b, x, _n) do
   end;
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "and_tail",
   (function (param) do
       return --[ Eq ]--Block.__(0, [
@@ -39,7 +39,7 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "or_tail",
     (function (param) do
@@ -52,7 +52,7 @@ var suites_001 = --[ :: ]--[
   --[ [] ]--0
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

@@ -1,15 +1,15 @@
 'use strict';
 
-var $$Array = require("../../lib/js/array.js");
-var Curry = require("../../lib/js/curry.js");
-var $$String = require("../../lib/js/string.js");
-var MoreLabels = require("../../lib/js/moreLabels.js");
+$$Array = require("../../lib/js/array.js");
+Curry = require("../../lib/js/curry.js");
+$$String = require("../../lib/js/string.js");
+MoreLabels = require("../../lib/js/moreLabels.js");
 
 function f(x) do
   return x;
 end
 
-var XX = do
+XX = do
   make_float: $$Array.make_float,
   init: $$Array.init,
   make_matrix: $$Array.make_matrix,
@@ -41,11 +41,11 @@ var XX = do
   f: f
 end;
 
-var u = [$$String];
+u = [$$String];
 
-var ghh = Curry._2(MoreLabels.Hashtbl.create, undefined, 30);
+ghh = Curry._2(MoreLabels.Hashtbl.create, undefined, 30);
 
-var hh = 1;
+hh = 1;
 
 exports.XX = XX;
 exports.u = u;

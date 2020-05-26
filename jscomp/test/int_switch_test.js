@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Curry = require("../../lib/js/curry.js");
+Mt = require("./mt.js");
+Curry = require("../../lib/js/curry.js");
 
-var suites = do
+suites = do
   contents: --[ [] ]--0
 end;
 
-var test_id = do
+test_id = do
   contents: 0
 end;
 
@@ -20,7 +20,7 @@ function b(loc, x) do
 end
 
 function f(x) do
-  var match = Curry._1(x, --[ () ]--0);
+  match = Curry._1(x, --[ () ]--0);
   local ___conditional___=(match);
   do
      if ___conditional___ = 1 then do
@@ -38,7 +38,7 @@ function f(x) do
 end
 
 function f22(x) do
-  var match = Curry._1(x, --[ () ]--0);
+  match = Curry._1(x, --[ () ]--0);
   local ___conditional___=(match);
   do
      if ___conditional___ = 1 then do
@@ -56,7 +56,7 @@ function f22(x) do
 end
 
 function f33(x) do
-  var match = Curry._1(x, --[ () ]--0);
+  match = Curry._1(x, --[ () ]--0);
   local ___conditional___=(match);
   do
      if ___conditional___ = 0--[ A ]-- then do

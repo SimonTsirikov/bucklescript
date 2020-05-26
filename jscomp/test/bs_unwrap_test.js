@@ -1,7 +1,7 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Caml_option = require("../../lib/js/caml_option.js");
+Curry = require("../../lib/js/curry.js");
+Caml_option = require("../../lib/js/caml_option.js");
 
 console.log(--[ tuple ]--[
       "hello world",
@@ -12,14 +12,14 @@ console.log(1337);
 
 console.log("hello world");
 
-var arg_string = --[ `String ]--[
+arg_string = --[ `String ]--[
   -976970511,
   "hi runtime"
 ];
 
 console.log(arg_string[1]);
 
-var arg_pair = --[ `Pair ]--[
+arg_pair = --[ `Pair ]--[
   892012602,
   --[ tuple ]--[
     "hi",
@@ -39,7 +39,7 @@ console.log(3, "hi");
 
 console.log(4, undefined);
 
-var some_arg = --[ `Bool ]--[
+some_arg = --[ `Bool ]--[
   737456202,
   true
 ];
@@ -93,7 +93,7 @@ function ff1(x, p) do
   return --[ () ]--0;
 end
 
-var none_arg = undefined;
+none_arg = undefined;
 
 exports.arg_string = arg_string;
 exports.arg_pair = arg_pair;

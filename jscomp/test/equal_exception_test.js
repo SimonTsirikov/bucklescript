@@ -1,13 +1,13 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Bytes = require("../../lib/js/bytes.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+Mt = require("./mt.js");
+Bytes = require("../../lib/js/bytes.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
-var v = "gso";
+v = "gso";
 
 function is_equal(param) do
   if (Caml_bytes.get(Bytes.make(3, --[ "a" ]--97), 0) ~= --[ "a" ]--97) then do
@@ -32,7 +32,7 @@ function is_equal(param) do
         ];
   end
    end 
-  var u = Bytes.make(3, --[ "a" ]--97);
+  u = Bytes.make(3, --[ "a" ]--97);
   u[0] = --[ "b" ]--98;
   if (u[0] ~= --[ "b" ]--98) then do
     throw [
@@ -62,8 +62,8 @@ function is_exception(param) do
 end
 
 function is_normal_exception(_x) do
-  var A = Caml_exceptions.create("A");
-  var v = [
+  A = Caml_exceptions.create("A");
+  v = [
     A,
     3
   ];
@@ -71,7 +71,7 @@ function is_normal_exception(_x) do
     throw v;
   end
   catch (raw_exn)do
-    var exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
+    exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == A) then do
       if (exn[1] ~= 3) then do
         throw exn;
@@ -85,7 +85,7 @@ function is_normal_exception(_x) do
 end
 
 function is_arbitrary_exception(param) do
-  var A = Caml_exceptions.create("A");
+  A = Caml_exceptions.create("A");
   try do
     throw A;
   end
@@ -94,12 +94,12 @@ function is_arbitrary_exception(param) do
   end
 end
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "is_equal",
   is_equal
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "is_exception",
     is_exception
@@ -119,7 +119,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];

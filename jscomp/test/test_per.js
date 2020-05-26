@@ -1,17 +1,17 @@
 'use strict';
 
-var Curry = require("../../lib/js/curry.js");
-var Caml_io = require("../../lib/js/caml_io.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
-var Caml_sys = require("../../lib/js/caml_sys.js");
-var Caml_bytes = require("../../lib/js/caml_bytes.js");
-var Caml_int64 = require("../../lib/js/caml_int64.js");
-var Caml_format = require("../../lib/js/caml_format.js");
-var Caml_string = require("../../lib/js/caml_string.js");
-var Caml_exceptions = require("../../lib/js/caml_exceptions.js");
-var Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
-var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
-var CamlinternalFormatBasics = require("../../lib/js/camlinternalFormatBasics.js");
+Curry = require("../../lib/js/curry.js");
+Caml_io = require("../../lib/js/caml_io.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
+Caml_sys = require("../../lib/js/caml_sys.js");
+Caml_bytes = require("../../lib/js/caml_bytes.js");
+Caml_int64 = require("../../lib/js/caml_int64.js");
+Caml_format = require("../../lib/js/caml_format.js");
+Caml_string = require("../../lib/js/caml_string.js");
+Caml_exceptions = require("../../lib/js/caml_exceptions.js");
+Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.js");
+Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
+CamlinternalFormatBasics = require("../../lib/js/camlinternalFormatBasics.js");
 
 function failwith(s) do
   throw [
@@ -27,7 +27,7 @@ function invalid_arg(s) do
       ];
 end
 
-var Exit = Caml_exceptions.create("Test_per.Exit");
+Exit = Caml_exceptions.create("Test_per.Exit");
 
 function min(x, y) do
   if (Caml_obj.caml_lessequal(x, y)) then do
@@ -57,42 +57,42 @@ function lnot(x) do
   return x ^ -1;
 end
 
-var min_int = -2147483648;
+min_int = -2147483648;
 
-var infinity = Caml_int64.float_of_bits(--[ int64 ]--[
+infinity = Caml_int64.float_of_bits(--[ int64 ]--[
       --[ hi ]--2146435072,
       --[ lo ]--0
     ]);
 
-var neg_infinity = Caml_int64.float_of_bits(--[ int64 ]--[
+neg_infinity = Caml_int64.float_of_bits(--[ int64 ]--[
       --[ hi ]---1048576,
       --[ lo ]--0
     ]);
 
-var nan = Caml_int64.float_of_bits(--[ int64 ]--[
+nan = Caml_int64.float_of_bits(--[ int64 ]--[
       --[ hi ]--2146435072,
       --[ lo ]--1
     ]);
 
-var max_float = Caml_int64.float_of_bits(--[ int64 ]--[
+max_float = Caml_int64.float_of_bits(--[ int64 ]--[
       --[ hi ]--2146435071,
       --[ lo ]--4294967295
     ]);
 
-var min_float = Caml_int64.float_of_bits(--[ int64 ]--[
+min_float = Caml_int64.float_of_bits(--[ int64 ]--[
       --[ hi ]--1048576,
       --[ lo ]--0
     ]);
 
-var epsilon_float = Caml_int64.float_of_bits(--[ int64 ]--[
+epsilon_float = Caml_int64.float_of_bits(--[ int64 ]--[
       --[ hi ]--1018167296,
       --[ lo ]--0
     ]);
 
 function $caret(s1, s2) do
-  var l1 = #s1;
-  var l2 = #s2;
-  var s = Caml_bytes.caml_create_bytes(l1 + l2 | 0);
+  l1 = #s1;
+  l2 = #s2;
+  s = Caml_bytes.caml_create_bytes(l1 + l2 | 0);
   Caml_bytes.caml_blit_string(s1, 0, s, 0, l1);
   Caml_bytes.caml_blit_string(s2, 0, s, l1, l2);
   return s;
@@ -140,14 +140,14 @@ function string_of_int(n) do
 end
 
 function valid_float_lexem(s) do
-  var l = #s;
-  var _i = 0;
+  l = #s;
+  _i = 0;
   while(true) do
-    var i = _i;
+    i = _i;
     if (i >= l) then do
       return $caret(s, ".");
     end else do
-      var match = Caml_string.get(s, i);
+      match = Caml_string.get(s, i);
       if (match >= 48) then do
         if (match >= 58) then do
           return s;
@@ -180,11 +180,11 @@ function $at(l1, l2) do
   end end 
 end
 
-var stdin = Caml_io.stdin;
+stdin = Caml_io.stdin;
 
-var stdout = Caml_io.stdout;
+stdout = Caml_io.stdout;
 
-var stderr = Caml_io.stderr;
+stderr = Caml_io.stderr;
 
 function open_out_gen(mode, perm, name) do
   return Caml_external_polyfill.resolve("caml_ml_open_descriptor_out")(Caml_external_polyfill.resolve("caml_sys_open")(name, mode, perm));
@@ -223,9 +223,9 @@ function open_out_bin(name) do
 end
 
 function flush_all(param) do
-  var _param = Caml_io.caml_ml_out_channels_list(--[ () ]--0);
+  _param = Caml_io.caml_ml_out_channels_list(--[ () ]--0);
   while(true) do
-    var param$1 = _param;
+    param$1 = _param;
     if (param$1) then do
       try do
         Caml_io.caml_ml_flush(param$1[0]);
@@ -332,12 +332,12 @@ end
 
 function unsafe_really_input(ic, s, _ofs, _len) do
   while(true) do
-    var len = _len;
-    var ofs = _ofs;
+    len = _len;
+    ofs = _ofs;
     if (len <= 0) then do
       return --[ () ]--0;
     end else do
-      var r = Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
+      r = Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
       if (r == 0) then do
         throw Caml_builtin_exceptions.end_of_file;
       end
@@ -361,19 +361,19 @@ function really_input(ic, s, ofs, len) do
 end
 
 function really_input_string(ic, len) do
-  var s = Caml_bytes.caml_create_bytes(len);
+  s = Caml_bytes.caml_create_bytes(len);
   really_input(ic, s, 0, len);
   return s;
 end
 
 function input_line(chan) do
-  var build_result = function (buf, _pos, _param) do
+  build_result = function (buf, _pos, _param) do
     while(true) do
-      var param = _param;
-      var pos = _pos;
+      param = _param;
+      pos = _pos;
       if (param) then do
-        var hd = param[0];
-        var len = #hd;
+        hd = param[0];
+        len = #hd;
         Caml_bytes.caml_blit_string(hd, 0, buf, pos - len | 0, len);
         _param = param[1];
         _pos = pos - len | 0;
@@ -383,12 +383,12 @@ function input_line(chan) do
       end end 
     end;
   end;
-  var _accu = --[ [] ]--0;
-  var _len = 0;
+  _accu = --[ [] ]--0;
+  _len = 0;
   while(true) do
-    var len = _len;
-    var accu = _accu;
-    var n = Caml_external_polyfill.resolve("caml_ml_input_scan_line")(chan);
+    len = _len;
+    accu = _accu;
+    n = Caml_external_polyfill.resolve("caml_ml_input_scan_line")(chan);
     if (n == 0) then do
       if (accu) then do
         return build_result(Caml_bytes.caml_create_bytes(len), len, accu);
@@ -396,11 +396,11 @@ function input_line(chan) do
         throw Caml_builtin_exceptions.end_of_file;
       end end 
     end else if (n > 0) then do
-      var res = Caml_bytes.caml_create_bytes(n - 1 | 0);
+      res = Caml_bytes.caml_create_bytes(n - 1 | 0);
       Caml_external_polyfill.resolve("caml_ml_input")(chan, res, 0, n - 1 | 0);
       Caml_external_polyfill.resolve("caml_ml_input_char")(chan);
       if (accu) then do
-        var len$1 = (len + n | 0) - 1 | 0;
+        len$1 = (len + n | 0) - 1 | 0;
         return build_result(Caml_bytes.caml_create_bytes(len$1), len$1, --[ :: ]--[
                     res,
                     accu
@@ -409,7 +409,7 @@ function input_line(chan) do
         return res;
       end end 
     end else do
-      var beg = Caml_bytes.caml_create_bytes(-n | 0);
+      beg = Caml_bytes.caml_create_bytes(-n | 0);
       Caml_external_polyfill.resolve("caml_ml_input")(chan, beg, 0, -n | 0);
       _len = len - n | 0;
       _accu = --[ :: ]--[
@@ -505,7 +505,7 @@ function read_float(param) do
   return Caml_format.caml_float_of_string((Caml_io.caml_ml_flush(stdout), input_line(stdin)));
 end
 
-var LargeFile = { };
+LargeFile = { };
 
 function string_of_format(param) do
   return param[1];
@@ -518,12 +518,12 @@ function $caret$caret(param, param$1) do
         ];
 end
 
-var exit_function = do
+exit_function = do
   contents: flush_all
 end;
 
 function at_exit(f) do
-  var g = exit_function[0];
+  g = exit_function[0];
   exit_function[0] = (function (param) do
       Curry._1(f, --[ () ]--0);
       return Curry._1(g, --[ () ]--0);
@@ -540,7 +540,7 @@ function exit(retcode) do
   return Caml_sys.caml_sys_exit(retcode);
 end
 
-var max_int = 2147483647;
+max_int = 2147483647;
 
 exports.failwith = failwith;
 exports.invalid_arg = invalid_arg;

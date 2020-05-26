@@ -1,147 +1,147 @@
 'use strict';
 
 
-var setter_suffix = "#=";
+setter_suffix = "#=";
 
-var setter_suffix_len = #setter_suffix;
+setter_suffix_len = #setter_suffix;
 
-var js_array_ctor = "Array";
+js_array_ctor = "Array";
 
-var js_type_number = "number";
+js_type_number = "number";
 
-var js_type_string = "string";
+js_type_string = "string";
 
-var js_type_object = "object";
+js_type_object = "object";
 
-var js_undefined = "undefined";
+js_undefined = "undefined";
 
-var js_prop_length = "length";
+js_prop_length = "length";
 
-var param = "param";
+param = "param";
 
-var partial_arg = "partial_arg";
+partial_arg = "partial_arg";
 
-var prim = "prim";
+prim = "prim";
 
-var tmp = "tmp";
+tmp = "tmp";
 
-var create = "create";
+create = "create";
 
-var app = "_";
+app = "_";
 
-var app_array = "app";
+app_array = "app";
 
-var runtime = "runtime";
+runtime = "runtime";
 
-var stdlib = "stdlib";
+stdlib = "stdlib";
 
-var imul = "imul";
+imul = "imul";
 
-var $$debugger = "debugger";
+$$debugger = "debugger";
 
-var raw_expr = "raw_expr";
+raw_expr = "raw_expr";
 
-var raw_stmt = "raw_stmt";
+raw_stmt = "raw_stmt";
 
-var unsafe_downgrade = "unsafe_downgrade";
+unsafe_downgrade = "unsafe_downgrade";
 
-var fn_run = "fn_run";
+fn_run = "fn_run";
 
-var method_run = "method_run";
+method_run = "method_run";
 
-var fn_method = "fn_method";
+fn_method = "fn_method";
 
-var fn_mk = "fn_mk";
+fn_mk = "fn_mk";
 
-var bs_deriving = "bs.deriving";
+bs_deriving = "bs.deriving";
 
-var bs_deriving_dot = "bs.deriving.";
+bs_deriving_dot = "bs.deriving.";
 
-var bs_type = "bs.type";
+bs_type = "bs.type";
 
-var node_modules = "node_modules";
+node_modules = "node_modules";
 
-var node_modules_length = 12;
+node_modules_length = 12;
 
-var package_json = "package.json";
+package_json = "package.json";
 
-var bsconfig_json = "bsconfig.json";
+bsconfig_json = "bsconfig.json";
 
-var build_ninja = "build.ninja";
+build_ninja = "build.ninja";
 
-var library_file = "lib";
+library_file = "lib";
 
-var suffix_a = ".a";
+suffix_a = ".a";
 
-var suffix_cmj = ".cmj";
+suffix_cmj = ".cmj";
 
-var suffix_cmo = ".cmo";
+suffix_cmo = ".cmo";
 
-var suffix_cma = ".cma";
+suffix_cma = ".cma";
 
-var suffix_cmi = ".cmi";
+suffix_cmi = ".cmi";
 
-var suffix_cmx = ".cmx";
+suffix_cmx = ".cmx";
 
-var suffix_cmxa = ".cmxa";
+suffix_cmxa = ".cmxa";
 
-var suffix_ml = ".ml";
+suffix_ml = ".ml";
 
-var suffix_mlast = ".mlast";
+suffix_mlast = ".mlast";
 
-var suffix_mlast_simple = ".mlast_simple";
+suffix_mlast_simple = ".mlast_simple";
 
-var suffix_mliast = ".mliast";
+suffix_mliast = ".mliast";
 
-var suffix_mliast_simple = ".mliast_simple";
+suffix_mliast_simple = ".mliast_simple";
 
-var suffix_mll = ".mll";
+suffix_mll = ".mll";
 
-var suffix_re = ".re";
+suffix_re = ".re";
 
-var suffix_rei = ".rei";
+suffix_rei = ".rei";
 
-var suffix_d = ".d";
+suffix_d = ".d";
 
-var suffix_mlastd = ".mlast.d";
+suffix_mlastd = ".mlast.d";
 
-var suffix_mliastd = ".mliast.d";
+suffix_mliastd = ".mliast.d";
 
-var suffix_mli = ".mli";
+suffix_mli = ".mli";
 
-var suffix_cmt = ".cmt";
+suffix_cmt = ".cmt";
 
-var suffix_cmti = ".cmti";
+suffix_cmti = ".cmti";
 
-var commonjs = "commonjs";
+commonjs = "commonjs";
 
-var amdjs = "amdjs";
+amdjs = "amdjs";
 
-var es6 = "es6";
+es6 = "es6";
 
-var es6_global = "es6-global";
+es6_global = "es6-global";
 
-var amdjs_global = "amdjs-global";
+amdjs_global = "amdjs-global";
 
-var unused_attribute = "Unused attribute ";
+unused_attribute = "Unused attribute ";
 
-var dash_nostdlib = "-nostdlib";
+dash_nostdlib = "-nostdlib";
 
-var reactjs_jsx_ppx_2_exe = "reactjs_jsx_ppx_2.exe";
+reactjs_jsx_ppx_2_exe = "reactjs_jsx_ppx_2.exe";
 
-var reactjs_jsx_ppx_3_exe = "reactjs_jsx_ppx_3.exe";
+reactjs_jsx_ppx_3_exe = "reactjs_jsx_ppx_3.exe";
 
-var unescaped_j_delimiter = "j";
+unescaped_j_delimiter = "j";
 
-var escaped_j_delimiter = "*j";
+escaped_j_delimiter = "*j";
 
-var unescaped_js_delimiter = "js";
+unescaped_js_delimiter = "js";
 
-var $$native = "native";
+$$native = "native";
 
-var bytecode = "bytecode";
+bytecode = "bytecode";
 
-var js = "js";
+js = "js";
 
 exports.js_array_ctor = js_array_ctor;
 exports.js_type_number = js_type_number;

@@ -1,18 +1,18 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Arg = require("../../lib/js/arg.js");
-var List = require("../../lib/js/list.js");
-var Block = require("../../lib/js/block.js");
-var Curry = require("../../lib/js/curry.js");
-var Printf = require("../../lib/js/printf.js");
-var Caml_obj = require("../../lib/js/caml_obj.js");
+Mt = require("./mt.js");
+Arg = require("../../lib/js/arg.js");
+List = require("../../lib/js/list.js");
+Block = require("../../lib/js/block.js");
+Curry = require("../../lib/js/curry.js");
+Printf = require("../../lib/js/printf.js");
+Caml_obj = require("../../lib/js/caml_obj.js");
 
-var current = do
+current = do
   contents: 0
 end;
 
-var accum = do
+accum = do
   contents: --[ [] ]--0
 end;
 
@@ -52,11 +52,11 @@ function f_bool(b) do
                 ]), b);
 end
 
-var r_set = do
+r_set = do
   contents: false
 end;
 
-var r_clear = do
+r_clear = do
   contents: true
 end;
 
@@ -76,7 +76,7 @@ function f_string(s) do
                 ]), s);
 end
 
-var r_string = do
+r_string = do
   contents: ""
 end;
 
@@ -98,7 +98,7 @@ function f_int(i) do
                 ]), i);
 end
 
-var r_int = do
+r_int = do
   contents: 0
 end;
 
@@ -120,7 +120,7 @@ function f_float(f) do
                 ]), f);
 end
 
-var r_float = do
+r_float = do
   contents: 0.0
 end;
 
@@ -172,13 +172,13 @@ function f_anon(s) do
                 ]), s);
 end
 
-var spec_000 = --[ tuple ]--[
+spec_000 = --[ tuple ]--[
   "-u",
   --[ Unit ]--Block.__(0, [f_unit]),
   "Unit (0)"
 ];
 
-var spec_001 = --[ :: ]--[
+spec_001 = --[ :: ]--[
   --[ tuple ]--[
     "-b",
     --[ Bool ]--Block.__(1, [f_bool]),
@@ -285,12 +285,12 @@ var spec_001 = --[ :: ]--[
   ]
 ];
 
-var spec = --[ :: ]--[
+spec = --[ :: ]--[
   spec_000,
   spec_001
 ];
 
-var args1 = [
+args1 = [
   "prog",
   "anon1",
   "-u",
@@ -324,7 +324,7 @@ var args1 = [
   "r2"
 ];
 
-var args2 = [
+args2 = [
   "prog",
   "anon1",
   "-u",
@@ -383,8 +383,8 @@ function test(argv) do
   r_float.contents = 0.0;
   accum.contents = --[ [] ]--0;
   Arg.parse_argv(current, argv, spec, f_anon, "usage");
-  var result = List.rev(accum.contents);
-  var reference = --[ :: ]--[
+  result = List.rev(accum.contents);
+  reference = --[ :: ]--[
     "anon(anon1)",
     --[ :: ]--[
       "unit()",
@@ -431,7 +431,7 @@ function test(argv) do
     ]
   ];
   if (Caml_obj.caml_notequal(result, reference)) then do
-    var f = function (x, y) do
+    f = function (x, y) do
       return Curry._3(Printf.printf(--[ Format ]--[
                       --[ String ]--Block.__(2, [
                           --[ Lit_padding ]--Block.__(0, [
@@ -474,7 +474,7 @@ test(args2);
 
 Mt.from_pair_suites("Libarg_test", --[ [] ]--0);
 
-var suites = --[ [] ]--0;
+suites = --[ [] ]--0;
 
 exports.current = current;
 exports.accum = accum;

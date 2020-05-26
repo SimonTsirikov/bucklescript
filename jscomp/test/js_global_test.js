@@ -1,12 +1,12 @@
 'use strict';
 
-var Mt = require("./mt.js");
-var Block = require("../../lib/js/block.js");
+Mt = require("./mt.js");
+Block = require("../../lib/js/block.js");
 
-var suites_000 = --[ tuple ]--[
+suites_000 = --[ tuple ]--[
   "setTimeout/clearTimeout sanity check",
   (function (param) do
-      var handle = setTimeout((function (param) do
+      handle = setTimeout((function (param) do
               return --[ () ]--0;
             end), 0);
       clearTimeout(handle);
@@ -14,11 +14,11 @@ var suites_000 = --[ tuple ]--[
     end)
 ];
 
-var suites_001 = --[ :: ]--[
+suites_001 = --[ :: ]--[
   --[ tuple ]--[
     "setInerval/clearInterval sanity check",
     (function (param) do
-        var handle = setInterval((function (param) do
+        handle = setInterval((function (param) do
                 return --[ () ]--0;
               end), 0);
         clearInterval(handle);
@@ -72,7 +72,7 @@ var suites_001 = --[ :: ]--[
   ]
 ];
 
-var suites = --[ :: ]--[
+suites = --[ :: ]--[
   suites_000,
   suites_001
 ];
