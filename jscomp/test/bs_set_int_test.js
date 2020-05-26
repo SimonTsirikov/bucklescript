@@ -17,19 +17,19 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, v) do
   return Mt.bool_suites(test_id, suites, loc, v);
-end
+end end
 
 function $eq$tilde(s, i) do
   return Belt_SetInt.eq(Belt_SetInt.fromArray(i), s);
-end
+end end
 
 function $eq$star(a, b) do
   return Belt_SetInt.eq(Belt_SetInt.fromArray(a), Belt_SetInt.fromArray(b));
-end
+end end
 
 b("File \"bs_set_int_test.ml\", line 17, characters 4-11", $eq$star([
           1,
@@ -56,14 +56,14 @@ b("File \"bs_set_int_test.ml\", line 23, characters 4-11", Belt_SetInt.eq(Belt_S
 function range(i, j) do
   return $$Array.init((j - i | 0) + 1 | 0, (function (k) do
                 return k + i | 0;
-              end));
-end
+              end end));
+end end
 
 function revRange(i, j) do
   return $$Array.of_list(List.rev($$Array.to_list($$Array.init((j - i | 0) + 1 | 0, (function (k) do
                             return k + i | 0;
-                          end)))));
-end
+                          end end)))));
+end end
 
 v = Belt_SetInt.fromArray($$Array.append(range(100, 1000), revRange(400, 1500)));
 
@@ -73,7 +73,7 @@ b("File \"bs_set_int_test.ml\", line 36, characters 4-11", Belt_SetInt.eq(Belt_S
 
 match = Belt_SetInt.partition(v, (function (x) do
         return x % 3 == 0;
-      end));
+      end end));
 
 l = Belt_SetInt.empty;
 
@@ -159,13 +159,13 @@ maxv = Belt_SetInt.maxUndefined(v$1);
 
 function approx(loc, x, y) do
   return b(loc, x == y);
-end
+end end
 
 eq("File \"bs_set_int_test.ml\", line 74, characters 5-12", Belt_SetInt.reduce(v$1, 0, (function (x, y) do
             return x + y | 0;
-          end)), Belt_Array.reduce(ss, 0, (function (prim, prim$1) do
+          end end)), Belt_Array.reduce(ss, 0, (function (prim, prim$1) do
             return prim + prim$1 | 0;
-          end)));
+          end end)));
 
 approx("File \"bs_set_int_test.ml\", line 75, characters 9-16", -1, minv);
 
@@ -217,7 +217,7 @@ b("File \"bs_set_int_test.ml\", line 95, characters 4-11", Belt_SetInt.isEmpty(v
 
 v$11 = Belt_Array.makeByAndShuffle(1000000, (function (i) do
         return i;
-      end));
+      end end));
 
 u$1 = Belt_SetInt.fromArray(v$11);
 
@@ -342,7 +342,7 @@ v3 = Belt_SetInt.removeMany(v2, [
 
 us = Belt_Array.map(Array_data_util.randomRange(1000, 3000), (function (x) do
         return Belt_SetInt.has(v$12, x);
-      end));
+      end end));
 
 counted = Belt_Array.reduce(us, 0, (function (acc, x) do
         if (x) then do
@@ -350,7 +350,7 @@ counted = Belt_Array.reduce(us, 0, (function (acc, x) do
         end else do
           return acc;
         end end 
-      end));
+      end end));
 
 eq("File \"bs_set_int_test.ml\", line 168, characters 5-12", counted, 1001);
 

@@ -24,12 +24,12 @@ function eq(loc, param) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function hey(x, y) {
     if (x === void 0) { x = 3; }
@@ -59,15 +59,15 @@ end;
 function side_effect(x) do
   x.contents = x.contents + 1 | 0;
   return x.contents;
-end
+end end
 
 function bug_to_fix(f, x) do
   return hey(f(x), 3);
-end
+end end
 
 function bug_to_fix2(f, x) do
   return hey(Caml_option.option_get(f(x)), 3);
-end
+end end
 
 counter2 = do
   contents: 0
@@ -76,7 +76,7 @@ end;
 function side_effect2(x) do
   x.contents = x.contents + 1 | 0;
   return x.contents;
-end
+end end
 
 v = bug_to_fix(side_effect, counter);
 

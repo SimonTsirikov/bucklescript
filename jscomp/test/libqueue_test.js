@@ -12,8 +12,8 @@ function to_list(q) do
                             x,
                             l
                           ];
-                  end), --[ [] ]--0, q));
-end
+                  end end), --[ [] ]--0, q));
+end end
 
 Q = do
   Empty: Queue.Empty,
@@ -46,7 +46,7 @@ function does_raise(f, q) do
       throw exn;
     end end 
   end
-end
+end end
 
 q = do
   length: 0,
@@ -828,7 +828,7 @@ Queue.iter((function (j) do
          end 
         i$7.contents = i$7.contents + 1 | 0;
         return --[ () ]--0;
-      end), q$5);
+      end end), q$5);
 
 q1$1 = do
   length: 0,

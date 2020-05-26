@@ -36,13 +36,13 @@ function generic_basename(is_dir_sep, current_dir_name, name) do
       end end  end 
     end;
   end end 
-end
+end end
 
 function basename(param) do
   return generic_basename((function (s, i) do
                 return Caml_string.get(s, i) == --[ "/" ]--47;
-              end), Filename.current_dir_name, param);
-end
+              end end), Filename.current_dir_name, param);
+end end
 
 suites_000 = --[ tuple ]--[
   "basename",
@@ -51,7 +51,7 @@ suites_000 = --[ tuple ]--[
                 basename("b/c/a.b"),
                 "a.b"
               ]);
-    end)
+    end end)
 ];
 
 suites = --[ :: ]--[

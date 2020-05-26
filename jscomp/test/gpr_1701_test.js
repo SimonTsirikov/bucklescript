@@ -22,7 +22,7 @@ function test(n) do
       throw exn;
     end end 
   end
-end
+end end
 
 test(100);
 
@@ -51,7 +51,7 @@ function read_lines(inc) do
       return List.rev(acc);
     end end 
   end;
-end
+end end
 
 function read_lines2(inc) do
   _acc = --[ [] ]--0;
@@ -74,7 +74,7 @@ function read_lines2(inc) do
     ];
     continue ;
   end;
-end
+end end
 
 function read_lines3(inc) do
   loop = function (acc) do
@@ -92,9 +92,9 @@ function read_lines3(inc) do
         throw exn;
       end end 
     end
-  end;
+  end end;
   return loop(--[ [] ]--0);
-end
+end end
 
 function fff(f, x) do
   try do
@@ -103,7 +103,7 @@ function fff(f, x) do
   catch (exn)do
     return x + 1 | 0;
   end
-end
+end end
 
 exports.Foo = Foo;
 exports.test = test;

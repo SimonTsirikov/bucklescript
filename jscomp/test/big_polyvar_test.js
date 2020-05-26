@@ -1208,11 +1208,11 @@ jsMapperConstantArray = [
 
 function tToJs(param) do
   return Js_mapperRt.binarySearch(300, param, jsMapperConstantArray);
-end
+end end
 
 function tFromJs(param) do
   return Js_mapperRt.revSearch(300, jsMapperConstantArray, param);
-end
+end end
 
 function eq(x, y) do
   if (x ~= undefined) then do
@@ -1224,7 +1224,7 @@ function eq(x, y) do
   end else do
     return y == undefined;
   end end 
-end
+end end
 
 if (tToJs(--[ variant0 ]---384420853) ~= "variant0") then do
   throw [

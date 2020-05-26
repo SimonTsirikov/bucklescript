@@ -7,14 +7,14 @@ function test2(v) do
           open: v.open,
           window: v.window
         end;
-end
+end end
 
 function test(p) do
   return --[ tuple ]--[
           p.catch,
           p.then
         ];
-end
+end end
 
 $$case = Export_keyword.$$case;
 

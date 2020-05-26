@@ -11,7 +11,7 @@ function f(x) do
           Inner_define.N0.f3(x, x, x),
           Inner_define.N1.f2(x, x)
         ];
-end
+end end
 
 exports.f = f;
 --[  Not a pure module ]--

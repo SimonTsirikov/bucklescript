@@ -101,11 +101,11 @@ function ff(g, x) do
       throw exn$9;
     end end 
   end
-end
+end end
 
 function u(param) do
   throw Caml_builtin_exceptions.not_found;
-end
+end end
 
 function f(x) do
   if (typeof x == "number") then do
@@ -122,7 +122,7 @@ function f(x) do
   end else do
     return 1;
   end end  end 
-end
+end end
 
 u1 = "bad character decimal encoding \\";
 

@@ -21,12 +21,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 v = do
   contents: 3
@@ -35,7 +35,7 @@ end;
 function update(param) do
   v.contents = v.contents + 1 | 0;
   return true;
-end
+end end
 
 v.contents = v.contents + 1 | 0;
 

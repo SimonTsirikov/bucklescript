@@ -8,7 +8,7 @@ GlMatrix = require("gl-matrix");
 function f(a, b, c) do
   Vscode.commands.executeCommands("hi", a, b, c);
   return process.env;
-end
+end end
 
 function f2(param) do
   return --[ tuple ]--[
@@ -16,7 +16,7 @@ function f2(param) do
           a0.a1.a2.ho,
           Math.imul(1, 2)
         ];
-end
+end end
 
 function f3(x) do
   new (global.Buffer)(20);
@@ -44,7 +44,7 @@ function f3(x) do
   x.a0.a1.psend2(0);
   x.a0.a1.psend3(0);
   return GlMatrix.mat4.create();
-end
+end end
 
 exports.f = f;
 exports.f2 = f2;

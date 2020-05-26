@@ -12,7 +12,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, x, d, r) do
   hl = height(l);
@@ -24,7 +24,7 @@ function create(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -82,7 +82,7 @@ function bal(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add(x, data, m) do
   if (m) then do
@@ -127,7 +127,7 @@ function add(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function find(x, _param) do
   while(true) do
@@ -144,11 +144,11 @@ function find(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 m = List.fold_left((function (acc, param) do
         return add(param[0], param[1], acc);
-      end), --[ Empty ]--0, --[ :: ]--[
+      end end), --[ Empty ]--0, --[ :: ]--[
       --[ tuple ]--[
         10,
         --[ "a" ]--97
@@ -180,7 +180,7 @@ function height$1(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create$1(l, x, d, r) do
   hl = height$1(l);
@@ -192,7 +192,7 @@ function create$1(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal$1(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -250,7 +250,7 @@ function bal$1(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add$1(x, data, m) do
   if (m) then do
@@ -295,7 +295,7 @@ function add$1(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function find$1(x, _param) do
   while(true) do
@@ -312,11 +312,11 @@ function find$1(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 s = List.fold_left((function (acc, param) do
         return add$1(param[0], param[1], acc);
-      end), --[ Empty ]--0, --[ :: ]--[
+      end end), --[ Empty ]--0, --[ :: ]--[
       --[ tuple ]--[
         "10",
         --[ "a" ]--97
@@ -350,7 +350,7 @@ Mt.from_pair_suites("Map_find_test", --[ :: ]--[
                       find(10, m),
                       --[ "a" ]--97
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -360,7 +360,7 @@ Mt.from_pair_suites("Map_find_test", --[ :: ]--[
                         find$1("10", s),
                         --[ "a" ]--97
                       ]);
-            end)
+            end end)
         ],
         --[ [] ]--0
       ]

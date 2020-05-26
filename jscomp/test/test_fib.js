@@ -8,7 +8,7 @@ function fib(n) do
   end else do
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
   end end 
-end
+end end
 
 function fib2(n) do
   if (n == 2 or n == 1) then do
@@ -16,7 +16,7 @@ function fib2(n) do
   end else do
     return fib2(n - 1 | 0) + fib2(n - 2 | 0) | 0;
   end end 
-end
+end end
 
 v = 0;
 
@@ -39,7 +39,7 @@ function cons(x, y) do
           x,
           y
         ];
-end
+end end
 
 function length(x) do
   if (x) then do
@@ -47,7 +47,7 @@ function length(x) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function map(f, x) do
   if (x) then do
@@ -58,7 +58,7 @@ function map(f, x) do
   end else do
     return --[ Nil ]--0;
   end end 
-end
+end end
 
 function f(x) do
   v = x;
@@ -68,7 +68,7 @@ function f(x) do
     v = v - 1 | 0;
   end;
   return sum;
-end
+end end
 
 function fib3(n) do
   _a = 0;
@@ -87,7 +87,7 @@ function fib3(n) do
       return a;
     end end 
   end;
-end
+end end
 
 b = fib;
 

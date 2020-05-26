@@ -22,7 +22,7 @@ function Make(funarg) do
         throw exn;
       end end 
     end
-  end;
+  end end;
   min_cutset = function (gr, first_node) do
     n_labels = Curry._1(H.create, 97);
     l_labels = Curry._1(H.create, 97);
@@ -115,13 +115,13 @@ function Make(funarg) do
           end end 
         end end 
       end;
-    end;
+    end end;
     return step2(first_node, --[ [] ]--0);
-  end;
+  end end;
   return do
           min_cutset: min_cutset
         end;
-end
+end end
 
 exports.Make = Make;
 --[ No side effect ]--

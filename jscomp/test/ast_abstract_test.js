@@ -22,12 +22,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function tToJs(param) do
   return do
@@ -35,7 +35,7 @@ function tToJs(param) do
           y: param.y,
           z: param.z
         end;
-end
+end end
 
 function tFromJs(param) do
   return do
@@ -43,7 +43,7 @@ function tFromJs(param) do
           y: param.y,
           z: param.z
         end;
-end
+end end
 
 v0 = do
   x: 3,
@@ -74,15 +74,15 @@ jsMapperConstantArray = [
 
 function xToJs(param) do
   return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray);
-end
+end end
 
 function xFromJs(param) do
   return Js_mapperRt.revSearchAssert(3, jsMapperConstantArray, param);
-end
+end end
 
 function idx(v) do
   return eq("File \"ast_abstract_test.ml\", line 32, characters 17-24", xFromJs(xToJs(v)), v);
-end
+end end
 
 x0 = xToJs(--[ a ]--97);
 
@@ -102,15 +102,15 @@ jsMapperConstantArray$1 = [
 
 function aToJs(param) do
   return jsMapperConstantArray$1[param];
-end
+end end
 
 function aFromJs(param) do
   return Js_mapperRt.fromIntAssert(3, jsMapperConstantArray$1, param);
-end
+end end
 
 function id(x) do
   return eq("File \"ast_abstract_test.ml\", line 49, characters 8-15", aFromJs(aToJs(x)), x);
-end
+end end
 
 a0 = aToJs(--[ A ]--0);
 
@@ -124,7 +124,7 @@ id(--[ C ]--2);
 
 function bToJs(param) do
   return param + 0 | 0;
-end
+end end
 
 function bFromJs(param) do
   if (!(param <= 3 and 0 <= param)) then do
@@ -132,7 +132,7 @@ function bFromJs(param) do
   end
    end 
   return param - 0 | 0;
-end
+end end
 
 b0 = 0;
 
@@ -140,7 +140,7 @@ b1 = 1;
 
 function idb(v) do
   return eq("File \"ast_abstract_test.ml\", line 71, characters 5-12", bFromJs(v + 0 | 0), v);
-end
+end end
 
 idb(--[ D0 ]--0);
 
@@ -152,7 +152,7 @@ idb(--[ D3 ]--3);
 
 function cToJs(param) do
   return param + 3 | 0;
-end
+end end
 
 function cFromJs(param) do
   if (!(param <= 6 and 3 <= param)) then do
@@ -160,13 +160,13 @@ function cFromJs(param) do
   end
    end 
   return param - 3 | 0;
-end
+end end
 
 c0 = 3;
 
 function idc(v) do
   return eq("File \"ast_abstract_test.ml\", line 83, characters 15-22", cFromJs(v + 3 | 0), v);
-end
+end end
 
 idc(--[ D0 ]--0);
 
@@ -178,7 +178,7 @@ idc(--[ D3 ]--3);
 
 function hToJs(param) do
   return param + 0 | 0;
-end
+end end
 
 function hFromJs(param) do
   if (!(param <= 1 and 0 <= param)) then do
@@ -186,18 +186,18 @@ function hFromJs(param) do
   end
    end 
   return param - 0 | 0;
-end
+end end
 
 function zToJs(param) do
   return param + 0 | 0;
-end
+end end
 
 function zFromJs(param) do
   if (param <= 2 and 0 <= param) then do
     return param - 0 | 0;
   end
    end 
-end
+end end
 
 Mt.from_pair_suites("Ast_abstract_test", suites.contents);
 

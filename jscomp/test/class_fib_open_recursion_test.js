@@ -28,12 +28,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function fib_init($$class) do
   calc = CamlinternalOO.get_method_label($$class, "calc");
@@ -43,11 +43,11 @@ function fib_init($$class) do
           end else do
             return Curry._2(self$1[0][calc], self$1, x - 1 | 0) + Curry._2(self$1[0][calc], self$1, x - 2 | 0) | 0;
           end end 
-        end));
+        end end));
   return (function (env, self) do
       return CamlinternalOO.create_object_opt(self, $$class);
-    end);
-end
+    end end);
+end end
 
 fib = CamlinternalOO.make_class(shared, fib_init);
 
@@ -71,14 +71,14 @@ function memo_fib_init($$class) do
               throw exn;
             end end 
           end
-        end));
+        end end));
   return (function (env, self) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[cache] = Hashtbl.create(undefined, 31);
       Curry._1(obj_init, self$1);
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 memo_fib = CamlinternalOO.make_class(shared, memo_fib_init);
 

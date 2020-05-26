@@ -3,7 +3,7 @@
 
 function Make(U) do
   return U;
-end
+end end
 
 exports.Make = Make;
 --[ No side effect ]--

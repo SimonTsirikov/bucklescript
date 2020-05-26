@@ -12,7 +12,7 @@ suites_000 = --[ tuple ]--[
                 2.718,
                 Math.E
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -24,7 +24,7 @@ suites_001 = --[ :: ]--[
                   0.693,
                   Math.LN2
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -35,7 +35,7 @@ suites_001 = --[ :: ]--[
                     2.303,
                     Math.LN10
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -46,7 +46,7 @@ suites_001 = --[ :: ]--[
                       1.443,
                       Math.LOG2E
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -57,7 +57,7 @@ suites_001 = --[ :: ]--[
                         0.434,
                         Math.LOG10E
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -68,7 +68,7 @@ suites_001 = --[ :: ]--[
                           3.14159,
                           Math.PI
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -79,7 +79,7 @@ suites_001 = --[ :: ]--[
                             0.707,
                             Math.SQRT1_2
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -90,7 +90,7 @@ suites_001 = --[ :: ]--[
                               1.414,
                               Math.SQRT2
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -100,7 +100,7 @@ suites_001 = --[ :: ]--[
                                 4,
                                 Math.abs(-4)
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -110,7 +110,7 @@ suites_001 = --[ :: ]--[
                                   1.2,
                                   Math.abs(-1.2)
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -121,7 +121,7 @@ suites_001 = --[ :: ]--[
                                     1.159,
                                     Math.acos(0.4)
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -132,7 +132,7 @@ suites_001 = --[ :: ]--[
                                       0.622,
                                       Math.acosh(1.2)
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -143,7 +143,7 @@ suites_001 = --[ :: ]--[
                                         0.411,
                                         Math.asin(0.4)
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -154,7 +154,7 @@ suites_001 = --[ :: ]--[
                                           0.390,
                                           Math.asinh(0.4)
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -165,7 +165,7 @@ suites_001 = --[ :: ]--[
                                             0.380,
                                             Math.atan(0.4)
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -176,7 +176,7 @@ suites_001 = --[ :: ]--[
                                               0.423,
                                               Math.atanh(0.4)
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -187,7 +187,7 @@ suites_001 = --[ :: ]--[
                                                 0.588,
                                                 Math.atan2(0.4, 0.6)
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -197,7 +197,7 @@ suites_001 = --[ :: ]--[
                                                   2,
                                                   Math.cbrt(8)
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -207,7 +207,7 @@ suites_001 = --[ :: ]--[
                                                     4,
                                                     Math.ceil(3.2)
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
@@ -217,7 +217,7 @@ suites_001 = --[ :: ]--[
                                                       4,
                                                       Js_math.ceil_int(3.2)
                                                     ]);
-                                          end)
+                                          end end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
@@ -227,7 +227,7 @@ suites_001 = --[ :: ]--[
                                                         4,
                                                         Math.ceil(3.2)
                                                       ]);
-                                            end)
+                                            end end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
@@ -238,7 +238,7 @@ suites_001 = --[ :: ]--[
                                                           0.921,
                                                           Math.cos(0.4)
                                                         ]);
-                                              end)
+                                              end end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
@@ -249,7 +249,7 @@ suites_001 = --[ :: ]--[
                                                             1.081,
                                                             Math.cosh(0.4)
                                                           ]);
-                                                end)
+                                                end end)
                                             ],
                                             --[ :: ]--[
                                               --[ tuple ]--[
@@ -260,7 +260,7 @@ suites_001 = --[ :: ]--[
                                                               1.491,
                                                               Math.exp(0.4)
                                                             ]);
-                                                  end)
+                                                  end end)
                                               ],
                                               --[ :: ]--[
                                                 --[ tuple ]--[
@@ -271,7 +271,7 @@ suites_001 = --[ :: ]--[
                                                                 0.491,
                                                                 Math.expm1(0.4)
                                                               ]);
-                                                    end)
+                                                    end end)
                                                 ],
                                                 --[ :: ]--[
                                                   --[ tuple ]--[
@@ -281,7 +281,7 @@ suites_001 = --[ :: ]--[
                                                                   3,
                                                                   Math.floor(3.2)
                                                                 ]);
-                                                      end)
+                                                      end end)
                                                   ],
                                                   --[ :: ]--[
                                                     --[ tuple ]--[
@@ -291,7 +291,7 @@ suites_001 = --[ :: ]--[
                                                                     3,
                                                                     Js_math.floor_int(3.2)
                                                                   ]);
-                                                        end)
+                                                        end end)
                                                     ],
                                                     --[ :: ]--[
                                                       --[ tuple ]--[
@@ -301,7 +301,7 @@ suites_001 = --[ :: ]--[
                                                                       3,
                                                                       Math.floor(3.2)
                                                                     ]);
-                                                          end)
+                                                          end end)
                                                       ],
                                                       --[ :: ]--[
                                                         --[ tuple ]--[
@@ -311,7 +311,7 @@ suites_001 = --[ :: ]--[
                                                                         3.2,
                                                                         Math.fround(3.2)
                                                                       ]);
-                                                            end)
+                                                            end end)
                                                         ],
                                                         --[ :: ]--[
                                                           --[ tuple ]--[
@@ -322,7 +322,7 @@ suites_001 = --[ :: ]--[
                                                                           0.721,
                                                                           Math.hypot(0.4, 0.6)
                                                                         ]);
-                                                              end)
+                                                              end end)
                                                           ],
                                                           --[ :: ]--[
                                                             --[ tuple ]--[
@@ -333,7 +333,7 @@ suites_001 = --[ :: ]--[
                                                                             1.077,
                                                                             Math.hypot(0.4, 0.6, 0.8)
                                                                           ]);
-                                                                end)
+                                                                end end)
                                                             ],
                                                             --[ :: ]--[
                                                               --[ tuple ]--[
@@ -343,7 +343,7 @@ suites_001 = --[ :: ]--[
                                                                               8,
                                                                               Math.imul(4, 2)
                                                                             ]);
-                                                                  end)
+                                                                  end end)
                                                               ],
                                                               --[ :: ]--[
                                                                 --[ tuple ]--[
@@ -354,7 +354,7 @@ suites_001 = --[ :: ]--[
                                                                                 -0.916,
                                                                                 Math.log(0.4)
                                                                               ]);
-                                                                    end)
+                                                                    end end)
                                                                 ],
                                                                 --[ :: ]--[
                                                                   --[ tuple ]--[
@@ -365,7 +365,7 @@ suites_001 = --[ :: ]--[
                                                                                   0.336,
                                                                                   Math.log1p(0.4)
                                                                                 ]);
-                                                                      end)
+                                                                      end end)
                                                                   ],
                                                                   --[ :: ]--[
                                                                     --[ tuple ]--[
@@ -376,7 +376,7 @@ suites_001 = --[ :: ]--[
                                                                                     -0.397,
                                                                                     Math.log10(0.4)
                                                                                   ]);
-                                                                        end)
+                                                                        end end)
                                                                     ],
                                                                     --[ :: ]--[
                                                                       --[ tuple ]--[
@@ -387,7 +387,7 @@ suites_001 = --[ :: ]--[
                                                                                       -1.321,
                                                                                       Math.log2(0.4)
                                                                                     ]);
-                                                                          end)
+                                                                          end end)
                                                                       ],
                                                                       --[ :: ]--[
                                                                         --[ tuple ]--[
@@ -397,7 +397,7 @@ suites_001 = --[ :: ]--[
                                                                                         4,
                                                                                         Math.max(2, 4)
                                                                                       ]);
-                                                                            end)
+                                                                            end end)
                                                                         ],
                                                                         --[ :: ]--[
                                                                           --[ tuple ]--[
@@ -407,7 +407,7 @@ suites_001 = --[ :: ]--[
                                                                                           4,
                                                                                           Math.max(2, 4, 3)
                                                                                         ]);
-                                                                              end)
+                                                                              end end)
                                                                           ],
                                                                           --[ :: ]--[
                                                                             --[ tuple ]--[
@@ -417,7 +417,7 @@ suites_001 = --[ :: ]--[
                                                                                             4.2,
                                                                                             Math.max(2.7, 4.2)
                                                                                           ]);
-                                                                                end)
+                                                                                end end)
                                                                             ],
                                                                             --[ :: ]--[
                                                                               --[ tuple ]--[
@@ -427,7 +427,7 @@ suites_001 = --[ :: ]--[
                                                                                               4.2,
                                                                                               Math.max(2.7, 4.2, 3.9)
                                                                                             ]);
-                                                                                  end)
+                                                                                  end end)
                                                                               ],
                                                                               --[ :: ]--[
                                                                                 --[ tuple ]--[
@@ -437,7 +437,7 @@ suites_001 = --[ :: ]--[
                                                                                                 2,
                                                                                                 Math.min(2, 4)
                                                                                               ]);
-                                                                                    end)
+                                                                                    end end)
                                                                                 ],
                                                                                 --[ :: ]--[
                                                                                   --[ tuple ]--[
@@ -447,7 +447,7 @@ suites_001 = --[ :: ]--[
                                                                                                   2,
                                                                                                   Math.min(2, 4, 3)
                                                                                                 ]);
-                                                                                      end)
+                                                                                      end end)
                                                                                   ],
                                                                                   --[ :: ]--[
                                                                                     --[ tuple ]--[
@@ -457,7 +457,7 @@ suites_001 = --[ :: ]--[
                                                                                                     2.7,
                                                                                                     Math.min(2.7, 4.2)
                                                                                                   ]);
-                                                                                        end)
+                                                                                        end end)
                                                                                     ],
                                                                                     --[ :: ]--[
                                                                                       --[ tuple ]--[
@@ -467,7 +467,7 @@ suites_001 = --[ :: ]--[
                                                                                                       2.7,
                                                                                                       Math.min(2.7, 4.2, 3.9)
                                                                                                     ]);
-                                                                                          end)
+                                                                                          end end)
                                                                                       ],
                                                                                       --[ :: ]--[
                                                                                         --[ tuple ]--[
@@ -475,7 +475,7 @@ suites_001 = --[ :: ]--[
                                                                                           (function (param) do
                                                                                               a = Math.random();
                                                                                               return --[ Ok ]--Block.__(4, [a >= 0 and a < 1]);
-                                                                                            end)
+                                                                                            end end)
                                                                                         ],
                                                                                         --[ :: ]--[
                                                                                           --[ tuple ]--[
@@ -483,7 +483,7 @@ suites_001 = --[ :: ]--[
                                                                                             (function (param) do
                                                                                                 a = Js_math.random_int(1, 3);
                                                                                                 return --[ Ok ]--Block.__(4, [a >= 1 and a < 3]);
-                                                                                              end)
+                                                                                              end end)
                                                                                           ],
                                                                                           --[ :: ]--[
                                                                                             --[ tuple ]--[
@@ -493,7 +493,7 @@ suites_001 = --[ :: ]--[
                                                                                                             3,
                                                                                                             Math.round(3.2)
                                                                                                           ]);
-                                                                                                end)
+                                                                                                end end)
                                                                                             ],
                                                                                             --[ :: ]--[
                                                                                               --[ tuple ]--[
@@ -503,7 +503,7 @@ suites_001 = --[ :: ]--[
                                                                                                               3,
                                                                                                               Math.round(3.2)
                                                                                                             ]);
-                                                                                                  end)
+                                                                                                  end end)
                                                                                               ],
                                                                                               --[ :: ]--[
                                                                                                 --[ tuple ]--[
@@ -513,7 +513,7 @@ suites_001 = --[ :: ]--[
                                                                                                                 -1,
                                                                                                                 Math.sign(-4)
                                                                                                               ]);
-                                                                                                    end)
+                                                                                                    end end)
                                                                                                 ],
                                                                                                 --[ :: ]--[
                                                                                                   --[ tuple ]--[
@@ -523,7 +523,7 @@ suites_001 = --[ :: ]--[
                                                                                                                   -1,
                                                                                                                   Math.sign(-4.2)
                                                                                                                 ]);
-                                                                                                      end)
+                                                                                                      end end)
                                                                                                   ],
                                                                                                   --[ :: ]--[
                                                                                                     --[ tuple ]--[
@@ -533,7 +533,7 @@ suites_001 = --[ :: ]--[
                                                                                                                     -0,
                                                                                                                     Math.sign(-0)
                                                                                                                   ]);
-                                                                                                        end)
+                                                                                                        end end)
                                                                                                     ],
                                                                                                     --[ :: ]--[
                                                                                                       --[ tuple ]--[
@@ -544,7 +544,7 @@ suites_001 = --[ :: ]--[
                                                                                                                       0.389,
                                                                                                                       Math.sin(0.4)
                                                                                                                     ]);
-                                                                                                          end)
+                                                                                                          end end)
                                                                                                       ],
                                                                                                       --[ :: ]--[
                                                                                                         --[ tuple ]--[
@@ -555,7 +555,7 @@ suites_001 = --[ :: ]--[
                                                                                                                         0.410,
                                                                                                                         Math.sinh(0.4)
                                                                                                                       ]);
-                                                                                                            end)
+                                                                                                            end end)
                                                                                                         ],
                                                                                                         --[ :: ]--[
                                                                                                           --[ tuple ]--[
@@ -566,7 +566,7 @@ suites_001 = --[ :: ]--[
                                                                                                                           0.632,
                                                                                                                           Math.sqrt(0.4)
                                                                                                                         ]);
-                                                                                                              end)
+                                                                                                              end end)
                                                                                                           ],
                                                                                                           --[ :: ]--[
                                                                                                             --[ tuple ]--[
@@ -577,7 +577,7 @@ suites_001 = --[ :: ]--[
                                                                                                                             0.422,
                                                                                                                             Math.tan(0.4)
                                                                                                                           ]);
-                                                                                                                end)
+                                                                                                                end end)
                                                                                                             ],
                                                                                                             --[ :: ]--[
                                                                                                               --[ tuple ]--[
@@ -588,7 +588,7 @@ suites_001 = --[ :: ]--[
                                                                                                                               0.379,
                                                                                                                               Math.tanh(0.4)
                                                                                                                             ]);
-                                                                                                                  end)
+                                                                                                                  end end)
                                                                                                               ],
                                                                                                               --[ :: ]--[
                                                                                                                 --[ tuple ]--[
@@ -598,7 +598,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                 4,
                                                                                                                                 Math.trunc(4.2156)
                                                                                                                               ]);
-                                                                                                                    end)
+                                                                                                                    end end)
                                                                                                                 ],
                                                                                                                 --[ :: ]--[
                                                                                                                   --[ tuple ]--[
@@ -608,7 +608,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                   4,
                                                                                                                                   Math.trunc(4.2156)
                                                                                                                                 ]);
-                                                                                                                      end)
+                                                                                                                      end end)
                                                                                                                   ],
                                                                                                                   --[ [] ]--0
                                                                                                                 ]

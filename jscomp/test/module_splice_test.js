@@ -25,16 +25,16 @@ function eq(loc, param) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function joinClasses(prim) do
   return Caml_splice_call.spliceApply(JoinClasses, [prim]);
-end
+end end
 
 a = JoinClasses(1, 2, 3);
 

@@ -8,7 +8,7 @@ function f(x, y) do
           x > y,
           x >= y
         ];
-end
+end end
 
 function ff(x, y) do
   if (x < y) then do
@@ -16,7 +16,7 @@ function ff(x, y) do
   end else do
     return 2;
   end end 
-end
+end end
 
 exports.f = f;
 exports.ff = ff;

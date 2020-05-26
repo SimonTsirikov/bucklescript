@@ -22,11 +22,11 @@ end;
 
 function configX(prim) do
   return WebpackMiddlewareConfigJs.configX();
-end
+end end
 
 function configX$1(prim) do
   return WebpackConfigJs.configX();
-end
+end end
 
 U = do
   configX: configX$1
@@ -41,21 +41,21 @@ function f(param) do
           (function (prim) do
               List$3.ff();
               return --[ () ]--0;
-            end),
+            end end),
           (function (prim) do
               List$3.ff2();
               return --[ () ]--0;
-            end),
+            end end),
           (function (prim) do
               List$2.ff();
               return --[ () ]--0;
-            end),
+            end end),
           (function (prim) do
               List$2.ff2();
               return --[ () ]--0;
-            end)
+            end end)
         ];
-end
+end end
 
 List$1.xx();
 
@@ -71,7 +71,7 @@ List.length(--[ [] ]--0);
 
 function ff(prim) do
   return Local.ff();
-end
+end end
 
 exports.WebpackConfig = WebpackConfig;
 exports.WebpackDevMiddlewareConfig = WebpackDevMiddlewareConfig;

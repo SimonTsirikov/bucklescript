@@ -14,7 +14,7 @@ function bool_equal(x, y) do
   end else do
     return true;
   end end  end 
-end
+end end
 
 function assertions(param) do
   if (!bool_equal(true, true)) then do
@@ -62,7 +62,7 @@ function assertions(param) do
   end
    end 
   return 0;
-end
+end end
 
 function f0(x) do
   if (x == true) then do
@@ -70,7 +70,7 @@ function f0(x) do
   end else do
     return 2;
   end end 
-end
+end end
 
 function f1(x) do
   if (x ~= true) then do
@@ -78,7 +78,7 @@ function f1(x) do
   end else do
     return 2;
   end end 
-end
+end end
 
 function f2(x) do
   if (x == true) then do
@@ -86,7 +86,7 @@ function f2(x) do
   end else do
     return 2;
   end end 
-end
+end end
 
 function f3(x) do
   if (x == false) then do
@@ -94,7 +94,7 @@ function f3(x) do
   end else do
     return 2;
   end end 
-end
+end end
 
 function f4(x) do
   if (x ~= true) then do
@@ -102,7 +102,7 @@ function f4(x) do
   end else do
     return 2;
   end end 
-end
+end end
 
 function f5(x) do
   if (x) then do
@@ -110,7 +110,7 @@ function f5(x) do
   end else do
     return 1;
   end end 
-end
+end end
 
 function f6(x) do
   if (x == --[ [] ]--0) then do
@@ -118,7 +118,7 @@ function f6(x) do
   end else do
     return 2;
   end end 
-end
+end end
 
 function f7(x) do
   if (#x ~= 0) then do
@@ -126,11 +126,11 @@ function f7(x) do
   end else do
     return 2;
   end end 
-end
+end end
 
 function f8(x) do
   return 1;
-end
+end end
 
 exports.bool_equal = bool_equal;
 exports.assertions = assertions;

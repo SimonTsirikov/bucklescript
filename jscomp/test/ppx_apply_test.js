@@ -21,22 +21,22 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 u = 3;
 
 function nullary() do
   return 3;
-end
+end end
 
 function unary(a) do
   return a + 3 | 0;
-end
+end end
 
 xx = unary(3);
 

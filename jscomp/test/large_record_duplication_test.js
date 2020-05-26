@@ -17,13 +17,13 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function f0(x) do
   newrecord = Caml_obj.caml_obj_dup(x);
   newrecord.x0 = 1;
   return newrecord;
-end
+end end
 
 v1 = --[ A0 ]--[
   --[ x0 ]--9,
@@ -56,7 +56,7 @@ function get_x0(x) do
     return x[--[ x0 ]--0];
   end
    end 
-end
+end end
 
 function f1(x) do
   if (x) then do
@@ -66,7 +66,7 @@ function f1(x) do
   end else do
     return --[ A1 ]--0;
   end end 
-end
+end end
 
 eq("File \"large_record_duplication_test.ml\", line 129, characters 6-13", get_x0(f1(v1)), 1);
 
@@ -102,7 +102,7 @@ function get_x0$1(x) do
   end else do
     return x[--[ x0 ]--0];
   end end 
-end
+end end
 
 function f2(x) do
   if (x.tag) then do
@@ -112,7 +112,7 @@ function f2(x) do
     newrecord[--[ x0 ]--0] = 1;
     return newrecord;
   end end 
-end
+end end
 
 eq("File \"large_record_duplication_test.ml\", line 194, characters 6-13", get_x0$1(f2(v2)), 1);
 
@@ -126,14 +126,14 @@ function f3(x) do
   end else do
     return x;
   end end 
-end
+end end
 
 function get_x0$2(x) do
   if (x[0] == A0) then do
     return x[--[ x0 ]--1];
   end
    end 
-end
+end end
 
 v3 = [
   A0,

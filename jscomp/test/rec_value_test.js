@@ -47,7 +47,7 @@ function naive(n) do
   end else do
     return (n + naive(n - 1 | 0) | 0) + naive(n - 2 | 0) | 0;
   end end 
-end
+end end
 
 four = do
   contents: 2
@@ -67,7 +67,7 @@ v = do
               24
             ]
           ];
-    end)
+    end end)
 end;
 
 function fib(n) do
@@ -88,11 +88,11 @@ function fib(n) do
       end end
       
   end
-end
+end end
 
 function zs(param) do
   return List.hd(xs[0]);
-end
+end end
 
 xs_000 = --[ :: ]--[
   2,
@@ -110,7 +110,7 @@ function fib2(n) do
   end else do
     return fib2(n - 1 | 0) + fib2(n - 2 | 0) | 0;
   end end 
-end
+end end
 
 two = 2;
 
@@ -120,7 +120,7 @@ function fib3(n) do
   end else do
     return fib3(n - 1 | 0) + fib3(n - 2 | 0) | 0;
   end end 
-end
+end end
 
 function even(n) do
   if (n == 0) then do
@@ -133,7 +133,7 @@ function even(n) do
       return even(n$1 - 1 | 0);
     end end 
   end end 
-end
+end end
 
 function even2(_n) do
   while(true) do
@@ -145,12 +145,12 @@ function even2(_n) do
       continue ;
     end end 
   end;
-end
+end end
 
 function lazy_v(param) do
   CamlinternalLazy.force(lazy_v);
   return --[ () ]--0;
-end
+end end
 
 function sum(_acc, _n) do
   while(true) do
@@ -164,7 +164,7 @@ function sum(_acc, _n) do
       return acc;
     end end 
   end;
-end
+end end
 
 fake_v = --[ :: ]--[
   1,
@@ -213,14 +213,14 @@ Caml_obj.caml_update_dummy(rec_variant_b, --[ B ]--Block.__(0, [
         "gho",
         (function (param) do
             return rec_variant_a;
-          end)
+          end end)
       ]));
 
 Caml_obj.caml_update_dummy(rec_variant_a, --[ A ]--Block.__(1, [
         3,
         (function (param) do
             return rec_variant_b;
-          end)
+          end end)
       ]));
 
 suites_000 = --[ tuple ]--[
@@ -230,7 +230,7 @@ suites_000 = --[ tuple ]--[
                 1,
                 List.hd(List.tl(x))
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -266,7 +266,7 @@ suites_001 = --[ :: ]--[
                   3,
                   tmp
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -276,7 +276,7 @@ suites_001 = --[ :: ]--[
                     55,
                     sum(0, 10)
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -292,7 +292,7 @@ suites_001 = --[ :: ]--[
                       ],
                       fake_v
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -308,7 +308,7 @@ suites_001 = --[ :: ]--[
                         ],
                         fake_y
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -327,7 +327,7 @@ suites_001 = --[ :: ]--[
                           ],
                           fake_z
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -349,7 +349,7 @@ suites_001 = --[ :: ]--[
                             ],
                             fake_z2
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -365,7 +365,7 @@ suites_001 = --[ :: ]--[
                               ],
                               fake_y2
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -375,7 +375,7 @@ suites_001 = --[ :: ]--[
                                 3,
                                 3
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -396,7 +396,7 @@ suites_001 = --[ :: ]--[
                                     rec_variant_a
                                   ]);
                         end end 
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -417,7 +417,7 @@ suites_001 = --[ :: ]--[
                                   ]
                                 ];
                           end end 
-                        end)
+                        end end)
                     ],
                     --[ [] ]--0
                   ]
@@ -439,13 +439,13 @@ suites = --[ :: ]--[
 function fake_minus(n) do
   console.log(n);
   return n + 1 | 0;
-end
+end end
 
 fake_odd = fake_minus;
 
 function fake_inline_minus(n) do
   return n + 1 | 0;
-end
+end end
 
 fake_inline = fake_inline_minus;
 

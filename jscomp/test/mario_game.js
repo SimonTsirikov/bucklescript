@@ -41,7 +41,7 @@ function setup_sprite(loopOpt, bbox_offsetOpt, bbox_sizeOpt, img_src, max_frames
           bbox_size: bbox_size$1,
           loop: loop
         end;
-end
+end end
 
 function make_enemy(param) do
   dir = param[1];
@@ -152,7 +152,7 @@ function make_enemy(param) do
      do
     
   end
-end
+end end
 
 function make_particle(param) do
   local ___conditional___=(param);
@@ -248,7 +248,7 @@ function make_particle(param) do
      do
     
   end
-end
+end end
 
 function make_type(typ, dir) do
   local ___conditional___=(typ.tag | 0);
@@ -640,7 +640,7 @@ function make_type(typ, dir) do
      do
     
   end
-end
+end end
 
 function make_from_params(params, context) do
   img = document.createElement("img");
@@ -656,12 +656,12 @@ function make_from_params(params, context) do
           end,
           img: img
         end;
-end
+end end
 
 function make(spawn, dir, context) do
   params = make_type(spawn, dir);
   return make_from_params(params, context);
-end
+end end
 
 function make_bgd(context) do
   params = setup_sprite(undefined, undefined, undefined, "bgd-1.png", 1, 0, --[ tuple ]--[
@@ -672,12 +672,12 @@ function make_bgd(context) do
         0
       ]);
   return make_from_params(params, context);
-end
+end end
 
 function make_particle$1(ptyp, context) do
   params = make_particle(ptyp);
   return make_from_params(params, context);
-end
+end end
 
 function transform_enemy(enemy_typ, spr, dir) do
   params = make_enemy(--[ tuple ]--[
@@ -689,7 +689,7 @@ function transform_enemy(enemy_typ, spr, dir) do
   spr.params = params;
   spr.img = img;
   return --[ () ]--0;
-end
+end end
 
 function update_animation(spr) do
   curr_ticks = spr.ticks.contents;
@@ -705,7 +705,7 @@ function update_animation(spr) do
     spr.ticks.contents = curr_ticks + 1 | 0;
     return --[ () ]--0;
   end end 
-end
+end end
 
 Sprite = do
   setup_sprite: setup_sprite,
@@ -721,7 +721,7 @@ function pair_to_xy(pair) do
           x: pair[0],
           y: pair[1]
         end;
-end
+end end
 
 function make_type$1(typ, ctx) do
   if (typ == 2 or typ == 1) then do
@@ -737,7 +737,7 @@ function make_type$1(typ, ctx) do
             lifetime: 30
           end;
   end end 
-end
+end end
 
 function make$1(velOpt, accOpt, part_type, pos, ctx) do
   vel = velOpt ~= undefined and velOpt or --[ tuple ]--[
@@ -761,7 +761,7 @@ function make$1(velOpt, accOpt, part_type, pos, ctx) do
           kill: false,
           life: params.lifetime
         end;
-end
+end end
 
 function make_score(score, pos, ctx) do
   t = score >= 801 and (
@@ -787,13 +787,13 @@ function make_score(score, pos, ctx) do
               0.5,
               -0.7
             ], undefined, t, pos, ctx);
-end
+end end
 
 function update_vel(part) do
   part.vel.x = part.vel.x + part.acc.x;
   part.vel.y = part.vel.y + part.acc.y;
   return --[ () ]--0;
-end
+end end
 
 function $$process(part) do
   part.life = part.life - 1 | 0;
@@ -806,7 +806,7 @@ function $$process(part) do
   part$1.pos.x = part$1.vel.x + part$1.pos.x;
   part$1.pos.y = part$1.vel.y + part$1.pos.y;
   return --[ () ]--0;
-end
+end end
 
 Particle = do
   make: make$1,
@@ -825,7 +825,7 @@ function setup_obj(has_gravityOpt, speedOpt, param) do
           has_gravity: has_gravity,
           speed: speed
         end;
-end
+end end
 
 function set_vel_to_speed(obj) do
   speed = obj.params.speed;
@@ -837,7 +837,7 @@ function set_vel_to_speed(obj) do
     obj.vel.x = -speed;
     return --[ () ]--0;
   end end 
-end
+end end
 
 function make_type$2(param) do
   local ___conditional___=(param.tag | 0);
@@ -863,12 +863,12 @@ function make_type$2(param) do
      do
     
   end
-end
+end end
 
 function new_id(param) do
   id_counter.contents = id_counter.contents + 1 | 0;
   return id_counter.contents;
-end
+end end
 
 function make$2($staropt$star, $staropt$star$1, spawnable, context, param) do
   id = $staropt$star ~= undefined and Caml_option.valFromOption($staropt$star) or undefined;
@@ -900,7 +900,7 @@ function make$2($staropt$star, $staropt$star$1, spawnable, context, param) do
           spr,
           obj
         ];
-end
+end end
 
 function spawn(spawnable, context, param) do
   match = make$2(undefined, undefined, spawnable, context, --[ tuple ]--[
@@ -939,15 +939,15 @@ function spawn(spawnable, context, param) do
      do
     
   end
-end
+end end
 
 function get_sprite(param) do
   return param[1];
-end
+end end
 
 function get_obj(param) do
   return param[2];
-end
+end end
 
 function is_player(param) do
   if (param.tag) then do
@@ -955,7 +955,7 @@ function is_player(param) do
   end else do
     return true;
   end end 
-end
+end end
 
 function is_enemy(param) do
   if (param.tag == --[ Enemy ]--1) then do
@@ -963,11 +963,11 @@ function is_enemy(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 function equals(col1, col2) do
   return col1[2].id == col2[2].id;
-end
+end end
 
 function normalize_pos(pos, p1, p2) do
   match = p1.bbox_offset;
@@ -977,7 +977,7 @@ function normalize_pos(pos, p1, p2) do
   pos.x = pos.x - (match$3[0] + match$1[0]) + (match$2[0] + match[0]);
   pos.y = pos.y - (match$3[1] + match$1[1]) + (match$2[1] + match[1]);
   return --[ () ]--0;
-end
+end end
 
 function update_player(player, keys, context) do
   prev_jumping = player.jumping;
@@ -1030,7 +1030,7 @@ function update_player(player, keys, context) do
              do
             
           end
-        end), keys);
+        end end), keys);
   v = player.vel.x * 0.9;
   vel_damped = Math.abs(v) < 0.1 and 0 or v;
   player.vel.x = vel_damped;
@@ -1078,7 +1078,7 @@ function update_player(player, keys, context) do
   end else do
     return ;
   end end  end  end  end  end 
-end
+end end
 
 function update_vel$1(obj) do
   if (obj.grounded) then do
@@ -1090,7 +1090,7 @@ function update_vel$1(obj) do
   end else do
     return 0;
   end end  end 
-end
+end end
 
 function update_pos(obj) do
   obj.pos.x = obj.vel.x + obj.pos.x;
@@ -1100,7 +1100,7 @@ function update_pos(obj) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function process_obj(obj, mapy) do
   update_vel$1(obj);
@@ -1111,7 +1111,7 @@ function process_obj(obj, mapy) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function normalize_origin(pos, spr) do
   p = spr.params;
@@ -1120,7 +1120,7 @@ function normalize_origin(pos, spr) do
   pos.x = pos.x - match[0];
   pos.y = pos.y - (match[1] + match$1[1]);
   return --[ () ]--0;
-end
+end end
 
 function collide_block(check_xOpt, dir, obj) do
   check_x = check_xOpt ~= undefined and check_xOpt or true;
@@ -1142,13 +1142,13 @@ function collide_block(check_xOpt, dir, obj) do
     obj.jumping = false;
     return --[ () ]--0;
   end end 
-end
+end end
 
 function reverse_left_right(obj) do
   obj.vel.x = -obj.vel.x;
   obj.dir = obj.dir and --[ Left ]--0 or --[ Right ]--1;
   return --[ () ]--0;
-end
+end end
 
 function evolve_enemy(player_dir, typ, spr, obj, context) do
   local ___conditional___=(typ);
@@ -1194,14 +1194,14 @@ function evolve_enemy(player_dir, typ, spr, obj, context) do
     set_vel_to_speed(obj);
   end end 
   return ;
-end
+end end
 
 function rev_dir(o, t, s) do
   reverse_left_right(o);
   old_params = s.params;
   transform_enemy(t, s, o.dir);
   return normalize_pos(o.pos, old_params, s.params);
-end
+end end
 
 function dec_health(obj) do
   health = obj.health - 1 | 0;
@@ -1214,7 +1214,7 @@ function dec_health(obj) do
   end else do
     return 0;
   end end  end 
-end
+end end
 
 function evolve_block(obj, context) do
   dec_health(obj);
@@ -1227,7 +1227,7 @@ function evolve_block(obj, context) do
             match[0],
             match[1]
           ]);
-end
+end end
 
 function spawn_above(player_dir, obj, typ, context) do
   item = spawn(--[ SItem ]--Block.__(2, [typ]), context, --[ tuple ]--[
@@ -1239,7 +1239,7 @@ function spawn_above(player_dir, obj, typ, context) do
   item_obj.dir = player_dir and --[ Left ]--0 or --[ Right ]--1;
   set_vel_to_speed(item_obj);
   return item;
-end
+end end
 
 function get_aabb(obj) do
   spr = obj[1].params;
@@ -1260,7 +1260,7 @@ function get_aabb(obj) do
             y: sy / 2
           end
         end;
-end
+end end
 
 function col_bypass(c1, c2) do
   o1 = c1[2];
@@ -1294,7 +1294,7 @@ function col_bypass(c1, c2) do
   end else do
     return ctypes;
   end end 
-end
+end end
 
 function check_collision(c1, c2) do
   b1 = get_aabb(c1);
@@ -1329,7 +1329,7 @@ function check_collision(c1, c2) do
       return ;
     end end 
   end end 
-end
+end end
 
 function kill(collid, ctx) do
   local ___conditional___=(collid.tag | 0);
@@ -1423,7 +1423,7 @@ function kill(collid, ctx) do
      do
     
   end
-end
+end end
 
 $$Object = do
   invuln: 60,
@@ -1455,7 +1455,7 @@ function render_bbox(sprite, param) do
   match$1 = sprite.params.bbox_size;
   context.strokeStyle = "#FF0000";
   return context.strokeRect(param[0] + match[0], param[1] + match[1], match$1[0], match$1[1]);
-end
+end end
 
 function render(sprite, param) do
   context = sprite.context;
@@ -1465,7 +1465,7 @@ function render(sprite, param) do
   match$2 = sprite.params.frame_size;
   sx = match[0] + sprite.frame.contents * sw;
   return context.drawImage(sprite.img, sx, match[1], sw, match$1[1], param[0], param[1], match$2[0], match$2[1]);
-end
+end end
 
 function draw_bgd(bgd, off_x) do
   render(bgd, --[ tuple ]--[
@@ -1476,7 +1476,7 @@ function draw_bgd(bgd, off_x) do
               bgd.params.frame_size[0] - off_x,
               0
             ]);
-end
+end end
 
 function clear_canvas(canvas) do
   context = canvas.getContext("2d");
@@ -1484,7 +1484,7 @@ function clear_canvas(canvas) do
   cheight = canvas.height;
   context.clearRect(0, 0, cwidth, cheight);
   return --[ () ]--0;
-end
+end end
 
 function hud(canvas, score, coins) do
   score_string = String(score);
@@ -1494,14 +1494,14 @@ function hud(canvas, score, coins) do
   context.fillText("Score: " .. score_string, canvas.width - 140, 18);
   context.fillText("Coins: " .. coin_string, 120, 18);
   return --[ () ]--0;
-end
+end end
 
 function fps(canvas, fps_val) do
   fps_str = String(fps_val | 0);
   context = canvas.getContext("2d");
   context.fillText(fps_str, 10, 18);
   return --[ () ]--0;
-end
+end end
 
 function game_win(ctx) do
   ctx.rect(0, 0, 512, 512);
@@ -1514,7 +1514,7 @@ function game_win(ctx) do
         Caml_builtin_exceptions.failure,
         "Game over."
       ];
-end
+end end
 
 function game_loss(ctx) do
   ctx.rect(0, 0, 512, 512);
@@ -1527,7 +1527,7 @@ function game_loss(ctx) do
         Caml_builtin_exceptions.failure,
         "Game over."
       ];
-end
+end end
 
 Draw = do
   render: render,
@@ -1555,12 +1555,12 @@ function make$3(param, param$1) do
             y: param$1[1]
           end
         end;
-end
+end end
 
 function calc_viewport_point(cc, vc, mc) do
   vc_half = vc / 2;
   return Caml_primitive.caml_float_min(Caml_primitive.caml_float_max(cc - vc_half, 0), Caml_primitive.caml_float_min(mc - vc, Math.abs(cc - vc_half)));
-end
+end end
 
 function in_viewport(v, pos) do
   v_min_x = v.pos.x - 32;
@@ -1574,19 +1574,19 @@ function in_viewport(v, pos) do
   end else do
     return false;
   end end 
-end
+end end
 
 function out_of_viewport_below(v, y) do
   v_max_y = v.pos.y + v.v_dim.y;
   return y >= v_max_y;
-end
+end end
 
 function coord_to_viewport(viewport, coord) do
   return do
           x: coord.x - viewport.pos.x,
           y: coord.y - viewport.pos.y
         end;
-end
+end end
 
 function update(vpt, ctr) do
   new_x = calc_viewport_point(ctr.x, vpt.v_dim.x, vpt.m_dim.x);
@@ -1600,7 +1600,7 @@ function update(vpt, ctr) do
           v_dim: vpt.v_dim,
           m_dim: vpt.m_dim
         end;
-end
+end end
 
 Viewport = do
   make: make$3,
@@ -1634,12 +1634,12 @@ end;
 function calc_fps(t0, t1) do
   delta = (t1 - t0) / 1000;
   return 1 / delta;
-end
+end end
 
 function update_score(state, i) do
   state.score = state.score + i | 0;
   return --[ () ]--0;
-end
+end end
 
 function process_collision(dir, c1, c2, state) do
   context = state.ctx;
@@ -2040,7 +2040,7 @@ function process_collision(dir, c1, c2, state) do
      do
     
   end
-end
+end end
 
 function broad_phase(collid, all_collids, state) do
   obj = collid[2];
@@ -2050,8 +2050,8 @@ function broad_phase(collid, all_collids, state) do
                   end else do
                     return out_of_viewport_below(state.vpt, obj.pos.y);
                   end end 
-                end))(all_collids);
-end
+                end end))(all_collids);
+end end
 
 function check_collisions(collid, all_collids, state) do
   if (collid.tag == --[ Block ]--3) then do
@@ -2114,7 +2114,7 @@ function check_collisions(collid, all_collids, state) do
       end end 
     end;
   end end 
-end
+end end
 
 function update_collidable(state, collid, all_collids) do
   obj = collid[2];
@@ -2145,7 +2145,7 @@ function update_collidable(state, collid, all_collids) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 function translate_keys(param) do
   ctrls_000 = --[ tuple ]--[
@@ -2184,8 +2184,8 @@ function translate_keys(param) do
                 end else do
                   return a;
                 end end 
-              end), --[ [] ]--0, ctrls);
-end
+              end end), --[ [] ]--0, ctrls);
+end end
 
 function run_update_collid(state, collid, all_collids) do
   if (collid.tag) then do
@@ -2223,7 +2223,7 @@ function run_update_collid(state, collid, all_collids) do
     collid_objs.contents = Pervasives.$at(collid_objs.contents, evolved$1);
     return player;
   end end 
-end
+end end
 
 function update_loop(canvas, param, map_dim) do
   player = param[0];
@@ -2274,7 +2274,7 @@ function update_loop(canvas, param, map_dim) do
         List.iter((function (obj) do
                 run_update_collid(state$1, obj, objs);
                 return --[ () ]--0;
-              end), objs);
+              end end), objs);
         List.iter((function (part) do
                 state$2 = state$1;
                 part$1 = part;
@@ -2294,18 +2294,18 @@ function update_loop(canvas, param, map_dim) do
                   ];
                   return --[ () ]--0;
                 end end 
-              end), parts);
+              end end), parts);
         fps(canvas, fps$1);
         hud(canvas, state$1.score, state$1.coins);
         requestAnimationFrame((function (t) do
                 return update_helper(t, state$1, player$1, collid_objs.contents, particles.contents);
-              end));
+              end end));
         return --[ () ]--0;
       end end 
     end end 
-  end;
+  end end;
   return update_helper(0, state, player, param[1], --[ [] ]--0);
-end
+end end
 
 function keydown(evt) do
   match = evt.keyCode;
@@ -2367,7 +2367,7 @@ function keydown(evt) do
   end
    end  end 
   return true;
-end
+end end
 
 function keyup(evt) do
   match = evt.keyCode;
@@ -2412,7 +2412,7 @@ function keyup(evt) do
   end
    end  end  end 
   return true;
-end
+end end
 
 Director = do
   update_loop: update_loop,
@@ -2434,7 +2434,7 @@ function mem_loc(checkloc, _loclist) do
       return false;
     end end 
   end;
-end
+end end
 
 function convert_list(lst) do
   if (lst) then do
@@ -2452,7 +2452,7 @@ function convert_list(lst) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 function choose_enemy_typ(typ) do
   local ___conditional___=(typ);
@@ -2472,7 +2472,7 @@ function choose_enemy_typ(typ) do
       end end
       
   end
-end
+end end
 
 function choose_sblock_typ(typ) do
   local ___conditional___=(typ);
@@ -2496,7 +2496,7 @@ function choose_sblock_typ(typ) do
       end end
       
   end
-end
+end end
 
 function avoid_overlap(_lst, currentLst) do
   while(true) do
@@ -2517,7 +2517,7 @@ function avoid_overlap(_lst, currentLst) do
       return --[ [] ]--0;
     end end 
   end;
-end
+end end
 
 function trim_edges(_lst, blockw, blockh) do
   while(true) do
@@ -2542,7 +2542,7 @@ function trim_edges(_lst, blockw, blockh) do
       return --[ [] ]--0;
     end end 
   end;
-end
+end end
 
 function generate_clouds(cbx, cby, typ, num) do
   if (num == 0) then do
@@ -2559,7 +2559,7 @@ function generate_clouds(cbx, cby, typ, num) do
                 --[ [] ]--0
               ], generate_clouds(cbx + 1, cby, typ, num - 1 | 0));
   end end 
-end
+end end
 
 function generate_coins(_block_coord) do
   while(true) do
@@ -2589,7 +2589,7 @@ function generate_coins(_block_coord) do
       return --[ [] ]--0;
     end end 
   end;
-end
+end end
 
 function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
   if (cbx > blockw or cby > blockh) then do
@@ -3030,7 +3030,7 @@ function choose_block_pattern(blockw, blockh, cbx, cby, prob) do
         
     end
   end end 
-end
+end end
 
 function generate_enemies(blockw, blockh, _cbx, _cby, acc) do
   while(true) do
@@ -3069,7 +3069,7 @@ function generate_enemies(blockw, blockh, _cbx, _cby, acc) do
       end end 
     end end  end  end 
   end;
-end
+end end
 
 function generate_block_enemies(_block_coord) do
   while(true) do
@@ -3100,7 +3100,7 @@ function generate_block_enemies(_block_coord) do
       return --[ [] ]--0;
     end end 
   end;
-end
+end end
 
 function generate_block_locs(blockw, blockh, _cbx, _cby, _acc) do
   while(true) do
@@ -3134,14 +3134,14 @@ function generate_block_locs(blockw, blockh, _cbx, _cby, _acc) do
       end end 
     end end  end  end 
   end;
-end
+end end
 
 function generate_panel(context, blockw, blockh) do
   return spawn(--[ SBlock ]--Block.__(3, [--[ Panel ]--4]), context, --[ tuple ]--[
               blockw * 16 - 256,
               blockh * 16 * 2 / 3
             ]);
-end
+end end
 
 function generate_ground(blockw, blockh, _inc, _acc) do
   while(true) do
@@ -3185,7 +3185,7 @@ function generate_ground(blockw, blockh, _inc, _acc) do
       continue ;
     end end  end 
   end;
-end
+end end
 
 function convert_to_block_obj(lst, context) do
   if (lst) then do
@@ -3199,7 +3199,7 @@ function convert_to_block_obj(lst, context) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 function convert_to_enemy_obj(lst, context) do
   if (lst) then do
@@ -3213,7 +3213,7 @@ function convert_to_enemy_obj(lst, context) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 function convert_to_coin_obj(lst, context) do
   if (lst) then do
@@ -3225,7 +3225,7 @@ function convert_to_coin_obj(lst, context) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 function generate_helper(blockw, blockh, cx, cy, context) do
   block_locs = generate_block_locs(blockw, blockh, 0, 0, --[ [] ]--0);
@@ -3249,7 +3249,7 @@ function generate_helper(blockw, blockh, cx, cy, context) do
                           obj_panel,
                           --[ [] ]--0
                         ]))));
-end
+end end
 
 function generate(w, h, context) do
   blockw = w / 16;
@@ -3266,11 +3266,11 @@ function generate(w, h, context) do
           player,
           collide_list
         ];
-end
+end end
 
 function init(param) do
   return Random.self_init(--[ () ]--0);
-end
+end end
 
 Procedural_generator = do
   init: init,
@@ -3317,7 +3317,7 @@ function load(param) do
       ]);
   console.log("asd");
   return --[ () ]--0;
-end
+end end
 
 function inc_counter(param) do
   loadCount.contents = loadCount.contents + 1 | 0;
@@ -3326,7 +3326,7 @@ function inc_counter(param) do
   end else do
     return --[ () ]--0;
   end end 
-end
+end end
 
 function preload(param) do
   return List.map((function (img_src) do
@@ -3336,9 +3336,9 @@ function preload(param) do
                 img.addEventListener("load", (function (ev) do
                         inc_counter(--[ () ]--0);
                         return true;
-                      end), true);
+                      end end), true);
                 return --[ () ]--0;
-              end), --[ :: ]--[
+              end end), --[ :: ]--[
               "blocks.png",
               --[ :: ]--[
                 "items.png",
@@ -3351,12 +3351,12 @@ function preload(param) do
                 ]
               ]
             ]);
-end
+end end
 
 window.onload = (function (param) do
     preload(--[ () ]--0);
     return true;
-  end);
+  end end);
 
 Main = do
   Html: --[ alias ]--0,

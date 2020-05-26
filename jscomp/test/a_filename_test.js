@@ -23,16 +23,16 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function test(param, param$1) do
   return Ext_filename_test.node_relative_path(true, param, param$1);
-end
+end end
 
 eq("File \"a_filename_test.ml\", line 10, characters 5-12", --[ tuple ]--[
       Ext_filename_test.combine("/tmp", "subdir/file.txt"),

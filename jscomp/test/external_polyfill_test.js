@@ -13,7 +13,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 require('../../lib/js/caml_external_polyfill.js').register("caml_fancy_add", function(x,y){
   return + ((""+x ) + (""+y))

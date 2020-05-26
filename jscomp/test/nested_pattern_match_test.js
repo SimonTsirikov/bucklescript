@@ -32,7 +32,7 @@ function f_list(x) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function f_arr(x) do
   if (#x ~= 6) then do
@@ -46,7 +46,7 @@ function f_arr(x) do
     a5 = x[5];
     return ((((a0 + a1 | 0) + a2 | 0) + a3 | 0) + a4 | 0) + a5 | 0;
   end end 
-end
+end end
 
 function f_opion(x) do
   match = x.hi;
@@ -129,7 +129,7 @@ function f_opion(x) do
       return 0;
     end end 
   end end 
-end
+end end
 
 exports.f_list = f_list;
 exports.f_arr = f_arr;

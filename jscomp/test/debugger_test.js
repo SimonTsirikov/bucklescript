@@ -7,7 +7,7 @@ function f(x, y) do
         y
       ]);
   return x + y | 0;
-end
+end end
 
 function g(param) do
   f(1, 2);
@@ -15,7 +15,7 @@ function g(param) do
   f(1, 2);
   debugger;
   return 3;
-end
+end end
 
 function exterme_g(param) do
   f(1, 2);
@@ -25,7 +25,7 @@ function exterme_g(param) do
   f(1, 2);
   debugger;
   return 3;
-end
+end end
 
 exports.f = f;
 exports.g = g;

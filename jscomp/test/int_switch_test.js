@@ -13,11 +13,11 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-end
+end end
 
 function f(x) do
   match = Curry._1(x, --[ () ]--0);
@@ -35,7 +35,7 @@ function f(x) do
       end end
       
   end
-end
+end end
 
 function f22(x) do
   match = Curry._1(x, --[ () ]--0);
@@ -53,7 +53,7 @@ function f22(x) do
       end end
       
   end
-end
+end end
 
 function f33(x) do
   match = Curry._1(x, --[ () ]--0);
@@ -70,27 +70,27 @@ function f33(x) do
      do
     
   end
-end
+end end
 
 eq("File \"int_switch_test.ml\", line 35, characters 6-13", f((function (param) do
             return 1;
-          end)), --[ "a" ]--97);
+          end end)), --[ "a" ]--97);
 
 eq("File \"int_switch_test.ml\", line 36, characters 6-13", f((function (param) do
             return 2;
-          end)), --[ "b" ]--98);
+          end end)), --[ "b" ]--98);
 
 eq("File \"int_switch_test.ml\", line 37, characters 6-13", f((function (param) do
             return 3;
-          end)), --[ "c" ]--99);
+          end end)), --[ "c" ]--99);
 
 eq("File \"int_switch_test.ml\", line 38, characters 6-13", f((function (param) do
             return 0;
-          end)), --[ "x" ]--120);
+          end end)), --[ "x" ]--120);
 
 eq("File \"int_switch_test.ml\", line 39, characters 6-13", f((function (param) do
             return -1;
-          end)), --[ "x" ]--120);
+          end end)), --[ "x" ]--120);
 
 Mt.from_pair_suites("Int_switch_test", suites.contents);
 

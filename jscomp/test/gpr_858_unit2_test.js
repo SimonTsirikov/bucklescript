@@ -6,7 +6,7 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 delayed = do
   contents: (function (param) do
       return --[ () ]--0;
-    end)
+    end end)
 end;
 
 for i = 1 , 2 , 1 do
@@ -17,7 +17,7 @@ for i = 1 , 2 , 1 do
       delayed.contents = (function (param) do
           Curry._1(prev, --[ () ]--0);
           return f(((n + 1 | 0) + i | 0) - i | 0, j - 1 | 0);
-        end);
+        end end);
       return --[ () ]--0;
     end else if (i == n) then do
       return 0;
@@ -31,7 +31,7 @@ for i = 1 , 2 , 1 do
             ]
           ];
     end end  end 
-  end
+  end end
   end(i));
   f(0, i);
 end

@@ -10,7 +10,7 @@ end;
 function log(x) do
   result.contents = x;
   return --[ () ]--0;
-end
+end end
 
 Xx = do
   log: log
@@ -50,7 +50,7 @@ function compilerBug(a, b, c, f) do
     result.contents = "Some x, f returns false";
     return --[ () ]--0;
   end end 
-end
+end end
 
 suites = do
   contents: --[ [] ]--0
@@ -62,11 +62,11 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 compilerBug("x", undefined, true, (function (param) do
         return true;
-      end));
+      end end));
 
 eq("File \"gpr_3875_test.ml\", line 36, characters 5-12", result.contents, "Some x, f returns true");
 

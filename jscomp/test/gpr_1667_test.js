@@ -21,18 +21,18 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 (function (n) do
       return 0;
-    end)((function (q, y) do
+    end end)((function (q, y) do
         return false;
-      end)) == 0;
+      end end)) == 0;
 
 eq("File \"gpr_1667_test.ml\", line 18, characters 7-14", 0, 0);
 

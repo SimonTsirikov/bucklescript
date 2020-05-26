@@ -15,20 +15,20 @@ function g1(x, y) do
   h.contents = h.contents + 1 | 0;
   return (function (xx, yy) do
       return (xx + yy | 0) + u | 0;
-    end);
-end
+    end end);
+end end
 
 u = 8;
 
 x = (function (z) do
       return u + z | 0;
-    end)(6);
+    end end)(6);
 
 partial_arg = g1(3, 4);
 
 function v(param) do
   return partial_arg(6, param);
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "curry",
@@ -37,7 +37,7 @@ suites_000 = --[ tuple ]--[
                 g,
                 7
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -48,7 +48,7 @@ suites_001 = --[ :: ]--[
                   14,
                   (Curry._1(v, 1), Curry._1(v, 1))
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -58,7 +58,7 @@ suites_001 = --[ :: ]--[
                     x,
                     14
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -68,7 +68,7 @@ suites_001 = --[ :: ]--[
                       h.contents,
                       1
                     ]);
-          end)
+          end end)
       ],
       --[ [] ]--0
     ]

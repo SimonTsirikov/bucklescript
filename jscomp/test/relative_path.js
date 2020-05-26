@@ -6,7 +6,7 @@ foo = FileJs.foo;
 
 function foo2(prim) do
   return FileJs.foo2(prim);
-end
+end end
 
 bar = foo;
 

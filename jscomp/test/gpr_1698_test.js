@@ -26,7 +26,7 @@ function is_number(_expr) do
       
     end
   end;
-end
+end end
 
 function compare(context, state, _a, _b) do
   while(true) do
@@ -185,7 +185,7 @@ function compare(context, state, _a, _b) do
       
     end
   end;
-end
+end end
 
 a = --[ Sum ]--Block.__(2, [--[ :: ]--[
       --[ Val ]--Block.__(0, [--[ Symbol ]--Block.__(1, ["a"])]),

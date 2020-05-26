@@ -25,12 +25,12 @@ function eq(loc, param) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 b = [
   0,

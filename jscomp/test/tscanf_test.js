@@ -30,18 +30,18 @@ end;
 
 function eq(f, param) do
   return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
-end
+end end
 
 function test(loc, b) do
   return eq(loc, --[ tuple ]--[
               b,
               true
             ]);
-end
+end end
 
 function id(x) do
   return x;
-end
+end end
 
 function test0(param) do
   return ((((Curry._2(Scanf.sscanf("", --[ Format ]--[
@@ -83,7 +83,7 @@ function test0(param) do
                     ]),
                   " %d"
                 ]), id) | 0;
-end
+end end
 
 test("File \"tscanf_test.ml\", line 42, characters 5-12", test0(--[ () ]--0) == 21);
 
@@ -144,7 +144,7 @@ function test1(param) do
                     ]),
                   " %da"
                 ]), id) | 0;
-end
+end end
 
 test("File \"tscanf_test.ml\", line 54, characters 5-12", test1(--[ () ]--0) == 5);
 
@@ -186,7 +186,7 @@ function test2(param) do
                     ]),
                   " %1da"
                 ]), id) | 0;
-end
+end end
 
 test("File \"tscanf_test.ml\", line 63, characters 5-12", test2(--[ () ]--0) == 259);
 
@@ -242,7 +242,7 @@ function test3(param) do
                     ]),
                   " %1da"
                 ]), id) | 0;
-end
+end end
 
 test("File \"tscanf_test.ml\", line 73, characters 5-12", test3(--[ () ]--0) == -214);
 
@@ -257,7 +257,7 @@ function test4(param) do
               "%f"
             ]), (function (b0) do
             return b0 == 1.0;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-1"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -267,7 +267,7 @@ function test4(param) do
               "%f"
             ]), (function (b0) do
             return b0 == -1.0;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+1"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -277,7 +277,7 @@ function test4(param) do
               "%f"
             ]), (function (b0) do
             return b0 == 1.0;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1."), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1."), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -287,7 +287,7 @@ function test4(param) do
               "%f"
             ]), (function (b0) do
             return b0 == 1.0;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string(".1"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string(".1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -297,7 +297,7 @@ function test4(param) do
               "%f"
             ]), (function (b0) do
             return b0 == 0.1;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-.1"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-.1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -307,7 +307,7 @@ function test4(param) do
               "%f"
             ]), (function (b0) do
             return b0 == -0.1;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+.1"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+.1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -317,7 +317,7 @@ function test4(param) do
               "%f"
             ]), (function (b0) do
             return b0 == 0.1;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+1."), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+1."), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -327,7 +327,7 @@ function test4(param) do
               "%f"
             ]), (function (b0) do
             return b0 == 1.0;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-1."), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-1."), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -337,7 +337,7 @@ function test4(param) do
               "%f"
             ]), (function (b0) do
             return b0 == -1.0;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0 1. 1.3"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0 1. 1.3"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ No_padding ]--0,
@@ -363,7 +363,7 @@ function test4(param) do
               "%f %f %f"
             ]), (function (b0, b1, b2) do
             return b0 == 0.0 and b1 == 1.0 and b2 == 1.3 or false;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0.113"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0.113"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ Lit_padding ]--Block.__(0, [
@@ -376,7 +376,7 @@ function test4(param) do
               "%4f"
             ]), (function (b0) do
             return b0 == 0.11;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0.113"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("0.113"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ Lit_padding ]--Block.__(0, [
@@ -389,7 +389,7 @@ function test4(param) do
               "%5f"
             ]), (function (b0) do
             return b0 == 0.113;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("000.113"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("000.113"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ Lit_padding ]--Block.__(0, [
@@ -402,7 +402,7 @@ function test4(param) do
               "%15f"
             ]), (function (b0) do
             return b0 == 0.113;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+000.113"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("+000.113"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_f ]--0,
                   --[ Lit_padding ]--Block.__(0, [
@@ -415,7 +415,7 @@ function test4(param) do
               "%15f"
             ]), (function (b0) do
             return b0 == 0.113;
-          end))) then do
+          end end))) then do
     return Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("-000.113"), --[ Format ]--[
                     --[ Float ]--Block.__(8, [
                         --[ Float_f ]--0,
@@ -429,11 +429,11 @@ function test4(param) do
                     "%15f"
                   ]), (function (b0) do
                   return b0 == -0.113;
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 110, characters 5-12", test4(--[ () ]--0));
 
@@ -448,7 +448,7 @@ function test5(param) do
               "%e"
             ]), (function (b) do
             return b == 10.0;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1e+1"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1e+1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_e ]--3,
                   --[ No_padding ]--0,
@@ -458,7 +458,7 @@ function test5(param) do
               "%e"
             ]), (function (b) do
             return b == 10.0;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("10e-1"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("10e-1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_e ]--3,
                   --[ No_padding ]--0,
@@ -468,7 +468,7 @@ function test5(param) do
               "%e"
             ]), (function (b) do
             return b == 1.0;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("10.e-1"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("10.e-1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_e ]--3,
                   --[ No_padding ]--0,
@@ -478,7 +478,7 @@ function test5(param) do
               "%e"
             ]), (function (b) do
             return b == 1.0;
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1e1 1.e+1 1.3e-1"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1e1 1.e+1 1.3e-1"), --[ Format ]--[
               --[ Float ]--Block.__(8, [
                   --[ Float_e ]--3,
                   --[ No_padding ]--0,
@@ -504,7 +504,7 @@ function test5(param) do
               "%e %e %e"
             ]), (function (b1, b2, b3) do
             return b1 == 10.0 and b2 == b1 and b3 == 0.13 or false;
-          end))) then do
+          end end))) then do
     return Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("1 1.1 0e+1 1.3e-1"), --[ Format ]--[
                     --[ Float ]--Block.__(8, [
                         --[ Float_g ]--9,
@@ -543,11 +543,11 @@ function test5(param) do
                   end else do
                     return false;
                   end end 
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 133, characters 5-12", test5(--[ () ]--0));
 
@@ -569,7 +569,7 @@ function test6(param) do
                         true,
                         true
                       ]);
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("truefalse"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("truefalse"), --[ Format ]--[
               --[ Bool ]--Block.__(9, [
                   --[ No_padding ]--0,
                   --[ Bool ]--Block.__(9, [
@@ -586,7 +586,7 @@ function test6(param) do
                         true,
                         false
                       ]);
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("falsetrue"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("falsetrue"), --[ Format ]--[
               --[ Bool ]--Block.__(9, [
                   --[ No_padding ]--0,
                   --[ Bool ]--Block.__(9, [
@@ -603,7 +603,7 @@ function test6(param) do
                         false,
                         true
                       ]);
-          end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("falsefalse"), --[ Format ]--[
+          end end)) and Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("falsefalse"), --[ Format ]--[
               --[ Bool ]--Block.__(9, [
                   --[ No_padding ]--0,
                   --[ Bool ]--Block.__(9, [
@@ -620,7 +620,7 @@ function test6(param) do
                         false,
                         false
                       ]);
-          end))) then do
+          end end))) then do
     return Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("true false"), --[ Format ]--[
                     --[ Bool ]--Block.__(9, [
                         --[ No_padding ]--0,
@@ -641,11 +641,11 @@ function test6(param) do
                               true,
                               false
                             ]);
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 150, characters 5-12", test6(--[ () ]--0));
 
@@ -667,7 +667,7 @@ function test7(param) do
               "%C %C %C %C %C"
             ]), (function (c1, c2, c3, c4, c5) do
             return c1 == --[ "a" ]--97 and c2 == --[ "\n" ]--10 and c3 == --[ "\t" ]--9 and c4 == --[ "\000" ]--0 and c5 == --[ " " ]--32 or false;
-          end))) then do
+          end end))) then do
     return Curry._1(Scanf.bscanf(Scanf.Scanning.from_string("a \n \t \0  b"), --[ Format ]--[
                     --[ Char ]--Block.__(0, [--[ Char_literal ]--Block.__(12, [
                             --[ " " ]--32,
@@ -686,11 +686,11 @@ function test7(param) do
                   end else do
                     return false;
                   end end 
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 168, characters 5-12", test7(--[ () ]--0));
 
@@ -715,18 +715,18 @@ function verify_read(c) do
           ]
         ];
   end end 
-end
+end end
 
 function verify_scan_Chars(param) do
   for i = 0 , 255 , 1 do
     verify_read(Pervasives.char_of_int(i));
   end
   return --[ () ]--0;
-end
+end end
 
 function test8(param) do
   return verify_scan_Chars(--[ () ]--0) == --[ () ]--0;
-end
+end end
 
 test("File \"tscanf_test.ml\", line 183, characters 5-12", verify_scan_Chars(--[ () ]--0) == --[ () ]--0);
 
@@ -739,11 +739,11 @@ function unit(fmt, s) do
                 "%S"
               ]), s));
   return Curry._1(Scanf.bscanf(ib, fmt), id);
-end
+end end
 
 function test_fmt(fmt, s) do
   return unit(fmt, s) == s;
-end
+end end
 
 test9_string = "\xef\xbb\xbf";
 
@@ -757,7 +757,7 @@ partial_arg = --[ Format ]--[
 
 function test_S(param) do
   return test_fmt(partial_arg, param);
-end
+end end
 
 function test9(param) do
   if (test_S("poi") and test_S("a\"b") and test_S("a\nb") and test_S("a\nb") and test_S("a\\\nb \\\nc\n\\\nb") and test_S("a\\\n\\\n\\\nb \\\nc\n\\\nb") and test_S("\xef") and test_S("\\xef") and Curry._1(Scanf.sscanf("\"\\xef\"", --[ Format ]--[
@@ -768,7 +768,7 @@ function test9(param) do
               "%S"
             ]), (function (s) do
             return s;
-          end)) == "\xef" and Curry._1(Scanf.sscanf("\"\\xef\\xbb\\xbf\"", --[ Format ]--[
+          end end)) == "\xef" and Curry._1(Scanf.sscanf("\"\\xef\\xbb\\xbf\"", --[ Format ]--[
               --[ Caml_string ]--Block.__(3, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
@@ -776,7 +776,7 @@ function test9(param) do
               "%S"
             ]), (function (s) do
             return s;
-          end)) == test9_string and Curry._1(Scanf.sscanf("\"\\xef\\xbb\\xbf\"", --[ Format ]--[
+          end end)) == test9_string and Curry._1(Scanf.sscanf("\"\\xef\\xbb\\xbf\"", --[ Format ]--[
               --[ Caml_string ]--Block.__(3, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
@@ -784,7 +784,7 @@ function test9(param) do
               "%S"
             ]), (function (s) do
             return s;
-          end)) == "\xef\xbb\xbf" and Curry._1(Scanf.sscanf("\"\xef\xbb\xbf\"", --[ Format ]--[
+          end end)) == "\xef\xbb\xbf" and Curry._1(Scanf.sscanf("\"\xef\xbb\xbf\"", --[ Format ]--[
               --[ Caml_string ]--Block.__(3, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
@@ -792,7 +792,7 @@ function test9(param) do
               "%S"
             ]), (function (s) do
             return s;
-          end)) == test9_string and Curry._1(Scanf.sscanf("\"\\\\xef\\\\xbb\\\\xbf\"", --[ Format ]--[
+          end end)) == test9_string and Curry._1(Scanf.sscanf("\"\\\\xef\\\\xbb\\\\xbf\"", --[ Format ]--[
               --[ Caml_string ]--Block.__(3, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
@@ -800,7 +800,7 @@ function test9(param) do
               "%S"
             ]), (function (s) do
             return s;
-          end)) == "\\xef\\xbb\\xbf") then do
+          end end)) == "\\xef\\xbb\\xbf") then do
     return Curry._1(Scanf.sscanf("\" \"", --[ Format ]--[
                     --[ Caml_string ]--Block.__(3, [
                         --[ No_padding ]--0,
@@ -809,11 +809,11 @@ function test9(param) do
                     "%S"
                   ]), (function (s) do
                   return s;
-                end)) == " ";
+                end end)) == " ";
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 230, characters 5-12", test9(--[ () ]--0));
 
@@ -827,7 +827,7 @@ function test10(param) do
                       ]),
                     "%S"
                   ]), id);
-  end;
+  end end;
   res = Curry._1(Scanf.sscanf("Une chaine: \"celle-ci\" et \"celle-la\"!", --[ Format ]--[
             --[ String ]--Block.__(2, [
                 --[ No_padding ]--0,
@@ -866,13 +866,13 @@ function test10(param) do
             "%s %s %S %s %S %s"
           ]), (function (s1, s2, s3, s4, s5, s6) do
           return s1 .. (s2 .. (s3 .. (s4 .. (s5 .. s6))));
-        end));
+        end end));
   if (res == "Unechaine:celle-cietcelle-la!" and unit("\"a\\\n  b\"") == "ab" and unit("\"\\\n  ab\"") == "ab" and unit("\"\n\\\n  ab\"") == "\nab" and unit("\"\n\\\n  a\nb\"") == "\na\nb" and unit("\"\n\\\n  \\\n  a\nb\"") == "\na\nb" and unit("\"\n\\\n  a\n\\\nb\\\n\"") == "\na\nb") then do
     return unit("\"a\\\n  \"") == "a";
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 254, characters 5-12", test10(--[ () ]--0));
 
@@ -897,7 +897,7 @@ function test11(param) do
               "%s %s %s"
             ]), (function (prenom, nom, poids) do
             return prenom == "Pierre" and nom == "Weis" and Caml_format.caml_int_of_string(poids) == 70 or false;
-          end)) and Curry._1(Scanf.sscanf("Jean-Luc\tde Leage\t68", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Jean-Luc\tde Leage\t68", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\xff\xfd\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
@@ -921,7 +921,7 @@ function test11(param) do
               "%[^\t] %[^\t] %d"
             ]), (function (prenom, nom, poids) do
             return prenom == "Jean-Luc" and nom == "de Leage" and poids == 68 or false;
-          end))) then do
+          end end))) then do
     return Curry._1(Scanf.sscanf("Daniel\tde Rauglaudre\t66", --[ Format ]--[
                     --[ String ]--Block.__(2, [
                         --[ No_padding ]--0,
@@ -954,11 +954,11 @@ function test11(param) do
                   end else do
                     return false;
                   end end 
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 function test110(param) do
   if (Curry._2(Scanf.sscanf("", --[ Format ]--[
@@ -969,7 +969,7 @@ function test110(param) do
               " "
             ]), (function (x) do
             return x;
-          end), "") == "" and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end end), "") == "" and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
@@ -977,7 +977,7 @@ function test110(param) do
               "%s"
             ]), (function (x) do
             return x == "";
-          end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ String ]--Block.__(2, [
@@ -988,7 +988,7 @@ function test110(param) do
               "%s%s"
             ]), (function (x, y) do
             return x == "" and y == "" or false;
-          end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Char_literal ]--Block.__(12, [
@@ -999,7 +999,7 @@ function test110(param) do
               "%s "
             ]), (function (x) do
             return x == "";
-          end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ String ]--Block.__(2, [
@@ -1010,7 +1010,7 @@ function test110(param) do
               " %s"
             ]), (function (x) do
             return x == "";
-          end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ String ]--Block.__(2, [
@@ -1024,7 +1024,7 @@ function test110(param) do
               " %s "
             ]), (function (x) do
             return x == "";
-          end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\xff\xfb\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
@@ -1033,7 +1033,7 @@ function test110(param) do
               "%[^\n]"
             ]), (function (x) do
             return x == "";
-          end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\xff\xfb\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff",
@@ -1045,7 +1045,7 @@ function test110(param) do
               "%[^\n] "
             ]), (function (x) do
             return x == "";
-          end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ End_of_format ]--0
@@ -1053,7 +1053,7 @@ function test110(param) do
               "%s"
             ]), (function (x) do
             return x == "";
-          end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ String ]--Block.__(2, [
@@ -1064,7 +1064,7 @@ function test110(param) do
               "%s%s"
             ]), (function (x, y) do
             return x == "" and y == "" or false;
-          end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ String ]--Block.__(2, [
@@ -1078,7 +1078,7 @@ function test110(param) do
               " %s "
             ]), (function (x) do
             return x == "";
-          end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ String ]--Block.__(2, [
@@ -1095,7 +1095,7 @@ function test110(param) do
               " %s %s"
             ]), (function (x, y) do
             return x == "" and x == y or false;
-          end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf(" ", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ String ]--Block.__(2, [
@@ -1116,7 +1116,7 @@ function test110(param) do
               " %s@ %s"
             ]), (function (x, y) do
             return x == "" and x == y or false;
-          end)) and Curry._1(Scanf.sscanf(" poi !", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf(" poi !", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ " " ]--32,
                   --[ String ]--Block.__(2, [
@@ -1140,7 +1140,7 @@ function test110(param) do
               " %s@ %s@."
             ]), (function (x, y) do
             return x == "poi" and y == "!" or false;
-          end))) then do
+          end end))) then do
     return Curry._1(Scanf.sscanf(" poi !", --[ Format ]--[
                     --[ String ]--Block.__(2, [
                         --[ No_padding ]--0,
@@ -1166,11 +1166,11 @@ function test110(param) do
                   end else do
                     return false;
                   end end 
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 function test111(param) do
   return Curry._1(Scanf.sscanf("", --[ Format ]--[
@@ -1185,14 +1185,14 @@ function test111(param) do
                   "%[^\n]@\n"
                 ]), (function (x) do
                 return x == "";
-              end));
-end
+              end end));
+end end
 
 test("File \"tscanf_test.ml\", line 293, characters 5-12", test11(--[ () ]--0) and test110(--[ () ]--0) and test111(--[ () ]--0));
 
 function ib(param) do
   return Scanf.Scanning.from_string("[1;2;3;4; ]");
-end
+end end
 
 function f(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -1282,11 +1282,11 @@ function f(ib) do
                                                                     ]
                                                                   ]
                                                                 ];
-                                                        end));
-                                          end));
-                            end));
-              end));
-end
+                                                        end end));
+                                          end end));
+                            end end));
+              end end));
+end end
 
 function test12(param) do
   return Caml_obj.caml_equal(f(Scanf.Scanning.from_string("[1;2;3;4; ]")), --[ :: ]--[
@@ -1302,7 +1302,7 @@ function test12(param) do
                 ]
               ]
             ]);
-end
+end end
 
 test("File \"tscanf_test.ml\", line 311, characters 5-12", test12(--[ () ]--0));
 
@@ -1327,12 +1327,12 @@ function scan_elems(ib, accu) do
                               i,
                               accu
                             ]);
-                end));
+                end end));
   end
   catch (exn)do
     return accu;
   end
-end
+end end
 
 function g(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -1343,7 +1343,7 @@ function g(ib) do
             "[ "
           ]), --[ () ]--0);
   return List.rev(scan_elems(ib, --[ [] ]--0));
-end
+end end
 
 function test13(param) do
   return Caml_obj.caml_equal(g(Scanf.Scanning.from_string("[1;2;3;4; ]")), --[ :: ]--[
@@ -1359,7 +1359,7 @@ function test13(param) do
                 ]
               ]
             ]);
-end
+end end
 
 test("File \"tscanf_test.ml\", line 324, characters 5-12", test13(--[ () ]--0));
 
@@ -1380,7 +1380,7 @@ function scan_int_list(ib) do
             " ]"
           ]), --[ () ]--0);
   return List.rev(accu);
-end
+end end
 
 function test14(param) do
   return Caml_obj.caml_equal(scan_int_list(Scanf.Scanning.from_string("[1;2;3;4; ]")), --[ :: ]--[
@@ -1396,7 +1396,7 @@ function test14(param) do
                 ]
               ]
             ]);
-end
+end end
 
 test("File \"tscanf_test.ml\", line 337, characters 5-12", test14(--[ () ]--0));
 
@@ -1434,8 +1434,8 @@ function scan_elems$1(ib, accu) do
                               accu
                             ]);
                 end end 
-              end));
-end
+              end end));
+end end
 
 function scan_int_list$1(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -1446,7 +1446,7 @@ function scan_int_list$1(ib) do
             "[ "
           ]), --[ () ]--0);
   return scan_elems$1(ib, --[ [] ]--0);
-end
+end end
 
 function test15(param) do
   return Caml_obj.caml_equal(scan_int_list$1(Scanf.Scanning.from_string("[1;2;3;4]")), --[ :: ]--[
@@ -1462,7 +1462,7 @@ function test15(param) do
                 ]
               ]
             ]);
-end
+end end
 
 test("File \"tscanf_test.ml\", line 357, characters 5-12", test15(--[ () ]--0));
 
@@ -1515,7 +1515,7 @@ function scan_elems$2(ib, accu) do
                         Caml_builtin_exceptions.failure,
                         "scan_elems"
                       ];
-                end));
+                end end));
   end
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
@@ -1534,7 +1534,7 @@ function scan_elems$2(ib, accu) do
       throw exn;
     end end  end 
   end
-end
+end end
 
 function test16(param) do
   if (Caml_obj.caml_equal(scan_elems$2(Scanf.Scanning.from_string("[]"), --[ [] ]--0), List.rev(--[ [] ]--0)) and Caml_obj.caml_equal(scan_elems$2(Scanf.Scanning.from_string("[1;2;3;4]"), --[ [] ]--0), List.rev(--[ :: ]--[
@@ -1578,7 +1578,7 @@ function test16(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 383, characters 5-12", test16(--[ () ]--0));
 
@@ -1620,8 +1620,8 @@ function scan_elems$3(ib, accu) do
                     end end
                     
                 end
-              end));
-end
+              end end));
+end end
 
 function scan_int_list$2(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -1632,7 +1632,7 @@ function scan_int_list$2(ib) do
             " ["
           ]), --[ () ]--0);
   return scan_elems$3(ib, --[ [] ]--0);
-end
+end end
 
 function test17(param) do
   if (Caml_obj.caml_equal(scan_int_list$2(Scanf.Scanning.from_string("[1;2;3;4]")), --[ :: ]--[
@@ -1676,7 +1676,7 @@ function test17(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 406, characters 5-12", test17(--[ () ]--0));
 
@@ -1731,12 +1731,12 @@ function scan_rest(ib, accu) do
                                                             i,
                                                             accu
                                                           ]);
-                                              end));
+                                              end end));
                                 end end 
-                              end));
+                              end end));
                 end end 
-              end));
-end
+              end end));
+end end
 
 function scan_elems$4(ib, accu) do
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -1787,21 +1787,21 @@ function scan_elems$4(ib, accu) do
                                                             i,
                                                             accu
                                                           ]);
-                                              end));
+                                              end end));
                                 end end 
-                              end));
+                              end end));
                 end else do
                   throw [
                         Caml_builtin_exceptions.failure,
                         "scan_elems"
                       ];
                 end end 
-              end));
-end
+              end end));
+end end
 
 function scan_int_list$3(ib) do
   return List.rev(scan_elems$4(ib, --[ [] ]--0));
-end
+end end
 
 function test18(param) do
   ib = Scanf.Scanning.from_string("[]");
@@ -1845,25 +1845,25 @@ function test18(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 446, characters 5-12", test18(--[ () ]--0));
 
 function test19(param) do
   return Testing.failure_test(scan_int_list$3, Scanf.Scanning.from_string("[1;2;3;4 5]"), "scan_rest");
-end
+end end
 
 test19(--[ () ]--0);
 
 function test20(param) do
   return Testing.scan_failure_test(scan_int_list$3, Scanf.Scanning.from_string("[1;2;3;4;; 5]"));
-end
+end end
 
 test20(--[ () ]--0);
 
 function test21(param) do
   return Testing.scan_failure_test(scan_int_list$3, Scanf.Scanning.from_string("[1;2;3;4;;"));
-end
+end end
 
 test21(--[ () ]--0);
 
@@ -1931,11 +1931,11 @@ function scan_rest$1(ib, accu) do
                                                   end end
                                                   
                                               end
-                                            end));
-                              end));
+                                            end end));
+                              end end));
                 end end 
-              end));
-end
+              end end));
+end end
 
 function scan_int_list$4(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -1946,7 +1946,7 @@ function scan_int_list$4(ib) do
             " [ "
           ]), --[ () ]--0);
   return List.rev(scan_rest$1(ib, --[ [] ]--0));
-end
+end end
 
 function test22(param) do
   if (scan_int_list$4(Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and scan_int_list$4(Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(scan_int_list$4(Scanf.Scanning.from_string("[1]")), --[ :: ]--[
@@ -1981,7 +1981,7 @@ function test22(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 506, characters 5-12", test22(--[ () ]--0));
 
@@ -1997,7 +1997,7 @@ function scan_elems$5(ib, scan_elem, accu) do
                   end else do
                     return scan_elems$5(ib, scan_elem, accu$1);
                   end end 
-                end));
+                end end));
   end
   catch (raw_exn)do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
@@ -2007,7 +2007,7 @@ function scan_elems$5(ib, scan_elem, accu) do
       throw exn;
     end end 
   end
-end
+end end
 
 function scan_list(scan_elem, ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -2026,7 +2026,7 @@ function scan_list(scan_elem, ib) do
             " ]"
           ]), --[ () ]--0);
   return List.rev(accu);
-end
+end end
 
 function scan_int_elem(ib) do
   return Scanf.bscanf(ib, --[ Format ]--[
@@ -2048,11 +2048,11 @@ function scan_int_elem(ib) do
                 ]),
               " %i %1[;]"
             ]);
-end
+end end
 
 function scan_int_list$5(param) do
   return scan_list(scan_int_elem, param);
-end
+end end
 
 function test23(param) do
   if (scan_list(scan_int_elem, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and scan_list(scan_int_elem, Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(scan_list(scan_int_elem, Scanf.Scanning.from_string("[1]")), --[ :: ]--[
@@ -2087,25 +2087,25 @@ function test23(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 562, characters 5-12", test23(--[ () ]--0));
 
 function test24(param) do
   return Testing.scan_failure_test(scan_int_list$5, Scanf.Scanning.from_string("[1;2;3;4 5]"));
-end
+end end
 
 function test25(param) do
   return Testing.scan_failure_test(scan_int_list$5, Scanf.Scanning.from_string("[1;2;3;4;;"));
-end
+end end
 
 function test26(param) do
   return Testing.scan_failure_test(scan_int_list$5, Scanf.Scanning.from_string("[1;2;3;4;; 5]"));
-end
+end end
 
 function test27(param) do
   return Testing.scan_failure_test(scan_int_list$5, Scanf.Scanning.from_string("[1;2;3;4;; 23]"));
-end
+end end
 
 test24(--[ () ]--0) and test25(--[ () ]--0) and test26(--[ () ]--0) and test27(--[ () ]--0);
 
@@ -2130,7 +2130,7 @@ function scan_string_elem(ib) do
                 ]),
               " \"%s@\" %1[;]"
             ]);
-end
+end end
 
 function scan_String_elem(ib) do
   return Scanf.bscanf(ib, --[ Format ]--[
@@ -2150,11 +2150,11 @@ function scan_String_elem(ib) do
                 ]),
               " %S %1[;]"
             ]);
-end
+end end
 
 function scan_String_list(param) do
   return scan_list(scan_String_elem, param);
-end
+end end
 
 function test28(param) do
   if (scan_list(scan_string_elem, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and Caml_obj.caml_equal(scan_list(scan_string_elem, Scanf.Scanning.from_string("[\"Le\"]")), --[ :: ]--[
@@ -2216,7 +2216,7 @@ function test28(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 609, characters 5-12", test28(--[ () ]--0));
 
@@ -2231,10 +2231,10 @@ function scan_elems$6(ib, scan_elem, accu) do
                 end else do
                   return scan_elems$6(ib, scan_elem, accu$1);
                 end end 
-              end), (function (ib, exc) do
+              end end), (function (ib, exc) do
                 return accu;
-              end));
-end
+              end end));
+end end
 
 function scan_list$1(scan_elem, ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -2253,7 +2253,7 @@ function scan_list$1(scan_elem, ib) do
             " ]"
           ]), --[ () ]--0);
   return List.rev(accu);
-end
+end end
 
 function scan_int_elem$1(ib, f, ek) do
   return Curry._1(Scanf.kscanf(ib, ek, --[ Format ]--[
@@ -2275,7 +2275,7 @@ function scan_int_elem$1(ib, f, ek) do
                     ]),
                   " %i %1[;]"
                 ]), f);
-end
+end end
 
 function test29(param) do
   if (scan_list$1(scan_int_elem$1, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and scan_list$1(scan_int_elem$1, Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(scan_list$1(scan_int_elem$1, Scanf.Scanning.from_string("[1]")), --[ :: ]--[
@@ -2310,7 +2310,7 @@ function test29(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 639, characters 5-12", test29(--[ () ]--0));
 
@@ -2332,7 +2332,7 @@ function scan_string_elem$1(ib, f, ek) do
                     ]),
                   " %S %1[;]"
                 ]), f);
-end
+end end
 
 function test30(param) do
   if (scan_list$1(scan_string_elem$1, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and scan_list$1(scan_string_elem$1, Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(scan_list$1(scan_string_elem$1, Scanf.Scanning.from_string("[ \"1\" ]")), --[ :: ]--[
@@ -2367,13 +2367,13 @@ function test30(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 656, characters 5-12", test30(--[ () ]--0));
 
 function scan_elem(fmt, ib, f, ek) do
   return Curry._1(Scanf.kscanf(ib, ek, fmt), f);
-end
+end end
 
 function scan_elems$7(ib, scan_elem, accu) do
   return Curry._3(scan_elem, ib, (function (i) do
@@ -2383,7 +2383,7 @@ function scan_elems$7(ib, scan_elem, accu) do
                 ];
                 return Curry._1(Scanf.kscanf(ib, (function (ib, exc) do
                                   return accu$1;
-                                end), --[ Format ]--[
+                                end end), --[ Format ]--[
                                 --[ Char_literal ]--Block.__(12, [
                                     --[ " " ]--32,
                                     --[ Scan_char_set ]--Block.__(20, [
@@ -2399,11 +2399,11 @@ function scan_elems$7(ib, scan_elem, accu) do
                               end else do
                                 return scan_elems$7(ib, scan_elem, accu$1);
                               end end 
-                            end));
-              end), (function (ib, exc) do
+                            end end));
+              end end), (function (ib, exc) do
                 return accu;
-              end));
-end
+              end end));
+end end
 
 function scan_list$2(scan_elem, ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -2422,7 +2422,7 @@ function scan_list$2(scan_elem, ib) do
             " ]"
           ]), --[ () ]--0);
   return List.rev(accu);
-end
+end end
 
 partial_arg$1 = --[ Format ]--[
   --[ Char_literal ]--Block.__(12, [
@@ -2439,11 +2439,11 @@ partial_arg$1 = --[ Format ]--[
 
 function partial_arg$2(param, param$1, param$2) do
   return scan_elem(partial_arg$1, param, param$1, param$2);
-end
+end end
 
 function scan_int_list$6(param) do
   return scan_list$2(partial_arg$2, param);
-end
+end end
 
 partial_arg$3 = --[ Format ]--[
   --[ Char_literal ]--Block.__(12, [
@@ -2458,11 +2458,11 @@ partial_arg$3 = --[ Format ]--[
 
 function partial_arg$4(param, param$1, param$2) do
   return scan_elem(partial_arg$3, param, param$1, param$2);
-end
+end end
 
 function scan_string_list(param) do
   return scan_list$2(partial_arg$4, param);
-end
+end end
 
 function test31(param) do
   if (Curry._1(scan_int_list$6, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and Curry._1(scan_int_list$6, Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(Curry._1(scan_int_list$6, Scanf.Scanning.from_string("[1]")), --[ :: ]--[
@@ -2497,7 +2497,7 @@ function test31(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 714, characters 5-12", test31(--[ () ]--0));
 
@@ -2534,14 +2534,14 @@ function test32(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 728, characters 5-12", test32(--[ () ]--0));
 
 function scan_elems$8(ib, scan_elem_fmt, accu) do
   return Curry._1(Scanf.kscanf(ib, (function (ib, exc) do
                     return accu;
-                  end), scan_elem_fmt), (function (i) do
+                  end end), scan_elem_fmt), (function (i) do
                 accu$1 = --[ :: ]--[
                   i,
                   accu
@@ -2565,9 +2565,9 @@ function scan_elems$8(ib, scan_elem_fmt, accu) do
                               end else do
                                 return scan_elems$8(ib, scan_elem_fmt, accu$1);
                               end end 
-                            end));
-              end));
-end
+                            end end));
+              end end));
+end end
 
 function scan_list$3(scan_elem_fmt, ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -2586,7 +2586,7 @@ function scan_list$3(scan_elem_fmt, ib) do
             " ]"
           ]), --[ () ]--0);
   return List.rev(accu);
-end
+end end
 
 partial_arg$5 = --[ Format ]--[
   --[ Int ]--Block.__(4, [
@@ -2600,7 +2600,7 @@ partial_arg$5 = --[ Format ]--[
 
 function scan_int_list$7(param) do
   return scan_list$3(partial_arg$5, param);
-end
+end end
 
 partial_arg$6 = --[ Format ]--[
   --[ Caml_string ]--Block.__(3, [
@@ -2612,7 +2612,7 @@ partial_arg$6 = --[ Format ]--[
 
 function scan_string_list$1(param) do
   return scan_list$3(partial_arg$6, param);
-end
+end end
 
 function test33(param) do
   if (Curry._1(scan_int_list$7, Scanf.Scanning.from_string("[]")) == --[ [] ]--0 and Curry._1(scan_int_list$7, Scanf.Scanning.from_string("[ ]")) == --[ [] ]--0 and Caml_obj.caml_equal(Curry._1(scan_int_list$7, Scanf.Scanning.from_string("[ 1 ]")), --[ :: ]--[
@@ -2647,7 +2647,7 @@ function test33(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 773, characters 5-12", test33(--[ () ]--0));
 
@@ -2684,14 +2684,14 @@ function test34(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 787, characters 5-12", test34(--[ () ]--0));
 
 function scan_elems$9(scan_elem, accu, ib) do
   return Curry._2(Scanf.kscanf(ib, (function (ib, exc) do
                     return accu;
-                  end), --[ Format ]--[
+                  end end), --[ Format ]--[
                   --[ Reader ]--Block.__(19, [--[ End_of_format ]--0]),
                   "%r"
                 ]), (function (ib) do
@@ -2719,12 +2719,12 @@ function scan_elems$9(scan_elem, accu, ib) do
                                             end else do
                                               return scan_elems$9(scan_elem, accu$1, ib);
                                             end end 
-                                          end));
-                            end));
-              end), (function (l) do
+                                          end end));
+                            end end));
+              end end), (function (l) do
                 return l;
-              end));
-end
+              end end));
+end end
 
 function scan_list$4(scan_elem, ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -2743,7 +2743,7 @@ function scan_list$4(scan_elem, ib) do
             " ]"
           ]), --[ () ]--0);
   return List.rev(accu);
-end
+end end
 
 function scan_float(ib) do
   return Scanf.bscanf(ib, --[ Format ]--[
@@ -2755,7 +2755,7 @@ function scan_float(ib) do
                 ]),
               "%f"
             ]);
-end
+end end
 
 function scan_int_list$8(param) do
   return scan_list$4((function (ib) do
@@ -2768,8 +2768,8 @@ function scan_int_list$8(param) do
                               ]),
                             "%i"
                           ]);
-              end), param);
-end
+              end end), param);
+end end
 
 function scan_string_list$2(param) do
   return scan_list$4((function (ib) do
@@ -2780,8 +2780,8 @@ function scan_string_list$2(param) do
                               ]),
                             "%S"
                           ]);
-              end), param);
-end
+              end end), param);
+end end
 
 function scan_bool_list(param) do
   return scan_list$4((function (ib) do
@@ -2792,8 +2792,8 @@ function scan_bool_list(param) do
                               ]),
                             "%B"
                           ]);
-              end), param);
-end
+              end end), param);
+end end
 
 function scan_char_list(param) do
   return scan_list$4((function (ib) do
@@ -2801,14 +2801,14 @@ function scan_char_list(param) do
                             --[ Caml_char ]--Block.__(1, [--[ End_of_format ]--0]),
                             "%C"
                           ]);
-              end), param);
-end
+              end end), param);
+end end
 
 function scan_float_list_list(param) do
   return scan_list$4((function (ib, k) do
                 return Curry._1(k, scan_list$4(scan_float, ib));
-              end), param);
-end
+              end end), param);
+end end
 
 function test340(param) do
   return Caml_obj.caml_equal(scan_float_list_list(Scanf.Scanning.from_string("[[1.0] ; []; [2.0; 3; 5.0; 6.];]")), --[ :: ]--[
@@ -2836,27 +2836,27 @@ function test340(param) do
                 ]
               ]
             ]);
-end
+end end
 
 function scan_list_list(scan_elems, ib) do
   return scan_list$4((function (ib, k) do
                 return Curry._1(k, Curry._1(scan_elems, ib));
-              end), ib);
-end
+              end end), ib);
+end end
 
 function scan_float_item(ib, k) do
   return Curry._1(k, Curry._1(scan_float(ib), (function (x) do
                     return x;
-                  end)));
-end
+                  end end)));
+end end
 
 function scan_float_list(ib, k) do
   return Curry._1(k, scan_list$4(scan_float_item, ib));
-end
+end end
 
 function scan_float_list_list$1(ib, k) do
   return Curry._1(k, scan_list$4(scan_float_list, ib));
-end
+end end
 
 function test35(param) do
   if (Curry._1(Scanf.sscanf("", --[ Format ]--[
@@ -2867,7 +2867,7 @@ function test35(param) do
               "%N"
             ]), (function (x) do
             return x;
-          end)) == 0 and Curry._1(Scanf.sscanf("456", --[ Format ]--[
+          end end)) == 0 and Curry._1(Scanf.sscanf("456", --[ Format ]--[
               --[ Scan_get_counter ]--Block.__(21, [
                   --[ Token_counter ]--2,
                   --[ End_of_format ]--0
@@ -2875,7 +2875,7 @@ function test35(param) do
               "%N"
             ]), (function (x) do
             return x;
-          end)) == 0 and Caml_obj.caml_equal(Curry._1(Scanf.sscanf("456", --[ Format ]--[
+          end end)) == 0 and Caml_obj.caml_equal(Curry._1(Scanf.sscanf("456", --[ Format ]--[
                   --[ Int ]--Block.__(4, [
                       --[ Int_d ]--0,
                       --[ No_padding ]--0,
@@ -2891,7 +2891,7 @@ function test35(param) do
                         x,
                         y
                       ];
-              end)), --[ tuple ]--[
+              end end)), --[ tuple ]--[
           456,
           1
         ])) then do
@@ -2913,7 +2913,7 @@ function test35(param) do
                               s,
                               y
                             ];
-                    end)), --[ tuple ]--[
+                    end end)), --[ tuple ]--[
                 0,
                 "",
                 1
@@ -2921,14 +2921,14 @@ function test35(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 940, characters 5-12", test340(--[ () ]--0) and test35(--[ () ]--0));
 
 function read_elems(read_elem, accu, ib) do
   return Curry._2(Scanf.kscanf(ib, (function (ib, exc) do
                     return accu;
-                  end), --[ Format ]--[
+                  end end), --[ Format ]--[
                   --[ Reader ]--Block.__(19, [--[ Char_literal ]--Block.__(12, [
                           --[ " " ]--32,
                           --[ Scan_char_set ]--Block.__(20, [
@@ -2946,14 +2946,14 @@ function read_elems(read_elem, accu, ib) do
                             elem,
                             accu
                           ];
-                  end)), (function (accu, s) do
+                  end end)), (function (accu, s) do
                 if (s == "") then do
                   return accu;
                 end else do
                   return read_elems(read_elem, accu, ib);
                 end end 
-              end));
-end
+              end end));
+end end
 
 function read_list(read_elem, ib) do
   return Curry._2(Scanf.bscanf(ib, --[ Format ]--[
@@ -2967,20 +2967,20 @@ function read_list(read_elem, ib) do
                   "[ %r ]"
                 ]), (function (param) do
                 return read_elems(read_elem, --[ [] ]--0, param);
-              end), List.rev);
-end
+              end end), List.rev);
+end end
 
 function make_read_elem(fmt, f, ib) do
   return Curry._1(Scanf.bscanf(ib, fmt), f);
-end
+end end
 
 function scan_List(fmt) do
   return (function (param) do
       return read_list((function (param, param$1) do
                     return Curry._1(Scanf.bscanf(param$1, fmt), param);
-                  end), param);
-    end);
-end
+                  end end), param);
+    end end);
+end end
 
 function test36(param) do
   if (Curry._1(Scanf.sscanf("", --[ Format ]--[
@@ -2991,7 +2991,7 @@ function test36(param) do
               "%n"
             ]), (function (x) do
             return x;
-          end)) == 0 and Curry._1(Scanf.sscanf("456", --[ Format ]--[
+          end end)) == 0 and Curry._1(Scanf.sscanf("456", --[ Format ]--[
               --[ Scan_get_counter ]--Block.__(21, [
                   --[ Char_counter ]--1,
                   --[ End_of_format ]--0
@@ -2999,7 +2999,7 @@ function test36(param) do
               "%n"
             ]), (function (x) do
             return x;
-          end)) == 0 and Caml_obj.caml_equal(Curry._1(Scanf.sscanf("456", --[ Format ]--[
+          end end)) == 0 and Caml_obj.caml_equal(Curry._1(Scanf.sscanf("456", --[ Format ]--[
                   --[ Int ]--Block.__(4, [
                       --[ Int_d ]--0,
                       --[ No_padding ]--0,
@@ -3015,7 +3015,7 @@ function test36(param) do
                         x,
                         y
                       ];
-              end)), --[ tuple ]--[
+              end end)), --[ tuple ]--[
           456,
           3
         ])) then do
@@ -3037,7 +3037,7 @@ function test36(param) do
                               s,
                               y
                             ];
-                    end)), --[ tuple ]--[
+                    end end)), --[ tuple ]--[
                 0,
                 "",
                 0
@@ -3045,7 +3045,7 @@ function test36(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 995, characters 5-12", test36(--[ () ]--0));
 
@@ -3058,17 +3058,17 @@ function test37(param) do
               ""
             ]), (function (x) do
             return x;
-          end), 1) == 1) then do
+          end end), 1) == 1) then do
     return Curry._2(Scanf.sscanf("123", --[ Format ]--[
                     --[ End_of_format ]--0,
                     ""
                   ]), (function (x) do
                   return x;
-                end), 1) == 1;
+                end end), 1) == 1;
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1005, characters 5-12", test37(--[ () ]--0));
 
@@ -3123,7 +3123,7 @@ function test38(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1020, characters 5-12", test38(--[ () ]--0));
 
@@ -3134,14 +3134,14 @@ function test39(param) do
     end else do
       return false;
     end end 
-  end;
+  end end;
   ib = Scanf.Scanning.from_string("");
   if (is_empty_buff(ib)) then do
     return is_empty_buff(ib);
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1036, characters 5-12", test39(--[ () ]--0));
 
@@ -3163,8 +3163,8 @@ function test40(param) do
                 end else do
                   return false;
                 end end 
-              end));
-end
+              end end));
+end end
 
 test("File \"tscanf_test.ml\", line 1046, characters 5-12", test40(--[ () ]--0));
 
@@ -3187,8 +3187,8 @@ function test41(param) do
                 end else do
                   return false;
                 end end 
-              end));
-end
+              end end));
+end end
 
 test("File \"tscanf_test.ml\", line 1055, characters 5-12", test41(--[ () ]--0));
 
@@ -3215,7 +3215,7 @@ function test42(param) do
             end else do
               return false;
             end end 
-          end))) then do
+          end end))) then do
     ib$1 = Scanf.Scanning.from_string(s);
     return Curry._1(Scanf.bscanf(ib$1, --[ Format ]--[
                     --[ String ]--Block.__(2, [
@@ -3228,11 +3228,11 @@ function test42(param) do
                     "%s@\t"
                   ]), (function (s) do
                   return s == "defcbaaghi";
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1067, characters 5-12", test42(--[ () ]--0));
 
@@ -3249,8 +3249,8 @@ function test43(param) do
                   "%i%!"
                 ]), (function (i) do
                 return i;
-              end));
-end
+              end end));
+end end
 
 function test44(param) do
   return Curry._1(Scanf.bscanf(ib$1, --[ Format ]--[
@@ -3263,8 +3263,8 @@ function test44(param) do
                   "%!%i"
                 ]), (function (i) do
                 return i;
-              end));
-end
+              end end));
+end end
 
 Testing.test_raises_this_exc(Caml_builtin_exceptions.end_of_file)(test43, --[ () ]--0) and Testing.test_raises_this_exc(Caml_builtin_exceptions.end_of_file)(test44, --[ () ]--0);
 
@@ -3293,8 +3293,8 @@ function test45(param) do
                 end else do
                   return false;
                 end end 
-              end));
-end
+              end end));
+end end
 
 test("File \"tscanf_test.ml\", line 1090, characters 5-12", test45(--[ () ]--0));
 
@@ -3327,7 +3327,7 @@ function test46(param) do
                 ]),
               "spells one, %s"
             ], "in english");
-end
+end end
 
 function test47(param) do
   return Curry._3(Printf.sprintf(--[ Format ]--[
@@ -3364,7 +3364,7 @@ function test47(param) do
                 ]),
               "spells one %s"
             ], "in english");
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1104, characters 5-12", test46(--[ () ]--0) == "1 spells one, in english.");
 
@@ -3373,7 +3373,7 @@ test("File \"tscanf_test.ml\", line 1106, characters 5-12", test47(--[ () ]--0) 
 function test48(param) do
   test_meta_read = function (s, fmt, efmt) do
     return Caml_obj.caml_equal(Scanf.format_from_string(s, fmt), efmt);
-  end;
+  end end;
   fmt = --[ Format ]--[
     --[ Int ]--Block.__(4, [
         --[ Int_i ]--3,
@@ -3434,7 +3434,7 @@ function test48(param) do
             end else do
               return false;
             end end 
-          end))) then do
+          end end))) then do
     k = function (s) do
       return Curry._1(Scanf.sscanf(s, --[ Format ]--[
                       --[ Format_subst ]--Block.__(14, [
@@ -3445,8 +3445,8 @@ function test48(param) do
                       "%(%f%)"
                     ]), (function (_fmt, i) do
                     return i;
-                  end));
-    end;
+                  end end));
+    end end;
     if (k("\" : %1f\": 987654321") == 9.0 and k("\" : %2f\": 987654321") == 98.0 and k("\" : %3f\": 9.87654321") == 9.8 and k("\" : %4f\": 9.87654321") == 9.87) then do
       h = function (s) do
         return Curry._1(Scanf.sscanf(s, --[ Format ]--[
@@ -3461,8 +3461,8 @@ function test48(param) do
                         "Read integers with %(%i%)"
                       ]), (function (_fmt, i) do
                       return i;
-                    end));
-      end;
+                    end end));
+      end end;
       if (h("Read integers with \"%1d\"987654321") == 9 and h("Read integers with \"%2d\"987654321") == 98 and h("Read integers with \"%3u\"987654321") == 987 and h("Read integers with \"%4x\"987654321") == 39030) then do
         i = function (s) do
           return Curry._1(Scanf.sscanf(s, --[ Format ]--[
@@ -3480,8 +3480,8 @@ function test48(param) do
                                 amount,
                                 currency
                               ];
-                      end));
-        end;
+                      end end));
+        end end;
         if (Caml_obj.caml_equal(i("with \" : %d %s\" :        21 euros"), --[ tuple ]--[
                 21,
                 "euros"
@@ -3511,8 +3511,8 @@ function test48(param) do
                                   amount,
                                   currency
                                 ];
-                        end));
-          end;
+                        end end));
+          end end;
           if (Caml_obj.caml_equal(j("with \" : %1d %_s %s\" : 987654321 euros"), --[ tuple ]--[
                   9,
                   "euros"
@@ -3542,7 +3542,7 @@ function test48(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1157, characters 5-12", test48(--[ () ]--0));
 
@@ -3556,7 +3556,7 @@ function test49(param) do
               "%[\\]"
             ]), (function (s) do
             return s == "";
-          end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0\0\0\0\0\0\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3568,7 +3568,7 @@ function test49(param) do
               "%[\\]%s"
             ]), (function (s, t) do
             return s == "" and t == "as" or false;
-          end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0\0\0\0\0\0\0\x10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3580,7 +3580,7 @@ function test49(param) do
               "%[\\]%s%!"
             ]), (function (s, t) do
             return s == "" and t == "as" or false;
-          end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0@\0\0\0\0\0\0\x02\0\0\x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3589,7 +3589,7 @@ function test49(param) do
               "%[a..z]"
             ]), (function (s) do
             return s == "a";
-          end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0\0\0\0\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3598,7 +3598,7 @@ function test49(param) do
               "%[a-z]"
             ]), (function (s) do
             return s == "as";
-          end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0@\0\0\0\0\0\0\x02\0\0\x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3610,7 +3610,7 @@ function test49(param) do
               "%[a..z]%s"
             ]), (function (s, t) do
             return s == "a" and t == "s" or false;
-          end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0\0\0\0\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3622,7 +3622,7 @@ function test49(param) do
               "%[a-z]%s"
             ]), (function (s, t) do
             return s == "as" and t == "" or false;
-          end)) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0 \0\0\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3631,7 +3631,7 @@ function test49(param) do
               "%[-a-z]"
             ]), (function (s) do
             return s == "-as";
-          end)) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0 \0\0\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -3643,7 +3643,7 @@ function test49(param) do
               "%[-a-z]@s"
             ]), (function (s) do
             return s == "-a";
-          end)) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("-as", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ "-" ]--45,
                   --[ Scan_char_set ]--Block.__(20, [
@@ -3658,7 +3658,7 @@ function test49(param) do
               "-%[a]@s"
             ]), (function (s) do
             return s == "a";
-          end)) and Curry._1(Scanf.sscanf("-asb", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("-asb", --[ Format ]--[
               --[ Char_literal ]--Block.__(12, [
                   --[ "-" ]--45,
                   --[ Scan_char_set ]--Block.__(20, [
@@ -3676,7 +3676,7 @@ function test49(param) do
               "-%[a]@sb%!"
             ]), (function (s) do
             return s == "a";
-          end))) then do
+          end end))) then do
     return Curry._1(Scanf.sscanf("-asb", --[ Format ]--[
                     --[ Char_literal ]--Block.__(12, [
                         --[ "-" ]--45,
@@ -3699,11 +3699,11 @@ function test49(param) do
                   end else do
                     return false;
                   end end 
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1176, characters 5-12", test49(--[ () ]--0));
 
@@ -3718,16 +3718,16 @@ function next_char(ob, param) do
   ob.position = 0;
   $$Buffer.add_string(ob, $$String.sub(s, 1, len - 1 | 0));
   return c;
-end
+end end
 
 function send_string(ob, s) do
   $$Buffer.add_string(ob, s);
   return $$Buffer.add_char(ob, --[ "\n" ]--10);
-end
+end end
 
 function send_int(ob, i) do
   return send_string(ob, String(i));
-end
+end end
 
 function writer(ib, ob) do
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -3756,7 +3756,7 @@ function writer(ib, ob) do
                                       "%i"
                                     ]), (function (i) do
                                     return i;
-                                  end));end end end 
+                                  end end));end end end 
                    do
                   else do
                     i = Caml_format.caml_int_of_string(s);
@@ -3765,8 +3765,8 @@ function writer(ib, ob) do
                     end end
                     
                 end
-              end));
-end
+              end end));
+end end
 
 count = do
   contents: 0
@@ -3803,21 +3803,21 @@ function reader(ib, ob) do
                     end end 
                     return writer(ib, ob);
                   end end 
-                end));
+                end end));
   end end 
-end
+end end
 
 function go(param) do
   ob = $$Buffer.create(17);
   ib = Scanf.Scanning.from_function((function (param) do
           return next_char(ob, param);
-        end));
+        end end));
   return reader(ib, ob);
-end
+end end
 
 function test50(param) do
   return go(--[ () ]--0) == 100;
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1228, characters 5-12", go(--[ () ]--0) == 100);
 
@@ -3851,7 +3851,7 @@ function test51(param) do
               "%s%s\n"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "" or false;
-          end)) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Char_literal ]--Block.__(12, [
@@ -3865,7 +3865,7 @@ function test51(param) do
               "%s\n%s%!"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "World" or false;
-          end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Char_literal ]--Block.__(12, [
@@ -3879,7 +3879,7 @@ function test51(param) do
               "%s\n%s"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "World!" or false;
-          end)) and Curry._1(Scanf.sscanf("Hello\n", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello\n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Formatting_lit ]--Block.__(17, [
@@ -3893,7 +3893,7 @@ function test51(param) do
               "%s@\n%s"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "" or false;
-          end))) then do
+          end end))) then do
     return Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
                     --[ String ]--Block.__(2, [
                         --[ No_padding ]--0,
@@ -3912,11 +3912,11 @@ function test51(param) do
                   end else do
                     return false;
                   end end 
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1248, characters 5-12", test51(--[ () ]--0));
 
@@ -3953,7 +3953,7 @@ function test52(param) do
               "%s%s@\n"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "" or false;
-          end)) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Formatting_lit ]--Block.__(17, [
@@ -3967,7 +3967,7 @@ function test52(param) do
               "%s@\n%s%!"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "World" or false;
-          end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Formatting_lit ]--Block.__(17, [
@@ -3984,7 +3984,7 @@ function test52(param) do
               "%s@\n%s@\n"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "World!" or false;
-          end)) and Curry._1(Scanf.sscanf("Hello\n", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello\n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Formatting_lit ]--Block.__(17, [
@@ -3998,7 +3998,7 @@ function test52(param) do
               "%s@\n%s"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "" or false;
-          end)) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ String ]--Block.__(2, [
@@ -4012,7 +4012,7 @@ function test52(param) do
               "%s%s@\n"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == " " or false;
-          end)) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ String ]--Block.__(2, [
@@ -4032,7 +4032,7 @@ function test52(param) do
               "%s%s%_1[ ]\n"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "" or false;
-          end)) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello \n", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Ignored_param ]--Block.__(23, [
@@ -4052,7 +4052,7 @@ function test52(param) do
               "%s%_1[ ]%s\n"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "" or false;
-          end)) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello\nWorld", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Char_literal ]--Block.__(12, [
@@ -4066,7 +4066,7 @@ function test52(param) do
               "%s\n%s%!"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "World" or false;
-          end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Char_literal ]--Block.__(12, [
@@ -4080,7 +4080,7 @@ function test52(param) do
               "%s\n%s%!"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "World!" or false;
-          end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello\nWorld!", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Char_literal ]--Block.__(12, [
@@ -4097,7 +4097,7 @@ function test52(param) do
               "%s\n%s@!%!"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "World" or false;
-          end)) and Curry._1(Scanf.sscanf("Hello{foo}", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("Hello{foo}", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ No_padding ]--0,
                   --[ Formatting_gen ]--Block.__(18, [
@@ -4114,7 +4114,7 @@ function test52(param) do
               "%s@{%s"
             ]), (function (s1, s2) do
             return s1 == "Hello" and s2 == "foo}" or false;
-          end))) then do
+          end end))) then do
     return Curry._1(Scanf.sscanf("Hello[foo]", --[ Format ]--[
                     --[ String ]--Block.__(2, [
                         --[ No_padding ]--0,
@@ -4136,11 +4136,11 @@ function test52(param) do
                   end else do
                     return false;
                   end end 
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1286, characters 5-12", test52(--[ () ]--0));
 
@@ -4163,7 +4163,7 @@ function test53(param) do
               "%nd"
             ]), (function (i) do
             return i - 1 == 123;
-          end)) and Curry._1(Scanf.sscanf("123", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("123", --[ Format ]--[
               --[ Int32 ]--Block.__(5, [
                   --[ Int_d ]--0,
                   --[ No_padding ]--0,
@@ -4181,7 +4181,7 @@ function test53(param) do
               "%ld"
             ]), (function (i) do
             return (i + 1 | 0) == 125;
-          end)) and Caml_int64.eq(Curry._1(Scanf.sscanf("123", --[ Format ]--[
+          end end)) and Caml_int64.eq(Curry._1(Scanf.sscanf("123", --[ Format ]--[
                   --[ Int64 ]--Block.__(7, [
                       --[ Int_d ]--0,
                       --[ No_padding ]--0,
@@ -4209,11 +4209,11 @@ function test53(param) do
                               --[ hi ]--0,
                               --[ lo ]--123
                             ]);
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1301, characters 5-12", test53(--[ () ]--0));
 
@@ -4235,8 +4235,8 @@ function test56(param) do
                           i,
                           n
                         ];
-                end));
-  end;
+                end end));
+  end end;
   if (Caml_obj.caml_equal(g("99"), --[ tuple ]--[
           99,
           2
@@ -4251,14 +4251,14 @@ function test56(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1316, characters 5-12", test56(--[ () ]--0));
 
 function test57(param) do
   test_format_scan = function (s, fmt, efmt) do
     return Caml_obj.caml_equal(Scanf.format_from_string(s, fmt), efmt);
-  end;
+  end end;
   if (test_format_scan(" %i ", --[ Format ]--[
           --[ Int ]--Block.__(4, [
               --[ Int_i ]--3,
@@ -4453,11 +4453,11 @@ function test57(param) do
                   end else do
                     return false;
                   end end 
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1357, characters 5-12", test57(--[ () ]--0));
 
@@ -4488,7 +4488,7 @@ function test58(param) do
               "%s@%%%s"
             ]), (function (prim, prim$1) do
             return prim .. prim$1;
-          end)) == "string1string2" and Curry._1(Scanf.sscanf("string1@string2", --[ Format ]--[
+          end end)) == "string1string2" and Curry._1(Scanf.sscanf("string1@string2", --[ Format ]--[
               --[ Scan_char_set ]--Block.__(20, [
                   undefined,
                   "\0\0\0\0\0\0\xff\x03\0\0\0\0\xfe\xff\xff\x07\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -4503,7 +4503,7 @@ function test58(param) do
               "%[a-z0-9]@%s"
             ]), (function (prim, prim$1) do
             return prim .. prim$1;
-          end)) == "string1string2") then do
+          end end)) == "string1string2") then do
     return Curry._1(Scanf.sscanf("string1@%string2", --[ Format ]--[
                     --[ Scan_char_set ]--Block.__(20, [
                         undefined,
@@ -4522,11 +4522,11 @@ function test58(param) do
                     "%[a-z0-9]%@%%%s"
                   ]), (function (prim, prim$1) do
                   return prim .. prim$1;
-                end)) == "string1string2";
+                end end)) == "string1string2";
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1367, characters 5-12", test58(--[ () ]--0));
 
@@ -4541,7 +4541,7 @@ function test60(param) do
               "%0c%0c%c%n"
             ]), (function (c1, c2, c3, n) do
             return c1 == --[ "a" ]--97 and c2 == --[ "a" ]--97 and c3 == --[ "a" ]--97 and n == 1 or false;
-          end)) and Curry._1(Scanf.sscanf("abc", --[ Format ]--[
+          end end)) and Curry._1(Scanf.sscanf("abc", --[ Format ]--[
               --[ String ]--Block.__(2, [
                   --[ Lit_padding ]--Block.__(0, [
                       --[ Right ]--1,
@@ -4555,7 +4555,7 @@ function test60(param) do
               "%0s%s"
             ]), (function (s1, s2) do
             return s1 == "" and s2 == "abc" or false;
-          end))) then do
+          end end))) then do
     return Curry._1(Scanf.sscanf("abc", --[ Format ]--[
                     --[ String ]--Block.__(2, [
                         --[ Lit_padding ]--Block.__(0, [
@@ -4574,11 +4574,11 @@ function test60(param) do
                   end else do
                     return false;
                   end end 
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 test("File \"tscanf_test.ml\", line 1414, characters 5-12", test60(--[ () ]--0));
 

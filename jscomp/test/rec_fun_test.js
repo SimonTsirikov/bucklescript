@@ -23,12 +23,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 called = do
   contents: 0
@@ -43,13 +43,13 @@ function g(param) do
     end
      end 
     return i + 1 | 0;
-  end;
+  end end;
   Caml_obj.caml_update_dummy(v, do
         contents: next
       end);
   console.log(String(next(0, true)));
   return --[ () ]--0;
-end
+end end
 
 g(--[ () ]--0);
 

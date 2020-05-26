@@ -11,7 +11,7 @@ function map(f, param) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 exports.map = map;
 --[ No side effect ]--

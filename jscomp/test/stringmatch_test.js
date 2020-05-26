@@ -8,7 +8,7 @@ function tst01(s) do
   end else do
     return 1;
   end end 
-end
+end end
 
 if (tst01("") ~= 0) then do
   throw [
@@ -79,7 +79,7 @@ function tst02(s) do
       return 3;
     end end 
   end end 
-end
+end end
 
 if (tst02("") ~= 1) then do
   throw [
@@ -198,7 +198,7 @@ function tst03(s) do
       end end
       
   end
-end
+end end
 
 if (tst03("get_const") ~= 0) then do
   throw [
@@ -809,7 +809,7 @@ function tst04(s) do
       end end
       
   end
-end
+end end
 
 if (tst04("AAAAAAAA") ~= 0) then do
   throw [
@@ -1074,7 +1074,7 @@ function tst05(s) do
       end end
       
   end
-end
+end end
 
 if (tst05("AAA") ~= 0) then do
   throw [
@@ -1901,7 +1901,7 @@ function tst06(s) do
       end end
       
   end
-end
+end end
 
 if (tst06(s00) ~= 0) then do
   throw [

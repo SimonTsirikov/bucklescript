@@ -7,7 +7,7 @@ function func(state) do
   end else do
     return 0 + state[0] | 0;
   end end 
-end
+end end
 
 exports.func = func;
 --[ No side effect ]--

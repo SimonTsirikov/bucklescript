@@ -4,27 +4,27 @@ Curry = require("../../lib/js/curry.js");
 
 function $pipe$great(x, f) do
   return Curry._1(f, x);
-end
+end end
 
 function hello1(y, f) do
   return Curry._1(f, y);
-end
+end end
 
 function hello2(y, f) do
   return Curry._1(f, y);
-end
+end end
 
 function hello3(y, f) do
   return Curry._1(f, y);
-end
+end end
 
 function hello4(y, f) do
   return Curry._1(f, y);
-end
+end end
 
 function hello5(y, f) do
   return Curry._1(f, y);
-end
+end end
 
 function f(_x) do
   while(true) do
@@ -32,7 +32,7 @@ function f(_x) do
     _x = x + 1 | 0;
     continue ;
   end;
-end
+end end
 
 function ff(_x, _y) do
   while(true) do
@@ -42,7 +42,7 @@ function ff(_x, _y) do
     _x = y;
     continue ;
   end;
-end
+end end
 
 function fff(_x, _y) do
   while(true) do
@@ -52,7 +52,7 @@ function fff(_x, _y) do
     _x = y;
     continue ;
   end;
-end
+end end
 
 exports.$pipe$great = $pipe$great;
 exports.hello1 = hello1;

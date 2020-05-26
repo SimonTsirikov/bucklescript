@@ -407,13 +407,19 @@ and  pp_function is_method
               let cxt =
                 if Js_fun_env.get_unused env 0 then cxt 
                 else  pp_var_assign_this cxt f this in
-              function_body cxt f b
+              let cxt = function_body cxt f b in
+              P.space f;
+              P.string f L.end_;
+              cxt
             );
       else 
         let cxt = 
           P.paren_group f 1 (fun _ -> formal_parameter_list inner_cxt  f  l  ) in
         P.space f ;
-        P.brace_vgroup f 1 (fun _ -> function_body cxt f b ) 
+        let cxt = P.brace_vgroup f 1 (fun _ -> function_body cxt f b ) in
+        P.space f;
+        P.string f L.end_;
+        cxt
     in
     let lexical : Set_ident.t = Js_fun_env.get_lexical_scope env in
     let enclose  lexical  return =

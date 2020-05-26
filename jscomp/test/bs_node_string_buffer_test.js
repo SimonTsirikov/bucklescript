@@ -17,7 +17,7 @@ function f(str) do
         ]);
     return --[ () ]--0;
   end end 
-end
+end end
 
 f("xx");
 

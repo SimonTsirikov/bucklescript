@@ -15,11 +15,11 @@ jsMapperConstantArray = [
 
 function orientationToJs(param) do
   return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray);
-end
+end end
 
 function orientationFromJs(param) do
   return Js_mapperRt.revSearch(2, jsMapperConstantArray, param);
-end
+end end
 
 console.log(orientationToJs(--[ Horizontal ]--208994564));
 

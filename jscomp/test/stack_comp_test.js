@@ -17,14 +17,14 @@ end;
 
 function eq(f, param) do
   return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
-end
+end end
 
 function assert_(loc, v) do
   return eq(loc, --[ tuple ]--[
               v,
               true
             ]);
-end
+end end
 
 function to_list(s) do
   l = do
@@ -36,9 +36,9 @@ function to_list(s) do
             l.contents
           ];
           return --[ () ]--0;
-        end), s.c);
+        end end), s.c);
   return l.contents;
-end
+end end
 
 S = do
   Empty: Stack.Empty,
@@ -67,7 +67,7 @@ function does_raise(f, s) do
       throw exn;
     end end 
   end
-end
+end end
 
 s = do
   c: --[ [] ]--0,
@@ -361,7 +361,7 @@ List.iter((function (j) do
         assert_("File \"stack_comp_test.ml\", line 112, characters 27-34", i$7.contents == j);
         i$7.contents = i$7.contents + 1 | 0;
         return --[ () ]--0;
-      end), s$5.c);
+      end end), s$5.c);
 
 s1$1 = do
   c: --[ [] ]--0,

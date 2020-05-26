@@ -7,7 +7,7 @@ hh = x(3);
 
 function f(x, y) do
   return x .. y;
-end
+end end
 
 exports.h = h;
 exports.hh = hh;

@@ -8,7 +8,7 @@ function tst(param) do
     
   end
   return --[ () ]--0;
-end
+end end
 
 function test2(param) do
   v = 0;
@@ -18,7 +18,7 @@ function test2(param) do
     
   end
   return v;
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "for_order",
@@ -27,7 +27,7 @@ suites_000 = --[ tuple ]--[
                 10,
                 test2(--[ () ]--0)
               ]);
-    end)
+    end end)
 ];
 
 suites = --[ :: ]--[

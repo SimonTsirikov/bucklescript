@@ -28,18 +28,18 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function eq3(loc, a, b, c) do
   eq(loc, a, b);
   eq(loc, b, c);
   return eq(loc, a, c);
-end
+end end
 
 function u(param) do
   return Pervasives.$caret$caret(--[ Format ]--[
@@ -58,7 +58,7 @@ function u(param) do
                 ]),
               "yy"
             ]);
-end
+end end
 
 M = { };
 
@@ -103,8 +103,8 @@ eq("File \"format_test.ml\", line 65, characters 5-12", (1 + 65535 / 65536) * 8,
 function f(loc, ls) do
   return List.iter((function (param) do
                 return eq(loc, Caml_format.caml_float_of_string(param[0]), param[1]);
-              end), ls);
-end
+              end end), ls);
+end end
 
 f("File \"format_test.ml\", line 78, characters 6-13", --[ :: ]--[
       --[ tuple ]--[
@@ -136,13 +136,13 @@ function sl(f) do
                     ]),
                   "%h"
                 ]), f);
-end
+end end
 
 function aux_list(loc, ls) do
   return List.iter((function (param) do
                 return eq(loc, sl(param[0]), param[1]);
-              end), ls);
-end
+              end end), ls);
+end end
 
 literals_000 = --[ tuple ]--[
   7.875,
@@ -227,8 +227,8 @@ function scan_float(loc, s, expect) do
                   "%h"
                 ]), (function (result) do
                 return eq(loc, result, expect);
-              end));
-end
+              end end));
+end end
 
 scan_float("File \"format_test.ml\", line 118, characters 13-20", "0x3f.p1", 126);
 
@@ -236,7 +236,7 @@ scan_float("File \"format_test.ml\", line 119, characters 13-20", "0x1.333333333
 
 List.iter((function (param) do
         return scan_float("File \"format_test.ml\", line 121, characters 13-20", param[1], param[0]);
-      end), literals);
+      end end), literals);
 
 Mt.from_pair_suites("Format_test", suites.contents);
 

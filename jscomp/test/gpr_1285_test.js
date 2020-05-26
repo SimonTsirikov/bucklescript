@@ -24,12 +24,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 class_tables = --[ Cons ]--[
   0,
@@ -55,29 +55,29 @@ function step1(param) do
               step3 = CamlinternalOO.get_method_label($$class, "step3");
               CamlinternalOO.set_method($$class, step3, (function (self$2) do
                       return 33;
-                    end));
+                    end end));
               env_init = function (env$1) do
                 self = CamlinternalOO.create_object_opt(0, $$class);
                 self[env] = env$1;
                 return self;
-              end;
+              end end;
               CamlinternalOO.init_class($$class);
               class_tables$1[0] = env_init;
             end
              end 
             return Curry._1(class_tables$1[0], 0);
-          end));
+          end end));
     env_init = function (env$1) do
       self = CamlinternalOO.create_object_opt(0, $$class);
       self[env] = env$1;
       return self;
-    end;
+    end end;
     CamlinternalOO.init_class($$class);
     class_tables[0] = env_init;
   end
    end 
   return Curry._1(class_tables[0], 0);
-end
+end end
 
 tmp = step1(--[ () ]--0);
 

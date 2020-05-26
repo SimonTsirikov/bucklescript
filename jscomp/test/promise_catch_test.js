@@ -26,12 +26,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function handler(e) do
   if (e[0] == Js_exn.$$Error) then do
@@ -50,7 +50,7 @@ function handler(e) do
           ]
         ];
   end end  end 
-end
+end end
 
 function myHandler(match) do
   if (Caml_exceptions.caml_is_extension(match)) then do
@@ -63,11 +63,11 @@ function myHandler(match) do
     end end  end 
   end
    end 
-end
+end end
 
 function f(x) do
   return x.catch(handler);
-end
+end end
 
 exit = 0;
 
@@ -81,7 +81,7 @@ catch (raw_e)do
   e = Caml_js_exceptions.internalToOCamlException(raw_e);
   eq("File \"promise_catch_test.ml\", line 36, characters 7-14", true, Js_option.isSomeValue((function (xxx, y) do
               return xxx == y;
-            end), 2, myHandler(e)));
+            end end), 2, myHandler(e)));
 end
 
 if (exit == 1) then do

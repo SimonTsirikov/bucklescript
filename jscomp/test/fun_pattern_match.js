@@ -6,11 +6,11 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(param, v) do
   return ((((param.x0 + param.x1 | 0) + param.x2 | 0) + param.x3 | 0) + param.x4 | 0) + v | 0;
-end
+end end
 
 function f2(param, param$1) do
   return (((((param.x0 + param.x1 | 0) + param.x2 | 0) + param.x3 | 0) + param.x4 | 0) + param$1.a | 0) + param$1.b | 0;
-end
+end end
 
 function f3(param) do
   lhs = param.rank;
@@ -39,8 +39,8 @@ function f3(param) do
       end
        end 
       return Caml_primitive.caml_int_compare(lhs[0], rhs[0]);
-    end);
-end
+    end end);
+end end
 
 function f4(param) do
   lhs = param.rank;
@@ -69,8 +69,8 @@ function f4(param) do
       end
        end 
       return Caml_primitive.caml_int_compare(lhs[0], rhs[0]);
-    end);
-end
+    end end);
+end end
 
 x = --[ `A ]--[
   65,
@@ -79,7 +79,7 @@ x = --[ `A ]--[
 
 function r(param) do
   return x;
-end
+end end
 
 match = r(--[ () ]--0);
 

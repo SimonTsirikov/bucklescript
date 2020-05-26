@@ -5,7 +5,7 @@ Block = require("../../lib/js/block.js");
 
 function anno_fun(arg) do
   return --[ () ]--0;
-end
+end end
 
 usage_msg = "Usage:\n";
 

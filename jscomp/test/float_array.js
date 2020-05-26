@@ -10,7 +10,7 @@ function small_float_array(x) do
           ],
           x
         ];
-end
+end end
 
 function longer_float_array(x) do
   return --[ tuple ]--[
@@ -58,7 +58,7 @@ function longer_float_array(x) do
           ],
           x
         ];
-end
+end end
 
 exports.small_float_array = small_float_array;
 exports.longer_float_array = longer_float_array;

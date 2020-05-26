@@ -11,7 +11,7 @@ function even(_n) do
       continue ;
     end end 
   end;
-end
+end end
 
 function even2(n) do
   if (n == 0) then do
@@ -24,7 +24,7 @@ function even2(n) do
       return even2(n$1 - 1 | 0);
     end end 
   end end 
-end
+end end
 
 v = do
   contents: 0
@@ -32,12 +32,12 @@ end;
 
 function obj_get(param) do
   return v.contents;
-end
+end end
 
 function obj_set(i) do
   v.contents = i;
   return --[ () ]--0;
-end
+end end
 
 obj = do
   get: obj_get,

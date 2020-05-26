@@ -15,7 +15,7 @@ function Make(Ord) do
     end else do
       return 0;
     end end 
-  end;
+  end end;
   create = function (l, x, d, r) do
     hl = height(l);
     hr = height(r);
@@ -26,7 +26,7 @@ function Make(Ord) do
             r,
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
-  end;
+  end end;
   singleton = function (x, d) do
     return --[ Node ]--[
             --[ Empty ]--0,
@@ -35,7 +35,7 @@ function Make(Ord) do
             --[ Empty ]--0,
             1
           ];
-  end;
+  end end;
   bal = function (l, x, d, r) do
     hl = l and l[4] or 0;
     hr = r and r[4] or 0;
@@ -92,14 +92,14 @@ function Make(Ord) do
               hl >= hr and hl + 1 | 0 or hr + 1 | 0
             ];
     end end  end 
-  end;
+  end end;
   is_empty = function (param) do
     if (param) then do
       return false;
     end else do
       return true;
     end end 
-  end;
+  end end;
   add = function (x, data, param) do
     if (param) then do
       r = param[3];
@@ -129,7 +129,7 @@ function Make(Ord) do
               1
             ];
     end end 
-  end;
+  end end;
   find = function (x, _param) do
     while(true) do
       param = _param;
@@ -145,7 +145,7 @@ function Make(Ord) do
         throw Caml_builtin_exceptions.not_found;
       end end 
     end;
-  end;
+  end end;
   mem = function (x, _param) do
     while(true) do
       param = _param;
@@ -161,7 +161,7 @@ function Make(Ord) do
         return false;
       end end 
     end;
-  end;
+  end end;
   min_binding = function (_param) do
     while(true) do
       param = _param;
@@ -180,7 +180,7 @@ function Make(Ord) do
         throw Caml_builtin_exceptions.not_found;
       end end 
     end;
-  end;
+  end end;
   max_binding = function (_param) do
     while(true) do
       param = _param;
@@ -199,7 +199,7 @@ function Make(Ord) do
         throw Caml_builtin_exceptions.not_found;
       end end 
     end;
-  end;
+  end end;
   remove_min_binding = function (param) do
     if (param) then do
       l = param[0];
@@ -214,7 +214,7 @@ function Make(Ord) do
             "Map.remove_min_elt"
           ];
     end end 
-  end;
+  end end;
   remove = function (x, param) do
     if (param) then do
       r = param[3];
@@ -243,7 +243,7 @@ function Make(Ord) do
     end else do
       return --[ Empty ]--0;
     end end 
-  end;
+  end end;
   iter = function (f, _param) do
     while(true) do
       param = _param;
@@ -256,7 +256,7 @@ function Make(Ord) do
         return --[ () ]--0;
       end end 
     end;
-  end;
+  end end;
   map = function (f, param) do
     if (param) then do
       l$prime = map(f, param[0]);
@@ -272,7 +272,7 @@ function Make(Ord) do
     end else do
       return --[ Empty ]--0;
     end end 
-  end;
+  end end;
   mapi = function (f, param) do
     if (param) then do
       v = param[1];
@@ -289,7 +289,7 @@ function Make(Ord) do
     end else do
       return --[ Empty ]--0;
     end end 
-  end;
+  end end;
   fold = function (f, _m, _accu) do
     while(true) do
       accu = _accu;
@@ -302,7 +302,7 @@ function Make(Ord) do
         return accu;
       end end 
     end;
-  end;
+  end end;
   for_all = function (p, _param) do
     while(true) do
       param = _param;
@@ -317,7 +317,7 @@ function Make(Ord) do
         return true;
       end end 
     end;
-  end;
+  end end;
   exists = function (p, _param) do
     while(true) do
       param = _param;
@@ -332,21 +332,21 @@ function Make(Ord) do
         return false;
       end end 
     end;
-  end;
+  end end;
   add_min_binding = function (k, v, param) do
     if (param) then do
       return bal(add_min_binding(k, v, param[0]), param[1], param[2], param[3]);
     end else do
       return singleton(k, v);
     end end 
-  end;
+  end end;
   add_max_binding = function (k, v, param) do
     if (param) then do
       return bal(param[0], param[1], param[2], add_max_binding(k, v, param[3]));
     end else do
       return singleton(k, v);
     end end 
-  end;
+  end end;
   join = function (l, v, d, r) do
     if (l) then do
       if (r) then do
@@ -365,7 +365,7 @@ function Make(Ord) do
     end else do
       return add_min_binding(v, d, r);
     end end 
-  end;
+  end end;
   concat = function (t1, t2) do
     if (t1) then do
       if (t2) then do
@@ -377,14 +377,14 @@ function Make(Ord) do
     end else do
       return t2;
     end end 
-  end;
+  end end;
   concat_or_join = function (t1, v, d, t2) do
     if (d ~= undefined) then do
       return join(t1, v, Caml_option.valFromOption(d), t2);
     end else do
       return concat(t1, t2);
     end end 
-  end;
+  end end;
   split = function (x, param) do
     if (param) then do
       r = param[3];
@@ -420,7 +420,7 @@ function Make(Ord) do
               --[ Empty ]--0
             ];
     end end 
-  end;
+  end end;
   merge = function (f, s1, s2) do
     if (s1) then do
       v1 = s1[1];
@@ -447,7 +447,7 @@ function Make(Ord) do
             ]
           ];
     end end 
-  end;
+  end end;
   filter = function (p, param) do
     if (param) then do
       d = param[2];
@@ -463,7 +463,7 @@ function Make(Ord) do
     end else do
       return --[ Empty ]--0;
     end end 
-  end;
+  end end;
   partition = function (p, param) do
     if (param) then do
       d = param[2];
@@ -492,7 +492,7 @@ function Make(Ord) do
               --[ Empty ]--0
             ];
     end end 
-  end;
+  end end;
   cons_enum = function (_m, _e) do
     while(true) do
       e = _e;
@@ -510,7 +510,7 @@ function Make(Ord) do
         return e;
       end end 
     end;
-  end;
+  end end;
   compare = function (cmp, m1, m2) do
     _e1 = cons_enum(m1, --[ End ]--0);
     _e2 = cons_enum(m2, --[ End ]--0);
@@ -541,7 +541,7 @@ function Make(Ord) do
         return 0;
       end end  end 
     end;
-  end;
+  end end;
   equal = function (cmp, m1, m2) do
     _e1 = cons_enum(m1, --[ End ]--0);
     _e2 = cons_enum(m2, --[ End ]--0);
@@ -562,14 +562,14 @@ function Make(Ord) do
         return true;
       end end  end 
     end;
-  end;
+  end end;
   cardinal = function (param) do
     if (param) then do
       return (cardinal(param[0]) + 1 | 0) + cardinal(param[3]) | 0;
     end else do
       return 0;
     end end 
-  end;
+  end end;
   bindings_aux = function (_accu, _param) do
     while(true) do
       param = _param;
@@ -588,10 +588,10 @@ function Make(Ord) do
         return accu;
       end end 
     end;
-  end;
+  end end;
   bindings = function (s) do
     return bindings_aux(--[ [] ]--0, s);
-  end;
+  end end;
   return do
           height: height,
           create: create,
@@ -629,7 +629,7 @@ function Make(Ord) do
           bindings: bindings,
           choose: min_binding
         end;
-end
+end end
 
 function height(param) do
   if (param) then do
@@ -637,7 +637,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, x, d, r) do
   hl = height(l);
@@ -649,7 +649,7 @@ function create(l, x, d, r) do
           r,
           hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function singleton(x, d) do
   return --[ Node ]--[
@@ -659,7 +659,7 @@ function singleton(x, d) do
           --[ Empty ]--0,
           1
         ];
-end
+end end
 
 function bal(l, x, d, r) do
   hl = l and l[4] or 0;
@@ -717,7 +717,7 @@ function bal(l, x, d, r) do
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function is_empty(param) do
   if (param) then do
@@ -725,7 +725,7 @@ function is_empty(param) do
   end else do
     return true;
   end end 
-end
+end end
 
 function add(x, data, param) do
   if (param) then do
@@ -756,7 +756,7 @@ function add(x, data, param) do
             1
           ];
   end end 
-end
+end end
 
 function find(x, _param) do
   while(true) do
@@ -773,7 +773,7 @@ function find(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function mem(x, _param) do
   while(true) do
@@ -790,7 +790,7 @@ function mem(x, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function min_binding(_param) do
   while(true) do
@@ -810,7 +810,7 @@ function min_binding(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function max_binding(_param) do
   while(true) do
@@ -830,7 +830,7 @@ function max_binding(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function remove_min_binding(param) do
   if (param) then do
@@ -846,7 +846,7 @@ function remove_min_binding(param) do
           "Map.remove_min_elt"
         ];
   end end 
-end
+end end
 
 function remove(x, param) do
   if (param) then do
@@ -876,7 +876,7 @@ function remove(x, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function iter(f, _param) do
   while(true) do
@@ -890,7 +890,7 @@ function iter(f, _param) do
       return --[ () ]--0;
     end end 
   end;
-end
+end end
 
 function map(f, param) do
   if (param) then do
@@ -907,7 +907,7 @@ function map(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function mapi(f, param) do
   if (param) then do
@@ -925,7 +925,7 @@ function mapi(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function fold(f, _m, _accu) do
   while(true) do
@@ -939,7 +939,7 @@ function fold(f, _m, _accu) do
       return accu;
     end end 
   end;
-end
+end end
 
 function for_all(p, _param) do
   while(true) do
@@ -955,7 +955,7 @@ function for_all(p, _param) do
       return true;
     end end 
   end;
-end
+end end
 
 function exists(p, _param) do
   while(true) do
@@ -971,7 +971,7 @@ function exists(p, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function add_min_binding(k, v, param) do
   if (param) then do
@@ -979,7 +979,7 @@ function add_min_binding(k, v, param) do
   end else do
     return singleton(k, v);
   end end 
-end
+end end
 
 function add_max_binding(k, v, param) do
   if (param) then do
@@ -987,7 +987,7 @@ function add_max_binding(k, v, param) do
   end else do
     return singleton(k, v);
   end end 
-end
+end end
 
 function join(l, v, d, r) do
   if (l) then do
@@ -1007,7 +1007,7 @@ function join(l, v, d, r) do
   end else do
     return add_min_binding(v, d, r);
   end end 
-end
+end end
 
 function concat(t1, t2) do
   if (t1) then do
@@ -1020,7 +1020,7 @@ function concat(t1, t2) do
   end else do
     return t2;
   end end 
-end
+end end
 
 function concat_or_join(t1, v, d, t2) do
   if (d ~= undefined) then do
@@ -1028,7 +1028,7 @@ function concat_or_join(t1, v, d, t2) do
   end else do
     return concat(t1, t2);
   end end 
-end
+end end
 
 function split(x, param) do
   if (param) then do
@@ -1065,7 +1065,7 @@ function split(x, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function merge(f, s1, s2) do
   if (s1) then do
@@ -1093,7 +1093,7 @@ function merge(f, s1, s2) do
           ]
         ];
   end end 
-end
+end end
 
 function filter(p, param) do
   if (param) then do
@@ -1110,7 +1110,7 @@ function filter(p, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function partition(p, param) do
   if (param) then do
@@ -1140,7 +1140,7 @@ function partition(p, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function cons_enum(_m, _e) do
   while(true) do
@@ -1159,7 +1159,7 @@ function cons_enum(_m, _e) do
       return e;
     end end 
   end;
-end
+end end
 
 function compare(cmp, m1, m2) do
   _e1 = cons_enum(m1, --[ End ]--0);
@@ -1191,7 +1191,7 @@ function compare(cmp, m1, m2) do
       return 0;
     end end  end 
   end;
-end
+end end
 
 function equal(cmp, m1, m2) do
   _e1 = cons_enum(m1, --[ End ]--0);
@@ -1213,7 +1213,7 @@ function equal(cmp, m1, m2) do
       return true;
     end end  end 
   end;
-end
+end end
 
 function cardinal(param) do
   if (param) then do
@@ -1221,7 +1221,7 @@ function cardinal(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function bindings_aux(_accu, _param) do
   while(true) do
@@ -1241,11 +1241,11 @@ function bindings_aux(_accu, _param) do
       return accu;
     end end 
   end;
-end
+end end
 
 function bindings(s) do
   return bindings_aux(--[ [] ]--0, s);
-end
+end end
 
 IntMap = do
   height: height,
@@ -1287,7 +1287,7 @@ end;
 
 m = List.fold_left((function (acc, param) do
         return add(param[0], param[1], acc);
-      end), --[ Empty ]--0, --[ :: ]--[
+      end end), --[ Empty ]--0, --[ :: ]--[
       --[ tuple ]--[
         10,
         --[ "a" ]--97
@@ -1319,7 +1319,7 @@ function height$1(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create$1(l, x, d, r) do
   hl = height$1(l);
@@ -1331,7 +1331,7 @@ function create$1(l, x, d, r) do
           r,
           hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function singleton$1(x, d) do
   return --[ Node ]--[
@@ -1341,7 +1341,7 @@ function singleton$1(x, d) do
           --[ Empty ]--0,
           1
         ];
-end
+end end
 
 function bal$1(l, x, d, r) do
   hl = l and l[4] or 0;
@@ -1399,7 +1399,7 @@ function bal$1(l, x, d, r) do
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function is_empty$1(param) do
   if (param) then do
@@ -1407,7 +1407,7 @@ function is_empty$1(param) do
   end else do
     return true;
   end end 
-end
+end end
 
 function add$1(x, data, param) do
   if (param) then do
@@ -1438,7 +1438,7 @@ function add$1(x, data, param) do
             1
           ];
   end end 
-end
+end end
 
 function find$1(x, _param) do
   while(true) do
@@ -1455,7 +1455,7 @@ function find$1(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function mem$1(x, _param) do
   while(true) do
@@ -1472,7 +1472,7 @@ function mem$1(x, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function min_binding$1(_param) do
   while(true) do
@@ -1492,7 +1492,7 @@ function min_binding$1(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function max_binding$1(_param) do
   while(true) do
@@ -1512,7 +1512,7 @@ function max_binding$1(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function remove_min_binding$1(param) do
   if (param) then do
@@ -1528,7 +1528,7 @@ function remove_min_binding$1(param) do
           "Map.remove_min_elt"
         ];
   end end 
-end
+end end
 
 function remove$1(x, param) do
   if (param) then do
@@ -1558,7 +1558,7 @@ function remove$1(x, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function iter$1(f, _param) do
   while(true) do
@@ -1572,7 +1572,7 @@ function iter$1(f, _param) do
       return --[ () ]--0;
     end end 
   end;
-end
+end end
 
 function map$1(f, param) do
   if (param) then do
@@ -1589,7 +1589,7 @@ function map$1(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function mapi$1(f, param) do
   if (param) then do
@@ -1607,7 +1607,7 @@ function mapi$1(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function fold$1(f, _m, _accu) do
   while(true) do
@@ -1621,7 +1621,7 @@ function fold$1(f, _m, _accu) do
       return accu;
     end end 
   end;
-end
+end end
 
 function for_all$1(p, _param) do
   while(true) do
@@ -1637,7 +1637,7 @@ function for_all$1(p, _param) do
       return true;
     end end 
   end;
-end
+end end
 
 function exists$1(p, _param) do
   while(true) do
@@ -1653,7 +1653,7 @@ function exists$1(p, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function add_min_binding$1(k, v, param) do
   if (param) then do
@@ -1661,7 +1661,7 @@ function add_min_binding$1(k, v, param) do
   end else do
     return singleton$1(k, v);
   end end 
-end
+end end
 
 function add_max_binding$1(k, v, param) do
   if (param) then do
@@ -1669,7 +1669,7 @@ function add_max_binding$1(k, v, param) do
   end else do
     return singleton$1(k, v);
   end end 
-end
+end end
 
 function join$1(l, v, d, r) do
   if (l) then do
@@ -1689,7 +1689,7 @@ function join$1(l, v, d, r) do
   end else do
     return add_min_binding$1(v, d, r);
   end end 
-end
+end end
 
 function concat$1(t1, t2) do
   if (t1) then do
@@ -1702,7 +1702,7 @@ function concat$1(t1, t2) do
   end else do
     return t2;
   end end 
-end
+end end
 
 function concat_or_join$1(t1, v, d, t2) do
   if (d ~= undefined) then do
@@ -1710,7 +1710,7 @@ function concat_or_join$1(t1, v, d, t2) do
   end else do
     return concat$1(t1, t2);
   end end 
-end
+end end
 
 function split$1(x, param) do
   if (param) then do
@@ -1747,7 +1747,7 @@ function split$1(x, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function merge$1(f, s1, s2) do
   if (s1) then do
@@ -1775,7 +1775,7 @@ function merge$1(f, s1, s2) do
           ]
         ];
   end end 
-end
+end end
 
 function filter$1(p, param) do
   if (param) then do
@@ -1792,7 +1792,7 @@ function filter$1(p, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function partition$1(p, param) do
   if (param) then do
@@ -1822,7 +1822,7 @@ function partition$1(p, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function cons_enum$1(_m, _e) do
   while(true) do
@@ -1841,7 +1841,7 @@ function cons_enum$1(_m, _e) do
       return e;
     end end 
   end;
-end
+end end
 
 function compare$1(cmp, m1, m2) do
   _e1 = cons_enum$1(m1, --[ End ]--0);
@@ -1873,7 +1873,7 @@ function compare$1(cmp, m1, m2) do
       return 0;
     end end  end 
   end;
-end
+end end
 
 function equal$1(cmp, m1, m2) do
   _e1 = cons_enum$1(m1, --[ End ]--0);
@@ -1895,7 +1895,7 @@ function equal$1(cmp, m1, m2) do
       return true;
     end end  end 
   end;
-end
+end end
 
 function cardinal$1(param) do
   if (param) then do
@@ -1903,7 +1903,7 @@ function cardinal$1(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function bindings_aux$1(_accu, _param) do
   while(true) do
@@ -1923,11 +1923,11 @@ function bindings_aux$1(_accu, _param) do
       return accu;
     end end 
   end;
-end
+end end
 
 function bindings$1(s) do
   return bindings_aux$1(--[ [] ]--0, s);
-end
+end end
 
 SMap = do
   height: height$1,
@@ -1969,7 +1969,7 @@ end;
 
 s = List.fold_left((function (acc, param) do
         return add$1(param[0], param[1], acc);
-      end), --[ Empty ]--0, --[ :: ]--[
+      end end), --[ Empty ]--0, --[ :: ]--[
       --[ tuple ]--[
         "10",
         --[ "a" ]--97
@@ -2003,7 +2003,7 @@ Mt.from_pair_suites("Inline_map2_test", --[ :: ]--[
                       find(10, m),
                       --[ "a" ]--97
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -2013,7 +2013,7 @@ Mt.from_pair_suites("Inline_map2_test", --[ :: ]--[
                         find$1("10", s),
                         --[ "a" ]--97
                       ]);
-            end)
+            end end)
         ],
         --[ [] ]--0
       ]

@@ -18,7 +18,7 @@ function ff(param) do
   v["Content-Type"] = 3;
   v.l = 2;
   return --[ () ]--0;
-end
+end end
 
 partial_arg = "x";
 
@@ -31,7 +31,7 @@ function h0(param) do
   end
    end 
   return tmp;
-end
+end end
 
 h1 = do
   "lo-x": "x",
@@ -45,7 +45,7 @@ end;
 function hh(x) do
   x["lo-x"] = "3";
   return Caml_option.undefined_to_opt(x["lo-x"]);
-end
+end end
 
 function hh2(x) do
   match = x["lo-x"];
@@ -54,7 +54,7 @@ function hh2(x) do
   end else do
     return 0;
   end end 
-end
+end end
 
 u = do
   "xx-yy": 3

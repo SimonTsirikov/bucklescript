@@ -4,11 +4,11 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(x) do
   return x + 1 | 0;
-end
+end end
 
 function f_0(x) do
   return x - 1 | 0;
-end
+end end
 
 function f2(param) do
   if (param >= 3) then do
@@ -16,15 +16,15 @@ function f2(param) do
   end else do
     return param;
   end end 
-end
+end end
 
 function f3(param) do
   return param;
-end
+end end
 
 function f4(param) do
   return 3;
-end
+end end
 
 function f5(param) do
   if (typeof param == "number") then do
@@ -51,7 +51,7 @@ function f5(param) do
       
     end
   end end 
-end
+end end
 
 function f6(param) do
   if (typeof param == "number") then do
@@ -63,7 +63,7 @@ function f6(param) do
   end else do
     return 1;
   end end 
-end
+end end
 
 function f7(param) do
   if (typeof param == "number") then do
@@ -91,7 +91,7 @@ function f7(param) do
       
     end
   end end 
-end
+end end
 
 function f8(param) do
   if (typeof param == "number") then do
@@ -119,7 +119,7 @@ function f8(param) do
         
     end
   end end 
-end
+end end
 
 function f9(param) do
   if (typeof param == "number") then do
@@ -141,7 +141,7 @@ function f9(param) do
       
     end
   end end 
-end
+end end
 
 function f10(param) do
   if (typeof param == "number") then do
@@ -171,7 +171,7 @@ function f10(param) do
       
     end
   end end 
-end
+end end
 
 function f11(x) do
   if (typeof x == "number") then do
@@ -188,7 +188,7 @@ function f11(x) do
   end else do
     return 1;
   end end  end 
-end
+end end
 
 exports.f = f;
 exports.f_0 = f_0;

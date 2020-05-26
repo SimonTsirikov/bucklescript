@@ -71,8 +71,8 @@ function nexts(x, g) do
                 end else do
                   return acc;
                 end end 
-              end), --[ [] ]--0, g);
-end
+              end end), --[ [] ]--0, g);
+end end
 
 function dfs1(_nodes, graph, _visited) do
   while(true) do
@@ -97,7 +97,7 @@ function dfs1(_nodes, graph, _visited) do
       return List.rev(visited);
     end end 
   end;
-end
+end end
 
 if (!Caml_obj.caml_equal(dfs1(--[ :: ]--[
             "a",
@@ -196,9 +196,9 @@ function dfs2(nodes, graph, visited) do
         return visited;
       end end 
     end;
-  end;
+  end end;
   return List.rev(aux(nodes, graph, visited));
-end
+end end
 
 if (!Caml_obj.caml_equal(dfs2(--[ :: ]--[
             "a",
@@ -286,14 +286,14 @@ function dfs3(nodes, graph) do
       ];
       return List.iter((function (x) do
                     return aux(x, graph);
-                  end), nexts(node, graph));
+                  end end), nexts(node, graph));
     end end 
-  end;
+  end end;
   List.iter((function (node) do
           return aux(node, graph);
-        end), nodes);
+        end end), nodes);
   return List.rev(visited.contents);
-end
+end end
 
 if (!Caml_obj.caml_equal(dfs3(--[ :: ]--[
             "a",
@@ -421,12 +421,12 @@ function unsafe_topsort(graph) do
       ];
       return --[ () ]--0;
     end end 
-  end;
+  end end;
   List.iter((function (param) do
           return sort_node(param[0]);
-        end), graph);
+        end end), graph);
   return visited.contents;
-end
+end end
 
 if (!Caml_obj.caml_equal(unsafe_topsort(grwork), --[ :: ]--[
         "wake",
@@ -464,7 +464,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, v, r) do
   hl = l and l[--[ h ]--3] or 0;
@@ -475,7 +475,7 @@ function create(l, v, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal(l, v, r) do
   hl = l and l[--[ h ]--3] or 0;
@@ -530,7 +530,7 @@ function bal(l, v, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add(x, t) do
   if (t) then do
@@ -563,7 +563,7 @@ function add(x, t) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function singleton(x) do
   return --[ Node ]--[
@@ -572,7 +572,7 @@ function singleton(x) do
           --[ r : Empty ]--0,
           --[ h ]--1
         ];
-end
+end end
 
 function add_min_element(x, param) do
   if (param) then do
@@ -580,7 +580,7 @@ function add_min_element(x, param) do
   end else do
     return singleton(x);
   end end 
-end
+end end
 
 function add_max_element(x, param) do
   if (param) then do
@@ -588,7 +588,7 @@ function add_max_element(x, param) do
   end else do
     return singleton(x);
   end end 
-end
+end end
 
 function join(l, v, r) do
   if (l) then do
@@ -608,7 +608,7 @@ function join(l, v, r) do
   end else do
     return add_min_element(v, r);
   end end 
-end
+end end
 
 function min_elt(_param) do
   while(true) do
@@ -625,7 +625,7 @@ function min_elt(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function min_elt_opt(_param) do
   while(true) do
@@ -642,7 +642,7 @@ function min_elt_opt(_param) do
       return ;
     end end 
   end;
-end
+end end
 
 function max_elt(_param) do
   while(true) do
@@ -659,7 +659,7 @@ function max_elt(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function max_elt_opt(_param) do
   while(true) do
@@ -676,7 +676,7 @@ function max_elt_opt(_param) do
       return ;
     end end 
   end;
-end
+end end
 
 function remove_min_elt(param) do
   if (param) then do
@@ -692,7 +692,7 @@ function remove_min_elt(param) do
           "Set.remove_min_elt"
         ];
   end end 
-end
+end end
 
 function concat(t1, t2) do
   if (t1) then do
@@ -704,7 +704,7 @@ function concat(t1, t2) do
   end else do
     return t2;
   end end 
-end
+end end
 
 function split(x, param) do
   if (param) then do
@@ -740,7 +740,7 @@ function split(x, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function is_empty(param) do
   if (param) then do
@@ -748,7 +748,7 @@ function is_empty(param) do
   end else do
     return true;
   end end 
-end
+end end
 
 function mem(x, _param) do
   while(true) do
@@ -765,7 +765,7 @@ function mem(x, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function remove(x, t) do
   if (t) then do
@@ -803,7 +803,7 @@ function remove(x, t) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function union(s1, s2) do
   if (s1) then do
@@ -831,7 +831,7 @@ function union(s1, s2) do
   end else do
     return s2;
   end end 
-end
+end end
 
 function inter(s1, s2) do
   if (s1 and s2) then do
@@ -848,7 +848,7 @@ function inter(s1, s2) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function diff(s1, s2) do
   if (s1) then do
@@ -869,7 +869,7 @@ function diff(s1, s2) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function cons_enum(_s, _e) do
   while(true) do
@@ -887,7 +887,7 @@ function cons_enum(_s, _e) do
       return e;
     end end 
   end;
-end
+end end
 
 function compare(s1, s2) do
   _e1 = cons_enum(s1, --[ End ]--0);
@@ -914,11 +914,11 @@ function compare(s1, s2) do
       return 0;
     end end  end 
   end;
-end
+end end
 
 function equal(s1, s2) do
   return compare(s1, s2) == 0;
-end
+end end
 
 function subset(_s1, _s2) do
   while(true) do
@@ -970,7 +970,7 @@ function subset(_s1, _s2) do
       return true;
     end end 
   end;
-end
+end end
 
 function iter(f, _param) do
   while(true) do
@@ -984,7 +984,7 @@ function iter(f, _param) do
       return --[ () ]--0;
     end end 
   end;
-end
+end end
 
 function fold(f, _s, _accu) do
   while(true) do
@@ -998,7 +998,7 @@ function fold(f, _s, _accu) do
       return accu;
     end end 
   end;
-end
+end end
 
 function for_all(p, _param) do
   while(true) do
@@ -1014,7 +1014,7 @@ function for_all(p, _param) do
       return true;
     end end 
   end;
-end
+end end
 
 function exists(p, _param) do
   while(true) do
@@ -1030,7 +1030,7 @@ function exists(p, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function filter(p, t) do
   if (t) then do
@@ -1052,7 +1052,7 @@ function filter(p, t) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function partition(p, param) do
   if (param) then do
@@ -1081,7 +1081,7 @@ function partition(p, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function cardinal(param) do
   if (param) then do
@@ -1089,7 +1089,7 @@ function cardinal(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function elements_aux(_accu, _param) do
   while(true) do
@@ -1106,11 +1106,11 @@ function elements_aux(_accu, _param) do
       return accu;
     end end 
   end;
-end
+end end
 
 function elements(s) do
   return elements_aux(--[ [] ]--0, s);
-end
+end end
 
 function find(x, _param) do
   while(true) do
@@ -1128,7 +1128,7 @@ function find(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_first(f, _param) do
   while(true) do
@@ -1164,7 +1164,7 @@ function find_first(f, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_first_opt(f, _param) do
   while(true) do
@@ -1200,7 +1200,7 @@ function find_first_opt(f, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function find_last(f, _param) do
   while(true) do
@@ -1236,7 +1236,7 @@ function find_last(f, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_last_opt(f, _param) do
   while(true) do
@@ -1272,7 +1272,7 @@ function find_last_opt(f, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function find_opt(x, _param) do
   while(true) do
@@ -1290,7 +1290,7 @@ function find_opt(x, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function map(f, t) do
   if (t) then do
@@ -1315,7 +1315,7 @@ function map(f, t) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function of_list(l) do
   if (l) then do
@@ -1431,7 +1431,7 @@ function of_list(l) do
                         ]
                       ];
                 end end 
-              end;
+              end end;
               return sub(List.length(l$1), l$1)[0];
             end else do
               return add(match$3[0], add(x3, add(x2, add(x1, singleton(x0)))));
@@ -1451,7 +1451,7 @@ function of_list(l) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 String_set = do
   empty: --[ Empty ]--0,
@@ -1521,12 +1521,12 @@ function pathsort(graph) do
               stack
             ]
           ];
-  end;
+  end end;
   sort_nodes = function (path, nodes) do
     return List.iter((function (node) do
                   return sort_node(path, node);
-                end), nodes);
-  end;
+                end end), nodes);
+  end end;
   sort_node = function (path, node) do
     if (List.mem(node, visited.contents)) then do
       return 0;
@@ -1538,12 +1538,12 @@ function pathsort(graph) do
       ];
       return --[ () ]--0;
     end end 
-  end;
+  end end;
   List.iter((function (param) do
           return sort_node(empty_path, param[0]);
-        end), graph);
+        end end), graph);
   return visited.contents;
-end
+end end
 
 if (!Caml_obj.caml_equal(pathsort(grwork), --[ :: ]--[
         "wake",

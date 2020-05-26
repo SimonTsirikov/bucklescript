@@ -29,12 +29,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 eq("File \"condition_compilation_test.ml\", line 98, characters 5-12", 3, 3);
 

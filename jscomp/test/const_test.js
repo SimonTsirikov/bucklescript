@@ -4,11 +4,11 @@ Block = require("../../lib/js/block.js");
 
 function f(x) do
   return x;
-end
+end end
 
 function ff(x) do
   return x;
-end
+end end
 
 function fff(x) do
   match = --[ A ]--Block.__(0, [x]);
@@ -23,7 +23,7 @@ function fff(x) do
      do
     
   end
-end
+end end
 
 function h(x) do
   if (x ~= 66) then do
@@ -35,11 +35,11 @@ function h(x) do
   end else do
     return 1;
   end end 
-end
+end end
 
 function hh(param) do
   return 3;
-end
+end end
 
 g = h(--[ A ]--65);
 

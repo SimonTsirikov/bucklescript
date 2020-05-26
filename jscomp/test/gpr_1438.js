@@ -37,8 +37,8 @@ function actionKey(key, a, b, c, d, e) do
   end
   return (function (param) do
       return --[ () ]--0;
-    end);
-end
+    end end);
+end end
 
 exports.actionKey = actionKey;
 --[ No side effect ]--

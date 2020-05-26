@@ -145,79 +145,79 @@ end;
 
 function a0(prim) do
   return Math.abs(prim);
-end
+end end
 
 function a1(prim) do
   return Math.acos(prim);
-end
+end end
 
 function a2(prim) do
   return Math.tan(prim);
-end
+end end
 
 function a3(prim) do
   return Math.tanh(prim);
-end
+end end
 
 function a4(prim) do
   return Math.asin(prim);
-end
+end end
 
 function a5(prim, prim$1) do
   return Math.atan2(prim, prim$1);
-end
+end end
 
 function a6(prim) do
   return Math.atan(prim);
-end
+end end
 
 function a7(prim) do
   return Math.ceil(prim);
-end
+end end
 
 function a8(prim) do
   return Math.cos(prim);
-end
+end end
 
 function a9(prim) do
   return Math.cosh(prim);
-end
+end end
 
 function a10(prim) do
   return Math.exp(prim);
-end
+end end
 
 function a11(prim) do
   return Math.sin(prim);
-end
+end end
 
 function a12(prim) do
   return Math.sinh(prim);
-end
+end end
 
 function a13(prim) do
   return Math.sqrt(prim);
-end
+end end
 
 function a14(prim) do
   return Math.floor(prim);
-end
+end end
 
 function a15(prim) do
   return Math.log(prim);
-end
+end end
 
 function a16(prim) do
   return Math.log10(prim);
-end
+end end
 
 function a17(prim) do
   return Math.log1p(prim);
-end
+end end
 
 function a18(prim, prim$1) do
   return Math.pow(prim, prim$1);
-end
+end end
 
 f = Pervasives.$at;
 

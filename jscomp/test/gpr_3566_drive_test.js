@@ -14,7 +14,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 H = Gpr_3566_test.Test({ });
 
@@ -24,7 +24,7 @@ Caml_option$1 = { };
 
 function f(x) do
   return Caml_option.some(x);
-end
+end end
 
 Mt.from_pair_suites("gpr_3566_drive_test.ml", suites.contents);
 

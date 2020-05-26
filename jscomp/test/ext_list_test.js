@@ -26,7 +26,7 @@ function filter_map(f, _xs) do
       return --[ [] ]--0;
     end end 
   end;
-end
+end end
 
 function excludes(p, l) do
   excluded = do
@@ -55,7 +55,7 @@ function excludes(p, l) do
         return List.rev(accu);
       end end 
     end;
-  end;
+  end end;
   v = aux(--[ [] ]--0, l);
   if (excluded.contents) then do
     return --[ tuple ]--[
@@ -68,7 +68,7 @@ function excludes(p, l) do
             l
           ];
   end end 
-end
+end end
 
 function exclude_with_fact(p, l) do
   excluded = do
@@ -97,13 +97,13 @@ function exclude_with_fact(p, l) do
         return List.rev(accu);
       end end 
     end;
-  end;
+  end end;
   v = aux(--[ [] ]--0, l);
   return --[ tuple ]--[
           excluded.contents,
           excluded.contents ~= undefined and v or l
         ];
-end
+end end
 
 function exclude_with_fact2(p1, p2, l) do
   excluded1 = do
@@ -139,14 +139,14 @@ function exclude_with_fact2(p1, p2, l) do
         return List.rev(accu);
       end end 
     end;
-  end;
+  end end;
   v = aux(--[ [] ]--0, l);
   return --[ tuple ]--[
           excluded1.contents,
           excluded2.contents,
           excluded1.contents ~= undefined and excluded2.contents ~= undefined and v or l
         ];
-end
+end end
 
 function same_length(_xs, _ys) do
   while(true) do
@@ -166,7 +166,7 @@ function same_length(_xs, _ys) do
       return true;
     end end  end 
   end;
-end
+end end
 
 function filter_mapi(f, xs) do
   aux = function (_i, _xs) do
@@ -190,9 +190,9 @@ function filter_mapi(f, xs) do
         return --[ [] ]--0;
       end end 
     end;
-  end;
+  end end;
   return aux(0, xs);
-end
+end end
 
 function filter_map2(f, _xs, _ys) do
   while(true) do
@@ -228,7 +228,7 @@ function filter_map2(f, _xs, _ys) do
       return --[ [] ]--0;
     end end  end 
   end;
-end
+end end
 
 function filter_map2i(f, xs, ys) do
   aux = function (_i, _xs, _ys) do
@@ -267,9 +267,9 @@ function filter_map2i(f, xs, ys) do
         return --[ [] ]--0;
       end end  end 
     end;
-  end;
+  end end;
   return aux(0, xs, ys);
-end
+end end
 
 function rev_map_append(f, _l1, _l2) do
   while(true) do
@@ -286,7 +286,7 @@ function rev_map_append(f, _l1, _l2) do
       return l2;
     end end 
   end;
-end
+end end
 
 function flat_map2(f, lx, ly) do
   _acc = --[ [] ]--0;
@@ -319,7 +319,7 @@ function flat_map2(f, lx, ly) do
       return List.rev(acc);
     end end 
   end;
-end
+end end
 
 function flat_map_aux(f, _acc, append, _lx) do
   while(true) do
@@ -333,15 +333,15 @@ function flat_map_aux(f, _acc, append, _lx) do
       return List.rev_append(acc, append);
     end end 
   end;
-end
+end end
 
 function flat_map(f, lx) do
   return flat_map_aux(f, --[ [] ]--0, --[ [] ]--0, lx);
-end
+end end
 
 function flat_map_acc(f, append, lx) do
   return flat_map_aux(f, --[ [] ]--0, append, lx);
-end
+end end
 
 function map2_last(f, l1, l2) do
   if (l1) then do
@@ -384,7 +384,7 @@ function map2_last(f, l1, l2) do
   end else do
     return --[ [] ]--0;
   end end  end 
-end
+end end
 
 function map_last(f, l1) do
   if (l1) then do
@@ -405,7 +405,7 @@ function map_last(f, l1) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 function fold_right2_last(f, l1, l2, accu) do
   if (l1) then do
@@ -443,11 +443,11 @@ function fold_right2_last(f, l1, l2, accu) do
      end 
     return accu;
   end end 
-end
+end end
 
 function init(n, f) do
   return $$Array.to_list($$Array.init(n, f));
-end
+end end
 
 function take(n, l) do
   arr = $$Array.of_list(l);
@@ -463,7 +463,7 @@ function take(n, l) do
           $$Array.to_list($$Array.sub(arr, 0, n)),
           $$Array.to_list($$Array.sub(arr, n, arr_length - n | 0))
         ];
-end
+end end
 
 function try_take(n, l) do
   arr = $$Array.of_list(l);
@@ -481,7 +481,7 @@ function try_take(n, l) do
             $$Array.to_list($$Array.sub(arr, n, arr_length - n | 0))
           ];
   end end 
-end
+end end
 
 function length_compare(_l, _n) do
   while(true) do
@@ -499,7 +499,7 @@ function length_compare(_l, _n) do
       return --[ Lt ]--17064;
     end end  end  end 
   end;
-end
+end end
 
 function length_larger_than_n(n, _xs, _ys) do
   while(true) do
@@ -517,7 +517,7 @@ function length_larger_than_n(n, _xs, _ys) do
       return length_compare(xs, n) == --[ Eq ]--15500;
     end end 
   end;
-end
+end end
 
 function exclude_tail(x) do
   _acc = --[ [] ]--0;
@@ -548,7 +548,7 @@ function exclude_tail(x) do
           ];
     end end 
   end;
-end
+end end
 
 function group(cmp, lst) do
   if (lst) then do
@@ -556,7 +556,7 @@ function group(cmp, lst) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 function aux(cmp, x, xss) do
   if (xss) then do
@@ -585,11 +585,11 @@ function aux(cmp, x, xss) do
             --[ [] ]--0
           ];
   end end 
-end
+end end
 
 function stable_group(cmp, lst) do
   return List.rev(group(cmp, lst));
-end
+end end
 
 function drop(_n, _h) do
   while(true) do
@@ -617,7 +617,7 @@ function drop(_n, _h) do
       continue ;
     end end 
   end;
-end
+end end
 
 function find_first_not(p, _param) do
   while(true) do
@@ -634,7 +634,7 @@ function find_first_not(p, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function for_all_opt(p, _param) do
   while(true) do
@@ -651,13 +651,13 @@ function for_all_opt(p, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function fold(f, l, init) do
   return List.fold_left((function (acc, i) do
                 return Curry._2(f, i, init);
-              end), init, l);
-end
+              end end), init, l);
+end end
 
 function rev_map_acc(acc, f, l) do
   _accu = acc;
@@ -676,7 +676,7 @@ function rev_map_acc(acc, f, l) do
       return accu;
     end end 
   end;
-end
+end end
 
 function map_acc(acc, f, l) do
   if (l) then do
@@ -687,7 +687,7 @@ function map_acc(acc, f, l) do
   end else do
     return acc;
   end end 
-end
+end end
 
 function rev_iter(f, xs) do
   if (xs) then do
@@ -696,7 +696,7 @@ function rev_iter(f, xs) do
   end else do
     return --[ () ]--0;
   end end 
-end
+end end
 
 function for_all2_no_exn(p, _l1, _l2) do
   while(true) do
@@ -716,7 +716,7 @@ function for_all2_no_exn(p, _l1, _l2) do
       return true;
     end end  end 
   end;
-end
+end end
 
 function find_no_exn(p, _param) do
   while(true) do
@@ -733,7 +733,7 @@ function find_no_exn(p, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function find_opt(p, _param) do
   while(true) do
@@ -750,7 +750,7 @@ function find_opt(p, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function split_map(f, xs) do
   _bs = --[ [] ]--0;
@@ -779,21 +779,21 @@ function split_map(f, xs) do
             ];
     end end 
   end;
-end
+end end
 
 function reduce_from_right(fn, lst) do
   match = List.rev(lst);
   if (match) then do
     return List.fold_left((function (x, y) do
                   return Curry._2(fn, y, x);
-                end), match[0], match[1]);
+                end end), match[0], match[1]);
   end else do
     throw [
           Caml_builtin_exceptions.invalid_argument,
           "Ext_list_test.reduce"
         ];
   end end 
-end
+end end
 
 function reduce_from_left(fn, lst) do
   if (lst) then do
@@ -804,13 +804,13 @@ function reduce_from_left(fn, lst) do
           "Ext_list_test.reduce_from_left"
         ];
   end end 
-end
+end end
 
 function create_ref_empty(param) do
   return do
           contents: --[ [] ]--0
         end;
-end
+end end
 
 function ref_top(x) do
   match = x.contents;
@@ -822,7 +822,7 @@ function ref_top(x) do
           "Ext_list_test.ref_top"
         ];
   end end 
-end
+end end
 
 function ref_empty(x) do
   match = x.contents;
@@ -831,7 +831,7 @@ function ref_empty(x) do
   end else do
     return true;
   end end 
-end
+end end
 
 function ref_push(x, refs) do
   refs.contents = --[ :: ]--[
@@ -839,7 +839,7 @@ function ref_push(x, refs) do
     refs.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function ref_pop(refs) do
   match = refs.contents;
@@ -852,7 +852,7 @@ function ref_pop(refs) do
           "Ext_list_test.ref_pop"
         ];
   end end 
-end
+end end
 
 function rev_except_last(xs) do
   _acc = --[ [] ]--0;
@@ -883,13 +883,13 @@ function rev_except_last(xs) do
           ];
     end end 
   end;
-end
+end end
 
 function sort_via_array(cmp, lst) do
   arr = $$Array.of_list(lst);
   $$Array.sort(cmp, arr);
   return $$Array.to_list(arr);
-end
+end end
 
 function last(_xs) do
   while(true) do
@@ -909,7 +909,7 @@ function last(_xs) do
           ];
     end end 
   end;
-end
+end end
 
 function assoc_by_string(def, k, _lst) do
   while(true) do
@@ -935,7 +935,7 @@ function assoc_by_string(def, k, _lst) do
           ];
     end end  end 
   end;
-end
+end end
 
 function assoc_by_int(def, k, _lst) do
   while(true) do
@@ -961,7 +961,7 @@ function assoc_by_int(def, k, _lst) do
           ];
     end end  end 
   end;
-end
+end end
 
 exports.filter_map = filter_map;
 exports.excludes = excludes;

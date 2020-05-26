@@ -13,16 +13,16 @@ function f(h) do
   partial_arg = 3;
   return (function (param) do
       return Curry._2(h, partial_arg, param);
-    end);
-end
+    end end);
+end end
 
 f((function (prim, prim$1) do
         return prim + prim$1 | 0;
-      end));
+      end end));
 
 f((function (prim, prim$1) do
         return prim + prim$1 | 0;
-      end));
+      end end));
 
 a = v.contents;
 
@@ -35,16 +35,16 @@ function f$1(h) do
   partial_arg = 3;
   return (function (param) do
       return Curry._2(h, partial_arg, param);
-    end);
-end
+    end end);
+end end
 
 f$1((function (prim, prim$1) do
         return prim + prim$1 | 0;
-      end));
+      end end));
 
 f$1((function (prim, prim$1) do
         return prim + prim$1 | 0;
-      end));
+      end end));
 
 b = v$1.contents;
 
@@ -54,15 +54,15 @@ end;
 
 function f$2(h) do
   return Curry._2(h, 2, (v$2.contents = v$2.contents + 1 | 0, 3));
-end
+end end
 
 f$2((function (prim, prim$1) do
         return prim + prim$1 | 0;
-      end));
+      end end));
 
 f$2((function (prim, prim$1) do
         return prim + prim$1 | 0;
-      end));
+      end end));
 
 c = v$2.contents;
 
@@ -75,16 +75,16 @@ function f$3(h, g) do
   partial_arg = 9;
   return (function (param) do
       return Curry._2(h, partial_arg, param);
-    end);
-end
+    end end);
+end end
 
 f$3((function (prim, prim$1) do
         return prim + prim$1 | 0;
-      end), 3);
+      end end), 3);
 
 f$3((function (prim, prim$1) do
         return prim + prim$1 | 0;
-      end), 3);
+      end end), 3);
 
 d = v$3.contents;
 
@@ -106,7 +106,7 @@ Mt.from_pair_suites("Pr_regression_test", --[ :: ]--[
                         d
                       ]
                     ]);
-          end)
+          end end)
       ],
       --[ [] ]--0
     ]);

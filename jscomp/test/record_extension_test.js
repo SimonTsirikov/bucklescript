@@ -15,7 +15,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 Inline_record = Caml_exceptions.create("Record_extension_test.Inline_record");
 
@@ -24,7 +24,7 @@ function f(x) do
     return x[--[ x ]--1] + Caml_format.caml_int_of_string(x[--[ y ]--2]) | 0;
   end
    end 
-end
+end end
 
 v0 = [
   Inline_record,
@@ -40,7 +40,7 @@ function f2(x) do
   end else do
     return x[--[ x ]--0];
   end end 
-end
+end end
 
 function f2_with(x) do
   if (typeof x == "number" or x.tag) then do
@@ -51,7 +51,7 @@ function f2_with(x) do
               --[ y ]--x[--[ y ]--1]
             ]);
   end end 
-end
+end end
 
 Mt.from_pair_suites("File \"record_extension_test.ml\", line 43, characters 22-29", suites.contents);
 

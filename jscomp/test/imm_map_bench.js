@@ -13,7 +13,7 @@ function fromArray(kvs) do
     v = v.set(match[0], match[1]);
   end
   return v;
-end
+end end
 
 function should(b) do
   if (b) then do
@@ -21,14 +21,14 @@ function should(b) do
   end else do
     throw new Error("impossible");
   end end 
-end
+end end
 
 shuffledDataAdd = Belt_Array.makeByAndShuffle(1000001, (function (i) do
         return --[ tuple ]--[
                 i,
                 i
               ];
-      end));
+      end end));
 
 function test(param) do
   v = fromArray(shuffledDataAdd);
@@ -36,7 +36,7 @@ function test(param) do
     should(v.has(j));
   end
   return --[ () ]--0;
-end
+end end
 
 function test2(param) do
   v = Belt_MapInt.fromArray(shuffledDataAdd);
@@ -44,7 +44,7 @@ function test2(param) do
     should(Belt_MapInt.has(v, j));
   end
   return --[ () ]--0;
-end
+end end
 
 console.time("test/imm_map_bench.ml 44");
 

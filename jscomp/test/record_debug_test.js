@@ -45,7 +45,7 @@ end;
 
 function N0_f(prim) do
   return prim;
-end
+end end
 
 N0 = do
   a: 0,

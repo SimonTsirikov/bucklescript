@@ -11,13 +11,13 @@ function create(param) do
           length: 0,
           tail: undefined
         end;
-end
+end end
 
 function clear(q) do
   q.length = 0;
   q.tail = undefined;
   return --[ () ]--0;
-end
+end end
 
 function add(x, q) do
   if (q.length == 0) then do
@@ -39,7 +39,7 @@ function add(x, q) do
     q.tail = cell$1;
     return --[ () ]--0;
   end end 
-end
+end end
 
 function peek(q) do
   if (q.length == 0) then do
@@ -47,7 +47,7 @@ function peek(q) do
   end
    end 
   return q.tail.next.content;
-end
+end end
 
 function take(q) do
   if (q.length == 0) then do
@@ -63,7 +63,7 @@ function take(q) do
     tail.next = head.next;
   end end 
   return head.content;
-end
+end end
 
 function copy(q) do
   if (q.length == 0) then do
@@ -95,22 +95,22 @@ function copy(q) do
           return 0;
         end end 
       end;
-    end;
+    end end;
     copy$1(tail$prime, tail.next);
     return do
             length: q.length,
             tail: tail$prime
           end;
   end end 
-end
+end end
 
 function is_empty(q) do
   return q.length == 0;
-end
+end end
 
 function length(q) do
   return q.length;
-end
+end end
 
 function iter(f, q) do
   if (q.length > 0) then do
@@ -129,7 +129,7 @@ function iter(f, q) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function fold(f, accu, q) do
   if (q.length == 0) then do
@@ -151,7 +151,7 @@ function fold(f, accu, q) do
       end end 
     end;
   end end 
-end
+end end
 
 function transfer(q1, q2) do
   length1 = q1.length;
@@ -172,7 +172,7 @@ function transfer(q1, q2) do
   end else do
     return 0;
   end end 
-end
+end end
 
 push = add;
 

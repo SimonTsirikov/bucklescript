@@ -13,7 +13,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function make(s, b, i) do
   return (function (param) do
@@ -31,8 +31,8 @@ function make(s, b, i) do
       end
        end 
       return tmp;
-    end);
-end
+    end end);
+end end
 
 hh = do
   s: "",

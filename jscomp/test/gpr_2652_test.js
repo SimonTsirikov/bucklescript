@@ -6,7 +6,7 @@ foo = $$Buffer.contents;
 
 function bar(str) do
   return Buffer.from(str);
-end
+end end
 
 exports.foo = foo;
 exports.bar = bar;

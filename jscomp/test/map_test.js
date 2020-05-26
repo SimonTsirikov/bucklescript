@@ -13,7 +13,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, x, d, r) do
   hl = height(l);
@@ -25,7 +25,7 @@ function create(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -83,7 +83,7 @@ function bal(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add(x, data, m) do
   if (m) then do
@@ -128,7 +128,7 @@ function add(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function cons_enum(_m, _e) do
   while(true) do
@@ -147,7 +147,7 @@ function cons_enum(_m, _e) do
       return e;
     end end 
   end;
-end
+end end
 
 function compare(cmp, m1, m2) do
   _e1 = cons_enum(m1, --[ End ]--0);
@@ -179,7 +179,7 @@ function compare(cmp, m1, m2) do
       return 0;
     end end  end 
   end;
-end
+end end
 
 function equal(cmp, m1, m2) do
   _e1 = cons_enum(m1, --[ End ]--0);
@@ -201,7 +201,7 @@ function equal(cmp, m1, m2) do
       return true;
     end end  end 
   end;
-end
+end end
 
 function cardinal(param) do
   if (param) then do
@@ -209,7 +209,7 @@ function cardinal(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function height$1(param) do
   if (param) then do
@@ -217,7 +217,7 @@ function height$1(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create$1(l, x, d, r) do
   hl = height$1(l);
@@ -229,7 +229,7 @@ function create$1(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal$1(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -287,7 +287,7 @@ function bal$1(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add$1(x, data, m) do
   if (m) then do
@@ -332,7 +332,7 @@ function add$1(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function find(x, _param) do
   while(true) do
@@ -349,13 +349,13 @@ function find(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function of_list(kvs) do
   return List.fold_left((function (acc, param) do
                 return add(param[0], param[1], acc);
-              end), --[ Empty ]--0, kvs);
-end
+              end end), --[ Empty ]--0, kvs);
+end end
 
 int_map_suites_000 = --[ tuple ]--[
   "add",
@@ -383,7 +383,7 @@ int_map_suites_000 = --[ tuple ]--[
                 cardinal(v),
                 3
               ]);
-    end)
+    end end)
 ];
 
 int_map_suites_001 = --[ :: ]--[
@@ -432,7 +432,7 @@ int_map_suites_001 = --[ :: ]--[
                   compare(Caml_primitive.caml_int_compare, u, v),
                   0
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -480,9 +480,9 @@ int_map_suites_001 = --[ :: ]--[
                     true,
                     equal((function (x, y) do
                             return x == y;
-                          end), u, v)
+                          end end), u, v)
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -503,7 +503,7 @@ int_map_suites_001 = --[ :: ]--[
                       v,
                       -1
                     ]);
-          end)
+          end end)
       ],
       --[ [] ]--0
     ]

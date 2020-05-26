@@ -29,25 +29,25 @@ function g(a) do
   regression3(3, 2);
   regression4(3, (function (x) do
           return x;
-        end));
+        end end));
   return --[ () ]--0;
-end
+end end
 
 max2 = Math.max;
 
 function umax(a, b) do
   return max2(a, b);
-end
+end end
 
 function u(h) do
   return max2(3, h);
-end
+end end
 
 max3 = Math.max;
 
 function uu(h) do
   return max2(3, h);
-end
+end end
 
 empty = Object.keys(3);
 
@@ -61,7 +61,7 @@ Mt.from_pair_suites("Unsafe_ppx_test", --[ :: ]--[
                       2,
                       max(1, 2)
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -71,7 +71,7 @@ Mt.from_pair_suites("Unsafe_ppx_test", --[ :: ]--[
                         3,
                         v
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -81,7 +81,7 @@ Mt.from_pair_suites("Unsafe_ppx_test", --[ :: ]--[
                           2,
                           Math.max(1, 2)
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -91,7 +91,7 @@ Mt.from_pair_suites("Unsafe_ppx_test", --[ :: ]--[
                             ["a"],
                             Ffi_js_test.keys(({a : 3}))
                           ]);
-                end)
+                end end)
             ],
             --[ [] ]--0
           ]

@@ -18,20 +18,20 @@ function point_init($$class) do
         get_x,
         (function (self$1) do
             return self$1[x];
-          end),
+          end end),
         move,
         (function (self$1, d) do
             self$1[x] = self$1[x] + d | 0;
             return --[ () ]--0;
-          end)
+          end end)
       ]);
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x_init] = x_init$1;
       self$1[x] = x_init$1;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 point = CamlinternalOO.make_class(shared, point_init);
 

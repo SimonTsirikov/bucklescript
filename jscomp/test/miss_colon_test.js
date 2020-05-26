@@ -44,7 +44,7 @@ function $plus$colon(_f, _g) do
       
     end
   end;
-end
+end end
 
 function $star$colon(_f, _g) do
   while(true) do
@@ -103,7 +103,7 @@ function $star$colon(_f, _g) do
       
     end
   end;
-end
+end end
 
 function simplify(f) do
   local ___conditional___=(f.tag | 0);
@@ -118,7 +118,7 @@ function simplify(f) do
      do
     
   end
-end
+end end
 
 exports.$plus$colon = $plus$colon;
 exports.$star$colon = $star$colon;

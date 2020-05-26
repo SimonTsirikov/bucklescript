@@ -32,12 +32,12 @@ function eq(loc, param) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 int_config = do
   hi: 3,
@@ -84,7 +84,7 @@ same_type = --[ tuple ]--[
 v_obj = do
   hi: (function () do
       console.log("hei");
-      return --[ () ]--0;
+      return --[ () ]--0; end
     end)
 end;
 
@@ -124,19 +124,19 @@ eq("File \"ffi_js_test.ml\", line 54, characters 5-12", --[ tuple ]--[
 
 function vv(z) do
   return z.hh();
-end
+end end
 
 function v(z) do
   return z.ff();
-end
+end end
 
 function vvv(z) do
   return z.ff_pipe();
-end
+end end
 
 function vvvv(z) do
   return z.ff_pipe2();
-end
+end end
 
 function create_prim(param) do
   return do
@@ -144,7 +144,7 @@ function create_prim(param) do
           "x''": 3,
           "x''''": 2
         end;
-end
+end end
 
 function ffff(x) do
   x.setGADT = 3;
@@ -175,7 +175,7 @@ function ffff(x) do
     "x"
   ];
   return --[ () ]--0;
-end
+end end
 
 Mt.from_pair_suites("Ffi_js_test", suites.contents);
 

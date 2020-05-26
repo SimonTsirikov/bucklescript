@@ -79,12 +79,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function point_init($$class) do
   x_init = CamlinternalOO.new_variable($$class, "");
@@ -96,20 +96,20 @@ function point_init($$class) do
         get_x,
         (function (self$1) do
             return self$1[x];
-          end),
+          end end),
         move,
         (function (self$1, d) do
             self$1[x] = self$1[x] + d | 0;
             return --[ () ]--0;
-          end)
+          end end)
       ]);
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x_init] = x_init$1;
       self$1[x] = x_init$1;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 point = CamlinternalOO.make_class(shared$5, point_init);
 
@@ -129,16 +129,16 @@ function adjusted_point_init($$class) do
         get_x,
         (function (self$2) do
             return self$2[x];
-          end),
+          end end),
         get_offset,
         (function (self$2) do
             return self$2[x] - self$2[origin] | 0;
-          end),
+          end end),
         move,
         (function (self$2, d) do
             self$2[x] = self$2[x] + d | 0;
             return --[ () ]--0;
-          end)
+          end end)
       ]);
   return (function (env, self, x_init$1) do
       origin$1 = Caml_int32.imul(x_init$1 / 10 | 0, 10);
@@ -147,8 +147,8 @@ function adjusted_point_init($$class) do
       self$1[x_init] = x_init$1;
       self$1[x] = origin$1;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 adjusted_point = CamlinternalOO.make_class(shared$1, adjusted_point_init);
 
@@ -158,13 +158,13 @@ eq("File \"class3_test.ml\", line 28, characters 13-20", Caml_oo_curry.js1(29154
 
 function new_init(obj_init, self, x_init) do
   return Curry._2(obj_init, self, Caml_int32.imul(x_init / 10 | 0, 10));
-end
+end end
 
 partial_arg = point[0];
 
 function adjusted_point2_000(param, param$1) do
   return new_init(partial_arg, param, param$1);
-end
+end end
 
 function adjusted_point2_001(table) do
   env_init = Curry._1(point[1], table);
@@ -172,9 +172,9 @@ function adjusted_point2_001(table) do
       partial_arg = Curry._1(env_init, envs);
       return (function (param, param$1) do
           return new_init(partial_arg, param, param$1);
-        end);
-    end);
-end
+        end end);
+    end end);
+end end
 
 adjusted_point2_002 = point[2];
 
@@ -202,24 +202,24 @@ function printable_point_init($$class) do
         get_x,
         (function (self$4) do
             return self$4[x];
-          end),
+          end end),
         move,
         (function (self$4, d) do
             self$4[x] = self$4[x] + d | 0;
             return --[ () ]--0;
-          end),
+          end end),
         print,
         (function (self$4) do
             return Curry._1(self$4[0][get_x], self$4);
-          end)
+          end end)
       ]);
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x_init] = x_init$1;
       self$1[x] = x_init$1;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 printable_point = CamlinternalOO.make_class(shared$2, printable_point_init);
 
@@ -245,7 +245,7 @@ CamlinternalOO.set_methods($$class, [
       n,
       (function (self$5) do
           return 1;
-        end),
+        end end),
       register,
       (function (self$5) do
           ints.contents = --[ :: ]--[
@@ -253,11 +253,11 @@ CamlinternalOO.set_methods($$class, [
             ints.contents
           ];
           return --[ () ]--0;
-        end),
+        end end),
       len,
       (function (self$5) do
           return List.length(ints.contents);
-        end)
+        end end)
     ]);
 
 CamlinternalOO.init_class($$class);
@@ -287,21 +287,21 @@ function printable_point2_init($$class) do
         get_x,
         (function (self$6) do
             return self$6[x];
-          end),
+          end end),
         move,
         (function (self$6, d) do
             self$6[x] = self$6[x] + d | 0;
             return --[ () ]--0;
-          end),
+          end end),
         print,
         (function (self$6) do
             return Pervasives.print_int(Curry._1(self$6[0][get_x], self$6));
-          end)
+          end end)
       ]);
   CamlinternalOO.add_initializer($$class, (function (self$6) do
           console.log("initializingFile \"class3_test.ml\", line 76, characters 50-57");
           return Caml_array.caml_array_set(v, 0, self$6[x]);
-        end));
+        end end));
   return (function (env, self, x_init$1) do
       origin$1 = Caml_int32.imul(x_init$1 / 10 | 0, 10);
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
@@ -309,8 +309,8 @@ function printable_point2_init($$class) do
       self$1[x_init] = x_init$1;
       self$1[x] = origin$1;
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 printable_point2 = CamlinternalOO.make_class(shared$2, printable_point2_init);
 
@@ -328,13 +328,13 @@ function abstract_point_001($$class) do
   get_offset = ids[2];
   CamlinternalOO.set_method($$class, get_offset, (function (self$7) do
           return Curry._1(self$7[0][get_x], self$7) - self$7[x_init] | 0;
-        end));
+        end end));
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x_init] = x_init$1;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 abstract_point = --[ class ]--[
   0,
@@ -355,12 +355,12 @@ function vpoint_init($$class) do
         get_x,
         (function (self$8) do
             return self$8[x];
-          end),
+          end end),
         move,
         (function (self$8, d) do
             self$8[x] = self$8[x] + d | 0;
             return --[ () ]--0;
-          end)
+          end end)
       ]);
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
@@ -368,8 +368,8 @@ function vpoint_init($$class) do
       Curry._2(obj_init, self$1, x_init$1);
       self$1[x] = x_init$1;
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 vpoint = CamlinternalOO.make_class(shared$1, vpoint_init);
 
@@ -388,11 +388,11 @@ function abstract_point2_001($$class) do
   CamlinternalOO.set_method($$class, move, (function (self$9, d) do
           self$9[x] = self$9[x] + d | 0;
           return --[ () ]--0;
-        end));
+        end end));
   return (function (env, self) do
       return CamlinternalOO.create_object_opt(self, $$class);
-    end);
-end
+    end end);
+end end
 
 abstract_point2 = --[ class ]--[
   0,
@@ -409,15 +409,15 @@ function point2_init($$class) do
   x = inh[1];
   CamlinternalOO.set_method($$class, get_offset, (function (self$10) do
           return self$10[x] - self$10[x_init] | 0;
-        end));
+        end end));
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x_init] = x_init$1;
       Curry._1(obj_init, self$1);
       self$1[x] = x_init$1;
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 point2 = CamlinternalOO.make_class([
       "move",
@@ -447,24 +447,24 @@ function restricted_point_init($$class) do
         get_x,
         (function (self$11) do
             return self$11[x];
-          end),
+          end end),
         move,
         (function (self$11, d) do
             self$11[x] = self$11[x] + d | 0;
             return --[ () ]--0;
-          end),
+          end end),
         bump,
         (function (self$11) do
             return Curry._2(self$11[0][move], self$11, 1);
-          end)
+          end end)
       ]);
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x_init] = x_init$1;
       self$1[x] = x_init$1;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 restricted_point = CamlinternalOO.make_class([
       "bump",
@@ -489,8 +489,8 @@ function point_again_init($$class) do
       self$1[x] = x$1;
       Curry._2(obj_init, self$1, x$1);
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 point_again = CamlinternalOO.make_class(shared$4, point_again_init);
 
@@ -515,8 +515,8 @@ function point_again2_init($$class) do
       self$1[x] = x$1;
       Curry._2(obj_init, self$1, x$1);
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 point_again2 = CamlinternalOO.make_class(shared$4, point_again2_init);
 
@@ -544,8 +544,8 @@ function point_again3_init($$class) do
       self$1[x] = x$1;
       Curry._2(obj_init, self$1, x$1);
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 point_again3 = CamlinternalOO.make_class(shared$4, point_again3_init);
 

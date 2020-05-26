@@ -15,7 +15,7 @@ Mt.from_pair_suites("String_literal_print_test", --[ :: ]--[
                       js_zero_to_255,
                       zero_to_255
                     ]);
-          end)
+          end end)
       ],
       --[ [] ]--0
     ]);

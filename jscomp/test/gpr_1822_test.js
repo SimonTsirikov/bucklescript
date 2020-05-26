@@ -22,12 +22,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 myShape = --[ Circle ]--Block.__(0, [10]);
 

@@ -42,7 +42,7 @@ function bench(param) do
           ]
         ];
   end end 
-end
+end end
 
 console.time("test/bs_rbset_int_bench.ml 21");
 

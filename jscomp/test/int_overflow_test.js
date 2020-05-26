@@ -16,7 +16,7 @@ function hash_variant(s) do
   end else do
     return accu;
   end end 
-end
+end end
 
 function hash_variant2(s) do
   accu = 0;
@@ -29,7 +29,7 @@ function hash_variant2(s) do
   end else do
     return accu;
   end end 
-end
+end end
 
 function fib(n) do
   if (n ~= 0 and n ~= 1) then do
@@ -37,7 +37,7 @@ function fib(n) do
   end else do
     return 1;
   end end 
-end
+end end
 
 Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
       --[ tuple ]--[
@@ -47,7 +47,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                       true,
                       (Int32.max_int + 1 | 0) == Int32.min_int
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -57,7 +57,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                         true,
                         (Int32.min_int - Int32.one | 0) == Int32.max_int
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -67,7 +67,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                           2147483646,
                           (Int32.max_int + Int32.max_int | 0) + Int32.min_int | 0
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -77,7 +77,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                             -2,
                             Int32.max_int + Int32.max_int | 0
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -87,7 +87,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                               hash_variant("xxyyzzuuxxzzyy00112233"),
                               544087776
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -97,7 +97,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                                 hash_variant("xxyyzxzzyy"),
                                 -449896130
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -107,7 +107,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                                   hash_variant2("xxyyzzuuxxzzyy00112233"),
                                   544087776
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -117,7 +117,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                                     hash_variant2("xxyyzxzzyy"),
                                     -449896130
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -127,7 +127,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                                       -1,
                                       -1
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -137,7 +137,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                                         -1,
                                         -1
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -147,7 +147,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                                           -1,
                                           -1
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -157,7 +157,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                                             -33554431,
                                             -33554431
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -167,7 +167,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                                               Number("3") | 0,
                                               3
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -177,7 +177,7 @@ Mt.from_pair_suites("Int_overflow_test", --[ :: ]--[
                                                 Number("3.2") | 0,
                                                 3
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ [] ]--0
                               ]

@@ -9,7 +9,7 @@ function sum(v) do
     result = result + Caml_external_polyfill.resolve("caml_ba_get_1")(v, i) | 0;
   end
   return --[ () ]--0;
-end
+end end
 
 function init(v) do
   for i = 0 , Caml_external_polyfill.resolve("caml_ba_dim_1")(v) - 1 | 0 , 1 do
@@ -19,21 +19,21 @@ function init(v) do
     end;
   end
   return --[ () ]--0;
-end
+end end
 
 function init2(v) do
   for i = 0 , Caml_external_polyfill.resolve("caml_ba_dim_1")(v) - 1 | 0 , 1 do
     v[i] = i;
   end
   return --[ () ]--0;
-end
+end end
 
 function init3(v) do
   for i = 0 , Caml_external_polyfill.resolve("caml_ba_dim_1")(v) - 1 | 0 , 1 do
     Caml_external_polyfill.resolve("caml_ba_set_1")(v, i, i);
   end
   return --[ () ]--0;
-end
+end end
 
 BA1 = --[ alias ]--0;
 

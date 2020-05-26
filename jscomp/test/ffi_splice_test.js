@@ -21,12 +21,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function Make (){
   this.data = []
@@ -50,7 +50,7 @@ Make.prototype.add = function(){
 
 function f(x) do
   return x.test("a", "b").test("a", "b");
-end
+end end
 
 v = new Make(1, 2, 3, 4);
 

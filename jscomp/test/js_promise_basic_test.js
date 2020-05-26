@@ -26,12 +26,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function assert_bool(b) do
   if (b) then do
@@ -42,7 +42,7 @@ function assert_bool(b) do
           "Assertion Failure."
         ];
   end end 
-end
+end end
 
 function fail(param) do
   throw [
@@ -53,23 +53,23 @@ function fail(param) do
           2
         ]
       ];
-end
+end end
 
 function thenTest(param) do
   p = Promise.resolve(4);
   return p.then((function (x) do
                 return Promise.resolve(assert_bool(x == 4));
-              end));
-end
+              end end));
+end end
 
 function andThenTest(param) do
   p = Promise.resolve(6);
   return p.then((function (param) do
                   return Promise.resolve(12);
-                end)).then((function (y) do
+                end end)).then((function (y) do
                 return Promise.resolve(assert_bool(y == 12));
-              end));
-end
+              end end));
+end end
 
 h = Promise.resolve(--[ () ]--0);
 
@@ -87,54 +87,54 @@ function assertIsNotFound(x) do
           ]
         ];
   end end 
-end
+end end
 
 function catchTest(param) do
   p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.then(fail).catch(assertIsNotFound);
-end
+end end
 
 function orResolvedTest(param) do
   p = Promise.resolve(42);
   return p.catch((function (param) do
                     return Promise.resolve(22);
-                  end)).then((function (value) do
+                  end end)).then((function (value) do
                   return Promise.resolve(assert_bool(value == 42));
-                end)).catch(fail);
-end
+                end end)).catch(fail);
+end end
 
 function orRejectedTest(param) do
   p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.catch((function (param) do
                     return Promise.resolve(22);
-                  end)).then((function (value) do
+                  end end)).then((function (value) do
                   return Promise.resolve(assert_bool(value == 22));
-                end)).catch(fail);
-end
+                end end)).catch(fail);
+end end
 
 function orElseResolvedTest(param) do
   p = Promise.resolve(42);
   return p.catch((function (param) do
                     return Promise.resolve(22);
-                  end)).then((function (value) do
+                  end end)).then((function (value) do
                   return Promise.resolve(assert_bool(value == 42));
-                end)).catch(fail);
-end
+                end end)).catch(fail);
+end end
 
 function orElseRejectedResolveTest(param) do
   p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.catch((function (param) do
                     return Promise.resolve(22);
-                  end)).then((function (value) do
+                  end end)).then((function (value) do
                   return Promise.resolve(assert_bool(value == 22));
-                end)).catch(fail);
-end
+                end end)).catch(fail);
+end end
 
 function orElseRejectedRejectTest(param) do
   p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.catch((function (param) do
                     return Promise.reject(Caml_builtin_exceptions.stack_overflow);
-                  end)).then(fail).catch((function (error) do
+                  end end)).then(fail).catch((function (error) do
                 match = Caml_exceptions.caml_is_extension(error) and error == Caml_builtin_exceptions.stack_overflow and 0 or undefined;
                 if (match ~= undefined) then do
                   return h;
@@ -148,32 +148,32 @@ function orElseRejectedRejectTest(param) do
                         ]
                       ];
                 end end 
-              end));
-end
+              end end));
+end end
 
 function resolveTest(param) do
   p1 = Promise.resolve(10);
   return p1.then((function (x) do
                 return Promise.resolve(assert_bool(x == 10));
-              end));
-end
+              end end));
+end end
 
 function rejectTest(param) do
   p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.catch(assertIsNotFound);
-end
+end end
 
 function thenCatchChainResolvedTest(param) do
   p = Promise.resolve(20);
   return p.then((function (value) do
                   return Promise.resolve(assert_bool(value == 20));
-                end)).catch(fail);
-end
+                end end)).catch(fail);
+end end
 
 function thenCatchChainRejectedTest(param) do
   p = Promise.reject(Caml_builtin_exceptions.not_found);
   return p.then(fail).catch(assertIsNotFound);
-end
+end end
 
 function allResolvedTest(param) do
   p1 = Promise.resolve(1);
@@ -189,8 +189,8 @@ function allResolvedTest(param) do
                 assert_bool(Caml_array.caml_array_get(resolved, 1) == 2);
                 assert_bool(Caml_array.caml_array_get(resolved, 2) == 3);
                 return h;
-              end));
-end
+              end end));
+end end
 
 function allRejectTest(param) do
   p1 = Promise.resolve(1);
@@ -204,8 +204,8 @@ function allRejectTest(param) do
   return Promise.all(promises).then(fail).catch((function (error) do
                 assert_bool(error == Caml_builtin_exceptions.not_found);
                 return h;
-              end));
-end
+              end end));
+end end
 
 function raceTest(param) do
   p1 = Promise.resolve("first");
@@ -218,26 +218,26 @@ function raceTest(param) do
   ];
   return Promise.race(promises).then((function (resolved) do
                   return h;
-                end)).catch(fail);
-end
+                end end)).catch(fail);
+end end
 
 function createPromiseRejectTest(param) do
   return new Promise((function (resolve, reject) do
                   return reject(Caml_builtin_exceptions.not_found);
-                end)).catch((function (error) do
+                end end)).catch((function (error) do
                 assert_bool(error == Caml_builtin_exceptions.not_found);
                 return h;
-              end));
-end
+              end end));
+end end
 
 function createPromiseFulfillTest(param) do
   return new Promise((function (resolve, param) do
                     return resolve("success");
-                  end)).then((function (resolved) do
+                  end end)).then((function (resolved) do
                   assert_bool(resolved == "success");
                   return h;
-                end)).catch(fail);
-end
+                end end)).catch(fail);
+end end
 
 thenTest(--[ () ]--0);
 
@@ -281,7 +281,7 @@ Promise.all(--[ tuple ]--[
               3
             ]);
         return Promise.resolve(--[ () ]--0);
-      end));
+      end end));
 
 console.log(List.length(suites.contents));
 
@@ -293,11 +293,11 @@ twop = Promise.resolve(2);
 
 function then_(prim, prim$1) do
   return prim$1.then(Curry.__1(prim));
-end
+end end
 
 function re(prim) do
   return Promise.resolve(prim);
-end
+end end
 
 Mt.from_promise_suites("Js_promise_basic_test", --[ :: ]--[
       --[ tuple ]--[
@@ -307,7 +307,7 @@ Mt.from_promise_suites("Js_promise_basic_test", --[ :: ]--[
                               x,
                               2
                             ]));
-              end))
+              end end))
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -317,7 +317,7 @@ Mt.from_promise_suites("Js_promise_basic_test", --[ :: ]--[
                                 x,
                                 3
                               ]));
-                end))
+                end end))
         ],
         --[ [] ]--0
       ]

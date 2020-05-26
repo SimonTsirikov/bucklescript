@@ -15,7 +15,7 @@ function f(param) do
             ]),
           "%d%s"
         ];
-end
+end end
 
 exports.f = f;
 --[ No side effect ]--

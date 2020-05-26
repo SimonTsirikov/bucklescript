@@ -21,12 +21,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 eq("File \"gpr_1749_test.ml\", line 18, characters 6-13", 0, 0);
 

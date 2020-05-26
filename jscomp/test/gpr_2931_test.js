@@ -12,7 +12,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function fake_c2(a_type, b_type) do
   local ___conditional___=(a_type);
@@ -38,7 +38,7 @@ function fake_c2(a_type, b_type) do
   end else do
     return 0;
   end end  end 
-end
+end end
 
 eq("File \"gpr_2931_test.ml\", line 19, characters 6-13", 3, fake_c2("number", "xx"));
 

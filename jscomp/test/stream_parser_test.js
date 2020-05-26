@@ -28,7 +28,7 @@ function parse(token) do
     end else do
       return Queue.pop(look_ahead);
     end end 
-  end;
+  end end;
   parse_atom = function (param) do
     e = token$1(--[ () ]--0);
     local ___conditional___=(e.tag | 0);
@@ -69,7 +69,7 @@ function parse(token) do
         end end
         
     end
-  end;
+  end end;
   parse_term_aux = function (e1) do
     e = token$1(--[ () ]--0);
     if (e.tag) then do
@@ -90,7 +90,7 @@ function parse(token) do
           
       end
     end end 
-  end;
+  end end;
   parse_expr_aux = function (e1) do
     e = token$1(--[ () ]--0);
     if (e.tag) then do
@@ -111,7 +111,7 @@ function parse(token) do
           
       end
     end end 
-  end;
+  end end;
   r = parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0)));
   return --[ tuple ]--[
           r,
@@ -120,9 +120,9 @@ function parse(token) do
                           x,
                           acc
                         ];
-                end), --[ [] ]--0, look_ahead)
+                end end), --[ [] ]--0, look_ahead)
         ];
-end
+end end
 
 lexer = Genlex.make_lexer(--[ :: ]--[
       "(",
@@ -148,8 +148,8 @@ function token(chars) do
   strm = lexer(chars);
   return (function (param) do
       return Stream.next(strm);
-    end);
-end
+    end end);
+end end
 
 function l_parse(token) do
   look_ahead = do
@@ -168,7 +168,7 @@ function l_parse(token) do
     end else do
       return Queue.pop(look_ahead);
     end end 
-  end;
+  end end;
   parse_f_aux = function (_a) do
     while(true) do
       a = _a;
@@ -194,7 +194,7 @@ function l_parse(token) do
         end
       end end 
     end;
-  end;
+  end end;
   parse_f = function (param) do
     t = token$1(--[ () ]--0);
     local ___conditional___=(t.tag | 0);
@@ -233,7 +233,7 @@ function l_parse(token) do
         end end
         
     end
-  end;
+  end end;
   parse_t_aux = function (_a) do
     while(true) do
       a = _a;
@@ -259,7 +259,7 @@ function l_parse(token) do
         end
       end end 
     end;
-  end;
+  end end;
   r = parse_t_aux(parse_f_aux(parse_f(--[ () ]--0)));
   return --[ tuple ]--[
           r,
@@ -268,9 +268,9 @@ function l_parse(token) do
                           x,
                           acc
                         ];
-                end), --[ [] ]--0, look_ahead)
+                end end), --[ [] ]--0, look_ahead)
         ];
-end
+end end
 
 suites = do
   contents: --[ [] ]--0
@@ -290,12 +290,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 match = parse(token(Stream.of_string("1 + 2 + (3  - 2) * 3 * 3  - 2 a")));
 

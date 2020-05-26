@@ -10,7 +10,7 @@ suites_000 = --[ tuple ]--[
                 "1.23456e+5",
                 (123456).toExponential()
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -21,7 +21,7 @@ suites_001 = --[ :: ]--[
                   "1.23e+5",
                   (123456).toExponential(2)
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -31,7 +31,7 @@ suites_001 = --[ :: ]--[
                     "1.2346e+5",
                     (123456).toExponential(4)
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -41,7 +41,7 @@ suites_001 = --[ :: ]--[
                       "0.00000000000000000000e+0",
                       (0).toExponential(20)
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -50,8 +50,8 @@ suites_001 = --[ :: ]--[
               return --[ ThrowAny ]--Block.__(7, [(function (param) do
                             (0).toExponential(101);
                             return --[ () ]--0;
-                          end)]);
-            end)
+                          end end)]);
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -60,8 +60,8 @@ suites_001 = --[ :: ]--[
                 return --[ ThrowAny ]--Block.__(7, [(function (param) do
                               (0).toExponential(-1);
                               return --[ () ]--0;
-                            end)]);
-              end)
+                            end end)]);
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -71,7 +71,7 @@ suites_001 = --[ :: ]--[
                             "123456",
                             (123456).toPrecision()
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -81,7 +81,7 @@ suites_001 = --[ :: ]--[
                               "1.2e+5",
                               (123456).toPrecision(2)
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -91,7 +91,7 @@ suites_001 = --[ :: ]--[
                                 "1.235e+5",
                                 (123456).toPrecision(4)
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -101,7 +101,7 @@ suites_001 = --[ :: ]--[
                                   "0.0000000000000000000",
                                   (0).toPrecision(20)
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -110,8 +110,8 @@ suites_001 = --[ :: ]--[
                           return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                         (0).toPrecision(101);
                                         return --[ () ]--0;
-                                      end)]);
-                        end)
+                                      end end)]);
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -120,8 +120,8 @@ suites_001 = --[ :: ]--[
                             return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                           (0).toPrecision(-1);
                                           return --[ () ]--0;
-                                        end)]);
-                          end)
+                                        end end)]);
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -131,7 +131,7 @@ suites_001 = --[ :: ]--[
                                         "123",
                                         (123).toString()
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -141,7 +141,7 @@ suites_001 = --[ :: ]--[
                                           "11110001001000000",
                                           (123456).toString(2)
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -151,7 +151,7 @@ suites_001 = --[ :: ]--[
                                             "1e240",
                                             (123456).toString(16)
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -161,7 +161,7 @@ suites_001 = --[ :: ]--[
                                               "2n9c",
                                               (123456).toString(36)
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -170,8 +170,8 @@ suites_001 = --[ :: ]--[
                                       return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                                     (0).toString(37);
                                                     return --[ () ]--0;
-                                                  end)]);
-                                    end)
+                                                  end end)]);
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -180,8 +180,8 @@ suites_001 = --[ :: ]--[
                                         return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                                       (0).toString(1);
                                                       return --[ () ]--0;
-                                                    end)]);
-                                      end)
+                                                    end end)]);
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -190,8 +190,8 @@ suites_001 = --[ :: ]--[
                                           return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                                         (0).toString(-1);
                                                         return --[ () ]--0;
-                                                      end)]);
-                                        end)
+                                                      end end)]);
+                                        end end)
                                     ],
                                     --[ [] ]--0
                                   ]

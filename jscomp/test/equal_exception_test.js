@@ -46,7 +46,7 @@ function is_equal(param) do
   end
    end 
   return 0;
-end
+end end
 
 function is_exception(param) do
   try do
@@ -59,7 +59,7 @@ function is_exception(param) do
       throw exn;
     end end 
   end
-end
+end end
 
 function is_normal_exception(_x) do
   A = Caml_exceptions.create("A");
@@ -82,7 +82,7 @@ function is_normal_exception(_x) do
       throw exn;
     end end 
   end
-end
+end end
 
 function is_arbitrary_exception(param) do
   A = Caml_exceptions.create("A");
@@ -92,7 +92,7 @@ function is_arbitrary_exception(param) do
   catch (exn)do
     return --[ () ]--0;
   end
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "is_equal",

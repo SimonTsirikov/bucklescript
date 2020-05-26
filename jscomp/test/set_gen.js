@@ -22,7 +22,7 @@ function cons_enum(_s, _e) do
       return e;
     end end 
   end;
-end
+end end
 
 function height(param) do
   if (param) then do
@@ -30,7 +30,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function min_elt(_param) do
   while(true) do
@@ -47,7 +47,7 @@ function min_elt(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function max_elt(_param) do
   while(true) do
@@ -64,7 +64,7 @@ function max_elt(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function is_empty(param) do
   if (param) then do
@@ -72,7 +72,7 @@ function is_empty(param) do
   end else do
     return true;
   end end 
-end
+end end
 
 function cardinal_aux(_acc, _param) do
   while(true) do
@@ -86,11 +86,11 @@ function cardinal_aux(_acc, _param) do
       return acc;
     end end 
   end;
-end
+end end
 
 function cardinal(s) do
   return cardinal_aux(0, s);
-end
+end end
 
 function elements_aux(_accu, _param) do
   while(true) do
@@ -107,11 +107,11 @@ function elements_aux(_accu, _param) do
       return accu;
     end end 
   end;
-end
+end end
 
 function elements(s) do
   return elements_aux(--[ [] ]--0, s);
-end
+end end
 
 function iter(f, _param) do
   while(true) do
@@ -125,7 +125,7 @@ function iter(f, _param) do
       return --[ () ]--0;
     end end 
   end;
-end
+end end
 
 function fold(f, _s, _accu) do
   while(true) do
@@ -139,7 +139,7 @@ function fold(f, _s, _accu) do
       return accu;
     end end 
   end;
-end
+end end
 
 function for_all(p, _param) do
   while(true) do
@@ -155,7 +155,7 @@ function for_all(p, _param) do
       return true;
     end end 
   end;
-end
+end end
 
 function exists(p, _param) do
   while(true) do
@@ -171,7 +171,7 @@ function exists(p, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function max_int3(a, b, c) do
   if (a >= b) then do
@@ -185,7 +185,7 @@ function max_int3(a, b, c) do
   end else do
     return c;
   end end  end 
-end
+end end
 
 function max_int_2(a, b) do
   if (a >= b) then do
@@ -193,7 +193,7 @@ function max_int_2(a, b) do
   end else do
     return b;
   end end 
-end
+end end
 
 Height_invariant_broken = Caml_exceptions.create("Set_gen.Height_invariant_broken");
 
@@ -217,12 +217,12 @@ function check_height_and_diff(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function check(tree) do
   check_height_and_diff(tree);
   return --[ () ]--0;
-end
+end end
 
 function create(l, v, r) do
   hl = l and l[3] or 0;
@@ -233,7 +233,7 @@ function create(l, v, r) do
           r,
           hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function internal_bal(l, v, r) do
   hl = l and l[3] or 0;
@@ -304,7 +304,7 @@ function internal_bal(l, v, r) do
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function remove_min_elt(param) do
   if (param) then do
@@ -320,7 +320,7 @@ function remove_min_elt(param) do
           "Set.remove_min_elt"
         ];
   end end 
-end
+end end
 
 function singleton(x) do
   return --[ Node ]--[
@@ -329,7 +329,7 @@ function singleton(x) do
           --[ Empty ]--0,
           1
         ];
-end
+end end
 
 function internal_merge(l, r) do
   if (l) then do
@@ -341,7 +341,7 @@ function internal_merge(l, r) do
   end else do
     return r;
   end end 
-end
+end end
 
 function add_min_element(v, param) do
   if (param) then do
@@ -349,7 +349,7 @@ function add_min_element(v, param) do
   end else do
     return singleton(v);
   end end 
-end
+end end
 
 function add_max_element(v, param) do
   if (param) then do
@@ -357,7 +357,7 @@ function add_max_element(v, param) do
   end else do
     return singleton(v);
   end end 
-end
+end end
 
 function internal_join(l, v, r) do
   if (l) then do
@@ -377,7 +377,7 @@ function internal_join(l, v, r) do
   end else do
     return add_min_element(v, r);
   end end 
-end
+end end
 
 function internal_concat(t1, t2) do
   if (t1) then do
@@ -389,7 +389,7 @@ function internal_concat(t1, t2) do
   end else do
     return t2;
   end end 
-end
+end end
 
 function filter(p, param) do
   if (param) then do
@@ -405,7 +405,7 @@ function filter(p, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function partition(p, param) do
   if (param) then do
@@ -434,7 +434,7 @@ function partition(p, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function of_sorted_list(l) do
   sub = function (n, l) do
@@ -535,9 +535,9 @@ function of_sorted_list(l) do
             ]
           ];
     end end 
-  end;
+  end end;
   return sub(List.length(l), l)[0];
-end
+end end
 
 function of_sorted_array(l) do
   sub = function (start, n, l) do
@@ -593,9 +593,9 @@ function of_sorted_array(l) do
       right = sub(mid + 1 | 0, (n - nl | 0) - 1 | 0, l);
       return create(left, v, right);
     end end  end  end  end 
-  end;
+  end end;
   return sub(0, #l, l);
-end
+end end
 
 function is_ordered(cmp, tree) do
   is_ordered_min_max = function (tree) do
@@ -670,14 +670,14 @@ function is_ordered(cmp, tree) do
     end else do
       return --[ Empty ]--50834029;
     end end 
-  end;
+  end end;
   return is_ordered_min_max(tree) ~= --[ No ]--17505;
-end
+end end
 
 function invariant(cmp, t) do
   check_height_and_diff(t);
   return is_ordered(cmp, t);
-end
+end end
 
 function compare_aux(cmp, _e1, _e2) do
   while(true) do
@@ -702,11 +702,11 @@ function compare_aux(cmp, _e1, _e2) do
       return 0;
     end end  end 
   end;
-end
+end end
 
 function compare(cmp, s1, s2) do
   return compare_aux(cmp, cons_enum(s1, --[ End ]--0), cons_enum(s2, --[ End ]--0));
-end
+end end
 
 empty = --[ Empty ]--0;
 

@@ -22,46 +22,46 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f0(x, y, z) do
   return (x + y | 0) + z | 0;
-end
+end end
 
 function f1(x) do
   return (function (y, z) do
       return (x + y | 0) + z | 0;
-    end);
-end
+    end end);
+end end
 
 function f2(x, y) do
   return (function (z) do
       return (x + y | 0) + z | 0;
-    end);
-end
+    end end);
+end end
 
 function f3(x) do
   return (function (y, z) do
       return (x + y | 0) + z | 0;
-    end);
-end
+    end end);
+end end
 
 eq("File \"arity_deopt.ml\", line 45, characters 7-14", 6, f0(1, 2, 3));
 
 eq("File \"arity_deopt.ml\", line 46, characters 11-18", 6, (function (y, z) do
           return (1 + y | 0) + z | 0;
-        end)(2, 3));
+        end end)(2, 3));
 
 eq("File \"arity_deopt.ml\", line 47, characters 15-22", 6, Curry._1(f2(1, 2), 3));
 
 eq("File \"arity_deopt.ml\", line 48, characters 15-22", 6, (function (y, z) do
           return (1 + y | 0) + z | 0;
-        end)(2, 3));
+        end end)(2, 3));
 
 Mt.from_pair_suites("Arity_deopt", suites.contents);
 

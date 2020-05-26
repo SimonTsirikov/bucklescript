@@ -22,22 +22,22 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function foo(x) do
   return Caml_format.caml_int_of_string(x) ~= 3;
-end
+end end
 
 function badInlining(obj) do
   x = obj.field;
   Caml_format.caml_int_of_string(x) ~= 3;
   return --[ () ]--0;
-end
+end end
 
 eq("File \"gpr_1728_test.ml\", line 17, characters 6-13", badInlining(do
           field: "3"

@@ -21,12 +21,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function hi (cb){
     cb ();
@@ -44,7 +44,7 @@ hi((function () do
           xs.contents
         ];
         return --[ () ]--0;
-      end));
+      end end));
 
 hi((function () do
         xs.contents = --[ :: ]--[
@@ -52,7 +52,7 @@ hi((function () do
           xs.contents
         ];
         return --[ () ]--0;
-      end));
+      end end));
 
 eq("File \"bs_auto_uncurry_test.ml\", line 27, characters 7-14", xs.contents, --[ :: ]--[
       --[ () ]--0,
@@ -68,7 +68,7 @@ eq("File \"bs_auto_uncurry_test.ml\", line 33, characters 7-14", [
         3
       ].map((function (x) do
             return x + 1 | 0;
-          end)), [
+          end end)), [
       2,
       3,
       4
@@ -80,7 +80,7 @@ eq("File \"bs_auto_uncurry_test.ml\", line 36, characters 7-14", [
         3
       ].map((function (x) do
             return x + 1 | 0;
-          end)), [
+          end end)), [
       2,
       3,
       4
@@ -92,7 +92,7 @@ eq("File \"bs_auto_uncurry_test.ml\", line 40, characters 7-14", [
         3
       ].reduce((function (prim, prim$1) do
             return prim + prim$1 | 0;
-          end), 0), 6);
+          end end), 0), 6);
 
 eq("File \"bs_auto_uncurry_test.ml\", line 44, characters 7-14", [
         1,
@@ -100,7 +100,7 @@ eq("File \"bs_auto_uncurry_test.ml\", line 44, characters 7-14", [
         3
       ].reduce((function (x, y, i) do
             return (x + y | 0) + i | 0;
-          end), 0), 9);
+          end end), 0), 9);
 
 eq("File \"bs_auto_uncurry_test.ml\", line 48, characters 7-14", [
         1,
@@ -108,7 +108,7 @@ eq("File \"bs_auto_uncurry_test.ml\", line 48, characters 7-14", [
         3
       ].some((function (x) do
             return x < 1;
-          end)), false);
+          end end)), false);
 
 eq("File \"bs_auto_uncurry_test.ml\", line 52, characters 7-14", [
         1,
@@ -116,7 +116,7 @@ eq("File \"bs_auto_uncurry_test.ml\", line 52, characters 7-14", [
         3
       ].every((function (x) do
             return x > 0;
-          end)), true);
+          end end)), true);
 
 Mt.from_pair_suites("Bs_auto_uncurry_test", suites.contents);
 

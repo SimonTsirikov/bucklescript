@@ -21,12 +21,12 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 Xx = do
   f: (function (prim, prim$1) do
       return Caml_external_polyfill.resolve("hfiehi")(prim, prim$1);
-    end)
+    end end)
 end;
 
 Int3 = Caml_module.init_mod(--[ tuple ]--[
@@ -63,7 +63,7 @@ Intb = Caml_module.init_mod(--[ tuple ]--[
 
 a = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Intb.a);
-      end));
+      end end));
 
 Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
             --[ Lazy ]--1,
@@ -74,7 +74,7 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
 
 a$1 = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Inta.a) + 1 | 0;
-      end));
+      end end));
 
 Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
             --[ Lazy ]--1,
@@ -118,7 +118,7 @@ Intb$1 = Caml_module.init_mod(--[ tuple ]--[
 
 a$2 = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Intb$1.a) + 1 | 0;
-      end));
+      end end));
 
 Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
             --[ Lazy ]--1,

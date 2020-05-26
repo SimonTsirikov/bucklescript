@@ -11,7 +11,7 @@ suites_000 = --[ tuple ]--[
                 false,
                 NaN == NaN
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -22,7 +22,7 @@ suites_001 = --[ :: ]--[
                   true,
                   isNaN(NaN)
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -32,7 +32,7 @@ suites_001 = --[ :: ]--[
                     false,
                     isNaN(0)
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -42,7 +42,7 @@ suites_001 = --[ :: ]--[
                       false,
                       isFinite(Pervasives.infinity)
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -52,7 +52,7 @@ suites_001 = --[ :: ]--[
                         false,
                         isFinite(Pervasives.neg_infinity)
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -62,7 +62,7 @@ suites_001 = --[ :: ]--[
                           false,
                           isFinite(NaN)
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -72,7 +72,7 @@ suites_001 = --[ :: ]--[
                             true,
                             isFinite(0)
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -82,7 +82,7 @@ suites_001 = --[ :: ]--[
                               "1.23456e+2",
                               (123.456).toExponential()
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -92,7 +92,7 @@ suites_001 = --[ :: ]--[
                                 "1.2e+21",
                                 (1.2e21).toExponential()
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -102,7 +102,7 @@ suites_001 = --[ :: ]--[
                                   "1.23e+2",
                                   (123.456).toExponential(2)
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -112,7 +112,7 @@ suites_001 = --[ :: ]--[
                                     "1.2346e+2",
                                     (123.456).toExponential(4)
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -122,7 +122,7 @@ suites_001 = --[ :: ]--[
                                       "0.00000000000000000000e+0",
                                       (0).toExponential(20)
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -131,8 +131,8 @@ suites_001 = --[ :: ]--[
                               return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                             (0).toExponential(101);
                                             return --[ () ]--0;
-                                          end)]);
-                            end)
+                                          end end)]);
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -141,8 +141,8 @@ suites_001 = --[ :: ]--[
                                 return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                               (0).toExponential(-1);
                                               return --[ () ]--0;
-                                            end)]);
-                              end)
+                                            end end)]);
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -152,7 +152,7 @@ suites_001 = --[ :: ]--[
                                             "123",
                                             (123.456).toFixed()
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -162,7 +162,7 @@ suites_001 = --[ :: ]--[
                                               "1.2e+21",
                                               (1.2e21).toFixed()
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -172,7 +172,7 @@ suites_001 = --[ :: ]--[
                                                 "123.46",
                                                 (123.456).toFixed(2)
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -182,7 +182,7 @@ suites_001 = --[ :: ]--[
                                                   "123.4560",
                                                   (123.456).toFixed(4)
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -192,7 +192,7 @@ suites_001 = --[ :: ]--[
                                                     "0.00000000000000000000",
                                                     (0).toFixed(20)
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
@@ -201,8 +201,8 @@ suites_001 = --[ :: ]--[
                                             return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                                           (0).toFixed(101);
                                                           return --[ () ]--0;
-                                                        end)]);
-                                          end)
+                                                        end end)]);
+                                          end end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
@@ -211,8 +211,8 @@ suites_001 = --[ :: ]--[
                                               return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                                             (0).toFixed(-1);
                                                             return --[ () ]--0;
-                                                          end)]);
-                                            end)
+                                                          end end)]);
+                                            end end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
@@ -222,7 +222,7 @@ suites_001 = --[ :: ]--[
                                                           "123.456",
                                                           (123.456).toPrecision()
                                                         ]);
-                                              end)
+                                              end end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
@@ -232,7 +232,7 @@ suites_001 = --[ :: ]--[
                                                             "1.2e+21",
                                                             (1.2e21).toPrecision()
                                                           ]);
-                                                end)
+                                                end end)
                                             ],
                                             --[ :: ]--[
                                               --[ tuple ]--[
@@ -242,7 +242,7 @@ suites_001 = --[ :: ]--[
                                                               "1.2e+2",
                                                               (123.456).toPrecision(2)
                                                             ]);
-                                                  end)
+                                                  end end)
                                               ],
                                               --[ :: ]--[
                                                 --[ tuple ]--[
@@ -252,7 +252,7 @@ suites_001 = --[ :: ]--[
                                                                 "123.5",
                                                                 (123.456).toPrecision(4)
                                                               ]);
-                                                    end)
+                                                    end end)
                                                 ],
                                                 --[ :: ]--[
                                                   --[ tuple ]--[
@@ -262,7 +262,7 @@ suites_001 = --[ :: ]--[
                                                                   "0.0000000000000000000",
                                                                   (0).toPrecision(20)
                                                                 ]);
-                                                      end)
+                                                      end end)
                                                   ],
                                                   --[ :: ]--[
                                                     --[ tuple ]--[
@@ -271,8 +271,8 @@ suites_001 = --[ :: ]--[
                                                           return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                                                         (0).toPrecision(101);
                                                                         return --[ () ]--0;
-                                                                      end)]);
-                                                        end)
+                                                                      end end)]);
+                                                        end end)
                                                     ],
                                                     --[ :: ]--[
                                                       --[ tuple ]--[
@@ -281,8 +281,8 @@ suites_001 = --[ :: ]--[
                                                             return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                                                           (0).toPrecision(-1);
                                                                           return --[ () ]--0;
-                                                                        end)]);
-                                                          end)
+                                                                        end end)]);
+                                                          end end)
                                                       ],
                                                       --[ :: ]--[
                                                         --[ tuple ]--[
@@ -292,7 +292,7 @@ suites_001 = --[ :: ]--[
                                                                         "1.23",
                                                                         (1.23).toString()
                                                                       ]);
-                                                            end)
+                                                            end end)
                                                         ],
                                                         --[ :: ]--[
                                                           --[ tuple ]--[
@@ -302,7 +302,7 @@ suites_001 = --[ :: ]--[
                                                                           "1.2e+21",
                                                                           (1.2e21).toString()
                                                                         ]);
-                                                              end)
+                                                              end end)
                                                           ],
                                                           --[ :: ]--[
                                                             --[ tuple ]--[
@@ -312,7 +312,7 @@ suites_001 = --[ :: ]--[
                                                                             "1111011.0111010010111100011010100111111011111001110111",
                                                                             (123.456).toString(2)
                                                                           ]);
-                                                                end)
+                                                                end end)
                                                             ],
                                                             --[ :: ]--[
                                                               --[ tuple ]--[
@@ -322,7 +322,7 @@ suites_001 = --[ :: ]--[
                                                                               "7b.74bc6a7ef9dc",
                                                                               (123.456).toString(16)
                                                                             ]);
-                                                                  end)
+                                                                  end end)
                                                               ],
                                                               --[ :: ]--[
                                                                 --[ tuple ]--[
@@ -332,7 +332,7 @@ suites_001 = --[ :: ]--[
                                                                                 "3f",
                                                                                 (123).toString(36)
                                                                               ]);
-                                                                    end)
+                                                                    end end)
                                                                 ],
                                                                 --[ :: ]--[
                                                                   --[ tuple ]--[
@@ -341,8 +341,8 @@ suites_001 = --[ :: ]--[
                                                                         return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                                                                       (0).toString(37);
                                                                                       return --[ () ]--0;
-                                                                                    end)]);
-                                                                      end)
+                                                                                    end end)]);
+                                                                      end end)
                                                                   ],
                                                                   --[ :: ]--[
                                                                     --[ tuple ]--[
@@ -351,8 +351,8 @@ suites_001 = --[ :: ]--[
                                                                           return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                                                                         (0).toString(1);
                                                                                         return --[ () ]--0;
-                                                                                      end)]);
-                                                                        end)
+                                                                                      end end)]);
+                                                                        end end)
                                                                     ],
                                                                     --[ :: ]--[
                                                                       --[ tuple ]--[
@@ -361,8 +361,8 @@ suites_001 = --[ :: ]--[
                                                                             return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                                                                           (0).toString(-1);
                                                                                           return --[ () ]--0;
-                                                                                        end)]);
-                                                                          end)
+                                                                                        end end)]);
+                                                                          end end)
                                                                       ],
                                                                       --[ :: ]--[
                                                                         --[ tuple ]--[
@@ -372,7 +372,7 @@ suites_001 = --[ :: ]--[
                                                                                         123,
                                                                                         Number("123")
                                                                                       ]);
-                                                                            end)
+                                                                            end end)
                                                                         ],
                                                                         --[ :: ]--[
                                                                           --[ tuple ]--[
@@ -382,7 +382,7 @@ suites_001 = --[ :: ]--[
                                                                                           12.3,
                                                                                           Number("12.3")
                                                                                         ]);
-                                                                              end)
+                                                                              end end)
                                                                           ],
                                                                           --[ :: ]--[
                                                                             --[ tuple ]--[
@@ -392,7 +392,7 @@ suites_001 = --[ :: ]--[
                                                                                             0,
                                                                                             Number("")
                                                                                           ]);
-                                                                                end)
+                                                                                end end)
                                                                             ],
                                                                             --[ :: ]--[
                                                                               --[ tuple ]--[
@@ -402,7 +402,7 @@ suites_001 = --[ :: ]--[
                                                                                               17,
                                                                                               Number("0x11")
                                                                                             ]);
-                                                                                  end)
+                                                                                  end end)
                                                                               ],
                                                                               --[ :: ]--[
                                                                                 --[ tuple ]--[
@@ -412,7 +412,7 @@ suites_001 = --[ :: ]--[
                                                                                                 3,
                                                                                                 Number("0b11")
                                                                                               ]);
-                                                                                    end)
+                                                                                    end end)
                                                                                 ],
                                                                                 --[ :: ]--[
                                                                                   --[ tuple ]--[
@@ -422,7 +422,7 @@ suites_001 = --[ :: ]--[
                                                                                                   9,
                                                                                                   Number("0o11")
                                                                                                 ]);
-                                                                                      end)
+                                                                                      end end)
                                                                                   ],
                                                                                   --[ :: ]--[
                                                                                     --[ tuple ]--[
@@ -432,7 +432,7 @@ suites_001 = --[ :: ]--[
                                                                                                     true,
                                                                                                     isNaN(Number("foo"))
                                                                                                   ]);
-                                                                                        end)
+                                                                                        end end)
                                                                                     ],
                                                                                     --[ [] ]--0
                                                                                   ]

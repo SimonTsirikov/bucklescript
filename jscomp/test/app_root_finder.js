@@ -21,7 +21,7 @@ function find_package_json(_dir) do
       continue ;
     end end 
   end;
-end
+end end
 
 match = typeof __dirname == "undefined" and undefined or __dirname;
 

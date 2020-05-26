@@ -11,7 +11,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, x, d, r) do
   hl = height(l);
@@ -23,7 +23,7 @@ function create(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function singleton(x, d) do
   return --[ Node ]--[
@@ -33,7 +33,7 @@ function singleton(x, d) do
           --[ r : Empty ]--0,
           --[ h ]--1
         ];
-end
+end end
 
 function bal(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -91,7 +91,7 @@ function bal(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function is_empty(param) do
   if (param) then do
@@ -99,7 +99,7 @@ function is_empty(param) do
   end else do
     return true;
   end end 
-end
+end end
 
 function add(x, data, m) do
   if (m) then do
@@ -144,7 +144,7 @@ function add(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function find(x, _param) do
   while(true) do
@@ -161,7 +161,7 @@ function find(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_first(f, _param) do
   while(true) do
@@ -203,7 +203,7 @@ function find_first(f, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_first_opt(f, _param) do
   while(true) do
@@ -245,7 +245,7 @@ function find_first_opt(f, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function find_last(f, _param) do
   while(true) do
@@ -287,7 +287,7 @@ function find_last(f, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_last_opt(f, _param) do
   while(true) do
@@ -329,7 +329,7 @@ function find_last_opt(f, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function find_opt(x, _param) do
   while(true) do
@@ -346,7 +346,7 @@ function find_opt(x, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function mem(x, _param) do
   while(true) do
@@ -363,7 +363,7 @@ function mem(x, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function min_binding(_param) do
   while(true) do
@@ -383,7 +383,7 @@ function min_binding(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function min_binding_opt(_param) do
   while(true) do
@@ -403,7 +403,7 @@ function min_binding_opt(_param) do
       return ;
     end end 
   end;
-end
+end end
 
 function max_binding(_param) do
   while(true) do
@@ -423,7 +423,7 @@ function max_binding(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function max_binding_opt(_param) do
   while(true) do
@@ -443,7 +443,7 @@ function max_binding_opt(_param) do
       return ;
     end end 
   end;
-end
+end end
 
 function remove_min_binding(param) do
   if (param) then do
@@ -459,7 +459,7 @@ function remove_min_binding(param) do
           "Map.remove_min_elt"
         ];
   end end 
-end
+end end
 
 function merge(t1, t2) do
   if (t1) then do
@@ -472,7 +472,7 @@ function merge(t1, t2) do
   end else do
     return t2;
   end end 
-end
+end end
 
 function remove(x, m) do
   if (m) then do
@@ -501,7 +501,7 @@ function remove(x, m) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function update(x, f, m) do
   if (m) then do
@@ -557,7 +557,7 @@ function update(x, f, m) do
       return --[ Empty ]--0;
     end end 
   end end 
-end
+end end
 
 function iter(f, _param) do
   while(true) do
@@ -571,7 +571,7 @@ function iter(f, _param) do
       return --[ () ]--0;
     end end 
   end;
-end
+end end
 
 function map(f, param) do
   if (param) then do
@@ -588,7 +588,7 @@ function map(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function mapi(f, param) do
   if (param) then do
@@ -606,7 +606,7 @@ function mapi(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function fold(f, _m, _accu) do
   while(true) do
@@ -620,7 +620,7 @@ function fold(f, _m, _accu) do
       return accu;
     end end 
   end;
-end
+end end
 
 function for_all(p, _param) do
   while(true) do
@@ -636,7 +636,7 @@ function for_all(p, _param) do
       return true;
     end end 
   end;
-end
+end end
 
 function exists(p, _param) do
   while(true) do
@@ -652,7 +652,7 @@ function exists(p, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function add_min_binding(k, x, param) do
   if (param) then do
@@ -660,7 +660,7 @@ function add_min_binding(k, x, param) do
   end else do
     return singleton(k, x);
   end end 
-end
+end end
 
 function add_max_binding(k, x, param) do
   if (param) then do
@@ -668,7 +668,7 @@ function add_max_binding(k, x, param) do
   end else do
     return singleton(k, x);
   end end 
-end
+end end
 
 function join(l, v, d, r) do
   if (l) then do
@@ -688,7 +688,7 @@ function join(l, v, d, r) do
   end else do
     return add_min_binding(v, d, r);
   end end 
-end
+end end
 
 function concat(t1, t2) do
   if (t1) then do
@@ -701,7 +701,7 @@ function concat(t1, t2) do
   end else do
     return t2;
   end end 
-end
+end end
 
 function concat_or_join(t1, v, d, t2) do
   if (d ~= undefined) then do
@@ -709,7 +709,7 @@ function concat_or_join(t1, v, d, t2) do
   end else do
     return concat(t1, t2);
   end end 
-end
+end end
 
 function split(x, param) do
   if (param) then do
@@ -746,7 +746,7 @@ function split(x, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function merge$1(f, s1, s2) do
   if (s1) then do
@@ -774,7 +774,7 @@ function merge$1(f, s1, s2) do
           ]
         ];
   end end 
-end
+end end
 
 function union(f, s1, s2) do
   if (s1) then do
@@ -810,7 +810,7 @@ function union(f, s1, s2) do
   end else do
     return s2;
   end end 
-end
+end end
 
 function filter(p, m) do
   if (m) then do
@@ -833,7 +833,7 @@ function filter(p, m) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function partition(p, param) do
   if (param) then do
@@ -863,7 +863,7 @@ function partition(p, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function cons_enum(_m, _e) do
   while(true) do
@@ -882,7 +882,7 @@ function cons_enum(_m, _e) do
       return e;
     end end 
   end;
-end
+end end
 
 function compare(cmp, m1, m2) do
   _e1 = cons_enum(m1, --[ End ]--0);
@@ -914,7 +914,7 @@ function compare(cmp, m1, m2) do
       return 0;
     end end  end 
   end;
-end
+end end
 
 function equal(cmp, m1, m2) do
   _e1 = cons_enum(m1, --[ End ]--0);
@@ -936,7 +936,7 @@ function equal(cmp, m1, m2) do
       return true;
     end end  end 
   end;
-end
+end end
 
 function cardinal(param) do
   if (param) then do
@@ -944,7 +944,7 @@ function cardinal(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function bindings_aux(_accu, _param) do
   while(true) do
@@ -964,11 +964,11 @@ function bindings_aux(_accu, _param) do
       return accu;
     end end 
   end;
-end
+end end
 
 function bindings(s) do
   return bindings_aux(--[ [] ]--0, s);
-end
+end end
 
 empty = --[ Empty ]--0;
 

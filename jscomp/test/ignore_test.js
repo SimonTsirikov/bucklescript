@@ -21,21 +21,21 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f(x) do
   return --[ () ]--0;
-end
+end end
 
 function ff(x) do
   console.log(x);
   return --[ () ]--0;
-end
+end end
 
 eq("File \"ignore_test.ml\", line 16, characters 5-12", --[ () ]--0, --[ () ]--0);
 

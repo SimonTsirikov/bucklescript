@@ -7,7 +7,7 @@ function treeHeight(n) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function copy(n) do
   if (n ~= undefined) then do
@@ -25,7 +25,7 @@ function copy(n) do
   end else do
     return n;
   end end 
-end
+end end
 
 exports.treeHeight = treeHeight;
 exports.copy = copy;

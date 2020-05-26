@@ -3,7 +3,7 @@
 
 function v(prim) do
   return { };
-end
+end end
 
 exports.v = v;
 --[ No side effect ]--

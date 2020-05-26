@@ -20,42 +20,42 @@ function of_int(x) do
           726615281,
           String(x)
         ];
-end
+end end
 
 function of_float(x) do
   return --[ `Atom ]--[
           726615281,
           Pervasives.string_of_float(x)
         ];
-end
+end end
 
 function of_bool(x) do
   return --[ `Atom ]--[
           726615281,
           x and "true" or "false"
         ];
-end
+end end
 
 function atom(x) do
   return --[ `Atom ]--[
           726615281,
           x
         ];
-end
+end end
 
 function of_list(l) do
   return --[ `List ]--[
           848054398,
           l
         ];
-end
+end end
 
 function of_rev_list(l) do
   return --[ `List ]--[
           848054398,
           List.rev(l)
         ];
-end
+end end
 
 function of_pair(param) do
   return --[ `List ]--[
@@ -68,7 +68,7 @@ function of_pair(param) do
             ]
           ]
         ];
-end
+end end
 
 function of_triple(param) do
   return --[ `List ]--[
@@ -84,7 +84,7 @@ function of_triple(param) do
             ]
           ]
         ];
-end
+end end
 
 function of_quad(param) do
   return --[ `List ]--[
@@ -103,7 +103,7 @@ function of_quad(param) do
             ]
           ]
         ];
-end
+end end
 
 function of_variant(name, args) do
   return --[ `List ]--[
@@ -116,7 +116,7 @@ function of_variant(name, args) do
             args
           ]
         ];
-end
+end end
 
 function of_field(name, t) do
   return --[ `List ]--[
@@ -132,34 +132,34 @@ function of_field(name, t) do
             ]
           ]
         ];
-end
+end end
 
 function of_record(l) do
   return --[ `List ]--[
           848054398,
           List.map((function (param) do
                   return of_field(param[0], param[1]);
-                end), l)
+                end end), l)
         ];
-end
+end end
 
 function $$return(x) do
   return Caml_option.some(x);
-end
+end end
 
 function $great$pipe$eq(e, f) do
   if (e ~= undefined) then do
     return Caml_option.some(Curry._1(f, Caml_option.valFromOption(e)));
   end
    end 
-end
+end end
 
 function $great$great$eq(e, f) do
   if (e ~= undefined) then do
     return Curry._1(f, Caml_option.valFromOption(e));
   end
    end 
-end
+end end
 
 function map_opt(f, l) do
   _acc = --[ [] ]--0;
@@ -183,7 +183,7 @@ function map_opt(f, l) do
       return List.rev(acc);
     end end 
   end;
-end
+end end
 
 function list_any(f, e) do
   if (e[0] >= 848054398) then do
@@ -205,7 +205,7 @@ function list_any(f, e) do
     end;
   end
    end 
-end
+end end
 
 function list_all(f, e) do
   if (e[0] >= 848054398) then do
@@ -235,7 +235,7 @@ function list_all(f, e) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 function _try_atom(e, f) do
   if (e[0] >= 848054398) then do
@@ -248,25 +248,25 @@ function _try_atom(e, f) do
       return ;
     end
   end end 
-end
+end end
 
 function to_int(e) do
   return _try_atom(e, Caml_format.caml_int_of_string);
-end
+end end
 
 function to_bool(e) do
   return _try_atom(e, Pervasives.bool_of_string);
-end
+end end
 
 function to_float(e) do
   return _try_atom(e, Caml_format.caml_float_of_string);
-end
+end end
 
 function to_string(e) do
   return _try_atom(e, (function (x) do
                 return x;
-              end));
-end
+              end end));
+end end
 
 function to_pair(e) do
   if (typeof e == "number" or e[0] ~= 848054398) then do
@@ -287,7 +287,7 @@ function to_pair(e) do
       return ;
     end end 
   end end 
-end
+end end
 
 function to_pair_with(f1, f2, e) do
   return $great$great$eq(to_pair(e), (function (param) do
@@ -298,10 +298,10 @@ function to_pair_with(f1, f2, e) do
                                                     x,
                                                     y
                                                   ];
-                                          end));
-                            end));
-              end));
-end
+                                          end end));
+                            end end));
+              end end));
+end end
 
 function to_triple(e) do
   if (typeof e == "number" or e[0] ~= 848054398) then do
@@ -328,7 +328,7 @@ function to_triple(e) do
       return ;
     end end 
   end end 
-end
+end end
 
 function to_triple_with(f1, f2, f3, e) do
   return $great$great$eq(to_triple(e), (function (param) do
@@ -342,25 +342,25 @@ function to_triple_with(f1, f2, f3, e) do
                                                                   y,
                                                                   z
                                                                 ];
-                                                        end));
-                                          end));
-                            end));
-              end));
-end
+                                                        end end));
+                                          end end));
+                            end end));
+              end end));
+end end
 
 function to_list(e) do
   if (e[0] >= 848054398) then do
     return Caml_option.some(e[1]);
   end
    end 
-end
+end end
 
 function to_list_with(f, e) do
   if (e[0] >= 848054398) then do
     return map_opt(f, e[1]);
   end
    end 
-end
+end end
 
 function get_field(name, e) do
   if (e[0] >= 848054398) then do
@@ -414,11 +414,11 @@ function get_field(name, e) do
     end;
   end
    end 
-end
+end end
 
 function field(name, f, e) do
   return $great$great$eq(get_field(name, e), f);
-end
+end end
 
 function _get_field_list(name, _l) do
   while(true) do
@@ -456,14 +456,14 @@ function _get_field_list(name, _l) do
       return ;
     end end 
   end;
-end
+end end
 
 function field_list(name, f, e) do
   if (e[0] >= 848054398) then do
     return $great$great$eq(_get_field_list(name, e[1]), f);
   end
    end 
-end
+end end
 
 function _get_variant(s, args, _l) do
   while(true) do
@@ -480,7 +480,7 @@ function _get_variant(s, args, _l) do
       return ;
     end end 
   end;
-end
+end end
 
 function get_variant(l, e) do
   if (e[0] >= 848054398) then do
@@ -498,7 +498,7 @@ function get_variant(l, e) do
   end else do
     return _get_variant(e[1], --[ [] ]--0, l);
   end end 
-end
+end end
 
 function get_exn(e) do
   if (e ~= undefined) then do
@@ -509,7 +509,7 @@ function get_exn(e) do
           "CCSexp.Traverse.get_exn"
         ];
   end end 
-end
+end end
 
 of_unit = --[ `List ]--[
   848054398,

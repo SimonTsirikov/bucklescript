@@ -3,23 +3,23 @@
 
 function bla(foo, bar, baz) do
   return foo["##"](bar, baz);
-end
+end end
 
 function bla2(foo, bar, baz) do
   return foo.bar.baz;
-end
+end end
 
 function bla3(foo, bar, baz) do
   return foo["##"](bar, baz);
-end
+end end
 
 function bla4(foo, x, y) do
   return foo.method1(x, y);
-end
+end end
 
 function bla5(foo, x, y) do
   return foo.method1(x, y);
-end
+end end
 
 exports.bla = bla;
 exports.bla2 = bla2;

@@ -22,9 +22,9 @@ suites_000 = --[ tuple ]--[
                 ],
                 (Js_vector.filterInPlace((function (x) do
                           return x % 2 == 0;
-                        end), x), x)
+                        end end), x), x)
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -42,9 +42,9 @@ suites_001 = --[ :: ]--[
                   true,
                   (Js_vector.filterInPlace((function (x) do
                             return x > 10;
-                          end), x), #x == 0)
+                          end end), x), #x == 0)
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -54,7 +54,7 @@ suites_001 = --[ :: ]--[
                     true,
                     Array.isArray([])
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -64,7 +64,7 @@ suites_001 = --[ :: ]--[
                       false,
                       Array.isArray(34)
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -78,7 +78,7 @@ suites_001 = --[ :: ]--[
                           3
                         ].length
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -100,7 +100,7 @@ suites_001 = --[ :: ]--[
                               5
                             ].copyWithin(-2)
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -122,7 +122,7 @@ suites_001 = --[ :: ]--[
                                 5
                               ].copyWithin(0, 3)
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -144,7 +144,7 @@ suites_001 = --[ :: ]--[
                                   5
                                 ].copyWithin(0, 3, 4)
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -162,7 +162,7 @@ suites_001 = --[ :: ]--[
                                     3
                                   ].fill(4)
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -180,7 +180,7 @@ suites_001 = --[ :: ]--[
                                       3
                                     ].fill(4, 1)
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -198,7 +198,7 @@ suites_001 = --[ :: ]--[
                                         3
                                       ].fill(4, 1, 2)
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -212,7 +212,7 @@ suites_001 = --[ :: ]--[
                                               3
                                             ].pop())
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -222,7 +222,7 @@ suites_001 = --[ :: ]--[
                                         undefined,
                                         Caml_option.undefined_to_opt([].pop())
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -236,7 +236,7 @@ suites_001 = --[ :: ]--[
                                               3
                                             ].push(4)
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -250,7 +250,7 @@ suites_001 = --[ :: ]--[
                                                 3
                                               ].push(4, 5)
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -268,7 +268,7 @@ suites_001 = --[ :: ]--[
                                                   3
                                                 ].reverse()
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -282,7 +282,7 @@ suites_001 = --[ :: ]--[
                                                         3
                                                       ].shift())
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -292,7 +292,7 @@ suites_001 = --[ :: ]--[
                                                   undefined,
                                                   Caml_option.undefined_to_opt([].shift())
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -310,7 +310,7 @@ suites_001 = --[ :: ]--[
                                                         2
                                                       ].sort()
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
@@ -328,9 +328,9 @@ suites_001 = --[ :: ]--[
                                                           2
                                                         ].sort((function (a, b) do
                                                               return b - a | 0;
-                                                            end))
+                                                            end end))
                                                     ]);
-                                          end)
+                                          end end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
@@ -359,7 +359,7 @@ suites_001 = --[ :: ]--[
                                                           removed
                                                         ]
                                                       ]);
-                                            end)
+                                            end end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
@@ -388,7 +388,7 @@ suites_001 = --[ :: ]--[
                                                             removed
                                                           ]
                                                         ]);
-                                              end)
+                                              end end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
@@ -415,7 +415,7 @@ suites_001 = --[ :: ]--[
                                                               removed
                                                             ]
                                                           ]);
-                                                end)
+                                                end end)
                                             ],
                                             --[ :: ]--[
                                               --[ tuple ]--[
@@ -429,7 +429,7 @@ suites_001 = --[ :: ]--[
                                                                   3
                                                                 ].unshift(4)
                                                             ]);
-                                                  end)
+                                                  end end)
                                               ],
                                               --[ :: ]--[
                                                 --[ tuple ]--[
@@ -443,7 +443,7 @@ suites_001 = --[ :: ]--[
                                                                     3
                                                                   ].unshift(4, 5)
                                                               ]);
-                                                    end)
+                                                    end end)
                                                 ],
                                                 --[ :: ]--[
                                                   --[ tuple ]--[
@@ -462,7 +462,7 @@ suites_001 = --[ :: ]--[
                                                                       3
                                                                     ].concat([4])
                                                                 ]);
-                                                      end)
+                                                      end end)
                                                   ],
                                                   --[ :: ]--[
                                                     --[ tuple ]--[
@@ -485,7 +485,7 @@ suites_001 = --[ :: ]--[
                                                                           5
                                                                         ])
                                                                   ]);
-                                                        end)
+                                                        end end)
                                                     ],
                                                     --[ :: ]--[
                                                       --[ tuple ]--[
@@ -513,7 +513,7 @@ suites_001 = --[ :: ]--[
                                                                             7
                                                                           ])
                                                                     ]);
-                                                          end)
+                                                          end end)
                                                       ],
                                                       --[ :: ]--[
                                                         --[ tuple ]--[
@@ -527,7 +527,7 @@ suites_001 = --[ :: ]--[
                                                                             3
                                                                           ].includes(3)
                                                                       ]);
-                                                            end)
+                                                            end end)
                                                         ],
                                                         --[ :: ]--[
                                                           --[ tuple ]--[
@@ -541,7 +541,7 @@ suites_001 = --[ :: ]--[
                                                                               3
                                                                             ].indexOf(2)
                                                                         ]);
-                                                              end)
+                                                              end end)
                                                           ],
                                                           --[ :: ]--[
                                                             --[ tuple ]--[
@@ -556,7 +556,7 @@ suites_001 = --[ :: ]--[
                                                                                 2
                                                                               ].indexOf(2, 2)
                                                                           ]);
-                                                                end)
+                                                                end end)
                                                             ],
                                                             --[ :: ]--[
                                                               --[ tuple ]--[
@@ -570,7 +570,7 @@ suites_001 = --[ :: ]--[
                                                                                   3
                                                                                 ].join()
                                                                             ]);
-                                                                  end)
+                                                                  end end)
                                                               ],
                                                               --[ :: ]--[
                                                                 --[ tuple ]--[
@@ -584,7 +584,7 @@ suites_001 = --[ :: ]--[
                                                                                     3
                                                                                   ].join(";")
                                                                               ]);
-                                                                    end)
+                                                                    end end)
                                                                 ],
                                                                 --[ :: ]--[
                                                                   --[ tuple ]--[
@@ -598,7 +598,7 @@ suites_001 = --[ :: ]--[
                                                                                       3
                                                                                     ].lastIndexOf(2)
                                                                                 ]);
-                                                                      end)
+                                                                      end end)
                                                                   ],
                                                                   --[ :: ]--[
                                                                     --[ tuple ]--[
@@ -613,7 +613,7 @@ suites_001 = --[ :: ]--[
                                                                                         2
                                                                                       ].lastIndexOf(2, 2)
                                                                                   ]);
-                                                                        end)
+                                                                        end end)
                                                                     ],
                                                                     --[ :: ]--[
                                                                       --[ tuple ]--[
@@ -632,7 +632,7 @@ suites_001 = --[ :: ]--[
                                                                                           5
                                                                                         ].slice(1, 3)
                                                                                     ]);
-                                                                          end)
+                                                                          end end)
                                                                       ],
                                                                       --[ :: ]--[
                                                                         --[ tuple ]--[
@@ -654,7 +654,7 @@ suites_001 = --[ :: ]--[
                                                                                             5
                                                                                           ].slice()
                                                                                       ]);
-                                                                            end)
+                                                                            end end)
                                                                         ],
                                                                         --[ :: ]--[
                                                                           --[ tuple ]--[
@@ -674,7 +674,7 @@ suites_001 = --[ :: ]--[
                                                                                               5
                                                                                             ].slice(2)
                                                                                         ]);
-                                                                              end)
+                                                                              end end)
                                                                           ],
                                                                           --[ :: ]--[
                                                                             --[ tuple ]--[
@@ -688,7 +688,7 @@ suites_001 = --[ :: ]--[
                                                                                                 3
                                                                                               ].toString()
                                                                                           ]);
-                                                                                end)
+                                                                                end end)
                                                                             ],
                                                                             --[ :: ]--[
                                                                               --[ tuple ]--[
@@ -702,7 +702,7 @@ suites_001 = --[ :: ]--[
                                                                                                   3
                                                                                                 ].toLocaleString()
                                                                                             ]);
-                                                                                  end)
+                                                                                  end end)
                                                                               ],
                                                                               --[ :: ]--[
                                                                                 --[ tuple ]--[
@@ -716,9 +716,9 @@ suites_001 = --[ :: ]--[
                                                                                                     3
                                                                                                   ].every((function (n) do
                                                                                                         return n > 0;
-                                                                                                      end))
+                                                                                                      end end))
                                                                                               ]);
-                                                                                    end)
+                                                                                    end end)
                                                                                 ],
                                                                                 --[ :: ]--[
                                                                                   --[ tuple ]--[
@@ -732,9 +732,9 @@ suites_001 = --[ :: ]--[
                                                                                                       3
                                                                                                     ].every((function (param, i) do
                                                                                                           return i > 0;
-                                                                                                        end))
+                                                                                                        end end))
                                                                                                 ]);
-                                                                                      end)
+                                                                                      end end)
                                                                                   ],
                                                                                   --[ :: ]--[
                                                                                     --[ tuple ]--[
@@ -752,9 +752,9 @@ suites_001 = --[ :: ]--[
                                                                                                         4
                                                                                                       ].filter((function (n) do
                                                                                                             return n % 2 == 0;
-                                                                                                          end))
+                                                                                                          end end))
                                                                                                   ]);
-                                                                                        end)
+                                                                                        end end)
                                                                                     ],
                                                                                     --[ :: ]--[
                                                                                       --[ tuple ]--[
@@ -772,9 +772,9 @@ suites_001 = --[ :: ]--[
                                                                                                           4
                                                                                                         ].filter((function (param, i) do
                                                                                                               return i % 2 == 0;
-                                                                                                            end))
+                                                                                                            end end))
                                                                                                     ]);
-                                                                                          end)
+                                                                                          end end)
                                                                                       ],
                                                                                       --[ :: ]--[
                                                                                         --[ tuple ]--[
@@ -789,9 +789,9 @@ suites_001 = --[ :: ]--[
                                                                                                                 4
                                                                                                               ].find((function (n) do
                                                                                                                     return n % 2 == 0;
-                                                                                                                  end)))
+                                                                                                                  end end)))
                                                                                                       ]);
-                                                                                            end)
+                                                                                            end end)
                                                                                         ],
                                                                                         --[ :: ]--[
                                                                                           --[ tuple ]--[
@@ -806,9 +806,9 @@ suites_001 = --[ :: ]--[
                                                                                                                   4
                                                                                                                 ].find((function (n) do
                                                                                                                       return n % 2 == 5;
-                                                                                                                    end)))
+                                                                                                                    end end)))
                                                                                                         ]);
-                                                                                              end)
+                                                                                              end end)
                                                                                           ],
                                                                                           --[ :: ]--[
                                                                                             --[ tuple ]--[
@@ -823,9 +823,9 @@ suites_001 = --[ :: ]--[
                                                                                                                     4
                                                                                                                   ].find((function (param, i) do
                                                                                                                         return i % 2 == 0;
-                                                                                                                      end)))
+                                                                                                                      end end)))
                                                                                                           ]);
-                                                                                                end)
+                                                                                                end end)
                                                                                             ],
                                                                                             --[ :: ]--[
                                                                                               --[ tuple ]--[
@@ -840,9 +840,9 @@ suites_001 = --[ :: ]--[
                                                                                                                       4
                                                                                                                     ].find((function (param, i) do
                                                                                                                           return i % 2 == 5;
-                                                                                                                        end)))
+                                                                                                                        end end)))
                                                                                                             ]);
-                                                                                                  end)
+                                                                                                  end end)
                                                                                               ],
                                                                                               --[ :: ]--[
                                                                                                 --[ tuple ]--[
@@ -857,9 +857,9 @@ suites_001 = --[ :: ]--[
                                                                                                                     4
                                                                                                                   ].findIndex((function (n) do
                                                                                                                         return n % 2 == 0;
-                                                                                                                      end))
+                                                                                                                      end end))
                                                                                                               ]);
-                                                                                                    end)
+                                                                                                    end end)
                                                                                                 ],
                                                                                                 --[ :: ]--[
                                                                                                   --[ tuple ]--[
@@ -874,9 +874,9 @@ suites_001 = --[ :: ]--[
                                                                                                                       4
                                                                                                                     ].findIndex((function (param, i) do
                                                                                                                           return i % 2 == 0;
-                                                                                                                        end))
+                                                                                                                        end end))
                                                                                                                 ]);
-                                                                                                      end)
+                                                                                                      end end)
                                                                                                   ],
                                                                                                   --[ :: ]--[
                                                                                                     --[ tuple ]--[
@@ -892,12 +892,12 @@ suites_001 = --[ :: ]--[
                                                                                                             ].forEach((function (n) do
                                                                                                                   sum.contents = sum.contents + n | 0;
                                                                                                                   return --[ () ]--0;
-                                                                                                                end));
+                                                                                                                end end));
                                                                                                           return --[ Eq ]--Block.__(0, [
                                                                                                                     6,
                                                                                                                     sum.contents
                                                                                                                   ]);
-                                                                                                        end)
+                                                                                                        end end)
                                                                                                     ],
                                                                                                     --[ :: ]--[
                                                                                                       --[ tuple ]--[
@@ -913,12 +913,12 @@ suites_001 = --[ :: ]--[
                                                                                                               ].forEach((function (param, i) do
                                                                                                                     sum.contents = sum.contents + i | 0;
                                                                                                                     return --[ () ]--0;
-                                                                                                                  end));
+                                                                                                                  end end));
                                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                                       3,
                                                                                                                       sum.contents
                                                                                                                     ]);
-                                                                                                          end)
+                                                                                                          end end)
                                                                                                       ],
                                                                                                       --[ :: ]--[
                                                                                                         --[ tuple ]--[
@@ -938,9 +938,9 @@ suites_001 = --[ :: ]--[
                                                                                                                             4
                                                                                                                           ].map((function (n) do
                                                                                                                                 return (n << 1);
-                                                                                                                              end))
+                                                                                                                              end end))
                                                                                                                       ]);
-                                                                                                            end)
+                                                                                                            end end)
                                                                                                         ],
                                                                                                         --[ :: ]--[
                                                                                                           --[ tuple ]--[
@@ -960,9 +960,9 @@ suites_001 = --[ :: ]--[
                                                                                                                               4
                                                                                                                             ].map((function (param, i) do
                                                                                                                                   return (i << 1);
-                                                                                                                                end))
+                                                                                                                                end end))
                                                                                                                         ]);
-                                                                                                              end)
+                                                                                                              end end)
                                                                                                           ],
                                                                                                           --[ :: ]--[
                                                                                                             --[ tuple ]--[
@@ -977,9 +977,9 @@ suites_001 = --[ :: ]--[
                                                                                                                                 4
                                                                                                                               ].reduce((function (acc, n) do
                                                                                                                                     return acc - n | 0;
-                                                                                                                                  end), 0)
+                                                                                                                                  end end), 0)
                                                                                                                           ]);
-                                                                                                                end)
+                                                                                                                end end)
                                                                                                             ],
                                                                                                             --[ :: ]--[
                                                                                                               --[ tuple ]--[
@@ -994,9 +994,9 @@ suites_001 = --[ :: ]--[
                                                                                                                                   4
                                                                                                                                 ].reduce((function (acc, param, i) do
                                                                                                                                       return acc - i | 0;
-                                                                                                                                    end), 0)
+                                                                                                                                    end end), 0)
                                                                                                                             ]);
-                                                                                                                  end)
+                                                                                                                  end end)
                                                                                                               ],
                                                                                                               --[ :: ]--[
                                                                                                                 --[ tuple ]--[
@@ -1011,9 +1011,9 @@ suites_001 = --[ :: ]--[
                                                                                                                                     4
                                                                                                                                   ].reduceRight((function (acc, n) do
                                                                                                                                         return acc - n | 0;
-                                                                                                                                      end), 0)
+                                                                                                                                      end end), 0)
                                                                                                                               ]);
-                                                                                                                    end)
+                                                                                                                    end end)
                                                                                                                 ],
                                                                                                                 --[ :: ]--[
                                                                                                                   --[ tuple ]--[
@@ -1028,9 +1028,9 @@ suites_001 = --[ :: ]--[
                                                                                                                                       4
                                                                                                                                     ].reduceRight((function (acc, param, i) do
                                                                                                                                           return acc - i | 0;
-                                                                                                                                        end), 0)
+                                                                                                                                        end end), 0)
                                                                                                                                 ]);
-                                                                                                                      end)
+                                                                                                                      end end)
                                                                                                                   ],
                                                                                                                   --[ :: ]--[
                                                                                                                     --[ tuple ]--[
@@ -1045,9 +1045,9 @@ suites_001 = --[ :: ]--[
                                                                                                                                         4
                                                                                                                                       ].some((function (n) do
                                                                                                                                             return n <= 0;
-                                                                                                                                          end))
+                                                                                                                                          end end))
                                                                                                                                   ]);
-                                                                                                                        end)
+                                                                                                                        end end)
                                                                                                                     ],
                                                                                                                     --[ :: ]--[
                                                                                                                       --[ tuple ]--[
@@ -1062,9 +1062,9 @@ suites_001 = --[ :: ]--[
                                                                                                                                           4
                                                                                                                                         ].some((function (param, i) do
                                                                                                                                               return i <= 0;
-                                                                                                                                            end))
+                                                                                                                                            end end))
                                                                                                                                     ]);
-                                                                                                                          end)
+                                                                                                                          end end)
                                                                                                                       ],
                                                                                                                       --[ [] ]--0
                                                                                                                     ]

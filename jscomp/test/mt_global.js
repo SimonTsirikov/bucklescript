@@ -12,12 +12,12 @@ function collect_eq(test_id, suites, loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function collect_neq(test_id, suites, loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -29,12 +29,12 @@ function collect_neq(test_id, suites, loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function collect_approx(test_id, suites, loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -46,12 +46,12 @@ function collect_approx(test_id, suites, loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 exports.collect_eq = collect_eq;
 exports.collect_neq = collect_neq;

@@ -403,83 +403,83 @@ CamlinternalOO.set_methods($$class, [
       get0,
       (function (self$1) do
           return self$1[field0] + 0 | 0;
-        end),
+        end end),
       get1,
       (function (self$1) do
           return self$1[field1] + 1 | 0;
-        end),
+        end end),
       get2,
       (function (self$1) do
           return self$1[field2] + 2 | 0;
-        end),
+        end end),
       get3,
       (function (self$1) do
           return self$1[field3] + 3 | 0;
-        end),
+        end end),
       get4,
       (function (self$1) do
           return self$1[field4] + 4 | 0;
-        end),
+        end end),
       get5,
       (function (self$1) do
           return self$1[field5] + 5 | 0;
-        end),
+        end end),
       get6,
       (function (self$1) do
           return self$1[field6] + 6 | 0;
-        end),
+        end end),
       get7,
       (function (self$1) do
           return self$1[field7] + 7 | 0;
-        end),
+        end end),
       get8,
       (function (self$1) do
           return self$1[field8] + 8 | 0;
-        end),
+        end end),
       get9,
       (function (self$1) do
           return self$1[field9] + 9 | 0;
-        end),
+        end end),
       get10,
       (function (self$1) do
           return self$1[field10] + 10 | 0;
-        end),
+        end end),
       get11,
       (function (self$1) do
           return self$1[field11] + 11 | 0;
-        end),
+        end end),
       get12,
       (function (self$1) do
           return self$1[field12] + 12 | 0;
-        end),
+        end end),
       get13,
       (function (self$1) do
           return self$1[field13] + 13 | 0;
-        end),
+        end end),
       get14,
       (function (self$1) do
           return self$1[field14] + 14 | 0;
-        end),
+        end end),
       get15,
       (function (self$1) do
           return self$1[field15] + 15 | 0;
-        end),
+        end end),
       get16,
       (function (self$1) do
           return self$1[field16] + 16 | 0;
-        end),
+        end end),
       get17,
       (function (self$1) do
           return self$1[field17] + 17 | 0;
-        end),
+        end end),
       get18,
       (function (self$1) do
           return self$1[field18] + 18 | 0;
-        end),
+        end end),
       get19,
       (function (self$1) do
           return self$1[field19] + 19 | 0;
-        end)
+        end end)
     ]);
 
 function obj_init(env) do
@@ -585,7 +585,7 @@ function obj_init(env) do
   self[field98] = 98;
   self[field99] = 99;
   return self;
-end
+end end
 
 CamlinternalOO.init_class($$class);
 
@@ -730,83 +730,83 @@ function raw_class_init($$class) do
         get0,
         (function (self$2) do
             return self$2[field0] + 0 | 0;
-          end),
+          end end),
         get1,
         (function (self$2) do
             return self$2[field1] + 1 | 0;
-          end),
+          end end),
         get2,
         (function (self$2) do
             return self$2[field2] + 2 | 0;
-          end),
+          end end),
         get3,
         (function (self$2) do
             return self$2[field3] + 3 | 0;
-          end),
+          end end),
         get4,
         (function (self$2) do
             return self$2[field4] + 4 | 0;
-          end),
+          end end),
         get5,
         (function (self$2) do
             return self$2[field5] + 5 | 0;
-          end),
+          end end),
         get6,
         (function (self$2) do
             return self$2[field6] + 6 | 0;
-          end),
+          end end),
         get7,
         (function (self$2) do
             return self$2[field7] + 7 | 0;
-          end),
+          end end),
         get8,
         (function (self$2) do
             return self$2[field8] + 8 | 0;
-          end),
+          end end),
         get9,
         (function (self$2) do
             return self$2[field9] + 9 | 0;
-          end),
+          end end),
         get10,
         (function (self$2) do
             return self$2[field10] + 10 | 0;
-          end),
+          end end),
         get11,
         (function (self$2) do
             return self$2[field11] + 11 | 0;
-          end),
+          end end),
         get12,
         (function (self$2) do
             return self$2[field12] + 12 | 0;
-          end),
+          end end),
         get13,
         (function (self$2) do
             return self$2[field13] + 13 | 0;
-          end),
+          end end),
         get14,
         (function (self$2) do
             return self$2[field14] + 14 | 0;
-          end),
+          end end),
         get15,
         (function (self$2) do
             return self$2[field15] + 15 | 0;
-          end),
+          end end),
         get16,
         (function (self$2) do
             return self$2[field16] + 16 | 0;
-          end),
+          end end),
         get17,
         (function (self$2) do
             return self$2[field17] + 17 | 0;
-          end),
+          end end),
         get18,
         (function (self$2) do
             return self$2[field18] + 18 | 0;
-          end),
+          end end),
         get19,
         (function (self$2) do
             return self$2[field19] + 19 | 0;
-          end)
+          end end)
       ]);
   return (function (env, self, value$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
@@ -912,8 +912,8 @@ function raw_class_init($$class) do
       self$1[field98] = Caml_int32.imul(98, value$1);
       self$1[field99] = Caml_int32.imul(99, value$1);
       return self$1;
-    end);
-end
+    end end);
+end end
 
 raw_class = CamlinternalOO.make_class(shared, raw_class_init);
 

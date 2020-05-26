@@ -11,7 +11,7 @@ function odd(_z) do
     _z = 32;
     continue ;
   end;
-end
+end end
 
 even = odd;
 

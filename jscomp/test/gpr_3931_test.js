@@ -25,7 +25,7 @@ P = Caml_module.init_mod(--[ tuple ]--[
 
 function print(a) do
   return $$Array.iter(P.print, a);
-end
+end end
 
 Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
             --[ Function ]--0,
@@ -37,7 +37,7 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
 function print$1(i) do
   console.log(String(i));
   return --[ () ]--0;
-end
+end end
 
 Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
             --[ Function ]--0,

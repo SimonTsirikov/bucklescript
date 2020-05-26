@@ -13,7 +13,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 oppHeroes = --[ :: ]--[
   0,
@@ -25,7 +25,7 @@ huntGrootCondition = false;
 if (List.length(--[ [] ]--0) > 0) then do
   x = List.filter((function (h) do
             return List.hd(--[ [] ]--0) <= 1000;
-          end))(oppHeroes);
+          end end))(oppHeroes);
   huntGrootCondition = List.length(x) == 0;
 end
  end 
@@ -35,7 +35,7 @@ huntGrootCondition2 = true;
 if (List.length(--[ [] ]--0) < 0) then do
   x$1 = List.filter((function (h) do
             return List.hd(--[ [] ]--0) <= 1000;
-          end))(oppHeroes);
+          end end))(oppHeroes);
   huntGrootCondition2 = List.length(x$1) == 0;
 end
  end 

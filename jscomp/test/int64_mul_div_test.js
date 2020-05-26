@@ -22,7 +22,7 @@ function commutative_mul(result, a, b) do
               Caml_int64.mul(b, a)
             ]
           ]);
-end
+end end
 
 pairs = [
   --[ tuple ]--[
@@ -330,10 +330,10 @@ function from_pairs(prefix, pairs) do
                                     ]), prefix, i),
                             (function (param) do
                                 return commutative_mul(result, a, b);
-                              end)
+                              end end)
                           ];
-                  end), pairs));
-end
+                  end end), pairs));
+end end
 
 small_pairs = [
   --[ tuple ]--[
@@ -1612,10 +1612,10 @@ function from(xs) do
                                         Caml_int64.mod_(a, b)
                                       ]
                                     ]);
-                          end)
+                          end end)
                       ];
-              end), $$Array.to_list(xs));
-end
+              end end), $$Array.to_list(xs));
+end end
 
 to_string = [--[ tuple ]--[
     --[ int64 ]--[
@@ -1682,10 +1682,10 @@ function from_compare(xs) do
                                       c,
                                       Caml_int64.compare(a, b)
                                     ]);
-                          end)
+                          end end)
                       ];
-              end), $$Array.to_list(xs));
-end
+              end end), $$Array.to_list(xs));
+end end
 
 function from_to_string(xs) do
   return List.mapi((function (i, param) do
@@ -1707,10 +1707,10 @@ function from_to_string(xs) do
                                       str_a,
                                       Caml_format.caml_int64_format("%d", a)
                                     ]);
-                          end)
+                          end end)
                       ];
-              end), $$Array.to_list(xs));
-end
+              end end), $$Array.to_list(xs));
+end end
 
 Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pairs), Pervasives.$at(from_pairs("small", small_pairs), Pervasives.$at(List.mapi((function (i, param) do
                         f = param[1];
@@ -1733,9 +1733,9 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                               Caml_int64.to_float(i64),
                                               f
                                             ]);
-                                  end)
+                                  end end)
                               ];
-                      end), $$Array.to_list(to_floats)), Pervasives.$at(List.mapi((function (i, param) do
+                      end end), $$Array.to_list(to_floats)), Pervasives.$at(List.mapi((function (i, param) do
                             i64 = param[1];
                             f = param[0];
                             return --[ tuple ]--[
@@ -1756,19 +1756,19 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                                   Caml_int64.of_float(f),
                                                   i64
                                                 ]);
-                                      end)
+                                      end end)
                                   ];
-                          end), $$Array.to_list(of_float_pairs)), Pervasives.$at(--[ :: ]--[
+                          end end), $$Array.to_list(of_float_pairs)), Pervasives.$at(--[ :: ]--[
                           --[ tuple ]--[
                             "compare_check_complete",
                             (function (param) do
                                 return --[ Eq ]--Block.__(0, [
                                           $$Array.map((function (param) do
                                                   return true;
-                                                end), check_complete_compare),
+                                                end end), check_complete_compare),
                                           check_complete_compare
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ [] ]--0
                         ], Pervasives.$at(from(simple_divs), Pervasives.$at(from_compare(int64_compare_tests), --[ :: ]--[
@@ -1785,7 +1785,7 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                                     --[ lo ]--0
                                                   ]
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -1801,7 +1801,7 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                                       --[ lo ]--4294967295
                                                     ]
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
@@ -1811,7 +1811,7 @@ Mt.from_pair_suites("Int64_mul_div_test", Pervasives.$at(from_pairs("random", pa
                                                       Caml_int64.to_float(Int64.max_int),
                                                       9.22337203685477581e+18
                                                     ]);
-                                          end)
+                                          end end)
                                       ],
                                       --[ [] ]--0
                                     ]

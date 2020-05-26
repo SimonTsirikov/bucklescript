@@ -7,7 +7,7 @@ function fib(n) do
   end else do
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
   end end 
-end
+end end
 
 function fib2(n) do
   _a = 1;
@@ -26,7 +26,7 @@ function fib2(n) do
       continue ;
     end end 
   end;
-end
+end end
 
 function fib3(n) do
   a = 1;
@@ -37,7 +37,7 @@ function fib3(n) do
     b = b + tmp | 0;
   end
   return a;
-end
+end end
 
 exports.fib = fib;
 exports.fib2 = fib2;

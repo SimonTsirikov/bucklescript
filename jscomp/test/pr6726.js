@@ -3,7 +3,7 @@
 
 function get_uint8(str, off) do
   return 33;
-end
+end end
 
 BigEndian = do
   get_uint8: get_uint8
@@ -19,7 +19,7 @@ end;
 
 function test_endian_string(x) do
   return 33;
-end
+end end
 
 v = 33;
 

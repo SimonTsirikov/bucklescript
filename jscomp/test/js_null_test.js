@@ -12,7 +12,7 @@ suites_000 = --[ tuple ]--[
                 undefined,
                 undefined
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -23,7 +23,7 @@ suites_001 = --[ :: ]--[
                   --[ () ]--0,
                   Caml_option.null_to_opt(--[ () ]--0)
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -33,7 +33,7 @@ suites_001 = --[ :: ]--[
                     "something",
                     Caml_option.null_to_opt("something")
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -43,7 +43,7 @@ suites_001 = --[ :: ]--[
                       true,
                       true
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -53,7 +53,7 @@ suites_001 = --[ :: ]--[
                         false,
                         false
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -63,9 +63,9 @@ suites_001 = --[ :: ]--[
                           null,
                           Js_null.bind(null, (function (v) do
                                   return v;
-                                end))
+                                end end))
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -75,9 +75,9 @@ suites_001 = --[ :: ]--[
                             4,
                             Js_null.bind(2, (function (n) do
                                     return (n << 1);
-                                  end))
+                                  end end))
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -89,12 +89,12 @@ suites_001 = --[ :: ]--[
                     Js_null.iter(null, (function (param) do
                             hit.contents = true;
                             return --[ () ]--0;
-                          end));
+                          end end));
                     return --[ Eq ]--Block.__(0, [
                               false,
                               hit.contents
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -106,12 +106,12 @@ suites_001 = --[ :: ]--[
                       Js_null.iter(2, (function (v) do
                               hit.contents = v;
                               return --[ () ]--0;
-                            end));
+                            end end));
                       return --[ Eq ]--Block.__(0, [
                                 2,
                                 hit.contents
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -121,7 +121,7 @@ suites_001 = --[ :: ]--[
                                   null,
                                   Js_null.fromOption(undefined)
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -131,7 +131,7 @@ suites_001 = --[ :: ]--[
                                     2,
                                     Js_null.fromOption(2)
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ [] ]--0
                   ]

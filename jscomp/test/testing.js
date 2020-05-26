@@ -23,7 +23,7 @@ function finish(param) do
     console.log("\n\n********* Test suite failed. ***********\n");
     return --[ () ]--0;
   end end 
-end
+end end
 
 Pervasives.at_exit(finish);
 
@@ -35,7 +35,7 @@ function print_test_number(param) do
   Pervasives.print_string(" ");
   Pervasives.print_int(test_num.contents);
   return Caml_io.caml_ml_flush(Pervasives.stdout);
-end
+end end
 
 function print_failure_test_fail(param) do
   all_tests_ok.contents = false;
@@ -54,7 +54,7 @@ function print_failure_test_fail(param) do
                         ]),
                       "\n********* Failure Test number %i incorrectly failed ***********\n"
                     ]), test_num.contents));
-end
+end end
 
 function print_failure_test_succeed(param) do
   all_tests_ok.contents = false;
@@ -73,7 +73,7 @@ function print_failure_test_succeed(param) do
                         ]),
                       "\n********* Failure Test number %i failed to fail ***********\n"
                     ]), test_num.contents));
-end
+end end
 
 function test(b) do
   test_num.contents = test_num.contents + 1 | 0;
@@ -98,7 +98,7 @@ function test(b) do
                         "\n********* Test number %i failed ***********\n"
                       ]), test_num.contents));
   end end 
-end
+end end
 
 function test_raises_exc_p(pred, f, x) do
   test_num.contents = test_num.contents + 1 | 0;
@@ -117,23 +117,23 @@ function test_raises_exc_p(pred, f, x) do
       return false;
     end end 
   end
-end
+end end
 
 function test_raises_some_exc(f) do
   return (function (param) do
       return test_raises_exc_p((function (param) do
                     return true;
-                  end), f, param);
-    end);
-end
+                  end end), f, param);
+    end end);
+end end
 
 function test_raises_this_exc(exc) do
   return (function (param, param$1) do
       return test_raises_exc_p((function (x) do
                     return Caml_obj.caml_equal(x, exc);
-                  end), param, param$1);
-    end);
-end
+                  end end), param, param$1);
+    end end);
+end end
 
 function failure_test(f, x, s) do
   s$1 = s;
@@ -144,14 +144,14 @@ function failure_test(f, x, s) do
                             Caml_builtin_exceptions.failure,
                             s$1
                           ]);
-              end), f$1, x$1);
-end
+              end end), f$1, x$1);
+end end
 
 function scan_failure_test(f, x) do
   return test_raises_exc_p((function (param) do
                 return param[0] == Scanf.Scan_failure;
-              end), f, x);
-end
+              end end), f, x);
+end end
 
 exports.test = test;
 exports.failure_test = failure_test;

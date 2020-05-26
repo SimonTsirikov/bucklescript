@@ -6,7 +6,7 @@ $$String = require("../../lib/js/string.js");
 
 function u(v) do
   return v;
-end
+end end
 
 s = $$String;
 
@@ -16,7 +16,7 @@ end;
 
 function v(x) do
   return #x;
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "const",
@@ -25,7 +25,7 @@ suites_000 = --[ tuple ]--[
                 1,
                 1
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -36,7 +36,7 @@ suites_001 = --[ :: ]--[
                   3,
                   3
                 ]);
-      end)
+      end end)
   ],
   --[ [] ]--0
 ];

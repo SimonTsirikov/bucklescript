@@ -22,17 +22,17 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f(x) do
   y = CamlinternalLazy.force(x);
   return y .. "abc";
-end
+end end
 
 x = "def";
 

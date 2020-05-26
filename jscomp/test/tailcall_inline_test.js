@@ -18,13 +18,13 @@ function f(param) do
         return acc;
       end end 
     end;
-  end;
+  end end;
   v = Caml_array.caml_make_vect(10, 0);
   for i = 0 , 9 , 1 do
     Caml_array.caml_array_set(v, i, f$1(0, i));
   end
   return v;
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "acc",
@@ -44,7 +44,7 @@ suites_000 = --[ tuple ]--[
                   45
                 ]
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -68,7 +68,7 @@ suites_001 = --[ :: ]--[
                         3
                       ])
                 ]);
-      end)
+      end end)
   ],
   --[ [] ]--0
 ];

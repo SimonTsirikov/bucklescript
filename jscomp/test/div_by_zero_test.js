@@ -23,12 +23,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function add(suite) do
   suites.contents = --[ :: ]--[
@@ -36,7 +36,7 @@ function add(suite) do
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 add(--[ tuple ]--[
       "File \"div_by_zero_test.ml\", line 14, characters 7-14",
@@ -44,8 +44,8 @@ add(--[ tuple ]--[
           return --[ ThrowAny ]--Block.__(7, [(function (param) do
                         Caml_int32.div(3, 0);
                         return --[ () ]--0;
-                      end)]);
-        end)
+                      end end)]);
+        end end)
     ]);
 
 add(--[ tuple ]--[
@@ -54,8 +54,8 @@ add(--[ tuple ]--[
           return --[ ThrowAny ]--Block.__(7, [(function (param) do
                         Caml_int32.mod_(3, 0);
                         return --[ () ]--0;
-                      end)]);
-        end)
+                      end end)]);
+        end end)
     ]);
 
 add(--[ tuple ]--[
@@ -64,8 +64,8 @@ add(--[ tuple ]--[
           return --[ ThrowAny ]--Block.__(7, [(function (param) do
                         Caml_int32.div(3, 0);
                         return --[ () ]--0;
-                      end)]);
-        end)
+                      end end)]);
+        end end)
     ]);
 
 add(--[ tuple ]--[
@@ -74,8 +74,8 @@ add(--[ tuple ]--[
           return --[ ThrowAny ]--Block.__(7, [(function (param) do
                         Caml_int32.mod_(3, 0);
                         return --[ () ]--0;
-                      end)]);
-        end)
+                      end end)]);
+        end end)
     ]);
 
 add(--[ tuple ]--[
@@ -90,8 +90,8 @@ add(--[ tuple ]--[
                               --[ lo ]--0
                             ]);
                         return --[ () ]--0;
-                      end)]);
-        end)
+                      end end)]);
+        end end)
     ]);
 
 add(--[ tuple ]--[
@@ -106,13 +106,13 @@ add(--[ tuple ]--[
                               --[ lo ]--0
                             ]);
                         return --[ () ]--0;
-                      end)]);
-        end)
+                      end end)]);
+        end end)
     ]);
 
 function div(x, y) do
   return Caml_int32.div(x, y) + 3 | 0;
-end
+end end
 
 Mt.from_pair_suites("Div_by_zero_test", suites.contents);
 

@@ -4,15 +4,15 @@ SysBluebird = require("sys-bluebird");
 
 function f(p) do
   return p.catch(3);
-end
+end end
 
 p = new SysBluebird.Promise();
 
 p.then((function (x) do
           return x + 3 | 0;
-        end)).catch((function (reason) do
+        end end)).catch((function (reason) do
         return reason;
-      end));
+      end end));
 
 u = do
   then: 3,

@@ -19,7 +19,7 @@ function blackify(s) do
             true
           ];
   end end 
-end
+end end
 
 function is_empty(param) do
   if (param) then do
@@ -27,7 +27,7 @@ function is_empty(param) do
   end else do
     return true;
   end end 
-end
+end end
 
 function mem(x, _param) do
   while(true) do
@@ -47,7 +47,7 @@ function mem(x, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function balance_left(l, x, r) do
   exit = 0;
@@ -121,7 +121,7 @@ function balance_left(l, x, r) do
      do
     
   end
-end
+end end
 
 function balance_right(l, x, r) do
   exit = 0;
@@ -195,7 +195,7 @@ function balance_right(l, x, r) do
      do
     
   end
-end
+end end
 
 function singleton(x) do
   return --[ Node ]--[
@@ -204,7 +204,7 @@ function singleton(x) do
           x,
           --[ Empty ]--0
         ];
-end
+end end
 
 function unbalanced_left(param) do
   if (param) then do
@@ -268,7 +268,7 @@ function unbalanced_left(param) do
           9
         ]
       ];
-end
+end end
 
 function unbalanced_right(param) do
   if (param) then do
@@ -334,7 +334,7 @@ function unbalanced_right(param) do
           9
         ]
       ];
-end
+end end
 
 function lbalance(x1, x2, x3) do
   if (x1 and x1[0]) then do
@@ -393,7 +393,7 @@ function lbalance(x1, x2, x3) do
             x3
           ];
   end end 
-end
+end end
 
 function rbalance(x1, x2, x3) do
   if (x3 and x3[0]) then do
@@ -450,7 +450,7 @@ function rbalance(x1, x2, x3) do
           x2,
           x3
         ];
-end
+end end
 
 function ins(x, s) do
   if (s) then do
@@ -499,7 +499,7 @@ function ins(x, s) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function add(x, s) do
   s$1 = ins(x, s);
@@ -513,7 +513,7 @@ function add(x, s) do
   end else do
     return s$1;
   end end 
-end
+end end
 
 function remove_min(param) do
   if (param) then do
@@ -596,7 +596,7 @@ function remove_min(param) do
           ]
         ];
   end end 
-end
+end end
 
 function remove_aux(x, n) do
   if (n) then do
@@ -672,11 +672,11 @@ function remove_aux(x, n) do
             false
           ];
   end end 
-end
+end end
 
 function remove(x, s) do
   return remove_aux(x, s)[0];
-end
+end end
 
 function cardinal(param) do
   if (param) then do
@@ -684,7 +684,7 @@ function cardinal(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 empty = --[ Empty ]--0;
 

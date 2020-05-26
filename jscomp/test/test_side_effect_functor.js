@@ -9,7 +9,7 @@ console.log(String(v));
 
 function unuse_v(param) do
   return 35;
-end
+end end
 
 h = unuse_v;
 

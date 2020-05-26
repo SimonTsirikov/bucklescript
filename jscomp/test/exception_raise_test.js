@@ -56,7 +56,7 @@ function appf(g, x) do
       return 4;
     end end  end  end  end  end  end 
   end
-end
+end end
 
 A = Caml_exceptions.create("Exception_raise_test.A");
 
@@ -148,7 +148,7 @@ suites = do
                       2
                     ]
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -169,7 +169,7 @@ suites = do
                     ]
                   ];
             end end 
-          end)
+          end end)
       ],
       --[ [] ]--0
     ]
@@ -182,7 +182,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 try do
   (function (_)dothrow 2end(--[ () ]--0));
@@ -209,7 +209,7 @@ function fff0(x, g) do
     return 1;
   end
   return Curry._1(g, --[ () ]--0);
-end
+end end
 
 function input_lines(ic, _acc) do
   while(true) do
@@ -227,7 +227,7 @@ function input_lines(ic, _acc) do
     ];
     continue ;
   end;
-end
+end end
 
 eq("File \"exception_raise_test.ml\", line 150, characters 5-12", function (a,b,c,_)doreturn a + b + c end(1, 2, 3, 4), 6);
 

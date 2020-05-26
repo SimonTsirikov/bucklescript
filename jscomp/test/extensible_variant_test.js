@@ -32,7 +32,7 @@ function to_int(x) do
           ]
         ];
   end end  end  end 
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "test_int",
@@ -45,7 +45,7 @@ suites_000 = --[ tuple ]--[
                       0
                     ])
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -60,7 +60,7 @@ suites_001 = --[ :: ]--[
                         0
                       ])
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -73,7 +73,7 @@ suites_001 = --[ :: ]--[
                           "x"
                         ])
                   ]);
-        end)
+        end end)
     ],
     --[ [] ]--0
   ]

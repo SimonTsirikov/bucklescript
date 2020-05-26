@@ -14,7 +14,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 eq("File \"406_primitive_test.ml\", line 18, characters 6-13", 32, 32);
 
@@ -44,7 +44,7 @@ function f(param) do
       throw exn;
     end end 
   end
-end
+end end
 
 Mt.from_pair_suites("406_primitive_test", suites.contents);
 

@@ -21,11 +21,11 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, v) do
   return Mt.bool_suites(test_id, suites, loc, v);
-end
+end end
 
 Icmp = Belt_Id.comparable(Caml_primitive.caml_int_compare);
 
@@ -38,7 +38,7 @@ end;
 
 I2 = Belt_Id.comparable((function (x, y) do
         return Caml_primitive.caml_int_compare(y, x);
-      end));
+      end end));
 
 m = do
   cmp: Icmp2.cmp,
@@ -92,20 +92,20 @@ console.log(data$2);
 
 function f(param) do
   return Belt_Map.fromArray(param, Icmp);
-end
+end end
 
 function $eq$tilde(a, b) do
   return (function (param) do
       return Belt_Map.eq(a, b, param);
-    end);
-end
+    end end);
+end end
 
 u0 = f(Belt_Array.map(Array_data_util.randomRange(0, 39), (function (x) do
             return --[ tuple ]--[
                     x,
                     x
                   ];
-          end)));
+          end end)));
 
 u1 = Belt_Map.set(u0, 39, 120);
 
@@ -114,26 +114,26 @@ b("File \"bs_map_set_dict_test.ml\", line 77, characters 4-11", Belt_Array.every
                         x,
                         x
                       ];
-              end)), (function (param, param$1) do
+              end end)), (function (param, param$1) do
             if (param[0] == param$1[0]) then do
               return param[1] == param$1[1];
             end else do
               return false;
             end end 
-          end)));
+          end end)));
 
 b("File \"bs_map_set_dict_test.ml\", line 82, characters 4-11", Belt_List.every2(Belt_MapDict.toList(u0.data), Belt_List.fromArray(Belt_Array.map(Array_data_util.range(0, 39), (function (x) do
                     return --[ tuple ]--[
                             x,
                             x
                           ];
-                  end))), (function (param, param$1) do
+                  end end))), (function (param, param$1) do
             if (param[0] == param$1[0]) then do
               return param[1] == param$1[1];
             end else do
               return false;
             end end 
-          end)));
+          end end)));
 
 eq("File \"bs_map_set_dict_test.ml\", line 87, characters 5-12", Belt_Map.get(u0, 39), 39);
 
@@ -144,14 +144,14 @@ u = f(Belt_Array.makeByAndShuffle(10000, (function (x) do
                     x,
                     x
                   ];
-          end)));
+          end end)));
 
 eq("File \"bs_map_set_dict_test.ml\", line 94, characters 4-11", Belt_Array.makeBy(10000, (function (x) do
             return --[ tuple ]--[
                     x,
                     x
                   ];
-          end)), Belt_MapDict.toArray(u.data));
+          end end)), Belt_MapDict.toArray(u.data));
 
 Mt.from_pair_suites("Bs_map_set_dict_test", suites.contents);
 

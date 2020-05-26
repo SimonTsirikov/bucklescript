@@ -4,42 +4,42 @@ Block = require("../../lib/js/block.js");
 
 function u_x(param) do
   return param.u_x;
-end
+end end
 
 function b_x(param) do
   return param.b_x;
-end
+end end
 
 function c_x(param) do
   return param.c_x;
-end
+end end
 
 function d_int(param_0) do
   return --[ D_int ]--Block.__(0, [param_0]);
-end
+end end
 
 function d_tuple(param_0, param_1) do
   return --[ D_tuple ]--Block.__(1, [
             param_0,
             param_1
           ]);
-end
+end end
 
 function newContent(param_0) do
   return --[ NewContent ]--Block.__(2, [param_0]);
-end
+end end
 
 function d_tweak(param_0) do
   return --[ D_tweak ]--Block.__(3, [param_0]);
-end
+end end
 
 function u_X(param) do
   return param.u_X;
-end
+end end
 
 function d(param) do
   return param.d;
-end
+end end
 
 v = --[ D_int ]--Block.__(0, [3]);
 
@@ -70,11 +70,11 @@ h = --[ :: ]--[
 
 function xx(param_0) do
   return --[ Xx ]--[param_0];
-end
+end end
 
 function a(param_0) do
   return --[ A ]--[param_0];
-end
+end end
 
 d_empty = --[ D_empty ]--0;
 

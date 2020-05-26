@@ -13,7 +13,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 v = Caml_array.caml_make_float_vect(5);
 

@@ -22,14 +22,14 @@ end;
 function eq(loc) do
   return (function (param, param$1) do
       return Mt_global.collect_eq(test_id, suites, loc, param, param$1);
-    end);
-end
+    end end);
+end end
 
 function approx(loc) do
   return (function (param, param$1) do
       return Mt_global.collect_approx(test_id, suites, loc, param, param$1);
-    end);
-end
+    end end);
+end end
 
 epsilon_float = Caml_int64.float_of_bits(--[ int64 ]--[
       --[ hi ]--1018167296,
@@ -144,10 +144,10 @@ function from_pairs(ps) do
                                           a,
                                           b
                                         ]);
-                              end)
+                              end end)
                           ];
-                  end), ps));
-end
+                  end end), ps));
+end end
 
 float_compare = Caml_primitive.caml_float_compare;
 
@@ -192,9 +192,9 @@ param$4 = $$Array.map((function (x) do
         end else do
           return 0;
         end end  end 
-      end), $$Array.map((function (param) do
+      end end), $$Array.map((function (param) do
             return Caml_primitive.caml_float_compare(param[0], param[1]);
-          end), [
+          end end), [
           --[ tuple ]--[
             1,
             3
@@ -249,7 +249,7 @@ Mt.from_pair_suites("Float_test", Pervasives.$at(--[ :: ]--[
                           3.2 % 0.5,
                           0.200000000000000178
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -259,7 +259,7 @@ Mt.from_pair_suites("Float_test", Pervasives.$at(--[ :: ]--[
                             a,
                             0.299999999999997158
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -269,7 +269,7 @@ Mt.from_pair_suites("Float_test", Pervasives.$at(--[ :: ]--[
                               b,
                               32
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -279,7 +279,7 @@ Mt.from_pair_suites("Float_test", Pervasives.$at(--[ :: ]--[
                                 3,
                                 3
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ [] ]--0
               ]

@@ -4,7 +4,7 @@ Curry = require("../../lib/js/curry.js");
 
 function g(x) do
   return Curry._1(x[0], x);
-end
+end end
 
 loop = g(--[ A ]--[g]);
 

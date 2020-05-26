@@ -30,7 +30,7 @@ function ff(x) do
       
   end
   return a + 3 | 0;
-end
+end end
 
 function gg(x) do
   a;
@@ -57,7 +57,7 @@ function gg(x) do
       
   end
   return a + 3 | 0;
-end
+end end
 
 function rev_split_by_char(c, s) do
   loop = function (i, l) do
@@ -79,9 +79,9 @@ function rev_split_by_char(c, s) do
         throw exn;
       end end 
     end
-  end;
+  end end;
   return loop(0, --[ [] ]--0);
-end
+end end
 
 function xsplit(delim, s) do
   len = #s;
@@ -125,13 +125,13 @@ function xsplit(delim, s) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 function string_of_chars(x) do
   return $$String.concat("", List.map((function (prim) do
                     return String.fromCharCode(prim);
-                  end), x));
-end
+                  end end), x));
+end end
 
 Mt.from_pair_suites("String_test", --[ :: ]--[
       --[ tuple ]--[
@@ -141,7 +141,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                       9,
                       ff("4")
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -151,7 +151,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                         9,
                         gg(4)
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -161,7 +161,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                           "haha",
                           $$String.escaped("haha")
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -171,7 +171,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                             Bytes.of_string("haha"),
                             Bytes.escaped(Bytes.of_string("haha"))
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -181,7 +181,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                               "\\\"\\\"",
                               $$String.escaped("\"\"")
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -200,7 +200,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                 ],
                                 rev_split_by_char(--[ "a" ]--97, "bbbbabbbba")
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -213,7 +213,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                   ],
                                   rev_split_by_char(--[ "," ]--44, "aaaa")
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -232,7 +232,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                     ],
                                     xsplit(--[ "." ]--46, "a.b.c")
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -242,7 +242,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                       --[ [] ]--0,
                                       Ext_string_test.split(undefined, "", --[ "_" ]--95)
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -255,7 +255,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                         ],
                                         Ext_string_test.split(false, " test_unsafe_obj_ffi_ppx.cmi", --[ " " ]--32)
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -265,7 +265,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                           7,
                                           Ext_string_test.rfind("__", "__index__js")
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -275,7 +275,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                             0,
                                             Ext_string_test.rfind("__", "__index_js")
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -285,7 +285,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                               -1,
                                               Ext_string_test.rfind("__", "_index_js")
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -295,7 +295,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                                 0,
                                                 Ext_string_test.find(undefined, "__", "__index__js")
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -305,7 +305,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                                   6,
                                                   Ext_string_test.find(undefined, "__", "_index__js")
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -315,7 +315,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                                     -1,
                                                     Ext_string_test.find(undefined, "__", "_index_js")
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
@@ -325,7 +325,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                                       String.fromCharCode(--[ "0" ]--48),
                                                       Caml_bytes.bytes_to_string(Bytes.make(1, --[ "0" ]--48))
                                                     ]);
-                                          end)
+                                          end end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
@@ -344,7 +344,7 @@ Mt.from_pair_suites("String_test", --[ :: ]--[
                                                             ]),
                                                         "012"
                                                       ]);
-                                            end)
+                                            end end)
                                         ],
                                         --[ [] ]--0
                                       ]

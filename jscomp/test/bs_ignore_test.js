@@ -24,11 +24,11 @@ function string_of_kind(kind) do
   end else do
     return "float";
   end end 
-end
+end end
 
 function add2(k, x, y) do
   return add_dyn(k and "string" or "float", x, y);
-end
+end end
 
 console.log(add2(--[ Float ]--0, 3.0, 2.0));
 

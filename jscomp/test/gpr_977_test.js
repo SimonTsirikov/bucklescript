@@ -22,33 +22,33 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f(x) do
   for i = 0 , 100 , 1 do
     console.log(".");
   end
   return -x | 0;
-end
+end end
 
 function int32_f(x) do
   for i = 0 , 100 , 1 do
     console.log(".");
   end
   return -x | 0;
-end
+end end
 
 function nint32_f(x) do
   for i = 0 , 100 , 1 do
     console.log(".");
   end
   return -x;
-end
+end end
 
 u = f(-2147483648);
 

@@ -5,7 +5,7 @@ function tailcall(x) do
   while(true) do
     continue ;
   end;
-end
+end end
 
 function non_length(x) do
   if (x) then do
@@ -13,7 +13,7 @@ function non_length(x) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function length(_acc, _x) do
   while(true) do
@@ -32,7 +32,7 @@ function length(_acc, _x) do
       return acc;
     end end 
   end;
-end
+end end
 
 exports.tailcall = tailcall;
 exports.non_length = non_length;

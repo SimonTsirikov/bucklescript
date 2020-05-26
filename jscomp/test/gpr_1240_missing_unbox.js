@@ -8,7 +8,7 @@ function f(x, y) do
           x$1,
           y$1
         ];
-end
+end end
 
 exports.f = f;
 --[ No side effect ]--

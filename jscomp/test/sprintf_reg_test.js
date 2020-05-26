@@ -16,7 +16,7 @@ end;
 
 function eq(f, param) do
   return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
-end
+end end
 
 s = Curry._1(Printf.sprintf(--[ Format ]--[
           --[ Format_arg ]--Block.__(13, [

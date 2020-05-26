@@ -24,12 +24,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 eq("File \"js_list_test.ml\", line 11, characters 7-14", Js_list.flatten(--[ :: ]--[
           --[ :: ]--[
@@ -86,7 +86,7 @@ eq("File \"js_list_test.ml\", line 14, characters 7-14", Js_list.filterMap((func
               return x;
             end
              end 
-          end), --[ :: ]--[
+          end end), --[ :: ]--[
           1,
           --[ :: ]--[
             2,
@@ -123,7 +123,7 @@ eq("File \"js_list_test.ml\", line 17, characters 7-14", Js_list.filterMap((func
               return x;
             end
              end 
-          end), --[ :: ]--[
+          end end), --[ :: ]--[
           1,
           --[ :: ]--[
             2,
@@ -154,7 +154,7 @@ eq("File \"js_list_test.ml\", line 17, characters 7-14", Js_list.filterMap((func
 
 eq("File \"js_list_test.ml\", line 20, characters 7-14", Js_list.countBy((function (x) do
             return x % 2 == 0;
-          end), --[ :: ]--[
+          end end), --[ :: ]--[
           1,
           --[ :: ]--[
             2,
@@ -176,38 +176,38 @@ eq("File \"js_list_test.ml\", line 20, characters 7-14", Js_list.countBy((functi
 
 function f(i) do
   return i;
-end
+end end
 
 v = Js_vector.toList(Js_vector.init(100000, f));
 
 eq("File \"js_list_test.ml\", line 23, characters 7-14", Js_list.countBy((function (x) do
             return x % 2 == 0;
-          end), v), 50000);
+          end end), v), 50000);
 
 vv = Js_list.foldRight((function (x, y) do
         return --[ :: ]--[
                 x,
                 y
               ];
-      end), v, --[ [] ]--0);
+      end end), v, --[ [] ]--0);
 
 eq("File \"js_list_test.ml\", line 27, characters 7-14", true, Js_list.equal((function (x, y) do
             return x == y;
-          end), v, vv));
+          end end), v, vv));
 
 vvv = Js_list.filter((function (x) do
         return x % 10 == 0;
-      end), vv);
+      end end), vv);
 
 eq("File \"js_list_test.ml\", line 31, characters 7-14", Js_list.length(vvv), 10000);
 
 function f$1(x) do
   return Caml_int32.imul(x, 10);
-end
+end end
 
 eq("File \"js_list_test.ml\", line 32, characters 7-14", true, Js_list.equal((function (x, y) do
             return x == y;
-          end), vvv, Js_vector.toList(Js_vector.init(10000, f$1))));
+          end end), vvv, Js_vector.toList(Js_vector.init(10000, f$1))));
 
 Mt.from_pair_suites("Js_list_test", suites.contents);
 

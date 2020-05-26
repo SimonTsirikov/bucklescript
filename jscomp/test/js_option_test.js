@@ -6,7 +6,7 @@ Js_option = require("../../lib/js/js_option.js");
 
 function simpleEq(a, b) do
   return a == b;
-end
+end end
 
 option_suites_000 = --[ tuple ]--[
   "option_isSome_Some",
@@ -15,7 +15,7 @@ option_suites_000 = --[ tuple ]--[
                 true,
                 true
               ]);
-    end)
+    end end)
 ];
 
 option_suites_001 = --[ :: ]--[
@@ -26,7 +26,7 @@ option_suites_001 = --[ :: ]--[
                   false,
                   false
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -36,7 +36,7 @@ option_suites_001 = --[ :: ]--[
                     false,
                     false
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -46,7 +46,7 @@ option_suites_001 = --[ :: ]--[
                       true,
                       true
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -56,7 +56,7 @@ option_suites_001 = --[ :: ]--[
                         true,
                         Js_option.isSomeValue(simpleEq, 2, 2)
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -66,7 +66,7 @@ option_suites_001 = --[ :: ]--[
                           false,
                           Js_option.isSomeValue(simpleEq, 1, 2)
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -76,7 +76,7 @@ option_suites_001 = --[ :: ]--[
                             false,
                             Js_option.isSomeValue(simpleEq, 1, undefined)
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -86,7 +86,7 @@ option_suites_001 = --[ :: ]--[
                               2,
                               Js_option.getExn(2)
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -96,7 +96,7 @@ option_suites_001 = --[ :: ]--[
                                 true,
                                 Js_option.equal(simpleEq, 2, 2)
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -106,7 +106,7 @@ option_suites_001 = --[ :: ]--[
                                   false,
                                   Js_option.equal(simpleEq, 1, 2)
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -116,7 +116,7 @@ option_suites_001 = --[ :: ]--[
                                     false,
                                     Js_option.equal(simpleEq, 1, undefined)
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -126,9 +126,9 @@ option_suites_001 = --[ :: ]--[
                                       true,
                                       Js_option.isSomeValue(simpleEq, 3, Js_option.andThen((function (a) do
                                                   return a + 1 | 0;
-                                                end), 2))
+                                                end end), 2))
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -138,9 +138,9 @@ option_suites_001 = --[ :: ]--[
                                         false,
                                         Js_option.isSomeValue(simpleEq, 3, Js_option.andThen((function (param) do
                                                     return ;
-                                                  end), 2))
+                                                  end end), 2))
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -150,9 +150,9 @@ option_suites_001 = --[ :: ]--[
                                           true,
                                           Js_option.isSomeValue(simpleEq, 3, Js_option.map((function (a) do
                                                       return a + 1 | 0;
-                                                    end), 2))
+                                                    end end), 2))
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -162,9 +162,9 @@ option_suites_001 = --[ :: ]--[
                                             undefined,
                                             Js_option.map((function (a) do
                                                     return a + 1 | 0;
-                                                  end), undefined)
+                                                  end end), undefined)
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -174,7 +174,7 @@ option_suites_001 = --[ :: ]--[
                                               2,
                                               Js_option.getWithDefault(3, 2)
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -184,7 +184,7 @@ option_suites_001 = --[ :: ]--[
                                                 3,
                                                 Js_option.getWithDefault(3, undefined)
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -194,9 +194,9 @@ option_suites_001 = --[ :: ]--[
                                                   true,
                                                   Js_option.isSomeValue(simpleEq, 2, Js_option.filter((function (a) do
                                                               return a % 2 == 0;
-                                                            end), 2))
+                                                            end end), 2))
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -206,9 +206,9 @@ option_suites_001 = --[ :: ]--[
                                                     undefined,
                                                     Js_option.filter((function (a) do
                                                             return a % 3 == 0;
-                                                          end), 2)
+                                                          end end), 2)
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
@@ -218,9 +218,9 @@ option_suites_001 = --[ :: ]--[
                                                       undefined,
                                                       Js_option.filter((function (a) do
                                                               return a % 3 == 0;
-                                                            end), undefined)
+                                                            end end), undefined)
                                                     ]);
-                                          end)
+                                          end end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
@@ -230,7 +230,7 @@ option_suites_001 = --[ :: ]--[
                                                         true,
                                                         Js_option.isSomeValue(simpleEq, 3, Js_option.firstSome(3, 2))
                                                       ]);
-                                            end)
+                                            end end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
@@ -240,7 +240,7 @@ option_suites_001 = --[ :: ]--[
                                                           true,
                                                           Js_option.isSomeValue(simpleEq, 2, Js_option.firstSome(undefined, 2))
                                                         ]);
-                                              end)
+                                              end end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
@@ -250,7 +250,7 @@ option_suites_001 = --[ :: ]--[
                                                             undefined,
                                                             Js_option.firstSome(undefined, undefined)
                                                           ]);
-                                                end)
+                                                end end)
                                             ],
                                             --[ [] ]--0
                                           ]

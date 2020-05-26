@@ -7,11 +7,11 @@ function v(u) do
         compare: $$String.compare
       end);
   return --[ () ]--0;
-end
+end end
 
 function u(v) do
   return v;
-end
+end end
 
 s = $$String;
 

@@ -16,7 +16,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 v = --[ A0 ]--Block.__(0, [
     --[ lbl ]--3,
@@ -35,13 +35,13 @@ function f(x) do
   if (x.tag) then do
     return List.fold_left((function (prim, prim$1) do
                   return prim + prim$1 | 0;
-                end), 0, x[--[ more ]--0]);
+                end end), 0, x[--[ more ]--0]);
   end else do
     return List.fold_left((function (prim, prim$1) do
                   return prim + prim$1 | 0;
-                end), x[--[ lbl ]--0], x[--[ more ]--1]);
+                end end), x[--[ lbl ]--0], x[--[ more ]--1]);
   end end 
-end
+end end
 
 eq("File \"inline_record_test.ml\", line 25, characters 6-13", f(v), 3);
 
@@ -84,7 +84,7 @@ function ff(x) do
     x[--[ x ]--0] = x[--[ x ]--0] + 1 | 0;
     return --[ () ]--0;
   end end 
-end
+end end
 
 v4 = --[ A0 ]--Block.__(0, [
     --[ x ]--0,
@@ -150,7 +150,7 @@ function ff0(x) do
   end else do
     return --[ () ]--0;
   end end 
-end
+end end
 
 for i$1 = 0 , 10 , 1 do
   ff0(v6);
@@ -182,7 +182,7 @@ function ff1(x) do
   end else do
     return --[ A1 ]--0;
   end end 
-end
+end end
 
 Mt.from_pair_suites("Inline_record_test", suites.contents);
 

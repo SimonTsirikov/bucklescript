@@ -19,7 +19,7 @@ end;
 
 function eq(f, param) do
   return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
-end
+end end
 
 function scan_rest(ib, accu) do
   return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -85,11 +85,11 @@ function scan_rest(ib, accu) do
                                                   end end
                                                   
                                               end
-                                            end));
-                              end));
+                                            end end));
+                              end end));
                 end end 
-              end));
-end
+              end end));
+end end
 
 function scan_int_list(ib) do
   Curry._1(Scanf.bscanf(ib, --[ Format ]--[
@@ -100,7 +100,7 @@ function scan_int_list(ib) do
             " [ "
           ]), --[ () ]--0);
   return List.rev(scan_rest(ib, --[ [] ]--0));
-end
+end end
 
 eq("File \"scanf_reference_error_regression_test.ml\", line 36, characters 5-12", --[ tuple ]--[
       scan_int_list(Scanf.Scanning.from_string("[]")),

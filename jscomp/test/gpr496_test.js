@@ -23,12 +23,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 expected = --[ tuple ]--[
   false,
@@ -69,7 +69,7 @@ eq("File \"gpr496_test.ml\", line 44, characters 12-19", expected, expected2);
 
 function ff(x, y) do
   return Caml_primitive.caml_bool_min(x, Curry._1(y, --[ () ]--0));
-end
+end end
 
 eq("File \"gpr496_test.ml\", line 48, characters 5-12", true < false and true or false, false);
 

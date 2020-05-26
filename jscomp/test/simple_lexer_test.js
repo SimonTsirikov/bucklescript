@@ -43,11 +43,11 @@ function __ocaml_lex_translate_rec(lexbuf, ___ocaml_lex_state) do
         
     end
   end;
-end
+end end
 
 function translate(lexbuf) do
   return __ocaml_lex_translate_rec(lexbuf, 0);
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "translate",
@@ -56,7 +56,7 @@ suites_000 = --[ tuple ]--[
                 __ocaml_lex_translate_rec(Lexing.from_string("-- current_directory --"), 0),
                 "-- . --"
               ]);
-    end)
+    end end)
 ];
 
 suites = --[ :: ]--[

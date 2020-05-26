@@ -24,12 +24,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 class_tables = --[ Cons ]--[
   0,
@@ -56,24 +56,24 @@ function create(param) do
           (function (self$1, param) do
               self$1[data] = self$1[data] + 1 | 0;
               return self$1;
-            end),
+            end end),
           get,
           (function (self$1, param) do
               return self$1[data];
-            end)
+            end end)
         ]);
     env_init = function (env$1) do
       self = CamlinternalOO.create_object_opt(0, $$class);
       self[data] = 0;
       self[env] = env$1;
       return self;
-    end;
+    end end;
     CamlinternalOO.init_class($$class);
     class_tables[0] = env_init;
   end
    end 
   return Curry._1(class_tables[0], 0);
-end
+end end
 
 cxt1 = create(--[ () ]--0);
 

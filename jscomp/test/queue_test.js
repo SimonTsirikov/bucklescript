@@ -14,30 +14,30 @@ function Test(Queue) do
     Curry._3(Queue.fold, (function (i, e) do
             Caml_array.caml_array_set(v, i, e);
             return i + 1 | 0;
-          end), 0, q);
+          end end), 0, q);
     return v;
-  end;
+  end end;
   queue_1 = function (x) do
     q = Curry._1(Queue.create, --[ () ]--0);
     $$Array.iter((function (x) do
             return Curry._2(Queue.add, x, q);
-          end), x);
+          end end), x);
     return to_array(q);
-  end;
+  end end;
   return do
           to_array: to_array,
           queue_1: queue_1
         end;
-end
+end end
 
 function to_array(q) do
   v = Caml_array.caml_make_vect(q.length, 0);
   Queue.fold((function (i, e) do
           Caml_array.caml_array_set(v, i, e);
           return i + 1 | 0;
-        end), 0, q);
+        end end), 0, q);
   return v;
-end
+end end
 
 function queue_1(x) do
   q = do
@@ -47,9 +47,9 @@ function queue_1(x) do
   end;
   $$Array.iter((function (x) do
           return Queue.add(x, q);
-        end), x);
+        end end), x);
   return to_array(q);
-end
+end end
 
 T1 = do
   to_array: to_array,
@@ -61,9 +61,9 @@ function to_array$1(q) do
   Queue_402.fold((function (i, e) do
           Caml_array.caml_array_set(v, i, e);
           return i + 1 | 0;
-        end), 0, q);
+        end end), 0, q);
   return v;
-end
+end end
 
 function queue_1$1(x) do
   q = do
@@ -72,9 +72,9 @@ function queue_1$1(x) do
   end;
   $$Array.iter((function (x) do
           return Queue_402.add(x, q);
-        end), x);
+        end end), x);
   return to_array$1(q);
-end
+end end
 
 T2 = do
   to_array: to_array$1,
@@ -94,7 +94,7 @@ suites_000 = --[ tuple ]--[
                 x,
                 queue_1(x)
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -111,7 +111,7 @@ suites_001 = --[ :: ]--[
                   x,
                   queue_1$1(x)
                 ]);
-      end)
+      end end)
   ],
   --[ [] ]--0
 ];

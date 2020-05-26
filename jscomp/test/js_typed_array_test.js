@@ -7,17 +7,17 @@ Curry = require("../../lib/js/curry.js");
 
 function mkI8(a) do
   return new Int8Array(a);
-end
+end end
 
 function via(make, f, arr) do
   return Array.from(Curry._1(f, Curry._1(make, arr)));
-end
+end end
 
 function viaInt8(f, arr) do
   return (function (param, param$1) do
       return Array.from(Curry._1(param, new Int8Array(param$1)));
-    end);
-end
+    end end);
+end end
 
 x = new Int8Array([
       1,
@@ -32,7 +32,7 @@ suites_000 = --[ tuple ]--[
                 5,
                 new ArrayBuffer(5).byteLength
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -43,7 +43,7 @@ suites_001 = --[ :: ]--[
                   5,
                   new ArrayBuffer(5).byteLength
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -53,7 +53,7 @@ suites_001 = --[ :: ]--[
                     2,
                     new ArrayBuffer(5).slice(2, 4).byteLength
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -63,7 +63,7 @@ suites_001 = --[ :: ]--[
                       3,
                       new ArrayBuffer(5).slice(2).byteLength
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -79,7 +79,7 @@ suites_001 = --[ :: ]--[
                                 5
                               ])[3]
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -97,7 +97,7 @@ suites_001 = --[ :: ]--[
                           14,
                           a[3]
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -117,7 +117,7 @@ suites_001 = --[ :: ]--[
                                       5
                                     ]).buffer, 2)
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -133,7 +133,7 @@ suites_001 = --[ :: ]--[
                                     5
                                   ]).byteLength
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -149,7 +149,7 @@ suites_001 = --[ :: ]--[
                                       5
                                     ]).byteOffset
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -162,7 +162,7 @@ suites_001 = --[ :: ]--[
                                 7
                               ]);
                           return a;
-                        end;
+                        end end;
                         return --[ Eq ]--Block.__(0, [
                                   new Int8Array([
                                         9,
@@ -179,7 +179,7 @@ suites_001 = --[ :: ]--[
                                             5
                                           ]))
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -192,7 +192,7 @@ suites_001 = --[ :: ]--[
                                   7
                                 ], 2);
                             return a;
-                          end;
+                          end end;
                           return --[ Eq ]--Block.__(0, [
                                     new Int8Array([
                                           1,
@@ -209,7 +209,7 @@ suites_001 = --[ :: ]--[
                                               5
                                             ]))
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -225,7 +225,7 @@ suites_001 = --[ :: ]--[
                                             5
                                           ]).length
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -247,7 +247,7 @@ suites_001 = --[ :: ]--[
                                                 5
                                               ]).copyWithin(-2)
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -269,7 +269,7 @@ suites_001 = --[ :: ]--[
                                                   5
                                                 ]).copyWithin(0, 3)
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -291,7 +291,7 @@ suites_001 = --[ :: ]--[
                                                     5
                                                   ]).copyWithin(0, 3, 4)
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -309,7 +309,7 @@ suites_001 = --[ :: ]--[
                                                       3
                                                     ]).fill(4)
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -327,7 +327,7 @@ suites_001 = --[ :: ]--[
                                                         3
                                                       ]).fill(4, 1)
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -345,7 +345,7 @@ suites_001 = --[ :: ]--[
                                                           3
                                                         ]).fill(4, 1, 2)
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -363,7 +363,7 @@ suites_001 = --[ :: ]--[
                                                             3
                                                           ]).reverse()
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
@@ -381,7 +381,7 @@ suites_001 = --[ :: ]--[
                                                               2
                                                             ]).sort()
                                                     ]);
-                                          end)
+                                          end end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
@@ -399,9 +399,9 @@ suites_001 = --[ :: ]--[
                                                                 2
                                                               ]).sort((function (a, b) do
                                                                 return b - a | 0;
-                                                              end))
+                                                              end end))
                                                       ]);
-                                            end)
+                                            end end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
@@ -415,7 +415,7 @@ suites_001 = --[ :: ]--[
                                                                   3
                                                                 ]).includes(3)
                                                         ]);
-                                              end)
+                                              end end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
@@ -429,7 +429,7 @@ suites_001 = --[ :: ]--[
                                                                     3
                                                                   ]).indexOf(2)
                                                           ]);
-                                                end)
+                                                end end)
                                             ],
                                             --[ :: ]--[
                                               --[ tuple ]--[
@@ -444,7 +444,7 @@ suites_001 = --[ :: ]--[
                                                                       2
                                                                     ]).indexOf(2, 2)
                                                             ]);
-                                                  end)
+                                                  end end)
                                               ],
                                               --[ :: ]--[
                                                 --[ tuple ]--[
@@ -458,7 +458,7 @@ suites_001 = --[ :: ]--[
                                                                         3
                                                                       ]).join()
                                                               ]);
-                                                    end)
+                                                    end end)
                                                 ],
                                                 --[ :: ]--[
                                                   --[ tuple ]--[
@@ -472,7 +472,7 @@ suites_001 = --[ :: ]--[
                                                                           3
                                                                         ]).join(";")
                                                                 ]);
-                                                      end)
+                                                      end end)
                                                   ],
                                                   --[ :: ]--[
                                                     --[ tuple ]--[
@@ -486,7 +486,7 @@ suites_001 = --[ :: ]--[
                                                                             3
                                                                           ]).lastIndexOf(2)
                                                                   ]);
-                                                        end)
+                                                        end end)
                                                     ],
                                                     --[ :: ]--[
                                                       --[ tuple ]--[
@@ -501,7 +501,7 @@ suites_001 = --[ :: ]--[
                                                                               2
                                                                             ]).lastIndexOf(2, 2)
                                                                     ]);
-                                                          end)
+                                                          end end)
                                                       ],
                                                       --[ :: ]--[
                                                         --[ tuple ]--[
@@ -520,7 +520,7 @@ suites_001 = --[ :: ]--[
                                                                                 5
                                                                               ]).slice(1, 3)
                                                                       ]);
-                                                            end)
+                                                            end end)
                                                         ],
                                                         --[ :: ]--[
                                                           --[ tuple ]--[
@@ -542,7 +542,7 @@ suites_001 = --[ :: ]--[
                                                                                   5
                                                                                 ]).slice()
                                                                         ]);
-                                                              end)
+                                                              end end)
                                                           ],
                                                           --[ :: ]--[
                                                             --[ tuple ]--[
@@ -562,7 +562,7 @@ suites_001 = --[ :: ]--[
                                                                                     5
                                                                                   ]).slice(2)
                                                                           ]);
-                                                                end)
+                                                                end end)
                                                             ],
                                                             --[ :: ]--[
                                                               --[ tuple ]--[
@@ -581,7 +581,7 @@ suites_001 = --[ :: ]--[
                                                                                       5
                                                                                     ]).subarray(1, 3)
                                                                             ]);
-                                                                  end)
+                                                                  end end)
                                                               ],
                                                               --[ :: ]--[
                                                                 --[ tuple ]--[
@@ -601,7 +601,7 @@ suites_001 = --[ :: ]--[
                                                                                         5
                                                                                       ]).subarray(2)
                                                                               ]);
-                                                                    end)
+                                                                    end end)
                                                                 ],
                                                                 --[ :: ]--[
                                                                   --[ tuple ]--[
@@ -615,7 +615,7 @@ suites_001 = --[ :: ]--[
                                                                                           3
                                                                                         ]).toString()
                                                                                 ]);
-                                                                      end)
+                                                                      end end)
                                                                   ],
                                                                   --[ :: ]--[
                                                                     --[ tuple ]--[
@@ -629,7 +629,7 @@ suites_001 = --[ :: ]--[
                                                                                             3
                                                                                           ]).toLocaleString()
                                                                                   ]);
-                                                                        end)
+                                                                        end end)
                                                                     ],
                                                                     --[ :: ]--[
                                                                       --[ tuple ]--[
@@ -643,9 +643,9 @@ suites_001 = --[ :: ]--[
                                                                                               3
                                                                                             ]).every((function (n) do
                                                                                               return n > 0;
-                                                                                            end))
+                                                                                            end end))
                                                                                     ]);
-                                                                          end)
+                                                                          end end)
                                                                       ],
                                                                       --[ :: ]--[
                                                                         --[ tuple ]--[
@@ -659,9 +659,9 @@ suites_001 = --[ :: ]--[
                                                                                                 3
                                                                                               ]).every((function (param, i) do
                                                                                                 return i > 0;
-                                                                                              end))
+                                                                                              end end))
                                                                                       ]);
-                                                                            end)
+                                                                            end end)
                                                                         ],
                                                                         --[ :: ]--[
                                                                           --[ tuple ]--[
@@ -679,9 +679,9 @@ suites_001 = --[ :: ]--[
                                                                                                   4
                                                                                                 ]).filter((function (n) do
                                                                                                   return n % 2 == 0;
-                                                                                                end))
+                                                                                                end end))
                                                                                         ]);
-                                                                              end)
+                                                                              end end)
                                                                           ],
                                                                           --[ :: ]--[
                                                                             --[ tuple ]--[
@@ -699,9 +699,9 @@ suites_001 = --[ :: ]--[
                                                                                                     4
                                                                                                   ]).filter((function (param, i) do
                                                                                                     return i % 2 == 0;
-                                                                                                  end))
+                                                                                                  end end))
                                                                                           ]);
-                                                                                end)
+                                                                                end end)
                                                                             ],
                                                                             --[ :: ]--[
                                                                               --[ tuple ]--[
@@ -716,9 +716,9 @@ suites_001 = --[ :: ]--[
                                                                                                       4
                                                                                                     ]).find((function (n) do
                                                                                                       return n % 2 == 0;
-                                                                                                    end))
+                                                                                                    end end))
                                                                                             ]);
-                                                                                  end)
+                                                                                  end end)
                                                                               ],
                                                                               --[ :: ]--[
                                                                                 --[ tuple ]--[
@@ -733,9 +733,9 @@ suites_001 = --[ :: ]--[
                                                                                                         4
                                                                                                       ]).find((function (param, i) do
                                                                                                         return i % 2 == 0;
-                                                                                                      end))
+                                                                                                      end end))
                                                                                               ]);
-                                                                                    end)
+                                                                                    end end)
                                                                                 ],
                                                                                 --[ :: ]--[
                                                                                   --[ tuple ]--[
@@ -750,9 +750,9 @@ suites_001 = --[ :: ]--[
                                                                                                           4
                                                                                                         ]).findIndex((function (n) do
                                                                                                           return n % 2 == 0;
-                                                                                                        end))
+                                                                                                        end end))
                                                                                                 ]);
-                                                                                      end)
+                                                                                      end end)
                                                                                   ],
                                                                                   --[ :: ]--[
                                                                                     --[ tuple ]--[
@@ -767,9 +767,9 @@ suites_001 = --[ :: ]--[
                                                                                                             4
                                                                                                           ]).findIndex((function (param, i) do
                                                                                                             return i % 2 == 0;
-                                                                                                          end))
+                                                                                                          end end))
                                                                                                   ]);
-                                                                                        end)
+                                                                                        end end)
                                                                                     ],
                                                                                     --[ :: ]--[
                                                                                       --[ tuple ]--[
@@ -785,12 +785,12 @@ suites_001 = --[ :: ]--[
                                                                                                   ]).forEach((function (n) do
                                                                                                     sum.contents = sum.contents + n | 0;
                                                                                                     return --[ () ]--0;
-                                                                                                  end));
+                                                                                                  end end));
                                                                                             return --[ Eq ]--Block.__(0, [
                                                                                                       6,
                                                                                                       sum.contents
                                                                                                     ]);
-                                                                                          end)
+                                                                                          end end)
                                                                                       ],
                                                                                       --[ :: ]--[
                                                                                         --[ tuple ]--[
@@ -806,12 +806,12 @@ suites_001 = --[ :: ]--[
                                                                                                     ]).forEach((function (param, i) do
                                                                                                       sum.contents = sum.contents + i | 0;
                                                                                                       return --[ () ]--0;
-                                                                                                    end));
+                                                                                                    end end));
                                                                                               return --[ Eq ]--Block.__(0, [
                                                                                                         3,
                                                                                                         sum.contents
                                                                                                       ]);
-                                                                                            end)
+                                                                                            end end)
                                                                                         ],
                                                                                         --[ :: ]--[
                                                                                           --[ tuple ]--[
@@ -831,9 +831,9 @@ suites_001 = --[ :: ]--[
                                                                                                                   4
                                                                                                                 ]).map((function (n) do
                                                                                                                   return (n << 1);
-                                                                                                                end))
+                                                                                                                end end))
                                                                                                         ]);
-                                                                                              end)
+                                                                                              end end)
                                                                                           ],
                                                                                           --[ :: ]--[
                                                                                             --[ tuple ]--[
@@ -853,9 +853,9 @@ suites_001 = --[ :: ]--[
                                                                                                                     4
                                                                                                                   ]).map((function (param, i) do
                                                                                                                     return (i << 1);
-                                                                                                                  end))
+                                                                                                                  end end))
                                                                                                           ]);
-                                                                                                end)
+                                                                                                end end)
                                                                                             ],
                                                                                             --[ :: ]--[
                                                                                               --[ tuple ]--[
@@ -870,9 +870,9 @@ suites_001 = --[ :: ]--[
                                                                                                                       4
                                                                                                                     ]).reduce((function (acc, n) do
                                                                                                                       return acc - n | 0;
-                                                                                                                    end), 0)
+                                                                                                                    end end), 0)
                                                                                                             ]);
-                                                                                                  end)
+                                                                                                  end end)
                                                                                               ],
                                                                                               --[ :: ]--[
                                                                                                 --[ tuple ]--[
@@ -887,9 +887,9 @@ suites_001 = --[ :: ]--[
                                                                                                                         4
                                                                                                                       ]).reduce((function (acc, param, i) do
                                                                                                                         return acc - i | 0;
-                                                                                                                      end), 0)
+                                                                                                                      end end), 0)
                                                                                                               ]);
-                                                                                                    end)
+                                                                                                    end end)
                                                                                                 ],
                                                                                                 --[ :: ]--[
                                                                                                   --[ tuple ]--[
@@ -904,9 +904,9 @@ suites_001 = --[ :: ]--[
                                                                                                                           4
                                                                                                                         ]).reduceRight((function (acc, n) do
                                                                                                                           return acc - n | 0;
-                                                                                                                        end), 0)
+                                                                                                                        end end), 0)
                                                                                                                 ]);
-                                                                                                      end)
+                                                                                                      end end)
                                                                                                   ],
                                                                                                   --[ :: ]--[
                                                                                                     --[ tuple ]--[
@@ -921,9 +921,9 @@ suites_001 = --[ :: ]--[
                                                                                                                             4
                                                                                                                           ]).reduceRight((function (acc, param, i) do
                                                                                                                             return acc - i | 0;
-                                                                                                                          end), 0)
+                                                                                                                          end end), 0)
                                                                                                                   ]);
-                                                                                                        end)
+                                                                                                        end end)
                                                                                                     ],
                                                                                                     --[ :: ]--[
                                                                                                       --[ tuple ]--[
@@ -938,9 +938,9 @@ suites_001 = --[ :: ]--[
                                                                                                                               4
                                                                                                                             ]).some((function (n) do
                                                                                                                               return n <= 0;
-                                                                                                                            end))
+                                                                                                                            end end))
                                                                                                                     ]);
-                                                                                                          end)
+                                                                                                          end end)
                                                                                                       ],
                                                                                                       --[ :: ]--[
                                                                                                         --[ tuple ]--[
@@ -955,9 +955,9 @@ suites_001 = --[ :: ]--[
                                                                                                                                 4
                                                                                                                               ]).some((function (param, i) do
                                                                                                                                 return i <= 0;
-                                                                                                                              end))
+                                                                                                                              end end))
                                                                                                                       ]);
-                                                                                                            end)
+                                                                                                            end end)
                                                                                                         ],
                                                                                                         --[ :: ]--[
                                                                                                           --[ tuple ]--[
@@ -967,7 +967,7 @@ suites_001 = --[ :: ]--[
                                                                                                                           1,
                                                                                                                           Int8Array.BYTES_PER_ELEMENT
                                                                                                                         ]);
-                                                                                                              end)
+                                                                                                              end end)
                                                                                                           ],
                                                                                                           --[ :: ]--[
                                                                                                             --[ tuple ]--[
@@ -981,7 +981,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                   3
                                                                                                                                 ]).byteLength
                                                                                                                           ]);
-                                                                                                                end)
+                                                                                                                end end)
                                                                                                             ],
                                                                                                             --[ :: ]--[
                                                                                                               --[ tuple ]--[
@@ -991,7 +991,7 @@ suites_001 = --[ :: ]--[
                                                                                                                               32,
                                                                                                                               new Int8Array(new ArrayBuffer(32)).byteLength
                                                                                                                             ]);
-                                                                                                                  end)
+                                                                                                                  end end)
                                                                                                               ],
                                                                                                               --[ :: ]--[
                                                                                                                 --[ tuple ]--[
@@ -1002,7 +1002,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                 24,
                                                                                                                                 new Int8Array(buffer, 8).byteLength
                                                                                                                               ]);
-                                                                                                                    end)
+                                                                                                                    end end)
                                                                                                                 ],
                                                                                                                 --[ :: ]--[
                                                                                                                   --[ tuple ]--[
@@ -1013,7 +1013,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                   2,
                                                                                                                                   new Int8Array(buffer, 8, 2).byteLength
                                                                                                                                 ]);
-                                                                                                                      end)
+                                                                                                                      end end)
                                                                                                                   ],
                                                                                                                   --[ :: ]--[
                                                                                                                     --[ tuple ]--[
@@ -1023,7 +1023,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                     3,
                                                                                                                                     new Int8Array(3).byteLength
                                                                                                                                   ]);
-                                                                                                                        end)
+                                                                                                                        end end)
                                                                                                                     ],
                                                                                                                     --[ :: ]--[
                                                                                                                       --[ tuple ]--[
@@ -1041,7 +1041,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                       14,
                                                                                                                                       a[3]
                                                                                                                                     ]);
-                                                                                                                          end)
+                                                                                                                          end end)
                                                                                                                       ],
                                                                                                                       --[ :: ]--[
                                                                                                                         --[ tuple ]--[
@@ -1051,7 +1051,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                         1,
                                                                                                                                         Uint8Array.BYTES_PER_ELEMENT
                                                                                                                                       ]);
-                                                                                                                            end)
+                                                                                                                            end end)
                                                                                                                         ],
                                                                                                                         --[ :: ]--[
                                                                                                                           --[ tuple ]--[
@@ -1065,7 +1065,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                 3
                                                                                                                                               ]).byteLength
                                                                                                                                         ]);
-                                                                                                                              end)
+                                                                                                                              end end)
                                                                                                                           ],
                                                                                                                           --[ :: ]--[
                                                                                                                             --[ tuple ]--[
@@ -1075,7 +1075,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                             32,
                                                                                                                                             new Uint8Array(new ArrayBuffer(32)).byteLength
                                                                                                                                           ]);
-                                                                                                                                end)
+                                                                                                                                end end)
                                                                                                                             ],
                                                                                                                             --[ :: ]--[
                                                                                                                               --[ tuple ]--[
@@ -1086,7 +1086,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                               24,
                                                                                                                                               new Uint8Array(buffer, 8).byteLength
                                                                                                                                             ]);
-                                                                                                                                  end)
+                                                                                                                                  end end)
                                                                                                                               ],
                                                                                                                               --[ :: ]--[
                                                                                                                                 --[ tuple ]--[
@@ -1097,7 +1097,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                 2,
                                                                                                                                                 new Uint8Array(buffer, 8, 2).byteLength
                                                                                                                                               ]);
-                                                                                                                                    end)
+                                                                                                                                    end end)
                                                                                                                                 ],
                                                                                                                                 --[ :: ]--[
                                                                                                                                   --[ tuple ]--[
@@ -1107,7 +1107,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                   3,
                                                                                                                                                   new Uint8Array(3).byteLength
                                                                                                                                                 ]);
-                                                                                                                                      end)
+                                                                                                                                      end end)
                                                                                                                                   ],
                                                                                                                                   --[ :: ]--[
                                                                                                                                     --[ tuple ]--[
@@ -1125,7 +1125,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                     14,
                                                                                                                                                     a[3]
                                                                                                                                                   ]);
-                                                                                                                                        end)
+                                                                                                                                        end end)
                                                                                                                                     ],
                                                                                                                                     --[ :: ]--[
                                                                                                                                       --[ tuple ]--[
@@ -1135,7 +1135,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                       1,
                                                                                                                                                       Uint8ClampedArray.BYTES_PER_ELEMENT
                                                                                                                                                     ]);
-                                                                                                                                          end)
+                                                                                                                                          end end)
                                                                                                                                       ],
                                                                                                                                       --[ :: ]--[
                                                                                                                                         --[ tuple ]--[
@@ -1149,7 +1149,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                               3
                                                                                                                                                             ]).byteLength
                                                                                                                                                       ]);
-                                                                                                                                            end)
+                                                                                                                                            end end)
                                                                                                                                         ],
                                                                                                                                         --[ :: ]--[
                                                                                                                                           --[ tuple ]--[
@@ -1159,7 +1159,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                           32,
                                                                                                                                                           new Uint8ClampedArray(new ArrayBuffer(32)).byteLength
                                                                                                                                                         ]);
-                                                                                                                                              end)
+                                                                                                                                              end end)
                                                                                                                                           ],
                                                                                                                                           --[ :: ]--[
                                                                                                                                             --[ tuple ]--[
@@ -1170,7 +1170,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                             24,
                                                                                                                                                             new Uint8ClampedArray(buffer, 8).byteLength
                                                                                                                                                           ]);
-                                                                                                                                                end)
+                                                                                                                                                end end)
                                                                                                                                             ],
                                                                                                                                             --[ :: ]--[
                                                                                                                                               --[ tuple ]--[
@@ -1181,7 +1181,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                               2,
                                                                                                                                                               new Uint8ClampedArray(buffer, 8, 2).byteLength
                                                                                                                                                             ]);
-                                                                                                                                                  end)
+                                                                                                                                                  end end)
                                                                                                                                               ],
                                                                                                                                               --[ :: ]--[
                                                                                                                                                 --[ tuple ]--[
@@ -1191,7 +1191,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                 3,
                                                                                                                                                                 new Uint8ClampedArray(3).byteLength
                                                                                                                                                               ]);
-                                                                                                                                                    end)
+                                                                                                                                                    end end)
                                                                                                                                                 ],
                                                                                                                                                 --[ :: ]--[
                                                                                                                                                   --[ tuple ]--[
@@ -1209,7 +1209,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                   14,
                                                                                                                                                                   a[3]
                                                                                                                                                                 ]);
-                                                                                                                                                      end)
+                                                                                                                                                      end end)
                                                                                                                                                   ],
                                                                                                                                                   --[ :: ]--[
                                                                                                                                                     --[ tuple ]--[
@@ -1219,7 +1219,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                     2,
                                                                                                                                                                     Int16Array.BYTES_PER_ELEMENT
                                                                                                                                                                   ]);
-                                                                                                                                                        end)
+                                                                                                                                                        end end)
                                                                                                                                                     ],
                                                                                                                                                     --[ :: ]--[
                                                                                                                                                       --[ tuple ]--[
@@ -1233,7 +1233,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                             3
                                                                                                                                                                           ]).byteLength
                                                                                                                                                                     ]);
-                                                                                                                                                          end)
+                                                                                                                                                          end end)
                                                                                                                                                       ],
                                                                                                                                                       --[ :: ]--[
                                                                                                                                                         --[ tuple ]--[
@@ -1243,7 +1243,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                         32,
                                                                                                                                                                         new Int16Array(new ArrayBuffer(32)).byteLength
                                                                                                                                                                       ]);
-                                                                                                                                                            end)
+                                                                                                                                                            end end)
                                                                                                                                                         ],
                                                                                                                                                         --[ :: ]--[
                                                                                                                                                           --[ tuple ]--[
@@ -1254,7 +1254,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                           24,
                                                                                                                                                                           new Int16Array(buffer, 8).byteLength
                                                                                                                                                                         ]);
-                                                                                                                                                              end)
+                                                                                                                                                              end end)
                                                                                                                                                           ],
                                                                                                                                                           --[ :: ]--[
                                                                                                                                                             --[ tuple ]--[
@@ -1265,7 +1265,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                             4,
                                                                                                                                                                             new Int16Array(buffer, 8, 2).byteLength
                                                                                                                                                                           ]);
-                                                                                                                                                                end)
+                                                                                                                                                                end end)
                                                                                                                                                             ],
                                                                                                                                                             --[ :: ]--[
                                                                                                                                                               --[ tuple ]--[
@@ -1275,7 +1275,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                               6,
                                                                                                                                                                               new Int16Array(3).byteLength
                                                                                                                                                                             ]);
-                                                                                                                                                                  end)
+                                                                                                                                                                  end end)
                                                                                                                                                               ],
                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                 --[ tuple ]--[
@@ -1293,7 +1293,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                 14,
                                                                                                                                                                                 a[3]
                                                                                                                                                                               ]);
-                                                                                                                                                                    end)
+                                                                                                                                                                    end end)
                                                                                                                                                                 ],
                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                   --[ tuple ]--[
@@ -1303,7 +1303,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                   2,
                                                                                                                                                                                   Uint16Array.BYTES_PER_ELEMENT
                                                                                                                                                                                 ]);
-                                                                                                                                                                      end)
+                                                                                                                                                                      end end)
                                                                                                                                                                   ],
                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                     --[ tuple ]--[
@@ -1317,7 +1317,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                           3
                                                                                                                                                                                         ]).byteLength
                                                                                                                                                                                   ]);
-                                                                                                                                                                        end)
+                                                                                                                                                                        end end)
                                                                                                                                                                     ],
                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                       --[ tuple ]--[
@@ -1327,7 +1327,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                       32,
                                                                                                                                                                                       new Uint16Array(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                     ]);
-                                                                                                                                                                          end)
+                                                                                                                                                                          end end)
                                                                                                                                                                       ],
                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                         --[ tuple ]--[
@@ -1338,7 +1338,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                         24,
                                                                                                                                                                                         new Uint16Array(buffer, 8).byteLength
                                                                                                                                                                                       ]);
-                                                                                                                                                                            end)
+                                                                                                                                                                            end end)
                                                                                                                                                                         ],
                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                           --[ tuple ]--[
@@ -1349,7 +1349,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                           4,
                                                                                                                                                                                           new Uint16Array(buffer, 8, 2).byteLength
                                                                                                                                                                                         ]);
-                                                                                                                                                                              end)
+                                                                                                                                                                              end end)
                                                                                                                                                                           ],
                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                             --[ tuple ]--[
@@ -1359,7 +1359,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                             6,
                                                                                                                                                                                             new Uint16Array(3).byteLength
                                                                                                                                                                                           ]);
-                                                                                                                                                                                end)
+                                                                                                                                                                                end end)
                                                                                                                                                                             ],
                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                               --[ tuple ]--[
@@ -1377,7 +1377,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                               14,
                                                                                                                                                                                               a[3]
                                                                                                                                                                                             ]);
-                                                                                                                                                                                  end)
+                                                                                                                                                                                  end end)
                                                                                                                                                                               ],
                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                 --[ tuple ]--[
@@ -1387,7 +1387,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                 4,
                                                                                                                                                                                                 Int32Array.BYTES_PER_ELEMENT
                                                                                                                                                                                               ]);
-                                                                                                                                                                                    end)
+                                                                                                                                                                                    end end)
                                                                                                                                                                                 ],
                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                   --[ tuple ]--[
@@ -1397,13 +1397,13 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                   12,
                                                                                                                                                                                                   new Int32Array($$Array.map((function (prim) do
                                                                                                                                                                                                               return prim;
-                                                                                                                                                                                                            end), [
+                                                                                                                                                                                                            end end), [
                                                                                                                                                                                                             1,
                                                                                                                                                                                                             2,
                                                                                                                                                                                                             3
                                                                                                                                                                                                           ])).byteLength
                                                                                                                                                                                                 ]);
-                                                                                                                                                                                      end)
+                                                                                                                                                                                      end end)
                                                                                                                                                                                   ],
                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                     --[ tuple ]--[
@@ -1413,7 +1413,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                     32,
                                                                                                                                                                                                     new Int32Array(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                                   ]);
-                                                                                                                                                                                        end)
+                                                                                                                                                                                        end end)
                                                                                                                                                                                     ],
                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                       --[ tuple ]--[
@@ -1424,7 +1424,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                       24,
                                                                                                                                                                                                       new Int32Array(buffer, 8).byteLength
                                                                                                                                                                                                     ]);
-                                                                                                                                                                                          end)
+                                                                                                                                                                                          end end)
                                                                                                                                                                                       ],
                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                         --[ tuple ]--[
@@ -1435,7 +1435,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                         8,
                                                                                                                                                                                                         new Int32Array(buffer, 8, 2).byteLength
                                                                                                                                                                                                       ]);
-                                                                                                                                                                                            end)
+                                                                                                                                                                                            end end)
                                                                                                                                                                                         ],
                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                           --[ tuple ]--[
@@ -1445,7 +1445,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                           12,
                                                                                                                                                                                                           new Int32Array(3).byteLength
                                                                                                                                                                                                         ]);
-                                                                                                                                                                                              end)
+                                                                                                                                                                                              end end)
                                                                                                                                                                                           ],
                                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                                             --[ tuple ]--[
@@ -1453,7 +1453,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                               (function (param) do
                                                                                                                                                                                                   a = new Int32Array($$Array.map((function (prim) do
                                                                                                                                                                                                               return prim;
-                                                                                                                                                                                                            end), [
+                                                                                                                                                                                                            end end), [
                                                                                                                                                                                                             1,
                                                                                                                                                                                                             2,
                                                                                                                                                                                                             3,
@@ -1465,7 +1465,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                             14,
                                                                                                                                                                                                             a[3]
                                                                                                                                                                                                           ]);
-                                                                                                                                                                                                end)
+                                                                                                                                                                                                end end)
                                                                                                                                                                                             ],
                                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                                               --[ tuple ]--[
@@ -1475,7 +1475,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                               4,
                                                                                                                                                                                                               Uint32Array.BYTES_PER_ELEMENT
                                                                                                                                                                                                             ]);
-                                                                                                                                                                                                  end)
+                                                                                                                                                                                                  end end)
                                                                                                                                                                                               ],
                                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                                 --[ tuple ]--[
@@ -1489,7 +1489,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                       3
                                                                                                                                                                                                                     ]).byteLength
                                                                                                                                                                                                               ]);
-                                                                                                                                                                                                    end)
+                                                                                                                                                                                                    end end)
                                                                                                                                                                                                 ],
                                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                                   --[ tuple ]--[
@@ -1499,7 +1499,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                   32,
                                                                                                                                                                                                                   new Uint32Array(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                                                 ]);
-                                                                                                                                                                                                      end)
+                                                                                                                                                                                                      end end)
                                                                                                                                                                                                   ],
                                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                                     --[ tuple ]--[
@@ -1510,7 +1510,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                     24,
                                                                                                                                                                                                                     new Uint32Array(buffer, 8).byteLength
                                                                                                                                                                                                                   ]);
-                                                                                                                                                                                                        end)
+                                                                                                                                                                                                        end end)
                                                                                                                                                                                                     ],
                                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                                       --[ tuple ]--[
@@ -1521,7 +1521,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                       8,
                                                                                                                                                                                                                       new Uint32Array(buffer, 8, 2).byteLength
                                                                                                                                                                                                                     ]);
-                                                                                                                                                                                                          end)
+                                                                                                                                                                                                          end end)
                                                                                                                                                                                                       ],
                                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                                         --[ tuple ]--[
@@ -1531,7 +1531,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                         12,
                                                                                                                                                                                                                         new Uint32Array(3).byteLength
                                                                                                                                                                                                                       ]);
-                                                                                                                                                                                                            end)
+                                                                                                                                                                                                            end end)
                                                                                                                                                                                                         ],
                                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                                           --[ tuple ]--[
@@ -1549,7 +1549,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                           14,
                                                                                                                                                                                                                           a[3]
                                                                                                                                                                                                                         ]);
-                                                                                                                                                                                                              end)
+                                                                                                                                                                                                              end end)
                                                                                                                                                                                                           ],
                                                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                                                             --[ tuple ]--[
@@ -1559,7 +1559,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                             4,
                                                                                                                                                                                                                             Float32Array.BYTES_PER_ELEMENT
                                                                                                                                                                                                                           ]);
-                                                                                                                                                                                                                end)
+                                                                                                                                                                                                                end end)
                                                                                                                                                                                                             ],
                                                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                                                               --[ tuple ]--[
@@ -1573,7 +1573,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                     3
                                                                                                                                                                                                                                   ]).byteLength
                                                                                                                                                                                                                             ]);
-                                                                                                                                                                                                                  end)
+                                                                                                                                                                                                                  end end)
                                                                                                                                                                                                               ],
                                                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                                                 --[ tuple ]--[
@@ -1583,7 +1583,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                 32,
                                                                                                                                                                                                                                 new Float32Array(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                                                               ]);
-                                                                                                                                                                                                                    end)
+                                                                                                                                                                                                                    end end)
                                                                                                                                                                                                                 ],
                                                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                                                   --[ tuple ]--[
@@ -1594,7 +1594,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                   24,
                                                                                                                                                                                                                                   new Float32Array(buffer, 8).byteLength
                                                                                                                                                                                                                                 ]);
-                                                                                                                                                                                                                      end)
+                                                                                                                                                                                                                      end end)
                                                                                                                                                                                                                   ],
                                                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                                                     --[ tuple ]--[
@@ -1605,7 +1605,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                     8,
                                                                                                                                                                                                                                     new Float32Array(buffer, 8, 2).byteLength
                                                                                                                                                                                                                                   ]);
-                                                                                                                                                                                                                        end)
+                                                                                                                                                                                                                        end end)
                                                                                                                                                                                                                     ],
                                                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                                                       --[ tuple ]--[
@@ -1615,7 +1615,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                       12,
                                                                                                                                                                                                                                       new Float32Array(3).byteLength
                                                                                                                                                                                                                                     ]);
-                                                                                                                                                                                                                          end)
+                                                                                                                                                                                                                          end end)
                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                                                         --[ tuple ]--[
@@ -1633,7 +1633,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                         14,
                                                                                                                                                                                                                                         a[3]
                                                                                                                                                                                                                                       ]);
-                                                                                                                                                                                                                            end)
+                                                                                                                                                                                                                            end end)
                                                                                                                                                                                                                         ],
                                                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                                                           --[ tuple ]--[
@@ -1643,7 +1643,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                           8,
                                                                                                                                                                                                                                           Float64Array.BYTES_PER_ELEMENT
                                                                                                                                                                                                                                         ]);
-                                                                                                                                                                                                                              end)
+                                                                                                                                                                                                                              end end)
                                                                                                                                                                                                                           ],
                                                                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                                                                             --[ tuple ]--[
@@ -1657,7 +1657,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                   3
                                                                                                                                                                                                                                                 ]).byteLength
                                                                                                                                                                                                                                           ]);
-                                                                                                                                                                                                                                end)
+                                                                                                                                                                                                                                end end)
                                                                                                                                                                                                                             ],
                                                                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                                                                               --[ tuple ]--[
@@ -1667,7 +1667,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                               32,
                                                                                                                                                                                                                                               new Float64Array(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                                                                             ]);
-                                                                                                                                                                                                                                  end)
+                                                                                                                                                                                                                                  end end)
                                                                                                                                                                                                                               ],
                                                                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                                                                 --[ tuple ]--[
@@ -1678,7 +1678,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                 24,
                                                                                                                                                                                                                                                 new Float64Array(buffer, 8).byteLength
                                                                                                                                                                                                                                               ]);
-                                                                                                                                                                                                                                    end)
+                                                                                                                                                                                                                                    end end)
                                                                                                                                                                                                                                 ],
                                                                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                                                                   --[ tuple ]--[
@@ -1689,7 +1689,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                   16,
                                                                                                                                                                                                                                                   new Float64Array(buffer, 8, 2).byteLength
                                                                                                                                                                                                                                                 ]);
-                                                                                                                                                                                                                                      end)
+                                                                                                                                                                                                                                      end end)
                                                                                                                                                                                                                                   ],
                                                                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                                                                     --[ tuple ]--[
@@ -1699,7 +1699,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                     24,
                                                                                                                                                                                                                                                     new Float64Array(3).byteLength
                                                                                                                                                                                                                                                   ]);
-                                                                                                                                                                                                                                        end)
+                                                                                                                                                                                                                                        end end)
                                                                                                                                                                                                                                     ],
                                                                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                                                                       --[ tuple ]--[
@@ -1717,7 +1717,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                       14,
                                                                                                                                                                                                                                                       a[3]
                                                                                                                                                                                                                                                     ]);
-                                                                                                                                                                                                                                          end)
+                                                                                                                                                                                                                                          end end)
                                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                                                                         --[ tuple ]--[
@@ -1727,7 +1727,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                         32,
                                                                                                                                                                                                                                                         new DataView(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                                                                                       ]);
-                                                                                                                                                                                                                                            end)
+                                                                                                                                                                                                                                            end end)
                                                                                                                                                                                                                                         ],
                                                                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                                                                           --[ tuple ]--[
@@ -1737,7 +1737,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                           32,
                                                                                                                                                                                                                                                           new DataView(new ArrayBuffer(32)).byteLength
                                                                                                                                                                                                                                                         ]);
-                                                                                                                                                                                                                                              end)
+                                                                                                                                                                                                                                              end end)
                                                                                                                                                                                                                                           ],
                                                                                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                                                                                             --[ tuple ]--[
@@ -1748,7 +1748,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                             24,
                                                                                                                                                                                                                                                             new DataView(buffer, 8).byteLength
                                                                                                                                                                                                                                                           ]);
-                                                                                                                                                                                                                                                end)
+                                                                                                                                                                                                                                                end end)
                                                                                                                                                                                                                                             ],
                                                                                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                                                                                               --[ tuple ]--[
@@ -1759,7 +1759,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                               4,
                                                                                                                                                                                                                                                               new DataView(buffer, 8, 4).byteLength
                                                                                                                                                                                                                                                             ]);
-                                                                                                                                                                                                                                                  end)
+                                                                                                                                                                                                                                                  end end)
                                                                                                                                                                                                                                               ],
                                                                                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                                                                                 --[ tuple ]--[
@@ -1770,7 +1770,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                 buffer,
                                                                                                                                                                                                                                                                 new DataView(buffer).buffer
                                                                                                                                                                                                                                                               ]);
-                                                                                                                                                                                                                                                    end)
+                                                                                                                                                                                                                                                    end end)
                                                                                                                                                                                                                                                 ],
                                                                                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                                                                                   --[ tuple ]--[
@@ -1781,7 +1781,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                   8,
                                                                                                                                                                                                                                                                   new DataView(buffer, 8).byteOffset
                                                                                                                                                                                                                                                                 ]);
-                                                                                                                                                                                                                                                      end)
+                                                                                                                                                                                                                                                      end end)
                                                                                                                                                                                                                                                   ],
                                                                                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                                                                                     --[ tuple ]--[
@@ -1794,7 +1794,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                     1,
                                                                                                                                                                                                                                                                     view.getInt8(0)
                                                                                                                                                                                                                                                                   ]);
-                                                                                                                                                                                                                                                        end)
+                                                                                                                                                                                                                                                        end end)
                                                                                                                                                                                                                                                     ],
                                                                                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                                                                                       --[ tuple ]--[
@@ -1807,7 +1807,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                       128,
                                                                                                                                                                                                                                                                       view.getUint8(0)
                                                                                                                                                                                                                                                                     ]);
-                                                                                                                                                                                                                                                          end)
+                                                                                                                                                                                                                                                          end end)
                                                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                                                                                         --[ tuple ]--[
@@ -1820,7 +1820,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                         257,
                                                                                                                                                                                                                                                                         view.getInt16(0)
                                                                                                                                                                                                                                                                       ]);
-                                                                                                                                                                                                                                                            end)
+                                                                                                                                                                                                                                                            end end)
                                                                                                                                                                                                                                                         ],
                                                                                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                                                                                           --[ tuple ]--[
@@ -1833,7 +1833,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                           25000,
                                                                                                                                                                                                                                                                           view.getInt16(0, 1)
                                                                                                                                                                                                                                                                         ]);
-                                                                                                                                                                                                                                                              end)
+                                                                                                                                                                                                                                                              end end)
                                                                                                                                                                                                                                                           ],
                                                                                                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                                                                                                             --[ tuple ]--[
@@ -1846,7 +1846,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                             -22431,
                                                                                                                                                                                                                                                                             view.getInt16(0)
                                                                                                                                                                                                                                                                           ]);
-                                                                                                                                                                                                                                                                end)
+                                                                                                                                                                                                                                                                end end)
                                                                                                                                                                                                                                                             ],
                                                                                                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                                                                                                               --[ tuple ]--[
@@ -1859,7 +1859,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                               32768,
                                                                                                                                                                                                                                                                               view.getUint16(0)
                                                                                                                                                                                                                                                                             ]);
-                                                                                                                                                                                                                                                                  end)
+                                                                                                                                                                                                                                                                  end end)
                                                                                                                                                                                                                                                               ],
                                                                                                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                                                                                                 --[ tuple ]--[
@@ -1872,7 +1872,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                 32768,
                                                                                                                                                                                                                                                                                 view.getUint16(0, 1)
                                                                                                                                                                                                                                                                               ]);
-                                                                                                                                                                                                                                                                    end)
+                                                                                                                                                                                                                                                                    end end)
                                                                                                                                                                                                                                                                 ],
                                                                                                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                                                                                                   --[ tuple ]--[
@@ -1885,7 +1885,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                   128,
                                                                                                                                                                                                                                                                                   view.getUint16(0)
                                                                                                                                                                                                                                                                                 ]);
-                                                                                                                                                                                                                                                                      end)
+                                                                                                                                                                                                                                                                      end end)
                                                                                                                                                                                                                                                                   ],
                                                                                                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                                                                                                     --[ tuple ]--[
@@ -1898,7 +1898,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                     65537,
                                                                                                                                                                                                                                                                                     view.getInt32(0)
                                                                                                                                                                                                                                                                                   ]);
-                                                                                                                                                                                                                                                                        end)
+                                                                                                                                                                                                                                                                        end end)
                                                                                                                                                                                                                                                                     ],
                                                                                                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                                                                                                       --[ tuple ]--[
@@ -1911,7 +1911,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                       65537,
                                                                                                                                                                                                                                                                                       view.getInt32(0, 1)
                                                                                                                                                                                                                                                                                     ]);
-                                                                                                                                                                                                                                                                          end)
+                                                                                                                                                                                                                                                                          end end)
                                                                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                                                                                                         --[ tuple ]--[
@@ -1924,7 +1924,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                         16777472,
                                                                                                                                                                                                                                                                                         view.getInt32(0)
                                                                                                                                                                                                                                                                                       ]);
-                                                                                                                                                                                                                                                                            end)
+                                                                                                                                                                                                                                                                            end end)
                                                                                                                                                                                                                                                                         ],
                                                                                                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                                                                                                           --[ tuple ]--[
@@ -1937,7 +1937,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                           65537,
                                                                                                                                                                                                                                                                                           view.getUint32(0)
                                                                                                                                                                                                                                                                                         ]);
-                                                                                                                                                                                                                                                                              end)
+                                                                                                                                                                                                                                                                              end end)
                                                                                                                                                                                                                                                                           ],
                                                                                                                                                                                                                                                                           --[ :: ]--[
                                                                                                                                                                                                                                                                             --[ tuple ]--[
@@ -1950,7 +1950,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                             65537,
                                                                                                                                                                                                                                                                                             view.getUint32(0, 1)
                                                                                                                                                                                                                                                                                           ]);
-                                                                                                                                                                                                                                                                                end)
+                                                                                                                                                                                                                                                                                end end)
                                                                                                                                                                                                                                                                             ],
                                                                                                                                                                                                                                                                             --[ :: ]--[
                                                                                                                                                                                                                                                                               --[ tuple ]--[
@@ -1963,7 +1963,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                               16777472,
                                                                                                                                                                                                                                                                                               view.getUint32(0)
                                                                                                                                                                                                                                                                                             ]);
-                                                                                                                                                                                                                                                                                  end)
+                                                                                                                                                                                                                                                                                  end end)
                                                                                                                                                                                                                                                                               ],
                                                                                                                                                                                                                                                                               --[ :: ]--[
                                                                                                                                                                                                                                                                                 --[ tuple ]--[
@@ -1976,7 +1976,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                                 65537.0,
                                                                                                                                                                                                                                                                                                 view.getFloat32(0)
                                                                                                                                                                                                                                                                                               ]);
-                                                                                                                                                                                                                                                                                    end)
+                                                                                                                                                                                                                                                                                    end end)
                                                                                                                                                                                                                                                                                 ],
                                                                                                                                                                                                                                                                                 --[ :: ]--[
                                                                                                                                                                                                                                                                                   --[ tuple ]--[
@@ -1989,7 +1989,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                                   65537.0,
                                                                                                                                                                                                                                                                                                   view.getFloat32(0, 1)
                                                                                                                                                                                                                                                                                                 ]);
-                                                                                                                                                                                                                                                                                      end)
+                                                                                                                                                                                                                                                                                      end end)
                                                                                                                                                                                                                                                                                   ],
                                                                                                                                                                                                                                                                                   --[ :: ]--[
                                                                                                                                                                                                                                                                                     --[ tuple ]--[
@@ -2002,7 +2002,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                                     4.600602988224807e-41,
                                                                                                                                                                                                                                                                                                     view.getFloat32(0)
                                                                                                                                                                                                                                                                                                   ]);
-                                                                                                                                                                                                                                                                                        end)
+                                                                                                                                                                                                                                                                                        end end)
                                                                                                                                                                                                                                                                                     ],
                                                                                                                                                                                                                                                                                     --[ :: ]--[
                                                                                                                                                                                                                                                                                       --[ tuple ]--[
@@ -2015,7 +2015,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                                       1e200,
                                                                                                                                                                                                                                                                                                       view.getFloat64(0)
                                                                                                                                                                                                                                                                                                     ]);
-                                                                                                                                                                                                                                                                                          end)
+                                                                                                                                                                                                                                                                                          end end)
                                                                                                                                                                                                                                                                                       ],
                                                                                                                                                                                                                                                                                       --[ :: ]--[
                                                                                                                                                                                                                                                                                         --[ tuple ]--[
@@ -2028,7 +2028,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                                         1e200,
                                                                                                                                                                                                                                                                                                         view.getFloat64(0, 1)
                                                                                                                                                                                                                                                                                                       ]);
-                                                                                                                                                                                                                                                                                            end)
+                                                                                                                                                                                                                                                                                            end end)
                                                                                                                                                                                                                                                                                         ],
                                                                                                                                                                                                                                                                                         --[ :: ]--[
                                                                                                                                                                                                                                                                                           --[ tuple ]--[
@@ -2041,7 +2041,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                                                                                                                                                                           3.03865e-319,
                                                                                                                                                                                                                                                                                                           view.getFloat64(0)
                                                                                                                                                                                                                                                                                                         ]);
-                                                                                                                                                                                                                                                                                              end)
+                                                                                                                                                                                                                                                                                              end end)
                                                                                                                                                                                                                                                                                           ],
                                                                                                                                                                                                                                                                                           --[ [] ]--0
                                                                                                                                                                                                                                                                                         ]

@@ -14,7 +14,7 @@ function ff(x) do
           "Content-Type": "hello"
         end)["Content-Type"]);
   return --[ () ]--0;
-end
+end end
 
 exports.f = f;
 exports.ff = ff;

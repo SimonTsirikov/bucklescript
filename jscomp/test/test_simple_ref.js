@@ -9,7 +9,7 @@ end;
 function gen(param) do
   v.contents = v.contents + 1 | 0;
   return v.contents;
-end
+end end
 
 h = do
   contents: 0
@@ -25,7 +25,7 @@ not_real_escape = a;
 
 function real_escape(f, v) do
   return Curry._1(f, c);
-end
+end end
 
 u = h;
 

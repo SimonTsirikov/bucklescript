@@ -9,14 +9,14 @@ function fib(n) do
   end else do
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
   end end 
-end
+end end
 
 function cons(x, y) do
   return --[ Cons ]--[
           x,
           y
         ];
-end
+end end
 
 function map(f, param) do
   if (param) then do
@@ -27,7 +27,7 @@ function map(f, param) do
   end else do
     return --[ Nil ]--0;
   end end 
-end
+end end
 
 function sum(n) do
   v = 0;
@@ -35,31 +35,31 @@ function sum(n) do
     v = v + i | 0;
   end
   return v;
-end
+end end
 
 function f(x, y, z) do
   return (x + y | 0) + z | 0;
-end
+end end
 
 function g(x, y) do
   u = x + y | 0;
   return (function (z) do
       return u + z | 0;
-    end);
-end
+    end end);
+end end
 
 function g1(x, y) do
   u = x + y | 0;
   return (function (xx, yy) do
       return (xx + yy | 0) + u | 0;
-    end);
-end
+    end end);
+end end
 
 u = 8;
 
 x = (function (z) do
       return u + z | 0;
-    end)(6);
+    end end)(6);
 
 u$1 = 7;
 
@@ -67,7 +67,7 @@ function v(param) do
   xx = 6;
   yy = param;
   return (xx + yy | 0) + u$1 | 0;
-end
+end end
 
 nil = --[ Nil ]--0;
 

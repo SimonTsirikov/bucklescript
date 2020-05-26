@@ -17,7 +17,7 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function copy(o) do
   return Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(o));
-end
+end end
 
 params = do
   compact_table: true,
@@ -40,7 +40,7 @@ function public_method_label(s) do
   end else do
     return accu;
   end end 
-end
+end end
 
 function height(param) do
   if (param) then do
@@ -48,7 +48,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, x, d, r) do
   hl = height(l);
@@ -60,7 +60,7 @@ function create(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function singleton(x, d) do
   return --[ Node ]--[
@@ -70,7 +70,7 @@ function singleton(x, d) do
           --[ r : Empty ]--0,
           --[ h ]--1
         ];
-end
+end end
 
 function bal(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -128,7 +128,7 @@ function bal(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function is_empty(param) do
   if (param) then do
@@ -136,7 +136,7 @@ function is_empty(param) do
   end else do
     return true;
   end end 
-end
+end end
 
 function add(x, data, m) do
   if (m) then do
@@ -181,7 +181,7 @@ function add(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function find(x, _param) do
   while(true) do
@@ -198,7 +198,7 @@ function find(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_first(f, _param) do
   while(true) do
@@ -240,7 +240,7 @@ function find_first(f, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_first_opt(f, _param) do
   while(true) do
@@ -282,7 +282,7 @@ function find_first_opt(f, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function find_last(f, _param) do
   while(true) do
@@ -324,7 +324,7 @@ function find_last(f, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_last_opt(f, _param) do
   while(true) do
@@ -366,7 +366,7 @@ function find_last_opt(f, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function find_opt(x, _param) do
   while(true) do
@@ -383,7 +383,7 @@ function find_opt(x, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function mem(x, _param) do
   while(true) do
@@ -400,7 +400,7 @@ function mem(x, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function min_binding(_param) do
   while(true) do
@@ -420,7 +420,7 @@ function min_binding(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function min_binding_opt(_param) do
   while(true) do
@@ -440,7 +440,7 @@ function min_binding_opt(_param) do
       return ;
     end end 
   end;
-end
+end end
 
 function max_binding(_param) do
   while(true) do
@@ -460,7 +460,7 @@ function max_binding(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function max_binding_opt(_param) do
   while(true) do
@@ -480,7 +480,7 @@ function max_binding_opt(_param) do
       return ;
     end end 
   end;
-end
+end end
 
 function remove_min_binding(param) do
   if (param) then do
@@ -496,7 +496,7 @@ function remove_min_binding(param) do
           "Map.remove_min_elt"
         ];
   end end 
-end
+end end
 
 function merge(t1, t2) do
   if (t1) then do
@@ -509,7 +509,7 @@ function merge(t1, t2) do
   end else do
     return t2;
   end end 
-end
+end end
 
 function remove(x, m) do
   if (m) then do
@@ -538,7 +538,7 @@ function remove(x, m) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function update(x, f, m) do
   if (m) then do
@@ -594,7 +594,7 @@ function update(x, f, m) do
       return --[ Empty ]--0;
     end end 
   end end 
-end
+end end
 
 function iter(f, _param) do
   while(true) do
@@ -608,7 +608,7 @@ function iter(f, _param) do
       return --[ () ]--0;
     end end 
   end;
-end
+end end
 
 function map(f, param) do
   if (param) then do
@@ -625,7 +625,7 @@ function map(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function mapi(f, param) do
   if (param) then do
@@ -643,7 +643,7 @@ function mapi(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function fold(f, _m, _accu) do
   while(true) do
@@ -657,7 +657,7 @@ function fold(f, _m, _accu) do
       return accu;
     end end 
   end;
-end
+end end
 
 function for_all(p, _param) do
   while(true) do
@@ -673,7 +673,7 @@ function for_all(p, _param) do
       return true;
     end end 
   end;
-end
+end end
 
 function exists(p, _param) do
   while(true) do
@@ -689,7 +689,7 @@ function exists(p, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function add_min_binding(k, x, param) do
   if (param) then do
@@ -697,7 +697,7 @@ function add_min_binding(k, x, param) do
   end else do
     return singleton(k, x);
   end end 
-end
+end end
 
 function add_max_binding(k, x, param) do
   if (param) then do
@@ -705,7 +705,7 @@ function add_max_binding(k, x, param) do
   end else do
     return singleton(k, x);
   end end 
-end
+end end
 
 function join(l, v, d, r) do
   if (l) then do
@@ -725,7 +725,7 @@ function join(l, v, d, r) do
   end else do
     return add_min_binding(v, d, r);
   end end 
-end
+end end
 
 function concat(t1, t2) do
   if (t1) then do
@@ -738,7 +738,7 @@ function concat(t1, t2) do
   end else do
     return t2;
   end end 
-end
+end end
 
 function concat_or_join(t1, v, d, t2) do
   if (d ~= undefined) then do
@@ -746,7 +746,7 @@ function concat_or_join(t1, v, d, t2) do
   end else do
     return concat(t1, t2);
   end end 
-end
+end end
 
 function split(x, param) do
   if (param) then do
@@ -783,7 +783,7 @@ function split(x, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function merge$1(f, s1, s2) do
   if (s1) then do
@@ -811,7 +811,7 @@ function merge$1(f, s1, s2) do
           ]
         ];
   end end 
-end
+end end
 
 function union(f, s1, s2) do
   if (s1) then do
@@ -847,7 +847,7 @@ function union(f, s1, s2) do
   end else do
     return s2;
   end end 
-end
+end end
 
 function filter(p, m) do
   if (m) then do
@@ -870,7 +870,7 @@ function filter(p, m) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function partition(p, param) do
   if (param) then do
@@ -900,7 +900,7 @@ function partition(p, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function cons_enum(_m, _e) do
   while(true) do
@@ -919,7 +919,7 @@ function cons_enum(_m, _e) do
       return e;
     end end 
   end;
-end
+end end
 
 function compare(cmp, m1, m2) do
   _e1 = cons_enum(m1, --[ End ]--0);
@@ -951,7 +951,7 @@ function compare(cmp, m1, m2) do
       return 0;
     end end  end 
   end;
-end
+end end
 
 function equal(cmp, m1, m2) do
   _e1 = cons_enum(m1, --[ End ]--0);
@@ -973,7 +973,7 @@ function equal(cmp, m1, m2) do
       return true;
     end end  end 
   end;
-end
+end end
 
 function cardinal(param) do
   if (param) then do
@@ -981,7 +981,7 @@ function cardinal(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function bindings_aux(_accu, _param) do
   while(true) do
@@ -1001,11 +1001,11 @@ function bindings_aux(_accu, _param) do
       return accu;
     end end 
   end;
-end
+end end
 
 function bindings(s) do
   return bindings_aux(--[ [] ]--0, s);
-end
+end end
 
 Vars = do
   empty: --[ Empty ]--0,
@@ -1050,7 +1050,7 @@ function height$1(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create$1(l, x, d, r) do
   hl = height$1(l);
@@ -1062,7 +1062,7 @@ function create$1(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function singleton$1(x, d) do
   return --[ Node ]--[
@@ -1072,7 +1072,7 @@ function singleton$1(x, d) do
           --[ r : Empty ]--0,
           --[ h ]--1
         ];
-end
+end end
 
 function bal$1(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -1130,7 +1130,7 @@ function bal$1(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function is_empty$1(param) do
   if (param) then do
@@ -1138,7 +1138,7 @@ function is_empty$1(param) do
   end else do
     return true;
   end end 
-end
+end end
 
 function add$1(x, data, m) do
   if (m) then do
@@ -1183,7 +1183,7 @@ function add$1(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function find$1(x, _param) do
   while(true) do
@@ -1200,7 +1200,7 @@ function find$1(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_first$1(f, _param) do
   while(true) do
@@ -1242,7 +1242,7 @@ function find_first$1(f, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_first_opt$1(f, _param) do
   while(true) do
@@ -1284,7 +1284,7 @@ function find_first_opt$1(f, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function find_last$1(f, _param) do
   while(true) do
@@ -1326,7 +1326,7 @@ function find_last$1(f, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_last_opt$1(f, _param) do
   while(true) do
@@ -1368,7 +1368,7 @@ function find_last_opt$1(f, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function find_opt$1(x, _param) do
   while(true) do
@@ -1385,7 +1385,7 @@ function find_opt$1(x, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function mem$1(x, _param) do
   while(true) do
@@ -1402,7 +1402,7 @@ function mem$1(x, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function min_binding$1(_param) do
   while(true) do
@@ -1422,7 +1422,7 @@ function min_binding$1(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function min_binding_opt$1(_param) do
   while(true) do
@@ -1442,7 +1442,7 @@ function min_binding_opt$1(_param) do
       return ;
     end end 
   end;
-end
+end end
 
 function max_binding$1(_param) do
   while(true) do
@@ -1462,7 +1462,7 @@ function max_binding$1(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function max_binding_opt$1(_param) do
   while(true) do
@@ -1482,7 +1482,7 @@ function max_binding_opt$1(_param) do
       return ;
     end end 
   end;
-end
+end end
 
 function remove_min_binding$1(param) do
   if (param) then do
@@ -1498,7 +1498,7 @@ function remove_min_binding$1(param) do
           "Map.remove_min_elt"
         ];
   end end 
-end
+end end
 
 function merge$2(t1, t2) do
   if (t1) then do
@@ -1511,7 +1511,7 @@ function merge$2(t1, t2) do
   end else do
     return t2;
   end end 
-end
+end end
 
 function remove$1(x, m) do
   if (m) then do
@@ -1540,7 +1540,7 @@ function remove$1(x, m) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function update$1(x, f, m) do
   if (m) then do
@@ -1596,7 +1596,7 @@ function update$1(x, f, m) do
       return --[ Empty ]--0;
     end end 
   end end 
-end
+end end
 
 function iter$1(f, _param) do
   while(true) do
@@ -1610,7 +1610,7 @@ function iter$1(f, _param) do
       return --[ () ]--0;
     end end 
   end;
-end
+end end
 
 function map$1(f, param) do
   if (param) then do
@@ -1627,7 +1627,7 @@ function map$1(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function mapi$1(f, param) do
   if (param) then do
@@ -1645,7 +1645,7 @@ function mapi$1(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function fold$1(f, _m, _accu) do
   while(true) do
@@ -1659,7 +1659,7 @@ function fold$1(f, _m, _accu) do
       return accu;
     end end 
   end;
-end
+end end
 
 function for_all$1(p, _param) do
   while(true) do
@@ -1675,7 +1675,7 @@ function for_all$1(p, _param) do
       return true;
     end end 
   end;
-end
+end end
 
 function exists$1(p, _param) do
   while(true) do
@@ -1691,7 +1691,7 @@ function exists$1(p, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function add_min_binding$1(k, x, param) do
   if (param) then do
@@ -1699,7 +1699,7 @@ function add_min_binding$1(k, x, param) do
   end else do
     return singleton$1(k, x);
   end end 
-end
+end end
 
 function add_max_binding$1(k, x, param) do
   if (param) then do
@@ -1707,7 +1707,7 @@ function add_max_binding$1(k, x, param) do
   end else do
     return singleton$1(k, x);
   end end 
-end
+end end
 
 function join$1(l, v, d, r) do
   if (l) then do
@@ -1727,7 +1727,7 @@ function join$1(l, v, d, r) do
   end else do
     return add_min_binding$1(v, d, r);
   end end 
-end
+end end
 
 function concat$1(t1, t2) do
   if (t1) then do
@@ -1740,7 +1740,7 @@ function concat$1(t1, t2) do
   end else do
     return t2;
   end end 
-end
+end end
 
 function concat_or_join$1(t1, v, d, t2) do
   if (d ~= undefined) then do
@@ -1748,7 +1748,7 @@ function concat_or_join$1(t1, v, d, t2) do
   end else do
     return concat$1(t1, t2);
   end end 
-end
+end end
 
 function split$1(x, param) do
   if (param) then do
@@ -1785,7 +1785,7 @@ function split$1(x, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function merge$3(f, s1, s2) do
   if (s1) then do
@@ -1813,7 +1813,7 @@ function merge$3(f, s1, s2) do
           ]
         ];
   end end 
-end
+end end
 
 function union$1(f, s1, s2) do
   if (s1) then do
@@ -1849,7 +1849,7 @@ function union$1(f, s1, s2) do
   end else do
     return s2;
   end end 
-end
+end end
 
 function filter$1(p, m) do
   if (m) then do
@@ -1872,7 +1872,7 @@ function filter$1(p, m) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function partition$1(p, param) do
   if (param) then do
@@ -1902,7 +1902,7 @@ function partition$1(p, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function cons_enum$1(_m, _e) do
   while(true) do
@@ -1921,7 +1921,7 @@ function cons_enum$1(_m, _e) do
       return e;
     end end 
   end;
-end
+end end
 
 function compare$1(cmp, m1, m2) do
   _e1 = cons_enum$1(m1, --[ End ]--0);
@@ -1953,7 +1953,7 @@ function compare$1(cmp, m1, m2) do
       return 0;
     end end  end 
   end;
-end
+end end
 
 function equal$1(cmp, m1, m2) do
   _e1 = cons_enum$1(m1, --[ End ]--0);
@@ -1975,7 +1975,7 @@ function equal$1(cmp, m1, m2) do
       return true;
     end end  end 
   end;
-end
+end end
 
 function cardinal$1(param) do
   if (param) then do
@@ -1983,7 +1983,7 @@ function cardinal$1(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function bindings_aux$1(_accu, _param) do
   while(true) do
@@ -2003,11 +2003,11 @@ function bindings_aux$1(_accu, _param) do
       return accu;
     end end 
   end;
-end
+end end
 
 function bindings$1(s) do
   return bindings_aux$1(--[ [] ]--0, s);
-end
+end end
 
 Meths = do
   empty: --[ Empty ]--0,
@@ -2052,7 +2052,7 @@ function height$2(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create$2(l, x, d, r) do
   hl = height$2(l);
@@ -2064,7 +2064,7 @@ function create$2(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function singleton$2(x, d) do
   return --[ Node ]--[
@@ -2074,7 +2074,7 @@ function singleton$2(x, d) do
           --[ r : Empty ]--0,
           --[ h ]--1
         ];
-end
+end end
 
 function bal$2(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -2132,7 +2132,7 @@ function bal$2(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function is_empty$2(param) do
   if (param) then do
@@ -2140,7 +2140,7 @@ function is_empty$2(param) do
   end else do
     return true;
   end end 
-end
+end end
 
 function add$2(x, data, m) do
   if (m) then do
@@ -2185,7 +2185,7 @@ function add$2(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function find$2(x, _param) do
   while(true) do
@@ -2202,7 +2202,7 @@ function find$2(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_first$2(f, _param) do
   while(true) do
@@ -2244,7 +2244,7 @@ function find_first$2(f, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_first_opt$2(f, _param) do
   while(true) do
@@ -2286,7 +2286,7 @@ function find_first_opt$2(f, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function find_last$2(f, _param) do
   while(true) do
@@ -2328,7 +2328,7 @@ function find_last$2(f, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function find_last_opt$2(f, _param) do
   while(true) do
@@ -2370,7 +2370,7 @@ function find_last_opt$2(f, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function find_opt$2(x, _param) do
   while(true) do
@@ -2387,7 +2387,7 @@ function find_opt$2(x, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function mem$2(x, _param) do
   while(true) do
@@ -2404,7 +2404,7 @@ function mem$2(x, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function min_binding$2(_param) do
   while(true) do
@@ -2424,7 +2424,7 @@ function min_binding$2(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function min_binding_opt$2(_param) do
   while(true) do
@@ -2444,7 +2444,7 @@ function min_binding_opt$2(_param) do
       return ;
     end end 
   end;
-end
+end end
 
 function max_binding$2(_param) do
   while(true) do
@@ -2464,7 +2464,7 @@ function max_binding$2(_param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function max_binding_opt$2(_param) do
   while(true) do
@@ -2484,7 +2484,7 @@ function max_binding_opt$2(_param) do
       return ;
     end end 
   end;
-end
+end end
 
 function remove_min_binding$2(param) do
   if (param) then do
@@ -2500,7 +2500,7 @@ function remove_min_binding$2(param) do
           "Map.remove_min_elt"
         ];
   end end 
-end
+end end
 
 function merge$4(t1, t2) do
   if (t1) then do
@@ -2513,7 +2513,7 @@ function merge$4(t1, t2) do
   end else do
     return t2;
   end end 
-end
+end end
 
 function remove$2(x, m) do
   if (m) then do
@@ -2542,7 +2542,7 @@ function remove$2(x, m) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function update$2(x, f, m) do
   if (m) then do
@@ -2598,7 +2598,7 @@ function update$2(x, f, m) do
       return --[ Empty ]--0;
     end end 
   end end 
-end
+end end
 
 function iter$2(f, _param) do
   while(true) do
@@ -2612,7 +2612,7 @@ function iter$2(f, _param) do
       return --[ () ]--0;
     end end 
   end;
-end
+end end
 
 function map$2(f, param) do
   if (param) then do
@@ -2629,7 +2629,7 @@ function map$2(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function mapi$2(f, param) do
   if (param) then do
@@ -2647,7 +2647,7 @@ function mapi$2(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function fold$2(f, _m, _accu) do
   while(true) do
@@ -2661,7 +2661,7 @@ function fold$2(f, _m, _accu) do
       return accu;
     end end 
   end;
-end
+end end
 
 function for_all$2(p, _param) do
   while(true) do
@@ -2677,7 +2677,7 @@ function for_all$2(p, _param) do
       return true;
     end end 
   end;
-end
+end end
 
 function exists$2(p, _param) do
   while(true) do
@@ -2693,7 +2693,7 @@ function exists$2(p, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function add_min_binding$2(k, x, param) do
   if (param) then do
@@ -2701,7 +2701,7 @@ function add_min_binding$2(k, x, param) do
   end else do
     return singleton$2(k, x);
   end end 
-end
+end end
 
 function add_max_binding$2(k, x, param) do
   if (param) then do
@@ -2709,7 +2709,7 @@ function add_max_binding$2(k, x, param) do
   end else do
     return singleton$2(k, x);
   end end 
-end
+end end
 
 function join$2(l, v, d, r) do
   if (l) then do
@@ -2729,7 +2729,7 @@ function join$2(l, v, d, r) do
   end else do
     return add_min_binding$2(v, d, r);
   end end 
-end
+end end
 
 function concat$2(t1, t2) do
   if (t1) then do
@@ -2742,7 +2742,7 @@ function concat$2(t1, t2) do
   end else do
     return t2;
   end end 
-end
+end end
 
 function concat_or_join$2(t1, v, d, t2) do
   if (d ~= undefined) then do
@@ -2750,7 +2750,7 @@ function concat_or_join$2(t1, v, d, t2) do
   end else do
     return concat$2(t1, t2);
   end end 
-end
+end end
 
 function split$2(x, param) do
   if (param) then do
@@ -2787,7 +2787,7 @@ function split$2(x, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function merge$5(f, s1, s2) do
   if (s1) then do
@@ -2815,7 +2815,7 @@ function merge$5(f, s1, s2) do
           ]
         ];
   end end 
-end
+end end
 
 function union$2(f, s1, s2) do
   if (s1) then do
@@ -2851,7 +2851,7 @@ function union$2(f, s1, s2) do
   end else do
     return s2;
   end end 
-end
+end end
 
 function filter$2(p, m) do
   if (m) then do
@@ -2874,7 +2874,7 @@ function filter$2(p, m) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function partition$2(p, param) do
   if (param) then do
@@ -2904,7 +2904,7 @@ function partition$2(p, param) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function cons_enum$2(_m, _e) do
   while(true) do
@@ -2923,7 +2923,7 @@ function cons_enum$2(_m, _e) do
       return e;
     end end 
   end;
-end
+end end
 
 function compare$2(cmp, m1, m2) do
   _e1 = cons_enum$2(m1, --[ End ]--0);
@@ -2955,7 +2955,7 @@ function compare$2(cmp, m1, m2) do
       return 0;
     end end  end 
   end;
-end
+end end
 
 function equal$2(cmp, m1, m2) do
   _e1 = cons_enum$2(m1, --[ End ]--0);
@@ -2977,7 +2977,7 @@ function equal$2(cmp, m1, m2) do
       return true;
     end end  end 
   end;
-end
+end end
 
 function cardinal$2(param) do
   if (param) then do
@@ -2985,7 +2985,7 @@ function cardinal$2(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function bindings_aux$2(_accu, _param) do
   while(true) do
@@ -3005,11 +3005,11 @@ function bindings_aux$2(_accu, _param) do
       return accu;
     end end 
   end;
-end
+end end
 
 function bindings$2(s) do
   return bindings_aux$2(--[ [] ]--0, s);
-end
+end end
 
 Labs = do
   empty: --[ Empty ]--0,
@@ -3071,7 +3071,7 @@ function fit_size(n) do
   end else do
     return (fit_size((n + 1 | 0) / 2 | 0) << 1);
   end end 
-end
+end end
 
 function new_table(pub_labels) do
   table_count.contents = table_count.contents + 1 | 0;
@@ -3092,7 +3092,7 @@ function new_table(pub_labels) do
           vars: --[ Empty ]--0,
           initializers: --[ [] ]--0
         end;
-end
+end end
 
 function resize(array, new_size) do
   old_size = #array.methods;
@@ -3104,12 +3104,12 @@ function resize(array, new_size) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function put(array, label, element) do
   resize(array, label + 1 | 0);
   return Caml_array.caml_array_set(array.methods, label, element);
-end
+end end
 
 method_count = do
   contents: 0
@@ -3123,7 +3123,7 @@ function new_method(table) do
   index = #table.methods;
   resize(table, index + 1 | 0);
   return index;
-end
+end end
 
 function get_method_label(table, name) do
   try do
@@ -3139,13 +3139,13 @@ function get_method_label(table, name) do
       throw exn;
     end end 
   end
-end
+end end
 
 function get_method_labels(table, names) do
   return $$Array.map((function (param) do
                 return get_method_label(table, param);
-              end), names);
-end
+              end end), names);
+end end
 
 function set_method(table, label, element) do
   method_count.contents = method_count.contents + 1 | 0;
@@ -3161,7 +3161,7 @@ function set_method(table, label, element) do
     ];
     return --[ () ]--0;
   end end 
-end
+end end
 
 function get_method(table, label) do
   try do
@@ -3174,7 +3174,7 @@ function get_method(table, label) do
       throw exn;
     end end 
   end
-end
+end end
 
 function to_list(arr) do
   if (arr == 0) then do
@@ -3182,7 +3182,7 @@ function to_list(arr) do
   end else do
     return $$Array.to_list(arr);
   end end 
-end
+end end
 
 function narrow(table, vars, virt_meths, concr_meths) do
   vars$1 = to_list(vars);
@@ -3190,10 +3190,10 @@ function narrow(table, vars, virt_meths, concr_meths) do
   concr_meths$1 = to_list(concr_meths);
   virt_meth_labs = List.map((function (param) do
           return get_method_label(table, param);
-        end), virt_meths$1);
+        end end), virt_meths$1);
   concr_meth_labs = List.map((function (param) do
           return get_method_label(table, param);
-        end), concr_meths$1);
+        end end), concr_meths$1);
   table.previous_states = --[ :: ]--[
     --[ tuple ]--[
       table.methods_by_name,
@@ -3211,7 +3211,7 @@ function narrow(table, vars, virt_meths, concr_meths) do
           end else do
             return tvars;
           end end 
-        end), table.vars, --[ Empty ]--0);
+        end end), table.vars, --[ Empty ]--0);
   by_name = do
     contents: --[ Empty ]--0
   end;
@@ -3233,12 +3233,12 @@ function narrow(table, vars, virt_meths, concr_meths) do
           end
           by_label.contents = add$2(label, tmp, by_label.contents);
           return --[ () ]--0;
-        end), concr_meths$1, concr_meth_labs);
+        end end), concr_meths$1, concr_meth_labs);
   List.iter2((function (met, label) do
           by_name.contents = add$1(met, label, by_name.contents);
           by_label.contents = add$2(label, false, by_label.contents);
           return --[ () ]--0;
-        end), virt_meths$1, virt_meth_labs);
+        end end), virt_meths$1, virt_meth_labs);
   table.methods_by_name = by_name.contents;
   table.methods_by_label = by_label.contents;
   table.hidden_meths = List.fold_right((function (met, hm) do
@@ -3250,9 +3250,9 @@ function narrow(table, vars, virt_meths, concr_meths) do
                     hm
                   ];
           end end 
-        end), table.hidden_meths, --[ [] ]--0);
+        end end), table.hidden_meths, --[ [] ]--0);
   return --[ () ]--0;
-end
+end end
 
 function widen(table) do
   match = List.hd(table.previous_states);
@@ -3260,7 +3260,7 @@ function widen(table) do
   table.previous_states = List.tl(table.previous_states);
   table.vars = List.fold_left((function (s, v) do
           return add(v, find(v, table.vars), s);
-        end), match[3], match[5]);
+        end end), match[3], match[5]);
   table.methods_by_name = match[0];
   table.methods_by_label = match[1];
   table.hidden_meths = List.fold_right((function (met, hm) do
@@ -3272,15 +3272,15 @@ function widen(table) do
                     hm
                   ];
           end end 
-        end), table.hidden_meths, match[2]);
+        end end), table.hidden_meths, match[2]);
   return --[ () ]--0;
-end
+end end
 
 function new_slot(table) do
   index = table.size;
   table.size = index + 1 | 0;
   return index;
-end
+end end
 
 function new_variable(table, name) do
   try do
@@ -3298,7 +3298,7 @@ function new_variable(table, name) do
       throw exn;
     end end 
   end
-end
+end end
 
 function to_array(arr) do
   if (Caml_obj.caml_equal(arr, 0)) then do
@@ -3306,7 +3306,7 @@ function to_array(arr) do
   end else do
     return arr;
   end end 
-end
+end end
 
 function new_methods_variables(table, meths, vals) do
   meths$1 = to_array(meths);
@@ -3320,7 +3320,7 @@ function new_methods_variables(table, meths, vals) do
     Caml_array.caml_array_set(res, i$1 + nmeths | 0, new_variable(table, Caml_array.caml_array_get(vals, i$1)));
   end
   return res;
-end
+end end
 
 function get_variable(table, name) do
   try do
@@ -3340,13 +3340,13 @@ function get_variable(table, name) do
      end 
     throw exn;
   end
-end
+end end
 
 function get_variables(table, names) do
   return $$Array.map((function (param) do
                 return get_variable(table, param);
-              end), names);
-end
+              end end), names);
+end end
 
 function add_initializer(table, f) do
   table.initializers = --[ :: ]--[
@@ -3354,7 +3354,7 @@ function add_initializer(table, f) do
     table.initializers
   ];
   return --[ () ]--0;
-end
+end end
 
 function create_table(public_methods) do
   if (public_methods == 0) then do
@@ -3367,16 +3367,16 @@ function create_table(public_methods) do
             table.methods_by_name = add$1(met, lab, table.methods_by_name);
             table.methods_by_label = add$2(lab, true, table.methods_by_label);
             return --[ () ]--0;
-          end), public_methods);
+          end end), public_methods);
     return table;
   end end 
-end
+end end
 
 function init_class(table) do
   inst_var_count.contents = (inst_var_count.contents + table.size | 0) - 1 | 0;
   table.initializers = List.rev(table.initializers);
   return resize(table, 3 + Caml_int32.div((Caml_array.caml_array_get(table.methods, 1) << 4), Sys.word_size) | 0);
-end
+end end
 
 function inherits(cla, vals, virt_meths, concr_meths, param, top) do
   $$super = param[1];
@@ -3388,16 +3388,16 @@ function inherits(cla, vals, virt_meths, concr_meths, param, top) do
               --[ :: ]--[
                 $$Array.map((function (param) do
                         return get_variable(cla, param);
-                      end), to_array(vals)),
+                      end end), to_array(vals)),
                 --[ :: ]--[
                   $$Array.map((function (nm) do
                           return get_method(cla, get_method_label(cla, nm));
-                        end), to_array(concr_meths)),
+                        end end), to_array(concr_meths)),
                   --[ [] ]--0
                 ]
               ]
             ]);
-end
+end end
 
 function make_class(pub_meths, class_init) do
   table = create_table(pub_meths);
@@ -3409,7 +3409,7 @@ function make_class(pub_meths, class_init) do
           env_init,
           0
         ];
-end
+end end
 
 function make_class_store(pub_meths, class_init, init_table) do
   table = create_table(pub_meths);
@@ -3418,7 +3418,7 @@ function make_class_store(pub_meths, class_init, init_table) do
   init_table.class_init = class_init;
   init_table.env_init = env_init;
   return --[ () ]--0;
-end
+end end
 
 function dummy_class(loc) do
   undef = function (param) do
@@ -3426,20 +3426,20 @@ function dummy_class(loc) do
           Caml_builtin_exceptions.undefined_recursive_module,
           loc
         ];
-  end;
+  end end;
   return --[ tuple ]--[
           undef,
           undef,
           undef,
           0
         ];
-end
+end end
 
 function create_object(table) do
   obj = Caml_obj.caml_obj_block(Obj.object_tag, table.size);
   obj[0] = table.methods;
   return Caml_exceptions.caml_set_oo_id(obj);
-end
+end end
 
 function create_object_opt(obj_0, table) do
   if (obj_0) then do
@@ -3449,7 +3449,7 @@ function create_object_opt(obj_0, table) do
     obj[0] = table.methods;
     return Caml_exceptions.caml_set_oo_id(obj);
   end end 
-end
+end end
 
 function iter_f(obj, _param) do
   while(true) do
@@ -3462,7 +3462,7 @@ function iter_f(obj, _param) do
       return --[ () ]--0;
     end end 
   end;
-end
+end end
 
 function run_initializers(obj, table) do
   inits = table.initializers;
@@ -3471,7 +3471,7 @@ function run_initializers(obj, table) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function run_initializers_opt(obj_0, obj, table) do
   if (obj_0) then do
@@ -3484,7 +3484,7 @@ function run_initializers_opt(obj_0, obj, table) do
      end 
     return obj;
   end end 
-end
+end end
 
 function create_object_and_run_initializers(obj_0, table) do
   if (obj_0) then do
@@ -3494,7 +3494,7 @@ function create_object_and_run_initializers(obj_0, table) do
     run_initializers(obj, table);
     return obj;
   end end 
-end
+end end
 
 function build_path(n, keys, tables) do
   res = do
@@ -3512,7 +3512,7 @@ function build_path(n, keys, tables) do
   end
   tables.data = r;
   return res;
-end
+end end
 
 function lookup_keys(i, keys, tables) do
   if (i < 0) then do
@@ -3538,7 +3538,7 @@ function lookup_keys(i, keys, tables) do
       end end  end 
     end;
   end end 
-end
+end end
 
 function lookup_tables(root, keys) do
   if (root.data ~= --[ Empty ]--0) then do
@@ -3546,168 +3546,168 @@ function lookup_tables(root, keys) do
   end else do
     return build_path(#keys - 1 | 0, keys, root);
   end end 
-end
+end end
 
 function get_const(x) do
   return (function (obj) do
       return x;
-    end);
-end
+    end end);
+end end
 
 function get_var(n) do
   return (function (obj) do
       return obj[n];
-    end);
-end
+    end end);
+end end
 
 function get_env(e, n) do
   return (function (obj) do
       return obj[e][n];
-    end);
-end
+    end end);
+end end
 
 function get_meth(n) do
   return (function (obj) do
       return Curry._1(obj[0][n], obj);
-    end);
-end
+    end end);
+end end
 
 function set_var(n) do
   return (function (obj, x) do
       obj[n] = x;
       return --[ () ]--0;
-    end);
-end
+    end end);
+end end
 
 function app_const(f, x) do
   return (function (obj) do
       return Curry._1(f, x);
-    end);
-end
+    end end);
+end end
 
 function app_var(f, n) do
   return (function (obj) do
       return Curry._1(f, obj[n]);
-    end);
-end
+    end end);
+end end
 
 function app_env(f, e, n) do
   return (function (obj) do
       return Curry._1(f, obj[e][n]);
-    end);
-end
+    end end);
+end end
 
 function app_meth(f, n) do
   return (function (obj) do
       return Curry._1(f, Curry._1(obj[0][n], obj));
-    end);
-end
+    end end);
+end end
 
 function app_const_const(f, x, y) do
   return (function (obj) do
       return Curry._2(f, x, y);
-    end);
-end
+    end end);
+end end
 
 function app_const_var(f, x, n) do
   return (function (obj) do
       return Curry._2(f, x, obj[n]);
-    end);
-end
+    end end);
+end end
 
 function app_const_meth(f, x, n) do
   return (function (obj) do
       return Curry._2(f, x, Curry._1(obj[0][n], obj));
-    end);
-end
+    end end);
+end end
 
 function app_var_const(f, n, x) do
   return (function (obj) do
       return Curry._2(f, obj[n], x);
-    end);
-end
+    end end);
+end end
 
 function app_meth_const(f, n, x) do
   return (function (obj) do
       return Curry._2(f, Curry._1(obj[0][n], obj), x);
-    end);
-end
+    end end);
+end end
 
 function app_const_env(f, x, e, n) do
   return (function (obj) do
       return Curry._2(f, x, obj[e][n]);
-    end);
-end
+    end end);
+end end
 
 function app_env_const(f, e, n, x) do
   return (function (obj) do
       return Curry._2(f, obj[e][n], x);
-    end);
-end
+    end end);
+end end
 
 function meth_app_const(n, x) do
   return (function (obj) do
       return Curry._2(obj[0][n], obj, x);
-    end);
-end
+    end end);
+end end
 
 function meth_app_var(n, m) do
   return (function (obj) do
       return Curry._2(obj[0][n], obj, obj[m]);
-    end);
-end
+    end end);
+end end
 
 function meth_app_env(n, e, m) do
   return (function (obj) do
       return Curry._2(obj[0][n], obj, obj[e][m]);
-    end);
-end
+    end end);
+end end
 
 function meth_app_meth(n, m) do
   return (function (obj) do
       return Curry._2(obj[0][n], obj, Curry._1(obj[0][m], obj));
-    end);
-end
+    end end);
+end end
 
 function send_const(m, x, c) do
   return (function (obj) do
       return Curry._1(Curry._3(Caml_oo.caml_get_public_method, x, m, 1), x);
-    end);
-end
+    end end);
+end end
 
 function send_var(m, n, c) do
   return (function (obj) do
       tmp = obj[n];
       return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m, 2), tmp);
-    end);
-end
+    end end);
+end end
 
 function send_env(m, e, n, c) do
   return (function (obj) do
       tmp = obj[e][n];
       return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m, 3), tmp);
-    end);
-end
+    end end);
+end end
 
 function send_meth(m, n, c) do
   return (function (obj) do
       tmp = Curry._1(obj[0][n], obj);
       return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m, 4), tmp);
-    end);
-end
+    end end);
+end end
 
 function new_cache(table) do
   n = new_method(table);
   n$1 = n % 2 == 0 or n > (2 + Caml_int32.div((Caml_array.caml_array_get(table.methods, 1) << 4), Sys.word_size) | 0) and n or new_method(table);
   Caml_array.caml_array_set(table.methods, n$1, 0);
   return n$1;
-end
+end end
 
 function method_impl(table, i, arr) do
   next = function (param) do
     i.contents = i.contents + 1 | 0;
     return Caml_array.caml_array_get(arr, i.contents);
-  end;
+  end end;
   clo = next(--[ () ]--0);
   if (typeof clo == "number") then do
     local ___conditional___=(clo);
@@ -3716,12 +3716,12 @@ function method_impl(table, i, arr) do
           x = next(--[ () ]--0);
           return (function (obj) do
               return x;
-            end);end end end 
+            end end);end end end 
        if ___conditional___ = 1--[ GetVar ]-- then do
           n = next(--[ () ]--0);
           return (function (obj) do
               return obj[n];
-            end);end end end 
+            end end);end end end 
        if ___conditional___ = 2--[ GetEnv ]-- then do
           e = next(--[ () ]--0);
           n$1 = next(--[ () ]--0);
@@ -3733,19 +3733,19 @@ function method_impl(table, i, arr) do
           return (function (obj, x) do
               obj[n$2] = x;
               return --[ () ]--0;
-            end);end end end 
+            end end);end end end 
        if ___conditional___ = 5--[ AppConst ]-- then do
           f = next(--[ () ]--0);
           x$1 = next(--[ () ]--0);
           return (function (obj) do
               return Curry._1(f, x$1);
-            end);end end end 
+            end end);end end end 
        if ___conditional___ = 6--[ AppVar ]-- then do
           f$1 = next(--[ () ]--0);
           n$3 = next(--[ () ]--0);
           return (function (obj) do
               return Curry._1(f$1, obj[n$3]);
-            end);end end end 
+            end end);end end end 
        if ___conditional___ = 7--[ AppEnv ]-- then do
           f$2 = next(--[ () ]--0);
           e$1 = next(--[ () ]--0);
@@ -3761,7 +3761,7 @@ function method_impl(table, i, arr) do
           y = next(--[ () ]--0);
           return (function (obj) do
               return Curry._2(f$4, x$2, y);
-            end);end end end 
+            end end);end end end 
        if ___conditional___ = 10--[ AppConstVar ]-- then do
           f$5 = next(--[ () ]--0);
           x$3 = next(--[ () ]--0);
@@ -3834,7 +3834,7 @@ function method_impl(table, i, arr) do
   end else do
     return clo;
   end end 
-end
+end end
 
 function set_methods(table, methods) do
   len = #methods;
@@ -3848,7 +3848,7 @@ function set_methods(table, methods) do
     i.contents = i.contents + 1 | 0;
   end;
   return --[ () ]--0;
-end
+end end
 
 function stats(param) do
   return do
@@ -3856,7 +3856,7 @@ function stats(param) do
           methods: method_count.contents,
           inst_vars: inst_var_count.contents
         end;
-end
+end end
 
 initial_object_size = 2;
 

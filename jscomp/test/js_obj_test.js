@@ -8,11 +8,11 @@ CamlinternalOO = require("../../lib/js/camlinternalOO.js");
 
 function f(u) do
   return Caml_oo_curry.js2(5740587, 1, u, 32);
-end
+end end
 
 function f_js(u) do
   return u.say(32);
-end
+end end
 
 class_tables = --[ Cons ]--[
   0,
@@ -29,12 +29,12 @@ suites_000 = --[ tuple ]--[
         say = CamlinternalOO.get_method_label($$class, "say");
         CamlinternalOO.set_method($$class, say, (function (self$1, x) do
                 return 1 + x | 0;
-              end));
+              end end));
         env_init = function (env$1) do
           self = CamlinternalOO.create_object_opt(0, $$class);
           self[env] = env$1;
           return self;
-        end;
+        end end;
         CamlinternalOO.init_class($$class);
         class_tables[0] = env_init;
       end
@@ -43,7 +43,7 @@ suites_000 = --[ tuple ]--[
                 33,
                 f(Curry._1(class_tables[0], 0))
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -55,10 +55,10 @@ suites_001 = --[ :: ]--[
                   (do
                         say: (function (x) do
                             return x + 2 | 0;
-                          end)
+                          end end)
                       end).say(32)
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -69,10 +69,10 @@ suites_001 = --[ :: ]--[
                     (do
                           say: (function (x) do
                               return x + 2 | 0;
-                            end)
+                            end end)
                         end).say(32)
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -82,7 +82,7 @@ suites_001 = --[ :: ]--[
                       0,
                       #Object.keys({ })
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -96,7 +96,7 @@ suites_001 = --[ :: ]--[
                               a: 1
                             end)
                       ]);
-            end)
+            end end)
         ],
         --[ [] ]--0
       ]

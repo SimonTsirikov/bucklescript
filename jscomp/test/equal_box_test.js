@@ -20,19 +20,19 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-end
+end end
 
 function f(param) do
   return ;
-end
+end end
 
 function shouldBeNull(param) do
   return null;
-end
+end end
 
 b("File \"equal_box_test.ml\", line 24, characters 4-11", 3 ~= null);
 

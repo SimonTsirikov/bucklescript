@@ -22,12 +22,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function ok(loc, x) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -36,12 +36,12 @@ function ok(loc, x) do
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
           return --[ Ok ]--Block.__(4, [x]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 match = typeof ___undefined_value == "undefined" and undefined or ___undefined_value;
 
@@ -56,7 +56,7 @@ function test(param) do
     console.log("producton mode");
     return --[ () ]--0;
   end end 
-end
+end end
 
 function test2(param) do
   match = typeof __filename == "undefined" and undefined or __filename;
@@ -67,7 +67,7 @@ function test2(param) do
     console.log("non node environment");
     return --[ () ]--0;
   end end 
-end
+end end
 
 function test3(param) do
   if (Caml_option.undefined_to_opt(typeof __DEV__ == "undefined" and undefined or __DEV__) == undefined) then do
@@ -76,11 +76,11 @@ function test3(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function f(x) do
   return x == undefined;
-end
+end end
 
 ok("File \"undef_regression2_test.ml\", line 44, characters 5-12", a > 0);
 

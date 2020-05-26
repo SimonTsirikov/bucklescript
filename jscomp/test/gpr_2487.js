@@ -12,7 +12,7 @@ b = Belt_Array.eq([
       3
     ], (function (prim, prim$1) do
         return prim == prim$1;
-      end));
+      end end));
 
 A = --[ alias ]--0;
 

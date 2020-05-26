@@ -3,7 +3,7 @@
 
 function v(x) do
   return x.c == --[ [] ]--0;
-end
+end end
 
 exports.v = v;
 --[ No side effect ]--

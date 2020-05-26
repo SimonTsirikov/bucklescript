@@ -25,12 +25,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 Node_process.putEnvVar("Caml_sys_poly_fill_test", "X");
 

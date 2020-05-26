@@ -17,11 +17,11 @@ function f(x) do
           (x >>> 1),
           (x >>> 2)
         ];
-end
+end end
 
 shift_right_logical_tests_000 = $$Array.map((function (x) do
         return (-1 >>> x) | 0;
-      end), Ext_array_test.range(0, 31));
+      end end), Ext_array_test.range(0, 31));
 
 shift_right_logical_tests_001 = [
   -1,
@@ -65,7 +65,7 @@ shift_right_logical_tests = --[ tuple ]--[
 
 shift_right_tests_000 = $$Array.map((function (x) do
         return (Int32.min_int >> x);
-      end), Ext_array_test.range(0, 31));
+      end end), Ext_array_test.range(0, 31));
 
 shift_right_tests_001 = [
   -2147483648,
@@ -109,7 +109,7 @@ shift_right_tests = --[ tuple ]--[
 
 shift_left_tests_000 = $$Array.map((function (x) do
         return (1 << x);
-      end), Ext_array_test.range(0, 31));
+      end end), Ext_array_test.range(0, 31));
 
 shift_left_tests_001 = [
   1,
@@ -162,7 +162,7 @@ suites = do
                         1,
                         1
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -172,7 +172,7 @@ suites = do
                           -2147483647,
                           -2147483647
                         ]);
-              end)
+              end end)
           ],
           --[ [] ]--0
         ]
@@ -195,9 +195,9 @@ suites = do
                                             a,
                                             b
                                           ]);
-                                end)
+                                end end)
                             ];
-                    end), shift_right_logical_tests_000, shift_right_logical_tests_001)), Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                    end end), shift_right_logical_tests_000, shift_right_logical_tests_001)), Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                           return --[ tuple ]--[
                                   Curry._1(Format.asprintf(--[ Format ]--[
                                             --[ String_literal ]--Block.__(11, [
@@ -216,9 +216,9 @@ suites = do
                                                 a,
                                                 b
                                               ]);
-                                    end)
+                                    end end)
                                 ];
-                        end), shift_right_tests_000, shift_right_tests_001)), $$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                        end end), shift_right_tests_000, shift_right_tests_001)), $$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                           return --[ tuple ]--[
                                   Curry._1(Format.asprintf(--[ Format ]--[
                                             --[ String_literal ]--Block.__(11, [
@@ -237,9 +237,9 @@ suites = do
                                                 a,
                                                 b
                                               ]);
-                                    end)
+                                    end end)
                                 ];
-                        end), shift_left_tests_000, shift_left_tests_001)))))
+                        end end), shift_left_tests_000, shift_left_tests_001)))))
 end;
 
 test_id = do
@@ -248,7 +248,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 eq("File \"int32_test.ml\", line 47, characters 5-12", Caml_float.caml_int32_bits_of_float(0.3), 1050253722);
 

@@ -25,12 +25,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 A = Caml_exceptions.create("Exception_rebound_err_test.A");
 
@@ -65,7 +65,7 @@ function test_js_error4(param) do
       return 7;
     end end  end  end 
   end
-end
+end end
 
 function f(g) do
   try do
@@ -78,7 +78,7 @@ function f(g) do
       throw exn;
     end end 
   end
-end
+end end
 
 eq("File \"exception_rebound_err_test.ml\", line 24, characters 6-13", test_js_error4(--[ () ]--0), 7);
 

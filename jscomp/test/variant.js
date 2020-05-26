@@ -28,7 +28,7 @@ function foo(param) do
       
     end
   end end 
-end
+end end
 
 function fooA1(param) do
   if (typeof param == "number" and param == 0) then do
@@ -36,7 +36,7 @@ function fooA1(param) do
   end else do
     return 42;
   end end 
-end
+end end
 
 function fooC(param) do
   if (typeof param == "number" or param.tag ~= --[ C ]--1) then do
@@ -44,7 +44,7 @@ function fooC(param) do
   end else do
     return param[0] + param[1] | 0;
   end end 
-end
+end end
 
 function switchNum(param) do
   local ___conditional___=(param);
@@ -61,7 +61,7 @@ function switchNum(param) do
       end end
       
   end
-end
+end end
 
 same = Caml_obj.caml_equal;
 
@@ -75,15 +75,15 @@ end;
 function Make(M) do
   find = function (x) do
     return --[ () ]--0;
-  end;
+  end end;
   return do
           find: find
         end;
-end
+end end
 
 function find(x) do
   return --[ () ]--0;
-end
+end end
 
 M = do
   find: find
@@ -109,7 +109,7 @@ function rollback_path(subst, p) do
       throw exn;
     end end 
   end
-end
+end end
 
 EA1 = Caml_exceptions.create("Variant.EA1");
 
@@ -142,7 +142,7 @@ function fooExn(f) do
       throw exn;
     end end  end  end  end  end 
   end
-end
+end end
 
 a1 = --[ A1 ]--0;
 

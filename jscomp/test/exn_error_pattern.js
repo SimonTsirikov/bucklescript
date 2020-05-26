@@ -18,7 +18,7 @@ function f(match) do
     end end  end  end 
   end
    end 
-end
+end end
 
 A = Caml_exceptions.create("Exn_error_pattern.A");
 
@@ -37,7 +37,7 @@ function g(match) do
     end end  end  end 
   end
    end 
-end
+end end
 
 suites = do
   contents: --[ [] ]--0
@@ -49,7 +49,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 eq("File \"exn_error_pattern.ml\", line 34, characters 5-12", f(Caml_builtin_exceptions.not_found), 0);
 

@@ -39,12 +39,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function union(_l, _l$prime) do
   while(true) do
@@ -104,7 +104,7 @@ function union(_l, _l$prime) do
       return l;
     end end 
   end;
-end
+end end
 
 function inter(_l, _l$prime) do
   while(true) do
@@ -146,7 +146,7 @@ function inter(_l, _l$prime) do
       return --[ [] ]--0;
     end end 
   end;
-end
+end end
 
 function diff(_l, _l$prime) do
   while(true) do
@@ -202,7 +202,7 @@ function diff(_l, _l$prime) do
       return l;
     end end 
   end;
-end
+end end
 
 function single(c) do
   return --[ :: ]--[
@@ -212,7 +212,7 @@ function single(c) do
           ],
           --[ [] ]--0
         ];
-end
+end end
 
 function seq(c, c$prime) do
   if (Caml_obj.caml_lessequal(c, c$prime)) then do
@@ -232,7 +232,7 @@ function seq(c, c$prime) do
             --[ [] ]--0
           ];
   end end 
-end
+end end
 
 function offset(o, l) do
   if (l) then do
@@ -247,7 +247,7 @@ function offset(o, l) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 function mem(c, _s) do
   while(true) do
@@ -264,7 +264,7 @@ function mem(c, _s) do
       return false;
     end end 
   end;
-end
+end end
 
 function hash_rec(param) do
   if (param) then do
@@ -273,7 +273,7 @@ function hash_rec(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function one_char(param) do
   if (param and !param[1]) then do
@@ -286,7 +286,7 @@ function one_char(param) do
     end end 
   end
    end 
-end
+end end
 
 function compare(param, param$1) do
   c = Caml_obj.caml_compare(param[0], param$1[0]);
@@ -295,7 +295,7 @@ function compare(param, param$1) do
   end else do
     return Caml_obj.caml_compare(param[1], param$1[1]);
   end end 
-end
+end end
 
 function height(param) do
   if (param) then do
@@ -303,7 +303,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, x, d, r) do
   hl = height(l);
@@ -315,7 +315,7 @@ function create(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -373,7 +373,7 @@ function bal(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add(x, data, m) do
   if (m) then do
@@ -418,7 +418,7 @@ function add(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 cany = --[ :: ]--[
   --[ tuple ]--[
@@ -430,11 +430,11 @@ cany = --[ :: ]--[
 
 function intersect(x, y) do
   return (x & y) ~= 0;
-end
+end end
 
 function $plus$plus(x, y) do
   return x | y;
-end
+end end
 
 function from_char(param) do
   if (param >= 170) then do
@@ -483,7 +483,7 @@ function from_char(param) do
   end else do
     return 12;
   end end  end  end  end 
-end
+end end
 
 function height$1(param) do
   if (param) then do
@@ -491,7 +491,7 @@ function height$1(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create$1(l, v, r) do
   hl = l and l[--[ h ]--3] or 0;
@@ -502,7 +502,7 @@ function create$1(l, v, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal$1(l, v, r) do
   hl = l and l[--[ h ]--3] or 0;
@@ -557,7 +557,7 @@ function bal$1(l, v, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add$1(x, t) do
   if (t) then do
@@ -590,11 +590,11 @@ function add$1(x, t) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function hash_combine(h, accu) do
   return Caml_int32.imul(accu, 65599) + h | 0;
-end
+end end
 
 empty = do
   marks: --[ [] ]--0,
@@ -616,7 +616,7 @@ function hash(m, accu) do
       return accu$1;
     end end 
   end;
-end
+end end
 
 function marks_set_idx(idx, marks) do
   if (marks) then do
@@ -635,14 +635,14 @@ function marks_set_idx(idx, marks) do
   end else do
     return marks;
   end end 
-end
+end end
 
 function marks_set_idx$1(marks, idx) do
   return do
           marks: marks_set_idx(idx, marks.marks),
           pmarks: marks.pmarks
         end;
-end
+end end
 
 function first(f, _param) do
   while(true) do
@@ -659,7 +659,7 @@ function first(f, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 eps_expr = do
   id: 0,
@@ -672,7 +672,7 @@ function mk_expr(ids, def) do
           id: ids.contents,
           def: def
         end;
-end
+end end
 
 function cst(ids, s) do
   if (s and false or true) then do
@@ -680,7 +680,7 @@ function cst(ids, s) do
   end else do
     return mk_expr(ids, --[ Cst ]--Block.__(0, [s]));
   end end 
-end
+end end
 
 function alt(ids, l) do
   if (l) then do
@@ -692,7 +692,7 @@ function alt(ids, l) do
   end else do
     return mk_expr(ids, --[ Alt ]--Block.__(1, [--[ [] ]--0]));
   end end 
-end
+end end
 
 function seq$1(ids, kind, x, y) do
   match = x.def;
@@ -722,7 +722,7 @@ function seq$1(ids, kind, x, y) do
                 x,
                 y
               ]));
-end
+end end
 
 function is_eps(expr) do
   match = expr.def;
@@ -731,7 +731,7 @@ function is_eps(expr) do
   end else do
     return false;
   end end 
-end
+end end
 
 function rep(ids, kind, sem, x) do
   return mk_expr(ids, --[ Rep ]--Block.__(3, [
@@ -739,14 +739,14 @@ function rep(ids, kind, sem, x) do
                 sem,
                 x
               ]));
-end
+end end
 
 function erase(ids, m, m$prime) do
   return mk_expr(ids, --[ Erase ]--Block.__(5, [
                 m,
                 m$prime
               ]));
-end
+end end
 
 function rename(ids, x) do
   match = x.def;
@@ -758,7 +758,7 @@ function rename(ids, x) do
        if ___conditional___ = 1--[ Alt ]-- then do
           return mk_expr(ids, --[ Alt ]--Block.__(1, [List.map((function (param) do
                                 return rename(ids, param);
-                              end), match[0])]));end end end 
+                              end end), match[0])]));end end end 
        if ___conditional___ = 2--[ Seq ]-- then do
           return mk_expr(ids, --[ Seq ]--Block.__(2, [
                         match[0],
@@ -778,7 +778,7 @@ function rename(ids, x) do
         
     end
   end end 
-end
+end end
 
 function equal(_l1, _l2) do
   while(true) do
@@ -863,7 +863,7 @@ function equal(_l1, _l2) do
       return true;
     end end  end 
   end;
-end
+end end
 
 function hash$1(_l, _accu) do
   while(true) do
@@ -892,7 +892,7 @@ function hash$1(_l, _accu) do
       return accu;
     end end 
   end;
-end
+end end
 
 function tseq(kind, x, y, rem) do
   if (x) then do
@@ -926,7 +926,7 @@ function tseq(kind, x, y, rem) do
             ]),
           rem
         ];
-end
+end end
 
 dummy = do
   idx: -1,
@@ -938,7 +938,7 @@ end;
 
 function hash$2(idx, cat, desc) do
   return hash$1(desc, hash_combine(idx, hash_combine(cat, 0))) & 1073741823;
-end
+end end
 
 function mk(idx, cat, desc) do
   return do
@@ -948,7 +948,7 @@ function mk(idx, cat, desc) do
           status: undefined,
           hash: hash$2(idx, cat, desc)
         end;
-end
+end end
 
 function create$2(cat, e) do
   return mk(0, cat, --[ :: ]--[
@@ -958,7 +958,7 @@ function create$2(cat, e) do
                 ]),
               --[ [] ]--0
             ]);
-end
+end end
 
 function equal$1(x, y) do
   if (x.hash == y.hash and x.idx == y.idx and x.category == y.category) then do
@@ -966,11 +966,11 @@ function equal$1(x, y) do
   end else do
     return false;
   end end 
-end
+end end
 
 function hash$3(t) do
   return t.hash;
-end
+end end
 
 Table = Hashtbl.Make(do
       equal: equal$1,
@@ -979,7 +979,7 @@ Table = Hashtbl.Make(do
 
 function reset_table(a) do
   return $$Array.fill(a, 0, #a, false);
-end
+end end
 
 function mark_used_indices(tbl) do
   return (function (param) do
@@ -1000,10 +1000,10 @@ function mark_used_indices(tbl) do
                                   end else do
                                     return 0;
                                   end end 
-                                end), param[0].marks);
-                  end), param);
-    end);
-end
+                                end end), param[0].marks);
+                  end end), param);
+    end end);
+end end
 
 function find_free(tbl, _idx, len) do
   while(true) do
@@ -1015,7 +1015,7 @@ function find_free(tbl, _idx, len) do
       continue ;
     end end 
   end;
-end
+end end
 
 function free_index(tbl_ref, l) do
   tbl = tbl_ref.contents;
@@ -1028,7 +1028,7 @@ function free_index(tbl_ref, l) do
   end
    end 
   return idx;
-end
+end end
 
 remove_matches = List.filter((function (param) do
         local ___conditional___=(param.tag | 0);
@@ -1041,7 +1041,7 @@ remove_matches = List.filter((function (param) do
            do
           
         end
-      end));
+      end end));
 
 function split_at_match_rec(_l$prime, _param) do
   while(true) do
@@ -1078,7 +1078,7 @@ function split_at_match_rec(_l$prime, _param) do
           ];
     end end 
   end;
-end
+end end
 
 function remove_duplicates(prev, _l, y) do
   while(true) do
@@ -1152,7 +1152,7 @@ function remove_duplicates(prev, _l, y) do
             ];
     end end 
   end;
-end
+end end
 
 function set_idx(idx, param) do
   if (param) then do
@@ -1187,7 +1187,7 @@ function set_idx(idx, param) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 function filter_marks(b, e, marks) do
   return do
@@ -1198,10 +1198,10 @@ function filter_marks(b, e, marks) do
                     end else do
                       return i > e;
                     end end 
-                  end))(marks.marks),
+                  end end))(marks.marks),
           pmarks: marks.pmarks
         end;
-end
+end end
 
 function delta_1(marks, c, next_cat, prev_cat, x, rem) do
   match = x.def;
@@ -1244,7 +1244,7 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
                      do
                     
                   end
-                end), y$prime$1);
+                end end), y$prime$1);
           match$2 = match$1 ~= undefined and --[ tuple ]--[
               Curry._1(remove_matches, y$prime$1),
               match$1
@@ -1320,7 +1320,7 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
       
     end
   end end 
-end
+end end
 
 function delta_2(marks, c, next_cat, prev_cat, l, rem) do
   if (l) then do
@@ -1328,7 +1328,7 @@ function delta_2(marks, c, next_cat, prev_cat, l, rem) do
   end else do
     return rem;
   end end 
-end
+end end
 
 function delta_seq(c, next_cat, prev_cat, kind, y, z, rem) do
   match = first((function (param) do
@@ -1342,7 +1342,7 @@ function delta_seq(c, next_cat, prev_cat, kind, y, z, rem) do
              do
             
           end
-        end), y);
+        end end), y);
   if (match ~= undefined) then do
     marks = match;
     if (kind ~= -730718166) then do
@@ -1358,7 +1358,7 @@ function delta_seq(c, next_cat, prev_cat, kind, y, z, rem) do
   end else do
     return tseq(kind, y, z, rem);
   end end 
-end
+end end
 
 function delta_4(c, next_cat, prev_cat, l, rem) do
   if (l) then do
@@ -1385,7 +1385,7 @@ function delta_4(c, next_cat, prev_cat, l, rem) do
   end else do
     return rem;
   end end 
-end
+end end
 
 function delta(tbl_ref, next_cat, $$char, st) do
   prev_cat = st.category;
@@ -1394,18 +1394,18 @@ function delta(tbl_ref, next_cat, $$char, st) do
   idx = free_index(tbl_ref, expr$prime);
   expr$prime$prime = set_idx(idx, expr$prime);
   return mk(idx, next_cat, expr$prime$prime);
-end
+end end
 
 function flatten_match(m) do
   ma = List.fold_left((function (ma, param) do
           return Caml_primitive.caml_int_max(ma, param[0]);
-        end), -1, m);
+        end end), -1, m);
   res = Caml_array.caml_make_vect(ma + 1 | 0, -1);
   List.iter((function (param) do
           return Caml_array.caml_array_set(res, param[0], param[1]);
-        end), m);
+        end end), m);
   return res;
-end
+end end
 
 function status(s) do
   match = s.status;
@@ -1436,7 +1436,7 @@ function status(s) do
     s.status = st;
     return st;
   end end 
-end
+end end
 
 Re_automata_Category = do
   $plus$plus: $plus$plus,
@@ -1467,7 +1467,7 @@ function iter(_n, f, _v) do
       continue ;
     end end 
   end;
-end
+end end
 
 function category(re, c) do
   if (c == -1) then do
@@ -1477,7 +1477,7 @@ function category(re, c) do
   end else do
     return Curry._1(Re_automata_Category.from_char, Caml_bytes.get(re.col_repr, c));
   end end  end 
-end
+end end
 
 dummy_next = [];
 
@@ -1499,7 +1499,7 @@ function mk_state(ncol, desc) do
           final: --[ [] ]--0,
           desc: desc
         end;
-end
+end end
 
 function find_state(re, desc) do
   try do
@@ -1514,7 +1514,7 @@ function find_state(re, desc) do
       throw exn;
     end end 
   end
-end
+end end
 
 function delta$1(info, cat, c, st) do
   desc = delta(info.re.tbl, cat, c, st.desc);
@@ -1526,7 +1526,7 @@ function delta$1(info, cat, c, st) do
   end
    end 
   return desc;
-end
+end end
 
 function validate(info, s, pos, st) do
   c = Caml_bytes.get(info.i_cols, Caml_string.get(s, pos));
@@ -1534,7 +1534,7 @@ function validate(info, s, pos, st) do
   desc$prime = delta$1(info, cat, c, st);
   st$prime = find_state(info.re, desc$prime);
   return Caml_array.caml_array_set(st.next, c, st$prime);
-end
+end end
 
 function loop(info, s, pos, st) do
   if (pos < info.last) then do
@@ -1572,7 +1572,7 @@ function loop(info, s, pos, st) do
   end else do
     return st;
   end end 
-end
+end end
 
 function $$final(info, st, cat) do
   try do
@@ -1599,7 +1599,7 @@ function $$final(info, st, cat) do
       throw exn;
     end end 
   end
-end
+end end
 
 function find_initial_state(re, cat) do
   try do
@@ -1620,7 +1620,7 @@ function find_initial_state(re, cat) do
       throw exn;
     end end 
   end
-end
+end end
 
 function get_color(re, s, pos) do
   if (pos < 0) then do
@@ -1635,7 +1635,7 @@ function get_color(re, s, pos) do
       return Caml_bytes.get(re.cols, Caml_string.get(s, pos));
     end end  end 
   end end 
-end
+end end
 
 function scan_str(info, s, initial_state, groups) do
   pos = info.pos;
@@ -1709,11 +1709,11 @@ function scan_str(info, s, initial_state, groups) do
       end end 
     end;
   end end  end 
-end
+end end
 
 function cadd(c, s) do
   return union(single(c), s);
-end
+end end
 
 function trans_set(cache, cm, s) do
   match = one_char(s);
@@ -1747,7 +1747,7 @@ function trans_set(cache, cm, s) do
       if (exn == Caml_builtin_exceptions.not_found) then do
         l = List.fold_right((function (param, l) do
                 return union(seq(Caml_bytes.get(cm, param[0]), Caml_bytes.get(cm, param[1])), l);
-              end), s, --[ [] ]--0);
+              end end), s, --[ [] ]--0);
         cache.contents = add(v, l, cache.contents);
         return l;
       end else do
@@ -1755,7 +1755,7 @@ function trans_set(cache, cm, s) do
       end end 
     end
   end end 
-end
+end end
 
 function is_charset(_param) do
   while(true) do
@@ -1795,7 +1795,7 @@ function is_charset(_param) do
       end
     end end 
   end;
-end
+end end
 
 function split(s, cm) do
   _t = s;
@@ -1803,7 +1803,7 @@ function split(s, cm) do
     cm[i] = --[ "\001" ]--1;
     cm[j + 1 | 0] = --[ "\001" ]--1;
     return --[ () ]--0;
-  end;
+  end end;
   while(true) do
     t = _t;
     if (t) then do
@@ -1815,7 +1815,7 @@ function split(s, cm) do
       return --[ () ]--0;
     end end 
   end;
-end
+end end
 
 cupper = union(seq(--[ "A" ]--65, --[ "Z" ]--90), union(seq(--[ "\192" ]--192, --[ "\214" ]--214), seq(--[ "\216" ]--216, --[ "\222" ]--222)));
 
@@ -1918,10 +1918,10 @@ function colorize(c, regexp) do
         end
       end end 
     end;
-  end;
+  end end;
   colorize$1(regexp);
   return lnl.contents;
-end
+end end
 
 function flatten_cmap(cm) do
   c = Caml_bytes.caml_create_bytes(256);
@@ -1942,7 +1942,7 @@ function flatten_cmap(cm) do
           Bytes.sub(col_repr, 0, v + 1 | 0),
           v + 1 | 0
         ];
-end
+end end
 
 function equal$2(_x1, _x2) do
   while(true) do
@@ -2126,7 +2126,7 @@ function equal$2(_x1, _x2) do
       end
     end end 
   end;
-end
+end end
 
 function eq_list(_l1, _l2) do
   while(true) do
@@ -2146,7 +2146,7 @@ function eq_list(_l1, _l2) do
       return true;
     end end  end 
   end;
-end
+end end
 
 function sequence(l) do
   if (l and !l[1]) then do
@@ -2154,7 +2154,7 @@ function sequence(l) do
   end else do
     return --[ Sequence ]--Block.__(1, [l]);
   end end 
-end
+end end
 
 function merge_sequences(_param) do
   while(true) do
@@ -2231,7 +2231,7 @@ function merge_sequences(_param) do
       return --[ [] ]--0;
     end end 
   end;
-end
+end end
 
 function enforce_kind(ids, kind, kind$prime, cr) do
   if (kind ~= 332064784 or kind$prime == 332064784) then do
@@ -2239,7 +2239,7 @@ function enforce_kind(ids, kind, kind$prime, cr) do
   end else do
     return seq$1(ids, kind$prime, cr, mk_expr(ids, --[ Eps ]--0));
   end end 
-end
+end end
 
 function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _param) do
   while(true) do
@@ -2343,7 +2343,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                             return function (r$prime) do
                               match = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, r$prime);
                               return enforce_kind(ids, kind, match[1], match[0]);
-                            end
+                            end end
                             end(ign_group,greedy)), merged_sequences)),
                     kind
                   ];end end end 
@@ -2364,7 +2364,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                                 --[ [] ]--0
                               ]
                             ]);
-                end
+                end end
                 end(cr,kind$prime)) or (function(cr,kind$prime)do
                 return function (rem) do
                   return alt(ids, --[ :: ]--[
@@ -2374,7 +2374,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                                 --[ [] ]--0
                               ]
                             ]);
-                end
+                end end
                 end(cr,kind$prime));
               rem = iter(j - i | 0, f, mk_expr(ids, --[ Eps ]--0));
             end else do
@@ -2384,7 +2384,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                     iter(i, (function(cr,kind$prime)do
                         return function (rem) do
                           return seq$1(ids, kind$prime, rename(ids, cr), rem);
-                        end
+                        end end
                         end(cr,kind$prime)), rem),
                     kind
                   ];end end end 
@@ -2455,7 +2455,7 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
       end
     end end 
   end;
-end
+end end
 
 function trans_seq(ids, kind, ign_group, ign_case, greedy, pos, cache, c, param) do
   if (param) then do
@@ -2479,11 +2479,11 @@ function trans_seq(ids, kind, ign_group, ign_case, greedy, pos, cache, c, param)
   end else do
     return mk_expr(ids, --[ Eps ]--0);
   end end 
-end
+end end
 
 function case_insens(s) do
   return union(s, union(offset(32, inter(s, cupper)), offset(-32, inter(s, clower))));
-end
+end end
 
 function as_set(param) do
   if (typeof param == "number") then do
@@ -2507,7 +2507,7 @@ function as_set(param) do
   end else do
     return param[0];
   end end  end 
-end
+end end
 
 function handle_case(_ign_case, _r) do
   while(true) do
@@ -2525,18 +2525,18 @@ function handle_case(_ign_case, _r) do
             return --[ Sequence ]--Block.__(1, [List.map((function(ign_case)do
                           return function (param) do
                             return handle_case(ign_case, param);
-                          end
+                          end end
                           end(ign_case)), r[0])]);end end end 
          if ___conditional___ = 2--[ Alternative ]-- then do
             l$prime = List.map((function(ign_case)do
                 return function (param) do
                   return handle_case(ign_case, param);
-                end
+                end end
                 end(ign_case)), r[0]);
             if (is_charset(--[ Alternative ]--Block.__(2, [l$prime]))) then do
               return --[ Set ]--Block.__(0, [List.fold_left((function (s, r) do
                                 return union(s, as_set(r));
-                              end), --[ [] ]--0, l$prime)]);
+                              end end), --[ [] ]--0, l$prime)]);
             end else do
               return --[ Alternative ]--Block.__(2, [l$prime]);
             end end end end end 
@@ -2594,20 +2594,20 @@ function handle_case(_ign_case, _r) do
             l$prime$1 = List.map((function(ign_case)do
                 return function (r) do
                   return handle_case(ign_case, r);
-                end
+                end end
                 end(ign_case)), r[0]);
             return --[ Set ]--Block.__(0, [List.fold_left((function (s, r) do
                               return inter(s, as_set(r));
-                            end), cany, l$prime$1)]);end end end 
+                            end end), cany, l$prime$1)]);end end end 
          if ___conditional___ = 12--[ Complement ]-- then do
             l$prime$2 = List.map((function(ign_case)do
                 return function (r) do
                   return handle_case(ign_case, r);
-                end
+                end end
                 end(ign_case)), r[0]);
             return --[ Set ]--Block.__(0, [diff(cany, List.fold_left((function (s, r) do
                                   return union(s, as_set(r));
-                                end), --[ [] ]--0, l$prime$2))]);end end end 
+                                end end), --[ [] ]--0, l$prime$2))]);end end end 
          if ___conditional___ = 13--[ Difference ]-- then do
             return --[ Set ]--Block.__(0, [inter(as_set(handle_case(ign_case, r[0])), diff(cany, as_set(handle_case(ign_case, r[1]))))]);end end end 
          if ___conditional___ = 14--[ Pmark ]-- then do
@@ -2620,7 +2620,7 @@ function handle_case(_ign_case, _r) do
       end
     end end 
   end;
-end
+end end
 
 function anchored(_param) do
   while(true) do
@@ -2671,7 +2671,7 @@ function anchored(_param) do
       end
     end end 
   end;
-end
+end end
 
 function alt$1(l) do
   if (l and !l[1]) then do
@@ -2679,7 +2679,7 @@ function alt$1(l) do
   end else do
     return --[ Alternative ]--Block.__(2, [l]);
   end end 
-end
+end end
 
 function seq$2(l) do
   if (l and !l[1]) then do
@@ -2687,7 +2687,7 @@ function seq$2(l) do
   end else do
     return --[ Sequence ]--Block.__(1, [l]);
   end end 
-end
+end end
 
 epsilon = --[ Sequence ]--Block.__(1, [--[ [] ]--0]);
 
@@ -2711,7 +2711,7 @@ function repn(r, i, j) do
             i,
             j
           ]);
-end
+end end
 
 function set(str) do
   s = --[ [] ]--0;
@@ -2719,7 +2719,7 @@ function set(str) do
     s = union(single(Caml_string.get(str, i)), s);
   end
   return --[ Set ]--Block.__(0, [s]);
-end
+end end
 
 function compl(l) do
   r = --[ Complement ]--Block.__(12, [l]);
@@ -2731,7 +2731,7 @@ function compl(l) do
           "Re.compl"
         ];
   end end 
-end
+end end
 
 any = --[ Set ]--Block.__(0, [cany]);
 
@@ -2969,7 +2969,7 @@ function compile(r) do
           states: Curry._1(Re_automata_State.Table.create, 97),
           group_count: group_count
         end;
-end
+end end
 
 function exec_internal(name, posOpt, lenOpt, groups, re, s) do
   pos = posOpt ~= undefined and posOpt or 0;
@@ -3044,7 +3044,7 @@ function exec_internal(name, posOpt, lenOpt, groups, re, s) do
               gcount: re$1.group_count
             end];
   end end 
-end
+end end
 
 function offset$1(t, i) do
   if (((i << 1) + 1 | 0) >= #t.marks) then do
@@ -3062,13 +3062,13 @@ function offset$1(t, i) do
           p1,
           p2
         ];
-end
+end end
 
 function get(t, i) do
   match = offset$1(t, i);
   p1 = match[0];
   return $$String.sub(t.s, p1, match[1] - p1 | 0);
-end
+end end
 
 Parse_error = Caml_exceptions.create("Parse_error");
 
@@ -3113,7 +3113,7 @@ function posix_class_of_string(class_) do
       end end
       
   end
-end
+end end
 
 function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
   i = do
@@ -3126,7 +3126,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
     end else do
       return false;
     end end 
-  end;
+  end end;
   accept = function (c) do
     r = test(c);
     if (r) then do
@@ -3134,7 +3134,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
     end
      end 
     return r;
-  end;
+  end end;
   accept_s = function (s$prime) do
     len = #s$prime;
     try do
@@ -3159,12 +3159,12 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
         throw exn$1;
       end end 
     end
-  end;
+  end end;
   get = function (param) do
     r = Caml_string.get(s, i.contents);
     i.contents = i.contents + 1 | 0;
     return r;
-  end;
+  end end;
   greedy_mod = function (r) do
     gr = accept(--[ "?" ]--63);
     gr$1 = ungreedy and !gr or gr;
@@ -3179,7 +3179,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                 r
               ]);
     end end 
-  end;
+  end end;
   atom = function (param) do
     if (accept(--[ "." ]--46)) then do
       if (dotall) then do
@@ -3408,7 +3408,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
         return --[ Set ]--Block.__(0, [single(c$1)]);
       end end  end 
     end end  end  end  end  end  end 
-  end;
+  end end;
   integer = function (param) do
     if (i.contents == l) then do
       return ;
@@ -3441,7 +3441,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
         end;
       end end 
     end end 
-  end;
+  end end;
   branch$prime = function (_left) do
     while(true) do
       left = _left;
@@ -3455,7 +3455,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
         continue ;
       end end 
     end;
-  end;
+  end end;
   regexp$prime = function (_left) do
     while(true) do
       left = _left;
@@ -3472,7 +3472,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
         return left;
       end end 
     end;
-  end;
+  end end;
   bracket = function (_s) do
     while(true) do
       s = _s;
@@ -3540,7 +3540,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
         end end 
       end end 
     end;
-  end;
+  end end;
   $$char = function (param) do
     if (i.contents == l) then do
       throw Parse_error;
@@ -3812,7 +3812,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
               c
             ];
     end end  end 
-  end;
+  end end;
   piece = function (param) do
     r = atom(--[ () ]--0);
     if (accept(--[ "*" ]--42)) then do
@@ -3842,14 +3842,14 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
     end else do
       return r;
     end end  end  end  end 
-  end;
+  end end;
   res = regexp$prime(branch$prime(--[ [] ]--0));
   if (i.contents ~= l) then do
     throw Parse_error;
   end
    end 
   return res;
-end
+end end
 
 function re(flagsOpt, pat) do
   flags = flagsOpt ~= undefined and flagsOpt or --[ [] ]--0;
@@ -3863,7 +3863,7 @@ function re(flagsOpt, pat) do
           end else do
             return --[ Caseless ]--604571177;
           end end 
-        end), flags);
+        end end), flags);
   optsOpt = opts;
   s = pat;
   opts$1 = optsOpt ~= undefined and optsOpt or --[ [] ]--0;
@@ -3880,7 +3880,7 @@ function re(flagsOpt, pat) do
   end else do
     return r$1;
   end end 
-end
+end end
 
 function exec(rex, pos, s) do
   pos$1 = pos;
@@ -3893,7 +3893,7 @@ function exec(rex, pos, s) do
   end
    end 
   return match[0];
-end
+end end
 
 s = Caml_bytes.bytes_to_string(Bytes.make(1048575, --[ "a" ]--97)) .. "b";
 

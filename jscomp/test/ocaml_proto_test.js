@@ -31,7 +31,7 @@ function field(optionsOpt, label, number, type_, name) do
           field_type: type_,
           field_options: options
         end;
-end
+end end
 
 function map(map_optionsOpt, number, key_type, value_type, name) do
   map_options = map_optionsOpt ~= undefined and map_optionsOpt or --[ [] ]--0;
@@ -42,7 +42,7 @@ function map(map_optionsOpt, number, key_type, value_type, name) do
           map_value_type: value_type,
           map_options: map_options
         end;
-end
+end end
 
 function oneof_field(optionsOpt, number, type_, name) do
   options = optionsOpt ~= undefined and optionsOpt or --[ [] ]--0;
@@ -53,7 +53,7 @@ function oneof_field(optionsOpt, number, type_, name) do
           field_type: type_,
           field_options: options
         end;
-end
+end end
 
 message_counter = do
   contents: 0
@@ -65,7 +65,7 @@ function extension_range_range(from, to_) do
             from,
             to_$1
           ]);
-end
+end end
 
 function message(content, message_name) do
   message_counter.contents = message_counter.contents + 1 | 0;
@@ -74,14 +74,14 @@ function message(content, message_name) do
           message_name: message_name,
           message_body: content
         end;
-end
+end end
 
 function $$import($$public, file_name) do
   return do
           file_name: file_name,
           public: $$public ~= undefined
         end;
-end
+end end
 
 function extend(extend_name, extend_body) do
   message_counter.contents = message_counter.contents + 1 | 0;
@@ -90,7 +90,7 @@ function extend(extend_name, extend_body) do
           extend_name: extend_name,
           extend_body: extend_body
         end;
-end
+end end
 
 function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$1, extend, param) do
   proto$2 = proto$1 ~= undefined and proto$1 or (do
@@ -184,7 +184,7 @@ function proto(syntax, file_option, $$package, $$import, message, $$enum, proto$
   end else do
     return proto$8;
   end end 
-end
+end end
 
 function file_option(file_options, name) do
   x;
@@ -199,7 +199,7 @@ function file_option(file_options, name) do
     end end 
   end
   return x;
-end
+end end
 
 function rev_split_by_char(c, s) do
   loop = function (i, l) do
@@ -221,9 +221,9 @@ function rev_split_by_char(c, s) do
         throw exn;
       end end 
     end
-  end;
+  end end;
   return loop(0, --[ [] ]--0);
-end
+end end
 
 function pop_last(param) do
   if (param) then do
@@ -242,7 +242,7 @@ function pop_last(param) do
           "Invalid argument [] for pop_last"
         ];
   end end 
-end
+end end
 
 function apply_until(f, _param) do
   while(true) do
@@ -259,7 +259,7 @@ function apply_until(f, _param) do
       return ;
     end end 
   end;
-end
+end end
 
 function string_of_string_list(l) do
   return Curry._1(Printf.sprintf(--[ Format ]--[
@@ -275,7 +275,7 @@ function string_of_string_list(l) do
                     ]),
                   "[%s]"
                 ]), $$String.concat(",", l));
-end
+end end
 
 function string_fold_lefti(f, e0, s) do
   len = #s;
@@ -292,7 +292,7 @@ function string_fold_lefti(f, e0, s) do
       continue ;
     end end 
   end;
-end
+end end
 
 function option_default(x, param) do
   if (param ~= undefined) then do
@@ -300,7 +300,7 @@ function option_default(x, param) do
   end else do
     return x;
   end end 
-end
+end end
 
 function from_lexbuf(lexbuf) do
   x = lexbuf.lex_curr_p.pos_fname;
@@ -310,15 +310,15 @@ function from_lexbuf(lexbuf) do
           file_name: file_name,
           line: line
         end;
-end
+end end
 
 function file_name(param) do
   return param.file_name;
-end
+end end
 
 function line(param) do
   return param.line;
-end
+end end
 
 function to_string(param) do
   return Curry._2(Printf.sprintf(--[ Format ]--[
@@ -342,7 +342,7 @@ function to_string(param) do
                     ]),
                   "File %s, line %i:\n"
                 ]), option_default("", param.file_name), param.line);
-end
+end end
 
 function string_of_programmatic_error(e) do
   tmp;
@@ -360,7 +360,7 @@ function string_of_programmatic_error(e) do
     
   end
   return "Programatic_error" .. tmp;
-end
+end end
 
 Compilation_error = Caml_exceptions.create("Ocaml_proto_test.Exception.Compilation_error");
 
@@ -649,7 +649,7 @@ function prepare_error(param) do
       
     end
   end end 
-end
+end end
 
 function add_loc(loc, exn) do
   if (exn[0] == Compilation_error) then do
@@ -684,14 +684,14 @@ function add_loc(loc, exn) do
               detail
             ])
         ];
-end
+end end
 
 Printexc.register_printer((function (exn) do
         if (exn[0] == Compilation_error) then do
           return prepare_error(exn[1]);
         end
          end 
-      end));
+      end end));
 
 function invalid_default_value(field_name, info, param) do
   throw [
@@ -701,7 +701,7 @@ function invalid_default_value(field_name, info, param) do
               info: info
             end])
       ];
-end
+end end
 
 function unsupported_field_type(field_name, field_type, backend_name, param) do
   throw [
@@ -712,7 +712,7 @@ function unsupported_field_type(field_name, field_type, backend_name, param) do
               backend_name: backend_name
             end])
       ];
-end
+end end
 
 function invalid_enum_specification(enum_name, loc) do
   throw [
@@ -722,7 +722,7 @@ function invalid_enum_specification(enum_name, loc) do
             loc
           ])
       ];
-end
+end end
 
 yytransl_const = [
   257,
@@ -770,122 +770,122 @@ yyact = [
             Caml_builtin_exceptions.failure,
             "parser"
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(_1, undefined, undefined, undefined, undefined, undefined, _2, undefined, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(undefined, undefined, undefined, _1, undefined, undefined, undefined, undefined, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(undefined, _1, undefined, undefined, undefined, undefined, undefined, undefined, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(undefined, undefined, _1, undefined, undefined, undefined, undefined, undefined, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(undefined, undefined, undefined, undefined, _1, undefined, undefined, undefined, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(undefined, undefined, undefined, undefined, undefined, _1, undefined, undefined, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(undefined, undefined, undefined, undefined, undefined, undefined, undefined, _1, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(undefined, undefined, undefined, _1, undefined, undefined, _2, undefined, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(undefined, _1, undefined, undefined, undefined, undefined, _2, undefined, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(undefined, undefined, _1, undefined, undefined, undefined, _2, undefined, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(undefined, undefined, undefined, undefined, _1, undefined, _2, undefined, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(undefined, undefined, undefined, undefined, undefined, _1, _2, undefined, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return proto(undefined, undefined, undefined, undefined, undefined, undefined, _2, _1, --[ () ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return _3;
-    end),
+    end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 2);
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return $$import(undefined, _2);
-    end),
+    end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return $$import(--[ () ]--0, _3);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 2);
@@ -895,30 +895,30 @@ yyact = [
             Compilation_error,
             --[ Invalid_import_qualifier ]--Block.__(5, [_1])
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return _2[1];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return message(_4, _2[1]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 0);
       return message(--[ [] ]--0, _2[1]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
@@ -926,49 +926,49 @@ yyact = [
               _1,
               _2
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ Message_field ]--Block.__(0, [Parsing.peek_val(__caml_parser_env, 0)]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ Message_map_field ]--Block.__(1, [Parsing.peek_val(__caml_parser_env, 0)]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ Message_oneof_field ]--Block.__(2, [Parsing.peek_val(__caml_parser_env, 0)]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ Message_sub ]--Block.__(3, [Parsing.peek_val(__caml_parser_env, 0)]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ Message_enum ]--Block.__(4, [Parsing.peek_val(__caml_parser_env, 0)]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ Message_extension ]--Block.__(5, [Parsing.peek_val(__caml_parser_env, 0)]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Compilation_error,
             --[ Syntax_error ]--0
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return extend(_2[1], _4);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 0);
       return extend(_2[1], --[ [] ]--0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
@@ -976,19 +976,19 @@ yyact = [
               _1,
               _2
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return _2;
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
@@ -996,10 +996,10 @@ yyact = [
               _1,
               _3
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ Extension_single_number ]--Block.__(0, [Parsing.peek_val(__caml_parser_env, 0)]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
@@ -1007,11 +1007,11 @@ yyact = [
                   -703661335,
                   _3
                 ]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       return extension_range_range(_1, --[ Max ]--3850884);
-    end),
+    end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 4);
       _2 = Parsing.peek_val(__caml_parser_env, 3);
@@ -1021,7 +1021,7 @@ yyact = [
               oneof_name: _2[1],
               oneof_fields: _4
             end;
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 1);
@@ -1030,10 +1030,10 @@ yyact = [
             Compilation_error,
             --[ Missing_one_of_name ]--Block.__(12, [_1])
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ [] ]--0;
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
@@ -1041,7 +1041,7 @@ yyact = [
               _1,
               _2
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 5);
       _2 = Parsing.peek_val(__caml_parser_env, 4);
@@ -1049,14 +1049,14 @@ yyact = [
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return oneof_field(_5, _4, _1[1], _2);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return oneof_field(undefined, _4, _1[1], _2);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 7);
       _5 = Parsing.peek_val(__caml_parser_env, 5);
@@ -1064,7 +1064,7 @@ yyact = [
       _9 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return map(undefined, _9, _3[1], _5[1], _7);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _3 = Parsing.peek_val(__caml_parser_env, 8);
       _5 = Parsing.peek_val(__caml_parser_env, 6);
@@ -1073,7 +1073,7 @@ yyact = [
       _10 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return map(_10, _9, _3[1], _5[1], _7);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 6);
       _2 = Parsing.peek_val(__caml_parser_env, 5);
@@ -1082,7 +1082,7 @@ yyact = [
       _6 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return field(_6, _1, _5, _2[1], _3);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 5);
       _2 = Parsing.peek_val(__caml_parser_env, 4);
@@ -1090,7 +1090,7 @@ yyact = [
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       Parsing.peek_val(__caml_parser_env, 0);
       return field(undefined, _1, _5, _2[1], _3);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 5);
       Parsing.peek_val(__caml_parser_env, 4);
@@ -1101,7 +1101,7 @@ yyact = [
             Compilation_error,
             --[ Missing_field_label ]--Block.__(14, [_1[0]])
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 4);
       Parsing.peek_val(__caml_parser_env, 3);
@@ -1111,89 +1111,89 @@ yyact = [
             Compilation_error,
             --[ Missing_field_label ]--Block.__(14, [_1[0]])
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0)[1];
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "required";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "optional";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "repeated";
-    end),
+    end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 0);
       return "oneof";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "enum";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "package";
-    end),
+    end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 0);
       return "import";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "public";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "option";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "extensions";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "extend";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "syntax";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "message";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "to";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "max";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return "map";
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ Required ]--202657151;
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ Repeated ]---368609126;
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ Optional ]---132092992;
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       throw [
             Compilation_error,
             --[ Invalid_field_label ]--Block.__(13, [_1[0]])
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ [] ]--0;
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ :: ]--[
               _1,
               --[ [] ]--0
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
@@ -1201,7 +1201,7 @@ yyact = [
               _1,
               _3
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
@@ -1209,7 +1209,7 @@ yyact = [
               _1[1],
               _3
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
@@ -1217,21 +1217,21 @@ yyact = [
               _2[1],
               _5
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0)[1];
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1)[1];
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return _1 .. _2[1];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
@@ -1240,15 +1240,15 @@ yyact = [
               _2,
               _4
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Constant_int ]--Block.__(2, [_1]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Constant_float ]--Block.__(3, [_1]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       litteral = _1[1];
@@ -1264,11 +1264,11 @@ yyact = [
           end end
           
       end
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Constant_string ]--Block.__(0, [_1]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
@@ -1282,10 +1282,10 @@ yyact = [
               enum_name: enum_name,
               enum_values: enum_values
             end;
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ [] ]--0;
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
@@ -1293,7 +1293,7 @@ yyact = [
               _1,
               _2
             ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
@@ -1302,7 +1302,7 @@ yyact = [
               enum_value_name: _1[1],
               enum_value_int: _3
             end;
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       Parsing.peek_val(__caml_parser_env, 0);
@@ -1315,110 +1315,110 @@ yyact = [
                 loc
               ])
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 1);
       return invalid_enum_specification(_1[1], _1[0]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       return invalid_enum_specification(_1[1], _1[0]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       return invalid_enum_specification(_1[1], _1[0]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return invalid_enum_specification(_1[1], _1[0]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ () ]--0;
-    end),
+    end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 1);
       return --[ () ]--0;
-    end),
+    end end),
   (function (__caml_parser_env) do
       return --[ () ]--0;
-    end),
+    end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 1);
       return --[ () ]--0;
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end)
+    end end)
 ];
 
 yytables = do
@@ -1442,7 +1442,7 @@ end;
 
 function proto_(lexfun, lexbuf) do
   return Parsing.yyparse(yytables, 7, lexfun, lexbuf);
-end
+end end
 
 function update_loc(lexbuf) do
   pos = lexbuf.lex_curr_p;
@@ -1453,7 +1453,7 @@ function update_loc(lexbuf) do
     pos_cnum: pos.pos_cnum
   end;
   return --[ () ]--0;
-end
+end end
 
 __ocaml_lex_tables = do
   lex_base: "\0\0\xea\xff\xeb\xffN\0\xed\xff\xee\xff\x01\0\xa0\0\xf0\0;\x01\x88\x01\x9e\x01\xf2\xff\x10\0\xf5\xff\xf6\xff\xf7\xff\xf8\xff\xf9\xff\xfa\xff\xfb\xff\xfc\xff\xfd\xff\xfe\xff\xff\xff\xf3\xff\xf4\xff\x1a\0\xbe\x01\xc8\x01\x92\x01\xa8\x01#\0\xef\xff\xed\x01:\x02\x87\x02\xd4\x02!\x03n\x03\x05\0\x12\x01\xfd\xff\xfe\xff\xff\xff\x06\0\x07\0!\x01\xfc\xff\xfd\xff\x11\0\xff\xff\x0b\0\f\0\xfe\xff\xc2\x01\xfc\xff\xfd\xff\xfe\xff\xc9\x03\xff\xff",
@@ -1504,7 +1504,7 @@ function __ocaml_lex_string_rec(_l, lexbuf, ___ocaml_lex_state) do
         
     end
   end;
-end
+end end
 
 function __ocaml_lex_comment_rec(_l, lexbuf, ___ocaml_lex_state) do
   while(true) do
@@ -1534,7 +1534,7 @@ function __ocaml_lex_comment_rec(_l, lexbuf, ___ocaml_lex_state) do
         
     end
   end;
-end
+end end
 
 function __ocaml_lex_multi_line_comment_rec(_l, lexbuf, ___ocaml_lex_state) do
   while(true) do
@@ -1568,7 +1568,7 @@ function __ocaml_lex_multi_line_comment_rec(_l, lexbuf, ___ocaml_lex_state) do
         
     end
   end;
-end
+end end
 
 function lexer(lexbuf) do
   lexbuf$1 = lexbuf;
@@ -1708,7 +1708,7 @@ function lexer(lexbuf) do
         
     end
   end;
-end
+end end
 
 function let_decl_of_and(param) do
   if (param ~= undefined) then do
@@ -1716,7 +1716,7 @@ function let_decl_of_and(param) do
   end else do
     return "let rec";
   end end 
-end
+end end
 
 function string_of_basic_type(param) do
   local ___conditional___=(param);
@@ -1738,7 +1738,7 @@ function string_of_basic_type(param) do
      do
     
   end
-end
+end end
 
 function string_of_field_type(param) do
   if (typeof param == "number") then do
@@ -1754,7 +1754,7 @@ function string_of_field_type(param) do
   end else do
     return string_of_basic_type(param[0]);
   end end  end 
-end
+end end
 
 function string_of_record_field_type(param) do
   local ___conditional___=(param.tag | 0);
@@ -1822,7 +1822,7 @@ function string_of_record_field_type(param) do
      do
     
   end
-end
+end end
 
 function function_name_of_user_defined(prefix, param) do
   match = param.udt_module;
@@ -1861,7 +1861,7 @@ function function_name_of_user_defined(prefix, param) do
                     "%s_%s"
                   ]), prefix, param.udt_type_name);
   end end 
-end
+end end
 
 function string_of_payload_kind(capitalize, payload_kind, packed) do
   s;
@@ -1885,7 +1885,7 @@ function string_of_payload_kind(capitalize, payload_kind, packed) do
   end else do
     return s;
   end end 
-end
+end end
 
 function line$1(scope, s) do
   scope.items = --[ :: ]--[
@@ -1893,7 +1893,7 @@ function line$1(scope, s) do
     scope.items
   ];
   return --[ () ]--0;
-end
+end end
 
 function scope(scope$1, f) do
   sub_scope = do
@@ -1905,7 +1905,7 @@ function scope(scope$1, f) do
     scope$1.items
   ];
   return --[ () ]--0;
-end
+end end
 
 function indentation_prefix(n) do
   local ___conditional___=(n);
@@ -1934,7 +1934,7 @@ function indentation_prefix(n) do
       end end
       
   end
-end
+end end
 
 function print(scope) do
   loop = function (_acc, i, _param) do
@@ -1961,9 +1961,9 @@ function print(scope) do
         return acc;
       end end 
     end;
-  end;
+  end end;
   return $$String.concat("\n", loop(--[ [] ]--0, 0, scope.items));
-end
+end end
 
 function runtime_function(param) do
   match = param[0];
@@ -2183,7 +2183,7 @@ function runtime_function(param) do
       end
     end end  end 
   end end 
-end
+end end
 
 function decode_basic_type(bt, pk) do
   return runtime_function(--[ tuple ]--[
@@ -2191,7 +2191,7 @@ function decode_basic_type(bt, pk) do
               pk,
               bt
             ]);
-end
+end end
 
 function decode_field_f(field_type, pk) do
   if (typeof field_type == "number") then do
@@ -2207,7 +2207,7 @@ function decode_field_f(field_type, pk) do
   end else do
     return decode_basic_type(field_type[0], pk) .. " d";
   end end  end 
-end
+end end
 
 function gen_decode_record(and_, param, sc) do
   r_fields = param.r_fields;
@@ -2232,7 +2232,7 @@ function gen_decode_record(and_, param, sc) do
                     acc
                   ];
           end end 
-        end), --[ [] ]--0, r_fields);
+        end end), --[ [] ]--0, r_fields);
   process_field_common = function (sc, encoding_number, pk_as_string, f) do
     line$1(sc, Curry._2(Printf.sprintf(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
@@ -2258,7 +2258,7 @@ function gen_decode_record(and_, param, sc) do
     scope(sc, (function (sc) do
             Curry._1(f, sc);
             return line$1(sc, "loop ()");
-          end));
+          end end));
     line$1(sc, ")");
     line$1(sc, Curry._1(Printf.sprintf(--[ Format ]--[
                   --[ String_literal ]--Block.__(11, [
@@ -2309,9 +2309,9 @@ function gen_decode_record(and_, param, sc) do
                                       ]),
                                     "\"Message(%s), field(%i)\""
                                   ]), r_name, encoding_number)));
-          end));
+          end end));
     return line$1(sc, ")");
-  end;
+  end end;
   mutable_record_name = r_name .. "_mutable";
   line$1(sc, Curry._2(Printf.sprintf(--[ Format ]--[
                 --[ String ]--Block.__(2, [
@@ -2368,8 +2368,8 @@ function gen_decode_record(and_, param, sc) do
                                                                     ]),
                                                                   "v.%s <- List.rev v.%s;"
                                                                 ]), field_name, field_name));
-                                            end), all_lists);
-                              end));
+                                            end end), all_lists);
+                              end end));
                         line$1(sc, ")");
                         List.iter((function (param) do
                                 rf_field_type = param.rf_field_type;
@@ -2402,7 +2402,7 @@ function gen_decode_record(and_, param, sc) do
                                                                           ]),
                                                                         "v.%s <- %s;"
                                                                       ]), rf_label$1, decode_field_f(field_type, pk)));
-                                                  end));end end end 
+                                                  end end));end end end 
                                    if ___conditional___ = 1--[ Rft_optional ]-- then do
                                       sc$2 = sc;
                                       rf_label$2 = rf_label;
@@ -2429,7 +2429,7 @@ function gen_decode_record(and_, param, sc) do
                                                                           ]),
                                                                         "v.%s <- Some (%s);"
                                                                       ]), rf_label$2, decode_field_f(field_type$1, pk$1)));
-                                                  end));end end end 
+                                                  end end));end end end 
                                    if ___conditional___ = 2--[ Rft_repeated_field ]-- then do
                                       sc$3 = sc;
                                       rf_label$3 = rf_label;
@@ -2462,9 +2462,9 @@ function gen_decode_record(and_, param, sc) do
                                                                                       ]),
                                                                                     "Pbrt.Repeated_field.add (%s) v.%s;"
                                                                                   ]), decode_field_f(field_type$2, pk$2), rf_label$3));
-                                                              end));
+                                                              end end));
                                                         return line$1(sc, ") () d;");
-                                                      end));
+                                                      end end));
                                         end else do
                                           return process_field_common(sc$3, encoding_number, string_of_payload_kind(--[ () ]--0, pk$2, false), (function (sc) do
                                                         return line$1(sc, Curry._2(Printf.sprintf(--[ Format ]--[
@@ -2486,7 +2486,7 @@ function gen_decode_record(and_, param, sc) do
                                                                               ]),
                                                                             "Pbrt.Repeated_field.add (%s) v.%s; "
                                                                           ]), decode_field_f(field_type$2, pk$2), rf_label$3));
-                                                      end));
+                                                      end end));
                                         end end 
                                       end else if (is_packed) then do
                                         return process_field_common(sc$3, encoding_number, "Bytes", (function (sc) do
@@ -2509,7 +2509,7 @@ function gen_decode_record(and_, param, sc) do
                                                                             ]),
                                                                           "v.%s <- Pbrt.Decoder.packed_fold (fun l d -> (%s)::l) [] d;"
                                                                         ]), rf_label$3, decode_field_f(field_type$2, pk$2)));
-                                                    end));
+                                                    end end));
                                       end else do
                                         return process_field_common(sc$3, encoding_number, string_of_payload_kind(--[ () ]--0, pk$2, false), (function (sc) do
                                                       return line$1(sc, Curry._3(Printf.sprintf(--[ Format ]--[
@@ -2537,7 +2537,7 @@ function gen_decode_record(and_, param, sc) do
                                                                             ]),
                                                                           "v.%s <- (%s) :: v.%s;"
                                                                         ]), rf_label$3, decode_field_f(field_type$2, pk$2), rf_label$3));
-                                                    end));
+                                                    end end));
                                       end end  end end end end 
                                    if ___conditional___ = 3--[ Rft_associative_field ]-- then do
                                       sc$4 = sc;
@@ -2553,7 +2553,7 @@ function gen_decode_record(and_, param, sc) do
                                                     line$1(sc, "let decode_value = (fun d ->");
                                                     scope(sc, (function (sc) do
                                                             return line$1(sc, decode_field_f(value_type, value_pk));
-                                                          end));
+                                                          end end));
                                                     line$1(sc, ") in");
                                                     decode_expression = Curry._1(Printf.sprintf(--[ Format ]--[
                                                               --[ String_literal ]--Block.__(11, [
@@ -2626,10 +2626,10 @@ function gen_decode_record(and_, param, sc) do
                                                                                     ]),
                                                                                   "%s::v.%s;"
                                                                                 ]), decode_expression, rf_label$4));
-                                                            end));
+                                                            end end));
                                                       return line$1(sc, ");");
                                                     end end 
-                                                  end));end end end 
+                                                  end end));end end end 
                                    if ___conditional___ = 4--[ Rft_variant_field ]-- then do
                                       sc$5 = sc;
                                       rf_label$5 = rf_label;
@@ -2687,14 +2687,14 @@ function gen_decode_record(and_, param, sc) do
                                                                                         "v.%s <- %s;"
                                                                                       ]), rf_label$5, vc_constructor));
                                                                   end end 
-                                                                end));
-                                                  end), param$5.v_constructors);end end end 
+                                                                end end));
+                                                  end end), param$5.v_constructors);end end end 
                                    do
                                   
                                 end
-                              end), r_fields);
+                              end end), r_fields);
                         return line$1(sc, "| Some (n, payload_kind) -> Pbrt.Decoder.skip d payload_kind; loop ()");
-                      end));
+                      end end));
                 line$1(sc, "in");
                 line$1(sc, "loop ();");
                 line$1(sc, Curry._1(Printf.sprintf(--[ Format ]--[
@@ -2711,8 +2711,8 @@ function gen_decode_record(and_, param, sc) do
                               "let v:%s = Obj.magic v in"
                             ]), r_name));
                 return line$1(sc, "v");
-              end));
-end
+              end end));
+end end
 
 function gen_decode_variant(and_, param, sc) do
   v_constructors = param.v_constructors;
@@ -2814,19 +2814,19 @@ function gen_decode_variant(and_, param, sc) do
                                                               "| Some (%i, _) -> (Pbrt.Decoder.empty_nested d ; %s)"
                                                             ]), vc_encoding_number, vc_constructor));
                                         end end 
-                                      end), v_constructors);
+                                      end end), v_constructors);
                                 line$1(sc, "| Some (n, payload_kind) -> (");
                                 line$1(sc, "  Pbrt.Decoder.skip d payload_kind; ");
                                 line$1(sc, "  loop () ");
                                 return line$1(sc, ")");
-                              end));
+                              end end));
                         line$1(sc, "in");
                         return line$1(sc, "ret");
-                      end));
+                      end end));
                 line$1(sc, "in");
                 return line$1(sc, "loop ()");
-              end));
-end
+              end end));
+end end
 
 function gen_decode_const_variant(and_, param, sc) do
   cv_constructors = param.cv_constructors;
@@ -2877,7 +2877,7 @@ function gen_decode_const_variant(and_, param, sc) do
                                               ]),
                                             "| %i -> (%s:%s)"
                                           ]), param[1], param[0], cv_name));
-                      end), cv_constructors);
+                      end end), cv_constructors);
                 return line$1(sc, Curry._1(Printf.sprintf(--[ Format ]--[
                                     --[ String_literal ]--Block.__(11, [
                                         "| _ -> failwith \"Unknown value for enum ",
@@ -2891,8 +2891,8 @@ function gen_decode_const_variant(and_, param, sc) do
                                       ]),
                                     "| _ -> failwith \"Unknown value for enum %s\""
                                   ]), cv_name));
-              end));
-end
+              end end));
+end end
 
 function gen_struct(and_, t, sc) do
   match = t.spec;
@@ -2918,7 +2918,7 @@ function gen_struct(and_, t, sc) do
     
   end
   return tmp[1];
-end
+end end
 
 function gen_sig(and_, t, sc) do
   f = function (type_name) do
@@ -2957,7 +2957,7 @@ function gen_sig(and_, t, sc) do
                           ]),
                         "(** [decode_%s decoder] decodes a [%s] value from [decoder] *)"
                       ]), type_name, type_name));
-  end;
+  end end;
   match = t.spec;
   tmp;
   local ___conditional___=(match.tag | 0);
@@ -2981,7 +2981,7 @@ function gen_sig(and_, t, sc) do
     
   end
   return tmp[1];
-end
+end end
 
 Codegen_decode = do
   gen_sig: gen_sig,
@@ -3000,7 +3000,7 @@ function log(x) do
   end else do
     return Printf.ifprintf(Pervasives.stdout, x);
   end end 
-end
+end end
 
 function endline(s) do
   return Curry._1(log(--[ Format ]--[
@@ -3013,7 +3013,7 @@ function endline(s) do
                     ]),
                   "%s\n"
                 ]), s);
-end
+end end
 
 function gen_pp_field(field_type) do
   if (typeof field_type ~= "number" and field_type.tag) then do
@@ -3030,7 +3030,7 @@ function gen_pp_field(field_type) do
                     ]),
                   "Pbrt.Pp.pp_%s"
                 ]), string_of_field_type(field_type));
-end
+end end
 
 function gen_pp_record(and_, param, sc) do
   r_fields = param.r_fields;
@@ -3270,13 +3270,13 @@ function gen_pp_record(and_, param, sc) do
                                    do
                                   
                                 end
-                              end), r_fields);
+                              end end), r_fields);
                         return line$1(sc, "Format.pp_close_box fmt ()");
-                      end));
+                      end end));
                 line$1(sc, "in");
                 return line$1(sc, "Pbrt.Pp.pp_brk pp_i fmt ()");
-              end));
-end
+              end end));
+end end
 
 function gen_pp_variant(and_, param, sc) do
   v_constructors = param.v_constructors;
@@ -3374,9 +3374,9 @@ function gen_pp_variant(and_, param, sc) do
                                                     "| %s  -> Format.fprintf fmt \"%s\""
                                                   ]), vc_constructor, vc_constructor));
                               end end 
-                            end), v_constructors);
-              end));
-end
+                            end end), v_constructors);
+              end end));
+end end
 
 function gen_pp_const_variant(and_, param, sc) do
   cv_constructors = param.cv_constructors;
@@ -3426,9 +3426,9 @@ function gen_pp_const_variant(and_, param, sc) do
                                                     ]),
                                                   "| %s -> Format.fprintf fmt \"%s\""
                                                 ]), name, name));
-                            end), cv_constructors);
-              end));
-end
+                            end end), cv_constructors);
+              end end));
+end end
 
 function gen_struct$1(and_, t, sc) do
   match = t.spec;
@@ -3444,7 +3444,7 @@ function gen_struct$1(and_, t, sc) do
     
   end
   return true;
-end
+end end
 
 function gen_sig$1(and_, t, sc) do
   f = function (type_name) do
@@ -3480,7 +3480,7 @@ function gen_sig$1(and_, t, sc) do
                           ]),
                         "(** [pp_%s v] formats v] *)"
                       ]), type_name));
-  end;
+  end end;
   match = t.spec;
   local ___conditional___=(match.tag | 0);
   do
@@ -3494,7 +3494,7 @@ function gen_sig$1(and_, t, sc) do
     
   end
   return true;
-end
+end end
 
 Codegen_pp = do
   gen_sig: gen_sig$1,
@@ -3508,7 +3508,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, x, d, r) do
   hl = height(l);
@@ -3520,7 +3520,7 @@ function create(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -3578,7 +3578,7 @@ function bal(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add(x, data, m) do
   if (m) then do
@@ -3623,7 +3623,7 @@ function add(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function find(x, _param) do
   while(true) do
@@ -3640,7 +3640,7 @@ function find(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function map$1(f, param) do
   if (param) then do
@@ -3657,7 +3657,7 @@ function map$1(f, param) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function fold(f, _m, _accu) do
   while(true) do
@@ -3671,7 +3671,7 @@ function fold(f, _m, _accu) do
       return accu;
     end end 
   end;
-end
+end end
 
 function min_value(param) do
   match = param[0];
@@ -3691,7 +3691,7 @@ function min_value(param) do
           "min_value error"
         ];
   end end 
-end
+end end
 
 function eq_value(param) do
   match = param[0];
@@ -3711,7 +3711,7 @@ function eq_value(param) do
           "eq_value error"
         ];
   end end 
-end
+end end
 
 function string_of_option(f, param) do
   if (param ~= undefined) then do
@@ -3731,7 +3731,7 @@ function string_of_option(f, param) do
   end else do
     return "None";
   end end 
-end
+end end
 
 function reset(g) do
   return map$1((function (core) do
@@ -3741,8 +3741,8 @@ function reset(g) do
                         lowlink: undefined,
                         on_stack: false
                       end;
-              end), g);
-end
+              end end), g);
+end end
 
 function strong_connect(g, sccs, stack, index, v) do
   Curry._2(log(--[ Format ]--[
@@ -3802,7 +3802,7 @@ function strong_connect(g, sccs, stack, index, v) do
                     "[Graph] sub w [%i], w.index: %s\n"
                   ]), w.core.id, string_of_option((function (prim) do
                       return String(prim);
-                    end), w.index));
+                    end end), w.index));
           match = w.index;
           if (match ~= undefined) then do
             if (w.on_stack) then do
@@ -3829,7 +3829,7 @@ function strong_connect(g, sccs, stack, index, v) do
                     match$1[2]
                   ];
           end end 
-        end), --[ tuple ]--[
+        end end), --[ tuple ]--[
         sccs,
         stack$1,
         index
@@ -3865,9 +3865,9 @@ function strong_connect(g, sccs, stack, index, v) do
             "[Graph] after sub for v [%i], lowlink: %s, index: %s\n"
           ]), v.core.id, string_of_option((function (prim) do
               return String(prim);
-            end), v.lowlink), string_of_option((function (prim) do
+            end end), v.lowlink), string_of_option((function (prim) do
               return String(prim);
-            end), v.index));
+            end end), v.index));
   Curry._1(log(--[ Format ]--[
             --[ String_literal ]--Block.__(11, [
                 "[Graph]   -> stack : ",
@@ -3882,7 +3882,7 @@ function strong_connect(g, sccs, stack, index, v) do
             "[Graph]   -> stack : %s\n"
           ]), "[" .. ($$String.concat(";", List.map((function (param) do
                     return String(param.core.id);
-                  end), stack$2)) .. "]"));
+                  end end), stack$2)) .. "]"));
   if (eq_value(--[ tuple ]--[
           v.lowlink,
           v.index
@@ -3922,7 +3922,7 @@ function strong_connect(g, sccs, stack, index, v) do
                       ];
               end end 
             end end 
-          end), --[ tuple ]--[
+          end end), --[ tuple ]--[
           --[ [] ]--0,
           --[ [] ]--0,
           false
@@ -3942,7 +3942,7 @@ function strong_connect(g, sccs, stack, index, v) do
             index$1
           ];
   end end 
-end
+end end
 
 function tarjan(g) do
   g$1 = reset(g);
@@ -3960,36 +3960,36 @@ function tarjan(g) do
                   end else do
                     return strong_connect(g$1, sccs, stack, index, n);
                   end end 
-                end), g$1, --[ tuple ]--[
+                end end), g$1, --[ tuple ]--[
                 --[ [] ]--0,
                 --[ [] ]--0,
                 0
               ])[0];
-end
+end end
 
 function field_name(param) do
   return param.field_parsed.field_name;
-end
+end end
 
 function field_number(param) do
   return param.field_parsed.field_number;
-end
+end end
 
 function field_type(param) do
   return param.field_type;
-end
+end end
 
 function field_label(param) do
   return param.field_parsed.field_label;
-end
+end end
 
 function field_default(param) do
   return param.field_default;
-end
+end end
 
 function field_options(param) do
   return param.field_options;
-end
+end end
 
 function find_field_option(field_options, option_name) do
   x;
@@ -4004,21 +4004,21 @@ function find_field_option(field_options, option_name) do
     end end 
   end
   return Caml_option.some(x);
-end
+end end
 
 function field_option(param, option_name) do
   return find_field_option(param.field_options, option_name);
-end
+end end
 
 function type_id_of_type(param) do
   return param.id;
-end
+end end
 
 function type_of_id(all_types, id) do
   return List.find((function (t) do
                 return type_id_of_type(t) == id;
-              end), all_types);
-end
+              end end), all_types);
+end end
 
 function string_of_unresolved(param) do
   return Curry._3(Printf.sprintf(--[ Format ]--[
@@ -4046,7 +4046,7 @@ function string_of_unresolved(param) do
                     ]),
                   "unresolved:{scope %s, type_name: %s, from_root: %b}"
                 ]), string_of_string_list(param.scope), param.type_name, param.from_root);
-end
+end end
 
 function scope_of_package(param) do
   if (param ~= undefined) then do
@@ -4060,7 +4060,7 @@ function scope_of_package(param) do
             message_names: --[ [] ]--0
           end;
   end end 
-end
+end end
 
 function unresolved_of_string(s) do
   match = rev_split_by_char(--[ "." ]--46, s);
@@ -4076,7 +4076,7 @@ function unresolved_of_string(s) do
           --[ Programatic_error ]--Block.__(4, [--[ Invalid_string_split ]--0])
         ];
   end end 
-end
+end end
 
 function field_type_of_string(s) do
   local ___conditional___=(s);
@@ -4117,7 +4117,7 @@ function field_type_of_string(s) do
       end end
       
   end
-end
+end end
 
 function compile_default_p2(all_types, field) do
   field_name$1 = field_name(field);
@@ -4174,7 +4174,7 @@ function compile_default_p2(all_types, field) do
                   return enum_value_name;
                 end
                  end 
-              end), spec[0].enum_values);
+              end end), spec[0].enum_values);
         if (default_enum_value$1 ~= undefined) then do
           return constant;
         end else do
@@ -4220,7 +4220,7 @@ function compile_default_p2(all_types, field) do
     end
   end
    end 
-end
+end end
 
 function get_default(field_name, field_options, field_type) do
   constant;
@@ -4235,7 +4235,7 @@ function get_default(field_name, field_options, field_type) do
     end end 
   end
   return Caml_option.some(constant);
-end
+end end
 
 function compile_field_p1(field_parsed) do
   field_options = field_parsed.field_options;
@@ -4247,7 +4247,7 @@ function compile_field_p1(field_parsed) do
           field_default: field_default,
           field_options: field_options
         end;
-end
+end end
 
 function compile_map_p1(param) do
   return do
@@ -4257,14 +4257,14 @@ function compile_map_p1(param) do
           map_value_type: field_type_of_string(param.map_value_type),
           map_options: param.map_options
         end;
-end
+end end
 
 function compile_oneof_p1(param) do
   return do
           oneof_name: param.oneof_name,
           oneof_fields: List.map(compile_field_p1, param.oneof_fields)
         end;
-end
+end end
 
 function not_found(f) do
   try do
@@ -4278,7 +4278,7 @@ function not_found(f) do
       throw exn;
     end end 
   end
-end
+end end
 
 function list_assoc2(x, _param) do
   while(true) do
@@ -4295,7 +4295,7 @@ function list_assoc2(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function type_of_spec(file_name, file_options, id, scope, spec) do
   return do
@@ -4305,7 +4305,7 @@ function type_of_spec(file_name, file_options, id, scope, spec) do
           file_options: file_options,
           spec: spec
         end;
-end
+end end
 
 function compile_enum_p1(file_name, file_options, scope, param) do
   enum_values = List.map((function (enum_value) do
@@ -4313,12 +4313,12 @@ function compile_enum_p1(file_name, file_options, scope, param) do
                   enum_value_name: enum_value.enum_value_name,
                   enum_value_int: enum_value.enum_value_int
                 end;
-        end), param.enum_values);
+        end end), param.enum_values);
   return type_of_spec(file_name, file_options, param.enum_id, scope, --[ Enum ]--Block.__(0, [do
                   enum_name: param.enum_name,
                   enum_values: enum_values
                 end]));
-end
+end end
 
 function compile_message_p1(file_name, file_options, message_scope, param) do
   message_name = param.message_name;
@@ -4392,7 +4392,7 @@ function compile_message_p1(file_name, file_options, message_scope, param) do
              do
             
           end
-        end), --[ tuple ]--[
+        end end), --[ tuple ]--[
         --[ [] ]--0,
         --[ [] ]--0,
         --[ [] ]--0
@@ -4404,10 +4404,10 @@ function compile_message_p1(file_name, file_options, message_scope, param) do
     if (not_found((function (param) do
               List.assoc(number, number_index);
               return --[ () ]--0;
-            end)) and not_found((function (param) do
+            end end)) and not_found((function (param) do
               list_assoc2(name, number_index);
               return --[ () ]--0;
-            end))) then do
+            end end))) then do
       return --[ :: ]--[
               --[ tuple ]--[
                 number,
@@ -4428,7 +4428,7 @@ function compile_message_p1(file_name, file_options, message_scope, param) do
                 end])
           ];
     end end 
-  end;
+  end end;
   List.fold_left((function (number_index, param) do
           local ___conditional___=(param.tag | 0);
           do
@@ -4441,7 +4441,7 @@ function compile_message_p1(file_name, file_options, message_scope, param) do
              do
             
           end
-        end), --[ [] ]--0, message_body);
+        end end), --[ [] ]--0, message_body);
   return Pervasives.$at(match[2], --[ :: ]--[
               type_of_spec(file_name, file_options, param.id, message_scope, --[ Message ]--Block.__(1, [do
                         extensions: match[1],
@@ -4450,7 +4450,7 @@ function compile_message_p1(file_name, file_options, message_scope, param) do
                       end])),
               --[ [] ]--0
             ]);
-end
+end end
 
 function compile_proto_p1(file_name, param) do
   file_options = param.file_options;
@@ -4460,15 +4460,15 @@ function compile_proto_p1(file_name, param) do
                   compile_enum_p1(file_name, file_options, scope, e),
                   pbtt_msgs
                 ];
-        end), param.enums, --[ [] ]--0);
+        end end), param.enums, --[ [] ]--0);
   return List.fold_left((function (pbtt_msgs, pbpt_msg) do
                 return Pervasives.$at(pbtt_msgs, compile_message_p1(file_name, file_options, scope, pbpt_msg));
-              end), pbtt_msgs, param.messages);
-end
+              end end), pbtt_msgs, param.messages);
+end end
 
 function type_scope_of_type(param) do
   return param.scope;
-end
+end end
 
 function is_empty_message(param) do
   match = param.spec;
@@ -4477,7 +4477,7 @@ function is_empty_message(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 function type_name_of_type(param) do
   match = param.spec;
@@ -4486,15 +4486,15 @@ function type_name_of_type(param) do
   end else do
     return match[0].enum_name;
   end end 
-end
+end end
 
 function find_all_types_in_field_scope(all_types, scope) do
   return List.filter((function (t) do
                   match = type_scope_of_type(t);
                   dec_scope = Pervasives.$at(match.packages, match.message_names);
                   return Caml_obj.caml_equal(dec_scope, scope);
-                end))(all_types);
-end
+                end end))(all_types);
+end end
 
 function compile_message_p2(types, param, message) do
   message_name = message.message_name;
@@ -4527,10 +4527,10 @@ function compile_message_p2(types, param, message) do
                   ];
           end end 
         end;
-      end;
+      end end;
       return List.rev(loop(--[ [] ]--0, message_scope));
     end end 
-  end;
+  end end;
   compile_field_p2 = function (field_name, field_type) do
     Curry._1(log(--[ Format ]--[
               --[ String_literal ]--Block.__(11, [
@@ -4598,7 +4598,7 @@ function compile_message_p2(types, param, message) do
                                 ]),
                               "[pbtt] search_scope[%2i] : %s\n"
                             ]), i, string_of_string_list(scope));
-            end), search_scopes$1);
+            end end), search_scopes$1);
       id = apply_until((function (scope) do
               types$1 = types;
               scope$1 = scope;
@@ -4607,7 +4607,7 @@ function compile_message_p2(types, param, message) do
               try do
                 t = List.find((function (t) do
                         return type_name$1 == type_name_of_type(t);
-                      end), types$2);
+                      end end), types$2);
                 return type_id_of_type(t);
               end
               catch (exn)do
@@ -4617,7 +4617,7 @@ function compile_message_p2(types, param, message) do
                   throw exn;
                 end end 
               end
-            end), search_scopes$1);
+            end end), search_scopes$1);
       if (id ~= undefined) then do
         return --[ Field_type_type ]--[id];
       end else do
@@ -4634,7 +4634,7 @@ function compile_message_p2(types, param, message) do
             ];
       end end 
     end end 
-  end;
+  end end;
   message_body = List.fold_left((function (message_body, param) do
           local ___conditional___=(param.tag | 0);
           do
@@ -4681,7 +4681,7 @@ function compile_message_p2(types, param, message) do
                                 end,
                                 oneof_fields
                               ];
-                      end), --[ [] ]--0, oneof.oneof_fields);
+                      end end), --[ [] ]--0, oneof.oneof_fields);
                 oneof_fields$1 = List.rev(oneof_fields);
                 return --[ :: ]--[
                         --[ Message_oneof_field ]--Block.__(1, [do
@@ -4709,14 +4709,14 @@ function compile_message_p2(types, param, message) do
              do
             
           end
-        end), --[ [] ]--0, message.message_body);
+        end end), --[ [] ]--0, message.message_body);
   message_body$1 = List.rev(message_body);
   return do
           extensions: message.extensions,
           message_name: message.message_name,
           message_body: message_body$1
         end;
-end
+end end
 
 function node_of_proto_type(param) do
   match = param.spec;
@@ -4746,7 +4746,7 @@ function node_of_proto_type(param) do
                                                   --[ [] ]--0
                                                 ];
                                         end end 
-                                      end), param[0].oneof_fields));end end end 
+                                      end end), param[0].oneof_fields));end end end 
                    if ___conditional___ = 2--[ Message_map_field ]-- then do
                       map_value_type = param[0].map_value_type;
                       if (typeof map_value_type == "number") then do
@@ -4760,7 +4760,7 @@ function node_of_proto_type(param) do
                    do
                   
                 end
-              end), match[0].message_body));
+              end end), match[0].message_body));
     return do
             id: id,
             sub: sub
@@ -4771,7 +4771,7 @@ function node_of_proto_type(param) do
             sub: --[ [] ]--0
           end;
   end end 
-end
+end end
 
 function group(proto) do
   g = List.map(node_of_proto_type, proto);
@@ -4779,7 +4779,7 @@ function group(proto) do
           n$1 = n;
           g = m;
           return add(n$1.id, n$1, g);
-        end), --[ Empty ]--0, g);
+        end end), --[ Empty ]--0, g);
   sccs = tarjan(g$1);
   return List.map((function (l) do
                 return List.map((function (id) do
@@ -4787,10 +4787,10 @@ function group(proto) do
                                             input_id = id;
                                             param$1 = param;
                                             return input_id == param$1.id;
-                                          end), proto);
-                            end), l);
-              end), sccs);
-end
+                                          end end), proto);
+                            end end), l);
+              end end), sccs);
+end end
 
 function type_decl_of_and(param) do
   if (param ~= undefined) then do
@@ -4798,7 +4798,7 @@ function type_decl_of_and(param) do
   end else do
     return "type";
   end end 
-end
+end end
 
 function gen_type_record(mutable_, and_, param, sc) do
   r_fields = param.r_fields;
@@ -4820,14 +4820,14 @@ function gen_type_record(mutable_, and_, param, sc) do
         end end
         
     end
-  end;
+  end end;
   field_prefix = function (field_type, field_mutable) do
     if (field_mutable or !(is_imperative_type(field_type) or !mutable_$1)) then do
       return "mutable ";
     end else do
       return "";
     end end 
-  end;
+  end end;
   r_name$1 = mutable_$1 and r_name .. "_mutable" or r_name;
   line$1(sc, Curry._2(Printf.sprintf(--[ Format ]--[
                 --[ String ]--Block.__(2, [
@@ -4869,10 +4869,10 @@ function gen_type_record(mutable_, and_, param, sc) do
                                               ]),
                                             "%s%s : %s;"
                                           ]), prefix, param.rf_label, type_string));
-                      end), r_fields);
-        end));
+                      end end), r_fields);
+        end end));
   return line$1(sc, "}");
-end
+end end
 
 function gen_type_variant(and_, variant, sc) do
   v_constructors = variant.v_constructors;
@@ -4926,9 +4926,9 @@ function gen_type_variant(and_, variant, sc) do
                                                     "| %s"
                                                   ]), vc_constructor));
                               end end 
-                            end), v_constructors);
-              end));
-end
+                            end end), v_constructors);
+              end end));
+end end
 
 function gen_type_const_variant(and_, param, sc) do
   cv_constructors = param.cv_constructors;
@@ -4963,9 +4963,9 @@ function gen_type_const_variant(and_, param, sc) do
                                                     ]),
                                                   "| %s "
                                                 ]), param[0]));
-                            end), cv_constructors);
-              end));
-end
+                            end end), cv_constructors);
+              end end));
+end end
 
 function gen_struct$2(and_, t, scope) do
   match = t.spec;
@@ -4984,7 +4984,7 @@ function gen_struct$2(and_, t, scope) do
     
   end
   return true;
-end
+end end
 
 function gen_sig$2(and_, t, scope) do
   match = t.spec;
@@ -5000,7 +5000,7 @@ function gen_sig$2(and_, t, scope) do
     
   end
   return true;
-end
+end end
 
 Codegen_type = do
   gen_sig: gen_sig$2,
@@ -5032,7 +5032,7 @@ function gen_encode_field_key(sc, number, pk, is_packed) do
                         ]),
                       "Pbrt.Encoder.key (%i, Pbrt.%s) encoder; "
                     ]), number, Caml_bytes.bytes_to_string(Bytes.capitalize(Caml_bytes.bytes_of_string(s$1)))));
-end
+end end
 
 function encode_basic_type(bt, pk) do
   return runtime_function(--[ tuple ]--[
@@ -5040,7 +5040,7 @@ function encode_basic_type(bt, pk) do
               pk,
               bt
             ]);
-end
+end end
 
 function gen_encode_field_type(with_key, sc, var_name, encoding_number, pk, is_packed, field_type) do
   encode_key = function (sc) do
@@ -5049,7 +5049,7 @@ function gen_encode_field_type(with_key, sc, var_name, encoding_number, pk, is_p
     end else do
       return --[ () ]--0;
     end end 
-  end;
+  end end;
   if (typeof field_type == "number") then do
     encode_key(sc);
     return line$1(sc, "Pbrt.Encoder.empty_nested encoder;");
@@ -5115,7 +5115,7 @@ function gen_encode_field_type(with_key, sc, var_name, encoding_number, pk, is_p
                         "%s %s encoder;"
                       ]), rt, var_name));
   end end  end 
-end
+end end
 
 function gen_encode_record(and_, param, sc) do
   r_fields = param.r_fields;
@@ -5203,10 +5203,10 @@ function gen_encode_record(and_, param, sc) do
                                               ]));
                                       scope(sc, (function (sc) do
                                               return gen_encode_field_type(--[ () ]--0, sc, "x", encoding_number, pk, false, field_type);
-                                            end));
+                                            end end));
                                       line$1(sc, ")");
                                       return line$1(sc, "| None -> ();");
-                                    end));
+                                    end end));
                               return line$1(sc, ");");end end end 
                            if ___conditional___ = 2--[ Rft_repeated_field ]-- then do
                               match$2 = rf_field_type[0];
@@ -5222,7 +5222,7 @@ function gen_encode_record(and_, param, sc) do
                                           line$1(sc, "Pbrt.Repeated_field.iter (fun x -> ");
                                           scope(sc, (function (sc) do
                                                   return gen_encode_field_type(undefined, sc, "x", encoding_number$1, pk$1, is_packed, field_type$1);
-                                                end));
+                                                end end));
                                           return line$1(sc, Curry._1(Printf.sprintf(--[ Format ]--[
                                                               --[ String_literal ]--Block.__(11, [
                                                                   ") v.",
@@ -5236,13 +5236,13 @@ function gen_encode_record(and_, param, sc) do
                                                                 ]),
                                                               ") v.%s;"
                                                             ]), rf_label));
-                                        end));
+                                        end end));
                                   return line$1(sc, ") encoder;");
                                 end else do
                                   line$1(sc, "Pbrt.Repeated_field.iter (fun x -> ");
                                   scope(sc, (function (sc) do
                                           return gen_encode_field_type(--[ () ]--0, sc, "x", encoding_number$1, pk$1, is_packed, field_type$1);
-                                        end));
+                                        end end));
                                   return line$1(sc, Curry._1(Printf.sprintf(--[ Format ]--[
                                                       --[ String_literal ]--Block.__(11, [
                                                           ") v.",
@@ -5264,7 +5264,7 @@ function gen_encode_record(and_, param, sc) do
                                         line$1(sc, "List.iter (fun x -> ");
                                         scope(sc, (function (sc) do
                                                 return gen_encode_field_type(undefined, sc, "x", encoding_number$1, pk$1, is_packed, field_type$1);
-                                              end));
+                                              end end));
                                         return line$1(sc, Curry._1(Printf.sprintf(--[ Format ]--[
                                                             --[ String_literal ]--Block.__(11, [
                                                                 ") v.",
@@ -5278,13 +5278,13 @@ function gen_encode_record(and_, param, sc) do
                                                               ]),
                                                             ") v.%s;"
                                                           ]), rf_label));
-                                      end));
+                                      end end));
                                 return line$1(sc, ") encoder;");
                               end else do
                                 line$1(sc, "List.iter (fun x -> ");
                                 scope(sc, (function (sc) do
                                         return gen_encode_field_type(--[ () ]--0, sc, "x", encoding_number$1, pk$1, is_packed, field_type$1);
-                                      end));
+                                      end end));
                                 return line$1(sc, Curry._1(Printf.sprintf(--[ Format ]--[
                                                     --[ String_literal ]--Block.__(11, [
                                                         ") v.",
@@ -5323,7 +5323,7 @@ function gen_encode_record(and_, param, sc) do
                               line$1(sc, "let encode_value = (fun x encoder ->");
                               scope(sc, (function (sc) do
                                       return gen_encode_field_type(undefined, sc, "x", -1, value_pk, false, value_type);
-                                    end));
+                                    end end));
                               line$1(sc, ") in");
                               if (match$3[0]) then do
                                 line$1(sc, "Hashtbl.iter (fun k v ->");
@@ -5352,7 +5352,7 @@ function gen_encode_record(and_, param, sc) do
                                                     "let map_entry = (k, Pbrt.%s), (v, Pbrt.%s) in"
                                                   ]), string_of_payload_kind(--[ () ]--0, key_pk, false), string_of_payload_kind(--[ () ]--0, value_pk, false)));
                                       return line$1(sc, "Pbrt.Encoder.map_entry ~encode_key ~encode_value map_entry encoder");
-                                    end));
+                                    end end));
                               return line$1(sc, Curry._1(Printf.sprintf(--[ Format ]--[
                                                   --[ String_literal ]--Block.__(11, [
                                                       ") v.",
@@ -5405,7 +5405,7 @@ function gen_encode_record(and_, param, sc) do
                                                                   ]), vc_constructor));
                                                       scope(sc, (function (sc) do
                                                               return gen_encode_field_type(--[ () ]--0, sc, "x", vc_encoding_number, vc_payload_kind, false, field_type);
-                                                            end));
+                                                            end end));
                                                       return line$1(sc, ")");
                                                     end else do
                                                       line$1(sc, Curry._1(Printf.sprintf(--[ Format ]--[
@@ -5424,19 +5424,19 @@ function gen_encode_record(and_, param, sc) do
                                                       scope(sc, (function (sc) do
                                                               gen_encode_field_key(sc, vc_encoding_number, vc_payload_kind, false);
                                                               return line$1(sc, "Pbrt.Encoder.empty_nested encoder");
-                                                            end));
+                                                            end end));
                                                       return line$1(sc, ")");
                                                     end end 
-                                                  end), v_constructors);
-                                    end));
+                                                  end end), v_constructors);
+                                    end end));
                               return line$1(sc, ");");end end end 
                            do
                           
                         end
-                      end), r_fields);
+                      end end), r_fields);
                 return line$1(sc, "()");
-              end));
-end
+              end end));
+end end
 
 function gen_encode_variant(and_, variant, sc) do
   v_constructors = variant.v_constructors;
@@ -5487,7 +5487,7 @@ function gen_encode_variant(and_, variant, sc) do
                                             ]), vc_constructor));
                                 scope(sc, (function (sc) do
                                         return gen_encode_field_type(--[ () ]--0, sc, "x", vc_encoding_number, vc_payload_kind, false, field_type);
-                                      end));
+                                      end end));
                                 return line$1(sc, ")");
                               end else do
                                 line$1(sc, Curry._1(Printf.sprintf(--[ Format ]--[
@@ -5506,12 +5506,12 @@ function gen_encode_variant(and_, variant, sc) do
                                 scope(sc, (function (sc) do
                                         gen_encode_field_key(sc, vc_encoding_number, vc_payload_kind, false);
                                         return line$1(sc, "Pbrt.Encoder.empty_nested encoder");
-                                      end));
+                                      end end));
                                 return line$1(sc, ")");
                               end end 
-                            end), v_constructors);
-              end));
-end
+                            end end), v_constructors);
+              end end));
+end end
 
 function gen_encode_const_variant(and_, param, sc) do
   cv_constructors = param.cv_constructors;
@@ -5584,9 +5584,9 @@ function gen_encode_const_variant(and_, param, sc) do
                                                       ]),
                                                     "| %s -> Pbrt.Encoder.int_as_varint (%i) encoder"
                                                   ]), name, value));
-                            end), cv_constructors);
-              end));
-end
+                            end end), cv_constructors);
+              end end));
+end end
 
 function gen_struct$3(and_, t, sc) do
   match = t.spec;
@@ -5612,7 +5612,7 @@ function gen_struct$3(and_, t, sc) do
     
   end
   return tmp[1];
-end
+end end
 
 function gen_sig$3(and_, t, sc) do
   f = function (type_name) do
@@ -5648,7 +5648,7 @@ function gen_sig$3(and_, t, sc) do
                           ]),
                         "(** [encode_%s v encoder] encodes [v] with the given [encoder] *)"
                       ]), type_name));
-  end;
+  end end;
   match = t.spec;
   tmp;
   local ___conditional___=(match.tag | 0);
@@ -5672,7 +5672,7 @@ function gen_sig$3(and_, t, sc) do
     
   end
   return tmp[1];
-end
+end end
 
 Codegen_encode = do
   gen_sig: gen_sig$3,
@@ -5823,7 +5823,7 @@ function default_value_of_field_type(field_name, field_type, field_default) do
       
     end
   end end  end 
-end
+end end
 
 function record_field_default_info(record_field) do
   rf_field_type = record_field.rf_field_type;
@@ -5831,7 +5831,7 @@ function record_field_default_info(record_field) do
   type_string = string_of_record_field_type(rf_field_type);
   dfvft = function (field_type, defalut_value) do
     return default_value_of_field_type(rf_label, field_type, defalut_value);
-  end;
+  end end;
   default_value;
   local ___conditional___=(rf_field_type.tag | 0);
   do
@@ -5911,7 +5911,7 @@ function record_field_default_info(record_field) do
           default_value,
           type_string
         ];
-end
+end end
 
 function gen_default_record(mutable_, and_, param, sc) do
   r_name = param.r_name;
@@ -5958,8 +5958,8 @@ function gen_default_record(mutable_, and_, param, sc) do
                                                 ]),
                                               "%s = %s;"
                                             ]), param[0], param[1]));
-                        end), fields_default_info);
-          end));
+                        end end), fields_default_info);
+          end end));
   end else do
     line$1(sc, Curry._2(Printf.sprintf(--[ Format ]--[
                   --[ String ]--Block.__(2, [
@@ -6011,7 +6011,7 @@ function gen_default_record(mutable_, and_, param, sc) do
                                           ]),
                                         "?%s:((%s:%s) = %s)"
                                       ]), fname, fname, param[2], param[1]));
-                  end), fields_default_info);
+                  end end), fields_default_info);
             return line$1(sc, Curry._1(Printf.sprintf(--[ Format ]--[
                                 --[ String_literal ]--Block.__(11, [
                                     "() : ",
@@ -6025,7 +6025,7 @@ function gen_default_record(mutable_, and_, param, sc) do
                                   ]),
                                 "() : %s  = {"
                               ]), r_name));
-          end));
+          end end));
     scope(sc, (function (sc) do
             return List.iter((function (param) do
                           return line$1(sc, Curry._1(Printf.sprintf(--[ Format ]--[
@@ -6038,11 +6038,11 @@ function gen_default_record(mutable_, and_, param, sc) do
                                                 ]),
                                               "%s;"
                                             ]), param[0]));
-                        end), fields_default_info);
-          end));
+                        end end), fields_default_info);
+          end end));
   end end 
   return line$1(sc, "}");
-end
+end end
 
 function gen_default_variant(and_, param, sc) do
   v_constructors = param.v_constructors;
@@ -6121,7 +6121,7 @@ function gen_default_variant(and_, param, sc) do
           "programmatic TODO error"
         ];
   end end 
-end
+end end
 
 function gen_default_const_variant(and_, param, sc) do
   cv_constructors = param.cv_constructors;
@@ -6163,7 +6163,7 @@ function gen_default_const_variant(and_, param, sc) do
                         ]),
                       "%s default_%s () = (%s:%s)"
                     ]), let_decl_of_and(and_), cv_name, first_constructor_name, cv_name));
-end
+end end
 
 function gen_struct$4(and_, t, sc) do
   match = t.spec;
@@ -6190,7 +6190,7 @@ function gen_struct$4(and_, t, sc) do
     
   end
   return tmp[1];
-end
+end end
 
 function gen_sig_record(sc, param) do
   r_name = param.r_name;
@@ -6229,10 +6229,10 @@ function gen_sig_record(sc, param) do
                                         ]),
                                       "?%s:%s ->"
                                     ]), param[0], param[2]));
-                end), fields_default_info);
+                end end), fields_default_info);
           line$1(sc, "unit ->");
           return line$1(sc, r_name);
-        end));
+        end end));
   line$1(sc, Curry._2(Printf.sprintf(--[ Format ]--[
                 --[ String_literal ]--Block.__(11, [
                     "(** [default_",
@@ -6253,7 +6253,7 @@ function gen_sig_record(sc, param) do
                 "(** [default_%s ()] is the default value for type [%s] *)"
               ]), r_name, r_name));
   return --[ () ]--0;
-end
+end end
 
 function gen_sig$4(and_, t, sc) do
   f = function (type_name) do
@@ -6292,7 +6292,7 @@ function gen_sig$4(and_, t, sc) do
                           ]),
                         "(** [default_%s ()] is the default value for type [%s] *)"
                       ]), type_name, type_name));
-  end;
+  end end;
   match = t.spec;
   tmp;
   local ___conditional___=(match.tag | 0);
@@ -6316,7 +6316,7 @@ function gen_sig$4(and_, t, sc) do
     
   end
   return tmp[1];
-end
+end end
 
 Codegen_default = do
   gen_sig: gen_sig$4,
@@ -6331,7 +6331,7 @@ function rev_split_by_naming_convention(s) do
     end else do
       return false;
     end end 
-  end;
+  end end;
   add_sub_string = function (start_i, end_i, l) do
     if (start_i == end_i) then do
       return l;
@@ -6341,7 +6341,7 @@ function rev_split_by_naming_convention(s) do
               l
             ];
     end end 
-  end;
+  end end;
   match = string_fold_lefti((function (param, i, c) do
           start_i = param[1];
           l = param[0];
@@ -6366,14 +6366,14 @@ function rev_split_by_naming_convention(s) do
                     false
                   ];
           end end 
-        end), --[ tuple ]--[
+        end end), --[ tuple ]--[
         --[ [] ]--0,
         0,
         false
       ], s);
   len = #s;
   return add_sub_string(match[1], len, match[0]);
-end
+end end
 
 function fix_ocaml_keyword_conflict(s) do
   local ___conditional___=(s);
@@ -6441,18 +6441,18 @@ function fix_ocaml_keyword_conflict(s) do
       end end
       
   end
-end
+end end
 
 function constructor_name(s) do
   s$1 = $$String.concat("_", List.rev(rev_split_by_naming_convention(s)));
   s$2 = Caml_bytes.bytes_to_string(Bytes.lowercase(Caml_bytes.bytes_of_string(s$1)));
   return Caml_bytes.bytes_to_string(Bytes.capitalize(Caml_bytes.bytes_of_string(s$2)));
-end
+end end
 
 function label_name_of_field_name(s) do
   s$1 = $$String.concat("_", List.rev(rev_split_by_naming_convention(s)));
   return fix_ocaml_keyword_conflict(Caml_bytes.bytes_to_string(Bytes.lowercase(Caml_bytes.bytes_of_string(s$1))));
-end
+end end
 
 function module_of_file_name(file_name) do
   file_name$1 = Curry._1(Filename.basename, file_name);
@@ -6471,7 +6471,7 @@ function module_of_file_name(file_name) do
     throw exn;
   end
   return constructor_name($$String.sub(file_name$1, 0, dot_index) .. "_pb");
-end
+end end
 
 function type_name(message_scope, name) do
   all_names = Pervasives.$at(message_scope, --[ :: ]--[
@@ -6480,7 +6480,7 @@ function type_name(message_scope, name) do
       ]);
   all_names$1 = List.map((function (s) do
           return List.map($$String.lowercase, List.rev(rev_split_by_naming_convention(s)));
-        end), all_names);
+        end end), all_names);
   all_names$2 = List.flatten(all_names$1);
   if (all_names$2) then do
     if (all_names$2[1]) then do
@@ -6494,7 +6494,7 @@ function type_name(message_scope, name) do
           "Programmatic error"
         ];
   end end 
-end
+end end
 
 function encoding_info_of_field_type(all_types, field_type) do
   if (typeof field_type == "number") then do
@@ -6531,7 +6531,7 @@ function encoding_info_of_field_type(all_types, field_type) do
       return --[ Pk_varint ]--[false];
     end end 
   end end 
-end
+end end
 
 function encoding_of_field(all_types, field) do
   match = field_option(field, "packed");
@@ -6557,7 +6557,7 @@ function encoding_of_field(all_types, field) do
           packed,
           field_default(field)
         ];
-end
+end end
 
 function compile_field_type(field_name, all_types, file_options, field_options, file_name, field_type) do
   match = find_field_option(field_options, "ocaml_type");
@@ -6663,7 +6663,7 @@ function compile_field_type(field_name, all_types, file_options, field_options, 
       end end 
     end end 
   end end 
-end
+end end
 
 function is_mutable(field_name, field_options) do
   match = find_field_option(field_options, "ocaml_mutable");
@@ -6680,7 +6680,7 @@ function is_mutable(field_name, field_options) do
   end else do
     return false;
   end end 
-end
+end end
 
 function ocaml_container(field_options) do
   match = find_field_option(field_options, "ocaml_container");
@@ -6693,7 +6693,7 @@ function ocaml_container(field_options) do
     end end 
   end
    end 
-end
+end end
 
 function variant_of_oneof(include_oneof_name, outer_message_names, all_types, file_options, file_name, oneof_field) do
   v_constructors = List.map((function (field) do
@@ -6707,13 +6707,13 @@ function variant_of_oneof(include_oneof_name, outer_message_names, all_types, fi
                   vc_encoding_number: match[1],
                   vc_payload_kind: match[0]
                 end;
-        end), oneof_field.oneof_fields);
+        end end), oneof_field.oneof_fields);
   v_name = include_oneof_name ~= undefined and type_name(outer_message_names, oneof_field.oneof_name) or type_name(outer_message_names, "");
   return do
           v_name: v_name,
           v_constructors: v_constructors
         end;
-end
+end end
 
 function compile_enum(file_name, scope, param) do
   module_ = module_of_file_name(file_name);
@@ -6722,7 +6722,7 @@ function compile_enum(file_name, scope, param) do
                   constructor_name(param.enum_value_name),
                   param.enum_value_int
                 ];
-        end), param.enum_values);
+        end end), param.enum_values);
   return do
           module_: module_,
           spec: --[ Const_variant ]--Block.__(2, [do
@@ -6730,7 +6730,7 @@ function compile_enum(file_name, scope, param) do
                 cv_constructors: cv_constructors
               end])
         end;
-end
+end end
 
 all_code_gen_001 = --[ :: ]--[
   Codegen_default,
@@ -6787,7 +6787,7 @@ function compile(proto_definition) do
                     spec: spec
                   end;
           end end 
-        end), all_pbtt_msgs);
+        end end), all_pbtt_msgs);
   grouped_pbtt_msgs = List.rev(group(all_pbtt_msgs$1));
   grouped_ocaml_types = List.map((function (pbtt_msgs) do
           return List.map((function (pbtt_msg) do
@@ -7018,7 +7018,7 @@ function compile(proto_definition) do
                                      do
                                     
                                   end
-                                end), --[ tuple ]--[
+                                end end), --[ tuple ]--[
                                 --[ [] ]--0,
                                 --[ [] ]--0
                               ], message_body);
@@ -7043,8 +7043,8 @@ function compile(proto_definition) do
                                   --[ [] ]--0
                                 ];
                         end end 
-                      end), pbtt_msgs);
-        end), grouped_pbtt_msgs);
+                      end end), pbtt_msgs);
+        end end), grouped_pbtt_msgs);
   all_ocaml_types = List.flatten(grouped_ocaml_types);
   otypes = all_ocaml_types;
   proto_file_name = "tmp.proto";
@@ -7079,11 +7079,11 @@ function compile(proto_definition) do
                                         end else do
                                           return false;
                                         end end 
-                                      end), true, types);
+                                      end end), true, types);
                                 return --[ () ]--0;
-                              end), otypes);
-                end), fs);
-  end;
+                              end end), otypes);
+                end end), fs);
+  end end;
   sc = do
     items: --[ [] ]--0
   end;
@@ -7094,7 +7094,7 @@ function compile(proto_definition) do
                       m.gen_struct,
                       undefined
                     ];
-            end), all_code_gen));
+            end end), all_code_gen));
   struct_string = print(sc);
   sc$1 = do
     items: --[ [] ]--0
@@ -7117,13 +7117,13 @@ function compile(proto_definition) do
                       m.gen_sig,
                       m.ocamldoc_title
                     ];
-            end), all_code_gen));
+            end end), all_code_gen));
   sig_string = print(sc$1);
   return --[ tuple ]--[
           sig_string,
           struct_string
         ];
-end
+end end
 
 match = compile("message T {required int32 j = 1; }");
 
@@ -7145,12 +7145,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 eq("File \"ocaml_protc_test.ml\", line 10, characters 5-12", match[0], "(** tmp.proto Generated Types and Encoding *)\n\n(** {2 Types} *)\n\ntype t = {\n  j : int32;\n}\n\n\n(** {2 Default values} *)\n\nval default_t : \n  ?j:int32 ->\n  unit ->\n  t\n(** [default_t ()] is the default value for type [t] *)\n\n\n(** {2 Protobuf Decoding} *)\n\nval decode_t : Pbrt.Decoder.t -> t\n(** [decode_t decoder] decodes a [t] value from [decoder] *)\n\n\n(** {2 Protobuf Toding} *)\n\nval encode_t : t -> Pbrt.Encoder.t -> unit\n(** [encode_t v encoder] encodes [v] with the given [encoder] *)\n\n\n(** {2 Formatters} *)\n\nval pp_t : Format.formatter -> t -> unit \n(** [pp_t v] formats v] *)\n");
 

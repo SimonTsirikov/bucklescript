@@ -3,7 +3,7 @@
 
 function to_enum(param) do
   return param;
-end
+end end
 
 function to_string(param) do
   local ___conditional___=(param);
@@ -611,7 +611,7 @@ function to_string(param) do
      do
     
   end
-end
+end end
 
 exports.to_enum = to_enum;
 exports.to_string = to_string;

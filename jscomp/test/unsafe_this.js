@@ -11,7 +11,7 @@ u = do
             $$this.y
           ]);
       return --[ () ]--0;
-    end),
+    end end),
   length: 32
 end;
 
@@ -19,7 +19,7 @@ u.bark(u, 1, 2);
 
 function uux_this(x, y) do
   o = this ;
-  return (o.length + x | 0) + y | 0;
+  return (o.length + x | 0) + y | 0; end
 end
 
 js_obj = do
@@ -34,7 +34,7 @@ js_obj = do
             x,
             y
           ]);
-      return x + y | 0;
+      return x + y | 0; end
     end),
   length: 32
 end;

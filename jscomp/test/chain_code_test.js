@@ -21,24 +21,24 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f(h) do
   return h.x.y.z;
-end
+end end
 
 function f2(h) do
   return h.x.y.z;
-end
+end end
 
 function f3(h, x, y) do
   return h.paint(x, y).draw(x, y);
-end
+end end
 
 function f4(h, x, y) do
   h.paint = --[ tuple ]--[
@@ -50,7 +50,7 @@ function f4(h, x, y) do
     y
   ];
   return --[ () ]--0;
-end
+end end
 
 eq("File \"chain_code_test.ml\", line 28, characters 5-12", 32, (do
         x: do

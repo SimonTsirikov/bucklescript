@@ -6,7 +6,7 @@ Caml_obj = require("../../lib/js/caml_obj.js");
 
 function date(param) do
   return new Date("1976-03-08T12:34:56.789+01:23");
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "valueOf",
@@ -15,7 +15,7 @@ suites_000 = --[ tuple ]--[
                 195131516789,
                 new Date("1976-03-08T12:34:56.789+01:23").valueOf()
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -23,7 +23,7 @@ suites_001 = --[ :: ]--[
     "make",
     (function (param) do
         return --[ Ok ]--Block.__(4, [new Date().getTime() > 1487223505382]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -33,14 +33,14 @@ suites_001 = --[ :: ]--[
                     Date.parse("1976-03-08T12:34:56.789+01:23"),
                     195131516789
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
         "parseAsFloat_invalid",
         (function (param) do
             return --[ Ok ]--Block.__(4, [isNaN(Date.parse("gibberish"))]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -50,7 +50,7 @@ suites_001 = --[ :: ]--[
                         "1976-03-08T11:11:56.789Z",
                         new Date(195131516789).toISOString()
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -60,14 +60,14 @@ suites_001 = --[ :: ]--[
                           195131516789,
                           new Date("1976-03-08T12:34:56.789+01:23").getTime()
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
               "fromString_invalid",
               (function (param) do
                   return --[ Ok ]--Block.__(4, [isNaN(new Date("gibberish").getTime())]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -84,7 +84,7 @@ suites_001 = --[ :: ]--[
                                 d.getMonth()
                               ]
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -103,7 +103,7 @@ suites_001 = --[ :: ]--[
                                   d.getDate()
                                 ]
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -124,7 +124,7 @@ suites_001 = --[ :: ]--[
                                     d.getHours()
                                   ]
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -147,7 +147,7 @@ suites_001 = --[ :: ]--[
                                       d.getMinutes()
                                     ]
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -172,7 +172,7 @@ suites_001 = --[ :: ]--[
                                         d.getSeconds()
                                       ]
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -190,7 +190,7 @@ suites_001 = --[ :: ]--[
                                           d$1.getUTCMonth()
                                         ]
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -210,7 +210,7 @@ suites_001 = --[ :: ]--[
                                             d$1.getUTCDate()
                                           ]
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -232,7 +232,7 @@ suites_001 = --[ :: ]--[
                                               d$1.getUTCHours()
                                             ]
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -256,7 +256,7 @@ suites_001 = --[ :: ]--[
                                                 d$1.getUTCMinutes()
                                               ]
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -282,7 +282,7 @@ suites_001 = --[ :: ]--[
                                                   d$1.getUTCSeconds()
                                                 ]
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -292,7 +292,7 @@ suites_001 = --[ :: ]--[
                                                   1976,
                                                   new Date("1976-03-08T12:34:56.789+01:23").getFullYear()
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -302,7 +302,7 @@ suites_001 = --[ :: ]--[
                                                     789,
                                                     new Date("1976-03-08T12:34:56.789+01:23").getMilliseconds()
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
@@ -312,7 +312,7 @@ suites_001 = --[ :: ]--[
                                                       56,
                                                       new Date("1976-03-08T12:34:56.789+01:23").getSeconds()
                                                     ]);
-                                          end)
+                                          end end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
@@ -322,7 +322,7 @@ suites_001 = --[ :: ]--[
                                                         195131516789,
                                                         new Date("1976-03-08T12:34:56.789+01:23").getTime()
                                                       ]);
-                                            end)
+                                            end end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
@@ -332,7 +332,7 @@ suites_001 = --[ :: ]--[
                                                           8,
                                                           new Date("1976-03-08T12:34:56.789+01:23").getUTCDate()
                                                         ]);
-                                              end)
+                                              end end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
@@ -342,7 +342,7 @@ suites_001 = --[ :: ]--[
                                                             1,
                                                             new Date("1976-03-08T12:34:56.789+01:23").getUTCDay()
                                                           ]);
-                                                end)
+                                                end end)
                                             ],
                                             --[ :: ]--[
                                               --[ tuple ]--[
@@ -352,7 +352,7 @@ suites_001 = --[ :: ]--[
                                                               1976,
                                                               new Date("1976-03-08T12:34:56.789+01:23").getUTCFullYear()
                                                             ]);
-                                                  end)
+                                                  end end)
                                               ],
                                               --[ :: ]--[
                                                 --[ tuple ]--[
@@ -362,7 +362,7 @@ suites_001 = --[ :: ]--[
                                                                 11,
                                                                 new Date("1976-03-08T12:34:56.789+01:23").getUTCHours()
                                                               ]);
-                                                    end)
+                                                    end end)
                                                 ],
                                                 --[ :: ]--[
                                                   --[ tuple ]--[
@@ -372,7 +372,7 @@ suites_001 = --[ :: ]--[
                                                                   789,
                                                                   new Date("1976-03-08T12:34:56.789+01:23").getUTCMilliseconds()
                                                                 ]);
-                                                      end)
+                                                      end end)
                                                   ],
                                                   --[ :: ]--[
                                                     --[ tuple ]--[
@@ -382,7 +382,7 @@ suites_001 = --[ :: ]--[
                                                                     11,
                                                                     new Date("1976-03-08T12:34:56.789+01:23").getUTCMinutes()
                                                                   ]);
-                                                        end)
+                                                        end end)
                                                     ],
                                                     --[ :: ]--[
                                                       --[ tuple ]--[
@@ -392,7 +392,7 @@ suites_001 = --[ :: ]--[
                                                                       2,
                                                                       new Date("1976-03-08T12:34:56.789+01:23").getUTCMonth()
                                                                     ]);
-                                                          end)
+                                                          end end)
                                                       ],
                                                       --[ :: ]--[
                                                         --[ tuple ]--[
@@ -402,7 +402,7 @@ suites_001 = --[ :: ]--[
                                                                         56,
                                                                         new Date("1976-03-08T12:34:56.789+01:23").getUTCSeconds()
                                                                       ]);
-                                                            end)
+                                                            end end)
                                                         ],
                                                         --[ :: ]--[
                                                           --[ tuple ]--[
@@ -412,7 +412,7 @@ suites_001 = --[ :: ]--[
                                                                           1976,
                                                                           new Date("1976-03-08T12:34:56.789+01:23").getFullYear()
                                                                         ]);
-                                                              end)
+                                                              end end)
                                                           ],
                                                           --[ :: ]--[
                                                             --[ tuple ]--[
@@ -424,7 +424,7 @@ suites_001 = --[ :: ]--[
                                                                             12,
                                                                             d.getDate()
                                                                           ]);
-                                                                end)
+                                                                end end)
                                                             ],
                                                             --[ :: ]--[
                                                               --[ tuple ]--[
@@ -436,7 +436,7 @@ suites_001 = --[ :: ]--[
                                                                               1986,
                                                                               d.getFullYear()
                                                                             ]);
-                                                                  end)
+                                                                  end end)
                                                               ],
                                                               --[ :: ]--[
                                                                 --[ tuple ]--[
@@ -454,7 +454,7 @@ suites_001 = --[ :: ]--[
                                                                                   d.getMonth()
                                                                                 ]
                                                                               ]);
-                                                                    end)
+                                                                    end end)
                                                                 ],
                                                                 --[ :: ]--[
                                                                   --[ tuple ]--[
@@ -474,7 +474,7 @@ suites_001 = --[ :: ]--[
                                                                                     d.getDate()
                                                                                   ]
                                                                                 ]);
-                                                                      end)
+                                                                      end end)
                                                                   ],
                                                                   --[ :: ]--[
                                                                     --[ tuple ]--[
@@ -486,7 +486,7 @@ suites_001 = --[ :: ]--[
                                                                                     22,
                                                                                     d.getHours()
                                                                                   ]);
-                                                                        end)
+                                                                        end end)
                                                                     ],
                                                                     --[ :: ]--[
                                                                       --[ tuple ]--[
@@ -504,7 +504,7 @@ suites_001 = --[ :: ]--[
                                                                                         d.getMinutes()
                                                                                       ]
                                                                                     ]);
-                                                                          end)
+                                                                          end end)
                                                                       ],
                                                                       --[ :: ]--[
                                                                         --[ tuple ]--[
@@ -524,7 +524,7 @@ suites_001 = --[ :: ]--[
                                                                                           d.getSeconds()
                                                                                         ]
                                                                                       ]);
-                                                                            end)
+                                                                            end end)
                                                                         ],
                                                                         --[ :: ]--[
                                                                           --[ tuple ]--[
@@ -536,7 +536,7 @@ suites_001 = --[ :: ]--[
                                                                                           543,
                                                                                           d.getMilliseconds()
                                                                                         ]);
-                                                                              end)
+                                                                              end end)
                                                                           ],
                                                                           --[ :: ]--[
                                                                             --[ tuple ]--[
@@ -548,7 +548,7 @@ suites_001 = --[ :: ]--[
                                                                                             18,
                                                                                             d.getMinutes()
                                                                                           ]);
-                                                                                end)
+                                                                                end end)
                                                                             ],
                                                                             --[ :: ]--[
                                                                               --[ tuple ]--[
@@ -566,7 +566,7 @@ suites_001 = --[ :: ]--[
                                                                                                 d.getSeconds()
                                                                                               ]
                                                                                             ]);
-                                                                                  end)
+                                                                                  end end)
                                                                               ],
                                                                               --[ :: ]--[
                                                                                 --[ tuple ]--[
@@ -586,7 +586,7 @@ suites_001 = --[ :: ]--[
                                                                                                   d.getMilliseconds()
                                                                                                 ]
                                                                                               ]);
-                                                                                    end)
+                                                                                    end end)
                                                                                 ],
                                                                                 --[ :: ]--[
                                                                                   --[ tuple ]--[
@@ -598,7 +598,7 @@ suites_001 = --[ :: ]--[
                                                                                                   10,
                                                                                                   d.getMonth()
                                                                                                 ]);
-                                                                                      end)
+                                                                                      end end)
                                                                                   ],
                                                                                   --[ :: ]--[
                                                                                     --[ tuple ]--[
@@ -616,7 +616,7 @@ suites_001 = --[ :: ]--[
                                                                                                       d.getDate()
                                                                                                     ]
                                                                                                   ]);
-                                                                                        end)
+                                                                                        end end)
                                                                                     ],
                                                                                     --[ :: ]--[
                                                                                       --[ tuple ]--[
@@ -628,7 +628,7 @@ suites_001 = --[ :: ]--[
                                                                                                       36,
                                                                                                       d.getSeconds()
                                                                                                     ]);
-                                                                                          end)
+                                                                                          end end)
                                                                                       ],
                                                                                       --[ :: ]--[
                                                                                         --[ tuple ]--[
@@ -646,7 +646,7 @@ suites_001 = --[ :: ]--[
                                                                                                           d.getMilliseconds()
                                                                                                         ]
                                                                                                       ]);
-                                                                                            end)
+                                                                                            end end)
                                                                                         ],
                                                                                         --[ :: ]--[
                                                                                           --[ tuple ]--[
@@ -658,7 +658,7 @@ suites_001 = --[ :: ]--[
                                                                                                           12,
                                                                                                           d.getUTCDate()
                                                                                                         ]);
-                                                                                              end)
+                                                                                              end end)
                                                                                           ],
                                                                                           --[ :: ]--[
                                                                                             --[ tuple ]--[
@@ -670,7 +670,7 @@ suites_001 = --[ :: ]--[
                                                                                                             1986,
                                                                                                             d.getUTCFullYear()
                                                                                                           ]);
-                                                                                                end)
+                                                                                                end end)
                                                                                             ],
                                                                                             --[ :: ]--[
                                                                                               --[ tuple ]--[
@@ -688,7 +688,7 @@ suites_001 = --[ :: ]--[
                                                                                                                 d.getUTCMonth()
                                                                                                               ]
                                                                                                             ]);
-                                                                                                  end)
+                                                                                                  end end)
                                                                                               ],
                                                                                               --[ :: ]--[
                                                                                                 --[ tuple ]--[
@@ -708,7 +708,7 @@ suites_001 = --[ :: ]--[
                                                                                                                   d.getUTCDate()
                                                                                                                 ]
                                                                                                               ]);
-                                                                                                    end)
+                                                                                                    end end)
                                                                                                 ],
                                                                                                 --[ :: ]--[
                                                                                                   --[ tuple ]--[
@@ -720,7 +720,7 @@ suites_001 = --[ :: ]--[
                                                                                                                   22,
                                                                                                                   d.getUTCHours()
                                                                                                                 ]);
-                                                                                                      end)
+                                                                                                      end end)
                                                                                                   ],
                                                                                                   --[ :: ]--[
                                                                                                     --[ tuple ]--[
@@ -738,7 +738,7 @@ suites_001 = --[ :: ]--[
                                                                                                                       d.getUTCMinutes()
                                                                                                                     ]
                                                                                                                   ]);
-                                                                                                        end)
+                                                                                                        end end)
                                                                                                     ],
                                                                                                     --[ :: ]--[
                                                                                                       --[ tuple ]--[
@@ -758,7 +758,7 @@ suites_001 = --[ :: ]--[
                                                                                                                         d.getUTCSeconds()
                                                                                                                       ]
                                                                                                                     ]);
-                                                                                                          end)
+                                                                                                          end end)
                                                                                                       ],
                                                                                                       --[ :: ]--[
                                                                                                         --[ tuple ]--[
@@ -770,7 +770,7 @@ suites_001 = --[ :: ]--[
                                                                                                                         543,
                                                                                                                         d.getUTCMilliseconds()
                                                                                                                       ]);
-                                                                                                            end)
+                                                                                                            end end)
                                                                                                         ],
                                                                                                         --[ :: ]--[
                                                                                                           --[ tuple ]--[
@@ -782,7 +782,7 @@ suites_001 = --[ :: ]--[
                                                                                                                           18,
                                                                                                                           d.getUTCMinutes()
                                                                                                                         ]);
-                                                                                                              end)
+                                                                                                              end end)
                                                                                                           ],
                                                                                                           --[ :: ]--[
                                                                                                             --[ tuple ]--[
@@ -800,7 +800,7 @@ suites_001 = --[ :: ]--[
                                                                                                                               d.getUTCSeconds()
                                                                                                                             ]
                                                                                                                           ]);
-                                                                                                                end)
+                                                                                                                end end)
                                                                                                             ],
                                                                                                             --[ :: ]--[
                                                                                                               --[ tuple ]--[
@@ -820,7 +820,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                 d.getUTCMilliseconds()
                                                                                                                               ]
                                                                                                                             ]);
-                                                                                                                  end)
+                                                                                                                  end end)
                                                                                                               ],
                                                                                                               --[ :: ]--[
                                                                                                                 --[ tuple ]--[
@@ -832,7 +832,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                 10,
                                                                                                                                 d.getUTCMonth()
                                                                                                                               ]);
-                                                                                                                    end)
+                                                                                                                    end end)
                                                                                                                 ],
                                                                                                                 --[ :: ]--[
                                                                                                                   --[ tuple ]--[
@@ -850,7 +850,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                     d.getUTCDate()
                                                                                                                                   ]
                                                                                                                                 ]);
-                                                                                                                      end)
+                                                                                                                      end end)
                                                                                                                   ],
                                                                                                                   --[ :: ]--[
                                                                                                                     --[ tuple ]--[
@@ -862,7 +862,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                     36,
                                                                                                                                     d.getUTCSeconds()
                                                                                                                                   ]);
-                                                                                                                        end)
+                                                                                                                        end end)
                                                                                                                     ],
                                                                                                                     --[ :: ]--[
                                                                                                                       --[ tuple ]--[
@@ -880,7 +880,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                         d.getUTCMilliseconds()
                                                                                                                                       ]
                                                                                                                                     ]);
-                                                                                                                          end)
+                                                                                                                          end end)
                                                                                                                       ],
                                                                                                                       --[ :: ]--[
                                                                                                                         --[ tuple ]--[
@@ -890,7 +890,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                         "Mon Mar 08 1976",
                                                                                                                                         new Date("1976-03-08T12:34:56.789+01:23").toDateString()
                                                                                                                                       ]);
-                                                                                                                            end)
+                                                                                                                            end end)
                                                                                                                         ],
                                                                                                                         --[ :: ]--[
                                                                                                                           --[ tuple ]--[
@@ -900,7 +900,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                           "Mon, 08 Mar 1976 11:11:56 GMT",
                                                                                                                                           new Date("1976-03-08T12:34:56.789+01:23").toUTCString()
                                                                                                                                         ]);
-                                                                                                                              end)
+                                                                                                                              end end)
                                                                                                                           ],
                                                                                                                           --[ :: ]--[
                                                                                                                             --[ tuple ]--[
@@ -910,7 +910,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                             "1976-03-08T11:11:56.789Z",
                                                                                                                                             new Date("1976-03-08T12:34:56.789+01:23").toISOString()
                                                                                                                                           ]);
-                                                                                                                                end)
+                                                                                                                                end end)
                                                                                                                             ],
                                                                                                                             --[ :: ]--[
                                                                                                                               --[ tuple ]--[
@@ -920,7 +920,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                               "1976-03-08T11:11:56.789Z",
                                                                                                                                               new Date("1976-03-08T12:34:56.789+01:23").toJSON()
                                                                                                                                             ]);
-                                                                                                                                  end)
+                                                                                                                                  end end)
                                                                                                                               ],
                                                                                                                               --[ :: ]--[
                                                                                                                                 --[ tuple ]--[
@@ -930,7 +930,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                 "1976-03-08T11:11:56.789Z",
                                                                                                                                                 new Date("1976-03-08T12:34:56.789+01:23").toJSON()
                                                                                                                                               ]);
-                                                                                                                                    end)
+                                                                                                                                    end end)
                                                                                                                                 ],
                                                                                                                                 --[ :: ]--[
                                                                                                                                   --[ tuple ]--[
@@ -940,7 +940,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                                   "Mon, 08 Mar 1976 11:11:56 GMT",
                                                                                                                                                   new Date("1976-03-08T12:34:56.789+01:23").toUTCString()
                                                                                                                                                 ]);
-                                                                                                                                      end)
+                                                                                                                                      end end)
                                                                                                                                   ],
                                                                                                                                   --[ :: ]--[
                                                                                                                                     --[ tuple ]--[
@@ -950,7 +950,7 @@ suites_001 = --[ :: ]--[
                                                                                                                                           b = new Date("2013-03-01T01:10:00");
                                                                                                                                           c = new Date("2013-03-01T01:10:01");
                                                                                                                                           return --[ Ok ]--Block.__(4, [Caml_obj.caml_equal(a, b) and Caml_obj.caml_notequal(b, c) and Caml_obj.caml_greaterthan(c, b)]);
-                                                                                                                                        end)
+                                                                                                                                        end end)
                                                                                                                                     ],
                                                                                                                                     --[ [] ]--0
                                                                                                                                   ]

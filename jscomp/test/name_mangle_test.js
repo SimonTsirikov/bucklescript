@@ -21,90 +21,90 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f0(x) do
   old = x.open;
   x.open = old + 1 | 0;
   return x.open;
-end
+end end
 
 function f1(x) do
   old = x.in;
   x.in = old + 1 | 0;
   return x.in;
-end
+end end
 
 function f2(x) do
   old = x.MAX_LENGTH;
   x.MAX_LENGTH = old + 1 | 0;
   return x.MAX_LENGTH;
-end
+end end
 
 function f3(x) do
   old = x.Capital;
   x.Capital = old + 1 | 0;
   return x.Capital;
-end
+end end
 
 function f4(x) do
   old = x._open;
   x._open = old + 1 | 0;
   return x._open;
-end
+end end
 
 function f5(x) do
   old = x.open;
   x.open = old + 1 | 0;
   return x.open;
-end
+end end
 
 function f6(x) do
   old = x["'x"];
   x["'x"] = old + 1 | 0;
   return x["'x"];
-end
+end end
 
 function f7(x) do
   old = x._Capital;
   x._Capital = old + 1 | 0;
   return x._Capital;
-end
+end end
 
 function f8(x) do
   old = x._MAX;
   x._MAX = old + 1 | 0;
   return x._MAX;
-end
+end end
 
 function f9(x) do
   old = x.__;
   x.__ = old + 1 | 0;
   return x.__;
-end
+end end
 
 function f10(x) do
   old = x.__x;
   x.__x = old + 1 | 0;
   return x.__x;
-end
+end end
 
 function f11(x) do
   old = x._;
   x._ = old + 1 | 0;
   return x._;
-end
+end end
 
 function f12(x) do
   old = x.__;
   x.__ = old + 1 | 0;
   return x.__;
-end
+end end
 
 eq("File \"name_mangle_test.ml\", line 85, characters 7-14", f0(({open:0})), 1);
 

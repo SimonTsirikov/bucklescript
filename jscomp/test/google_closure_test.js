@@ -23,7 +23,7 @@ Mt.from_pair_suites("Closure", --[ :: ]--[
                         ]
                       ]
                     ]);
-          end)
+          end end)
       ],
       --[ [] ]--0
     ]);

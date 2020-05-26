@@ -8,7 +8,7 @@ function f(param) do
           2,
           3
         ];
-end
+end end
 
 match = f(--[ () ]--0);
 

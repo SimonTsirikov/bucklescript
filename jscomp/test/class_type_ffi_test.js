@@ -8,7 +8,7 @@ function sum_float_array(arr) do
     v = v + arr.case(i);
   end
   return v;
-end
+end end
 
 function sum_int_array(arr) do
   v = 0;
@@ -16,7 +16,7 @@ function sum_int_array(arr) do
     v = v + arr.case(i) | 0;
   end
   return v;
-end
+end end
 
 function sum_poly(zero, add, arr) do
   v = zero;
@@ -24,29 +24,29 @@ function sum_poly(zero, add, arr) do
     v = add(v, arr.case(i));
   end
   return v;
-end
+end end
 
 function test_set(x) do
   x.length = 3;
   return --[ () ]--0;
-end
+end end
 
 function f(x) do
   x.bark("he");
   return x.fight();
-end
+end end
 
 function ff(fn, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11) do
   return fn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
-end
+end end
 
 function ff2(fn, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
   return fn(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
-end
+end end
 
 function off2(o, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
   return o.huge_method(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
-end
+end end
 
 function mk_f(param) do
   return (function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12) do
@@ -64,8 +64,8 @@ function mk_f(param) do
                   a11,
                   a12
                 ]);
-    end);
-end
+    end end);
+end end
 
 function omk_f(param) do
   return do
@@ -83,10 +83,10 @@ function omk_f(param) do
                           a10,
                           a11,
                           a12
-                        ]);
+                        ]); end
             end)
         end;
-end
+end end
 
 exports.sum_float_array = sum_float_array;
 exports.sum_int_array = sum_int_array;

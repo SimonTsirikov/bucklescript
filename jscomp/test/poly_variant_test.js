@@ -22,12 +22,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function hey_string (option){
   switch(option){
@@ -89,21 +89,21 @@ function register(readline) do
   readline.on("line", (function (s) do
           console.log(s);
           return --[ () ]--0;
-        end));
+        end end));
   readline.on("close", (function () do
           console.log("finished");
           return --[ () ]--0;
-        end));
+        end end));
   return --[ () ]--0;
-end
+end end
 
 function read(name) do
   return Fs.readFileSync(name, "utf8");
-end
+end end
 
 function read$1(name) do
   return Fs.readFileSync(name, "utf8");
-end
+end end
 
 function test(readline, x) do
   readline.on((function () do
@@ -116,9 +116,9 @@ function test(readline, x) do
                do
               
             end
-          end)(), x[1]);
+          end end)(), x[1]);
   return --[ () ]--0;
-end
+end end
 
 function p_is_int_test(x) do
   if (typeof x == "number") then do
@@ -126,7 +126,7 @@ function p_is_int_test(x) do
   end else do
     return 3;
   end end 
-end
+end end
 
 eq("File \"poly_variant_test.ml\", line 142, characters 5-12", 2, 2);
 
@@ -148,9 +148,9 @@ function on2(prim, prim$1) do
                do
               
             end
-          end)(), prim$1[1]);
+          end end)(), prim$1[1]);
   return --[ () ]--0;
-end
+end end
 
 readN = read$1;
 

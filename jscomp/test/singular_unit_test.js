@@ -3,11 +3,11 @@
 
 function f0(x) do
   return x;
-end
+end end
 
 function f1(x) do
   return 2;
-end
+end end
 
 function f3(x) do
   if (x ~= undefined) then do
@@ -15,7 +15,7 @@ function f3(x) do
   end else do
     return --[ A ]--0;
   end end 
-end
+end end
 
 v0 = --[ () ]--0;
 

@@ -14,7 +14,7 @@ function f(H) do
   Curry._3(H.add, tbl, 2, --[ "2" ]--50);
   return List.sort((function (param, param$1) do
                 return Caml_primitive.caml_int_compare(param[0], param$1[0]);
-              end), Curry._3(H.fold, (function (k, v, acc) do
+              end end), Curry._3(H.fold, (function (k, v, acc) do
                     return --[ :: ]--[
                             --[ tuple ]--[
                               k,
@@ -22,8 +22,8 @@ function f(H) do
                             ],
                             acc
                           ];
-                  end), tbl, --[ [] ]--0));
-end
+                  end end), tbl, --[ [] ]--0));
+end end
 
 function g(H, count) do
   tbl = Curry._1(H.create, 17);
@@ -41,17 +41,17 @@ function g(H, count) do
                   ],
                   acc
                 ];
-        end), tbl, --[ [] ]--0);
+        end end), tbl, --[ [] ]--0);
   return $$Array.of_list(List.sort((function (param, param$1) do
                     return Caml_primitive.caml_int_compare(param[0], param$1[0]);
-                  end), v));
-end
+                  end end), v));
+end end
 
 hash = Hashtbl.hash;
 
 function equal(x, y) do
   return x == y;
-end
+end end
 
 Int_hash = Hashtbl.Make(do
       equal: equal,
@@ -77,7 +77,7 @@ suites_000 = --[ tuple ]--[
                 ],
                 f(Int_hash)
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -90,10 +90,10 @@ suites_001 = --[ :: ]--[
                                   (i << 1),
                                   String(i)
                                 ];
-                        end)),
+                        end end)),
                   g(Int_hash, 1000)
                 ]);
-      end)
+      end end)
   ],
   --[ [] ]--0
 ];

@@ -23,16 +23,16 @@ function eq(loc, param) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 u = do
   say: (function (x, y) do
-      return x + y | 0;
+      return x + y | 0; end
     end)
 end;
 
@@ -42,14 +42,14 @@ v = do
       u = do
         x: x
       end;
-      return self.say(u.x) + y + x;
+      return self.say(u.x) + y + x; end
     end),
   say: (function (x) do
       self = this ;
-      return x * self.x();
+      return x * self.x(); end
     end),
   x: (function () do
-      return 3;
+      return 3; end
     end)
 end;
 

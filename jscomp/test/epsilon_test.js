@@ -13,7 +13,7 @@ suites_000 = --[ tuple ]--[
                 Pervasives.epsilon_float,
                 v
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -24,7 +24,7 @@ suites_001 = --[ :: ]--[
                   2.220446049250313e-16,
                   v
                 ]);
-      end)
+      end end)
   ],
   --[ [] ]--0
 ];

@@ -17,7 +17,7 @@ function $$eval(_bdd, vars) do
       continue ;
     end end  end 
   end;
-end
+end end
 
 function getId(bdd) do
   if (typeof bdd == "number") then do
@@ -29,7 +29,7 @@ function getId(bdd) do
   end else do
     return bdd[2];
   end end 
-end
+end end
 
 nodeC = do
   contents: 1
@@ -49,7 +49,7 @@ end;
 
 function hashVal(x, y, v) do
   return ((x << 1) + y | 0) + (v << 2) | 0;
-end
+end end
 
 function resize(newSize) do
   arr = htab.contents;
@@ -82,14 +82,14 @@ function resize(newSize) do
         return --[ () ]--0;
       end end 
     end;
-  end;
+  end end;
   for n = 0 , sz_1.contents , 1 do
     copyBucket(Caml_array.caml_array_get(arr, n));
   end
   htab.contents = newArr;
   sz_1.contents = newSz_1;
   return --[ () ]--0;
-end
+end end
 
 function insert(idl, idh, v, ind, bucket, newNode) do
   if (n_items.contents <= sz_1.contents) then do
@@ -107,7 +107,7 @@ function insert(idl, idh, v, ind, bucket, newNode) do
                 Caml_array.caml_array_get(htab.contents, ind$1)
               ]);
   end end 
-end
+end end
 
 function resetUnique(param) do
   sz_1.contents = 8191;
@@ -115,7 +115,7 @@ function resetUnique(param) do
   n_items.contents = 0;
   nodeC.contents = 1;
   return --[ () ]--0;
-end
+end end
 
 function mkNode(low, v, high) do
   idl = getId(low);
@@ -160,7 +160,7 @@ function mkNode(low, v, high) do
       end end 
     end;
   end end 
-end
+end end
 
 function cmpVar(x, y) do
   if (x < y) then do
@@ -170,11 +170,11 @@ function cmpVar(x, y) do
   end else do
     return --[ EQUAL ]--1;
   end end  end 
-end
+end end
 
 function mkVar(x) do
   return mkNode(--[ Zero ]--1, x, --[ One ]--0);
-end
+end end
 
 andslot1 = Caml_array.caml_make_vect(1999, 0);
 
@@ -194,7 +194,7 @@ notslot2 = Caml_array.caml_make_vect(1999, --[ One ]--0);
 
 function hash(x, y) do
   return ((x << 1) + y | 0) % 1999;
-end
+end end
 
 function not(n) do
   if (typeof n == "number") then do
@@ -215,7 +215,7 @@ function not(n) do
       return f;
     end end 
   end end 
-end
+end end
 
 function and2(n1, n2) do
   if (typeof n1 == "number") then do
@@ -264,7 +264,7 @@ function and2(n1, n2) do
       end end 
     end end 
   end end 
-end
+end end
 
 function xor(n1, n2) do
   if (typeof n1 == "number") then do
@@ -313,7 +313,7 @@ function xor(n1, n2) do
       end end 
     end end 
   end end 
-end
+end end
 
 function hwb(n) do
   h = function (i, j) do
@@ -322,16 +322,16 @@ function hwb(n) do
     end else do
       return xor(and2(not(mkNode(--[ Zero ]--1, j, --[ One ]--0)), h(i, j - 1 | 0)), and2(mkNode(--[ Zero ]--1, j, --[ One ]--0), g(i, j - 1 | 0)));
     end end 
-  end;
+  end end;
   g = function (i, j) do
     if (i == j) then do
       return mkNode(--[ Zero ]--1, i, --[ One ]--0);
     end else do
       return xor(and2(not(mkNode(--[ Zero ]--1, i, --[ One ]--0)), h(i + 1 | 0, j)), and2(mkNode(--[ Zero ]--1, i, --[ One ]--0), g(i + 1 | 0, j)));
     end end 
-  end;
+  end end;
   return h(0, n - 1 | 0);
-end
+end end
 
 seed = do
   contents: 0
@@ -340,7 +340,7 @@ end;
 function random(param) do
   seed.contents = Caml_int32.imul(seed.contents, 25173) + 17431 | 0;
   return (seed.contents & 1) > 0;
-end
+end end
 
 function random_vars(n) do
   vars = Caml_array.caml_make_vect(n, false);
@@ -348,7 +348,7 @@ function random_vars(n) do
     Caml_array.caml_array_set(vars, i, random(--[ () ]--0));
   end
   return vars;
-end
+end end
 
 function bool_equal(a, b) do
   if (a) then do
@@ -362,7 +362,7 @@ function bool_equal(a, b) do
   end else do
     return true;
   end end  end 
-end
+end end
 
 function test_hwb(bdd, vars) do
   ntrue = 0;
@@ -373,7 +373,7 @@ function test_hwb(bdd, vars) do
      end 
   end
   return bool_equal($$eval(bdd, vars), ntrue > 0 and Caml_array.caml_array_get(vars, ntrue - 1 | 0) or false);
-end
+end end
 
 function main(param) do
   bdd = hwb(22);
@@ -393,7 +393,7 @@ function main(param) do
           ]
         ];
   end end 
-end
+end end
 
 main(--[ () ]--0);
 

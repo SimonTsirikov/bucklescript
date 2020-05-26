@@ -53,7 +53,7 @@ function to_list(s) do
     ];
     continue ;
   end;
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "lexer_stream_genlex",
@@ -83,7 +83,7 @@ suites_000 = --[ tuple ]--[
                 ],
                 to_list(lexer(Stream.of_string("3(3 + 2 -1)")))
               ]);
-    end)
+    end end)
 ];
 
 suites = --[ :: ]--[

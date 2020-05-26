@@ -15,7 +15,7 @@ end;
 v = Caml_obj.caml_lazy_make((function (param) do
         u.contents = 32;
         return --[ () ]--0;
-      end));
+      end end));
 
 function lazy_test(param) do
   h = u.contents;
@@ -25,7 +25,7 @@ function lazy_test(param) do
           h,
           g
         ];
-end
+end end
 
 function f(param) do
   CamlinternalLazy.force(param[0]);
@@ -48,7 +48,7 @@ function f(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 s = do
   contents: undefined
@@ -57,12 +57,12 @@ end;
 set_true = Caml_obj.caml_lazy_make((function (param) do
         s.contents = 1;
         return --[ () ]--0;
-      end));
+      end end));
 
 set_false = Caml_obj.caml_lazy_make((function (param) do
         s.contents = undefined;
         return --[ () ]--0;
-      end));
+      end end));
 
 h;
 
@@ -89,7 +89,7 @@ end;
 u$1 = Caml_obj.caml_lazy_make((function (param) do
         u_v.contents = 2;
         return --[ () ]--0;
-      end));
+      end end));
 
 CamlinternalLazy.force(u$1);
 
@@ -97,32 +97,32 @@ exotic = CamlinternalLazy.force;
 
 l_from_fun = Lazy.from_fun((function (param) do
         return 3;
-      end));
+      end end));
 
 forward_test = Caml_obj.caml_lazy_make((function (param) do
         u = 3;
         u = u + 1 | 0;
         return u;
-      end));
+      end end));
 
 f005 = Caml_obj.caml_lazy_make((function (param) do
         return 6;
-      end));
+      end end));
 
 f006 = Caml_obj.caml_lazy_make((function (param) do
         return (function (param) do
             return 3;
-          end);
-      end));
+          end end);
+      end end));
 
 f007 = Caml_obj.caml_lazy_make((function (param) do
         throw Caml_builtin_exceptions.not_found;
-      end));
+      end end));
 
 f008 = Caml_obj.caml_lazy_make((function (param) do
         console.log("hi");
         throw Caml_builtin_exceptions.not_found;
-      end));
+      end end));
 
 Mt.from_pair_suites("Lazy_test", --[ :: ]--[
       --[ tuple ]--[
@@ -135,7 +135,7 @@ Mt.from_pair_suites("Lazy_test", --[ :: ]--[
                         32
                       ]
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -145,7 +145,7 @@ Mt.from_pair_suites("Lazy_test", --[ :: ]--[
                         h,
                         2
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -155,7 +155,7 @@ Mt.from_pair_suites("Lazy_test", --[ :: ]--[
                           u_v.contents,
                           2
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -165,7 +165,7 @@ Mt.from_pair_suites("Lazy_test", --[ :: ]--[
                             CamlinternalLazy.force(l_from_fun),
                             3
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -175,7 +175,7 @@ Mt.from_pair_suites("Lazy_test", --[ :: ]--[
                               CamlinternalLazy.force(Lazy.from_val(3)),
                               3
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -185,7 +185,7 @@ Mt.from_pair_suites("Lazy_test", --[ :: ]--[
                                 CamlinternalLazy.force(CamlinternalLazy.force(Lazy.from_val(3))),
                                 3
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -196,7 +196,7 @@ Mt.from_pair_suites("Lazy_test", --[ :: ]--[
                                   CamlinternalLazy.force(CamlinternalLazy.force(Lazy.from_val(forward_test))),
                                   4
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ [] ]--0
                 ]

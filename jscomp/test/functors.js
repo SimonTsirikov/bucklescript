@@ -5,56 +5,56 @@ Curry = require("../../lib/js/curry.js");
 function O(X) do
   cow = function (x) do
     return Curry._1(X.foo, x);
-  end;
+  end end;
   sheep = function (x) do
     return 1 + Curry._1(X.foo, x) | 0;
-  end;
+  end end;
   return do
           cow: cow,
           sheep: sheep
         end;
-end
+end end
 
 function F(X, Y) do
   cow = function (x) do
     return Curry._1(Y.foo, Curry._1(X.foo, x));
-  end;
+  end end;
   sheep = function (x) do
     return 1 + Curry._1(Y.foo, Curry._1(X.foo, x)) | 0;
-  end;
+  end end;
   return do
           cow: cow,
           sheep: sheep
         end;
-end
+end end
 
 function F1(X, Y) do
   sheep = function (x) do
     return 1 + Curry._1(Y.foo, Curry._1(X.foo, x)) | 0;
-  end;
+  end end;
   return do
           sheep: sheep
         end;
-end
+end end
 
 function F2(X, Y) do
   sheep = function (x) do
     return 1 + Curry._1(Y.foo, Curry._1(X.foo, x)) | 0;
-  end;
+  end end;
   return do
           sheep: sheep
         end;
-end
+end end
 
 M = do
   F: (function (funarg, funarg$1) do
       sheep = function (x) do
         return 1 + Curry._1(funarg$1.foo, Curry._1(funarg.foo, x)) | 0;
-      end;
+      end end;
       return do
               sheep: sheep
             end;
-    end)
+    end end)
 end;
 
 exports.O = O;

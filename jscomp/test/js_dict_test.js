@@ -9,7 +9,7 @@ function obj(param) do
           foo: 43,
           bar: 86
         end;
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "empty",
@@ -18,7 +18,7 @@ suites_000 = --[ tuple ]--[
                 [],
                 Object.keys({ })
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -32,7 +32,7 @@ suites_001 = --[ :: ]--[
                         bar: 86
                       end, "foo")
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -45,7 +45,7 @@ suites_001 = --[ :: ]--[
                           bar: 86
                         end, "baz")
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -58,7 +58,7 @@ suites_001 = --[ :: ]--[
                             bar: 86
                           end)["foo"]
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -73,7 +73,7 @@ suites_001 = --[ :: ]--[
                         36,
                         Js_dict.get(o, "foo")
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -89,7 +89,7 @@ suites_001 = --[ :: ]--[
                                 bar: 86
                               end)
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -111,7 +111,7 @@ suites_001 = --[ :: ]--[
                                   bar: 86
                                 end)
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -127,7 +127,7 @@ suites_001 = --[ :: ]--[
                                     bar: 86
                                   end)
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -137,7 +137,7 @@ suites_001 = --[ :: ]--[
                                 { },
                                 Js_dict.fromList(--[ [] ]--0)
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -168,7 +168,7 @@ suites_001 = --[ :: ]--[
                                             ]
                                           ]))
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -178,7 +178,7 @@ suites_001 = --[ :: ]--[
                                     { },
                                     Js_dict.fromArray([])
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -206,7 +206,7 @@ suites_001 = --[ :: ]--[
                                                 ]
                                               ]))
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -219,12 +219,12 @@ suites_001 = --[ :: ]--[
                                         end,
                                         Js_dict.map((function (i) do
                                                 return String(i);
-                                              end), do
+                                              end end), do
                                               foo: 43,
                                               bar: 86
                                             end)
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ [] ]--0
                       ]

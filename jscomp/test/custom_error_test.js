@@ -19,7 +19,7 @@ function test_js_error(param) do
     end end 
   end
   return Caml_option.some(e);
-end
+end end
 
 function test_js_error2(param) do
   try do
@@ -34,7 +34,7 @@ function test_js_error2(param) do
       throw e;
     end end 
   end
-end
+end end
 
 function example1(param) do
   v;
@@ -51,7 +51,7 @@ function example1(param) do
     end end 
   end
   return Caml_option.some(v);
-end
+end end
 
 function example2(param) do
   try do
@@ -65,7 +65,7 @@ function example2(param) do
       throw exn;
     end end 
   end
-end
+end end
 
 exports.test_js_error = test_js_error;
 exports.test_js_error2 = test_js_error2;

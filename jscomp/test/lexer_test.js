@@ -27,11 +27,11 @@ function get_tokens(lex, str) do
       continue ;
     end end 
   end;
-end
+end end
 
 function f(param) do
   return get_tokens(Arith_lexer.lexeme, param);
-end
+end end
 
 function from_tokens(lst) do
   l = do
@@ -45,8 +45,8 @@ function from_tokens(lst) do
       end else do
         throw Caml_builtin_exceptions.end_of_file;
       end end 
-    end);
-end
+    end end);
+end end
 
 lexer_suites_000 = --[ tuple ]--[
   "arith_token",
@@ -76,7 +76,7 @@ lexer_suites_000 = --[ tuple ]--[
                   ]
                 ]
               ]);
-    end)
+    end end)
 ];
 
 lexer_suites_001 = --[ :: ]--[
@@ -87,7 +87,7 @@ lexer_suites_001 = --[ :: ]--[
                   Arith_lexer.lexeme(Lexing.from_string("10")),
                   --[ NUMERAL ]--Block.__(0, [10])
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -102,7 +102,7 @@ lexer_suites_001 = --[ :: ]--[
               v.contents
             ];
             return --[ () ]--0;
-          end;
+          end end;
           Number_lexer.token(add, Lexing.from_string("32 + 32 ( ) * / "));
           return --[ Eq ]--Block.__(0, [
                     List.rev(v.contents),
@@ -159,7 +159,7 @@ lexer_suites_001 = --[ :: ]--[
                       ]
                     ]
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -169,7 +169,7 @@ lexer_suites_001 = --[ :: ]--[
                       Arith_syntax.str(Arith_parser.toplevel(Arith_lexer.lexeme, Lexing.from_string("10"))),
                       "10."
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -179,7 +179,7 @@ lexer_suites_001 = --[ :: ]--[
                         Arith_syntax.str(Arith_parser.toplevel(Arith_lexer.lexeme, Lexing.from_string("x + 3 + 4 + y"))),
                         "x+3.+4.+y"
                       ]);
-            end)
+            end end)
         ],
         --[ [] ]--0
       ]

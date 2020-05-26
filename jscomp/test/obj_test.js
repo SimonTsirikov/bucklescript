@@ -28,11 +28,11 @@ CamlinternalOO.set_methods($$class, [
       hi,
       (function (self$1, x, y) do
           return x + y | 0;
-        end),
+        end end),
       hello,
       (function (self$1, z) do
           return Curry._3(self$1[0][hi], self$1, 10, z);
-        end)
+        end end)
     ]);
 
 CamlinternalOO.init_class($$class);
@@ -57,11 +57,11 @@ CamlinternalOO.set_methods($$class$1, [
       x,
       (function (self$2) do
           return 3;
-        end),
+        end end),
       y,
       (function (self$2) do
           return 32;
-        end)
+        end end)
     ]);
 
 CamlinternalOO.init_class($$class$1);
@@ -94,19 +94,19 @@ CamlinternalOO.set_methods($$class$2, [
       hi$1,
       (function (self$3, v, z) do
           return v + z | 0;
-        end),
+        end end),
       id1,
       (function (self$3) do
           return 3;
-        end),
+        end end),
       id2,
       (function (self$3) do
           return 4;
-        end),
+        end end),
       hello$1,
       (function (self$3, v) do
           return v;
-        end)
+        end end)
     ]);
 
 CamlinternalOO.init_class($$class$2);
@@ -119,7 +119,7 @@ id = CamlinternalOO.get_method_label($$class$3, "id");
 
 CamlinternalOO.set_method($$class$3, id, (function (self$4) do
         return "uu";
-      end));
+      end end));
 
 CamlinternalOO.init_class($$class$3);
 
@@ -131,7 +131,7 @@ add = CamlinternalOO.get_method_label($$class$4, "add");
 
 CamlinternalOO.set_method($$class$4, add, (function (self$5, x, y) do
         return x + y | 0;
-      end));
+      end end));
 
 CamlinternalOO.init_class($$class$4);
 
@@ -149,11 +149,11 @@ CamlinternalOO.set_methods($$class$5, [
       add$1,
       (function (self$6, x, y) do
           return x + y | 0;
-        end),
+        end end),
       hi$2,
       (function (self$6, x) do
           return Curry._3(self$6[0][add$1], self$6, x, 32);
-        end)
+        end end)
     ]);
 
 CamlinternalOO.init_class($$class$5);
@@ -173,7 +173,7 @@ suites_000 = --[ tuple ]--[
                   Caml_oo_curry.js1(121, 2, v)
                 ]
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -190,7 +190,7 @@ suites_001 = --[ :: ]--[
                     Caml_oo_curry.js1(121, 4, v)
                   ]
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -200,7 +200,7 @@ suites_001 = --[ :: ]--[
                     13,
                     Caml_oo_curry.js2(616641298, 5, vv, 3)
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -210,7 +210,7 @@ suites_001 = --[ :: ]--[
                       "uu",
                       Caml_oo_curry.js1(23515, 6, uu)
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -220,7 +220,7 @@ suites_001 = --[ :: ]--[
                         Caml_oo_curry.js3(4846113, 7, uuu, 1, 20),
                         21
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -230,7 +230,7 @@ suites_001 = --[ :: ]--[
                           Caml_oo_curry.js3(4846113, 8, vvvv, 3, 7),
                           10
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -240,7 +240,7 @@ suites_001 = --[ :: ]--[
                             Caml_oo_curry.js1(5243894, 9, u),
                             3
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -250,7 +250,7 @@ suites_001 = --[ :: ]--[
                               Caml_oo_curry.js1(5243895, 10, u),
                               4
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -260,7 +260,7 @@ suites_001 = --[ :: ]--[
                                 Caml_oo_curry.js3(23297, 11, u, 1, 2),
                                 3
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -270,7 +270,7 @@ suites_001 = --[ :: ]--[
                                   Caml_oo_curry.js2(616641298, 12, u, 32),
                                   32
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -280,7 +280,7 @@ suites_001 = --[ :: ]--[
                                     Caml_oo_curry.js2(23297, 13, vvvv, 31),
                                     63
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -290,7 +290,7 @@ suites_001 = --[ :: ]--[
                                       Caml_oo_curry.js3(4846113, 14, uuu, 3, 4),
                                       7
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -300,7 +300,7 @@ suites_001 = --[ :: ]--[
                                         Caml_oo_curry.js1(120, 15, v),
                                         3
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ [] ]--0
                       ]

@@ -56,11 +56,11 @@ function __ocaml_lex_lexeme_rec(lexbuf, ___ocaml_lex_state) do
         
     end
   end;
-end
+end end
 
 function lexeme(lexbuf) do
   return __ocaml_lex_lexeme_rec(lexbuf, 0);
-end
+end end
 
 function str(e) do
   local ___conditional___=(e.tag | 0);
@@ -82,7 +82,7 @@ function str(e) do
      do
     
   end
-end
+end end
 
 exports.__ocaml_lex_tables = __ocaml_lex_tables;
 exports.lexeme = lexeme;

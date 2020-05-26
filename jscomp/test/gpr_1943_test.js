@@ -21,12 +21,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f(x) do
   return --[ tuple ]--[
@@ -38,7 +38,7 @@ function f(x) do
           x["50x'"],
           x["x'"]
         ];
-end
+end end
 
 v = f(do
       "003": 0,

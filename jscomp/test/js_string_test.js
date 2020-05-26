@@ -11,7 +11,7 @@ suites_000 = --[ tuple ]--[
                 "null",
                 String(null).concat("")
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -22,7 +22,7 @@ suites_001 = --[ :: ]--[
                   "a",
                   String.fromCharCode(97)
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -32,7 +32,7 @@ suites_001 = --[ :: ]--[
                     "az",
                     String.fromCharCode(97, 122)
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -42,7 +42,7 @@ suites_001 = --[ :: ]--[
                       "a",
                       String.fromCodePoint(97)
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -52,7 +52,7 @@ suites_001 = --[ :: ]--[
                         "az",
                         String.fromCodePoint(97, 122)
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -62,7 +62,7 @@ suites_001 = --[ :: ]--[
                           3,
                           "foo".length
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -72,7 +72,7 @@ suites_001 = --[ :: ]--[
                             "a",
                             "foobar"[4]
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -82,7 +82,7 @@ suites_001 = --[ :: ]--[
                               "a",
                               "foobar".charAt(4)
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -92,7 +92,7 @@ suites_001 = --[ :: ]--[
                                 97,
                                 "foobar".charCodeAt(4)
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -102,7 +102,7 @@ suites_001 = --[ :: ]--[
                                   97,
                                   "foobar".codePointAt(4)
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -112,7 +112,7 @@ suites_001 = --[ :: ]--[
                                     undefined,
                                     "foobar".codePointAt(98)
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -122,7 +122,7 @@ suites_001 = --[ :: ]--[
                                       "foobar",
                                       "foo".concat("bar")
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -132,7 +132,7 @@ suites_001 = --[ :: ]--[
                                         "foobarbaz",
                                         "foo".concat("bar", "baz")
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -142,7 +142,7 @@ suites_001 = --[ :: ]--[
                                           true,
                                           "foobar".endsWith("bar")
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -152,7 +152,7 @@ suites_001 = --[ :: ]--[
                                             false,
                                             "foobar".endsWith("bar", 1)
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -162,7 +162,7 @@ suites_001 = --[ :: ]--[
                                               true,
                                               "foobarbaz".includes("bar")
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -172,7 +172,7 @@ suites_001 = --[ :: ]--[
                                                 false,
                                                 "foobarbaz".includes("bar", 4)
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -182,7 +182,7 @@ suites_001 = --[ :: ]--[
                                                   3,
                                                   "foobarbaz".indexOf("bar")
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -192,7 +192,7 @@ suites_001 = --[ :: ]--[
                                                     -1,
                                                     "foobarbaz".indexOf("bar", 4)
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
@@ -202,7 +202,7 @@ suites_001 = --[ :: ]--[
                                                       3,
                                                       "foobarbaz".lastIndexOf("bar")
                                                     ]);
-                                          end)
+                                          end end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
@@ -212,7 +212,7 @@ suites_001 = --[ :: ]--[
                                                         3,
                                                         "foobarbaz".lastIndexOf("bar", 4)
                                                       ]);
-                                            end)
+                                            end end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
@@ -222,7 +222,7 @@ suites_001 = --[ :: ]--[
                                                           0,
                                                           "foo".localeCompare("foo")
                                                         ]);
-                                              end)
+                                              end end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
@@ -235,7 +235,7 @@ suites_001 = --[ :: ]--[
                                                             ],
                                                             Caml_option.null_to_opt("banana".match(/na+/g))
                                                           ]);
-                                                end)
+                                                end end)
                                             ],
                                             --[ :: ]--[
                                               --[ tuple ]--[
@@ -245,7 +245,7 @@ suites_001 = --[ :: ]--[
                                                               undefined,
                                                               Caml_option.null_to_opt("banana".match(/nanana+/g))
                                                             ]);
-                                                  end)
+                                                  end end)
                                               ],
                                               --[ :: ]--[
                                                 --[ tuple ]--[
@@ -255,7 +255,7 @@ suites_001 = --[ :: ]--[
                                                                 "foo",
                                                                 "foo".normalize()
                                                               ]);
-                                                    end)
+                                                    end end)
                                                 ],
                                                 --[ :: ]--[
                                                   --[ tuple ]--[
@@ -265,7 +265,7 @@ suites_001 = --[ :: ]--[
                                                                   "foo",
                                                                   "foo".normalize("NFKD")
                                                                 ]);
-                                                      end)
+                                                      end end)
                                                   ],
                                                   --[ :: ]--[
                                                     --[ tuple ]--[
@@ -275,7 +275,7 @@ suites_001 = --[ :: ]--[
                                                                     "foofoofoo",
                                                                     "foo".repeat(3)
                                                                   ]);
-                                                        end)
+                                                        end end)
                                                     ],
                                                     --[ :: ]--[
                                                       --[ tuple ]--[
@@ -285,7 +285,7 @@ suites_001 = --[ :: ]--[
                                                                       "fooBORKbaz",
                                                                       "foobarbaz".replace("bar", "BORK")
                                                                     ]);
-                                                          end)
+                                                          end end)
                                                       ],
                                                       --[ :: ]--[
                                                         --[ tuple ]--[
@@ -295,7 +295,7 @@ suites_001 = --[ :: ]--[
                                                                         "fooBORKBORK",
                                                                         "foobarbaz".replace(/ba./g, "BORK")
                                                                       ]);
-                                                            end)
+                                                            end end)
                                                         ],
                                                         --[ :: ]--[
                                                           --[ tuple ]--[
@@ -307,12 +307,12 @@ suites_001 = --[ :: ]--[
                                                                   end else do
                                                                     return "DORK";
                                                                   end end 
-                                                                end;
+                                                                end end;
                                                                 return --[ Eq ]--Block.__(0, [
                                                                           "fooBORKDORK",
                                                                           "foobarbaz".replace(/ba./g, replace)
                                                                         ]);
-                                                              end)
+                                                              end end)
                                                           ],
                                                           --[ :: ]--[
                                                             --[ tuple ]--[
@@ -324,12 +324,12 @@ suites_001 = --[ :: ]--[
                                                                     end else do
                                                                       return "DORK";
                                                                     end end 
-                                                                  end;
+                                                                  end end;
                                                                   return --[ Eq ]--Block.__(0, [
                                                                             "fooBORKDORK",
                                                                             "foobarbaz".replace(/ba./g, replace)
                                                                           ]);
-                                                                end)
+                                                                end end)
                                                             ],
                                                             --[ :: ]--[
                                                               --[ tuple ]--[
@@ -341,12 +341,12 @@ suites_001 = --[ :: ]--[
                                                                       end else do
                                                                         return "DORK";
                                                                       end end 
-                                                                    end;
+                                                                    end end;
                                                                     return --[ Eq ]--Block.__(0, [
                                                                               "fooBORKDORK",
                                                                               "foobarbaz".replace(/ba./g, replace)
                                                                             ]);
-                                                                  end)
+                                                                  end end)
                                                               ],
                                                               --[ :: ]--[
                                                                 --[ tuple ]--[
@@ -358,12 +358,12 @@ suites_001 = --[ :: ]--[
                                                                         end else do
                                                                           return "DORK";
                                                                         end end 
-                                                                      end;
+                                                                      end end;
                                                                       return --[ Eq ]--Block.__(0, [
                                                                                 "fooBORKDORK",
                                                                                 "foobarbaz".replace(/ba./g, replace)
                                                                               ]);
-                                                                    end)
+                                                                    end end)
                                                                 ],
                                                                 --[ :: ]--[
                                                                   --[ tuple ]--[
@@ -373,7 +373,7 @@ suites_001 = --[ :: ]--[
                                                                                   3,
                                                                                   "foobarbaz".search(/ba./g)
                                                                                 ]);
-                                                                      end)
+                                                                      end end)
                                                                   ],
                                                                   --[ :: ]--[
                                                                     --[ tuple ]--[
@@ -383,7 +383,7 @@ suites_001 = --[ :: ]--[
                                                                                     "bar",
                                                                                     "foobarbaz".slice(3, 6)
                                                                                   ]);
-                                                                        end)
+                                                                        end end)
                                                                     ],
                                                                     --[ :: ]--[
                                                                       --[ tuple ]--[
@@ -393,7 +393,7 @@ suites_001 = --[ :: ]--[
                                                                                       "barbaz",
                                                                                       "foobarbaz".slice(3)
                                                                                     ]);
-                                                                          end)
+                                                                          end end)
                                                                       ],
                                                                       --[ :: ]--[
                                                                         --[ tuple ]--[
@@ -407,7 +407,7 @@ suites_001 = --[ :: ]--[
                                                                                         ],
                                                                                         "foo bar baz".split(" ")
                                                                                       ]);
-                                                                            end)
+                                                                            end end)
                                                                         ],
                                                                         --[ :: ]--[
                                                                           --[ tuple ]--[
@@ -420,7 +420,7 @@ suites_001 = --[ :: ]--[
                                                                                           ],
                                                                                           "foo bar baz".split(" ", 2)
                                                                                         ]);
-                                                                              end)
+                                                                              end end)
                                                                           ],
                                                                           --[ :: ]--[
                                                                             --[ tuple ]--[
@@ -438,7 +438,7 @@ suites_001 = --[ :: ]--[
                                                                                             ],
                                                                                             "a#b#:c".split(/(#)(:)?/)
                                                                                           ]);
-                                                                                end)
+                                                                                end end)
                                                                             ],
                                                                             --[ :: ]--[
                                                                               --[ tuple ]--[
@@ -452,7 +452,7 @@ suites_001 = --[ :: ]--[
                                                                                               ],
                                                                                               "a#b#:c".split(/(#)(:)?/, 3)
                                                                                             ]);
-                                                                                  end)
+                                                                                  end end)
                                                                               ],
                                                                               --[ :: ]--[
                                                                                 --[ tuple ]--[
@@ -462,7 +462,7 @@ suites_001 = --[ :: ]--[
                                                                                                 true,
                                                                                                 "foobarbaz".startsWith("foo")
                                                                                               ]);
-                                                                                    end)
+                                                                                    end end)
                                                                                 ],
                                                                                 --[ :: ]--[
                                                                                   --[ tuple ]--[
@@ -472,7 +472,7 @@ suites_001 = --[ :: ]--[
                                                                                                   false,
                                                                                                   "foobarbaz".startsWith("foo", 1)
                                                                                                 ]);
-                                                                                      end)
+                                                                                      end end)
                                                                                   ],
                                                                                   --[ :: ]--[
                                                                                     --[ tuple ]--[
@@ -482,7 +482,7 @@ suites_001 = --[ :: ]--[
                                                                                                     "barbaz",
                                                                                                     "foobarbaz".substr(3)
                                                                                                   ]);
-                                                                                        end)
+                                                                                        end end)
                                                                                     ],
                                                                                     --[ :: ]--[
                                                                                       --[ tuple ]--[
@@ -492,7 +492,7 @@ suites_001 = --[ :: ]--[
                                                                                                       "bar",
                                                                                                       "foobarbaz".substr(3, 3)
                                                                                                     ]);
-                                                                                          end)
+                                                                                          end end)
                                                                                       ],
                                                                                       --[ :: ]--[
                                                                                         --[ tuple ]--[
@@ -502,7 +502,7 @@ suites_001 = --[ :: ]--[
                                                                                                         "bar",
                                                                                                         "foobarbaz".substring(3, 6)
                                                                                                       ]);
-                                                                                            end)
+                                                                                            end end)
                                                                                         ],
                                                                                         --[ :: ]--[
                                                                                           --[ tuple ]--[
@@ -512,7 +512,7 @@ suites_001 = --[ :: ]--[
                                                                                                           "barbaz",
                                                                                                           "foobarbaz".substring(3)
                                                                                                         ]);
-                                                                                              end)
+                                                                                              end end)
                                                                                           ],
                                                                                           --[ :: ]--[
                                                                                             --[ tuple ]--[
@@ -522,7 +522,7 @@ suites_001 = --[ :: ]--[
                                                                                                             "bork",
                                                                                                             "BORK".toLowerCase()
                                                                                                           ]);
-                                                                                                end)
+                                                                                                end end)
                                                                                             ],
                                                                                             --[ :: ]--[
                                                                                               --[ tuple ]--[
@@ -532,7 +532,7 @@ suites_001 = --[ :: ]--[
                                                                                                               "bork",
                                                                                                               "BORK".toLocaleLowerCase()
                                                                                                             ]);
-                                                                                                  end)
+                                                                                                  end end)
                                                                                               ],
                                                                                               --[ :: ]--[
                                                                                                 --[ tuple ]--[
@@ -542,7 +542,7 @@ suites_001 = --[ :: ]--[
                                                                                                                 "FUBAR",
                                                                                                                 "fubar".toUpperCase()
                                                                                                               ]);
-                                                                                                    end)
+                                                                                                    end end)
                                                                                                 ],
                                                                                                 --[ :: ]--[
                                                                                                   --[ tuple ]--[
@@ -552,7 +552,7 @@ suites_001 = --[ :: ]--[
                                                                                                                   "FUBAR",
                                                                                                                   "fubar".toLocaleUpperCase()
                                                                                                                 ]);
-                                                                                                      end)
+                                                                                                      end end)
                                                                                                   ],
                                                                                                   --[ :: ]--[
                                                                                                     --[ tuple ]--[
@@ -562,7 +562,7 @@ suites_001 = --[ :: ]--[
                                                                                                                     "foo",
                                                                                                                     "  foo  ".trim()
                                                                                                                   ]);
-                                                                                                        end)
+                                                                                                        end end)
                                                                                                     ],
                                                                                                     --[ :: ]--[
                                                                                                       --[ tuple ]--[
@@ -572,7 +572,7 @@ suites_001 = --[ :: ]--[
                                                                                                                       "<a name=\"bar\">foo</a>",
                                                                                                                       "foo".anchor("bar")
                                                                                                                     ]);
-                                                                                                          end)
+                                                                                                          end end)
                                                                                                       ],
                                                                                                       --[ :: ]--[
                                                                                                         --[ tuple ]--[
@@ -582,14 +582,14 @@ suites_001 = --[ :: ]--[
                                                                                                                         "<a href=\"https://reason.ml\">foo</a>",
                                                                                                                         "foo".link("https://reason.ml")
                                                                                                                       ]);
-                                                                                                            end)
+                                                                                                            end end)
                                                                                                         ],
                                                                                                         --[ :: ]--[
                                                                                                           --[ tuple ]--[
                                                                                                             "File \"js_string_test.ml\", line 211, characters 4-11",
                                                                                                             (function (param) do
                                                                                                                 return --[ Ok ]--Block.__(4, ["ab".includes("a")]);
-                                                                                                              end)
+                                                                                                              end end)
                                                                                                           ],
                                                                                                           --[ [] ]--0
                                                                                                         ]

@@ -18,7 +18,7 @@ function map(f, a) do
     end
     return r;
   end end 
-end
+end end
 
 function init(l, f) do
   l$1 = l;
@@ -39,7 +39,7 @@ function init(l, f) do
     end
     return res;
   end end 
-end
+end end
 
 function fold_left(f, x, a) do
   f$1 = Curry.__2(f);
@@ -50,21 +50,21 @@ function fold_left(f, x, a) do
     r = f$1(r, a$1[i]);
   end
   return r;
-end
+end end
 
 function f2(param) do
   arr = init(3000000, (function (i) do
           return i;
-        end));
+        end end));
   b = map((function (i) do
           return i + i - 1;
-        end), arr);
+        end end), arr);
   v = fold_left((function (prim, prim$1) do
           return prim + prim$1;
-        end), 0, b);
+        end end), 0, b);
   console.log(Pervasives.string_of_float(v));
   return --[ () ]--0;
-end
+end end
 
 f2(--[ () ]--0);
 

@@ -9,7 +9,7 @@ function f(x) do
     v = v - 1 | 0;
   end;
   return sum;
-end
+end end
 
 exports.f = f;
 --[ No side effect ]--

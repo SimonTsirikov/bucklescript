@@ -23,12 +23,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 jsMapperConstantArray = [
   --[ tuple ]--[
@@ -47,15 +47,15 @@ jsMapperConstantArray = [
 
 function uToJs(param) do
   return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray);
-end
+end end
 
 function uFromJs(param) do
   return Js_mapperRt.revSearch(3, jsMapperConstantArray, param);
-end
+end end
 
 function eqU(x, y) do
   return x == y;
-end
+end end
 
 function eqUOpt(x, y) do
   if (x ~= undefined) then do
@@ -67,7 +67,7 @@ function eqUOpt(x, y) do
   end else do
     return y == undefined;
   end end 
-end
+end end
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 25, characters 5-12", eqUOpt(uFromJs("x"), --[ f ]--102), true);
 
@@ -96,15 +96,15 @@ jsMapperConstantArray$1 = [
 
 function vToJs(param) do
   return jsMapperConstantArray$1[param];
-end
+end end
 
 function vFromJs(param) do
   return Js_mapperRt.fromInt(4, jsMapperConstantArray$1, param);
-end
+end end
 
 function eqV(x, y) do
   return x == y;
-end
+end end
 
 function eqVOpt(x, y) do
   if (x ~= undefined) then do
@@ -116,7 +116,7 @@ function eqVOpt(x, y) do
   end else do
     return y == undefined;
   end end 
-end
+end end
 
 function s(param) do
   local ___conditional___=(param);
@@ -132,7 +132,7 @@ function s(param) do
      do
     
   end
-end
+end end
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 54, characters 5-12", $$Array.map(vToJs, [
           --[ A0 ]--0,
@@ -166,14 +166,14 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 55, characters 5-12", $$Array.map(
 
 function v1ToJs(param) do
   return param + 0 | 0;
-end
+end end
 
 function v1FromJs(param) do
   if (param <= 5 and 0 <= param) then do
     return param - 0 | 0;
   end
    end 
-end
+end end
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 68, characters 5-12", $$Array.map(v1ToJs, [
           --[ B0 ]--0,
@@ -213,14 +213,14 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 69, characters 5-12", $$Array.map(
 
 function v2ToJs(param) do
   return param + 2 | 0;
-end
+end end
 
 function v2FromJs(param) do
   if (param <= 7 and 2 <= param) then do
     return param - 2 | 0;
   end
    end 
-end
+end end
 
 eq("File \"ast_js_mapper_poly_test.ml\", line 86, characters 5-12", $$Array.map(v2ToJs, [
           --[ C0 ]--0,
@@ -253,7 +253,7 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 89, characters 5-12", $$Array.map(
               undefined
             ], $$Array.map((function (x) do
                     return x;
-                  end), [
+                  end end), [
                   --[ C0 ]--0,
                   --[ C1 ]--1,
                   --[ C2 ]--2,

@@ -9,13 +9,13 @@ function f(v) do
   if (v % 2 == 0) then do
     return (function (v) do
         return Caml_int32.imul(v, v);
-      end);
+      end end);
   end else do
     return (function (v) do
         return v + v | 0;
-      end);
+      end end);
   end end 
-end
+end end
 
 v = [
     1,
@@ -23,7 +23,7 @@ v = [
     3
   ].map((function (param, param$1) do
         return f(param)(param$1);
-      end));
+      end end));
 
 vv = [
     1,
@@ -31,7 +31,7 @@ vv = [
     3
   ].map((function (prim, prim$1) do
         return prim + prim$1 | 0;
-      end));
+      end end));
 
 hh = [
     "1",
@@ -39,11 +39,11 @@ hh = [
     "3"
   ].map((function (prim) do
         return parseInt(prim);
-      end));
+      end end));
 
 function u() do
   return 3;
-end
+end end
 
 vvv = do
   contents: 0
@@ -54,17 +54,17 @@ function fff(param) do
   console.log("x");
   vvv.contents = vvv.contents + 1 | 0;
   return --[ () ]--0;
-end
+end end
 
 function g() do
   return fff(--[ () ]--0);
-end
+end end
 
 function abc(x, y, z) do
   console.log("xx");
   console.log("yy");
   return (x + y | 0) + z | 0;
-end
+end end
 
 abc_u = abc;
 
@@ -82,7 +82,7 @@ Mt.from_pair_suites("Ffi_arity_test", --[ :: ]--[
                         4
                       ]
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -96,7 +96,7 @@ Mt.from_pair_suites("Ffi_arity_test", --[ :: ]--[
                           5
                         ]
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -110,7 +110,7 @@ Mt.from_pair_suites("Ffi_arity_test", --[ :: ]--[
                             3
                           ]
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -124,17 +124,17 @@ Mt.from_pair_suites("Ffi_arity_test", --[ :: ]--[
                                 ].map((function (x) do
                                       return (function (y) do
                                           return x + y | 0;
-                                        end);
-                                    end)).map((function (y) do
+                                        end end);
+                                    end end)).map((function (y) do
                                     return Caml_int32.imul(Curry._1(y, 0), Curry._1(y, 1));
-                                  end)),
+                                  end end)),
                             [
                               2,
                               6,
                               12
                             ]
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -149,15 +149,15 @@ Mt.from_pair_suites("Ffi_arity_test", --[ :: ]--[
                                       y = Caml_int32.imul(x, x);
                                       return (function (i) do
                                                   return y + i | 0;
-                                                end)(param);
-                                    end)),
+                                                end end)(param);
+                                    end end)),
                               [
                                 1,
                                 5,
                                 11
                               ]
                             ]);
-                  end)
+                  end end)
               ],
               --[ [] ]--0
             ]
@@ -168,7 +168,7 @@ Mt.from_pair_suites("Ffi_arity_test", --[ :: ]--[
 
 function bar(fn) do
   return Curry._1(fn, --[ () ]--0);
-end
+end end
 
 (Curry._1((function(){console.log("forgiving arity")}), --[ () ]--0));
 

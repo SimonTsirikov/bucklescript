@@ -3,7 +3,7 @@
 
 function f(x) do
   return x + 1 | 0;
-end
+end end
 
 a = f(1);
 
@@ -11,7 +11,7 @@ b = f(2);
 
 function g(param) do
   return 1;
-end
+end end
 
 c = g(--[ () ]--0);
 

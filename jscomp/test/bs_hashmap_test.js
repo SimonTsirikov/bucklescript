@@ -20,15 +20,15 @@ end;
 
 function eqx(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-end
+end end
 
 function eq(x, y) do
   return x == y;
-end
+end end
 
 hash = Hashtbl.hash;
 
@@ -40,7 +40,7 @@ empty = Belt_internalBucketsType.make(Y.hash, Y.eq, 30);
 
 function add(prim, prim$1) do
   return prim + prim$1 | 0;
-end
+end end
 
 Belt_HashMap.mergeMany(empty, [
       --[ tuple ]--[
@@ -97,7 +97,7 @@ eqx("File \"bs_hashmap_test.ml\", line 56, characters 6-13", v$1.size, 98000);
 
 b("File \"bs_hashmap_test.ml\", line 57, characters 4-11", Belt_Array.every(Array_data_util.range(2001, 100000), (function (x) do
             return Belt_HashMap.has(v$1, x);
-          end)));
+          end end)));
 
 Mt.from_pair_suites("Bs_hashmap_test", suites.contents);
 

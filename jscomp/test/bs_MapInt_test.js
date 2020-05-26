@@ -8,7 +8,7 @@ function should(b) do
   end else do
     throw new Error("IMPOSSIBLE");
   end end 
-end
+end end
 
 function test(param) do
   m = Belt_MapInt.empty;
@@ -22,7 +22,7 @@ function test(param) do
     m = Belt_MapInt.remove(m, i$2);
   end
   return should(Belt_MapInt.isEmpty(m));
-end
+end end
 
 test(--[ () ]--0);
 

@@ -20,7 +20,7 @@ function f(param) do
       continue ;
     end end 
   end;
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "sum",
@@ -29,7 +29,7 @@ suites_000 = --[ tuple ]--[
                 55,
                 f(--[ () ]--0)
               ]);
-    end)
+    end end)
 ];
 
 suites = --[ :: ]--[

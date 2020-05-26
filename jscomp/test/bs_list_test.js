@@ -17,15 +17,15 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-end
+end end
 
 function $$throw(loc, x) do
   return Mt.throw_suites(test_id, suites, loc, x);
-end
+end end
 
 function sum(xs) do
   v = do
@@ -34,9 +34,9 @@ function sum(xs) do
   Belt_List.forEach(xs, (function (x) do
           v.contents = v.contents + x | 0;
           return --[ () ]--0;
-        end));
+        end end));
   return v.contents;
-end
+end end
 
 function sum2(xs, ys) do
   v = do
@@ -45,17 +45,17 @@ function sum2(xs, ys) do
   Belt_List.forEach2(xs, ys, (function (x, y) do
           v.contents = (v.contents + x | 0) + y | 0;
           return --[ () ]--0;
-        end));
+        end end));
   return v.contents;
-end
+end end
 
 u = Belt_List.makeBy(5, (function (i) do
         return Caml_int32.imul(i, i);
-      end));
+      end end));
 
 function f(i) do
   return eq("File \"bs_list_test.ml\", line 26, characters 7-14", Belt_List.getExn(u, i), Caml_int32.imul(i, i));
-end
+end end
 
 for i = 0 , 4 , 1 do
   f(i);
@@ -63,7 +63,7 @@ end
 
 eq("File \"bs_list_test.ml\", line 30, characters 5-12", Belt_List.map(u, (function (i) do
             return i + 1 | 0;
-          end)), --[ :: ]--[
+          end end)), --[ :: ]--[
       1,
       --[ :: ]--[
         2,
@@ -94,7 +94,7 @@ eq("File \"bs_list_test.ml\", line 31, characters 5-12", Belt_List.getBy(--[ :: 
           ]
         ], (function (x) do
             return x % 2 == 0;
-          end)), 4);
+          end end)), 4);
 
 eq("File \"bs_list_test.ml\", line 32, characters 5-12", Belt_List.getBy(--[ :: ]--[
           1,
@@ -110,7 +110,7 @@ eq("File \"bs_list_test.ml\", line 32, characters 5-12", Belt_List.getBy(--[ :: 
           ]
         ], (function (x) do
             return x % 5 == 0;
-          end)), undefined);
+          end end)), undefined);
 
 eq("FLATTEN", Belt_List.flatten(--[ :: ]--[
           --[ :: ]--[
@@ -132,7 +132,7 @@ eq("FLATTEN", Belt_List.flatten(--[ :: ]--[
                 --[ :: ]--[
                   Belt_List.makeBy(4, (function (i) do
                           return i;
-                        end)),
+                        end end)),
                   --[ [] ]--0
                 ]
               ]
@@ -217,7 +217,7 @@ eq("CONCATMANY", Belt_List.concatMany([
           --[ [] ]--0,
           Belt_List.makeBy(4, (function (i) do
                   return i;
-                end))
+                end end))
         ]), --[ :: ]--[
       1,
       --[ :: ]--[
@@ -325,13 +325,13 @@ eq("CONCATMANY", Belt_List.concatMany([--[ :: ]--[
 
 eq("File \"bs_list_test.ml\", line 57, characters 5-12", Belt_List.toArray(Belt_List.concat(Belt_List.makeBy(100, (function (i) do
                     return i;
-                  end)), Belt_List.makeBy(100, (function (i) do
+                  end end)), Belt_List.makeBy(100, (function (i) do
                     return i;
-                  end)))), Belt_Array.concat(Belt_Array.makeBy(100, (function (i) do
+                  end end)))), Belt_Array.concat(Belt_Array.makeBy(100, (function (i) do
                 return i;
-              end)), Belt_Array.makeBy(100, (function (i) do
+              end end)), Belt_Array.makeBy(100, (function (i) do
                 return i;
-              end))));
+              end end))));
 
 eq("APPEND", Belt_List.concat(--[ :: ]--[
           1,
@@ -436,11 +436,11 @@ eq("ZIP", Belt_List.zip(--[ :: ]--[
 
 function mod2(x) do
   return x % 2 == 0;
-end
+end end
 
 function evenIndex(_x, i) do
   return i % 2 == 0;
-end
+end end
 
 eq("PARTITION", Belt_List.partition(--[ :: ]--[
           1,
@@ -526,7 +526,7 @@ eq("PARTITION", Belt_List.partition(--[ :: ]--[
           ]
         ], (function (x) do
             return !mod2(x);
-          end)), --[ tuple ]--[
+          end end)), --[ tuple ]--[
       --[ [] ]--0,
       --[ :: ]--[
         2,
@@ -726,11 +726,11 @@ eq("FILTER2", Belt_List.keepWithIndex(--[ :: ]--[
 
 function id(x) do
   return x;
-end
+end end
 
 eq("MAP", Belt_List.map(Belt_List.makeBy(5, id), (function (x) do
             return (x << 1);
-          end)), --[ :: ]--[
+          end end)), --[ :: ]--[
       0,
       --[ :: ]--[
         2,
@@ -754,14 +754,14 @@ eq("MAP", Belt_List.map(--[ :: ]--[
           --[ [] ]--0
         ], (function (x) do
             return -x | 0;
-          end)), --[ :: ]--[
+          end end)), --[ :: ]--[
       -1,
       --[ [] ]--0
     ]);
 
 function add(a, b) do
   return a + b | 0;
-end
+end end
 
 length_10_id = Belt_List.makeBy(10, id);
 
@@ -769,7 +769,7 @@ length_8_id = Belt_List.makeBy(8, id);
 
 d = Belt_List.makeBy(10, (function (x) do
         return (x << 1);
-      end));
+      end end));
 
 eq("MAP2", Belt_List.zipBy(length_10_id, length_10_id, add), d);
 
@@ -787,7 +787,7 @@ eq("MAP2", Belt_List.zipBy(--[ [] ]--0, --[ [] ]--0, add), --[ [] ]--0);
 
 eq("MAP2", Belt_List.zipBy(length_10_id, length_10_id, add), Belt_List.concat(Belt_List.map(length_8_id, (function (x) do
                 return (x << 1);
-              end)), --[ :: ]--[
+              end end)), --[ :: ]--[
           16,
           --[ :: ]--[
             18,
@@ -797,11 +797,11 @@ eq("MAP2", Belt_List.zipBy(length_10_id, length_10_id, add), Belt_List.concat(Be
 
 eq("MAP2", Belt_List.zipBy(length_10_id, length_8_id, add), Belt_List.mapWithIndex(length_8_id, (function (i, x) do
             return i + x | 0;
-          end)));
+          end end)));
 
 eq("MAP2", Belt_List.reverse(Belt_List.mapReverse2(length_10_id, length_10_id, add)), Belt_List.map(length_10_id, (function (x) do
             return (x << 1);
-          end)));
+          end end)));
 
 xs = Belt_List.reverse(Belt_List.mapReverse2(length_8_id, length_10_id, add));
 
@@ -826,7 +826,7 @@ eq("MAP2", Belt_List.mapReverse2(--[ :: ]--[
           ]
         ], (function (x, y) do
             return x + y | 0;
-          end)), --[ :: ]--[
+          end end)), --[ :: ]--[
       4,
       --[ :: ]--[
         2,
@@ -995,11 +995,11 @@ eq("SPLIT", Belt_List.splitAt(a, -1), undefined);
 
 function succx(x) do
   return x + 1 | 0;
-end
+end end
 
 function eqx(x, y) do
   return x == y;
-end
+end end
 
 b("File \"bs_list_test.ml\", line 182, characters 4-11", Belt_List.hasAssoc(--[ :: ]--[
           --[ tuple ]--[
@@ -1021,7 +1021,7 @@ b("File \"bs_list_test.ml\", line 182, characters 4-11", Belt_List.hasAssoc(--[ 
           ]
         ], 2, (function (prim, prim$1) do
             return prim == prim$1;
-          end)));
+          end end)));
 
 b("File \"bs_list_test.ml\", line 183, characters 4-11", !Belt_List.hasAssoc(--[ :: ]--[
           --[ tuple ]--[
@@ -1043,7 +1043,7 @@ b("File \"bs_list_test.ml\", line 183, characters 4-11", !Belt_List.hasAssoc(--[
           ]
         ], 4, (function (prim, prim$1) do
             return prim == prim$1;
-          end)));
+          end end)));
 
 b("File \"bs_list_test.ml\", line 184, characters 4-11", Belt_List.hasAssoc(--[ :: ]--[
           --[ tuple ]--[
@@ -1065,7 +1065,7 @@ b("File \"bs_list_test.ml\", line 184, characters 4-11", Belt_List.hasAssoc(--[ 
           ]
         ], 4, (function (x, y) do
             return (x + 1 | 0) == y;
-          end)));
+          end end)));
 
 eq("REMOVEASSOQ", Belt_List.removeAssoc(--[ :: ]--[
           --[ tuple ]--[
@@ -1087,7 +1087,7 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[ :: ]--[
           ]
         ], 3, (function (prim, prim$1) do
             return prim == prim$1;
-          end)), --[ :: ]--[
+          end end)), --[ :: ]--[
       --[ tuple ]--[
         1,
         "1"
@@ -1121,7 +1121,7 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[ :: ]--[
           ]
         ], 1, (function (prim, prim$1) do
             return prim == prim$1;
-          end)), --[ :: ]--[
+          end end)), --[ :: ]--[
       --[ tuple ]--[
         2,
         "2"
@@ -1155,7 +1155,7 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[ :: ]--[
           ]
         ], 2, (function (prim, prim$1) do
             return prim == prim$1;
-          end)), --[ :: ]--[
+          end end)), --[ :: ]--[
       --[ tuple ]--[
         1,
         "1"
@@ -1189,7 +1189,7 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[ :: ]--[
           ]
         ], 0, (function (prim, prim$1) do
             return prim == prim$1;
-          end)), --[ :: ]--[
+          end end)), --[ :: ]--[
       --[ tuple ]--[
         1,
         "1"
@@ -1333,7 +1333,7 @@ b("File \"bs_list_test.ml\", line 196, characters 5-12", ll == ll0);
 
 ll1 = Belt_List.setAssoc(ll, 2, "22", (function (prim, prim$1) do
         return prim == prim$1;
-      end));
+      end end));
 
 eq("File \"bs_list_test.ml\", line 198, characters 5-12", ll1, --[ :: ]--[
       --[ tuple ]--[
@@ -1357,7 +1357,7 @@ eq("File \"bs_list_test.ml\", line 198, characters 5-12", ll1, --[ :: ]--[
 
 ll2 = Belt_List.setAssoc(ll1, 22, "2", (function (prim, prim$1) do
         return prim == prim$1;
-      end));
+      end end));
 
 b("File \"bs_list_test.ml\", line 200, characters 4-11", Caml_obj.caml_equal(ll2, --[ :: ]--[
           --[ tuple ]--[
@@ -1389,7 +1389,7 @@ b("File \"bs_list_test.ml\", line 202, characters 4-11", Caml_obj.caml_equal(Bel
               ]
             ], 2, "x", (function (prim, prim$1) do
                 return prim == prim$1;
-              end)), --[ :: ]--[
+              end end)), --[ :: ]--[
           --[ tuple ]--[
             1,
             "a"
@@ -1423,7 +1423,7 @@ b("File \"bs_list_test.ml\", line 204, characters 4-11", Caml_obj.caml_equal(Bel
               ]
             ], 2, "2", (function (prim, prim$1) do
                 return prim == prim$1;
-              end)), --[ :: ]--[
+              end end)), --[ :: ]--[
           --[ tuple ]--[
             2,
             "2"
@@ -1445,7 +1445,7 @@ b("File \"bs_list_test.ml\", line 204, characters 4-11", Caml_obj.caml_equal(Bel
 
 eq("File \"bs_list_test.ml\", line 206, characters 5-12", Belt_List.setAssoc(--[ [] ]--0, 1, "1", (function (prim, prim$1) do
             return prim == prim$1;
-          end)), --[ :: ]--[
+          end end)), --[ :: ]--[
       --[ tuple ]--[
         1,
         "1"
@@ -1463,7 +1463,7 @@ eq("File \"bs_list_test.ml\", line 208, characters 5-12", Belt_List.setAssoc(--[
           --[ [] ]--0
         ], 1, "1", (function (prim, prim$1) do
             return prim == prim$1;
-          end)), --[ :: ]--[
+          end end)), --[ :: ]--[
       --[ tuple ]--[
         1,
         "1"
@@ -1485,7 +1485,7 @@ eq("File \"bs_list_test.ml\", line 210, characters 5-12", Belt_List.setAssoc(--[
           ]
         ], 1, "1", (function (prim, prim$1) do
             return prim == prim$1;
-          end)), --[ :: ]--[
+          end end)), --[ :: ]--[
       --[ tuple ]--[
         0,
         "0"
@@ -1519,7 +1519,7 @@ b("File \"bs_list_test.ml\", line 211, characters 4-11", Caml_obj.caml_equal(Bel
               ]
             ], 2, (function (prim, prim$1) do
                 return prim == prim$1;
-              end)), "b"));
+              end end)), "b"));
 
 b("File \"bs_list_test.ml\", line 212, characters 4-11", Belt_List.getAssoc(--[ :: ]--[
           --[ tuple ]--[
@@ -1541,7 +1541,7 @@ b("File \"bs_list_test.ml\", line 212, characters 4-11", Belt_List.getAssoc(--[ 
           ]
         ], 4, (function (prim, prim$1) do
             return prim == prim$1;
-          end)) == undefined);
+          end end)) == undefined);
 
 eq("File \"bs_list_test.ml\", line 216, characters 5-12", --[ tuple ]--[
       Belt_List.head(length_10_id),
@@ -1555,12 +1555,12 @@ eq("File \"bs_list_test.ml\", line 219, characters 5-12", Belt_List.head(--[ [] 
 
 $$throw("File \"bs_list_test.ml\", line 220, characters 8-15", (function (param) do
         return Belt_List.headExn(--[ [] ]--0);
-      end));
+      end end));
 
 $$throw("File \"bs_list_test.ml\", line 221, characters 8-15", (function (param) do
         Belt_List.tailExn(--[ [] ]--0);
         return --[ () ]--0;
-      end));
+      end end));
 
 $$throw("File \"bs_list_test.ml\", line 222, characters 8-15", (function (param) do
         Belt_List.getExn(--[ :: ]--[
@@ -1571,7 +1571,7 @@ $$throw("File \"bs_list_test.ml\", line 222, characters 8-15", (function (param)
               ]
             ], -1);
         return --[ () ]--0;
-      end));
+      end end));
 
 $$throw("File \"bs_list_test.ml\", line 223, characters 8-15", (function (param) do
         Belt_List.getExn(--[ :: ]--[
@@ -1582,7 +1582,7 @@ $$throw("File \"bs_list_test.ml\", line 223, characters 8-15", (function (param)
               ]
             ], 2);
         return --[ () ]--0;
-      end));
+      end end));
 
 eq("File \"bs_list_test.ml\", line 224, characters 5-12", Belt_List.map(--[ :: ]--[
           0,
@@ -1598,7 +1598,7 @@ eq("File \"bs_list_test.ml\", line 224, characters 5-12", Belt_List.map(--[ :: ]
                           --[ [] ]--0
                         ]
                       ], i);
-          end)), --[ :: ]--[
+          end end)), --[ :: ]--[
       0,
       --[ :: ]--[
         1,
@@ -1618,7 +1618,7 @@ eq("File \"bs_list_test.ml\", line 226, characters 5-12", Belt_List.tailExn(--[ 
 
 Belt_List.forEachWithIndex(length_10_id, (function (i, x) do
         return eq("File \"bs_list_test.ml\", line 228, characters 9-16", Belt_List.get(length_10_id, i), x);
-      end));
+      end end));
 
 eq("File \"bs_list_test.ml\", line 229, characters 5-12", Belt_List.tail(--[ [] ]--0), undefined);
 
@@ -1626,7 +1626,7 @@ eq("File \"bs_list_test.ml\", line 230, characters 5-12", Belt_List.drop(--[ [] 
 
 eq("File \"bs_list_test.ml\", line 231, characters 5-12", Belt_List.mapWithIndex(--[ [] ]--0, (function (i, x) do
             return i + x | 0;
-          end)), --[ [] ]--0);
+          end end)), --[ [] ]--0);
 
 eq("File \"bs_list_test.ml\", line 232, characters 5-12", Belt_List.get(length_10_id, -1), undefined);
 
@@ -1652,9 +1652,9 @@ eq("File \"bs_list_test.ml\", line 245, characters 5-12", Belt_List.reduceRevers
 
 eq("File \"bs_list_test.ml\", line 247, characters 5-12", Belt_List.reduceReverse(Belt_List.makeBy(10000, (function (i) do
                 return i;
-              end)), 0, (function (prim, prim$1) do
+              end end)), 0, (function (prim, prim$1) do
             return prim + prim$1 | 0;
-          end)), 49995000);
+          end end)), 49995000);
 
 eq("File \"bs_list_test.ml\", line 252, characters 5-12", sum2(length_10_id, length_10_id), 90);
 
@@ -1664,7 +1664,7 @@ eq("File \"bs_list_test.ml\", line 254, characters 5-12", sum2(length_10_id, len
 
 eq("File \"bs_list_test.ml\", line 255, characters 5-12", Belt_List.reduce2(length_10_id, length_8_id, 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
-          end)), 56);
+          end end)), 56);
 
 eq("File \"bs_list_test.ml\", line 257, characters 5-12", Belt_List.reduce2(--[ :: ]--[
           1,
@@ -1686,15 +1686,15 @@ eq("File \"bs_list_test.ml\", line 257, characters 5-12", Belt_List.reduce2(--[ 
           ]
         ], 0, (function (a, b, c) do
             return (a + b | 0) + c | 0;
-          end)), 18);
+          end end)), 18);
 
 eq("File \"bs_list_test.ml\", line 258, characters 5-12", Belt_List.reduceReverse2(length_10_id, length_8_id, 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
-          end)), 56);
+          end end)), 56);
 
 eq("File \"bs_list_test.ml\", line 260, characters 5-12", Belt_List.reduceReverse2(length_10_id, length_10_id, 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
-          end)), 90);
+          end end)), 90);
 
 eq("File \"bs_list_test.ml\", line 262, characters 5-12", Belt_List.reduceReverse2(--[ :: ]--[
           1,
@@ -1713,7 +1713,7 @@ eq("File \"bs_list_test.ml\", line 262, characters 5-12", Belt_List.reduceRevers
           ]
         ], 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
-          end)), 6);
+          end end)), 6);
 
 eq("File \"bs_list_test.ml\", line 263, characters 5-12", Belt_List.every(--[ :: ]--[
           2,
@@ -1768,7 +1768,7 @@ eq("File \"bs_list_test.ml\", line 269, characters 5-12", Belt_List.has(--[ :: ]
           ]
         ], "2", (function (x, s) do
             return String(x) == s;
-          end)), true);
+          end end)), true);
 
 eq("File \"bs_list_test.ml\", line 270, characters 5-12", Belt_List.has(--[ :: ]--[
           1,
@@ -1781,7 +1781,7 @@ eq("File \"bs_list_test.ml\", line 270, characters 5-12", Belt_List.has(--[ :: ]
           ]
         ], "0", (function (x, s) do
             return String(x) == s;
-          end)), false);
+          end end)), false);
 
 b("File \"bs_list_test.ml\", line 272, characters 4-11", Belt_List.reduceReverse(--[ :: ]--[
           1,
@@ -1797,7 +1797,7 @@ b("File \"bs_list_test.ml\", line 272, characters 4-11", Belt_List.reduceReverse
           ]
         ], 0, (function (prim, prim$1) do
             return prim + prim$1 | 0;
-          end)) == 10);
+          end end)) == 10);
 
 b("File \"bs_list_test.ml\", line 273, characters 4-11", Belt_List.reduceReverse(--[ :: ]--[
           1,
@@ -1813,7 +1813,7 @@ b("File \"bs_list_test.ml\", line 273, characters 4-11", Belt_List.reduceReverse
           ]
         ], 10, (function (prim, prim$1) do
             return prim - prim$1 | 0;
-          end)) == 0);
+          end end)) == 0);
 
 b("File \"bs_list_test.ml\", line 274, characters 4-11", Caml_obj.caml_equal(Belt_List.reduceReverse(--[ :: ]--[
               1,
@@ -1855,7 +1855,7 @@ b("File \"bs_list_test.ml\", line 275, characters 4-11", Belt_List.reduce(--[ ::
           ]
         ], 0, (function (prim, prim$1) do
             return prim + prim$1 | 0;
-          end)) == 10);
+          end end)) == 10);
 
 b("File \"bs_list_test.ml\", line 276, characters 4-11", Belt_List.reduce(--[ :: ]--[
           1,
@@ -1871,7 +1871,7 @@ b("File \"bs_list_test.ml\", line 276, characters 4-11", Belt_List.reduce(--[ ::
           ]
         ], 10, (function (prim, prim$1) do
             return prim - prim$1 | 0;
-          end)) == 0);
+          end end)) == 0);
 
 b("File \"bs_list_test.ml\", line 277, characters 4-11", Caml_obj.caml_equal(Belt_List.reduce(--[ :: ]--[
               1,
@@ -1913,7 +1913,7 @@ b("File \"bs_list_test.ml\", line 278, characters 4-11", Belt_List.reduceWithInd
           ]
         ], 0, (function (acc, x, i) do
             return (acc + x | 0) + i | 0;
-          end)) == 16);
+          end end)) == 16);
 
 b("File \"bs_list_test.ml\", line 279, characters 4-11", Belt_List.reduceReverse2(--[ :: ]--[
           1,
@@ -1932,25 +1932,25 @@ b("File \"bs_list_test.ml\", line 279, characters 4-11", Belt_List.reduceReverse
           ]
         ], 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
-          end)) == 6);
+          end end)) == 6);
 
 a$1 = Belt_List.makeBy(10000, (function (i) do
         return i;
-      end));
+      end end));
 
 b("File \"bs_list_test.ml\", line 282, characters 4-11", Belt_List.reduceReverse2(a$1, --[ :: ]--[
           0,
           a$1
         ], 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
-          end)) == 99980001);
+          end end)) == 99980001);
 
 eq("File \"bs_list_test.ml\", line 288, characters 5-12", Belt_List.every2(--[ [] ]--0, --[ :: ]--[
           1,
           --[ [] ]--0
         ], (function (x, y) do
             return x > y;
-          end)), true);
+          end end)), true);
 
 eq("File \"bs_list_test.ml\", line 289, characters 5-12", Belt_List.every2(--[ :: ]--[
           2,
@@ -1963,7 +1963,7 @@ eq("File \"bs_list_test.ml\", line 289, characters 5-12", Belt_List.every2(--[ :
           --[ [] ]--0
         ], (function (x, y) do
             return x > y;
-          end)), true);
+          end end)), true);
 
 eq("File \"bs_list_test.ml\", line 290, characters 5-12", Belt_List.every2(--[ :: ]--[
           2,
@@ -1973,7 +1973,7 @@ eq("File \"bs_list_test.ml\", line 290, characters 5-12", Belt_List.every2(--[ :
           --[ [] ]--0
         ], (function (x, y) do
             return x > y;
-          end)), true);
+          end end)), true);
 
 eq("File \"bs_list_test.ml\", line 291, characters 5-12", Belt_List.every2(--[ :: ]--[
           2,
@@ -1989,7 +1989,7 @@ eq("File \"bs_list_test.ml\", line 291, characters 5-12", Belt_List.every2(--[ :
           ]
         ], (function (x, y) do
             return x > y;
-          end)), false);
+          end end)), false);
 
 eq("File \"bs_list_test.ml\", line 292, characters 5-12", Belt_List.every2(--[ :: ]--[
           2,
@@ -2005,14 +2005,14 @@ eq("File \"bs_list_test.ml\", line 292, characters 5-12", Belt_List.every2(--[ :
           ]
         ], (function (x, y) do
             return x > y;
-          end)), true);
+          end end)), true);
 
 eq("File \"bs_list_test.ml\", line 293, characters 5-12", Belt_List.some2(--[ [] ]--0, --[ :: ]--[
           1,
           --[ [] ]--0
         ], (function (x, y) do
             return x > y;
-          end)), false);
+          end end)), false);
 
 eq("File \"bs_list_test.ml\", line 294, characters 5-12", Belt_List.some2(--[ :: ]--[
           2,
@@ -2025,7 +2025,7 @@ eq("File \"bs_list_test.ml\", line 294, characters 5-12", Belt_List.some2(--[ ::
           --[ [] ]--0
         ], (function (x, y) do
             return x > y;
-          end)), true);
+          end end)), true);
 
 eq("File \"bs_list_test.ml\", line 295, characters 5-12", Belt_List.some2(--[ :: ]--[
           2,
@@ -2041,7 +2041,7 @@ eq("File \"bs_list_test.ml\", line 295, characters 5-12", Belt_List.some2(--[ ::
           ]
         ], (function (x, y) do
             return x > y;
-          end)), true);
+          end end)), true);
 
 eq("File \"bs_list_test.ml\", line 296, characters 5-12", Belt_List.some2(--[ :: ]--[
           0,
@@ -2057,7 +2057,7 @@ eq("File \"bs_list_test.ml\", line 296, characters 5-12", Belt_List.some2(--[ ::
           ]
         ], (function (x, y) do
             return x > y;
-          end)), false);
+          end end)), false);
 
 eq("File \"bs_list_test.ml\", line 297, characters 5-12", Belt_List.some2(--[ :: ]--[
           0,
@@ -2073,7 +2073,7 @@ eq("File \"bs_list_test.ml\", line 297, characters 5-12", Belt_List.some2(--[ ::
           ]
         ], (function (x, y) do
             return x > y;
-          end)), true);
+          end end)), true);
 
 eq("File \"bs_list_test.ml\", line 298, characters 5-12", Belt_List.some2(--[ :: ]--[
           1,
@@ -2092,13 +2092,13 @@ eq("File \"bs_list_test.ml\", line 298, characters 5-12", Belt_List.some2(--[ ::
           ]
         ], (function (x, y) do
             return x == y;
-          end)), false);
+          end end)), false);
 
 function makeTest(n) do
   return eq("File \"bs_list_test.ml\", line 301, characters 5-12", Belt_List.make(n, 3), Belt_List.makeBy(n, (function (param) do
                     return 3;
-                  end)));
-end
+                  end end)));
+end end
 
 eq("File \"bs_list_test.ml\", line 304, characters 5-12", --[ :: ]--[
       2,
@@ -2301,7 +2301,7 @@ makeTest(3);
 
 function cmp(a, b) do
   return a - b | 0;
-end
+end end
 
 eq("SORT", Belt_List.sort(--[ :: ]--[
           5,
@@ -2378,7 +2378,7 @@ b("File \"bs_list_test.ml\", line 337, characters 4-11", !Belt_List.eq(--[ :: ]-
           ]
         ], (function (x, y) do
             return x == y;
-          end)));
+          end end)));
 
 b("File \"bs_list_test.ml\", line 338, characters 4-11", Belt_List.eq(--[ :: ]--[
           1,
@@ -2400,7 +2400,7 @@ b("File \"bs_list_test.ml\", line 338, characters 4-11", Belt_List.eq(--[ :: ]--
           ]
         ], (function (x, y) do
             return x == y;
-          end)));
+          end end)));
 
 b("File \"bs_list_test.ml\", line 339, characters 4-11", !Belt_List.eq(--[ :: ]--[
           1,
@@ -2422,7 +2422,7 @@ b("File \"bs_list_test.ml\", line 339, characters 4-11", !Belt_List.eq(--[ :: ]-
           ]
         ], (function (x, y) do
             return x == y;
-          end)));
+          end end)));
 
 b("File \"bs_list_test.ml\", line 340, characters 4-11", !Belt_List.eq(--[ :: ]--[
           1,
@@ -2447,18 +2447,18 @@ b("File \"bs_list_test.ml\", line 340, characters 4-11", !Belt_List.eq(--[ :: ]-
           ]
         ], (function (prim, prim$1) do
             return prim == prim$1;
-          end)));
+          end end)));
 
 u0 = Belt_List.makeBy(20, (function (x) do
         return x;
-      end));
+      end end));
 
 u1 = Belt_List.keepMap(u0, (function (x) do
         if (x % 7 == 0) then do
           return x + 1 | 0;
         end
          end 
-      end));
+      end end));
 
 eq("File \"bs_list_test.ml\", line 344, characters 5-12", u1, --[ :: ]--[
       1,
@@ -2488,7 +2488,7 @@ b("File \"bs_list_test.ml\", line 345, characters 4-11", Caml_obj.caml_equal(Bel
                   return -x | 0;
                 end
                  end 
-              end)), --[ :: ]--[
+              end end)), --[ :: ]--[
           -2,
           --[ :: ]--[
             -4,
@@ -2513,7 +2513,7 @@ b("File \"bs_list_test.ml\", line 349, characters 4-11", Belt_List.keepMap(--[ :
               return x;
             end
              end 
-          end)) == --[ [] ]--0);
+          end end)) == --[ [] ]--0);
 
 Mt.from_pair_suites("Bs_list_test", suites.contents);
 

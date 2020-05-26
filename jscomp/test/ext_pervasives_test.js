@@ -27,11 +27,11 @@ function $$finally(v, action, f) do
   end
   Curry._1(action, v);
   return e;
-end
+end end
 
 function with_file_as_chan(filename, f) do
   return $$finally(Pervasives.open_out_bin(filename), Pervasives.close_out, f);
-end
+end end
 
 function with_file_as_pp(filename, f) do
   return $$finally(Pervasives.open_out_bin(filename), Pervasives.close_out, (function (chan) do
@@ -39,8 +39,8 @@ function with_file_as_pp(filename, f) do
                 v = Curry._1(f, fmt);
                 Format.pp_print_flush(fmt, --[ () ]--0);
                 return v;
-              end));
-end
+              end end));
+end end
 
 function is_pos_pow(n) do
   E = Caml_exceptions.create("E");
@@ -70,7 +70,7 @@ function is_pos_pow(n) do
       throw exn;
     end end 
   end
-end
+end end
 
 function failwithf(loc, fmt) do
   return Format.ksprintf((function (s) do
@@ -79,12 +79,12 @@ function failwithf(loc, fmt) do
                       Caml_builtin_exceptions.failure,
                       s$1
                     ];
-              end), fmt);
-end
+              end end), fmt);
+end end
 
 function invalid_argf(fmt) do
   return Format.ksprintf(Pervasives.invalid_arg, fmt);
-end
+end end
 
 function bad_argf(fmt) do
   return Format.ksprintf((function (x) do
@@ -92,8 +92,8 @@ function bad_argf(fmt) do
                       Arg.Bad,
                       x
                     ];
-              end), fmt);
-end
+              end end), fmt);
+end end
 
 function dump(r) do
   if (typeof r == "number") then do
@@ -115,7 +115,7 @@ function dump(r) do
           return acc;
         end end 
       end;
-    end;
+    end end;
     is_list = function (_r) do
       while(true) do
         r = _r;
@@ -132,7 +132,7 @@ function dump(r) do
           end end 
         end end 
       end;
-    end;
+    end end;
     get_list = function (r) do
       if (typeof r == "number") then do
         return --[ [] ]--0;
@@ -144,7 +144,7 @@ function dump(r) do
                 t
               ];
       end end 
-    end;
+    end end;
     s = #r;
     t = r.tag | 0;
     if (is_list(r)) then do
@@ -234,7 +234,7 @@ function dump(r) do
       return "(" .. ($$String.concat(", ", List.map(dump, fields$3)) .. ")");
     end end  end 
   end end 
-end
+end end
 
 dump$1 = dump;
 
@@ -255,7 +255,7 @@ function pp_any(fmt, v) do
                     ]),
                   "@[%s@]"
                 ]), dump$1(v));
-end
+end end
 
 function hash_variant(s) do
   accu = 0;
@@ -268,7 +268,7 @@ function hash_variant(s) do
   end else do
     return accu;
   end end 
-end
+end end
 
 exports.$$finally = $$finally;
 exports.with_file_as_chan = with_file_as_chan;

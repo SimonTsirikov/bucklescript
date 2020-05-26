@@ -9,7 +9,7 @@ function f(_x, _y) do
     _x = y;
     continue ;
   end;
-end
+end end
 
 function f1(_x, _y, _z) do
   while(true) do
@@ -22,7 +22,7 @@ function f1(_x, _y, _z) do
     _x = y;
     continue ;
   end;
-end
+end end
 
 function f2(x, _y) do
   while(true) do
@@ -30,7 +30,7 @@ function f2(x, _y) do
     _y = y + 10 | 0;
     continue ;
   end;
-end
+end end
 
 function f3(_x, _y) do
   while(true) do
@@ -40,7 +40,7 @@ function f3(_x, _y) do
     _x = y;
     continue ;
   end;
-end
+end end
 
 function f4(_x, _y) do
   while(true) do
@@ -50,7 +50,7 @@ function f4(_x, _y) do
     _x = x + 10 | 0;
     continue ;
   end;
-end
+end end
 
 function f5(_x, _y, z) do
   while(true) do
@@ -59,7 +59,7 @@ function f5(_x, _y, z) do
     _x = y + 10 | 0;
     continue ;
   end;
-end
+end end
 
 function f6(b) do
   while(true) do
@@ -69,7 +69,7 @@ function f6(b) do
       return false;
     end end 
   end;
-end
+end end
 
 function f7(b) do
   while(true) do
@@ -79,7 +79,7 @@ function f7(b) do
       continue ;
     end end 
   end;
-end
+end end
 
 function f8(_x, _y) do
   while(true) do
@@ -98,7 +98,7 @@ function f8(_x, _y) do
       return f8(x, y + 1 | 0) + f8(x - 1 | 0, y) | 0;
     end end  end  end 
   end;
-end
+end end
 
 exports.f = f;
 exports.f1 = f1;

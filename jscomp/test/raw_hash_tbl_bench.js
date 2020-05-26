@@ -25,7 +25,7 @@ function bench(param) do
     Hashtbl.remove(table, i$2);
   end
   return --[ () ]--0;
-end
+end end
 
 bench(--[ () ]--0);
 

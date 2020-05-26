@@ -36,12 +36,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function point_init($$class) do
   x_init = CamlinternalOO.new_variable($$class, "");
@@ -53,20 +53,20 @@ function point_init($$class) do
         get_x,
         (function (self$1) do
             return self$1[x];
-          end),
+          end end),
         move,
         (function (self$1, d) do
             self$1[x] = self$1[x] + d | 0;
             return --[ () ]--0;
-          end)
+          end end)
       ]);
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x_init] = x_init$1;
       self$1[x] = x_init$1;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 point = CamlinternalOO.make_class(shared$2, point_init);
 
@@ -83,7 +83,7 @@ function colored_point_init($$class) do
   obj_init = inh[0];
   CamlinternalOO.set_method($$class, color, (function (self$2) do
           return self$2[c$1];
-        end));
+        end end));
   return (function (env, self, x$1, c$2) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[c] = c$2;
@@ -91,8 +91,8 @@ function colored_point_init($$class) do
       Curry._2(obj_init, self$1, x$1);
       self$1[c$1] = c$2;
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 colored_point = CamlinternalOO.make_class([
       "move",
@@ -102,7 +102,7 @@ colored_point = CamlinternalOO.make_class([
 
 function colored_point_to_point(cp) do
   return cp;
-end
+end end
 
 p = Curry._2(point[0], 0, 3);
 
@@ -123,17 +123,17 @@ function lookup_obj(obj, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function c_init($$class) do
   m = CamlinternalOO.get_method_label($$class, "m");
   CamlinternalOO.set_method($$class, m, (function (self$3) do
           return 1;
-        end));
+        end end));
   return (function (env, self) do
       return CamlinternalOO.create_object_opt(self, $$class);
-    end);
-end
+    end end);
+end end
 
 c = CamlinternalOO.make_class(shared$1, c_init);
 
@@ -150,18 +150,18 @@ function d_init($$class) do
         n,
         (function (self$4) do
             return 2;
-          end),
+          end end),
         as_c,
         (function (self$4) do
             return self$4;
-          end)
+          end end)
       ]);
   return (function (env, self) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       Curry._1(obj_init, self$1);
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 table = CamlinternalOO.create_table([
       "as_c",
@@ -186,8 +186,8 @@ function c2$prime_001($$class) do
   CamlinternalOO.get_method_label($$class, "m");
   return (function (env, self) do
       return CamlinternalOO.create_object_opt(self, $$class);
-    end);
-end
+    end end);
+end end
 
 c2$prime = --[ class ]--[
   0,
@@ -206,21 +206,21 @@ function functional_point_init($$class) do
         get_x,
         (function (self$6) do
             return self$6[x];
-          end),
+          end end),
         move,
         (function (self$6, d) do
             copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$6));
             copy[x] = self$6[x] + d | 0;
             return copy;
-          end)
+          end end)
       ]);
   return (function (env, self, y$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[y] = y$1;
       self$1[x] = y$1;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 functional_point = CamlinternalOO.make_class(shared$2, functional_point_init);
 
@@ -248,19 +248,19 @@ function bad_functional_point_init($$class) do
         get_x,
         (function (self$7) do
             return self$7[x];
-          end),
+          end end),
         move,
         (function (self$7, d) do
             return Curry._2(bad_functional_point[0], 0, self$7[x] + d | 0);
-          end)
+          end end)
       ]);
   return (function (env, self, y$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[y] = y$1;
       self$1[x] = y$1;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 table$1 = CamlinternalOO.create_table(shared$2);
 

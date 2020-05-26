@@ -10,14 +10,14 @@ function for_(x) do
     console.log(Caml_array.caml_array_get(x, i));
   end
   return --[ () ]--0;
-end
+end end
 
 function for_2(x) do
   for i = 0 , #x , 1 do
     console.log(Caml_array.caml_array_get(x, i));
   end
   return --[ () ]--0;
-end
+end end
 
 function for_3(x) do
   v = do
@@ -25,21 +25,21 @@ function for_3(x) do
   end;
   arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
-        end), x);
+        end end), x);
   for i = 0 , #x , 1 do
     j = (i << 1);
     Caml_array.caml_array_set(arr, i, (function(j)do
         return function (param) do
           v.contents = v.contents + j | 0;
           return --[ () ]--0;
-        end
+        end end
         end(j)));
   end
   $$Array.iter((function (x) do
           return Curry._1(x, --[ () ]--0);
-        end), arr);
+        end end), arr);
   return v.contents;
-end
+end end
 
 function for_4(x) do
   v = do
@@ -47,7 +47,7 @@ function for_4(x) do
   end;
   arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
-        end), x);
+        end end), x);
   for i = 0 , #x , 1 do
     j = (i << 1);
     k = (j << 1);
@@ -55,14 +55,14 @@ function for_4(x) do
         return function (param) do
           v.contents = v.contents + k | 0;
           return --[ () ]--0;
-        end
+        end end
         end(k)));
   end
   $$Array.iter((function (x) do
           return Curry._1(x, --[ () ]--0);
-        end), arr);
+        end end), arr);
   return v.contents;
-end
+end end
 
 function for_5(x, u) do
   v = do
@@ -70,21 +70,21 @@ function for_5(x, u) do
   end;
   arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
-        end), x);
+        end end), x);
   for i = 0 , #x , 1 do
     k = Caml_int32.imul((u << 1), u);
     Caml_array.caml_array_set(arr, i, (function(k)do
         return function (param) do
           v.contents = v.contents + k | 0;
           return --[ () ]--0;
-        end
+        end end
         end(k)));
   end
   $$Array.iter((function (x) do
           return Curry._1(x, --[ () ]--0);
-        end), arr);
+        end end), arr);
   return v.contents;
-end
+end end
 
 function for_6(x, u) do
   v = do
@@ -92,7 +92,7 @@ function for_6(x, u) do
   end;
   arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
-        end), x);
+        end end), x);
   v4 = do
     contents: 0
   end;
@@ -114,16 +114,16 @@ function for_6(x, u) do
           return function (param) do
             v.contents = (((((v.contents + k | 0) + v2.contents | 0) + u | 0) + v4.contents | 0) + v5.contents | 0) + h | 0;
             return --[ () ]--0;
-          end
+          end end
           end(k,h)));
     end
     end(v2));
   end
   $$Array.iter((function (x) do
           return Curry._1(x, --[ () ]--0);
-        end), arr);
+        end end), arr);
   return v.contents;
-end
+end end
 
 exports.for_ = for_;
 exports.for_2 = for_2;

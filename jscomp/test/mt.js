@@ -11,7 +11,7 @@ Process = require("process");
 function assert_fail(msg) do
   Assert.fail(--[ () ]--0, --[ () ]--0, msg, "");
   return --[ () ]--0;
-end
+end end
 
 function is_mocha(param) do
   match = $$Array.to_list(Process.argv);
@@ -30,7 +30,7 @@ function is_mocha(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 function from_suites(name, suite) do
   match = $$Array.to_list(Process.argv);
@@ -40,20 +40,20 @@ function from_suites(name, suite) do
                           partial_arg = param[1];
                           it(param[0], (function () do
                                   return Curry._1(partial_arg, --[ () ]--0);
-                                end));
+                                end end));
                           return --[ () ]--0;
-                        end), suite);
-          end));
+                        end end), suite);
+          end end));
     return --[ () ]--0;
   end else do
     return --[ () ]--0;
   end end 
-end
+end end
 
 function close_enough(thresholdOpt, a, b) do
   threshold = thresholdOpt ~= undefined and thresholdOpt or 0.0000001;
   return Math.abs(a - b) < threshold;
-end
+end end
 
 function handleCode(spec) do
   local ___conditional___=(spec.tag | 0);
@@ -101,7 +101,7 @@ function handleCode(spec) do
      do
     
   end
-end
+end end
 
 function from_pair_suites(name, suites) do
   match = $$Array.to_list(Process.argv);
@@ -112,10 +112,10 @@ function from_pair_suites(name, suites) do
                             code = param[1];
                             it(param[0], (function () do
                                     return handleCode(Curry._1(code, --[ () ]--0));
-                                  end));
+                                  end end));
                             return --[ () ]--0;
-                          end), suites);
-            end));
+                          end end), suites);
+            end end));
       return --[ () ]--0;
     end else do
       name$1 = name;
@@ -198,12 +198,12 @@ function from_pair_suites(name, suites) do
                        do
                       
                     end
-                  end), suites$1);
+                  end end), suites$1);
     end end 
   end else do
     return --[ () ]--0;
   end end 
-end
+end end
 
 val_unit = Promise.resolve(--[ () ]--0);
 
@@ -218,11 +218,11 @@ function from_promise_suites(name, suites) do
                                     return code.then((function (x) do
                                                   handleCode(x);
                                                   return val_unit;
-                                                end));
-                                  end));
+                                                end end));
+                                  end end));
                             return --[ () ]--0;
-                          end), suites);
-            end));
+                          end end), suites);
+            end end));
       return --[ () ]--0;
     end else do
       console.log("promise suites");
@@ -231,7 +231,7 @@ function from_promise_suites(name, suites) do
   end else do
     return --[ () ]--0;
   end end 
-end
+end end
 
 function eq_suites(test_id, suites, loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -243,12 +243,12 @@ function eq_suites(test_id, suites, loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function bool_suites(test_id, suites, loc, x) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -257,12 +257,12 @@ function bool_suites(test_id, suites, loc, x) do
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
           return --[ Ok ]--Block.__(4, [x]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function throw_suites(test_id, suites, loc, x) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -271,12 +271,12 @@ function throw_suites(test_id, suites, loc, x) do
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
           return --[ ThrowAny ]--Block.__(7, [x]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 exports.from_suites = from_suites;
 exports.from_pair_suites = from_pair_suites;

@@ -22,19 +22,19 @@ function point_init($$class) do
         get_x,
         (function (self$1) do
             return self$1[x];
-          end),
+          end end),
         move,
         (function (self$1, d) do
             self$1[x] = self$1[x] + d | 0;
             return --[ () ]--0;
-          end)
+          end end)
       ]);
   return (function (env, self) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x] = 0;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 point = CamlinternalOO.make_class(shared$1, point_init);
 
@@ -59,20 +59,20 @@ function point2_init($$class) do
         get_x,
         (function (self$2) do
             return self$2[x];
-          end),
+          end end),
         move,
         (function (self$2, d) do
             self$2[x] = self$2[x] + d | 0;
             return --[ () ]--0;
-          end)
+          end end)
       ]);
   return (function (env, self) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       x0.contents = x0.contents + 1 | 0;
       self$1[x] = x0.contents;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 point2 = CamlinternalOO.make_class(shared$1, point2_init);
 
@@ -88,7 +88,7 @@ u = do
   x: 3,
   getX: (function () do
       self = this ;
-      return self.x;
+      return self.x; end
     end)
 end;
 
@@ -100,7 +100,7 @@ Mt.from_pair_suites("Class_test", --[ :: ]--[
                       zero,
                       0
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -110,7 +110,7 @@ Mt.from_pair_suites("Class_test", --[ :: ]--[
                         three,
                         3
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -120,7 +120,7 @@ Mt.from_pair_suites("Class_test", --[ :: ]--[
                           one,
                           1
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -130,7 +130,7 @@ Mt.from_pair_suites("Class_test", --[ :: ]--[
                             two,
                             2
                           ]);
-                end)
+                end end)
             ],
             --[ [] ]--0
           ]

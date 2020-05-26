@@ -14,7 +14,7 @@ suites_000 = --[ tuple ]--[
                 Caml_char.caml_is_printable(--[ "a" ]--97),
                 true
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -29,9 +29,9 @@ suites_001 = --[ :: ]--[
                             Caml_bytes.bytes_to_string(b),
                             Caml_bytes.bytes_to_string(Bytes.init(len, (function (param) do
                                         return --[ "c" ]--99;
-                                      end)))
+                                      end end)))
                           ];
-                  end), --[ :: ]--[
+                  end end), --[ :: ]--[
                   1000,
                   --[ :: ]--[
                     1024,
@@ -57,7 +57,7 @@ suites_001 = --[ :: ]--[
                   match[0],
                   match[1]
                 ]);
-      end)
+      end end)
   ],
   --[ [] ]--0
 ];

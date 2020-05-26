@@ -13,19 +13,19 @@ end;
 
 process.on("exit", (function (exit_code) do
         return String(exit_code);
-      end));
+      end end));
 
 process.on(1, (function (param) do
         return --[ () ]--0;
-      end));
+      end end));
 
 process.on((function (i) do
         return String(i);
-      end), "exit");
+      end end), "exit");
 
 process.on((function (i) do
         return String(i);
-      end), 1);
+      end end), 1);
 
 xx(3, 3, "xxx", "a", "b");
 
@@ -44,20 +44,20 @@ function f(x) do
   x.xx(113, 3, "xxx", 0, "b", 1, 2, 3, 4, 5);
   x.xx(114, 3, true, false, ("你好"), (["你好",1,2,3]), ([{ "arr" : ["你好",1,2,3], "encoding" : "utf8"}]), ([{ "arr" : ["你好",1,2,3], "encoding" : "utf8"}]), "xxx", 0, "yyy", "b", 1, 2, 3, 4, 5);
   return --[ () ]--0;
-end
+end end
 
 process.on("exit", (function (exit_code) do
         console.log("error code: " .. String(exit_code));
         return --[ () ]--0;
-      end));
+      end end));
 
 function register(p) do
   p.on("exit", (function (i) do
           console.log(i);
           return --[ () ]--0;
-        end));
+        end end));
   return --[ () ]--0;
-end
+end end
 
 config = do
   stdio: "inherit",

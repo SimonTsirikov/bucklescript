@@ -26,12 +26,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f(x) do
   y = Caml_obj.caml_obj_dup(x);
@@ -43,7 +43,7 @@ function f(x) do
           a4: y.a4,
           a5: y.a5
         end;
-end
+end end
 
 eq("File \"update_record_test.ml\", line 30, characters 5-12", 1, f(do
           a0: 0,
@@ -64,7 +64,7 @@ function fff(x) do
           "invalid_js_id'": x["invalid_js_id'"] + 2 | 0,
           x: x.x
         end;
-end
+end end
 
 val1 = fff(val0);
 

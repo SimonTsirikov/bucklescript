@@ -41,7 +41,7 @@ function split(x, tree) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 function add(x, tree) do
   if (tree) then do
@@ -64,7 +64,7 @@ function add(x, tree) do
             1
           ];
   end end 
-end
+end end
 
 function union(s1, s2) do
   if (s1) then do
@@ -92,7 +92,7 @@ function union(s1, s2) do
   end else do
     return s2;
   end end 
-end
+end end
 
 function inter(s1, s2) do
   if (s1 and s2) then do
@@ -109,7 +109,7 @@ function inter(s1, s2) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function diff(s1, s2) do
   if (s1) then do
@@ -130,7 +130,7 @@ function diff(s1, s2) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function mem(x, _tree) do
   while(true) do
@@ -147,7 +147,7 @@ function mem(x, _tree) do
       return false;
     end end 
   end;
-end
+end end
 
 function remove(x, tree) do
   if (tree) then do
@@ -165,15 +165,15 @@ function remove(x, tree) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function compare(s1, s2) do
   return Set_gen.compare($$String.compare, s1, s2);
-end
+end end
 
 function equal(s1, s2) do
   return Set_gen.compare($$String.compare, s1, s2) == 0;
-end
+end end
 
 function subset(_s1, _s2) do
   while(true) do
@@ -225,7 +225,7 @@ function subset(_s1, _s2) do
       return true;
     end end 
   end;
-end
+end end
 
 function find(x, _tree) do
   while(true) do
@@ -243,7 +243,7 @@ function find(x, _tree) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function of_list(l) do
   if (l) then do
@@ -279,18 +279,18 @@ function of_list(l) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function of_array(l) do
   return $$Array.fold_left((function (acc, x) do
                 return add(x, acc);
-              end), --[ Empty ]--0, l);
-end
+              end end), --[ Empty ]--0, l);
+end end
 
 function invariant(t) do
   Set_gen.check(t);
   return Set_gen.is_ordered($$String.compare, t);
-end
+end end
 
 compare_elt = $$String.compare;
 

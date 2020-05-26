@@ -28,7 +28,7 @@ function inOrder(v) do
     end;
   end;
   return Belt_MutableQueue.toArray(q);
-end
+end end
 
 function inOrder3(v) do
   current = v;
@@ -50,9 +50,9 @@ function inOrder3(v) do
             current = v.left;
           end;
           return --[ () ]--0;
-        end));
+        end end));
   return Belt_MutableQueue.toArray(q);
-end
+end end
 
 function inOrder2(v) do
   todo = true;
@@ -76,7 +76,7 @@ function inOrder2(v) do
     end end  end 
   end;
   return --[ () ]--0;
-end
+end end
 
 function n(l, r, a) do
   return do
@@ -84,7 +84,7 @@ function n(l, r, a) do
           left: Js_undefined.fromOption(l),
           right: Js_undefined.fromOption(r)
         end;
-end
+end end
 
 test1 = n(Caml_option.some(n(Caml_option.some(n(undefined, undefined, 4)), Caml_option.some(n(undefined, undefined, 5)), 2)), Caml_option.some(n(undefined, undefined, 3)), 1);
 
@@ -96,7 +96,7 @@ function pushAllLeft(st1, s1) do
     current = v.left;
   end;
   return --[ () ]--0;
-end
+end end
 
 test2 = n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(Caml_option.some(n(undefined, undefined, 4)), undefined, 2)), undefined, 5)), undefined, 1)), undefined, 3);
 

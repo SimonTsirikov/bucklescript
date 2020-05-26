@@ -25,12 +25,12 @@ function eq(loc, param) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 match = typeof __filename == "undefined" and undefined or __filename;
 

@@ -10,7 +10,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, x, d, r) do
   hl = height(l);
@@ -22,7 +22,7 @@ function create(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -80,7 +80,7 @@ function bal(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add(x, data, m) do
   if (m) then do
@@ -125,7 +125,7 @@ function add(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function find(x, _param) do
   while(true) do
@@ -142,14 +142,14 @@ function find(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function timing(label, f) do
   console.time(label);
   Curry._1(f, --[ () ]--0);
   console.timeEnd(label);
   return --[ () ]--0;
-end
+end end
 
 function assertion_test(param) do
   m = do
@@ -160,14 +160,14 @@ function assertion_test(param) do
             m.contents = add(String(i), String(i), m.contents);
           end
           return --[ () ]--0;
-        end));
+        end end));
   return timing("querying", (function (param) do
                 for i = 0 , 1000000 , 1 do
                   find(String(i), m.contents);
                 end
                 return --[ () ]--0;
-              end));
-end
+              end end));
+end end
 
 exports.assertion_test = assertion_test;
 --[ No side effect ]--

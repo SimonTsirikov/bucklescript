@@ -17,7 +17,7 @@ suites_000 = --[ tuple ]--[
                 u,
                 v
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -28,7 +28,7 @@ suites_001 = --[ :: ]--[
                   u,
                   s
                 ]);
-      end)
+      end end)
   ],
   --[ [] ]--0
 ];

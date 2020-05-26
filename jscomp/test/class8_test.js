@@ -24,14 +24,14 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function comparable_001($$class) do
   CamlinternalOO.get_method_label($$class, "leq");
   return (function (env, self) do
       return CamlinternalOO.create_object_opt(self, $$class);
-    end);
-end
+    end end);
+end end
 
 comparable = --[ class ]--[
   0,
@@ -55,11 +55,11 @@ function money_init($$class) do
         value,
         (function (self$2) do
             return self$2[repr];
-          end),
+          end end),
         leq,
         (function (self$2, p) do
             return self$2[repr] <= Caml_oo_curry.js1(834174833, 1, p);
-          end)
+          end end)
       ]);
   return (function (env, self, x$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
@@ -67,8 +67,8 @@ function money_init($$class) do
       Curry._1(obj_init, self$1);
       self$1[repr] = x$1;
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 money = CamlinternalOO.make_class(shared, money_init);
 
@@ -82,14 +82,14 @@ function money2_init($$class) do
           copy = Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(self$3));
           copy[repr] = k * self$3[repr];
           return copy;
-        end));
+        end end));
   return (function (env, self, x$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x] = x$1;
       Curry._2(obj_init, self$1, x$1);
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 money2 = CamlinternalOO.make_class([
       "leq",
@@ -103,7 +103,7 @@ function min(x, y) do
   end else do
     return y;
   end end 
-end
+end end
 
 tmp = min(Curry._2(money[0], 0, 1.0), Curry._2(money[0], 0, 3.0));
 

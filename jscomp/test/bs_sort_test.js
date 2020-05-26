@@ -18,15 +18,15 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-end
+end end
 
 function cmp(x, y) do
   return x - y | 0;
-end
+end end
 
 function unions(xs, ys) do
   lenX = #xs;
@@ -35,7 +35,7 @@ function unions(xs, ys) do
   v = Belt_SortArray.union(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
   return o;
-end
+end end
 
 function inters(xs, ys) do
   lenX = #xs;
@@ -44,7 +44,7 @@ function inters(xs, ys) do
   v = Belt_SortArray.intersect(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
   return o;
-end
+end end
 
 function diffs(xs, ys) do
   lenX = #xs;
@@ -53,7 +53,7 @@ function diffs(xs, ys) do
   v = Belt_SortArray.diff(xs, 0, lenX, ys, 0, lenY, o, 0, cmp);
   o.length = v;
   return o;
-end
+end end
 
 eq("File \"bs_sort_test.ml\", line 32, characters 5-12", unions(Array_data_util.range(1, 10), Array_data_util.range(3, 13)), Array_data_util.range(1, 13));
 
@@ -95,13 +95,13 @@ b("File \"bs_sort_test.ml\", line 50, characters 4-11", Belt_Range.every(0, 200,
             v = Array_data_util.randomRange(0, i);
             Belt_SortArray.stableSortInPlaceBy(v, cmp);
             return Belt_SortArray.isSorted(v, cmp);
-          end)));
+          end end)));
 
 b("File \"bs_sort_test.ml\", line 56, characters 4-11", Belt_Range.every(0, 200, (function (i) do
             v = Array_data_util.randomRange(0, i);
             Belt_SortArray.stableSortInPlaceBy(v, cmp);
             return Belt_SortArray.isSorted(v, cmp);
-          end)));
+          end end)));
 
 b("File \"bs_sort_test.ml\", line 62, characters 4-11", Belt_SortArray.isSorted([], cmp));
 
@@ -164,7 +164,7 @@ u$1 = [
 
 eq("File \"bs_sort_test.ml\", line 90, characters 5-12", Belt_SortArray.stableSortBy(u$1, (function (param, param$1) do
             return param[0] - param$1[0] | 0;
-          end)), [
+          end end)), [
       --[ tuple ]--[
         1,
         "a"
@@ -200,7 +200,7 @@ u$2 = [
 
 eq("File \"bs_sort_test.ml\", line 96, characters 5-12", Belt_SortArray.stableSortBy(u$2, (function (param, param$1) do
             return param[0] - param$1[0] | 0;
-          end)), [
+          end end)), [
       --[ tuple ]--[
         1,
         "b"
@@ -248,7 +248,7 @@ u$3 = [
 
 eq("File \"bs_sort_test.ml\", line 102, characters 5-12", Belt_SortArray.stableSortBy(u$3, (function (param, param$1) do
             return param[0] - param$1[0] | 0;
-          end)), [
+          end end)), [
       --[ tuple ]--[
         1,
         "c"
@@ -336,11 +336,11 @@ aa = Array_data_util.range(0, 1000);
 
 b("File \"bs_sort_test.ml\", line 118, characters 4-11", Belt_Range.every(0, 1000, (function (i) do
             return Belt_SortArray.binarySearchBy(aa, i, cmp) == i;
-          end)));
+          end end)));
 
 cc = Belt_Array.map(Array_data_util.range(0, 2000), (function (x) do
         return (x << 1);
-      end));
+      end end));
 
 eq("File \"bs_sort_test.ml\", line 123, characters 5-12", Belt_SortArray.binarySearchBy(cc, 5000, cmp) ^ -1, 2001);
 
@@ -352,11 +352,11 @@ eq("File \"bs_sort_test.ml\", line 127, characters 5-12", Belt_SortArray.binaryS
 
 b("File \"bs_sort_test.ml\", line 128, characters 4-11", Belt_Range.every(0, 1999, (function (i) do
             return (Belt_SortArray.binarySearchBy(cc, (i << 1) + 1 | 0, cmp) ^ -1) == (i + 1 | 0);
-          end)));
+          end end)));
 
 function lt(x, y) do
   return x < y;
-end
+end end
 
 eq("File \"bs_sort_test.ml\", line 135, characters 5-12", Belt_SortArray.strictlySortedLength([], lt), 0);
 

@@ -22,13 +22,13 @@ function ff(x) do
       
   end
   return a + 3 | 0;
-end
+end end
 
 function f(x) do
   y;
   y = x.tag and 4 or 3;
   return y + 32 | 0;
-end
+end end
 
 function f2(x) do
   v = 0;
@@ -42,7 +42,7 @@ function f2(x) do
     y = z$1 + 3 | 0;
   end end 
   return y + 32 | 0;
-end
+end end
 
 function f3(x) do
   v = 0;
@@ -50,7 +50,7 @@ function f3(x) do
   v = 1;
   y = x.tag and 4 or 3;
   return y + 32 | 0;
-end
+end end
 
 exports.ff = ff;
 exports.f = f;

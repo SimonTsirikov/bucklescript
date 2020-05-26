@@ -18,7 +18,7 @@ Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
           ]]]), Point, do
       add: (function (prim, prim$1) do
           return prim.add(prim$1);
-        end)
+        end end)
     end);
 
 CRS = --[ () ]--0;

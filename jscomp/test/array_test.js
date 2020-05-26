@@ -34,7 +34,7 @@ function starts_with(xs, prefix, p) do
       end end 
     end
   end end 
-end
+end end
 
 function is_sorted(x) do
   len = #x;
@@ -50,7 +50,7 @@ function is_sorted(x) do
       return false;
     end end  end 
   end;
-end
+end end
 
 array_suites_000 = --[ tuple ]--[
   "init",
@@ -58,7 +58,7 @@ array_suites_000 = --[ tuple ]--[
       return --[ Eq ]--Block.__(0, [
                 $$Array.init(5, (function (x) do
                         return x;
-                      end)),
+                      end end)),
                 [
                   0,
                   1,
@@ -67,7 +67,7 @@ array_suites_000 = --[ tuple ]--[
                   4
                 ]
               ]);
-    end)
+    end end)
 ];
 
 array_suites_001 = --[ :: ]--[
@@ -83,8 +83,8 @@ array_suites_001 = --[ :: ]--[
                                 ],
                                 acc
                               ];
-                      end), --[ [] ]--0, xs);
-        end;
+                      end end), --[ [] ]--0, xs);
+        end end;
         match = List.split(aux(--[ :: ]--[
                   --[ tuple ]--[
                     [],
@@ -96,7 +96,7 @@ array_suites_001 = --[ :: ]--[
                   match[0],
                   match[1]
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -132,7 +132,7 @@ array_suites_001 = --[ :: ]--[
                           ]
                         ])
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -146,13 +146,13 @@ array_suites_001 = --[ :: ]--[
                       --[ tuple ]--[
                         $$Array.init(100, (function (param) do
                                 return --[ "a" ]--97;
-                              end)),
+                              end end)),
                         $$Array.init(100, (function (param) do
                                 return 0;
-                              end))
+                              end end))
                       ]
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -171,7 +171,7 @@ array_suites_001 = --[ :: ]--[
                           3
                         ]
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -184,7 +184,7 @@ array_suites_001 = --[ :: ]--[
                 ];
                 v = $$Array.init(3, (function (x) do
                         return (x << 1);
-                      end));
+                      end end));
                 $$Array.blit(v, 1, u, 1, 2);
                 return --[ Eq ]--Block.__(0, [
                           --[ tuple ]--[
@@ -204,7 +204,7 @@ array_suites_001 = --[ :: ]--[
                             u
                           ]
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -212,7 +212,7 @@ array_suites_001 = --[ :: ]--[
               (function (param) do
                   a0 = $$Array.init(100, (function (i) do
                           return (i << 0);
-                        end));
+                        end end));
                   $$Array.blit(a0, 10, a0, 5, 20);
                   return --[ Eq ]--Block.__(0, [
                             true,
@@ -243,9 +243,9 @@ array_suites_001 = --[ :: ]--[
                                   28
                                 ], (function (prim, prim$1) do
                                     return prim == prim$1;
-                                  end))
+                                  end end))
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -253,7 +253,7 @@ array_suites_001 = --[ :: ]--[
                 (function (param) do
                     a0 = $$Array.init(100, (function (i) do
                             return (i << 0);
-                          end));
+                          end end));
                     $$Array.blit(a0, 5, a0, 10, 20);
                     return --[ Eq ]--Block.__(0, [
                               true,
@@ -286,9 +286,9 @@ array_suites_001 = --[ :: ]--[
                                     20
                                   ], (function (prim, prim$1) do
                                       return prim == prim$1;
-                                    end))
+                                    end end))
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -301,7 +301,7 @@ array_suites_001 = --[ :: ]--[
                                   1
                                 ]
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -321,7 +321,7 @@ array_suites_001 = --[ :: ]--[
                                       ], u),
                                   true
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -329,13 +329,13 @@ array_suites_001 = --[ :: ]--[
                       (function (param) do
                           v = $$Array.init(4, (function (i) do
                                   return i % 17;
-                                end));
+                                end end));
                           $$Array.sort(Caml_primitive.caml_int_compare, v);
                           return --[ Eq ]--Block.__(0, [
                                     true,
                                     is_sorted(v)
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ [] ]--0
                   ]

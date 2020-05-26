@@ -24,12 +24,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function b(loc, v) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -38,12 +38,12 @@ function b(loc, v) do
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
           return --[ Ok ]--Block.__(4, [v]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 mapOfArray = Belt_MapInt.fromArray;
 
@@ -51,14 +51,14 @@ setOfArray = Belt_SetInt.fromArray;
 
 function emptyMap(param) do
   return Belt_MapInt.empty;
-end
+end end
 
 v = Belt_Array.makeByAndShuffle(1000000, (function (i) do
         return --[ tuple ]--[
                 i,
                 i
               ];
-      end));
+      end end));
 
 u = Belt_MapInt.fromArray(v);
 
@@ -68,7 +68,7 @@ firstHalf = Belt_Array.slice(v, 0, 2000);
 
 xx = Belt_Array.reduce(firstHalf, u, (function (acc, param) do
         return Belt_MapInt.remove(acc, param[0]);
-      end));
+      end end));
 
 Belt_MapInt.checkInvariantInternal(u);
 

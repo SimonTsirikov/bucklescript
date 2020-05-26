@@ -3,7 +3,7 @@
 
 function t_error3(param_0) do
   return --[ T_error3 ]--[param_0];
-end
+end end
 
 t_error = --[ T_error ]--0;
 

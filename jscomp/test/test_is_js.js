@@ -12,7 +12,7 @@ end;
 
 function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-end
+end end
 
 b("File \"test_is_js.ml\", line 15, characters 2-9", true);
 

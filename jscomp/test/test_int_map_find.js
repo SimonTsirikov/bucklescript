@@ -10,7 +10,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, x, d, r) do
   hl = height(l);
@@ -22,7 +22,7 @@ function create(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -80,7 +80,7 @@ function bal(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add(x, data, m) do
   if (m) then do
@@ -125,11 +125,11 @@ function add(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 List.fold_left((function (acc, param) do
         return add(param[0], param[1], acc);
-      end), --[ Empty ]--0, --[ :: ]--[
+      end end), --[ Empty ]--0, --[ :: ]--[
       --[ tuple ]--[
         10,
         --[ "a" ]--97

@@ -22,16 +22,16 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function $$(x, y) do
   return x + y | 0;
-end
+end end
 
 $$$plus = Caml_int32.imul;
 

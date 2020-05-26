@@ -873,9 +873,9 @@ suites_16 = List.map((function (param) do
                               Caml_int32.caml_bswap16(a),
                               b
                             ]);
-                  end)
+                  end end)
               ];
-      end), $$Array.to_list(tests_16));
+      end end), $$Array.to_list(tests_16));
 
 suites_32 = List.map((function (param) do
         b = param[1];
@@ -898,9 +898,9 @@ suites_32 = List.map((function (param) do
                               Caml_int32.caml_int32_bswap(a),
                               b
                             ]);
-                  end)
+                  end end)
               ];
-      end), $$Array.to_list(tests_32));
+      end end), $$Array.to_list(tests_32));
 
 suites_64 = List.map((function (param) do
         b = param[1];
@@ -923,9 +923,9 @@ suites_64 = List.map((function (param) do
                               Caml_int64.swap(a),
                               b
                             ]);
-                  end)
+                  end end)
               ];
-      end), $$Array.to_list(tests_64));
+      end end), $$Array.to_list(tests_64));
 
 d16_000 = --[ Format ]--[
   --[ Int ]--Block.__(4, [
@@ -1012,10 +1012,10 @@ function f(s, param) do
                                           Curry._1(Format.asprintf(x), Curry._1(swap, a)),
                                           b
                                         ]);
-                              end)
+                              end end)
                           ];
-                  end), param[2]));
-end
+                  end end), param[2]));
+end end
 
 Mt.from_pair_suites("Swap_test", Pervasives.$at(suites_16, Pervasives.$at(suites_32, Pervasives.$at(suites_64, Pervasives.$at(f("d16", d16), f("d32", d32))))));
 

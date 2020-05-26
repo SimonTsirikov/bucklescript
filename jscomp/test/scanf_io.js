@@ -44,9 +44,9 @@ function create_tscanf_data(ob, lines) do
                   "%S"
                 ]), param[1]));
     return $$Buffer.add_string(ob, ";\n");
-  end;
+  end end;
   return List.iter(add_line, lines);
-end
+end end
 
 function write_tscanf_data_file(fname, lines) do
   oc = Pervasives.open_out(fname);
@@ -55,7 +55,7 @@ function write_tscanf_data_file(fname, lines) do
   $$Buffer.output_buffer(oc, ob);
   Caml_io.caml_ml_flush(oc);
   return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
-end
+end end
 
 function get_lines(fname) do
   ib = Scanf.Scanning.from_file(fname);
@@ -91,7 +91,7 @@ function get_lines(fname) do
                 l.contents
               ];
               return --[ () ]--0;
-            end));
+            end end));
     end;
     return List.rev(l.contents);
   end
@@ -140,7 +140,7 @@ function get_lines(fname) do
       throw exn;
     end end  end 
   end
-end
+end end
 
 function add_digest_ib(ob, ib) do
   scan_line = function (ib, f) do
@@ -155,14 +155,14 @@ function add_digest_ib(ob, ib) do
                       ]),
                     "%[^\n\r]\n"
                   ]), f);
-  end;
+  end end;
   output_line_digest = function (s) do
     $$Buffer.add_string(ob, s);
     $$Buffer.add_char(ob, --[ "#" ]--35);
     s$1 = Digest.to_hex(Digest.string(s));
     $$Buffer.add_string(ob, Caml_bytes.bytes_to_string(Bytes.uppercase(Caml_bytes.bytes_of_string(s$1))));
     return $$Buffer.add_char(ob, --[ "\n" ]--10);
-  end;
+  end end;
   try do
     while(true) do
       scan_line(ib, output_line_digest);
@@ -176,18 +176,18 @@ function add_digest_ib(ob, ib) do
       throw exn;
     end end 
   end
-end
+end end
 
 function digest_file(fname) do
   ib = Scanf.Scanning.from_file(fname);
   ob = $$Buffer.create(42);
   add_digest_ib(ob, ib);
   return $$Buffer.contents(ob);
-end
+end end
 
 function test54(param) do
   return Caml_obj.caml_equal(get_lines(tscanf_data_file), tscanf_data_file_lines);
-end
+end end
 
 function test55(param) do
   ob = $$Buffer.create(42);
@@ -198,7 +198,7 @@ function test55(param) do
   add_digest_ib(ob, ib);
   tscanf_data_file_lines_digest = $$Buffer.contents(ob);
   return digest_file(tscanf_data_file) == tscanf_data_file_lines_digest;
-end
+end end
 
 exports.tscanf_data_file = tscanf_data_file;
 exports.tscanf_data_file_lines = tscanf_data_file_lines;

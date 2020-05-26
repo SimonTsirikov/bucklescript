@@ -5,11 +5,11 @@ Caml_oo_curry = require("../../lib/js/caml_oo_curry.js");
 function f(x) do
   x.case = 3;
   return --[ () ]--0;
-end
+end end
 
 function g(x) do
   return Caml_oo_curry.js2(-977287917, 1, x, 3);
-end
+end end
 
 exports.f = f;
 exports.g = g;

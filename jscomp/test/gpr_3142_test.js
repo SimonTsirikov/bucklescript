@@ -13,7 +13,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 jsMapperConstantArray = [
   --[ tuple ]--[
@@ -36,11 +36,11 @@ jsMapperConstantArray = [
 
 function tToJs(param) do
   return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray);
-end
+end end
 
 function tFromJs(param) do
   return Js_mapperRt.revSearch(4, jsMapperConstantArray, param);
-end
+end end
 
 eq("File \"gpr_3142_test.ml\", line 25, characters 6-13", tToJs(--[ a ]--97), "x");
 

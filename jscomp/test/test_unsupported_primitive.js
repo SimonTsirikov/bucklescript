@@ -12,7 +12,7 @@ function to_buffer(buff, ofs, len, v, flags) do
   end
    end 
   return Caml_external_polyfill.resolve("caml_output_value_to_buffer")(buff, ofs, len, v, flags);
-end
+end end
 
 exports.to_buffer = to_buffer;
 --[ No side effect ]--

@@ -21,16 +21,16 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 eq("File \"bs_string_test.ml\", line 11, characters 5-12", "ghso ghso g".split(" ").reduce((function (x, y) do
             return x .. ("-" .. y);
-          end), ""), "-ghso-ghso-g");
+          end end), ""), "-ghso-ghso-g");
 
 Mt.from_pair_suites("Bs_string_test", suites.contents);
 

@@ -11,7 +11,7 @@ suites_000 = --[ tuple ]--[
                 "10.",
                 Pervasives.string_of_float(10)
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -22,7 +22,7 @@ suites_001 = --[ :: ]--[
                   "10",
                   String(10)
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -32,7 +32,7 @@ suites_001 = --[ :: ]--[
                     "10.",
                     Pervasives.valid_float_lexem("10")
                   ]);
-        end)
+        end end)
     ],
     --[ [] ]--0
   ]

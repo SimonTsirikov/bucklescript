@@ -13,7 +13,7 @@ function f(b, x, _n) do
       continue ;
     end end 
   end;
-end
+end end
 
 function or_f(b, x, _n) do
   while(true) do
@@ -27,7 +27,7 @@ function or_f(b, x, _n) do
       continue ;
     end end  end 
   end;
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "and_tail",
@@ -36,7 +36,7 @@ suites_000 = --[ tuple ]--[
                 false,
                 f(true, 1, 0)
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -47,7 +47,7 @@ suites_001 = --[ :: ]--[
                   false,
                   or_f(false, 1, 0)
                 ]);
-      end)
+      end end)
   ],
   --[ [] ]--0
 ];

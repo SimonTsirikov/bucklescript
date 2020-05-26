@@ -8,7 +8,7 @@ function x(v) do
   end else do
     return 1;
   end end 
-end
+end end
 
 exports.x = x;
 --[ No side effect ]--

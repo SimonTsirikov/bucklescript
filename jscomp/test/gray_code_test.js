@@ -4,7 +4,7 @@ Bytes = require("../../lib/js/bytes.js");
 
 function gray_encode(b) do
   return b ^ (b >>> 1);
-end
+end end
 
 function gray_decode(n) do
   _p = n;
@@ -20,7 +20,7 @@ function gray_decode(n) do
       continue ;
     end end 
   end;
-end
+end end
 
 function bool_string(len, n) do
   s = Bytes.make(len, --[ "0" ]--48);
@@ -41,7 +41,7 @@ function bool_string(len, n) do
       continue ;
     end end 
   end;
-end
+end end
 
 function next_power(v) do
   v$1 = v - 1 | 0;
@@ -51,7 +51,7 @@ function next_power(v) do
   v$5 = (v$4 >>> 8) | v$4;
   v$6 = (v$5 >>> 16) | v$5;
   return v$6 + 1 | 0;
-end
+end end
 
 exports.gray_encode = gray_encode;
 exports.gray_decode = gray_decode;

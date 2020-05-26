@@ -11,9 +11,9 @@ function_equal_test;
 try do
   function_equal_test = Caml_obj.caml_equal((function (x) do
           return x + 1 | 0;
-        end), (function (x) do
+        end end), (function (x) do
           return x + 2 | 0;
-        end));
+        end end));
 end
 catch (raw_exn)do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
@@ -29,7 +29,7 @@ suites = do
                     true,
                     Caml_obj.caml_lessthan(undefined, 1)
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -39,7 +39,7 @@ suites = do
                       true,
                       Caml_obj.caml_lessthan(1, 2)
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -52,7 +52,7 @@ suites = do
                               --[ [] ]--0
                             ], --[ [] ]--0)
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -80,7 +80,7 @@ suites = do
                                 ]
                               ])
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -108,7 +108,7 @@ suites = do
                                   ]
                                 ])
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -132,7 +132,7 @@ suites = do
                                     --[ C ]--Block.__(2, [0])
                                   ])
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -156,7 +156,7 @@ suites = do
                                       --[ C ]--Block.__(2, [1])
                                     ])
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -166,7 +166,7 @@ suites = do
                                   true,
                                   function_equal_test
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -176,7 +176,7 @@ suites = do
                                     true,
                                     Caml_obj.caml_lessthan(undefined, 1)
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -189,7 +189,7 @@ suites = do
                                             30
                                           ])
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -202,7 +202,7 @@ suites = do
                                               30
                                             ], undefined)
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -269,7 +269,7 @@ suites = do
                                                 ]
                                               ])
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -288,7 +288,7 @@ suites = do
                                                   ]
                                                 ])
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -301,7 +301,7 @@ suites = do
                                                     --[ [] ]--0
                                                   ])
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -368,7 +368,7 @@ suites = do
                                                       ]
                                                     ])
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -378,7 +378,7 @@ suites = do
                                                   false,
                                                   false
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -388,7 +388,7 @@ suites = do
                                                     false,
                                                     false
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
@@ -455,7 +455,7 @@ suites = do
                                                             ]
                                                           ])
                                                     ]);
-                                          end)
+                                          end end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
@@ -522,7 +522,7 @@ suites = do
                                                               ]
                                                             ])
                                                       ]);
-                                            end)
+                                            end end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
@@ -538,7 +538,7 @@ suites = do
                                                               end),
                                                           0
                                                         ]);
-                                              end)
+                                              end end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
@@ -552,7 +552,7 @@ suites = do
                                                                 end),
                                                             -1
                                                           ]);
-                                                end)
+                                                end end)
                                             ],
                                             --[ :: ]--[
                                               --[ tuple ]--[
@@ -566,7 +566,7 @@ suites = do
                                                                   end),
                                                               1
                                                             ]);
-                                                  end)
+                                                  end end)
                                               ],
                                               --[ :: ]--[
                                                 --[ tuple ]--[
@@ -576,7 +576,7 @@ suites = do
                                                                 Caml_obj.caml_compare(({}), ({})),
                                                                 0
                                                               ]);
-                                                    end)
+                                                    end end)
                                                 ],
                                                 --[ :: ]--[
                                                   --[ tuple ]--[
@@ -586,7 +586,7 @@ suites = do
                                                                   Caml_obj.caml_compare(({}), ({x:1})),
                                                                   -1
                                                                 ]);
-                                                      end)
+                                                      end end)
                                                   ],
                                                   --[ :: ]--[
                                                     --[ tuple ]--[
@@ -602,7 +602,7 @@ suites = do
                                                                         end),
                                                                     0
                                                                   ]);
-                                                        end)
+                                                        end end)
                                                     ],
                                                     --[ :: ]--[
                                                       --[ tuple ]--[
@@ -612,7 +612,7 @@ suites = do
                                                                       Caml_obj.caml_compare(({x:1}), ({x:1, y:2})),
                                                                       -1
                                                                     ]);
-                                                          end)
+                                                          end end)
                                                       ],
                                                       --[ :: ]--[
                                                         --[ tuple ]--[
@@ -622,7 +622,7 @@ suites = do
                                                                         Caml_obj.caml_compare(({x:1, y:2}), ({x:1})),
                                                                         1
                                                                       ]);
-                                                            end)
+                                                            end end)
                                                         ],
                                                         --[ :: ]--[
                                                           --[ tuple ]--[
@@ -638,7 +638,7 @@ suites = do
                                                                               end),
                                                                           -1
                                                                         ]);
-                                                              end)
+                                                              end end)
                                                           ],
                                                           --[ :: ]--[
                                                             --[ tuple ]--[
@@ -654,7 +654,7 @@ suites = do
                                                                                 end),
                                                                             1
                                                                           ]);
-                                                                end)
+                                                                end end)
                                                             ],
                                                             --[ :: ]--[
                                                               --[ tuple ]--[
@@ -674,7 +674,7 @@ suites = do
                                                                                   ]),
                                                                               -1
                                                                             ]);
-                                                                  end)
+                                                                  end end)
                                                               ],
                                                               --[ :: ]--[
                                                                 --[ tuple ]--[
@@ -694,7 +694,7 @@ suites = do
                                                                                     ]),
                                                                                 1
                                                                               ]);
-                                                                    end)
+                                                                    end end)
                                                                 ],
                                                                 --[ :: ]--[
                                                                   --[ tuple ]--[
@@ -714,7 +714,7 @@ suites = do
                                                                                       end),
                                                                                   -1
                                                                                 ]);
-                                                                      end)
+                                                                      end end)
                                                                   ],
                                                                   --[ :: ]--[
                                                                     --[ tuple ]--[
@@ -734,7 +734,7 @@ suites = do
                                                                                         end),
                                                                                     1
                                                                                   ]);
-                                                                        end)
+                                                                        end end)
                                                                     ],
                                                                     --[ :: ]--[
                                                                       --[ tuple ]--[
@@ -747,7 +747,7 @@ suites = do
                                                                                             x: 1,
                                                                                             y: 2
                                                                                           end)]);
-                                                                          end)
+                                                                          end end)
                                                                       ],
                                                                       --[ :: ]--[
                                                                         --[ tuple ]--[
@@ -761,7 +761,7 @@ suites = do
                                                                                             end),
                                                                                         false
                                                                                       ]);
-                                                                            end)
+                                                                            end end)
                                                                         ],
                                                                         --[ :: ]--[
                                                                           --[ tuple ]--[
@@ -775,7 +775,7 @@ suites = do
                                                                                               end),
                                                                                           false
                                                                                         ]);
-                                                                              end)
+                                                                              end end)
                                                                           ],
                                                                           --[ :: ]--[
                                                                             --[ tuple ]--[
@@ -785,7 +785,7 @@ suites = do
                                                                                             Caml_obj.caml_equal(({}), ({})),
                                                                                             true
                                                                                           ]);
-                                                                                end)
+                                                                                end end)
                                                                             ],
                                                                             --[ :: ]--[
                                                                               --[ tuple ]--[
@@ -795,7 +795,7 @@ suites = do
                                                                                               Caml_obj.caml_equal(({}), ({x:1})),
                                                                                               false
                                                                                             ]);
-                                                                                  end)
+                                                                                  end end)
                                                                               ],
                                                                               --[ :: ]--[
                                                                                 --[ tuple ]--[
@@ -808,7 +808,7 @@ suites = do
                                                                                                       y: 2,
                                                                                                       x: 1
                                                                                                     end)]);
-                                                                                    end)
+                                                                                    end end)
                                                                                 ],
                                                                                 --[ :: ]--[
                                                                                   --[ tuple ]--[
@@ -818,7 +818,7 @@ suites = do
                                                                                                   Caml_obj.caml_equal(({x:1}), ({x:1, y:2})),
                                                                                                   false
                                                                                                 ]);
-                                                                                      end)
+                                                                                      end end)
                                                                                   ],
                                                                                   --[ :: ]--[
                                                                                     --[ tuple ]--[
@@ -828,7 +828,7 @@ suites = do
                                                                                                     Caml_obj.caml_equal(({x:1, y:2}), ({x:1})),
                                                                                                     false
                                                                                                   ]);
-                                                                                        end)
+                                                                                        end end)
                                                                                     ],
                                                                                     --[ :: ]--[
                                                                                       --[ tuple ]--[
@@ -848,7 +848,7 @@ suites = do
                                                                                                           ]),
                                                                                                       false
                                                                                                     ]);
-                                                                                          end)
+                                                                                          end end)
                                                                                       ],
                                                                                       --[ :: ]--[
                                                                                         --[ tuple ]--[
@@ -868,7 +868,7 @@ suites = do
                                                                                                             ]),
                                                                                                         true
                                                                                                       ]);
-                                                                                            end)
+                                                                                            end end)
                                                                                         ],
                                                                                         --[ :: ]--[
                                                                                           --[ tuple ]--[
@@ -888,7 +888,7 @@ suites = do
                                                                                                               end),
                                                                                                           true
                                                                                                         ]);
-                                                                                              end)
+                                                                                              end end)
                                                                                           ],
                                                                                           --[ :: ]--[
                                                                                             --[ tuple ]--[
@@ -908,7 +908,7 @@ suites = do
                                                                                                                 end),
                                                                                                             false
                                                                                                           ]);
-                                                                                                end)
+                                                                                                end end)
                                                                                             ],
                                                                                             --[ :: ]--[
                                                                                               --[ tuple ]--[
@@ -921,7 +921,7 @@ suites = do
                                                                                                                   ]),
                                                                                                               -1
                                                                                                             ]);
-                                                                                                  end)
+                                                                                                  end end)
                                                                                               ],
                                                                                               --[ :: ]--[
                                                                                                 --[ tuple ]--[
@@ -934,7 +934,7 @@ suites = do
                                                                                                                     ], null),
                                                                                                                 1
                                                                                                               ]);
-                                                                                                    end)
+                                                                                                    end end)
                                                                                                 ],
                                                                                                 --[ :: ]--[
                                                                                                   --[ tuple ]--[
@@ -944,7 +944,7 @@ suites = do
                                                                                                                   Caml_obj.caml_compare(null, 0),
                                                                                                                   -1
                                                                                                                 ]);
-                                                                                                      end)
+                                                                                                      end end)
                                                                                                   ],
                                                                                                   --[ :: ]--[
                                                                                                     --[ tuple ]--[
@@ -954,7 +954,7 @@ suites = do
                                                                                                                     Caml_obj.caml_compare(0, null),
                                                                                                                     1
                                                                                                                   ]);
-                                                                                                        end)
+                                                                                                        end end)
                                                                                                     ],
                                                                                                     --[ :: ]--[
                                                                                                       --[ tuple ]--[
@@ -964,7 +964,7 @@ suites = do
                                                                                                                       Caml_obj.caml_compare(undefined, 0),
                                                                                                                       -1
                                                                                                                     ]);
-                                                                                                          end)
+                                                                                                          end end)
                                                                                                       ],
                                                                                                       --[ :: ]--[
                                                                                                         --[ tuple ]--[
@@ -974,7 +974,7 @@ suites = do
                                                                                                                         Caml_obj.caml_compare(0, undefined),
                                                                                                                         1
                                                                                                                       ]);
-                                                                                                            end)
+                                                                                                            end end)
                                                                                                         ],
                                                                                                         --[ [] ]--0
                                                                                                       ]
@@ -1036,7 +1036,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 eq("File \"caml_compare_test.ml\", line 112, characters 6-13", true, Caml_obj.caml_greaterthan(1, undefined));
 

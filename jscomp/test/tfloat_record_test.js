@@ -22,7 +22,7 @@ function print_float(f) do
                     ]),
                   "%s"
                 ]), Pervasives.string_of_float(f));
-end
+end end
 
 function print_newline(param) do
   return Format.fprintf(fmt, --[ Format ]--[
@@ -32,7 +32,7 @@ function print_newline(param) do
                 ]),
               "\n"
             ]);
-end
+end end
 
 s = do
   f: 1.0
@@ -50,9 +50,9 @@ function print_array(a) do
   $$Array.iter((function (f) do
           print_float(f);
           return print_newline(--[ () ]--0);
-        end), a);
+        end end), a);
   return print_newline(--[ () ]--0);
-end
+end end
 
 print_array(b[0]);
 
@@ -68,7 +68,7 @@ end;
 
 function eq(f, a, b) do
   return Mt_global.collect_eq(test_id, suites, f, a, b);
-end
+end end
 
 eq("File \"tfloat_record_test.ml\", line 43, characters 5-12", $$Buffer.contents(buf), "1.\n1.\n2.\n3.\n\n1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n0.\n1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n0.\n1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n0.\n1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n0.\n\n");
 

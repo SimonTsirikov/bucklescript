@@ -5,31 +5,31 @@ console.log(2);
 
 function a0(x, y) do
   return (x + y | 0) + 1 | 0;
-end
+end end
 
 console.log(5);
 
 function a1(x, y) do
   return a0(x, y) + 1 | 0;
-end
+end end
 
 console.log(8);
 
 function a2(x, y) do
   return a1(x, y) + 1 | 0;
-end
+end end
 
 console.log(11);
 
 function a3(x, y) do
   return a2(x, y) + 1 | 0;
-end
+end end
 
 console.log(14);
 
 function a4(x, y) do
   return a3(x, y) + 1 | 0;
-end
+end end
 
 A4 = do
   a4: a4

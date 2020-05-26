@@ -23,12 +23,12 @@ function eq(loc, param) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 v5 = do
   x: 3,
@@ -39,22 +39,22 @@ v5 = do
       return --[ tuple ]--[
               self.y,
               v
-            ];
+            ]; end
     end),
   say: (function () do
       self = this ;
-      return self.x + self.y | 0;
+      return self.x + self.y | 0; end
     end),
   hihi: (function (u) do
       self = this ;
-      return self.x + self.say() | 0;
+      return self.x + self.say() | 0; end
     end),
   bark: (function () do
       console.log("bark");
-      return --[ () ]--0;
+      return --[ () ]--0; end
     end),
   xz: (function () do
-      return 3;
+      return 3; end
     end)
 end;
 
@@ -64,33 +64,33 @@ v = do
   reset: (function () do
       self = this ;
       self.y = 0;
-      return --[ () ]--0;
+      return --[ () ]--0; end
     end),
   incr: (function () do
       self = this ;
       self.y = self.y + 1 | 0;
-      return --[ () ]--0;
+      return --[ () ]--0; end
     end),
   getY: (function () do
       self = this ;
-      return self.y;
+      return self.y; end
     end),
   say: (function () do
       self = this ;
-      return self.x + self.y | 0;
+      return self.x + self.y | 0; end
     end)
 end;
 
 u = do
   incr: (function () do
       console.log("hey");
-      return --[ () ]--0;
+      return --[ () ]--0; end
     end),
   getY: (function () do
-      return 3;
+      return 3; end
     end),
   say: (function () do
-      return 7;
+      return 7; end
     end)
 end;
 
@@ -111,11 +111,11 @@ z = do
   setX: (function (x) do
       self = this ;
       self.x.contents = x;
-      return --[ () ]--0;
+      return --[ () ]--0; end
     end),
   getX: (function () do
       self = this ;
-      return self.x.contents;
+      return self.x.contents; end
     end)
 end;
 
@@ -125,34 +125,34 @@ eventObj = do
       self = this ;
       a = self.events;
       a.splice(0);
-      return --[ () ]--0;
+      return --[ () ]--0; end
     end),
   push: (function (a) do
       self = this ;
       xs = self.events;
       xs.push(a);
-      return --[ () ]--0;
+      return --[ () ]--0; end
     end),
   needRebuild: (function () do
       self = this ;
-      return #self.events ~= 0;
+      return #self.events ~= 0; end
     end)
 end;
 
 function test__(x) do
   return eventObj.push(x);
-end
+end end
 
 zz = do
   x: 3,
   setX: (function (x) do
       self = this ;
       self.x = x;
-      return --[ () ]--0;
+      return --[ () ]--0; end
     end),
   getX: (function () do
       self = this ;
-      return self.x;
+      return self.x; end
     end)
 end;
 

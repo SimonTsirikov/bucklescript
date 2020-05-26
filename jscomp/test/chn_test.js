@@ -24,12 +24,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 console.log("你好，\n世界");
 
@@ -50,8 +50,8 @@ function convert(s) do
                             ]
                           ];
                     end end 
-                  end)));
-end
+                  end end)));
+end end
 
 eq("File \"chn_test.ml\", line 25, characters 7-14", "你好，\n世界", "你好，\n世界");
 

@@ -25,12 +25,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 a = { };
 
@@ -43,12 +43,12 @@ function map(f, x) do
     return Caml_option.some(Curry._1(f, Caml_option.valFromOption(x)));
   end
    end 
-end
+end end
 
 function make(foo) do
   partial_arg = map((function (prim) do
           return String(prim);
-        end), foo);
+        end end), foo);
   return (function (param) do
       tmp = { };
       if (partial_arg ~= undefined) then do
@@ -56,8 +56,8 @@ function make(foo) do
       end
        end 
       return tmp;
-    end);
-end
+    end end);
+end end
 
 a_ = make(undefined)(--[ () ]--0);
 
@@ -89,7 +89,7 @@ function test3(_open, xx__hi) do
   end
    end 
   return tmp;
-end
+end end
 
 function test4(_open, xx__hi) do
   console.log("no inlin");
@@ -102,7 +102,7 @@ function test4(_open, xx__hi) do
   end
    end 
   return tmp;
-end
+end end
 
 function test5(f, x) do
   console.log("no inline");
@@ -120,7 +120,7 @@ function test5(f, x) do
   end
    end 
   return tmp;
-end
+end end
 
 function test6(f, x) do
   console.log("no inline");
@@ -141,11 +141,11 @@ function test6(f, x) do
   end
    end 
   return tmp;
-end
+end end
 
 function keys(xs, ys) do
   return String_set.equal(String_set.of_list(xs), String_set.of_list($$Array.to_list(ys)));
-end
+end end
 
 eq("File \"gpr_1409_test.ml\", line 69, characters 6-13", keys(--[ :: ]--[
           "hi",

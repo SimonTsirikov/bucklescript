@@ -35,7 +35,7 @@ function f(g, h) do
           enums: init.enums,
           extends: init.extends
         end;
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "eq_with",
@@ -44,7 +44,7 @@ suites_000 = --[ tuple ]--[
                 v,
                 u_v
               ]);
-    end)
+    end end)
 ];
 
 suites = --[ :: ]--[

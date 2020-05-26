@@ -10,14 +10,14 @@ function a4(prim) do
           "File \"test_primitive.ml\", line 30, characters 9-19",
           prim
         ];
-end
+end end
 
 function a5(prim) do
   return --[ tuple ]--[
           31,
           prim
         ];
-end
+end end
 
 function a6(prim) do
   return --[ tuple ]--[
@@ -29,7 +29,7 @@ function a6(prim) do
           ],
           prim
         ];
-end
+end end
 
 test_float = 3;
 
@@ -51,11 +51,11 @@ function u(b) do
   end else do
     return 7;
   end end 
-end
+end end
 
 function f2(h, b, param) do
   return Curry._1(h, b and 32 or 7);
-end
+end end
 
 Caml_array.caml_array_set(v, 1, 3.0);
 
@@ -67,11 +67,11 @@ end;
 function gg(x) do
   x.u = 0;
   return --[ () ]--0;
-end
+end end
 
 function f(x) do
   return #x;
-end
+end end
 
 is_lazy_force = CamlinternalLazy.force;
 
@@ -83,7 +83,7 @@ function fib(n) do
     fib2 = fib(n - 2 | 0);
     return (fib1 + fib2 | 0) + 3 | 0;
   end end 
-end
+end end
 
 a0 = "File \"test_primitive.ml\", line 26, characters 9-16";
 

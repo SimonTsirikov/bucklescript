@@ -18,11 +18,11 @@ function reverse_range(a, i, len) do
     end
     return --[ () ]--0;
   end end 
-end
+end end
 
 function reverse_in_place(a) do
   return reverse_range(a, 0, #a);
-end
+end end
 
 function reverse(a) do
   b_len = #a;
@@ -35,7 +35,7 @@ function reverse(a) do
     end
     return b;
   end end 
-end
+end end
 
 function reverse_of_list(l) do
   if (l) then do
@@ -58,7 +58,7 @@ function reverse_of_list(l) do
   end else do
     return [];
   end end 
-end
+end end
 
 function filter(f, a) do
   arr_len = #a;
@@ -84,7 +84,7 @@ function filter(f, a) do
       end end 
     end end 
   end;
-end
+end end
 
 function filter_map(f, a) do
   arr_len = #a;
@@ -110,7 +110,7 @@ function filter_map(f, a) do
       end end 
     end end 
   end;
-end
+end end
 
 function range(from, to_) do
   if (from > to_) then do
@@ -122,8 +122,8 @@ function range(from, to_) do
    end 
   return $$Array.init((to_ - from | 0) + 1 | 0, (function (i) do
                 return i + from | 0;
-              end));
-end
+              end end));
+end end
 
 function map2i(f, a, b) do
   len = #a;
@@ -136,8 +136,8 @@ function map2i(f, a, b) do
    end 
   return $$Array.mapi((function (i, a) do
                 return Curry._3(f, i, a, b[i]);
-              end), a);
-end
+              end end), a);
+end end
 
 function tolist_aux(a, f, _i, _res) do
   while(true) do
@@ -156,15 +156,15 @@ function tolist_aux(a, f, _i, _res) do
       continue ;
     end end 
   end;
-end
+end end
 
 function to_list_map(f, a) do
   return tolist_aux(a, f, #a - 1 | 0, --[ [] ]--0);
-end
+end end
 
 function to_list_map_acc(f, a, acc) do
   return tolist_aux(a, f, #a - 1 | 0, acc);
-end
+end end
 
 function of_list_map(f, a) do
   if (a) then do
@@ -189,7 +189,7 @@ function of_list_map(f, a) do
   end else do
     return [];
   end end 
-end
+end end
 
 function rfind_with_index(arr, cmp, v) do
   len = #arr;
@@ -203,7 +203,7 @@ function rfind_with_index(arr, cmp, v) do
       continue ;
     end end 
   end;
-end
+end end
 
 function rfind_and_split(arr, cmp, v) do
   i = rfind_with_index(arr, cmp, v);
@@ -218,7 +218,7 @@ function rfind_and_split(arr, cmp, v) do
             ]
           ];
   end end 
-end
+end end
 
 function find_with_index(arr, cmp, v) do
   len = #arr;
@@ -235,7 +235,7 @@ function find_with_index(arr, cmp, v) do
       continue ;
     end end  end 
   end;
-end
+end end
 
 function find_and_split(arr, cmp, v) do
   i = find_with_index(arr, cmp, v);
@@ -250,7 +250,7 @@ function find_and_split(arr, cmp, v) do
             ]
           ];
   end end 
-end
+end end
 
 function exists(p, a) do
   n = #a;
@@ -266,11 +266,11 @@ function exists(p, a) do
       continue ;
     end end  end 
   end;
-end
+end end
 
 function is_empty(arr) do
   return #arr == 0;
-end
+end end
 
 function unsafe_loop(_index, len, p, xs, ys) do
   while(true) do
@@ -284,7 +284,7 @@ function unsafe_loop(_index, len, p, xs, ys) do
       return false;
     end end  end 
   end;
-end
+end end
 
 function for_all2_no_exn(p, xs, ys) do
   len_xs = #xs;
@@ -294,7 +294,7 @@ function for_all2_no_exn(p, xs, ys) do
   end else do
     return false;
   end end 
-end
+end end
 
 exports.reverse_range = reverse_range;
 exports.reverse_in_place = reverse_in_place;

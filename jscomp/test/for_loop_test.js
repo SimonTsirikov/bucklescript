@@ -13,21 +13,21 @@ function for_3(x) do
   end;
   arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
-        end), x);
+        end end), x);
   for i = 0 , #x - 1 | 0 , 1 do
     j = (i << 1);
     Caml_array.caml_array_set(arr, i, (function(j)do
         return function (param) do
           v.contents = v.contents + j | 0;
           return --[ () ]--0;
-        end
+        end end
         end(j)));
   end
   $$Array.iter((function (x) do
           return Curry._1(x, --[ () ]--0);
-        end), arr);
+        end end), arr);
   return v.contents;
-end
+end end
 
 function for_4(x) do
   v = do
@@ -35,7 +35,7 @@ function for_4(x) do
   end;
   arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
-        end), x);
+        end end), x);
   for i = 0 , #x - 1 | 0 , 1 do
     j = (i << 1);
     k = (j << 1);
@@ -43,14 +43,14 @@ function for_4(x) do
         return function (param) do
           v.contents = v.contents + k | 0;
           return --[ () ]--0;
-        end
+        end end
         end(k)));
   end
   $$Array.iter((function (x) do
           return Curry._1(x, --[ () ]--0);
-        end), arr);
+        end end), arr);
   return v.contents;
-end
+end end
 
 function for_5(x, u) do
   v = do
@@ -58,21 +58,21 @@ function for_5(x, u) do
   end;
   arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
-        end), x);
+        end end), x);
   for i = 0 , #x - 1 | 0 , 1 do
     k = Caml_int32.imul((u << 1), u);
     Caml_array.caml_array_set(arr, i, (function(k)do
         return function (param) do
           v.contents = v.contents + k | 0;
           return --[ () ]--0;
-        end
+        end end
         end(k)));
   end
   $$Array.iter((function (x) do
           return Curry._1(x, --[ () ]--0);
-        end), arr);
+        end end), arr);
   return v.contents;
-end
+end end
 
 function for_6(x, u) do
   v = do
@@ -80,7 +80,7 @@ function for_6(x, u) do
   end;
   arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
-        end), x);
+        end end), x);
   v4 = do
     contents: 0
   end;
@@ -103,7 +103,7 @@ function for_6(x, u) do
           return function (param) do
             v.contents = (((((v.contents + k | 0) + v2.contents | 0) + v4.contents | 0) + v5.contents | 0) + h | 0) + u | 0;
             return --[ () ]--0;
-          end
+          end end
           end(k,h)));
     end
     end(v2));
@@ -111,14 +111,14 @@ function for_6(x, u) do
   end
   $$Array.iter((function (x) do
           return Curry._1(x, --[ () ]--0);
-        end), arr);
+        end end), arr);
   return [
           v.contents,
           v4.contents,
           v5.contents,
           inspect_3
         ];
-end
+end end
 
 function for_7(param) do
   v = do
@@ -126,7 +126,7 @@ function for_7(param) do
   end;
   arr = Caml_array.caml_make_vect(21, (function (param) do
           return --[ () ]--0;
-        end));
+        end end));
   for i = 0 , 6 , 1 do
     (function(i)do
     for j = 0 , 2 , 1 do
@@ -134,16 +134,16 @@ function for_7(param) do
           return function (param) do
             v.contents = (v.contents + i | 0) + j | 0;
             return --[ () ]--0;
-          end
+          end end
           end(j)));
     end
     end(i));
   end
   $$Array.iter((function (f) do
           return Curry._1(f, --[ () ]--0);
-        end), arr);
+        end end), arr);
   return v.contents;
-end
+end end
 
 function for_8(param) do
   v = do
@@ -151,7 +151,7 @@ function for_8(param) do
   end;
   arr = Caml_array.caml_make_vect(21, (function (param) do
           return --[ () ]--0;
-        end));
+        end end));
   for i = 0 , 6 , 1 do
     k = (i << 1);
     (function(i,k)do
@@ -161,16 +161,16 @@ function for_8(param) do
           return function (param) do
             v.contents = (((v.contents + i | 0) + j | 0) + h | 0) + k | 0;
             return --[ () ]--0;
-          end
+          end end
           end(j,h)));
     end
     end(i,k));
   end
   $$Array.iter((function (f) do
           return Curry._1(f, --[ () ]--0);
-        end), arr);
+        end end), arr);
   return v.contents;
-end
+end end
 
 function for_9(param) do
   v = do
@@ -182,7 +182,7 @@ function for_9(param) do
       v.contents
     ];
     return --[ () ]--0;
-  end;
+  end end;
   vv = do
     contents: 0
   end;
@@ -191,10 +191,10 @@ function for_9(param) do
   end;
   arr = Caml_array.caml_make_vect(4, (function (param) do
           return --[ () ]--0;
-        end));
+        end end));
   arr2 = Caml_array.caml_make_vect(2, (function (param) do
           return --[ () ]--0;
-        end));
+        end end));
   for i = 0 , 1 , 1 do
     v$1 = do
       contents: 0
@@ -207,28 +207,28 @@ function for_9(param) do
       Caml_array.caml_array_set(arr, (i << 1) + j | 0, (function (param) do
               vv.contents = vv.contents + v$1.contents | 0;
               return --[ () ]--0;
-            end));
+            end end));
     end
     end(v$1));
     Caml_array.caml_array_set(arr2, i, (function(v$1)do
         return function (param) do
           vv2.contents = vv2.contents + v$1.contents | 0;
           return --[ () ]--0;
-        end
+        end end
         end(v$1)));
   end
   $$Array.iter((function (f) do
           return Curry._1(f, --[ () ]--0);
-        end), arr);
+        end end), arr);
   $$Array.iter((function (f) do
           return Curry._1(f, --[ () ]--0);
-        end), arr2);
+        end end), arr2);
   return [--[ tuple ]--[
             vv.contents,
             $$Array.of_list(List.rev(v.contents)),
             vv2.contents
           ]];
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "for_loop_test_3",
@@ -237,7 +237,7 @@ suites_000 = --[ tuple ]--[
                 90,
                 for_3(Caml_array.caml_make_vect(10, 2))
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -248,7 +248,7 @@ suites_001 = --[ :: ]--[
                   180,
                   for_4(Caml_array.caml_make_vect(10, 2))
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -258,7 +258,7 @@ suites_001 = --[ :: ]--[
                     2420,
                     for_5(Caml_array.caml_make_vect(10, 2), 11)
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -273,7 +273,7 @@ suites_001 = --[ :: ]--[
                       ],
                       for_6(Caml_array.caml_make_vect(3, 0), 0)
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -283,7 +283,7 @@ suites_001 = --[ :: ]--[
                         84,
                         for_7(--[ () ]--0)
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -293,7 +293,7 @@ suites_001 = --[ :: ]--[
                           294,
                           for_8(--[ () ]--0)
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -312,7 +312,7 @@ suites_001 = --[ :: ]--[
                               ]],
                             for_9(--[ () ]--0)
                           ]);
-                end)
+                end end)
             ],
             --[ [] ]--0
           ]

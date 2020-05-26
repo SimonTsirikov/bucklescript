@@ -14,7 +14,7 @@ Ext_array_test = require("./ext_array_test.js");
 
 function f(u, v) do
   return u > v;
-end
+end end
 
 v = Caml_int64.add(Caml_int64.of_int32(Int32.max_int), Int64.one);
 
@@ -36,7 +36,7 @@ function commutative_add(result, a, b) do
               Caml_int64.add(b, a)
             ]
           ]);
-end
+end end
 
 generic_compare = Caml_obj.caml_compare;
 
@@ -45,7 +45,7 @@ shift_left_tests_000 = $$Array.map((function (i) do
                     --[ hi ]--0,
                     --[ lo ]--1
                   ], i);
-      end), Ext_array_test.range(0, 63));
+      end end), Ext_array_test.range(0, 63));
 
 shift_left_tests_001 = [
   --[ int64 ]--[
@@ -316,7 +316,7 @@ shift_right_tests_000 = $$Array.map((function (i) do
                     --[ hi ]---2147483648,
                     --[ lo ]--0
                   ], i);
-      end), Ext_array_test.range(0, 63));
+      end end), Ext_array_test.range(0, 63));
 
 shift_right_tests_001 = [
   --[ int64 ]--[
@@ -587,7 +587,7 @@ shift_right_logical_suites_000 = $$Array.map((function (i) do
                     --[ hi ]---2147483648,
                     --[ lo ]--0
                   ], i);
-      end), Ext_array_test.range(0, 63));
+      end end), Ext_array_test.range(0, 63));
 
 shift_right_logical_suites_001 = [
   --[ int64 ]--[
@@ -867,7 +867,7 @@ function fib(_n, _a, _b) do
       continue ;
     end end 
   end;
-end
+end end
 
 function fac(_n, _acc) do
   while(true) do
@@ -881,7 +881,7 @@ function fac(_n, _acc) do
       continue ;
     end end 
   end;
-end
+end end
 
 suites = Pervasives.$at(--[ :: ]--[
       --[ tuple ]--[
@@ -894,7 +894,7 @@ suites = Pervasives.$at(--[ :: ]--[
                         --[ lo ]--2147483648
                       ]
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -907,7 +907,7 @@ suites = Pervasives.$at(--[ :: ]--[
                         ],
                         Caml_int64.add(a, a)
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -923,7 +923,7 @@ suites = Pervasives.$at(--[ :: ]--[
                             --[ lo ]--0
                           ]
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -939,7 +939,7 @@ suites = Pervasives.$at(--[ :: ]--[
                               --[ hi ]--0,
                               --[ lo ]--1
                             ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -955,7 +955,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                 --[ hi ]--0,
                                 --[ lo ]--0
                               ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -971,7 +971,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                   --[ hi ]--0,
                                   --[ lo ]--7
                                 ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -987,7 +987,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                     --[ hi ]--0,
                                     --[ lo ]--2147483648
                                   ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -1003,7 +1003,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                       --[ hi ]--0,
                                       --[ lo ]--1
                                     ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -1019,7 +1019,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                         --[ hi ]--0,
                                         --[ lo ]--2147483647
                                       ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -1035,7 +1035,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                           --[ hi ]--0,
                                           --[ lo ]--0
                                         ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -1051,7 +1051,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                             --[ hi ]--0,
                                             --[ lo ]--0
                                           ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -1064,7 +1064,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                   --[ lo ]--3
                                                 ])
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -1077,7 +1077,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                     --[ lo ]--3
                                                   ])
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -1093,7 +1093,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                   --[ lo ]--3
                                                 ]
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -1109,7 +1109,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                     --[ lo ]--4294967293
                                                   ]
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -1125,7 +1125,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                       --[ lo ]--4294967294
                                                     ]
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
@@ -1141,7 +1141,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                         --[ lo ]--2
                                                       ]
                                                     ]);
-                                          end)
+                                          end end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
@@ -1169,7 +1169,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                           ]
                                                         ]
                                                       ]);
-                                            end)
+                                            end end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
@@ -1185,7 +1185,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                             --[ lo ]--4294967295
                                                           ]
                                                         ]);
-                                              end)
+                                              end end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
@@ -1201,7 +1201,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                               --[ lo ]--4008636142
                                                             ]
                                                           ]);
-                                                end)
+                                                end end)
                                             ],
                                             --[ :: ]--[
                                               --[ tuple ]--[
@@ -1213,9 +1213,9 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                   --[ hi ]--0,
                                                                                   --[ lo ]--1
                                                                                 ], x);
-                                                                    end), $$Array.init(64, (function (i) do
+                                                                    end end), $$Array.init(64, (function (i) do
                                                                           return i;
-                                                                        end))),
+                                                                        end end))),
                                                               [
                                                                 --[ int64 ]--[
                                                                   --[ hi ]--0,
@@ -1475,7 +1475,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                 ]
                                                               ]
                                                             ]);
-                                                  end)
+                                                  end end)
                                               ],
                                               --[ :: ]--[
                                                 --[ tuple ]--[
@@ -1487,9 +1487,9 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                     --[ hi ]---1,
                                                                                     --[ lo ]--4294967295
                                                                                   ], x);
-                                                                      end), $$Array.init(64, (function (i) do
+                                                                      end end), $$Array.init(64, (function (i) do
                                                                             return i;
-                                                                          end))),
+                                                                          end end))),
                                                                 [
                                                                   --[ int64 ]--[
                                                                     --[ hi ]---1,
@@ -1749,7 +1749,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                   ]
                                                                 ]
                                                               ]);
-                                                    end)
+                                                    end end)
                                                 ],
                                                 --[ :: ]--[
                                                   --[ tuple ]--[
@@ -1761,9 +1761,9 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                       --[ hi ]---1,
                                                                                       --[ lo ]--4294967295
                                                                                     ], x);
-                                                                        end), $$Array.init(64, (function (i) do
+                                                                        end end), $$Array.init(64, (function (i) do
                                                                               return i;
-                                                                            end))),
+                                                                            end end))),
                                                                   [
                                                                     --[ int64 ]--[
                                                                       --[ hi ]---1,
@@ -2023,7 +2023,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                     ]
                                                                   ]
                                                                 ]);
-                                                      end)
+                                                      end end)
                                                   ],
                                                   --[ :: ]--[
                                                     --[ tuple ]--[
@@ -2039,7 +2039,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                       --[ lo ]--6
                                                                     ]
                                                                   ]);
-                                                        end)
+                                                        end end)
                                                     ],
                                                     --[ :: ]--[
                                                       --[ tuple ]--[
@@ -2061,7 +2061,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                         ]
                                                                       ]
                                                                     ]);
-                                                          end)
+                                                          end end)
                                                       ],
                                                       --[ :: ]--[
                                                         --[ tuple ]--[
@@ -2077,7 +2077,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                           --[ lo ]--4294967293
                                                                         ]
                                                                       ]);
-                                                            end)
+                                                            end end)
                                                         ],
                                                         --[ :: ]--[
                                                           --[ tuple ]--[
@@ -2093,7 +2093,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                             --[ lo ]--3
                                                                           ]
                                                                         ]);
-                                                              end)
+                                                              end end)
                                                           ],
                                                           --[ :: ]--[
                                                             --[ tuple ]--[
@@ -2115,7 +2115,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                               -2147483648
                                                                             ]
                                                                           ]);
-                                                                end)
+                                                                end end)
                                                             ],
                                                             --[ :: ]--[
                                                               --[ tuple ]--[
@@ -2131,7 +2131,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                 --[ lo ]--4294967295
                                                                               ]
                                                                             ]);
-                                                                  end)
+                                                                  end end)
                                                               ],
                                                               --[ :: ]--[
                                                                 --[ tuple ]--[
@@ -2156,7 +2156,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                   ]
                                                                                 ]
                                                                               ]);
-                                                                    end)
+                                                                    end end)
                                                                 ],
                                                                 --[ :: ]--[
                                                                   --[ tuple ]--[
@@ -2169,7 +2169,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                       ]),
                                                                                   "ffffffffffffffff"
                                                                                 ]);
-                                                                      end)
+                                                                      end end)
                                                                   ],
                                                                   --[ :: ]--[
                                                                     --[ tuple ]--[
@@ -2185,7 +2185,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                         ]) > 0,
                                                                                     true
                                                                                   ]);
-                                                                        end)
+                                                                        end end)
                                                                     ],
                                                                     --[ :: ]--[
                                                                       --[ tuple ]--[
@@ -2201,7 +2201,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                         --[ lo ]--4294967295
                                                                                       ]
                                                                                     ]);
-                                                                          end)
+                                                                          end end)
                                                                       ],
                                                                       --[ :: ]--[
                                                                         --[ tuple ]--[
@@ -2217,7 +2217,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                             ]) > 0,
                                                                                         true
                                                                                       ]);
-                                                                            end)
+                                                                            end end)
                                                                         ],
                                                                         --[ :: ]--[
                                                                           --[ tuple ]--[
@@ -2233,7 +2233,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                             --[ lo ]--4294967040
                                                                                           ]
                                                                                         ]);
-                                                                              end)
+                                                                              end end)
                                                                           ],
                                                                           --[ :: ]--[
                                                                             --[ tuple ]--[
@@ -2243,7 +2243,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                             4294967295,
                                                                                             4294967295
                                                                                           ]);
-                                                                                end)
+                                                                                end end)
                                                                             ],
                                                                             --[ :: ]--[
                                                                               --[ tuple ]--[
@@ -2262,7 +2262,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                                 --[ lo ]--2874523960
                                                                                               ]
                                                                                             ]);
-                                                                                  end)
+                                                                                  end end)
                                                                               ],
                                                                               --[ :: ]--[
                                                                                 --[ tuple ]--[
@@ -2278,7 +2278,7 @@ suites = Pervasives.$at(--[ :: ]--[
                                                                                                   --[ lo ]--1409286144
                                                                                                 ]
                                                                                               ]);
-                                                                                    end)
+                                                                                    end end)
                                                                                 ],
                                                                                 --[ [] ]--0
                                                                               ]
@@ -2337,9 +2337,9 @@ suites = Pervasives.$at(--[ :: ]--[
                                           a,
                                           b
                                         ]);
-                              end)
+                              end end)
                           ];
-                  end), shift_left_tests_000, shift_left_tests_001)), Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                  end end), shift_left_tests_000, shift_left_tests_001)), Pervasives.$at($$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                         return --[ tuple ]--[
                                 Curry._1(Format.asprintf(--[ Format ]--[
                                           --[ String_literal ]--Block.__(11, [
@@ -2358,9 +2358,9 @@ suites = Pervasives.$at(--[ :: ]--[
                                               a,
                                               b
                                             ]);
-                                  end)
+                                  end end)
                               ];
-                      end), shift_right_tests_000, shift_right_tests_001)), $$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
+                      end end), shift_right_tests_000, shift_right_tests_001)), $$Array.to_list(Ext_array_test.map2i((function (i, a, b) do
                         return --[ tuple ]--[
                                 Curry._1(Format.asprintf(--[ Format ]--[
                                           --[ String_literal ]--Block.__(11, [
@@ -2379,9 +2379,9 @@ suites = Pervasives.$at(--[ :: ]--[
                                               a,
                                               b
                                             ]);
-                                  end)
+                                  end end)
                               ];
-                      end), shift_right_logical_suites_000, shift_right_logical_suites_001)))));
+                      end end), shift_right_logical_suites_000, shift_right_logical_suites_001)))));
 
 suites$1 = do
   contents: suites
@@ -2393,7 +2393,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites$1, loc, x, y);
-end
+end end
 
 function id(loc, x) do
   float_value = Caml_int64.float_of_bits(x);
@@ -2403,7 +2403,7 @@ function id(loc, x) do
   end else do
     return eq(loc, Caml_int64.bits_of_float(float_value), x);
   end end 
-end
+end end
 
 eq("File \"int64_test.ml\", line 188, characters 5-12", Caml_int64.bits_of_float(0.3), --[ int64 ]--[
       --[ hi ]--1070805811,

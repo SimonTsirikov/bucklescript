@@ -7,11 +7,11 @@ function map_pair(r, param) do
           Curry._1(r, param[0]),
           Curry._1(r, param[1])
         ];
-end
+end end
 
 function u(x) do
   return x;
-end
+end end
 
 map_pair(u, --[ tuple ]--[
       3,

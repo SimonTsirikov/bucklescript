@@ -6,7 +6,7 @@ Block = require("../../lib/js/block.js");
 
 function length(param) do
   return 3;
-end
+end end
 
 Mt.from_pair_suites("Es6_module_test", --[ :: ]--[
       --[ tuple ]--[
@@ -22,7 +22,7 @@ Mt.from_pair_suites("Es6_module_test", --[ :: ]--[
                           ]),
                       2
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -32,7 +32,7 @@ Mt.from_pair_suites("Es6_module_test", --[ :: ]--[
                         3,
                         3
                       ]);
-            end)
+            end end)
         ],
         --[ [] ]--0
       ]

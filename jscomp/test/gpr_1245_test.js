@@ -20,11 +20,11 @@ function f(param) do
   end;
   console.log(a, b);
   return --[ () ]--0;
-end
+end end
 
 function g(param) do
   return 3;
-end
+end end
 
 function a0(f) do
   u = Curry._1(f, --[ () ]--0);
@@ -35,7 +35,7 @@ function a0(f) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function a1(f) do
   E = Caml_exceptions.create("E");
@@ -49,7 +49,7 @@ function a1(f) do
       throw exn;
     end end 
   end
-end
+end end
 
 a = 1;
 

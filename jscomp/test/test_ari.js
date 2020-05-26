@@ -8,26 +8,26 @@ Curry = require("../../lib/js/curry.js");
 function f(x) do
   return (function (param) do
       return x + param | 0;
-    end);
-end
+    end end);
+end end
 
 function f1(x, y) do
   return x + y | 0;
-end
+end end
 
 function f3(g, x) do
   return Curry._1(g, x);
-end
+end end
 
 function f2(param) do
   return 3 + param | 0;
-end
+end end
 
 g = 7;
 
 function ff(param) do
   return U.test_primit(3, param);
-end
+end end
 
 fff = VV.test_primit2(3);
 
@@ -43,7 +43,7 @@ function length_aux(_len, _param) do
       return len;
     end end 
   end;
-end
+end end
 
 length = List.length;
 

@@ -20,20 +20,20 @@ end;
 function eq(f) do
   return (function (param, param$1) do
       return Mt_global.collect_eq(id, suites, f, param, param$1);
-    end);
-end
+    end end);
+end end
 
 function neq(f) do
   return (function (param, param$1) do
       return Mt_global.collect_neq(id, suites, f, param, param$1);
-    end);
-end
+    end end);
+end end
 
 function approx(f) do
   return (function (param, param$1) do
       return Mt_global.collect_approx(id, suites, f, param, param$1);
-    end);
-end
+    end end);
+end end
 
 Random.self_init(--[ () ]--0);
 

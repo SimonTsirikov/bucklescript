@@ -11,9 +11,9 @@ function test(path) do
                   string_buffer
                 ]);
             return --[ () ]--0;
-          end)).close();
+          end end)).close();
   return --[ () ]--0;
-end
+end end
 
 exports.test = test;
 --[ fs Not a pure module ]--

@@ -14,7 +14,7 @@ function to_list(v) do
     ];
   end;
   return List.rev(acc);
-end
+end end
 
 function v(param) do
   v$1 = do
@@ -25,7 +25,7 @@ function v(param) do
   Stack.push(4, v$1);
   Stack.push(1, v$1);
   return to_list(v$1);
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "push_test",
@@ -43,7 +43,7 @@ suites_000 = --[ tuple ]--[
                 ],
                 v(--[ () ]--0)
               ]);
-    end)
+    end end)
 ];
 
 suites = --[ :: ]--[

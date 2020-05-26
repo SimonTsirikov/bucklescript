@@ -49,7 +49,7 @@ function from_pairs(pair) do
                                                 Caml_float.caml_int32_float_of_bits(i32),
                                                 f
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -70,13 +70,13 @@ function from_pairs(pair) do
                                                   Caml_float.caml_int32_bits_of_float(f),
                                                   i32
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ [] ]--0
                                 ]
                               ];
-                      end), int32_pairs)));
-end
+                      end end), int32_pairs)));
+end end
 
 suites = Pervasives.$at(--[ :: ]--[
       --[ tuple ]--[
@@ -86,7 +86,7 @@ suites = Pervasives.$at(--[ :: ]--[
                       Caml_int64.bits_of_float(1.0),
                       one_float
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -96,7 +96,7 @@ suites = Pervasives.$at(--[ :: ]--[
                         Caml_int64.float_of_bits(one_float),
                         1.0
                       ]);
-            end)
+            end end)
         ],
         --[ [] ]--0
       ]

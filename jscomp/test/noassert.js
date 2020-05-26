@@ -11,11 +11,11 @@ function f(param) do
           11
         ]
       ];
-end
+end end
 
 function h(param) do
   return 0;
-end
+end end
 
 exports.f = f;
 exports.h = h;

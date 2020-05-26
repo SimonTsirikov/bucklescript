@@ -8,7 +8,7 @@ function f(value) do
   end else do
     return value;
   end end 
-end
+end end
 
 function fxx(v) do
   match = Curry._1(v, --[ () ]--0);
@@ -26,7 +26,7 @@ function fxx(v) do
       end end
       
   end
-end
+end end
 
 function fxxx2(v) do
   if (Curry._1(v, --[ () ]--0)) then do
@@ -34,7 +34,7 @@ function fxxx2(v) do
   end else do
     return 1;
   end end 
-end
+end end
 
 function fxxx3(v) do
   if (Curry._1(v, --[ () ]--0)) then do
@@ -42,7 +42,7 @@ function fxxx3(v) do
   end else do
     return 1;
   end end 
-end
+end end
 
 exports.f = f;
 exports.fxx = fxx;

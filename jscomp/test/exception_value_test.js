@@ -8,7 +8,7 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(param) do
   throw Caml_builtin_exceptions.not_found;
-end
+end end
 
 function assert_f(x) do
   if (x <= 3) then do
@@ -23,11 +23,11 @@ function assert_f(x) do
   end
    end 
   return 3;
-end
+end end
 
 function hh(param) do
   throw Caml_builtin_exceptions.not_found;
-end
+end end
 
 A = Caml_exceptions.create("Exception_value_test.A");
 
@@ -51,7 +51,7 @@ function test_not_found(f, param) do
       throw exn;
     end end 
   end
-end
+end end
 
 function test_js_error2(param) do
   try do
@@ -66,7 +66,7 @@ function test_js_error2(param) do
       throw e;
     end end 
   end
-end
+end end
 
 function test_js_error3(param) do
   try do
@@ -76,7 +76,7 @@ function test_js_error3(param) do
   catch (e)do
     return 0;
   end
-end
+end end
 
 exports.f = f;
 exports.assert_f = assert_f;

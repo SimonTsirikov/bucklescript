@@ -6,14 +6,14 @@ Caml_module = require("../../lib/js/caml_module.js");
 function Make(X) do
   f = function (param) do
     return --[ () ]--0;
-  end;
+  end end;
   M = do
     f: f
   end;
   return do
           M: M
         end;
-end
+end end
 
 B = Caml_module.init_mod(--[ tuple ]--[
       "recursive_unbound_module_test.ml",
@@ -29,7 +29,7 @@ B = Caml_module.init_mod(--[ tuple ]--[
 
 function f(param) do
   return --[ () ]--0;
-end
+end end
 
 M = do
   f: f

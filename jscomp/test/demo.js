@@ -26,8 +26,8 @@ function ui_layout(compile, lookup, appContext) do
     contents: (function (env) do
         return Curry._1(init, (function (key) do
                       return Curry._2(lookup, env, key);
-                    end));
-      end)
+                    end end));
+      end end)
   end;
   hw1 = new BUI.HostedWindow();
   hc = new BUI.HostedContent();
@@ -52,7 +52,7 @@ function ui_layout(compile, lookup, appContext) do
               text: text
             end
           end;
-  end;
+  end end;
   u = do
     width: 200
   end;
@@ -95,14 +95,14 @@ function ui_layout(compile, lookup, appContext) do
             computeFunction.contents = (function (env) do
                 return Curry._1(hot_function, (function (key) do
                               return Curry._2(lookup, env, key);
-                            end));
-              end);
+                            end end));
+              end end);
             return --[ () ]--0;
           end
           catch (e)do
             return --[ () ]--0;
           end
-        end));
+        end end));
   Runtime.setInterval((function () do
           grid.dataSource = Array.prototype.map.call(data, (function (param) do
                   price = param.price;
@@ -118,11 +118,11 @@ function ui_layout(compile, lookup, appContext) do
                           mk_titleRow(ask.toFixed(2)),
                           mk_titleRow(result.toFixed(2))
                         ];
-                end));
+                end end));
           return --[ () ]--0;
-        end), 100);
+        end end), 100);
   return hw1;
-end
+end end
 
 exports.data = data;
 exports.ui_layout = ui_layout;

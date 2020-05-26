@@ -30,7 +30,7 @@ function print_pair(fmt, param) do
                     ]),
                   "(%d,%d)"
                 ]), param[0], param[1]);
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "sprintf_simple",
@@ -50,7 +50,7 @@ suites_000 = --[ tuple ]--[
                           "%s%d"
                         ]), "32", 32)
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -67,7 +67,7 @@ suites_001 = --[ :: ]--[
                         "xx"
                       ])
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -83,7 +83,7 @@ suites_001 = --[ :: ]--[
                           2
                         ])
                   ]);
-        end)
+        end end)
     ],
     --[ [] ]--0
   ]

@@ -23,7 +23,7 @@ suites_000 = --[ tuple ]--[
                 "3",
                 String(3)
               ]);
-    end)
+    end end)
 ];
 
 suites = --[ :: ]--[

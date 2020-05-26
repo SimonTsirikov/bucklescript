@@ -13,7 +13,7 @@ function f(obj) do
       return --[ () ]--0;
     end end 
   end end 
-end
+end end
 
 exports.f = f;
 --[ No side effect ]--

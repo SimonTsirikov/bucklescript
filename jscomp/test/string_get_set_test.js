@@ -13,7 +13,7 @@ Mt.from_pair_suites("String_get_set_test", --[ :: ]--[
                       Caml_string.caml_string_get16("2\0", 0),
                       50
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -23,7 +23,7 @@ Mt.from_pair_suites("String_get_set_test", --[ :: ]--[
                         Caml_string.caml_string_get16("20", 0),
                         12338
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -33,7 +33,7 @@ Mt.from_pair_suites("String_get_set_test", --[ :: ]--[
                           Caml_string.caml_string_get32("0123", 0),
                           858927408
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -43,7 +43,7 @@ Mt.from_pair_suites("String_get_set_test", --[ :: ]--[
                             Caml_string.caml_string_get32("0123", 0),
                             858927408
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -53,7 +53,7 @@ Mt.from_pair_suites("String_get_set_test", --[ :: ]--[
                               Caml_string.caml_string_get32("3210", 0),
                               808530483
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -66,7 +66,7 @@ Mt.from_pair_suites("String_get_set_test", --[ :: ]--[
                                   --[ lo ]--875770417
                                 ]
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -79,7 +79,7 @@ Mt.from_pair_suites("String_get_set_test", --[ :: ]--[
                                     --[ lo ]--892745528
                                   ]
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ [] ]--0
                 ]

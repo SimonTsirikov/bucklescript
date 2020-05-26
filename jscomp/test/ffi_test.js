@@ -3,7 +3,7 @@
 
 function u(param) do
   return xx(3);
-end
+end end
 
 Textarea = { };
 
@@ -13,13 +13,13 @@ function v(param) do
   u = new TextArea();
   u.minHeight = 3;
   return u.minHeight;
-end
+end end
 
 function f(param) do
   v = new Int32Array(32);
   v[0] = 3;
   return v[0];
-end
+end end
 
 a = true;
 

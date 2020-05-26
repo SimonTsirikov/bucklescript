@@ -15,11 +15,11 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, v) do
   return Mt.bool_suites(test_id, suites, loc, v);
-end
+end end
 
 function f0(x) do
   match = x[1];
@@ -28,7 +28,7 @@ function f0(x) do
   end else do
     return 2;
   end end 
-end
+end end
 
 function f1(u) do
   if (u) then do
@@ -36,7 +36,7 @@ function f1(u) do
   end else do
     return 1;
   end end 
-end
+end end
 
 function f2(x, y, zOpt, param) do
   z = zOpt ~= undefined and zOpt or 3;
@@ -46,7 +46,7 @@ function f2(x, y, zOpt, param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function f3(x) do
   if (x ~= undefined) then do
@@ -54,7 +54,7 @@ function f3(x) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function f4(x) do
   if (x ~= undefined) then do
@@ -62,15 +62,15 @@ function f4(x) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function f5(a) do
   return false;
-end
+end end
 
 function f6(a) do
   return true;
-end
+end end
 
 f10 = Caml_option.some(Caml_option.some(Caml_option.some(Caml_option.some(undefined))));
 
@@ -87,7 +87,7 @@ function create(randomOpt, param) do
   end else do
     return 1;
   end end 
-end
+end end
 
 ff = create(false, --[ () ]--0);
 
@@ -95,21 +95,21 @@ function f13(xOpt, yOpt, param) do
   x = xOpt ~= undefined and xOpt or 3;
   y = yOpt ~= undefined and yOpt or 4;
   return x + y | 0;
-end
+end end
 
 a = f13(2, undefined, --[ () ]--0);
 
 function f12(x) do
   return x;
-end
+end end
 
 length_8_id = Belt_List.makeBy(8, (function (x) do
         return x;
-      end));
+      end end));
 
 length_10_id = Belt_List.makeBy(10, (function (x) do
         return x;
-      end));
+      end end));
 
 function f13$1(param) do
   return Caml_obj.caml_equal(Belt_List.take(length_10_id, 8), --[ :: ]--[
@@ -122,7 +122,7 @@ function f13$1(param) do
                 ]
               ]
             ]);
-end
+end end
 
 b("File \"option_repr_test.ml\", line 94, characters 4-11", Caml_obj.caml_lessthan(undefined, null));
 
@@ -142,7 +142,7 @@ function ltx(a, b) do
   end else do
     return false;
   end end 
-end
+end end
 
 function gtx(a, b) do
   if (Caml_obj.caml_greaterthan(a, b)) then do
@@ -150,7 +150,7 @@ function gtx(a, b) do
   end else do
     return false;
   end end 
-end
+end end
 
 function eqx(a, b) do
   if (Caml_obj.caml_equal(a, b)) then do
@@ -158,7 +158,7 @@ function eqx(a, b) do
   end else do
     return false;
   end end 
-end
+end end
 
 function neqx(a, b) do
   if (Caml_obj.caml_notequal(a, b)) then do
@@ -166,13 +166,13 @@ function neqx(a, b) do
   end else do
     return false;
   end end 
-end
+end end
 
 function all_true(xs) do
   return Belt_List.every(xs, (function (x) do
                 return x;
-              end));
-end
+              end end));
+end end
 
 xs_000 = gtx(Caml_option.some(null), Caml_option.some(undefined));
 
@@ -183,7 +183,7 @@ xs = --[ :: ]--[
 
 b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs, (function (x) do
             return x;
-          end)));
+          end end)));
 
 xs_000$1 = ltx(Caml_option.some(undefined), 3);
 
@@ -206,7 +206,7 @@ xs_001 = --[ :: ]--[
                 --[ :: ]--[
                   ltx(undefined, (function (x) do
                           return x;
-                        end)),
+                        end end)),
                   --[ :: ]--[
                     ltx(null, 3),
                     --[ [] ]--0
@@ -228,7 +228,7 @@ xs$1 = --[ :: ]--[
 
 b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs$1, (function (x) do
             return x;
-          end)));
+          end end)));
 
 xs_000$2 = eqx(undefined, undefined);
 
@@ -253,15 +253,15 @@ xs$2 = --[ :: ]--[
 
 b("File \"option_repr_test.ml\", line 143, characters 5-12", Belt_List.every(xs$2, (function (x) do
             return x;
-          end)));
+          end end)));
 
 function v(x) do
   return x;
-end
+end end
 
 function v0(x) do
   return x;
-end
+end end
 
 N0 = do
   v: v,

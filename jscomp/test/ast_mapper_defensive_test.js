@@ -19,16 +19,16 @@ function $$throw(loc, x) do
       loc .. (" id " .. String(test_id.contents)),
       (function (param) do
           return --[ ThrowAny ]--Block.__(7, [x]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function aToJs(param) do
   return param + 0 | 0;
-end
+end end
 
 function aFromJs(param) do
   if (!(param <= 2 and 0 <= param)) then do
@@ -36,7 +36,7 @@ function aFromJs(param) do
   end
    end 
   return param - 0 | 0;
-end
+end end
 
 jsMapperConstantArray = [
   0,
@@ -46,11 +46,11 @@ jsMapperConstantArray = [
 
 function bToJs(param) do
   return jsMapperConstantArray[param];
-end
+end end
 
 function bFromJs(param) do
   return Js_mapperRt.fromIntAssert(3, jsMapperConstantArray, param);
-end
+end end
 
 jsMapperConstantArray$1 = [
   --[ tuple ]--[
@@ -69,26 +69,26 @@ jsMapperConstantArray$1 = [
 
 function cToJs(param) do
   return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$1);
-end
+end end
 
 function cFromJs(param) do
   return Js_mapperRt.revSearchAssert(3, jsMapperConstantArray$1, param);
-end
+end end
 
 $$throw("File \"ast_mapper_defensive_test.ml\", line 28, characters 16-23", (function (param) do
         aFromJs(3);
         return --[ () ]--0;
-      end));
+      end end));
 
 $$throw("File \"ast_mapper_defensive_test.ml\", line 29, characters 15-22", (function (param) do
         bFromJs(2);
         return --[ () ]--0;
-      end));
+      end end));
 
 $$throw("File \"ast_mapper_defensive_test.ml\", line 30, characters 15-22", (function (param) do
         cFromJs(33);
         return --[ () ]--0;
-      end));
+      end end));
 
 Mt.from_pair_suites("Ast_mapper_defensive_test", suites.contents);
 

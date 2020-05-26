@@ -21,12 +21,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f(x) do
   local ___conditional___=(x);
@@ -45,7 +45,7 @@ function f(x) do
       end end
       
   end
-end
+end end
 
 eq("File \"switch_case_test.ml\", line 19, characters 7-14", f("xx'''"), 0);
 

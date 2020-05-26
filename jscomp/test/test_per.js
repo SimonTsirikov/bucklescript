@@ -18,14 +18,14 @@ function failwith(s) do
         Caml_builtin_exceptions.failure,
         s
       ];
-end
+end end
 
 function invalid_arg(s) do
   throw [
         Caml_builtin_exceptions.invalid_argument,
         s
       ];
-end
+end end
 
 Exit = Caml_exceptions.create("Test_per.Exit");
 
@@ -35,7 +35,7 @@ function min(x, y) do
   end else do
     return y;
   end end 
-end
+end end
 
 function max(x, y) do
   if (Caml_obj.caml_greaterequal(x, y)) then do
@@ -43,7 +43,7 @@ function max(x, y) do
   end else do
     return y;
   end end 
-end
+end end
 
 function abs(x) do
   if (x >= 0) then do
@@ -51,11 +51,11 @@ function abs(x) do
   end else do
     return -x | 0;
   end end 
-end
+end end
 
 function lnot(x) do
   return x ^ -1;
-end
+end end
 
 min_int = -2147483648;
 
@@ -96,7 +96,7 @@ function $caret(s1, s2) do
   Caml_bytes.caml_blit_string(s1, 0, s, 0, l1);
   Caml_bytes.caml_blit_string(s2, 0, s, l1, l2);
   return s;
-end
+end end
 
 function char_of_int(n) do
   if (n < 0 or n > 255) then do
@@ -107,7 +107,7 @@ function char_of_int(n) do
   end
    end 
   return n;
-end
+end end
 
 function string_of_bool(b) do
   if (b) then do
@@ -115,7 +115,7 @@ function string_of_bool(b) do
   end else do
     return "false";
   end end 
-end
+end end
 
 function bool_of_string(param) do
   local ___conditional___=(param);
@@ -133,11 +133,11 @@ function bool_of_string(param) do
       end end
       
   end
-end
+end end
 
 function string_of_int(n) do
   return Caml_format.caml_format_int("%d", n);
-end
+end end
 
 function valid_float_lexem(s) do
   l = #s;
@@ -163,11 +163,11 @@ function valid_float_lexem(s) do
       end end  end 
     end end 
   end;
-end
+end end
 
 function string_of_float(f) do
   return valid_float_lexem(Caml_format.caml_format_float("%.12g", f));
-end
+end end
 
 function $at(l1, l2) do
   if (l1) then do
@@ -178,7 +178,7 @@ function $at(l1, l2) do
   end else do
     return l2;
   end end 
-end
+end end
 
 stdin = Caml_io.stdin;
 
@@ -188,7 +188,7 @@ stderr = Caml_io.stderr;
 
 function open_out_gen(mode, perm, name) do
   return Caml_external_polyfill.resolve("caml_ml_open_descriptor_out")(Caml_external_polyfill.resolve("caml_sys_open")(name, mode, perm));
-end
+end end
 
 function open_out(name) do
   return open_out_gen(--[ :: ]--[
@@ -204,7 +204,7 @@ function open_out(name) do
                 ]
               ]
             ], 438, name);
-end
+end end
 
 function open_out_bin(name) do
   return open_out_gen(--[ :: ]--[
@@ -220,7 +220,7 @@ function open_out_bin(name) do
                 ]
               ]
             ], 438, name);
-end
+end end
 
 function flush_all(param) do
   _param = Caml_io.caml_ml_out_channels_list(--[ () ]--0);
@@ -239,15 +239,15 @@ function flush_all(param) do
       return --[ () ]--0;
     end end 
   end;
-end
+end end
 
 function output_bytes(oc, s) do
   return Caml_io.caml_ml_output(oc, s, 0, #s);
-end
+end end
 
 function output_string(oc, s) do
   return Caml_io.caml_ml_output(oc, s, 0, #s);
-end
+end end
 
 function output(oc, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
@@ -258,7 +258,7 @@ function output(oc, s, ofs, len) do
   end
    end 
   return Caml_io.caml_ml_output(oc, s, ofs, len);
-end
+end end
 
 function output_substring(oc, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
@@ -269,16 +269,16 @@ function output_substring(oc, s, ofs, len) do
   end
    end 
   return Caml_io.caml_ml_output(oc, s, ofs, len);
-end
+end end
 
 function output_value(chan, v) do
   return Caml_external_polyfill.resolve("caml_output_value")(chan, v, --[ [] ]--0);
-end
+end end
 
 function close_out(oc) do
   Caml_io.caml_ml_flush(oc);
   return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
-end
+end end
 
 function close_out_noerr(oc) do
   try do
@@ -293,11 +293,11 @@ function close_out_noerr(oc) do
   catch (exn$1)do
     return --[ () ]--0;
   end
-end
+end end
 
 function open_in_gen(mode, perm, name) do
   return Caml_external_polyfill.resolve("caml_ml_open_descriptor_in")(Caml_external_polyfill.resolve("caml_sys_open")(name, mode, perm));
-end
+end end
 
 function open_in(name) do
   return open_in_gen(--[ :: ]--[
@@ -307,7 +307,7 @@ function open_in(name) do
                 --[ [] ]--0
               ]
             ], 0, name);
-end
+end end
 
 function open_in_bin(name) do
   return open_in_gen(--[ :: ]--[
@@ -317,7 +317,7 @@ function open_in_bin(name) do
                 --[ [] ]--0
               ]
             ], 0, name);
-end
+end end
 
 function input(ic, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
@@ -328,7 +328,7 @@ function input(ic, s, ofs, len) do
   end
    end 
   return Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
-end
+end end
 
 function unsafe_really_input(ic, s, _ofs, _len) do
   while(true) do
@@ -347,7 +347,7 @@ function unsafe_really_input(ic, s, _ofs, _len) do
       continue ;
     end end 
   end;
-end
+end end
 
 function really_input(ic, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
@@ -358,13 +358,13 @@ function really_input(ic, s, ofs, len) do
   end
    end 
   return unsafe_really_input(ic, s, ofs, len);
-end
+end end
 
 function really_input_string(ic, len) do
   s = Caml_bytes.caml_create_bytes(len);
   really_input(ic, s, 0, len);
   return s;
-end
+end end
 
 function input_line(chan) do
   build_result = function (buf, _pos, _param) do
@@ -382,7 +382,7 @@ function input_line(chan) do
         return buf;
       end end 
     end;
-  end;
+  end end;
   _accu = --[ [] ]--0;
   _len = 0;
   while(true) do
@@ -419,7 +419,7 @@ function input_line(chan) do
       continue ;
     end end  end 
   end;
-end
+end end
 
 function close_in_noerr(ic) do
   try do
@@ -428,95 +428,95 @@ function close_in_noerr(ic) do
   catch (exn)do
     return --[ () ]--0;
   end
-end
+end end
 
 function print_char(c) do
   return Caml_io.caml_ml_output_char(stdout, c);
-end
+end end
 
 function print_string(s) do
   return output_string(stdout, s);
-end
+end end
 
 function print_bytes(s) do
   return output_bytes(stdout, s);
-end
+end end
 
 function print_int(i) do
   return output_string(stdout, Caml_format.caml_format_int("%d", i));
-end
+end end
 
 function print_float(f) do
   return output_string(stdout, valid_float_lexem(Caml_format.caml_format_float("%.12g", f)));
-end
+end end
 
 function print_endline(s) do
   output_string(stdout, s);
   Caml_io.caml_ml_output_char(stdout, --[ "\n" ]--10);
   return Caml_io.caml_ml_flush(stdout);
-end
+end end
 
 function print_newline(param) do
   Caml_io.caml_ml_output_char(stdout, --[ "\n" ]--10);
   return Caml_io.caml_ml_flush(stdout);
-end
+end end
 
 function prerr_char(c) do
   return Caml_io.caml_ml_output_char(stderr, c);
-end
+end end
 
 function prerr_string(s) do
   return output_string(stderr, s);
-end
+end end
 
 function prerr_bytes(s) do
   return output_bytes(stderr, s);
-end
+end end
 
 function prerr_int(i) do
   return output_string(stderr, Caml_format.caml_format_int("%d", i));
-end
+end end
 
 function prerr_float(f) do
   return output_string(stderr, valid_float_lexem(Caml_format.caml_format_float("%.12g", f)));
-end
+end end
 
 function prerr_endline(s) do
   output_string(stderr, s);
   Caml_io.caml_ml_output_char(stderr, --[ "\n" ]--10);
   return Caml_io.caml_ml_flush(stderr);
-end
+end end
 
 function prerr_newline(param) do
   Caml_io.caml_ml_output_char(stderr, --[ "\n" ]--10);
   return Caml_io.caml_ml_flush(stderr);
-end
+end end
 
 function read_line(param) do
   Caml_io.caml_ml_flush(stdout);
   return input_line(stdin);
-end
+end end
 
 function read_int(param) do
   return Caml_format.caml_int_of_string((Caml_io.caml_ml_flush(stdout), input_line(stdin)));
-end
+end end
 
 function read_float(param) do
   return Caml_format.caml_float_of_string((Caml_io.caml_ml_flush(stdout), input_line(stdin)));
-end
+end end
 
 LargeFile = { };
 
 function string_of_format(param) do
   return param[1];
-end
+end end
 
 function $caret$caret(param, param$1) do
   return --[ Format ]--[
           CamlinternalFormatBasics.concat_fmt(param[0], param$1[0]),
           $caret(param[1], $caret("%,", param$1[1]))
         ];
-end
+end end
 
 exit_function = do
   contents: flush_all
@@ -527,18 +527,18 @@ function at_exit(f) do
   exit_function[0] = (function (param) do
       Curry._1(f, --[ () ]--0);
       return Curry._1(g, --[ () ]--0);
-    end);
+    end end);
   return --[ () ]--0;
-end
+end end
 
 function do_at_exit(param) do
   return Curry._1(exit_function[0], --[ () ]--0);
-end
+end end
 
 function exit(retcode) do
   Curry._1(exit_function[0], --[ () ]--0);
   return Caml_sys.caml_sys_exit(retcode);
-end
+end end
 
 max_int = 2147483647;
 

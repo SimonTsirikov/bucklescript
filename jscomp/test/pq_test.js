@@ -31,7 +31,7 @@ function insert(queue, prio, elt) do
             --[ Empty ]--0
           ];
   end end 
-end
+end end
 
 Queue_is_empty = Caml_exceptions.create("Pq_test.PrioQueue.Queue_is_empty");
 
@@ -67,7 +67,7 @@ function remove_top(param) do
   end else do
     throw Queue_is_empty;
   end end 
-end
+end end
 
 function extract(queue) do
   if (queue) then do
@@ -79,7 +79,7 @@ function extract(queue) do
   end else do
     throw Queue_is_empty;
   end end 
-end
+end end
 
 PrioQueue = do
   empty: --[ Empty ]--0,

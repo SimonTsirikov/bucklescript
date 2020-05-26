@@ -13,11 +13,11 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, b$1) do
   return Mt.bool_suites(test_id, suites, loc, b$1);
-end
+end end
 
 function makeWrapper(foo, param) do
   tmp = { };
@@ -32,12 +32,12 @@ function makeWrapper(foo, param) do
              do
             
           end
-        end)();
+        end end)();
   end
    end 
   console.log(tmp);
   return --[ () ]--0;
-end
+end end
 
 function makeWrapper2(foo, param) do
   console.log(do
@@ -51,10 +51,10 @@ function makeWrapper2(foo, param) do
                  do
                 
               end
-            end)()
+            end end)()
       end);
   return --[ () ]--0;
-end
+end end
 
 makeWrapper2(--[ a ]--97, --[ () ]--0);
 
@@ -72,11 +72,11 @@ function makeWrapper3(foo, param) do
              do
             
           end
-        end)();
+        end end)();
   end
    end 
   return tmp;
-end
+end end
 
 function makeWrapper4(foo, param) do
   console.log(2);
@@ -95,11 +95,11 @@ function makeWrapper4(foo, param) do
              do
             
           end
-        end)();
+        end end)();
   end
    end 
   return tmp;
-end
+end end
 
 b("File \"gpr_2503_test.ml\", line 31, characters 5-12", "a" == makeWrapper3(--[ a ]--97, --[ () ]--0).foo);
 

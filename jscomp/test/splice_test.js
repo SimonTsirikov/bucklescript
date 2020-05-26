@@ -14,7 +14,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 Caml_splice_call$1 = { };
 
@@ -22,7 +22,7 @@ Math.max(1);
 
 function f00(a, b) do
   return a.send(b);
-end
+end end
 
 a = [];
 
@@ -48,7 +48,7 @@ function dynamic(arr) do
                     --[ [] ]--0
                   ]
                 ]));
-end
+end end
 
 dynamic([
       2,
@@ -88,7 +88,7 @@ function dynamic$1(arr) do
                     --[ [] ]--0
                   ]
                 ]));
-end
+end end
 
 dynamic$1([
       2,
@@ -113,7 +113,7 @@ function f1(c) do
               1,
               c
             ]);
-end
+end end
 
 eq("File \"splice_test.ml\", line 67, characters 6-13", Math.max(1, 2, 3), 3);
 

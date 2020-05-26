@@ -23,8 +23,8 @@ function record(fmt) do
                   accum.contents
                 ];
                 return --[ () ]--0;
-              end), fmt);
-end
+              end end), fmt);
+end end
 
 function f_unit(param) do
   return record(--[ Format ]--[
@@ -34,7 +34,7 @@ function f_unit(param) do
                 ]),
               "unit()"
             ]);
-end
+end end
 
 function f_bool(b) do
   return Curry._1(record(--[ Format ]--[
@@ -50,7 +50,7 @@ function f_bool(b) do
                     ]),
                   "bool(%b)"
                 ]), b);
-end
+end end
 
 r_set = do
   contents: false
@@ -74,7 +74,7 @@ function f_string(s) do
                     ]),
                   "string(%s)"
                 ]), s);
-end
+end end
 
 r_string = do
   contents: ""
@@ -96,7 +96,7 @@ function f_int(i) do
                     ]),
                   "int(%d)"
                 ]), i);
-end
+end end
 
 r_int = do
   contents: 0
@@ -118,7 +118,7 @@ function f_float(f) do
                     ]),
                   "float(%g)"
                 ]), f);
-end
+end end
 
 r_float = do
   contents: 0.0
@@ -138,7 +138,7 @@ function f_symbol(s) do
                     ]),
                   "symbol(%s)"
                 ]), s);
-end
+end end
 
 function f_rest(s) do
   return Curry._1(record(--[ Format ]--[
@@ -154,7 +154,7 @@ function f_rest(s) do
                     ]),
                   "rest(%s)"
                 ]), s);
-end
+end end
 
 function f_anon(s) do
   return Curry._1(record(--[ Format ]--[
@@ -170,7 +170,7 @@ function f_anon(s) do
                     ]),
                   "anon(%s)"
                 ]), s);
-end
+end end
 
 spec_000 = --[ tuple ]--[
   "-u",
@@ -364,7 +364,7 @@ function error(s) do
                     ]),
                   "error (%s)\n"
                 ]), s);
-end
+end end
 
 function check(r, v, msg) do
   if (Caml_obj.caml_notequal(r.contents, v)) then do
@@ -372,7 +372,7 @@ function check(r, v, msg) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function test(argv) do
   current.contents = 0;
@@ -457,7 +457,7 @@ function test(argv) do
                         ]),
                       "%20s %c %-20s\n%!"
                     ]), x, x == y and --[ "=" ]--61 or --[ "#" ]--35, y);
-    end;
+    end end;
     List.iter2(f, result, reference);
   end
    end 
@@ -466,7 +466,7 @@ function test(argv) do
   check(r_string, "bar", "Set_string");
   check(r_int, 42, "Set_int");
   return check(r_float, 2.72, "Set_float");
-end
+end end
 
 test(args1);
 

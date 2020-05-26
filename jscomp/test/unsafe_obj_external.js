@@ -3,11 +3,11 @@
 
 v = do
   x: (function () do
-      return 3;
+      return 3; end
     end),
   say: (function (x) do
       self = this ;
-      return self.x() + x | 0;
+      return self.x() + x | 0; end
     end)
 end;
 

@@ -40,7 +40,7 @@ function bufferize(f) do
               end else do
                 return Curry._1(f, --[ () ]--0);
               end end 
-            end),
+            end end),
           (function (x) do
               if (buf.contents ~= undefined) then do
                 throw [
@@ -55,13 +55,13 @@ function bufferize(f) do
                end 
               buf.contents = Caml_option.some(x);
               return --[ () ]--0;
-            end)
+            end end)
         ];
-end
+end end
 
 match = bufferize((function (param) do
         return Caml_external_polyfill.resolve("caml_ml_input_char")(inch.contents);
-      end));
+      end end));
 
 ungetch = match[1];
 
@@ -71,7 +71,7 @@ function peekch(param) do
   ch = Curry._1(getch, --[ () ]--0);
   Curry._1(ungetch, ch);
   return ch;
-end
+end end
 
 symtab = Caml_array.caml_make_vect(100, "");
 
@@ -92,13 +92,13 @@ function find(s, _n) do
       continue ;
     end end  end 
   end;
-end
+end end
 
 function addsym(s) do
   sid = find(s, 0);
   Caml_array.caml_array_set(symtab, sid, s);
   return sid;
-end
+end end
 
 function symstr(n) do
   if (n >= syms.contents) then do
@@ -113,14 +113,14 @@ function symstr(n) do
   end
    end 
   return Caml_array.caml_array_get(symtab, n);
-end
+end end
 
 function symitr(f) do
   for i = 0 , syms.contents - 1 | 0 , 1 do
     Curry._2(f, i, Caml_array.caml_array_get(symtab, i));
   end
   return --[ () ]--0;
-end
+end end
 
 glo = Bytes.make(4096, --[ "\000" ]--0);
 
@@ -138,7 +138,7 @@ function getq(param) do
     Curry._1(getch, --[ () ]--0);
     return --[ "\n" ]--10;
   end end 
-end
+end end
 
 function isid(param) do
   switcher = param - 91 | 0;
@@ -147,7 +147,7 @@ function isid(param) do
   end else do
     return switcher == 4;
   end end 
-end
+end end
 
 function skip(_param) do
   while(true) do
@@ -189,7 +189,7 @@ function skip(_param) do
       return ch;
     end end  end  end 
   end;
-end
+end end
 
 function next(param) do
   match;
@@ -321,7 +321,7 @@ function next(param) do
   end else do
     return --[ Op ]--Block.__(0, ["EOF!"]);
   end end 
-end
+end end
 
 match$1 = bufferize(next);
 
@@ -333,7 +333,7 @@ function nextis(t) do
   nt = Curry._1(next$1, --[ () ]--0);
   Curry._1(unnext, nt);
   return Caml_obj.caml_equal(t, nt);
-end
+end end
 
 obuf = Bytes.make(1048576, --[ "\000" ]--0);
 
@@ -350,7 +350,7 @@ function out(x) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function le(n, x) do
   for i = 0 , (n / 8 | 0) - 1 | 0 , 1 do
@@ -359,11 +359,11 @@ function le(n, x) do
     opos.contents = opos.contents + 1 | 0;
   end
   return --[ () ]--0;
-end
+end end
 
 function get32(l) do
   return ((Caml_bytes.get(obuf, l) + (Caml_bytes.get(obuf, l + 1 | 0) << 8) | 0) + (Caml_bytes.get(obuf, l + 2 | 0) << 16) | 0) + (Caml_bytes.get(obuf, l + 3 | 0) << 24) | 0;
-end
+end end
 
 function patch(rel, loc, n) do
   if (n >= 0) then do
@@ -423,17 +423,17 @@ function patch(rel, loc, n) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function load(r, n) do
   out(184 + r | 0);
   return le(32, n);
-end
+end end
 
 function cmp(n) do
   load(0, 0);
   return out(1020608 + (n << 8) | 0);
-end
+end end
 
 function test(n, l) do
   out(4752832);
@@ -441,7 +441,7 @@ function test(n, l) do
   loc = opos.contents;
   le(32, l);
   return loc;
-end
+end end
 
 align = do
   contents: 0
@@ -454,7 +454,7 @@ function push(r) do
   end else do
     return out((16720 + r | 0) - 8 | 0);
   end end 
-end
+end end
 
 function pop(r) do
   align.contents = align.contents - 1 | 0;
@@ -463,7 +463,7 @@ function pop(r) do
   end else do
     return out((16728 + r | 0) - 8 | 0);
   end end 
-end
+end end
 
 lval = do
   contents: --[ tuple ]--[
@@ -481,7 +481,7 @@ function patchlval(param) do
     obuf[opos.contents - match[0] | 0] = --[ "\141" ]--141;
     return --[ () ]--0;
   end end 
-end
+end end
 
 function read(param) do
   if (param) then do
@@ -501,7 +501,7 @@ function read(param) do
     ];
     return --[ () ]--0;
   end end 
-end
+end end
 
 globs = Caml_array.caml_make_vect(100, do
       loc: 0,
@@ -796,7 +796,7 @@ function binary(stk, lvl) do
       end else do
         return -1;
       end end 
-    end;
+    end end;
     foldtst = function (_loc) do
       while(true) do
         loc = _loc;
@@ -811,7 +811,7 @@ function binary(stk, lvl) do
           continue ;
         end end 
       end;
-    end;
+    end end;
     binary(stk, lvl - 1 | 0);
     if (lvl < 8) then do
       _param = --[ () ]--0;
@@ -844,7 +844,7 @@ function binary(stk, lvl) do
       return patch(true, loc, opos.contents);
     end end 
   end end 
-end
+end end
 
 function unary(stk) do
   match = Curry._1(next$1, --[ () ]--0);
@@ -984,7 +984,7 @@ function unary(stk) do
      do
     
   end
-end
+end end
 
 function postfix(stk) do
   t = Curry._1(next$1, --[ () ]--0);
@@ -1017,7 +1017,7 @@ function postfix(stk) do
                 continue ;
               end end 
             end;
-          end;
+          end end;
           patchlval(--[ () ]--0);
           push(0);
           emitargs(--[ [] ]--0, --[ :: ]--[
@@ -1102,7 +1102,7 @@ function postfix(stk) do
                     ]
                   ]));
   end end 
-end
+end end
 
 function expr(stk) do
   binary(stk, 10);
@@ -1126,7 +1126,7 @@ function expr(stk) do
       continue ;
     end end 
   end;
-end
+end end
 
 function decl(g, _n, _stk) do
   while(true) do
@@ -1198,7 +1198,7 @@ function decl(g, _n, _stk) do
             end end 
           end end 
         end;
-      end
+      end end
       end(top));
       match = vars(0, stk);
       Curry._1(next$1, --[ () ]--0);
@@ -1252,7 +1252,7 @@ function decl(g, _n, _stk) do
             ];
     end end 
   end;
-end
+end end
 
 retl = do
   contents: 0
@@ -1264,7 +1264,7 @@ function stmt(brk, stk) do
     expr(stk);
     Curry._1(next$1, --[ () ]--0);
     return --[ () ]--0;
-  end;
+  end end;
   t = Curry._1(next$1, --[ () ]--0);
   if (Caml_obj.caml_equal(t, tokif)) then do
     pexpr(stk);
@@ -1387,7 +1387,7 @@ function stmt(brk, stk) do
   expr(stk);
   Curry._1(next$1, --[ () ]--0);
   return --[ () ]--0;
-end
+end end
 
 function block(brk, stk) do
   match = decl(false, 0, stk);
@@ -1405,7 +1405,7 @@ function block(brk, stk) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function top(_param) do
   while(true) do
@@ -1477,7 +1477,7 @@ function top(_param) do
               
             end
           end;
-        end;
+        end end;
         Curry._1(next$1, --[ () ]--0);
         align.contents = 0;
         out(85);
@@ -1539,7 +1539,7 @@ function top(_param) do
       end end 
     end end  end 
   end;
-end
+end end
 
 elfhdr = Bytes.of_string($$String.concat("", --[ :: ]--[
           "\x7fELF\x02\x01\x01\0",
@@ -1597,7 +1597,7 @@ function elfphdr(ty, off, sz, align) do
   le(64, sz);
   le(64, sz);
   return le(64, align);
-end
+end end
 
 function elfgen(outf) do
   entry = opos.contents;
@@ -1624,11 +1624,11 @@ function elfgen(outf) do
                   end else do
                     return 0;
                   end end 
-                end));
-  end;
+                end end));
+  end end;
   va = function (x) do
     return (x + off | 0) + 4194304 | 0;
-  end;
+  end end;
   patchloc = function (i, param) do
     g = Caml_array.caml_array_get(globs, i);
     if (g.va >= 0 and g.va < 4194304) then do
@@ -1638,7 +1638,7 @@ function elfgen(outf) do
     end else do
       return 0;
     end end  end 
-  end;
+  end end;
   symitr(patchloc);
   strtab = opos.contents;
   opos.contents = opos.contents + 1 | 0;
@@ -1648,7 +1648,7 @@ function elfgen(outf) do
           $$String.blit(s, 0, obuf, opos.contents, sl);
           opos.contents = (opos.contents + sl | 0) + 1 | 0;
           return --[ () ]--0;
-        end));
+        end end));
   opos.contents = opos.contents + 7 & -8;
   symtab = opos.contents;
   n = do
@@ -1662,7 +1662,7 @@ function elfgen(outf) do
           le(64, 0);
           n.contents = (n.contents + sl | 0) + 1 | 0;
           return --[ () ]--0;
-        end));
+        end end));
   rel = opos.contents;
   n$1 = do
     contents: 1
@@ -1681,11 +1681,11 @@ function elfgen(outf) do
                 return 0;
               end end 
             end;
-          end;
+          end end;
           genrel(l);
           n$1.contents = n$1.contents + 1 | 0;
           return --[ () ]--0;
-        end));
+        end end));
   hash = opos.contents;
   n$2 = ((rel - symtab | 0) / 24 | 0) - 1 | 0;
   le(32, 1);
@@ -1698,7 +1698,7 @@ function elfgen(outf) do
   dyn = opos.contents;
   List.iter((function (param) do
           return le(64, param);
-        end), --[ :: ]--[
+        end end), --[ :: ]--[
         1,
         --[ :: ]--[
           29,
@@ -1777,7 +1777,7 @@ function elfgen(outf) do
    end 
   patch(false, 24, va(entry));
   return Pervasives.output_bytes(outf, Bytes.sub(obuf, 0, tend + off | 0));
-end
+end end
 
 function main(param) do
   ppsym = function (param) do
@@ -1853,7 +1853,7 @@ function main(param) do
        do
       
     end
-  end;
+  end end;
   f = #Sys.argv < 2 and "-blk" or Caml_array.caml_array_get(Sys.argv, 1);
   local ___conditional___=(f);
   do
@@ -1867,7 +1867,7 @@ function main(param) do
         ];
         c = function (param) do
           return block(partial_arg, param);
-        end;
+        end end;
         stk = --[ [] ]--0;
         opos.contents = 0;
         Curry._1(c, stk);
@@ -1905,7 +1905,7 @@ function main(param) do
       end end
       
   end
-end
+end end
 
 main(--[ () ]--0);
 

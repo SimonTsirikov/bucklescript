@@ -4,11 +4,11 @@ Caml_obj = require("../../lib/js/caml_obj.js");
 
 function min_int(prim, prim$1) do
   return Math.min(prim, prim$1);
-end
+end end
 
 function say(prim, prim$1) do
   return prim$1.say(prim);
-end
+end end
 
 v = Caml_obj.caml_compare;
 

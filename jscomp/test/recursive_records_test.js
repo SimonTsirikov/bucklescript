@@ -16,7 +16,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 rec_cell = { };
 
@@ -31,11 +31,11 @@ function f0(x) do
         next: rec_cell
       end);
   return rec_cell;
-end
+end end
 
 function a0(x) do
   return (x.content + x.next.content | 0) + x.next.next.content | 0;
-end
+end end
 
 eq("File \"recursive_records_test.ml\", line 29, characters 5-12", a0(rec_cell), 9);
 
@@ -54,7 +54,7 @@ function f2(x) do
         --[ next ]--rec_cell2
       ]);
   return rec_cell2;
-end
+end end
 
 function hd(x) do
   if (x) then do
@@ -62,7 +62,7 @@ function hd(x) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function tl_exn(x) do
   if (x) then do
@@ -77,7 +77,7 @@ function tl_exn(x) do
           ]
         ];
   end end 
-end
+end end
 
 eq("File \"recursive_records_test.ml\", line 56, characters 6-13", (hd(rec_cell2) + hd(tl_exn(rec_cell2)) | 0) + hd(tl_exn(tl_exn(rec_cell2))) | 0, 9);
 
@@ -98,7 +98,7 @@ function f3(x) do
         rec_cell3
       ]);
   return rec_cell3;
-end
+end end
 
 eq("File \"recursive_records_test.ml\", line 74, characters 5-12", (List.hd(rec_cell3) + List.hd(List.tl(rec_cell3)) | 0) + List.hd(List.tl(List.tl(rec_cell3))) | 0, 9);
 

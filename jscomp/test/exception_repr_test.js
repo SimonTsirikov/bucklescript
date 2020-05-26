@@ -26,12 +26,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 Hi = Caml_exceptions.create("Exception_repr_test.Hi");
 
@@ -61,7 +61,7 @@ Printexc.register_printer((function (param) do
         end else do
           return ;
         end end  end 
-      end));
+      end end));
 
 eq("File \"exception_repr_test.ml\", line 24, characters 7-14", "hey", Printexc.to_string(Hi));
 

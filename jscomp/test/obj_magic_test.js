@@ -8,7 +8,7 @@ empty_backtrace = --[ obj_block ]--Block.__(Obj.abstract_tag, []);
 
 function is_block(x) do
   return typeof x ~= "number";
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "is_block_test1",
@@ -17,7 +17,7 @@ suites_000 = --[ tuple ]--[
                 false,
                 false
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -31,7 +31,7 @@ suites_001 = --[ :: ]--[
                     --[ [] ]--0
                   ] ~= "number"
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -41,7 +41,7 @@ suites_001 = --[ :: ]--[
                     true,
                     true
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -51,7 +51,7 @@ suites_001 = --[ :: ]--[
                       false,
                       false
                     ]);
-          end)
+          end end)
       ],
       --[ [] ]--0
     ]

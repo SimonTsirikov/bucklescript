@@ -18,15 +18,15 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-end
+end end
 
 function add(x, y) do
   return x + y | 0;
-end
+end end
 
 function sum2(h) do
   v = do
@@ -35,9 +35,9 @@ function sum2(h) do
   Belt_HashSetInt.forEach(h, (function (x) do
           v.contents = v.contents + x | 0;
           return --[ () ]--0;
-        end));
+        end end));
   return v.contents;
-end
+end end
 
 u = Belt_Array.concat(Array_data_util.randomRange(30, 100), Array_data_util.randomRange(40, 120));
 

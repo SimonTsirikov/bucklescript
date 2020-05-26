@@ -42,7 +42,7 @@ function bench(param) do
           ]
         ];
   end end 
-end
+end end
 
 console.time("test/bs_set_bench.ml 21");
 

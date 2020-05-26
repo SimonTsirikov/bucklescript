@@ -13,7 +13,7 @@ function v(displayName, param) do
   end
    end 
   return tmp;
-end
+end end
 
 v2 = do
   test: 3,
@@ -30,19 +30,19 @@ end;
 
 function u(x) do
   return x;
-end
+end end
 
 function ff(x) do
   return x;
-end
+end end
 
 function fff(x) do
   return x;
-end
+end end
 
 function f(x) do
   return x;
-end
+end end
 
 exports.v = v;
 exports.v2 = v2;

@@ -25,7 +25,7 @@ function f(param) do
       
     end
   end end 
-end
+end end
 
 function bind(x, f) do
   if (x.tag) then do
@@ -33,7 +33,7 @@ function bind(x, f) do
   end else do
     return --[ Left ]--Block.__(0, [Curry._1(f, x[0])]);
   end end 
-end
+end end
 
 exports.f = f;
 exports.bind = bind;

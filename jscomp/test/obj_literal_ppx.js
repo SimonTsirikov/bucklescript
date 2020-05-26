@@ -12,16 +12,16 @@ b = do
   z: 3,
   u: (function (x, y) do
       return x + y | 0;
-    end)
+    end end)
 end;
 
 function f(obj) do
   return obj.x + #obj.y | 0;
-end
+end end
 
 function h(obj) do
   return obj.u(1, 2);
-end
+end end
 
 u = f(a);
 

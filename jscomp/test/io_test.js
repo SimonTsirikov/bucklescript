@@ -7,7 +7,7 @@ function f(param) do
   console.log("hi");
   console.log(--[ () ]--0);
   return --[ () ]--0;
-end
+end end
 
 exports.f = f;
 --[ No side effect ]--

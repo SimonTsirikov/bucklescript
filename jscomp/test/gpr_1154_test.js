@@ -24,21 +24,21 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f(x) do
   Pervasives.print_string("f");
   return x;
-end
+end end
 
 function g(x) do
   return Caml_int64.or_(x, (Pervasives.print_string("f"), x));
-end
+end end
 
 v = do
   contents: 0
@@ -47,11 +47,11 @@ end;
 function f2(x) do
   v.contents = v.contents + 1 | 0;
   return x;
-end
+end end
 
 function g2(x) do
   return Caml_int64.or_(x, (v.contents = v.contents + 1 | 0, x));
-end
+end end
 
 a = Caml_int64.or_(Int64.one, (v.contents = v.contents + 1 | 0, Int64.one));
 

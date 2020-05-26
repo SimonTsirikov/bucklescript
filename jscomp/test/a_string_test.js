@@ -21,7 +21,7 @@ suites_000 = --[ tuple ]--[
                   ]
                 ]
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -38,7 +38,7 @@ suites_001 = --[ :: ]--[
                     ]
                   ]
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -48,7 +48,7 @@ suites_001 = --[ :: ]--[
                     Ext_string_test.split(true, "", --[ "i" ]--105),
                     --[ [] ]--0
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -67,7 +67,7 @@ suites_001 = --[ :: ]--[
                         ]
                       ]
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -76,13 +76,13 @@ suites_001 = --[ :: ]--[
               return --[ Eq ]--Block.__(0, [
                         List.filter((function (s) do
                                   return s ~= "";
-                                end))(Ext_string_test.split_by(undefined, (function (x) do
+                                end end))(Ext_string_test.split_by(undefined, (function (x) do
                                     if (x == --[ " " ]--32) then do
                                       return true;
                                     end else do
                                       return x == --[ "\t" ]--9;
                                     end end 
-                                  end), "h hgso hgso \t hi")),
+                                  end end), "h hgso hgso \t hi")),
                         --[ :: ]--[
                           "h",
                           --[ :: ]--[
@@ -97,7 +97,7 @@ suites_001 = --[ :: ]--[
                           ]
                         ]
                       ]);
-            end)
+            end end)
         ],
         --[ [] ]--0
       ]

@@ -86,8 +86,8 @@ of_string = [
 function from_float_of_string(xs) do
   return $$Array.mapi((function (i, param) do
                 return Pervasives.string_of_float;
-              end), xs);
-end
+              end end), xs);
+end end
 
 function from_of_string(xs) do
   return $$Array.to_list($$Array.mapi((function (i, param) do
@@ -109,10 +109,10 @@ function from_of_string(xs) do
                                           Caml_format.caml_int_of_string(b),
                                           a
                                         ]);
-                              end)
+                              end end)
                           ];
-                  end), of_string));
-end
+                  end end), of_string));
+end end
 
 function u(v) do
   return Curry._1(Printf.sprintf(--[ Format ]--[
@@ -127,7 +127,7 @@ function u(v) do
                     ]),
                   "%33d"
                 ]), v);
-end
+end end
 
 to_str = Caml_format.caml_int_of_string;
 
@@ -190,7 +190,7 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[ :: ]--[
                           true,
                           Pervasives.classify_float(Caml_format.caml_float_of_string("nan")) == --[ FP_nan ]--4
                         ]);
-              end)
+              end end)
           ],
           --[ [] ]--0
         ], Pervasives.$at($$Array.to_list($$Array.mapi((function (i, param) do
@@ -214,17 +214,17 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[ :: ]--[
                                               a,
                                               Pervasives.classify_float(Caml_format.caml_float_of_string(b))
                                             ]);
-                                  end)
+                                  end end)
                               ];
-                      end), pairs)), Pervasives.$at(--[ :: ]--[
+                      end end), pairs)), Pervasives.$at(--[ :: ]--[
                   --[ tuple ]--[
                     "throw",
                     (function (param) do
                         return --[ ThrowAny ]--Block.__(7, [(function (param) do
                                       Caml_format.caml_float_of_string("");
                                       return --[ () ]--0;
-                                    end)]);
-                      end)
+                                    end end)]);
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -234,7 +234,7 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[ :: ]--[
                                     "                              33",
                                     Caml_format.caml_format_int("%32d", 33)
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ [] ]--0
                   ]
@@ -259,13 +259,13 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[ :: ]--[
                                                   a,
                                                   Caml_format.caml_float_of_string(b)
                                                 ]);
-                                      end)
+                                      end end)
                                   ];
-                          end), pairs$1))))));
+                          end end), pairs$1))))));
 
 function ff(param) do
   return Caml_format.caml_format_int("%32d", param);
-end
+end end
 
 formatter_suites_000 = --[ tuple ]--[
   "fmt_concat",
@@ -320,7 +320,7 @@ formatter_suites_000 = --[ tuple ]--[
                             ])), "32", 33, 33, "a", 33, 3),
                 "32 033 33\"a\" 033 3"
               ]);
-    end)
+    end end)
 ];
 
 formatter_suites_001 = --[ :: ]--[
@@ -379,7 +379,7 @@ formatter_suites_001 = --[ :: ]--[
                                 "%S %03d %L %a"
                               ])), "32", 33, 33, "a", 33, 3, (function (param, param$1) do
                           return Format.pp_print_list(undefined, Format.pp_print_int, param, param$1);
-                        end), --[ :: ]--[
+                        end end), --[ :: ]--[
                         1,
                         --[ :: ]--[
                           2,
@@ -391,7 +391,7 @@ formatter_suites_001 = --[ :: ]--[
                       ]),
                   "32 033 33\"a\" 033 3 12\n3"
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -685,7 +685,7 @@ formatter_suites_001 = --[ :: ]--[
                         ]),
                     "1 2 3 4 5 6 7 8 9 12 a \"b\" c 'd' 1.000000 2. 3.000000e+00 4.000000E+00 5 6 true false 0 1 2 3 4 5 6 7 8 9 a 13  "
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -1019,7 +1019,7 @@ formatter_suites_001 = --[ :: ]--[
                           ]),
                       "                      1  2   3 4 5l 6L 7 008 9 12 a \"b\" c 'd' 1.000000 2. 3.000000e+00 4.000000E+00 5 6 true false 0 1 2 3 4 5 6 7 8 9 a 13  "
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -1040,7 +1040,7 @@ formatter_suites_001 = --[ :: ]--[
                                 ]), 32),
                         "00000000000032"
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -1061,7 +1061,7 @@ formatter_suites_001 = --[ :: ]--[
                                   ]), 32333.02),
                           " 32333.020"
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -1082,7 +1082,7 @@ formatter_suites_001 = --[ :: ]--[
                                     ]), 32333),
                             "7e4d"
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -1103,7 +1103,7 @@ formatter_suites_001 = --[ :: ]--[
                                       ]), 32333),
                               "0x7e4d"
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -1135,7 +1135,7 @@ formatter_suites_001 = --[ :: ]--[
                                   "40"
                                 ]
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -1145,7 +1145,7 @@ formatter_suites_001 = --[ :: ]--[
                                   Caml_format.caml_format_int("%-8d", 32),
                                   "32      "
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -1166,7 +1166,7 @@ formatter_suites_001 = --[ :: ]--[
                                             ]), 32),
                                     " +32"
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -1187,7 +1187,7 @@ formatter_suites_001 = --[ :: ]--[
                                               ]), 32),
                                       "  32"
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -1205,7 +1205,7 @@ formatter_suites_001 = --[ :: ]--[
                                                 ]), -1),
                                         "4294967295"
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -1223,7 +1223,7 @@ formatter_suites_001 = --[ :: ]--[
                                                   ]), -1),
                                           "-1"
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -1233,7 +1233,7 @@ formatter_suites_001 = --[ :: ]--[
                                             Caml_format.caml_format_int("%032d", 32),
                                             "00000000000000000000000000000032"
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -1251,7 +1251,7 @@ formatter_suites_001 = --[ :: ]--[
                                                       ]), 32),
                                               "0000000032"
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -1261,7 +1261,7 @@ formatter_suites_001 = --[ :: ]--[
                                                 Caml_format.caml_format_int("%.10d", 32),
                                                 "0000000032"
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -1271,7 +1271,7 @@ formatter_suites_001 = --[ :: ]--[
                                                   Caml_format.caml_format_int("%.d", 32),
                                                   "32"
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -1281,7 +1281,7 @@ formatter_suites_001 = --[ :: ]--[
                                                     Caml_format.caml_format_int("%.d", 32),
                                                     "32"
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ [] ]--0
                                   ]
@@ -1424,7 +1424,7 @@ function ident(ppf, s) do
                     ]),
                   "%s"
                 ]), s);
-end
+end end
 
 function kwd(ppf, s) do
   return Curry._1(Format.fprintf(ppf, --[ Format ]--[
@@ -1434,7 +1434,7 @@ function kwd(ppf, s) do
                     ]),
                   "%s"
                 ]), s);
-end
+end end
 
 function pr_exp0(ppf, lam) do
   local ___conditional___=(lam.tag | 0);
@@ -1471,7 +1471,7 @@ function pr_exp0(ppf, lam) do
                     ]),
                   "@[<1>(%a)@]"
                 ]), pr_lambda, lam);
-end
+end end
 
 function pr_app(ppf, e) do
   return Curry._2(Format.fprintf(ppf, --[ Format ]--[
@@ -1490,7 +1490,7 @@ function pr_app(ppf, e) do
                     ]),
                   "@[<2>%a@]"
                 ]), pr_other_applications, e);
-end
+end end
 
 function pr_other_applications(ppf, f) do
   local ___conditional___=(f.tag | 0);
@@ -1513,7 +1513,7 @@ function pr_other_applications(ppf, f) do
      do
     
   end
-end
+end end
 
 function pr_lambda(ppf, e) do
   local ___conditional___=(e.tag | 0);
@@ -1548,7 +1548,7 @@ function pr_lambda(ppf, e) do
      do
     
   end
-end
+end end
 
 string_of_lambda = Curry._1(Format.asprintf(--[ Format ]--[
           --[ Alpha ]--Block.__(15, [--[ End_of_format ]--0]),
@@ -1624,10 +1624,10 @@ function from_lambda_pairs(p) do
                                           Curry._1(string_of_lambda, a),
                                           b
                                         ]);
-                              end)
+                              end end)
                           ];
-                  end), lambda_suites));
-end
+                  end end), lambda_suites));
+end end
 
 ksprintf_suites_000 = --[ tuple ]--[
   "ksprintf",
@@ -1635,8 +1635,8 @@ ksprintf_suites_000 = --[ tuple ]--[
       f = function (fmt) do
         return Format.ksprintf((function (x) do
                       return x .. x;
-                    end), fmt);
-      end;
+                    end end), fmt);
+      end end;
       return --[ Eq ]--Block.__(0, [
                 Curry._2(f(--[ Format ]--[
                           --[ String ]--Block.__(2, [
@@ -1656,7 +1656,7 @@ ksprintf_suites_000 = --[ tuple ]--[
                         ]), "x", "xx"),
                 "x xx a x xx a "
               ]);
-    end)
+    end end)
 ];
 
 ksprintf_suites_001 = --[ :: ]--[
@@ -1679,7 +1679,7 @@ ksprintf_suites_001 = --[ :: ]--[
                           ]), "x", "X"),
                   "x \"X\""
                 ]);
-      end)
+      end end)
   ],
   --[ [] ]--0
 ];
@@ -1704,7 +1704,7 @@ int64_suites_000 = --[ tuple ]--[
                         ]), 4294967295),
                 "ffffffff"
               ]);
-    end)
+    end end)
 ];
 
 int64_suites_001 = --[ :: ]--[
@@ -1723,7 +1723,7 @@ int64_suites_001 = --[ :: ]--[
                           ]), 4294967295),
                   "37777777777"
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -1744,7 +1744,7 @@ int64_suites_001 = --[ :: ]--[
                         ]),
                     "3"
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -1765,7 +1765,7 @@ int64_suites_001 = --[ :: ]--[
                           ]),
                       "21"
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -1786,7 +1786,7 @@ int64_suites_001 = --[ :: ]--[
                             ]),
                         "33"
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -1807,7 +1807,7 @@ int64_suites_001 = --[ :: ]--[
                               ]),
                           "2C"
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -1828,7 +1828,7 @@ int64_suites_001 = --[ :: ]--[
                                 ]),
                             "2c"
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -1849,7 +1849,7 @@ int64_suites_001 = --[ :: ]--[
                                   ]),
                               "   2c"
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -1862,7 +1862,7 @@ int64_suites_001 = --[ :: ]--[
                                     ]),
                                 "3333"
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -1894,7 +1894,7 @@ int64_suites_001 = --[ :: ]--[
                                       ]),
                                   "3000000000000000003"
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -1926,7 +1926,7 @@ int64_suites_001 = --[ :: ]--[
                                         ]),
                                     "460800000000000000000000000000000"
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -1944,7 +1944,7 @@ int64_suites_001 = --[ :: ]--[
                                               ]), Int64.max_int),
                                       "7fffffffffffffff"
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -1965,7 +1965,7 @@ int64_suites_001 = --[ :: ]--[
                                             ]),
                                         "-1"
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -1986,7 +1986,7 @@ int64_suites_001 = --[ :: ]--[
                                               ]),
                                           "-11111"
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -2007,7 +2007,7 @@ int64_suites_001 = --[ :: ]--[
                                                 ]),
                                             "FFFFFFFFFFFFFFFF"
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -2028,7 +2028,7 @@ int64_suites_001 = --[ :: ]--[
                                                   ]),
                                               "ffffffffffffffff"
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -2046,7 +2046,7 @@ int64_suites_001 = --[ :: ]--[
                                                         ]), Int64.max_int),
                                                 "7FFFFFFFFFFFFFFF"
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -2064,7 +2064,7 @@ int64_suites_001 = --[ :: ]--[
                                                           ]), Int64.min_int),
                                                   "8000000000000000"
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -2085,7 +2085,7 @@ int64_suites_001 = --[ :: ]--[
                                                         ]),
                                                     "18446744073709551615"
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
@@ -2106,7 +2106,7 @@ int64_suites_001 = --[ :: ]--[
                                                           ]),
                                                       "18446744073709541616"
                                                     ]);
-                                          end)
+                                          end end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
@@ -2124,7 +2124,7 @@ int64_suites_001 = --[ :: ]--[
                                                                 ]), Int64.min_int),
                                                         "1000000000000000000000"
                                                       ]);
-                                            end)
+                                            end end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
@@ -2145,7 +2145,7 @@ int64_suites_001 = --[ :: ]--[
                                                                   ])),
                                                           "8000000000000001"
                                                         ]);
-                                              end)
+                                              end end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
@@ -2169,7 +2169,7 @@ int64_suites_001 = --[ :: ]--[
                                                                 ]),
                                                             "           3"
                                                           ]);
-                                                end)
+                                                end end)
                                             ],
                                             --[ :: ]--[
                                               --[ tuple ]--[
@@ -2190,7 +2190,7 @@ int64_suites_001 = --[ :: ]--[
                                                                   ]),
                                                               "6ED10E27455A61C0"
                                                             ]);
-                                                  end)
+                                                  end end)
                                               ],
                                               --[ :: ]--[
                                                 --[ tuple ]--[
@@ -2214,7 +2214,7 @@ int64_suites_001 = --[ :: ]--[
                                                                     ]),
                                                                 "32\n"
                                                               ]);
-                                                    end)
+                                                    end end)
                                                 ],
                                                 --[ :: ]--[
                                                   --[ tuple ]--[
@@ -2239,7 +2239,7 @@ int64_suites_001 = --[ :: ]--[
                                                                         ]), $$Buffer.contents(buf)),
                                                                   "32\n"
                                                                 ]);
-                                                      end)
+                                                      end end)
                                                   ],
                                                   --[ [] ]--0
                                                 ]
@@ -2361,9 +2361,9 @@ Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(fo
                                                           Caml_format.caml_format_float(fmt, f),
                                                           str_result
                                                         ]);
-                                              end)
+                                              end end)
                                           ];
-                                  end), float_data)), Pervasives.$at(int64_suites, $$Array.to_list($$Array.mapi((function (i, param) do
+                                  end end), float_data)), Pervasives.$at(int64_suites, $$Array.to_list($$Array.mapi((function (i, param) do
                                         b = param[1];
                                         a = param[0];
                                         return --[ tuple ]--[
@@ -2387,9 +2387,9 @@ Mt.from_pair_suites("Caml_format_test", Pervasives.$at(suites, Pervasives.$at(fo
                                                               Caml_format.caml_int64_of_string(b),
                                                               a
                                                             ]);
-                                                  end)
+                                                  end end)
                                               ];
-                                      end), of_string_data)))))))));
+                                      end end), of_string_data)))))))));
 
 a = Format.asprintf;
 

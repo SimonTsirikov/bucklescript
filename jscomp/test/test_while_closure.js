@@ -11,7 +11,7 @@ end;
 
 arr = Caml_array.caml_make_vect(10, (function (param) do
         return --[ () ]--0;
-      end));
+      end end));
 
 function f(param) do
   n = 0;
@@ -21,18 +21,18 @@ function f(param) do
         return function (param) do
           v.contents = v.contents + j | 0;
           return --[ () ]--0;
-        end
+        end end
         end(j)));
     n = n + 1 | 0;
   end;
   return --[ () ]--0;
-end
+end end
 
 f(--[ () ]--0);
 
 $$Array.iter((function (x) do
         return Curry._1(x, --[ () ]--0);
-      end), arr);
+      end end), arr);
 
 console.log(String(v.contents));
 

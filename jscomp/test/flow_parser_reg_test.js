@@ -56,18 +56,18 @@ function from_lb_p(source, start, _end) do
             offset: _end.pos_cnum
           end
         end;
-end
+end end
 
 function from_lb(source, lb) do
   start = lb.lex_start_p;
   _end = lb.lex_curr_p;
   return from_lb_p(source, start, _end);
-end
+end end
 
 function from_curr_lb(source, lb) do
   curr = lb.lex_curr_p;
   return from_lb_p(source, curr, curr);
-end
+end end
 
 function btwn(loc1, loc2) do
   return do
@@ -75,7 +75,7 @@ function btwn(loc1, loc2) do
           start: loc1.start,
           _end: loc2._end
         end;
-end
+end end
 
 function btwn_exclusive(loc1, loc2) do
   return do
@@ -83,7 +83,7 @@ function btwn_exclusive(loc1, loc2) do
           start: loc1._end,
           _end: loc2.start
         end;
-end
+end end
 
 function string_of_filename(param) do
   if (typeof param == "number") then do
@@ -91,7 +91,7 @@ function string_of_filename(param) do
   end else do
     return param[0];
   end end 
-end
+end end
 
 function order_of_filename(param) do
   if (typeof param == "number") then do
@@ -108,7 +108,7 @@ function order_of_filename(param) do
       
     end
   end end 
-end
+end end
 
 function source_cmp(a, b) do
   if (a ~= undefined) then do
@@ -129,7 +129,7 @@ function source_cmp(a, b) do
   end else do
     return 0;
   end end  end 
-end
+end end
 
 function pos_cmp(a, b) do
   return Caml_obj.caml_compare(--[ tuple ]--[
@@ -139,7 +139,7 @@ function pos_cmp(a, b) do
               b.line,
               b.column
             ]);
-end
+end end
 
 function compare(loc1, loc2) do
   k = source_cmp(loc1.source, loc2.source);
@@ -153,7 +153,7 @@ function compare(loc1, loc2) do
   end else do
     return k;
   end end 
-end
+end end
 
 $$Error = Caml_exceptions.create("Flow_parser_reg_test.Parse_error.Error");
 
@@ -341,7 +341,7 @@ function error(param) do
       
     end
   end end 
-end
+end end
 
 Literal = Caml_module.init_mod(--[ tuple ]--[
       "spider_monkey_ast.ml",
@@ -1361,7 +1361,7 @@ function token_to_string(param) do
       
     end
   end end 
-end
+end end
 
 function yyback(n, lexbuf) do
   lexbuf.lex_curr_pos = lexbuf.lex_curr_pos - n | 0;
@@ -1373,12 +1373,12 @@ function yyback(n, lexbuf) do
     pos_cnum: currp.pos_cnum - n | 0
   end;
   return --[ () ]--0;
-end
+end end
 
 function back(lb) do
   n = lb.lex_curr_p.pos_cnum - lb.lex_start_p.pos_cnum | 0;
   return yyback(n, lb);
-end
+end end
 
 empty_lex_state = do
   lex_errors_acc: --[ [] ]--0,
@@ -1393,7 +1393,7 @@ function new_lex_env(lex_source, lex_lb, enable_types_in_comments) do
           lex_enable_comment_syntax: enable_types_in_comments,
           lex_state: empty_lex_state
         end;
-end
+end end
 
 function get_and_clear_state(env) do
   state = env.lex_state;
@@ -1408,7 +1408,7 @@ function get_and_clear_state(env) do
           env$1,
           state
         ];
-end
+end end
 
 function with_lexbuf(lexbuf, env) do
   return do
@@ -1418,7 +1418,7 @@ function with_lexbuf(lexbuf, env) do
           lex_enable_comment_syntax: env.lex_enable_comment_syntax,
           lex_state: env.lex_state
         end;
-end
+end end
 
 function in_comment_syntax(is_in, env) do
   if (is_in ~= env.lex_in_comment_syntax) then do
@@ -1432,7 +1432,7 @@ function in_comment_syntax(is_in, env) do
   end else do
     return env;
   end end 
-end
+end end
 
 function get_result_and_clear_state(param) do
   lex_token = param[1];
@@ -1494,7 +1494,7 @@ function get_result_and_clear_state(param) do
             lex_comments: List.rev(state.lex_comments_acc)
           end
         ];
-end
+end end
 
 function lex_error(env, loc, err) do
   lex_errors_acc_000 = --[ tuple ]--[
@@ -1517,18 +1517,18 @@ function lex_error(env, loc, err) do
             lex_comments_acc: init.lex_comments_acc
           end
         end;
-end
+end end
 
 function unexpected_error(env, loc, value) do
   return lex_error(env, loc, --[ UnexpectedToken ]--Block.__(1, [value]));
-end
+end end
 
 function unexpected_error_w_suggest(env, loc, value, suggest) do
   return lex_error(env, loc, --[ UnexpectedTokenWithSuggestion ]--Block.__(2, [
                 value,
                 suggest
               ]));
-end
+end end
 
 function illegal_number(env, lexbuf, word, token) do
   loc = from_lb(env.lex_source, lexbuf);
@@ -1538,7 +1538,7 @@ function illegal_number(env, lexbuf, word, token) do
           env$1,
           token
         ];
-end
+end end
 
 No_good = Caml_exceptions.create("Flow_parser_reg_test.Lexer_flow.FloatOfString.No_good");
 
@@ -1555,7 +1555,7 @@ function eat(f) do
   end else do
     throw No_good;
   end end 
-end
+end end
 
 function start(str) do
   todo = do
@@ -1567,7 +1567,7 @@ function start(str) do
             todo.contents
           ];
           return --[ () ]--0;
-        end), str);
+        end end), str);
   return do
           negative: false,
           mantissa: 0,
@@ -1575,7 +1575,7 @@ function start(str) do
           decimal_exponent: undefined,
           todo: List.rev(todo.contents)
         end;
-end
+end end
 
 function parse_sign(f) do
   match = f.todo;
@@ -1604,7 +1604,7 @@ function parse_sign(f) do
   end else do
     return f;
   end end 
-end
+end end
 
 function parse_hex_symbol(f) do
   match = f.todo;
@@ -1631,7 +1631,7 @@ function parse_hex_symbol(f) do
   end else do
     throw No_good;
   end end 
-end
+end end
 
 function parse_exponent(f) do
   todo_str = $$String.concat("", List.map(Char.escaped, f.todo));
@@ -1654,7 +1654,7 @@ function parse_exponent(f) do
           decimal_exponent: f.decimal_exponent,
           todo: --[ [] ]--0
         end;
-end
+end end
 
 function parse_body(_f) do
   while(true) do
@@ -1717,7 +1717,7 @@ function parse_body(_f) do
       return f;
     end end 
   end;
-end
+end end
 
 function float_of_string(str) do
   try do
@@ -1759,7 +1759,7 @@ function float_of_string(str) do
       throw e;
     end end 
   end
-end
+end end
 
 function save_comment(env, start, _end, buf, multiline) do
   loc = btwn(start, _end);
@@ -1785,7 +1785,7 @@ function save_comment(env, start, _end, buf, multiline) do
             lex_comments_acc: lex_comments_acc
           end
         end;
-end
+end end
 
 function unicode_fix_cols(lb) do
   count = function (_start, stop, _acc) do
@@ -1802,7 +1802,7 @@ function unicode_fix_cols(lb) do
         continue ;
       end end 
     end;
-  end;
+  end end;
   bytes = count(lb.lex_start_pos, lb.lex_curr_pos, 0);
   new_bol = lb.lex_curr_p.pos_bol + bytes | 0;
   init = lb.lex_curr_p;
@@ -1813,7 +1813,7 @@ function unicode_fix_cols(lb) do
     pos_cnum: init.pos_cnum
   end;
   return --[ () ]--0;
-end
+end end
 
 function oct_to_int(x) do
   if (x > 55 or x < 48) then do
@@ -1828,7 +1828,7 @@ function oct_to_int(x) do
   end
    end 
   return x - --[ "0" ]--48 | 0;
-end
+end end
 
 function hexa_to_int(x) do
   if (x >= 65) then do
@@ -1853,7 +1853,7 @@ function hexa_to_int(x) do
           11
         ]
       ];
-end
+end end
 
 function utf16to8(code) do
   if (code >= 65536) then do
@@ -1895,7 +1895,7 @@ function utf16to8(code) do
             --[ [] ]--0
           ];
   end end  end  end 
-end
+end end
 
 function mk_num_singleton(number_type, num, neg) do
   value;
@@ -1919,7 +1919,7 @@ function mk_num_singleton(number_type, num, neg) do
             number_type,
             value$1
           ]);
-end
+end end
 
 keywords = Hashtbl.create(undefined, 53);
 
@@ -1927,7 +1927,7 @@ type_keywords = Hashtbl.create(undefined, 53);
 
 List.iter((function (param) do
         return Hashtbl.add(keywords, param[0], param[1]);
-      end), --[ :: ]--[
+      end end), --[ :: ]--[
       --[ tuple ]--[
         "function",
         --[ T_FUNCTION ]--13
@@ -2231,7 +2231,7 @@ List.iter((function (param) do
 
 List.iter((function (param) do
         return Hashtbl.add(type_keywords, param[0], param[1]);
-      end), --[ :: ]--[
+      end end), --[ :: ]--[
       --[ tuple ]--[
         "static",
         --[ T_STATIC ]--40
@@ -2777,7 +2777,7 @@ function token(env, lexbuf) do
     w$3 = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
     return illegal_number(env$1, lexbuf$1, w$3, --[ T_NUMBER ]--Block.__(0, [--[ NORMAL ]--3]));
   end;
-end
+end end
 
 function regexp_body(env, buf, lexbuf) do
   env$1 = env;
@@ -2843,7 +2843,7 @@ function regexp_body(env, buf, lexbuf) do
         
     end
   end;
-end
+end end
 
 function regexp_class(env, buf, lexbuf) do
   env$1 = env;
@@ -2879,7 +2879,7 @@ function regexp_class(env, buf, lexbuf) do
     $$Buffer.add_string(buf$1, s);
     return regexp_class(env$1, buf$1, lexbuf$1);
   end;
-end
+end end
 
 function line_comment(env, buf, lexbuf) do
   env$1 = env;
@@ -2929,7 +2929,7 @@ function line_comment(env, buf, lexbuf) do
         
     end
   end;
-end
+end end
 
 function comment(env, buf, lexbuf) do
   env$1 = env;
@@ -2981,7 +2981,7 @@ function comment(env, buf, lexbuf) do
         
     end
   end;
-end
+end end
 
 function template_part(env, start, cooked, raw, literal, lexbuf) do
   env$1 = env;
@@ -3054,7 +3054,7 @@ function template_part(env, start, cooked, raw, literal, lexbuf) do
         
     end
   end;
-end
+end end
 
 function string_quote(env, q, buf, raw, octal, lexbuf) do
   env$1 = env;
@@ -3113,7 +3113,7 @@ function string_quote(env, q, buf, raw, octal, lexbuf) do
         
     end
   end;
-end
+end end
 
 function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
   while(true) do
@@ -3188,7 +3188,7 @@ function __ocaml_lex_template_tail_rec(_env, lexbuf, ___ocaml_lex_state) do
         
     end
   end;
-end
+end end
 
 function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
   while(true) do
@@ -3300,7 +3300,7 @@ function __ocaml_lex_jsx_tag_rec(_env, lexbuf, ___ocaml_lex_state) do
         
     end
   end;
-end
+end end
 
 function jsx_text(env, mode, buf, raw, lexbuf) do
   env$1 = env;
@@ -3373,7 +3373,7 @@ function jsx_text(env, mode, buf, raw, lexbuf) do
           code = Caml_format.caml_int_of_string("0x" .. n);
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
-                end), utf16to8(code));
+                end end), utf16to8(code));
           return jsx_text(env$1, mode$1, buf$1, raw$1, lexbuf$1);end end end 
        if ___conditional___ = 4 then do
           n$1 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos + 2 | 0, lexbuf$1.lex_curr_pos - 1 | 0);
@@ -3382,7 +3382,7 @@ function jsx_text(env, mode, buf, raw, lexbuf) do
           code$1 = Caml_format.caml_int_of_string(n$1);
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
-                end), utf16to8(code$1));
+                end end), utf16to8(code$1));
           return jsx_text(env$1, mode$1, buf$1, raw$1, lexbuf$1);end end end 
        if ___conditional___ = 5 then do
           entity = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos + 1 | 0, lexbuf$1.lex_curr_pos - 1 | 0);
@@ -3906,7 +3906,7 @@ function jsx_text(env, mode, buf, raw, lexbuf) do
           if (code$2 ~= undefined) then do
             List.iter((function (param) do
                     return $$Buffer.add_char(buf$1, param);
-                  end), utf16to8(code$2));
+                  end end), utf16to8(code$2));
           end else do
             $$Buffer.add_string(buf$1, "&" .. (entity .. ";"));
           end end 
@@ -3925,7 +3925,7 @@ function jsx_text(env, mode, buf, raw, lexbuf) do
         
     end
   end;
-end
+end end
 
 function type_token(env, lexbuf) do
   lexbuf.lex_mem = Caml_array.caml_make_vect(26, -1);
@@ -4297,7 +4297,7 @@ function type_token(env, lexbuf) do
         
     end
   end;
-end
+end end
 
 function string_escape(env, buf, lexbuf) do
   env$1 = env;
@@ -4326,7 +4326,7 @@ function string_escape(env, buf, lexbuf) do
           code = (hexa_to_int(a) << 4) + hexa_to_int(b) | 0;
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
-                end), utf16to8(code));
+                end end), utf16to8(code));
           return --[ tuple ]--[
                   env$1,
                   false
@@ -4339,12 +4339,12 @@ function string_escape(env, buf, lexbuf) do
           if (code$1 < 256) then do
             List.iter((function (param) do
                     return $$Buffer.add_char(buf$1, param);
-                  end), utf16to8(code$1));
+                  end end), utf16to8(code$1));
           end else do
             code$2 = (oct_to_int(a$1) << 3) + oct_to_int(b$1) | 0;
             List.iter((function (param) do
                     return $$Buffer.add_char(buf$1, param);
-                  end), utf16to8(code$2));
+                  end end), utf16to8(code$2));
             $$Buffer.add_char(buf$1, c);
           end end 
           return --[ tuple ]--[
@@ -4357,7 +4357,7 @@ function string_escape(env, buf, lexbuf) do
           code$3 = (oct_to_int(a$2) << 3) + oct_to_int(b$2) | 0;
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
-                end), utf16to8(code$3));
+                end end), utf16to8(code$3));
           return --[ tuple ]--[
                   env$1,
                   true
@@ -4409,7 +4409,7 @@ function string_escape(env, buf, lexbuf) do
           code$4 = oct_to_int(a$3);
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
-                end), utf16to8(code$4));
+                end end), utf16to8(code$4));
           return --[ tuple ]--[
                   env$1,
                   true
@@ -4422,7 +4422,7 @@ function string_escape(env, buf, lexbuf) do
           code$5 = (((hexa_to_int(a$4) << 12) + (hexa_to_int(b$3) << 8) | 0) + (hexa_to_int(c$1) << 4) | 0) + hexa_to_int(d) | 0;
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
-                end), utf16to8(code$5));
+                end end), utf16to8(code$5));
           return --[ tuple ]--[
                   env$1,
                   false
@@ -4433,7 +4433,7 @@ function string_escape(env, buf, lexbuf) do
           env$2 = code$6 > 1114111 and lex_error(env$1, from_lb(env$1.lex_source, lexbuf$1), --[ UnexpectedToken ]--Block.__(1, ["ILLEGAL"])) or env$1;
           List.iter((function (param) do
                   return $$Buffer.add_char(buf$1, param);
-                end), utf16to8(code$6));
+                end end), utf16to8(code$6));
           return --[ tuple ]--[
                   env$2,
                   false
@@ -4468,7 +4468,7 @@ function string_escape(env, buf, lexbuf) do
         
     end
   end;
-end
+end end
 
 function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
   while(true) do
@@ -4536,7 +4536,7 @@ function __ocaml_lex_regexp_rec(_env, lexbuf, ___ocaml_lex_state) do
         
     end
   end;
-end
+end end
 
 function jsx_child(env, start, buf, raw, lexbuf) do
   env$1 = env;
@@ -4605,11 +4605,11 @@ function jsx_child(env, start, buf, raw, lexbuf) do
         
     end
   end;
-end
+end end
 
 function regexp(env) do
   return get_result_and_clear_state(__ocaml_lex_regexp_rec(env, env.lex_lb, 291));
-end
+end end
 
 function jsx_child$1(env) do
   start = from_curr_lb(env.lex_source, env.lex_lb);
@@ -4620,23 +4620,23 @@ function jsx_child$1(env) do
               match[0],
               match[1]
             ]);
-end
+end end
 
 function jsx_tag(env) do
   return get_result_and_clear_state(__ocaml_lex_jsx_tag_rec(env, env.lex_lb, 333));
-end
+end end
 
 function template_tail(env) do
   return get_result_and_clear_state(__ocaml_lex_template_tail_rec(env, env.lex_lb, 393));
-end
+end end
 
 function type_token$1(env) do
   return get_result_and_clear_state(type_token(env, env.lex_lb));
-end
+end end
 
 function token$1(env) do
   return get_result_and_clear_state(token(env, env.lex_lb));
-end
+end end
 
 function height(param) do
   if (param) then do
@@ -4644,7 +4644,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, v, r) do
   hl = l and l[--[ h ]--3] or 0;
@@ -4655,7 +4655,7 @@ function create(l, v, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal(l, v, r) do
   hl = l and l[--[ h ]--3] or 0;
@@ -4710,7 +4710,7 @@ function bal(l, v, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add(x, t) do
   if (t) then do
@@ -4743,7 +4743,7 @@ function add(x, t) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function mem(x, _param) do
   while(true) do
@@ -4760,7 +4760,7 @@ function mem(x, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function create$1(lex_env, mode) do
   lexbuf = lex_env.lex_lb;
@@ -4785,7 +4785,7 @@ function create$1(lex_env, mode) do
           la_lex_mode: mode,
           la_lex_env: lex_env$1
         end;
-end
+end end
 
 function next_power_of_two(n) do
   _i = 1;
@@ -4798,7 +4798,7 @@ function next_power_of_two(n) do
       continue ;
     end end 
   end;
-end
+end end
 
 function grow(t, n) do
   if (#t.la_results < n) then do
@@ -4808,14 +4808,14 @@ function grow(t, n) do
         return Caml_array.caml_array_get(t.la_results, i);
       end
        end 
-    end;
+    end end;
     new_arr = $$Array.init(new_size, filler);
     t.la_results = new_arr;
     return --[ () ]--0;
   end else do
     return 0;
   end end 
-end
+end end
 
 function lex(t) do
   lex_env = t.la_lex_env;
@@ -4863,7 +4863,7 @@ function lex(t) do
       ]);
   t.la_num_lexed = t.la_num_lexed + 1 | 0;
   return --[ () ]--0;
-end
+end end
 
 function lex_until(t, i) do
   grow(t, i + 1 | 0);
@@ -4871,7 +4871,7 @@ function lex_until(t, i) do
     lex(t);
   end;
   return --[ () ]--0;
-end
+end end
 
 default_parse_options = do
   esproposal_class_instance_fields: false,
@@ -4946,7 +4946,7 @@ function init_env(token_sinkOpt, parse_optionsOpt, source, content) do
           parse_options: parse_options$1,
           source: source
         end;
-end
+end end
 
 function error_at(env, param) do
   e = param[1];
@@ -4963,7 +4963,7 @@ function error_at(env, param) do
   end else do
     return --[ () ]--0;
   end end 
-end
+end end
 
 function comment_list(env) do
   return (function (param) do
@@ -4973,9 +4973,9 @@ function comment_list(env) do
                       env.comments.contents
                     ];
                     return --[ () ]--0;
-                  end), param);
-    end);
-end
+                  end end), param);
+    end end);
+end end
 
 function record_export(env, param) do
   export_name = param[1];
@@ -4989,7 +4989,7 @@ function record_export(env, param) do
     env.exports.contents = add(export_name, env.exports.contents);
     return --[ () ]--0;
   end end 
-end
+end end
 
 function lookahead(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
@@ -5016,87 +5016,87 @@ function lookahead(iOpt, env) do
           "Lookahead.peek failed"
         ];
   end end 
-end
+end end
 
 function with_strict(in_strict_mode, env) do
   newrecord = Caml_obj.caml_obj_dup(env);
   newrecord.in_strict_mode = in_strict_mode;
   return newrecord;
-end
+end end
 
 function with_in_function(in_function, env) do
   newrecord = Caml_obj.caml_obj_dup(env);
   newrecord.in_function = in_function;
   return newrecord;
-end
+end end
 
 function with_allow_yield(allow_yield, env) do
   newrecord = Caml_obj.caml_obj_dup(env);
   newrecord.allow_yield = allow_yield;
   return newrecord;
-end
+end end
 
 function with_no_let(no_let, env) do
   newrecord = Caml_obj.caml_obj_dup(env);
   newrecord.no_let = no_let;
   return newrecord;
-end
+end end
 
 function with_in_loop(in_loop, env) do
   newrecord = Caml_obj.caml_obj_dup(env);
   newrecord.in_loop = in_loop;
   return newrecord;
-end
+end end
 
 function with_no_in(no_in, env) do
   newrecord = Caml_obj.caml_obj_dup(env);
   newrecord.no_in = no_in;
   return newrecord;
-end
+end end
 
 function with_in_switch(in_switch, env) do
   newrecord = Caml_obj.caml_obj_dup(env);
   newrecord.in_switch = in_switch;
   return newrecord;
-end
+end end
 
 function with_in_export(in_export, env) do
   newrecord = Caml_obj.caml_obj_dup(env);
   newrecord.in_export = in_export;
   return newrecord;
-end
+end end
 
 function with_no_call(no_call, env) do
   newrecord = Caml_obj.caml_obj_dup(env);
   newrecord.no_call = no_call;
   return newrecord;
-end
+end end
 
 function with_error_callback(error_callback, env) do
   newrecord = Caml_obj.caml_obj_dup(env);
   newrecord.error_callback = error_callback;
   return newrecord;
-end
+end end
 
 function error_list(env) do
   return (function (param) do
       return List.iter((function (param) do
                     return error_at(env, param);
-                  end), param);
-    end);
-end
+                  end end), param);
+    end end);
+end end
 
 function without_error_callback(env) do
   newrecord = Caml_obj.caml_obj_dup(env);
   newrecord.error_callback = undefined;
   return newrecord;
-end
+end end
 
 function add_label(env, label) do
   newrecord = Caml_obj.caml_obj_dup(env);
   newrecord.labels = add(label, env.labels);
   return newrecord;
-end
+end end
 
 function enter_function(env, async, generator) do
   newrecord = Caml_obj.caml_obj_dup(env);
@@ -5107,7 +5107,7 @@ function enter_function(env, async, generator) do
   newrecord.in_loop = false;
   newrecord.labels = --[ Empty ]--0;
   return newrecord;
-end
+end end
 
 function is_future_reserved(param) do
   if (param == "enum") then do
@@ -5115,7 +5115,7 @@ function is_future_reserved(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 function is_strict_reserved(param) do
   local ___conditional___=(param);
@@ -5135,7 +5135,7 @@ function is_strict_reserved(param) do
       end end
       
   end
-end
+end end
 
 function is_restricted(param) do
   local ___conditional___=(param);
@@ -5149,32 +5149,32 @@ function is_restricted(param) do
       end end
       
   end
-end
+end end
 
 function token$2(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
   return lookahead(i, env).lex_token;
-end
+end end
 
 function value(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
   return lookahead(i, env).lex_value;
-end
+end end
 
 function loc(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
   return lookahead(i, env).lex_loc;
-end
+end end
 
 function errors(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
   return lookahead(i, env).lex_errors;
-end
+end end
 
 function comments(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
   return lookahead(i, env).lex_comments;
-end
+end end
 
 function lex_env(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
@@ -5190,7 +5190,7 @@ function lex_env(iOpt, env) do
           "Lookahead.peek failed"
         ];
   end end 
-end
+end end
 
 function is_line_terminator(env) do
   match = env.last_loc.contents;
@@ -5199,7 +5199,7 @@ function is_line_terminator(env) do
   end else do
     return false;
   end end 
-end
+end end
 
 function is_implicit_semicolon(env) do
   match = token$2(undefined, env);
@@ -5219,7 +5219,7 @@ function is_implicit_semicolon(env) do
   end else do
     return is_line_terminator(env);
   end end 
-end
+end end
 
 function semicolon_loc(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
@@ -5227,7 +5227,7 @@ function semicolon_loc(iOpt, env) do
     return loc(i, env);
   end
    end 
-end
+end end
 
 function is_identifier(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
@@ -5245,7 +5245,7 @@ function is_identifier(iOpt, env) do
   end else do
     return false;
   end end  end 
-end
+end end
 
 function is_function(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
@@ -5256,7 +5256,7 @@ function is_function(iOpt, env) do
   end else do
     return false;
   end end  end 
-end
+end end
 
 function is_class(iOpt, env) do
   i = iOpt ~= undefined and iOpt or 0;
@@ -5270,7 +5270,7 @@ function is_class(iOpt, env) do
   end else do
     return false;
   end end 
-end
+end end
 
 function error$1(env, e) do
   loc$1 = loc(undefined, env);
@@ -5278,7 +5278,7 @@ function error$1(env, e) do
               loc$1,
               e
             ]);
-end
+end end
 
 function get_unexpected_error(param) do
   tmp = param[0];
@@ -5316,7 +5316,7 @@ function get_unexpected_error(param) do
   end else do
     return --[ UnexpectedToken ]--Block.__(1, [word]);
   end end  end 
-end
+end end
 
 function error_unexpected(env) do
   error_list(env)(errors(undefined, env));
@@ -5324,7 +5324,7 @@ function error_unexpected(env) do
                   token$2(undefined, env),
                   value(undefined, env)
                 ]));
-end
+end end
 
 function error_on_decorators(env) do
   return (function (param) do
@@ -5333,9 +5333,9 @@ function error_on_decorators(env) do
                                 decorator[0],
                                 --[ UnsupportedDecorator ]--57
                               ]);
-                  end), param);
-    end);
-end
+                  end end), param);
+    end end);
+end end
 
 function strict_error(env, e) do
   if (env.in_strict_mode) then do
@@ -5343,7 +5343,7 @@ function strict_error(env, e) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function strict_error_at(env, param) do
   if (env.in_strict_mode) then do
@@ -5354,7 +5354,7 @@ function strict_error_at(env, param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function token$3(env) do
   match = env.token_sink.contents;
@@ -5383,7 +5383,7 @@ function token$3(env) do
   Caml_array.caml_array_set(t.la_results, t.la_num_lexed - 1 | 0, undefined);
   t.la_num_lexed = t.la_num_lexed - 1 | 0;
   return --[ () ]--0;
-end
+end end
 
 function push_lex_mode(env, mode) do
   env.lex_mode_stack.contents = --[ :: ]--[
@@ -5392,7 +5392,7 @@ function push_lex_mode(env, mode) do
   ];
   env.lookahead.contents = create$1(env.lex_env.contents, List.hd(env.lex_mode_stack.contents));
   return --[ () ]--0;
-end
+end end
 
 function pop_lex_mode(env) do
   match = env.lex_mode_stack.contents;
@@ -5408,7 +5408,7 @@ function pop_lex_mode(env) do
   env.lex_mode_stack.contents = new_stack;
   env.lookahead.contents = create$1(env.lex_env.contents, List.hd(env.lex_mode_stack.contents));
   return --[ () ]--0;
-end
+end end
 
 function double_pop_lex_mode(env) do
   match = env.lex_mode_stack.contents;
@@ -5432,7 +5432,7 @@ function double_pop_lex_mode(env) do
   env.lex_mode_stack.contents = new_stack;
   env.lookahead.contents = create$1(env.lex_env.contents, List.hd(env.lex_mode_stack.contents));
   return --[ () ]--0;
-end
+end end
 
 function semicolon(env) do
   if (is_implicit_semicolon(env)) then do
@@ -5442,7 +5442,7 @@ function semicolon(env) do
   end else do
     return error_unexpected(env);
   end end  end 
-end
+end end
 
 function token$4(env, t) do
   if (Caml_obj.caml_notequal(token$2(undefined, env), t)) then do
@@ -5450,7 +5450,7 @@ function token$4(env, t) do
   end
    end 
   return token$3(env);
-end
+end end
 
 function maybe(env, t) do
   if (Caml_obj.caml_equal(token$2(undefined, env), t)) then do
@@ -5459,7 +5459,7 @@ function maybe(env, t) do
   end else do
     return false;
   end end 
-end
+end end
 
 function contextual(env, str) do
   if (value(undefined, env) ~= str) then do
@@ -5467,7 +5467,7 @@ function contextual(env, str) do
   end
    end 
   return token$3(env);
-end
+end end
 
 Rollback = Caml_exceptions.create("Flow_parser_reg_test.Parser_env.Try.Rollback");
 
@@ -5482,7 +5482,7 @@ function save_state(env) do
     end;
     env.token_sink.contents = (function (token_data) do
         return Queue.add(token_data, buffer);
-      end);
+      end end);
     token_buffer = --[ tuple ]--[
       match,
       buffer
@@ -5498,7 +5498,7 @@ function save_state(env) do
           saved_lex_env: env.lex_env.contents,
           token_buffer: token_buffer
         end;
-end
+end end
 
 function reset_token_sink(flush, env, token_buffer_info) do
   if (token_buffer_info ~= undefined) then do
@@ -5513,7 +5513,7 @@ function reset_token_sink(flush, env, token_buffer_info) do
   end else do
     return --[ () ]--0;
   end end 
-end
+end end
 
 function to_parse(env, parse) do
   saved_state = save_state(env);
@@ -5540,7 +5540,7 @@ function to_parse(env, parse) do
       throw exn;
     end end 
   end
-end
+end end
 
 Parser_env_Peek = do
   token: token$2,
@@ -5567,7 +5567,7 @@ function height$1(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create$2(l, v, r) do
   hl = l and l[--[ h ]--3] or 0;
@@ -5578,7 +5578,7 @@ function create$2(l, v, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal$1(l, v, r) do
   hl = l and l[--[ h ]--3] or 0;
@@ -5633,7 +5633,7 @@ function bal$1(l, v, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add$1(x, t) do
   if (t) then do
@@ -5666,7 +5666,7 @@ function add$1(x, t) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function mem$1(x, _param) do
   while(true) do
@@ -5683,7 +5683,7 @@ function mem$1(x, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function height$2(param) do
   if (param) then do
@@ -5691,7 +5691,7 @@ function height$2(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create$3(l, x, d, r) do
   hl = height$2(l);
@@ -5703,7 +5703,7 @@ function create$3(l, x, d, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal$2(l, x, d, r) do
   hl = l and l[--[ h ]--4] or 0;
@@ -5761,7 +5761,7 @@ function bal$2(l, x, d, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add$2(x, data, m) do
   if (m) then do
@@ -5806,7 +5806,7 @@ function add$2(x, data, m) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function find(x, _param) do
   while(true) do
@@ -5823,7 +5823,7 @@ function find(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function compare$1(param, param$1) do
   loc = compare(param[0], param$1[0]);
@@ -5832,7 +5832,7 @@ function compare$1(param, param$1) do
   end else do
     return loc;
   end end 
-end
+end end
 
 function height$3(param) do
   if (param) then do
@@ -5840,7 +5840,7 @@ function height$3(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create$4(l, v, r) do
   hl = l and l[--[ h ]--3] or 0;
@@ -5851,7 +5851,7 @@ function create$4(l, v, r) do
           --[ r ]--r,
           --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal$3(l, v, r) do
   hl = l and l[--[ h ]--3] or 0;
@@ -5906,7 +5906,7 @@ function bal$3(l, v, r) do
             --[ h ]--hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add$3(x, t) do
   if (t) then do
@@ -5939,7 +5939,7 @@ function add$3(x, t) do
             --[ h ]--1
           ];
   end end 
-end
+end end
 
 function mem$2(x, _param) do
   while(true) do
@@ -5956,7 +5956,7 @@ function mem$2(x, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 function filter_duplicate_errors(errs) do
   errs$1 = List.rev(errs);
@@ -5977,12 +5977,12 @@ function filter_duplicate_errors(errs) do
                     ]
                   ];
           end end 
-        end), --[ tuple ]--[
+        end end), --[ tuple ]--[
         --[ Empty ]--0,
         --[ [] ]--0
       ], errs$1);
   return List.rev(match[1]);
-end
+end end
 
 function with_loc(fn, env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -5993,7 +5993,7 @@ function with_loc(fn, env) do
           btwn(start_loc, end_loc),
           result
         ];
-end
+end end
 
 Parse = Caml_module.init_mod(--[ tuple ]--[
       "parser_flow.ml",
@@ -6098,11 +6098,11 @@ function intersection(env) do
   maybe(env, --[ T_BIT_AND ]--82);
   left = prefix(env);
   return Curry._2(intersection_with, env, left);
-end
+end end
 
 function generic(env) do
   return Curry._2(raw_generic_with_identifier, env, Curry._2(Parse.identifier, undefined, env));
-end
+end end
 
 function primary(env) do
   loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -6278,7 +6278,7 @@ function primary(env) do
      do
     
   end
-end
+end end
 
 function primitive(param) do
   if (typeof param == "number") then do
@@ -6307,7 +6307,7 @@ function primitive(param) do
     end end 
   end
    end 
-end
+end end
 
 function function_param_or_generic_type(env) do
   id = Curry._2(Parse.identifier, undefined, env);
@@ -6322,13 +6322,13 @@ function function_param_or_generic_type(env) do
   end
    end 
   return --[ Type ]--Block.__(1, [Curry._2(union_with, env, Curry._2(intersection_with, env, postfix_with(env, generic_type_with_identifier(env, id))))]);
-end
+end end
 
 function union(env) do
   maybe(env, --[ T_BIT_OR ]--80);
   left = intersection(env);
   return Curry._2(union_with, env, left);
-end
+end end
 
 function function_param_with_id(env, name) do
   if (!env.parse_options.types) then do
@@ -6346,7 +6346,7 @@ function function_param_with_id(env, name) do
             optional: optional
           end
         ];
-end
+end end
 
 function generic_type_with_identifier(env, id) do
   match = Curry._2(raw_generic_with_identifier, env, id);
@@ -6354,7 +6354,7 @@ function generic_type_with_identifier(env, id) do
           match[0],
           --[ Generic ]--Block.__(4, [match[1]])
         ];
-end
+end end
 
 function postfix_with(env, _t) do
   while(true) do
@@ -6374,14 +6374,14 @@ function postfix_with(env, _t) do
       return t;
     end end 
   end;
-end
+end end
 
 function function_param_list(env) do
   token$4(env, --[ T_LPAREN ]--3);
   ret = Curry._2(function_param_list_without_parens, env, --[ [] ]--0);
   token$4(env, --[ T_RPAREN ]--4);
   return ret;
-end
+end end
 
 function prefix(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -6398,7 +6398,7 @@ function prefix(env) do
     t$1 = primary(env$1);
     return postfix_with(env$1, t$1);
   end end 
-end
+end end
 
 function rev_nonempty_acc(acc) do
   end_loc;
@@ -6432,7 +6432,7 @@ function rev_nonempty_acc(acc) do
           btwn(start_loc, end_loc),
           acc$1
         ];
-end
+end end
 
 function param_list_or_type(env) do
   token$4(env, --[ T_LPAREN ]--3);
@@ -6517,7 +6517,7 @@ function param_list_or_type(env) do
    end 
   token$4(env, --[ T_RPAREN ]--4);
   return ret;
-end
+end end
 
 function union_with(env, left) do
   if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_BIT_OR ]--80) then do
@@ -6547,7 +6547,7 @@ function union_with(env, left) do
   end else do
     return left;
   end end 
-end
+end end
 
 function methodish(env, start_loc) do
   typeParameters = Curry._2(type_parameter_declaration, false, env);
@@ -6564,7 +6564,7 @@ function methodish(env, start_loc) do
             typeParameters: typeParameters
           end
         ];
-end
+end end
 
 function method_property(env, start_loc, $$static, key) do
   value = methodish(env, start_loc);
@@ -6584,7 +6584,7 @@ function method_property(env, start_loc, $$static, key) do
             _method: true
           end
         ];
-end
+end end
 
 function call_property(env, start_loc, $$static) do
   value = methodish(env, Curry._2(Parser_env_Peek.loc, undefined, env));
@@ -6595,7 +6595,7 @@ function call_property(env, start_loc, $$static) do
             static: $$static
           end
         ];
-end
+end end
 
 function property(env, start_loc, $$static, key) do
   if (!env.parse_options.types) then do
@@ -6615,7 +6615,7 @@ function property(env, start_loc, $$static, key) do
             _method: false
           end
         ];
-end
+end end
 
 function indexer_property(env, start_loc, $$static) do
   token$4(env, --[ T_LBRACKET ]--5);
@@ -6634,7 +6634,7 @@ function indexer_property(env, start_loc, $$static) do
             static: $$static
           end
         ];
-end
+end end
 
 function semicolon$1(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -6653,7 +6653,7 @@ function semicolon$1(env) do
   end else do
     return error_unexpected(env);
   end end 
-end
+end end
 
 function properties(allow_static, env, _param) do
   while(true) do
@@ -6782,7 +6782,7 @@ function properties(allow_static, env, _param) do
       
     end
   end;
-end
+end end
 
 function _object(allow_staticOpt, env) do
   allow_static = allow_staticOpt ~= undefined and allow_staticOpt or false;
@@ -6803,7 +6803,7 @@ function _object(allow_staticOpt, env) do
             callProperties: match[2]
           end
         ];
-end
+end end
 
 function types(env, _acc) do
   while(true) do
@@ -6825,12 +6825,12 @@ function types(env, _acc) do
     _acc = acc$1;
     continue ;
   end;
-end
+end end
 
 function param(env) do
   match = Curry._1(Parse.identifier_or_reserved_keyword, env);
   return function_param_with_id(env, match[0]);
-end
+end end
 
 function function_param_list_without_parens(env) do
   return (function (param$1) do
@@ -6874,8 +6874,8 @@ function function_param_list_without_parens(env) do
           
         end
       end;
-    end);
-end
+    end end);
+end end
 
 function params(env, _acc) do
   while(true) do
@@ -6897,7 +6897,7 @@ function params(env, _acc) do
     _acc = acc$1;
     continue ;
   end;
-end
+end end
 
 function type_parameter_instantiation(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -6914,7 +6914,7 @@ function type_parameter_instantiation(env) do
           ];
   end
    end 
-end
+end end
 
 function intersection_with(env, left) do
   if (Curry._2(Parser_env_Peek.token, undefined, env) == --[ T_BIT_AND ]--82) then do
@@ -6944,7 +6944,7 @@ function intersection_with(env, left) do
   end else do
     return left;
   end end 
-end
+end end
 
 function params$1(env, allow_default, _require_default, _acc) do
   while(true) do
@@ -7020,7 +7020,7 @@ function params$1(env, allow_default, _require_default, _acc) do
       continue ;
     end end 
   end;
-end
+end end
 
 function type_parameter_declaration(allow_default, env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -7041,7 +7041,7 @@ function type_parameter_declaration(allow_default, env) do
           ];
   end
    end 
-end
+end end
 
 function identifier(env, _param) do
   while(true) do
@@ -7071,7 +7071,7 @@ function identifier(env, _param) do
             ];
     end end 
   end;
-end
+end end
 
 function raw_generic_with_identifier(env, id) do
   id_000 = id[0];
@@ -7091,7 +7091,7 @@ function raw_generic_with_identifier(env, id) do
             typeParameters: typeParameters
           end
         ];
-end
+end end
 
 _type = union;
 
@@ -7121,7 +7121,7 @@ function annotation(env) do
           btwn(start_loc, end_loc),
           typeAnnotation
         ];
-end
+end end
 
 function annotation_opt(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -7129,7 +7129,7 @@ function annotation_opt(env) do
     return annotation(env);
   end
    end 
-end
+end end
 
 function wrap(f, env) do
   env$1 = with_strict(true, env);
@@ -7137,24 +7137,24 @@ function wrap(f, env) do
   ret = Curry._1(f, env$1);
   pop_lex_mode(env$1);
   return ret;
-end
+end end
 
 partial_arg = Curry._1(type_parameter_declaration, true);
 
 function type_parameter_declaration_with_defaults(param) do
   return wrap(partial_arg, param);
-end
+end end
 
 partial_arg$1 = Curry._1(type_parameter_declaration, false);
 
 function type_parameter_declaration$1(param) do
   return wrap(partial_arg$1, param);
-end
+end end
 
 function _object$1(allow_staticOpt, env) do
   allow_static = allow_staticOpt ~= undefined and allow_staticOpt or false;
   return wrap(Curry._1(_object, allow_static), env);
-end
+end end
 
 function pattern(check_env, _param) do
   while(true) do
@@ -7204,7 +7204,7 @@ function pattern(check_env, _param) do
       
     end
   end;
-end
+end end
 
 function object_property(check_env, param) do
   if (param.tag) then do
@@ -7225,7 +7225,7 @@ function object_property(check_env, param) do
     end
     return pattern(check_env$1, property.pattern);
   end end 
-end
+end end
 
 function array_element(check_env, param) do
   if (param ~= undefined) then do
@@ -7238,7 +7238,7 @@ function array_element(check_env, param) do
   end else do
     return check_env;
   end end 
-end
+end end
 
 function identifier_no_dupe_check(param, param$1) do
   name = param$1[1].name;
@@ -7262,7 +7262,7 @@ function identifier_no_dupe_check(param, param$1) do
           env,
           param[1]
         ];
-end
+end end
 
 function strict_post_check(env, strict, simple, id, params) do
   if (strict or !simple) then do
@@ -7295,7 +7295,7 @@ function strict_post_check(env, strict, simple, id, params) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function param$1(env) do
   id = Curry._2(Parse.pattern, env, --[ StrictParamName ]--28);
@@ -7312,7 +7312,7 @@ function param$1(env) do
             undefined
           ];
   end end 
-end
+end end
 
 function param_list(env, _param) do
   while(true) do
@@ -7369,7 +7369,7 @@ function param_list(env, _param) do
       
     end
   end;
-end
+end end
 
 function function_params(env) do
   token$4(env, --[ T_LPAREN ]--3);
@@ -7384,7 +7384,7 @@ function function_params(env) do
           match[1],
           match[2]
         ];
-end
+end end
 
 function function_body(env, async, generator) do
   env$1 = enter_function(env, async, generator);
@@ -7398,7 +7398,7 @@ function function_body(env, async, generator) do
               ]]),
           match[2]
         ];
-end
+end end
 
 function generator(env, is_async) do
   match = maybe(env, --[ T_MULT ]--97);
@@ -7408,7 +7408,7 @@ function generator(env, is_async) do
   end else do
     return match;
   end end 
-end
+end end
 
 function is_simple_param(param) do
   if (param[1].tag == --[ Identifier ]--3) then do
@@ -7416,7 +7416,7 @@ function is_simple_param(param) do
   end else do
     return false;
   end end 
-end
+end end
 
 function is_simple_function_params(params, defaults, rest) do
   if (defaults == --[ [] ]--0 and rest == undefined) then do
@@ -7424,7 +7424,7 @@ function is_simple_function_params(params, defaults, rest) do
   end else do
     return false;
   end end 
-end
+end end
 
 function _function(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -7499,7 +7499,7 @@ function _function(env) do
                 typeParameters: match$2[0]
               end])
         ];
-end
+end end
 
 function variable_declaration(env) do
   id = Curry._2(Parse.pattern, env, --[ StrictVarName ]--27);
@@ -7537,7 +7537,7 @@ function variable_declaration(env) do
           ],
           match[1]
         ];
-end
+end end
 
 function helper(env, _decls, _errs) do
   while(true) do
@@ -7566,7 +7566,7 @@ function helper(env, _decls, _errs) do
             ];
     end end 
   end;
-end
+end end
 
 function declarations(token$5, kind, env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -7582,7 +7582,7 @@ function declarations(token$5, kind, env) do
           ],
           match[2]
         ];
-end
+end end
 
 function $$const(env) do
   env$1 = with_no_let(true, env);
@@ -7601,7 +7601,7 @@ function $$const(env) do
                     errs
                   ];
           end end 
-        end), match[1], variable.declarations);
+        end end), match[1], variable.declarations);
   return --[ tuple ]--[
           --[ tuple ]--[
             match$1[0],
@@ -7609,12 +7609,12 @@ function $$const(env) do
           ],
           List.rev(errs)
         ];
-end
+end end
 
 function _let(env) do
   env$1 = with_no_let(true, env);
   return declarations(--[ T_LET ]--26, --[ Let ]--1, env$1);
-end
+end end
 
 function variable(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -7652,13 +7652,13 @@ function variable(env) do
           ],
           match$1[1]
         ];
-end
+end end
 
 function is_tighter(a, b) do
   a_prec;
   a_prec = a.tag and a[0] - 1 | 0 or a[0];
   return a_prec >= b[0];
-end
+end end
 
 function is_lhs(param) do
   tmp = param[1];
@@ -7677,7 +7677,7 @@ function is_lhs(param) do
         
     end
   end end 
-end
+end end
 
 function is_assignable_lhs(param) do
   tmp = param[1];
@@ -7698,7 +7698,7 @@ function is_assignable_lhs(param) do
         
     end
   end end 
-end
+end end
 
 function assignment_op(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -7746,7 +7746,7 @@ function assignment_op(env) do
   end
    end 
   return op;
-end
+end end
 
 function conditional(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -7769,7 +7769,7 @@ function conditional(env) do
   end else do
     return expr;
   end end 
-end
+end end
 
 function peek_unary_op(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -7820,7 +7820,7 @@ function peek_unary_op(env) do
     end end  end 
   end
    end 
-end
+end end
 
 function unary(env) do
   begin_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -7920,7 +7920,7 @@ function unary(env) do
       end end 
     end end 
   end end 
-end
+end end
 
 function left_hand_side(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -7929,7 +7929,7 @@ function left_hand_side(env) do
   if (typeof match == "number" and match == 42) then do
     expr = _new(env, (function (new_expr, _args) do
             return new_expr;
-          end));
+          end end));
   end else do
     exit = 1;
   end end 
@@ -7950,7 +7950,7 @@ function left_hand_side(env) do
   end else do
     return expr$1;
   end end  end 
-end
+end end
 
 function call(env, _left) do
   while(true) do
@@ -8013,7 +8013,7 @@ function call(env, _left) do
       return left;
     end end  end 
   end;
-end
+end end
 
 function _new(env, _finish_fn) do
   while(true) do
@@ -8047,7 +8047,7 @@ function _new(env, _finish_fn) do
           callee$prime_001
         ];
         return Curry._2(finish_fn, callee$prime, undefined);
-      end
+      end end
       end(finish_fn,start_loc));
       _finish_fn = finish_fn$prime;
       continue ;
@@ -8063,7 +8063,7 @@ function _new(env, _finish_fn) do
     args = typeof match$2 == "number" and match$2 == 3 and Curry._1($$arguments, env) or undefined;
     return Curry._2(finish_fn, callee$1, args);
   end;
-end
+end end
 
 function member(env, left) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -8101,7 +8101,7 @@ function member(env, left) do
   end else do
     return left;
   end end 
-end
+end end
 
 function _function$1(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -8151,7 +8151,7 @@ function _function$1(env) do
                 typeParameters: match[1]
               end])
         ];
-end
+end end
 
 function number(env, number_type) do
   value = Curry._2(Parser_env_Peek.value, undefined, env);
@@ -8184,7 +8184,7 @@ function number(env, number_type) do
   end end 
   token$4(env, --[ T_NUMBER ]--Block.__(0, [number_type]));
   return value$1;
-end
+end end
 
 function primary$1(env) do
   loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -8343,7 +8343,7 @@ function primary$1(env) do
                   end else do
                     return --[ () ]--0;
                   end end  end 
-                end), raw_flags);
+                end end), raw_flags);
           flags = $$Buffer.contents(filtered_flags);
           if (flags ~= raw_flags) then do
             error$1(env$3, --[ InvalidRegExpFlags ]--Block.__(3, [raw_flags]));
@@ -8453,7 +8453,7 @@ function primary$1(env) do
      do
     
   end
-end
+end end
 
 function tagged_template(env, tag, part) do
   quasi = Curry._2(template_literal, env, part);
@@ -8464,7 +8464,7 @@ function tagged_template(env, tag, part) do
                 quasi: quasi
               end])
         ];
-end
+end end
 
 function sequence(env, _acc) do
   while(true) do
@@ -8490,7 +8490,7 @@ function sequence(env, _acc) do
                 end])
           ];
   end;
-end
+end end
 
 function identifier_or_reserved_keyword(env) do
   lex_token = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -8564,7 +8564,7 @@ function identifier_or_reserved_keyword(env) do
           ];
   end
    end 
-end
+end end
 
 function assignment_but_not_arrow_function(env) do
   expr = conditional(env);
@@ -8599,11 +8599,11 @@ function assignment_but_not_arrow_function(env) do
   end else do
     return expr;
   end end 
-end
+end end
 
 function error_callback(param, param$1) do
   throw Parser_env_Try.Rollback;
-end
+end end
 
 function try_assignment_but_not_arrow_function(env) do
   env$1 = with_error_callback(error_callback, env);
@@ -8638,7 +8638,7 @@ function try_assignment_but_not_arrow_function(env) do
   end else do
     return ret;
   end end 
-end
+end end
 
 function assignment(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -8699,7 +8699,7 @@ function assignment(env) do
       return assignment_but_not_arrow_function(env);
     end end 
   end end 
-end
+end end
 
 function make_logical(left, right, operator, loc) do
   return --[ tuple ]--[
@@ -8710,7 +8710,7 @@ function make_logical(left, right, operator, loc) do
                 right: right
               end])
         ];
-end
+end end
 
 function logical_and(env, _left, _lloc) do
   while(true) do
@@ -8731,7 +8731,7 @@ function logical_and(env, _left, _lloc) do
             ];
     end end 
   end;
-end
+end end
 
 function logical_or(env, _left, _lloc) do
   while(true) do
@@ -8753,13 +8753,13 @@ function logical_or(env, _left, _lloc) do
             ];
     end end 
   end;
-end
+end end
 
 function logical(env) do
   match = with_loc(binary, env);
   match$1 = logical_and(env, match[1], match[0]);
   return logical_or(env, match$1[1], match$1[0])[1];
-end
+end end
 
 function binary_op(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -8906,7 +8906,7 @@ function binary_op(env) do
   end
    end 
   return ret;
-end
+end end
 
 function make_binary(left, right, operator, loc) do
   return --[ tuple ]--[
@@ -8917,7 +8917,7 @@ function make_binary(left, right, operator, loc) do
                 right: right
               end])
         ];
-end
+end end
 
 function add_to_stack(_right, _param, _rloc, _stack) do
   while(true) do
@@ -8957,7 +8957,7 @@ function add_to_stack(_right, _param, _rloc, _stack) do
             stack
           ];
   end;
-end
+end end
 
 function binary(env) do
   env$1 = env;
@@ -9015,7 +9015,7 @@ function binary(env) do
       end;
     end end 
   end;
-end
+end end
 
 function argument(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -9033,7 +9033,7 @@ function argument(env) do
   end else do
     return --[ Expression ]--Block.__(0, [Curry._1(assignment, env)]);
   end end 
-end
+end end
 
 function arguments$prime(env, _acc) do
   while(true) do
@@ -9055,7 +9055,7 @@ function arguments$prime(env, _acc) do
     _acc = acc$1;
     continue ;
   end;
-end
+end end
 
 function $$arguments(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -9067,7 +9067,7 @@ function $$arguments(env) do
           btwn(start_loc, end_loc),
           args
         ];
-end
+end end
 
 function template_parts(env, _quasis, _expressions) do
   while(true) do
@@ -9163,7 +9163,7 @@ function template_parts(env, _quasis, _expressions) do
             List.rev(expressions$1)
           ];
   end;
-end
+end end
 
 function template_literal(env, part) do
   is_tail = part[2];
@@ -9200,7 +9200,7 @@ function template_literal(env, part) do
             expressions: match$1[2]
           end
         ];
-end
+end end
 
 function elements(env, _acc) do
   while(true) do
@@ -9266,7 +9266,7 @@ function elements(env, _acc) do
     ];
     continue ;
   end;
-end
+end end
 
 function array_initializer(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -9280,7 +9280,7 @@ function array_initializer(env) do
             elements: elements$1
           end
         ];
-end
+end end
 
 function error_callback$1(param, param$1) do
   if (typeof param$1 == "number") then do
@@ -9299,7 +9299,7 @@ function error_callback$1(param, param$1) do
   end else do
     throw Parser_env_Try.Rollback;
   end end 
-end
+end end
 
 function try_arrow_function(env) do
   env$1 = with_error_callback(error_callback$1, env);
@@ -9364,7 +9364,7 @@ function try_arrow_function(env) do
                   --[ BodyExpression ]--Block.__(1, [expr]),
                   env$2.in_strict_mode
                 ];
-        end), env$3);
+        end end), env$3);
   match$3 = match$2[1];
   body = match$3[0];
   simple = is_simple_function_params(params, defaults, rest);
@@ -9388,7 +9388,7 @@ function try_arrow_function(env) do
                 typeParameters: typeParameters
               end])
         ];
-end
+end end
 
 function decorator_list_helper(env, _decorators) do
   while(true) do
@@ -9405,7 +9405,7 @@ function decorator_list_helper(env, _decorators) do
       return decorators;
     end end 
   end;
-end
+end end
 
 function decorator_list(env) do
   if (env.parse_options.esproposal_decorators) then do
@@ -9413,7 +9413,7 @@ function decorator_list(env) do
   end else do
     return --[ [] ]--0;
   end end 
-end
+end end
 
 function key(env) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -9487,7 +9487,7 @@ function key(env) do
           id[0],
           --[ Identifier ]--Block.__(1, [id])
         ];
-end
+end end
 
 function _method(env, kind) do
   generator$1 = generator(env, false);
@@ -9556,7 +9556,7 @@ function _method(env, kind) do
           match[1],
           value
         ];
-end
+end end
 
 function property$1(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -9627,7 +9627,7 @@ function property$1(env) do
      end 
     return --[ Property ]--Block.__(0, [tmp]);
   end end 
-end
+end end
 
 function get(env, start_loc) do
   match = _method(env, --[ Get ]--1);
@@ -9648,7 +9648,7 @@ function get(env, start_loc) do
             shorthand: false
           end
         ];
-end
+end end
 
 function set(env, start_loc) do
   match = _method(env, --[ Set ]--2);
@@ -9669,7 +9669,7 @@ function set(env, start_loc) do
             shorthand: false
           end
         ];
-end
+end end
 
 function init(env, start_loc, key, async, generator) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -9795,7 +9795,7 @@ function init(env, start_loc, key, async, generator) do
             shorthand: match$1[1]
           end
         ];
-end
+end end
 
 function check_property(env, prop_map, prop) do
   if (prop.tag) then do
@@ -9925,7 +9925,7 @@ function check_property(env, prop_map, prop) do
     end
      end 
   end end 
-end
+end end
 
 function properties$1(env, _param) do
   while(true) do
@@ -9951,7 +9951,7 @@ function properties$1(env, _param) do
     ];
     continue ;
   end;
-end
+end end
 
 function _initializer(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -9968,7 +9968,7 @@ function _initializer(env) do
             properties: props
           end
         ];
-end
+end end
 
 function class_implements(env, _acc) do
   while(true) do
@@ -9997,7 +9997,7 @@ function class_implements(env, _acc) do
       return List.rev(acc$1);
     end end 
   end;
-end
+end end
 
 function init$1(env, start_loc, decorators, key, async, generator, $$static) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -10098,7 +10098,7 @@ function init$1(env, start_loc, decorators, key, async, generator, $$static) do
                 decorators: decorators
               end
             ]]);
-end
+end end
 
 function class_element(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -10203,7 +10203,7 @@ function class_element(env) do
   end
    end 
   return init$1(env, start_loc, decorators, match[1], async, generator$1, $$static);
-end
+end end
 
 function elements$1(env, _acc) do
   while(true) do
@@ -10229,7 +10229,7 @@ function elements$1(env, _acc) do
     ];
     continue ;
   end;
-end
+end end
 
 function class_body(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -10243,7 +10243,7 @@ function class_body(env) do
             body: body
           end
         ];
-end
+end end
 
 function _class(env) do
   match;
@@ -10279,7 +10279,7 @@ function _class(env) do
           match[1],
           $$implements
         ];
-end
+end end
 
 function class_declaration(env, decorators) do
   env$1 = with_strict(true, env);
@@ -10306,7 +10306,7 @@ function class_declaration(env, decorators) do
                 classDecorators: decorators$1
               end])
         ];
-end
+end end
 
 function class_expression(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -10361,7 +10361,7 @@ function class_expression(env) do
                 classDecorators: decorators
               end])
         ];
-end
+end end
 
 function export_source(env) do
   contextual(env, "from");
@@ -10405,7 +10405,7 @@ function export_source(env) do
   ];
   error_unexpected(env);
   return ret;
-end
+end end
 
 function expression(env) do
   expression$1 = Curry._1(Parse.expression, env);
@@ -10418,7 +10418,7 @@ function expression(env) do
                 expression: expression$1
               end])
         ];
-end
+end end
 
 function declare_function(env, start_loc) do
   token$4(env, --[ T_FUNCTION ]--13);
@@ -10467,7 +10467,7 @@ function declare_function(env, start_loc) do
             predicate: predicate
           end
         ];
-end
+end end
 
 function export_specifiers_and_errs(env, _specifiers, _errs) do
   while(true) do
@@ -10534,7 +10534,7 @@ function export_specifiers_and_errs(env, _specifiers, _errs) do
     ];
     continue ;
   end;
-end
+end end
 
 function type_alias_helper(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -10560,7 +10560,7 @@ function type_alias_helper(env) do
             right: right
           end
         ];
-end
+end end
 
 function declare_var(env, start_loc) do
   token$4(env, --[ T_VAR ]--22);
@@ -10575,7 +10575,7 @@ function declare_var(env, start_loc) do
             id: id
           end
         ];
-end
+end end
 
 function $$interface(env) do
   if (Curry._2(Parser_env_Peek.is_identifier, 1, env)) then do
@@ -10587,7 +10587,7 @@ function $$interface(env) do
   end else do
     return expression(env);
   end end 
-end
+end end
 
 function declare_export_declaration(allow_export_typeOpt, env) do
   allow_export_type = allow_export_typeOpt ~= undefined and allow_export_typeOpt or false;
@@ -10777,7 +10777,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
         token$4(env$1, --[ T_RCURLY ]--2);
         source$2 = Curry._2(Parser_env_Peek.value, undefined, env$1) == "from" and export_source(env$1) or (List.iter((function (param) do
                     return error_at(env$1, param);
-                  end), match$8[1]), undefined);
+                  end end), match$8[1]), undefined);
         match$9 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$1);
         end_loc$3 = match$9 ~= undefined and match$9 or (
             source$2 ~= undefined and source$2[0] or end_loc$2
@@ -10867,7 +10867,7 @@ function declare_export_declaration(allow_export_typeOpt, env) do
      do
     
   end
-end
+end end
 
 function declare_function_statement(env, start_loc) do
   match = declare_function(env, start_loc);
@@ -10875,7 +10875,7 @@ function declare_function_statement(env, start_loc) do
           match[0],
           --[ DeclareFunction ]--Block.__(23, [match[1]])
         ];
-end
+end end
 
 function type_alias(env) do
   if (Curry._2(Parser_env_Peek.is_identifier, 1, env)) then do
@@ -10887,7 +10887,7 @@ function type_alias(env) do
   end else do
     return Curry._1(Parse.statement, env);
   end end 
-end
+end end
 
 function declare_var_statement(env, start_loc) do
   match = declare_var(env, start_loc);
@@ -10895,7 +10895,7 @@ function declare_var_statement(env, start_loc) do
           match[0],
           --[ DeclareVariable ]--Block.__(22, [match[1]])
         ];
-end
+end end
 
 function declare(in_moduleOpt, env) do
   in_module = in_moduleOpt ~= undefined and in_moduleOpt or false;
@@ -11054,11 +11054,11 @@ function declare(in_moduleOpt, env) do
   end else do
     return Curry._1(Parse.statement, env);
   end end 
-end
+end end
 
 function extract_ident_name(param) do
   return param[1].name;
-end
+end end
 
 function supers(env, _acc) do
   while(true) do
@@ -11077,7 +11077,7 @@ function supers(env, _acc) do
       return List.rev(acc$1);
     end end 
   end;
-end
+end end
 
 function interface_helper(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -11101,7 +11101,7 @@ function interface_helper(env) do
             mixins: --[ [] ]--0
           end
         ];
-end
+end end
 
 function supers$1(env, _acc) do
   while(true) do
@@ -11120,7 +11120,7 @@ function supers$1(env, _acc) do
       return List.rev(acc$1);
     end end 
   end;
-end
+end end
 
 function declare_class(env, start_loc) do
   env$1 = with_strict(true, env);
@@ -11141,7 +11141,7 @@ function declare_class(env, start_loc) do
             mixins: mixins
           end
         ];
-end
+end end
 
 function module_items(env, _module_kind, _acc) do
   while(true) do
@@ -11237,7 +11237,7 @@ function module_items(env, _module_kind, _acc) do
     _module_kind = module_kind$1;
     continue ;
   end;
-end
+end end
 
 function fold(acc, _param) do
   while(true) do
@@ -11252,7 +11252,7 @@ function fold(acc, _param) do
                         end else do
                           return fold(acc, prop[0][1].pattern);
                         end end 
-                      end), acc, match[0].properties);end end end 
+                      end end), acc, match[0].properties);end end end 
        if ___conditional___ = 1--[ Array ]-- then do
           return List.fold_left((function (acc, elem) do
                         if (elem ~= undefined) then do
@@ -11265,7 +11265,7 @@ function fold(acc, _param) do
                         end else do
                           return acc;
                         end end 
-                      end), acc, match[0].elements);end end end 
+                      end end), acc, match[0].elements);end end end 
        if ___conditional___ = 2--[ Assignment ]-- then do
           _param = match[0].left;
           continue ;end end end 
@@ -11287,7 +11287,7 @@ function fold(acc, _param) do
       
     end
   end;
-end
+end end
 
 function assert_can_be_forin_or_forof(env, err, param) do
   if (param ~= undefined) then do
@@ -11321,7 +11321,7 @@ function assert_can_be_forin_or_forof(env, err, param) do
   end else do
     return error$1(env, err);
   end end 
-end
+end end
 
 function _if(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -11341,7 +11341,7 @@ function _if(env) do
                 alternate: alternate
               end])
         ];
-end
+end end
 
 function case_list(env, _param) do
   while(true) do
@@ -11381,7 +11381,7 @@ function case_list(env, _param) do
       end else do
         return false;
       end end 
-    end;
+    end end;
     consequent = Curry._2(Parse.statement_list, term_fn, with_in_switch(true, env));
     match$2 = List.rev(consequent);
     end_loc$1 = match$2 and match$2[0][0] or end_loc;
@@ -11402,7 +11402,7 @@ function case_list(env, _param) do
     ];
     continue ;
   end;
-end
+end end
 
 function var_or_const(env) do
   match = variable(env);
@@ -11413,12 +11413,12 @@ function var_or_const(env) do
   semicolon(env);
   List.iter((function (param) do
           return error_at(env, param);
-        end), match[1]);
+        end end), match[1]);
   return --[ tuple ]--[
           btwn(start_loc, end_loc),
           match$1[1]
         ];
-end
+end end
 
 function source(env) do
   contextual(env, "from");
@@ -11462,7 +11462,7 @@ function source(env) do
   ];
   error_unexpected(env);
   return ret;
-end
+end end
 
 function specifier_list(env, _acc) do
   while(true) do
@@ -11503,7 +11503,7 @@ function specifier_list(env, _acc) do
     ];
     continue ;
   end;
-end
+end end
 
 function named_or_namespace_specifier(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -11525,7 +11525,7 @@ function named_or_namespace_specifier(env) do
   specifiers = specifier_list(env, --[ [] ]--0);
   token$4(env, --[ T_RCURLY ]--2);
   return specifiers;
-end
+end end
 
 function from_expr(env, param) do
   expr = param[1];
@@ -11562,7 +11562,7 @@ function from_expr(env, param) do
                     end end 
                   end
                    end 
-                end), param$1[1].elements);
+                end end), param$1[1].elements);
           return --[ tuple ]--[
                   param$1[0],
                   --[ Array ]--Block.__(1, [do
@@ -11614,7 +11614,7 @@ function from_expr(env, param) do
                                 end
                               ]]);
                   end end 
-                end), param$2[1].properties);
+                end end), param$2[1].properties);
           return --[ tuple ]--[
                   param$2[0],
                   --[ Object ]--Block.__(0, [do
@@ -11653,7 +11653,7 @@ function from_expr(env, param) do
                 expr
               ]])
         ];
-end
+end end
 
 function _object$2(restricted_error) do
   property = function (env) do
@@ -11750,7 +11750,7 @@ function _object$2(restricted_error) do
         return ;
       end end 
     end end 
-  end;
+  end end;
   properties = function (env, _acc) do
     while(true) do
       acc = _acc;
@@ -11774,7 +11774,7 @@ function _object$2(restricted_error) do
         continue ;
       end end 
     end;
-  end;
+  end end;
   return (function (env) do
       start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
       token$4(env, --[ T_LCURLY ]--1);
@@ -11801,8 +11801,8 @@ function _object$2(restricted_error) do
                     typeAnnotation: match[1]
                   end])
             ];
-    end);
-end
+    end end);
+end end
 
 function _array(restricted_error) do
   elements = function (env, _acc) do
@@ -11886,7 +11886,7 @@ function _array(restricted_error) do
       ];
       continue ;
     end;
-  end;
+  end end;
   return (function (env) do
       start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
       token$4(env, --[ T_LBRACKET ]--5);
@@ -11913,8 +11913,8 @@ function _array(restricted_error) do
                     typeAnnotation: match[1]
                   end])
             ];
-    end);
-end
+    end end);
+end end
 
 function pattern$1(env, restricted_error) do
   match = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -11934,7 +11934,7 @@ function pattern$1(env, restricted_error) do
           id[0],
           --[ Identifier ]--Block.__(3, [id])
         ];
-end
+end end
 
 function spread_attribute(env) do
   push_lex_mode(env, --[ NORMAL ]--0);
@@ -11951,7 +11951,7 @@ function spread_attribute(env) do
             argument: argument
           end
         ];
-end
+end end
 
 function expression_container(env) do
   push_lex_mode(env, --[ NORMAL ]--0);
@@ -11973,7 +11973,7 @@ function expression_container(env) do
             expression: expression
           end
         ];
-end
+end end
 
 function identifier$1(env) do
   loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -11985,7 +11985,7 @@ function identifier$1(env) do
             name: name
           end
         ];
-end
+end end
 
 function member_expression(env, _member) do
   while(true) do
@@ -12010,7 +12010,7 @@ function member_expression(env, _member) do
       return member;
     end end 
   end;
-end
+end end
 
 function name(env) do
   name$1 = identifier$1(env);
@@ -12049,7 +12049,7 @@ function name(env) do
   end else do
     return --[ Identifier ]--Block.__(0, [name$1]);
   end end 
-end
+end end
 
 function attribute(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -12146,7 +12146,7 @@ function attribute(env) do
             value: match$1[1]
           end
         ];
-end
+end end
 
 function attributes(env, _acc) do
   while(true) do
@@ -12180,7 +12180,7 @@ function attributes(env, _acc) do
     ];
     continue ;
   end;
-end
+end end
 
 function opening_element_without_lt(env, start_loc) do
   name$1 = name(env);
@@ -12201,7 +12201,7 @@ function opening_element_without_lt(env, start_loc) do
             attributes: attributes$1
           end
         ];
-end
+end end
 
 function closing_element_without_lt(env, start_loc) do
   token$4(env, --[ T_DIV ]--96);
@@ -12215,7 +12215,7 @@ function closing_element_without_lt(env, start_loc) do
             name: name$1
           end
         ];
-end
+end end
 
 function child(env) do
   token$5 = Curry._2(Parser_env_Peek.token, undefined, env);
@@ -12245,14 +12245,14 @@ function child(env) do
           element$1[0],
           --[ Element ]--Block.__(0, [element$1[1]])
         ];
-end
+end end
 
 function element(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   push_lex_mode(env, --[ JSX_TAG ]--2);
   token$4(env, --[ T_LESS_THAN ]--89);
   return Curry._2(element_without_lt, env, start_loc);
-end
+end end
 
 function element_or_closing(env) do
   push_lex_mode(env, --[ JSX_TAG ]--2);
@@ -12264,7 +12264,7 @@ function element_or_closing(env) do
   end else do
     return --[ ChildElement ]--Block.__(1, [Curry._2(element_without_lt, env, start_loc)]);
   end end 
-end
+end end
 
 function children_and_closing(env, _acc) do
   while(true) do
@@ -12315,7 +12315,7 @@ function children_and_closing(env, _acc) do
       continue ;
     end end 
   end;
-end
+end end
 
 function normalize(name) do
   local ___conditional___=(name.tag | 0);
@@ -12334,7 +12334,7 @@ function normalize(name) do
      do
     
   end
-end
+end end
 
 function element_without_lt(env, start_loc) do
   openingElement = opening_element_without_lt(env, start_loc);
@@ -12363,7 +12363,7 @@ function element_without_lt(env, start_loc) do
             children: match[0]
           end
         ];
-end
+end end
 
 function statement_list_item(decoratorsOpt, env) do
   decorators = decoratorsOpt ~= undefined and decoratorsOpt or --[ [] ]--0;
@@ -12387,7 +12387,7 @@ function statement_list_item(decoratorsOpt, env) do
                           id: match.id,
                           init: match.init
                         end;
-                end), match$1[1]);
+                end end), match$1[1]);
           token$4(env$1, --[ T_RPAREN ]--4);
           body = Curry._1(Parse.statement, env$1);
           match$2 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$1);
@@ -12395,7 +12395,7 @@ function statement_list_item(decoratorsOpt, env) do
           semicolon(env$1);
           List.iter((function (param) do
                   return error_at(env$1, param);
-                end), match$1[2]);
+                end end), match$1[2]);
           return --[ tuple ]--[
                   btwn(start_loc, end_loc),
                   --[ Let ]--Block.__(17, [do
@@ -12414,7 +12414,7 @@ function statement_list_item(decoratorsOpt, env) do
           semicolon(env$1);
           List.iter((function (param) do
                   return error_at(env$1, param);
-                end), match$3[2]);
+                end end), match$3[2]);
           return --[ tuple ]--[
                   btwn(start_loc, end_loc$1),
                   declaration
@@ -12456,7 +12456,7 @@ function statement_list_item(decoratorsOpt, env) do
   end else do
     return statement(env);
   end end  end  end 
-end
+end end
 
 function module_item(env) do
   decorators = decorator_list(env);
@@ -12692,7 +12692,7 @@ function module_item(env) do
                 token$4(env$2, --[ T_RCURLY ]--2);
                 source$3 = Curry._2(Parser_env_Peek.value, undefined, env$2) == "from" and export_source(env$2) or (List.iter((function (param) do
                             return error_at(env$2, param);
-                          end), match$9[1]), undefined);
+                          end end), match$9[1]), undefined);
                 match$10 = Curry._2(Parser_env_Peek.semicolon_loc, undefined, env$2);
                 end_loc$5 = match$10 ~= undefined and match$10 or (
                     source$3 ~= undefined and source$3[0] or end_loc$4
@@ -12747,7 +12747,7 @@ function module_item(env) do
                                   --[ [] ]--0
                                 ];
                                 return List.fold_left(fold, param$1, param$2);
-                              end), --[ [] ]--0, match$11[0].declarations);end else 
+                              end end), --[ [] ]--0, match$11[0].declarations);end else 
                      if ___conditional___ = 20--[ ClassDeclaration ]-- then do
                         match$13 = match$11[0].id;
                         if (match$13 ~= undefined) then do
@@ -12777,7 +12777,7 @@ function module_item(env) do
                 end end 
                 List.iter((function (param) do
                         return record_export(env$2, param);
-                      end), names);
+                      end end), names);
                 declaration = --[ Declaration ]--Block.__(0, [stmt]);
                 return --[ tuple ]--[
                         btwn(start_loc, stmt[0]),
@@ -12975,7 +12975,7 @@ function module_item(env) do
   end else do
     return statement_list_item(decorators, env);
   end end 
-end
+end end
 
 function statement(env) do
   while(true) do
@@ -13375,7 +13375,7 @@ function statement(env) do
                 List.iter((function(env$12)do
                     return function (param) do
                       return error_at(env$12, param);
-                    end
+                    end end
                     end(env$12)), match$10[1]);
                 token$4(env$12, --[ T_SEMICOLON ]--7);
                 match$17 = Curry._2(Parser_env_Peek.token, undefined, env$12);
@@ -13578,7 +13578,7 @@ function statement(env) do
     token$3(env);
     continue ;
   end;
-end
+end end
 
 function module_body(term_fn, env) do
   env$1 = env;
@@ -13601,7 +13601,7 @@ function module_body(term_fn, env) do
       continue ;
     end end 
   end;
-end
+end end
 
 function statement_list(_env, term_fn, item_fn, _param) do
   while(true) do
@@ -13679,7 +13679,7 @@ function statement_list(_env, term_fn, item_fn, _param) do
       end end 
     end end 
   end;
-end
+end end
 
 function directives(env, term_fn, item_fn) do
   match = statement_list(env, term_fn, item_fn, --[ tuple ]--[
@@ -13707,12 +13707,12 @@ function directives(env, term_fn, item_fn) do
                 Caml_builtin_exceptions.failure,
                 s
               ];
-        end), List.rev(match[1]));
+        end end), List.rev(match[1]));
   return --[ tuple ]--[
           env$1,
           match[2]
         ];
-end
+end end
 
 function statement_list$1(term_fn, env) do
   env$1 = env;
@@ -13735,14 +13735,14 @@ function statement_list$1(term_fn, env) do
       continue ;
     end end 
   end;
-end
+end end
 
 class_declaration$1 = class_declaration;
 
 function statement_list_with_directives(term_fn, env) do
   match = Curry._3(directives, env, term_fn, (function (eta) do
           return statement_list_item(undefined, eta);
-        end));
+        end end));
   env$1 = match[0];
   stmts = Curry._2(statement_list$1, term_fn, env$1);
   stmts$1 = List.fold_left((function (acc, stmt) do
@@ -13750,12 +13750,12 @@ function statement_list_with_directives(term_fn, env) do
                   stmt,
                   acc
                 ];
-        end), stmts, match[1]);
+        end end), stmts, match[1]);
   return --[ tuple ]--[
           stmts$1,
           env$1.in_strict_mode
         ];
-end
+end end
 
 function identifier$2(restricted_error, env) do
   loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -13802,7 +13802,7 @@ function identifier$2(restricted_error, env) do
             optional: false
           end
         ];
-end
+end end
 
 function module_body_with_directives(env, term_fn) do
   match = Curry._3(directives, env, term_fn, module_item);
@@ -13812,13 +13812,13 @@ function module_body_with_directives(env, term_fn) do
                         stmt,
                         acc
                       ];
-              end), stmts, match[1]);
-end
+              end end), stmts, match[1]);
+end end
 
 function program(env) do
   stmts = module_body_with_directives(env, (function (param) do
           return false;
-        end));
+        end end));
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   token$4(env, --[ T_EOF ]--105);
   loc = stmts and btwn(List.hd(stmts)[0], List.hd(List.rev(stmts))[0]) or end_loc;
@@ -13828,7 +13828,7 @@ function program(env) do
           stmts,
           comments
         ];
-end
+end end
 
 function expression$1(env) do
   expr = Curry._1(assignment, env);
@@ -13841,7 +13841,7 @@ function expression$1(env) do
   end else do
     return expr;
   end end 
-end
+end end
 
 function identifier_with_type(env, restricted_error) do
   match = identifier$2(restricted_error, env);
@@ -13889,14 +13889,14 @@ function identifier_with_type(env, restricted_error) do
             id$1
           ];
   end end 
-end
+end end
 
 function block_body(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   token$4(env, --[ T_LCURLY ]--1);
   term_fn = function (t) do
     return t == --[ T_RCURLY ]--2;
-  end;
+  end end;
   body = Curry._2(statement_list$1, term_fn, env);
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   token$4(env, --[ T_RCURLY ]--2);
@@ -13906,14 +13906,14 @@ function block_body(env) do
             body: body
           end
         ];
-end
+end end
 
 function function_block_body(env) do
   start_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   token$4(env, --[ T_LCURLY ]--1);
   term_fn = function (t) do
     return t == --[ T_RCURLY ]--2;
-  end;
+  end end;
   match = statement_list_with_directives(term_fn, env);
   end_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
   token$4(env, --[ T_RCURLY ]--2);
@@ -13924,7 +13924,7 @@ function function_block_body(env) do
           end,
           match[1]
         ];
-end
+end end
 
 function predicate(env) do
   checks_loc = Curry._2(Parser_env_Peek.loc, undefined, env);
@@ -13947,7 +13947,7 @@ function predicate(env) do
     end end 
   end
    end 
-end
+end end
 
 Caml_module.update_mod(--[ Module ]--Block.__(0, [[
           --[ tuple ]--[
@@ -14096,7 +14096,7 @@ function program$1(failOpt, token_sinkOpt, parse_optionsOpt, content) do
           ast,
           error_list
         ];
-end
+end end
 
 translation_errors = do
   contents: --[ [] ]--0
@@ -14128,7 +14128,7 @@ function regexp$1(loc, pattern, flags) do
     ];
     return new RegExp("", flags);
   end
-end
+end end
 
 function parse(content, options) do
   try do
@@ -14136,14 +14136,14 @@ function parse(content, options) do
     translation_errors.contents = --[ [] ]--0;
     array_of_list = function (fn, list) do
       return array($$Array.of_list(List.map(fn, list)));
-    end;
+    end end;
     option = function (f, param) do
       if (param ~= undefined) then do
         return Curry._1(f, Caml_option.valFromOption(param));
       end else do
         return $$null;
       end end 
-    end;
+    end end;
     position = function (p) do
       return obj([
                   --[ tuple ]--[
@@ -14155,7 +14155,7 @@ function parse(content, options) do
                     number$1(p.column)
                   ]
                 ]);
-    end;
+    end end;
     loc = function ($$location) do
       match = $$location.source;
       source;
@@ -14179,13 +14179,13 @@ function parse(content, options) do
                     position($$location._end)
                   ]
                 ]);
-    end;
+    end end;
     range = function ($$location) do
       return array([
                   number$1($$location.start.offset),
                   number$1($$location._end.offset)
                 ]);
-    end;
+    end end;
     node = function (_type, $$location, props) do
       return obj($$Array.append([
                       --[ tuple ]--[
@@ -14201,7 +14201,7 @@ function parse(content, options) do
                         range($$location)
                       ]
                     ], props));
-    end;
+    end end;
     errors = function (l) do
       error$2 = function (param) do
         return obj([
@@ -14214,9 +14214,9 @@ function parse(content, options) do
                       string(error(param[1]))
                     ]
                   ]);
-      end;
+      end end;
       return array_of_list(error$2, l);
-    end;
+    end end;
     _type = function (param) do
       t = param[1];
       loc = param[0];
@@ -14381,13 +14381,13 @@ function parse(content, options) do
           
         end
       end end 
-    end;
+    end end;
     type_annotation = function (param) do
       return node("TypeAnnotation", param[0], [--[ tuple ]--[
                     "typeAnnotation",
                     _type(param[1])
                   ]]);
-    end;
+    end end;
     identifier = function (param) do
       id = param[1];
       return node("Identifier", param[0], [
@@ -14404,7 +14404,7 @@ function parse(content, options) do
                     bool(id.optional)
                   ]
                 ]);
-    end;
+    end end;
     object_type = function (param) do
       o = param[1];
       return node("ObjectTypeAnnotation", param[0], [
@@ -14421,7 +14421,7 @@ function parse(content, options) do
                     array_of_list(object_type_call_property, o.callProperties)
                   ]
                 ]);
-    end;
+    end end;
     interface_extends = function (param) do
       g = param[1];
       match = g.id;
@@ -14437,13 +14437,13 @@ function parse(content, options) do
                     option(type_parameter_instantiation, g.typeParameters)
                   ]
                 ]);
-    end;
+    end end;
     type_parameter_declaration = function (param) do
       return node("TypeParameterDeclaration", param[0], [--[ tuple ]--[
                     "params",
                     array_of_list(type_param, param[1].params)
                   ]]);
-    end;
+    end end;
     template_literal = function (param) do
       value = param[1];
       return node("TemplateLiteral", param[0], [
@@ -14456,7 +14456,7 @@ function parse(content, options) do
                     array_of_list(expression, value.expressions)
                   ]
                 ]);
-    end;
+    end end;
     expression = function (param) do
       match = param[1];
       loc = param[0];
@@ -14470,7 +14470,7 @@ function parse(content, options) do
                             "elements",
                             array_of_list((function (param) do
                                     return option(expression_or_spread, param);
-                                  end), match[0].elements)
+                                  end end), match[0].elements)
                           ]]);end end end 
            if ___conditional___ = 1--[ Object ]-- then do
               return node("ObjectExpression", loc, [--[ tuple ]--[
@@ -14500,7 +14500,7 @@ function parse(content, options) do
                             "defaults",
                             array_of_list((function (param) do
                                     return option(expression, param);
-                                  end), arrow.defaults)
+                                  end end), arrow.defaults)
                           ],
                           --[ tuple ]--[
                             "rest",
@@ -14929,7 +14929,7 @@ function parse(content, options) do
           
         end
       end end 
-    end;
+    end end;
     jsx_opening_attribute = function (param) do
       if (param.tag) then do
         param$1 = param[0];
@@ -14954,7 +14954,7 @@ function parse(content, options) do
                     ]
                   ]);
       end end 
-    end;
+    end end;
     jsx_name = function (param) do
       local ___conditional___=(param.tag | 0);
       do
@@ -14967,7 +14967,7 @@ function parse(content, options) do
          do
         
       end
-    end;
+    end end;
     literal = function (param) do
       lit = param[1];
       raw = lit.raw;
@@ -15037,7 +15037,7 @@ function parse(content, options) do
       end
        end 
       return node("Literal", loc, props);
-    end;
+    end end;
     jsx_expression_container = function (param) do
       match = param[1].expression;
       expression$1;
@@ -15046,7 +15046,7 @@ function parse(content, options) do
                     "expression",
                     expression$1
                   ]]);
-    end;
+    end end;
     jsx_namespaced_name = function (param) do
       namespaced_name = param[1];
       return node("JSXNamespacedName", param[0], [
@@ -15059,13 +15059,13 @@ function parse(content, options) do
                     jsx_identifier(namespaced_name.name)
                   ]
                 ]);
-    end;
+    end end;
     jsx_identifier = function (param) do
       return node("JSXIdentifier", param[0], [--[ tuple ]--[
                     "name",
                     string(param[1].name)
                   ]]);
-    end;
+    end end;
     jsx_member_expression = function (param) do
       member_expression = param[1];
       match = member_expression._object;
@@ -15081,13 +15081,13 @@ function parse(content, options) do
                     jsx_identifier(member_expression.property)
                   ]
                 ]);
-    end;
+    end end;
     type_parameter_instantiation = function (param) do
       return node("TypeParameterInstantiation", param[0], [--[ tuple ]--[
                     "params",
                     array_of_list(_type, param[1].params)
                   ]]);
-    end;
+    end end;
     generic_type_qualified_identifier = function (param) do
       q = param[1];
       match = q.qualification;
@@ -15103,7 +15103,7 @@ function parse(content, options) do
                     identifier(q.id)
                   ]
                 ]);
-    end;
+    end end;
     object_type_indexer = function (param) do
       indexer = param[1];
       return node("ObjectTypeIndexer", param[0], [
@@ -15124,7 +15124,7 @@ function parse(content, options) do
                     bool(indexer.static)
                   ]
                 ]);
-    end;
+    end end;
     object_type_call_property = function (param) do
       callProperty = param[1];
       return node("ObjectTypeCallProperty", param[0], [
@@ -15137,7 +15137,7 @@ function parse(content, options) do
                     bool(callProperty.static)
                   ]
                 ]);
-    end;
+    end end;
     object_type_property = function (param) do
       prop = param[1];
       match = prop.key;
@@ -15174,7 +15174,7 @@ function parse(content, options) do
                     bool(prop.static)
                   ]
                 ]);
-    end;
+    end end;
     pattern = function (param) do
       match = param[1];
       loc = param[0];
@@ -15199,7 +15199,7 @@ function parse(content, options) do
                           "elements",
                           array_of_list((function (param) do
                                   return option(array_pattern_element, param);
-                                end), arr.elements)
+                                end end), arr.elements)
                         ],
                         --[ tuple ]--[
                           "typeAnnotation",
@@ -15225,7 +15225,7 @@ function parse(content, options) do
          do
         
       end
-    end;
+    end end;
     class_implements = function (param) do
       $$implements = param[1];
       return node("ClassImplements", param[0], [
@@ -15238,13 +15238,13 @@ function parse(content, options) do
                     option(type_parameter_instantiation, $$implements.typeParameters)
                   ]
                 ]);
-    end;
+    end end;
     class_body = function (param) do
       return node("ClassBody", param[0], [--[ tuple ]--[
                     "body",
                     array_of_list(class_element, param[1].body)
                   ]]);
-    end;
+    end end;
     $$catch = function (param) do
       c = param[1];
       return node("CatchClause", param[0], [
@@ -15261,7 +15261,7 @@ function parse(content, options) do
                     block(c.body)
                   ]
                 ]);
-    end;
+    end end;
     declare_class = function (param) do
       d = param[1];
       return node("DeclareClass", param[0], [
@@ -15282,7 +15282,7 @@ function parse(content, options) do
                     array_of_list(interface_extends, d.extends)
                   ]
                 ]);
-    end;
+    end end;
     type_alias = function (param) do
       alias = param[1];
       return node("TypeAlias", param[0], [
@@ -15299,7 +15299,7 @@ function parse(content, options) do
                     _type(alias.right)
                   ]
                 ]);
-    end;
+    end end;
     let_assignment = function (assignment) do
       return obj([
                   --[ tuple ]--[
@@ -15311,13 +15311,13 @@ function parse(content, options) do
                     option(expression, assignment.init)
                   ]
                 ]);
-    end;
+    end end;
     declare_function = function (param) do
       return node("DeclareFunction", param[0], [--[ tuple ]--[
                     "id",
                     identifier(param[1].id)
                   ]]);
-    end;
+    end end;
     variable_declaration = function (param) do
       $$var = param[1];
       match = $$var.kind;
@@ -15343,7 +15343,7 @@ function parse(content, options) do
                     string(kind)
                   ]
                 ]);
-    end;
+    end end;
     statement = function (param) do
       match = param[1];
       loc = param[0];
@@ -15499,7 +15499,7 @@ function parse(content, options) do
                 end else do
                   return variable_declaration(param[0]);
                 end end 
-              end;
+              end end;
               return node("ForStatement", loc, [
                           --[ tuple ]--[
                             "init",
@@ -15598,7 +15598,7 @@ function parse(content, options) do
                             "defaults",
                             array_of_list((function (param) do
                                     return option(expression, param);
-                                  end), fn.defaults)
+                                  end end), fn.defaults)
                           ],
                           --[ tuple ]--[
                             "rest",
@@ -15836,7 +15836,7 @@ function parse(content, options) do
                          do
                         
                       end
-                    end), $$import.specifiers);
+                    end end), $$import.specifiers);
               match$14 = $$import.importKind;
               import_kind;
               local ___conditional___=(match$14);
@@ -15868,7 +15868,7 @@ function parse(content, options) do
           
         end
       end end 
-    end;
+    end end;
     $$case = function (param) do
       c = param[1];
       return node("SwitchCase", param[0], [
@@ -15881,13 +15881,13 @@ function parse(content, options) do
                     array_of_list(statement, c.consequent)
                   ]
                 ]);
-    end;
+    end end;
     declare_variable = function (param) do
       return node("DeclareVariable", param[0], [--[ tuple ]--[
                     "id",
                     identifier(param[1].id)
                   ]]);
-    end;
+    end end;
     interface_declaration = function (param) do
       i = param[1];
       return node("InterfaceDeclaration", param[0], [
@@ -15908,7 +15908,7 @@ function parse(content, options) do
                     array_of_list(interface_extends, i.extends)
                   ]
                 ]);
-    end;
+    end end;
     export_specifiers = function (param) do
       if (param ~= undefined) then do
         match = param;
@@ -15923,13 +15923,13 @@ function parse(content, options) do
       end else do
         return array([]);
       end end 
-    end;
+    end end;
     block = function (param) do
       return node("BlockStatement", param[0], [--[ tuple ]--[
                     "body",
                     array_of_list(statement, param[1].body)
                   ]]);
-    end;
+    end end;
     jsx_element = function (param) do
       element = param[1];
       return node("JSXElement", param[0], [
@@ -15946,7 +15946,7 @@ function parse(content, options) do
                     array_of_list(jsx_child, element.children)
                   ]
                 ]);
-    end;
+    end end;
     jsx_attribute_value = function (param) do
       if (param.tag) then do
         return jsx_expression_container(--[ tuple ]--[
@@ -15959,7 +15959,7 @@ function parse(content, options) do
                     param[1]
                   ]);
       end end 
-    end;
+    end end;
     function_type_param = function (param) do
       param$1 = param[1];
       return node("FunctionTypeParam", param[0], [
@@ -15976,7 +15976,7 @@ function parse(content, options) do
                     bool(param$1.optional)
                   ]
                 ]);
-    end;
+    end end;
     variable_declarator = function (param) do
       declarator = param[1];
       return node("VariableDeclarator", param[0], [
@@ -15989,7 +15989,7 @@ function parse(content, options) do
                     option(expression, declarator.init)
                   ]
                 ]);
-    end;
+    end end;
     array_pattern_element = function (param) do
       if (param.tag) then do
         match = param[0];
@@ -16000,7 +16000,7 @@ function parse(content, options) do
       end else do
         return pattern(param[0]);
       end end 
-    end;
+    end end;
     object_pattern_property = function (param) do
       if (param.tag) then do
         match = param[0];
@@ -16052,7 +16052,7 @@ function parse(content, options) do
                     ]
                   ]);
       end end 
-    end;
+    end end;
     class_element = function (param) do
       if (param.tag) then do
         param$1 = param[0];
@@ -16167,7 +16167,7 @@ function parse(content, options) do
                     ]
                   ]);
       end end 
-    end;
+    end end;
     comment = function (param) do
       c = param[1];
       match;
@@ -16182,7 +16182,7 @@ function parse(content, options) do
                     "value",
                     string(match[1])
                   ]]);
-    end;
+    end end;
     jsx_child = function (param) do
       match = param[1];
       loc = param[0];
@@ -16217,7 +16217,7 @@ function parse(content, options) do
          do
         
       end
-    end;
+    end end;
     jsx_opening = function (param) do
       opening = param[1];
       return node("JSXOpeningElement", param[0], [
@@ -16234,13 +16234,13 @@ function parse(content, options) do
                     bool(opening.selfClosing)
                   ]
                 ]);
-    end;
+    end end;
     jsx_closing = function (param) do
       return node("JSXClosingElement", param[0], [--[ tuple ]--[
                     "name",
                     jsx_name(param[1].name)
                   ]]);
-    end;
+    end end;
     template_element = function (param) do
       element = param[1];
       value = obj([
@@ -16263,7 +16263,7 @@ function parse(content, options) do
                     bool(element.tail)
                   ]
                 ]);
-    end;
+    end end;
     export_specifier = function (param) do
       specifier = param[1];
       return node("ExportSpecifier", param[0], [
@@ -16276,7 +16276,7 @@ function parse(content, options) do
                     option(identifier, specifier.name)
                   ]
                 ]);
-    end;
+    end end;
     type_param = function (param) do
       tp = param[1];
       variance = function (param) do
@@ -16285,7 +16285,7 @@ function parse(content, options) do
         end else do
           return string("plus");
         end end 
-      end;
+      end end;
       return node("TypeParameter", param[0], [
                   --[ tuple ]--[
                     "name",
@@ -16304,7 +16304,7 @@ function parse(content, options) do
                     option(_type, tp.default)
                   ]
                 ]);
-    end;
+    end end;
     function_expression = function (param) do
       _function = param[1];
       match = _function.body;
@@ -16323,7 +16323,7 @@ function parse(content, options) do
                     "defaults",
                     array_of_list((function (param) do
                             return option(expression, param);
-                          end), _function.defaults)
+                          end end), _function.defaults)
                   ],
                   --[ tuple ]--[
                     "rest",
@@ -16354,7 +16354,7 @@ function parse(content, options) do
                     option(type_parameter_declaration, _function.typeParameters)
                   ]
                 ]);
-    end;
+    end end;
     expression_or_spread = function (param) do
       if (param.tag) then do
         match = param[0];
@@ -16365,7 +16365,7 @@ function parse(content, options) do
       end else do
         return expression(param[0]);
       end end 
-    end;
+    end end;
     object_property = function (param) do
       if (param.tag) then do
         match = param[0];
@@ -16438,7 +16438,7 @@ function parse(content, options) do
                     ]
                   ]);
       end end 
-    end;
+    end end;
     comprehension_block = function (param) do
       b = param[1];
       return node("ComprehensionBlock", param[0], [
@@ -16455,7 +16455,7 @@ function parse(content, options) do
                     bool(b.each)
                   ]
                 ]);
-    end;
+    end end;
     function_type = function (param) do
       fn = param[1];
       return node("FunctionTypeAnnotation", param[0], [
@@ -16476,7 +16476,7 @@ function parse(content, options) do
                     option(type_parameter_declaration, fn.typeParameters)
                   ]
                 ]);
-    end;
+    end end;
     program$2 = function (param) do
       return node("Program", param[0], [
                   --[ tuple ]--[
@@ -16488,7 +16488,7 @@ function parse(content, options) do
                     array_of_list(comment, param[2])
                   ]
                 ]);
-    end;
+    end end;
     ret = program$2(match[0]);
     translation_errors$1 = translation_errors.contents;
     ret["errors"] = errors(Pervasives.$at(match[1], translation_errors$1));
@@ -16505,7 +16505,7 @@ function parse(content, options) do
       throw exn;
     end end 
   end
-end
+end end
 
 suites = do
   contents: --[ [] ]--0
@@ -16525,12 +16525,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 match = typeof __dirname == "undefined" and undefined or __dirname;
 

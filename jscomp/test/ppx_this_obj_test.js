@@ -23,38 +23,38 @@ function eq(loc, param) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 v = do
   x: (function () do
-      return 3;
+      return 3; end
     end),
   say: (function (x) do
       self = this ;
-      return x * self.x();
+      return x * self.x(); end
     end),
   hi: (function (x, y) do
       self = this ;
-      return self.say(x) + y;
+      return self.say(x) + y; end
     end)
 end;
 
 v2 = do
   hi: (function (x, y) do
       self = this ;
-      return self.say(x) + y;
+      return self.say(x) + y; end
     end),
   say: (function (x) do
       self = this ;
-      return x * self.x();
+      return x * self.x(); end
     end),
   x: (function () do
-      return 3;
+      return 3; end
     end)
 end;
 
@@ -64,26 +64,26 @@ v3 = do
       u = do
         x: x
       end;
-      return self.say(u.x) + y + x;
+      return self.say(u.x) + y + x; end
     end),
   say: (function (x) do
       self = this ;
-      return x * self.x();
+      return x * self.x(); end
     end),
   x: (function () do
-      return 3;
+      return 3; end
     end)
 end;
 
 v4 = do
   hi: (function (x, y) do
-      return x + y;
+      return x + y; end
     end),
   say: (function (x) do
-      return x;
+      return x; end
     end),
   x: (function () do
-      return 1;
+      return 1; end
     end)
 end;
 

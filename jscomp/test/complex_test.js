@@ -14,7 +14,7 @@ suites_000 = --[ tuple ]--[
                 end,
                 Complex.add(Complex.add(Complex.add(Complex.one, Complex.one), Complex.i), Complex.i)
               ]);
-    end)
+    end end)
 ];
 
 suites = --[ :: ]--[

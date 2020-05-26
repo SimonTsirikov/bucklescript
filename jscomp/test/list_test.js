@@ -22,7 +22,7 @@ list_suites_000 = --[ tuple ]--[
                       --[ [] ]--0
                     ])
               ]);
-    end)
+    end end)
 ];
 
 list_suites_001 = --[ :: ]--[
@@ -48,7 +48,7 @@ list_suites_001 = --[ :: ]--[
                         ]
                       ])
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -58,9 +58,9 @@ list_suites_001 = --[ :: ]--[
                     30000,
                     List.length($$Array.to_list($$Array.init(30000, (function (param) do
                                     return 0;
-                                  end))))
+                                  end end))))
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -94,7 +94,7 @@ list_suites_001 = --[ :: ]--[
                         ]
                       ]
                     ]);
-          end)
+          end end)
       ],
       --[ [] ]--0
     ]

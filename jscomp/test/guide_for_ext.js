@@ -6,7 +6,7 @@ function mk(param) do
           text: 32,
           label: "hel"
         end;
-end
+end end
 
 exports.mk = mk;
 --[ No side effect ]--

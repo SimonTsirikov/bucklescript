@@ -19,13 +19,13 @@ end;
 function eq(f) do
   return (function (param, param$1) do
       return Mt_global.collect_eq(test_id, suites, f, param, param$1);
-    end);
-end
+    end end);
+end end
 
 test_strings = $$Array.init(32, (function (i) do
         c = Char.chr(i);
         return Caml_bytes.bytes_to_string(Bytes.make(i, c));
-      end));
+      end end));
 
 test_strings_hash_results = [
   0,
@@ -64,11 +64,11 @@ test_strings_hash_results = [
 
 function normalize(x) do
   return x & 1073741823;
-end
+end end
 
 function caml_hash(x) do
   return Hashtbl.hash(x) & 1073741823;
-end
+end end
 
 param = $$Array.map(caml_hash, test_strings);
 

@@ -15,7 +15,7 @@ function f(x) do
   end else do
     return --[ "a" ]--97;
   end end 
-end
+end end
 
 function f2(x) do
   if (x ~= undefined) then do
@@ -23,7 +23,7 @@ function f2(x) do
   end else do
     return 1;
   end end 
-end
+end end
 
 function f3(x) do
   local ___conditional___=(x.tag | 0);
@@ -37,7 +37,7 @@ function f3(x) do
      do
     
   end
-end
+end end
 
 exports.f = f;
 exports.f2 = f2;

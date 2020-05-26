@@ -23,33 +23,33 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function foo(f) do
   console.log(Curry._2(f, "a1", --[ () ]--0));
   return --[ () ]--0;
-end
+end end
 
 foo((function (param) do
         return (function (param$1) do
             return Gpr_1423_nav.busted(param, "a2", param$1);
-          end);
-      end));
+          end end);
+      end end));
 
 function foo2(f) do
   return Curry._2(f, "a1", --[ () ]--0);
-end
+end end
 
 eq("File \"gpr_1423_app_test.ml\", line 18, characters 7-14", Curry._1((function (param) do
               return (function (param$1) do
                   return Gpr_1423_nav.busted(param, "a2", param$1);
-                end);
-            end)("a1"), --[ () ]--0), "a1a2");
+                end end);
+            end end)("a1"), --[ () ]--0), "a1a2");
 
 Mt.from_pair_suites("Gpr_1423_app_test", suites.contents);
 

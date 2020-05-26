@@ -7,7 +7,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, v, r) do
   hl = height(l);
@@ -18,7 +18,7 @@ function create(l, v, r) do
           r,
           hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal(l, v, r) do
   hl = height(l);
@@ -61,7 +61,7 @@ function bal(l, v, r) do
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function compare_int(x, y) do
   if (x > y) then do
@@ -71,7 +71,7 @@ function compare_int(x, y) do
   end else do
     return -1;
   end end  end 
-end
+end end
 
 function add(x, t) do
   if (t) then do
@@ -94,7 +94,7 @@ function add(x, t) do
             1
           ];
   end end 
-end
+end end
 
 function min_elt(_def, _param) do
   while(true) do
@@ -113,7 +113,7 @@ function min_elt(_def, _param) do
       return def;
     end end 
   end;
-end
+end end
 
 function remove_min_elt(l, v, r) do
   if (l) then do
@@ -121,7 +121,7 @@ function remove_min_elt(l, v, r) do
   end else do
     return r;
   end end 
-end
+end end
 
 function internal_merge(l, r) do
   if (l) then do
@@ -134,7 +134,7 @@ function internal_merge(l, r) do
   end else do
     return r;
   end end 
-end
+end end
 
 function remove(x, tree) do
   if (tree) then do
@@ -152,7 +152,7 @@ function remove(x, tree) do
   end else do
     return --[ Empty ]--0;
   end end 
-end
+end end
 
 function mem(x, _param) do
   while(true) do
@@ -169,7 +169,7 @@ function mem(x, _param) do
       return false;
     end end 
   end;
-end
+end end
 
 v = --[ Empty ]--0;
 

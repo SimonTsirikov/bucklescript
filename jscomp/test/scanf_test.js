@@ -16,7 +16,7 @@ end;
 
 function eq(f, param) do
   return Mt_global.collect_eq(test_id, suites, f, param[0], param[1]);
-end
+end end
 
 eq("File \"scanf_test.ml\", line 6, characters 5-12", --[ tuple ]--[
       Curry._1(Scanf.sscanf("32 31", --[ Format ]--[
@@ -37,7 +37,7 @@ eq("File \"scanf_test.ml\", line 6, characters 5-12", --[ tuple ]--[
                 "%d %d"
               ]), (function (x, y) do
               return x + y | 0;
-            end)),
+            end end)),
       63
     ]);
 
@@ -52,7 +52,7 @@ eq("File \"scanf_test.ml\", line 7, characters 5-12", --[ tuple ]--[
                 "%Lu"
               ]), (function (i) do
               return i;
-            end)),
+            end end)),
       --[ int64 ]--[
         --[ hi ]---1429646511,
         --[ lo ]--235324607

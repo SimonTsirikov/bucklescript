@@ -3,7 +3,7 @@
 
 function add(x, y) do
   return x + y | 0;
-end
+end end
 
 N = do
   add: add
@@ -11,15 +11,15 @@ end;
 
 function f1(param) do
   return --[ () ]--0;
-end
+end end
 
 function f2(param, param$1) do
   return --[ () ]--0;
-end
+end end
 
 function f3(param, param$1, param$2) do
   return --[ () ]--0;
-end
+end end
 
 N0 = do
   f1: f1,
@@ -29,11 +29,11 @@ end;
 
 function f2$1(param, param$1) do
   return --[ () ]--0;
-end
+end end
 
 function f3$1(param, param$1, param$2) do
   return --[ () ]--0;
-end
+end end
 
 N1 = do
   f2: f2$1,

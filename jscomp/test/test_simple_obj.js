@@ -32,19 +32,19 @@ CamlinternalOO.set_methods($$class, [
       hi,
       (function (self$1, v, z) do
           return v + z | 0;
-        end),
+        end end),
       id1,
       (function (self$1) do
           return 3;
-        end),
+        end end),
       id2,
       (function (self$1) do
           return 4;
-        end),
+        end end),
       hello,
       (function (self$1, v) do
           return v;
-        end)
+        end end)
     ]);
 
 CamlinternalOO.init_class($$class);
@@ -57,7 +57,7 @@ id = CamlinternalOO.get_method_label($$class$1, "id");
 
 CamlinternalOO.set_method($$class$1, id, (function (self$2) do
         return "uu";
-      end));
+      end end));
 
 CamlinternalOO.init_class($$class$1);
 
@@ -69,7 +69,7 @@ add = CamlinternalOO.get_method_label($$class$2, "add");
 
 CamlinternalOO.set_method($$class$2, add, (function (self$3, x, y) do
         return x + y | 0;
-      end));
+      end end));
 
 CamlinternalOO.init_class($$class$2);
 
@@ -81,7 +81,7 @@ add$1 = CamlinternalOO.get_method_label($$class$3, "add");
 
 CamlinternalOO.set_method($$class$3, add$1, (function (self$4, x, y) do
         return x + y | 0;
-      end));
+      end end));
 
 CamlinternalOO.init_class($$class$3);
 
@@ -166,7 +166,7 @@ function test(param) do
           ]
         ];
   end end 
-end
+end end
 
 exports.u = u;
 exports.uu = uu;

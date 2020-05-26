@@ -13,7 +13,7 @@ function compare(x, y) do
      do
     
   end
-end
+end end
 
 function compare2(x, y) do
   local ___conditional___=(x);
@@ -27,11 +27,11 @@ function compare2(x, y) do
      do
     
   end
-end
+end end
 
 function compare3(x, y) do
   return x == y;
-end
+end end
 
 exports.compare = compare;
 exports.compare2 = compare2;

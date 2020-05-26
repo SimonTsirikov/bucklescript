@@ -37,7 +37,7 @@ function string_or_number(x) do
         
     end
   end end 
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "int_type",
@@ -46,7 +46,7 @@ suites_000 = --[ tuple ]--[
                 "number",
                 "number"
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -57,7 +57,7 @@ suites_001 = --[ :: ]--[
                   "string",
                   "string"
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -67,7 +67,7 @@ suites_001 = --[ :: ]--[
                     Js_types.test(3, --[ Number ]--3),
                     true
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -77,7 +77,7 @@ suites_001 = --[ :: ]--[
                       Js_types.test(true, --[ Boolean ]--2),
                       true
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -87,7 +87,7 @@ suites_001 = --[ :: ]--[
                         Js_types.test(undefined, --[ Undefined ]--0),
                         true
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -97,7 +97,7 @@ suites_001 = --[ :: ]--[
                           string_or_number("xx"),
                           true
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -107,7 +107,7 @@ suites_001 = --[ :: ]--[
                             string_or_number(3.02),
                             true
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -116,10 +116,10 @@ suites_001 = --[ :: ]--[
                     return --[ Eq ]--Block.__(0, [
                               string_or_number((function (x) do
                                       return x;
-                                    end)),
+                                    end end)),
                               false
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -129,7 +129,7 @@ suites_001 = --[ :: ]--[
                                 Js_types.test("3", --[ String ]--4),
                                 true
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -139,7 +139,7 @@ suites_001 = --[ :: ]--[
                                   Js_types.test(3, --[ String ]--4),
                                   false
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -148,10 +148,10 @@ suites_001 = --[ :: ]--[
                           return --[ Eq ]--Block.__(0, [
                                     Js_types.test((function (x) do
                                             return x;
-                                          end), --[ Function ]--5),
+                                          end end), --[ Function ]--5),
                                     true
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -163,7 +163,7 @@ suites_001 = --[ :: ]--[
                                           end, --[ Object ]--6),
                                       true
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ [] ]--0
                     ]

@@ -28,7 +28,7 @@ node_current = ".";
 
 cwd = Caml_obj.caml_lazy_make((function (param) do
         return Caml_sys.caml_sys_getcwd(--[ () ]--0);
-      end));
+      end end));
 
 function path_as_directory(x) do
   if (x == "" or Ext_string_test.ends_with(x, Filename.dir_sep)) then do
@@ -36,7 +36,7 @@ function path_as_directory(x) do
   end else do
     return x .. Filename.dir_sep;
   end end 
-end
+end end
 
 function absolute_path(s) do
   s$1 = s;
@@ -57,9 +57,9 @@ function absolute_path(s) do
         return Filename.concat(aux(dir), base);
       end end  end  end 
     end;
-  end;
+  end end;
   return aux(s$2);
-end
+end end
 
 function chop_extension(locOpt, name) do
   loc = locOpt ~= undefined and locOpt or "";
@@ -92,7 +92,7 @@ function chop_extension(locOpt, name) do
       throw exn;
     end end 
   end
-end
+end end
 
 function chop_extension_if_any(fname) do
   try do
@@ -106,7 +106,7 @@ function chop_extension_if_any(fname) do
       throw exn;
     end end 
   end
-end
+end end
 
 os_path_separator_char = Filename.dir_sep.charCodeAt(0);
 
@@ -127,9 +127,9 @@ function relative_path(file_or_dir_1, file_or_dir_2) do
        end 
       return Pervasives.$at(List.map((function (param) do
                         return node_parent;
-                      end), dir2), dir1);
+                      end end), dir2), dir1);
     end;
-  end;
+  end end;
   ys = go(dir1, dir2);
   if (ys and ys[0] == node_parent) then do
     return $$String.concat(node_sep, ys);
@@ -139,7 +139,7 @@ function relative_path(file_or_dir_1, file_or_dir_2) do
                 ys
               ]);
   end end 
-end
+end end
 
 function node_relative_path(node_modules_shorten, file1, dep_file) do
   file2 = dep_file[1];
@@ -170,7 +170,7 @@ function node_relative_path(node_modules_shorten, file1, dep_file) do
           end end 
         end end 
       end;
-    end;
+    end end;
     return Ext_string_test.tail_from(file2, skip(v + Test_literals.node_modules_length | 0));
   end else do
     return relative_path(dep_file[0] >= 781515420 and --[ `File ]--[
@@ -187,7 +187,7 @@ function node_relative_path(node_modules_shorten, file1, dep_file) do
                   absolute_path(file1[1])
                 ]) .. (node_sep .. Curry._1(Filename.basename, file2));
   end end 
-end
+end end
 
 function find_root_filename(_cwd, filename) do
   while(true) do
@@ -216,26 +216,26 @@ function find_root_filename(_cwd, filename) do
       end end 
     end end 
   end;
-end
+end end
 
 function find_package_json_dir(cwd) do
   return find_root_filename(cwd, Test_literals.bsconfig_json);
-end
+end end
 
 package_dir = Caml_obj.caml_lazy_make((function (param) do
         cwd$1 = CamlinternalLazy.force(cwd);
         return find_root_filename(cwd$1, Test_literals.bsconfig_json);
-      end));
+      end end));
 
 function module_name_of_file(file) do
   s = Filename.chop_extension(Curry._1(Filename.basename, file));
   return Caml_bytes.bytes_to_string(Bytes.capitalize(Caml_bytes.bytes_of_string(s)));
-end
+end end
 
 function module_name_of_file_if_any(file) do
   s = chop_extension_if_any(Curry._1(Filename.basename, file));
   return Caml_bytes.bytes_to_string(Bytes.capitalize(Caml_bytes.bytes_of_string(s)));
-end
+end end
 
 function combine(p1, p2) do
   if (p1 == "" or p1 == Filename.current_dir_name) then do
@@ -247,7 +247,7 @@ function combine(p1, p2) do
   end else do
     return p2;
   end end  end  end 
-end
+end end
 
 function split_aux(p) do
   _p = p;
@@ -276,7 +276,7 @@ function split_aux(p) do
       end end 
     end end 
   end;
-end
+end end
 
 function rel_normalized_absolute_path(from, to_) do
   match = split_aux(from);
@@ -300,13 +300,13 @@ function rel_normalized_absolute_path(from, to_) do
           end else do
             start = List.fold_left((function (acc, param) do
                     return Filename.concat(acc, Ext_string_test.parent_dir_lit);
-                  end), Ext_string_test.parent_dir_lit, xs);
+                  end end), Ext_string_test.parent_dir_lit, xs);
             return List.fold_left(Filename.concat, start, yss);
           end end 
         end else do
           return List.fold_left((function (acc, param) do
                         return Filename.concat(acc, Ext_string_test.parent_dir_lit);
-                      end), Ext_string_test.parent_dir_lit, xs);
+                      end end), Ext_string_test.parent_dir_lit, xs);
         end end 
       end else if (yss) then do
         return List.fold_left(Filename.concat, yss[0], yss[1]);
@@ -315,7 +315,7 @@ function rel_normalized_absolute_path(from, to_) do
       end end  end 
     end;
   end end 
-end
+end end
 
 function normalize_absolute_path(x) do
   drop_if_exist = function (xs) do
@@ -324,7 +324,7 @@ function normalize_absolute_path(x) do
     end else do
       return --[ [] ]--0;
     end end 
-  end;
+  end end;
   normalize_list = function (_acc, _paths) do
     while(true) do
       paths = _paths;
@@ -349,7 +349,7 @@ function normalize_absolute_path(x) do
         return acc;
       end end 
     end;
-  end;
+  end end;
   match = split_aux(x);
   root = match[0];
   rev_paths = normalize_list(--[ [] ]--0, match[1]);
@@ -370,7 +370,7 @@ function normalize_absolute_path(x) do
   end else do
     return root;
   end end 
-end
+end end
 
 function get_extension(x) do
   pos = Ext_string_test.rindex_neg(x, --[ "." ]--46);
@@ -379,14 +379,14 @@ function get_extension(x) do
   end else do
     return Ext_string_test.tail_from(x, pos);
   end end 
-end
+end end
 
 simple_convert_node_path_to_os_path;
 
 if (Sys.unix) then do
   simple_convert_node_path_to_os_path = (function (x) do
       return x;
-    end);
+    end end);
 end else if (Sys.win32 or false) then do
   simple_convert_node_path_to_os_path = Ext_string_test.replace_slash_backward;
 end else do

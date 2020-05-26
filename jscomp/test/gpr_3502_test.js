@@ -3,11 +3,11 @@
 
 function toString(param) do
   return "a";
-end
+end end
 
 function name(param) do
   return 2;
-end
+end end
 
 Language = do
   toString: toString,

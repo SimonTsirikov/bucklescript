@@ -9,7 +9,7 @@ a21 = "hello worldnothello worldnot";
 
 function ff(param) do
   return "cool test hello worldnothello worldnothello";
-end
+end end
 
 a23 = ff(--[ () ]--0);
 

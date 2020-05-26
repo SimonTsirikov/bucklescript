@@ -5,7 +5,7 @@ function M($star) do
   return do
           v: 3
         end;
-end
+end end
 
 V = do
   v: 3

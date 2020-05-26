@@ -21,12 +21,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function check_healty(check) do
   if (!check.a and !check.b) then do
@@ -34,11 +34,11 @@ function check_healty(check) do
   end else do
     return false;
   end end 
-end
+end end
 
 function basic_not(x) do
   return !x;
-end
+end end
 
 function f(check) do
   if (check.x) then do
@@ -46,7 +46,7 @@ function f(check) do
   end else do
     return false;
   end end 
-end
+end end
 
 eq("File \"gpr_904_test.ml\", line 23, characters 5-12", f(do
           x: true,

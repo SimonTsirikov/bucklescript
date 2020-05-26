@@ -20,7 +20,7 @@ function map(f, a) do
     end
     return r;
   end end 
-end
+end end
 
 function init(l, f) do
   l$1 = l;
@@ -41,7 +41,7 @@ function init(l, f) do
     end
     return res;
   end end 
-end
+end end
 
 function fold_left(f, x, a) do
   f$1 = Curry.__2(f);
@@ -52,21 +52,21 @@ function fold_left(f, x, a) do
     r = f$1(r, a$1[i]);
   end
   return r;
-end
+end end
 
 function f2(param) do
   arr = init(30000000, (function (i) do
           return i;
-        end));
+        end end));
   b = map((function (i) do
           return i + i - 1;
-        end), arr);
+        end end), arr);
   v = fold_left((function (prim, prim$1) do
           return prim + prim$1;
-        end), 0, b);
+        end end), 0, b);
   console.log(Pervasives.string_of_float(v));
   return --[ () ]--0;
-end
+end end
 
 f2(--[ () ]--0);
 
@@ -88,12 +88,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 v = do
   contents: 0
@@ -116,7 +116,7 @@ function add5(a0, a1, a2, a3, a4) do
     all_v.contents
   ];
   return (((a0 + a1 | 0) + a2 | 0) + a3 | 0) + a4 | 0;
-end
+end end
 
 function f(x) do
   v.contents = v.contents + 1 | 0;
@@ -125,8 +125,8 @@ function f(x) do
   partial_arg$1 = 1;
   return (function (param, param$1) do
       return add5(x, partial_arg$1, partial_arg, param, param$1);
-    end);
-end
+    end end);
+end end
 
 function g(x) do
   v.contents = v.contents + 1 | 0;
@@ -135,13 +135,13 @@ function g(x) do
   partial_arg$1 = 1;
   u = function (param, param$1) do
     return add5(x, partial_arg$1, partial_arg, param, param$1);
-  end;
+  end end;
   all_v.contents = --[ :: ]--[
     v.contents,
     all_v.contents
   ];
   return u;
-end
+end end
 
 a = f(0)(3, 4);
 

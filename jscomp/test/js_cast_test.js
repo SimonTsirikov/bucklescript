@@ -22,7 +22,7 @@ function add_test(loc, test) do
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function eq(loc, x, y) do
   return add_test(loc, (function (param) do
@@ -30,8 +30,8 @@ function eq(loc, x, y) do
                           x,
                           y
                         ]);
-              end));
-end
+              end end));
+end end
 
 eq("File \"js_cast_test.ml\", line 13, characters 12-19", true, 1);
 

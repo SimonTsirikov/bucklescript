@@ -12,7 +12,7 @@ suites_000 = --[ tuple ]--[
                 undefined,
                 undefined
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -23,7 +23,7 @@ suites_001 = --[ :: ]--[
                   undefined,
                   undefined
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -33,7 +33,7 @@ suites_001 = --[ :: ]--[
                     undefined,
                     undefined
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -43,7 +43,7 @@ suites_001 = --[ :: ]--[
                       "foo",
                       Caml_option.nullable_to_opt("foo")
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -53,7 +53,7 @@ suites_001 = --[ :: ]--[
                         "something",
                         Caml_option.nullable_to_opt("something")
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -63,7 +63,7 @@ suites_001 = --[ :: ]--[
                           true,
                           true
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -73,7 +73,7 @@ suites_001 = --[ :: ]--[
                             true,
                             true
                           ]);
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -83,7 +83,7 @@ suites_001 = --[ :: ]--[
                               true,
                               true
                             ]);
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -93,7 +93,7 @@ suites_001 = --[ :: ]--[
                                 false,
                                 false
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -103,9 +103,9 @@ suites_001 = --[ :: ]--[
                                   null,
                                   Js_null_undefined.bind(null, (function (v) do
                                           return v;
-                                        end))
+                                        end end))
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -115,9 +115,9 @@ suites_001 = --[ :: ]--[
                                     undefined,
                                     Js_null_undefined.bind(undefined, (function (v) do
                                             return v;
-                                          end))
+                                          end end))
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -127,9 +127,9 @@ suites_001 = --[ :: ]--[
                                       undefined,
                                       Js_null_undefined.bind(undefined, (function (v) do
                                               return v;
-                                            end))
+                                            end end))
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -139,9 +139,9 @@ suites_001 = --[ :: ]--[
                                         4,
                                         Js_null_undefined.bind(2, (function (n) do
                                                 return (n << 1);
-                                              end))
+                                              end end))
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -153,12 +153,12 @@ suites_001 = --[ :: ]--[
                                 Js_null_undefined.iter(null, (function (param) do
                                         hit.contents = true;
                                         return --[ () ]--0;
-                                      end));
+                                      end end));
                                 return --[ Eq ]--Block.__(0, [
                                           false,
                                           hit.contents
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -170,12 +170,12 @@ suites_001 = --[ :: ]--[
                                   Js_null_undefined.iter(undefined, (function (param) do
                                           hit.contents = true;
                                           return --[ () ]--0;
-                                        end));
+                                        end end));
                                   return --[ Eq ]--Block.__(0, [
                                             false,
                                             hit.contents
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -187,12 +187,12 @@ suites_001 = --[ :: ]--[
                                     Js_null_undefined.iter(undefined, (function (param) do
                                             hit.contents = true;
                                             return --[ () ]--0;
-                                          end));
+                                          end end));
                                     return --[ Eq ]--Block.__(0, [
                                               false,
                                               hit.contents
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -204,12 +204,12 @@ suites_001 = --[ :: ]--[
                                       Js_null_undefined.iter(2, (function (v) do
                                               hit.contents = v;
                                               return --[ () ]--0;
-                                            end));
+                                            end end));
                                       return --[ Eq ]--Block.__(0, [
                                                 2,
                                                 hit.contents
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ :: ]--[
                                   --[ tuple ]--[
@@ -219,7 +219,7 @@ suites_001 = --[ :: ]--[
                                                   undefined,
                                                   Js_null_undefined.fromOption(undefined)
                                                 ]);
-                                      end)
+                                      end end)
                                   ],
                                   --[ :: ]--[
                                     --[ tuple ]--[
@@ -229,35 +229,35 @@ suites_001 = --[ :: ]--[
                                                     2,
                                                     Js_null_undefined.fromOption(2)
                                                   ]);
-                                        end)
+                                        end end)
                                     ],
                                     --[ :: ]--[
                                       --[ tuple ]--[
                                         "null <> undefined",
                                         (function (param) do
                                             return --[ Ok ]--Block.__(4, [true]);
-                                          end)
+                                          end end)
                                       ],
                                       --[ :: ]--[
                                         --[ tuple ]--[
                                           "null <> empty",
                                           (function (param) do
                                               return --[ Ok ]--Block.__(4, [true]);
-                                            end)
+                                            end end)
                                         ],
                                         --[ :: ]--[
                                           --[ tuple ]--[
                                             "undefined = empty",
                                             (function (param) do
                                                 return --[ Ok ]--Block.__(4, [true]);
-                                              end)
+                                              end end)
                                           ],
                                           --[ :: ]--[
                                             --[ tuple ]--[
                                               "File \"js_null_undefined_test.ml\", line 42, characters 2-9",
                                               (function (param) do
                                                   return --[ Ok ]--Block.__(4, [true]);
-                                                end)
+                                                end end)
                                             ],
                                             --[ [] ]--0
                                           ]

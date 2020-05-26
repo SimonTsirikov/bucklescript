@@ -9,7 +9,7 @@ function f(param) do
         Caml_builtin_exceptions.invalid_argument,
         "hi"
       ];
-end
+end end
 
 exports.u = u;
 exports.f = f;

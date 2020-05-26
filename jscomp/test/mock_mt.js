@@ -82,8 +82,8 @@ function from_pair_suites(name, suites) do
                    do
                   
                 end
-              end), suites);
-end
+              end end), suites);
+end end
 
 exports.from_pair_suites = from_pair_suites;
 --[ No side effect ]--

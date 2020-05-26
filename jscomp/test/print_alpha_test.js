@@ -7,7 +7,7 @@ Curry = require("../../lib/js/curry.js");
 function f(h, param) do
   console.log(3);
   return Curry.__2(h);
-end
+end end
 
 Mt.from_pair_suites("Print_alpha_test", --[ :: ]--[
       --[ tuple ]--[
@@ -16,10 +16,10 @@ Mt.from_pair_suites("Print_alpha_test", --[ :: ]--[
             return --[ Eq ]--Block.__(0, [
                       f((function (prim, prim$1) do
                                 return prim + prim$1 | 0;
-                              end), --[ () ]--0)(1, 2),
+                              end end), --[ () ]--0)(1, 2),
                       3
                     ]);
-          end)
+          end end)
       ],
       --[ [] ]--0
     ]);

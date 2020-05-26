@@ -38,7 +38,7 @@ Printexc.register_printer((function (param) do
           return "A";
         end
          end 
-      end));
+      end end));
 
 a = 3;
 

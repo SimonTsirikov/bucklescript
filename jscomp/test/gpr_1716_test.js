@@ -22,12 +22,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 a = { };
 
@@ -43,7 +43,7 @@ Caml_obj.caml_update_dummy(b, do
 
 function is_inifite(x) do
   return x.b.a == x;
-end
+end end
 
 eq("File \"gpr_1716_test.ml\", line 26, characters 6-13", true, is_inifite(a));
 

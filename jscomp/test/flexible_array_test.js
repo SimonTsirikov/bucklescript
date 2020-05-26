@@ -29,7 +29,7 @@ function sub(_tr, _k) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function update(tr, k, w) do
   if (tr) then do
@@ -66,7 +66,7 @@ function update(tr, k, w) do
   end else do
     throw Caml_builtin_exceptions.not_found;
   end end  end 
-end
+end end
 
 function $$delete(tr, n) do
   if (tr) then do
@@ -93,7 +93,7 @@ function $$delete(tr, n) do
   end else do
     throw Caml_builtin_exceptions.not_found;
   end end 
-end
+end end
 
 function loext(tr, w) do
   if (tr) then do
@@ -109,7 +109,7 @@ function loext(tr, w) do
             --[ Lf ]--0
           ];
   end end 
-end
+end end
 
 function lorem(tr) do
   if (tr) then do
@@ -135,7 +135,7 @@ function lorem(tr) do
   end else do
     throw Caml_builtin_exceptions.not_found;
   end end 
-end
+end end
 
 empty = --[ tuple ]--[
   --[ Lf ]--0,
@@ -144,7 +144,7 @@ empty = --[ tuple ]--[
 
 function length(param) do
   return param[1];
-end
+end end
 
 function get(param, i) do
   if (i >= 0 and i < param[1]) then do
@@ -155,7 +155,7 @@ function get(param, i) do
           "Array.get"
         ];
   end end 
-end
+end end
 
 function set(param, i, v) do
   k = param[1];
@@ -170,14 +170,14 @@ function set(param, i, v) do
           "Array.set"
         ];
   end end 
-end
+end end
 
 function push_front(param, v) do
   return --[ tuple ]--[
           loext(param[0], v),
           param[1] + 1 | 0
         ];
-end
+end end
 
 function pop_front(param) do
   k = param[1];
@@ -192,7 +192,7 @@ function pop_front(param) do
           "Array.pop_front"
         ];
   end end 
-end
+end end
 
 function push_back(param, v) do
   k = param[1];
@@ -200,7 +200,7 @@ function push_back(param, v) do
           update(param[0], k + 1 | 0, v),
           k + 1 | 0
         ];
-end
+end end
 
 function pop_back(param) do
   k = param[1];
@@ -215,7 +215,7 @@ function pop_back(param) do
           "Array.pop_back"
         ];
   end end 
-end
+end end
 
 function pp(fmt, s) do
   v = "[ ";
@@ -230,7 +230,7 @@ function pp(fmt, s) do
                     ]),
                   "%s"
                 ]), v);
-end
+end end
 
 function filter_from(i, p, s) do
   u = empty;
@@ -242,7 +242,7 @@ function filter_from(i, p, s) do
      end 
   end
   return u;
-end
+end end
 
 function append(a, b) do
   empty$1 = empty;
@@ -253,7 +253,7 @@ function append(a, b) do
     empty$1 = push_back(empty$1, get(b, i$1));
   end
   return empty$1;
-end
+end end
 
 function sort(s) do
   size = length(s);
@@ -263,13 +263,13 @@ function sort(s) do
     head = get(s, 0);
     larger = sort(filter_from(1, (function (x) do
                 return Caml_obj.caml_greaterthan(x, head);
-              end), s));
+              end end), s));
     smaller = sort(filter_from(1, (function (x) do
                 return Caml_obj.caml_lessequal(x, head);
-              end), s));
+              end end), s));
     return append(smaller, push_front(larger, head));
   end end 
-end
+end end
 
 function of_array(arr) do
   v = empty;
@@ -277,7 +277,7 @@ function of_array(arr) do
     v = push_back(v, Caml_array.caml_array_get(arr, i));
   end
   return v;
-end
+end end
 
 equal = Caml_obj.caml_equal;
 
@@ -298,7 +298,7 @@ end;
 
 function $eq$tilde(x, y) do
   return Caml_obj.caml_equal(x, of_array(y));
-end
+end end
 
 u = of_array([
       1,
@@ -332,11 +332,11 @@ end
 
 v = $$Array.init(500, (function (i) do
         return 500 - i | 0;
-      end));
+      end end));
 
 y = $$Array.init(500, (function (i) do
         return i + 1 | 0;
-      end));
+      end end));
 
 x$1 = sort(of_array(v));
 

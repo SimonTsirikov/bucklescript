@@ -13,7 +13,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 eq("File \"gpr_2789_test.ml\", line 8, characters 5-12", 0, #Caml_weak.caml_weak_create(0));
 

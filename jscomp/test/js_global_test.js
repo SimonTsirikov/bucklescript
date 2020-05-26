@@ -8,10 +8,10 @@ suites_000 = --[ tuple ]--[
   (function (param) do
       handle = setTimeout((function (param) do
               return --[ () ]--0;
-            end), 0);
+            end end), 0);
       clearTimeout(handle);
       return --[ Ok ]--Block.__(4, [true]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -20,10 +20,10 @@ suites_001 = --[ :: ]--[
     (function (param) do
         handle = setInterval((function (param) do
                 return --[ () ]--0;
-              end), 0);
+              end end), 0);
         clearInterval(handle);
         return --[ Ok ]--Block.__(4, [true]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -33,7 +33,7 @@ suites_001 = --[ :: ]--[
                     encodeURI("[-=-]"),
                     "%5B-=-%5D"
                   ]);
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -43,7 +43,7 @@ suites_001 = --[ :: ]--[
                       decodeURI("%5B-=-%5D"),
                       "[-=-]"
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -53,7 +53,7 @@ suites_001 = --[ :: ]--[
                         encodeURIComponent("[-=-]"),
                         "%5B-%3D-%5D"
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -63,7 +63,7 @@ suites_001 = --[ :: ]--[
                           decodeURIComponent("%5B-%3D-%5D"),
                           "[-=-]"
                         ]);
-              end)
+              end end)
           ],
           --[ [] ]--0
         ]

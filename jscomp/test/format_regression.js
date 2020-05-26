@@ -12,7 +12,7 @@ function peek_queue(param) do
           19
         ]
       ];
-end
+end end
 
 function int_of_size(param) do
   throw [
@@ -23,7 +23,7 @@ function int_of_size(param) do
           20
         ]
       ];
-end
+end end
 
 function take_queue(param) do
   throw [
@@ -34,7 +34,7 @@ function take_queue(param) do
           19
         ]
       ];
-end
+end end
 
 function format_pp_token(param, param$1) do
   throw [
@@ -45,7 +45,7 @@ function format_pp_token(param, param$1) do
           26
         ]
       ];
-end
+end end
 
 function advance_loop(state) do
   while(true) do
@@ -61,7 +61,7 @@ function advance_loop(state) do
       continue ;
     end end 
   end;
-end
+end end
 
 pp_infinity = 1000000010;
 

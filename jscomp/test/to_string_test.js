@@ -8,7 +8,7 @@ ff = Pervasives.string_of_float;
 
 function f(v) do
   return String(v);
-end
+end end
 
 Mt.from_pair_suites("To_string_test", --[ :: ]--[
       --[ tuple ]--[
@@ -18,7 +18,7 @@ Mt.from_pair_suites("To_string_test", --[ :: ]--[
                       Pervasives.string_of_float(Pervasives.infinity),
                       "inf"
                     ]);
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -28,7 +28,7 @@ Mt.from_pair_suites("To_string_test", --[ :: ]--[
                         Pervasives.string_of_float(Pervasives.neg_infinity),
                         "-inf"
                       ]);
-            end)
+            end end)
         ],
         --[ [] ]--0
       ]

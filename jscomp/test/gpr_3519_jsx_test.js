@@ -7,7 +7,7 @@ end;
 
 function make(param, param$1) do
   return --[ () ]--0;
-end
+end end
 
 Foo = do
   make: make

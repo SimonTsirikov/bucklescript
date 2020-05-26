@@ -7,7 +7,7 @@ function f(x) do
   end else do
     return x == 4;
   end end 
-end
+end end
 
 exports.f = f;
 --[ No side effect ]--

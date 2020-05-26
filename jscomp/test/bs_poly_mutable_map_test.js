@@ -19,21 +19,21 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, v) do
   return Mt.bool_suites(test_id, suites, loc, v);
-end
+end end
 
 Icmp = Belt_Id.comparable(Caml_primitive.caml_int_compare);
 
 function f(x) do
   return Belt_MutableMap.fromArray(x, Icmp);
-end
+end end
 
 function ff(x) do
   return Belt_Set.fromArray(x, Icmp);
-end
+end end
 
 function randomRange(i, j) do
   return Belt_Array.map(Array_data_util.randomRange(i, j), (function (x) do
@@ -41,8 +41,8 @@ function randomRange(i, j) do
                         x,
                         x
                       ];
-              end));
-end
+              end end));
+end end
 
 x = randomRange(0, 10);
 

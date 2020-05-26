@@ -17,11 +17,11 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-end
+end end
 
 function does_raise(f, q) do
   try do
@@ -31,12 +31,12 @@ function does_raise(f, q) do
   catch (exn)do
     return true;
   end
-end
+end end
 
 function $plus$plus(q, x) do
   Belt_MutableQueue.add(q, x);
   return q;
-end
+end end
 
 q = Belt_MutableQueue.make(--[ () ]--0);
 
@@ -701,7 +701,7 @@ Belt_MutableQueue.forEach(q$5, (function (j) do
          end 
         i$7.contents = i$7.contents + 1 | 0;
         return --[ () ]--0;
-      end));
+      end end));
 
 q1$1 = Belt_MutableQueue.make(--[ () ]--0);
 
@@ -1170,9 +1170,9 @@ end
 
 if (Belt_MutableQueue.reduce(q2$4, 0, (function (x, y) do
           return x - y | 0;
-        end)) ~= Belt_Array.reduce(v, 0, (function (x, y) do
+        end end)) ~= Belt_Array.reduce(v, 0, (function (x, y) do
           return x - y | 0;
-        end))) then do
+        end end))) then do
   throw [
         Caml_builtin_exceptions.assert_failure,
         --[ tuple ]--[
@@ -1195,7 +1195,7 @@ q$6 = Belt_MutableQueue.fromArray([
 
 q1$5 = Belt_MutableQueue.map(q$6, (function (x) do
         return x - 1 | 0;
-      end));
+      end end));
 
 eq("File \"bs_queue_test.ml\", line 154, characters 5-12", Belt_MutableQueue.toArray(q1$5), [
       0,
@@ -1210,7 +1210,7 @@ b("File \"bs_queue_test.ml\", line 155, characters 4-11", q$7.length == 0);
 
 q$8 = Belt_MutableQueue.map(Belt_MutableQueue.fromArray([]), (function (x) do
         return x + 1 | 0;
-      end));
+      end end));
 
 b("File \"bs_queue_test.ml\", line 156, characters 4-11", q$8.length == 0);
 

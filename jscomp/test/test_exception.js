@@ -11,29 +11,29 @@ function f(param) do
         Local,
         3
       ];
-end
+end end
 
 function g(param) do
   throw Caml_builtin_exceptions.not_found;
-end
+end end
 
 function h(param) do
   throw [
         Test_common.U,
         3
       ];
-end
+end end
 
 function x(param) do
   throw Test_common.H;
-end
+end end
 
 function xx(param) do
   throw [
         Caml_builtin_exceptions.invalid_argument,
         "x"
       ];
-end
+end end
 
 Nullary = Caml_exceptions.create("Test_exception.Nullary");
 

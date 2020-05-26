@@ -21,12 +21,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function test(dom) do
   elem = dom.getElementById("haha");
@@ -36,12 +36,12 @@ function test(dom) do
     console.log(elem);
     return 2;
   end end 
-end
+end end
 
 function f(x, y) do
   console.log("no inline");
   return x + y | 0;
-end
+end end
 
 eq("File \"js_nullable_test.ml\", line 26, characters 7-14", false, false);
 

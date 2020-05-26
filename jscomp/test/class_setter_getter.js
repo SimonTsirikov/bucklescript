@@ -4,7 +4,7 @@
 function fff(x) do
   x.height = 2;
   return --[ () ]--0;
-end
+end end
 
 function ff(x, z) do
   return --[ :: ]--[
@@ -14,7 +14,7 @@ function ff(x, z) do
             --[ [] ]--0
           ]
         ];
-end
+end end
 
 exports.fff = fff;
 exports.ff = ff;

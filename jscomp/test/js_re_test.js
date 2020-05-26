@@ -26,7 +26,7 @@ suites_000 = --[ tuple ]--[
       end else do
         return --[ Fail ]--Block.__(8, [--[ () ]--0]);
       end end 
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -39,12 +39,12 @@ suites_001 = --[ :: ]--[
             return Caml_option.nullable_to_opt(Caml_array.caml_array_get(param, 1));
           end
            end 
-        end;
+        end end;
         return --[ Eq ]--Block.__(0, [
                   contentOf("div", "<div>Hi</div>"),
                   "Hi"
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -59,7 +59,7 @@ suites_001 = --[ :: ]--[
           end else do
             return --[ FailWith ]--Block.__(9, ["regex should match"]);
           end end 
-        end)
+        end end)
     ],
     --[ :: ]--[
       --[ tuple ]--[
@@ -71,7 +71,7 @@ suites_001 = --[ :: ]--[
             end else do
               return --[ Ok ]--Block.__(4, [true]);
             end end 
-          end)
+          end end)
       ],
       --[ :: ]--[
         --[ tuple ]--[
@@ -82,7 +82,7 @@ suites_001 = --[ :: ]--[
                         true,
                         res
                       ]);
-            end)
+            end end)
         ],
         --[ :: ]--[
           --[ tuple ]--[
@@ -93,7 +93,7 @@ suites_001 = --[ :: ]--[
                           true,
                           res.global
                         ]);
-              end)
+              end end)
           ],
           --[ :: ]--[
             --[ tuple ]--[
@@ -108,7 +108,7 @@ suites_001 = --[ :: ]--[
                   end else do
                     return --[ Fail ]--Block.__(8, [--[ () ]--0]);
                   end end 
-                end)
+                end end)
             ],
             --[ :: ]--[
               --[ tuple ]--[
@@ -124,7 +124,7 @@ suites_001 = --[ :: ]--[
                     end else do
                       return --[ Fail ]--Block.__(8, [--[ () ]--0]);
                     end end 
-                  end)
+                  end end)
               ],
               --[ :: ]--[
                 --[ tuple ]--[
@@ -134,7 +134,7 @@ suites_001 = --[ :: ]--[
                                 "gi",
                                 /./ig.flags
                               ]);
-                    end)
+                    end end)
                 ],
                 --[ :: ]--[
                   --[ tuple ]--[
@@ -144,7 +144,7 @@ suites_001 = --[ :: ]--[
                                   true,
                                   /./ig.global
                                 ]);
-                      end)
+                      end end)
                   ],
                   --[ :: ]--[
                     --[ tuple ]--[
@@ -154,7 +154,7 @@ suites_001 = --[ :: ]--[
                                     true,
                                     /./ig.ignoreCase
                                   ]);
-                        end)
+                        end end)
                     ],
                     --[ :: ]--[
                       --[ tuple ]--[
@@ -166,7 +166,7 @@ suites_001 = --[ :: ]--[
                                       4,
                                       re.lastIndex
                                     ]);
-                          end)
+                          end end)
                       ],
                       --[ :: ]--[
                         --[ tuple ]--[
@@ -186,7 +186,7 @@ suites_001 = --[ :: ]--[
                                           after
                                         ]
                                       ]);
-                            end)
+                            end end)
                         ],
                         --[ :: ]--[
                           --[ tuple ]--[
@@ -196,7 +196,7 @@ suites_001 = --[ :: ]--[
                                           false,
                                           /./ig.multiline
                                         ]);
-                              end)
+                              end end)
                           ],
                           --[ :: ]--[
                             --[ tuple ]--[
@@ -206,7 +206,7 @@ suites_001 = --[ :: ]--[
                                             "f.+o",
                                             /f.+o/ig.source
                                           ]);
-                                end)
+                                end end)
                             ],
                             --[ :: ]--[
                               --[ tuple ]--[
@@ -216,7 +216,7 @@ suites_001 = --[ :: ]--[
                                               true,
                                               /./yg.sticky
                                             ]);
-                                  end)
+                                  end end)
                               ],
                               --[ :: ]--[
                                 --[ tuple ]--[
@@ -226,7 +226,7 @@ suites_001 = --[ :: ]--[
                                                 false,
                                                 /./yg.unicode
                                               ]);
-                                    end)
+                                    end end)
                                 ],
                                 --[ [] ]--0
                               ]

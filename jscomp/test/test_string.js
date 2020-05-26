@@ -24,19 +24,19 @@ function f(param) do
       end end
       
   end
-end
+end end
 
 function a(x) do
   return "helloworldhello" .. x;
-end
+end end
 
 function b(y, x) do
   return y .. ("helloworldhello" .. x);
-end
+end end
 
 function c(x, y) do
   return x .. "hellohiuhi" .. y;
-end
+end end
 
 function h(s, b) do
   if (Caml_string.get(s, 0) == --[ "a" ]--97 and Caml_bytes.get(b, 0) == --[ "b" ]--98) then do
@@ -44,7 +44,7 @@ function h(s, b) do
   end else do
     return false;
   end end 
-end
+end end
 
 v = 2;
 

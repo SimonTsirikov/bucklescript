@@ -3,7 +3,7 @@
 
 function Make($star) do
   return { };
-end
+end end
 
 U = { };
 

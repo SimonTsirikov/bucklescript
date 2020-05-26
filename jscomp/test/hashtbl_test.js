@@ -18,8 +18,8 @@ function to_list(tbl) do
                         ],
                         acc
                       ];
-              end), tbl, --[ [] ]--0);
-end
+              end end), tbl, --[ [] ]--0);
+end end
 
 function f(param) do
   tbl = Hashtbl.create(undefined, 17);
@@ -27,8 +27,8 @@ function f(param) do
   Hashtbl.add(tbl, 2, --[ "2" ]--50);
   return List.sort((function (param, param$1) do
                 return Caml_primitive.caml_int_compare(param[0], param$1[0]);
-              end), to_list(tbl));
-end
+              end end), to_list(tbl));
+end end
 
 function g(count) do
   tbl = Hashtbl.create(undefined, 17);
@@ -41,8 +41,8 @@ function g(count) do
   v = to_list(tbl);
   return $$Array.of_list(List.sort((function (param, param$1) do
                     return Caml_primitive.caml_int_compare(param[0], param$1[0]);
-                  end), v));
-end
+                  end end), v));
+end end
 
 suites_000 = --[ tuple ]--[
   "simple",
@@ -63,7 +63,7 @@ suites_000 = --[ tuple ]--[
                 ],
                 f(--[ () ]--0)
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -76,10 +76,10 @@ suites_001 = --[ :: ]--[
                                   (i << 1),
                                   String(i)
                                 ];
-                        end)),
+                        end end)),
                   g(1000)
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -91,7 +91,7 @@ suites_001 = --[ :: ]--[
                     tbl.size,
                     1
                   ]);
-        end)
+        end end)
     ],
     --[ [] ]--0
   ]

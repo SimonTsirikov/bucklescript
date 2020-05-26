@@ -14,7 +14,7 @@ Belt_internalBucketsType = require("../../lib/js/belt_internalBucketsType.js");
 
 function hash_string(s) do
   return Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_string(0, s));
-end
+end end
 
 function hashString (str)do 
                                               var hash = 5381,
@@ -29,21 +29,21 @@ function hashString (str)do
 
 $$String = Belt_Id.hashable(Hashtbl.hash, (function (x, y) do
         return x == y;
-      end));
+      end end));
 
 String1 = Belt_Id.hashable(hashString, (function (x, y) do
         return x == y;
-      end));
+      end end));
 
 String2 = Belt_Id.hashable((function (x) do
         return Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_string(0, x));
-      end), (function (x, y) do
+      end end), (function (x, y) do
         return x == y;
-      end));
+      end end));
 
 Int = Belt_Id.hashable(Hashtbl.hash, (function (x, y) do
         return x == y;
-      end));
+      end end));
 
 empty = Belt_internalBucketsType.make(Int.hash, Int.eq, 500000);
 
@@ -65,7 +65,7 @@ function bench(param) do
      end 
   end
   return Belt_HashMap.logStats(empty);
-end
+end end
 
 function bench2(m) do
   empty = Belt_internalBucketsType.make(m.hash, m.eq, 1000000);
@@ -100,7 +100,7 @@ function bench2(m) do
           ]
         ];
   end end 
-end
+end end
 
 function bench3(m) do
   empty = do
@@ -140,7 +140,7 @@ function bench3(m) do
           ]
         ];
   end end 
-end
+end end
 
 Sx = Belt_Id.comparable(Caml_primitive.caml_string_compare);
 
@@ -177,7 +177,7 @@ function bench4(param) do
           ]
         ];
   end end 
-end
+end end
 
 function bench5(param) do
   table = Belt_internalBucketsType.make(Int.hash, Int.eq, 1000000);
@@ -218,7 +218,7 @@ function bench5(param) do
           ]
         ];
   end end 
-end
+end end
 
 function bench6(param) do
   table = Belt_internalBucketsType.make(--[ () ]--0, --[ () ]--0, 1000000);
@@ -253,7 +253,7 @@ function bench6(param) do
           ]
         ];
   end end 
-end
+end end
 
 function bench7(param) do
   hintSize = 2000000;
@@ -289,7 +289,7 @@ function bench7(param) do
           ]
         ];
   end end 
-end
+end end
 
 console.time("test/bs_hashtbl_string_test.ml 203");
 

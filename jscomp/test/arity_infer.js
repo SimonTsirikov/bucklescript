@@ -8,17 +8,17 @@ function f0(x) do
   if (x > 3) then do
     tmp = (function (x) do
         return x + 1 | 0;
-      end);
+      end end);
   end else do
     throw Caml_builtin_exceptions.not_found;
   end end 
   return tmp(3);
-end
+end end
 
 function f1(x) do
   throw Caml_builtin_exceptions.not_found;
   return Curry._1(undefined, x);
-end
+end end
 
 function f3(x) do
   tmp;
@@ -27,19 +27,19 @@ function f3(x) do
      if ___conditional___ = 0 then do
         tmp = (function (x) do
             return x + 1 | 0;
-          end);end else 
+          end end);end else 
      if ___conditional___ = 1 then do
         tmp = (function (x) do
             return x + 2 | 0;
-          end);end else 
+          end end);end else 
      if ___conditional___ = 2 then do
         tmp = (function (x) do
             return x + 3 | 0;
-          end);end else 
+          end end);end else 
      if ___conditional___ = 3 then do
         tmp = (function (x) do
             return x + 4 | 0;
-          end);end else 
+          end end);end else 
      do end end end end end
     else do
       throw Caml_builtin_exceptions.not_found;
@@ -47,7 +47,7 @@ function f3(x) do
       
   end
   return tmp(3);
-end
+end end
 
 exports.f0 = f0;
 exports.f1 = f1;

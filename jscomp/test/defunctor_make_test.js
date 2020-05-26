@@ -5,11 +5,11 @@ Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function getcompare(x) do
   return x;
-end
+end end
 
 function Make(M) do
   return M;
-end
+end end
 
 Comparable = do
   getcompare: getcompare,
@@ -22,7 +22,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, x, d, r) do
   hl = height(l);
@@ -34,7 +34,7 @@ function create(l, x, d, r) do
           r,
           hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal(l, x, d, r) do
   hl = l and l[4] or 0;
@@ -92,7 +92,7 @@ function bal(l, x, d, r) do
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add(x, data, compare, param) do
   if (param) then do
@@ -123,7 +123,7 @@ function add(x, data, compare, param) do
             1
           ];
   end end 
-end
+end end
 
 function add$1(x, data, v) do
   X = v.compare;
@@ -131,14 +131,14 @@ function add$1(x, data, v) do
           compare: v.compare,
           data: add(x, data, X.compare, v.data)
         end;
-end
+end end
 
 function empty(v) do
   return do
           compare: v,
           data: --[ Empty ]--0
         end;
-end
+end end
 
 compare = Caml_primitive.caml_int_compare;
 

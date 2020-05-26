@@ -12,7 +12,7 @@ function f(x) do
   end else do
     return "b";
   end end 
-end
+end end
 
 function ff(x) do
   local ___conditional___=(x);
@@ -36,7 +36,7 @@ function ff(x) do
       end end
       
   end
-end
+end end
 
 function test(x) do
   match;
@@ -70,7 +70,7 @@ function test(x) do
   end else do
     return "b";
   end end 
-end
+end end
 
 test_poly = "a";
 

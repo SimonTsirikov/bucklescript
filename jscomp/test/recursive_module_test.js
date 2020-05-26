@@ -24,12 +24,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function add(suite) do
   suites.contents = --[ :: ]--[
@@ -37,7 +37,7 @@ function add(suite) do
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 Int3 = Caml_module.init_mod(--[ tuple ]--[
       "recursive_module_test.ml",
@@ -68,7 +68,7 @@ function fact(n) do
   end else do
     return Caml_int32.imul(n, Curry._1(M.fact, n - 1 | 0));
   end end 
-end
+end end
 
 Caml_module.update_mod(--[ Module ]--Block.__(0, [[--[ tuple ]--[
             --[ Function ]--0,
@@ -92,8 +92,8 @@ add(--[ tuple ]--[
           return --[ ThrowAny ]--Block.__(7, [(function (param) do
                         Curry._1(Int3.u, 3);
                         return --[ () ]--0;
-                      end)]);
-        end)
+                      end end)]);
+        end end)
     ]);
 
 Mt.from_pair_suites("Recursive_module_test", suites.contents);

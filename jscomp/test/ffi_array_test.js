@@ -21,12 +21,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 eq("File \"ffi_array_test.ml\", line 12, characters 5-12", [
         1,
@@ -35,7 +35,7 @@ eq("File \"ffi_array_test.ml\", line 12, characters 5-12", [
         4
       ].map((function (x) do
             return x + 1 | 0;
-          end)), [
+          end end)), [
       2,
       3,
       4,

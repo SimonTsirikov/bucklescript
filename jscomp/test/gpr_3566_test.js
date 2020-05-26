@@ -11,7 +11,7 @@ function eq_A(x, y) do
   end else do
     return x[0] == y[0];
   end end 
-end
+end end
 
 function Test($star) do
   console.log("no inline");
@@ -24,7 +24,7 @@ function Test($star) do
           y: 32,
           b: b
         end;
-end
+end end
 
 function Test2($star) do
   console.log("no inline");
@@ -35,12 +35,12 @@ function Test2($star) do
           y: 32,
           b: b
         end;
-end
+end end
 
 function f(i, y) do
   x = --[ A ]--Block.__(0, [i]);
   return eq_A(x, y);
-end
+end end
 
 function Test3($star) do
   f = Caml_obj.caml_equal;
@@ -49,7 +49,7 @@ function Test3($star) do
           f: f,
           Caml_obj: Caml_obj$1
         end;
-end
+end end
 
 function Test4($star) do
   Caml_obj$1 = { };
@@ -58,65 +58,65 @@ function Test4($star) do
           Caml_obj: Caml_obj$1,
           f: f
         end;
-end
+end end
 
 function Test5($star) do
   f = function (x) do
     return Caml_option.some(x);
-  end;
+  end end;
   Caml_option$1 = { };
   return do
           f: f,
           Caml_option: Caml_option$1
         end;
-end
+end end
 
 function Test6($star) do
   Caml_option$1 = { };
   f = function (x) do
     return Caml_option.some(x);
-  end;
+  end end;
   return do
           Caml_option: Caml_option$1,
           f: f
         end;
-end
+end end
 
 function Test7($star) do
   Caml_option = { };
   return do
           Caml_option: Caml_option
         end;
-end
+end end
 
 function Test8($star) do
   Curry$1 = { };
   f = function (x) do
     return Curry._1(x, 1);
-  end;
+  end end;
   return do
           Curry: Curry$1,
           f: f
         end;
-end
+end end
 
 function Test9($star) do
   f = function (x) do
     return Curry._1(x, 1);
-  end;
+  end end;
   Curry$1 = { };
   return do
           f: f,
           Curry: Curry$1
         end;
-end
+end end
 
 function Test10($star) do
   Curry = { };
   return do
           Curry: Curry
         end;
-end
+end end
 
 x = 3;
 

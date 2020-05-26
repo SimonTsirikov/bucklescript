@@ -15,19 +15,19 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(param, param$1) do
   return Mt.bool_suites(test_id, suites, param, param$1);
-end
+end end
 
 function f(x, y) do
   return Caml_primitive.caml_int_compare(x + y | 0, y + x | 0);
-end
+end end
 
 function f2(x, y) do
   return Caml_primitive.caml_int_compare(x + y | 0, y);
-end
+end end
 
 f3 = Caml_primitive.caml_int_compare;
 
@@ -37,7 +37,7 @@ function f4(x, y) do
   end else do
     return y;
   end end 
-end
+end end
 
 f5_min = Caml_obj.caml_min;
 

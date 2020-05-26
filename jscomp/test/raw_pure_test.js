@@ -20,7 +20,7 @@ function f(x) do
   --eslint-disable
   --[hgosgh ]--
   return x;
-end
+end end
 
 hh = List.length;
 

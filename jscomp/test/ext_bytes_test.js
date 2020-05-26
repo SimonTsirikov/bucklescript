@@ -17,7 +17,7 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function escaped(s) do
   n = 0;
@@ -121,7 +121,7 @@ function escaped(s) do
     end
     return s$prime;
   end end 
-end
+end end
 
 function starts_with(xs, prefix, p) do
   H = Caml_exceptions.create("H");
@@ -147,7 +147,7 @@ function starts_with(xs, prefix, p) do
       end end 
     end
   end end 
-end
+end end
 
 a = Bytes.init(100, Char.chr);
 
@@ -167,7 +167,7 @@ a$2 = Caml_bytes.bytes_to_string(Bytes.init(100, f));
 
 b = Bytes.init(100, (function (i) do
         return --[ "\000" ]--0;
-      end));
+      end end));
 
 Bytes.blit_string(a$2, 10, b, 5, 10);
 

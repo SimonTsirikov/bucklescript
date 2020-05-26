@@ -12,15 +12,15 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function make(x) do
   return x;
-end
+end end
 
 function get(param) do
   return param;
-end
+end end
 
 x = "foo";
 

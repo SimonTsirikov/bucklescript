@@ -10,7 +10,7 @@ function Make(U) do
           compare: compare,
           v: compare
         end;
-end
+end end
 
 X = do
   compare: $$String.compare,

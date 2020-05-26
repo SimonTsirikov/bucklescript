@@ -12,7 +12,7 @@ function mk($$window, $$default) do
           window: $$window,
           default: $$default
         end;
-end
+end end
 
 function mk2($$window, $$default) do
   return --[ :: ]--[
@@ -22,14 +22,14 @@ function mk2($$window, $$default) do
           end,
           --[ [] ]--0
         ];
-end
+end end
 
 function des(v) do
   return do
           window: v.window,
           default: v.default
         end;
-end
+end end
 
 test = do
   case: 3,
@@ -38,7 +38,7 @@ end;
 
 function u(param) do
   return $$window.switch();
-end
+end end
 
 $$case = 3;
 

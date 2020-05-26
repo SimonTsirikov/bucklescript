@@ -12,7 +12,7 @@ function height(param) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function create(l, x, d, r) do
   hl = height(l);
@@ -24,7 +24,7 @@ function create(l, x, d, r) do
           r,
           hl >= hr and hl + 1 | 0 or hr + 1 | 0
         ];
-end
+end end
 
 function bal(l, x, d, r) do
   hl = l and l[4] or 0;
@@ -82,7 +82,7 @@ function bal(l, x, d, r) do
             hl >= hr and hl + 1 | 0 or hr + 1 | 0
           ];
   end end  end 
-end
+end end
 
 function add(x, data, param) do
   if (param) then do
@@ -113,7 +113,7 @@ function add(x, data, param) do
             1
           ];
   end end 
-end
+end end
 
 function find(x, _param) do
   while(true) do
@@ -130,11 +130,11 @@ function find(x, _param) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 m = List.fold_left((function (acc, param) do
         return add(param[0], param[1], acc);
-      end), --[ Empty ]--0, --[ :: ]--[
+      end end), --[ Empty ]--0, --[ :: ]--[
       --[ tuple ]--[
         10,
         --[ "a" ]--97
@@ -168,7 +168,7 @@ Mt.from_pair_suites("Inline_map_test", --[ :: ]--[
                       find(10, m),
                       --[ "a" ]--97
                     ]);
-          end)
+          end end)
       ],
       --[ [] ]--0
     ]);

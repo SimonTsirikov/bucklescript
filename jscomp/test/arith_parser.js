@@ -50,18 +50,18 @@ yyact = [
             Caml_builtin_exceptions.failure,
             "parser"
           ];
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Numeral ]--Block.__(0, [_1]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Variable ]--Block.__(6, [_1]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
@@ -69,7 +69,7 @@ yyact = [
                 _1,
                 _3
               ]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
@@ -77,7 +77,7 @@ yyact = [
                 _1,
                 _3
               ]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
@@ -85,7 +85,7 @@ yyact = [
                 _1,
                 _3
               ]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
@@ -93,20 +93,20 @@ yyact = [
                 _1,
                 _3
               ]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
       return --[ Negate ]--Block.__(5, [_2]);
-    end),
+    end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
-    end),
+    end end),
   (function (__caml_parser_env) do
       throw [
             Parsing.YYexit,
             Parsing.peek_val(__caml_parser_env, 0)
           ];
-    end)
+    end end)
 ];
 
 yytables = do
@@ -130,7 +130,7 @@ end;
 
 function toplevel(lexfun, lexbuf) do
   return Parsing.yyparse(yytables, 1, lexfun, lexbuf);
-end
+end end
 
 yytablesize = 272;
 

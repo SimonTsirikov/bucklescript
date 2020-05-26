@@ -23,18 +23,18 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f(x) do
   console.log(x);
   console.log(List.length(x));
   return List;
-end
+end end
 
 h = f(--[ [] ]--0);
 

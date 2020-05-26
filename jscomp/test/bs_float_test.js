@@ -14,15 +14,15 @@ end;
 
 function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
-end
+end end
 
 function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
-end
+end end
 
 function $$throw(loc, x) do
   return Mt.throw_suites(test_id, suites, loc, x);
-end
+end end
 
 function neq(loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;
@@ -34,12 +34,12 @@ function neq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 eq("File \"bs_float_test.ml\", line 14, characters 5-12", 1, 1.0);
 

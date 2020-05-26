@@ -21,12 +21,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f(x, i, file, v) do
   x.case(i);
@@ -34,7 +34,7 @@ function f(x, i, file, v) do
   x.open(file);
   x.open(file);
   return x.MAX_LENGTH;
-end
+end end
 
 function ff(x, i, v) do
   x.make;
@@ -43,7 +43,7 @@ function ff(x, i, v) do
   x.make_config = v;
   x.case(i);
   return x._open(3);
-end
+end end
 
 u = do
   "Content'type": "x"
@@ -56,7 +56,7 @@ end;
 
 function hg(x) do
   return x.open + x.end | 0;
-end
+end end
 
 eq("File \"method_name_test.ml\", line 39, characters 12-19", 35, hg(h));
 

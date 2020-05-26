@@ -21,7 +21,7 @@ function f(param) do
   end
   a$2 = param[0][0];
   return Caml_int32.imul(a$2, a$2);
-end
+end end
 
 function ff(c) do
   c.contents = c.contents + 1 | 0;
@@ -31,7 +31,7 @@ function ff(c) do
   end else do
     return match + 1 | 0;
   end end 
-end
+end end
 
 exports.f = f;
 exports.ff = ff;

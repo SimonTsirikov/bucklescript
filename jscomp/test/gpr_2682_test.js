@@ -9,7 +9,7 @@ v = sum(1, 2);
 
 function f(a) do
   return a + 3 | 0;
-end
+end end
 
 b = f(1);
 
@@ -24,7 +24,7 @@ function forIn (o,foo)do
 function log(x) do
   console.log(x);
   return --[ () ]--0;
-end
+end end
 
 N = do
   log2: log
@@ -35,7 +35,7 @@ forIn(do
     end, (function (x) do
         console.log(x);
         return --[ () ]--0;
-      end));
+      end end));
 
 forIn(do
       x: 3,
@@ -43,7 +43,7 @@ forIn(do
     end, (function (x) do
         console.log(x);
         return --[ () ]--0;
-      end));
+      end end));
 
 function f3 ()doreturn trueend;
 

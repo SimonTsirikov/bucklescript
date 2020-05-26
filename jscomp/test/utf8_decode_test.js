@@ -41,7 +41,7 @@ function classify(chr) do
   end else do
     return --[ Invalid ]--0;
   end end  end  end  end  end  end  end 
-end
+end end
 
 function utf8_decode(strm) do
   return Stream.slazy((function (param) do
@@ -90,7 +90,7 @@ function utf8_decode(strm) do
                                 end end  end 
                               end end 
                             end;
-                          end;
+                          end end;
                           return Stream.icons(follow(strm, match$1[0], match$1[1]), utf8_decode(strm));end end end 
                        do
                       
@@ -98,8 +98,8 @@ function utf8_decode(strm) do
                   end end 
                 end
                  end 
-              end));
-end
+              end end));
+end end
 
 function to_list(xs) do
   v = do
@@ -111,13 +111,13 @@ function to_list(xs) do
             v.contents
           ];
           return --[ () ]--0;
-        end), xs);
+        end end), xs);
   return List.rev(v.contents);
-end
+end end
 
 function utf8_list(s) do
   return to_list(utf8_decode(Stream.of_string(s)));
-end
+end end
 
 function decode(bytes, offset) do
   offset$1 = offset;
@@ -177,7 +177,7 @@ function decode(bytes, offset) do
       
     end
   end end 
-end
+end end
 
 function eq_list(cmp, _xs, _ys) do
   while(true) do
@@ -197,7 +197,7 @@ function eq_list(cmp, _xs, _ys) do
       return true;
     end end  end 
   end;
-end
+end end
 
 suites = do
   contents: --[ [] ]--0
@@ -223,21 +223,21 @@ function eq(loc, param) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 List.iter((function (param) do
         return eq("File \"utf8_decode_test.ml\", line 107, characters 7-14", --[ tuple ]--[
                     true,
                     eq_list((function (prim, prim$1) do
                             return prim == prim$1;
-                          end), to_list(utf8_decode(Stream.of_string(param[0]))), param[1])
+                          end end), to_list(utf8_decode(Stream.of_string(param[0]))), param[1])
                   ]);
-      end), --[ :: ]--[
+      end end), --[ :: ]--[
       --[ tuple ]--[
         "\xe4\xbd\xa0\xe5\xa5\xbdBuckleScript,\xe6\x9c\x80\xe5\xa5\xbd\xe7\x9a\x84JS\xe8\xaf\xad\xe8\xa8\x80",
         --[ :: ]--[

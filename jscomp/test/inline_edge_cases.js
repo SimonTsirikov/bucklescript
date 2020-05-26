@@ -11,7 +11,7 @@ function test3(_n) do
       continue ;
     end end 
   end;
-end
+end end
 
 function test2(_n) do
   while(true) do
@@ -23,7 +23,7 @@ function test2(_n) do
       continue ;
     end end 
   end;
-end
+end end
 
 function test0(_n) do
   while(true) do
@@ -44,7 +44,7 @@ function test0(_n) do
       continue ;
     end end 
   end;
-end
+end end
 
 v = test0(10);
 

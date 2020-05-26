@@ -23,12 +23,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 v = do
   contents: 0
@@ -39,7 +39,7 @@ function Make(U) do
   v.contents = v.contents + 1 | 0;
   v.contents = v.contents + 1 | 0;
   return U;
-end
+end end
 
 function f(param) do
   v.contents = v.contents + 1 | 0;
@@ -49,7 +49,7 @@ function f(param) do
   v.contents = v.contents + 1 | 0;
   v.contents = v.contents + 1 | 0;
   return List;
-end
+end end
 
 eq("File \"global_module_alias_test.ml\", line 51, characters 5-12", List.length(--[ :: ]--[
           1,
@@ -101,14 +101,14 @@ function g(param) do
                 ]
               ]
             ]);
-end
+end end
 
 function xx(param) do
   v.contents = v.contents + 1 | 0;
   v.contents = v.contents + 1 | 0;
   v.contents = v.contents + 1 | 0;
   return List;
-end
+end end
 
 eq("File \"global_module_alias_test.ml\", line 86, characters 5-12", g(--[ () ]--0), 4);
 

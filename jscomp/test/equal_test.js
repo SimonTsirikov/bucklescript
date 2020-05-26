@@ -3,13 +3,13 @@
 
 function str_equal(x, y) do
   return x == y;
-end
+end end
 
 str_b = true;
 
 function int_equal(x, y) do
   return x == y;
-end
+end end
 
 v = false;
 

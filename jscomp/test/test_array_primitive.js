@@ -9,7 +9,7 @@ function caml_array_sub(x, offset, len) do
     Caml_array.caml_array_set(result, j, Caml_array.caml_array_get(x, offset + j | 0));
   end
   return result;
-end
+end end
 
 function caml_array_set(xs, index, newval) do
   if (index < 0 or index >= #xs) then do
@@ -20,7 +20,7 @@ function caml_array_set(xs, index, newval) do
   end
    end 
   return Caml_array.caml_array_set(xs, index, newval);
-end
+end end
 
 function caml_array_get(xs, index) do
   if (index < 0 or index >= #xs) then do
@@ -31,7 +31,7 @@ function caml_array_get(xs, index) do
   end
    end 
   return Caml_array.caml_array_get(xs, index);
-end
+end end
 
 function caml_make_vect(len, init) do
   b = new Array(len);
@@ -39,7 +39,7 @@ function caml_make_vect(len, init) do
     Caml_array.caml_array_set(b, i, init);
   end
   return b;
-end
+end end
 
 exports.caml_array_sub = caml_array_sub;
 exports.caml_array_set = caml_array_set;

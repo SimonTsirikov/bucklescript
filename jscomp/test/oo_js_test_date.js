@@ -11,8 +11,8 @@ function d2(param) do
       prim$1 = 2;
       prim$2 = param$1;
       return new Date(prim, prim$1, prim$2);
-    end);
-end
+    end end);
+end end
 
 d3 = d2(2016)(1, --[ () ]--0);
 
@@ -23,7 +23,7 @@ suites_000 = --[ tuple ]--[
                 2,
                 d.getMonth()
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -42,7 +42,7 @@ suites_001 = --[ :: ]--[
                     d3.getDate()
                   ]
                 ]);
-      end)
+      end end)
   ],
   --[ [] ]--0
 ];

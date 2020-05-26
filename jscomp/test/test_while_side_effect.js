@@ -15,7 +15,7 @@ function fib(n) do
   end else do
     return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
   end end 
-end
+end end
 
 x = do
   contents: 3
@@ -27,7 +27,7 @@ while((function () do
         y = y + 1 | 0;
         x.contents = x.contents + 1 | 0;
         return (fib(x.contents) + fib(x.contents) | 0) < 20;
-      end)()) do
+      end end)()) do
   console.log(String(3));
 end;
 

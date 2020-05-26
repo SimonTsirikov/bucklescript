@@ -22,12 +22,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f(param) do
   x = new Date();
@@ -37,7 +37,7 @@ function f(param) do
           Caml_obj.caml_lessthan(y, x),
           true
         ];
-end
+end end
 
 match = f(--[ () ]--0);
 

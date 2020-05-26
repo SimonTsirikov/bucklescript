@@ -28,23 +28,23 @@ function assoc3(x, _l) do
       throw Caml_builtin_exceptions.not_found;
     end end 
   end;
-end
+end end
 
 function help_action(param) do
   throw [
         Stop,
         --[ Unknown ]--Block.__(0, ["-help"])
       ];
-end
+end end
 
 function v(speclist) do
   assoc3("-help", speclist);
   return --[ [] ]--0;
-end
+end end
 
 function f(g, speclist) do
   return Curry._1(g, assoc3("-help", speclist));
-end
+end end
 
 function add_help(speclist) do
   add1;
@@ -86,7 +86,7 @@ function add_help(speclist) do
     end end 
   end
   return Pervasives.$at(speclist, Pervasives.$at(add1, add2));
-end
+end end
 
 exports.Bad = Bad;
 exports.Help = Help;

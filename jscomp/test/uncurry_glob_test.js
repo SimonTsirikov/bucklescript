@@ -9,21 +9,21 @@ function M(U) do
   return do
           v: v
         end;
-end
+end end
 
 function f() do
   return 3;
-end
+end end
 
 f();
 
 function $plus$great(a, h) do
   return h(a);
-end
+end end
 
 function u(h) do
   return $plus$great(3, h);
-end
+end end
 
 exports.v = v;
 exports.M = M;

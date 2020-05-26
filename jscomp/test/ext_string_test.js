@@ -51,7 +51,7 @@ function split_by(keep_emptyOpt, is_delim, str) do
       continue ;
     end end  end 
   end;
-end
+end end
 
 function trim(s) do
   i = 0;
@@ -64,7 +64,7 @@ function trim(s) do
           end
            end 
           return tmp;
-        end)()) do
+        end end)()) do
     i = i + 1 | 0;
   end;
   k = j - 1 | 0;
@@ -76,11 +76,11 @@ function trim(s) do
           end
            end 
           return tmp;
-        end)()) do
+        end end)()) do
     k = k - 1 | 0;
   end;
   return $$String.sub(s, i, (k - i | 0) + 1 | 0);
-end
+end end
 
 function split(keep_empty, str, on) do
   if (str == "") then do
@@ -88,9 +88,9 @@ function split(keep_empty, str, on) do
   end else do
     return split_by(keep_empty, (function (x) do
                   return x == on;
-                end), str);
+                end end), str);
   end end 
-end
+end end
 
 function quick_split_by_ws(str) do
   return split_by(false, (function (x) do
@@ -99,8 +99,8 @@ function quick_split_by_ws(str) do
                 end else do
                   return x == --[ " " ]--32;
                 end end 
-              end), str);
-end
+              end end), str);
+end end
 
 function starts_with(s, beg) do
   beg_len = #beg;
@@ -114,7 +114,7 @@ function starts_with(s, beg) do
   end else do
     return false;
   end end 
-end
+end end
 
 function ends_with_index(s, end_) do
   s_finish = #s - 1 | 0;
@@ -138,11 +138,11 @@ function ends_with_index(s, end_) do
       end end  end 
     end;
   end end 
-end
+end end
 
 function ends_with(s, end_) do
   return ends_with_index(s, end_) >= 0;
-end
+end end
 
 function ends_with_then_chop(s, beg) do
   i = ends_with_index(s, beg);
@@ -150,13 +150,13 @@ function ends_with_then_chop(s, beg) do
     return $$String.sub(s, 0, i);
   end
    end 
-end
+end end
 
 function check_any_suffix_case(s, suffixes) do
   return List.exists((function (x) do
                 return ends_with(s, x);
-              end), suffixes);
-end
+              end end), suffixes);
+end end
 
 function check_any_suffix_case_then_chop(s, suffixes) do
   _suffixes = suffixes;
@@ -174,7 +174,7 @@ function check_any_suffix_case_then_chop(s, suffixes) do
       return ;
     end end 
   end;
-end
+end end
 
 function escaped(s) do
   needs_escape = function (_i) do
@@ -204,13 +204,13 @@ function escaped(s) do
         end end 
       end end 
     end;
-  end;
+  end end;
   if (needs_escape(0)) then do
     return Caml_bytes.bytes_to_string(Ext_bytes_test.escaped(Caml_bytes.bytes_of_string(s)));
   end else do
     return s;
   end end 
-end
+end end
 
 function unsafe_for_all_range(s, _start, finish, p) do
   while(true) do
@@ -224,7 +224,7 @@ function unsafe_for_all_range(s, _start, finish, p) do
       return false;
     end end  end 
   end;
-end
+end end
 
 function for_all_range(s, start, finish, p) do
   len = #s;
@@ -236,15 +236,15 @@ function for_all_range(s, start, finish, p) do
   end
    end 
   return unsafe_for_all_range(s, start, finish, p);
-end
+end end
 
 function for_all(p, s) do
   return unsafe_for_all_range(s, 0, #s - 1 | 0, p);
-end
+end end
 
 function is_empty(s) do
   return #s == 0;
-end
+end end
 
 function repeat(n, s) do
   len = #s;
@@ -253,7 +253,7 @@ function repeat(n, s) do
     $$String.blit(s, 0, res, Caml_int32.imul(i, len), len);
   end
   return Bytes.to_string(res);
-end
+end end
 
 function unsafe_is_sub(sub, i, s, j, len) do
   if ((j + len | 0) <= #s) then do
@@ -272,7 +272,7 @@ function unsafe_is_sub(sub, i, s, j, len) do
   end else do
     return false;
   end end 
-end
+end end
 
 Local_exit = Caml_exceptions.create("Ext_string_test.Local_exit");
 
@@ -298,11 +298,11 @@ function find(startOpt, sub, s) do
       throw exn;
     end end 
   end
-end
+end end
 
 function contain_substring(s, sub) do
   return find(undefined, sub, s) >= 0;
-end
+end end
 
 function non_overlap_count(sub, s) do
   sub_len = #sub;
@@ -327,7 +327,7 @@ function non_overlap_count(sub, s) do
       continue ;
     end end 
   end;
-end
+end end
 
 function rfind(sub, s) do
   n = #sub;
@@ -349,7 +349,7 @@ function rfind(sub, s) do
       throw exn;
     end end 
   end
-end
+end end
 
 function tail_from(s, x) do
   len = #s;
@@ -362,7 +362,7 @@ function tail_from(s, x) do
   end else do
     return $$String.sub(s, x, len - x | 0);
   end end 
-end
+end end
 
 function digits_of_str(s, offset, x) do
   _i = 0;
@@ -380,7 +380,7 @@ function digits_of_str(s, offset, x) do
       continue ;
     end end 
   end;
-end
+end end
 
 function starts_with_and_number(s, offset, beg) do
   beg_len = #beg;
@@ -399,11 +399,11 @@ function starts_with_and_number(s, offset, beg) do
       return -1;
     end end 
   end end 
-end
+end end
 
 function equal(x, y) do
   return x == y;
-end
+end end
 
 function unsafe_concat_with_length(len, sep, l) do
   if (l) then do
@@ -422,12 +422,12 @@ function unsafe_concat_with_length(len, sep, l) do
             Caml_bytes.caml_blit_string(s, 0, r, pos.contents, s_len);
             pos.contents = pos.contents + s_len | 0;
             return --[ () ]--0;
-          end), l[1]);
+          end end), l[1]);
     return Caml_bytes.bytes_to_string(r);
   end else do
     return "";
   end end 
-end
+end end
 
 function rindex_rec(s, _i, c) do
   while(true) do
@@ -439,7 +439,7 @@ function rindex_rec(s, _i, c) do
       continue ;
     end end 
   end;
-end
+end end
 
 function rindex_rec_opt(s, _i, c) do
   while(true) do
@@ -453,15 +453,15 @@ function rindex_rec_opt(s, _i, c) do
       continue ;
     end end  end 
   end;
-end
+end end
 
 function rindex_neg(s, c) do
   return rindex_rec(s, #s - 1 | 0, c);
-end
+end end
 
 function rindex_opt(s, c) do
   return rindex_rec_opt(s, #s - 1 | 0, c);
-end
+end end
 
 function is_valid_module_file(s) do
   len = #s;
@@ -489,11 +489,11 @@ function is_valid_module_file(s) do
                   end else do
                     return x == 39;
                   end end  end 
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 function is_valid_npm_package_name(s) do
   len = #s;
@@ -520,11 +520,11 @@ function is_valid_npm_package_name(s) do
                   end else do
                     return true;
                   end end  end 
-                end));
+                end end));
   end else do
     return false;
   end end 
-end
+end end
 
 function is_valid_source_name(name) do
   match = check_any_suffix_case_then_chop(name, --[ :: ]--[
@@ -549,7 +549,7 @@ function is_valid_source_name(name) do
   end else do
     return --[ Suffix_mismatch ]--2;
   end end 
-end
+end end
 
 function unsafe_no_char(x, ch, _i, last_idx) do
   while(true) do
@@ -563,7 +563,7 @@ function unsafe_no_char(x, ch, _i, last_idx) do
       return false;
     end end  end 
   end;
-end
+end end
 
 function unsafe_no_char_idx(x, ch, _i, last_idx) do
   while(true) do
@@ -577,7 +577,7 @@ function unsafe_no_char_idx(x, ch, _i, last_idx) do
       return i;
     end end  end 
   end;
-end
+end end
 
 function no_char(x, ch, i, len) do
   str_len = #x;
@@ -589,15 +589,15 @@ function no_char(x, ch, i, len) do
   end
    end 
   return unsafe_no_char(x, ch, i, len);
-end
+end end
 
 function no_slash(x) do
   return unsafe_no_char(x, --[ "/" ]--47, 0, #x - 1 | 0);
-end
+end end
 
 function no_slash_idx(x) do
   return unsafe_no_char_idx(x, --[ "/" ]--47, 0, #x - 1 | 0);
-end
+end end
 
 function replace_slash_backward(x) do
   len = #x;
@@ -610,9 +610,9 @@ function replace_slash_backward(x) do
                   end else do
                     return --[ "\\" ]--92;
                   end end 
-                end), x);
+                end end), x);
   end end 
-end
+end end
 
 function replace_backward_slash(x) do
   len = #x;
@@ -625,9 +625,9 @@ function replace_backward_slash(x) do
                   end else do
                     return --[ "/" ]--47;
                   end end 
-                end), x);
+                end end), x);
   end end 
-end
+end end
 
 empty = "";
 
@@ -662,7 +662,7 @@ function concat_array(sep, s) do
   end else do
     return empty;
   end end 
-end
+end end
 
 function concat3(a, b, c) do
   a_len = #a;
@@ -674,7 +674,7 @@ function concat3(a, b, c) do
   Caml_bytes.caml_blit_string(b, 0, target, a_len, b_len);
   Caml_bytes.caml_blit_string(c, 0, target, a_len + b_len | 0, c_len);
   return Caml_bytes.bytes_to_string(target);
-end
+end end
 
 function concat4(a, b, c, d) do
   a_len = #a;
@@ -688,7 +688,7 @@ function concat4(a, b, c, d) do
   Caml_bytes.caml_blit_string(c, 0, target, a_len + b_len | 0, c_len);
   Caml_bytes.caml_blit_string(d, 0, target, (a_len + b_len | 0) + c_len | 0, d_len);
   return Caml_bytes.bytes_to_string(target);
-end
+end end
 
 function concat5(a, b, c, d, e) do
   a_len = #a;
@@ -704,15 +704,15 @@ function concat5(a, b, c, d, e) do
   Caml_bytes.caml_blit_string(d, 0, target, (a_len + b_len | 0) + c_len | 0, d_len);
   Caml_bytes.caml_blit_string(e, 0, target, ((a_len + b_len | 0) + c_len | 0) + d_len | 0, e_len);
   return Caml_bytes.bytes_to_string(target);
-end
+end end
 
 function inter2(a, b) do
   return concat3(a, single_space, b);
-end
+end end
 
 function inter3(a, b, c) do
   return concat5(a, single_space, b, single_space, c);
-end
+end end
 
 function inter4(a, b, c, d) do
   return concat_array(single_space, [
@@ -721,7 +721,7 @@ function inter4(a, b, c, d) do
               c,
               d
             ]);
-end
+end end
 
 check_suffix_case = ends_with;
 

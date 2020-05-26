@@ -7,44 +7,44 @@ function g(x) do
           3,
           x
         ];
-end
+end end
 
 function ff(v, u) do
   return do
           v: v,
           u: u
         end;
-end
+end end
 
 function fff(vv, uu) do
   return do
           vv: vv,
           uu: uu
         end;
-end
+end end
 
 function a(x) do
   return Caml_array.caml_array_get(x, 0);
-end
+end end
 
 function aa(x) do
   return Caml_array.caml_array_get(x, 0);
-end
+end end
 
 function aaa(x) do
   return x.v;
-end
+end end
 
 function aaaa(x) do
   return x.vv;
-end
+end end
 
 function f(x) do
   for i = 0 , 10 , 1 do
     Caml_array.caml_array_set(x, i, i);
   end
   return --[ () ]--0;
-end
+end end
 
 exports.g = g;
 exports.ff = ff;

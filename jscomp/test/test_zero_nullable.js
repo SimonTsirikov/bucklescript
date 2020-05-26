@@ -23,12 +23,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function f1(x) do
   if (x ~= null) then do
@@ -36,7 +36,7 @@ function f1(x) do
   end else do
     return 3;
   end end 
-end
+end end
 
 function f2(x) do
   if (x ~= null) then do
@@ -44,7 +44,7 @@ function f2(x) do
   end else do
     return 3;
   end end 
-end
+end end
 
 function f5(h, x) do
   u = Curry._1(h, 32);
@@ -53,7 +53,7 @@ function f5(h, x) do
   end else do
     return 3;
   end end 
-end
+end end
 
 function f4(h, x) do
   u = Curry._1(h, 32);
@@ -63,15 +63,15 @@ function f4(h, x) do
   end else do
     return 1 + v | 0;
   end end 
-end
+end end
 
 function f6(x, y) do
   return x == y;
-end
+end end
 
 function f7(x) do
   return x;
-end
+end end
 
 function f8(x) do
   if (x ~= null) then do
@@ -83,7 +83,7 @@ function f8(x) do
   end else do
     return 2;
   end end 
-end
+end end
 
 u = f8(undefined);
 
@@ -93,11 +93,11 @@ function f9(x) do
   end else do
     return Caml_option.some(x);
   end end 
-end
+end end
 
 function f10(x) do
   return x == null;
-end
+end end
 
 f11 = false;
 
@@ -121,7 +121,7 @@ function f1$1(x) do
   end else do
     return 3;
   end end 
-end
+end end
 
 function f2$1(x) do
   if (x ~= undefined) then do
@@ -129,7 +129,7 @@ function f2$1(x) do
   end else do
     return 3;
   end end 
-end
+end end
 
 function f5$1(h, x) do
   u = Curry._1(h, 32);
@@ -138,7 +138,7 @@ function f5$1(h, x) do
   end else do
     return 3;
   end end 
-end
+end end
 
 function f4$1(h, x) do
   u = Curry._1(h, 32);
@@ -148,15 +148,15 @@ function f4$1(h, x) do
   end else do
     return 1 + v | 0;
   end end 
-end
+end end
 
 function f6$1(x, y) do
   return x == y;
-end
+end end
 
 function f7$1(x) do
   return x;
-end
+end end
 
 function f8$1(x) do
   if (x ~= undefined) then do
@@ -168,7 +168,7 @@ function f8$1(x) do
   end else do
     return 2;
   end end 
-end
+end end
 
 u$1 = f8$1(undefined);
 
@@ -178,11 +178,11 @@ function f9$1(x) do
   end else do
     return Caml_option.some(x);
   end end 
-end
+end end
 
 function f10$1(x) do
   return x == undefined;
-end
+end end
 
 f11$1 = false;
 
@@ -206,7 +206,7 @@ function f1$2(x) do
   end else do
     return x + 1 | 0;
   end end 
-end
+end end
 
 function f2$2(x) do
   if (x == null) then do
@@ -214,7 +214,7 @@ function f2$2(x) do
   end else do
     return x + 1 | 0;
   end end 
-end
+end end
 
 function f5$2(h, x) do
   u = Curry._1(h, 32);
@@ -223,7 +223,7 @@ function f5$2(h, x) do
   end else do
     return u + 1 | 0;
   end end 
-end
+end end
 
 function f4$2(h, x) do
   u = Curry._1(h, 32);
@@ -233,15 +233,15 @@ function f4$2(h, x) do
   end else do
     return u + 1 | 0;
   end end 
-end
+end end
 
 function f6$2(x, y) do
   return x == y;
-end
+end end
 
 function f7$2(x) do
   return x;
-end
+end end
 
 function f8$2(x) do
   if (x == null) then do
@@ -251,7 +251,7 @@ function f8$2(x) do
   end else do
     return 0;
   end end  end 
-end
+end end
 
 u$2 = f8$2(undefined);
 
@@ -261,11 +261,11 @@ function f9$2(x) do
   end else do
     return Caml_option.some(x);
   end end 
-end
+end end
 
 function f10$2(x) do
   return x == null;
-end
+end end
 
 f11$2 = false;
 

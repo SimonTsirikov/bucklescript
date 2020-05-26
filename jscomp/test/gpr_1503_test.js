@@ -23,16 +23,16 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function id(x) do
   return Caml_format.caml_int64_of_string(Caml_format.caml_int64_format("%d", x));
-end
+end end
 
 i = --[ int64 ]--[
   --[ hi ]--2074848171,

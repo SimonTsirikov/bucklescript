@@ -8,7 +8,7 @@ function tToJs(param) do
           yy: param.yy,
           zz: param.zz
         end;
-end
+end end
 
 function tFromJs(param) do
   return do
@@ -16,7 +16,7 @@ function tFromJs(param) do
           yy: param.yy,
           zz: param.zz
         end;
-end
+end end
 
 u = tToJs(do
       xx: 3,
@@ -53,7 +53,7 @@ function searchForSureExists(xs, k) do
       continue ;
     end end 
   end;
-end
+end end
 
 jsMapperConstantArray = [
   0,
@@ -64,11 +64,11 @@ jsMapperConstantArray = [
 
 function aToJs(param) do
   return jsMapperConstantArray[param];
-end
+end end
 
 function aFromJs(param) do
   return Js_mapperRt.fromIntAssert(4, jsMapperConstantArray, param);
-end
+end end
 
 jsMapperConstantArray$1 = [
   --[ tuple ]--[
@@ -91,11 +91,11 @@ jsMapperConstantArray$1 = [
 
 function bToJs(param) do
   return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$1);
-end
+end end
 
 function bFromJs(param) do
   return Js_mapperRt.revSearchAssert(4, jsMapperConstantArray$1, param);
-end
+end end
 
 bToJs(--[ b0 ]--21902);
 

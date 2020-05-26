@@ -24,12 +24,12 @@ function eq(loc, param) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 v = [
   1,
@@ -88,11 +88,11 @@ function f(v) do
   end end 
   console.log((v.pop(), --[ () ]--0));
   return --[ () ]--0;
-end
+end end
 
 function fff(x) do
   return true;
-end
+end end
 
 function fff2(x) do
   if (#x >= 10) then do
@@ -101,11 +101,11 @@ function fff2(x) do
   end else do
     return 0;
   end end 
-end
+end end
 
 function fff3(x) do
   return 1;
-end
+end end
 
 function fff4(x) do
   if (#x ~= 0) then do
@@ -113,7 +113,7 @@ function fff4(x) do
   end else do
     return 2;
   end end 
-end
+end end
 
 eq("File \"array_subtle_test.ml\", line 51, characters 6-13", --[ tuple ]--[
       fff3([]),

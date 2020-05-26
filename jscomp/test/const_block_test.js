@@ -28,11 +28,11 @@ c = [
 function f(param) do
   Caml_array.caml_array_set(a, 0, 3.0);
   return Caml_array.caml_array_set(b, 0, 3);
-end
+end end
 
 function h(param) do
   return c;
-end
+end end
 
 function g(param) do
   f(--[ () ]--0);
@@ -46,7 +46,7 @@ function g(param) do
               3
             ]
           ]);
-end
+end end
 
 suites_000 = --[ tuple ]--[
   "const_block_test",
@@ -70,7 +70,7 @@ suites_001 = --[ :: ]--[
                   ],
                   c
                 ]);
-      end)
+      end end)
   ],
   --[ [] ]--0
 ];

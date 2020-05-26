@@ -26,12 +26,12 @@ function eq(loc, param) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function print_or_error(fmt, x) do
   if (x[0] >= 106380200) then do
@@ -78,7 +78,7 @@ function print_or_error(fmt, x) do
                     "@[Ok:%a@]@."
                   ]), Sexpm.print, x[1]);
   end end 
-end
+end end
 
 a = Sexpm.parse_string("(x x gh 3 3)");
 

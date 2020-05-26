@@ -18,7 +18,7 @@ ReactDom.render(React.createClass(do
               return React.DOM.div(do
                           alt: "pic"
                         end, React.DOM.h1(undefined, "hello react"), React.DOM.h2(undefined, "type safe!"), React.DOM.h3(undefined, "type safe!"));
-            end)
+            end end)
         end), document.getElementById("hi"));
 
 function f(param) do
@@ -32,7 +32,7 @@ function f(param) do
   C.x();
   C.y();
   return --[ () ]--0;
-end
+end end
 
 v = --[ () ]--0;
 

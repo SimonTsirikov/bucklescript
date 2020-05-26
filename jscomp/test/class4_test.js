@@ -36,12 +36,12 @@ function eq(loc, x, y) do
                     x,
                     y
                   ]);
-        end)
+        end end)
     ],
     suites.contents
   ];
   return --[ () ]--0;
-end
+end end
 
 function restricted_point_init($$class) do
   x_init = CamlinternalOO.new_variable($$class, "");
@@ -58,24 +58,24 @@ function restricted_point_init($$class) do
         get_x,
         (function (self$1) do
             return self$1[x];
-          end),
+          end end),
         move,
         (function (self$1, d) do
             self$1[x] = self$1[x] + d | 0;
             return --[ () ]--0;
-          end),
+          end end),
         bump,
         (function (self$1) do
             return Curry._2(self$1[0][move], self$1, 1);
-          end)
+          end end)
       ]);
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x_init] = x_init$1;
       self$1[x] = x_init$1;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 restricted_point = CamlinternalOO.make_class(shared$2, restricted_point_init);
 
@@ -84,8 +84,8 @@ function restricted_point$prime_init($$class) do
   obj_init = inh[0];
   return (function (env, self, x) do
       return Curry._2(obj_init, self, x);
-    end);
-end
+    end end);
+end end
 
 restricted_point$prime = CamlinternalOO.make_class(shared$2, restricted_point$prime_init);
 
@@ -94,8 +94,8 @@ function restricted_point2$prime_init($$class) do
   obj_init = inh[0];
   return (function (env, self, x) do
       return Curry._2(obj_init, self, x);
-    end);
-end
+    end end);
+end end
 
 restricted_point2$prime = CamlinternalOO.make_class(shared$2, restricted_point2$prime_init);
 
@@ -114,13 +114,13 @@ function abstract_point_001($$class) do
   get_offset = ids[2];
   CamlinternalOO.set_method($$class, get_offset, (function (self$5) do
           return Curry._1(self$5[0][get_x], self$5) - self$5[x_init] | 0;
-        end));
+        end end));
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[x_init] = x_init$1;
       return self$1;
-    end);
-end
+    end end);
+end end
 
 abstract_point = --[ class ]--[
   0,
@@ -141,12 +141,12 @@ function point_init($$class) do
         get_x,
         (function (self$6) do
             return self$6[x];
-          end),
+          end end),
         move,
         (function (self$6, d) do
             self$6[x] = self$6[x] + d | 0;
             return --[ () ]--0;
-          end)
+          end end)
       ]);
   return (function (env, self, x_init$1) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
@@ -154,8 +154,8 @@ function point_init($$class) do
       Curry._2(obj_init, self$1, x_init$1);
       self$1[x] = x_init$1;
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 point = CamlinternalOO.make_class([
       "move",
@@ -177,7 +177,7 @@ function colored_point_init($$class) do
   obj_init = inh[0];
   CamlinternalOO.set_method($$class, color, (function (self$7) do
           return self$7[c$1];
-        end));
+        end end));
   return (function (env, self, x$1, c$2) do
       self$1 = CamlinternalOO.create_object_opt(self, $$class);
       self$1[c] = c$2;
@@ -185,8 +185,8 @@ function colored_point_init($$class) do
       Curry._2(obj_init, self$1, x$1);
       self$1[c$1] = c$2;
       return CamlinternalOO.run_initializers_opt(self, self$1, $$class);
-    end);
-end
+    end end);
+end end
 
 colored_point = CamlinternalOO.make_class([
       "move",
@@ -207,17 +207,17 @@ eq("File \"class4_test.ml\", line 67, characters 5-12", --[ tuple ]--[
 
 function get_succ_x(p) do
   return Caml_oo_curry.js1(291546447, 3, p) + 1 | 0;
-end
+end end
 
 eq("File \"class4_test.ml\", line 71, characters 12-19", 6, get_succ_x(p$prime));
 
 function set_x(p) do
   return Caml_oo_curry.js1(-97543333, 4, p);
-end
+end end
 
 function incr(p) do
   return Curry._1(set_x(p), get_succ_x(p));
-end
+end end
 
 Mt.from_pair_suites("Class4_test", suites.contents);
 

@@ -7,7 +7,7 @@ MoreLabels = require("../../lib/js/moreLabels.js");
 
 function f(x) do
   return x;
-end
+end end
 
 XX = do
   make_float: $$Array.make_float,

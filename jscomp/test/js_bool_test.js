@@ -9,7 +9,7 @@ function f(x) do
   end else do
     return false;
   end end 
-end
+end end
 
 function f2(x) do
   if (x) then do
@@ -17,7 +17,7 @@ function f2(x) do
   end else do
     return false;
   end end 
-end
+end end
 
 function f4(x) do
   if (x) then do
@@ -25,7 +25,7 @@ function f4(x) do
   end else do
     return false;
   end end 
-end
+end end
 
 u = 1;
 
@@ -38,7 +38,7 @@ suites_000 = --[ tuple ]--[
                 u,
                 true
               ]);
-    end)
+    end end)
 ];
 
 suites_001 = --[ :: ]--[
@@ -49,7 +49,7 @@ suites_001 = --[ :: ]--[
                   v,
                   true
                 ]);
-      end)
+      end end)
   ],
   --[ :: ]--[
     --[ tuple ]--[
@@ -59,7 +59,7 @@ suites_001 = --[ :: ]--[
                     true,
                     true == true
                   ]);
-        end)
+        end end)
     ],
     --[ [] ]--0
   ]
@@ -76,27 +76,27 @@ function ff(u) do
   end else do
     return 2;
   end end 
-end
+end end
 
 function fi(x, y) do
   return x == y;
-end
+end end
 
 function fb(x, y) do
   return x == y;
-end
+end end
 
 function fadd(x, y) do
   return x + y | 0;
-end
+end end
 
 function ffadd(x, y) do
   return x + y;
-end
+end end
 
 function ss(x) do
   return "xx" > x;
-end
+end end
 
 function bb(x) do
   return --[ tuple ]--[
@@ -109,7 +109,7 @@ function bb(x) do
           false >= x,
           true
         ];
-end
+end end
 
 consts = --[ tuple ]--[
   false,

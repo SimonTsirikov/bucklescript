@@ -5,7 +5,7 @@ N = { };
 
 function N1($star) do
   return { };
-end
+end end
 
 x = true;
 

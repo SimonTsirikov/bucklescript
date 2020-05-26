@@ -22,7 +22,7 @@ function err(str, f) do
                             ]),
                           "@."
                         ]))), str);
-end
+end end
 
 function ierr(b, str, f) do
   if (b) then do
@@ -48,7 +48,7 @@ function ierr(b, str, f) do
                       "%s "
                     ], f))(str);
   end end 
-end
+end end
 
 function warn(str, f) do
   return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
@@ -70,7 +70,7 @@ function warn(str, f) do
                             ]),
                           "@."
                         ]))), str);
-end
+end end
 
 function iwarn(b, str, f) do
   if (b) then do
@@ -102,7 +102,7 @@ function iwarn(b, str, f) do
                       "WARN: %s "
                     ], f))(str);
   end end 
-end
+end end
 
 function info(str, f) do
   return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
@@ -118,7 +118,7 @@ function info(str, f) do
                         ]),
                       "INFO: %s "
                     ], f)), str);
-end
+end end
 
 function iinfo(b, str, f) do
   return Curry._1(Format.fprintf(Format.err_formatter, Pervasives.$caret$caret(--[ Format ]--[
@@ -134,7 +134,7 @@ function iinfo(b, str, f) do
                         ]),
                       "INFO: %s "
                     ], f)), str);
-end
+end end
 
 exports.err = err;
 exports.ierr = ierr;
