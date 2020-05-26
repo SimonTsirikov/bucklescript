@@ -1156,19 +1156,10 @@ and statement_desc top cxt f (s : J.statement_desc) : cxt =
          P.newline f ;
        | None -> ());
       let cxt =
-        match e.expression_desc with
-        | Number (Int {i = 1l}) ->
-          P.string f L.while_;
-          P.string f L.lparen;
-          P.string f L.true_;
-          P.string f L.rparen;
-          P.space f ;
-          cxt
-        | _ ->
-          P.string f L.while_;
-          let cxt = P.paren_group f 1 (fun _ ->  expression ~level:0 cxt f e) in
-          P.space f ;
-          cxt
+        P.string f L.while_;
+        let cxt = P.paren_group f 1 (fun _ ->  expression ~level:0 cxt f e) in
+        P.space f ;
+        cxt
       in
       let cxt = block cxt f s in
       semi f;
