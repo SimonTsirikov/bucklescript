@@ -249,7 +249,7 @@ end
 function repeat(n, s) do
   var len = #s;
   var res = Caml_bytes.caml_create_bytes(Caml_int32.imul(n, len));
-  for(var i = 0 ,i_finish = n - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , n - 1 | 0 , 1 do
     $$String.blit(s, 0, res, Caml_int32.imul(i, len), len);
   end
   return Bytes.to_string(res);
@@ -639,7 +639,7 @@ function concat_array(sep, s) do
     if (s_len ~= 1) then do
       var sep_len = #sep;
       var len = 0;
-      for(var i = 0 ,i_finish = s_len - 1 | 0; i <= i_finish; ++i)do
+      for var i = 0 , s_len - 1 | 0 , 1 do
         len = len + #s[i] | 0;
       end
       var target = Caml_bytes.caml_create_bytes(len + Caml_int32.imul(s_len - 1 | 0, sep_len) | 0);
@@ -647,7 +647,7 @@ function concat_array(sep, s) do
       var hd_len = #hd;
       Caml_bytes.caml_blit_string(hd, 0, target, 0, hd_len);
       var current_offset = hd_len;
-      for(var i$1 = 1 ,i_finish$1 = s_len - 1 | 0; i$1 <= i_finish$1; ++i$1)do
+      for var i$1 = 1 , s_len - 1 | 0 , 1 do
         Caml_bytes.caml_blit_string(sep, 0, target, current_offset, sep_len);
         var cur = s[i$1];
         var cur_len = #cur;

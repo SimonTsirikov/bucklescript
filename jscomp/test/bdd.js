@@ -83,7 +83,7 @@ function resize(newSize) do
       end end 
     end;
   end;
-  for(var n = 0 ,n_finish = sz_1.contents; n <= n_finish; ++n)do
+  for var n = 0 , sz_1.contents , 1 do
     copyBucket(Caml_array.caml_array_get(arr, n));
   end
   htab.contents = newArr;
@@ -344,7 +344,7 @@ end
 
 function random_vars(n) do
   var vars = Caml_array.caml_make_vect(n, false);
-  for(var i = 0 ,i_finish = n - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , n - 1 | 0 , 1 do
     Caml_array.caml_array_set(vars, i, random(--[ () ]--0));
   end
   return vars;
@@ -366,7 +366,7 @@ end
 
 function test_hwb(bdd, vars) do
   var ntrue = 0;
-  for(var i = 0 ,i_finish = #vars - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #vars - 1 | 0 , 1 do
     if (Caml_array.caml_array_get(vars, i)) then do
       ntrue = ntrue + 1 | 0;
     end
@@ -378,7 +378,7 @@ end
 function main(param) do
   var bdd = hwb(22);
   var succeeded = true;
-  for(var i = 1; i <= 100; ++i)do
+  for var i = 1 , 100 , 1 do
     succeeded = succeeded and test_hwb(bdd, random_vars(22));
   end
   if (succeeded) then do

@@ -9,7 +9,7 @@ var delayed = do
     end)
 end;
 
-for(var i = 1; i <= 2; ++i)do
+for var i = 1 , 2 , 1 do
   var f = (function(i)do
   return function f(n, j) do
     if (j ~= 0) then do

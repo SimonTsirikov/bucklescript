@@ -156,13 +156,13 @@ function assertion_test(param) do
     contents: --[ Empty ]--0
   end;
   timing("building", (function (param) do
-          for(var i = 0; i <= 1000000; ++i)do
+          for var i = 0 , 1000000 , 1 do
             m.contents = add(String(i), String(i), m.contents);
           end
           return --[ () ]--0;
         end));
   return timing("querying", (function (param) do
-                for(var i = 0; i <= 1000000; ++i)do
+                for var i = 0 , 1000000 , 1 do
                   find(String(i), m.contents);
                 end
                 return --[ () ]--0;

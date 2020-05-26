@@ -57,7 +57,7 @@ function f(i) do
   return eq("File \"bs_list_test.ml\", line 26, characters 7-14", Belt_List.getExn(u, i), Caml_int32.imul(i, i));
 end
 
-for(var i = 0; i <= 4; ++i)do
+for var i = 0 , 4 , 1 do
   f(i);
 end
 

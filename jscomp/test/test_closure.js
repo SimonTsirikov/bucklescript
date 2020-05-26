@@ -13,7 +13,7 @@ function f(param) do
   var arr = Caml_array.caml_make_vect(10, (function (param) do
           return --[ () ]--0;
         end));
-  for(var i = 0; i <= 9; ++i)do
+  for var i = 0 , 9 , 1 do
     Caml_array.caml_array_set(arr, i, (function(i)do
         return function (param) do
           v.contents = v.contents + i | 0;

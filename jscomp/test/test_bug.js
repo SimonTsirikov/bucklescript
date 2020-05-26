@@ -6,7 +6,7 @@ var Caml_bytes = require("../../lib/js/caml_bytes.js");
 
 function escaped(s) do
   var n = 0;
-  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #s - 1 | 0 , 1 do
     var c = s[i];
     var tmp;
     var exit = 0;
@@ -38,7 +38,7 @@ function escaped(s) do
   end else do
     var s$prime = Caml_bytes.caml_create_bytes(n);
     n = 0;
-    for(var i$1 = 0 ,i_finish$1 = #s - 1 | 0; i$1 <= i_finish$1; ++i$1)do
+    for var i$1 = 0 , #s - 1 | 0 , 1 do
       var c$1 = s[i$1];
       var exit$1 = 0;
       var switcher = c$1 - 34 | 0;

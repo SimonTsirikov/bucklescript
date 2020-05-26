@@ -79,7 +79,7 @@ var l = Belt_SetInt.empty;
 
 var r = Belt_SetInt.empty;
 
-for(var i$1 = 100; i$1 <= 1500; ++i$1)do
+for var i$1 = 100 , 1500 , 1 do
   if (i$1 % 3 == 0) then do
     l = Belt_SetInt.add(l, i$1);
   end else do

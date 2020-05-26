@@ -718,7 +718,7 @@ function verify_read(c) do
 end
 
 function verify_scan_Chars(param) do
-  for(var i = 0; i <= 255; ++i)do
+  for var i = 0 , 255 , 1 do
     verify_read(Pervasives.char_of_int(i));
   end
   return --[ () ]--0;

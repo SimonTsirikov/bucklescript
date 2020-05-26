@@ -489,11 +489,11 @@ var int_map_suites_001 = --[ :: ]--[
         "iteration",
         (function (param) do
             var m = --[ Empty ]--0;
-            for(var i = 0; i <= 10000; ++i)do
+            for var i = 0 , 10000 , 1 do
               m = add$1(String(i), String(i), m);
             end
             var v = -1;
-            for(var i$1 = 0; i$1 <= 10000; ++i$1)do
+            for var i$1 = 0 , 10000 , 1 do
               if (find(String(i$1), m) ~= String(i$1)) then do
                 v = i$1;
               end

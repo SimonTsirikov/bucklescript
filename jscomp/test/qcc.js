@@ -116,7 +116,7 @@ function symstr(n) do
 end
 
 function symitr(f) do
-  for(var i = 0 ,i_finish = syms.contents - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , syms.contents - 1 | 0 , 1 do
     Curry._2(f, i, Caml_array.caml_array_get(symtab, i));
   end
   return --[ () ]--0;
@@ -353,7 +353,7 @@ function out(x) do
 end
 
 function le(n, x) do
-  for(var i = 0 ,i_finish = (n / 8 | 0) - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , (n / 8 | 0) - 1 | 0 , 1 do
     var $$byte = (x >>> (i << 3)) & 255;
     obuf[opos.contents] = Char.chr($$byte);
     opos.contents = opos.contents + 1 | 0;
@@ -884,7 +884,7 @@ function unary(stk) do
                       "[cast] expected"
                     ];
               end end  end 
-              for(var k = 1 ,k_finish = match$1[1]; k <= k_finish; ++k)do
+              for var k = 1 , match$1[1] , 1 do
                 Curry._1(next$1, --[ () ]--0);
               end
               unary(stk);
@@ -1691,7 +1691,7 @@ function elfgen(outf) do
   le(32, 1);
   le(32, n$2 + 1 | 0);
   le(32, n$2 > 0 and 1 or 0);
-  for(var i = 1; i <= n$2; ++i)do
+  for var i = 1 , n$2 , 1 do
     le(32, i);
   end
   le(32, 0);

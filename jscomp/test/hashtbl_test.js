@@ -32,10 +32,10 @@ end
 
 function g(count) do
   var tbl = Hashtbl.create(undefined, 17);
-  for(var i = 0; i <= count; ++i)do
+  for var i = 0 , count , 1 do
     Hashtbl.replace(tbl, (i << 1), String(i));
   end
-  for(var i$1 = 0; i$1 <= count; ++i$1)do
+  for var i$1 = 0 , count , 1 do
     Hashtbl.replace(tbl, (i$1 << 1), String(i$1));
   end
   var v = to_list(tbl);

@@ -173,18 +173,18 @@ end
 
 var v = --[ Empty ]--0;
 
-for(var i = 0; i <= 100000; ++i)do
+for var i = 0 , 100000 , 1 do
   v = add(i, v);
 end
 
-for(var i$1 = 0; i$1 <= 100000; ++i$1)do
+for var i$1 = 0 , 100000 , 1 do
   if (!mem(i$1, v)) then do
     console.log("impossible");
   end
    end 
 end
 
-for(var i$2 = 0; i$2 <= 100000; ++i$2)do
+for var i$2 = 0 , 100000 , 1 do
   v = remove(i$2, v);
 end
 

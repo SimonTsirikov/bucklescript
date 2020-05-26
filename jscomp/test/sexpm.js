@@ -39,7 +39,7 @@ end
 
 function _must_escape(s) do
   try do
-    for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
+    for var i = 0 , #s - 1 | 0 , 1 do
       var c = s.charCodeAt(i);
       var exit = 0;
       if (c >= 42) then do

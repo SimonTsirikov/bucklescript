@@ -50,7 +50,7 @@ b("File \"bs_mutable_set_test.ml\", line 27, characters 4-11", 1 == Belt_interna
 
 Belt_MutableSetInt.add(u, 3);
 
-for(var i = 0 ,i_finish = #r - 1 | 0; i <= i_finish; ++i)do
+for var i = 0 , #r - 1 | 0 , 1 do
   Belt_MutableSetInt.remove(u, r[i]);
 end
 
@@ -68,7 +68,7 @@ eq("File \"bs_mutable_set_test.ml\", line 37, characters 5-12", Belt_internalAVL
 
 b("File \"bs_mutable_set_test.ml\", line 38, characters 4-11", !Belt_MutableSetInt.isEmpty(u));
 
-for(var i$1 = 0; i$1 <= 3; ++i$1)do
+for var i$1 = 0 , 3 , 1 do
   Belt_MutableSetInt.remove(u, i$1);
 end
 
@@ -420,7 +420,7 @@ var v$1 = do
   data: null
 end;
 
-for(var i$2 = 0; i$2 <= 100000; ++i$2)do
+for var i$2 = 0 , 100000 , 1 do
   Belt_MutableSetInt.add(v$1, i$2);
 end
 
@@ -454,7 +454,7 @@ eq("File \"bs_mutable_set_test.ml\", line 193, characters 5-12", Belt_internalAV
 
 var u$3 = Array_data_util.randomRange(50000, 80000);
 
-for(var i$3 = 0 ,i_finish$1 = #u$3 - 1 | 0; i$3 <= i_finish$1; ++i$3)do
+for var i$3 = 0 , #u$3 - 1 | 0 , 1 do
   Belt_MutableSetInt.remove(v$3, i$3);
 end
 
@@ -462,7 +462,7 @@ eq("File \"bs_mutable_set_test.ml\", line 200, characters 5-12", Belt_internalAV
 
 var vv = Array_data_util.randomRange(0, 100000);
 
-for(var i$4 = 0 ,i_finish$2 = #vv - 1 | 0; i$4 <= i_finish$2; ++i$4)do
+for var i$4 = 0 , #vv - 1 | 0 , 1 do
   Belt_MutableSetInt.remove(v$3, Caml_array.caml_array_get(vv, i$4));
 end
 
@@ -492,7 +492,7 @@ eq("File \"bs_mutable_set_test.ml\", line 216, characters 5-12", Belt_internalAV
 
 var vv$1 = Array_data_util.randomRange(1, 28);
 
-for(var i$5 = 0 ,i_finish$3 = #vv$1 - 1 | 0; i$5 <= i_finish$3; ++i$5)do
+for var i$5 = 0 , #vv$1 - 1 | 0 , 1 do
   Belt_MutableSetInt.remove(v$4, Caml_array.caml_array_get(vv$1, i$5));
 end
 
@@ -609,7 +609,7 @@ var cc$1 = Belt_MutableSetInt.keep(v$5, (function (x) do
         return x % 8 ~= 0;
       end));
 
-for(var i$6 = 0; i$6 <= 200; ++i$6)do
+for var i$6 = 0 , 200 , 1 do
   Belt_MutableSetInt.remove(v$5, i$6);
 end
 

@@ -215,7 +215,7 @@ var s$3 = do
   len: 0
 end;
 
-for(var i = 1; i <= 10; ++i)do
+for var i = 1 , 10 , 1 do
   Stack.push(i, s$3);
 end
 
@@ -239,7 +239,7 @@ var s1 = do
   len: 0
 end;
 
-for(var i$1 = 1; i$1 <= 10; ++i$1)do
+for var i$1 = 1 , 10 , 1 do
   Stack.push(i$1, s1);
 end
 
@@ -313,11 +313,11 @@ assert_("File \"stack_comp_test.ml\", line 81, characters 10-17", s1.len == 10);
 
 assert_("File \"stack_comp_test.ml\", line 82, characters 10-17", s2.len == 10);
 
-for(var i$2 = 10; i$2 >= 1; --i$2)do
+for var i$2 = 10 , 1 , -1 do
   assert_("File \"stack_comp_test.ml\", line 84, characters 12-19", Stack.pop(s1) == i$2);
 end
 
-for(var i$3 = 10; i$3 >= 1; --i$3)do
+for var i$3 = 10 , 1 , -1 do
   assert_("File \"stack_comp_test.ml\", line 87, characters 12-19", Stack.pop(s2) == i$3);
 end
 
@@ -328,13 +328,13 @@ end;
 
 assert_("File \"stack_comp_test.ml\", line 93, characters 10-17", s$4.c == --[ [] ]--0);
 
-for(var i$4 = 1; i$4 <= 10; ++i$4)do
+for var i$4 = 1 , 10 , 1 do
   Stack.push(i$4, s$4);
   assert_("File \"stack_comp_test.ml\", line 96, characters 12-19", s$4.len == i$4);
   assert_("File \"stack_comp_test.ml\", line 97, characters 12-19", s$4.c ~= --[ [] ]--0);
 end
 
-for(var i$5 = 10; i$5 >= 1; --i$5)do
+for var i$5 = 10 , 1 , -1 do
   assert_("File \"stack_comp_test.ml\", line 100, characters 12-19", s$4.len == i$5);
   assert_("File \"stack_comp_test.ml\", line 101, characters 12-19", s$4.c ~= --[ [] ]--0);
   Stack.pop(s$4);
@@ -349,7 +349,7 @@ var s$5 = do
   len: 0
 end;
 
-for(var i$6 = 10; i$6 >= 1; --i$6)do
+for var i$6 = 10 , 1 , -1 do
   Stack.push(i$6, s$5);
 end
 
@@ -387,7 +387,7 @@ var s1$2 = do
   len: 0
 end;
 
-for(var i$8 = 1; i$8 <= 4; ++i$8)do
+for var i$8 = 1 , 4 , 1 do
   Stack.push(i$8, s1$2);
 end
 

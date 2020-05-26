@@ -791,7 +791,7 @@ function parse_opt(error, active, flags, s) do
       end
        end 
       var match$1 = get_range(i);
-      for(var n = match$1[1] ,n_finish = Caml_primitive.caml_int_min(match$1[2], 104); n <= n_finish; ++n)do
+      for var n = match$1[1] , Caml_primitive.caml_int_min(match$1[2], 104) , 1 do
         Curry._1(myset, n);
       end
       return loop(match$1[0]);
@@ -1295,7 +1295,7 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
   end
    end 
   var lines = num_loc_lines.contents;
-  for(var i = pos0 ,i_finish = lb.lex_buffer_len - 1 | 0; i <= i_finish; ++i)do
+  for var i = pos0 , lb.lex_buffer_len - 1 | 0 , 1 do
     if (Caml_bytes.get(lb.lex_buffer, i) == --[ "\n" ]--10) then do
       lines = lines + 1 | 0;
     end
@@ -1309,7 +1309,7 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
   Caml_external_polyfill.resolve("caml_terminfo_backup")(lines);
   var bol = false;
   Pervasives.print_string("# ");
-  for(var pos = 0 ,pos_finish = (lb.lex_buffer_len - pos0 | 0) - 1 | 0; pos <= pos_finish; ++pos)do
+  for var pos = 0 , (lb.lex_buffer_len - pos0 | 0) - 1 | 0 , 1 do
     if (bol) then do
       Pervasives.print_string("  ");
       bol = false;
@@ -1349,7 +1349,7 @@ function highlight_dumb(ppf, lb, loc) do
   var end_pos = (lb.lex_buffer_len - pos0 | 0) - 1 | 0;
   var line_start = 0;
   var line_end = 0;
-  for(var pos = 0; pos <= end_pos; ++pos)do
+  for var pos = 0 , end_pos , 1 do
     if (Caml_bytes.get(lb.lex_buffer, pos + pos0 | 0) == --[ "\n" ]--10) then do
       if (loc.loc_start.pos_cnum > pos) then do
         line_start = line_start + 1 | 0;
@@ -1391,7 +1391,7 @@ function highlight_dumb(ppf, lb, loc) do
   Format.pp_print_string(ppf, "  ");
   var line = 0;
   var pos_at_bol = 0;
-  for(var pos$1 = 0; pos$1 <= end_pos; ++pos$1)do
+  for var pos$1 = 0 , end_pos , 1 do
     var c = Caml_bytes.get(lb.lex_buffer, pos$1 + pos0 | 0);
     if (c ~= 10) then do
       if (c ~= 13) then do
@@ -1427,10 +1427,10 @@ function highlight_dumb(ppf, lb, loc) do
                 ]),
               "@.  "
             ]);
-        for(var _i = pos_at_bol ,_i_finish = loc.loc_start.pos_cnum - 1 | 0; _i <= _i_finish; ++_i)do
+        for var _i = pos_at_bol , loc.loc_start.pos_cnum - 1 | 0 , 1 do
           Format.pp_print_char(ppf, --[ " " ]--32);
         end
-        for(var _i$1 = loc.loc_start.pos_cnum ,_i_finish$1 = loc.loc_end.pos_cnum - 1 | 0; _i$1 <= _i_finish$1; ++_i$1)do
+        for var _i$1 = loc.loc_start.pos_cnum , loc.loc_end.pos_cnum - 1 | 0 , 1 do
           Format.pp_print_char(ppf, --[ "^" ]--94);
         end
       end
@@ -10732,7 +10732,7 @@ function store_string_char(c) do
 end
 
 function store_string(s) do
-  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #s - 1 | 0 , 1 do
     store_string_char(Caml_string.get(s, i));
   end
   return --[ () ]--0;

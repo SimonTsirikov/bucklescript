@@ -31,7 +31,7 @@ end
 
 function sum(n) do
   var v = 0;
-  for(var i = 0; i <= n; ++i)do
+  for var i = 0 , n , 1 do
     v = v + i | 0;
   end
   return v;

@@ -30,21 +30,21 @@ function eq(loc, x, y) do
 end
 
 function f(x) do
-  for(var i = 0; i <= 100; ++i)do
+  for var i = 0 , 100 , 1 do
     console.log(".");
   end
   return -x | 0;
 end
 
 function int32_f(x) do
-  for(var i = 0; i <= 100; ++i)do
+  for var i = 0 , 100 , 1 do
     console.log(".");
   end
   return -x | 0;
 end
 
 function nint32_f(x) do
-  for(var i = 0; i <= 100; ++i)do
+  for var i = 0 , 100 , 1 do
     console.log(".");
   end
   return -x;

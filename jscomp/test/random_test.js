@@ -49,7 +49,7 @@ Random.init(0);
 
 var v = Caml_array.caml_make_vect(10, false);
 
-for(var i = 0; i <= 9; ++i)do
+for var i = 0 , 9 , 1 do
   Caml_array.caml_array_set(v, i, Random.bool(--[ () ]--0));
 end
 

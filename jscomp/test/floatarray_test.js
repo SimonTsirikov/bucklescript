@@ -17,7 +17,7 @@ end
 
 var v = Caml_array.caml_make_float_vect(5);
 
-for(var i = 0; i <= 4; ++i)do
+for var i = 0 , 4 , 1 do
   v[i] = 0;
 end
 

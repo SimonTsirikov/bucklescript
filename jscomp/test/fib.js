@@ -31,7 +31,7 @@ end
 function fib3(n) do
   var a = 1;
   var b = 1;
-  for(var i = 1; i <= n; ++i)do
+  for var i = 1 , n , 1 do
     var tmp = a;
     a = b;
     b = b + tmp | 0;

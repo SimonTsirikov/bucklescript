@@ -58,7 +58,7 @@ b("File \"bs_poly_mutable_set_test.ml\", line 25, characters 4-11", 1 == Belt_in
 
 Belt_MutableSet.add(u, 3);
 
-for(var i = 0 ,i_finish = #r - 1 | 0; i <= i_finish; ++i)do
+for var i = 0 , #r - 1 | 0 , 1 do
   Belt_MutableSet.remove(u, r[i]);
 end
 
@@ -76,7 +76,7 @@ eq("File \"bs_poly_mutable_set_test.ml\", line 35, characters 5-12", Belt_intern
 
 b("File \"bs_poly_mutable_set_test.ml\", line 36, characters 4-11", !Belt_MutableSet.isEmpty(u));
 
-for(var i$1 = 0; i$1 <= 3; ++i$1)do
+for var i$1 = 0 , 3 , 1 do
   Belt_MutableSet.remove(u, i$1);
 end
 

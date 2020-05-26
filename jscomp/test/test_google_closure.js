@@ -21,7 +21,7 @@ var arr = $$Array.init(2, (function (param) do
         return 0;
       end));
 
-for(var i = 0; i <= 1; ++i)do
+for var i = 0 , 1 , 1 do
   Caml_array.caml_array_set(arr, i, i + 1 | 0);
 end
 

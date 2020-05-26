@@ -11,7 +11,7 @@ function reverse_range(a, i, len) do
   if (len == 0) then do
     return --[ () ]--0;
   end else do
-    for(var k = 0 ,k_finish = (len - 1 | 0) / 2 | 0; k <= k_finish; ++k)do
+    for var k = 0 , (len - 1 | 0) / 2 | 0 , 1 do
       var t = a[i + k | 0];
       a[i + k | 0] = a[((i + len | 0) - 1 | 0) - k | 0];
       a[((i + len | 0) - 1 | 0) - k | 0] = t;
@@ -30,7 +30,7 @@ function reverse(a) do
     return [];
   end else do
     var b = $$Array.copy(a);
-    for(var i = 0 ,i_finish = b_len - 1 | 0; i <= i_finish; ++i)do
+    for var i = 0 , b_len - 1 | 0 , 1 do
       b[i] = a[(b_len - 1 | 0) - i | 0];
     end
     return b;

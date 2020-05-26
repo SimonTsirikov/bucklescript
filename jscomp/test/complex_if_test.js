@@ -15,7 +15,7 @@ end
 
 function escaped(s) do
   var n = 0;
-  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #s - 1 | 0 , 1 do
     var match = s[i];
     var tmp;
     if (match >= 32) then do
@@ -39,7 +39,7 @@ function escaped(s) do
   end else do
     var s$prime = Caml_bytes.caml_create_bytes(n);
     n = 0;
-    for(var i$1 = 0 ,i_finish$1 = #s - 1 | 0; i$1 <= i_finish$1; ++i$1)do
+    for var i$1 = 0 , #s - 1 | 0 , 1 do
       var c = s[i$1];
       var exit = 0;
       if (c >= 35) then do

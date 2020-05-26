@@ -56,7 +56,7 @@ Belt_Map.getId(m2);
 
 var m_dict = Belt_Map.getId(m);
 
-for(var i = 0; i <= 100000; ++i)do
+for var i = 0 , 100000 , 1 do
   data = Belt_MapDict.set(data, i, i, m_dict.cmp);
 end
 
@@ -84,7 +84,7 @@ var cmp = m_dict$1.cmp;
 
 var data$2 = v.data;
 
-for(var i$1 = 0; i$1 <= 100000; ++i$1)do
+for var i$1 = 0 , 100000 , 1 do
   data$2 = Belt_SetDict.add(data$2, i$1, cmp);
 end
 

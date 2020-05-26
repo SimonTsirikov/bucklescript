@@ -4,7 +4,7 @@ var Curry = require("../../lib/js/curry.js");
 
 function sum_float_array(arr) do
   var v = 0;
-  for(var i = 0 ,i_finish = arr.length - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , arr.length - 1 | 0 , 1 do
     v = v + arr.case(i);
   end
   return v;
@@ -12,7 +12,7 @@ end
 
 function sum_int_array(arr) do
   var v = 0;
-  for(var i = 0 ,i_finish = arr.length - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , arr.length - 1 | 0 , 1 do
     v = v + arr.case(i) | 0;
   end
   return v;
@@ -20,7 +20,7 @@ end
 
 function sum_poly(zero, add, arr) do
   var v = zero;
-  for(var i = 0 ,i_finish = arr.length - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , arr.length - 1 | 0 , 1 do
     v = add(v, arr.case(i));
   end
   return v;

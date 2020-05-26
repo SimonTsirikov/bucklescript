@@ -25,7 +25,7 @@ eq("File \"406_primitive_test.ml\", line 29, characters 6-13", backend_type, --[
 function f(param) do
   var A = Caml_exceptions.create("A");
   try do
-    for(var i = 0; i <= 200; ++i)do
+    for var i = 0 , 200 , 1 do
       if (i == 10) then do
         throw [
               A,

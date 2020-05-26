@@ -47,7 +47,7 @@ var suites_001 = --[ :: ]--[
       "buffer",
       (function (param) do
           var v = $$Buffer.create(30);
-          for(var i = 0; i <= 10; ++i)do
+          for var i = 0 , 10 , 1 do
             $$Buffer.add_string(v, String(i));
           end
           return --[ Eq ]--Block.__(0, [

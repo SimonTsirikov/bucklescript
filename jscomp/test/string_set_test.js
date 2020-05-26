@@ -31,7 +31,7 @@ end
 
 var s = String_set.empty;
 
-for(var i = 0; i <= 99999; ++i)do
+for var i = 0 , 99999 , 1 do
   s = String_set.add(String(i), s);
 end
 

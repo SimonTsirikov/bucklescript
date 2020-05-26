@@ -14,7 +14,7 @@ function for_3(x) do
   var arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
         end), x);
-  for(var i = 0 ,i_finish = #x - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #x - 1 | 0 , 1 do
     var j = (i << 1);
     Caml_array.caml_array_set(arr, i, (function(j)do
         return function (param) do
@@ -36,7 +36,7 @@ function for_4(x) do
   var arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
         end), x);
-  for(var i = 0 ,i_finish = #x - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #x - 1 | 0 , 1 do
     var j = (i << 1);
     var k = (j << 1);
     Caml_array.caml_array_set(arr, i, (function(k)do
@@ -59,7 +59,7 @@ function for_5(x, u) do
   var arr = $$Array.map((function (param, param$1) do
           return --[ () ]--0;
         end), x);
-  for(var i = 0 ,i_finish = #x - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #x - 1 | 0 , 1 do
     var k = Caml_int32.imul((u << 1), u);
     Caml_array.caml_array_set(arr, i, (function(k)do
         return function (param) do
@@ -89,13 +89,13 @@ function for_6(x, u) do
   end;
   var inspect_3 = -1;
   v4.contents = v4.contents + 1 | 0;
-  for(var j = 0; j <= 1; ++j)do
+  for var j = 0 , 1 , 1 do
     v5.contents = v5.contents + 1 | 0;
     var v2 = do
       contents: 0
     end;
     (function(v2)do
-    for(var i = 0 ,i_finish = #x - 1 | 0; i <= i_finish; ++i)do
+    for var i = 0 , #x - 1 | 0 , 1 do
       var k = Caml_int32.imul((u << 1), u);
       var h = (v5.contents << 1);
       v2.contents = v2.contents + 1 | 0;
@@ -127,9 +127,9 @@ function for_7(param) do
   var arr = Caml_array.caml_make_vect(21, (function (param) do
           return --[ () ]--0;
         end));
-  for(var i = 0; i <= 6; ++i)do
+  for var i = 0 , 6 , 1 do
     (function(i)do
-    for(var j = 0; j <= 2; ++j)do
+    for var j = 0 , 2 , 1 do
       Caml_array.caml_array_set(arr, Caml_int32.imul(i, 3) + j | 0, (function(j)do
           return function (param) do
             v.contents = (v.contents + i | 0) + j | 0;
@@ -152,10 +152,10 @@ function for_8(param) do
   var arr = Caml_array.caml_make_vect(21, (function (param) do
           return --[ () ]--0;
         end));
-  for(var i = 0; i <= 6; ++i)do
+  for var i = 0 , 6 , 1 do
     var k = (i << 1);
     (function(i,k)do
-    for(var j = 0; j <= 2; ++j)do
+    for var j = 0 , 2 , 1 do
       var h = i + j | 0;
       Caml_array.caml_array_set(arr, Caml_int32.imul(i, 3) + j | 0, (function(j,h)do
           return function (param) do
@@ -195,13 +195,13 @@ function for_9(param) do
   var arr2 = Caml_array.caml_make_vect(2, (function (param) do
           return --[ () ]--0;
         end));
-  for(var i = 0; i <= 1; ++i)do
+  for var i = 0 , 1 , 1 do
     var v$1 = do
       contents: 0
     end;
     v$1.contents = v$1.contents + i | 0;
     (function(v$1)do
-    for(var j = 0; j <= 1; ++j)do
+    for var j = 0 , 1 , 1 do
       v$1.contents = v$1.contents + 1 | 0;
       collect(v$1.contents);
       Caml_array.caml_array_set(arr, (i << 1) + j | 0, (function (param) do

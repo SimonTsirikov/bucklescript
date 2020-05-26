@@ -263,10 +263,6 @@ let pp_var_declare cxt f id =
   semi f ;
   acxt 
 
-let pp_direction f (direction : J.for_direction) =   
-  match direction with
-  | Upto -> P.string f L.plus_plus
-  | Downto -> P.string f L.minus_minus 
 
 let return_sp f = 
     P.string f L.return ; P.space f   
@@ -1165,60 +1161,40 @@ and statement_desc top cxt f (s : J.statement_desc) : cxt =
       semi f;
       cxt
     end
-  | ForRange (for_ident_expression, finish, id, direction, s, env) ->
+    | ForRange (for_ident_expression, finish, id, direction, s, env) ->
     let action cxt  =
       P.vgroup f 0 ( fun _ ->
           let cxt = P.group f 0 (fun _ ->
               (* The only place that [semi] may have semantics here *)
               P.string f L.for_ ;
-              P.paren_group f 1 ( fun _ ->
-                  let cxt, new_id =
-                    match for_ident_expression, finish.expression_desc with
-                    | Some ident_expression , (Number _ | Var _ ) ->
-                      let cxt = pp_var_assign cxt f id in  
-                      expression ~level:0 cxt f ident_expression, None
-                    | Some ident_expression, _ ->
-                      let cxt = pp_var_assign cxt f id in 
-                      let cxt = expression ~level:1 cxt f ident_expression in
-                      P.space f ;
-                      comma f;  
-                      let id = Ext_ident.create (Ident.name id ^ "_finish") in
-                      let cxt = Ext_pp_scope.ident cxt f id in
-                      P.space f ;
-                      P.string f L.eq;
-                      P.space f;
-                      expression ~level:1 cxt f finish, Some id
-                    | None, (Number _ | Var _) ->
-                      cxt, None
-                    | None , _ ->
-                      let id = Ext_ident.create (Ident.name id ^ "_finish") in
-                      let cxt = pp_var_assign cxt f id in 
-                      expression ~level:15 cxt f finish, Some id in
-                  semi f ;
-                  P.space f;
-                  let cxt = Ext_pp_scope.ident cxt f id in
-                  P.space f;
-                  let right_prec  =
-                    match direction with
-                    | Upto ->
-                      let (_,_,right) = Js_op_util.op_prec Le  in
-                      P.string f L.le;
-                      right
-                    | Downto ->
-                      let (_,_,right) = Js_op_util.op_prec Ge in
-                      P.string f L.ge ;
-                      right
-                  in
-                  P.space f ;
-                  let cxt  =
-                    expression   ~level:right_prec cxt  f 
-                      (match new_id with
-                       | Some i -> E.var i
-                       | None -> finish) in
-                  semi f;
-                  P.space f;
-                  pp_direction f direction;
-                  Ext_pp_scope.ident cxt f id)) in
+              P.space f;
+              let cxt =
+                (match for_ident_expression with
+                | Some ident_expression ->
+                  let cxt = pp_var_assign cxt f id in 
+                  expression ~level:0 cxt f ident_expression
+                | None ->
+                  let cxt = pp_var_assign cxt f id in 
+                  Ext_pp_scope.ident cxt f id) in
+              P.space f ;
+              comma f;  
+              P.space f ;
+              let cxt =
+                (match finish.expression_desc with
+                | (Number _ | Var _ ) ->
+                  expression ~level:1 cxt f finish
+                | _ ->
+                  expression ~level:0 cxt f finish) in
+              P.space f;
+              comma f;
+              P.space f;
+              (match direction with
+              | Upto ->
+                P.string f "1"
+              | Downto ->
+                P.string f "-1" );
+              P.space f;
+              cxt) in
           block  cxt f s ) in
     let lexical = Js_closure.get_lexical_scope env in
     if Set_ident.is_empty lexical

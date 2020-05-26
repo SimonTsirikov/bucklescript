@@ -1929,7 +1929,7 @@ function flatten_cmap(cm) do
   var v = 0;
   c[0] = --[ "\000" ]--0;
   col_repr[0] = --[ "\000" ]--0;
-  for(var i = 1; i <= 255; ++i)do
+  for var i = 1 , 255 , 1 do
     if (Caml_bytes.get(cm, i) ~= --[ "\000" ]--0) then do
       v = v + 1 | 0;
     end
@@ -2715,7 +2715,7 @@ end
 
 function set(str) do
   var s = --[ [] ]--0;
-  for(var i = 0 ,i_finish = #str - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #str - 1 | 0 , 1 do
     s = union(single(Caml_string.get(str, i)), s);
   end
   return --[ Set ]--Block.__(0, [s]);
@@ -3138,7 +3138,7 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
   var accept_s = function (s$prime) do
     var len = #s$prime;
     try do
-      for(var j = 0 ,j_finish = len - 1 | 0; j <= j_finish; ++j)do
+      for var j = 0 , len - 1 | 0 , 1 do
         try do
           if (Caml_string.get(s$prime, j) ~= Caml_string.get(s, i.contents + j | 0)) then do
             throw Pervasives.Exit;

@@ -61,13 +61,13 @@ Belt_HashSetInt.mergeMany(v$1, u$1);
 
 eq("File \"bs_hashset_int_test.ml\", line 30, characters 5-12", v$1.size, 100001);
 
-for(var i = 0; i <= 1000; ++i)do
+for var i = 0 , 1000 , 1 do
   Belt_HashSetInt.remove(v$1, i);
 end
 
 eq("File \"bs_hashset_int_test.ml\", line 34, characters 5-12", v$1.size, 99000);
 
-for(var i$1 = 0; i$1 <= 2000; ++i$1)do
+for var i$1 = 0 , 2000 , 1 do
   Belt_HashSetInt.remove(v$1, i$1);
 end
 
@@ -79,11 +79,11 @@ var u1 = Belt_HashSetInt.copy(u0);
 
 eq("File \"bs_hashset_int_test.ml\", line 46, characters 5-12", Belt_HashSetInt.toArray(u0), Belt_HashSetInt.toArray(u1));
 
-for(var i$2 = 0; i$2 <= 2000; ++i$2)do
+for var i$2 = 0 , 2000 , 1 do
   Belt_HashSetInt.remove(u1, i$2);
 end
 
-for(var i$3 = 0; i$3 <= 1000; ++i$3)do
+for var i$3 = 0 , 1000 , 1 do
   Belt_HashSetInt.remove(u0, i$3);
 end
 

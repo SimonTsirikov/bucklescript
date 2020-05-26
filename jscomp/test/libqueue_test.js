@@ -498,7 +498,7 @@ var q$3 = do
   last: --[ Nil ]--0
 end;
 
-for(var i = 1; i <= 10; ++i)do
+for var i = 1 , 10 , 1 do
   Queue.add(i, q$3);
 end
 
@@ -564,7 +564,7 @@ var q1 = do
   last: --[ Nil ]--0
 end;
 
-for(var i$1 = 1; i$1 <= 10; ++i$1)do
+for var i$1 = 1 , 10 , 1 do
   Queue.add(i$1, q1);
 end
 
@@ -678,7 +678,7 @@ if (q2.length ~= 10) then do
 end
  end 
 
-for(var i$2 = 1; i$2 <= 10; ++i$2)do
+for var i$2 = 1 , 10 , 1 do
   if (Queue.take(q1) ~= i$2) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
@@ -692,7 +692,7 @@ for(var i$2 = 1; i$2 <= 10; ++i$2)do
    end 
 end
 
-for(var i$3 = 1; i$3 <= 10; ++i$3)do
+for var i$3 = 1 , 10 , 1 do
   if (Queue.take(q2) ~= i$3) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
@@ -724,7 +724,7 @@ if (q$4.length ~= 0) then do
 end
  end 
 
-for(var i$4 = 1; i$4 <= 10; ++i$4)do
+for var i$4 = 1 , 10 , 1 do
   Queue.add(i$4, q$4);
   if (q$4.length ~= i$4) then do
     throw [
@@ -750,7 +750,7 @@ for(var i$4 = 1; i$4 <= 10; ++i$4)do
    end 
 end
 
-for(var i$5 = 10; i$5 >= 1; --i$5)do
+for var i$5 = 10 , 1 , -1 do
   if (q$4.length ~= i$5) then do
     throw [
           Caml_builtin_exceptions.assert_failure,
@@ -806,7 +806,7 @@ var q$5 = do
   last: --[ Nil ]--0
 end;
 
-for(var i$6 = 1; i$6 <= 10; ++i$6)do
+for var i$6 = 1 , 10 , 1 do
   Queue.add(i$6, q$5);
 end
 
@@ -952,7 +952,7 @@ var q2$2 = do
   last: --[ Nil ]--0
 end;
 
-for(var i$8 = 1; i$8 <= 4; ++i$8)do
+for var i$8 = 1 , 4 , 1 do
   Queue.add(i$8, q1$2);
 end
 
@@ -1090,7 +1090,7 @@ var q2$3 = do
   last: --[ Nil ]--0
 end;
 
-for(var i$9 = 5; i$9 <= 8; ++i$9)do
+for var i$9 = 5 , 8 , 1 do
   Queue.add(i$9, q2$3);
 end
 
@@ -1228,11 +1228,11 @@ var q2$4 = do
   last: --[ Nil ]--0
 end;
 
-for(var i$10 = 1; i$10 <= 4; ++i$10)do
+for var i$10 = 1 , 4 , 1 do
   Queue.add(i$10, q1$4);
 end
 
-for(var i$11 = 5; i$11 <= 8; ++i$11)do
+for var i$11 = 5 , 8 , 1 do
   Queue.add(i$11, q2$4);
 end
 

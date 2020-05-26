@@ -12,7 +12,7 @@ function scanf_bad_input(ib, x) do
   end else do
     throw x;
   end end 
-  for(var i = 0; i <= 100; ++i)do
+  for var i = 0 , 100 , 1 do
     console.log(s);
     console.log("don't inlinie");
   end

@@ -334,14 +334,14 @@ function edit_distance(a, b, cutoff) do
   end else do
     var m = $$Array.make_matrix(la + 1 | 0, lb + 1 | 0, cutoff$1 + 1 | 0);
     Caml_array.caml_array_set(Caml_array.caml_array_get(m, 0), 0, 0);
-    for(var i = 1; i <= la; ++i)do
+    for var i = 1 , la , 1 do
       Caml_array.caml_array_set(Caml_array.caml_array_get(m, i), 0, i);
     end
-    for(var j = 1; j <= lb; ++j)do
+    for var j = 1 , lb , 1 do
       Caml_array.caml_array_set(Caml_array.caml_array_get(m, 0), j, j);
     end
-    for(var i$1 = 1; i$1 <= la; ++i$1)do
-      for(var j$1 = Caml_primitive.caml_int_max(1, (i$1 - cutoff$1 | 0) - 1 | 0) ,j_finish = Caml_primitive.caml_int_min(lb, (i$1 + cutoff$1 | 0) + 1 | 0); j$1 <= j_finish; ++j$1)do
+    for var i$1 = 1 , la , 1 do
+      for var j$1 = Caml_primitive.caml_int_max(1, (i$1 - cutoff$1 | 0) - 1 | 0) , Caml_primitive.caml_int_min(lb, (i$1 + cutoff$1 | 0) + 1 | 0) , 1 do
         var cost = Caml_string.get(a, i$1 - 1 | 0) == Caml_string.get(b, j$1 - 1 | 0) and 0 or 1;
         var best = Caml_primitive.caml_int_min(1 + Caml_primitive.caml_int_min(Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1 - 1 | 0), j$1), Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1), j$1 - 1 | 0)) | 0, Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1 - 1 | 0), j$1 - 1 | 0) + cost | 0);
         var best$1 = i$1 > 1 and j$1 > 1 and Caml_string.get(a, i$1 - 1 | 0) == Caml_string.get(b, j$1 - 2 | 0) and Caml_string.get(a, i$1 - 2 | 0) == Caml_string.get(b, j$1 - 1 | 0) and Caml_primitive.caml_int_min(best, Caml_array.caml_array_get(Caml_array.caml_array_get(m, i$1 - 2 | 0), j$1 - 2 | 0) + cost | 0) or best;
@@ -1073,7 +1073,7 @@ function parse_opt(error, active, flags, s) do
       end
        end 
       var match$1 = get_range(i);
-      for(var n = match$1[1] ,n_finish = Caml_primitive.caml_int_min(match$1[2], 104); n <= n_finish; ++n)do
+      for var n = match$1[1] , Caml_primitive.caml_int_min(match$1[2], 104) , 1 do
         Curry._1(myset, n);
       end
       return loop(match$1[0]);
@@ -1577,7 +1577,7 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
   end
    end 
   var lines = num_loc_lines.contents;
-  for(var i = pos0 ,i_finish = lb.lex_buffer_len - 1 | 0; i <= i_finish; ++i)do
+  for var i = pos0 , lb.lex_buffer_len - 1 | 0 , 1 do
     if (Caml_bytes.get(lb.lex_buffer, i) == --[ "\n" ]--10) then do
       lines = lines + 1 | 0;
     end
@@ -1591,7 +1591,7 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
   Caml_external_polyfill.resolve("caml_terminfo_backup")(lines);
   var bol = false;
   Pervasives.print_string("# ");
-  for(var pos = 0 ,pos_finish = (lb.lex_buffer_len - pos0 | 0) - 1 | 0; pos <= pos_finish; ++pos)do
+  for var pos = 0 , (lb.lex_buffer_len - pos0 | 0) - 1 | 0 , 1 do
     if (bol) then do
       Pervasives.print_string("  ");
       bol = false;
@@ -1631,7 +1631,7 @@ function highlight_dumb(ppf, lb, loc) do
   var end_pos = (lb.lex_buffer_len - pos0 | 0) - 1 | 0;
   var line_start = 0;
   var line_end = 0;
-  for(var pos = 0; pos <= end_pos; ++pos)do
+  for var pos = 0 , end_pos , 1 do
     if (Caml_bytes.get(lb.lex_buffer, pos + pos0 | 0) == --[ "\n" ]--10) then do
       if (loc.loc_start.pos_cnum > pos) then do
         line_start = line_start + 1 | 0;
@@ -1673,7 +1673,7 @@ function highlight_dumb(ppf, lb, loc) do
   Format.pp_print_string(ppf, "  ");
   var line = 0;
   var pos_at_bol = 0;
-  for(var pos$1 = 0; pos$1 <= end_pos; ++pos$1)do
+  for var pos$1 = 0 , end_pos , 1 do
     var c = Caml_bytes.get(lb.lex_buffer, pos$1 + pos0 | 0);
     if (c ~= 10) then do
       if (c ~= 13) then do
@@ -1709,10 +1709,10 @@ function highlight_dumb(ppf, lb, loc) do
                 ]),
               "@.  "
             ]);
-        for(var _i = pos_at_bol ,_i_finish = loc.loc_start.pos_cnum - 1 | 0; _i <= _i_finish; ++_i)do
+        for var _i = pos_at_bol , loc.loc_start.pos_cnum - 1 | 0 , 1 do
           Format.pp_print_char(ppf, --[ " " ]--32);
         end
-        for(var _i$1 = loc.loc_start.pos_cnum ,_i_finish$1 = loc.loc_end.pos_cnum - 1 | 0; _i$1 <= _i_finish$1; ++_i$1)do
+        for var _i$1 = loc.loc_start.pos_cnum , loc.loc_end.pos_cnum - 1 | 0 , 1 do
           Format.pp_print_char(ppf, --[ "^" ]--94);
         end
       end
@@ -4438,7 +4438,7 @@ end
 
 function hash_variant(s) do
   var accu = 0;
-  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #s - 1 | 0 , 1 do
     accu = Caml_int32.imul(223, accu) + Caml_string.get(s, i) | 0;
   end
   accu = accu & 2147483647;
@@ -12440,7 +12440,7 @@ function check_value_name(name, loc) do
   end
    end 
   if (#name ~= 0 and Caml_string.get(name, 0) == --[ "#" ]--35) then do
-    for(var i = 1 ,i_finish = #name - 1 | 0; i <= i_finish; ++i)do
+    for var i = 1 , #name - 1 | 0 , 1 do
       if (Caml_string.get(name, i) == --[ "#" ]--35) then do
         throw [
               $$Error$2,
@@ -21499,7 +21499,7 @@ function store_string_char(c) do
 end
 
 function store_string(s) do
-  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #s - 1 | 0 , 1 do
     store_string_char(Caml_string.get(s, i));
   end
   return --[ () ]--0;
@@ -51425,7 +51425,7 @@ function complete_tags(nconsts, nconstrs, tags) do
           end
         end), tags);
   var r = --[ [] ]--0;
-  for(var i = 0 ,i_finish = nconsts - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , nconsts - 1 | 0 , 1 do
     if (!Caml_array.caml_array_get(seen_const, i)) then do
       r = --[ :: ]--[
         --[ Cstr_constant ]--Block.__(0, [i]),
@@ -51434,7 +51434,7 @@ function complete_tags(nconsts, nconstrs, tags) do
     end
      end 
   end
-  for(var i$1 = 0 ,i_finish$1 = nconstrs - 1 | 0; i$1 <= i_finish$1; ++i$1)do
+  for var i$1 = 0 , nconstrs - 1 | 0 , 1 do
     if (!Caml_array.caml_array_get(seen_constr, i$1)) then do
       r = --[ :: ]--[
         --[ Cstr_block ]--Block.__(1, [i$1]),
@@ -58401,7 +58401,7 @@ function check_recordpat_labels(loc, lbl_pat_list, closed) do
     List.iter(check_defined, lbl_pat_list);
     if (closed == --[ Closed ]--0 and is_active(--[ Non_closed_record_pattern ]--Block.__(4, [""]))) then do
       var $$undefined = --[ [] ]--0;
-      for(var i = 0 ,i_finish = #all - 1 | 0; i <= i_finish; ++i)do
+      for var i = 0 , #all - 1 | 0 , 1 do
         if (!Caml_array.caml_array_get(defined, i)) then do
           $$undefined = --[ :: ]--[
             Caml_array.caml_array_get(all, i).lbl_name,
@@ -72365,7 +72365,7 @@ end
 
 function temp_abbrev(loc, env, id, arity) do
   var params = --[ [] ]--0;
-  for(var _i = 1; _i <= arity; ++_i)do
+  for var _i = 1 , arity , 1 do
     params = --[ :: ]--[
       newvar(undefined, --[ () ]--0),
       params

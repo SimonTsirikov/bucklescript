@@ -94,7 +94,7 @@ var v4 = --[ A0 ]--Block.__(0, [
 
 var v5 = --[ A1 ]--Block.__(1, [--[ z ]--0]);
 
-for(var i = 0; i <= 10; ++i)do
+for var i = 0 , 10 , 1 do
   ff(v4);
   ff(v5);
 end
@@ -152,7 +152,7 @@ function ff0(x) do
   end end 
 end
 
-for(var i$1 = 0; i$1 <= 10; ++i$1)do
+for var i$1 = 0 , 10 , 1 do
   ff0(v6);
 end
 

@@ -4,7 +4,7 @@ var Mt = require("./mt.js");
 var Block = require("../../lib/js/block.js");
 
 function tst(param) do
-  for(var i = (console.log("hi"), 0) ,i_finish = (console.log("hello"), 3); i <= i_finish; ++i)do
+  for var i = console.log("hi"), 0 , console.log("hello"), 3 , 1 do
     
   end
   return --[ () ]--0;
@@ -14,7 +14,7 @@ function test2(param) do
   var v = 0;
   v = 3;
   v = 10;
-  for(var i = 0; i <= 1; ++i)do
+  for var i = 0 , 1 , 1 do
     
   end
   return v;

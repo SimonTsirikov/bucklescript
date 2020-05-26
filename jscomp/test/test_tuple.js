@@ -4,8 +4,8 @@ var Caml_int32 = require("../../lib/js/caml_int32.js");
 
 var r = 0;
 
-for(var k = 1; k <= 10; ++k)do
-  for(var i = 1; i <= 10; ++i)do
+for var k = 1 , 10 , 1 do
+  for var i = 1 , 10 , 1 do
     var match = i % 2 == 0 and --[ tuple ]--[
         1,
         (i << 1)

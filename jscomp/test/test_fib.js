@@ -20,7 +20,7 @@ end
 
 var v = 0;
 
-for(var i = 0; i <= 10; ++i)do
+for var i = 0 , 10 , 1 do
   v = v + i | 0;
 end
 
@@ -28,7 +28,7 @@ var sum = v;
 
 var v$1 = 0;
 
-for(var i$1 = 10; i$1 >= 0; --i$1)do
+for var i$1 = 10 , 0 , -1 do
   v$1 = v$1 + i$1 | 0;
 end
 

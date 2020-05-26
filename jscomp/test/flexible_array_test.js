@@ -219,7 +219,7 @@ end
 
 function pp(fmt, s) do
   var v = "[ ";
-  for(var i = 0 ,i_finish = length(s) - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , length(s) - 1 | 0 , 1 do
     v = v .. (", " .. String(get(s, i)));
   end
   v = v .. "]";
@@ -234,7 +234,7 @@ end
 
 function filter_from(i, p, s) do
   var u = empty;
-  for(var i$1 = i ,i_finish = length(s) - 1 | 0; i$1 <= i_finish; ++i$1)do
+  for var i$1 = i , length(s) - 1 | 0 , 1 do
     var ele = get(s, i$1);
     if (Curry._1(p, ele)) then do
       u = push_back(u, ele);
@@ -246,10 +246,10 @@ end
 
 function append(a, b) do
   var empty$1 = empty;
-  for(var i = 0 ,i_finish = length(a) - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , length(a) - 1 | 0 , 1 do
     empty$1 = push_back(empty$1, get(a, i));
   end
-  for(var i$1 = 0 ,i_finish$1 = length(b) - 1 | 0; i$1 <= i_finish$1; ++i$1)do
+  for var i$1 = 0 , length(b) - 1 | 0 , 1 do
     empty$1 = push_back(empty$1, get(b, i$1));
   end
   return empty$1;
@@ -273,7 +273,7 @@ end
 
 function of_array(arr) do
   var v = empty;
-  for(var i = 0 ,i_finish = #arr - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #arr - 1 | 0 , 1 do
     v = push_back(v, Caml_array.caml_array_get(arr, i));
   end
   return v;

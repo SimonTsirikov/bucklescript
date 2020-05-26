@@ -13,7 +13,7 @@ function map(f, a) do
     return [];
   end else do
     var r = Caml_array.caml_make_vect(l, f$1(a$1[0]));
-    for(var i = 1 ,i_finish = l - 1 | 0; i <= i_finish; ++i)do
+    for var i = 1 , l - 1 | 0 , 1 do
       r[i] = f$1(a$1[i]);
     end
     return r;
@@ -34,7 +34,7 @@ function init(l, f) do
     end
      end 
     var res = Caml_array.caml_make_vect(l$1, f$1(0));
-    for(var i = 1 ,i_finish = l$1 - 1 | 0; i <= i_finish; ++i)do
+    for var i = 1 , l$1 - 1 | 0 , 1 do
       res[i] = f$1(i);
     end
     return res;
@@ -46,7 +46,7 @@ function fold_left(f, x, a) do
   var x$1 = x;
   var a$1 = a;
   var r = x$1;
-  for(var i = 0 ,i_finish = #a$1 - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #a$1 - 1 | 0 , 1 do
     r = f$1(r, a$1[i]);
   end
   return r;

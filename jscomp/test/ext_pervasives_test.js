@@ -259,7 +259,7 @@ end
 
 function hash_variant(s) do
   var accu = 0;
-  for(var i = 0 ,i_finish = #s - 1 | 0; i <= i_finish; ++i)do
+  for var i = 0 , #s - 1 | 0 , 1 do
     accu = Caml_int32.imul(223, accu) + Caml_string.get(s, i) | 0;
   end
   accu = accu & 2147483647;

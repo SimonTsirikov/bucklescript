@@ -18,7 +18,7 @@ function starts_with(xs, prefix, p) do
     return false;
   end else do
     try do
-      for(var i = 0 ,i_finish = len2 - 1 | 0; i <= i_finish; ++i)do
+      for var i = 0 , len2 - 1 | 0 , 1 do
         if (!Curry._2(p, Caml_array.caml_array_get(xs, i), Caml_array.caml_array_get(prefix, i))) then do
           throw H;
         end

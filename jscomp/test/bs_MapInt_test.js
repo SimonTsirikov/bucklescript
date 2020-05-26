@@ -12,13 +12,13 @@ end
 
 function test(param) do
   var m = Belt_MapInt.empty;
-  for(var i = 0; i <= 999999; ++i)do
+  for var i = 0 , 999999 , 1 do
     m = Belt_MapInt.set(m, i, i);
   end
-  for(var i$1 = 0; i$1 <= 999999; ++i$1)do
+  for var i$1 = 0 , 999999 , 1 do
     should(Belt_MapInt.get(m, i$1) ~= undefined);
   end
-  for(var i$2 = 0; i$2 <= 999999; ++i$2)do
+  for var i$2 = 0 , 999999 , 1 do
     m = Belt_MapInt.remove(m, i$2);
   end
   return should(Belt_MapInt.isEmpty(m));

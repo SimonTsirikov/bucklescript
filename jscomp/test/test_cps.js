@@ -26,7 +26,7 @@ function test_closure(param) do
   var arr = Caml_array.caml_make_vect(6, (function (x) do
           return x;
         end));
-  for(var i = 0; i <= 6; ++i)do
+  for var i = 0 , 6 , 1 do
     Caml_array.caml_array_set(arr, i, (function(i)do
         return function (param) do
           return i;

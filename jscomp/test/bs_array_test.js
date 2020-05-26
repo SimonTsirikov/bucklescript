@@ -395,9 +395,9 @@ function makeMatrixExn(sx, sy, init) do
   end
    end 
   var res = new Array(sx);
-  for(var x = 0 ,x_finish = sx - 1 | 0; x <= x_finish; ++x)do
+  for var x = 0 , sx - 1 | 0 , 1 do
     var initY = new Array(sy);
-    for(var y = 0 ,y_finish = sy - 1 | 0; y <= y_finish; ++y)do
+    for var y = 0 , sy - 1 | 0 , 1 do
       initY[y] = init;
     end
     res[x] = initY;

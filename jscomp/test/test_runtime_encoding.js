@@ -40,7 +40,7 @@ function aaaa(x) do
 end
 
 function f(x) do
-  for(var i = 0; i <= 10; ++i)do
+  for var i = 0 , 10 , 1 do
     Caml_array.caml_array_set(x, i, i);
   end
   return --[ () ]--0;

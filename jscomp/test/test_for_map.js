@@ -1009,10 +1009,10 @@ end;
 
 function assertion_test(param) do
   var m = --[ Empty ]--0;
-  for(var i = 0; i <= 1000000; ++i)do
+  for var i = 0 , 1000000 , 1 do
     m = add(i, i, m);
   end
-  for(var i$1 = 0; i$1 <= 1000000; ++i$1)do
+  for var i$1 = 0 , 1000000 , 1 do
     find(i$1, m);
   end
   return --[ () ]--0;
