@@ -31,8 +31,9 @@ function parse(token) do
   end;
   var parse_atom = function (param) do
     var e = token$1(--[ () ]--0);
-    switch (e.tag | 0) do
-      case --[ Kwd ]--0 :
+    local ___conditional___=(e.tag | 0);
+    do
+       if ___conditional___ = 0--[ Kwd ]-- then do
           if (e[0] == "(") then do
             var v = parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0)));
             var match = token$1(--[ () ]--0);
@@ -55,15 +56,18 @@ function parse(token) do
                   Parse_error,
                   "unexpected token"
                 ];
-          end end 
-      case --[ Int ]--2 :
-          return e[0];
-      default:
+          end end end end end 
+       if ___conditional___ = 2--[ Int ]-- then do
+          return e[0];end end end 
+       do
+      else do
         Queue.push(e, look_ahead);
         throw [
               Parse_error,
               "unexpected token"
             ];
+        end end
+        
     end
   end;
   var parse_term_aux = function (e1) do
@@ -72,14 +76,18 @@ function parse(token) do
       Queue.push(e, look_ahead);
       return e1;
     end else do
-      switch (e[0]) do
-        case "*" :
-            return Caml_int32.imul(e1, parse_term_aux(parse_atom(--[ () ]--0)));
-        case "/" :
-            return Caml_int32.div(e1, parse_term_aux(parse_atom(--[ () ]--0)));
-        default:
+      local ___conditional___=(e[0]);
+      do
+         if ___conditional___ = "*" then do
+            return Caml_int32.imul(e1, parse_term_aux(parse_atom(--[ () ]--0)));end end end 
+         if ___conditional___ = "/" then do
+            return Caml_int32.div(e1, parse_term_aux(parse_atom(--[ () ]--0)));end end end 
+         do
+        else do
           Queue.push(e, look_ahead);
           return e1;
+          end end
+          
       end
     end end 
   end;
@@ -89,14 +97,18 @@ function parse(token) do
       Queue.push(e, look_ahead);
       return e1;
     end else do
-      switch (e[0]) do
-        case "+" :
-            return e1 + parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0))) | 0;
-        case "-" :
-            return e1 - parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0))) | 0;
-        default:
+      local ___conditional___=(e[0]);
+      do
+         if ___conditional___ = "+" then do
+            return e1 + parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0))) | 0;end end end 
+         if ___conditional___ = "-" then do
+            return e1 - parse_expr_aux(parse_term_aux(parse_atom(--[ () ]--0))) | 0;end end end 
+         do
+        else do
           Queue.push(e, look_ahead);
           return e1;
+          end end
+          
       end
     end end 
   end;
@@ -165,24 +177,29 @@ function l_parse(token) do
         Queue.push(t, look_ahead);
         return a;
       end else do
-        switch (t[0]) do
-          case "*" :
+        local ___conditional___=(t[0]);
+        do
+           if ___conditional___ = "*" then do
               _a = Caml_int32.imul(a, parse_f(--[ () ]--0));
-              continue ;
-          case "/" :
+              continue ;end end end 
+           if ___conditional___ = "/" then do
               _a = Caml_int32.div(a, parse_f(--[ () ]--0));
-              continue ;
-          default:
+              continue ;end end end 
+           do
+          else do
             Queue.push(t, look_ahead);
             return a;
+            end end
+            
         end
       end end 
     end;
   end;
   var parse_f = function (param) do
     var t = token$1(--[ () ]--0);
-    switch (t.tag | 0) do
-      case --[ Kwd ]--0 :
+    local ___conditional___=(t.tag | 0);
+    do
+       if ___conditional___ = 0--[ Kwd ]-- then do
           if (t[0] == "(") then do
             var v = parse_t_aux(parse_f_aux(parse_f(--[ () ]--0)));
             var t$1 = token$1(--[ () ]--0);
@@ -204,14 +221,17 @@ function l_parse(token) do
                   Parse_error,
                   "Unexpected token"
                 ];
-          end end 
-      case --[ Int ]--2 :
-          return t[0];
-      default:
+          end end end end end 
+       if ___conditional___ = 2--[ Int ]-- then do
+          return t[0];end end end 
+       do
+      else do
         throw [
               Parse_error,
               "Unexpected token"
             ];
+        end end
+        
     end
   end;
   var parse_t_aux = function (_a) do
@@ -222,16 +242,20 @@ function l_parse(token) do
         Queue.push(t, look_ahead);
         return a;
       end else do
-        switch (t[0]) do
-          case "+" :
+        local ___conditional___=(t[0]);
+        do
+           if ___conditional___ = "+" then do
               _a = a + parse_f_aux(parse_f(--[ () ]--0)) | 0;
-              continue ;
-          case "-" :
+              continue ;end end end 
+           if ___conditional___ = "-" then do
               _a = a - parse_f_aux(parse_f(--[ () ]--0)) | 0;
-              continue ;
-          default:
+              continue ;end end end 
+           do
+          else do
             Queue.push(t, look_ahead);
             return a;
+            end end
+            
         end
       end end 
     end;

@@ -5,12 +5,14 @@ var Caml_string = require("../../lib/js/caml_string.js");
 var Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.js");
 
 function f(param) do
-  switch (param) do
-    case "aaaabb" :
-        return 0;
-    case "bbbb" :
-        return 1;
-    default:
+  local ___conditional___=(param);
+  do
+     if ___conditional___ = "aaaabb" then do
+        return 0;end end end 
+     if ___conditional___ = "bbbb" then do
+        return 1;end end end 
+     do
+    else do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -19,6 +21,8 @@ function f(param) do
               18
             ]
           ];
+      end end
+      
   end
 end
 

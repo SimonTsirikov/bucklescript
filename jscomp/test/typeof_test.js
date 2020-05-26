@@ -7,26 +7,34 @@ var Js_types = require("../../lib/js/js_types.js");
 function string_or_number(x) do
   var ty = Js_types.classify(x);
   if (typeof ty == "number") then do
-    switch (ty) do
-      case --[ JSFalse ]--0 :
-      case --[ JSTrue ]--1 :
-          return false;
-      default:
+    local ___conditional___=(ty);
+    do
+       if ___conditional___ = 0--[ JSFalse ]--
+       or ___conditional___ = 1--[ JSTrue ]-- then do
+          return false;end end end 
+       do
+      else do
         return false;
+        end end
+        
     end
   end else do
-    switch (ty.tag | 0) do
-      case --[ JSNumber ]--0 :
+    local ___conditional___=(ty.tag | 0);
+    do
+       if ___conditional___ = 0--[ JSNumber ]-- then do
           console.log(ty[0] + 3);
-          return true;
-      case --[ JSString ]--1 :
+          return true;end end end 
+       if ___conditional___ = 1--[ JSString ]-- then do
           console.log(ty[0] .. "hei");
-          return true;
-      case --[ JSFunction ]--2 :
+          return true;end end end 
+       if ___conditional___ = 2--[ JSFunction ]-- then do
           console.log("Function");
-          return false;
-      default:
+          return false;end end end 
+       do
+      else do
         return false;
+        end end
+        
     end
   end end 
 end

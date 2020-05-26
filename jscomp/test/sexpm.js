@@ -54,20 +54,21 @@ function _must_escape(s) do
         end end 
       end else if (c >= 11) then do
         if (c >= 32) then do
-          switch (c - 32 | 0) do
-            case 1 :
-            case 3 :
-            case 4 :
-            case 5 :
-            case 6 :
-            case 7 :
-                exit = 1;
-                break;
-            case 0 :
-            case 2 :
-            case 8 :
-            case 9 :
-                throw Pervasives.Exit;
+          local ___conditional___=(c - 32 | 0);
+          do
+             if ___conditional___ = 1
+             or ___conditional___ = 3
+             or ___conditional___ = 4
+             or ___conditional___ = 5
+             or ___conditional___ = 6
+             or ___conditional___ = 7 then do
+                exit = 1;end else 
+             if ___conditional___ = 0
+             or ___conditional___ = 2
+             or ___conditional___ = 8
+             or ___conditional___ = 9 then do
+                throw Pervasives.Exit;end end end 
+             do end
             
           end
         end else do
@@ -491,8 +492,9 @@ function expr_starting_with(c, k, t) do
     end end 
   end else if (c >= 11) then do
     if (c >= 32) then do
-      switch (c - 32 | 0) do
-        case 0 :
+      local ___conditional___=(c - 32 | 0);
+      do
+         if ___conditional___ = 0 then do
             throw [
                   Caml_builtin_exceptions.assert_failure,
                   --[ tuple ]--[
@@ -500,26 +502,26 @@ function expr_starting_with(c, k, t) do
                     183,
                     27
                   ]
-                ];
-        case 2 :
-            return quoted(k, t);
-        case 1 :
-        case 3 :
-        case 4 :
-        case 5 :
-        case 6 :
-        case 7 :
-            break;
-        case 8 :
-            return expr_list(--[ [] ]--0, k, t);
-        case 9 :
+                ];end end end 
+         if ___conditional___ = 2 then do
+            return quoted(k, t);end end end 
+         if ___conditional___ = 1
+         or ___conditional___ = 3
+         or ___conditional___ = 4
+         or ___conditional___ = 5
+         or ___conditional___ = 6
+         or ___conditional___ = 7
+         or ___conditional___ = 8 then do
+            return expr_list(--[ [] ]--0, k, t);end end end 
+         if ___conditional___ = 9 then do
             return _error(t, --[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "unexpected ')'",
                             --[ End_of_format ]--0
                           ]),
                         "unexpected ')'"
-                      ]);
+                      ]);end end end 
+         do
         
       end
     end
@@ -635,21 +637,21 @@ function atom(k, t) do
         end end 
       end else if (c >= 11) then do
         if (c >= 32) then do
-          switch (c - 32 | 0) do
-            case 0 :
-                exit = 2;
-                break;
-            case 1 :
-                exit = 1;
-                break;
-            case 2 :
+          local ___conditional___=(c - 32 | 0);
+          do
+             if ___conditional___ = 0 then do
+                exit = 2;end else 
+             if ___conditional___ = 1 then do
+                exit = 1;end else 
+             if ___conditional___ = 2 then do
                 return _error(t, --[ Format ]--[
                             --[ String_literal ]--Block.__(11, [
                                 "unexpected '\"' in the middle of an atom",
                                 --[ End_of_format ]--0
                               ]),
                             "unexpected '\"' in the middle of an atom"
-                          ]);
+                          ]);end end end 
+             do end end
             
           end
         end else do
@@ -658,12 +660,14 @@ function atom(k, t) do
       end else do
         exit = c >= 9 ? 2 : 1;
       end end  end 
-      switch (exit) do
-        case 1 :
+      local ___conditional___=(exit);
+      do
+         if ___conditional___ = 1 then do
             $$Buffer.add_char(t.atom, c);
-            continue ;
-        case 2 :
-            return _return_atom(c, k, t);
+            continue ;end end end 
+         if ___conditional___ = 2 then do
+            return _return_atom(c, k, t);end end end 
+         do
         
       end
     end end 
@@ -704,38 +708,39 @@ function escaped(k, t) do
     var c = _get(t);
     if (c >= 92) then do
       if (c < 117) then do
-        switch (c - 92 | 0) do
-          case 0 :
-              return Curry._1(k, --[ "\\" ]--92);
-          case 6 :
-              return Curry._1(k, --[ "\b" ]--8);
-          case 18 :
-              return Curry._1(k, --[ "\n" ]--10);
-          case 22 :
-              return Curry._1(k, --[ "\r" ]--13);
-          case 1 :
-          case 2 :
-          case 3 :
-          case 4 :
-          case 5 :
-          case 7 :
-          case 8 :
-          case 9 :
-          case 10 :
-          case 11 :
-          case 12 :
-          case 13 :
-          case 14 :
-          case 15 :
-          case 16 :
-          case 17 :
-          case 19 :
-          case 20 :
-          case 21 :
-          case 23 :
-              break;
-          case 24 :
-              return Curry._1(k, --[ "\t" ]--9);
+        local ___conditional___=(c - 92 | 0);
+        do
+           if ___conditional___ = 0 then do
+              return Curry._1(k, --[ "\\" ]--92);end end end 
+           if ___conditional___ = 6 then do
+              return Curry._1(k, --[ "\b" ]--8);end end end 
+           if ___conditional___ = 18 then do
+              return Curry._1(k, --[ "\n" ]--10);end end end 
+           if ___conditional___ = 22 then do
+              return Curry._1(k, --[ "\r" ]--13);end end end 
+           if ___conditional___ = 1
+           or ___conditional___ = 2
+           or ___conditional___ = 3
+           or ___conditional___ = 4
+           or ___conditional___ = 5
+           or ___conditional___ = 7
+           or ___conditional___ = 8
+           or ___conditional___ = 9
+           or ___conditional___ = 10
+           or ___conditional___ = 11
+           or ___conditional___ = 12
+           or ___conditional___ = 13
+           or ___conditional___ = 14
+           or ___conditional___ = 15
+           or ___conditional___ = 16
+           or ___conditional___ = 17
+           or ___conditional___ = 19
+           or ___conditional___ = 20
+           or ___conditional___ = 21
+           or ___conditional___ = 23
+           or ___conditional___ = 24 then do
+              return Curry._1(k, --[ "\t" ]--9);end end end 
+           do
           
         end
       end
@@ -1093,8 +1098,9 @@ function MakeDecode(funarg) do
       end end 
     end else if (c >= 11) then do
       if (c >= 32) then do
-        switch (c - 32 | 0) do
-          case 0 :
+        local ___conditional___=(c - 32 | 0);
+        do
+           if ___conditional___ = 0 then do
               throw [
                     Caml_builtin_exceptions.assert_failure,
                     --[ tuple ]--[
@@ -1102,26 +1108,26 @@ function MakeDecode(funarg) do
                       183,
                       27
                     ]
-                  ];
-          case 2 :
-              return quoted(k, t);
-          case 1 :
-          case 3 :
-          case 4 :
-          case 5 :
-          case 6 :
-          case 7 :
-              break;
-          case 8 :
-              return expr_list(--[ [] ]--0, k, t);
-          case 9 :
+                  ];end end end 
+           if ___conditional___ = 2 then do
+              return quoted(k, t);end end end 
+           if ___conditional___ = 1
+           or ___conditional___ = 3
+           or ___conditional___ = 4
+           or ___conditional___ = 5
+           or ___conditional___ = 6
+           or ___conditional___ = 7
+           or ___conditional___ = 8 then do
+              return expr_list(--[ [] ]--0, k, t);end end end 
+           if ___conditional___ = 9 then do
               return _error(t, --[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "unexpected ')'",
                               --[ End_of_format ]--0
                             ]),
                           "unexpected ')'"
-                        ]);
+                        ]);end end end 
+           do
           
         end
       end
@@ -1234,21 +1240,21 @@ function MakeDecode(funarg) do
           end end 
         end else if (c >= 11) then do
           if (c >= 32) then do
-            switch (c - 32 | 0) do
-              case 0 :
-                  exit = 2;
-                  break;
-              case 1 :
-                  exit = 1;
-                  break;
-              case 2 :
+            local ___conditional___=(c - 32 | 0);
+            do
+               if ___conditional___ = 0 then do
+                  exit = 2;end else 
+               if ___conditional___ = 1 then do
+                  exit = 1;end else 
+               if ___conditional___ = 2 then do
                   return _error(t, --[ Format ]--[
                               --[ String_literal ]--Block.__(11, [
                                   "unexpected '\"' in the middle of an atom",
                                   --[ End_of_format ]--0
                                 ]),
                               "unexpected '\"' in the middle of an atom"
-                            ]);
+                            ]);end end end 
+               do end end
               
             end
           end else do
@@ -1257,12 +1263,14 @@ function MakeDecode(funarg) do
         end else do
           exit = c >= 9 ? 2 : 1;
         end end  end 
-        switch (exit) do
-          case 1 :
+        local ___conditional___=(exit);
+        do
+           if ___conditional___ = 1 then do
               $$Buffer.add_char(t.atom, c);
-              continue ;
-          case 2 :
-              return _return_atom(c, k, t);
+              continue ;end end end 
+           if ___conditional___ = 2 then do
+              return _return_atom(c, k, t);end end end 
+           do
           
         end
       end end 
@@ -1301,38 +1309,39 @@ function MakeDecode(funarg) do
       var c = _get(t);
       if (c >= 92) then do
         if (c < 117) then do
-          switch (c - 92 | 0) do
-            case 0 :
-                return Curry._1(k, --[ "\\" ]--92);
-            case 6 :
-                return Curry._1(k, --[ "\b" ]--8);
-            case 18 :
-                return Curry._1(k, --[ "\n" ]--10);
-            case 22 :
-                return Curry._1(k, --[ "\r" ]--13);
-            case 1 :
-            case 2 :
-            case 3 :
-            case 4 :
-            case 5 :
-            case 7 :
-            case 8 :
-            case 9 :
-            case 10 :
-            case 11 :
-            case 12 :
-            case 13 :
-            case 14 :
-            case 15 :
-            case 16 :
-            case 17 :
-            case 19 :
-            case 20 :
-            case 21 :
-            case 23 :
-                break;
-            case 24 :
-                return Curry._1(k, --[ "\t" ]--9);
+          local ___conditional___=(c - 92 | 0);
+          do
+             if ___conditional___ = 0 then do
+                return Curry._1(k, --[ "\\" ]--92);end end end 
+             if ___conditional___ = 6 then do
+                return Curry._1(k, --[ "\b" ]--8);end end end 
+             if ___conditional___ = 18 then do
+                return Curry._1(k, --[ "\n" ]--10);end end end 
+             if ___conditional___ = 22 then do
+                return Curry._1(k, --[ "\r" ]--13);end end end 
+             if ___conditional___ = 1
+             or ___conditional___ = 2
+             or ___conditional___ = 3
+             or ___conditional___ = 4
+             or ___conditional___ = 5
+             or ___conditional___ = 7
+             or ___conditional___ = 8
+             or ___conditional___ = 9
+             or ___conditional___ = 10
+             or ___conditional___ = 11
+             or ___conditional___ = 12
+             or ___conditional___ = 13
+             or ___conditional___ = 14
+             or ___conditional___ = 15
+             or ___conditional___ = 16
+             or ___conditional___ = 17
+             or ___conditional___ = 19
+             or ___conditional___ = 20
+             or ___conditional___ = 21
+             or ___conditional___ = 23
+             or ___conditional___ = 24 then do
+                return Curry._1(k, --[ "\t" ]--9);end end end 
+             do
             
           end
         end

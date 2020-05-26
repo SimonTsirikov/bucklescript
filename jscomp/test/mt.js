@@ -56,23 +56,24 @@ function close_enough(thresholdOpt, a, b) do
 end
 
 function handleCode(spec) do
-  switch (spec.tag | 0) do
-    case --[ Eq ]--0 :
+  local ___conditional___=(spec.tag | 0);
+  do
+     if ___conditional___ = 0--[ Eq ]-- then do
         Assert.deepEqual(spec[0], spec[1]);
-        return --[ () ]--0;
-    case --[ Neq ]--1 :
+        return --[ () ]--0;end end end 
+     if ___conditional___ = 1--[ Neq ]-- then do
         Assert.notDeepEqual(spec[0], spec[1]);
-        return --[ () ]--0;
-    case --[ StrictEq ]--2 :
+        return --[ () ]--0;end end end 
+     if ___conditional___ = 2--[ StrictEq ]-- then do
         Assert.strictEqual(spec[0], spec[1]);
-        return --[ () ]--0;
-    case --[ StrictNeq ]--3 :
+        return --[ () ]--0;end end end 
+     if ___conditional___ = 3--[ StrictNeq ]-- then do
         Assert.notStrictEqual(spec[0], spec[1]);
-        return --[ () ]--0;
-    case --[ Ok ]--4 :
+        return --[ () ]--0;end end end 
+     if ___conditional___ = 4--[ Ok ]-- then do
         Assert.ok(spec[0]);
-        return --[ () ]--0;
-    case --[ Approx ]--5 :
+        return --[ () ]--0;end end end 
+     if ___conditional___ = 5--[ Approx ]-- then do
         var b = spec[1];
         var a = spec[0];
         if (close_enough(undefined, a, b)) then do
@@ -80,8 +81,8 @@ function handleCode(spec) do
         end else do
           Assert.deepEqual(a, b);
           return --[ () ]--0;
-        end end 
-    case --[ ApproxThreshold ]--6 :
+        end end end end end 
+     if ___conditional___ = 6--[ ApproxThreshold ]-- then do
         var b$1 = spec[2];
         var a$1 = spec[1];
         if (close_enough(spec[0], a$1, b$1)) then do
@@ -89,14 +90,15 @@ function handleCode(spec) do
         end else do
           Assert.deepEqual(a$1, b$1);
           return --[ () ]--0;
-        end end 
-    case --[ ThrowAny ]--7 :
+        end end end end end 
+     if ___conditional___ = 7--[ ThrowAny ]-- then do
         Assert.throws(spec[0]);
-        return --[ () ]--0;
-    case --[ Fail ]--8 :
-        return assert_fail("failed");
-    case --[ FailWith ]--9 :
-        return assert_fail(spec[0]);
+        return --[ () ]--0;end end end 
+     if ___conditional___ = 8--[ Fail ]-- then do
+        return assert_fail("failed");end end end 
+     if ___conditional___ = 9--[ FailWith ]-- then do
+        return assert_fail(spec[0]);end end end 
+     do
     
   end
 end
@@ -125,55 +127,56 @@ function from_pair_suites(name, suites) do
       return List.iter((function (param) do
                     var name = param[0];
                     var match = Curry._1(param[1], --[ () ]--0);
-                    switch (match.tag | 0) do
-                      case --[ Eq ]--0 :
+                    local ___conditional___=(match.tag | 0);
+                    do
+                       if ___conditional___ = 0--[ Eq ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "eq?",
                                 match[1]
                               ]);
-                          return --[ () ]--0;
-                      case --[ Neq ]--1 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 1--[ Neq ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "neq?",
                                 match[1]
                               ]);
-                          return --[ () ]--0;
-                      case --[ StrictEq ]--2 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 2--[ StrictEq ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "strict_eq?",
                                 match[1]
                               ]);
-                          return --[ () ]--0;
-                      case --[ StrictNeq ]--3 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 3--[ StrictNeq ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "strict_neq?",
                                 match[1]
                               ]);
-                          return --[ () ]--0;
-                      case --[ Ok ]--4 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 4--[ Ok ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "ok?"
                               ]);
-                          return --[ () ]--0;
-                      case --[ Approx ]--5 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 5--[ Approx ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "~",
                                 match[1]
                               ]);
-                          return --[ () ]--0;
-                      case --[ ApproxThreshold ]--6 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 6--[ ApproxThreshold ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[1],
@@ -183,15 +186,16 @@ function from_pair_suites(name, suites) do
                                 match[0],
                                 ")"
                               ]);
-                          return --[ () ]--0;
-                      case --[ ThrowAny ]--7 :
-                          return --[ () ]--0;
-                      case --[ Fail ]--8 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 7--[ ThrowAny ]-- then do
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 8--[ Fail ]-- then do
                           console.log("failed");
-                          return --[ () ]--0;
-                      case --[ FailWith ]--9 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 9--[ FailWith ]-- then do
                           console.log("failed: " .. match[0]);
-                          return --[ () ]--0;
+                          return --[ () ]--0;end end end 
+                       do
                       
                     end
                   end), suites$1);

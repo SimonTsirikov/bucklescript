@@ -26,13 +26,15 @@ function f2(x) do
 end
 
 function f3(x) do
-  switch (x.tag | 0) do
-    case --[ A ]--0 :
-    case --[ C ]--2 :
-        return x[0] + 1 | 0;
-    case --[ B ]--1 :
-    case --[ D ]--3 :
-        return x[0] + 2 | 0;
+  local ___conditional___=(x.tag | 0);
+  do
+     if ___conditional___ = 0--[ A ]--
+     or ___conditional___ = 2--[ C ]-- then do
+        return x[0] + 1 | 0;end end end 
+     if ___conditional___ = 1--[ B ]--
+     or ___conditional___ = 3--[ D ]-- then do
+        return x[0] + 2 | 0;end end end 
+     do
     
   end
 end

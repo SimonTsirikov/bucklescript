@@ -11,15 +11,17 @@ function f(param) do
       return 5;
     end end 
   end else do
-    switch (param.tag | 0) do
-      case --[ A ]--0 :
-          return 0;
-      case --[ B ]--1 :
-          return 1;
-      case --[ C ]--2 :
-          return 2;
-      case --[ F ]--3 :
-          return 3;
+    local ___conditional___=(param.tag | 0);
+    do
+       if ___conditional___ = 0--[ A ]-- then do
+          return 0;end end end 
+       if ___conditional___ = 1--[ B ]-- then do
+          return 1;end end end 
+       if ___conditional___ = 2--[ C ]-- then do
+          return 2;end end end 
+       if ___conditional___ = 3--[ F ]-- then do
+          return 3;end end end 
+       do
       
     end
   end end 

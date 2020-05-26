@@ -246,16 +246,15 @@ function and2(n1, n2) do
       end else do
         var match = cmpVar(v1, v2);
         var f;
-        switch (match) do
-          case --[ LESS ]--0 :
-              f = mkNode(and2(l1, n2), v1, and2(r1, n2));
-              break;
-          case --[ EQUAL ]--1 :
-              f = mkNode(and2(l1, l2), v1, and2(r1, r2));
-              break;
-          case --[ GREATER ]--2 :
-              f = mkNode(and2(n1, l2), v2, and2(n1, r2));
-              break;
+        local ___conditional___=(match);
+        do
+           if ___conditional___ = 0--[ LESS ]-- then do
+              f = mkNode(and2(l1, n2), v1, and2(r1, n2));end else 
+           if ___conditional___ = 1--[ EQUAL ]-- then do
+              f = mkNode(and2(l1, l2), v1, and2(r1, r2));end else 
+           if ___conditional___ = 2--[ GREATER ]-- then do
+              f = mkNode(and2(n1, l2), v2, and2(n1, r2));end else 
+           do end end end end
           
         end
         Caml_array.caml_array_set(andslot1, h, i1);
@@ -296,16 +295,15 @@ function xor(n1, n2) do
       end else do
         var match = cmpVar(v1, v2);
         var f;
-        switch (match) do
-          case --[ LESS ]--0 :
-              f = mkNode(xor(l1, n2), v1, xor(r1, n2));
-              break;
-          case --[ EQUAL ]--1 :
-              f = mkNode(xor(l1, l2), v1, xor(r1, r2));
-              break;
-          case --[ GREATER ]--2 :
-              f = mkNode(xor(n1, l2), v2, xor(n1, r2));
-              break;
+        local ___conditional___=(match);
+        do
+           if ___conditional___ = 0--[ LESS ]-- then do
+              f = mkNode(xor(l1, n2), v1, xor(r1, n2));end else 
+           if ___conditional___ = 1--[ EQUAL ]-- then do
+              f = mkNode(xor(l1, l2), v1, xor(r1, r2));end else 
+           if ___conditional___ = 2--[ GREATER ]-- then do
+              f = mkNode(xor(n1, l2), v2, xor(n1, r2));end else 
+           do end end end end
           
         end
         Caml_array.caml_array_set(andslot1, h, i1);

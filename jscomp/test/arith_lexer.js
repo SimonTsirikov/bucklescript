@@ -24,32 +24,36 @@ function __ocaml_lex_lexeme_rec(lexbuf, ___ocaml_lex_state) do
   while(true) do
     var __ocaml_lex_state = ___ocaml_lex_state;
     var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    switch (__ocaml_lex_state$1) do
-      case 0 :
+    local ___conditional___=(__ocaml_lex_state$1);
+    do
+       if ___conditional___ = 0 then do
           ___ocaml_lex_state = 0;
-          continue ;
-      case 1 :
-          return --[ NUMERAL ]--Block.__(0, [Caml_format.caml_int_of_string(Lexing.lexeme(lexbuf))]);
-      case 2 :
-          return --[ IDENT ]--Block.__(1, [Lexing.lexeme(lexbuf)]);
-      case 3 :
-          return --[ PLUS ]--0;
-      case 4 :
-          return --[ MINUS ]--1;
-      case 5 :
-          return --[ TIMES ]--2;
-      case 6 :
-          return --[ DIVIDE ]--3;
-      case 7 :
-          return --[ LPAREN ]--5;
-      case 8 :
-          return --[ RPAREN ]--6;
-      case 9 :
-          return --[ EOF ]--7;
-      default:
+          continue ;end end end 
+       if ___conditional___ = 1 then do
+          return --[ NUMERAL ]--Block.__(0, [Caml_format.caml_int_of_string(Lexing.lexeme(lexbuf))]);end end end 
+       if ___conditional___ = 2 then do
+          return --[ IDENT ]--Block.__(1, [Lexing.lexeme(lexbuf)]);end end end 
+       if ___conditional___ = 3 then do
+          return --[ PLUS ]--0;end end end 
+       if ___conditional___ = 4 then do
+          return --[ MINUS ]--1;end end end 
+       if ___conditional___ = 5 then do
+          return --[ TIMES ]--2;end end end 
+       if ___conditional___ = 6 then do
+          return --[ DIVIDE ]--3;end end end 
+       if ___conditional___ = 7 then do
+          return --[ LPAREN ]--5;end end end 
+       if ___conditional___ = 8 then do
+          return --[ RPAREN ]--6;end end end 
+       if ___conditional___ = 9 then do
+          return --[ EOF ]--7;end end end 
+       do
+      else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
         continue ;
+        end end
+        
     end
   end;
 end
@@ -59,21 +63,23 @@ function lexeme(lexbuf) do
 end
 
 function str(e) do
-  switch (e.tag | 0) do
-    case --[ Numeral ]--0 :
-        return Pervasives.string_of_float(e[0]);
-    case --[ Plus ]--1 :
-        return str(e[0]) .. ("+" .. str(e[1]));
-    case --[ Minus ]--2 :
-        return str(e[0]) .. ("-" .. str(e[1]));
-    case --[ Times ]--3 :
-        return str(e[0]) .. ("*" .. str(e[1]));
-    case --[ Divide ]--4 :
-        return str(e[0]) .. ("/" .. str(e[1]));
-    case --[ Negate ]--5 :
-        return "-" .. str(e[0]);
-    case --[ Variable ]--6 :
-        return e[0];
+  local ___conditional___=(e.tag | 0);
+  do
+     if ___conditional___ = 0--[ Numeral ]-- then do
+        return Pervasives.string_of_float(e[0]);end end end 
+     if ___conditional___ = 1--[ Plus ]-- then do
+        return str(e[0]) .. ("+" .. str(e[1]));end end end 
+     if ___conditional___ = 2--[ Minus ]-- then do
+        return str(e[0]) .. ("-" .. str(e[1]));end end end 
+     if ___conditional___ = 3--[ Times ]-- then do
+        return str(e[0]) .. ("*" .. str(e[1]));end end end 
+     if ___conditional___ = 4--[ Divide ]-- then do
+        return str(e[0]) .. ("/" .. str(e[1]));end end end 
+     if ___conditional___ = 5--[ Negate ]-- then do
+        return "-" .. str(e[0]);end end end 
+     if ___conditional___ = 6--[ Variable ]-- then do
+        return e[0];end end end 
+     do
     
   end
 end

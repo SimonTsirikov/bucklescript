@@ -119,15 +119,17 @@ function eqVOpt(x, y) do
 end
 
 function s(param) do
-  switch (param) do
-    case --[ A0 ]--0 :
-        return "A0";
-    case --[ A1 ]--1 :
-        return "A1";
-    case --[ A2 ]--2 :
-        return "A2";
-    case --[ A3 ]--3 :
-        return "A3";
+  local ___conditional___=(param);
+  do
+     if ___conditional___ = 0--[ A0 ]-- then do
+        return "A0";end end end 
+     if ___conditional___ = 1--[ A1 ]-- then do
+        return "A1";end end end 
+     if ___conditional___ = 2--[ A2 ]-- then do
+        return "A2";end end end 
+     if ___conditional___ = 3--[ A3 ]-- then do
+        return "A3";end end end 
+     do
     
   end
 end

@@ -1437,15 +1437,16 @@ function kwd(ppf, s) do
 end
 
 function pr_exp0(ppf, lam) do
-  switch (lam.tag | 0) do
-    case --[ Var ]--1 :
+  local ___conditional___=(lam.tag | 0);
+  do
+     if ___conditional___ = 1--[ Var ]-- then do
         return Curry._2(Format.fprintf(ppf, --[ Format ]--[
                         --[ Alpha ]--Block.__(15, [--[ End_of_format ]--0]),
                         "%a"
-                      ]), ident, lam[0]);
-    case --[ Lambda ]--0 :
-    case --[ Apply ]--2 :
-        break;
+                      ]), ident, lam[0]);end end end 
+     if ___conditional___ = 0--[ Lambda ]--
+     or ___conditional___ = 2--[ Apply ]--
+     do
     
   end
   return Curry._2(Format.fprintf(ppf, --[ Format ]--[
@@ -1492,11 +1493,12 @@ function pr_app(ppf, e) do
 end
 
 function pr_other_applications(ppf, f) do
-  switch (f.tag | 0) do
-    case --[ Lambda ]--0 :
-    case --[ Var ]--1 :
-        return pr_exp0(ppf, f);
-    case --[ Apply ]--2 :
+  local ___conditional___=(f.tag | 0);
+  do
+     if ___conditional___ = 0--[ Lambda ]--
+     or ___conditional___ = 1--[ Var ]-- then do
+        return pr_exp0(ppf, f);end end end 
+     if ___conditional___ = 2--[ Apply ]-- then do
         return Curry._4(Format.fprintf(ppf, --[ Format ]--[
                         --[ Alpha ]--Block.__(15, [--[ Formatting_lit ]--Block.__(17, [
                                 --[ Break ]--Block.__(0, [
@@ -1507,14 +1509,16 @@ function pr_other_applications(ppf, f) do
                                 --[ Alpha ]--Block.__(15, [--[ End_of_format ]--0])
                               ])]),
                         "%a@ %a"
-                      ]), pr_app, f[0], pr_exp0, f[1]);
+                      ]), pr_app, f[0], pr_exp0, f[1]);end end end 
+     do
     
   end
 end
 
 function pr_lambda(ppf, e) do
-  switch (e.tag | 0) do
-    case --[ Lambda ]--0 :
+  local ___conditional___=(e.tag | 0);
+  do
+     if ___conditional___ = 0--[ Lambda ]-- then do
         return Curry._8(Format.fprintf(ppf, --[ Format ]--[
                         --[ Formatting_gen ]--Block.__(18, [
                             --[ Open_box ]--Block.__(1, [--[ Format ]--[
@@ -1537,10 +1541,11 @@ function pr_lambda(ppf, e) do
                                           ])])])])
                           ]),
                         "@[<1>%a%a%a@ %a@]"
-                      ]), kwd, "\\", ident, e[0], kwd, ".", pr_lambda, e[1]);
-    case --[ Var ]--1 :
-    case --[ Apply ]--2 :
-        return pr_app(ppf, e);
+                      ]), kwd, "\\", ident, e[0], kwd, ".", pr_lambda, e[1]);end end end 
+     if ___conditional___ = 1--[ Var ]--
+     or ___conditional___ = 2--[ Apply ]-- then do
+        return pr_app(ppf, e);end end end 
+     do
     
   end
 end

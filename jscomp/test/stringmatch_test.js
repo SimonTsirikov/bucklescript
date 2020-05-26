@@ -142,57 +142,61 @@ end
  end 
 
 function tst03(s) do
-  switch (s) do
-    case "app_const" :
-        return 5;
-    case "app_const_const" :
-        return 9;
-    case "app_const_env" :
-        return 11;
-    case "app_const_meth" :
-        return 12;
-    case "app_const_var" :
-        return 10;
-    case "app_env" :
-        return 7;
-    case "app_env_const" :
-        return 14;
-    case "app_meth" :
-        return 8;
-    case "app_meth_const" :
-        return 15;
-    case "app_var" :
-        return 6;
-    case "app_var_const" :
-        return 13;
-    case "get_const" :
-        return 0;
-    case "get_env" :
-        return 2;
-    case "get_meth" :
-        return 3;
-    case "get_var" :
-        return 1;
-    case "meth_app_const" :
-        return 16;
-    case "meth_app_env" :
-        return 18;
-    case "meth_app_meth" :
-        return 19;
-    case "meth_app_var" :
-        return 17;
-    case "send_const" :
-        return 20;
-    case "send_env" :
-        return 22;
-    case "send_meth" :
-        return 23;
-    case "send_var" :
-        return 21;
-    case "set_var" :
-        return 4;
-    default:
+  local ___conditional___=(s);
+  do
+     if ___conditional___ = "app_const" then do
+        return 5;end end end 
+     if ___conditional___ = "app_const_const" then do
+        return 9;end end end 
+     if ___conditional___ = "app_const_env" then do
+        return 11;end end end 
+     if ___conditional___ = "app_const_meth" then do
+        return 12;end end end 
+     if ___conditional___ = "app_const_var" then do
+        return 10;end end end 
+     if ___conditional___ = "app_env" then do
+        return 7;end end end 
+     if ___conditional___ = "app_env_const" then do
+        return 14;end end end 
+     if ___conditional___ = "app_meth" then do
+        return 8;end end end 
+     if ___conditional___ = "app_meth_const" then do
+        return 15;end end end 
+     if ___conditional___ = "app_var" then do
+        return 6;end end end 
+     if ___conditional___ = "app_var_const" then do
+        return 13;end end end 
+     if ___conditional___ = "get_const" then do
+        return 0;end end end 
+     if ___conditional___ = "get_env" then do
+        return 2;end end end 
+     if ___conditional___ = "get_meth" then do
+        return 3;end end end 
+     if ___conditional___ = "get_var" then do
+        return 1;end end end 
+     if ___conditional___ = "meth_app_const" then do
+        return 16;end end end 
+     if ___conditional___ = "meth_app_env" then do
+        return 18;end end end 
+     if ___conditional___ = "meth_app_meth" then do
+        return 19;end end end 
+     if ___conditional___ = "meth_app_var" then do
+        return 17;end end end 
+     if ___conditional___ = "send_const" then do
+        return 20;end end end 
+     if ___conditional___ = "send_env" then do
+        return 22;end end end 
+     if ___conditional___ = "send_meth" then do
+        return 23;end end end 
+     if ___conditional___ = "send_var" then do
+        return 21;end end end 
+     if ___conditional___ = "set_var" then do
+        return 4;end end end 
+     do
+    else do
       return -1;
+      end end
+      
   end
 end
 
@@ -773,33 +777,37 @@ end
  end 
 
 function tst04(s) do
-  switch (s) do
-    case "AAAAAAAA" :
-        return 0;
-    case "AAAAAAAAAAAAAAAA" :
-        return 1;
-    case "AAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 2;
-    case "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 3;
-    case "BBBBBBBB" :
-        return 4;
-    case "BBBBBBBBBBBBBBBB" :
-        return 5;
-    case "BBBBBBBBBBBBBBBBBBBBBBBB" :
-        return 6;
-    case "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" :
-        return 7;
-    case "CCCCCCCC" :
-        return 8;
-    case "CCCCCCCCCCCCCCCC" :
-        return 9;
-    case "CCCCCCCCCCCCCCCCCCCCCCCC" :
-        return 10;
-    case "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" :
-        return 11;
-    default:
+  local ___conditional___=(s);
+  do
+     if ___conditional___ = "AAAAAAAA" then do
+        return 0;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAA" then do
+        return 1;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 2;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 3;end end end 
+     if ___conditional___ = "BBBBBBBB" then do
+        return 4;end end end 
+     if ___conditional___ = "BBBBBBBBBBBBBBBB" then do
+        return 5;end end end 
+     if ___conditional___ = "BBBBBBBBBBBBBBBBBBBBBBBB" then do
+        return 6;end end end 
+     if ___conditional___ = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" then do
+        return 7;end end end 
+     if ___conditional___ = "CCCCCCCC" then do
+        return 8;end end end 
+     if ___conditional___ = "CCCCCCCCCCCCCCCC" then do
+        return 9;end end end 
+     if ___conditional___ = "CCCCCCCCCCCCCCCCCCCCCCCC" then do
+        return 10;end end end 
+     if ___conditional___ = "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" then do
+        return 11;end end end 
+     do
+    else do
       return -1;
+      end end
+      
   end
 end
 
@@ -1032,35 +1040,39 @@ end
  end 
 
 function tst05(s) do
-  switch (s) do
-    case "AAA" :
-        return 0;
-    case "AAAA" :
-        return 1;
-    case "AAAAA" :
-        return 2;
-    case "AAAAAA" :
-        return 3;
-    case "AAAAAAA" :
-        return 4;
-    case "AAAAAAAAAAAA" :
-        return 5;
-    case "AAAAAAAAAAAAAAAA" :
-        return 6;
-    case "AAAAAAAAAAAAAAAAAAAA" :
-        return 7;
-    case "BBB" :
-        return 8;
-    case "BBBB" :
-        return 9;
-    case "BBBBB" :
-        return 10;
-    case "BBBBBB" :
-        return 11;
-    case "BBBBBBB" :
-        return 12;
-    default:
+  local ___conditional___=(s);
+  do
+     if ___conditional___ = "AAA" then do
+        return 0;end end end 
+     if ___conditional___ = "AAAA" then do
+        return 1;end end end 
+     if ___conditional___ = "AAAAA" then do
+        return 2;end end end 
+     if ___conditional___ = "AAAAAA" then do
+        return 3;end end end 
+     if ___conditional___ = "AAAAAAA" then do
+        return 4;end end end 
+     if ___conditional___ = "AAAAAAAAAAAA" then do
+        return 5;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAA" then do
+        return 6;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAA" then do
+        return 7;end end end 
+     if ___conditional___ = "BBB" then do
+        return 8;end end end 
+     if ___conditional___ = "BBBB" then do
+        return 9;end end end 
+     if ___conditional___ = "BBBBB" then do
+        return 10;end end end 
+     if ___conditional___ = "BBBBBB" then do
+        return 11;end end end 
+     if ___conditional___ = "BBBBBBB" then do
+        return 12;end end end 
+     do
+    else do
       return -1;
+      end end
+      
   end
 end
 
@@ -1697,193 +1709,197 @@ var s91 = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
 var t91 = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
 
 function tst06(s) do
-  switch (s) do
-    case "A" :
-        return 55;
-    case "AA" :
-        return 56;
-    case "AAA" :
-        return 57;
-    case "AAAA" :
-        return 58;
-    case "AAAAA" :
-        return 59;
-    case "AAAAAA" :
-        return 60;
-    case "AAAAAAA" :
-        return 61;
-    case "AAAAAAAA" :
-        return 62;
-    case "AAAAAAAAA" :
-        return 63;
-    case "AAAAAAAAAA" :
-        return 64;
-    case "AAAAAAAAAAA" :
-        return 65;
-    case "AAAAAAAAAAAA" :
-        return 66;
-    case "AAAAAAAAAAAAA" :
-        return 67;
-    case "AAAAAAAAAAAAAA" :
-        return 68;
-    case "AAAAAAAAAAAAAAA" :
-        return 69;
-    case "AAAAAAAAAAAAAAAA" :
-        return 70;
-    case "AAAAAAAAAAAAAAAAA" :
-        return 71;
-    case "AAAAAAAAAAAAAAAAAA" :
-        return 72;
-    case "AAAAAAAAAAAAAAAAAAA" :
-        return 73;
-    case "AAAAAAAAAAAAAAAAAAAA" :
-        return 74;
-    case "AAAAAAAAAAAAAAAAAAAAA" :
-        return 75;
-    case "AAAAAAAAAAAAAAAAAAAAAA" :
-        return 76;
-    case "AAAAAAAAAAAAAAAAAAAAAAA" :
-        return 77;
-    case "AAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 78;
-    case "AAAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 79;
-    case "AAAAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 80;
-    case "AAAAAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 81;
-    case "AAAAAAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 82;
-    case "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 83;
-    case "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 84;
-    case "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 85;
-    case "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 86;
-    case "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 87;
-    case "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" :
-        return 88;
-    case "BBBBBBBBBBBBBBB" :
-        return 89;
-    case "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" :
-        return 90;
-    case "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" :
-        return 91;
-    case "and" :
-        return 0;
-    case "as" :
-        return 1;
-    case "asr" :
-        return 54;
-    case "assert" :
-        return 2;
-    case "begin" :
-        return 3;
-    case "class" :
-        return 4;
-    case "constraint" :
-        return 5;
-    case "do" :
-        return 6;
-    case "done" :
-        return 7;
-    case "downto" :
-        return 8;
-    case "else" :
-        return 9;
-    case "end" :
-        return 10;
-    case "exception" :
-        return 11;
-    case "external" :
-        return 12;
-    case "false" :
-        return 13;
-    case "for" :
-        return 14;
-    case "fun" :
-        return 15;
-    case "function" :
-        return 16;
-    case "functor" :
-        return 17;
-    case "if" :
-        return 18;
-    case "in" :
-        return 19;
-    case "include" :
-        return 20;
-    case "inherit" :
-        return 21;
-    case "initializer" :
-        return 22;
-    case "land" :
-        return 49;
-    case "lazy" :
-        return 23;
-    case "let" :
-        return 24;
-    case "lor" :
-        return 50;
-    case "lsl" :
-        return 52;
-    case "lsr" :
-        return 53;
-    case "lxor" :
-        return 51;
-    case "match" :
-        return 25;
-    case "method" :
-        return 26;
-    case "mod" :
-        return 48;
-    case "module" :
-        return 27;
-    case "mutable" :
-        return 28;
-    case "new" :
-        return 29;
-    case "object" :
-        return 30;
-    case "of" :
-        return 31;
-    case "open" :
-        return 32;
-    case "or" :
-        return 33;
-    case "private" :
-        return 34;
-    case "rec" :
-        return 35;
-    case "sig" :
-        return 36;
-    case "struct" :
-        return 37;
-    case "then" :
-        return 38;
-    case "to" :
-        return 39;
-    case "true" :
-        return 40;
-    case "try" :
-        return 41;
-    case "type" :
-        return 42;
-    case "val" :
-        return 43;
-    case "virtual" :
-        return 44;
-    case "when" :
-        return 45;
-    case "while" :
-        return 46;
-    case "with" :
-        return 47;
-    default:
+  local ___conditional___=(s);
+  do
+     if ___conditional___ = "A" then do
+        return 55;end end end 
+     if ___conditional___ = "AA" then do
+        return 56;end end end 
+     if ___conditional___ = "AAA" then do
+        return 57;end end end 
+     if ___conditional___ = "AAAA" then do
+        return 58;end end end 
+     if ___conditional___ = "AAAAA" then do
+        return 59;end end end 
+     if ___conditional___ = "AAAAAA" then do
+        return 60;end end end 
+     if ___conditional___ = "AAAAAAA" then do
+        return 61;end end end 
+     if ___conditional___ = "AAAAAAAA" then do
+        return 62;end end end 
+     if ___conditional___ = "AAAAAAAAA" then do
+        return 63;end end end 
+     if ___conditional___ = "AAAAAAAAAA" then do
+        return 64;end end end 
+     if ___conditional___ = "AAAAAAAAAAA" then do
+        return 65;end end end 
+     if ___conditional___ = "AAAAAAAAAAAA" then do
+        return 66;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAA" then do
+        return 67;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAA" then do
+        return 68;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAA" then do
+        return 69;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAA" then do
+        return 70;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAA" then do
+        return 71;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAA" then do
+        return 72;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAA" then do
+        return 73;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAA" then do
+        return 74;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAA" then do
+        return 75;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAA" then do
+        return 76;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 77;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 78;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 79;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 80;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 81;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 82;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 83;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 84;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 85;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 86;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 87;end end end 
+     if ___conditional___ = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" then do
+        return 88;end end end 
+     if ___conditional___ = "BBBBBBBBBBBBBBB" then do
+        return 89;end end end 
+     if ___conditional___ = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" then do
+        return 90;end end end 
+     if ___conditional___ = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" then do
+        return 91;end end end 
+     if ___conditional___ = "and" then do
+        return 0;end end end 
+     if ___conditional___ = "as" then do
+        return 1;end end end 
+     if ___conditional___ = "asr" then do
+        return 54;end end end 
+     if ___conditional___ = "assert" then do
+        return 2;end end end 
+     if ___conditional___ = "begin" then do
+        return 3;end end end 
+     if ___conditional___ = "class" then do
+        return 4;end end end 
+     if ___conditional___ = "constraint" then do
+        return 5;end end end 
+     if ___conditional___ = "do" then do
+        return 6;end end end 
+     if ___conditional___ = "done" then do
+        return 7;end end end 
+     if ___conditional___ = "downto" then do
+        return 8;end end end 
+     if ___conditional___ = "else" then do
+        return 9;end end end 
+     if ___conditional___ = "end" then do
+        return 10;end end end 
+     if ___conditional___ = "exception" then do
+        return 11;end end end 
+     if ___conditional___ = "external" then do
+        return 12;end end end 
+     if ___conditional___ = "false" then do
+        return 13;end end end 
+     if ___conditional___ = "for" then do
+        return 14;end end end 
+     if ___conditional___ = "fun" then do
+        return 15;end end end 
+     if ___conditional___ = "function" then do
+        return 16;end end end 
+     if ___conditional___ = "functor" then do
+        return 17;end end end 
+     if ___conditional___ = "if" then do
+        return 18;end end end 
+     if ___conditional___ = "in" then do
+        return 19;end end end 
+     if ___conditional___ = "include" then do
+        return 20;end end end 
+     if ___conditional___ = "inherit" then do
+        return 21;end end end 
+     if ___conditional___ = "initializer" then do
+        return 22;end end end 
+     if ___conditional___ = "land" then do
+        return 49;end end end 
+     if ___conditional___ = "lazy" then do
+        return 23;end end end 
+     if ___conditional___ = "let" then do
+        return 24;end end end 
+     if ___conditional___ = "lor" then do
+        return 50;end end end 
+     if ___conditional___ = "lsl" then do
+        return 52;end end end 
+     if ___conditional___ = "lsr" then do
+        return 53;end end end 
+     if ___conditional___ = "lxor" then do
+        return 51;end end end 
+     if ___conditional___ = "match" then do
+        return 25;end end end 
+     if ___conditional___ = "method" then do
+        return 26;end end end 
+     if ___conditional___ = "mod" then do
+        return 48;end end end 
+     if ___conditional___ = "module" then do
+        return 27;end end end 
+     if ___conditional___ = "mutable" then do
+        return 28;end end end 
+     if ___conditional___ = "new" then do
+        return 29;end end end 
+     if ___conditional___ = "object" then do
+        return 30;end end end 
+     if ___conditional___ = "of" then do
+        return 31;end end end 
+     if ___conditional___ = "open" then do
+        return 32;end end end 
+     if ___conditional___ = "or" then do
+        return 33;end end end 
+     if ___conditional___ = "private" then do
+        return 34;end end end 
+     if ___conditional___ = "rec" then do
+        return 35;end end end 
+     if ___conditional___ = "sig" then do
+        return 36;end end end 
+     if ___conditional___ = "struct" then do
+        return 37;end end end 
+     if ___conditional___ = "then" then do
+        return 38;end end end 
+     if ___conditional___ = "to" then do
+        return 39;end end end 
+     if ___conditional___ = "true" then do
+        return 40;end end end 
+     if ___conditional___ = "try" then do
+        return 41;end end end 
+     if ___conditional___ = "type" then do
+        return 42;end end end 
+     if ___conditional___ = "val" then do
+        return 43;end end end 
+     if ___conditional___ = "virtual" then do
+        return 44;end end end 
+     if ___conditional___ = "when" then do
+        return 45;end end end 
+     if ___conditional___ = "while" then do
+        return 46;end end end 
+     if ___conditional___ = "with" then do
+        return 47;end end end 
+     do
+    else do
       return -1;
+      end end
+      
   end
 end
 

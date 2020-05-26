@@ -61,57 +61,54 @@ function escaped(s) do
       end else if (c >= 14) then do
         exit = 1;
       end else do
-        switch (c) do
-          case 8 :
+        local ___conditional___=(c);
+        do
+           if ___conditional___ = 8 then do
               s$prime[n] = --[ "\\" ]--92;
               n = n + 1 | 0;
-              s$prime[n] = --[ "b" ]--98;
-              break;
-          case 9 :
+              s$prime[n] = --[ "b" ]--98;end else 
+           if ___conditional___ = 9 then do
               s$prime[n] = --[ "\\" ]--92;
               n = n + 1 | 0;
-              s$prime[n] = --[ "t" ]--116;
-              break;
-          case 10 :
+              s$prime[n] = --[ "t" ]--116;end else 
+           if ___conditional___ = 10 then do
               s$prime[n] = --[ "\\" ]--92;
               n = n + 1 | 0;
-              s$prime[n] = --[ "n" ]--110;
-              break;
-          case 0 :
-          case 1 :
-          case 2 :
-          case 3 :
-          case 4 :
-          case 5 :
-          case 6 :
-          case 7 :
-          case 11 :
-          case 12 :
-              exit = 1;
-              break;
-          case 13 :
+              s$prime[n] = --[ "n" ]--110;end else 
+           if ___conditional___ = 0
+           or ___conditional___ = 1
+           or ___conditional___ = 2
+           or ___conditional___ = 3
+           or ___conditional___ = 4
+           or ___conditional___ = 5
+           or ___conditional___ = 6
+           or ___conditional___ = 7
+           or ___conditional___ = 11
+           or ___conditional___ = 12 then do
+              exit = 1;end else 
+           if ___conditional___ = 13 then do
               s$prime[n] = --[ "\\" ]--92;
               n = n + 1 | 0;
-              s$prime[n] = --[ "r" ]--114;
-              break;
+              s$prime[n] = --[ "r" ]--114;end else 
+           do end end end end end end
           
         end
       end end  end  end 
-      switch (exit) do
-        case 1 :
+      local ___conditional___=(exit);
+      do
+         if ___conditional___ = 1 then do
             s$prime[n] = --[ "\\" ]--92;
             n = n + 1 | 0;
             s$prime[n] = 48 + (c / 100 | 0) | 0;
             n = n + 1 | 0;
             s$prime[n] = 48 + (c / 10 | 0) % 10 | 0;
             n = n + 1 | 0;
-            s$prime[n] = 48 + c % 10 | 0;
-            break;
-        case 2 :
+            s$prime[n] = 48 + c % 10 | 0;end else 
+         if ___conditional___ = 2 then do
             s$prime[n] = --[ "\\" ]--92;
             n = n + 1 | 0;
-            s$prime[n] = c;
-            break;
+            s$prime[n] = c;end else 
+         do end end end
         
       end
       n = n + 1 | 0;

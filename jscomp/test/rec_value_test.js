@@ -71,18 +71,22 @@ var v = do
 end;
 
 function fib(n) do
-  switch (n) do
-    case 0 :
-        return four.contents;
-    case 1 :
-        return 1;
-    case 2 :
-        return three.contents;
-    case 3 :
+  local ___conditional___=(n);
+  do
+     if ___conditional___ = 0 then do
+        return four.contents;end end end 
+     if ___conditional___ = 1 then do
+        return 1;end end end 
+     if ___conditional___ = 2 then do
+        return three.contents;end end end 
+     if ___conditional___ = 3 then do
         v.contents = CamlinternalLazy.force(fib);
-        return 1;
-    default:
+        return 1;end end end 
+     do
+    else do
       return fib(n - 1 | 0) + fib(n - 2 | 0) | 0;
+      end end
+      
   end
 end
 

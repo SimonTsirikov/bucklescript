@@ -15,14 +15,16 @@ function foo(param) do
       return 2;
     end end 
   end else do
-    switch (param.tag | 0) do
-      case --[ B ]--0 :
-          return param[0];
-      case --[ C ]--1 :
-          return param[0] + param[1] | 0;
-      case --[ D ]--2 :
+    local ___conditional___=(param.tag | 0);
+    do
+       if ___conditional___ = 0--[ B ]-- then do
+          return param[0];end end end 
+       if ___conditional___ = 1--[ C ]-- then do
+          return param[0] + param[1] | 0;end end end 
+       if ___conditional___ = 2--[ D ]-- then do
           var match = param[0];
-          return match[0] + match[1] | 0;
+          return match[0] + match[1] | 0;end end end 
+       do
       
     end
   end end 
@@ -45,15 +47,19 @@ function fooC(param) do
 end
 
 function switchNum(param) do
-  switch (param) do
-    case 0 :
-        return "0";
-    case 1 :
-        return "1";
-    case 2 :
-        return "2";
-    default:
+  local ___conditional___=(param);
+  do
+     if ___conditional___ = 0 then do
+        return "0";end end end 
+     if ___conditional___ = 1 then do
+        return "1";end end end 
+     if ___conditional___ = 2 then do
+        return "2";end end end 
+     do
+    else do
       return "_";
+      end end
+      
   end
 end
 
@@ -89,12 +95,14 @@ function rollback_path(subst, p) do
   end
   catch (exn)do
     if (exn == Caml_builtin_exceptions.not_found) then do
-      switch (p.tag | 0) do
-        case --[ Pdot ]--1 :
-            return "Pdot";
-        case --[ Pident ]--0 :
-        case --[ Papply ]--2 :
-            return "Pident | Papply";
+      local ___conditional___=(p.tag | 0);
+      do
+         if ___conditional___ = 1--[ Pdot ]-- then do
+            return "Pdot";end end end 
+         if ___conditional___ = 0--[ Pident ]--
+         or ___conditional___ = 2--[ Papply ]-- then do
+            return "Pident | Papply";end end end 
+         do
         
       end
     end else do

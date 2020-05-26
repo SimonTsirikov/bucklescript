@@ -178,15 +178,17 @@ function test(v) do
   var json = JSON.parse(JSON.stringify(v));
   var ty = Js_json.classify(json);
   if (typeof ty == "number") then do
-    switch (ty) do
-      case --[ JSONFalse ]--0 :
-          return eq("File \"js_json_test.ml\", line 95, characters 31-38", false, v);
-      case --[ JSONTrue ]--1 :
-          return eq("File \"js_json_test.ml\", line 94, characters 30-37", true, v);
-      case --[ JSONNull ]--2 :
+    local ___conditional___=(ty);
+    do
+       if ___conditional___ = 0--[ JSONFalse ]-- then do
+          return eq("File \"js_json_test.ml\", line 95, characters 31-38", false, v);end end end 
+       if ___conditional___ = 1--[ JSONTrue ]-- then do
+          return eq("File \"js_json_test.ml\", line 94, characters 30-37", true, v);end end end 
+       if ___conditional___ = 2--[ JSONNull ]-- then do
           return add_test("File \"js_json_test.ml\", line 96, characters 18-25", (function (param) do
                         return --[ Ok ]--Block.__(4, [false]);
-                      end));
+                      end));end end end 
+       do
       
     end
   end else do
@@ -278,8 +280,9 @@ function eq_at_i(loc, json, i, kind, expected) do
                 end));
   end else if (ty.tag == --[ JSONArray ]--3) then do
     var ty$1 = Js_json.classify(Caml_array.caml_array_get(ty[0], i));
-    switch (kind) do
-      case --[ String ]--0 :
+    local ___conditional___=(kind);
+    do
+       if ___conditional___ = 0--[ String ]-- then do
           if (typeof ty$1 == "number") then do
             return add_test(loc, (function (param) do
                           return --[ Ok ]--Block.__(4, [false]);
@@ -290,8 +293,8 @@ function eq_at_i(loc, json, i, kind, expected) do
                         end));
           end else do
             return eq(loc, ty$1[0], expected);
-          end end  end 
-      case --[ Number ]--1 :
+          end end  end end end end 
+       if ___conditional___ = 1--[ Number ]-- then do
           if (typeof ty$1 == "number") then do
             return add_test(loc, (function (param) do
                           return --[ Ok ]--Block.__(4, [false]);
@@ -302,8 +305,8 @@ function eq_at_i(loc, json, i, kind, expected) do
             return add_test(loc, (function (param) do
                           return --[ Ok ]--Block.__(4, [false]);
                         end));
-          end end  end 
-      case --[ Object ]--2 :
+          end end  end end end end 
+       if ___conditional___ = 2--[ Object ]-- then do
           if (typeof ty$1 == "number") then do
             return add_test(loc, (function (param) do
                           return --[ Ok ]--Block.__(4, [false]);
@@ -314,8 +317,8 @@ function eq_at_i(loc, json, i, kind, expected) do
             return add_test(loc, (function (param) do
                           return --[ Ok ]--Block.__(4, [false]);
                         end));
-          end end  end 
-      case --[ Array ]--3 :
+          end end  end end end end 
+       if ___conditional___ = 3--[ Array ]-- then do
           if (typeof ty$1 == "number") then do
             return add_test(loc, (function (param) do
                           return --[ Ok ]--Block.__(4, [false]);
@@ -326,26 +329,28 @@ function eq_at_i(loc, json, i, kind, expected) do
             return add_test(loc, (function (param) do
                           return --[ Ok ]--Block.__(4, [false]);
                         end));
-          end end  end 
-      case --[ Boolean ]--4 :
+          end end  end end end end 
+       if ___conditional___ = 4--[ Boolean ]-- then do
           if (typeof ty$1 == "number") then do
-            switch (ty$1) do
-              case --[ JSONFalse ]--0 :
-                  return eq(loc, false, expected);
-              case --[ JSONTrue ]--1 :
-                  return eq(loc, true, expected);
-              case --[ JSONNull ]--2 :
+            local ___conditional___=(ty$1);
+            do
+               if ___conditional___ = 0--[ JSONFalse ]-- then do
+                  return eq(loc, false, expected);end end end 
+               if ___conditional___ = 1--[ JSONTrue ]-- then do
+                  return eq(loc, true, expected);end end end 
+               if ___conditional___ = 2--[ JSONNull ]-- then do
                   return add_test(loc, (function (param) do
                                 return --[ Ok ]--Block.__(4, [false]);
-                              end));
+                              end));end end end 
+               do
               
             end
           end else do
             return add_test(loc, (function (param) do
                           return --[ Ok ]--Block.__(4, [false]);
                         end));
-          end end 
-      case --[ Null ]--5 :
+          end end end end end 
+       if ___conditional___ = 5--[ Null ]-- then do
           if (typeof ty$1 == "number") then do
             if (ty$1 >= 2) then do
               return add_test(loc, (function (param) do
@@ -360,7 +365,8 @@ function eq_at_i(loc, json, i, kind, expected) do
             return add_test(loc, (function (param) do
                           return --[ Ok ]--Block.__(4, [false]);
                         end));
-          end end 
+          end end end end end 
+       do
       
     end
   end else do

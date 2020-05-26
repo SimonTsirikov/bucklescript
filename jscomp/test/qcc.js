@@ -848,18 +848,20 @@ end
 
 function unary(stk) do
   var match = Curry._1(next$1, --[ () ]--0);
-  switch (match.tag | 0) do
-    case --[ Op ]--0 :
+  local ___conditional___=(match.tag | 0);
+  do
+     if ___conditional___ = 0--[ Op ]-- then do
         var o = match[0];
-        switch (o) do
-          case "&" :
+        local ___conditional___=(o);
+        do
+           if ___conditional___ = "&" then do
               unary(stk);
-              return patchlval(--[ () ]--0);
-          case "(" :
+              return patchlval(--[ () ]--0);end end end 
+           if ___conditional___ = "(" then do
               expr(stk);
               Curry._1(next$1, --[ () ]--0);
-              return postfix(stk);
-          case "*" :
+              return postfix(stk);end end end 
+           if ___conditional___ = "*" then do
               Curry._1(next$1, --[ () ]--0);
               var t = Curry._1(next$1, --[ () ]--0);
               var match$1;
@@ -886,8 +888,9 @@ function unary(stk) do
                 Curry._1(next$1, --[ () ]--0);
               end
               unary(stk);
-              return read(match$1[0]);
-          default:
+              return read(match$1[0]);end end end 
+           do
+          else do
             var unops = --[ :: ]--[
               --[ tuple ]--[
                 "+",
@@ -937,13 +940,15 @@ function unary(stk) do
             end else do
               return 0;
             end end 
-        end
-    case --[ ILit ]--1 :
-        return load(0, match[0]);
-    case --[ SLit ]--2 :
+            end end
+            
+        endend end end 
+     if ___conditional___ = 1--[ ILit ]-- then do
+        return load(0, match[0]);end end end 
+     if ___conditional___ = 2--[ SLit ]-- then do
         out(18616);
-        return le(64, match[0]);
-    case --[ Sym ]--3 :
+        return le(64, match[0]);end end end 
+     if ___conditional___ = 3--[ Sym ]-- then do
         var i = match[0];
         if (List.mem_assoc(i, stk)) then do
           var l = List.assoc(i, stk);
@@ -975,7 +980,8 @@ function unary(stk) do
               end);
           read(--[ Int ]--0);
         end end 
-        return postfix(stk);
+        return postfix(stk);end end end 
+     do
     
   end
 end
@@ -986,8 +992,9 @@ function postfix(stk) do
     return Curry._1(unnext, t);
   end else do
     var op = t[0];
-    switch (op) do
-      case "(" :
+    local ___conditional___=(op);
+    do
+       if ___conditional___ = "(" then do
           var emitargs = function (_l, _rl) do
             while(true) do
               var rl = _rl;
@@ -1042,12 +1049,14 @@ function postfix(stk) do
             return out(1216594952);
           end else do
             return 0;
-          end end 
-      case "++" :
-      case "--" :
-          break;
-      default:
+          end end end end end 
+       if ___conditional___ = "++"
+       or ___conditional___ = "--"
+       do
+      else do
         return Curry._1(unnext, t);
+        end end
+        
     end
     patchlval(--[ () ]--0);
     out(4753857);
@@ -1361,12 +1370,15 @@ function stmt(brk, stk) do
     brkl.contents = loc$4;
     return --[ () ]--0;
   end else if (!t.tag) then do
-    switch (t[0]) do
-      case ";" :
-          return --[ () ]--0;
-      case "{" :
-          return block(brk, stk);
-      default:
+    local ___conditional___=(t[0]);
+    do
+       if ___conditional___ = ";" then do
+          return --[ () ]--0;end end end 
+       if ___conditional___ = "{" then do
+          return block(brk, stk);end end end 
+       do
+      else do
+        end end
         
     end
   end
@@ -1425,8 +1437,9 @@ function top(_param) do
             var n = _n;
             var regs = _regs;
             var match = Curry._1(next$1, --[ () ]--0);
-            switch (match.tag | 0) do
-              case --[ Op ]--0 :
+            local ___conditional___=(match.tag | 0);
+            do
+               if ___conditional___ = 0--[ Op ]-- then do
                   if (match[0] == ")") then do
                     return stk;
                   end else do
@@ -1434,14 +1447,14 @@ function top(_param) do
                           Caml_builtin_exceptions.failure,
                           "[var] or ) expected"
                         ];
-                  end end 
-              case --[ ILit ]--1 :
-              case --[ SLit ]--2 :
+                  end end end end end 
+               if ___conditional___ = 1--[ ILit ]--
+               or ___conditional___ = 2--[ SLit ]-- then do
                   throw [
                         Caml_builtin_exceptions.failure,
                         "[var] or ) expected"
-                      ];
-              case --[ Sym ]--3 :
+                      ];end end end 
+               if ___conditional___ = 3--[ Sym ]-- then do
                   var r = List.hd(regs);
                   push(r);
                   if (nextis(--[ Op ]--Block.__(0, [","]))) then do
@@ -1459,7 +1472,8 @@ function top(_param) do
                   _stk = stk$prime;
                   _n = n + 1 | 0;
                   _regs = List.tl(regs);
-                  continue ;
+                  continue ;end end end 
+               do
               
             end
           end;
@@ -1767,8 +1781,9 @@ end
 
 function main(param) do
   var ppsym = function (param) do
-    switch (param.tag | 0) do
-      case --[ Op ]--0 :
+    local ___conditional___=(param.tag | 0);
+    do
+       if ___conditional___ = 0--[ Op ]-- then do
           return Curry._1(Printf.printf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "Operator '",
@@ -1781,8 +1796,8 @@ function main(param) do
                                 ])
                             ]),
                           "Operator '%s'\n"
-                        ]), param[0]);
-      case --[ ILit ]--1 :
+                        ]), param[0]);end end end 
+       if ___conditional___ = 1--[ ILit ]-- then do
           return Curry._1(Printf.printf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "Int literal ",
@@ -1797,8 +1812,8 @@ function main(param) do
                                 ])
                             ]),
                           "Int literal %d\n"
-                        ]), param[0]);
-      case --[ SLit ]--2 :
+                        ]), param[0]);end end end 
+       if ___conditional___ = 2--[ SLit ]-- then do
           return Curry._1(Printf.printf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "Str literal ",
@@ -1811,8 +1826,8 @@ function main(param) do
                                 ])
                             ]),
                           "Str literal %S\n"
-                        ]), param[1]);
-      case --[ Sym ]--3 :
+                        ]), param[1]);end end end 
+       if ___conditional___ = 3--[ Sym ]-- then do
           var i = param[0];
           return Curry._2(Printf.printf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -1834,13 +1849,15 @@ function main(param) do
                                 ])
                             ]),
                           "Symbol '%s' (%d)\n"
-                        ]), symstr(i), i);
+                        ]), symstr(i), i);end end end 
+       do
       
     end
   end;
   var f = #Sys.argv < 2 ? "-blk" : Caml_array.caml_array_get(Sys.argv, 1);
-  switch (f) do
-    case "-blk" :
+  local ___conditional___=(f);
+  do
+     if ___conditional___ = "-blk" then do
         var partial_arg_000 = do
           contents: 0
         end;
@@ -1854,8 +1871,8 @@ function main(param) do
         var stk = --[ [] ]--0;
         opos.contents = 0;
         Curry._1(c, stk);
-        return Pervasives.print_bytes(Bytes.sub(obuf, 0, opos.contents));
-    case "-lex" :
+        return Pervasives.print_bytes(Bytes.sub(obuf, 0, opos.contents));end end end 
+     if ___conditional___ = "-lex" then do
         var _param = --[ () ]--0;
         while(true) do
           var tok = Curry._1(next$1, --[ () ]--0);
@@ -1876,14 +1893,17 @@ function main(param) do
             _param = --[ () ]--0;
             continue ;
           end end  end 
-        end;
-    default:
+        end;end end end 
+     do
+    else do
       var oc = Pervasives.open_out("a.out");
       inch.contents = Pervasives.open_in_bin(f);
       top(--[ () ]--0);
       elfgen(oc);
       Caml_io.caml_ml_flush(oc);
       return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
+      end end
+      
   end
 end
 

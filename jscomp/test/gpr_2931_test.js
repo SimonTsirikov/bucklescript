@@ -15,18 +15,20 @@ function eq(loc, x, y) do
 end
 
 function fake_c2(a_type, b_type) do
-  switch (a_type) do
-    case "number" :
+  local ___conditional___=(a_type);
+  do
+     if ___conditional___ = "number" then do
         if (b_type == "number") then do
           return 33;
         end
-         end 
-        break;
-    case "string" :
-        return 1;
-    case "undefined" :
-        return -1;
-    default:
+         end end else 
+     if ___conditional___ = "string" then do
+        return 1;end end end 
+     if ___conditional___ = "undefined" then do
+        return -1;end end end 
+     do
+    else do
+      end end
       
   end
   if (b_type == "undefined") then do

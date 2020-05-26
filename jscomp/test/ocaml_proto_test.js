@@ -346,19 +346,17 @@ end
 
 function string_of_programmatic_error(e) do
   var tmp;
-  switch (e) do
-    case --[ Invalid_string_split ]--0 :
-        tmp = "string split error";
-        break;
-    case --[ Unexpected_field_type ]--1 :
-        tmp = "unexpected field type";
-        break;
-    case --[ No_type_found_for_id ]--2 :
-        tmp = "no type was found for type id";
-        break;
-    case --[ One_of_should_be_inlined_in_message ]--3 :
-        tmp = "one of variant encoding must be inlined in message";
-        break;
+  local ___conditional___=(e);
+  do
+     if ___conditional___ = 0--[ Invalid_string_split ]-- then do
+        tmp = "string split error";end else 
+     if ___conditional___ = 1--[ Unexpected_field_type ]-- then do
+        tmp = "unexpected field type";end else 
+     if ___conditional___ = 2--[ No_type_found_for_id ]-- then do
+        tmp = "no type was found for type id";end else 
+     if ___conditional___ = 3--[ One_of_should_be_inlined_in_message ]-- then do
+        tmp = "one of variant encoding must be inlined in message";end else 
+     do end end end end end
     
   end
   return "Programatic_error" .. tmp;
@@ -376,8 +374,9 @@ function prepare_error(param) do
                 "Syntax error"
               ]);
   end else do
-    switch (param.tag | 0) do
-      case --[ Unresolved_type ]--0 :
+    local ___conditional___=(param.tag | 0);
+    do
+       if ___conditional___ = 0--[ Unresolved_type ]-- then do
           var match = param[0];
           return Curry._3(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -403,8 +402,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "unresolved type for field name : %s (type:%s, in message: %s)"
-                        ]), match.field_name, match.type_, match.message_name);
-      case --[ Duplicated_field_number ]--1 :
+                        ]), match.field_name, match.type_, match.message_name);end end end 
+       if ___conditional___ = 1--[ Duplicated_field_number ]-- then do
           var match$1 = param[0];
           return Curry._3(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -430,8 +429,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "duplicated field number for field name: %s (previous field name:%s, message: %s)"
-                        ]), match$1.field_name, match$1.previous_field_name, match$1.message_name);
-      case --[ Invalid_default_value ]--2 :
+                        ]), match$1.field_name, match$1.previous_field_name, match$1.message_name);end end end 
+       if ___conditional___ = 2--[ Invalid_default_value ]-- then do
           var match$2 = param[0];
           return Curry._2(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -451,8 +450,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "invalid default value for field name:%s (info: %s)"
-                        ]), option_default("", match$2.field_name), match$2.info);
-      case --[ Unsupported_field_type ]--3 :
+                        ]), option_default("", match$2.field_name), match$2.info);end end end 
+       if ___conditional___ = 3--[ Unsupported_field_type ]-- then do
           var match$3 = param[0];
           return Curry._3(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -475,8 +474,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "unsupported field type for field name:%s with type:%s in bakend: %s"
-                        ]), option_default("", match$3.field_name), match$3.field_type, match$3.backend_name);
-      case --[ Programatic_error ]--4 :
+                        ]), option_default("", match$3.field_name), match$3.field_type, match$3.backend_name);end end end 
+       if ___conditional___ = 4--[ Programatic_error ]-- then do
           return Curry._1(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "programmatic error: ",
@@ -486,8 +485,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "programmatic error: %s"
-                        ]), string_of_programmatic_error(param[0]));
-      case --[ Invalid_import_qualifier ]--5 :
+                        ]), string_of_programmatic_error(param[0]));end end end 
+       if ___conditional___ = 5--[ Invalid_import_qualifier ]-- then do
           return Curry._1(Printf.sprintf(--[ Format ]--[
                           --[ String ]--Block.__(2, [
                               --[ No_padding ]--0,
@@ -497,8 +496,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "%sInvalid import qualified, only 'public' supported"
-                        ]), to_string(param[0]));
-      case --[ Invalid_file_name ]--6 :
+                        ]), to_string(param[0]));end end end 
+       if ___conditional___ = 6--[ Invalid_file_name ]-- then do
           return Curry._1(Printf.sprintf(Pervasives.$caret$caret(--[ Format ]--[
                               --[ String_literal ]--Block.__(11, [
                                   "Invalid file name: ",
@@ -517,8 +516,8 @@ function prepare_error(param) do
                                   --[ End_of_format ]--0
                                 ]),
                               "format must <name>.proto"
-                            ])), param[0]);
-      case --[ Import_file_not_found ]--7 :
+                            ])), param[0]);end end end 
+       if ___conditional___ = 7--[ Import_file_not_found ]-- then do
           return Curry._1(Printf.sprintf(Pervasives.$caret$caret(--[ Format ]--[
                               --[ String_literal ]--Block.__(11, [
                                   "File: ",
@@ -537,8 +536,8 @@ function prepare_error(param) do
                                   --[ End_of_format ]--0
                                 ]),
                               "could not be found."
-                            ])), param[0]);
-      case --[ Invalid_packed_option ]--8 :
+                            ])), param[0]);end end end 
+       if ___conditional___ = 8--[ Invalid_packed_option ]-- then do
           return Curry._1(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "Invalid packed option for field: ",
@@ -548,8 +547,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "Invalid packed option for field: %s"
-                        ]), param[0]);
-      case --[ Missing_semicolon_for_enum_value ]--9 :
+                        ]), param[0]);end end end 
+       if ___conditional___ = 9--[ Missing_semicolon_for_enum_value ]-- then do
           return Curry._2(Printf.sprintf(--[ Format ]--[
                           --[ String ]--Block.__(2, [
                               --[ No_padding ]--0,
@@ -562,8 +561,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "%sMissing semicolon for enum value: %s"
-                        ]), to_string(param[1]), param[0]);
-      case --[ Invalid_enum_specification ]--10 :
+                        ]), to_string(param[1]), param[0]);end end end 
+       if ___conditional___ = 10--[ Invalid_enum_specification ]-- then do
           return Curry._2(Printf.sprintf(--[ Format ]--[
                           --[ String ]--Block.__(2, [
                               --[ No_padding ]--0,
@@ -576,8 +575,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "%sMissing enum specification (<identifier> = <id>;) for enum value: %s"
-                        ]), to_string(param[1]), param[0]);
-      case --[ Invalid_mutable_option ]--11 :
+                        ]), to_string(param[1]), param[0]);end end end 
+       if ___conditional___ = 11--[ Invalid_mutable_option ]-- then do
           return Curry._1(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "Invalid mutable option for field ",
@@ -587,8 +586,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "Invalid mutable option for field %s"
-                        ]), option_default("", param[0]));
-      case --[ Missing_one_of_name ]--12 :
+                        ]), option_default("", param[0]));end end end 
+       if ___conditional___ = 12--[ Missing_one_of_name ]-- then do
           return Curry._1(Printf.sprintf(--[ Format ]--[
                           --[ String ]--Block.__(2, [
                               --[ No_padding ]--0,
@@ -598,8 +597,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "%sMissing oneof name"
-                        ]), to_string(param[0]));
-      case --[ Invalid_field_label ]--13 :
+                        ]), to_string(param[0]));end end end 
+       if ___conditional___ = 13--[ Invalid_field_label ]-- then do
           return Curry._1(Printf.sprintf(--[ Format ]--[
                           --[ String ]--Block.__(2, [
                               --[ No_padding ]--0,
@@ -609,8 +608,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "%sInvalid field label. [required|repeated|optional] expected"
-                        ]), to_string(param[0]));
-      case --[ Missing_field_label ]--14 :
+                        ]), to_string(param[0]));end end end 
+       if ___conditional___ = 14--[ Missing_field_label ]-- then do
           return Curry._1(Printf.sprintf(--[ Format ]--[
                           --[ String ]--Block.__(2, [
                               --[ No_padding ]--0,
@@ -620,8 +619,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "%sMissing field label. [required|repeated|optional] expected"
-                        ]), to_string(param[0]));
-      case --[ Parsing_error ]--15 :
+                        ]), to_string(param[0]));end end end 
+       if ___conditional___ = 15--[ Parsing_error ]-- then do
           return Curry._3(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "File ",
@@ -645,7 +644,8 @@ function prepare_error(param) do
                                 ])
                             ]),
                           "File %s, line %i:\n%s"
-                        ]), param[0], param[1], param[2]);
+                        ]), param[0], param[1], param[2]);end end end 
+       do
       
     end
   end end 
@@ -655,15 +655,18 @@ function add_loc(loc, exn) do
   if (exn[0] == Compilation_error) then do
     var tmp = exn[1];
     if (typeof tmp ~= "number") then do
-      switch (tmp.tag | 0) do
-        case --[ Invalid_import_qualifier ]--5 :
-        case --[ Missing_semicolon_for_enum_value ]--9 :
-        case --[ Invalid_enum_specification ]--10 :
-        case --[ Missing_one_of_name ]--12 :
-        case --[ Invalid_field_label ]--13 :
-        case --[ Missing_field_label ]--14 :
-            return exn;
-        default:
+      local ___conditional___=(tmp.tag | 0);
+      do
+         if ___conditional___ = 5--[ Invalid_import_qualifier ]--
+         or ___conditional___ = 9--[ Missing_semicolon_for_enum_value ]--
+         or ___conditional___ = 10--[ Invalid_enum_specification ]--
+         or ___conditional___ = 12--[ Missing_one_of_name ]--
+         or ___conditional___ = 13--[ Invalid_field_label ]--
+         or ___conditional___ = 14--[ Missing_field_label ]-- then do
+            return exn;end end end 
+         do
+        else do
+          end end
           
       end
     end
@@ -1249,13 +1252,17 @@ var yyact = [
   (function (__caml_parser_env) do
       var _1 = Parsing.peek_val(__caml_parser_env, 0);
       var litteral = _1[1];
-      switch (litteral) do
-        case "false" :
-            return --[ Constant_bool ]--Block.__(1, [false]);
-        case "true" :
-            return --[ Constant_bool ]--Block.__(1, [true]);
-        default:
+      local ___conditional___=(litteral);
+      do
+         if ___conditional___ = "false" then do
+            return --[ Constant_bool ]--Block.__(1, [false]);end end end 
+         if ___conditional___ = "true" then do
+            return --[ Constant_bool ]--Block.__(1, [true]);end end end 
+         do
+        else do
           return --[ Constant_litteral ]--Block.__(4, [litteral]);
+          end end
+          
       end
     end),
   (function (__caml_parser_env) do
@@ -1467,30 +1474,34 @@ function __ocaml_lex_string_rec(_l, lexbuf, ___ocaml_lex_state) do
     var __ocaml_lex_state = ___ocaml_lex_state;
     var l = _l;
     var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    switch (__ocaml_lex_state$1) do
-      case 0 :
+    local ___conditional___=(__ocaml_lex_state$1);
+    do
+       if ___conditional___ = 0 then do
           var c = Lexing.lexeme_char(lexbuf, 1);
           ___ocaml_lex_state = 55;
           _l = --[ :: ]--[
             Char.escaped(c),
             l
           ];
-          continue ;
-      case 1 :
-          return --[ String_value ]--[$$String.concat("", List.rev(l))];
-      case 2 :
+          continue ;end end end 
+       if ___conditional___ = 1 then do
+          return --[ String_value ]--[$$String.concat("", List.rev(l))];end end end 
+       if ___conditional___ = 2 then do
           ___ocaml_lex_state = 55;
           _l = --[ :: ]--[
             Lexing.lexeme(lexbuf),
             l
           ];
-          continue ;
-      case 3 :
-          return --[ String_eof ]--0;
-      default:
+          continue ;end end end 
+       if ___conditional___ = 3 then do
+          return --[ String_eof ]--0;end end end 
+       do
+      else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
         continue ;
+        end end
+        
     end
   end;
 end
@@ -1500,23 +1511,27 @@ function __ocaml_lex_comment_rec(_l, lexbuf, ___ocaml_lex_state) do
     var __ocaml_lex_state = ___ocaml_lex_state;
     var l = _l;
     var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    switch (__ocaml_lex_state$1) do
-      case 0 :
+    local ___conditional___=(__ocaml_lex_state$1);
+    do
+       if ___conditional___ = 0 then do
           update_loc(lexbuf);
-          return --[ Comment_value ]--[$$String.concat("", List.rev(l))];
-      case 1 :
+          return --[ Comment_value ]--[$$String.concat("", List.rev(l))];end end end 
+       if ___conditional___ = 1 then do
           ___ocaml_lex_state = 41;
           _l = --[ :: ]--[
             Lexing.lexeme(lexbuf),
             l
           ];
-          continue ;
-      case 2 :
-          return --[ Comment_eof ]--0;
-      default:
+          continue ;end end end 
+       if ___conditional___ = 2 then do
+          return --[ Comment_eof ]--0;end end end 
+       do
+      else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
         continue ;
+        end end
+        
     end
   end;
 end
@@ -1526,27 +1541,31 @@ function __ocaml_lex_multi_line_comment_rec(_l, lexbuf, ___ocaml_lex_state) do
     var __ocaml_lex_state = ___ocaml_lex_state;
     var l = _l;
     var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    switch (__ocaml_lex_state$1) do
-      case 0 :
+    local ___conditional___=(__ocaml_lex_state$1);
+    do
+       if ___conditional___ = 0 then do
           update_loc(lexbuf);
           ___ocaml_lex_state = 47;
-          continue ;
-      case 1 :
+          continue ;end end end 
+       if ___conditional___ = 1 then do
           Lexing.lexeme(lexbuf);
-          return --[ Comment_value ]--[$$String.concat("", List.rev(l))];
-      case 2 :
+          return --[ Comment_value ]--[$$String.concat("", List.rev(l))];end end end 
+       if ___conditional___ = 2 then do
           ___ocaml_lex_state = 47;
           _l = --[ :: ]--[
             Lexing.lexeme(lexbuf),
             l
           ];
-          continue ;
-      case 3 :
-          return --[ Comment_eof ]--0;
-      default:
+          continue ;end end end 
+       if ___conditional___ = 3 then do
+          return --[ Comment_eof ]--0;end end end 
+       do
+      else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
         continue ;
+        end end
+        
     end
   end;
 end
@@ -1557,110 +1576,115 @@ function lexer(lexbuf) do
   while(true) do
     var __ocaml_lex_state = ___ocaml_lex_state;
     var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf$1);
-    switch (__ocaml_lex_state$1) do
-      case 0 :
-          return --[ LBRACE ]--15;
-      case 1 :
-          return --[ RBRACE ]--14;
-      case 2 :
-          return --[ LBRACKET ]--17;
-      case 3 :
-          return --[ RBRACKET ]--16;
-      case 4 :
-          return --[ RPAREN ]--18;
-      case 5 :
-          return --[ LPAREN ]--19;
-      case 6 :
-          return --[ LANGLEB ]--21;
-      case 7 :
-          return --[ RANGLEB ]--20;
-      case 8 :
-          return --[ EQUAL ]--22;
-      case 9 :
-          return --[ SEMICOLON ]--23;
-      case 10 :
-          return --[ COMMA ]--24;
-      case 11 :
+    local ___conditional___=(__ocaml_lex_state$1);
+    do
+       if ___conditional___ = 0 then do
+          return --[ LBRACE ]--15;end end end 
+       if ___conditional___ = 1 then do
+          return --[ RBRACE ]--14;end end end 
+       if ___conditional___ = 2 then do
+          return --[ LBRACKET ]--17;end end end 
+       if ___conditional___ = 3 then do
+          return --[ RBRACKET ]--16;end end end 
+       if ___conditional___ = 4 then do
+          return --[ RPAREN ]--18;end end end 
+       if ___conditional___ = 5 then do
+          return --[ LPAREN ]--19;end end end 
+       if ___conditional___ = 6 then do
+          return --[ LANGLEB ]--21;end end end 
+       if ___conditional___ = 7 then do
+          return --[ RANGLEB ]--20;end end end 
+       if ___conditional___ = 8 then do
+          return --[ EQUAL ]--22;end end end 
+       if ___conditional___ = 9 then do
+          return --[ SEMICOLON ]--23;end end end 
+       if ___conditional___ = 10 then do
+          return --[ COMMA ]--24;end end end 
+       if ___conditional___ = 11 then do
           var match = __ocaml_lex_comment_rec(--[ [] ]--0, lexbuf$1, 41);
           if (match) then do
             ___ocaml_lex_state = 0;
             continue ;
           end else do
             return --[ EOF ]--25;
-          end end 
-      case 12 :
+          end end end end end 
+       if ___conditional___ = 12 then do
           var match$1 = __ocaml_lex_multi_line_comment_rec(--[ [] ]--0, lexbuf$1, 47);
           if (match$1) then do
             ___ocaml_lex_state = 0;
             continue ;
           end else do
             return --[ EOF ]--25;
-          end end 
-      case 13 :
+          end end end end end 
+       if ___conditional___ = 13 then do
           var match$2 = __ocaml_lex_string_rec(--[ [] ]--0, lexbuf$1, 55);
           if (match$2) then do
             return --[ STRING ]--Block.__(2, [match$2[0]]);
           end else do
             return --[ EOF ]--25;
-          end end 
-      case 14 :
-          return --[ INT ]--Block.__(3, [Caml_format.caml_int_of_string(Lexing.lexeme(lexbuf$1))]);
-      case 15 :
-          return --[ FLOAT ]--Block.__(4, [Caml_format.caml_float_of_string(Lexing.lexeme(lexbuf$1))]);
-      case 16 :
-          return --[ FLOAT ]--Block.__(4, [Number.NaN]);
-      case 17 :
+          end end end end end 
+       if ___conditional___ = 14 then do
+          return --[ INT ]--Block.__(3, [Caml_format.caml_int_of_string(Lexing.lexeme(lexbuf$1))]);end end end 
+       if ___conditional___ = 15 then do
+          return --[ FLOAT ]--Block.__(4, [Caml_format.caml_float_of_string(Lexing.lexeme(lexbuf$1))]);end end end 
+       if ___conditional___ = 16 then do
+          return --[ FLOAT ]--Block.__(4, [Number.NaN]);end end end 
+       if ___conditional___ = 17 then do
           update_loc(lexbuf$1);
           ___ocaml_lex_state = 0;
-          continue ;
-      case 18 :
+          continue ;end end end 
+       if ___conditional___ = 18 then do
           ___ocaml_lex_state = 0;
-          continue ;
-      case 19 :
+          continue ;end end end 
+       if ___conditional___ = 19 then do
           var loc = from_lexbuf(lexbuf$1);
           var ident = Lexing.lexeme(lexbuf$1);
-          switch (ident) do
-            case "enum" :
-                return --[ ENUM ]--4;
-            case "extend" :
-                return --[ EXTEND ]--9;
-            case "extensions" :
-                return --[ EXTENSIONS ]--8;
-            case "import" :
-                return --[ IMPORT ]--Block.__(1, [loc]);
-            case "map" :
-                return --[ MAP ]--13;
-            case "max" :
-                return --[ MAX ]--12;
-            case "message" :
-                return --[ MESSAGE ]--3;
-            case "oneof" :
-                return --[ ONE_OF ]--Block.__(0, [loc]);
-            case "option" :
-                return --[ OPTION ]--7;
-            case "optional" :
-                return --[ OPTIONAL ]--1;
-            case "package" :
-                return --[ PACKAGE ]--5;
-            case "public" :
-                return --[ PUBLIC ]--6;
-            case "repeated" :
-                return --[ REPEATED ]--2;
-            case "required" :
-                return --[ REQUIRED ]--0;
-            case "syntax" :
-                return --[ SYNTAX ]--10;
-            case "to" :
-                return --[ TO ]--11;
-            default:
+          local ___conditional___=(ident);
+          do
+             if ___conditional___ = "enum" then do
+                return --[ ENUM ]--4;end end end 
+             if ___conditional___ = "extend" then do
+                return --[ EXTEND ]--9;end end end 
+             if ___conditional___ = "extensions" then do
+                return --[ EXTENSIONS ]--8;end end end 
+             if ___conditional___ = "import" then do
+                return --[ IMPORT ]--Block.__(1, [loc]);end end end 
+             if ___conditional___ = "map" then do
+                return --[ MAP ]--13;end end end 
+             if ___conditional___ = "max" then do
+                return --[ MAX ]--12;end end end 
+             if ___conditional___ = "message" then do
+                return --[ MESSAGE ]--3;end end end 
+             if ___conditional___ = "oneof" then do
+                return --[ ONE_OF ]--Block.__(0, [loc]);end end end 
+             if ___conditional___ = "option" then do
+                return --[ OPTION ]--7;end end end 
+             if ___conditional___ = "optional" then do
+                return --[ OPTIONAL ]--1;end end end 
+             if ___conditional___ = "package" then do
+                return --[ PACKAGE ]--5;end end end 
+             if ___conditional___ = "public" then do
+                return --[ PUBLIC ]--6;end end end 
+             if ___conditional___ = "repeated" then do
+                return --[ REPEATED ]--2;end end end 
+             if ___conditional___ = "required" then do
+                return --[ REQUIRED ]--0;end end end 
+             if ___conditional___ = "syntax" then do
+                return --[ SYNTAX ]--10;end end end 
+             if ___conditional___ = "to" then do
+                return --[ TO ]--11;end end end 
+             do
+            else do
               return --[ IDENT ]--Block.__(5, [--[ tuple ]--[
                           loc,
                           ident
                         ]]);
-          end
-      case 20 :
-          return --[ EOF ]--25;
-      case 21 :
+              end end
+              
+          endend end end 
+       if ___conditional___ = 20 then do
+          return --[ EOF ]--25;end end end 
+       if ___conditional___ = 21 then do
           var s = Curry._1(Printf.sprintf(--[ Format ]--[
                     --[ String_literal ]--Block.__(11, [
                         "Unknown character found ",
@@ -1674,11 +1698,14 @@ function lexer(lexbuf) do
           throw [
                 Caml_builtin_exceptions.failure,
                 s
-              ];
-      default:
+              ];end end end 
+       do
+      else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
         continue ;
+        end end
+        
     end
   end;
 end
@@ -1692,21 +1719,23 @@ function let_decl_of_and(param) do
 end
 
 function string_of_basic_type(param) do
-  switch (param) do
-    case --[ Bt_string ]--0 :
-        return "string";
-    case --[ Bt_float ]--1 :
-        return "float";
-    case --[ Bt_int ]--2 :
-        return "int";
-    case --[ Bt_int32 ]--3 :
-        return "int32";
-    case --[ Bt_int64 ]--4 :
-        return "int64";
-    case --[ Bt_bytes ]--5 :
-        return "bytes";
-    case --[ Bt_bool ]--6 :
-        return "bool";
+  local ___conditional___=(param);
+  do
+     if ___conditional___ = 0--[ Bt_string ]-- then do
+        return "string";end end end 
+     if ___conditional___ = 1--[ Bt_float ]-- then do
+        return "float";end end end 
+     if ___conditional___ = 2--[ Bt_int ]-- then do
+        return "int";end end end 
+     if ___conditional___ = 3--[ Bt_int32 ]-- then do
+        return "int32";end end end 
+     if ___conditional___ = 4--[ Bt_int64 ]-- then do
+        return "int64";end end end 
+     if ___conditional___ = 5--[ Bt_bytes ]-- then do
+        return "bytes";end end end 
+     if ___conditional___ = 6--[ Bt_bool ]-- then do
+        return "bool";end end end 
+     do
     
   end
 end
@@ -1728,17 +1757,18 @@ function string_of_field_type(param) do
 end
 
 function string_of_record_field_type(param) do
-  switch (param.tag | 0) do
-    case --[ Rft_required ]--0 :
-        return string_of_field_type(param[0][0]);
-    case --[ Rft_optional ]--1 :
-        return string_of_field_type(param[0][0]) .. " option";
-    case --[ Rft_repeated_field ]--2 :
+  local ___conditional___=(param.tag | 0);
+  do
+     if ___conditional___ = 0--[ Rft_required ]-- then do
+        return string_of_field_type(param[0][0]);end end end 
+     if ___conditional___ = 1--[ Rft_optional ]-- then do
+        return string_of_field_type(param[0][0]) .. " option";end end end 
+     if ___conditional___ = 2--[ Rft_repeated_field ]-- then do
         var match = param[0];
         return string_of_field_type(match[1]) .. (" " .. (
                   match[0] ? "Pbrt.Repeated_field.t" : "list"
-                ));
-    case --[ Rft_associative_field ]--3 :
+                ));end end end 
+     if ___conditional___ = 3--[ Rft_associative_field ]-- then do
         var match$1 = param[0];
         if (match$1[0]) then do
           return Curry._3(Printf.sprintf(--[ Format ]--[
@@ -1786,9 +1816,10 @@ function string_of_record_field_type(param) do
                             ]),
                           "(%s * %s) %s"
                         ]), string_of_basic_type(match$1[2][0]), string_of_field_type(match$1[3][0]), "list");
-        end end 
-    case --[ Rft_variant_field ]--4 :
-        return param[0].v_name;
+        end end end end end 
+     if ___conditional___ = 4--[ Rft_variant_field ]-- then do
+        return param[0].v_name;end end end 
+     do
     
   end
 end
@@ -1835,16 +1866,15 @@ end
 function string_of_payload_kind(capitalize, payload_kind, packed) do
   var s;
   if (typeof payload_kind == "number") then do
-    switch (payload_kind) do
-      case --[ Pk_bits32 ]--0 :
-          s = packed ? "bytes" : "bits32";
-          break;
-      case --[ Pk_bits64 ]--1 :
-          s = packed ? "bytes" : "bits64";
-          break;
-      case --[ Pk_bytes ]--2 :
-          s = "bytes";
-          break;
+    local ___conditional___=(payload_kind);
+    do
+       if ___conditional___ = 0--[ Pk_bits32 ]-- then do
+          s = packed ? "bytes" : "bits32";end else 
+       if ___conditional___ = 1--[ Pk_bits64 ]-- then do
+          s = packed ? "bytes" : "bits64";end else 
+       if ___conditional___ = 2--[ Pk_bytes ]-- then do
+          s = "bytes";end else 
+       do end end end end
       
     end
   end else do
@@ -1878,27 +1908,31 @@ function scope(scope$1, f) do
 end
 
 function indentation_prefix(n) do
-  switch (n) do
-    case 0 :
-        return "";
-    case 1 :
-        return "  ";
-    case 2 :
-        return "    ";
-    case 3 :
-        return "      ";
-    case 4 :
-        return "        ";
-    case 5 :
-        return "          ";
-    case 6 :
-        return "            ";
-    case 7 :
-        return "              ";
-    case 8 :
-        return "                ";
-    default:
+  local ___conditional___=(n);
+  do
+     if ___conditional___ = 0 then do
+        return "";end end end 
+     if ___conditional___ = 1 then do
+        return "  ";end end end 
+     if ___conditional___ = 2 then do
+        return "    ";end end end 
+     if ___conditional___ = 3 then do
+        return "      ";end end end 
+     if ___conditional___ = 4 then do
+        return "        ";end end end 
+     if ___conditional___ = 5 then do
+        return "          ";end end end 
+     if ___conditional___ = 6 then do
+        return "            ";end end end 
+     if ___conditional___ = 7 then do
+        return "              ";end end end 
+     if ___conditional___ = 8 then do
+        return "                ";end end end 
+     do
+    else do
       return Caml_bytes.bytes_to_string(Bytes.make(n, --[ " " ]--32));
+      end end
+      
   end
 end
 
@@ -1943,44 +1977,49 @@ function runtime_function(param) do
      end 
     var match$1 = param[1];
     if (typeof match$1 == "number") then do
-      switch (match$1) do
-        case --[ Pk_bits32 ]--0 :
-            switch (param[2]) do
-              case --[ Bt_float ]--1 :
-                  return "Pbrt.Encoder.float_as_bits32";
-              case --[ Bt_int ]--2 :
-                  return "Pbrt.Encoder.int_as_bits32";
-              case --[ Bt_int32 ]--3 :
-                  return "Pbrt.Encoder.int32_as_bits32";
-              case --[ Bt_string ]--0 :
-              case --[ Bt_int64 ]--4 :
-              case --[ Bt_bytes ]--5 :
-              case --[ Bt_bool ]--6 :
+      local ___conditional___=(match$1);
+      do
+         if ___conditional___ = 0--[ Pk_bits32 ]-- then do
+            local ___conditional___=(param[2]);
+            do
+               if ___conditional___ = 1--[ Bt_float ]-- then do
+                  return "Pbrt.Encoder.float_as_bits32";end end end 
+               if ___conditional___ = 2--[ Bt_int ]-- then do
+                  return "Pbrt.Encoder.int_as_bits32";end end end 
+               if ___conditional___ = 3--[ Bt_int32 ]-- then do
+                  return "Pbrt.Encoder.int32_as_bits32";end end end 
+               if ___conditional___ = 0--[ Bt_string ]--
+               or ___conditional___ = 4--[ Bt_int64 ]--
+               or ___conditional___ = 5--[ Bt_bytes ]--
+               or ___conditional___ = 6--[ Bt_bool ]-- then do
                   throw [
                         Caml_builtin_exceptions.failure,
                         "Invalid encoding/OCaml type combination"
-                      ];
+                      ];end end end 
+               do
               
-            end
-        case --[ Pk_bits64 ]--1 :
-            switch (param[2]) do
-              case --[ Bt_float ]--1 :
-                  return "Pbrt.Encoder.float_as_bits64";
-              case --[ Bt_int ]--2 :
-                  return "Pbrt.Encoder.int_as_bits64";
-              case --[ Bt_int64 ]--4 :
-                  return "Pbrt.Encoder.int64_as_bits64";
-              case --[ Bt_string ]--0 :
-              case --[ Bt_int32 ]--3 :
-              case --[ Bt_bytes ]--5 :
-              case --[ Bt_bool ]--6 :
+            endend end end 
+         if ___conditional___ = 1--[ Pk_bits64 ]-- then do
+            local ___conditional___=(param[2]);
+            do
+               if ___conditional___ = 1--[ Bt_float ]-- then do
+                  return "Pbrt.Encoder.float_as_bits64";end end end 
+               if ___conditional___ = 2--[ Bt_int ]-- then do
+                  return "Pbrt.Encoder.int_as_bits64";end end end 
+               if ___conditional___ = 4--[ Bt_int64 ]-- then do
+                  return "Pbrt.Encoder.int64_as_bits64";end end end 
+               if ___conditional___ = 0--[ Bt_string ]--
+               or ___conditional___ = 3--[ Bt_int32 ]--
+               or ___conditional___ = 5--[ Bt_bytes ]--
+               or ___conditional___ = 6--[ Bt_bool ]-- then do
                   throw [
                         Caml_builtin_exceptions.failure,
                         "Invalid encoding/OCaml type combination"
-                      ];
+                      ];end end end 
+               do
               
-            end
-        case --[ Pk_bytes ]--2 :
+            endend end end 
+         if ___conditional___ = 2--[ Pk_bytes ]-- then do
             var match$2 = param[2];
             if (match$2 ~= 5) then do
               if (match$2 ~= 0) then do
@@ -1993,88 +2032,98 @@ function runtime_function(param) do
               end end 
             end else do
               return "Pbrt.Encoder.bytes";
-            end end 
+            end end end end end 
+         do
         
       end
     end else if (match$1[0]) then do
-      switch (param[2]) do
-        case --[ Bt_int ]--2 :
-            return "Pbrt.Encoder.int_as_zigzag";
-        case --[ Bt_int32 ]--3 :
-            return "Pbrt.Encoder.int32_as_zigzag";
-        case --[ Bt_int64 ]--4 :
-            return "Pbrt.Encoder.int64_as_zigzag";
-        case --[ Bt_string ]--0 :
-        case --[ Bt_float ]--1 :
-        case --[ Bt_bytes ]--5 :
-        case --[ Bt_bool ]--6 :
+      local ___conditional___=(param[2]);
+      do
+         if ___conditional___ = 2--[ Bt_int ]-- then do
+            return "Pbrt.Encoder.int_as_zigzag";end end end 
+         if ___conditional___ = 3--[ Bt_int32 ]-- then do
+            return "Pbrt.Encoder.int32_as_zigzag";end end end 
+         if ___conditional___ = 4--[ Bt_int64 ]-- then do
+            return "Pbrt.Encoder.int64_as_zigzag";end end end 
+         if ___conditional___ = 0--[ Bt_string ]--
+         or ___conditional___ = 1--[ Bt_float ]--
+         or ___conditional___ = 5--[ Bt_bytes ]--
+         or ___conditional___ = 6--[ Bt_bool ]-- then do
             throw [
                   Caml_builtin_exceptions.failure,
                   "Invalid encoding/OCaml type combination"
-                ];
+                ];end end end 
+         do
         
       end
     end else do
-      switch (param[2]) do
-        case --[ Bt_int ]--2 :
-            return "Pbrt.Encoder.int_as_varint";
-        case --[ Bt_int32 ]--3 :
-            return "Pbrt.Encoder.int32_as_varint";
-        case --[ Bt_int64 ]--4 :
-            return "Pbrt.Encoder.int64_as_varint";
-        case --[ Bt_string ]--0 :
-        case --[ Bt_float ]--1 :
-        case --[ Bt_bytes ]--5 :
+      local ___conditional___=(param[2]);
+      do
+         if ___conditional___ = 2--[ Bt_int ]-- then do
+            return "Pbrt.Encoder.int_as_varint";end end end 
+         if ___conditional___ = 3--[ Bt_int32 ]-- then do
+            return "Pbrt.Encoder.int32_as_varint";end end end 
+         if ___conditional___ = 4--[ Bt_int64 ]-- then do
+            return "Pbrt.Encoder.int64_as_varint";end end end 
+         if ___conditional___ = 0--[ Bt_string ]--
+         or ___conditional___ = 1--[ Bt_float ]--
+         or ___conditional___ = 5--[ Bt_bytes ]-- then do
             throw [
                   Caml_builtin_exceptions.failure,
                   "Invalid encoding/OCaml type combination"
-                ];
-        case --[ Bt_bool ]--6 :
-            return "Pbrt.Encoder.bool";
+                ];end end end 
+         if ___conditional___ = 6--[ Bt_bool ]-- then do
+            return "Pbrt.Encoder.bool";end end end 
+         do
         
       end
     end end  end 
   end else do
     var match$3 = param[1];
     if (typeof match$3 == "number") then do
-      switch (match$3) do
-        case --[ Pk_bits32 ]--0 :
-            switch (param[2]) do
-              case --[ Bt_float ]--1 :
-                  return "Pbrt.Decoder.float_as_bits32";
-              case --[ Bt_int ]--2 :
-                  return "Pbrt.Decoder.int_as_bits32";
-              case --[ Bt_int32 ]--3 :
-                  return "Pbrt.Decoder.int32_as_bits32";
-              case --[ Bt_string ]--0 :
-              case --[ Bt_int64 ]--4 :
-              case --[ Bt_bytes ]--5 :
-              case --[ Bt_bool ]--6 :
+      local ___conditional___=(match$3);
+      do
+         if ___conditional___ = 0--[ Pk_bits32 ]-- then do
+            local ___conditional___=(param[2]);
+            do
+               if ___conditional___ = 1--[ Bt_float ]-- then do
+                  return "Pbrt.Decoder.float_as_bits32";end end end 
+               if ___conditional___ = 2--[ Bt_int ]-- then do
+                  return "Pbrt.Decoder.int_as_bits32";end end end 
+               if ___conditional___ = 3--[ Bt_int32 ]-- then do
+                  return "Pbrt.Decoder.int32_as_bits32";end end end 
+               if ___conditional___ = 0--[ Bt_string ]--
+               or ___conditional___ = 4--[ Bt_int64 ]--
+               or ___conditional___ = 5--[ Bt_bytes ]--
+               or ___conditional___ = 6--[ Bt_bool ]-- then do
                   throw [
                         Caml_builtin_exceptions.failure,
                         "Invalid encoding/OCaml type combination"
-                      ];
+                      ];end end end 
+               do
               
-            end
-        case --[ Pk_bits64 ]--1 :
-            switch (param[2]) do
-              case --[ Bt_float ]--1 :
-                  return "Pbrt.Decoder.float_as_bits64";
-              case --[ Bt_int ]--2 :
-                  return "Pbrt.Decoder.int_as_bits64";
-              case --[ Bt_int64 ]--4 :
-                  return "Pbrt.Decoder.int64_as_bits64";
-              case --[ Bt_string ]--0 :
-              case --[ Bt_int32 ]--3 :
-              case --[ Bt_bytes ]--5 :
-              case --[ Bt_bool ]--6 :
+            endend end end 
+         if ___conditional___ = 1--[ Pk_bits64 ]-- then do
+            local ___conditional___=(param[2]);
+            do
+               if ___conditional___ = 1--[ Bt_float ]-- then do
+                  return "Pbrt.Decoder.float_as_bits64";end end end 
+               if ___conditional___ = 2--[ Bt_int ]-- then do
+                  return "Pbrt.Decoder.int_as_bits64";end end end 
+               if ___conditional___ = 4--[ Bt_int64 ]-- then do
+                  return "Pbrt.Decoder.int64_as_bits64";end end end 
+               if ___conditional___ = 0--[ Bt_string ]--
+               or ___conditional___ = 3--[ Bt_int32 ]--
+               or ___conditional___ = 5--[ Bt_bytes ]--
+               or ___conditional___ = 6--[ Bt_bool ]-- then do
                   throw [
                         Caml_builtin_exceptions.failure,
                         "Invalid encoding/OCaml type combination"
-                      ];
+                      ];end end end 
+               do
               
-            end
-        case --[ Pk_bytes ]--2 :
+            endend end end 
+         if ___conditional___ = 2--[ Pk_bytes ]-- then do
             var match$4 = param[2];
             if (match$4 ~= 5) then do
               if (match$4 ~= 0) then do
@@ -2087,44 +2136,49 @@ function runtime_function(param) do
               end end 
             end else do
               return "Pbrt.Decoder.bytes";
-            end end 
+            end end end end end 
+         do
         
       end
     end else if (match$3[0]) then do
-      switch (param[2]) do
-        case --[ Bt_int ]--2 :
-            return "Pbrt.Decoder.int_as_zigzag";
-        case --[ Bt_int32 ]--3 :
-            return "Pbrt.Decoder.int32_as_zigzag";
-        case --[ Bt_int64 ]--4 :
-            return "Pbrt.Decoder.int64_as_zigzag";
-        case --[ Bt_string ]--0 :
-        case --[ Bt_float ]--1 :
-        case --[ Bt_bytes ]--5 :
-        case --[ Bt_bool ]--6 :
+      local ___conditional___=(param[2]);
+      do
+         if ___conditional___ = 2--[ Bt_int ]-- then do
+            return "Pbrt.Decoder.int_as_zigzag";end end end 
+         if ___conditional___ = 3--[ Bt_int32 ]-- then do
+            return "Pbrt.Decoder.int32_as_zigzag";end end end 
+         if ___conditional___ = 4--[ Bt_int64 ]-- then do
+            return "Pbrt.Decoder.int64_as_zigzag";end end end 
+         if ___conditional___ = 0--[ Bt_string ]--
+         or ___conditional___ = 1--[ Bt_float ]--
+         or ___conditional___ = 5--[ Bt_bytes ]--
+         or ___conditional___ = 6--[ Bt_bool ]-- then do
             throw [
                   Caml_builtin_exceptions.failure,
                   "Invalid encoding/OCaml type combination"
-                ];
+                ];end end end 
+         do
         
       end
     end else do
-      switch (param[2]) do
-        case --[ Bt_int ]--2 :
-            return "Pbrt.Decoder.int_as_varint";
-        case --[ Bt_int32 ]--3 :
-            return "Pbrt.Decoder.int32_as_varint";
-        case --[ Bt_int64 ]--4 :
-            return "Pbrt.Decoder.int64_as_varint";
-        case --[ Bt_string ]--0 :
-        case --[ Bt_float ]--1 :
-        case --[ Bt_bytes ]--5 :
+      local ___conditional___=(param[2]);
+      do
+         if ___conditional___ = 2--[ Bt_int ]-- then do
+            return "Pbrt.Decoder.int_as_varint";end end end 
+         if ___conditional___ = 3--[ Bt_int32 ]-- then do
+            return "Pbrt.Decoder.int32_as_varint";end end end 
+         if ___conditional___ = 4--[ Bt_int64 ]-- then do
+            return "Pbrt.Decoder.int64_as_varint";end end end 
+         if ___conditional___ = 0--[ Bt_string ]--
+         or ___conditional___ = 1--[ Bt_float ]--
+         or ___conditional___ = 5--[ Bt_bytes ]-- then do
             throw [
                   Caml_builtin_exceptions.failure,
                   "Invalid encoding/OCaml type combination"
-                ];
-        case --[ Bt_bool ]--6 :
-            return "Pbrt.Decoder.bool";
+                ];end end end 
+         if ___conditional___ = 6--[ Bt_bool ]-- then do
+            return "Pbrt.Decoder.bool";end end end 
+         do
         
       end
     end end  end 
@@ -2160,12 +2214,15 @@ function gen_decode_record(and_, param, sc) do
   var r_name = param.r_name;
   var all_lists = List.fold_left((function (acc, param) do
           var rf_field_type = param.rf_field_type;
-          switch (rf_field_type.tag | 0) do
-            case --[ Rft_repeated_field ]--2 :
-            case --[ Rft_associative_field ]--3 :
-                break;
-            default:
+          local ___conditional___=(rf_field_type.tag | 0);
+          do
+             if ___conditional___ = 2--[ Rft_repeated_field ]--
+             or ___conditional___ = 3--[ Rft_associative_field ]--
+             do end
+            else do
               return acc;
+              end end
+              
           end
           if (rf_field_type[0][0]) then do
             return acc;
@@ -2317,8 +2374,9 @@ function gen_decode_record(and_, param, sc) do
                         List.iter((function (param) do
                                 var rf_field_type = param.rf_field_type;
                                 var rf_label = param.rf_label;
-                                switch (rf_field_type.tag | 0) do
-                                  case --[ Rft_required ]--0 :
+                                local ___conditional___=(rf_field_type.tag | 0);
+                                do
+                                   if ___conditional___ = 0--[ Rft_required ]-- then do
                                       var sc$1 = sc;
                                       var rf_label$1 = rf_label;
                                       var param$1 = rf_field_type[0];
@@ -2344,8 +2402,8 @@ function gen_decode_record(and_, param, sc) do
                                                                           ]),
                                                                         "v.%s <- %s;"
                                                                       ]), rf_label$1, decode_field_f(field_type, pk)));
-                                                  end));
-                                  case --[ Rft_optional ]--1 :
+                                                  end));end end end 
+                                   if ___conditional___ = 1--[ Rft_optional ]-- then do
                                       var sc$2 = sc;
                                       var rf_label$2 = rf_label;
                                       var param$2 = rf_field_type[0];
@@ -2371,8 +2429,8 @@ function gen_decode_record(and_, param, sc) do
                                                                           ]),
                                                                         "v.%s <- Some (%s);"
                                                                       ]), rf_label$2, decode_field_f(field_type$1, pk$1)));
-                                                  end));
-                                  case --[ Rft_repeated_field ]--2 :
+                                                  end));end end end 
+                                   if ___conditional___ = 2--[ Rft_repeated_field ]-- then do
                                       var sc$3 = sc;
                                       var rf_label$3 = rf_label;
                                       var param$3 = rf_field_type[0];
@@ -2480,8 +2538,8 @@ function gen_decode_record(and_, param, sc) do
                                                                           "v.%s <- (%s) :: v.%s;"
                                                                         ]), rf_label$3, decode_field_f(field_type$2, pk$2), rf_label$3));
                                                     end));
-                                      end end  end 
-                                  case --[ Rft_associative_field ]--3 :
+                                      end end  end end end end 
+                                   if ___conditional___ = 3--[ Rft_associative_field ]-- then do
                                       var sc$4 = sc;
                                       var rf_label$4 = rf_label;
                                       var param$4 = rf_field_type[0];
@@ -2571,8 +2629,8 @@ function gen_decode_record(and_, param, sc) do
                                                             end));
                                                       return line$1(sc, ");");
                                                     end end 
-                                                  end));
-                                  case --[ Rft_variant_field ]--4 :
+                                                  end));end end end 
+                                   if ___conditional___ = 4--[ Rft_variant_field ]-- then do
                                       var sc$5 = sc;
                                       var rf_label$5 = rf_label;
                                       var param$5 = rf_field_type[0];
@@ -2630,7 +2688,8 @@ function gen_decode_record(and_, param, sc) do
                                                                                       ]), rf_label$5, vc_constructor));
                                                                   end end 
                                                                 end));
-                                                  end), param$5.v_constructors);
+                                                  end), param$5.v_constructors);end end end 
+                                   do
                                   
                                 end
                               end), r_fields);
@@ -2838,25 +2897,24 @@ end
 function gen_struct(and_, t, sc) do
   var match = t.spec;
   var tmp;
-  switch (match.tag | 0) do
-    case --[ Record ]--0 :
+  local ___conditional___=(match.tag | 0);
+  do
+     if ___conditional___ = 0--[ Record ]-- then do
         tmp = --[ tuple ]--[
           gen_decode_record(and_, match[0], sc),
           true
-        ];
-        break;
-    case --[ Variant ]--1 :
+        ];end else 
+     if ___conditional___ = 1--[ Variant ]-- then do
         tmp = --[ tuple ]--[
           gen_decode_variant(and_, match[0], sc),
           true
-        ];
-        break;
-    case --[ Const_variant ]--2 :
+        ];end else 
+     if ___conditional___ = 2--[ Const_variant ]-- then do
         tmp = --[ tuple ]--[
           gen_decode_const_variant(and_, match[0], sc),
           true
-        ];
-        break;
+        ];end else 
+     do end end end end
     
   end
   return tmp[1];
@@ -2902,25 +2960,24 @@ function gen_sig(and_, t, sc) do
   end;
   var match = t.spec;
   var tmp;
-  switch (match.tag | 0) do
-    case --[ Record ]--0 :
+  local ___conditional___=(match.tag | 0);
+  do
+     if ___conditional___ = 0--[ Record ]-- then do
         tmp = --[ tuple ]--[
           f(match[0].r_name),
           true
-        ];
-        break;
-    case --[ Variant ]--1 :
+        ];end else 
+     if ___conditional___ = 1--[ Variant ]-- then do
         tmp = --[ tuple ]--[
           f(match[0].v_name),
           true
-        ];
-        break;
-    case --[ Const_variant ]--2 :
+        ];end else 
+     if ___conditional___ = 2--[ Const_variant ]-- then do
         tmp = --[ tuple ]--[
           f(match[0].cv_name),
           true
-        ];
-        break;
+        ];end else 
+     do end end end end
     
   end
   return tmp[1];
@@ -3030,8 +3087,9 @@ function gen_pp_record(and_, param, sc) do
                                             ]),
                                           "v.%s"
                                         ]), rf_label);
-                                switch (rf_field_type.tag | 0) do
-                                  case --[ Rft_required ]--0 :
+                                local ___conditional___=(rf_field_type.tag | 0);
+                                do
+                                   if ___conditional___ = 0--[ Rft_required ]-- then do
                                       var field_string_of = gen_pp_field(rf_field_type[0][0]);
                                       return line$1(sc, Curry._3(Printf.sprintf(--[ Format ]--[
                                                           --[ String_literal ]--Block.__(11, [
@@ -3057,8 +3115,8 @@ function gen_pp_record(and_, param, sc) do
                                                                 ])
                                                             ]),
                                                           "Pbrt.Pp.pp_record_field \"%s\" %s fmt %s;"
-                                                        ]), rf_label, field_string_of, var_name));
-                                  case --[ Rft_optional ]--1 :
+                                                        ]), rf_label, field_string_of, var_name));end end end 
+                                   if ___conditional___ = 1--[ Rft_optional ]-- then do
                                       var field_string_of$1 = gen_pp_field(rf_field_type[0][0]);
                                       return line$1(sc, Curry._3(Printf.sprintf(--[ Format ]--[
                                                           --[ String_literal ]--Block.__(11, [
@@ -3084,8 +3142,8 @@ function gen_pp_record(and_, param, sc) do
                                                                 ])
                                                             ]),
                                                           "Pbrt.Pp.pp_record_field \"%s\" (Pbrt.Pp.pp_option %s) fmt %s;"
-                                                        ]), rf_label, field_string_of$1, var_name));
-                                  case --[ Rft_repeated_field ]--2 :
+                                                        ]), rf_label, field_string_of$1, var_name));end end end 
+                                   if ___conditional___ = 2--[ Rft_repeated_field ]-- then do
                                       var match = rf_field_type[0];
                                       var field_string_of$2 = gen_pp_field(match[1]);
                                       if (match[0]) then do
@@ -3140,8 +3198,8 @@ function gen_pp_record(and_, param, sc) do
                                                               ]),
                                                             "Pbrt.Pp.pp_record_field \"%s\" (Pbrt.Pp.pp_list %s) fmt %s;"
                                                           ]), rf_label, field_string_of$2, var_name));
-                                      end end 
-                                  case --[ Rft_associative_field ]--3 :
+                                      end end end end end 
+                                   if ___conditional___ = 3--[ Rft_associative_field ]-- then do
                                       var match$1 = rf_field_type[0];
                                       var pp_runtime_function = match$1[0] ? "pp_hastable" : "pp_associative_list";
                                       var pp_key = gen_pp_field(--[ Ft_basic_type ]--Block.__(0, [match$1[2][0]]));
@@ -3182,8 +3240,8 @@ function gen_pp_record(and_, param, sc) do
                                                                 ])
                                                             ]),
                                                           "Pbrt.Pp.pp_record_field \"%s\" (Pbrt.Pp.%s %s %s) fmt %s;"
-                                                        ]), rf_label, pp_runtime_function, pp_key, pp_value, var_name));
-                                  case --[ Rft_variant_field ]--4 :
+                                                        ]), rf_label, pp_runtime_function, pp_key, pp_value, var_name));end end end 
+                                   if ___conditional___ = 4--[ Rft_variant_field ]-- then do
                                       return line$1(sc, Curry._3(Printf.sprintf(--[ Format ]--[
                                                           --[ String_literal ]--Block.__(11, [
                                                               "Pbrt.Pp.pp_record_field \"",
@@ -3208,7 +3266,8 @@ function gen_pp_record(and_, param, sc) do
                                                                 ])
                                                             ]),
                                                           "Pbrt.Pp.pp_record_field \"%s\" %s fmt %s;"
-                                                        ]), rf_label, "pp_" .. rf_field_type[0].v_name, var_name));
+                                                        ]), rf_label, "pp_" .. rf_field_type[0].v_name, var_name));end end end 
+                                   do
                                   
                                 end
                               end), r_fields);
@@ -3373,16 +3432,15 @@ end
 
 function gen_struct$1(and_, t, sc) do
   var match = t.spec;
-  switch (match.tag | 0) do
-    case --[ Record ]--0 :
-        gen_pp_record(and_, match[0], sc);
-        break;
-    case --[ Variant ]--1 :
-        gen_pp_variant(and_, match[0], sc);
-        break;
-    case --[ Const_variant ]--2 :
-        gen_pp_const_variant(and_, match[0], sc);
-        break;
+  local ___conditional___=(match.tag | 0);
+  do
+     if ___conditional___ = 0--[ Record ]-- then do
+        gen_pp_record(and_, match[0], sc);end else 
+     if ___conditional___ = 1--[ Variant ]-- then do
+        gen_pp_variant(and_, match[0], sc);end else 
+     if ___conditional___ = 2--[ Const_variant ]-- then do
+        gen_pp_const_variant(and_, match[0], sc);end else 
+     do end end end end
     
   end
   return true;
@@ -3424,16 +3482,15 @@ function gen_sig$1(and_, t, sc) do
                       ]), type_name));
   end;
   var match = t.spec;
-  switch (match.tag | 0) do
-    case --[ Record ]--0 :
-        f(match[0].r_name);
-        break;
-    case --[ Variant ]--1 :
-        f(match[0].v_name);
-        break;
-    case --[ Const_variant ]--2 :
-        f(match[0].cv_name);
-        break;
+  local ___conditional___=(match.tag | 0);
+  do
+     if ___conditional___ = 0--[ Record ]-- then do
+        f(match[0].r_name);end else 
+     if ___conditional___ = 1--[ Variant ]-- then do
+        f(match[0].v_name);end else 
+     if ___conditional___ = 2--[ Const_variant ]-- then do
+        f(match[0].cv_name);end else 
+     do end end end end
     
   end
   return true;
@@ -4022,39 +4079,43 @@ function unresolved_of_string(s) do
 end
 
 function field_type_of_string(s) do
-  switch (s) do
-    case "bool" :
-        return --[ Field_type_bool ]--12;
-    case "bytes" :
-        return --[ Field_type_bytes ]--14;
-    case "double" :
-        return --[ Field_type_double ]--0;
-    case "fixed32" :
-        return --[ Field_type_fixed32 ]--8;
-    case "fixed64" :
-        return --[ Field_type_fixed64 ]--9;
-    case "float" :
-        return --[ Field_type_float ]--1;
-    case "int32" :
-        return --[ Field_type_int32 ]--2;
-    case "int64" :
-        return --[ Field_type_int64 ]--3;
-    case "sfixed32" :
-        return --[ Field_type_sfixed32 ]--10;
-    case "sfixed64" :
-        return --[ Field_type_sfixed64 ]--11;
-    case "sint32" :
-        return --[ Field_type_sint32 ]--6;
-    case "sint64" :
-        return --[ Field_type_sint64 ]--7;
-    case "string" :
-        return --[ Field_type_string ]--13;
-    case "uint32" :
-        return --[ Field_type_uint32 ]--4;
-    case "uint64" :
-        return --[ Field_type_uint64 ]--5;
-    default:
+  local ___conditional___=(s);
+  do
+     if ___conditional___ = "bool" then do
+        return --[ Field_type_bool ]--12;end end end 
+     if ___conditional___ = "bytes" then do
+        return --[ Field_type_bytes ]--14;end end end 
+     if ___conditional___ = "double" then do
+        return --[ Field_type_double ]--0;end end end 
+     if ___conditional___ = "fixed32" then do
+        return --[ Field_type_fixed32 ]--8;end end end 
+     if ___conditional___ = "fixed64" then do
+        return --[ Field_type_fixed64 ]--9;end end end 
+     if ___conditional___ = "float" then do
+        return --[ Field_type_float ]--1;end end end 
+     if ___conditional___ = "int32" then do
+        return --[ Field_type_int32 ]--2;end end end 
+     if ___conditional___ = "int64" then do
+        return --[ Field_type_int64 ]--3;end end end 
+     if ___conditional___ = "sfixed32" then do
+        return --[ Field_type_sfixed32 ]--10;end end end 
+     if ___conditional___ = "sfixed64" then do
+        return --[ Field_type_sfixed64 ]--11;end end end 
+     if ___conditional___ = "sint32" then do
+        return --[ Field_type_sint32 ]--6;end end end 
+     if ___conditional___ = "sint64" then do
+        return --[ Field_type_sint64 ]--7;end end end 
+     if ___conditional___ = "string" then do
+        return --[ Field_type_string ]--13;end end end 
+     if ___conditional___ = "uint32" then do
+        return --[ Field_type_uint32 ]--4;end end end 
+     if ___conditional___ = "uint64" then do
+        return --[ Field_type_uint64 ]--5;end end end 
+     do
+    else do
       return --[ Field_type_type ]--[unresolved_of_string(s)];
+      end end
+      
   end
 end
 
@@ -4066,39 +4127,38 @@ function compile_default_p2(all_types, field) do
     var constant = field_default$1;
     var exit = 0;
     if (typeof field_type$1 == "number") then do
-      switch (field_type$1) do
-        case --[ Field_type_double ]--0 :
-        case --[ Field_type_float ]--1 :
-            exit = 1;
-            break;
-        case --[ Field_type_uint32 ]--4 :
-        case --[ Field_type_uint64 ]--5 :
-            exit = 3;
-            break;
-        case --[ Field_type_int32 ]--2 :
-        case --[ Field_type_int64 ]--3 :
-        case --[ Field_type_sint32 ]--6 :
-        case --[ Field_type_sint64 ]--7 :
-        case --[ Field_type_fixed32 ]--8 :
-        case --[ Field_type_fixed64 ]--9 :
-        case --[ Field_type_sfixed32 ]--10 :
-        case --[ Field_type_sfixed64 ]--11 :
-            exit = 2;
-            break;
-        case --[ Field_type_bool ]--12 :
+      local ___conditional___=(field_type$1);
+      do
+         if ___conditional___ = 0--[ Field_type_double ]--
+         or ___conditional___ = 1--[ Field_type_float ]-- then do
+            exit = 1;end else 
+         if ___conditional___ = 4--[ Field_type_uint32 ]--
+         or ___conditional___ = 5--[ Field_type_uint64 ]-- then do
+            exit = 3;end else 
+         if ___conditional___ = 2--[ Field_type_int32 ]--
+         or ___conditional___ = 3--[ Field_type_int64 ]--
+         or ___conditional___ = 6--[ Field_type_sint32 ]--
+         or ___conditional___ = 7--[ Field_type_sint64 ]--
+         or ___conditional___ = 8--[ Field_type_fixed32 ]--
+         or ___conditional___ = 9--[ Field_type_fixed64 ]--
+         or ___conditional___ = 10--[ Field_type_sfixed32 ]--
+         or ___conditional___ = 11--[ Field_type_sfixed64 ]-- then do
+            exit = 2;end else 
+         if ___conditional___ = 12--[ Field_type_bool ]-- then do
             if (constant.tag == --[ Constant_bool ]--1) then do
               return constant;
             end else do
               return invalid_default_value(field_name$1, "invalid default type (bool expected)", --[ () ]--0);
-            end end 
-        case --[ Field_type_string ]--13 :
+            end end end end end 
+         if ___conditional___ = 13--[ Field_type_string ]-- then do
             if (constant.tag) then do
               return invalid_default_value(field_name$1, "invalid default type (string expected)", --[ () ]--0);
             end else do
               return constant;
-            end end 
-        case --[ Field_type_bytes ]--14 :
-            return invalid_default_value(field_name$1, "default value not supported for bytes", --[ () ]--0);
+            end end end end end 
+         if ___conditional___ = 14--[ Field_type_bytes ]-- then do
+            return invalid_default_value(field_name$1, "default value not supported for bytes", --[ () ]--0);end end end 
+         do end
         
       end
     end else if (constant.tag == --[ Constant_litteral ]--4) then do
@@ -4124,23 +4184,28 @@ function compile_default_p2(all_types, field) do
     end else do
       return invalid_default_value(field_name$1, "default value not supported for message", --[ () ]--0);
     end end  end 
-    switch (exit) do
-      case 1 :
-          switch (constant.tag | 0) do
-            case --[ Constant_int ]--2 :
-                return --[ Constant_float ]--Block.__(3, [constant[0]]);
-            case --[ Constant_float ]--3 :
-                return constant;
-            default:
+    local ___conditional___=(exit);
+    do
+       if ___conditional___ = 1 then do
+          local ___conditional___=(constant.tag | 0);
+          do
+             if ___conditional___ = 2--[ Constant_int ]-- then do
+                return --[ Constant_float ]--Block.__(3, [constant[0]]);end end end 
+             if ___conditional___ = 3--[ Constant_float ]-- then do
+                return constant;end end end 
+             do
+            else do
               return invalid_default_value(field_name$1, "invalid default type (float/int expected)", --[ () ]--0);
-          end
-      case 2 :
+              end end
+              
+          endend end end 
+       if ___conditional___ = 2 then do
           if (constant.tag == --[ Constant_int ]--2) then do
             return constant;
           end else do
             return invalid_default_value(field_name$1, "invalid default type (int expected)", --[ () ]--0);
-          end end 
-      case 3 :
+          end end end end end 
+       if ___conditional___ = 3 then do
           if (constant.tag == --[ Constant_int ]--2) then do
             if (constant[0] >= 0) then do
               return constant;
@@ -4149,7 +4214,8 @@ function compile_default_p2(all_types, field) do
             end end 
           end else do
             return invalid_default_value(field_name$1, "invalid default type (int expected)", --[ () ]--0);
-          end end 
+          end end end end end 
+       do
       
     end
   end
@@ -4269,8 +4335,9 @@ function compile_message_p1(file_name, file_options, message_scope, param) do
           var all_types = param[2];
           var extensions = param[1];
           var message_body = param[0];
-          switch (param$1.tag | 0) do
-            case --[ Message_field ]--0 :
+          local ___conditional___=(param$1.tag | 0);
+          do
+             if ___conditional___ = 0--[ Message_field ]-- then do
                 var field = --[ Message_field ]--Block.__(0, [compile_field_p1(param$1[0])]);
                 return --[ tuple ]--[
                         --[ :: ]--[
@@ -4279,8 +4346,8 @@ function compile_message_p1(file_name, file_options, message_scope, param) do
                         ],
                         extensions,
                         all_types
-                      ];
-            case --[ Message_map_field ]--1 :
+                      ];end end end 
+             if ___conditional___ = 1--[ Message_map_field ]-- then do
                 var field$1 = --[ Message_map_field ]--Block.__(2, [compile_map_p1(param$1[0])]);
                 return --[ tuple ]--[
                         --[ :: ]--[
@@ -4289,8 +4356,8 @@ function compile_message_p1(file_name, file_options, message_scope, param) do
                         ],
                         extensions,
                         all_types
-                      ];
-            case --[ Message_oneof_field ]--2 :
+                      ];end end end 
+             if ___conditional___ = 2--[ Message_oneof_field ]-- then do
                 var field$2 = --[ Message_oneof_field ]--Block.__(1, [compile_oneof_p1(param$1[0])]);
                 return --[ tuple ]--[
                         --[ :: ]--[
@@ -4299,15 +4366,15 @@ function compile_message_p1(file_name, file_options, message_scope, param) do
                         ],
                         extensions,
                         all_types
-                      ];
-            case --[ Message_sub ]--3 :
+                      ];end end end 
+             if ___conditional___ = 3--[ Message_sub ]-- then do
                 var all_sub_types = compile_message_p1(file_name, file_options, sub_scope, param$1[0]);
                 return --[ tuple ]--[
                         message_body,
                         extensions,
                         Pervasives.$at(all_types, all_sub_types)
-                      ];
-            case --[ Message_enum ]--4 :
+                      ];end end end 
+             if ___conditional___ = 4--[ Message_enum ]-- then do
                 return --[ tuple ]--[
                         message_body,
                         extensions,
@@ -4315,13 +4382,14 @@ function compile_message_p1(file_name, file_options, message_scope, param) do
                               compile_enum_p1(file_name, file_options, sub_scope, param$1[0]),
                               --[ [] ]--0
                             ])
-                      ];
-            case --[ Message_extension ]--5 :
+                      ];end end end 
+             if ___conditional___ = 5--[ Message_extension ]-- then do
                 return --[ tuple ]--[
                         message_body,
                         Pervasives.$at(extensions, param$1[0]),
                         all_types
-                      ];
+                      ];end end end 
+             do
             
           end
         end), --[ tuple ]--[
@@ -4362,13 +4430,15 @@ function compile_message_p1(file_name, file_options, message_scope, param) do
     end end 
   end;
   List.fold_left((function (number_index, param) do
-          switch (param.tag | 0) do
-            case --[ Message_field ]--0 :
-                return validate_duplicate(number_index, param[0]);
-            case --[ Message_oneof_field ]--1 :
-                return List.fold_left(validate_duplicate, number_index, param[0].oneof_fields);
-            case --[ Message_map_field ]--2 :
-                return number_index;
+          local ___conditional___=(param.tag | 0);
+          do
+             if ___conditional___ = 0--[ Message_field ]-- then do
+                return validate_duplicate(number_index, param[0]);end end end 
+             if ___conditional___ = 1--[ Message_oneof_field ]-- then do
+                return List.fold_left(validate_duplicate, number_index, param[0].oneof_fields);end end end 
+             if ___conditional___ = 2--[ Message_map_field ]-- then do
+                return number_index;end end end 
+             do
             
           end
         end), --[ [] ]--0, message_body);
@@ -4566,8 +4636,9 @@ function compile_message_p2(types, param, message) do
     end end 
   end;
   var message_body = List.fold_left((function (message_body, param) do
-          switch (param.tag | 0) do
-            case --[ Message_field ]--0 :
+          local ___conditional___=(param.tag | 0);
+          do
+             if ___conditional___ = 0--[ Message_field ]-- then do
                 var field = param[0];
                 var field_name$1 = field_name(field);
                 var field_type$1 = field_type(field);
@@ -4594,8 +4665,8 @@ function compile_message_p2(types, param, message) do
                 return --[ :: ]--[
                         --[ Message_field ]--Block.__(0, [field$2]),
                         message_body
-                      ];
-            case --[ Message_oneof_field ]--1 :
+                      ];end end end 
+             if ___conditional___ = 1--[ Message_oneof_field ]-- then do
                 var oneof = param[0];
                 var oneof_fields = List.fold_left((function (oneof_fields, field) do
                         var field_name$2 = field_name(field);
@@ -4618,8 +4689,8 @@ function compile_message_p2(types, param, message) do
                               oneof_fields: oneof_fields$1
                             end]),
                         message_body
-                      ];
-            case --[ Message_map_field ]--2 :
+                      ];end end end 
+             if ___conditional___ = 2--[ Message_map_field ]-- then do
                 var map = param[0];
                 var map_name = map.map_name;
                 var map_key_type = compile_field_p2(map_name, map.map_key_type);
@@ -4634,7 +4705,8 @@ function compile_message_p2(types, param, message) do
                 return --[ :: ]--[
                         resolved_map,
                         message_body
-                      ];
+                      ];end end end 
+             do
             
           end
         end), --[ [] ]--0, message.message_body);
@@ -4651,8 +4723,9 @@ function node_of_proto_type(param) do
   var id = param.id;
   if (match.tag) then do
     var sub = List.flatten(List.map((function (param) do
-                switch (param.tag | 0) do
-                  case --[ Message_field ]--0 :
+                local ___conditional___=(param.tag | 0);
+                do
+                   if ___conditional___ = 0--[ Message_field ]-- then do
                       var field_type = param[0].field_type;
                       if (typeof field_type == "number") then do
                         return --[ [] ]--0;
@@ -4661,8 +4734,8 @@ function node_of_proto_type(param) do
                                 field_type[0],
                                 --[ [] ]--0
                               ];
-                      end end 
-                  case --[ Message_oneof_field ]--1 :
+                      end end end end end 
+                   if ___conditional___ = 1--[ Message_oneof_field ]-- then do
                       return List.flatten(List.map((function (param) do
                                         var field_type = param.field_type;
                                         if (typeof field_type == "number") then do
@@ -4673,8 +4746,8 @@ function node_of_proto_type(param) do
                                                   --[ [] ]--0
                                                 ];
                                         end end 
-                                      end), param[0].oneof_fields));
-                  case --[ Message_map_field ]--2 :
+                                      end), param[0].oneof_fields));end end end 
+                   if ___conditional___ = 2--[ Message_map_field ]-- then do
                       var map_value_type = param[0].map_value_type;
                       if (typeof map_value_type == "number") then do
                         return --[ [] ]--0;
@@ -4683,7 +4756,8 @@ function node_of_proto_type(param) do
                                 map_value_type[0],
                                 --[ [] ]--0
                               ];
-                      end end 
+                      end end end end end 
+                   do
                   
                 end
               end), match[0].message_body));
@@ -4731,16 +4805,20 @@ function gen_type_record(mutable_, and_, param, sc) do
   var r_name = param.r_name;
   var mutable_$1 = mutable_ ~= undefined;
   var is_imperative_type = function (param) do
-    switch (param.tag | 0) do
-      case --[ Rft_repeated_field ]--2 :
-      case --[ Rft_associative_field ]--3 :
+    local ___conditional___=(param.tag | 0);
+    do
+       if ___conditional___ = 2--[ Rft_repeated_field ]--
+       or ___conditional___ = 3--[ Rft_associative_field ]-- then do
           if (param[0][0]) then do
             return true;
           end else do
             return false;
-          end end 
-      default:
+          end end end end end 
+       do
+      else do
         return false;
+        end end
+        
     end
   end;
   var field_prefix = function (field_type, field_mutable) do
@@ -4891,19 +4969,18 @@ end
 
 function gen_struct$2(and_, t, scope) do
   var match = t.spec;
-  switch (match.tag | 0) do
-    case --[ Record ]--0 :
+  local ___conditional___=(match.tag | 0);
+  do
+     if ___conditional___ = 0--[ Record ]-- then do
         var r = match[0];
         gen_type_record(undefined, and_, r, scope);
         line$1(scope, "");
-        gen_type_record(--[ () ]--0, --[ () ]--0, r, scope);
-        break;
-    case --[ Variant ]--1 :
-        gen_type_variant(and_, match[0], scope);
-        break;
-    case --[ Const_variant ]--2 :
-        gen_type_const_variant(and_, match[0], scope);
-        break;
+        gen_type_record(--[ () ]--0, --[ () ]--0, r, scope);end else 
+     if ___conditional___ = 1--[ Variant ]-- then do
+        gen_type_variant(and_, match[0], scope);end else 
+     if ___conditional___ = 2--[ Const_variant ]-- then do
+        gen_type_const_variant(and_, match[0], scope);end else 
+     do end end end end
     
   end
   return true;
@@ -4911,16 +4988,15 @@ end
 
 function gen_sig$2(and_, t, scope) do
   var match = t.spec;
-  switch (match.tag | 0) do
-    case --[ Record ]--0 :
-        gen_type_record(undefined, and_, match[0], scope);
-        break;
-    case --[ Variant ]--1 :
-        gen_type_variant(and_, match[0], scope);
-        break;
-    case --[ Const_variant ]--2 :
-        gen_type_const_variant(and_, match[0], scope);
-        break;
+  local ___conditional___=(match.tag | 0);
+  do
+     if ___conditional___ = 0--[ Record ]-- then do
+        gen_type_record(undefined, and_, match[0], scope);end else 
+     if ___conditional___ = 1--[ Variant ]-- then do
+        gen_type_variant(and_, match[0], scope);end else 
+     if ___conditional___ = 2--[ Const_variant ]-- then do
+        gen_type_const_variant(and_, match[0], scope);end else 
+     do end end end end
     
   end
   return true;
@@ -5083,8 +5159,9 @@ function gen_encode_record(and_, param, sc) do
                 List.iter((function (record_field) do
                         var rf_field_type = record_field.rf_field_type;
                         var rf_label = record_field.rf_label;
-                        switch (rf_field_type.tag | 0) do
-                          case --[ Rft_required ]--0 :
+                        local ___conditional___=(rf_field_type.tag | 0);
+                        do
+                           if ___conditional___ = 0--[ Rft_required ]-- then do
                               var match = rf_field_type[0];
                               var var_name = Curry._1(Printf.sprintf(--[ Format ]--[
                                         --[ String_literal ]--Block.__(11, [
@@ -5096,8 +5173,8 @@ function gen_encode_record(and_, param, sc) do
                                           ]),
                                         "v.%s"
                                       ]), rf_label);
-                              return gen_encode_field_type(--[ () ]--0, sc, var_name, match[1], match[2], false, match[0]);
-                          case --[ Rft_optional ]--1 :
+                              return gen_encode_field_type(--[ () ]--0, sc, var_name, match[1], match[2], false, match[0]);end end end 
+                           if ___conditional___ = 1--[ Rft_optional ]-- then do
                               var match$1 = rf_field_type[0];
                               var pk = match$1[2];
                               var encoding_number = match$1[1];
@@ -5130,8 +5207,8 @@ function gen_encode_record(and_, param, sc) do
                                       line$1(sc, ")");
                                       return line$1(sc, "| None -> ();");
                                     end));
-                              return line$1(sc, ");");
-                          case --[ Rft_repeated_field ]--2 :
+                              return line$1(sc, ");");end end end 
+                           if ___conditional___ = 2--[ Rft_repeated_field ]-- then do
                               var match$2 = rf_field_type[0];
                               var is_packed = match$2[4];
                               var pk$1 = match$2[3];
@@ -5221,8 +5298,8 @@ function gen_encode_record(and_, param, sc) do
                                                       ]),
                                                     ") v.%s;"
                                                   ]), rf_label));
-                              end end  end 
-                          case --[ Rft_associative_field ]--3 :
+                              end end  end end end end 
+                           if ___conditional___ = 3--[ Rft_associative_field ]-- then do
                               var match$3 = rf_field_type[0];
                               var match$4 = match$3[3];
                               var value_pk = match$4[1];
@@ -5288,8 +5365,8 @@ function gen_encode_record(and_, param, sc) do
                                                         ])
                                                     ]),
                                                   ") v.%s;"
-                                                ]), rf_label));
-                          case --[ Rft_variant_field ]--4 :
+                                                ]), rf_label));end end end 
+                           if ___conditional___ = 4--[ Rft_variant_field ]-- then do
                               var v_constructors = rf_field_type[0].v_constructors;
                               line$1(sc, "(");
                               scope(sc, (function (sc) do
@@ -5352,7 +5429,8 @@ function gen_encode_record(and_, param, sc) do
                                                     end end 
                                                   end), v_constructors);
                                     end));
-                              return line$1(sc, ");");
+                              return line$1(sc, ");");end end end 
+                           do
                           
                         end
                       end), r_fields);
@@ -5513,25 +5591,24 @@ end
 function gen_struct$3(and_, t, sc) do
   var match = t.spec;
   var tmp;
-  switch (match.tag | 0) do
-    case --[ Record ]--0 :
+  local ___conditional___=(match.tag | 0);
+  do
+     if ___conditional___ = 0--[ Record ]-- then do
         tmp = --[ tuple ]--[
           gen_encode_record(and_, match[0], sc),
           true
-        ];
-        break;
-    case --[ Variant ]--1 :
+        ];end else 
+     if ___conditional___ = 1--[ Variant ]-- then do
         tmp = --[ tuple ]--[
           gen_encode_variant(and_, match[0], sc),
           true
-        ];
-        break;
-    case --[ Const_variant ]--2 :
+        ];end else 
+     if ___conditional___ = 2--[ Const_variant ]-- then do
         tmp = --[ tuple ]--[
           gen_encode_const_variant(and_, match[0], sc),
           true
-        ];
-        break;
+        ];end else 
+     do end end end end
     
   end
   return tmp[1];
@@ -5574,25 +5651,24 @@ function gen_sig$3(and_, t, sc) do
   end;
   var match = t.spec;
   var tmp;
-  switch (match.tag | 0) do
-    case --[ Record ]--0 :
+  local ___conditional___=(match.tag | 0);
+  do
+     if ___conditional___ = 0--[ Record ]-- then do
         tmp = --[ tuple ]--[
           f(match[0].r_name),
           true
-        ];
-        break;
-    case --[ Variant ]--1 :
+        ];end else 
+     if ___conditional___ = 1--[ Variant ]-- then do
         tmp = --[ tuple ]--[
           f(match[0].v_name),
           true
-        ];
-        break;
-    case --[ Const_variant ]--2 :
+        ];end else 
+     if ___conditional___ = 2--[ Const_variant ]-- then do
         tmp = --[ tuple ]--[
           f(match[0].cv_name),
           true
-        ];
-        break;
+        ];end else 
+     do end end end end
     
   end
   return tmp[1];
@@ -5613,8 +5689,9 @@ function default_value_of_field_type(field_name, field_type, field_default) do
     var field_name$1 = field_name;
     var basic_type = field_type[0];
     var field_default$1 = field_default;
-    switch (basic_type) do
-      case --[ Bt_string ]--0 :
+    local ___conditional___=(basic_type);
+    do
+       if ___conditional___ = 0--[ Bt_string ]-- then do
           if (field_default$1 ~= undefined) then do
             var match = field_default$1;
             if (match.tag) then do
@@ -5636,8 +5713,8 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             end end 
           end else do
             return "\"\"";
-          end end 
-      case --[ Bt_float ]--1 :
+          end end end end end 
+       if ___conditional___ = 1--[ Bt_float ]-- then do
           if (field_default$1 ~= undefined) then do
             var match$1 = field_default$1;
             if (match$1.tag == --[ Constant_float ]--3) then do
@@ -5647,8 +5724,8 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             end end 
           end else do
             return "0.";
-          end end 
-      case --[ Bt_int ]--2 :
+          end end end end end 
+       if ___conditional___ = 2--[ Bt_int ]-- then do
           if (field_default$1 ~= undefined) then do
             var match$2 = field_default$1;
             if (match$2.tag == --[ Constant_int ]--2) then do
@@ -5658,8 +5735,8 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             end end 
           end else do
             return "0";
-          end end 
-      case --[ Bt_int32 ]--3 :
+          end end end end end 
+       if ___conditional___ = 3--[ Bt_int32 ]-- then do
           if (field_default$1 ~= undefined) then do
             var match$3 = field_default$1;
             if (match$3.tag == --[ Constant_int ]--2) then do
@@ -5680,8 +5757,8 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             end end 
           end else do
             return "0l";
-          end end 
-      case --[ Bt_int64 ]--4 :
+          end end end end end 
+       if ___conditional___ = 4--[ Bt_int64 ]-- then do
           if (field_default$1 ~= undefined) then do
             var match$4 = field_default$1;
             if (match$4.tag == --[ Constant_int ]--2) then do
@@ -5702,8 +5779,8 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             end end 
           end else do
             return "0L";
-          end end 
-      case --[ Bt_bytes ]--5 :
+          end end end end end 
+       if ___conditional___ = 5--[ Bt_bytes ]-- then do
           if (field_default$1 ~= undefined) then do
             var match$5 = field_default$1;
             if (match$5.tag) then do
@@ -5725,8 +5802,8 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             end end 
           end else do
             return "Bytes.create 64";
-          end end 
-      case --[ Bt_bool ]--6 :
+          end end end end end 
+       if ___conditional___ = 6--[ Bt_bool ]-- then do
           if (field_default$1 ~= undefined) then do
             var match$6 = field_default$1;
             if (match$6.tag == --[ Constant_bool ]--1) then do
@@ -5741,7 +5818,8 @@ function default_value_of_field_type(field_name, field_type, field_default) do
             end end 
           end else do
             return "false";
-          end end 
+          end end end end end 
+       do
       
     end
   end end  end 
@@ -5755,12 +5833,12 @@ function record_field_default_info(record_field) do
     return default_value_of_field_type(rf_label, field_type, defalut_value);
   end;
   var default_value;
-  switch (rf_field_type.tag | 0) do
-    case --[ Rft_required ]--0 :
+  local ___conditional___=(rf_field_type.tag | 0);
+  do
+     if ___conditional___ = 0--[ Rft_required ]-- then do
         var match = rf_field_type[0];
-        default_value = dfvft(match[0], match[3]);
-        break;
-    case --[ Rft_optional ]--1 :
+        default_value = dfvft(match[0], match[3]);end else 
+     if ___conditional___ = 1--[ Rft_optional ]-- then do
         var match$1 = rf_field_type[0];
         var default_value$1 = match$1[3];
         default_value = default_value$1 ~= undefined ? Curry._1(Printf.sprintf(--[ Format ]--[
@@ -5775,9 +5853,8 @@ function record_field_default_info(record_field) do
                           ])
                       ]),
                     "Some (%s)"
-                  ]), dfvft(match$1[0], default_value$1)) : "None";
-        break;
-    case --[ Rft_repeated_field ]--2 :
+                  ]), dfvft(match$1[0], default_value$1)) : "None";end else 
+     if ___conditional___ = 2--[ Rft_repeated_field ]-- then do
         var match$2 = rf_field_type[0];
         default_value = match$2[0] ? Curry._1(Printf.sprintf(--[ Format ]--[
                     --[ String_literal ]--Block.__(11, [
@@ -5791,12 +5868,10 @@ function record_field_default_info(record_field) do
                           ])
                       ]),
                     "Pbrt.Repeated_field.make (%s)"
-                  ]), dfvft(match$2[1], undefined)) : "[]";
-        break;
-    case --[ Rft_associative_field ]--3 :
-        default_value = rf_field_type[0][0] ? "Hashtbl.create 128" : "[]";
-        break;
-    case --[ Rft_variant_field ]--4 :
+                  ]), dfvft(match$2[1], undefined)) : "[]";end else 
+     if ___conditional___ = 3--[ Rft_associative_field ]-- then do
+        default_value = rf_field_type[0][0] ? "Hashtbl.create 128" : "[]";end else 
+     if ___conditional___ = 4--[ Rft_variant_field ]-- then do
         var v_constructors = rf_field_type[0].v_constructors;
         if (v_constructors) then do
           var match$3 = v_constructors[0];
@@ -5827,8 +5902,8 @@ function record_field_default_info(record_field) do
                   15
                 ]
               ];
-        end end 
-        break;
+        end end end else 
+     do end end end end end end
     
   end
   return --[ tuple ]--[
@@ -6093,26 +6168,25 @@ end
 function gen_struct$4(and_, t, sc) do
   var match = t.spec;
   var tmp;
-  switch (match.tag | 0) do
-    case --[ Record ]--0 :
+  local ___conditional___=(match.tag | 0);
+  do
+     if ___conditional___ = 0--[ Record ]-- then do
         var r = match[0];
         tmp = --[ tuple ]--[
           (gen_default_record(undefined, and_, r, sc), line$1(sc, ""), gen_default_record(--[ () ]--0, --[ () ]--0, r, sc)),
           true
-        ];
-        break;
-    case --[ Variant ]--1 :
+        ];end else 
+     if ___conditional___ = 1--[ Variant ]-- then do
         tmp = --[ tuple ]--[
           gen_default_variant(and_, match[0], sc),
           true
-        ];
-        break;
-    case --[ Const_variant ]--2 :
+        ];end else 
+     if ___conditional___ = 2--[ Const_variant ]-- then do
         tmp = --[ tuple ]--[
           gen_default_const_variant(undefined, match[0], sc),
           true
-        ];
-        break;
+        ];end else 
+     do end end end end
     
   end
   return tmp[1];
@@ -6221,25 +6295,24 @@ function gen_sig$4(and_, t, sc) do
   end;
   var match = t.spec;
   var tmp;
-  switch (match.tag | 0) do
-    case --[ Record ]--0 :
+  local ___conditional___=(match.tag | 0);
+  do
+     if ___conditional___ = 0--[ Record ]-- then do
         tmp = --[ tuple ]--[
           gen_sig_record(sc, match[0]),
           true
-        ];
-        break;
-    case --[ Variant ]--1 :
+        ];end else 
+     if ___conditional___ = 1--[ Variant ]-- then do
         tmp = --[ tuple ]--[
           f(match[0].v_name),
           true
-        ];
-        break;
-    case --[ Const_variant ]--2 :
+        ];end else 
+     if ___conditional___ = 2--[ Const_variant ]-- then do
         tmp = --[ tuple ]--[
           f(match[0].cv_name),
           true
-        ];
-        break;
+        ];end else 
+     do end end end end
     
   end
   return tmp[1];
@@ -6303,66 +6376,70 @@ function rev_split_by_naming_convention(s) do
 end
 
 function fix_ocaml_keyword_conflict(s) do
-  switch (s) do
-    case "and" :
-    case "as" :
-    case "asr" :
-    case "assert" :
-    case "begin" :
-    case "class" :
-    case "constraint" :
-    case "do" :
-    case "done" :
-    case "downto" :
-    case "else" :
-    case "end" :
-    case "exception" :
-    case "external" :
-    case "false" :
-    case "for" :
-    case "fun" :
-    case "function" :
-    case "functor" :
-    case "if" :
-    case "in" :
-    case "include" :
-    case "inherit" :
-    case "initializer" :
-    case "land" :
-    case "lazy" :
-    case "let" :
-    case "lor" :
-    case "lsl" :
-    case "lsr" :
-    case "lxor" :
-    case "match" :
-    case "method" :
-    case "mod" :
-    case "module" :
-    case "mutable" :
-    case "new" :
-    case "nonrec" :
-    case "object" :
-    case "of" :
-    case "open" :
-    case "or" :
-    case "private" :
-    case "rec" :
-    case "sig" :
-    case "struct" :
-    case "then" :
-    case "to" :
-    case "true" :
-    case "try" :
-    case "type" :
-    case "val" :
-    case "virtual" :
-    case "when" :
-    case "while" :
-    case "with" :
-        return s .. "_";
-    default:
+  local ___conditional___=(s);
+  do
+     if ___conditional___ = "and"
+     or ___conditional___ = "as"
+     or ___conditional___ = "asr"
+     or ___conditional___ = "assert"
+     or ___conditional___ = "begin"
+     or ___conditional___ = "class"
+     or ___conditional___ = "constraint"
+     or ___conditional___ = "do"
+     or ___conditional___ = "done"
+     or ___conditional___ = "downto"
+     or ___conditional___ = "else"
+     or ___conditional___ = "end"
+     or ___conditional___ = "exception"
+     or ___conditional___ = "external"
+     or ___conditional___ = "false"
+     or ___conditional___ = "for"
+     or ___conditional___ = "fun"
+     or ___conditional___ = "function"
+     or ___conditional___ = "functor"
+     or ___conditional___ = "if"
+     or ___conditional___ = "in"
+     or ___conditional___ = "include"
+     or ___conditional___ = "inherit"
+     or ___conditional___ = "initializer"
+     or ___conditional___ = "land"
+     or ___conditional___ = "lazy"
+     or ___conditional___ = "let"
+     or ___conditional___ = "lor"
+     or ___conditional___ = "lsl"
+     or ___conditional___ = "lsr"
+     or ___conditional___ = "lxor"
+     or ___conditional___ = "match"
+     or ___conditional___ = "method"
+     or ___conditional___ = "mod"
+     or ___conditional___ = "module"
+     or ___conditional___ = "mutable"
+     or ___conditional___ = "new"
+     or ___conditional___ = "nonrec"
+     or ___conditional___ = "object"
+     or ___conditional___ = "of"
+     or ___conditional___ = "open"
+     or ___conditional___ = "or"
+     or ___conditional___ = "private"
+     or ___conditional___ = "rec"
+     or ___conditional___ = "sig"
+     or ___conditional___ = "struct"
+     or ___conditional___ = "then"
+     or ___conditional___ = "to"
+     or ___conditional___ = "true"
+     or ___conditional___ = "try"
+     or ___conditional___ = "type"
+     or ___conditional___ = "val"
+     or ___conditional___ = "virtual"
+     or ___conditional___ = "when"
+     or ___conditional___ = "while"
+     or ___conditional___ = "with" then do
+        return s .. "_";end end end 
+     do
+    else do
       return s;
+      end end
+      
   end
 end
 
@@ -6421,27 +6498,29 @@ end
 
 function encoding_info_of_field_type(all_types, field_type) do
   if (typeof field_type == "number") then do
-    switch (field_type) do
-      case --[ Field_type_sint32 ]--6 :
-      case --[ Field_type_sint64 ]--7 :
-          return --[ Pk_varint ]--[true];
-      case --[ Field_type_float ]--1 :
-      case --[ Field_type_fixed32 ]--8 :
-      case --[ Field_type_sfixed32 ]--10 :
-          return --[ Pk_bits32 ]--0;
-      case --[ Field_type_double ]--0 :
-      case --[ Field_type_fixed64 ]--9 :
-      case --[ Field_type_sfixed64 ]--11 :
-          return --[ Pk_bits64 ]--1;
-      case --[ Field_type_int32 ]--2 :
-      case --[ Field_type_int64 ]--3 :
-      case --[ Field_type_uint32 ]--4 :
-      case --[ Field_type_uint64 ]--5 :
-      case --[ Field_type_bool ]--12 :
-          return --[ Pk_varint ]--[false];
-      case --[ Field_type_string ]--13 :
-      case --[ Field_type_bytes ]--14 :
-          return --[ Pk_bytes ]--2;
+    local ___conditional___=(field_type);
+    do
+       if ___conditional___ = 6--[ Field_type_sint32 ]--
+       or ___conditional___ = 7--[ Field_type_sint64 ]-- then do
+          return --[ Pk_varint ]--[true];end end end 
+       if ___conditional___ = 1--[ Field_type_float ]--
+       or ___conditional___ = 8--[ Field_type_fixed32 ]--
+       or ___conditional___ = 10--[ Field_type_sfixed32 ]-- then do
+          return --[ Pk_bits32 ]--0;end end end 
+       if ___conditional___ = 0--[ Field_type_double ]--
+       or ___conditional___ = 9--[ Field_type_fixed64 ]--
+       or ___conditional___ = 11--[ Field_type_sfixed64 ]-- then do
+          return --[ Pk_bits64 ]--1;end end end 
+       if ___conditional___ = 2--[ Field_type_int32 ]--
+       or ___conditional___ = 3--[ Field_type_int64 ]--
+       or ___conditional___ = 4--[ Field_type_uint32 ]--
+       or ___conditional___ = 5--[ Field_type_uint64 ]--
+       or ___conditional___ = 12--[ Field_type_bool ]-- then do
+          return --[ Pk_varint ]--[false];end end end 
+       if ___conditional___ = 13--[ Field_type_string ]--
+       or ___conditional___ = 14--[ Field_type_bytes ]-- then do
+          return --[ Pk_bytes ]--2;end end end 
+       do
       
     end
   end else do
@@ -6506,38 +6585,40 @@ function compile_field_type(field_name, all_types, file_options, field_options, 
     int64_type = --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int64 ]--4]);
   end end 
   if (typeof field_type == "number") then do
-    switch (field_type) do
-      case --[ Field_type_double ]--0 :
-      case --[ Field_type_float ]--1 :
-          return --[ Ft_basic_type ]--Block.__(0, [--[ Bt_float ]--1]);
-      case --[ Field_type_int32 ]--2 :
-      case --[ Field_type_uint32 ]--4 :
-      case --[ Field_type_sint32 ]--6 :
-      case --[ Field_type_fixed32 ]--8 :
+    local ___conditional___=(field_type);
+    do
+       if ___conditional___ = 0--[ Field_type_double ]--
+       or ___conditional___ = 1--[ Field_type_float ]-- then do
+          return --[ Ft_basic_type ]--Block.__(0, [--[ Bt_float ]--1]);end end end 
+       if ___conditional___ = 2--[ Field_type_int32 ]--
+       or ___conditional___ = 4--[ Field_type_uint32 ]--
+       or ___conditional___ = 6--[ Field_type_sint32 ]--
+       or ___conditional___ = 8--[ Field_type_fixed32 ]-- then do
           if (ocaml_type ~= -783406652) then do
             return int32_type;
           end else do
             return --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int ]--2]);
-          end end 
-      case --[ Field_type_int64 ]--3 :
-      case --[ Field_type_uint64 ]--5 :
-      case --[ Field_type_sint64 ]--7 :
-      case --[ Field_type_fixed64 ]--9 :
+          end end end end end 
+       if ___conditional___ = 3--[ Field_type_int64 ]--
+       or ___conditional___ = 5--[ Field_type_uint64 ]--
+       or ___conditional___ = 7--[ Field_type_sint64 ]--
+       or ___conditional___ = 9--[ Field_type_fixed64 ]-- then do
           if (ocaml_type ~= -783406652) then do
             return int64_type;
           end else do
             return --[ Ft_basic_type ]--Block.__(0, [--[ Bt_int ]--2]);
-          end end 
-      case --[ Field_type_sfixed32 ]--10 :
-          return unsupported_field_type(field_name, "sfixed32", "OCaml", --[ () ]--0);
-      case --[ Field_type_sfixed64 ]--11 :
-          return unsupported_field_type(field_name, "sfixed64", "OCaml", --[ () ]--0);
-      case --[ Field_type_bool ]--12 :
-          return --[ Ft_basic_type ]--Block.__(0, [--[ Bt_bool ]--6]);
-      case --[ Field_type_string ]--13 :
-          return --[ Ft_basic_type ]--Block.__(0, [--[ Bt_string ]--0]);
-      case --[ Field_type_bytes ]--14 :
-          return --[ Ft_basic_type ]--Block.__(0, [--[ Bt_bytes ]--5]);
+          end end end end end 
+       if ___conditional___ = 10--[ Field_type_sfixed32 ]-- then do
+          return unsupported_field_type(field_name, "sfixed32", "OCaml", --[ () ]--0);end end end 
+       if ___conditional___ = 11--[ Field_type_sfixed64 ]-- then do
+          return unsupported_field_type(field_name, "sfixed64", "OCaml", --[ () ]--0);end end end 
+       if ___conditional___ = 12--[ Field_type_bool ]-- then do
+          return --[ Ft_basic_type ]--Block.__(0, [--[ Bt_bool ]--6]);end end end 
+       if ___conditional___ = 13--[ Field_type_string ]-- then do
+          return --[ Ft_basic_type ]--Block.__(0, [--[ Bt_string ]--0]);end end end 
+       if ___conditional___ = 14--[ Field_type_bytes ]-- then do
+          return --[ Ft_basic_type ]--Block.__(0, [--[ Bt_bytes ]--5]);end end end 
+       do
       
     end
   end else do
@@ -6727,8 +6808,9 @@ function compile(proto_definition) do
                           var message_name = message.message_name;
                           if (message_body) then do
                             var match$1 = message_body[0];
-                            switch (match$1.tag | 0) do
-                              case --[ Message_oneof_field ]--1 :
+                            local ___conditional___=(match$1.tag | 0);
+                            do
+                               if ___conditional___ = 1--[ Message_oneof_field ]-- then do
                                   if (!message_body[1]) then do
                                     var outer_message_names = Pervasives.$at(message_names, --[ :: ]--[
                                           message_name,
@@ -6743,11 +6825,10 @@ function compile(proto_definition) do
                                             --[ [] ]--0
                                           ];
                                   end
-                                   end 
-                                  break;
-                              case --[ Message_field ]--0 :
-                              case --[ Message_map_field ]--2 :
-                                  break;
+                                   end end else 
+                               if ___conditional___ = 0--[ Message_field ]--
+                               or ___conditional___ = 2--[ Message_map_field ]--
+                               do end end
                               
                             end
                           end else do
@@ -6756,8 +6837,9 @@ function compile(proto_definition) do
                           var match$2 = List.fold_left((function (param, param$1) do
                                   var fields = param[1];
                                   var variants = param[0];
-                                  switch (param$1.tag | 0) do
-                                    case --[ Message_field ]--0 :
+                                  local ___conditional___=(param$1.tag | 0);
+                                  do
+                                     if ___conditional___ = 0--[ Message_field ]-- then do
                                         var field = param$1[0];
                                         var match = encoding_of_field(all_types$1, field);
                                         var encoding_number = match[1];
@@ -6820,8 +6902,8 @@ function compile(proto_definition) do
                                                   record_field,
                                                   fields
                                                 ]
-                                              ];
-                                    case --[ Message_oneof_field ]--1 :
+                                              ];end end end 
+                                     if ___conditional___ = 1--[ Message_oneof_field ]-- then do
                                         var field$1 = param$1[0];
                                         var outer_message_names = Pervasives.$at(message_names, --[ :: ]--[
                                               message_name,
@@ -6850,8 +6932,8 @@ function compile(proto_definition) do
                                         return --[ tuple ]--[
                                                 variants$1,
                                                 fields$1
-                                              ];
-                                    case --[ Message_map_field ]--2 :
+                                              ];end end end 
+                                     if ___conditional___ = 2--[ Message_map_field ]-- then do
                                         var mf = param$1[0];
                                         var map_options = mf.map_options;
                                         var map_value_type = mf.map_value_type;
@@ -6932,7 +7014,8 @@ function compile(proto_definition) do
                                                   record_field$2,
                                                   fields
                                                 ]
-                                              ];
+                                              ];end end end 
+                                     do
                                     
                                   end
                                 end), --[ tuple ]--[

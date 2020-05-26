@@ -1482,23 +1482,23 @@ function scan_elems$2(ib, accu) do
                   ]), (function (c, i) do
                   if (c >= 91) then do
                     if (c < 94) then do
-                      switch (c - 91 | 0) do
-                        case 0 :
+                      local ___conditional___=(c - 91 | 0);
+                      do
+                         if ___conditional___ = 0 then do
                             if (accu == --[ [] ]--0) then do
                               return scan_elems$2(ib, --[ :: ]--[
                                           i,
                                           accu
                                         ]);
                             end
-                             end 
-                            break;
-                        case 1 :
-                            break;
-                        case 2 :
+                             end end else 
+                         if ___conditional___ = 1
+                         or ___conditional___ = 2 then do
                             return List.rev(--[ :: ]--[
                                         i,
                                         accu
-                                      ]);
+                                      ]);end end end 
+                         do end
                         
                       end
                     end
@@ -1599,22 +1599,26 @@ function scan_elems$3(ib, accu) do
                     ]),
                   " %i%[]; \t\n\r]"
                 ]), (function (i, s) do
-                switch (s) do
-                  case ";" :
+                local ___conditional___=(s);
+                do
+                   if ___conditional___ = ";" then do
                       return scan_elems$3(ib, --[ :: ]--[
                                   i,
                                   accu
-                                ]);
-                  case "]" :
+                                ]);end end end 
+                   if ___conditional___ = "]" then do
                       return List.rev(--[ :: ]--[
                                   i,
                                   accu
-                                ]);
-                  default:
+                                ]);end end end 
+                   do
+                  else do
                     return List.rev(--[ :: ]--[
                                 i,
                                 accu
                               ]);
+                    end end
+                    
                 end
               end));
 end
@@ -1905,12 +1909,14 @@ function scan_rest$1(ib, accu) do
                                                   ]),
                                                 "%1[];]"
                                               ]), (function (param) do
-                                              switch (param) do
-                                                case ";" :
-                                                    return scan_rest$1(ib$2, accu$2);
-                                                case "]" :
-                                                    return accu$2;
-                                                default:
+                                              local ___conditional___=(param);
+                                              do
+                                                 if ___conditional___ = ";" then do
+                                                    return scan_rest$1(ib$2, accu$2);end end end 
+                                                 if ___conditional___ = "]" then do
+                                                    return accu$2;end end end 
+                                                 do
+                                                else do
                                                   var s = Printf.sprintf(--[ Format ]--[
                                                         --[ String_literal ]--Block.__(11, [
                                                             "scan_int_list",
@@ -1922,6 +1928,8 @@ function scan_rest$1(ib, accu) do
                                                         Caml_builtin_exceptions.failure,
                                                         s
                                                       ];
+                                                  end end
+                                                  
                                               end
                                             end));
                               end));
@@ -3732,11 +3740,12 @@ function writer(ib, ob) do
                     ]),
                   "%s\n"
                 ]), (function (s) do
-                switch (s) do
-                  case "start" :
+                local ___conditional___=(s);
+                do
+                   if ___conditional___ = "start" then do
                       send_string(ob, "Hello World!");
-                      return reader(ib, ob);
-                  case "stop" :
+                      return reader(ib, ob);end end end 
+                   if ___conditional___ = "stop" then do
                       return Curry._1(Scanf.bscanf(ib, --[ Format ]--[
                                       --[ Int ]--Block.__(4, [
                                           --[ Int_i ]--3,
@@ -3747,11 +3756,14 @@ function writer(ib, ob) do
                                       "%i"
                                     ]), (function (i) do
                                     return i;
-                                  end));
-                  default:
+                                  end));end end end 
+                   do
+                  else do
                     var i = Caml_format.caml_int_of_string(s);
                     send_string(ob, String(i));
                     return reader(ib, ob);
+                    end end
+                    
                 end
               end));
 end

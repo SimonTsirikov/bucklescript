@@ -3,23 +3,23 @@
 
 function ff(x) do
   var a;
-  switch (x) do
-    case "0" :
-    case "1" :
-    case "2" :
-        a = 3;
-        break;
-    case "3" :
-        a = 4;
-        break;
-    case "4" :
-        a = 6;
-        break;
-    case "7" :
-        a = 7;
-        break;
-    default:
+  local ___conditional___=(x);
+  do
+     if ___conditional___ = "0"
+     or ___conditional___ = "1"
+     or ___conditional___ = "2" then do
+        a = 3;end else 
+     if ___conditional___ = "3" then do
+        a = 4;end else 
+     if ___conditional___ = "4" then do
+        a = 6;end else 
+     if ___conditional___ = "7" then do
+        a = 7;end else 
+     do end end end end end
+    else do
       a = 8;
+      end end
+      
   end
   return a + 3 | 0;
 end

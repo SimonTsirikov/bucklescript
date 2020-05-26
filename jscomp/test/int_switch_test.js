@@ -21,43 +21,53 @@ end
 
 function f(x) do
   var match = Curry._1(x, --[ () ]--0);
-  switch (match) do
-    case 1 :
-        return --[ "a" ]--97;
-    case 2 :
-        return --[ "b" ]--98;
-    case 3 :
-        return --[ "c" ]--99;
-    default:
+  local ___conditional___=(match);
+  do
+     if ___conditional___ = 1 then do
+        return --[ "a" ]--97;end end end 
+     if ___conditional___ = 2 then do
+        return --[ "b" ]--98;end end end 
+     if ___conditional___ = 3 then do
+        return --[ "c" ]--99;end end end 
+     do
+    else do
       return --[ "x" ]--120;
+      end end
+      
   end
 end
 
 function f22(x) do
   var match = Curry._1(x, --[ () ]--0);
-  switch (match) do
-    case 1 :
-        return --[ "a" ]--97;
-    case 2 :
-        return --[ "b" ]--98;
-    case 3 :
-        return --[ "c" ]--99;
-    default:
+  local ___conditional___=(match);
+  do
+     if ___conditional___ = 1 then do
+        return --[ "a" ]--97;end end end 
+     if ___conditional___ = 2 then do
+        return --[ "b" ]--98;end end end 
+     if ___conditional___ = 3 then do
+        return --[ "c" ]--99;end end end 
+     do
+    else do
       return --[ "x" ]--120;
+      end end
+      
   end
 end
 
 function f33(x) do
   var match = Curry._1(x, --[ () ]--0);
-  switch (match) do
-    case --[ A ]--0 :
-        return --[ "a" ]--97;
-    case --[ B ]--1 :
-        return --[ "b" ]--98;
-    case --[ C ]--2 :
-        return --[ "c" ]--99;
-    case --[ D ]--3 :
-        return --[ "x" ]--120;
+  local ___conditional___=(match);
+  do
+     if ___conditional___ = 0--[ A ]-- then do
+        return --[ "a" ]--97;end end end 
+     if ___conditional___ = 1--[ B ]-- then do
+        return --[ "b" ]--98;end end end 
+     if ___conditional___ = 2--[ C ]-- then do
+        return --[ "c" ]--99;end end end 
+     if ___conditional___ = 3--[ D ]-- then do
+        return --[ "x" ]--120;end end end 
+     do
     
   end
 end

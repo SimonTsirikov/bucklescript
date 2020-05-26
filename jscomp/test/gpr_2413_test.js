@@ -3,8 +3,9 @@
 var Caml_int32 = require("../../lib/js/caml_int32.js");
 
 function f(param) do
-  switch (param.tag | 0) do
-    case --[ A ]--0 :
+  local ___conditional___=(param.tag | 0);
+  do
+     if ___conditional___ = 0--[ A ]-- then do
         var match = param[0];
         if (match.tag) then do
           var a = match[0];
@@ -12,10 +13,10 @@ function f(param) do
         end else do
           var a$1 = match[0];
           return a$1 + a$1 | 0;
-        end end 
-    case --[ B ]--1 :
-    case --[ C ]--2 :
-        break;
+        end end end end end 
+     if ___conditional___ = 1--[ B ]--
+     or ___conditional___ = 2--[ C ]--
+     do
     
   end
   var a$2 = param[0][0];

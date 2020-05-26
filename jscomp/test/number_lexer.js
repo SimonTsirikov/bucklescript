@@ -26,51 +26,55 @@ function __ocaml_lex_token_rec(l, lexbuf, ___ocaml_lex_state) do
   while(true) do
     var __ocaml_lex_state = ___ocaml_lex_state;
     var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    switch (__ocaml_lex_state$1) do
-      case 0 :
+    local ___conditional___=(__ocaml_lex_state$1);
+    do
+       if ___conditional___ = 0 then do
           Curry._1(l, "new line");
           ___ocaml_lex_state = 0;
-          continue ;
-      case 1 :
+          continue ;end end end 
+       if ___conditional___ = 1 then do
           Curry._1(l, "number");
           Curry._1(l, Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 0;
-          continue ;
-      case 2 :
+          continue ;end end end 
+       if ___conditional___ = 2 then do
           Curry._1(l, "ident");
           Curry._1(l, Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 0;
-          continue ;
-      case 3 :
+          continue ;end end end 
+       if ___conditional___ = 3 then do
           Curry._1(l, "+");
           ___ocaml_lex_state = 0;
-          continue ;
-      case 4 :
+          continue ;end end end 
+       if ___conditional___ = 4 then do
           Curry._1(l, "-");
           ___ocaml_lex_state = 0;
-          continue ;
-      case 5 :
+          continue ;end end end 
+       if ___conditional___ = 5 then do
           Curry._1(l, "*");
           ___ocaml_lex_state = 0;
-          continue ;
-      case 6 :
+          continue ;end end end 
+       if ___conditional___ = 6 then do
           Curry._1(l, "/");
           ___ocaml_lex_state = 0;
-          continue ;
-      case 7 :
+          continue ;end end end 
+       if ___conditional___ = 7 then do
           Curry._1(l, "(");
           ___ocaml_lex_state = 0;
-          continue ;
-      case 8 :
+          continue ;end end end 
+       if ___conditional___ = 8 then do
           Curry._1(l, ")");
           ___ocaml_lex_state = 0;
-          continue ;
-      case 9 :
-          return Curry._1(l, "eof");
-      default:
+          continue ;end end end 
+       if ___conditional___ = 9 then do
+          return Curry._1(l, "eof");end end end 
+       do
+      else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
         continue ;
+        end end
+        
     end
   end;
 end

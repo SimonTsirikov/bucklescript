@@ -107,11 +107,13 @@ end
 
 function test(readline, x) do
   readline.on((function () do
-            switch (x[0]) do
-              case -944564236 :
-                  return "line";
-              case -933029960 :
-                  return "close";
+            local ___conditional___=(x[0]);
+            do
+               if ___conditional___ = -944564236 then do
+                  return "line";end end end 
+               if ___conditional___ = -933029960 then do
+                  return "close";end end end 
+               do
               
             end
           end)(), x[1]);
@@ -137,11 +139,13 @@ Mt.from_pair_suites("Poly_variant_test", suites.contents);
 
 function on2(prim, prim$1) do
   prim.on2((function () do
-            switch (prim$1[0]) do
-              case -944564236 :
-                  return "line";
-              case -933029960 :
-                  return "close";
+            local ___conditional___=(prim$1[0]);
+            do
+               if ___conditional___ = -944564236 then do
+                  return "line";end end end 
+               if ___conditional___ = -933029960 then do
+                  return "close";end end end 
+               do
               
             end
           end)(), prim$1[1]);

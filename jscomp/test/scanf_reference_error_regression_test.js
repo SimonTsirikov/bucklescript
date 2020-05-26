@@ -63,12 +63,14 @@ function scan_rest(ib, accu) do
                                                   ]),
                                                 "%1[];]"
                                               ]), (function (param) do
-                                              switch (param) do
-                                                case ";" :
-                                                    return scan_rest(ib$2, accu$2);
-                                                case "]" :
-                                                    return accu$2;
-                                                default:
+                                              local ___conditional___=(param);
+                                              do
+                                                 if ___conditional___ = ";" then do
+                                                    return scan_rest(ib$2, accu$2);end end end 
+                                                 if ___conditional___ = "]" then do
+                                                    return accu$2;end end end 
+                                                 do
+                                                else do
                                                   var s = Printf.sprintf(--[ Format ]--[
                                                         --[ String_literal ]--Block.__(11, [
                                                             "scan_int_list",
@@ -80,6 +82,8 @@ function scan_rest(ib, accu) do
                                                         Caml_builtin_exceptions.failure,
                                                         s
                                                       ];
+                                                  end end
+                                                  
                                               end
                                             end));
                               end));

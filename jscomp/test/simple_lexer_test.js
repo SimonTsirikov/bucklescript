@@ -25,18 +25,22 @@ function __ocaml_lex_translate_rec(lexbuf, ___ocaml_lex_state) do
   while(true) do
     var __ocaml_lex_state = ___ocaml_lex_state;
     var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    switch (__ocaml_lex_state$1) do
-      case 0 :
-          return "." .. __ocaml_lex_translate_rec(lexbuf, 0);
-      case 1 :
+    local ___conditional___=(__ocaml_lex_state$1);
+    do
+       if ___conditional___ = 0 then do
+          return "." .. __ocaml_lex_translate_rec(lexbuf, 0);end end end 
+       if ___conditional___ = 1 then do
           var c = Caml_bytes.get(lexbuf.lex_buffer, lexbuf.lex_start_pos);
-          return Caml_bytes.bytes_to_string(Bytes.make(1, c)) .. __ocaml_lex_translate_rec(lexbuf, 0);
-      case 2 :
-          return "";
-      default:
+          return Caml_bytes.bytes_to_string(Bytes.make(1, c)) .. __ocaml_lex_translate_rec(lexbuf, 0);end end end 
+       if ___conditional___ = 2 then do
+          return "";end end end 
+       do
+      else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
         continue ;
+        end end
+        
     end
   end;
 end

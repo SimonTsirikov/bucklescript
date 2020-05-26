@@ -438,13 +438,14 @@ end
 
 function of_sorted_list(l) do
   var sub = function (n, l) do
-    switch (n) do
-      case 0 :
+    local ___conditional___=(n);
+    do
+       if ___conditional___ = 0 then do
           return --[ tuple ]--[
                   --[ Empty ]--0,
                   l
-                ];
-      case 1 :
+                ];end end end 
+       if ___conditional___ = 1 then do
           if (l) then do
             return --[ tuple ]--[
                     --[ Node ]--[
@@ -456,9 +457,8 @@ function of_sorted_list(l) do
                     l[1]
                   ];
           end
-           end 
-          break;
-      case 2 :
+           end end else 
+       if ___conditional___ = 2 then do
           if (l) then do
             var match = l[1];
             if (match) then do
@@ -479,9 +479,8 @@ function of_sorted_list(l) do
             end
              end 
           end
-           end 
-          break;
-      case 3 :
+           end end else 
+       if ___conditional___ = 3 then do
           if (l) then do
             var match$1 = l[1];
             if (match$1) then do
@@ -511,9 +510,10 @@ function of_sorted_list(l) do
             end
              end 
           end
-           end 
-          break;
-      default:
+           end end else 
+       do end end end
+      else do
+        end end
         
     end
     var nl = n / 2 | 0;

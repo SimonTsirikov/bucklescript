@@ -12,13 +12,15 @@ end
 
 function fff(x) do
   var match = --[ A ]--Block.__(0, [x]);
-  switch (match.tag | 0) do
-    case --[ A ]--0 :
-        return x;
-    case --[ B ]--1 :
-        return 1;
-    case --[ C ]--2 :
-        return 2;
+  local ___conditional___=(match.tag | 0);
+  do
+     if ___conditional___ = 0--[ A ]-- then do
+        return x;end end end 
+     if ___conditional___ = 1--[ B ]-- then do
+        return 1;end end end 
+     if ___conditional___ = 2--[ C ]-- then do
+        return 2;end end end 
+     do
     
   end
 end

@@ -12,15 +12,19 @@ end
 
 function fxx(v) do
   var match = Curry._1(v, --[ () ]--0);
-  switch (match) do
-    case 1 :
-        return --[ "a" ]--97;
-    case 2 :
-        return --[ "b" ]--98;
-    case 3 :
-        return --[ "c" ]--99;
-    default:
+  local ___conditional___=(match);
+  do
+     if ___conditional___ = 1 then do
+        return --[ "a" ]--97;end end end 
+     if ___conditional___ = 2 then do
+        return --[ "b" ]--98;end end end 
+     if ___conditional___ = 3 then do
+        return --[ "c" ]--99;end end end 
+     do
+    else do
       return --[ "d" ]--100;
+      end end
+      
   end
 end
 

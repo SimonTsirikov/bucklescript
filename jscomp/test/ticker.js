@@ -1246,8 +1246,9 @@ function process_input_line(ticker_map, all_tickers, line) do
   end;
   var tokens = split(--[ "|" ]--124, line);
   if (tokens) then do
-    switch (tokens[0]) do
-      case "Q" :
+    local ___conditional___=(tokens[0]);
+    do
+       if ___conditional___ = "Q" then do
           var match = tokens[1];
           if (match) then do
             var match$1 = match[1];
@@ -1277,15 +1278,16 @@ function process_input_line(ticker_map, all_tickers, line) do
                   Caml_builtin_exceptions.failure,
                   "Invalid input line"
                 ];
-          end end 
-      case "R" :
+          end end end end end 
+       if ___conditional___ = "R" then do
           var match$2 = tokens[1];
           if (match$2) then do
             var match$3 = match$2[1];
             if (match$3) then do
               var ticker_name = match$2[0];
-              switch (match$3[0]) do
-                case "+" :
+              local ___conditional___=(match$3[0]);
+              do
+                 if ___conditional___ = "+" then do
                     var match$4 = match$3[1];
                     if (match$4) then do
                       var match$5 = match$4[1];
@@ -1315,8 +1317,8 @@ function process_input_line(ticker_map, all_tickers, line) do
                             Caml_builtin_exceptions.failure,
                             "Invalid input line"
                           ];
-                    end end 
-                case "-" :
+                    end end end end end 
+                 if ___conditional___ = "-" then do
                     var match$6 = match$3[1];
                     if (match$6) then do
                       var match$7 = match$6[1];
@@ -1346,8 +1348,8 @@ function process_input_line(ticker_map, all_tickers, line) do
                             Caml_builtin_exceptions.failure,
                             "Invalid input line"
                           ];
-                    end end 
-                case "S" :
+                    end end end end end 
+                 if ___conditional___ = "S" then do
                     if (match$3[1]) then do
                       throw [
                             Caml_builtin_exceptions.failure,
@@ -1366,12 +1368,15 @@ function process_input_line(ticker_map, all_tickers, line) do
                               all_tickers
                             ],
                             ticker_map
-                          ];
-                default:
+                          ];end end end 
+                 do
+                else do
                   throw [
                         Caml_builtin_exceptions.failure,
                         "Invalid input line"
                       ];
+                  end end
+                  
               end
             end else do
               throw [
@@ -1384,12 +1389,15 @@ function process_input_line(ticker_map, all_tickers, line) do
                   Caml_builtin_exceptions.failure,
                   "Invalid input line"
                 ];
-          end end 
-      default:
+          end end end end end 
+       do
+      else do
         throw [
               Caml_builtin_exceptions.failure,
               "Invalid input line"
             ];
+        end end
+        
     end
   end else do
     throw [

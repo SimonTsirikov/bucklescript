@@ -2,35 +2,37 @@
 
 
 function actionKey(key, a, b, c, d, e) do
-  switch (key) do
-    case 98 :
-        return c;
-    case 106 :
-        return d;
-    case 107 :
-        return e;
-    case 116 :
-        return b;
-    case 100 :
-    case 101 :
-    case 102 :
-    case 103 :
-    case 104 :
-    case 105 :
-    case 108 :
-    case 109 :
-    case 110 :
-    case 111 :
-    case 112 :
-    case 113 :
-    case 114 :
-    case 115 :
-    case 117 :
-        break;
-    case 99 :
-    case 118 :
-        return a;
-    default:
+  local ___conditional___=(key);
+  do
+     if ___conditional___ = 98 then do
+        return c;end end end 
+     if ___conditional___ = 106 then do
+        return d;end end end 
+     if ___conditional___ = 107 then do
+        return e;end end end 
+     if ___conditional___ = 116 then do
+        return b;end end end 
+     if ___conditional___ = 100
+     or ___conditional___ = 101
+     or ___conditional___ = 102
+     or ___conditional___ = 103
+     or ___conditional___ = 104
+     or ___conditional___ = 105
+     or ___conditional___ = 108
+     or ___conditional___ = 109
+     or ___conditional___ = 110
+     or ___conditional___ = 111
+     or ___conditional___ = 112
+     or ___conditional___ = 113
+     or ___conditional___ = 114
+     or ___conditional___ = 115
+     or ___conditional___ = 117
+     or ___conditional___ = 99
+     or ___conditional___ = 118 then do
+        return a;end end end 
+     do
+    else do
+      end end
       
   end
   return (function (param) do

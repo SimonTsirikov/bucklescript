@@ -23,11 +23,13 @@ function makeWrapper(foo, param) do
   var tmp = { };
   if (foo ~= undefined) then do
     tmp.foo = (function () do
-          switch (Caml_option.valFromOption(foo)) do
-            case 97 :
-                return "a";
-            case 98 :
-                return "b";
+          local ___conditional___=(Caml_option.valFromOption(foo));
+          do
+             if ___conditional___ = 97 then do
+                return "a";end end end 
+             if ___conditional___ = 98 then do
+                return "b";end end end 
+             do
             
           end
         end)();
@@ -40,11 +42,13 @@ end
 function makeWrapper2(foo, param) do
   console.log(do
         foo: (function () do
-              switch (foo) do
-                case 97 :
-                    return "a";
-                case 98 :
-                    return "b";
+              local ___conditional___=(foo);
+              do
+                 if ___conditional___ = 97 then do
+                    return "a";end end end 
+                 if ___conditional___ = 98 then do
+                    return "b";end end end 
+                 do
                 
               end
             end)()
@@ -59,11 +63,13 @@ function makeWrapper3(foo, param) do
   var tmp = { };
   if (foo ~= undefined) then do
     tmp.foo = (function () do
-          switch (Caml_option.valFromOption(foo)) do
-            case 97 :
-                return "a";
-            case 98 :
-                return "b";
+          local ___conditional___=(Caml_option.valFromOption(foo));
+          do
+             if ___conditional___ = 97 then do
+                return "a";end end end 
+             if ___conditional___ = 98 then do
+                return "b";end end end 
+             do
             
           end
         end)();
@@ -80,11 +86,13 @@ function makeWrapper4(foo, param) do
     );
   if (tmp$1 ~= undefined) then do
     tmp.foo = (function () do
-          switch (Caml_option.valFromOption(tmp$1)) do
-            case 97 :
-                return "a";
-            case 98 :
-                return "b";
+          local ___conditional___=(Caml_option.valFromOption(tmp$1));
+          do
+             if ___conditional___ = 97 then do
+                return "a";end end end 
+             if ___conditional___ = 98 then do
+                return "b";end end end 
+             do
             
           end
         end)();

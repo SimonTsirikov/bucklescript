@@ -29,17 +29,21 @@ function eq(loc, x, y) do
 end
 
 function f(x) do
-  switch (x) do
-    case "xx\"" :
-        return 1;
-    case "xx'''" :
-        return 0;
-    case "xx\\\"" :
-        return 2;
-    case "xx\\\"\"" :
-        return 3;
-    default:
+  local ___conditional___=(x);
+  do
+     if ___conditional___ = "xx\"" then do
+        return 1;end end end 
+     if ___conditional___ = "xx'''" then do
+        return 0;end end end 
+     if ___conditional___ = "xx\\\"" then do
+        return 2;end end end 
+     if ___conditional___ = "xx\\\"\"" then do
+        return 3;end end end 
+     do
+    else do
       return 4;
+      end end
+      
   end
 end
 

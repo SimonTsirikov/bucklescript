@@ -92,15 +92,16 @@ function balance_left(l, x, r) do
   end else do
     exit = 1;
   end end 
-  switch (exit) do
-    case 1 :
+  local ___conditional___=(exit);
+  do
+     if ___conditional___ = 1 then do
         return --[ Node ]--[
                 --[ Black ]--0,
                 l,
                 x,
                 r
-              ];
-    case 2 :
+              ];end end end 
+     if ___conditional___ = 2 then do
         return --[ Node ]--[
                 --[ Red ]--1,
                 --[ Node ]--[
@@ -116,7 +117,8 @@ function balance_left(l, x, r) do
                   z,
                   d
                 ]
-              ];
+              ];end end end 
+     do
     
   end
 end
@@ -164,15 +166,16 @@ function balance_right(l, x, r) do
   end else do
     exit = 1;
   end end 
-  switch (exit) do
-    case 1 :
+  local ___conditional___=(exit);
+  do
+     if ___conditional___ = 1 then do
         return --[ Node ]--[
                 --[ Black ]--0,
                 l,
                 x,
                 r
-              ];
-    case 2 :
+              ];end end end 
+     if ___conditional___ = 2 then do
         return --[ Node ]--[
                 --[ Red ]--1,
                 --[ Node ]--[
@@ -188,7 +191,8 @@ function balance_right(l, x, r) do
                   z,
                   d
                 ]
-              ];
+              ];end end end 
+     do
     
   end
 end

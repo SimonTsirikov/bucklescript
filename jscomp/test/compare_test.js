@@ -2,25 +2,29 @@
 
 
 function compare(x, y) do
-  switch (x) do
-    case --[ A ]--0 :
-        return y == --[ A ]--0;
-    case --[ B ]--1 :
-        return y == --[ B ]--1;
-    case --[ C ]--2 :
-        return y == --[ C ]--2;
+  local ___conditional___=(x);
+  do
+     if ___conditional___ = 0--[ A ]-- then do
+        return y == --[ A ]--0;end end end 
+     if ___conditional___ = 1--[ B ]-- then do
+        return y == --[ B ]--1;end end end 
+     if ___conditional___ = 2--[ C ]-- then do
+        return y == --[ C ]--2;end end end 
+     do
     
   end
 end
 
 function compare2(x, y) do
-  switch (x) do
-    case --[ A ]--0 :
-        return y == 0;
-    case --[ B ]--1 :
-        return y == 1;
-    case --[ C ]--2 :
-        return y >= 2;
+  local ___conditional___=(x);
+  do
+     if ___conditional___ = 0--[ A ]-- then do
+        return y == 0;end end end 
+     if ___conditional___ = 1--[ B ]-- then do
+        return y == 1;end end end 
+     if ___conditional___ = 2--[ C ]-- then do
+        return y >= 2;end end end 
+     do
     
   end
 end

@@ -4,19 +4,22 @@ var Sys = require("../../lib/js/sys.js");
 
 var match;
 
-switch (Sys.os_type) do
-  case "Cygwin" :
-  case "Unix" :
+local ___conditional___=(Sys.os_type);
+do
+   if ___conditional___ = "Cygwin"
+   or ___conditional___ = "Unix" then do
       match = --[ tuple ]--[
         1,
         2
-      ];
-      break;
-  default:
+      ];end else 
+   do end end
+  else do
     match = --[ tuple ]--[
       3,
       4
     ];
+    end end
+    
 end
 
 var a = match[0];

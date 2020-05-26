@@ -3710,123 +3710,125 @@ function method_impl(table, i, arr) do
   end;
   var clo = next(--[ () ]--0);
   if (typeof clo == "number") then do
-    switch (clo) do
-      case --[ GetConst ]--0 :
+    local ___conditional___=(clo);
+    do
+       if ___conditional___ = 0--[ GetConst ]-- then do
           var x = next(--[ () ]--0);
           return (function (obj) do
               return x;
-            end);
-      case --[ GetVar ]--1 :
+            end);end end end 
+       if ___conditional___ = 1--[ GetVar ]-- then do
           var n = next(--[ () ]--0);
           return (function (obj) do
               return obj[n];
-            end);
-      case --[ GetEnv ]--2 :
+            end);end end end 
+       if ___conditional___ = 2--[ GetEnv ]-- then do
           var e = next(--[ () ]--0);
           var n$1 = next(--[ () ]--0);
-          return get_env(e, n$1);
-      case --[ GetMeth ]--3 :
-          return get_meth(next(--[ () ]--0));
-      case --[ SetVar ]--4 :
+          return get_env(e, n$1);end end end 
+       if ___conditional___ = 3--[ GetMeth ]-- then do
+          return get_meth(next(--[ () ]--0));end end end 
+       if ___conditional___ = 4--[ SetVar ]-- then do
           var n$2 = next(--[ () ]--0);
           return (function (obj, x) do
               obj[n$2] = x;
               return --[ () ]--0;
-            end);
-      case --[ AppConst ]--5 :
+            end);end end end 
+       if ___conditional___ = 5--[ AppConst ]-- then do
           var f = next(--[ () ]--0);
           var x$1 = next(--[ () ]--0);
           return (function (obj) do
               return Curry._1(f, x$1);
-            end);
-      case --[ AppVar ]--6 :
+            end);end end end 
+       if ___conditional___ = 6--[ AppVar ]-- then do
           var f$1 = next(--[ () ]--0);
           var n$3 = next(--[ () ]--0);
           return (function (obj) do
               return Curry._1(f$1, obj[n$3]);
-            end);
-      case --[ AppEnv ]--7 :
+            end);end end end 
+       if ___conditional___ = 7--[ AppEnv ]-- then do
           var f$2 = next(--[ () ]--0);
           var e$1 = next(--[ () ]--0);
           var n$4 = next(--[ () ]--0);
-          return app_env(f$2, e$1, n$4);
-      case --[ AppMeth ]--8 :
+          return app_env(f$2, e$1, n$4);end end end 
+       if ___conditional___ = 8--[ AppMeth ]-- then do
           var f$3 = next(--[ () ]--0);
           var n$5 = next(--[ () ]--0);
-          return app_meth(f$3, n$5);
-      case --[ AppConstConst ]--9 :
+          return app_meth(f$3, n$5);end end end 
+       if ___conditional___ = 9--[ AppConstConst ]-- then do
           var f$4 = next(--[ () ]--0);
           var x$2 = next(--[ () ]--0);
           var y = next(--[ () ]--0);
           return (function (obj) do
               return Curry._2(f$4, x$2, y);
-            end);
-      case --[ AppConstVar ]--10 :
+            end);end end end 
+       if ___conditional___ = 10--[ AppConstVar ]-- then do
           var f$5 = next(--[ () ]--0);
           var x$3 = next(--[ () ]--0);
           var n$6 = next(--[ () ]--0);
-          return app_const_var(f$5, x$3, n$6);
-      case --[ AppConstEnv ]--11 :
+          return app_const_var(f$5, x$3, n$6);end end end 
+       if ___conditional___ = 11--[ AppConstEnv ]-- then do
           var f$6 = next(--[ () ]--0);
           var x$4 = next(--[ () ]--0);
           var e$2 = next(--[ () ]--0);
           var n$7 = next(--[ () ]--0);
-          return app_const_env(f$6, x$4, e$2, n$7);
-      case --[ AppConstMeth ]--12 :
+          return app_const_env(f$6, x$4, e$2, n$7);end end end 
+       if ___conditional___ = 12--[ AppConstMeth ]-- then do
           var f$7 = next(--[ () ]--0);
           var x$5 = next(--[ () ]--0);
           var n$8 = next(--[ () ]--0);
-          return app_const_meth(f$7, x$5, n$8);
-      case --[ AppVarConst ]--13 :
+          return app_const_meth(f$7, x$5, n$8);end end end 
+       if ___conditional___ = 13--[ AppVarConst ]-- then do
           var f$8 = next(--[ () ]--0);
           var n$9 = next(--[ () ]--0);
           var x$6 = next(--[ () ]--0);
-          return app_var_const(f$8, n$9, x$6);
-      case --[ AppEnvConst ]--14 :
+          return app_var_const(f$8, n$9, x$6);end end end 
+       if ___conditional___ = 14--[ AppEnvConst ]-- then do
           var f$9 = next(--[ () ]--0);
           var e$3 = next(--[ () ]--0);
           var n$10 = next(--[ () ]--0);
           var x$7 = next(--[ () ]--0);
-          return app_env_const(f$9, e$3, n$10, x$7);
-      case --[ AppMethConst ]--15 :
+          return app_env_const(f$9, e$3, n$10, x$7);end end end 
+       if ___conditional___ = 15--[ AppMethConst ]-- then do
           var f$10 = next(--[ () ]--0);
           var n$11 = next(--[ () ]--0);
           var x$8 = next(--[ () ]--0);
-          return app_meth_const(f$10, n$11, x$8);
-      case --[ MethAppConst ]--16 :
+          return app_meth_const(f$10, n$11, x$8);end end end 
+       if ___conditional___ = 16--[ MethAppConst ]-- then do
           var n$12 = next(--[ () ]--0);
           var x$9 = next(--[ () ]--0);
-          return meth_app_const(n$12, x$9);
-      case --[ MethAppVar ]--17 :
+          return meth_app_const(n$12, x$9);end end end 
+       if ___conditional___ = 17--[ MethAppVar ]-- then do
           var n$13 = next(--[ () ]--0);
           var m = next(--[ () ]--0);
-          return meth_app_var(n$13, m);
-      case --[ MethAppEnv ]--18 :
+          return meth_app_var(n$13, m);end end end 
+       if ___conditional___ = 18--[ MethAppEnv ]-- then do
           var n$14 = next(--[ () ]--0);
           var e$4 = next(--[ () ]--0);
           var m$1 = next(--[ () ]--0);
-          return meth_app_env(n$14, e$4, m$1);
-      case --[ MethAppMeth ]--19 :
+          return meth_app_env(n$14, e$4, m$1);end end end 
+       if ___conditional___ = 19--[ MethAppMeth ]-- then do
           var n$15 = next(--[ () ]--0);
           var m$2 = next(--[ () ]--0);
-          return meth_app_meth(n$15, m$2);
-      case --[ SendConst ]--20 :
+          return meth_app_meth(n$15, m$2);end end end 
+       if ___conditional___ = 20--[ SendConst ]-- then do
           var m$3 = next(--[ () ]--0);
           var x$10 = next(--[ () ]--0);
-          return send_const(m$3, x$10, new_cache(table));
-      case --[ SendVar ]--21 :
+          return send_const(m$3, x$10, new_cache(table));end end end 
+       if ___conditional___ = 21--[ SendVar ]-- then do
           var m$4 = next(--[ () ]--0);
           var n$16 = next(--[ () ]--0);
-          return send_var(m$4, n$16, new_cache(table));
-      case --[ SendEnv ]--22 :
+          return send_var(m$4, n$16, new_cache(table));end end end 
+       if ___conditional___ = 22--[ SendEnv ]-- then do
           var m$5 = next(--[ () ]--0);
           var e$5 = next(--[ () ]--0);
           var n$17 = next(--[ () ]--0);
-          return send_env(m$5, e$5, n$17, new_cache(table));
-      case --[ SendMeth ]--23 :
+          return send_env(m$5, e$5, n$17, new_cache(table));end end end 
+       if ___conditional___ = 23--[ SendMeth ]-- then do
           var m$6 = next(--[ () ]--0);
           var n$18 = next(--[ () ]--0);
-          return send_meth(m$6, n$18, new_cache(table));
+          return send_meth(m$6, n$18, new_cache(table));end end end 
+       do
       
     end
   end else do

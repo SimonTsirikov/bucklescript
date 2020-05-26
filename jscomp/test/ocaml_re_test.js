@@ -753,25 +753,29 @@ function rename(ids, x) do
   if (typeof match == "number") then do
     return mk_expr(ids, x.def);
   end else do
-    switch (match.tag | 0) do
-      case --[ Alt ]--1 :
+    local ___conditional___=(match.tag | 0);
+    do
+       if ___conditional___ = 1--[ Alt ]-- then do
           return mk_expr(ids, --[ Alt ]--Block.__(1, [List.map((function (param) do
                                 return rename(ids, param);
-                              end), match[0])]));
-      case --[ Seq ]--2 :
+                              end), match[0])]));end end end 
+       if ___conditional___ = 2--[ Seq ]-- then do
           return mk_expr(ids, --[ Seq ]--Block.__(2, [
                         match[0],
                         rename(ids, match[1]),
                         rename(ids, match[2])
-                      ]));
-      case --[ Rep ]--3 :
+                      ]));end end end 
+       if ___conditional___ = 3--[ Rep ]-- then do
           return mk_expr(ids, --[ Rep ]--Block.__(3, [
                         match[0],
                         match[1],
                         rename(ids, match[2])
-                      ]));
-      default:
+                      ]));end end end 
+       do
+      else do
         return mk_expr(ids, x.def);
+        end end
+        
     end
   end end 
 end
@@ -782,67 +786,75 @@ function equal(_l1, _l2) do
     var l1 = _l1;
     if (l1) then do
       var match = l1[0];
-      switch (match.tag | 0) do
-        case --[ TSeq ]--0 :
+      local ___conditional___=(match.tag | 0);
+      do
+         if ___conditional___ = 0--[ TSeq ]-- then do
             if (l2) then do
               var match$1 = l2[0];
-              switch (match$1.tag | 0) do
-                case --[ TSeq ]--0 :
+              local ___conditional___=(match$1.tag | 0);
+              do
+                 if ___conditional___ = 0--[ TSeq ]-- then do
                     if (match[1].id == match$1[1].id and equal(match[0], match$1[0])) then do
                       _l2 = l2[1];
                       _l1 = l1[1];
                       continue ;
                     end else do
                       return false;
-                    end end 
-                case --[ TExp ]--1 :
-                case --[ TMatch ]--2 :
-                    return false;
+                    end end end end end 
+                 if ___conditional___ = 1--[ TExp ]--
+                 or ___conditional___ = 2--[ TMatch ]-- then do
+                    return false;end end end 
+                 do
                 
               end
             end else do
               return false;
-            end end 
-        case --[ TExp ]--1 :
+            end end end end end 
+         if ___conditional___ = 1--[ TExp ]-- then do
             if (l2) then do
               var match$2 = l2[0];
-              switch (match$2.tag | 0) do
-                case --[ TExp ]--1 :
+              local ___conditional___=(match$2.tag | 0);
+              do
+                 if ___conditional___ = 1--[ TExp ]-- then do
                     if (match[1].id == match$2[1].id and Caml_obj.caml_equal(match[0], match$2[0])) then do
                       _l2 = l2[1];
                       _l1 = l1[1];
                       continue ;
                     end else do
                       return false;
-                    end end 
-                case --[ TSeq ]--0 :
-                case --[ TMatch ]--2 :
-                    return false;
+                    end end end end end 
+                 if ___conditional___ = 0--[ TSeq ]--
+                 or ___conditional___ = 2--[ TMatch ]-- then do
+                    return false;end end end 
+                 do
                 
               end
             end else do
               return false;
-            end end 
-        case --[ TMatch ]--2 :
+            end end end end end 
+         if ___conditional___ = 2--[ TMatch ]-- then do
             if (l2) then do
               var match$3 = l2[0];
-              switch (match$3.tag | 0) do
-                case --[ TSeq ]--0 :
-                case --[ TExp ]--1 :
-                    return false;
-                case --[ TMatch ]--2 :
+              local ___conditional___=(match$3.tag | 0);
+              do
+                 if ___conditional___ = 0--[ TSeq ]--
+                 or ___conditional___ = 1--[ TExp ]-- then do
+                    return false;end end end 
+                 if ___conditional___ = 2--[ TMatch ]-- then do
                     if (Caml_obj.caml_equal(match[0], match$3[0])) then do
                       _l2 = l2[1];
                       _l1 = l1[1];
                       continue ;
                     end else do
                       return false;
-                    end end 
+                    end end end end end 
+                 do
                 
               end
             end else do
               return false;
-            end end 
+            end end end end end 
+         do
         
       end
     end else if (l2) then do
@@ -859,19 +871,21 @@ function hash$1(_l, _accu) do
     var l = _l;
     if (l) then do
       var match = l[0];
-      switch (match.tag | 0) do
-        case --[ TSeq ]--0 :
+      local ___conditional___=(match.tag | 0);
+      do
+         if ___conditional___ = 0--[ TSeq ]-- then do
             _accu = hash_combine(388635598, hash_combine(match[1].id, hash$1(match[0], accu)));
             _l = l[1];
-            continue ;
-        case --[ TExp ]--1 :
+            continue ;end end end 
+         if ___conditional___ = 1--[ TExp ]-- then do
             _accu = hash_combine(726404471, hash_combine(match[1].id, hash(match[0], accu)));
             _l = l[1];
-            continue ;
-        case --[ TMatch ]--2 :
+            continue ;end end end 
+         if ___conditional___ = 2--[ TMatch ]-- then do
             _accu = hash_combine(471882453, hash(match[0], accu));
             _l = l[1];
-            continue ;
+            continue ;end end end 
+         do
         
       end
     end else do
@@ -883,8 +897,9 @@ end
 function tseq(kind, x, y, rem) do
   if (x) then do
     var match = x[0];
-    switch (match.tag | 0) do
-      case --[ TExp ]--1 :
+    local ___conditional___=(match.tag | 0);
+    do
+       if ___conditional___ = 1--[ TExp ]-- then do
           if (typeof match[1].def == "number" and !x[1]) then do
             return --[ :: ]--[
                     --[ TExp ]--Block.__(1, [
@@ -894,11 +909,10 @@ function tseq(kind, x, y, rem) do
                     rem
                   ];
           end
-           end 
-          break;
-      case --[ TSeq ]--0 :
-      case --[ TMatch ]--2 :
-          break;
+           end end else 
+       if ___conditional___ = 0--[ TSeq ]--
+       or ___conditional___ = 2--[ TMatch ]--
+       do end end
       
     end
   end else do
@@ -970,12 +984,13 @@ end
 function mark_used_indices(tbl) do
   return (function (param) do
       return List.iter((function (param) do
-                    switch (param.tag | 0) do
-                      case --[ TSeq ]--0 :
-                          return mark_used_indices(tbl)(param[0]);
-                      case --[ TExp ]--1 :
-                      case --[ TMatch ]--2 :
-                          break;
+                    local ___conditional___=(param.tag | 0);
+                    do
+                       if ___conditional___ = 0--[ TSeq ]-- then do
+                          return mark_used_indices(tbl)(param[0]);end end end 
+                       if ___conditional___ = 1--[ TExp ]--
+                       or ___conditional___ = 2--[ TMatch ]--
+                       do
                       
                     end
                     return List.iter((function (param) do
@@ -1016,12 +1031,14 @@ function free_index(tbl_ref, l) do
 end
 
 var remove_matches = List.filter((function (param) do
-        switch (param.tag | 0) do
-          case --[ TSeq ]--0 :
-          case --[ TExp ]--1 :
-              return true;
-          case --[ TMatch ]--2 :
-              return false;
+        local ___conditional___=(param.tag | 0);
+        do
+           if ___conditional___ = 0--[ TSeq ]--
+           or ___conditional___ = 1--[ TExp ]-- then do
+              return true;end end end 
+           if ___conditional___ = 2--[ TMatch ]-- then do
+              return false;end end end 
+           do
           
         end
       end));
@@ -1032,20 +1049,22 @@ function split_at_match_rec(_l$prime, _param) do
     var l$prime = _l$prime;
     if (param) then do
       var x = param[0];
-      switch (x.tag | 0) do
-        case --[ TSeq ]--0 :
-        case --[ TExp ]--1 :
+      local ___conditional___=(x.tag | 0);
+      do
+         if ___conditional___ = 0--[ TSeq ]--
+         or ___conditional___ = 1--[ TExp ]-- then do
             _param = param[1];
             _l$prime = --[ :: ]--[
               x,
               l$prime
             ];
-            continue ;
-        case --[ TMatch ]--2 :
+            continue ;end end end 
+         if ___conditional___ = 2--[ TMatch ]-- then do
             return --[ tuple ]--[
                     List.rev(l$prime),
                     Curry._1(remove_matches, param[1])
-                  ];
+                  ];end end end 
+         do
         
       end
     end else do
@@ -1066,16 +1085,17 @@ function remove_duplicates(prev, _l, y) do
     var l = _l;
     if (l) then do
       var x = l[0];
-      switch (x.tag | 0) do
-        case --[ TSeq ]--0 :
+      local ___conditional___=(x.tag | 0);
+      do
+         if ___conditional___ = 0--[ TSeq ]-- then do
             var x$1 = x[1];
             var match = remove_duplicates(prev, x[0], x$1);
             var match$1 = remove_duplicates(match[1], l[1], y);
             return --[ tuple ]--[
                     tseq(x[2], match[0], x$1, match$1[0]),
                     match$1[1]
-                  ];
-        case --[ TExp ]--1 :
+                  ];end end end 
+         if ___conditional___ = 1--[ TExp ]-- then do
             var x$2 = x[1];
             if (typeof x$2.def == "number") then do
               var r = l[1];
@@ -1113,15 +1133,16 @@ function remove_duplicates(prev, _l, y) do
                         match$3[1]
                       ];
               end end 
-            end end 
-        case --[ TMatch ]--2 :
+            end end end end end 
+         if ___conditional___ = 2--[ TMatch ]-- then do
             return --[ tuple ]--[
                     --[ :: ]--[
                       x,
                       --[ [] ]--0
                     ],
                     prev
-                  ];
+                  ];end end end 
+         do
         
       end
     end else do
@@ -1136,8 +1157,9 @@ end
 function set_idx(idx, param) do
   if (param) then do
     var match = param[0];
-    switch (match.tag | 0) do
-      case --[ TSeq ]--0 :
+    local ___conditional___=(match.tag | 0);
+    do
+       if ___conditional___ = 0--[ TSeq ]-- then do
           return --[ :: ]--[
                   --[ TSeq ]--Block.__(0, [
                       set_idx(idx, match[0]),
@@ -1145,20 +1167,21 @@ function set_idx(idx, param) do
                       match[2]
                     ]),
                   set_idx(idx, param[1])
-                ];
-      case --[ TExp ]--1 :
+                ];end end end 
+       if ___conditional___ = 1--[ TExp ]-- then do
           return --[ :: ]--[
                   --[ TExp ]--Block.__(1, [
                       marks_set_idx$1(match[0], idx),
                       match[1]
                     ]),
                   set_idx(idx, param[1])
-                ];
-      case --[ TMatch ]--2 :
+                ];end end end 
+       if ___conditional___ = 2--[ TMatch ]-- then do
           return --[ :: ]--[
                   --[ TMatch ]--Block.__(2, [marks_set_idx$1(match[0], idx)]),
                   set_idx(idx, param[1])
-                ];
+                ];end end end 
+       do
       
     end
   end else do
@@ -1188,8 +1211,9 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
             rem
           ];
   end else do
-    switch (match.tag | 0) do
-      case --[ Cst ]--0 :
+    local ___conditional___=(match.tag | 0);
+    do
+       if ___conditional___ = 0--[ Cst ]-- then do
           if (mem(c, match[0])) then do
             return --[ :: ]--[
                     --[ TExp ]--Block.__(1, [
@@ -1200,22 +1224,24 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
                   ];
           end else do
             return rem;
-          end end 
-      case --[ Alt ]--1 :
-          return delta_2(marks, c, next_cat, prev_cat, match[0], rem);
-      case --[ Seq ]--2 :
+          end end end end end 
+       if ___conditional___ = 1--[ Alt ]-- then do
+          return delta_2(marks, c, next_cat, prev_cat, match[0], rem);end end end 
+       if ___conditional___ = 2--[ Seq ]-- then do
           var y$prime = delta_1(marks, c, next_cat, prev_cat, match[1], --[ [] ]--0);
-          return delta_seq(c, next_cat, prev_cat, match[0], y$prime, match[2], rem);
-      case --[ Rep ]--3 :
+          return delta_seq(c, next_cat, prev_cat, match[0], y$prime, match[2], rem);end end end 
+       if ___conditional___ = 3--[ Rep ]-- then do
           var kind = match[1];
           var y$prime$1 = delta_1(marks, c, next_cat, prev_cat, match[2], --[ [] ]--0);
           var match$1 = first((function (param) do
-                  switch (param.tag | 0) do
-                    case --[ TSeq ]--0 :
-                    case --[ TExp ]--1 :
-                        return ;
-                    case --[ TMatch ]--2 :
-                        return param[0];
+                  local ___conditional___=(param.tag | 0);
+                  do
+                     if ___conditional___ = 0--[ TSeq ]--
+                     or ___conditional___ = 1--[ TExp ]-- then do
+                        return ;end end end 
+                     if ___conditional___ = 2--[ TMatch ]-- then do
+                        return param[0];end end end 
+                     do
                     
                   end
                 end), y$prime$1);
@@ -1237,8 +1263,8 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
                         --[ TMatch ]--Block.__(2, [match$2[1]]),
                         rem
                       ]);
-          end end 
-      case --[ Mark ]--4 :
+          end end end end end 
+       if ___conditional___ = 4--[ Mark ]-- then do
           var i = match[0];
           var marks_marks = --[ :: ]--[
             --[ tuple ]--[
@@ -1255,13 +1281,13 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
           return --[ :: ]--[
                   --[ TMatch ]--Block.__(2, [marks$1]),
                   rem
-                ];
-      case --[ Erase ]--5 :
+                ];end end end 
+       if ___conditional___ = 5--[ Erase ]-- then do
           return --[ :: ]--[
                   --[ TMatch ]--Block.__(2, [filter_marks(match[0], match[1], marks)]),
                   rem
-                ];
-      case --[ Before ]--6 :
+                ];end end end 
+       if ___conditional___ = 6--[ Before ]-- then do
           if (intersect(next_cat, match[0])) then do
             return --[ :: ]--[
                     --[ TMatch ]--Block.__(2, [marks]),
@@ -1269,8 +1295,8 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
                   ];
           end else do
             return rem;
-          end end 
-      case --[ After ]--7 :
+          end end end end end 
+       if ___conditional___ = 7--[ After ]-- then do
           if (intersect(prev_cat, match[0])) then do
             return --[ :: ]--[
                     --[ TMatch ]--Block.__(2, [marks]),
@@ -1278,8 +1304,8 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
                   ];
           end else do
             return rem;
-          end end 
-      case --[ Pmark ]--8 :
+          end end end end end 
+       if ___conditional___ = 8--[ Pmark ]-- then do
           var marks_marks$1 = marks.marks;
           var marks_pmarks$1 = add$1(match[0], marks.pmarks);
           var marks$2 = do
@@ -1289,7 +1315,8 @@ function delta_1(marks, c, next_cat, prev_cat, x, rem) do
           return --[ :: ]--[
                   --[ TMatch ]--Block.__(2, [marks$2]),
                   rem
-                ];
+                ];end end end 
+       do
       
     end
   end end 
@@ -1305,12 +1332,14 @@ end
 
 function delta_seq(c, next_cat, prev_cat, kind, y, z, rem) do
   var match = first((function (param) do
-          switch (param.tag | 0) do
-            case --[ TSeq ]--0 :
-            case --[ TExp ]--1 :
-                return ;
-            case --[ TMatch ]--2 :
-                return param[0];
+          local ___conditional___=(param.tag | 0);
+          do
+             if ___conditional___ = 0--[ TSeq ]--
+             or ___conditional___ = 1--[ TExp ]-- then do
+                return ;end end end 
+             if ___conditional___ = 2--[ TMatch ]-- then do
+                return param[0];end end end 
+             do
             
           end
         end), y);
@@ -1338,17 +1367,19 @@ function delta_4(c, next_cat, prev_cat, l, rem) do
     var prev_cat$1 = prev_cat;
     var x = l[0];
     var rem$1 = delta_4(c, next_cat, prev_cat, l[1], rem);
-    switch (x.tag | 0) do
-      case --[ TSeq ]--0 :
+    local ___conditional___=(x.tag | 0);
+    do
+       if ___conditional___ = 0--[ TSeq ]-- then do
           var y$prime = delta_4(c$1, next_cat$1, prev_cat$1, x[0], --[ [] ]--0);
-          return delta_seq(c$1, next_cat$1, prev_cat$1, x[2], y$prime, x[1], rem$1);
-      case --[ TExp ]--1 :
-          return delta_1(x[0], c$1, next_cat$1, prev_cat$1, x[1], rem$1);
-      case --[ TMatch ]--2 :
+          return delta_seq(c$1, next_cat$1, prev_cat$1, x[2], y$prime, x[1], rem$1);end end end 
+       if ___conditional___ = 1--[ TExp ]-- then do
+          return delta_1(x[0], c$1, next_cat$1, prev_cat$1, x[1], rem$1);end end end 
+       if ___conditional___ = 2--[ TMatch ]-- then do
           return --[ :: ]--[
                   x,
                   rem$1
-                ];
+                ];end end end 
+       do
       
     end
   end else do
@@ -1385,18 +1416,18 @@ function status(s) do
     var st;
     if (match$1) then do
       var match$2 = match$1[0];
-      switch (match$2.tag | 0) do
-        case --[ TSeq ]--0 :
-        case --[ TExp ]--1 :
-            st = --[ Running ]--1;
-            break;
-        case --[ TMatch ]--2 :
+      local ___conditional___=(match$2.tag | 0);
+      do
+         if ___conditional___ = 0--[ TSeq ]--
+         or ___conditional___ = 1--[ TExp ]-- then do
+            st = --[ Running ]--1;end else 
+         if ___conditional___ = 2--[ TMatch ]-- then do
             var m = match$2[0];
             st = --[ Match ]--[
               flatten_match(m.marks),
               m.pmarks
-            ];
-            break;
+            ];end else 
+         do end end end
         
       end
     end else do
@@ -1732,31 +1763,35 @@ function is_charset(_param) do
     if (typeof param == "number") then do
       return false;
     end else do
-      switch (param.tag | 0) do
-        case --[ Set ]--0 :
-            return true;
-        case --[ Sem ]--4 :
-        case --[ Sem_greedy ]--5 :
+      local ___conditional___=(param.tag | 0);
+      do
+         if ___conditional___ = 0--[ Set ]-- then do
+            return true;end end end 
+         if ___conditional___ = 4--[ Sem ]--
+         or ___conditional___ = 5--[ Sem_greedy ]-- then do
             _param = param[1];
-            continue ;
-        case --[ No_group ]--7 :
-        case --[ Case ]--9 :
-        case --[ No_case ]--10 :
+            continue ;end end end 
+         if ___conditional___ = 7--[ No_group ]--
+         or ___conditional___ = 9--[ Case ]--
+         or ___conditional___ = 10--[ No_case ]-- then do
             _param = param[0];
-            continue ;
-        case --[ Alternative ]--2 :
-        case --[ Intersection ]--11 :
-        case --[ Complement ]--12 :
-            return List.for_all(is_charset, param[0]);
-        case --[ Difference ]--13 :
+            continue ;end end end 
+         if ___conditional___ = 2--[ Alternative ]--
+         or ___conditional___ = 11--[ Intersection ]--
+         or ___conditional___ = 12--[ Complement ]-- then do
+            return List.for_all(is_charset, param[0]);end end end 
+         if ___conditional___ = 13--[ Difference ]-- then do
             if (is_charset(param[0])) then do
               _param = param[1];
               continue ;
             end else do
               return false;
-            end end 
-        default:
+            end end end end end 
+         do
+        else do
           return false;
+          end end
+          
       end
     end end 
   end;
@@ -1823,49 +1858,53 @@ function colorize(c, regexp) do
     while(true) do
       var regexp = _regexp;
       if (typeof regexp == "number") then do
-        switch (regexp) do
-          case --[ Beg_of_line ]--0 :
-          case --[ End_of_line ]--1 :
+        local ___conditional___=(regexp);
+        do
+           if ___conditional___ = 0--[ Beg_of_line ]--
+           or ___conditional___ = 1--[ End_of_line ]-- then do
               return split(--[ :: ]--[
                           --[ tuple ]--[
                             --[ "\n" ]--10,
                             --[ "\n" ]--10
                           ],
                           --[ [] ]--0
-                        ], c);
-          case --[ Beg_of_word ]--2 :
-          case --[ End_of_word ]--3 :
-          case --[ Not_bound ]--4 :
-              return split(cword, c);
-          case --[ Last_end_of_line ]--7 :
+                        ], c);end end end 
+           if ___conditional___ = 2--[ Beg_of_word ]--
+           or ___conditional___ = 3--[ End_of_word ]--
+           or ___conditional___ = 4--[ Not_bound ]-- then do
+              return split(cword, c);end end end 
+           if ___conditional___ = 7--[ Last_end_of_line ]-- then do
               lnl.contents = true;
-              return --[ () ]--0;
-          case --[ Beg_of_str ]--5 :
-          case --[ End_of_str ]--6 :
-          case --[ Start ]--8 :
-          case --[ Stop ]--9 :
-              return --[ () ]--0;
+              return --[ () ]--0;end end end 
+           if ___conditional___ = 5--[ Beg_of_str ]--
+           or ___conditional___ = 6--[ End_of_str ]--
+           or ___conditional___ = 8--[ Start ]--
+           or ___conditional___ = 9--[ Stop ]-- then do
+              return --[ () ]--0;end end end 
+           do
           
         end
       end else do
-        switch (regexp.tag | 0) do
-          case --[ Set ]--0 :
-              return split(regexp[0], c);
-          case --[ Sequence ]--1 :
-          case --[ Alternative ]--2 :
-              return List.iter(colorize$1, regexp[0]);
-          case --[ Repeat ]--3 :
-          case --[ Group ]--6 :
-          case --[ No_group ]--7 :
-          case --[ Nest ]--8 :
+        local ___conditional___=(regexp.tag | 0);
+        do
+           if ___conditional___ = 0--[ Set ]-- then do
+              return split(regexp[0], c);end end end 
+           if ___conditional___ = 1--[ Sequence ]--
+           or ___conditional___ = 2--[ Alternative ]-- then do
+              return List.iter(colorize$1, regexp[0]);end end end 
+           if ___conditional___ = 3--[ Repeat ]--
+           or ___conditional___ = 6--[ Group ]--
+           or ___conditional___ = 7--[ No_group ]--
+           or ___conditional___ = 8--[ Nest ]-- then do
               _regexp = regexp[0];
-              continue ;
-          case --[ Sem ]--4 :
-          case --[ Sem_greedy ]--5 :
-          case --[ Pmark ]--14 :
+              continue ;end end end 
+           if ___conditional___ = 4--[ Sem ]--
+           or ___conditional___ = 5--[ Sem_greedy ]--
+           or ___conditional___ = 14--[ Pmark ]-- then do
               _regexp = regexp[1];
-              continue ;
-          default:
+              continue ;end end end 
+           do
+          else do
             throw [
                   Caml_builtin_exceptions.assert_failure,
                   --[ tuple ]--[
@@ -1874,6 +1913,8 @@ function colorize(c, regexp) do
                     35
                   ]
                 ];
+            end end
+            
         end
       end end 
     end;
@@ -1908,175 +1949,179 @@ function equal$2(_x1, _x2) do
     var x2 = _x2;
     var x1 = _x1;
     if (typeof x1 == "number") then do
-      switch (x1) do
-        case --[ Beg_of_line ]--0 :
+      local ___conditional___=(x1);
+      do
+         if ___conditional___ = 0--[ Beg_of_line ]-- then do
             if (typeof x2 == "number") then do
               return x2 == 0;
             end else do
               return false;
-            end end 
-        case --[ End_of_line ]--1 :
+            end end end end end 
+         if ___conditional___ = 1--[ End_of_line ]-- then do
             if (typeof x2 == "number") then do
               return x2 == 1;
             end else do
               return false;
-            end end 
-        case --[ Beg_of_word ]--2 :
+            end end end end end 
+         if ___conditional___ = 2--[ Beg_of_word ]-- then do
             if (typeof x2 == "number") then do
               return x2 == 2;
             end else do
               return false;
-            end end 
-        case --[ End_of_word ]--3 :
+            end end end end end 
+         if ___conditional___ = 3--[ End_of_word ]-- then do
             if (typeof x2 == "number") then do
               return x2 == 3;
             end else do
               return false;
-            end end 
-        case --[ Not_bound ]--4 :
+            end end end end end 
+         if ___conditional___ = 4--[ Not_bound ]-- then do
             if (typeof x2 == "number") then do
               return x2 == 4;
             end else do
               return false;
-            end end 
-        case --[ Beg_of_str ]--5 :
+            end end end end end 
+         if ___conditional___ = 5--[ Beg_of_str ]-- then do
             if (typeof x2 == "number") then do
               return x2 == 5;
             end else do
               return false;
-            end end 
-        case --[ End_of_str ]--6 :
+            end end end end end 
+         if ___conditional___ = 6--[ End_of_str ]-- then do
             if (typeof x2 == "number") then do
               return x2 == 6;
             end else do
               return false;
-            end end 
-        case --[ Last_end_of_line ]--7 :
+            end end end end end 
+         if ___conditional___ = 7--[ Last_end_of_line ]-- then do
             if (typeof x2 == "number") then do
               return x2 == 7;
             end else do
               return false;
-            end end 
-        case --[ Start ]--8 :
+            end end end end end 
+         if ___conditional___ = 8--[ Start ]-- then do
             if (typeof x2 == "number") then do
               return x2 == 8;
             end else do
               return false;
-            end end 
-        case --[ Stop ]--9 :
+            end end end end end 
+         if ___conditional___ = 9--[ Stop ]-- then do
             if (typeof x2 == "number") then do
               return x2 >= 9;
             end else do
               return false;
-            end end 
+            end end end end end 
+         do
         
       end
     end else do
-      switch (x1.tag | 0) do
-        case --[ Set ]--0 :
+      local ___conditional___=(x1.tag | 0);
+      do
+         if ___conditional___ = 0--[ Set ]-- then do
             if (typeof x2 == "number" or x2.tag) then do
               return false;
             end else do
               return Caml_obj.caml_equal(x1[0], x2[0]);
-            end end 
-        case --[ Sequence ]--1 :
+            end end end end end 
+         if ___conditional___ = 1--[ Sequence ]-- then do
             if (typeof x2 == "number" or x2.tag ~= --[ Sequence ]--1) then do
               return false;
             end else do
               return eq_list(x1[0], x2[0]);
-            end end 
-        case --[ Alternative ]--2 :
+            end end end end end 
+         if ___conditional___ = 2--[ Alternative ]-- then do
             if (typeof x2 == "number" or x2.tag ~= --[ Alternative ]--2) then do
               return false;
             end else do
               return eq_list(x1[0], x2[0]);
-            end end 
-        case --[ Repeat ]--3 :
+            end end end end end 
+         if ___conditional___ = 3--[ Repeat ]-- then do
             if (typeof x2 == "number" or !(x2.tag == --[ Repeat ]--3 and x1[1] == x2[1] and Caml_obj.caml_equal(x1[2], x2[2]))) then do
               return false;
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            end end 
-        case --[ Sem ]--4 :
+            end end end end end 
+         if ___conditional___ = 4--[ Sem ]-- then do
             if (typeof x2 == "number" or !(x2.tag == --[ Sem ]--4 and x1[0] == x2[0])) then do
               return false;
             end else do
               _x2 = x2[1];
               _x1 = x1[1];
               continue ;
-            end end 
-        case --[ Sem_greedy ]--5 :
+            end end end end end 
+         if ___conditional___ = 5--[ Sem_greedy ]-- then do
             if (typeof x2 == "number" or !(x2.tag == --[ Sem_greedy ]--5 and x1[0] == x2[0])) then do
               return false;
             end else do
               _x2 = x2[1];
               _x1 = x1[1];
               continue ;
-            end end 
-        case --[ Group ]--6 :
-            return false;
-        case --[ No_group ]--7 :
+            end end end end end 
+         if ___conditional___ = 6--[ Group ]-- then do
+            return false;end end end 
+         if ___conditional___ = 7--[ No_group ]-- then do
             if (typeof x2 == "number" or x2.tag ~= --[ No_group ]--7) then do
               return false;
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            end end 
-        case --[ Nest ]--8 :
+            end end end end end 
+         if ___conditional___ = 8--[ Nest ]-- then do
             if (typeof x2 == "number" or x2.tag ~= --[ Nest ]--8) then do
               return false;
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            end end 
-        case --[ Case ]--9 :
+            end end end end end 
+         if ___conditional___ = 9--[ Case ]-- then do
             if (typeof x2 == "number" or x2.tag ~= --[ Case ]--9) then do
               return false;
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            end end 
-        case --[ No_case ]--10 :
+            end end end end end 
+         if ___conditional___ = 10--[ No_case ]-- then do
             if (typeof x2 == "number" or x2.tag ~= --[ No_case ]--10) then do
               return false;
             end else do
               _x2 = x2[0];
               _x1 = x1[0];
               continue ;
-            end end 
-        case --[ Intersection ]--11 :
+            end end end end end 
+         if ___conditional___ = 11--[ Intersection ]-- then do
             if (typeof x2 == "number" or x2.tag ~= --[ Intersection ]--11) then do
               return false;
             end else do
               return eq_list(x1[0], x2[0]);
-            end end 
-        case --[ Complement ]--12 :
+            end end end end end 
+         if ___conditional___ = 12--[ Complement ]-- then do
             if (typeof x2 == "number" or x2.tag ~= --[ Complement ]--12) then do
               return false;
             end else do
               return eq_list(x1[0], x2[0]);
-            end end 
-        case --[ Difference ]--13 :
+            end end end end end 
+         if ___conditional___ = 13--[ Difference ]-- then do
             if (typeof x2 == "number" or !(x2.tag == --[ Difference ]--13 and equal$2(x1[0], x2[0]))) then do
               return false;
             end else do
               _x2 = x2[1];
               _x1 = x1[1];
               continue ;
-            end end 
-        case --[ Pmark ]--14 :
+            end end end end end 
+         if ___conditional___ = 14--[ Pmark ]-- then do
             if (typeof x2 == "number" or !(x2.tag == --[ Pmark ]--14 and x1[0] == x2[0])) then do
               return false;
             end else do
               _x2 = x2[1];
               _x1 = x1[1];
               continue ;
-            end end 
+            end end end end end 
+         do
         
       end
     end end 
@@ -2117,8 +2162,9 @@ function merge_sequences(_param) do
     if (param) then do
       var x = param[0];
       if (typeof x ~= "number") then do
-        switch (x.tag | 0) do
-          case --[ Sequence ]--1 :
+        local ___conditional___=(x.tag | 0);
+        do
+           if ___conditional___ = 1--[ Sequence ]-- then do
               var match = x[0];
               if (match) then do
                 var y = match[1];
@@ -2166,12 +2212,13 @@ function merge_sequences(_param) do
                 end
                  end 
               end
-               end 
-              break;
-          case --[ Alternative ]--2 :
+               end end else 
+           if ___conditional___ = 2--[ Alternative ]-- then do
               _param = Pervasives.$at(x[0], param[1]);
-              continue ;
-          default:
+              continue ;end end end 
+           do end
+          else do
+            end end
             
         end
       end
@@ -2200,34 +2247,35 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
     var greedy = _greedy;
     var ign_group = _ign_group;
     if (typeof param == "number") then do
-      switch (param) do
-        case --[ Beg_of_line ]--0 :
+      local ___conditional___=(param);
+      do
+         if ___conditional___ = 0--[ Beg_of_line ]-- then do
             var c$1 = Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.inexistant, Re_automata_Category.newline);
             return --[ tuple ]--[
                     mk_expr(ids, --[ After ]--Block.__(7, [c$1])),
                     kind
-                  ];
-        case --[ End_of_line ]--1 :
+                  ];end end end 
+         if ___conditional___ = 1--[ End_of_line ]-- then do
             var c$2 = Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.inexistant, Re_automata_Category.newline);
             return --[ tuple ]--[
                     mk_expr(ids, --[ Before ]--Block.__(6, [c$2])),
                     kind
-                  ];
-        case --[ Beg_of_word ]--2 :
+                  ];end end end 
+         if ___conditional___ = 2--[ Beg_of_word ]-- then do
             var c$3 = Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.inexistant, Re_automata_Category.not_letter);
             var c$4 = Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.inexistant, Re_automata_Category.letter);
             return --[ tuple ]--[
                     seq$1(ids, --[ First ]--332064784, mk_expr(ids, --[ After ]--Block.__(7, [c$3])), mk_expr(ids, --[ Before ]--Block.__(6, [c$4]))),
                     kind
-                  ];
-        case --[ End_of_word ]--3 :
+                  ];end end end 
+         if ___conditional___ = 3--[ End_of_word ]-- then do
             var c$5 = Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.inexistant, Re_automata_Category.letter);
             var c$6 = Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.inexistant, Re_automata_Category.not_letter);
             return --[ tuple ]--[
                     seq$1(ids, --[ First ]--332064784, mk_expr(ids, --[ After ]--Block.__(7, [c$5])), mk_expr(ids, --[ Before ]--Block.__(6, [c$6]))),
                     kind
-                  ];
-        case --[ Not_bound ]--4 :
+                  ];end end end 
+         if ___conditional___ = 4--[ Not_bound ]-- then do
             return --[ tuple ]--[
                     alt(ids, --[ :: ]--[
                           seq$1(ids, --[ First ]--332064784, mk_expr(ids, --[ After ]--Block.__(7, [Re_automata_Category.letter])), mk_expr(ids, --[ Before ]--Block.__(6, [Re_automata_Category.letter]))),
@@ -2237,48 +2285,50 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                           ]
                         ]),
                     kind
-                  ];
-        case --[ Beg_of_str ]--5 :
+                  ];end end end 
+         if ___conditional___ = 5--[ Beg_of_str ]-- then do
             return --[ tuple ]--[
                     mk_expr(ids, --[ After ]--Block.__(7, [Re_automata_Category.inexistant])),
                     kind
-                  ];
-        case --[ End_of_str ]--6 :
+                  ];end end end 
+         if ___conditional___ = 6--[ End_of_str ]-- then do
             return --[ tuple ]--[
                     mk_expr(ids, --[ Before ]--Block.__(6, [Re_automata_Category.inexistant])),
                     kind
-                  ];
-        case --[ Last_end_of_line ]--7 :
+                  ];end end end 
+         if ___conditional___ = 7--[ Last_end_of_line ]-- then do
             var c$7 = Curry._2(Re_automata_Category.$plus$plus, Re_automata_Category.inexistant, Re_automata_Category.lastnewline);
             return --[ tuple ]--[
                     mk_expr(ids, --[ Before ]--Block.__(6, [c$7])),
                     kind
-                  ];
-        case --[ Start ]--8 :
+                  ];end end end 
+         if ___conditional___ = 8--[ Start ]-- then do
             return --[ tuple ]--[
                     mk_expr(ids, --[ After ]--Block.__(7, [Re_automata_Category.search_boundary])),
                     kind
-                  ];
-        case --[ Stop ]--9 :
+                  ];end end end 
+         if ___conditional___ = 9--[ Stop ]-- then do
             return --[ tuple ]--[
                     mk_expr(ids, --[ Before ]--Block.__(6, [Re_automata_Category.search_boundary])),
                     kind
-                  ];
+                  ];end end end 
+         do
         
       end
     end else do
-      switch (param.tag | 0) do
-        case --[ Set ]--0 :
+      local ___conditional___=(param.tag | 0);
+      do
+         if ___conditional___ = 0--[ Set ]-- then do
             return --[ tuple ]--[
                     cst(ids, trans_set(cache, c, param[0])),
                     kind
-                  ];
-        case --[ Sequence ]--1 :
+                  ];end end end 
+         if ___conditional___ = 1--[ Sequence ]-- then do
             return --[ tuple ]--[
                     trans_seq(ids, kind, ign_group, ign_case, greedy, pos, cache, c, param[0]),
                     kind
-                  ];
-        case --[ Alternative ]--2 :
+                  ];end end end 
+         if ___conditional___ = 2--[ Alternative ]-- then do
             var merged_sequences = merge_sequences(param[0]);
             if (merged_sequences and !merged_sequences[1]) then do
               var match = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, merged_sequences[0]);
@@ -2296,8 +2346,8 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                             end
                             end(ign_group,greedy)), merged_sequences)),
                     kind
-                  ];
-        case --[ Repeat ]--3 :
+                  ];end end end 
+         if ___conditional___ = 3--[ Repeat ]-- then do
             var j = param[2];
             var i = param[1];
             var match$1 = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, param[0]);
@@ -2337,19 +2387,19 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                         end
                         end(cr,kind$prime)), rem),
                     kind
-                  ];
-        case --[ Sem ]--4 :
+                  ];end end end 
+         if ___conditional___ = 4--[ Sem ]-- then do
             var kind$prime$1 = param[0];
             var match$2 = translate(ids, kind$prime$1, ign_group, ign_case, greedy, pos, cache, c, param[1]);
             return --[ tuple ]--[
                     enforce_kind(ids, kind$prime$1, match$2[1], match$2[0]),
                     kind$prime$1
-                  ];
-        case --[ Sem_greedy ]--5 :
+                  ];end end end 
+         if ___conditional___ = 5--[ Sem_greedy ]-- then do
             _param = param[1];
             _greedy = param[0];
-            continue ;
-        case --[ Group ]--6 :
+            continue ;end end end 
+         if ___conditional___ = 6--[ Group ]-- then do
             var r$prime = param[0];
             if (ign_group) then do
               _param = r$prime;
@@ -2362,12 +2412,12 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                       seq$1(ids, --[ First ]--332064784, mk_expr(ids, --[ Mark ]--Block.__(4, [p])), seq$1(ids, --[ First ]--332064784, match$3[0], mk_expr(ids, --[ Mark ]--Block.__(4, [p + 1 | 0])))),
                       match$3[1]
                     ];
-            end end 
-        case --[ No_group ]--7 :
+            end end end end end 
+         if ___conditional___ = 7--[ No_group ]-- then do
             _param = param[0];
             _ign_group = true;
-            continue ;
-        case --[ Nest ]--8 :
+            continue ;end end end 
+         if ___conditional___ = 8--[ Nest ]-- then do
             var b = pos.contents;
             var match$4 = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, param[0]);
             var kind$prime$2 = match$4[1];
@@ -2383,14 +2433,15 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                       seq$1(ids, --[ First ]--332064784, erase(ids, b, e), cr$1),
                       kind$prime$2
                     ];
-            end end 
-        case --[ Pmark ]--14 :
+            end end end end end 
+         if ___conditional___ = 14--[ Pmark ]-- then do
             var match$5 = translate(ids, kind, ign_group, ign_case, greedy, pos, cache, c, param[1]);
             return --[ tuple ]--[
                     seq$1(ids, --[ First ]--332064784, mk_expr(ids, --[ Pmark ]--Block.__(8, [param[0]])), match$5[0]),
                     match$5[1]
-                  ];
-        default:
+                  ];end end end 
+         do
+        else do
           throw [
                 Caml_builtin_exceptions.assert_failure,
                 --[ tuple ]--[
@@ -2399,6 +2450,8 @@ function translate(ids, kind, _ign_group, ign_case, _greedy, pos, cache, c, _par
                   4
                 ]
               ];
+          end end
+          
       end
     end end 
   end;
@@ -2463,17 +2516,18 @@ function handle_case(_ign_case, _r) do
     if (typeof r == "number") then do
       return r;
     end else do
-      switch (r.tag | 0) do
-        case --[ Set ]--0 :
+      local ___conditional___=(r.tag | 0);
+      do
+         if ___conditional___ = 0--[ Set ]-- then do
             var s = r[0];
-            return --[ Set ]--Block.__(0, [ign_case ? case_insens(s) : s]);
-        case --[ Sequence ]--1 :
+            return --[ Set ]--Block.__(0, [ign_case ? case_insens(s) : s]);end end end 
+         if ___conditional___ = 1--[ Sequence ]-- then do
             return --[ Sequence ]--Block.__(1, [List.map((function(ign_case)do
                           return function (param) do
                             return handle_case(ign_case, param);
                           end
-                          end(ign_case)), r[0])]);
-        case --[ Alternative ]--2 :
+                          end(ign_case)), r[0])]);end end end 
+         if ___conditional___ = 2--[ Alternative ]-- then do
             var l$prime = List.map((function(ign_case)do
                 return function (param) do
                   return handle_case(ign_case, param);
@@ -2485,14 +2539,14 @@ function handle_case(_ign_case, _r) do
                               end), --[ [] ]--0, l$prime)]);
             end else do
               return --[ Alternative ]--Block.__(2, [l$prime]);
-            end end 
-        case --[ Repeat ]--3 :
+            end end end end end 
+         if ___conditional___ = 3--[ Repeat ]-- then do
             return --[ Repeat ]--Block.__(3, [
                       handle_case(ign_case, r[0]),
                       r[1],
                       r[2]
-                    ]);
-        case --[ Sem ]--4 :
+                    ]);end end end 
+         if ___conditional___ = 4--[ Sem ]-- then do
             var r$prime = handle_case(ign_case, r[1]);
             if (is_charset(r$prime)) then do
               return r$prime;
@@ -2501,8 +2555,8 @@ function handle_case(_ign_case, _r) do
                         r[0],
                         r$prime
                       ]);
-            end end 
-        case --[ Sem_greedy ]--5 :
+            end end end end end 
+         if ___conditional___ = 5--[ Sem_greedy ]-- then do
             var r$prime$1 = handle_case(ign_case, r[1]);
             if (is_charset(r$prime$1)) then do
               return r$prime$1;
@@ -2511,32 +2565,32 @@ function handle_case(_ign_case, _r) do
                         r[0],
                         r$prime$1
                       ]);
-            end end 
-        case --[ Group ]--6 :
-            return --[ Group ]--Block.__(6, [handle_case(ign_case, r[0])]);
-        case --[ No_group ]--7 :
+            end end end end end 
+         if ___conditional___ = 6--[ Group ]-- then do
+            return --[ Group ]--Block.__(6, [handle_case(ign_case, r[0])]);end end end 
+         if ___conditional___ = 7--[ No_group ]-- then do
             var r$prime$2 = handle_case(ign_case, r[0]);
             if (is_charset(r$prime$2)) then do
               return r$prime$2;
             end else do
               return --[ No_group ]--Block.__(7, [r$prime$2]);
-            end end 
-        case --[ Nest ]--8 :
+            end end end end end 
+         if ___conditional___ = 8--[ Nest ]-- then do
             var r$prime$3 = handle_case(ign_case, r[0]);
             if (is_charset(r$prime$3)) then do
               return r$prime$3;
             end else do
               return --[ Nest ]--Block.__(8, [r$prime$3]);
-            end end 
-        case --[ Case ]--9 :
+            end end end end end 
+         if ___conditional___ = 9--[ Case ]-- then do
             _r = r[0];
             _ign_case = false;
-            continue ;
-        case --[ No_case ]--10 :
+            continue ;end end end 
+         if ___conditional___ = 10--[ No_case ]-- then do
             _r = r[0];
             _ign_case = true;
-            continue ;
-        case --[ Intersection ]--11 :
+            continue ;end end end 
+         if ___conditional___ = 11--[ Intersection ]-- then do
             var l$prime$1 = List.map((function(ign_case)do
                 return function (r) do
                   return handle_case(ign_case, r);
@@ -2544,8 +2598,8 @@ function handle_case(_ign_case, _r) do
                 end(ign_case)), r[0]);
             return --[ Set ]--Block.__(0, [List.fold_left((function (s, r) do
                               return inter(s, as_set(r));
-                            end), cany, l$prime$1)]);
-        case --[ Complement ]--12 :
+                            end), cany, l$prime$1)]);end end end 
+         if ___conditional___ = 12--[ Complement ]-- then do
             var l$prime$2 = List.map((function(ign_case)do
                 return function (r) do
                   return handle_case(ign_case, r);
@@ -2553,14 +2607,15 @@ function handle_case(_ign_case, _r) do
                 end(ign_case)), r[0]);
             return --[ Set ]--Block.__(0, [diff(cany, List.fold_left((function (s, r) do
                                   return union(s, as_set(r));
-                                end), --[ [] ]--0, l$prime$2))]);
-        case --[ Difference ]--13 :
-            return --[ Set ]--Block.__(0, [inter(as_set(handle_case(ign_case, r[0])), diff(cany, as_set(handle_case(ign_case, r[1]))))]);
-        case --[ Pmark ]--14 :
+                                end), --[ [] ]--0, l$prime$2))]);end end end 
+         if ___conditional___ = 13--[ Difference ]-- then do
+            return --[ Set ]--Block.__(0, [inter(as_set(handle_case(ign_case, r[0])), diff(cany, as_set(handle_case(ign_case, r[1]))))]);end end end 
+         if ___conditional___ = 14--[ Pmark ]-- then do
             return --[ Pmark ]--Block.__(14, [
                       r[0],
                       handle_case(ign_case, r[1])
-                    ]);
+                    ]);end end end 
+         do
         
       end
     end end 
@@ -2571,40 +2626,48 @@ function anchored(_param) do
   while(true) do
     var param = _param;
     if (typeof param == "number") then do
-      switch (param) do
-        case --[ Beg_of_str ]--5 :
-        case --[ Start ]--8 :
-            return true;
-        default:
+      local ___conditional___=(param);
+      do
+         if ___conditional___ = 5--[ Beg_of_str ]--
+         or ___conditional___ = 8--[ Start ]-- then do
+            return true;end end end 
+         do
+        else do
           return false;
+          end end
+          
       end
     end else do
-      switch (param.tag | 0) do
-        case --[ Sequence ]--1 :
-            return List.exists(anchored, param[0]);
-        case --[ Alternative ]--2 :
-            return List.for_all(anchored, param[0]);
-        case --[ Repeat ]--3 :
+      local ___conditional___=(param.tag | 0);
+      do
+         if ___conditional___ = 1--[ Sequence ]-- then do
+            return List.exists(anchored, param[0]);end end end 
+         if ___conditional___ = 2--[ Alternative ]-- then do
+            return List.for_all(anchored, param[0]);end end end 
+         if ___conditional___ = 3--[ Repeat ]-- then do
             if (param[1] > 0) then do
               _param = param[0];
               continue ;
             end else do
               return false;
-            end end 
-        case --[ Group ]--6 :
-        case --[ No_group ]--7 :
-        case --[ Nest ]--8 :
-        case --[ Case ]--9 :
-        case --[ No_case ]--10 :
+            end end end end end 
+         if ___conditional___ = 6--[ Group ]--
+         or ___conditional___ = 7--[ No_group ]--
+         or ___conditional___ = 8--[ Nest ]--
+         or ___conditional___ = 9--[ Case ]--
+         or ___conditional___ = 10--[ No_case ]-- then do
             _param = param[0];
-            continue ;
-        case --[ Sem ]--4 :
-        case --[ Sem_greedy ]--5 :
-        case --[ Pmark ]--14 :
+            continue ;end end end 
+         if ___conditional___ = 4--[ Sem ]--
+         or ___conditional___ = 5--[ Sem_greedy ]--
+         or ___conditional___ = 14--[ Pmark ]-- then do
             _param = param[1];
-            continue ;
-        default:
+            continue ;end end end 
+         do
+        else do
           return false;
+          end end
+          
       end
     end end 
   end;
@@ -3012,39 +3075,43 @@ var Parse_error = Caml_exceptions.create("Parse_error");
 var Not_supported = Caml_exceptions.create("Not_supported");
 
 function posix_class_of_string(class_) do
-  switch (class_) do
-    case "alnum" :
-        return alnum;
-    case "ascii" :
-        return ascii;
-    case "blank" :
-        return blank;
-    case "cntrl" :
-        return cntrl;
-    case "digit" :
-        return digit;
-    case "graph" :
-        return graph;
-    case "lower" :
-        return lower;
-    case "print" :
-        return print;
-    case "punct" :
-        return punct;
-    case "space" :
-        return space;
-    case "upper" :
-        return upper;
-    case "word" :
-        return wordc;
-    case "xdigit" :
-        return xdigit;
-    default:
+  local ___conditional___=(class_);
+  do
+     if ___conditional___ = "alnum" then do
+        return alnum;end end end 
+     if ___conditional___ = "ascii" then do
+        return ascii;end end end 
+     if ___conditional___ = "blank" then do
+        return blank;end end end 
+     if ___conditional___ = "cntrl" then do
+        return cntrl;end end end 
+     if ___conditional___ = "digit" then do
+        return digit;end end end 
+     if ___conditional___ = "graph" then do
+        return graph;end end end 
+     if ___conditional___ = "lower" then do
+        return lower;end end end 
+     if ___conditional___ = "print" then do
+        return print;end end end 
+     if ___conditional___ = "punct" then do
+        return punct;end end end 
+     if ___conditional___ = "space" then do
+        return space;end end end 
+     if ___conditional___ = "upper" then do
+        return upper;end end end 
+     if ___conditional___ = "word" then do
+        return wordc;end end end 
+     if ___conditional___ = "xdigit" then do
+        return xdigit;end end end 
+     do
+    else do
       var s = "Invalid pcre class: " .. class_;
       throw [
             Caml_builtin_exceptions.invalid_argument,
             s
           ];
+      end end
+      
   end
 end
 
@@ -3177,35 +3244,36 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
       end
        end 
       var c = get(--[ () ]--0);
-      switch (c) do
-        case 48 :
-        case 49 :
-        case 50 :
-        case 51 :
-        case 52 :
-        case 53 :
-        case 54 :
-        case 55 :
-        case 56 :
-        case 57 :
-            throw Not_supported;
-        case 65 :
-            return --[ Beg_of_str ]--5;
-        case 66 :
-            return --[ Not_bound ]--4;
-        case 68 :
+      local ___conditional___=(c);
+      do
+         if ___conditional___ = 48
+         or ___conditional___ = 49
+         or ___conditional___ = 50
+         or ___conditional___ = 51
+         or ___conditional___ = 52
+         or ___conditional___ = 53
+         or ___conditional___ = 54
+         or ___conditional___ = 55
+         or ___conditional___ = 56
+         or ___conditional___ = 57 then do
+            throw Not_supported;end end end 
+         if ___conditional___ = 65 then do
+            return --[ Beg_of_str ]--5;end end end 
+         if ___conditional___ = 66 then do
+            return --[ Not_bound ]--4;end end end 
+         if ___conditional___ = 68 then do
             return compl(--[ :: ]--[
                         digit,
                         --[ [] ]--0
-                      ]);
-        case 71 :
-            return --[ Start ]--8;
-        case 83 :
+                      ]);end end end 
+         if ___conditional___ = 71 then do
+            return --[ Start ]--8;end end end 
+         if ___conditional___ = 83 then do
             return compl(--[ :: ]--[
                         space,
                         --[ [] ]--0
-                      ]);
-        case 87 :
+                      ]);end end end 
+         if ___conditional___ = 87 then do
             return compl(--[ :: ]--[
                         alnum,
                         --[ :: ]--[
@@ -3218,36 +3286,36 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                               ]]),
                           --[ [] ]--0
                         ]
-                      ]);
-        case 90 :
-            return --[ Last_end_of_line ]--7;
-        case 58 :
-        case 59 :
-        case 60 :
-        case 61 :
-        case 62 :
-        case 63 :
-        case 64 :
-        case 91 :
-        case 92 :
-        case 93 :
-        case 94 :
-        case 95 :
-        case 96 :
-            return --[ Set ]--Block.__(0, [single(c)]);
-        case 98 :
+                      ]);end end end 
+         if ___conditional___ = 90 then do
+            return --[ Last_end_of_line ]--7;end end end 
+         if ___conditional___ = 58
+         or ___conditional___ = 59
+         or ___conditional___ = 60
+         or ___conditional___ = 61
+         or ___conditional___ = 62
+         or ___conditional___ = 63
+         or ___conditional___ = 64
+         or ___conditional___ = 91
+         or ___conditional___ = 92
+         or ___conditional___ = 93
+         or ___conditional___ = 94
+         or ___conditional___ = 95
+         or ___conditional___ = 96 then do
+            return --[ Set ]--Block.__(0, [single(c)]);end end end 
+         if ___conditional___ = 98 then do
             return alt$1(--[ :: ]--[
                         --[ Beg_of_word ]--2,
                         --[ :: ]--[
                           --[ End_of_word ]--3,
                           --[ [] ]--0
                         ]
-                      ]);
-        case 100 :
-            return digit;
-        case 115 :
-            return space;
-        case 119 :
+                      ]);end end end 
+         if ___conditional___ = 100 then do
+            return digit;end end end 
+         if ___conditional___ = 115 then do
+            return space;end end end 
+         if ___conditional___ = 119 then do
             return alt$1(--[ :: ]--[
                         alnum,
                         --[ :: ]--[
@@ -3260,52 +3328,55 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                               ]]),
                           --[ [] ]--0
                         ]
-                      ]);
-        case 67 :
-        case 69 :
-        case 70 :
-        case 72 :
-        case 73 :
-        case 74 :
-        case 75 :
-        case 76 :
-        case 77 :
-        case 78 :
-        case 79 :
-        case 80 :
-        case 81 :
-        case 82 :
-        case 84 :
-        case 85 :
-        case 86 :
-        case 88 :
-        case 89 :
-        case 97 :
-        case 99 :
-        case 101 :
-        case 102 :
-        case 103 :
-        case 104 :
-        case 105 :
-        case 106 :
-        case 107 :
-        case 108 :
-        case 109 :
-        case 110 :
-        case 111 :
-        case 112 :
-        case 113 :
-        case 114 :
-        case 116 :
-        case 117 :
-        case 118 :
-        case 120 :
-        case 121 :
-            throw Parse_error;
-        case 122 :
-            return --[ End_of_str ]--6;
-        default:
+                      ]);end end end 
+         if ___conditional___ = 67
+         or ___conditional___ = 69
+         or ___conditional___ = 70
+         or ___conditional___ = 72
+         or ___conditional___ = 73
+         or ___conditional___ = 74
+         or ___conditional___ = 75
+         or ___conditional___ = 76
+         or ___conditional___ = 77
+         or ___conditional___ = 78
+         or ___conditional___ = 79
+         or ___conditional___ = 80
+         or ___conditional___ = 81
+         or ___conditional___ = 82
+         or ___conditional___ = 84
+         or ___conditional___ = 85
+         or ___conditional___ = 86
+         or ___conditional___ = 88
+         or ___conditional___ = 89
+         or ___conditional___ = 97
+         or ___conditional___ = 99
+         or ___conditional___ = 101
+         or ___conditional___ = 102
+         or ___conditional___ = 103
+         or ___conditional___ = 104
+         or ___conditional___ = 105
+         or ___conditional___ = 106
+         or ___conditional___ = 107
+         or ___conditional___ = 108
+         or ___conditional___ = 109
+         or ___conditional___ = 110
+         or ___conditional___ = 111
+         or ___conditional___ = 112
+         or ___conditional___ = 113
+         or ___conditional___ = 114
+         or ___conditional___ = 116
+         or ___conditional___ = 117
+         or ___conditional___ = 118
+         or ___conditional___ = 120
+         or ___conditional___ = 121 then do
+            throw Parse_error;end end end 
+         if ___conditional___ = 122 then do
+            return --[ End_of_str ]--6;end end end 
+         do
+        else do
           return --[ Set ]--Block.__(0, [single(c)]);
+          end end
+          
       end
     end else do
       if (i.contents == l) then do
@@ -3579,24 +3650,25 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                   c$2
                 ];
         end else do
-          switch (c$2 - 58 | 0) do
-            case 10 :
+          local ___conditional___=(c$2 - 58 | 0);
+          do
+             if ___conditional___ = 10 then do
                 return --[ `Set ]--[
                         4150146,
                         compl(--[ :: ]--[
                               digit,
                               --[ [] ]--0
                             ])
-                      ];
-            case 25 :
+                      ];end end end 
+             if ___conditional___ = 25 then do
                 return --[ `Set ]--[
                         4150146,
                         compl(--[ :: ]--[
                               space,
                               --[ [] ]--0
                             ])
-                      ];
-            case 29 :
+                      ];end end end 
+             if ___conditional___ = 29 then do
                 return --[ `Set ]--[
                         4150146,
                         compl(--[ :: ]--[
@@ -3612,55 +3684,55 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                                 --[ [] ]--0
                               ]
                             ])
-                      ];
-            case 0 :
-            case 1 :
-            case 2 :
-            case 3 :
-            case 4 :
-            case 5 :
-            case 6 :
-            case 33 :
-            case 34 :
-            case 35 :
-            case 36 :
-            case 37 :
-            case 38 :
+                      ];end end end 
+             if ___conditional___ = 0
+             or ___conditional___ = 1
+             or ___conditional___ = 2
+             or ___conditional___ = 3
+             or ___conditional___ = 4
+             or ___conditional___ = 5
+             or ___conditional___ = 6
+             or ___conditional___ = 33
+             or ___conditional___ = 34
+             or ___conditional___ = 35
+             or ___conditional___ = 36
+             or ___conditional___ = 37
+             or ___conditional___ = 38 then do
                 return --[ `Char ]--[
                         748194550,
                         c$2
-                      ];
-            case 40 :
+                      ];end end end 
+             if ___conditional___ = 40 then do
                 return --[ `Char ]--[
                         748194550,
                         --[ "\b" ]--8
-                      ];
-            case 42 :
+                      ];end end end 
+             if ___conditional___ = 42 then do
                 return --[ `Set ]--[
                         4150146,
                         digit
-                      ];
-            case 52 :
+                      ];end end end 
+             if ___conditional___ = 52 then do
                 return --[ `Char ]--[
                         748194550,
                         --[ "\n" ]--10
-                      ];
-            case 56 :
+                      ];end end end 
+             if ___conditional___ = 56 then do
                 return --[ `Char ]--[
                         748194550,
                         --[ "\r" ]--13
-                      ];
-            case 57 :
+                      ];end end end 
+             if ___conditional___ = 57 then do
                 return --[ `Set ]--[
                         4150146,
                         space
-                      ];
-            case 58 :
+                      ];end end end 
+             if ___conditional___ = 58 then do
                 return --[ `Char ]--[
                         748194550,
                         --[ "\t" ]--9
-                      ];
-            case 61 :
+                      ];end end end 
+             if ___conditional___ = 61 then do
                 return --[ `Set ]--[
                         4150146,
                         alt$1(--[ :: ]--[
@@ -3676,50 +3748,51 @@ function parse(multiline, dollar_endonly, dotall, ungreedy, s) do
                                 --[ [] ]--0
                               ]
                             ])
-                      ];
-            case 7 :
-            case 8 :
-            case 9 :
-            case 11 :
-            case 12 :
-            case 13 :
-            case 14 :
-            case 15 :
-            case 16 :
-            case 17 :
-            case 18 :
-            case 19 :
-            case 20 :
-            case 21 :
-            case 22 :
-            case 23 :
-            case 24 :
-            case 26 :
-            case 27 :
-            case 28 :
-            case 30 :
-            case 31 :
-            case 32 :
-            case 39 :
-            case 41 :
-            case 43 :
-            case 44 :
-            case 45 :
-            case 46 :
-            case 47 :
-            case 48 :
-            case 49 :
-            case 50 :
-            case 51 :
-            case 53 :
-            case 54 :
-            case 55 :
-            case 59 :
-            case 60 :
-            case 62 :
-            case 63 :
-            case 64 :
-                throw Parse_error;
+                      ];end end end 
+             if ___conditional___ = 7
+             or ___conditional___ = 8
+             or ___conditional___ = 9
+             or ___conditional___ = 11
+             or ___conditional___ = 12
+             or ___conditional___ = 13
+             or ___conditional___ = 14
+             or ___conditional___ = 15
+             or ___conditional___ = 16
+             or ___conditional___ = 17
+             or ___conditional___ = 18
+             or ___conditional___ = 19
+             or ___conditional___ = 20
+             or ___conditional___ = 21
+             or ___conditional___ = 22
+             or ___conditional___ = 23
+             or ___conditional___ = 24
+             or ___conditional___ = 26
+             or ___conditional___ = 27
+             or ___conditional___ = 28
+             or ___conditional___ = 30
+             or ___conditional___ = 31
+             or ___conditional___ = 32
+             or ___conditional___ = 39
+             or ___conditional___ = 41
+             or ___conditional___ = 43
+             or ___conditional___ = 44
+             or ___conditional___ = 45
+             or ___conditional___ = 46
+             or ___conditional___ = 47
+             or ___conditional___ = 48
+             or ___conditional___ = 49
+             or ___conditional___ = 50
+             or ___conditional___ = 51
+             or ___conditional___ = 53
+             or ___conditional___ = 54
+             or ___conditional___ = 55
+             or ___conditional___ = 59
+             or ___conditional___ = 60
+             or ___conditional___ = 62
+             or ___conditional___ = 63
+             or ___conditional___ = 64 then do
+                throw Parse_error;end end end 
+             do
             
           end
         end end 

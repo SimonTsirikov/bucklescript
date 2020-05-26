@@ -493,40 +493,75 @@ and  pp_function is_method
 *)
 and pp_one_case_clause : 'a .
   _ -> P.t -> (P.t -> 'a -> unit) -> 'a J.case_clause -> _
-  = fun cxt f  pp_cond
+  = fun (cxt, depth, mult) f  pp_cond
     ({switch_case; switch_body ; should_break; comment; } : _ J.case_clause) ->
-    let cxt =
+    let (cxt, depth, mult) =
       P.group f 1  (fun _ ->
           P.group f 1 (fun _ ->
-              P.string f L.case;
-              P.space f ;
-              pp_comment_option f comment;
-              pp_cond  f switch_case; (* could be integer or string *)
-              P.space f ;
-              P.string f L.colon  );
+              P.space f;
+              (if mult then
+                (P.string f L.or_)
+              else
+                (P.string f L.if_));
+              P.space f;
+              P.string f L.conditional;
+              P.space f;
+              P.string f L.eq;
+              P.space f;
+              pp_cond  f switch_case; 
+              pp_comment_option f comment);
           P.group f 1 (fun _ ->
-              let cxt =
+              let (cxt, mult) =
                 match switch_body with
-                | [] -> cxt
+                | [] -> (cxt, true)
                 | _ ->
+                  P.space f;
+                  P.string f L.then_;
+                  P.space f;
+                  P.string f L.do_;
                   P.newline f ;
-                  statement_list false cxt  f switch_body
-              in
-              (if should_break then
+                  let cxt_ = statement_list false cxt f switch_body in
+                  P.string f L.end_;
+                  (cxt_, false)
+              in (if mult then
+                (cxt, depth, mult)
+              else
+              (let depth = if should_break then
                  begin
-                   P.newline f ;
-                   P.string f L.break;
-                   semi f;
-                 end) ;
-              cxt))
+                  P.space f;
+                  P.string f L.else_;
+                  P.space f;
+                  depth + 1
+                 end
+              else
+                begin
+                  P.space f;
+                  P.string f L.end_;
+                  P.space f;
+                  P.string f L.end_;
+                  P.space f;
+                  depth - 1
+                end
+              in
+              (cxt, depth, mult) ))))
     in
     P.newline f;
-    cxt
+    (cxt, depth, mult)
 
 and loop_case_clauses  :  'a . cxt ->
   P.t -> (P.t -> 'a -> unit) -> 'a J.case_clause list -> cxt
   = fun  cxt  f pp_cond cases ->
-    Ext_list.fold_left cases cxt (fun acc x -> pp_one_case_clause acc f pp_cond x)              
+    let (cxt, depth, _) = Ext_list.fold_left cases (cxt, 0, false) (fun acc x -> pp_one_case_clause acc f pp_cond x) in
+      P.space f;
+      P.string f L.do_;
+      (for _ = depth downto 0 do
+        begin
+          P.space f;
+          P.string f L.end_;
+        end
+      done);
+      P.newline f;
+      cxt           
 
 and vident cxt f  (v : J.vident) =
   match v with
@@ -1241,36 +1276,56 @@ and statement_desc top cxt f (s : J.statement_desc) : cxt =
            argument. A line return will not work *)
     end
   | Int_switch (e, cc, def) ->
-    P.string f L.switch;
+    P.string f L.local;
     P.space f;
+    P.string f L.conditional; 
+    P.string f L.eq;
     let cxt = P.paren_group f 1 (fun _ ->  expression ~level:0 cxt f e) in
-    P.space f;
+    semi f;
+    P.newline f;
     P.brace_vgroup f 1 (fun _ ->
         let cxt = loop_case_clauses cxt f (fun f i -> P.string f (string_of_int i) ) cc in
         match def with
         | None -> cxt
         | Some def ->
           P.group f 1  (fun _ ->
-              P.string f L.default;
-              P.string f L.colon;
+              P.string f L.else_;
+              P.space f;
+              P.string f L.do_;
               P.newline f;
-              statement_list  false cxt  f def))
+              let cxt_ = statement_list  false cxt  f def in
+              P.newline f;
+              P.string f L.end_;
+              P.space f;
+              P.string f L.end_;
+              P.newline f;
+              cxt_))
 
   | String_switch (e, cc, def) ->
-    P.string f L.switch;
+    P.string f L.local;
     P.space f;
+    P.string f L.conditional; 
+    P.string f L.eq;
     let cxt = P.paren_group f 1 (fun _ ->  expression ~level:0 cxt f e) in
-    P.space f;
+    semi f;
+    P.newline f; 
     P.brace_vgroup f 1 (fun _ ->
         let cxt = loop_case_clauses cxt f Js_dump_string.pp_string  cc in
         match def with
         | None -> cxt
         | Some def ->
-          P.group f 1 (fun _ ->
-          P.string f L.default;
-          P.string f L.colon;
-          P.newline f;
-          statement_list  false cxt  f def ))
+          P.group f 1  (fun _ ->
+              P.string f L.else_;
+              P.space f;
+              P.string f L.do_;
+              P.newline f;
+              let cxt_ = statement_list  false cxt  f def in
+              P.newline f;
+              P.string f L.end_;
+              P.space f;
+              P.string f L.end_;
+              P.newline f;
+              cxt_))
   | Throw e ->
     P.string f L.throw;
     P.space f ;

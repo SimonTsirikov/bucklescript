@@ -55,15 +55,16 @@ function utf8_decode(strm) do
                           "Invalid byte"
                         ];
                   end else do
-                    switch (match$1.tag | 0) do
-                      case --[ Single ]--0 :
-                          return Stream.icons(match$1[0], utf8_decode(strm));
-                      case --[ Cont ]--1 :
+                    local ___conditional___=(match$1.tag | 0);
+                    do
+                       if ___conditional___ = 0--[ Single ]-- then do
+                          return Stream.icons(match$1[0], utf8_decode(strm));end end end 
+                       if ___conditional___ = 1--[ Cont ]-- then do
                           throw [
                                 Stream.$$Error,
                                 "Unexpected continuation byte"
-                              ];
-                      case --[ Leading ]--2 :
+                              ];end end end 
+                       if ___conditional___ = 2--[ Leading ]-- then do
                           var follow = function (strm, _n, _c) do
                             while(true) do
                               var c = _c;
@@ -90,7 +91,8 @@ function utf8_decode(strm) do
                               end end 
                             end;
                           end;
-                          return Stream.icons(follow(strm, match$1[0], match$1[1]), utf8_decode(strm));
+                          return Stream.icons(follow(strm, match$1[0], match$1[1]), utf8_decode(strm));end end end 
+                       do
                       
                     end
                   end end 
@@ -126,18 +128,19 @@ function decode(bytes, offset) do
           "decode"
         ];
   end else do
-    switch (match.tag | 0) do
-      case --[ Single ]--0 :
+    local ___conditional___=(match.tag | 0);
+    do
+       if ___conditional___ = 0--[ Single ]-- then do
           return --[ tuple ]--[
                   match[0],
                   offset$1 + 1 | 0
-                ];
-      case --[ Cont ]--1 :
+                ];end end end 
+       if ___conditional___ = 1--[ Cont ]-- then do
           throw [
                 Caml_builtin_exceptions.invalid_argument,
                 "decode"
-              ];
-      case --[ Leading ]--2 :
+              ];end end end 
+       if ___conditional___ = 2--[ Leading ]-- then do
           var _n = match[0];
           var _c = match[1];
           var _offset = offset$1 + 1 | 0;
@@ -169,7 +172,8 @@ function decode(bytes, offset) do
                     ];
               end end  end 
             end end 
-          end;
+          end;end end end 
+       do
       
     end
   end end 

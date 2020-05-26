@@ -76,36 +76,40 @@ function create_hashtable(size, init) do
 end
 
 function ansi_of_color(param) do
-  switch (param) do
-    case --[ Black ]--0 :
-        return "0";
-    case --[ Red ]--1 :
-        return "1";
-    case --[ Green ]--2 :
-        return "2";
-    case --[ Yellow ]--3 :
-        return "3";
-    case --[ Blue ]--4 :
-        return "4";
-    case --[ Magenta ]--5 :
-        return "5";
-    case --[ Cyan ]--6 :
-        return "6";
-    case --[ White ]--7 :
-        return "7";
+  local ___conditional___=(param);
+  do
+     if ___conditional___ = 0--[ Black ]-- then do
+        return "0";end end end 
+     if ___conditional___ = 1--[ Red ]-- then do
+        return "1";end end end 
+     if ___conditional___ = 2--[ Green ]-- then do
+        return "2";end end end 
+     if ___conditional___ = 3--[ Yellow ]-- then do
+        return "3";end end end 
+     if ___conditional___ = 4--[ Blue ]-- then do
+        return "4";end end end 
+     if ___conditional___ = 5--[ Magenta ]-- then do
+        return "5";end end end 
+     if ___conditional___ = 6--[ Cyan ]-- then do
+        return "6";end end end 
+     if ___conditional___ = 7--[ White ]-- then do
+        return "7";end end end 
+     do
     
   end
 end
 
 function code_of_style(param) do
   if (typeof param == "number") then do
-    switch (param) do
-      case --[ Bold ]--0 :
-          return "1";
-      case --[ Reset ]--1 :
-          return "0";
-      case --[ Dim ]--2 :
-          return "2";
+    local ___conditional___=(param);
+    do
+       if ___conditional___ = 0--[ Bold ]-- then do
+          return "1";end end end 
+       if ___conditional___ = 1--[ Reset ]-- then do
+          return "0";end end end 
+       if ___conditional___ = 2--[ Dim ]-- then do
+          return "2";end end end 
+       do
       
     end
   end else if (param.tag) then do
@@ -157,33 +161,37 @@ function set_styles(s) do
 end
 
 function style_of_tag(s) do
-  switch (s) do
-    case "dim" :
+  local ___conditional___=(s);
+  do
+     if ___conditional___ = "dim" then do
         return --[ :: ]--[
                 --[ Dim ]--2,
                 --[ [] ]--0
-              ];
-    case "error" :
-        return cur_styles.contents.error;
-    case "filename" :
+              ];end end end 
+     if ___conditional___ = "error" then do
+        return cur_styles.contents.error;end end end 
+     if ___conditional___ = "filename" then do
         return --[ :: ]--[
                 --[ FG ]--Block.__(0, [--[ Cyan ]--6]),
                 --[ [] ]--0
-              ];
-    case "info" :
+              ];end end end 
+     if ___conditional___ = "info" then do
         return --[ :: ]--[
                 --[ Bold ]--0,
                 --[ :: ]--[
                   --[ FG ]--Block.__(0, [--[ Yellow ]--3]),
                   --[ [] ]--0
                 ]
-              ];
-    case "loc" :
-        return cur_styles.contents.loc;
-    case "warning" :
-        return cur_styles.contents.warning;
-    default:
+              ];end end end 
+     if ___conditional___ = "loc" then do
+        return cur_styles.contents.loc;end end end 
+     if ___conditional___ = "warning" then do
+        return cur_styles.contents.warning;end end end 
+     do
+    else do
       throw Caml_builtin_exceptions.not_found;
+      end end
+      
   end
 end
 
@@ -272,14 +280,14 @@ function setup(o) do
     List.iter(set_color_tag_handling, formatter_l);
     var tmp;
     if (o ~= undefined) then do
-      switch (o) do
-        case --[ Always ]--1 :
-            tmp = true;
-            break;
-        case --[ Auto ]--0 :
-        case --[ Never ]--2 :
-            tmp = false;
-            break;
+      local ___conditional___=(o);
+      do
+         if ___conditional___ = 1--[ Always ]-- then do
+            tmp = true;end else 
+         if ___conditional___ = 0--[ Auto ]--
+         or ___conditional___ = 2--[ Never ]-- then do
+            tmp = false;end else 
+         do end end end
         
       end
     end else do
@@ -302,119 +310,123 @@ end;
 
 function number(param) do
   if (typeof param == "number") then do
-    switch (param) do
-      case --[ Comment_start ]--0 :
-          return 1;
-      case --[ Comment_not_end ]--1 :
-          return 2;
-      case --[ Partial_application ]--2 :
-          return 5;
-      case --[ Labels_omitted ]--3 :
-          return 6;
-      case --[ Statement_type ]--4 :
-          return 10;
-      case --[ Unused_match ]--5 :
-          return 11;
-      case --[ Unused_pat ]--6 :
-          return 12;
-      case --[ Illegal_backslash ]--7 :
-          return 14;
-      case --[ Unerasable_optional_argument ]--8 :
-          return 16;
-      case --[ Unused_argument ]--9 :
-          return 20;
-      case --[ Nonreturning_statement ]--10 :
-          return 21;
-      case --[ Useless_record_with ]--11 :
-          return 23;
-      case --[ All_clauses_guarded ]--12 :
-          return 25;
-      case --[ Wildcard_arg_to_constant_constr ]--13 :
-          return 28;
-      case --[ Eol_in_string ]--14 :
-          return 29;
-      case --[ Unused_rec_flag ]--15 :
-          return 39;
-      case --[ Bs_polymorphic_comparison ]--16 :
-          return 102;
+    local ___conditional___=(param);
+    do
+       if ___conditional___ = 0--[ Comment_start ]-- then do
+          return 1;end end end 
+       if ___conditional___ = 1--[ Comment_not_end ]-- then do
+          return 2;end end end 
+       if ___conditional___ = 2--[ Partial_application ]-- then do
+          return 5;end end end 
+       if ___conditional___ = 3--[ Labels_omitted ]-- then do
+          return 6;end end end 
+       if ___conditional___ = 4--[ Statement_type ]-- then do
+          return 10;end end end 
+       if ___conditional___ = 5--[ Unused_match ]-- then do
+          return 11;end end end 
+       if ___conditional___ = 6--[ Unused_pat ]-- then do
+          return 12;end end end 
+       if ___conditional___ = 7--[ Illegal_backslash ]-- then do
+          return 14;end end end 
+       if ___conditional___ = 8--[ Unerasable_optional_argument ]-- then do
+          return 16;end end end 
+       if ___conditional___ = 9--[ Unused_argument ]-- then do
+          return 20;end end end 
+       if ___conditional___ = 10--[ Nonreturning_statement ]-- then do
+          return 21;end end end 
+       if ___conditional___ = 11--[ Useless_record_with ]-- then do
+          return 23;end end end 
+       if ___conditional___ = 12--[ All_clauses_guarded ]-- then do
+          return 25;end end end 
+       if ___conditional___ = 13--[ Wildcard_arg_to_constant_constr ]-- then do
+          return 28;end end end 
+       if ___conditional___ = 14--[ Eol_in_string ]-- then do
+          return 29;end end end 
+       if ___conditional___ = 15--[ Unused_rec_flag ]-- then do
+          return 39;end end end 
+       if ___conditional___ = 16--[ Bs_polymorphic_comparison ]-- then do
+          return 102;end end end 
+       do
       
     end
   end else do
-    switch (param.tag | 0) do
-      case --[ Deprecated ]--0 :
-          return 3;
-      case --[ Fragile_match ]--1 :
-          return 4;
-      case --[ Method_override ]--2 :
-          return 7;
-      case --[ Partial_match ]--3 :
-          return 8;
-      case --[ Non_closed_record_pattern ]--4 :
-          return 9;
-      case --[ Instance_variable_override ]--5 :
-          return 13;
-      case --[ Implicit_public_methods ]--6 :
-          return 15;
-      case --[ Undeclared_virtual_method ]--7 :
-          return 17;
-      case --[ Not_principal ]--8 :
-          return 18;
-      case --[ Without_principality ]--9 :
-          return 19;
-      case --[ Preprocessor ]--10 :
-          return 22;
-      case --[ Bad_module_name ]--11 :
-          return 24;
-      case --[ Unused_var ]--12 :
-          return 26;
-      case --[ Unused_var_strict ]--13 :
-          return 27;
-      case --[ Duplicate_definitions ]--14 :
-          return 30;
-      case --[ Multiple_definition ]--15 :
-          return 31;
-      case --[ Unused_value_declaration ]--16 :
-          return 32;
-      case --[ Unused_open ]--17 :
-          return 33;
-      case --[ Unused_type_declaration ]--18 :
-          return 34;
-      case --[ Unused_for_index ]--19 :
-          return 35;
-      case --[ Unused_ancestor ]--20 :
-          return 36;
-      case --[ Unused_constructor ]--21 :
-          return 37;
-      case --[ Unused_extension ]--22 :
-          return 38;
-      case --[ Name_out_of_scope ]--23 :
-          return 40;
-      case --[ Ambiguous_name ]--24 :
-          return 41;
-      case --[ Disambiguated_name ]--25 :
-          return 42;
-      case --[ Nonoptional_label ]--26 :
-          return 43;
-      case --[ Open_shadow_identifier ]--27 :
-          return 44;
-      case --[ Open_shadow_label_constructor ]--28 :
-          return 45;
-      case --[ Bad_env_variable ]--29 :
-          return 46;
-      case --[ Attribute_payload ]--30 :
-          return 47;
-      case --[ Eliminated_optional_arguments ]--31 :
-          return 48;
-      case --[ No_cmi_file ]--32 :
-          return 49;
-      case --[ Bad_docstring ]--33 :
-          return 50;
-      case --[ Bs_unused_attribute ]--34 :
-          return 101;
-      case --[ Bs_ffi_warning ]--35 :
-          return 103;
-      case --[ Bs_derive_warning ]--36 :
-          return 104;
+    local ___conditional___=(param.tag | 0);
+    do
+       if ___conditional___ = 0--[ Deprecated ]-- then do
+          return 3;end end end 
+       if ___conditional___ = 1--[ Fragile_match ]-- then do
+          return 4;end end end 
+       if ___conditional___ = 2--[ Method_override ]-- then do
+          return 7;end end end 
+       if ___conditional___ = 3--[ Partial_match ]-- then do
+          return 8;end end end 
+       if ___conditional___ = 4--[ Non_closed_record_pattern ]-- then do
+          return 9;end end end 
+       if ___conditional___ = 5--[ Instance_variable_override ]-- then do
+          return 13;end end end 
+       if ___conditional___ = 6--[ Implicit_public_methods ]-- then do
+          return 15;end end end 
+       if ___conditional___ = 7--[ Undeclared_virtual_method ]-- then do
+          return 17;end end end 
+       if ___conditional___ = 8--[ Not_principal ]-- then do
+          return 18;end end end 
+       if ___conditional___ = 9--[ Without_principality ]-- then do
+          return 19;end end end 
+       if ___conditional___ = 10--[ Preprocessor ]-- then do
+          return 22;end end end 
+       if ___conditional___ = 11--[ Bad_module_name ]-- then do
+          return 24;end end end 
+       if ___conditional___ = 12--[ Unused_var ]-- then do
+          return 26;end end end 
+       if ___conditional___ = 13--[ Unused_var_strict ]-- then do
+          return 27;end end end 
+       if ___conditional___ = 14--[ Duplicate_definitions ]-- then do
+          return 30;end end end 
+       if ___conditional___ = 15--[ Multiple_definition ]-- then do
+          return 31;end end end 
+       if ___conditional___ = 16--[ Unused_value_declaration ]-- then do
+          return 32;end end end 
+       if ___conditional___ = 17--[ Unused_open ]-- then do
+          return 33;end end end 
+       if ___conditional___ = 18--[ Unused_type_declaration ]-- then do
+          return 34;end end end 
+       if ___conditional___ = 19--[ Unused_for_index ]-- then do
+          return 35;end end end 
+       if ___conditional___ = 20--[ Unused_ancestor ]-- then do
+          return 36;end end end 
+       if ___conditional___ = 21--[ Unused_constructor ]-- then do
+          return 37;end end end 
+       if ___conditional___ = 22--[ Unused_extension ]-- then do
+          return 38;end end end 
+       if ___conditional___ = 23--[ Name_out_of_scope ]-- then do
+          return 40;end end end 
+       if ___conditional___ = 24--[ Ambiguous_name ]-- then do
+          return 41;end end end 
+       if ___conditional___ = 25--[ Disambiguated_name ]-- then do
+          return 42;end end end 
+       if ___conditional___ = 26--[ Nonoptional_label ]-- then do
+          return 43;end end end 
+       if ___conditional___ = 27--[ Open_shadow_identifier ]-- then do
+          return 44;end end end 
+       if ___conditional___ = 28--[ Open_shadow_label_constructor ]-- then do
+          return 45;end end end 
+       if ___conditional___ = 29--[ Bad_env_variable ]-- then do
+          return 46;end end end 
+       if ___conditional___ = 30--[ Attribute_payload ]-- then do
+          return 47;end end end 
+       if ___conditional___ = 31--[ Eliminated_optional_arguments ]-- then do
+          return 48;end end end 
+       if ___conditional___ = 32--[ No_cmi_file ]-- then do
+          return 49;end end end 
+       if ___conditional___ = 33--[ Bad_docstring ]-- then do
+          return 50;end end end 
+       if ___conditional___ = 34--[ Bs_unused_attribute ]-- then do
+          return 101;end end end 
+       if ___conditional___ = 35--[ Bs_ffi_warning ]-- then do
+          return 103;end end end 
+       if ___conditional___ = 36--[ Bs_derive_warning ]-- then do
+          return 104;end end end 
+       do
       
     end
   end end 
@@ -434,33 +446,34 @@ end
 var letter_all = loop(104);
 
 function letter(param) do
-  switch (param) do
-    case 97 :
-        return letter_all;
-    case 99 :
+  local ___conditional___=(param);
+  do
+     if ___conditional___ = 97 then do
+        return letter_all;end end end 
+     if ___conditional___ = 99 then do
         return --[ :: ]--[
                 1,
                 --[ :: ]--[
                   2,
                   --[ [] ]--0
                 ]
-              ];
-    case 100 :
+              ];end end end 
+     if ___conditional___ = 100 then do
         return --[ :: ]--[
                 3,
                 --[ [] ]--0
-              ];
-    case 101 :
+              ];end end end 
+     if ___conditional___ = 101 then do
         return --[ :: ]--[
                 4,
                 --[ [] ]--0
-              ];
-    case 102 :
+              ];end end end 
+     if ___conditional___ = 102 then do
         return --[ :: ]--[
                 5,
                 --[ [] ]--0
-              ];
-    case 107 :
+              ];end end end 
+     if ___conditional___ = 107 then do
         return --[ :: ]--[
                 32,
                 --[ :: ]--[
@@ -485,57 +498,57 @@ function letter(param) do
                     ]
                   ]
                 ]
-              ];
-    case 108 :
+              ];end end end 
+     if ___conditional___ = 108 then do
         return --[ :: ]--[
                 6,
                 --[ [] ]--0
-              ];
-    case 109 :
+              ];end end end 
+     if ___conditional___ = 109 then do
         return --[ :: ]--[
                 7,
                 --[ [] ]--0
-              ];
-    case 112 :
+              ];end end end 
+     if ___conditional___ = 112 then do
         return --[ :: ]--[
                 8,
                 --[ [] ]--0
-              ];
-    case 114 :
+              ];end end end 
+     if ___conditional___ = 114 then do
         return --[ :: ]--[
                 9,
                 --[ [] ]--0
-              ];
-    case 115 :
+              ];end end end 
+     if ___conditional___ = 115 then do
         return --[ :: ]--[
                 10,
                 --[ [] ]--0
-              ];
-    case 117 :
+              ];end end end 
+     if ___conditional___ = 117 then do
         return --[ :: ]--[
                 11,
                 --[ :: ]--[
                   12,
                   --[ [] ]--0
                 ]
-              ];
-    case 118 :
+              ];end end end 
+     if ___conditional___ = 118 then do
         return --[ :: ]--[
                 13,
                 --[ [] ]--0
-              ];
-    case 98 :
-    case 103 :
-    case 104 :
-    case 105 :
-    case 106 :
-    case 110 :
-    case 111 :
-    case 113 :
-    case 116 :
-    case 119 :
-        return --[ [] ]--0;
-    case 120 :
+              ];end end end 
+     if ___conditional___ = 98
+     or ___conditional___ = 103
+     or ___conditional___ = 104
+     or ___conditional___ = 105
+     or ___conditional___ = 106
+     or ___conditional___ = 110
+     or ___conditional___ = 111
+     or ___conditional___ = 113
+     or ___conditional___ = 116
+     or ___conditional___ = 119 then do
+        return --[ [] ]--0;end end end 
+     if ___conditional___ = 120 then do
         return --[ :: ]--[
                 14,
                 --[ :: ]--[
@@ -575,18 +588,19 @@ function letter(param) do
                     ]
                   ]
                 ]
-              ];
-    case 121 :
+              ];end end end 
+     if ___conditional___ = 121 then do
         return --[ :: ]--[
                 26,
                 --[ [] ]--0
-              ];
-    case 122 :
+              ];end end end 
+     if ___conditional___ = 122 then do
         return --[ :: ]--[
                 27,
                 --[ [] ]--0
-              ];
-    default:
+              ];end end end 
+     do
+    else do
       throw [
             Caml_builtin_exceptions.assert_failure,
             --[ tuple ]--[
@@ -595,6 +609,8 @@ function letter(param) do
               9
             ]
           ];
+      end end
+      
   end
 end
 
@@ -712,16 +728,18 @@ function parse_opt(error, active, flags, s) do
                 ];
           end end 
         end else if (c >= 43) then do
-          switch (c - 43 | 0) do
-            case 0 :
-                return loop_letter_num(set, i + 1 | 0);
-            case 1 :
+          local ___conditional___=(c - 43 | 0);
+          do
+             if ___conditional___ = 0 then do
+                return loop_letter_num(set, i + 1 | 0);end end end 
+             if ___conditional___ = 1 then do
                 throw [
                       Arg.Bad,
                       "Ill-formed list of warnings"
-                    ];
-            case 2 :
-                return loop_letter_num(clear, i + 1 | 0);
+                    ];end end end 
+             if ___conditional___ = 2 then do
+                return loop_letter_num(clear, i + 1 | 0);end end end 
+             do
             
           end
         end else do
@@ -799,55 +817,58 @@ parse_options(true, "-a");
 
 function message(param) do
   if (typeof param == "number") then do
-    switch (param) do
-      case --[ Comment_start ]--0 :
-          return "this is the start of a comment.";
-      case --[ Comment_not_end ]--1 :
-          return "this is not the end of a comment.";
-      case --[ Partial_application ]--2 :
-          return "this function application is partial,\nmaybe some arguments are missing.";
-      case --[ Labels_omitted ]--3 :
-          return "labels were omitted in the application of this function.";
-      case --[ Statement_type ]--4 :
-          return "this expression should have type unit.";
-      case --[ Unused_match ]--5 :
-          return "this match case is unused.";
-      case --[ Unused_pat ]--6 :
-          return "this sub-pattern is unused.";
-      case --[ Illegal_backslash ]--7 :
-          return "illegal backslash escape in string.";
-      case --[ Unerasable_optional_argument ]--8 :
-          return "this optional argument cannot be erased.";
-      case --[ Unused_argument ]--9 :
-          return "this argument will not be used by the function.";
-      case --[ Nonreturning_statement ]--10 :
-          return "this statement never returns (or has an unsound type.)";
-      case --[ Useless_record_with ]--11 :
-          return "all the fields are explicitly listed in this record:\nthe 'with' clause is useless.";
-      case --[ All_clauses_guarded ]--12 :
-          return "bad style, all clauses in this pattern-matching are guarded.";
-      case --[ Wildcard_arg_to_constant_constr ]--13 :
-          return "wildcard pattern given as argument to a constant constructor";
-      case --[ Eol_in_string ]--14 :
-          return "unescaped end-of-line in a string constant (non-portable code)";
-      case --[ Unused_rec_flag ]--15 :
-          return "unused rec flag.";
-      case --[ Bs_polymorphic_comparison ]--16 :
-          return "polymorphic comparison introduced (maybe unsafe)";
+    local ___conditional___=(param);
+    do
+       if ___conditional___ = 0--[ Comment_start ]-- then do
+          return "this is the start of a comment.";end end end 
+       if ___conditional___ = 1--[ Comment_not_end ]-- then do
+          return "this is not the end of a comment.";end end end 
+       if ___conditional___ = 2--[ Partial_application ]-- then do
+          return "this function application is partial,\nmaybe some arguments are missing.";end end end 
+       if ___conditional___ = 3--[ Labels_omitted ]-- then do
+          return "labels were omitted in the application of this function.";end end end 
+       if ___conditional___ = 4--[ Statement_type ]-- then do
+          return "this expression should have type unit.";end end end 
+       if ___conditional___ = 5--[ Unused_match ]-- then do
+          return "this match case is unused.";end end end 
+       if ___conditional___ = 6--[ Unused_pat ]-- then do
+          return "this sub-pattern is unused.";end end end 
+       if ___conditional___ = 7--[ Illegal_backslash ]-- then do
+          return "illegal backslash escape in string.";end end end 
+       if ___conditional___ = 8--[ Unerasable_optional_argument ]-- then do
+          return "this optional argument cannot be erased.";end end end 
+       if ___conditional___ = 9--[ Unused_argument ]-- then do
+          return "this argument will not be used by the function.";end end end 
+       if ___conditional___ = 10--[ Nonreturning_statement ]-- then do
+          return "this statement never returns (or has an unsound type.)";end end end 
+       if ___conditional___ = 11--[ Useless_record_with ]-- then do
+          return "all the fields are explicitly listed in this record:\nthe 'with' clause is useless.";end end end 
+       if ___conditional___ = 12--[ All_clauses_guarded ]-- then do
+          return "bad style, all clauses in this pattern-matching are guarded.";end end end 
+       if ___conditional___ = 13--[ Wildcard_arg_to_constant_constr ]-- then do
+          return "wildcard pattern given as argument to a constant constructor";end end end 
+       if ___conditional___ = 14--[ Eol_in_string ]-- then do
+          return "unescaped end-of-line in a string constant (non-portable code)";end end end 
+       if ___conditional___ = 15--[ Unused_rec_flag ]-- then do
+          return "unused rec flag.";end end end 
+       if ___conditional___ = 16--[ Bs_polymorphic_comparison ]-- then do
+          return "polymorphic comparison introduced (maybe unsafe)";end end end 
+       do
       
     end
   end else do
-    switch (param.tag | 0) do
-      case --[ Deprecated ]--0 :
-          return "deprecated: " .. param[0];
-      case --[ Fragile_match ]--1 :
+    local ___conditional___=(param.tag | 0);
+    do
+       if ___conditional___ = 0--[ Deprecated ]-- then do
+          return "deprecated: " .. param[0];end end end 
+       if ___conditional___ = 1--[ Fragile_match ]-- then do
           var s = param[0];
           if (s == "") then do
             return "this pattern-matching is fragile.";
           end else do
             return "this pattern-matching is fragile.\nIt will remain exhaustive when constructors are added to type " .. (s .. ".");
-          end end 
-      case --[ Method_override ]--2 :
+          end end end end end 
+       if ___conditional___ = 2--[ Method_override ]-- then do
           var match = param[0];
           if (match) then do
             var slist = match[1];
@@ -875,17 +896,17 @@ function message(param) do
                     26
                   ]
                 ];
-          end end 
-      case --[ Partial_match ]--3 :
+          end end end end end 
+       if ___conditional___ = 3--[ Partial_match ]-- then do
           var s$1 = param[0];
           if (s$1 == "") then do
             return "this pattern-matching is not exhaustive.";
           end else do
             return "this pattern-matching is not exhaustive.\nHere is an example of a value that is not matched:\n" .. s$1;
-          end end 
-      case --[ Non_closed_record_pattern ]--4 :
-          return "the following labels are not bound in this record pattern:\n" .. (param[0] .. "\nEither bind these labels explicitly or add '; _' to the pattern.");
-      case --[ Instance_variable_override ]--5 :
+          end end end end end 
+       if ___conditional___ = 4--[ Non_closed_record_pattern ]-- then do
+          return "the following labels are not bound in this record pattern:\n" .. (param[0] .. "\nEither bind these labels explicitly or add '; _' to the pattern.");end end end 
+       if ___conditional___ = 5--[ Instance_variable_override ]-- then do
           var match$1 = param[0];
           if (match$1) then do
             var slist$1 = match$1[1];
@@ -913,23 +934,23 @@ function message(param) do
                     37
                   ]
                 ];
-          end end 
-      case --[ Implicit_public_methods ]--6 :
-          return "the following private methods were made public implicitly:\n " .. ($$String.concat(" ", param[0]) .. ".");
-      case --[ Undeclared_virtual_method ]--7 :
-          return "the virtual method " .. (param[0] .. " is not declared.");
-      case --[ Not_principal ]--8 :
-          return param[0] .. " is not principal.";
-      case --[ Without_principality ]--9 :
-          return param[0] .. " without principality.";
-      case --[ Preprocessor ]--10 :
-          return param[0];
-      case --[ Bad_module_name ]--11 :
-          return "bad source file name: \"" .. (param[0] .. "\" is not a valid module name.");
-      case --[ Unused_var ]--12 :
-      case --[ Unused_var_strict ]--13 :
-          return "unused variable " .. (param[0] .. ".");
-      case --[ Duplicate_definitions ]--14 :
+          end end end end end 
+       if ___conditional___ = 6--[ Implicit_public_methods ]-- then do
+          return "the following private methods were made public implicitly:\n " .. ($$String.concat(" ", param[0]) .. ".");end end end 
+       if ___conditional___ = 7--[ Undeclared_virtual_method ]-- then do
+          return "the virtual method " .. (param[0] .. " is not declared.");end end end 
+       if ___conditional___ = 8--[ Not_principal ]-- then do
+          return param[0] .. " is not principal.";end end end 
+       if ___conditional___ = 9--[ Without_principality ]-- then do
+          return param[0] .. " without principality.";end end end 
+       if ___conditional___ = 10--[ Preprocessor ]-- then do
+          return param[0];end end end 
+       if ___conditional___ = 11--[ Bad_module_name ]-- then do
+          return "bad source file name: \"" .. (param[0] .. "\" is not a valid module name.");end end end 
+       if ___conditional___ = 12--[ Unused_var ]--
+       or ___conditional___ = 13--[ Unused_var_strict ]-- then do
+          return "unused variable " .. (param[0] .. ".");end end end 
+       if ___conditional___ = 14--[ Duplicate_definitions ]-- then do
           return Curry._4(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "the ",
@@ -960,8 +981,8 @@ function message(param) do
                                 ])
                             ]),
                           "the %s %s is defined in both types %s and %s."
-                        ]), param[0], param[1], param[2], param[3]);
-      case --[ Multiple_definition ]--15 :
+                        ]), param[0], param[1], param[2], param[3]);end end end 
+       if ___conditional___ = 15--[ Multiple_definition ]-- then do
           return Curry._3(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "files ",
@@ -983,18 +1004,18 @@ function message(param) do
                                 ])
                             ]),
                           "files %s and %s both define a module named %s"
-                        ]), param[1], param[2], param[0]);
-      case --[ Unused_value_declaration ]--16 :
-          return "unused value " .. (param[0] .. ".");
-      case --[ Unused_open ]--17 :
-          return "unused open " .. (param[0] .. ".");
-      case --[ Unused_type_declaration ]--18 :
-          return "unused type " .. (param[0] .. ".");
-      case --[ Unused_for_index ]--19 :
-          return "unused for-loop index " .. (param[0] .. ".");
-      case --[ Unused_ancestor ]--20 :
-          return "unused ancestor variable " .. (param[0] .. ".");
-      case --[ Unused_constructor ]--21 :
+                        ]), param[1], param[2], param[0]);end end end 
+       if ___conditional___ = 16--[ Unused_value_declaration ]-- then do
+          return "unused value " .. (param[0] .. ".");end end end 
+       if ___conditional___ = 17--[ Unused_open ]-- then do
+          return "unused open " .. (param[0] .. ".");end end end 
+       if ___conditional___ = 18--[ Unused_type_declaration ]-- then do
+          return "unused type " .. (param[0] .. ".");end end end 
+       if ___conditional___ = 19--[ Unused_for_index ]-- then do
+          return "unused for-loop index " .. (param[0] .. ".");end end end 
+       if ___conditional___ = 20--[ Unused_ancestor ]-- then do
+          return "unused ancestor variable " .. (param[0] .. ".");end end end 
+       if ___conditional___ = 21--[ Unused_constructor ]-- then do
           var s$2 = param[0];
           if (param[1]) then do
             return "constructor " .. (s$2 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
@@ -1002,8 +1023,8 @@ function message(param) do
             return "constructor " .. (s$2 .. " is never used to build values.\nIts type is exported as a private type.");
           end else do
             return "unused constructor " .. (s$2 .. ".");
-          end end  end 
-      case --[ Unused_extension ]--22 :
+          end end  end end end end 
+       if ___conditional___ = 22--[ Unused_extension ]-- then do
           var s$3 = param[0];
           if (param[1]) then do
             return "extension constructor " .. (s$3 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
@@ -1011,8 +1032,8 @@ function message(param) do
             return "extension constructor " .. (s$3 .. " is never used to build values.\nIt is exported or rebound as a private extension.");
           end else do
             return "unused extension constructor " .. (s$3 .. ".");
-          end end  end 
-      case --[ Name_out_of_scope ]--23 :
+          end end  end end end end 
+       if ___conditional___ = 23--[ Name_out_of_scope ]-- then do
           var slist$2 = param[1];
           var ty = param[0];
           if (slist$2 and !slist$2[1] and !param[2]) then do
@@ -1030,9 +1051,8 @@ function message(param) do
                     39
                   ]
                 ];
-          end end 
-          break;
-      case --[ Ambiguous_name ]--24 :
+          end end end else 
+       if ___conditional___ = 24--[ Ambiguous_name ]-- then do
           var slist$3 = param[0];
           if (slist$3 and !slist$3[1] and !param[2]) then do
             return slist$3[0] .. (" belongs to several types: " .. ($$String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong."));
@@ -1049,13 +1069,12 @@ function message(param) do
                     36
                   ]
                 ];
-          end end 
-          break;
-      case --[ Disambiguated_name ]--25 :
-          return "this use of " .. (param[0] .. " required disambiguation.");
-      case --[ Nonoptional_label ]--26 :
-          return "the label " .. (param[0] .. " is not optional.");
-      case --[ Open_shadow_identifier ]--27 :
+          end end end else 
+       if ___conditional___ = 25--[ Disambiguated_name ]-- then do
+          return "this use of " .. (param[0] .. " required disambiguation.");end end end 
+       if ___conditional___ = 26--[ Nonoptional_label ]-- then do
+          return "the label " .. (param[0] .. " is not optional.");end end end 
+       if ___conditional___ = 27--[ Open_shadow_identifier ]-- then do
           return Curry._2(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "this open statement shadows the ",
@@ -1074,8 +1093,8 @@ function message(param) do
                                 ])
                             ]),
                           "this open statement shadows the %s identifier %s (which is later used)"
-                        ]), param[0], param[1]);
-      case --[ Open_shadow_label_constructor ]--28 :
+                        ]), param[0], param[1]);end end end 
+       if ___conditional___ = 28--[ Open_shadow_label_constructor ]-- then do
           return Curry._2(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "this open statement shadows the ",
@@ -1094,8 +1113,8 @@ function message(param) do
                                 ])
                             ]),
                           "this open statement shadows the %s %s (which is later used)"
-                        ]), param[0], param[1]);
-      case --[ Bad_env_variable ]--29 :
+                        ]), param[0], param[1]);end end end 
+       if ___conditional___ = 29--[ Bad_env_variable ]-- then do
           return Curry._2(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "illegal environment variable ",
@@ -1111,8 +1130,8 @@ function message(param) do
                                 ])
                             ]),
                           "illegal environment variable %s : %s"
-                        ]), param[0], param[1]);
-      case --[ Attribute_payload ]--30 :
+                        ]), param[0], param[1]);end end end 
+       if ___conditional___ = 30--[ Attribute_payload ]-- then do
           return Curry._2(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "illegal payload for attribute '",
@@ -1128,8 +1147,8 @@ function message(param) do
                                 ])
                             ]),
                           "illegal payload for attribute '%s'.\n%s"
-                        ]), param[0], param[1]);
-      case --[ Eliminated_optional_arguments ]--31 :
+                        ]), param[0], param[1]);end end end 
+       if ___conditional___ = 31--[ Eliminated_optional_arguments ]-- then do
           var sl = param[0];
           return Curry._2(Printf.sprintf(--[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
@@ -1146,21 +1165,22 @@ function message(param) do
                                 ])
                             ]),
                           "implicit elimination of optional argument%s %s"
-                        ]), List.length(sl) == 1 ? "" : "s", $$String.concat(", ", sl));
-      case --[ No_cmi_file ]--32 :
-          return "no cmi file was found in path for module " .. param[0];
-      case --[ Bad_docstring ]--33 :
+                        ]), List.length(sl) == 1 ? "" : "s", $$String.concat(", ", sl));end end end 
+       if ___conditional___ = 32--[ No_cmi_file ]-- then do
+          return "no cmi file was found in path for module " .. param[0];end end end 
+       if ___conditional___ = 33--[ Bad_docstring ]-- then do
           if (param[0]) then do
             return "unattached documentation comment (ignored)";
           end else do
             return "ambiguous documentation comment";
-          end end 
-      case --[ Bs_unused_attribute ]--34 :
-          return "Unused BuckleScript attribute: " .. param[0];
-      case --[ Bs_ffi_warning ]--35 :
-          return "BuckleScript FFI warning: " .. param[0];
-      case --[ Bs_derive_warning ]--36 :
-          return "BuckleScript bs.deriving warning: " .. param[0];
+          end end end end end 
+       if ___conditional___ = 34--[ Bs_unused_attribute ]-- then do
+          return "Unused BuckleScript attribute: " .. param[0];end end end 
+       if ___conditional___ = 35--[ Bs_ffi_warning ]-- then do
+          return "BuckleScript FFI warning: " .. param[0];end end end 
+       if ___conditional___ = 36--[ Bs_derive_warning ]-- then do
+          return "BuckleScript bs.deriving warning: " .. param[0];end end end 
+       do
       
     end
   end end 
@@ -1878,13 +1898,15 @@ register_error_of_exn((function (param) do
       end));
 
 function last(param) do
-  switch (param.tag | 0) do
-    case --[ Lident ]--0 :
-        return param[0];
-    case --[ Ldot ]--1 :
-        return param[1];
-    case --[ Lapply ]--2 :
-        return fatal_error("Longident.last");
+  local ___conditional___=(param.tag | 0);
+  do
+     if ___conditional___ = 0--[ Lident ]-- then do
+        return param[0];end end end 
+     if ___conditional___ = 1--[ Ldot ]-- then do
+        return param[1];end end end 
+     if ___conditional___ = 2--[ Lapply ]-- then do
+        return fatal_error("Longident.last");end end end 
+     do
     
   end
 end
@@ -1927,23 +1949,24 @@ function from_pair_suites(name, suites) do
                             var code = param[1];
                             it(param[0], (function () do
                                     var spec = Curry._1(code, --[ () ]--0);
-                                    switch (spec.tag | 0) do
-                                      case --[ Eq ]--0 :
+                                    local ___conditional___=(spec.tag | 0);
+                                    do
+                                       if ___conditional___ = 0--[ Eq ]-- then do
                                           Assert.deepEqual(spec[0], spec[1]);
-                                          return --[ () ]--0;
-                                      case --[ Neq ]--1 :
+                                          return --[ () ]--0;end end end 
+                                       if ___conditional___ = 1--[ Neq ]-- then do
                                           Assert.notDeepEqual(spec[0], spec[1]);
-                                          return --[ () ]--0;
-                                      case --[ StrictEq ]--2 :
+                                          return --[ () ]--0;end end end 
+                                       if ___conditional___ = 2--[ StrictEq ]-- then do
                                           Assert.strictEqual(spec[0], spec[1]);
-                                          return --[ () ]--0;
-                                      case --[ StrictNeq ]--3 :
+                                          return --[ () ]--0;end end end 
+                                       if ___conditional___ = 3--[ StrictNeq ]-- then do
                                           Assert.notStrictEqual(spec[0], spec[1]);
-                                          return --[ () ]--0;
-                                      case --[ Ok ]--4 :
+                                          return --[ () ]--0;end end end 
+                                       if ___conditional___ = 4--[ Ok ]-- then do
                                           Assert.ok(spec[0]);
-                                          return --[ () ]--0;
-                                      case --[ Approx ]--5 :
+                                          return --[ () ]--0;end end end 
+                                       if ___conditional___ = 5--[ Approx ]-- then do
                                           var b = spec[1];
                                           var a = spec[0];
                                           if (close_enough(undefined, a, b)) then do
@@ -1951,8 +1974,8 @@ function from_pair_suites(name, suites) do
                                           end else do
                                             Assert.deepEqual(a, b);
                                             return --[ () ]--0;
-                                          end end 
-                                      case --[ ApproxThreshold ]--6 :
+                                          end end end end end 
+                                       if ___conditional___ = 6--[ ApproxThreshold ]-- then do
                                           var b$1 = spec[2];
                                           var a$1 = spec[1];
                                           if (close_enough(spec[0], a$1, b$1)) then do
@@ -1960,14 +1983,15 @@ function from_pair_suites(name, suites) do
                                           end else do
                                             Assert.deepEqual(a$1, b$1);
                                             return --[ () ]--0;
-                                          end end 
-                                      case --[ ThrowAny ]--7 :
+                                          end end end end end 
+                                       if ___conditional___ = 7--[ ThrowAny ]-- then do
                                           Assert.throws(spec[0]);
-                                          return --[ () ]--0;
-                                      case --[ Fail ]--8 :
-                                          return assert_fail("failed");
-                                      case --[ FailWith ]--9 :
-                                          return assert_fail(spec[0]);
+                                          return --[ () ]--0;end end end 
+                                       if ___conditional___ = 8--[ Fail ]-- then do
+                                          return assert_fail("failed");end end end 
+                                       if ___conditional___ = 9--[ FailWith ]-- then do
+                                          return assert_fail(spec[0]);end end end 
+                                       do
                                       
                                     end
                                   end));
@@ -1985,55 +2009,56 @@ function from_pair_suites(name, suites) do
       return List.iter((function (param) do
                     var name = param[0];
                     var match = Curry._1(param[1], --[ () ]--0);
-                    switch (match.tag | 0) do
-                      case --[ Eq ]--0 :
+                    local ___conditional___=(match.tag | 0);
+                    do
+                       if ___conditional___ = 0--[ Eq ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "eq?",
                                 match[1]
                               ]);
-                          return --[ () ]--0;
-                      case --[ Neq ]--1 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 1--[ Neq ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "neq?",
                                 match[1]
                               ]);
-                          return --[ () ]--0;
-                      case --[ StrictEq ]--2 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 2--[ StrictEq ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "strict_eq?",
                                 match[1]
                               ]);
-                          return --[ () ]--0;
-                      case --[ StrictNeq ]--3 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 3--[ StrictNeq ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "strict_neq?",
                                 match[1]
                               ]);
-                          return --[ () ]--0;
-                      case --[ Ok ]--4 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 4--[ Ok ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "ok?"
                               ]);
-                          return --[ () ]--0;
-                      case --[ Approx ]--5 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 5--[ Approx ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[0],
                                 "~",
                                 match[1]
                               ]);
-                          return --[ () ]--0;
-                      case --[ ApproxThreshold ]--6 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 6--[ ApproxThreshold ]-- then do
                           console.log(--[ tuple ]--[
                                 name,
                                 match[1],
@@ -2043,15 +2068,16 @@ function from_pair_suites(name, suites) do
                                 match[0],
                                 ")"
                               ]);
-                          return --[ () ]--0;
-                      case --[ ThrowAny ]--7 :
-                          return --[ () ]--0;
-                      case --[ Fail ]--8 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 7--[ ThrowAny ]-- then do
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 8--[ Fail ]-- then do
                           console.log("failed");
-                          return --[ () ]--0;
-                      case --[ FailWith ]--9 :
+                          return --[ () ]--0;end end end 
+                       if ___conditional___ = 9--[ FailWith ]-- then do
                           console.log("failed: " .. match[0]);
-                          return --[ () ]--0;
+                          return --[ () ]--0;end end end 
+                       do
                       
                     end
                   end), suites$1);
@@ -2071,18 +2097,20 @@ function warn_bad_docstrings(param) do
   if (is_active(--[ Bad_docstring ]--Block.__(33, [true]))) then do
     return List.iter((function (ds) do
                   var match = ds.ds_attached;
-                  switch (match) do
-                    case --[ Unattached ]--0 :
-                        return prerr_warning(ds.ds_loc, --[ Bad_docstring ]--Block.__(33, [true]));
-                    case --[ Info ]--1 :
-                        return --[ () ]--0;
-                    case --[ Docs ]--2 :
+                  local ___conditional___=(match);
+                  do
+                     if ___conditional___ = 0--[ Unattached ]-- then do
+                        return prerr_warning(ds.ds_loc, --[ Bad_docstring ]--Block.__(33, [true]));end end end 
+                     if ___conditional___ = 1--[ Info ]-- then do
+                        return --[ () ]--0;end end end 
+                     if ___conditional___ = 2--[ Docs ]-- then do
                         var match$1 = ds.ds_associated;
                         if (match$1 >= 2) then do
                           return prerr_warning(ds.ds_loc, --[ Bad_docstring ]--Block.__(33, [false]));
                         end else do
                           return --[ () ]--0;
-                        end end 
+                        end end end end end 
+                     do
                     
                   end
                 end), List.rev(docstrings.contents));
@@ -3300,8 +3328,9 @@ var $$Error$1 = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Error");
 var Escape_error = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Escape_error");
 
 function prepare_error(param) do
-  switch (param.tag | 0) do
-    case --[ Unclosed ]--0 :
+  local ___conditional___=(param.tag | 0);
+  do
+     if ___conditional___ = 0--[ Unclosed ]-- then do
         var closing = param[3];
         var opening = param[1];
         return Curry._1(errorf(param[2], --[ :: ]--[
@@ -3349,8 +3378,8 @@ function prepare_error(param) do
                               ])
                           ]),
                         "Syntax error: '%s' expected"
-                      ]), closing);
-    case --[ Expecting ]--1 :
+                      ]), closing);end end end 
+     if ___conditional___ = 1--[ Expecting ]-- then do
         return Curry._1(errorf(param[0], undefined, undefined, --[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "Syntax error: ",
@@ -3363,8 +3392,8 @@ function prepare_error(param) do
                               ])
                           ]),
                         "Syntax error: %s expected."
-                      ]), param[1]);
-    case --[ Not_expecting ]--2 :
+                      ]), param[1]);end end end 
+     if ___conditional___ = 2--[ Not_expecting ]-- then do
         return Curry._1(errorf(param[0], undefined, undefined, --[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "Syntax error: ",
@@ -3377,16 +3406,16 @@ function prepare_error(param) do
                               ])
                           ]),
                         "Syntax error: %s not expected."
-                      ]), param[1]);
-    case --[ Applicative_path ]--3 :
+                      ]), param[1]);end end end 
+     if ___conditional___ = 3--[ Applicative_path ]-- then do
         return errorf(param[0], undefined, undefined, --[ Format ]--[
                     --[ String_literal ]--Block.__(11, [
                         "Syntax error: applicative paths of the form F(X).t are not supported when the option -no-app-func is set.",
                         --[ End_of_format ]--0
                       ]),
                     "Syntax error: applicative paths of the form F(X).t are not supported when the option -no-app-func is set."
-                  ]);
-    case --[ Variable_in_scope ]--4 :
+                  ]);end end end 
+     if ___conditional___ = 4--[ Variable_in_scope ]-- then do
         var $$var = param[1];
         return Curry._2(errorf(param[0], undefined, undefined, --[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
@@ -3406,16 +3435,16 @@ function prepare_error(param) do
                               ])
                           ]),
                         "In this scoped type, variable '%s is reserved for the local type %s."
-                      ]), $$var, $$var);
-    case --[ Other ]--5 :
+                      ]), $$var, $$var);end end end 
+     if ___conditional___ = 5--[ Other ]-- then do
         return errorf(param[0], undefined, undefined, --[ Format ]--[
                     --[ String_literal ]--Block.__(11, [
                         "Syntax error",
                         --[ End_of_format ]--0
                       ]),
                     "Syntax error"
-                  ]);
-    case --[ Ill_formed_ast ]--6 :
+                  ]);end end end 
+     if ___conditional___ = 6--[ Ill_formed_ast ]-- then do
         return Curry._1(errorf(param[0], undefined, undefined, --[ Format ]--[
                         --[ String_literal ]--Block.__(11, [
                             "broken invariant in parsetree: ",
@@ -3425,7 +3454,8 @@ function prepare_error(param) do
                               ])
                           ]),
                         "broken invariant in parsetree: %s"
-                      ]), param[1]);
+                      ]), param[1]);end end end 
+     do
     
   end
 end
@@ -3829,28 +3859,27 @@ function varify_constructors(var_names, t) do
     if (typeof match == "number") then do
       desc = --[ Ptyp_any ]--0;
     end else do
-      switch (match.tag | 0) do
-        case --[ Ptyp_var ]--0 :
+      local ___conditional___=(match.tag | 0);
+      do
+         if ___conditional___ = 0--[ Ptyp_var ]-- then do
             var x = match[0];
             check_variable(var_names, t.ptyp_loc, x);
-            desc = --[ Ptyp_var ]--Block.__(0, [x]);
-            break;
-        case --[ Ptyp_arrow ]--1 :
+            desc = --[ Ptyp_var ]--Block.__(0, [x]);end else 
+         if ___conditional___ = 1--[ Ptyp_arrow ]-- then do
             desc = --[ Ptyp_arrow ]--Block.__(1, [
                 match[0],
                 loop(match[1]),
                 loop(match[2])
-              ]);
-            break;
-        case --[ Ptyp_tuple ]--2 :
-            desc = --[ Ptyp_tuple ]--Block.__(2, [List.map(loop, match[0])]);
-            break;
-        case --[ Ptyp_constr ]--3 :
+              ]);end else 
+         if ___conditional___ = 2--[ Ptyp_tuple ]-- then do
+            desc = --[ Ptyp_tuple ]--Block.__(2, [List.map(loop, match[0])]);end else 
+         if ___conditional___ = 3--[ Ptyp_constr ]-- then do
             var longident = match[0];
             var match$1 = longident.txt;
             var exit = 0;
-            switch (match$1.tag | 0) do
-              case --[ Lident ]--0 :
+            local ___conditional___=(match$1.tag | 0);
+            do
+               if ___conditional___ = 0--[ Lident ]-- then do
                   if (match[1]) then do
                     exit = 1;
                   end else do
@@ -3860,12 +3889,11 @@ function varify_constructors(var_names, t) do
                     end else do
                       exit = 1;
                     end end 
-                  end end 
-                  break;
-              case --[ Ldot ]--1 :
-              case --[ Lapply ]--2 :
-                  exit = 1;
-                  break;
+                  end end end else 
+               if ___conditional___ = 1--[ Ldot ]--
+               or ___conditional___ = 2--[ Lapply ]-- then do
+                  exit = 1;end else 
+               do end end end
               
             end
             if (exit == 1) then do
@@ -3874,9 +3902,8 @@ function varify_constructors(var_names, t) do
                   List.map(loop, match[1])
                 ]);
             end
-             end 
-            break;
-        case --[ Ptyp_object ]--4 :
+             end end else 
+         if ___conditional___ = 4--[ Ptyp_object ]-- then do
             desc = --[ Ptyp_object ]--Block.__(4, [
                 List.map((function (param) do
                         return --[ tuple ]--[
@@ -3886,30 +3913,26 @@ function varify_constructors(var_names, t) do
                               ];
                       end), match[0]),
                 match[1]
-              ]);
-            break;
-        case --[ Ptyp_class ]--5 :
+              ]);end else 
+         if ___conditional___ = 5--[ Ptyp_class ]-- then do
             desc = --[ Ptyp_class ]--Block.__(5, [
                 match[0],
                 List.map(loop, match[1])
-              ]);
-            break;
-        case --[ Ptyp_alias ]--6 :
+              ]);end else 
+         if ___conditional___ = 6--[ Ptyp_alias ]-- then do
             var string = match[1];
             check_variable(var_names, t.ptyp_loc, string);
             desc = --[ Ptyp_alias ]--Block.__(6, [
                 loop(match[0]),
                 string
-              ]);
-            break;
-        case --[ Ptyp_variant ]--7 :
+              ]);end else 
+         if ___conditional___ = 7--[ Ptyp_variant ]-- then do
             desc = --[ Ptyp_variant ]--Block.__(7, [
                 List.map(loop_row_field, match[0]),
                 match[1],
                 match[2]
-              ]);
-            break;
-        case --[ Ptyp_poly ]--8 :
+              ]);end else 
+         if ___conditional___ = 8--[ Ptyp_poly ]-- then do
             var string_lst = match[0];
             var partial_arg = t.ptyp_loc;
             List.iter((function (param) do
@@ -3918,9 +3941,8 @@ function varify_constructors(var_names, t) do
             desc = --[ Ptyp_poly ]--Block.__(8, [
                 string_lst,
                 loop(match[1])
-              ]);
-            break;
-        case --[ Ptyp_package ]--9 :
+              ]);end else 
+         if ___conditional___ = 9--[ Ptyp_package ]-- then do
             var match$2 = match[0];
             desc = --[ Ptyp_package ]--Block.__(9, [--[ tuple ]--[
                   match$2[0],
@@ -3930,15 +3952,14 @@ function varify_constructors(var_names, t) do
                                   loop(param[1])
                                 ];
                         end), match$2[1])
-                ]]);
-            break;
-        case --[ Ptyp_extension ]--10 :
+                ]]);end else 
+         if ___conditional___ = 10--[ Ptyp_extension ]-- then do
             var match$3 = match[0];
             desc = --[ Ptyp_extension ]--Block.__(10, [--[ tuple ]--[
                   match$3[0],
                   match$3[1]
-                ]]);
-            break;
+                ]]);end else 
+         do end end end end end end end end end end end end
         
       end
     end end 
@@ -6116,30 +6137,35 @@ var yyact = [
       var arg = _2;
       var match = arg.pexp_desc;
       var exit = 0;
-      switch (name) do
-        case "-" :
+      local ___conditional___=(name);
+      do
+         if ___conditional___ = "-" then do
             if (match.tag == --[ Pexp_constant ]--1) then do
               var match$1 = match[0];
-              switch (match$1.tag | 0) do
-                case --[ Const_int ]--0 :
-                    return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_int ]--Block.__(0, [-match$1[0] | 0])]));
-                case --[ Const_int32 ]--4 :
-                    return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_int32 ]--Block.__(4, [-match$1[0] | 0])]));
-                case --[ Const_int64 ]--5 :
-                    return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_int64 ]--Block.__(5, [Caml_int64.neg(match$1[0])])]));
-                case --[ Const_nativeint ]--6 :
-                    return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_nativeint ]--Block.__(6, [-match$1[0]])]));
-                default:
+              local ___conditional___=(match$1.tag | 0);
+              do
+                 if ___conditional___ = 0--[ Const_int ]-- then do
+                    return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_int ]--Block.__(0, [-match$1[0] | 0])]));end end end 
+                 if ___conditional___ = 4--[ Const_int32 ]-- then do
+                    return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_int32 ]--Block.__(4, [-match$1[0] | 0])]));end end end 
+                 if ___conditional___ = 5--[ Const_int64 ]-- then do
+                    return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_int64 ]--Block.__(5, [Caml_int64.neg(match$1[0])])]));end end end 
+                 if ___conditional___ = 6--[ Const_nativeint ]-- then do
+                    return mkexp(--[ Pexp_constant ]--Block.__(1, [--[ Const_nativeint ]--Block.__(6, [-match$1[0]])]));end end end 
+                 do
+                else do
                   exit = 2;
+                  end end
+                  
               end
             end else do
               exit = 2;
-            end end 
-            break;
-        case "-." :
-            exit = 2;
-            break;
-        default:
+            end end end else 
+         if ___conditional___ = "-." then do
+            exit = 2;end else 
+         do end end end
+        else do
+          end end
           
       end
       if (exit == 2 and match.tag == --[ Pexp_constant ]--1) then do
@@ -6168,26 +6194,30 @@ var yyact = [
       var arg = _2;
       var desc = arg.pexp_desc;
       var exit = 0;
-      switch (name) do
-        case "+" :
+      local ___conditional___=(name);
+      do
+         if ___conditional___ = "+" then do
             if (desc.tag == --[ Pexp_constant ]--1) then do
-              switch (desc[0].tag | 0) do
-                case --[ Const_char ]--1 :
-                case --[ Const_string ]--2 :
-                case --[ Const_float ]--3 :
-                    exit = 2;
-                    break;
-                default:
+              local ___conditional___=(desc[0].tag | 0);
+              do
+                 if ___conditional___ = 1--[ Const_char ]--
+                 or ___conditional___ = 2--[ Const_string ]--
+                 or ___conditional___ = 3--[ Const_float ]-- then do
+                    exit = 2;end else 
+                 do end end
+                else do
                   return mkexp(desc);
+                  end end
+                  
               end
             end else do
               exit = 2;
-            end end 
-            break;
-        case "+." :
-            exit = 2;
-            break;
-        default:
+            end end end else 
+         if ___conditional___ = "+." then do
+            exit = 2;end else 
+         do end end end
+        else do
+          end end
           
       end
       if (exit == 2 and desc.tag == --[ Pexp_constant ]--1 and desc[0].tag == --[ Const_float ]--3) then do
@@ -9588,32 +9618,36 @@ function type_of_directive(x) do
   if (typeof x == "number") then do
     return --[ Dir_type_null ]--4;
   end else do
-    switch (x.tag | 0) do
-      case --[ Dir_bool ]--0 :
-          return --[ Dir_type_bool ]--0;
-      case --[ Dir_float ]--1 :
-          return --[ Dir_type_float ]--1;
-      case --[ Dir_int ]--2 :
-          return --[ Dir_type_int ]--2;
-      case --[ Dir_string ]--3 :
-          return --[ Dir_type_string ]--3;
+    local ___conditional___=(x.tag | 0);
+    do
+       if ___conditional___ = 0--[ Dir_bool ]-- then do
+          return --[ Dir_type_bool ]--0;end end end 
+       if ___conditional___ = 1--[ Dir_float ]-- then do
+          return --[ Dir_type_float ]--1;end end end 
+       if ___conditional___ = 2--[ Dir_int ]-- then do
+          return --[ Dir_type_int ]--2;end end end 
+       if ___conditional___ = 3--[ Dir_string ]-- then do
+          return --[ Dir_type_string ]--3;end end end 
+       do
       
     end
   end end 
 end
 
 function string_of_type_directive(x) do
-  switch (x) do
-    case --[ Dir_type_bool ]--0 :
-        return "bool";
-    case --[ Dir_type_float ]--1 :
-        return "float";
-    case --[ Dir_type_int ]--2 :
-        return "int";
-    case --[ Dir_type_string ]--3 :
-        return "string";
-    case --[ Dir_type_null ]--4 :
-        return "nil";
+  local ___conditional___=(x);
+  do
+     if ___conditional___ = 0--[ Dir_type_bool ]-- then do
+        return "bool";end end end 
+     if ___conditional___ = 1--[ Dir_type_float ]-- then do
+        return "float";end end end 
+     if ___conditional___ = 2--[ Dir_type_int ]-- then do
+        return "int";end end end 
+     if ___conditional___ = 3--[ Dir_type_string ]-- then do
+        return "string";end end end 
+     if ___conditional___ = 4--[ Dir_type_null ]-- then do
+        return "nil";end end end 
+     do
     
   end
 end
@@ -9795,34 +9829,42 @@ end
 
 function value_of_token(loc, t) do
   if (typeof t == "number") then do
-    switch (t) do
-      case --[ FALSE ]--29 :
-          return --[ Dir_bool ]--Block.__(0, [false]);
-      case --[ TRUE ]--91 :
-          return --[ Dir_bool ]--Block.__(0, [true]);
-      default:
+    local ___conditional___=(t);
+    do
+       if ___conditional___ = 29--[ FALSE ]-- then do
+          return --[ Dir_bool ]--Block.__(0, [false]);end end end 
+       if ___conditional___ = 91--[ TRUE ]-- then do
+          return --[ Dir_bool ]--Block.__(0, [true]);end end end 
+       do
+      else do
         throw [
               $$Error$2,
               --[ Unexpected_token_in_conditional ]--4,
               loc
             ];
+        end end
+        
     end
   end else do
-    switch (t.tag | 0) do
-      case --[ FLOAT ]--1 :
-          return --[ Dir_float ]--Block.__(1, [Caml_format.caml_float_of_string(t[0])]);
-      case --[ INT ]--7 :
-          return --[ Dir_int ]--Block.__(2, [t[0]]);
-      case --[ STRING ]--16 :
-          return --[ Dir_string ]--Block.__(3, [t[0][0]]);
-      case --[ UIDENT ]--17 :
-          return query(loc, t[0]);
-      default:
+    local ___conditional___=(t.tag | 0);
+    do
+       if ___conditional___ = 1--[ FLOAT ]-- then do
+          return --[ Dir_float ]--Block.__(1, [Caml_format.caml_float_of_string(t[0])]);end end end 
+       if ___conditional___ = 7--[ INT ]-- then do
+          return --[ Dir_int ]--Block.__(2, [t[0]]);end end end 
+       if ___conditional___ = 16--[ STRING ]-- then do
+          return --[ Dir_string ]--Block.__(3, [t[0][0]]);end end end 
+       if ___conditional___ = 17--[ UIDENT ]-- then do
+          return query(loc, t[0]);end end end 
+       do
+      else do
         throw [
               $$Error$2,
               --[ Unexpected_token_in_conditional ]--4,
               loc
             ];
+        end end
+        
     end
   end end 
 end
@@ -9841,27 +9883,35 @@ function directive_parse(token_with_comments, lexbuf) do
       while(true) do
         var t = Curry._1(token_with_comments, lexbuf);
         if (typeof t == "number") then do
-          switch (t) do
-            case --[ EOF ]--25 :
+          local ___conditional___=(t);
+          do
+             if ___conditional___ = 25--[ EOF ]-- then do
                 throw [
                       $$Error$2,
                       --[ Unterminated_if ]--2,
                       curr(lexbuf)
-                    ];
-            case --[ EOL ]--100 :
+                    ];end end end 
+             if ___conditional___ = 100--[ EOL ]-- then do
                 _param = --[ () ]--0;
-                continue ;
-            default:
+                continue ;end end end 
+             do
+            else do
               return t;
+              end end
+              
           end
         end else do
-          switch (t.tag | 0) do
-            case --[ COMMENT ]--18 :
-            case --[ DOCSTRING ]--19 :
+          local ___conditional___=(t.tag | 0);
+          do
+             if ___conditional___ = 18--[ COMMENT ]--
+             or ___conditional___ = 19--[ DOCSTRING ]-- then do
                 _param = --[ () ]--0;
-                continue ;
-            default:
+                continue ;end end end 
+             do
+            else do
               return t;
+              end end
+              
           end
         end end 
       end;
@@ -9886,18 +9936,22 @@ function directive_parse(token_with_comments, lexbuf) do
     var op = token(--[ () ]--0);
     var exit = 0;
     if (typeof op == "number") then do
-      switch (op) do
-        case --[ EQUAL ]--26 :
-        case --[ GREATER ]--34 :
-        case --[ LESS ]--51 :
-            exit = 1;
-            break;
-        default:
+      local ___conditional___=(op);
+      do
+         if ___conditional___ = 26--[ EQUAL ]--
+         or ___conditional___ = 34--[ GREATER ]--
+         or ___conditional___ = 51--[ LESS ]-- then do
+            exit = 1;end else 
+         do end end
+        else do
           return Curry._1(no, op);
+          end end
+          
       end
     end else if (op.tag == --[ INFIXOP0 ]--2) then do
-      switch (op[0]) do
-        case "=~" :
+      local ___conditional___=(op[0]);
+      do
+         if ___conditional___ = "=~" then do
             if (calc) then do
               if (typeof lhs ~= "number" and lhs.tag == --[ Dir_string ]--3) then do
                 var curr_loc = curr(lexbuf);
@@ -9932,8 +9986,9 @@ function directive_parse(token_with_comments, lexbuf) do
                         ];
                       end end 
                     end else if (v >= 60) then do
-                      switch (v - 60 | 0) do
-                        case 0 :
+                      local ___conditional___=(v - 60 | 0);
+                      do
+                         if ___conditional___ = 0 then do
                             if (last_index == 0) then do
                               throw [
                                     $$Error$2,
@@ -9948,12 +10003,10 @@ function directive_parse(token_with_comments, lexbuf) do
                               ] : --[ tuple ]--[
                                 --[ Lt ]--17064,
                                 semantic_version_parse(str, 1, last_index)
-                              ];
-                            break;
-                        case 1 :
-                            exit$2 = 1;
-                            break;
-                        case 2 :
+                              ];end else 
+                         if ___conditional___ = 1 then do
+                            exit$2 = 1;end else 
+                         if ___conditional___ = 2 then do
                             if (last_index == 0) then do
                               throw [
                                     $$Error$2,
@@ -9968,8 +10021,8 @@ function directive_parse(token_with_comments, lexbuf) do
                               ] : --[ tuple ]--[
                                 --[ Gt ]--15949,
                                 semantic_version_parse(str, 1, last_index)
-                              ];
-                            break;
+                              ];end else 
+                         do end end end end
                         
                       end
                     end else do
@@ -10041,15 +10094,16 @@ function directive_parse(token_with_comments, lexbuf) do
                   ];
             end else do
               return true;
-            end end 
-            break;
-        case "<=" :
-        case "<>" :
-        case ">=" :
-            exit = 1;
-            break;
-        default:
+            end end end else 
+         if ___conditional___ = "<="
+         or ___conditional___ = "<>"
+         or ___conditional___ = ">=" then do
+            exit = 1;end else 
+         do end end end
+        else do
           return Curry._1(no, op);
+          end end
+          
       end
     end else do
       return Curry._1(no, op);
@@ -10058,29 +10112,32 @@ function directive_parse(token_with_comments, lexbuf) do
       var f;
       var exit$3 = 0;
       if (typeof op == "number") then do
-        switch (op) do
-          case --[ EQUAL ]--26 :
-              f = Caml_obj.caml_equal;
-              break;
-          case --[ GREATER ]--34 :
-              f = Caml_obj.caml_greaterthan;
-              break;
-          case --[ LESS ]--51 :
-              f = Caml_obj.caml_lessthan;
-              break;
-          default:
+        local ___conditional___=(op);
+        do
+           if ___conditional___ = 26--[ EQUAL ]-- then do
+              f = Caml_obj.caml_equal;end else 
+           if ___conditional___ = 34--[ GREATER ]-- then do
+              f = Caml_obj.caml_greaterthan;end else 
+           if ___conditional___ = 51--[ LESS ]-- then do
+              f = Caml_obj.caml_lessthan;end else 
+           do end end end end
+          else do
             exit$3 = 2;
+            end end
+            
         end
       end else if (op.tag == --[ INFIXOP0 ]--2) then do
-        switch (op[0]) do
-          case "<=" :
-              f = Caml_obj.caml_lessequal;
-              break;
-          case "<>" :
-              f = Caml_obj.caml_notequal;
-              break;
-          default:
+        local ___conditional___=(op[0]);
+        do
+           if ___conditional___ = "<=" then do
+              f = Caml_obj.caml_lessequal;end else 
+           if ___conditional___ = "<>" then do
+              f = Caml_obj.caml_notequal;end else 
+           do end end end
+          else do
             exit$3 = 2;
+            end end
+            
         end
       end else do
         exit$3 = 2;
@@ -10140,10 +10197,11 @@ function directive_parse(token_with_comments, lexbuf) do
     var curr_token = token(--[ () ]--0);
     var curr_loc = curr(lexbuf);
     if (typeof curr_token == "number") then do
-      switch (curr_token) do
-        case --[ FALSE ]--29 :
-            return false;
-        case --[ LPAREN ]--54 :
+      local ___conditional___=(curr_token);
+      do
+         if ___conditional___ = 29--[ FALSE ]-- then do
+            return false;end end end 
+         if ___conditional___ = 54--[ LPAREN ]-- then do
             var v = parse_or_aux(calc, parse_and_aux(calc, parse_relation(calc)));
             var match = token(--[ () ]--0);
             if (typeof match == "number") then do
@@ -10162,19 +10220,23 @@ function directive_parse(token_with_comments, lexbuf) do
                     --[ Unterminated_paren_in_conditional ]--1,
                     curr(lexbuf)
                   ];
-            end end 
-        case --[ TRUE ]--91 :
-            return true;
-        default:
+            end end end end end 
+         if ___conditional___ = 91--[ TRUE ]-- then do
+            return true;end end end 
+         do
+        else do
           throw [
                 $$Error$2,
                 --[ Unexpected_token_in_conditional ]--4,
                 curr_loc
               ];
+          end end
+          
       end
     end else do
-      switch (curr_token.tag | 0) do
-        case --[ FLOAT ]--1 :
+      local ___conditional___=(curr_token.tag | 0);
+      do
+         if ___conditional___ = 1--[ FLOAT ]-- then do
             return token_op(calc, (function (e) do
                           throw [
                                 $$Error$2,
@@ -10184,25 +10246,28 @@ function directive_parse(token_with_comments, lexbuf) do
                                   ]),
                                 curr_loc
                               ];
-                        end), --[ Dir_float ]--Block.__(1, [Caml_format.caml_float_of_string(curr_token[0])]));
-        case --[ INT ]--7 :
+                        end), --[ Dir_float ]--Block.__(1, [Caml_format.caml_float_of_string(curr_token[0])]));end end end 
+         if ___conditional___ = 7--[ INT ]-- then do
             var v$1 = curr_token[0];
             return token_op(calc, (function (e) do
                           push(e);
                           return v$1 ~= 0;
-                        end), --[ Dir_int ]--Block.__(2, [v$1]));
-        case --[ LIDENT ]--11 :
+                        end), --[ Dir_int ]--Block.__(2, [v$1]));end end end 
+         if ___conditional___ = 11--[ LIDENT ]-- then do
             var r = curr_token[0];
-            switch (r) do
-              case "defined" :
-              case "undefined" :
-                  break;
-              default:
+            local ___conditional___=(r);
+            do
+               if ___conditional___ = "defined"
+               or ___conditional___ = "undefined"
+               do end
+              else do
                 throw [
                       $$Error$2,
                       --[ Unexpected_token_in_conditional ]--4,
                       curr_loc
                     ];
+                end end
+                
             end
             var t = token(--[ () ]--0);
             var loc = curr(lexbuf);
@@ -10229,9 +10294,8 @@ function directive_parse(token_with_comments, lexbuf) do
                     --[ Unexpected_token_in_conditional ]--4,
                     loc
                   ];
-            end end  end 
-            break;
-        case --[ STRING ]--16 :
+            end end  end end else 
+         if ___conditional___ = 16--[ STRING ]-- then do
             return token_op(calc, (function (e) do
                           throw [
                                 $$Error$2,
@@ -10241,8 +10305,8 @@ function directive_parse(token_with_comments, lexbuf) do
                                   ]),
                                 curr_loc
                               ];
-                        end), --[ Dir_string ]--Block.__(3, [curr_token[0][0]]));
-        case --[ UIDENT ]--17 :
+                        end), --[ Dir_string ]--Block.__(3, [curr_token[0][0]]));end end end 
+         if ___conditional___ = 17--[ UIDENT ]-- then do
             var value_v = query(curr_loc, curr_token[0]);
             return token_op(calc, (function (e) do
                           push(e);
@@ -10259,13 +10323,16 @@ function directive_parse(token_with_comments, lexbuf) do
                                   ]),
                                 curr_loc
                               ];
-                        end), value_v);
-        default:
+                        end), value_v);end end end 
+         do
+        else do
           throw [
                 $$Error$2,
                 --[ Unexpected_token_in_conditional ]--4,
                 curr_loc
               ];
+          end end
+          
       end
     end end 
   end;
@@ -10730,18 +10797,20 @@ function char_for_backslash(c) do
     if (c >= 117) then do
       return c;
     end else do
-      switch (c - 110 | 0) do
-        case 0 :
-            return --[ "\n" ]--10;
-        case 4 :
-            return --[ "\r" ]--13;
-        case 1 :
-        case 2 :
-        case 3 :
-        case 5 :
-            return c;
-        case 6 :
-            return --[ "\t" ]--9;
+      local ___conditional___=(c - 110 | 0);
+      do
+         if ___conditional___ = 0 then do
+            return --[ "\n" ]--10;end end end 
+         if ___conditional___ = 4 then do
+            return --[ "\r" ]--13;end end end 
+         if ___conditional___ = 1
+         or ___conditional___ = 2
+         or ___conditional___ = 3
+         or ___conditional___ = 5 then do
+            return c;end end end 
+         if ___conditional___ = 6 then do
+            return --[ "\t" ]--9;end end end 
+         do
         
       end
     end end 
@@ -10881,68 +10950,71 @@ end
 
 function report_error(ppf, param) do
   if (typeof param == "number") then do
-    switch (param) do
-      case --[ Unterminated_string ]--0 :
+    local ___conditional___=(param);
+    do
+       if ___conditional___ = 0--[ Unterminated_string ]-- then do
           return Format.fprintf(ppf, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "String literal not terminated",
                           --[ End_of_format ]--0
                         ]),
                       "String literal not terminated"
-                    ]);
-      case --[ Unterminated_paren_in_conditional ]--1 :
+                    ]);end end end 
+       if ___conditional___ = 1--[ Unterminated_paren_in_conditional ]-- then do
           return Format.fprintf(ppf, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "Unterminated parens in conditional predicate",
                           --[ End_of_format ]--0
                         ]),
                       "Unterminated parens in conditional predicate"
-                    ]);
-      case --[ Unterminated_if ]--2 :
+                    ]);end end end 
+       if ___conditional___ = 2--[ Unterminated_if ]-- then do
           return Format.fprintf(ppf, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "#if not terminated",
                           --[ End_of_format ]--0
                         ]),
                       "#if not terminated"
-                    ]);
-      case --[ Unterminated_else ]--3 :
+                    ]);end end end 
+       if ___conditional___ = 3--[ Unterminated_else ]-- then do
           return Format.fprintf(ppf, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "#else not terminated",
                           --[ End_of_format ]--0
                         ]),
                       "#else not terminated"
-                    ]);
-      case --[ Unexpected_token_in_conditional ]--4 :
+                    ]);end end end 
+       if ___conditional___ = 4--[ Unexpected_token_in_conditional ]-- then do
           return Format.fprintf(ppf, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "Unexpected token in conditional predicate",
                           --[ End_of_format ]--0
                         ]),
                       "Unexpected token in conditional predicate"
-                    ]);
-      case --[ Expect_hash_then_in_conditional ]--5 :
+                    ]);end end end 
+       if ___conditional___ = 5--[ Expect_hash_then_in_conditional ]-- then do
           return Format.fprintf(ppf, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "Expect `then` after conditional predicate",
                           --[ End_of_format ]--0
                         ]),
                       "Expect `then` after conditional predicate"
-                    ]);
-      case --[ Unexpected_directive ]--6 :
+                    ]);end end end 
+       if ___conditional___ = 6--[ Unexpected_directive ]-- then do
           return Format.fprintf(ppf, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "Unexpected directive",
                           --[ End_of_format ]--0
                         ]),
                       "Unexpected directive"
-                    ]);
+                    ]);end end end 
+       do
       
     end
   end else do
-    switch (param.tag | 0) do
-      case --[ Illegal_character ]--0 :
+    local ___conditional___=(param.tag | 0);
+    do
+       if ___conditional___ = 0--[ Illegal_character ]-- then do
           return Curry._1(Format.fprintf(ppf, --[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "Illegal character (",
@@ -10955,8 +11027,8 @@ function report_error(ppf, param) do
                                 ])
                             ]),
                           "Illegal character (%s)"
-                        ]), Char.escaped(param[0]));
-      case --[ Illegal_escape ]--1 :
+                        ]), Char.escaped(param[0]));end end end 
+       if ___conditional___ = 1--[ Illegal_escape ]-- then do
           return Curry._1(Format.fprintf(ppf, --[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "Illegal backslash escape in string or character (",
@@ -10969,16 +11041,16 @@ function report_error(ppf, param) do
                                 ])
                             ]),
                           "Illegal backslash escape in string or character (%s)"
-                        ]), param[0]);
-      case --[ Unterminated_comment ]--2 :
+                        ]), param[0]);end end end 
+       if ___conditional___ = 2--[ Unterminated_comment ]-- then do
           return Format.fprintf(ppf, --[ Format ]--[
                       --[ String_literal ]--Block.__(11, [
                           "Comment not terminated",
                           --[ End_of_format ]--0
                         ]),
                       "Comment not terminated"
-                    ]);
-      case --[ Unterminated_string_in_comment ]--3 :
+                    ]);end end end 
+       if ___conditional___ = 3--[ Unterminated_string_in_comment ]-- then do
           return Curry._2(Format.fprintf(ppf, --[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "This comment contains an unterminated string literal",
@@ -10991,8 +11063,8 @@ function report_error(ppf, param) do
                                 ])
                             ]),
                           "This comment contains an unterminated string literal@.%aString literal begins here"
-                        ]), print_error, param[1]);
-      case --[ Keyword_as_label ]--4 :
+                        ]), print_error, param[1]);end end end 
+       if ___conditional___ = 4--[ Keyword_as_label ]-- then do
           return Curry._1(Format.fprintf(ppf, --[ Format ]--[
                           --[ Char_literal ]--Block.__(12, [
                               --[ "`" ]--96,
@@ -11005,8 +11077,8 @@ function report_error(ppf, param) do
                                 ])
                             ]),
                           "`%s' is a keyword, it cannot be used as label name"
-                        ]), param[0]);
-      case --[ Literal_overflow ]--5 :
+                        ]), param[0]);end end end 
+       if ___conditional___ = 5--[ Literal_overflow ]-- then do
           return Curry._1(Format.fprintf(ppf, --[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "Integer literal exceeds the range of representable integers of type ",
@@ -11016,8 +11088,8 @@ function report_error(ppf, param) do
                                 ])
                             ]),
                           "Integer literal exceeds the range of representable integers of type %s"
-                        ]), param[0]);
-      case --[ Illegal_semver ]--6 :
+                        ]), param[0]);end end end 
+       if ___conditional___ = 6--[ Illegal_semver ]-- then do
           return Curry._1(Format.fprintf(ppf, --[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "Illegal semantic version string ",
@@ -11027,8 +11099,8 @@ function report_error(ppf, param) do
                                 ])
                             ]),
                           "Illegal semantic version string %s"
-                        ]), param[0]);
-      case --[ Conditional_expr_expected_type ]--7 :
+                        ]), param[0]);end end end 
+       if ___conditional___ = 7--[ Conditional_expr_expected_type ]-- then do
           return Curry._2(Format.fprintf(ppf, --[ Format ]--[
                           --[ String_literal ]--Block.__(11, [
                               "Conditional expression type mismatch (",
@@ -11047,7 +11119,8 @@ function report_error(ppf, param) do
                                 ])
                             ]),
                           "Conditional expression type mismatch (%s,%s)"
-                        ]), string_of_type_directive(param[0]), string_of_type_directive(param[1]));
+                        ]), string_of_type_directive(param[0]), string_of_type_directive(param[1]));end end end 
+       do
       
     end
   end end 
@@ -11081,8 +11154,9 @@ function token(lexbuf) do
   while(true) do
     var __ocaml_lex_state = ___ocaml_lex_state;
     var __ocaml_lex_state$1 = Lexing.new_engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf$1);
-    switch (__ocaml_lex_state$1) do
-      case 0 :
+    local ___conditional___=(__ocaml_lex_state$1);
+    do
+       if ___conditional___ = 0 then do
           if (!escaped_newlines.contents) then do
             throw [
                   $$Error$2,
@@ -11092,29 +11166,29 @@ function token(lexbuf) do
           end
            end 
           update_loc(lexbuf$1, undefined, 1, false, 0);
-          return token(lexbuf$1);
-      case 1 :
+          return token(lexbuf$1);end end end 
+       if ___conditional___ = 1 then do
           update_loc(lexbuf$1, undefined, 1, false, 0);
-          return --[ EOL ]--100;
-      case 2 :
-          return token(lexbuf$1);
-      case 3 :
-          return --[ UNDERSCORE ]--94;
-      case 4 :
-          return --[ TILDE ]--89;
-      case 5 :
-          return --[ LABEL ]--Block.__(10, [get_label_name(lexbuf$1)]);
-      case 6 :
+          return --[ EOL ]--100;end end end 
+       if ___conditional___ = 2 then do
+          return token(lexbuf$1);end end end 
+       if ___conditional___ = 3 then do
+          return --[ UNDERSCORE ]--94;end end end 
+       if ___conditional___ = 4 then do
+          return --[ TILDE ]--89;end end end 
+       if ___conditional___ = 5 then do
+          return --[ LABEL ]--Block.__(10, [get_label_name(lexbuf$1)]);end end end 
+       if ___conditional___ = 6 then do
           prerr_warning(curr(lexbuf$1), --[ Deprecated ]--Block.__(0, ["ISO-Latin1 characters in identifiers"]));
-          return --[ LABEL ]--Block.__(10, [get_label_name(lexbuf$1)]);
-      case 7 :
-          return --[ QUESTION ]--76;
-      case 8 :
-          return --[ OPTLABEL ]--Block.__(13, [get_label_name(lexbuf$1)]);
-      case 9 :
+          return --[ LABEL ]--Block.__(10, [get_label_name(lexbuf$1)]);end end end 
+       if ___conditional___ = 7 then do
+          return --[ QUESTION ]--76;end end end 
+       if ___conditional___ = 8 then do
+          return --[ OPTLABEL ]--Block.__(13, [get_label_name(lexbuf$1)]);end end end 
+       if ___conditional___ = 9 then do
           prerr_warning(curr(lexbuf$1), --[ Deprecated ]--Block.__(0, ["ISO-Latin1 characters in identifiers"]));
-          return --[ OPTLABEL ]--Block.__(13, [get_label_name(lexbuf$1)]);
-      case 10 :
+          return --[ OPTLABEL ]--Block.__(13, [get_label_name(lexbuf$1)]);end end end 
+       if ___conditional___ = 10 then do
           var s = Lexing.lexeme(lexbuf$1);
           try do
             return Hashtbl.find(keyword_table, s);
@@ -11125,16 +11199,16 @@ function token(lexbuf) do
             end else do
               throw exn;
             end end 
-          end
-      case 11 :
+          endend end end 
+       if ___conditional___ = 11 then do
           prerr_warning(curr(lexbuf$1), --[ Deprecated ]--Block.__(0, ["ISO-Latin1 characters in identifiers"]));
-          return --[ LIDENT ]--Block.__(11, [Lexing.lexeme(lexbuf$1)]);
-      case 12 :
-          return --[ UIDENT ]--Block.__(17, [Lexing.lexeme(lexbuf$1)]);
-      case 13 :
+          return --[ LIDENT ]--Block.__(11, [Lexing.lexeme(lexbuf$1)]);end end end 
+       if ___conditional___ = 12 then do
+          return --[ UIDENT ]--Block.__(17, [Lexing.lexeme(lexbuf$1)]);end end end 
+       if ___conditional___ = 13 then do
           prerr_warning(curr(lexbuf$1), --[ Deprecated ]--Block.__(0, ["ISO-Latin1 characters in identifiers"]));
-          return --[ UIDENT ]--Block.__(17, [Lexing.lexeme(lexbuf$1)]);
-      case 14 :
+          return --[ UIDENT ]--Block.__(17, [Lexing.lexeme(lexbuf$1)]);end end end 
+       if ___conditional___ = 14 then do
           try do
             return --[ INT ]--Block.__(7, [cvt_int_literal(Lexing.lexeme(lexbuf$1))]);
           end
@@ -11149,10 +11223,10 @@ function token(lexbuf) do
             end
              end 
             throw exn$1;
-          end
-      case 15 :
-          return --[ FLOAT ]--Block.__(1, [remove_underscores(Lexing.lexeme(lexbuf$1))]);
-      case 16 :
+          endend end end 
+       if ___conditional___ = 15 then do
+          return --[ FLOAT ]--Block.__(1, [remove_underscores(Lexing.lexeme(lexbuf$1))]);end end end 
+       if ___conditional___ = 16 then do
           try do
             return --[ INT32 ]--Block.__(8, [cvt_int32_literal(Lexing.lexeme(lexbuf$1))]);
           end
@@ -11167,8 +11241,8 @@ function token(lexbuf) do
             end
              end 
             throw exn$2;
-          end
-      case 17 :
+          endend end end 
+       if ___conditional___ = 17 then do
           try do
             return --[ INT64 ]--Block.__(9, [cvt_int64_literal(Lexing.lexeme(lexbuf$1))]);
           end
@@ -11183,8 +11257,8 @@ function token(lexbuf) do
             end
              end 
             throw exn$3;
-          end
-      case 18 :
+          endend end end 
+       if ___conditional___ = 18 then do
           try do
             return --[ NATIVEINT ]--Block.__(12, [cvt_nativeint_literal(Lexing.lexeme(lexbuf$1))]);
           end
@@ -11199,8 +11273,8 @@ function token(lexbuf) do
             end
              end 
             throw exn$4;
-          end
-      case 19 :
+          endend end end 
+       if ___conditional___ = 19 then do
           reset_string_buffer(--[ () ]--0);
           is_in_string.contents = true;
           var string_start = lexbuf$1.lex_start_p;
@@ -11211,8 +11285,8 @@ function token(lexbuf) do
           return --[ STRING ]--Block.__(16, [--[ tuple ]--[
                       get_stored_string(--[ () ]--0),
                       undefined
-                    ]]);
-      case 20 :
+                    ]]);end end end 
+       if ___conditional___ = 20 then do
           reset_string_buffer(--[ () ]--0);
           var delim = Lexing.lexeme(lexbuf$1);
           var delim$1 = $$String.sub(delim, 1, #delim - 2 | 0);
@@ -11225,36 +11299,36 @@ function token(lexbuf) do
           return --[ STRING ]--Block.__(16, [--[ tuple ]--[
                       get_stored_string(--[ () ]--0),
                       delim$1
-                    ]]);
-      case 21 :
+                    ]]);end end end 
+       if ___conditional___ = 21 then do
           update_loc(lexbuf$1, undefined, 1, false, 1);
-          return --[ CHAR ]--Block.__(0, [Lexing.lexeme_char(lexbuf$1, 1)]);
-      case 22 :
-          return --[ CHAR ]--Block.__(0, [Lexing.lexeme_char(lexbuf$1, 1)]);
-      case 23 :
-          return --[ CHAR ]--Block.__(0, [char_for_backslash(Lexing.lexeme_char(lexbuf$1, 2))]);
-      case 24 :
-          return --[ CHAR ]--Block.__(0, [char_for_decimal_code(lexbuf$1, 2)]);
-      case 25 :
-          return --[ CHAR ]--Block.__(0, [char_for_hexadecimal_code(lexbuf$1, 3)]);
-      case 26 :
+          return --[ CHAR ]--Block.__(0, [Lexing.lexeme_char(lexbuf$1, 1)]);end end end 
+       if ___conditional___ = 22 then do
+          return --[ CHAR ]--Block.__(0, [Lexing.lexeme_char(lexbuf$1, 1)]);end end end 
+       if ___conditional___ = 23 then do
+          return --[ CHAR ]--Block.__(0, [char_for_backslash(Lexing.lexeme_char(lexbuf$1, 2))]);end end end 
+       if ___conditional___ = 24 then do
+          return --[ CHAR ]--Block.__(0, [char_for_decimal_code(lexbuf$1, 2)]);end end end 
+       if ___conditional___ = 25 then do
+          return --[ CHAR ]--Block.__(0, [char_for_hexadecimal_code(lexbuf$1, 3)]);end end end 
+       if ___conditional___ = 26 then do
           var l = Lexing.lexeme(lexbuf$1);
           var esc = $$String.sub(l, 1, #l - 1 | 0);
           throw [
                 $$Error$2,
                 --[ Illegal_escape ]--Block.__(1, [esc]),
                 curr(lexbuf$1)
-              ];
-      case 27 :
+              ];end end end 
+       if ___conditional___ = 27 then do
           var match = with_comment_buffer(comment, lexbuf$1);
           return --[ COMMENT ]--Block.__(18, [--[ tuple ]--[
                       match[0],
                       match[1]
-                    ]]);
-      case 28 :
+                    ]]);end end end 
+       if ___conditional___ = 28 then do
           var match$1 = with_comment_buffer(comment, lexbuf$1);
-          return --[ DOCSTRING ]--Block.__(19, [docstring(match$1[0], match$1[1])]);
-      case 29 :
+          return --[ DOCSTRING ]--Block.__(19, [docstring(match$1[0], match$1[1])]);end end end 
+       if ___conditional___ = 29 then do
           var stars = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
           var match$2 = with_comment_buffer((function(stars)do
               return function (lexbuf) do
@@ -11265,8 +11339,8 @@ function token(lexbuf) do
           return --[ COMMENT ]--Block.__(18, [--[ tuple ]--[
                       match$2[0],
                       match$2[1]
-                    ]]);
-      case 30 :
+                    ]]);end end end 
+       if ___conditional___ = 30 then do
           if (print_warnings.contents) then do
             prerr_warning(curr(lexbuf$1), --[ Comment_start ]--0);
           end
@@ -11275,14 +11349,14 @@ function token(lexbuf) do
           return --[ COMMENT ]--Block.__(18, [--[ tuple ]--[
                       match$3[0],
                       match$3[1]
-                    ]]);
-      case 31 :
+                    ]]);end end end 
+       if ___conditional___ = 31 then do
           var stars$1 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos - 2 | 0);
           return --[ COMMENT ]--Block.__(18, [--[ tuple ]--[
                       stars$1,
                       curr(lexbuf$1)
-                    ]]);
-      case 32 :
+                    ]]);end end end 
+       if ___conditional___ = 32 then do
           var loc = curr(lexbuf$1);
           prerr_warning(loc, --[ Comment_not_end ]--1);
           lexbuf$1.lex_curr_pos = lexbuf$1.lex_curr_pos - 1 | 0;
@@ -11293,124 +11367,124 @@ function token(lexbuf) do
             pos_bol: curpos.pos_bol,
             pos_cnum: curpos.pos_cnum - 1 | 0
           end;
-          return --[ STAR ]--86;
-      case 33 :
+          return --[ STAR ]--86;end end end 
+       if ___conditional___ = 33 then do
           var num = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), Caml_array.caml_array_get(lexbuf$1.lex_mem, 1));
           var name = Lexing.sub_lexeme_opt(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 3), Caml_array.caml_array_get(lexbuf$1.lex_mem, 2));
           update_loc(lexbuf$1, name, Caml_format.caml_int_of_string(num), true, 0);
-          return token(lexbuf$1);
-      case 34 :
-          return --[ SHARP ]--84;
-      case 35 :
-          return --[ AMPERSAND ]--1;
-      case 36 :
-          return --[ AMPERAMPER ]--0;
-      case 37 :
-          return --[ BACKQUOTE ]--5;
-      case 38 :
-          return --[ QUOTE ]--77;
-      case 39 :
-          return --[ LPAREN ]--54;
-      case 40 :
-          return --[ RPAREN ]--81;
-      case 41 :
-          return --[ STAR ]--86;
-      case 42 :
-          return --[ COMMA ]--16;
-      case 43 :
-          return --[ MINUSGREATER ]--62;
-      case 44 :
-          return --[ DOT ]--20;
-      case 45 :
-          return --[ DOTDOT ]--21;
-      case 46 :
-          return --[ COLON ]--12;
-      case 47 :
-          return --[ COLONCOLON ]--13;
-      case 48 :
-          return --[ COLONEQUAL ]--14;
-      case 49 :
-          return --[ COLONGREATER ]--15;
-      case 50 :
-          return --[ SEMI ]--82;
-      case 51 :
-          return --[ SEMISEMI ]--83;
-      case 52 :
-          return --[ LESS ]--51;
-      case 53 :
-          return --[ LESSMINUS ]--52;
-      case 54 :
-          return --[ EQUAL ]--26;
-      case 55 :
-          return --[ LBRACKET ]--45;
-      case 56 :
-          return --[ LBRACKETBAR ]--46;
-      case 57 :
-          return --[ LBRACKETLESS ]--47;
-      case 58 :
-          return --[ LBRACKETGREATER ]--48;
-      case 59 :
-          return --[ RBRACKET ]--79;
-      case 60 :
-          return --[ LBRACE ]--43;
-      case 61 :
-          return --[ LBRACELESS ]--44;
-      case 62 :
-          return --[ BAR ]--7;
-      case 63 :
-          return --[ BARBAR ]--8;
-      case 64 :
-          return --[ BARRBRACKET ]--9;
-      case 65 :
-          return --[ GREATER ]--34;
-      case 66 :
-          return --[ GREATERRBRACKET ]--36;
-      case 67 :
-          return --[ RBRACE ]--78;
-      case 68 :
-          return --[ GREATERRBRACE ]--35;
-      case 69 :
-          return --[ LBRACKETAT ]--55;
-      case 70 :
-          return --[ LBRACKETPERCENT ]--49;
-      case 71 :
-          return --[ LBRACKETPERCENTPERCENT ]--50;
-      case 72 :
-          return --[ LBRACKETATAT ]--56;
-      case 73 :
-          return --[ LBRACKETATATAT ]--57;
-      case 74 :
-          return --[ BANG ]--6;
-      case 75 :
-          return --[ INFIXOP0 ]--Block.__(2, ["!="]);
-      case 76 :
-          return --[ PLUS ]--72;
-      case 77 :
-          return --[ PLUSDOT ]--73;
-      case 78 :
-          return --[ PLUSEQ ]--74;
-      case 79 :
-          return --[ MINUS ]--60;
-      case 80 :
-          return --[ MINUSDOT ]--61;
-      case 81 :
-      case 82 :
-          return --[ PREFIXOP ]--Block.__(14, [Lexing.lexeme(lexbuf$1)]);
-      case 83 :
-          return --[ INFIXOP0 ]--Block.__(2, [Lexing.lexeme(lexbuf$1)]);
-      case 84 :
-          return --[ INFIXOP1 ]--Block.__(3, [Lexing.lexeme(lexbuf$1)]);
-      case 85 :
-          return --[ INFIXOP2 ]--Block.__(4, [Lexing.lexeme(lexbuf$1)]);
-      case 86 :
-          return --[ INFIXOP4 ]--Block.__(6, [Lexing.lexeme(lexbuf$1)]);
-      case 87 :
-          return --[ PERCENT ]--71;
-      case 88 :
-          return --[ INFIXOP3 ]--Block.__(5, [Lexing.lexeme(lexbuf$1)]);
-      case 89 :
-          return --[ SHARPOP ]--Block.__(15, [Lexing.lexeme(lexbuf$1)]);
-      case 90 :
+          return token(lexbuf$1);end end end 
+       if ___conditional___ = 34 then do
+          return --[ SHARP ]--84;end end end 
+       if ___conditional___ = 35 then do
+          return --[ AMPERSAND ]--1;end end end 
+       if ___conditional___ = 36 then do
+          return --[ AMPERAMPER ]--0;end end end 
+       if ___conditional___ = 37 then do
+          return --[ BACKQUOTE ]--5;end end end 
+       if ___conditional___ = 38 then do
+          return --[ QUOTE ]--77;end end end 
+       if ___conditional___ = 39 then do
+          return --[ LPAREN ]--54;end end end 
+       if ___conditional___ = 40 then do
+          return --[ RPAREN ]--81;end end end 
+       if ___conditional___ = 41 then do
+          return --[ STAR ]--86;end end end 
+       if ___conditional___ = 42 then do
+          return --[ COMMA ]--16;end end end 
+       if ___conditional___ = 43 then do
+          return --[ MINUSGREATER ]--62;end end end 
+       if ___conditional___ = 44 then do
+          return --[ DOT ]--20;end end end 
+       if ___conditional___ = 45 then do
+          return --[ DOTDOT ]--21;end end end 
+       if ___conditional___ = 46 then do
+          return --[ COLON ]--12;end end end 
+       if ___conditional___ = 47 then do
+          return --[ COLONCOLON ]--13;end end end 
+       if ___conditional___ = 48 then do
+          return --[ COLONEQUAL ]--14;end end end 
+       if ___conditional___ = 49 then do
+          return --[ COLONGREATER ]--15;end end end 
+       if ___conditional___ = 50 then do
+          return --[ SEMI ]--82;end end end 
+       if ___conditional___ = 51 then do
+          return --[ SEMISEMI ]--83;end end end 
+       if ___conditional___ = 52 then do
+          return --[ LESS ]--51;end end end 
+       if ___conditional___ = 53 then do
+          return --[ LESSMINUS ]--52;end end end 
+       if ___conditional___ = 54 then do
+          return --[ EQUAL ]--26;end end end 
+       if ___conditional___ = 55 then do
+          return --[ LBRACKET ]--45;end end end 
+       if ___conditional___ = 56 then do
+          return --[ LBRACKETBAR ]--46;end end end 
+       if ___conditional___ = 57 then do
+          return --[ LBRACKETLESS ]--47;end end end 
+       if ___conditional___ = 58 then do
+          return --[ LBRACKETGREATER ]--48;end end end 
+       if ___conditional___ = 59 then do
+          return --[ RBRACKET ]--79;end end end 
+       if ___conditional___ = 60 then do
+          return --[ LBRACE ]--43;end end end 
+       if ___conditional___ = 61 then do
+          return --[ LBRACELESS ]--44;end end end 
+       if ___conditional___ = 62 then do
+          return --[ BAR ]--7;end end end 
+       if ___conditional___ = 63 then do
+          return --[ BARBAR ]--8;end end end 
+       if ___conditional___ = 64 then do
+          return --[ BARRBRACKET ]--9;end end end 
+       if ___conditional___ = 65 then do
+          return --[ GREATER ]--34;end end end 
+       if ___conditional___ = 66 then do
+          return --[ GREATERRBRACKET ]--36;end end end 
+       if ___conditional___ = 67 then do
+          return --[ RBRACE ]--78;end end end 
+       if ___conditional___ = 68 then do
+          return --[ GREATERRBRACE ]--35;end end end 
+       if ___conditional___ = 69 then do
+          return --[ LBRACKETAT ]--55;end end end 
+       if ___conditional___ = 70 then do
+          return --[ LBRACKETPERCENT ]--49;end end end 
+       if ___conditional___ = 71 then do
+          return --[ LBRACKETPERCENTPERCENT ]--50;end end end 
+       if ___conditional___ = 72 then do
+          return --[ LBRACKETATAT ]--56;end end end 
+       if ___conditional___ = 73 then do
+          return --[ LBRACKETATATAT ]--57;end end end 
+       if ___conditional___ = 74 then do
+          return --[ BANG ]--6;end end end 
+       if ___conditional___ = 75 then do
+          return --[ INFIXOP0 ]--Block.__(2, ["!="]);end end end 
+       if ___conditional___ = 76 then do
+          return --[ PLUS ]--72;end end end 
+       if ___conditional___ = 77 then do
+          return --[ PLUSDOT ]--73;end end end 
+       if ___conditional___ = 78 then do
+          return --[ PLUSEQ ]--74;end end end 
+       if ___conditional___ = 79 then do
+          return --[ MINUS ]--60;end end end 
+       if ___conditional___ = 80 then do
+          return --[ MINUSDOT ]--61;end end end 
+       if ___conditional___ = 81
+       or ___conditional___ = 82 then do
+          return --[ PREFIXOP ]--Block.__(14, [Lexing.lexeme(lexbuf$1)]);end end end 
+       if ___conditional___ = 83 then do
+          return --[ INFIXOP0 ]--Block.__(2, [Lexing.lexeme(lexbuf$1)]);end end end 
+       if ___conditional___ = 84 then do
+          return --[ INFIXOP1 ]--Block.__(3, [Lexing.lexeme(lexbuf$1)]);end end end 
+       if ___conditional___ = 85 then do
+          return --[ INFIXOP2 ]--Block.__(4, [Lexing.lexeme(lexbuf$1)]);end end end 
+       if ___conditional___ = 86 then do
+          return --[ INFIXOP4 ]--Block.__(6, [Lexing.lexeme(lexbuf$1)]);end end end 
+       if ___conditional___ = 87 then do
+          return --[ PERCENT ]--71;end end end 
+       if ___conditional___ = 88 then do
+          return --[ INFIXOP3 ]--Block.__(5, [Lexing.lexeme(lexbuf$1)]);end end end 
+       if ___conditional___ = 89 then do
+          return --[ SHARPOP ]--Block.__(15, [Lexing.lexeme(lexbuf$1)]);end end end 
+       if ___conditional___ = 90 then do
           if (if_then_else.contents ~= --[ Dir_out ]--2) then do
             if (if_then_else.contents == --[ Dir_if_true ]--0) then do
               throw [
@@ -11427,17 +11501,20 @@ function token(lexbuf) do
                 ];
           end else do
             return --[ EOF ]--25;
-          end end 
-      case 91 :
+          end end end end end 
+       if ___conditional___ = 91 then do
           throw [
                 $$Error$2,
                 --[ Illegal_character ]--Block.__(0, [Lexing.lexeme_char(lexbuf$1, 0)]),
                 curr(lexbuf$1)
-              ];
-      default:
+              ];end end end 
+       do
+      else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
         continue ;
+        end end
+        
     end
   end;
 end
@@ -11446,20 +11523,21 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
   while(true) do
     var __ocaml_lex_state = ___ocaml_lex_state;
     var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    switch (__ocaml_lex_state$1) do
-      case 0 :
+    local ___conditional___=(__ocaml_lex_state$1);
+    do
+       if ___conditional___ = 0 then do
           update_loc(lexbuf, undefined, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 183;
-          continue ;
-      case 1 :
+          continue ;end end end 
+       if ___conditional___ = 1 then do
           is_in_string.contents = false;
           throw [
                 $$Error$2,
                 --[ Unterminated_string ]--0,
                 string_start_loc.contents
-              ];
-      case 2 :
+              ];end end end 
+       if ___conditional___ = 2 then do
           var edelim = Lexing.lexeme(lexbuf);
           var edelim$1 = $$String.sub(edelim, 1, #edelim - 2 | 0);
           if (delim == edelim$1) then do
@@ -11468,15 +11546,18 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
             store_string(Lexing.lexeme(lexbuf));
             ___ocaml_lex_state = 183;
             continue ;
-          end end 
-      case 3 :
+          end end end end end 
+       if ___conditional___ = 3 then do
           store_string_char(Lexing.lexeme_char(lexbuf, 0));
           ___ocaml_lex_state = 183;
-          continue ;
-      default:
+          continue ;end end end 
+       do
+      else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
         continue ;
+        end end
+        
     end
   end;
 end
@@ -11488,23 +11569,24 @@ function string(lexbuf) do
   while(true) do
     var __ocaml_lex_state = ___ocaml_lex_state;
     var __ocaml_lex_state$1 = Lexing.new_engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf$1);
-    switch (__ocaml_lex_state$1) do
-      case 0 :
-          return --[ () ]--0;
-      case 1 :
+    local ___conditional___=(__ocaml_lex_state$1);
+    do
+       if ___conditional___ = 0 then do
+          return --[ () ]--0;end end end 
+       if ___conditional___ = 1 then do
           var space = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
           update_loc(lexbuf$1, undefined, 1, false, #space);
-          return string(lexbuf$1);
-      case 2 :
+          return string(lexbuf$1);end end end 
+       if ___conditional___ = 2 then do
           store_string_char(char_for_backslash(Lexing.lexeme_char(lexbuf$1, 1)));
-          return string(lexbuf$1);
-      case 3 :
+          return string(lexbuf$1);end end end 
+       if ___conditional___ = 3 then do
           store_string_char(char_for_decimal_code(lexbuf$1, 1));
-          return string(lexbuf$1);
-      case 4 :
+          return string(lexbuf$1);end end end 
+       if ___conditional___ = 4 then do
           store_string_char(char_for_hexadecimal_code(lexbuf$1, 2));
-          return string(lexbuf$1);
-      case 5 :
+          return string(lexbuf$1);end end end 
+       if ___conditional___ = 5 then do
           if (comment_start_loc.contents ~= --[ [] ]--0) then do
             return string(lexbuf$1);
           end else do
@@ -11513,29 +11595,32 @@ function string(lexbuf) do
             store_string_char(Lexing.lexeme_char(lexbuf$1, 0));
             store_string_char(Lexing.lexeme_char(lexbuf$1, 1));
             return string(lexbuf$1);
-          end end 
-      case 6 :
+          end end end end end 
+       if ___conditional___ = 6 then do
           if (comment_start_loc.contents == --[ [] ]--0) then do
             prerr_warning(curr(lexbuf$1), --[ Eol_in_string ]--14);
           end
            end 
           update_loc(lexbuf$1, undefined, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf$1));
-          return string(lexbuf$1);
-      case 7 :
+          return string(lexbuf$1);end end end 
+       if ___conditional___ = 7 then do
           is_in_string.contents = false;
           throw [
                 $$Error$2,
                 --[ Unterminated_string ]--0,
                 string_start_loc.contents
-              ];
-      case 8 :
+              ];end end end 
+       if ___conditional___ = 8 then do
           store_string_char(Lexing.lexeme_char(lexbuf$1, 0));
-          return string(lexbuf$1);
-      default:
+          return string(lexbuf$1);end end end 
+       do
+      else do
         Curry._1(lexbuf$1.refill_buff, lexbuf$1);
         ___ocaml_lex_state = __ocaml_lex_state$1;
         continue ;
+        end end
+        
     end
   end;
 end
@@ -11544,16 +11629,17 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
   while(true) do
     var __ocaml_lex_state = ___ocaml_lex_state;
     var __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    switch (__ocaml_lex_state$1) do
-      case 0 :
+    local ___conditional___=(__ocaml_lex_state$1);
+    do
+       if ___conditional___ = 0 then do
           comment_start_loc.contents = --[ :: ]--[
             curr(lexbuf),
             comment_start_loc.contents
           ];
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
-          continue ;
-      case 1 :
+          continue ;end end end 
+       if ___conditional___ = 1 then do
           var match = comment_start_loc.contents;
           if (match) then do
             var l = match[1];
@@ -11575,8 +11661,8 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                     16
                   ]
                 ];
-          end end 
-      case 2 :
+          end end end end end 
+       if ___conditional___ = 2 then do
           string_start_loc.contents = curr(lexbuf);
           store_string_char(--[ "\"" ]--34);
           is_in_string.contents = true;
@@ -11624,8 +11710,8 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           is_in_string.contents = false;
           store_string_char(--[ "\"" ]--34);
           ___ocaml_lex_state = 132;
-          continue ;
-      case 3 :
+          continue ;end end end 
+       if ___conditional___ = 3 then do
           var delim = Lexing.lexeme(lexbuf);
           var delim$1 = $$String.sub(delim, 1, #delim - 2 | 0);
           string_start_loc.contents = curr(lexbuf);
@@ -11677,13 +11763,13 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           store_string(delim$1);
           store_string_char(--[ "}" ]--125);
           ___ocaml_lex_state = 132;
-          continue ;
-      case 5 :
+          continue ;end end end 
+       if ___conditional___ = 5 then do
           update_loc(lexbuf, undefined, 1, false, 1);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
-          continue ;
-      case 10 :
+          continue ;end end end 
+       if ___conditional___ = 10 then do
           var match$5 = comment_start_loc.contents;
           if (match$5) then do
             var start$2 = List.hd(List.rev(comment_start_loc.contents));
@@ -11702,25 +11788,28 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                     16
                   ]
                 ];
-          end end 
-      case 11 :
+          end end end end end 
+       if ___conditional___ = 11 then do
           update_loc(lexbuf, undefined, 1, false, 0);
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
-          continue ;
-      case 4 :
-      case 6 :
-      case 7 :
-      case 8 :
-      case 9 :
-      case 12 :
+          continue ;end end end 
+       if ___conditional___ = 4
+       or ___conditional___ = 6
+       or ___conditional___ = 7
+       or ___conditional___ = 8
+       or ___conditional___ = 9
+       or ___conditional___ = 12 then do
           store_string(Lexing.lexeme(lexbuf));
           ___ocaml_lex_state = 132;
-          continue ;
-      default:
+          continue ;end end end 
+       do
+      else do
         Curry._1(lexbuf.refill_buff, lexbuf);
         ___ocaml_lex_state = __ocaml_lex_state$1;
         continue ;
+        end end
+        
     end
   end;
 end
@@ -11781,8 +11870,9 @@ function token$1(lexbuf) do
       var lines = _lines;
       var tok = token_with_comments(lexbuf);
       if (typeof tok == "number") then do
-        switch (tok) do
-          case --[ SHARP ]--84 :
+        local ___conditional___=(tok);
+        do
+           if ___conditional___ = 84--[ SHARP ]-- then do
               if (at_bol(lexbuf)) then do
                 var lexbuf$1 = lexbuf;
                 var cont = (function(lines,docs)do
@@ -11797,8 +11887,9 @@ function token$1(lexbuf) do
                 var if_then_else$1 = if_then_else.contents;
                 var match = token_with_comments(lexbuf$1);
                 if (typeof match == "number") then do
-                  switch (match) do
-                    case --[ ELSE ]--23 :
+                  local ___conditional___=(match);
+                  do
+                     if ___conditional___ = 23--[ ELSE ]-- then do
                         if (if_then_else$1 ~= 0) then do
                           throw [
                                 $$Error$2,
@@ -11806,9 +11897,8 @@ function token$1(lexbuf) do
                                 curr(lexbuf$1)
                               ];
                         end
-                         end 
-                        break;
-                    case --[ END ]--24 :
+                         end end else 
+                     if ___conditional___ = 24--[ END ]-- then do
                         if (if_then_else$1 >= 2) then do
                           throw [
                                 $$Error$2,
@@ -11818,8 +11908,8 @@ function token$1(lexbuf) do
                         end
                          end 
                         if_then_else.contents = --[ Dir_out ]--2;
-                        return Curry._1(cont, lexbuf$1);
-                    case --[ IF ]--37 :
+                        return Curry._1(cont, lexbuf$1);end end end 
+                     if ___conditional___ = 37--[ IF ]-- then do
                         if (if_then_else$1 >= 2) then do
                           if (directive_parse(token_with_comments, lexbuf$1)) then do
                             if_then_else.contents = --[ Dir_if_true ]--0;
@@ -11877,9 +11967,12 @@ function token$1(lexbuf) do
                                 --[ Unexpected_directive ]--6,
                                 curr(lexbuf$1)
                               ];
-                        end end 
-                    default:
+                        end end end end end 
+                     do
+                    else do
                       return Curry._1(look_ahead, match);
+                      end end
+                      
                   end
                 end else if (match.tag == --[ LIDENT ]--11 and match[0] == "elif") then do
                   if (if_then_else$1 ~= 0) then do
@@ -11953,18 +12046,20 @@ function token$1(lexbuf) do
                   end;
                 end end 
               end
-               end 
-              break;
-          case --[ EOL ]--100 :
+               end end else 
+           if ___conditional___ = 100--[ EOL ]-- then do
               var lines$prime = lines ~= 0 ? --[ BlankLine ]--2 : --[ NewLine ]--1;
               _lines = lines$prime;
-              continue ;
-          default:
+              continue ;end end end 
+           do end
+          else do
+            end end
             
         end
       end else do
-        switch (tok.tag | 0) do
-          case --[ COMMENT ]--18 :
+        local ___conditional___=(tok.tag | 0);
+        do
+           if ___conditional___ = 18--[ COMMENT ]-- then do
               var match$1 = tok[0];
               add_comment(--[ tuple ]--[
                     match$1[0],
@@ -11972,8 +12067,8 @@ function token$1(lexbuf) do
                   ]);
               var lines$prime$1 = lines >= 2 ? --[ BlankLine ]--2 : --[ NoLine ]--0;
               _lines = lines$prime$1;
-              continue ;
-          case --[ DOCSTRING ]--19 :
+              continue ;end end end 
+           if ___conditional___ = 19--[ DOCSTRING ]-- then do
               var doc = tok[0];
               add_docstring_comment(doc);
               var docs$prime;
@@ -12024,8 +12119,10 @@ function token$1(lexbuf) do
               end end  end 
               _docs = docs$prime;
               _lines = --[ NoLine ]--0;
-              continue ;
-          default:
+              continue ;end end end 
+           do
+          else do
+            end end
             
         end
       end end 
@@ -12077,13 +12174,17 @@ function skip_phrase(lexbuf) do
             throw exn;
           end end 
         end else do
-          switch (tmp.tag | 0) do
-            case --[ Illegal_character ]--0 :
-            case --[ Unterminated_comment ]--2 :
-            case --[ Unterminated_string_in_comment ]--3 :
-                continue ;
-            default:
+          local ___conditional___=(tmp.tag | 0);
+          do
+             if ___conditional___ = 0--[ Illegal_character ]--
+             or ___conditional___ = 2--[ Unterminated_comment ]--
+             or ___conditional___ = 3--[ Unterminated_string_in_comment ]-- then do
+                continue ;end end end 
+             do
+            else do
               throw exn;
+              end end
+              
           end
         end end 
       end else do
@@ -12227,8 +12328,9 @@ if (match) then do
                                   end else do
                                     var match$28 = match$27[0];
                                     var match$29 = match$28.txt;
-                                    switch (match$29.tag | 0) do
-                                      case --[ Lident ]--0 :
+                                    local ___conditional___=(match$29.tag | 0);
+                                    do
+                                       if ___conditional___ = 0--[ Lident ]-- then do
                                           if (match$29[0] == "|>") then do
                                             var match$30 = match$28.loc;
                                             var match$31 = match$30.loc_start;
@@ -12254,8 +12356,9 @@ if (match) then do
                                                           end else do
                                                             var match$42 = match$41[0];
                                                             var match$43 = match$42.txt;
-                                                            switch (match$43.tag | 0) do
-                                                              case --[ Lident ]--0 :
+                                                            local ___conditional___=(match$43.tag | 0);
+                                                            do
+                                                               if ___conditional___ = 0--[ Lident ]-- then do
                                                                   if (match$43[0] == "|>") then do
                                                                     var match$44 = match$42.loc;
                                                                     var match$45 = match$44.loc_start;
@@ -12278,8 +12381,9 @@ if (match) then do
                                                                                 end else do
                                                                                   var match$54 = match$53[0];
                                                                                   var match$55 = match$54.txt;
-                                                                                  switch (match$55.tag | 0) do
-                                                                                    case --[ Lident ]--0 :
+                                                                                  local ___conditional___=(match$55.tag | 0);
+                                                                                  do
+                                                                                     if ___conditional___ = 0--[ Lident ]-- then do
                                                                                         if (match$55[0] == "str") then do
                                                                                           var match$56 = match$54.loc;
                                                                                           var match$57 = match$56.loc_start;
@@ -12302,11 +12406,13 @@ if (match) then do
                                                                                                       end else do
                                                                                                         var match$66 = match$65[0];
                                                                                                         var match$67 = match$66.txt;
-                                                                                                        switch (match$67.tag | 0) do
-                                                                                                          case --[ Ldot ]--1 :
+                                                                                                        local ___conditional___=(match$67.tag | 0);
+                                                                                                        do
+                                                                                                           if ___conditional___ = 1--[ Ldot ]-- then do
                                                                                                               var match$68 = match$67[0];
-                                                                                                              switch (match$68.tag | 0) do
-                                                                                                                case --[ Lident ]--0 :
+                                                                                                              local ___conditional___=(match$68.tag | 0);
+                                                                                                              do
+                                                                                                                 if ___conditional___ = 0--[ Lident ]-- then do
                                                                                                                     if (match$68[0] == "Lexing" and match$67[1] == "from_string") then do
                                                                                                                       var match$69 = match$66.loc;
                                                                                                                       var match$70 = match$69.loc_start;
@@ -12334,11 +12440,13 @@ if (match) then do
                                                                                                                                       end else do
                                                                                                                                         var match$82 = match$81[0];
                                                                                                                                         var match$83 = match$82.txt;
-                                                                                                                                        switch (match$83.tag | 0) do
-                                                                                                                                          case --[ Ldot ]--1 :
+                                                                                                                                        local ___conditional___=(match$83.tag | 0);
+                                                                                                                                        do
+                                                                                                                                           if ___conditional___ = 1--[ Ldot ]-- then do
                                                                                                                                               var match$84 = match$83[0];
-                                                                                                                                              switch (match$84.tag | 0) do
-                                                                                                                                                case --[ Lident ]--0 :
+                                                                                                                                              local ___conditional___=(match$84.tag | 0);
+                                                                                                                                              do
+                                                                                                                                                 if ___conditional___ = 0--[ Lident ]-- then do
                                                                                                                                                     if (match$84[0] == "Parse" and match$83[1] == "implementation") then do
                                                                                                                                                       var match$85 = match$82.loc;
                                                                                                                                                       var match$86 = match$85.loc_start;
@@ -12398,19 +12506,17 @@ if (match) then do
                                                                                                                                                       end end 
                                                                                                                                                     end else do
                                                                                                                                                       eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
-                                                                                                                                                    end end 
-                                                                                                                                                    break;
-                                                                                                                                                case --[ Ldot ]--1 :
-                                                                                                                                                case --[ Lapply ]--2 :
-                                                                                                                                                    eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
-                                                                                                                                                    break;
+                                                                                                                                                    end end end else 
+                                                                                                                                                 if ___conditional___ = 1--[ Ldot ]--
+                                                                                                                                                 or ___conditional___ = 2--[ Lapply ]-- then do
+                                                                                                                                                    eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);end else 
+                                                                                                                                                 do end end end
                                                                                                                                                 
-                                                                                                                                              end
-                                                                                                                                              break;
-                                                                                                                                          case --[ Lident ]--0 :
-                                                                                                                                          case --[ Lapply ]--2 :
-                                                                                                                                              eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
-                                                                                                                                              break;
+                                                                                                                                              endend else 
+                                                                                                                                           if ___conditional___ = 0--[ Lident ]--
+                                                                                                                                           or ___conditional___ = 2--[ Lapply ]-- then do
+                                                                                                                                              eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);end else 
+                                                                                                                                           do end end end
                                                                                                                                           
                                                                                                                                         end
                                                                                                                                       end end 
@@ -12440,19 +12546,17 @@ if (match) then do
                                                                                                                       end end 
                                                                                                                     end else do
                                                                                                                       eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
-                                                                                                                    end end 
-                                                                                                                    break;
-                                                                                                                case --[ Ldot ]--1 :
-                                                                                                                case --[ Lapply ]--2 :
-                                                                                                                    eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
-                                                                                                                    break;
+                                                                                                                    end end end else 
+                                                                                                                 if ___conditional___ = 1--[ Ldot ]--
+                                                                                                                 or ___conditional___ = 2--[ Lapply ]-- then do
+                                                                                                                    eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);end else 
+                                                                                                                 do end end end
                                                                                                                 
-                                                                                                              end
-                                                                                                              break;
-                                                                                                          case --[ Lident ]--0 :
-                                                                                                          case --[ Lapply ]--2 :
-                                                                                                              eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
-                                                                                                              break;
+                                                                                                              endend else 
+                                                                                                           if ___conditional___ = 0--[ Lident ]--
+                                                                                                           or ___conditional___ = 2--[ Lapply ]-- then do
+                                                                                                              eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);end else 
+                                                                                                           do end end end
                                                                                                           
                                                                                                         end
                                                                                                       end end 
@@ -12476,12 +12580,11 @@ if (match) then do
                                                                                           end end 
                                                                                         end else do
                                                                                           eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
-                                                                                        end end 
-                                                                                        break;
-                                                                                    case --[ Ldot ]--1 :
-                                                                                    case --[ Lapply ]--2 :
-                                                                                        eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
-                                                                                        break;
+                                                                                        end end end else 
+                                                                                     if ___conditional___ = 1--[ Ldot ]--
+                                                                                     or ___conditional___ = 2--[ Lapply ]-- then do
+                                                                                        eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);end else 
+                                                                                     do end end end
                                                                                     
                                                                                   end
                                                                                 end end 
@@ -12505,12 +12608,11 @@ if (match) then do
                                                                     end end 
                                                                   end else do
                                                                     eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
-                                                                  end end 
-                                                                  break;
-                                                              case --[ Ldot ]--1 :
-                                                              case --[ Lapply ]--2 :
-                                                                  eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
-                                                                  break;
+                                                                  end end end else 
+                                                               if ___conditional___ = 1--[ Ldot ]--
+                                                               or ___conditional___ = 2--[ Lapply ]-- then do
+                                                                  eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);end else 
+                                                               do end end end
                                                               
                                                             end
                                                           end end 
@@ -12537,12 +12639,11 @@ if (match) then do
                                             end end 
                                           end else do
                                             eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
-                                          end end 
-                                          break;
-                                      case --[ Ldot ]--1 :
-                                      case --[ Lapply ]--2 :
-                                          eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
-                                          break;
+                                          end end end else 
+                                       if ___conditional___ = 1--[ Ldot ]--
+                                       or ___conditional___ = 2--[ Lapply ]-- then do
+                                          eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);end else 
+                                       do end end end
                                       
                                     end
                                   end end 

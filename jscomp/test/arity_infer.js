@@ -22,29 +22,29 @@ end
 
 function f3(x) do
   var tmp;
-  switch (x) do
-    case 0 :
+  local ___conditional___=(x);
+  do
+     if ___conditional___ = 0 then do
         tmp = (function (x) do
             return x + 1 | 0;
-          end);
-        break;
-    case 1 :
+          end);end else 
+     if ___conditional___ = 1 then do
         tmp = (function (x) do
             return x + 2 | 0;
-          end);
-        break;
-    case 2 :
+          end);end else 
+     if ___conditional___ = 2 then do
         tmp = (function (x) do
             return x + 3 | 0;
-          end);
-        break;
-    case 3 :
+          end);end else 
+     if ___conditional___ = 3 then do
         tmp = (function (x) do
             return x + 4 | 0;
-          end);
-        break;
-    default:
+          end);end else 
+     do end end end end end
+    else do
       throw Caml_builtin_exceptions.not_found;
+      end end
+      
   end
   return tmp(3);
 end
