@@ -730,7 +730,8 @@ and expression_desc cxt ~(level:int) f x : cxt  =
         cxt)  
   | Js_not e ->
     P.cond_paren_group f (level > 13) 1 (fun _ -> 
-      P.string f "!" ;
+      P.string f "not" ;
+      P.space f;
       expression ~level:13 cxt f e
     )
   | Typeof e
