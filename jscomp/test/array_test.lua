@@ -20,16 +20,16 @@ function starts_with(xs, prefix, p) do
     xpcall(function() do
       for i = 0 , len2 - 1 | 0 , 1 do
         if (not Curry._2(p, Caml_array.caml_array_get(xs, i), Caml_array.caml_array_get(prefix, i))) then do
-          error (H)
+          error(H)
         end
          end 
       end
       return true;
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == H) then do
         return false;
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end 
@@ -240,8 +240,8 @@ array_suites_001 = --[[ :: ]]{
                                   26,
                                   27,
                                   28
-                                }, (function (prim, prim$1) do
-                                    return prim == prim$1;
+                                }, (function (prim, prim_1) do
+                                    return prim == prim_1;
                                   end end))
                           });
                 end end)
@@ -283,8 +283,8 @@ array_suites_001 = --[[ :: ]]{
                                     18,
                                     19,
                                     20
-                                  }, (function (prim, prim$1) do
-                                      return prim == prim$1;
+                                  }, (function (prim, prim_1) do
+                                      return prim == prim_1;
                                     end end))
                             });
                   end end)

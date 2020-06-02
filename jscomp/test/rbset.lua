@@ -52,32 +52,32 @@ end end
 function balance_left(l, x, r) do
   exit = 0;
   a;
-  x$1;
+  x_1;
   b;
   y;
   c;
   z;
   d;
   if (l and l[0]) then do
-    a$1 = l[1];
-    exit$1 = 0;
-    if (a$1 and a$1[0]) then do
-      a = a$1[1];
-      x$1 = a$1[2];
-      b = a$1[3];
+    a_1 = l[1];
+    exit_1 = 0;
+    if (a_1 and a_1[0]) then do
+      a = a_1[1];
+      x_1 = a_1[2];
+      b = a_1[3];
       y = l[2];
       c = l[3];
       z = x;
       d = r;
       exit = 2;
     end else do
-      exit$1 = 3;
+      exit_1 = 3;
     end end 
-    if (exit$1 == 3) then do
+    if (exit_1 == 3) then do
       match = l[3];
       if (match and match[0]) then do
-        a = a$1;
-        x$1 = l[2];
+        a = a_1;
+        x_1 = l[2];
         b = match[1];
         y = match[2];
         c = match[3];
@@ -107,7 +107,7 @@ function balance_left(l, x, r) do
                 --[[ Node ]]{
                   --[[ Black ]]0,
                   a,
-                  x$1,
+                  x_1,
                   b
                 },
                 y,
@@ -126,33 +126,33 @@ end end
 function balance_right(l, x, r) do
   exit = 0;
   a;
-  x$1;
+  x_1;
   b;
   y;
   c;
   z;
   d;
   if (r and r[0]) then do
-    b$1 = r[1];
-    exit$1 = 0;
-    if (b$1 and b$1[0]) then do
+    b_1 = r[1];
+    exit_1 = 0;
+    if (b_1 and b_1[0]) then do
       a = l;
-      x$1 = x;
-      b = b$1[1];
-      y = b$1[2];
-      c = b$1[3];
+      x_1 = x;
+      b = b_1[1];
+      y = b_1[2];
+      c = b_1[3];
       z = r[2];
       d = r[3];
       exit = 2;
     end else do
-      exit$1 = 3;
+      exit_1 = 3;
     end end 
-    if (exit$1 == 3) then do
+    if (exit_1 == 3) then do
       match = r[3];
       if (match and match[0]) then do
         a = l;
-        x$1 = x;
-        b = b$1;
+        x_1 = x;
+        b = b_1;
         y = r[2];
         c = match[1];
         z = match[2];
@@ -181,7 +181,7 @@ function balance_right(l, x, r) do
                 --[[ Node ]]{
                   --[[ Black ]]0,
                   a,
-                  x$1,
+                  x_1,
                   b
                 },
                 y,
@@ -223,21 +223,21 @@ function unbalanced_left(param) do
       end
        end 
     end else do
-      match$1 = param[1];
-      if (match$1) then do
-        if (match$1[0]) then do
-          match$2 = match$1[3];
-          if (match$2 and not match$2[0]) then do
+      match_1 = param[1];
+      if (match_1) then do
+        if (match_1[0]) then do
+          match_2 = match_1[3];
+          if (match_2 and not match_2[0]) then do
             return --[[ tuple ]]{
                     --[[ Node ]]{
                       --[[ Black ]]0,
-                      match$1[1],
-                      match$1[2],
+                      match_1[1],
+                      match_1[2],
                       balance_left(--[[ Node ]]{
                             --[[ Red ]]1,
-                            match$2[1],
-                            match$2[2],
-                            match$2[3]
+                            match_2[1],
+                            match_2[2],
+                            match_2[3]
                           }, param[2], param[3])
                     },
                     false
@@ -248,9 +248,9 @@ function unbalanced_left(param) do
           return --[[ tuple ]]{
                   balance_left(--[[ Node ]]{
                         --[[ Red ]]1,
-                        match$1[1],
-                        match$1[2],
-                        match$1[3]
+                        match_1[1],
+                        match_1[2],
+                        match_1[3]
                       }, param[2], param[3]),
                   true
                 };
@@ -260,7 +260,7 @@ function unbalanced_left(param) do
     end end 
   end
    end 
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "rbset.ml",
@@ -287,24 +287,24 @@ function unbalanced_right(param) do
       end
        end 
     end else do
-      match$1 = param[3];
-      if (match$1) then do
+      match_1 = param[3];
+      if (match_1) then do
         x = param[2];
         a = param[1];
-        if (match$1[0]) then do
-          match$2 = match$1[1];
-          if (match$2 and not match$2[0]) then do
+        if (match_1[0]) then do
+          match_2 = match_1[1];
+          if (match_2 and not match_2[0]) then do
             return --[[ tuple ]]{
                     --[[ Node ]]{
                       --[[ Black ]]0,
                       balance_right(a, x, --[[ Node ]]{
                             --[[ Red ]]1,
-                            match$2[1],
-                            match$2[2],
-                            match$2[3]
+                            match_2[1],
+                            match_2[2],
+                            match_2[3]
                           }),
-                      match$1[2],
-                      match$1[3]
+                      match_1[2],
+                      match_1[3]
                     },
                     false
                   };
@@ -314,9 +314,9 @@ function unbalanced_right(param) do
           return --[[ tuple ]]{
                   balance_right(a, x, --[[ Node ]]{
                         --[[ Red ]]1,
-                        match$1[1],
-                        match$1[2],
-                        match$1[3]
+                        match_1[1],
+                        match_1[2],
+                        match_1[3]
                       }),
                   true
                 };
@@ -326,7 +326,7 @@ function unbalanced_right(param) do
     end end 
   end
    end 
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "rbset.ml",
@@ -478,16 +478,16 @@ function ins(x, s) do
         end end 
       end end 
     end else do
-      y$1 = s[2];
-      if (x == y$1) then do
+      y_1 = s[2];
+      if (x == y_1) then do
         return s;
       end else do
-        b$1 = s[3];
-        a$1 = s[1];
-        if (x < y$1) then do
-          return lbalance(ins(x, a$1), y$1, b$1);
+        b_1 = s[3];
+        a_1 = s[1];
+        if (x < y_1) then do
+          return lbalance(ins(x, a_1), y_1, b_1);
         end else do
-          return rbalance(a$1, y$1, ins(x, b$1));
+          return rbalance(a_1, y_1, ins(x, b_1));
         end end 
       end end 
     end end 
@@ -502,16 +502,16 @@ function ins(x, s) do
 end end
 
 function add(x, s) do
-  s$1 = ins(x, s);
-  if (s$1 and s$1[0]) then do
+  s_1 = ins(x, s);
+  if (s_1 and s_1[0]) then do
     return --[[ Node ]]{
             --[[ Black ]]0,
-            s$1[1],
-            s$1[2],
-            s$1[3]
+            s_1[1],
+            s_1[2],
+            s_1[3]
           };
   end else do
-    return s$1;
+    return s_1;
   end end 
 end end
 
@@ -543,7 +543,7 @@ function remove_min(param) do
                   false
                 };
         end else do
-          error ({
+          error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
               "rbset.ml",
@@ -561,9 +561,9 @@ function remove_min(param) do
       end end 
     end
      end  end 
-    match$1 = remove_min(param[1]);
-    y = match$1[1];
-    s_001 = match$1[0];
+    match_1 = remove_min(param[1]);
+    y = match_1[1];
+    s_001 = match_1[0];
     s_002 = param[2];
     s_003 = param[3];
     s = --[[ Node ]]{
@@ -572,12 +572,12 @@ function remove_min(param) do
       s_002,
       s_003
     };
-    if (match$1[2]) then do
-      match$2 = unbalanced_right(s);
+    if (match_1[2]) then do
+      match_2 = unbalanced_right(s);
       return --[[ tuple ]]{
-              match$2[0],
+              match_2[0],
               y,
-              match$2[1]
+              match_2[1]
             };
     end else do
       return --[[ tuple ]]{
@@ -587,7 +587,7 @@ function remove_min(param) do
             };
     end end 
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "rbset.ml",
@@ -609,17 +609,17 @@ function remove_aux(x, n) do
         match = remove_min(r);
         n_002 = match[1];
         n_003 = match[0];
-        n$1 = --[[ Node ]]{
+        n_1 = --[[ Node ]]{
           c,
           l,
           n_002,
           n_003
         };
         if (match[2]) then do
-          return unbalanced_left(n$1);
+          return unbalanced_left(n_1);
         end else do
           return --[[ tuple ]]{
-                  n$1,
+                  n_1,
                   false
                 };
         end end 
@@ -632,36 +632,36 @@ function remove_aux(x, n) do
         return blackify(l);
       end end  end 
     end else if (x < y) then do
-      match$1 = remove_aux(x, l);
-      n_001 = match$1[0];
-      n$2 = --[[ Node ]]{
+      match_1 = remove_aux(x, l);
+      n_001 = match_1[0];
+      n_2 = --[[ Node ]]{
         c,
         n_001,
         y,
         r
       };
-      if (match$1[1]) then do
-        return unbalanced_right(n$2);
+      if (match_1[1]) then do
+        return unbalanced_right(n_2);
       end else do
         return --[[ tuple ]]{
-                n$2,
+                n_2,
                 false
               };
       end end 
     end else do
-      match$2 = remove_aux(x, r);
-      n_003$1 = match$2[0];
-      n$3 = --[[ Node ]]{
+      match_2 = remove_aux(x, r);
+      n_003_1 = match_2[0];
+      n_3 = --[[ Node ]]{
         c,
         l,
         y,
-        n_003$1
+        n_003_1
       };
-      if (match$2[1]) then do
-        return unbalanced_left(n$3);
+      if (match_2[1]) then do
+        return unbalanced_left(n_3);
       end else do
         return --[[ tuple ]]{
-                n$3,
+                n_3,
                 false
               };
       end end 

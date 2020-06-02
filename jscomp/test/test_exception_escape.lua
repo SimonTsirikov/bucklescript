@@ -7,11 +7,11 @@ A = Caml_exceptions.create("Test_exception_escape.N.A");
 f;
 
 xpcall(function() do
-  error ({
+  error({
     A,
     3
   })
-end end,function(exn) return do
+end end,function(exn) do
   f = 3;
 end end)
 

@@ -55,7 +55,7 @@ function get_data(count, _d) do
               _d = d2;
               ::continue:: ;
             end else if (match.tag) then do
-              error ({
+              error({
                 Caml_builtin_exceptions.assert_failure,
                 --[[ tuple ]]{
                   "stream.ml",
@@ -77,23 +77,23 @@ function get_data(count, _d) do
             ::continue:: ;end end end 
          if ___conditional___ = 3--[[ Sgen ]] then do
             g = d[0];
-            match$1 = g.curr;
-            if (match$1 ~= undefined) then do
-              match$2 = Caml_option.valFromOption(match$1);
-              if (match$2 ~= undefined) then do
+            match_1 = g.curr;
+            if (match_1 ~= undefined) then do
+              match_2 = Caml_option.valFromOption(match_1);
+              if (match_2 ~= undefined) then do
                 g.curr = undefined;
                 return --[[ Scons ]]Block.__(0, {
-                          Caml_option.valFromOption(match$2),
+                          Caml_option.valFromOption(match_2),
                           d
                         });
               end else do
                 return --[[ Sempty ]]0;
               end end 
             end else do
-              match$3 = Curry._1(g.func, count);
-              if (match$3 ~= undefined) then do
+              match_3 = Curry._1(g.func, count);
+              if (match_3 ~= undefined) then do
                 return --[[ Scons ]]Block.__(0, {
-                          Caml_option.valFromOption(match$3),
+                          Caml_option.valFromOption(match_3),
                           d
                         });
               end else do
@@ -139,7 +139,7 @@ function peek_data(s) do
             if (typeof d == "number") then do
               return ;
             end else if (d.tag) then do
-              error ({
+              error({
                 Caml_builtin_exceptions.assert_failure,
                 --[[ tuple ]]{
                   "stream.ml",
@@ -156,9 +156,9 @@ function peek_data(s) do
             ::continue:: ;end end end 
          if ___conditional___ = 3--[[ Sgen ]] then do
             g = match[0];
-            match$1 = g.curr;
-            if (match$1 ~= undefined) then do
-              return Caml_option.valFromOption(match$1);
+            match_1 = g.curr;
+            if (match_1 ~= undefined) then do
+              return Caml_option.valFromOption(match_1);
             end else do
               x = Curry._1(g.func, s.count);
               g.curr = Caml_option.some(x);
@@ -202,8 +202,8 @@ function junk_data(s) do
             return --[[ () ]]0;end end end 
          if ___conditional___ = 3--[[ Sgen ]] then do
             g = match[0];
-            match$1 = g.curr;
-            if (match$1 ~= undefined) then do
+            match_1 = g.curr;
+            if (match_1 ~= undefined) then do
               s.count = s.count + 1 | 0;
               g.curr = undefined;
               return --[[ () ]]0;
@@ -221,8 +221,8 @@ function junk_data(s) do
       end
     end
      end 
-    match$2 = peek_data(s);
-    if (match$2 ~= undefined) then do
+    match_2 = peek_data(s);
+    if (match_2 ~= undefined) then do
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -250,17 +250,17 @@ function nget_data(n, s) do
     if (match ~= undefined) then do
       a = Caml_option.valFromOption(match);
       junk_data(s);
-      match$1 = nget_data(n - 1 | 0, s);
+      match_1 = nget_data(n - 1 | 0, s);
       return --[[ tuple ]]{
               --[[ :: ]]{
                 a,
-                match$1[0]
+                match_1[0]
               },
               --[[ Scons ]]Block.__(0, {
                   a,
-                  match$1[1]
+                  match_1[1]
                 }),
-              match$1[2] + 1 | 0
+              match_1[2] + 1 | 0
             };
     end else do
       return --[[ tuple ]]{
@@ -274,9 +274,9 @@ end end
 
 function npeek(n, param) do
   if (param ~= undefined) then do
-    n$1 = n;
+    n_1 = n;
     s = param;
-    match = nget_data(n$1, s);
+    match = nget_data(n_1, s);
     s.count = s.count - match[2] | 0;
     s.data = match[1];
     return match[0];
@@ -291,14 +291,14 @@ function next(s) do
     junk(s);
     return Caml_option.valFromOption(match);
   end else do
-    error (Failure)
+    error(Failure)
   end end 
 end end
 
 function empty(s) do
   match = peek(s);
   if (match ~= undefined) then do
-    error (Failure)
+    error(Failure)
   end else do
     return --[[ () ]]0;
   end end 

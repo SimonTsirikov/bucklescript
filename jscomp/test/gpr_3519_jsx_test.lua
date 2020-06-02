@@ -5,7 +5,7 @@ React = do
   __null: --[[ () ]]0
 end;
 
-function make(param, param$1) do
+function make(param, param_1) do
   return --[[ () ]]0;
 end end
 

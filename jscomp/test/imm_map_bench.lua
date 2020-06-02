@@ -19,7 +19,7 @@ function should(b) do
   if (b) then do
     return 0;
   end else do
-    error (new Error("impossible"))
+    error(new Error("impossible"))
   end end 
 end end
 

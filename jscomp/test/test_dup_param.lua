@@ -1,8 +1,8 @@
 --[['use strict';]]
 
 
-function f(x, x$1) do
-  return x$1;
+function f(x, x_1) do
+  return x_1;
 end end
 
 exports.f = f;

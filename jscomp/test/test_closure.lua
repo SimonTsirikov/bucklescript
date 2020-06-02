@@ -31,7 +31,7 @@ __Array.iter((function (x) do
       end end), u);
 
 if (v.contents ~= 45) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "test_closure.ml",

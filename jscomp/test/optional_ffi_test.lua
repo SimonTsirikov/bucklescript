@@ -122,14 +122,14 @@ function heystr(x, y) {
   }
 ;
 
-pair_001$1 = heystr("name", "4");
+pair_001_1 = heystr("name", "4");
 
-pair$1 = --[[ tuple ]]{
+pair_1 = --[[ tuple ]]{
   "name4",
-  pair_001$1
+  pair_001_1
 };
 
-eq("File \"optional_ffi_test.ml\", line 58, characters 5-12", pair$1);
+eq("File \"optional_ffi_test.ml\", line 58, characters 5-12", pair_1);
 
 Mt.from_pair_suites("Optional_ffi_test", suites.contents);
 

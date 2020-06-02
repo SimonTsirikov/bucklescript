@@ -5,7 +5,7 @@ import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 function init_mod(loc, shape) do
   undef_module = function (param) do
-    error ({
+    error({
       Caml_builtin_exceptions.undefined_recursive_module,
       loc
     })
@@ -68,8 +68,8 @@ function update_mod(shape, o, n) do
       return --[[ () ]]0;
     end else do
       comps = shape[0];
-      for i$1 = 0 , #comps - 1 | 0 , 1 do
-        match = comps[i$1];
+      for i_1 = 0 , #comps - 1 | 0 , 1 do
+        match = comps[i_1];
         name = match[1];
         aux(match[0], o[name], n[name], o, name);
       end
@@ -77,7 +77,7 @@ function update_mod(shape, o, n) do
     end end  end 
   end end;
   if (typeof shape == "number") then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "caml_module.ml",
@@ -86,7 +86,7 @@ function update_mod(shape, o, n) do
       }
     })
   end else if (shape.tag) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "caml_module.ml",

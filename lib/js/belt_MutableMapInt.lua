@@ -55,9 +55,9 @@ end end
 
 function set(m, k, v) do
   old_data = m.data;
-  v$1 = Belt_internalMapInt.addMutate(old_data, k, v);
-  if (v$1 ~= old_data) then do
-    m.data = v$1;
+  v_1 = Belt_internalMapInt.addMutate(old_data, k, v);
+  if (v_1 ~= old_data) then do
+    m.data = v_1;
     return --[[ () ]]0;
   end else do
     return 0;
@@ -168,9 +168,9 @@ function removeMutateAux(nt, x) do
       return nt;
     end end 
   end else do
-    match$1 = nt.right;
-    if (match$1 ~= nil) then do
-      nt.right = removeMutateAux(match$1, x);
+    match_1 = nt.right;
+    if (match_1 ~= nil) then do
+      nt.right = removeMutateAux(match_1, x);
       return Belt_internalAVLtree.balMutate(nt);
     end else do
       return nt;
@@ -216,20 +216,20 @@ function updateDone(t, x, f) do
         end end 
       end end 
     end else do
-      l$1 = t.left;
-      r$1 = t.right;
+      l_1 = t.left;
+      r_1 = t.right;
       if (x < k) then do
-        ll = updateDone(l$1, x, f);
+        ll = updateDone(l_1, x, f);
         t.left = ll;
       end else do
-        t.right = updateDone(r$1, x, f);
+        t.right = updateDone(r_1, x, f);
       end end 
       return Belt_internalAVLtree.balMutate(t);
     end end 
   end else do
-    match$1 = f(undefined);
-    if (match$1 ~= undefined) then do
-      return Belt_internalAVLtree.singleton(x, Caml_option.valFromOption(match$1));
+    match_1 = f(undefined);
+    if (match_1 ~= undefined) then do
+      return Belt_internalAVLtree.singleton(x, Caml_option.valFromOption(match_1));
     end else do
       return t;
     end end 

@@ -16,9 +16,9 @@ end end
 function is_mocha(param) do
   match = __Array.to_list(Process.argv);
   if (match) then do
-    match$1 = match[1];
-    if (match$1) then do
-      exec = Path.basename(match$1[0]);
+    match_1 = match[1];
+    if (match_1) then do
+      exec = Path.basename(match_1[0]);
       if (exec == "mocha") then do
         return true;
       end else do
@@ -83,12 +83,12 @@ function handleCode(spec) do
           return --[[ () ]]0;
         end end end end end 
      if ___conditional___ = 6--[[ ApproxThreshold ]] then do
-        b$1 = spec[2];
-        a$1 = spec[1];
-        if (close_enough(spec[0], a$1, b$1)) then do
+        b_1 = spec[2];
+        a_1 = spec[1];
+        if (close_enough(spec[0], a_1, b_1)) then do
           return 0;
         end else do
-          Assert.deepEqual(a$1, b$1);
+          Assert.deepEqual(a_1, b_1);
           return --[[ () ]]0;
         end end end end end 
      if ___conditional___ = 7--[[ ThrowAny ]] then do
@@ -118,10 +118,10 @@ function from_pair_suites(name, suites) do
             end end));
       return --[[ () ]]0;
     end else do
-      name$1 = name;
-      suites$1 = suites;
+      name_1 = name;
+      suites_1 = suites;
       console.log(--[[ tuple ]]{
-            name$1,
+            name_1,
             "testing"
           });
       return List.iter((function (param) do
@@ -198,7 +198,7 @@ function from_pair_suites(name, suites) do
                        do
                       
                     end
-                  end end), suites$1);
+                  end end), suites_1);
     end end 
   end else do
     return --[[ () ]]0;

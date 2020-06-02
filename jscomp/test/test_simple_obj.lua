@@ -51,45 +51,45 @@ CamlinternalOO.init_class(__class);
 
 u = CamlinternalOO.create_object_opt(0, __class);
 
-__class$1 = CamlinternalOO.create_table({"id"});
+__class_1 = CamlinternalOO.create_table({"id"});
 
-id = CamlinternalOO.get_method_label(__class$1, "id");
+id = CamlinternalOO.get_method_label(__class_1, "id");
 
-CamlinternalOO.set_method(__class$1, id, (function (self$2) do
+CamlinternalOO.set_method(__class_1, id, (function (self$2) do
         return "uu";
       end end));
 
-CamlinternalOO.init_class(__class$1);
+CamlinternalOO.init_class(__class_1);
 
-uu = CamlinternalOO.create_object_opt(0, __class$1);
+uu = CamlinternalOO.create_object_opt(0, __class_1);
 
-__class$2 = CamlinternalOO.create_table(shared);
+__class_2 = CamlinternalOO.create_table(shared);
 
-add = CamlinternalOO.get_method_label(__class$2, "add");
+add = CamlinternalOO.get_method_label(__class_2, "add");
 
-CamlinternalOO.set_method(__class$2, add, (function (self$3, x, y) do
+CamlinternalOO.set_method(__class_2, add, (function (self$3, x, y) do
         return x + y | 0;
       end end));
 
-CamlinternalOO.init_class(__class$2);
+CamlinternalOO.init_class(__class_2);
 
-uuu = CamlinternalOO.create_object_opt(0, __class$2);
+uuu = CamlinternalOO.create_object_opt(0, __class_2);
 
-__class$3 = CamlinternalOO.create_table(shared);
+__class_3 = CamlinternalOO.create_table(shared);
 
-add$1 = CamlinternalOO.get_method_label(__class$3, "add");
+add_1 = CamlinternalOO.get_method_label(__class_3, "add");
 
-CamlinternalOO.set_method(__class$3, add$1, (function (self$4, x, y) do
+CamlinternalOO.set_method(__class_3, add_1, (function (self$4, x, y) do
         return x + y | 0;
       end end));
 
-CamlinternalOO.init_class(__class$3);
+CamlinternalOO.init_class(__class_3);
 
-v = CamlinternalOO.create_object_opt(0, __class$3);
+v = CamlinternalOO.create_object_opt(0, __class_3);
 
 function test(param) do
   if (Caml_oo_curry.js1(23515, 1, uu) ~= "uu") then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "test_simple_obj.ml",
@@ -100,7 +100,7 @@ function test(param) do
   end
    end 
   if (Caml_oo_curry.js3(4846113, 2, uuu, 1, 20) ~= 21) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "test_simple_obj.ml",
@@ -111,7 +111,7 @@ function test(param) do
   end
    end 
   if (Caml_oo_curry.js3(4846113, 3, v, 3, 7) ~= 10) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "test_simple_obj.ml",
@@ -122,7 +122,7 @@ function test(param) do
   end
    end 
   if (Caml_oo_curry.js1(5243894, 4, u) ~= 3) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "test_simple_obj.ml",
@@ -133,7 +133,7 @@ function test(param) do
   end
    end 
   if (Caml_oo_curry.js1(5243895, 5, u) ~= 4) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "test_simple_obj.ml",
@@ -144,7 +144,7 @@ function test(param) do
   end
    end 
   if (Caml_oo_curry.js3(23297, 6, u, 1, 2) ~= 3) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "test_simple_obj.ml",
@@ -157,7 +157,7 @@ function test(param) do
   if (Caml_oo_curry.js2(616641298, 7, u, 32) == 32) then do
     return 0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "test_simple_obj.ml",

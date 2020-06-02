@@ -2383,7 +2383,7 @@ suites = Pervasives.$at(--[[ :: ]]{
                               };
                       end end), shift_right_logical_suites_000, shift_right_logical_suites_001)))));
 
-suites$1 = do
+suites_1 = do
   contents: suites
 end;
 
@@ -2392,7 +2392,7 @@ test_id = do
 end;
 
 function eq(loc, x, y) do
-  return Mt.eq_suites(test_id, suites$1, loc, x, y);
+  return Mt.eq_suites(test_id, suites_1, loc, x, y);
 end end
 
 function id(loc, x) do
@@ -2440,7 +2440,7 @@ id("File \"int64_test.ml\", line 194, characters 5-12", --[[ int64 ]]{
       --[[ lo ]]536870655
     });
 
-Mt.from_pair_suites("Int64_test", suites$1.contents);
+Mt.from_pair_suites("Int64_test", suites_1.contents);
 
 exports.f = f;
 exports.v = v;
@@ -2453,7 +2453,7 @@ exports.shift_right_tests = shift_right_tests;
 exports.shift_right_logical_suites = shift_right_logical_suites;
 exports.fib = fib;
 exports.fac = fac;
-exports.suites = suites$1;
+exports.suites = suites_1;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.id = id;

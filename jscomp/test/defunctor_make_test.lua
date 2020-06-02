@@ -50,13 +50,13 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[0]), lr[1], lr[2], create(lr[3], x, d, r));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Map.bal"
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Map.bal"
       })
@@ -72,13 +72,13 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[0]), rl[1], rl[2], create(rl[3], rv, rd, rr));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Map.bal"
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Map.bal"
       })
@@ -125,7 +125,7 @@ function add(x, data, compare, param) do
   end end 
 end end
 
-function add$1(x, data, v) do
+function add_1(x, data, v) do
   X = v.compare;
   return do
           compare: v.compare,
@@ -146,10 +146,10 @@ V0 = do
   compare: compare
 end;
 
-compare$1 = Caml_primitive.caml_int_compare;
+compare_1 = Caml_primitive.caml_int_compare;
 
 V1 = do
-  compare: compare$1
+  compare: compare_1
 end;
 
 v0 = do
@@ -162,7 +162,7 @@ v1 = do
   data: --[[ Empty ]]0
 end;
 
-v3 = add$1(3, "a", v0);
+v3 = add_1(3, "a", v0);
 
 console.log(v3);
 
@@ -170,7 +170,7 @@ exports.Comparable = Comparable;
 exports.height = height;
 exports.create = create;
 exports.bal = bal;
-exports.add = add$1;
+exports.add = add_1;
 exports.empty = empty;
 exports.V0 = V0;
 exports.V1 = V1;

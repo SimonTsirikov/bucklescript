@@ -41,7 +41,7 @@ function convert(s) do
                     if (match ~= undefined) then do
                       return match;
                     end else do
-                      error ({
+                      error({
                         Caml_builtin_exceptions.assert_failure,
                         --[[ tuple ]]{
                           "chn_test.ml",

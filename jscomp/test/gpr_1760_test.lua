@@ -35,7 +35,7 @@ a0;
 xpcall(function() do
   Caml_int32.div(0, 0);
   a0 = 0;
-end end,function(exn) return do
+end end,function(exn) do
   a0 = 1;
 end end)
 
@@ -44,7 +44,7 @@ a1;
 xpcall(function() do
   Caml_int32.mod_(0, 0);
   a1 = 0;
-end end,function(exn$1) return do
+end end,function(exn_1) do
   a1 = 1;
 end end)
 
@@ -53,7 +53,7 @@ a4;
 xpcall(function() do
   Caml_int32.div(0, 0);
   a4 = 0;
-end end,function(exn$2) return do
+end end,function(exn_2) do
   a4 = 1;
 end end)
 
@@ -62,7 +62,7 @@ a5;
 xpcall(function() do
   Caml_int32.mod_(0, 0);
   a5 = 0;
-end end,function(exn$3) return do
+end end,function(exn_3) do
   a5 = 1;
 end end)
 
@@ -77,7 +77,7 @@ xpcall(function() do
         --[[ lo ]]0
       });
   a6 = 0;
-end end,function(exn$4) return do
+end end,function(exn_4) do
   a6 = 1;
 end end)
 
@@ -92,7 +92,7 @@ xpcall(function() do
         --[[ lo ]]0
       });
   a7 = 0;
-end end,function(exn$5) return do
+end end,function(exn_5) do
   a7 = 1;
 end end)
 

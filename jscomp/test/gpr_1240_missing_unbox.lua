@@ -2,11 +2,11 @@
 
 
 function f(x, y) do
-  x$1 = x;
-  y$1 = y;
+  x_1 = x;
+  y_1 = y;
   return --[[ tuple ]]{
-          x$1,
-          y$1
+          x_1,
+          y_1
         };
 end end
 

@@ -76,8 +76,8 @@ eq("File \"bs_poly_mutable_set_test.ml\", line 35, characters 5-12", Belt_intern
 
 b("File \"bs_poly_mutable_set_test.ml\", line 36, characters 4-11", not Belt_MutableSet.isEmpty(u));
 
-for i$1 = 0 , 3 , 1 do
-  Belt_MutableSet.remove(u, i$1);
+for i_1 = 0 , 3 , 1 do
+  Belt_MutableSet.remove(u, i_1);
 end
 
 b("File \"bs_poly_mutable_set_test.ml\", line 40, characters 4-11", Belt_MutableSet.isEmpty(u));
@@ -181,20 +181,20 @@ eq("File \"bs_poly_mutable_set_test.ml\", line 79, characters 5-12", Belt_Mutabl
 
 match = Belt_MutableSet.split(v, 1000);
 
-match$1 = match[0];
+match_1 = match[0];
 
-bb = match$1[1];
+bb = match_1[1];
 
-aa = match$1[0];
+aa = match_1[0];
 
 b("File \"bs_poly_mutable_set_test.ml\", line 81, characters 4-11", match[1]);
 
-b("File \"bs_poly_mutable_set_test.ml\", line 82, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(aa.data), Array_data_util.range(500, 999), (function (prim, prim$1) do
-            return prim == prim$1;
+b("File \"bs_poly_mutable_set_test.ml\", line 82, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(aa.data), Array_data_util.range(500, 999), (function (prim, prim_1) do
+            return prim == prim_1;
           end end)));
 
-b("File \"bs_poly_mutable_set_test.ml\", line 83, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(bb.data), Array_data_util.range(1001, 2000), (function (prim, prim$1) do
-            return prim == prim$1;
+b("File \"bs_poly_mutable_set_test.ml\", line 83, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(bb.data), Array_data_util.range(1001, 2000), (function (prim, prim_1) do
+            return prim == prim_1;
           end end)));
 
 b("File \"bs_poly_mutable_set_test.ml\", line 84, characters 5-12", Belt_MutableSet.subset(aa, v));
@@ -207,41 +207,41 @@ c = Belt_MutableSet.removeCheck(v, 1000);
 
 b("File \"bs_poly_mutable_set_test.ml\", line 88, characters 4-11", c);
 
-match$2 = Belt_MutableSet.split(v, 1000);
+match_2 = Belt_MutableSet.split(v, 1000);
 
-match$3 = match$2[0];
+match_3 = match_2[0];
 
-bb$1 = match$3[1];
+bb_1 = match_3[1];
 
-aa$1 = match$3[0];
+aa_1 = match_3[0];
 
-b("File \"bs_poly_mutable_set_test.ml\", line 90, characters 4-11", not match$2[1]);
+b("File \"bs_poly_mutable_set_test.ml\", line 90, characters 4-11", not match_2[1]);
 
-b("File \"bs_poly_mutable_set_test.ml\", line 91, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(aa$1.data), Array_data_util.range(500, 999), (function (prim, prim$1) do
-            return prim == prim$1;
+b("File \"bs_poly_mutable_set_test.ml\", line 91, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(aa_1.data), Array_data_util.range(500, 999), (function (prim, prim_1) do
+            return prim == prim_1;
           end end)));
 
-b("File \"bs_poly_mutable_set_test.ml\", line 92, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(bb$1.data), Array_data_util.range(1001, 2000), (function (prim, prim$1) do
-            return prim == prim$1;
+b("File \"bs_poly_mutable_set_test.ml\", line 92, characters 4-11", Belt_Array.eq(Belt_internalAVLset.toArray(bb_1.data), Array_data_util.range(1001, 2000), (function (prim, prim_1) do
+            return prim == prim_1;
           end end)));
 
-b("File \"bs_poly_mutable_set_test.ml\", line 93, characters 5-12", Belt_MutableSet.subset(aa$1, v));
+b("File \"bs_poly_mutable_set_test.ml\", line 93, characters 5-12", Belt_MutableSet.subset(aa_1, v));
 
-b("File \"bs_poly_mutable_set_test.ml\", line 94, characters 4-11", Belt_MutableSet.subset(bb$1, v));
+b("File \"bs_poly_mutable_set_test.ml\", line 94, characters 4-11", Belt_MutableSet.subset(bb_1, v));
 
-b("File \"bs_poly_mutable_set_test.ml\", line 95, characters 4-11", Belt_MutableSet.isEmpty(Belt_MutableSet.intersect(aa$1, bb$1)));
+b("File \"bs_poly_mutable_set_test.ml\", line 95, characters 4-11", Belt_MutableSet.isEmpty(Belt_MutableSet.intersect(aa_1, bb_1)));
 
-aa$2 = fromArray(Array_data_util.randomRange(0, 100));
+aa_2 = fromArray(Array_data_util.randomRange(0, 100));
 
-bb$2 = fromArray(Array_data_util.randomRange(40, 120));
+bb_2 = fromArray(Array_data_util.randomRange(40, 120));
 
-cc = Belt_MutableSet.union(aa$2, bb$2);
+cc = Belt_MutableSet.union(aa_2, bb_2);
 
 b("File \"bs_poly_mutable_set_test.ml\", line 104, characters 4-11", Belt_MutableSet.eq(cc, fromArray(Array_data_util.randomRange(0, 120))));
 
 b("File \"bs_poly_mutable_set_test.ml\", line 106, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.union(fromArray(Array_data_util.randomRange(0, 20)), fromArray(Array_data_util.randomRange(21, 40))), fromArray(Array_data_util.randomRange(0, 40))));
 
-dd = Belt_MutableSet.intersect(aa$2, bb$2);
+dd = Belt_MutableSet.intersect(aa_2, bb_2);
 
 b("File \"bs_poly_mutable_set_test.ml\", line 111, characters 4-11", Belt_MutableSet.eq(dd, fromArray(Array_data_util.randomRange(40, 100))));
 
@@ -274,9 +274,9 @@ b("File \"bs_poly_mutable_set_test.ml\", line 124, characters 4-11", Belt_Mutabl
               5
             })));
 
-b("File \"bs_poly_mutable_set_test.ml\", line 130, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.diff(aa$2, bb$2), fromArray(Array_data_util.randomRange(0, 39))));
+b("File \"bs_poly_mutable_set_test.ml\", line 130, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.diff(aa_2, bb_2), fromArray(Array_data_util.randomRange(0, 39))));
 
-b("File \"bs_poly_mutable_set_test.ml\", line 132, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.diff(bb$2, aa$2), fromArray(Array_data_util.randomRange(101, 120))));
+b("File \"bs_poly_mutable_set_test.ml\", line 132, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.diff(bb_2, aa_2), fromArray(Array_data_util.randomRange(101, 120))));
 
 b("File \"bs_poly_mutable_set_test.ml\", line 134, characters 4-11", Belt_MutableSet.eq(Belt_MutableSet.diff(fromArray(Array_data_util.randomRange(21, 40)), fromArray(Array_data_util.randomRange(0, 20))), fromArray(Array_data_util.randomRange(21, 40))));
 
@@ -294,13 +294,13 @@ a2 = Belt_MutableSet.keep(a0, (function (x) do
         return x % 2 ~= 0;
       end end));
 
-match$4 = Belt_MutableSet.partition(a0, (function (x) do
+match_4 = Belt_MutableSet.partition(a0, (function (x) do
         return x % 2 == 0;
       end end));
 
-a4 = match$4[1];
+a4 = match_4[1];
 
-a3 = match$4[0];
+a3 = match_4[0];
 
 b("File \"bs_poly_mutable_set_test.ml\", line 162, characters 4-11", Belt_MutableSet.eq(a1, a3));
 

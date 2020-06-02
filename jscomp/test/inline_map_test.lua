@@ -40,13 +40,13 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[0]), lr[1], lr[2], create(lr[3], x, d, r));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Map.bal"
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Map.bal"
       })
@@ -62,13 +62,13 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[0]), rl[1], rl[2], create(rl[3], rv, rd, rr));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Map.bal"
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Map.bal"
       })
@@ -127,7 +127,7 @@ function find(x, _param) do
         ::continue:: ;
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end

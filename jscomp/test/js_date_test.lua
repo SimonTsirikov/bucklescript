@@ -179,15 +179,15 @@ suites_001 = --[[ :: ]]{
                           "utcWithYM",
                           (function (param) do
                               d = Date.UTC(1984, 4);
-                              d$1 = new Date(d);
+                              d_1 = new Date(d);
                               return --[[ Eq ]]Block.__(0, {
                                         --[[ tuple ]]{
                                           1984,
                                           4
                                         },
                                         --[[ tuple ]]{
-                                          d$1.getUTCFullYear(),
-                                          d$1.getUTCMonth()
+                                          d_1.getUTCFullYear(),
+                                          d_1.getUTCMonth()
                                         }
                                       });
                             end end)
@@ -197,7 +197,7 @@ suites_001 = --[[ :: ]]{
                             "utcWithYMD",
                             (function (param) do
                                 d = Date.UTC(1984, 4, 6);
-                                d$1 = new Date(d);
+                                d_1 = new Date(d);
                                 return --[[ Eq ]]Block.__(0, {
                                           --[[ tuple ]]{
                                             1984,
@@ -205,9 +205,9 @@ suites_001 = --[[ :: ]]{
                                             6
                                           },
                                           --[[ tuple ]]{
-                                            d$1.getUTCFullYear(),
-                                            d$1.getUTCMonth(),
-                                            d$1.getUTCDate()
+                                            d_1.getUTCFullYear(),
+                                            d_1.getUTCMonth(),
+                                            d_1.getUTCDate()
                                           }
                                         });
                               end end)
@@ -217,7 +217,7 @@ suites_001 = --[[ :: ]]{
                               "utcWithYMDH",
                               (function (param) do
                                   d = Date.UTC(1984, 4, 6, 3);
-                                  d$1 = new Date(d);
+                                  d_1 = new Date(d);
                                   return --[[ Eq ]]Block.__(0, {
                                             --[[ tuple ]]{
                                               1984,
@@ -226,10 +226,10 @@ suites_001 = --[[ :: ]]{
                                               3
                                             },
                                             --[[ tuple ]]{
-                                              d$1.getUTCFullYear(),
-                                              d$1.getUTCMonth(),
-                                              d$1.getUTCDate(),
-                                              d$1.getUTCHours()
+                                              d_1.getUTCFullYear(),
+                                              d_1.getUTCMonth(),
+                                              d_1.getUTCDate(),
+                                              d_1.getUTCHours()
                                             }
                                           });
                                 end end)
@@ -239,7 +239,7 @@ suites_001 = --[[ :: ]]{
                                 "utcWithYMDHM",
                                 (function (param) do
                                     d = Date.UTC(1984, 4, 6, 3, 59);
-                                    d$1 = new Date(d);
+                                    d_1 = new Date(d);
                                     return --[[ Eq ]]Block.__(0, {
                                               --[[ tuple ]]{
                                                 1984,
@@ -249,11 +249,11 @@ suites_001 = --[[ :: ]]{
                                                 59
                                               },
                                               --[[ tuple ]]{
-                                                d$1.getUTCFullYear(),
-                                                d$1.getUTCMonth(),
-                                                d$1.getUTCDate(),
-                                                d$1.getUTCHours(),
-                                                d$1.getUTCMinutes()
+                                                d_1.getUTCFullYear(),
+                                                d_1.getUTCMonth(),
+                                                d_1.getUTCDate(),
+                                                d_1.getUTCHours(),
+                                                d_1.getUTCMinutes()
                                               }
                                             });
                                   end end)
@@ -263,7 +263,7 @@ suites_001 = --[[ :: ]]{
                                   "utcWithYMDHMS",
                                   (function (param) do
                                       d = Date.UTC(1984, 4, 6, 3, 59, 27);
-                                      d$1 = new Date(d);
+                                      d_1 = new Date(d);
                                       return --[[ Eq ]]Block.__(0, {
                                                 --[[ tuple ]]{
                                                   1984,
@@ -274,12 +274,12 @@ suites_001 = --[[ :: ]]{
                                                   27
                                                 },
                                                 --[[ tuple ]]{
-                                                  d$1.getUTCFullYear(),
-                                                  d$1.getUTCMonth(),
-                                                  d$1.getUTCDate(),
-                                                  d$1.getUTCHours(),
-                                                  d$1.getUTCMinutes(),
-                                                  d$1.getUTCSeconds()
+                                                  d_1.getUTCFullYear(),
+                                                  d_1.getUTCMonth(),
+                                                  d_1.getUTCDate(),
+                                                  d_1.getUTCHours(),
+                                                  d_1.getUTCMinutes(),
+                                                  d_1.getUTCSeconds()
                                                 }
                                               });
                                     end end)

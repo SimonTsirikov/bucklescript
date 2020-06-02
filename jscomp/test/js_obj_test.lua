@@ -30,9 +30,9 @@ suites_000 = --[[ tuple ]]{
         CamlinternalOO.set_method(__class, say, (function (self$1, x) do
                 return 1 + x | 0;
               end end));
-        env_init = function (env$1) do
+        env_init = function (env_1) do
           self = CamlinternalOO.create_object_opt(0, __class);
-          self[env] = env$1;
+          self[env] = env_1;
           return self;
         end end;
         CamlinternalOO.init_class(__class);

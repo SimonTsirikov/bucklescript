@@ -53,15 +53,15 @@ function mul(n, param) do
         };
 end end
 
-function cmp(param, param$1) do
-  ph = param$1[1];
+function cmp(param, param_1) do
+  ph = param_1[1];
   nh = param[1];
   if (Caml_obj.caml_lessthan(nh, ph)) then do
     return -1;
   end else if (Caml_obj.caml_greaterthan(nh, ph)) then do
     return 1;
   end else do
-    pl = param$1[0];
+    pl = param_1[0];
     nl = param[0];
     if (Caml_obj.caml_lessthan(nl, pl)) then do
       return -1;
@@ -145,9 +145,9 @@ end end
 function merge(cmp, l1, l2) do
   return Caml_obj.caml_lazy_make((function (param) do
                 match = CamlinternalLazy.force(l1);
-                match$1 = CamlinternalLazy.force(l2);
-                ll2 = match$1[1];
-                x2 = match$1[0];
+                match_1 = CamlinternalLazy.force(l2);
+                ll2 = match_1[1];
+                x2 = match_1[0];
                 ll1 = match[1];
                 x1 = match[0];
                 c = Curry._2(cmp, x1, x2);

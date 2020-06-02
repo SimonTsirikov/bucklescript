@@ -16,7 +16,7 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end end
 
-Caml_splice_call$1 = { };
+Caml_splice_call_1 = { };
 
 Math.max(1);
 
@@ -64,18 +64,18 @@ dynamic({
       3
     });
 
-a$1 = {};
+a_1 = {};
 
-a$1.push(1, 2, 3, 4);
+a_1.push(1, 2, 3, 4);
 
-eq("File \"splice_test.ml\", line 51, characters 7-14", a$1, {
+eq("File \"splice_test.ml\", line 51, characters 7-14", a_1, {
       1,
       2,
       3,
       4
     });
 
-function dynamic$1(arr) do
+function dynamic_1(arr) do
   a = {};
   Caml_splice_call.spliceObjApply(a, "push", {
         1,
@@ -90,22 +90,22 @@ function dynamic$1(arr) do
                 }));
 end end
 
-dynamic$1({
+dynamic_1({
       2,
       3,
       4
     });
 
-dynamic$1({});
+dynamic_1({});
 
-dynamic$1({
+dynamic_1({
       1,
       1,
       3
     });
 
 Pipe = do
-  dynamic: dynamic$1
+  dynamic: dynamic_1
 end;
 
 function f1(c) do
@@ -126,7 +126,7 @@ Mt.from_pair_suites("splice_test.ml", suites.contents);
 exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
-exports.Caml_splice_call = Caml_splice_call$1;
+exports.Caml_splice_call = Caml_splice_call_1;
 exports.f00 = f00;
 exports.dynamic = dynamic;
 exports.Pipe = Pipe;

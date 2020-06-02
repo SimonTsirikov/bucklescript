@@ -26,7 +26,7 @@ function sub(_tr, _k) do
         end end 
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -64,7 +64,7 @@ function update(tr, k, w) do
             --[[ Lf ]]0
           };
   end else do
-    error (Caml_builtin_exceptions.not_found)
+    error(Caml_builtin_exceptions.not_found)
   end end  end 
 end end
 
@@ -91,7 +91,7 @@ function __delete(tr, n) do
       end end 
     end end 
   end else do
-    error (Caml_builtin_exceptions.not_found)
+    error(Caml_builtin_exceptions.not_found)
   end end 
 end end
 
@@ -121,7 +121,7 @@ function lorem(tr) do
               lorem(l)
             };
     end else if (tr[2]) then do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "flexible_array_test.ml",
@@ -133,7 +133,7 @@ function lorem(tr) do
       return --[[ Lf ]]0;
     end end  end 
   end else do
-    error (Caml_builtin_exceptions.not_found)
+    error(Caml_builtin_exceptions.not_found)
   end end 
 end end
 
@@ -150,7 +150,7 @@ function get(param, i) do
   if (i >= 0 and i < param[1]) then do
     return sub(param[0], i + 1 | 0);
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Array.get"
     })
@@ -165,7 +165,7 @@ function set(param, i, v) do
             k
           };
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Array.set"
     })
@@ -187,7 +187,7 @@ function pop_front(param) do
             k - 1 | 0
           };
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Array.pop_front"
     })
@@ -210,7 +210,7 @@ function pop_back(param) do
             k - 1 | 0
           };
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Array.pop_back"
     })
@@ -234,8 +234,8 @@ end end
 
 function filter_from(i, p, s) do
   u = empty;
-  for i$1 = i , length(s) - 1 | 0 , 1 do
-    ele = get(s, i$1);
+  for i_1 = i , length(s) - 1 | 0 , 1 do
+    ele = get(s, i_1);
     if (Curry._1(p, ele)) then do
       u = push_back(u, ele);
     end
@@ -245,14 +245,14 @@ function filter_from(i, p, s) do
 end end
 
 function append(a, b) do
-  empty$1 = empty;
+  empty_1 = empty;
   for i = 0 , length(a) - 1 | 0 , 1 do
-    empty$1 = push_back(empty$1, get(a, i));
+    empty_1 = push_back(empty_1, get(a, i));
   end
-  for i$1 = 0 , length(b) - 1 | 0 , 1 do
-    empty$1 = push_back(empty$1, get(b, i$1));
+  for i_1 = 0 , length(b) - 1 | 0 , 1 do
+    empty_1 = push_back(empty_1, get(b, i_1));
   end
-  return empty$1;
+  return empty_1;
 end end
 
 function sort(s) do
@@ -319,7 +319,7 @@ if (not Caml_obj.caml_equal(x, of_array({
             5,
             6
           }))) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "flexible_array_test.ml",
@@ -338,9 +338,9 @@ y = __Array.init(500, (function (i) do
         return i + 1 | 0;
       end end));
 
-x$1 = sort(of_array(v));
+x_1 = sort(of_array(v));
 
-Caml_obj.caml_equal(x$1, of_array(y));
+Caml_obj.caml_equal(x_1, of_array(y));
 
 exports.sub = sub;
 exports.update = update;

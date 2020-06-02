@@ -41,11 +41,11 @@ function remove(t, x, cmp) do
     if (c == 0) then do
       if (l ~= nil) then do
         if (r ~= nil) then do
-          v$1 = do
+          v_1 = do
             contents: r.value
           end;
-          r$1 = Belt_internalAVLset.removeMinAuxWithRef(r, v$1);
-          return Belt_internalAVLset.bal(l, v$1.contents, r$1);
+          r_1 = Belt_internalAVLset.removeMinAuxWithRef(r, v_1);
+          return Belt_internalAVLset.bal(l, v_1.contents, r_1);
         end else do
           return l;
         end end 
@@ -116,10 +116,10 @@ function splitAuxNoPivot(cmp, n, x) do
             };
     end end 
   end else if (r ~= nil) then do
-    match$1 = splitAuxNoPivot(cmp, r, x);
+    match_1 = splitAuxNoPivot(cmp, r, x);
     return --[[ tuple ]]{
-            Belt_internalAVLset.joinShared(l, v, match$1[0]),
-            match$1[1]
+            Belt_internalAVLset.joinShared(l, v, match_1[0]),
+            match_1[1]
           };
   end else do
     return --[[ tuple ]]{
@@ -154,10 +154,10 @@ function splitAuxPivot(cmp, n, x, pres) do
             };
     end end 
   end else if (r ~= nil) then do
-    match$1 = splitAuxPivot(cmp, r, x, pres);
+    match_1 = splitAuxPivot(cmp, r, x, pres);
     return --[[ tuple ]]{
-            Belt_internalAVLset.joinShared(l, v, match$1[0]),
-            match$1[1]
+            Belt_internalAVLset.joinShared(l, v, match_1[0]),
+            match_1[1]
           };
   end else do
     return --[[ tuple ]]{
@@ -209,8 +209,8 @@ function union(s1, s2, cmp) do
         l2 = s2.left;
         v2 = s2.value;
         r2 = s2.right;
-        match$1 = splitAuxNoPivot(cmp, s1, v2);
-        return Belt_internalAVLset.joinShared(union(match$1[0], l2, cmp), v2, union(match$1[1], r2, cmp));
+        match_1 = splitAuxNoPivot(cmp, s1, v2);
+        return Belt_internalAVLset.joinShared(union(match_1[0], l2, cmp), v2, union(match_1[1], r2, cmp));
       end end  end 
     end else do
       return s1;

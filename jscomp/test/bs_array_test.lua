@@ -133,13 +133,13 @@ b("File \"bs_array_test.ml\", line 33, characters 4-11", not Belt_Array.set({
           2
         }, 2, 0));
 
-v$1 = {
+v_1 = {
   1,
   2
 };
 
-if (not Belt_Array.set(v$1, 0, 0)) then do
-  error ({
+if (not Belt_Array.set(v_1, 0, 0)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_array_test.ml",
@@ -150,15 +150,15 @@ if (not Belt_Array.set(v$1, 0, 0)) then do
 end
  end 
 
-b("File \"bs_array_test.ml\", line 34, characters 4-11", Belt_Array.getExn(v$1, 0) == 0);
+b("File \"bs_array_test.ml\", line 34, characters 4-11", Belt_Array.getExn(v_1, 0) == 0);
 
-v$2 = {
+v_2 = {
   1,
   2
 };
 
-if (not Belt_Array.set(v$2, 1, 0)) then do
-  error ({
+if (not Belt_Array.set(v_2, 1, 0)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_array_test.ml",
@@ -169,21 +169,21 @@ if (not Belt_Array.set(v$2, 1, 0)) then do
 end
  end 
 
-b("File \"bs_array_test.ml\", line 35, characters 4-11", Belt_Array.getExn(v$2, 1) == 0);
+b("File \"bs_array_test.ml\", line 35, characters 4-11", Belt_Array.getExn(v_2, 1) == 0);
 
-v$3 = {
+v_3 = {
   1,
   2
 };
 
-b("File \"bs_array_test.ml\", line 36, characters 4-11", (Belt_Array.setExn(v$3, 0, 0), Belt_Array.getExn(v$3, 0) == 0));
+b("File \"bs_array_test.ml\", line 36, characters 4-11", (Belt_Array.setExn(v_3, 0, 0), Belt_Array.getExn(v_3, 0) == 0));
 
-v$4 = {
+v_4 = {
   1,
   2
 };
 
-b("File \"bs_array_test.ml\", line 37, characters 4-11", (Belt_Array.setExn(v$4, 1, 0), Belt_Array.getExn(v$4, 1) == 0));
+b("File \"bs_array_test.ml\", line 37, characters 4-11", (Belt_Array.setExn(v_4, 1, 0), Belt_Array.getExn(v_4, 1) == 0));
 
 function id(x) do
   return eq("File \"bs_array_test.ml\", line 40, characters 5-12", Js_vector.toList(Js_list.toVector(x)), x);
@@ -235,13 +235,13 @@ eq("File \"bs_array_test.ml\", line 50, characters 5-12", (Js_vector.filterInPla
       4
     });
 
-a$1 = Js_vector.init(5, (function (i) do
+a_1 = Js_vector.init(5, (function (i) do
         return i + 1 | 0;
       end end));
 
 eq("File \"bs_array_test.ml\", line 57, characters 5-12", (Js_vector.filterInPlace((function (j) do
               return j % 2 ~= 0;
-            end end), a$1), a$1), {
+            end end), a_1), a_1), {
       1,
       3,
       5
@@ -299,15 +299,15 @@ function add(x, y) do
   return x + y | 0;
 end end
 
-v$5 = Belt_Array.makeBy(3000, (function (i) do
+v_5 = Belt_Array.makeBy(3000, (function (i) do
         return i;
       end end));
 
-u = Belt_Array.shuffle(v$5);
+u = Belt_Array.shuffle(v_5);
 
-neq("File \"bs_array_test.ml\", line 77, characters 6-13", u, v$5);
+neq("File \"bs_array_test.ml\", line 77, characters 6-13", u, v_5);
 
-eq("File \"bs_array_test.ml\", line 79, characters 5-12", Belt_Array.reduce(u, 0, add), Belt_Array.reduce(v$5, 0, add));
+eq("File \"bs_array_test.ml\", line 79, characters 5-12", Belt_Array.reduce(u, 0, add), Belt_Array.reduce(v_5, 0, add));
 
 b("File \"bs_array_test.ml\", line 84, characters 4-11", Caml_obj.caml_equal(Belt_Array.range(0, 3), {
           0,
@@ -345,15 +345,15 @@ b("File \"bs_array_test.ml\", line 93, characters 4-11", Caml_obj.caml_equal(Bel
 
 b("File \"bs_array_test.ml\", line 94, characters 4-11", Caml_obj.caml_equal(Belt_Array.rangeBy(3, 3, 1), {3}));
 
-eq("File \"bs_array_test.ml\", line 99, characters 5-12", Belt_Array.reduceReverse({}, 100, (function (prim, prim$1) do
-            return prim - prim$1 | 0;
+eq("File \"bs_array_test.ml\", line 99, characters 5-12", Belt_Array.reduceReverse({}, 100, (function (prim, prim_1) do
+            return prim - prim_1 | 0;
           end end)), 100);
 
 eq("File \"bs_array_test.ml\", line 100, characters 5-12", Belt_Array.reduceReverse({
           1,
           2
-        }, 100, (function (prim, prim$1) do
-            return prim - prim$1 | 0;
+        }, 100, (function (prim, prim_1) do
+            return prim - prim_1 | 0;
           end end)), 97);
 
 eq("File \"bs_array_test.ml\", line 101, characters 5-12", Belt_Array.reduceReverse({
@@ -361,8 +361,8 @@ eq("File \"bs_array_test.ml\", line 101, characters 5-12", Belt_Array.reduceReve
           2,
           3,
           4
-        }, 100, (function (prim, prim$1) do
-            return prim - prim$1 | 0;
+        }, 100, (function (prim, prim_1) do
+            return prim - prim_1 | 0;
           end end)), 90);
 
 eq("File \"bs_array_test.ml\", line 102, characters 5-12", Belt_Array.reduceWithIndex({
@@ -391,7 +391,7 @@ end end
 
 function makeMatrixExn(sx, sy, init) do
   if (not (sx >= 0 and sy >= 0)) then do
-    error (new Error("File \"bs_array_test.ml\", line 109, characters 4-10"))
+    error(new Error("File \"bs_array_test.ml\", line 109, characters 4-10"))
   end
    end 
   res = new Array(sx);
@@ -533,19 +533,19 @@ eq("File \"bs_array_test.ml\", line 140, characters 5-12", Belt_List.toArray(--[
       3
     });
 
-v$6 = Belt_Array.makeBy(10, (function (i) do
+v_6 = Belt_Array.makeBy(10, (function (i) do
         return i;
       end end));
 
-v0 = Belt_Array.keep(v$6, (function (x) do
+v0 = Belt_Array.keep(v_6, (function (x) do
         return x % 2 == 0;
       end end));
 
-v1 = Belt_Array.keep(v$6, (function (x) do
+v1 = Belt_Array.keep(v_6, (function (x) do
         return x % 3 == 0;
       end end));
 
-v2 = Belt_Array.keepMap(v$6, (function (x) do
+v2 = Belt_Array.keepMap(v_6, (function (x) do
         if (x % 2 == 0) then do
           return x + 1 | 0;
         end
@@ -575,7 +575,7 @@ eq("File \"bs_array_test.ml\", line 149, characters 5-12", v2, {
       9
     });
 
-a$2 = {
+a_2 = {
   1,
   2,
   3,
@@ -583,7 +583,7 @@ a$2 = {
   5
 };
 
-match = Belt_Array.partition(a$2, (function (x) do
+match = Belt_Array.partition(a_2, (function (x) do
         return x % 2 == 0;
       end end));
 
@@ -598,28 +598,28 @@ eq("File \"bs_array_test.ml\", line 155, characters 5-12", match[1], {
       5
     });
 
-match$1 = Belt_Array.partition(a$2, (function (x) do
+match_1 = Belt_Array.partition(a_2, (function (x) do
         return x == 2;
       end end));
 
-eq("File \"bs_array_test.ml\", line 157, characters 5-12", match$1[0], {2});
+eq("File \"bs_array_test.ml\", line 157, characters 5-12", match_1[0], {2});
 
-eq("File \"bs_array_test.ml\", line 158, characters 5-12", match$1[1], {
+eq("File \"bs_array_test.ml\", line 158, characters 5-12", match_1[1], {
       1,
       3,
       4,
       5
     });
 
-match$2 = Belt_Array.partition({}, (function (x) do
+match_2 = Belt_Array.partition({}, (function (x) do
         return false;
       end end));
 
-eq("File \"bs_array_test.ml\", line 160, characters 5-12", match$2[0], {});
+eq("File \"bs_array_test.ml\", line 160, characters 5-12", match_2[0], {});
 
-eq("File \"bs_array_test.ml\", line 161, characters 5-12", match$2[1], {});
+eq("File \"bs_array_test.ml\", line 161, characters 5-12", match_2[1], {});
 
-a$3 = {
+a_3 = {
   1,
   2,
   3,
@@ -627,12 +627,12 @@ a$3 = {
   5
 };
 
-eq("File \"bs_array_test.ml\", line 165, characters 5-12", Belt_Array.slice(a$3, 0, 2), {
+eq("File \"bs_array_test.ml\", line 165, characters 5-12", Belt_Array.slice(a_3, 0, 2), {
       1,
       2
     });
 
-eq("File \"bs_array_test.ml\", line 166, characters 5-12", Belt_Array.slice(a$3, 0, 5), {
+eq("File \"bs_array_test.ml\", line 166, characters 5-12", Belt_Array.slice(a_3, 0, 5), {
       1,
       2,
       3,
@@ -640,7 +640,7 @@ eq("File \"bs_array_test.ml\", line 166, characters 5-12", Belt_Array.slice(a$3,
       5
     });
 
-eq("File \"bs_array_test.ml\", line 167, characters 5-12", Belt_Array.slice(a$3, 0, 15), {
+eq("File \"bs_array_test.ml\", line 167, characters 5-12", Belt_Array.slice(a_3, 0, 15), {
       1,
       2,
       3,
@@ -648,40 +648,40 @@ eq("File \"bs_array_test.ml\", line 167, characters 5-12", Belt_Array.slice(a$3,
       5
     });
 
-eq("File \"bs_array_test.ml\", line 168, characters 5-12", Belt_Array.slice(a$3, 5, 1), {});
+eq("File \"bs_array_test.ml\", line 168, characters 5-12", Belt_Array.slice(a_3, 5, 1), {});
 
-eq("File \"bs_array_test.ml\", line 169, characters 5-12", Belt_Array.slice(a$3, 4, 1), {5});
+eq("File \"bs_array_test.ml\", line 169, characters 5-12", Belt_Array.slice(a_3, 4, 1), {5});
 
-eq("File \"bs_array_test.ml\", line 170, characters 5-12", Belt_Array.slice(a$3, -1, 1), {5});
+eq("File \"bs_array_test.ml\", line 170, characters 5-12", Belt_Array.slice(a_3, -1, 1), {5});
 
-eq("File \"bs_array_test.ml\", line 171, characters 5-12", Belt_Array.slice(a$3, -1, 2), {5});
+eq("File \"bs_array_test.ml\", line 171, characters 5-12", Belt_Array.slice(a_3, -1, 2), {5});
 
-eq("File \"bs_array_test.ml\", line 172, characters 5-12", Belt_Array.slice(a$3, -2, 1), {4});
+eq("File \"bs_array_test.ml\", line 172, characters 5-12", Belt_Array.slice(a_3, -2, 1), {4});
 
-eq("File \"bs_array_test.ml\", line 173, characters 5-12", Belt_Array.slice(a$3, -2, 2), {
+eq("File \"bs_array_test.ml\", line 173, characters 5-12", Belt_Array.slice(a_3, -2, 2), {
       4,
       5
     });
 
-eq("File \"bs_array_test.ml\", line 174, characters 5-12", Belt_Array.slice(a$3, -2, 3), {
+eq("File \"bs_array_test.ml\", line 174, characters 5-12", Belt_Array.slice(a_3, -2, 3), {
       4,
       5
     });
 
-eq("File \"bs_array_test.ml\", line 175, characters 5-12", Belt_Array.slice(a$3, -10, 3), {
+eq("File \"bs_array_test.ml\", line 175, characters 5-12", Belt_Array.slice(a_3, -10, 3), {
       1,
       2,
       3
     });
 
-eq("File \"bs_array_test.ml\", line 176, characters 5-12", Belt_Array.slice(a$3, -10, 4), {
+eq("File \"bs_array_test.ml\", line 176, characters 5-12", Belt_Array.slice(a_3, -10, 4), {
       1,
       2,
       3,
       4
     });
 
-eq("File \"bs_array_test.ml\", line 177, characters 5-12", Belt_Array.slice(a$3, -10, 5), {
+eq("File \"bs_array_test.ml\", line 177, characters 5-12", Belt_Array.slice(a_3, -10, 5), {
       1,
       2,
       3,
@@ -689,7 +689,7 @@ eq("File \"bs_array_test.ml\", line 177, characters 5-12", Belt_Array.slice(a$3,
       5
     });
 
-eq("File \"bs_array_test.ml\", line 178, characters 5-12", Belt_Array.slice(a$3, -10, 6), {
+eq("File \"bs_array_test.ml\", line 178, characters 5-12", Belt_Array.slice(a_3, -10, 6), {
       1,
       2,
       3,
@@ -697,11 +697,11 @@ eq("File \"bs_array_test.ml\", line 178, characters 5-12", Belt_Array.slice(a$3,
       5
     });
 
-eq("File \"bs_array_test.ml\", line 179, characters 5-12", Belt_Array.slice(a$3, 0, 0), {});
+eq("File \"bs_array_test.ml\", line 179, characters 5-12", Belt_Array.slice(a_3, 0, 0), {});
 
-eq("File \"bs_array_test.ml\", line 180, characters 5-12", Belt_Array.slice(a$3, 0, -1), {});
+eq("File \"bs_array_test.ml\", line 180, characters 5-12", Belt_Array.slice(a_3, 0, -1), {});
 
-a$4 = {
+a_4 = {
   1,
   2,
   3,
@@ -709,7 +709,7 @@ a$4 = {
   5
 };
 
-eq("File \"bs_array_test.ml\", line 184, characters 5-12", Belt_Array.sliceToEnd(a$4, 0), {
+eq("File \"bs_array_test.ml\", line 184, characters 5-12", Belt_Array.sliceToEnd(a_4, 0), {
       1,
       2,
       3,
@@ -717,18 +717,18 @@ eq("File \"bs_array_test.ml\", line 184, characters 5-12", Belt_Array.sliceToEnd
       5
     });
 
-eq("File \"bs_array_test.ml\", line 185, characters 5-12", Belt_Array.sliceToEnd(a$4, 5), {});
+eq("File \"bs_array_test.ml\", line 185, characters 5-12", Belt_Array.sliceToEnd(a_4, 5), {});
 
-eq("File \"bs_array_test.ml\", line 186, characters 5-12", Belt_Array.sliceToEnd(a$4, 4), {5});
+eq("File \"bs_array_test.ml\", line 186, characters 5-12", Belt_Array.sliceToEnd(a_4, 4), {5});
 
-eq("File \"bs_array_test.ml\", line 187, characters 5-12", Belt_Array.sliceToEnd(a$4, -1), {5});
+eq("File \"bs_array_test.ml\", line 187, characters 5-12", Belt_Array.sliceToEnd(a_4, -1), {5});
 
-eq("File \"bs_array_test.ml\", line 188, characters 5-12", Belt_Array.sliceToEnd(a$4, -2), {
+eq("File \"bs_array_test.ml\", line 188, characters 5-12", Belt_Array.sliceToEnd(a_4, -2), {
       4,
       5
     });
 
-eq("File \"bs_array_test.ml\", line 189, characters 5-12", Belt_Array.sliceToEnd(a$4, -10), {
+eq("File \"bs_array_test.ml\", line 189, characters 5-12", Belt_Array.sliceToEnd(a_4, -10), {
       1,
       2,
       3,
@@ -736,13 +736,13 @@ eq("File \"bs_array_test.ml\", line 189, characters 5-12", Belt_Array.sliceToEnd
       5
     });
 
-a$5 = Belt_Array.makeBy(10, (function (x) do
+a_5 = Belt_Array.makeBy(10, (function (x) do
         return x;
       end end));
 
-Belt_Array.fill(a$5, 0, 3, 0);
+Belt_Array.fill(a_5, 0, 3, 0);
 
-eq("File \"bs_array_test.ml\", line 194, characters 6-13", a$5.slice(0), {
+eq("File \"bs_array_test.ml\", line 194, characters 6-13", a_5.slice(0), {
       0,
       0,
       0,
@@ -755,9 +755,9 @@ eq("File \"bs_array_test.ml\", line 194, characters 6-13", a$5.slice(0), {
       9
     });
 
-Belt_Array.fill(a$5, 2, 8, 1);
+Belt_Array.fill(a_5, 2, 8, 1);
 
-eq("File \"bs_array_test.ml\", line 196, characters 5-12", a$5.slice(0), {
+eq("File \"bs_array_test.ml\", line 196, characters 5-12", a_5.slice(0), {
       0,
       0,
       1,
@@ -770,9 +770,9 @@ eq("File \"bs_array_test.ml\", line 196, characters 5-12", a$5.slice(0), {
       1
     });
 
-Belt_Array.fill(a$5, 8, 1, 9);
+Belt_Array.fill(a_5, 8, 1, 9);
 
-eq("File \"bs_array_test.ml\", line 198, characters 5-12", a$5.slice(0), {
+eq("File \"bs_array_test.ml\", line 198, characters 5-12", a_5.slice(0), {
       0,
       0,
       1,
@@ -785,9 +785,9 @@ eq("File \"bs_array_test.ml\", line 198, characters 5-12", a$5.slice(0), {
       1
     });
 
-Belt_Array.fill(a$5, 8, 2, 9);
+Belt_Array.fill(a_5, 8, 2, 9);
 
-eq("File \"bs_array_test.ml\", line 200, characters 5-12", a$5.slice(0), {
+eq("File \"bs_array_test.ml\", line 200, characters 5-12", a_5.slice(0), {
       0,
       0,
       1,
@@ -800,9 +800,9 @@ eq("File \"bs_array_test.ml\", line 200, characters 5-12", a$5.slice(0), {
       9
     });
 
-Belt_Array.fill(a$5, 8, 3, 12);
+Belt_Array.fill(a_5, 8, 3, 12);
 
-eq("File \"bs_array_test.ml\", line 202, characters 5-12", a$5.slice(0), {
+eq("File \"bs_array_test.ml\", line 202, characters 5-12", a_5.slice(0), {
       0,
       0,
       1,
@@ -815,9 +815,9 @@ eq("File \"bs_array_test.ml\", line 202, characters 5-12", a$5.slice(0), {
       12
     });
 
-Belt_Array.fill(a$5, -2, 3, 11);
+Belt_Array.fill(a_5, -2, 3, 11);
 
-eq("File \"bs_array_test.ml\", line 204, characters 5-12", a$5.slice(0), {
+eq("File \"bs_array_test.ml\", line 204, characters 5-12", a_5.slice(0), {
       0,
       0,
       1,
@@ -830,9 +830,9 @@ eq("File \"bs_array_test.ml\", line 204, characters 5-12", a$5.slice(0), {
       11
     });
 
-Belt_Array.fill(a$5, -3, 3, 10);
+Belt_Array.fill(a_5, -3, 3, 10);
 
-eq("File \"bs_array_test.ml\", line 206, characters 5-12", a$5.slice(0), {
+eq("File \"bs_array_test.ml\", line 206, characters 5-12", a_5.slice(0), {
       0,
       0,
       1,
@@ -845,9 +845,9 @@ eq("File \"bs_array_test.ml\", line 206, characters 5-12", a$5.slice(0), {
       10
     });
 
-Belt_Array.fill(a$5, -3, 1, 7);
+Belt_Array.fill(a_5, -3, 1, 7);
 
-eq("File \"bs_array_test.ml\", line 208, characters 5-12", a$5.slice(0), {
+eq("File \"bs_array_test.ml\", line 208, characters 5-12", a_5.slice(0), {
       0,
       0,
       1,
@@ -860,9 +860,9 @@ eq("File \"bs_array_test.ml\", line 208, characters 5-12", a$5.slice(0), {
       10
     });
 
-Belt_Array.fill(a$5, -13, 1, 7);
+Belt_Array.fill(a_5, -13, 1, 7);
 
-eq("File \"bs_array_test.ml\", line 210, characters 5-12", a$5.slice(0), {
+eq("File \"bs_array_test.ml\", line 210, characters 5-12", a_5.slice(0), {
       7,
       0,
       1,
@@ -875,31 +875,31 @@ eq("File \"bs_array_test.ml\", line 210, characters 5-12", a$5.slice(0), {
       10
     });
 
-Belt_Array.fill(a$5, -13, 12, 7);
+Belt_Array.fill(a_5, -13, 12, 7);
 
-eq("File \"bs_array_test.ml\", line 212, characters 5-12", a$5.slice(0), Belt_Array.make(10, 7));
+eq("File \"bs_array_test.ml\", line 212, characters 5-12", a_5.slice(0), Belt_Array.make(10, 7));
 
-Belt_Array.fill(a$5, 0, -1, 2);
+Belt_Array.fill(a_5, 0, -1, 2);
 
-eq("File \"bs_array_test.ml\", line 214, characters 5-12", a$5.slice(0), Belt_Array.make(10, 7));
+eq("File \"bs_array_test.ml\", line 214, characters 5-12", a_5.slice(0), Belt_Array.make(10, 7));
 
-b$1 = {
+b_1 = {
   1,
   2,
   3
 };
 
-Belt_Array.fill(b$1, 0, 0, 0);
+Belt_Array.fill(b_1, 0, 0, 0);
 
-eq("File \"bs_array_test.ml\", line 217, characters 5-12", b$1, {
+eq("File \"bs_array_test.ml\", line 217, characters 5-12", b_1, {
       1,
       2,
       3
     });
 
-Belt_Array.fill(b$1, 4, 1, 0);
+Belt_Array.fill(b_1, 4, 1, 0);
 
-eq("File \"bs_array_test.ml\", line 219, characters 5-12", b$1, {
+eq("File \"bs_array_test.ml\", line 219, characters 5-12", b_1, {
       1,
       2,
       3
@@ -1118,8 +1118,8 @@ eq("File \"bs_array_test.ml\", line 258, characters 5-12", Belt_Array.zipBy({
           1,
           2,
           3
-        }, (function (prim, prim$1) do
-            return prim - prim$1 | 0;
+        }, (function (prim, prim_1) do
+            return prim - prim_1 | 0;
           end end)), {
       1,
       1,
@@ -1135,8 +1135,8 @@ eq("File \"bs_array_test.ml\", line 259, characters 5-12", Belt_Array.zipBy({
           3,
           4,
           1
-        }, (function (prim, prim$1) do
-            return prim - prim$1 | 0;
+        }, (function (prim, prim_1) do
+            return prim - prim_1 | 0;
           end end)), Belt_Array.map({
           1,
           1,
@@ -1220,11 +1220,11 @@ b("File \"bs_array_test.ml\", line 273, characters 4-11", not Belt_Array.some({
 b("File \"bs_array_test.ml\", line 274, characters 4-11", not Belt_Array.eq({
           0,
           1
-        }, {1}, (function (prim, prim$1) do
-            return prim == prim$1;
+        }, {1}, (function (prim, prim_1) do
+            return prim == prim_1;
           end end)));
 
-c$1 = do
+c_1 = do
   contents: 0
 end;
 
@@ -1233,31 +1233,31 @@ b("File \"bs_array_test.ml\", line 275, characters 4-11", (Belt_Array.forEachWit
             1,
             1
           }, (function (i, v) do
-              c$1.contents = (c$1.contents + i | 0) + v | 0;
+              c_1.contents = (c_1.contents + i | 0) + v | 0;
               return --[[ () ]]0;
-            end end)), c$1.contents == 6));
+            end end)), c_1.contents == 6));
 
-function id$1(loc, x) do
+function id_1(loc, x) do
   u = x.slice(0);
   return eq("File \"bs_array_test.ml\", line 285, characters 5-12", Belt_Array.reverse(x), (Belt_Array.reverseInPlace(u), u));
 end end
 
-id$1("File \"bs_array_test.ml\", line 290, characters 5-12", {});
+id_1("File \"bs_array_test.ml\", line 290, characters 5-12", {});
 
-id$1("File \"bs_array_test.ml\", line 291, characters 5-12", {1});
+id_1("File \"bs_array_test.ml\", line 291, characters 5-12", {1});
 
-id$1("File \"bs_array_test.ml\", line 292, characters 5-12", {
+id_1("File \"bs_array_test.ml\", line 292, characters 5-12", {
       1,
       2
     });
 
-id$1("File \"bs_array_test.ml\", line 293, characters 5-12", {
+id_1("File \"bs_array_test.ml\", line 293, characters 5-12", {
       1,
       2,
       3
     });
 
-id$1("File \"bs_array_test.ml\", line 294, characters 5-12", {
+id_1("File \"bs_array_test.ml\", line 294, characters 5-12", {
       1,
       2,
       3,
@@ -1266,17 +1266,17 @@ id$1("File \"bs_array_test.ml\", line 294, characters 5-12", {
 
 function every2(xs, ys) do
   partial_arg = Belt_List.toArray(ys);
-  partial_arg$1 = Belt_List.toArray(xs);
+  partial_arg_1 = Belt_List.toArray(xs);
   return (function (param) do
-      return Belt_Array.every2(partial_arg$1, partial_arg, param);
+      return Belt_Array.every2(partial_arg_1, partial_arg, param);
     end end);
 end end
 
 function some2(xs, ys) do
   partial_arg = Belt_List.toArray(ys);
-  partial_arg$1 = Belt_List.toArray(xs);
+  partial_arg_1 = Belt_List.toArray(xs);
   return (function (param) do
-      return Belt_Array.some2(partial_arg$1, partial_arg, param);
+      return Belt_Array.some2(partial_arg_1, partial_arg, param);
     end end);
 end end
 
@@ -1605,5 +1605,5 @@ exports.add = add;
 exports.addone = addone;
 exports.makeMatrixExn = makeMatrixExn;
 exports.sumUsingForEach = sumUsingForEach;
-exports.id = id$1;
+exports.id = id_1;
 --[[  Not a pure module ]]

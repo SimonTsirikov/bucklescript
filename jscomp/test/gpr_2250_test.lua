@@ -62,10 +62,10 @@ function create(param) do
               return self$1[data];
             end end)
         });
-    env_init = function (env$1) do
+    env_init = function (env_1) do
       self = CamlinternalOO.create_object_opt(0, __class);
       self[data] = 0;
-      self[env] = env$1;
+      self[env] = env_1;
       return self;
     end end;
     CamlinternalOO.init_class(__class);
@@ -85,11 +85,11 @@ eq("File \"gpr_2250_test.ml\", line 26, characters 5-12", result, 1);
 
 cxt2 = create(--[[ () ]]0);
 
-tmp$1 = Caml_oo_curry.js2(4846113, 3, cxt2, --[[ () ]]0);
+tmp_1 = Caml_oo_curry.js2(4846113, 3, cxt2, --[[ () ]]0);
 
-tmp$2 = Caml_oo_curry.js2(4846113, 4, tmp$1, --[[ () ]]0);
+tmp_2 = Caml_oo_curry.js2(4846113, 4, tmp_1, --[[ () ]]0);
 
-result2 = Caml_oo_curry.js2(5144726, 5, tmp$2, --[[ () ]]0);
+result2 = Caml_oo_curry.js2(5144726, 5, tmp_2, --[[ () ]]0);
 
 eq("File \"gpr_2250_test.ml\", line 37, characters 5-12", result2, 2);
 

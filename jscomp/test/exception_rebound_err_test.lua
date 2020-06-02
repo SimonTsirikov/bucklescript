@@ -42,7 +42,7 @@ function test_js_error4(param) do
   xpcall(function() do
     JSON.parse(" {\"x\"}");
     return 1;
-  end end,function(raw_e) return do
+  end end,function(raw_e) do
     e = Caml_js_exceptions.internalToOCamlException(raw_e);
     if (e == Caml_builtin_exceptions.not_found) then do
       return 2;
@@ -69,11 +69,11 @@ end end
 function f(g) do
   xpcall(function() do
     return Curry._1(g, --[[ () ]]0);
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return 1;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end

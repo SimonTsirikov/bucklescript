@@ -70,7 +70,7 @@ function getExn(_n, x) do
         ::continue:: ;
       end end 
     end else do
-      error (new Error("getExn"))
+      error(new Error("getExn"))
     end end 
   end;
 end end
@@ -123,8 +123,8 @@ function remove(n, x) do
           vr = do
             contents: r.value
           end;
-          r$1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
-          return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r$1);
+          r_1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
+          return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r_1);
         end else do
           return l;
         end end 
@@ -168,11 +168,11 @@ function splitAux(x, n) do
             };
     end end 
   end else if (r ~= nil) then do
-    match$1 = splitAux(x, r);
+    match_1 = splitAux(x, r);
     return --[[ tuple ]]{
-            Belt_internalAVLtree.join(l, v, d, match$1[0]),
-            match$1[1],
-            match$1[2]
+            Belt_internalAVLtree.join(l, v, d, match_1[0]),
+            match_1[1],
+            match_1[2]
           };
   end else do
     return --[[ tuple ]]{
@@ -217,8 +217,8 @@ function mergeU(s1, s2, f) do
     v2 = s2.key;
     d2 = s2.value;
     r2 = s2.right;
-    match$1 = split(v2, s1);
-    return Belt_internalAVLtree.concatOrJoin(mergeU(match$1[0], l2, f), v2, f(v2, match$1[1], Caml_option.some(d2)), mergeU(match$1[2], r2, f));
+    match_1 = split(v2, s1);
+    return Belt_internalAVLtree.concatOrJoin(mergeU(match_1[0], l2, f), v2, f(v2, match_1[1], Caml_option.some(d2)), mergeU(match_1[2], r2, f));
   end else do
     return --[[ assert false ]]0;
   end end 
@@ -332,8 +332,8 @@ function fromArray(xs) do
   if (len == 0) then do
     return nil;
   end else do
-    next = Belt_SortArray.strictlySortedLengthU(xs, (function (param, param$1) do
-            return param[0] < param$1[0];
+    next = Belt_SortArray.strictlySortedLengthU(xs, (function (param, param_1) do
+            return param[0] < param_1[0];
           end end));
     result;
     if (next >= 0) then do

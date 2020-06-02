@@ -148,7 +148,7 @@ function getExn(_n, x) do
         ::continue:: ;
       end end 
     end else do
-      error (new Error("getExn"))
+      error(new Error("getExn"))
     end end 
   end;
 end end

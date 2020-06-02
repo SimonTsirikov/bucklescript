@@ -108,7 +108,7 @@ let str_of_ident (cxt : t) (id : Ident.t)  : string * t  =
     (if i == 0 then 
        name 
      else
-       Printf.sprintf "%s$%d" name i), new_cxt 
+       Printf.sprintf "%s_%d" name i), new_cxt 
 
 let ident (cxt : t) f (id : Ident.t) : t  =
   let str, cxt = str_of_ident cxt id in

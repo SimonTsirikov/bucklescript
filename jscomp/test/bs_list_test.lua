@@ -1019,8 +1019,8 @@ b("File \"bs_list_test.ml\", line 182, characters 4-11", Belt_List.hasAssoc(--[[
               --[[ [] ]]0
             }
           }
-        }, 2, (function (prim, prim$1) do
-            return prim == prim$1;
+        }, 2, (function (prim, prim_1) do
+            return prim == prim_1;
           end end)));
 
 b("File \"bs_list_test.ml\", line 183, characters 4-11", not Belt_List.hasAssoc(--[[ :: ]]{
@@ -1041,8 +1041,8 @@ b("File \"bs_list_test.ml\", line 183, characters 4-11", not Belt_List.hasAssoc(
               --[[ [] ]]0
             }
           }
-        }, 4, (function (prim, prim$1) do
-            return prim == prim$1;
+        }, 4, (function (prim, prim_1) do
+            return prim == prim_1;
           end end)));
 
 b("File \"bs_list_test.ml\", line 184, characters 4-11", Belt_List.hasAssoc(--[[ :: ]]{
@@ -1085,8 +1085,8 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[[ :: ]]{
               --[[ [] ]]0
             }
           }
-        }, 3, (function (prim, prim$1) do
-            return prim == prim$1;
+        }, 3, (function (prim, prim_1) do
+            return prim == prim_1;
           end end)), --[[ :: ]]{
       --[[ tuple ]]{
         1,
@@ -1119,8 +1119,8 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[[ :: ]]{
               --[[ [] ]]0
             }
           }
-        }, 1, (function (prim, prim$1) do
-            return prim == prim$1;
+        }, 1, (function (prim, prim_1) do
+            return prim == prim_1;
           end end)), --[[ :: ]]{
       --[[ tuple ]]{
         2,
@@ -1153,8 +1153,8 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[[ :: ]]{
               --[[ [] ]]0
             }
           }
-        }, 2, (function (prim, prim$1) do
-            return prim == prim$1;
+        }, 2, (function (prim, prim_1) do
+            return prim == prim_1;
           end end)), --[[ :: ]]{
       --[[ tuple ]]{
         1,
@@ -1187,8 +1187,8 @@ eq("REMOVEASSOQ", Belt_List.removeAssoc(--[[ :: ]]{
               --[[ [] ]]0
             }
           }
-        }, 0, (function (prim, prim$1) do
-            return prim == prim$1;
+        }, 0, (function (prim, prim_1) do
+            return prim == prim_1;
           end end)), --[[ :: ]]{
       --[[ tuple ]]{
         1,
@@ -1331,8 +1331,8 @@ ll0 = Belt_List.removeAssoc(ll, 0, eqx);
 
 b("File \"bs_list_test.ml\", line 196, characters 5-12", ll == ll0);
 
-ll1 = Belt_List.setAssoc(ll, 2, "22", (function (prim, prim$1) do
-        return prim == prim$1;
+ll1 = Belt_List.setAssoc(ll, 2, "22", (function (prim, prim_1) do
+        return prim == prim_1;
       end end));
 
 eq("File \"bs_list_test.ml\", line 198, characters 5-12", ll1, --[[ :: ]]{
@@ -1355,8 +1355,8 @@ eq("File \"bs_list_test.ml\", line 198, characters 5-12", ll1, --[[ :: ]]{
       }
     });
 
-ll2 = Belt_List.setAssoc(ll1, 22, "2", (function (prim, prim$1) do
-        return prim == prim$1;
+ll2 = Belt_List.setAssoc(ll1, 22, "2", (function (prim, prim_1) do
+        return prim == prim_1;
       end end));
 
 b("File \"bs_list_test.ml\", line 200, characters 4-11", Caml_obj.caml_equal(ll2, --[[ :: ]]{
@@ -1387,8 +1387,8 @@ b("File \"bs_list_test.ml\", line 202, characters 4-11", Caml_obj.caml_equal(Bel
                   --[[ [] ]]0
                 }
               }
-            }, 2, "x", (function (prim, prim$1) do
-                return prim == prim$1;
+            }, 2, "x", (function (prim, prim_1) do
+                return prim == prim_1;
               end end)), --[[ :: ]]{
           --[[ tuple ]]{
             1,
@@ -1421,8 +1421,8 @@ b("File \"bs_list_test.ml\", line 204, characters 4-11", Caml_obj.caml_equal(Bel
                 },
                 --[[ [] ]]0
               }
-            }, 2, "2", (function (prim, prim$1) do
-                return prim == prim$1;
+            }, 2, "2", (function (prim, prim_1) do
+                return prim == prim_1;
               end end)), --[[ :: ]]{
           --[[ tuple ]]{
             2,
@@ -1443,8 +1443,8 @@ b("File \"bs_list_test.ml\", line 204, characters 4-11", Caml_obj.caml_equal(Bel
           }
         }));
 
-eq("File \"bs_list_test.ml\", line 206, characters 5-12", Belt_List.setAssoc(--[[ [] ]]0, 1, "1", (function (prim, prim$1) do
-            return prim == prim$1;
+eq("File \"bs_list_test.ml\", line 206, characters 5-12", Belt_List.setAssoc(--[[ [] ]]0, 1, "1", (function (prim, prim_1) do
+            return prim == prim_1;
           end end)), --[[ :: ]]{
       --[[ tuple ]]{
         1,
@@ -1461,8 +1461,8 @@ eq("File \"bs_list_test.ml\", line 208, characters 5-12", Belt_List.setAssoc(--[
             "2"
           },
           --[[ [] ]]0
-        }, 1, "1", (function (prim, prim$1) do
-            return prim == prim$1;
+        }, 1, "1", (function (prim, prim_1) do
+            return prim == prim_1;
           end end)), --[[ :: ]]{
       --[[ tuple ]]{
         1,
@@ -1483,8 +1483,8 @@ eq("File \"bs_list_test.ml\", line 210, characters 5-12", Belt_List.setAssoc(--[
             },
             --[[ [] ]]0
           }
-        }, 1, "1", (function (prim, prim$1) do
-            return prim == prim$1;
+        }, 1, "1", (function (prim, prim_1) do
+            return prim == prim_1;
           end end)), --[[ :: ]]{
       --[[ tuple ]]{
         0,
@@ -1517,8 +1517,8 @@ b("File \"bs_list_test.ml\", line 211, characters 4-11", Caml_obj.caml_equal(Bel
                   --[[ [] ]]0
                 }
               }
-            }, 2, (function (prim, prim$1) do
-                return prim == prim$1;
+            }, 2, (function (prim, prim_1) do
+                return prim == prim_1;
               end end)), "b"));
 
 b("File \"bs_list_test.ml\", line 212, characters 4-11", Belt_List.getAssoc(--[[ :: ]]{
@@ -1539,8 +1539,8 @@ b("File \"bs_list_test.ml\", line 212, characters 4-11", Belt_List.getAssoc(--[[
               --[[ [] ]]0
             }
           }
-        }, 4, (function (prim, prim$1) do
-            return prim == prim$1;
+        }, 4, (function (prim, prim_1) do
+            return prim == prim_1;
           end end)) == undefined);
 
 eq("File \"bs_list_test.ml\", line 216, characters 5-12", --[[ tuple ]]{
@@ -1652,8 +1652,8 @@ eq("File \"bs_list_test.ml\", line 245, characters 5-12", Belt_List.reduceRevers
 
 eq("File \"bs_list_test.ml\", line 247, characters 5-12", Belt_List.reduceReverse(Belt_List.makeBy(10000, (function (i) do
                 return i;
-              end end)), 0, (function (prim, prim$1) do
-            return prim + prim$1 | 0;
+              end end)), 0, (function (prim, prim_1) do
+            return prim + prim_1 | 0;
           end end)), 49995000);
 
 eq("File \"bs_list_test.ml\", line 252, characters 5-12", sum2(length_10_id, length_10_id), 90);
@@ -1795,8 +1795,8 @@ b("File \"bs_list_test.ml\", line 272, characters 4-11", Belt_List.reduceReverse
               }
             }
           }
-        }, 0, (function (prim, prim$1) do
-            return prim + prim$1 | 0;
+        }, 0, (function (prim, prim_1) do
+            return prim + prim_1 | 0;
           end end)) == 10);
 
 b("File \"bs_list_test.ml\", line 273, characters 4-11", Belt_List.reduceReverse(--[[ :: ]]{
@@ -1811,8 +1811,8 @@ b("File \"bs_list_test.ml\", line 273, characters 4-11", Belt_List.reduceReverse
               }
             }
           }
-        }, 10, (function (prim, prim$1) do
-            return prim - prim$1 | 0;
+        }, 10, (function (prim, prim_1) do
+            return prim - prim_1 | 0;
           end end)) == 0);
 
 b("File \"bs_list_test.ml\", line 274, characters 4-11", Caml_obj.caml_equal(Belt_List.reduceReverse(--[[ :: ]]{
@@ -1853,8 +1853,8 @@ b("File \"bs_list_test.ml\", line 275, characters 4-11", Belt_List.reduce(--[[ :
               }
             }
           }
-        }, 0, (function (prim, prim$1) do
-            return prim + prim$1 | 0;
+        }, 0, (function (prim, prim_1) do
+            return prim + prim_1 | 0;
           end end)) == 10);
 
 b("File \"bs_list_test.ml\", line 276, characters 4-11", Belt_List.reduce(--[[ :: ]]{
@@ -1869,8 +1869,8 @@ b("File \"bs_list_test.ml\", line 276, characters 4-11", Belt_List.reduce(--[[ :
               }
             }
           }
-        }, 10, (function (prim, prim$1) do
-            return prim - prim$1 | 0;
+        }, 10, (function (prim, prim_1) do
+            return prim - prim_1 | 0;
           end end)) == 0);
 
 b("File \"bs_list_test.ml\", line 277, characters 4-11", Caml_obj.caml_equal(Belt_List.reduce(--[[ :: ]]{
@@ -1934,13 +1934,13 @@ b("File \"bs_list_test.ml\", line 279, characters 4-11", Belt_List.reduceReverse
             return (acc + x | 0) + y | 0;
           end end)) == 6);
 
-a$1 = Belt_List.makeBy(10000, (function (i) do
+a_1 = Belt_List.makeBy(10000, (function (i) do
         return i;
       end end));
 
-b("File \"bs_list_test.ml\", line 282, characters 4-11", Belt_List.reduceReverse2(a$1, --[[ :: ]]{
+b("File \"bs_list_test.ml\", line 282, characters 4-11", Belt_List.reduceReverse2(a_1, --[[ :: ]]{
           0,
-          a$1
+          a_1
         }, 0, (function (acc, x, y) do
             return (acc + x | 0) + y | 0;
           end end)) == 99980001);
@@ -2445,8 +2445,8 @@ b("File \"bs_list_test.ml\", line 340, characters 4-11", not Belt_List.eq(--[[ :
               }
             }
           }
-        }, (function (prim, prim$1) do
-            return prim == prim$1;
+        }, (function (prim, prim_1) do
+            return prim == prim_1;
           end end)));
 
 u0 = Belt_List.makeBy(20, (function (x) do

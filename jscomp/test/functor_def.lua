@@ -6,9 +6,9 @@ v = do
   contents: 0
 end;
 
-function f(x, x$1) do
+function f(x, x_1) do
   v.contents = v.contents + 1 | 0;
-  return x$1 + x$1 | 0;
+  return x_1 + x_1 | 0;
 end end
 
 function __return(param) do
@@ -16,9 +16,9 @@ function __return(param) do
 end end
 
 function Make(U) do
-  h = function (x, x$1) do
-    console.log(f(x$1, x$1));
-    return Curry._2(U.say, x$1, x$1);
+  h = function (x, x_1) do
+    console.log(f(x_1, x_1));
+    return Curry._2(U.say, x_1, x_1);
   end end;
   return do
           h: h

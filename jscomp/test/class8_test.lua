@@ -12,7 +12,7 @@ shared = {
   "value"
 };
 
-shared$1 = {"repr"};
+shared_1 = {"repr"};
 
 suites = do
   contents: --[[ [] ]]0
@@ -45,7 +45,7 @@ function money_init(__class) do
   ids = CamlinternalOO.new_methods_variables(__class, {
         "value",
         "leq"
-      }, shared$1);
+      }, shared_1);
   value = ids[0];
   leq = ids[1];
   repr = ids[2];
@@ -61,12 +61,12 @@ function money_init(__class) do
             return self$2[repr] <= Caml_oo_curry.js1(834174833, 1, p);
           end end)
       });
-  return (function (env, self, x$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[x] = x$1;
-      Curry._1(obj_init, self$1);
-      self$1[repr] = x$1;
-      return CamlinternalOO.run_initializers_opt(self, self$1, __class);
+  return (function (env, self, x_1) do
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[x] = x_1;
+      Curry._1(obj_init, self_1);
+      self_1[repr] = x_1;
+      return CamlinternalOO.run_initializers_opt(self, self_1, __class);
     end end);
 end end
 
@@ -75,7 +75,7 @@ money = CamlinternalOO.make_class(shared, money_init);
 function money2_init(__class) do
   x = CamlinternalOO.new_variable(__class, "");
   times = CamlinternalOO.get_method_label(__class, "times");
-  inh = CamlinternalOO.inherits(__class, shared$1, 0, shared, money, true);
+  inh = CamlinternalOO.inherits(__class, shared_1, 0, shared, money, true);
   obj_init = inh[0];
   repr = inh[1];
   CamlinternalOO.set_method(__class, times, (function (self$3, k) do
@@ -83,11 +83,11 @@ function money2_init(__class) do
           copy[repr] = k * self$3[repr];
           return copy;
         end end));
-  return (function (env, self, x$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[x] = x$1;
-      Curry._2(obj_init, self$1, x$1);
-      return CamlinternalOO.run_initializers_opt(self, self$1, __class);
+  return (function (env, self, x_1) do
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[x] = x_1;
+      Curry._2(obj_init, self_1, x_1);
+      return CamlinternalOO.run_initializers_opt(self, self_1, __class);
     end end);
 end end
 
@@ -109,9 +109,9 @@ tmp = min(Curry._2(money[0], 0, 1.0), Curry._2(money[0], 0, 3.0));
 
 eq("File \"class8_test.ml\", line 30, characters 5-12", 1, Caml_oo_curry.js1(834174833, 3, tmp));
 
-tmp$1 = min(Curry._2(money2[0], 0, 5.0), Curry._2(money2[0], 0, 3));
+tmp_1 = min(Curry._2(money2[0], 0, 5.0), Curry._2(money2[0], 0, 3));
 
-eq("File \"class8_test.ml\", line 35, characters 5-12", 3, Caml_oo_curry.js1(834174833, 4, tmp$1));
+eq("File \"class8_test.ml\", line 35, characters 5-12", 3, Caml_oo_curry.js1(834174833, 4, tmp_1));
 
 Mt.from_pair_suites("Class8_test", suites.contents);
 

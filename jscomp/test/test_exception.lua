@@ -7,29 +7,29 @@ Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 Local = Caml_exceptions.create("Test_exception.Local");
 
 function f(param) do
-  error ({
+  error({
     Local,
     3
   })
 end end
 
 function g(param) do
-  error (Caml_builtin_exceptions.not_found)
+  error(Caml_builtin_exceptions.not_found)
 end end
 
 function h(param) do
-  error ({
+  error({
     Test_common.U,
     3
   })
 end end
 
 function x(param) do
-  error (Test_common.H)
+  error(Test_common.H)
 end end
 
 function xx(param) do
-  error ({
+  error({
     Caml_builtin_exceptions.invalid_argument,
     "x"
   })

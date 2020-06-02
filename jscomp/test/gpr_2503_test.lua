@@ -15,8 +15,8 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end end
 
-function b(loc, b$1) do
-  return Mt.bool_suites(test_id, suites, loc, b$1);
+function b(loc, b_1) do
+  return Mt.bool_suites(test_id, suites, loc, b_1);
 end end
 
 function makeWrapper(foo, param) do
@@ -81,12 +81,12 @@ end end
 function makeWrapper4(foo, param) do
   console.log(2);
   tmp = { };
-  tmp$1 = foo > 100 and undefined or (
+  tmp_1 = foo > 100 and undefined or (
       foo > 10 and --[[ b ]]98 or --[[ a ]]97
     );
-  if (tmp$1 ~= undefined) then do
+  if (tmp_1 ~= undefined) then do
     tmp.foo = (function () do
-          local ___conditional___=(Caml_option.valFromOption(tmp$1));
+          local ___conditional___=(Caml_option.valFromOption(tmp_1));
           do
              if ___conditional___ = 97 then do
                 return "a";end end end 

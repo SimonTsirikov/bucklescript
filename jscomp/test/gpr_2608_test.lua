@@ -33,10 +33,10 @@ end
 huntGrootCondition2 = true;
 
 if (List.length(--[[ [] ]]0) < 0) then do
-  x$1 = List.filter((function (h) do
+  x_1 = List.filter((function (h) do
             return List.hd(--[[ [] ]]0) <= 1000;
           end end))(oppHeroes);
-  huntGrootCondition2 = List.length(x$1) == 0;
+  huntGrootCondition2 = List.length(x_1) == 0;
 end
  end 
 

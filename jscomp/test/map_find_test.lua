@@ -40,13 +40,13 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Map.bal"
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Map.bal"
       })
@@ -62,13 +62,13 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Map.bal"
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Map.bal"
       })
@@ -141,7 +141,7 @@ function find(x, _param) do
         ::continue:: ;
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -174,7 +174,7 @@ m = List.fold_left((function (acc, param) do
       }
     });
 
-function height$1(param) do
+function height_1(param) do
   if (param) then do
     return param[--[[ h ]]4];
   end else do
@@ -182,9 +182,9 @@ function height$1(param) do
   end end 
 end end
 
-function create$1(l, x, d, r) do
-  hl = height$1(l);
-  hr = height$1(r);
+function create_1(l, x, d, r) do
+  hl = height_1(l);
+  hr = height_1(r);
   return --[[ Node ]]{
           --[[ l ]]l,
           --[[ v ]]x,
@@ -194,7 +194,7 @@ function create$1(l, x, d, r) do
         };
 end end
 
-function bal$1(l, x, d, r) do
+function bal_1(l, x, d, r) do
   hl = l and l[--[[ h ]]4] or 0;
   hr = r and r[--[[ h ]]4] or 0;
   if (hl > (hr + 2 | 0)) then do
@@ -203,18 +203,18 @@ function bal$1(l, x, d, r) do
       ld = l[--[[ d ]]2];
       lv = l[--[[ v ]]1];
       ll = l[--[[ l ]]0];
-      if (height$1(ll) >= height$1(lr)) then do
-        return create$1(ll, lv, ld, create$1(lr, x, d, r));
+      if (height_1(ll) >= height_1(lr)) then do
+        return create_1(ll, lv, ld, create_1(lr, x, d, r));
       end else if (lr) then do
-        return create$1(create$1(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create$1(lr[--[[ r ]]3], x, d, r));
+        return create_1(create_1(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create_1(lr[--[[ r ]]3], x, d, r));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Map.bal"
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Map.bal"
       })
@@ -225,18 +225,18 @@ function bal$1(l, x, d, r) do
       rd = r[--[[ d ]]2];
       rv = r[--[[ v ]]1];
       rl = r[--[[ l ]]0];
-      if (height$1(rr) >= height$1(rl)) then do
-        return create$1(create$1(l, x, d, rl), rv, rd, rr);
+      if (height_1(rr) >= height_1(rl)) then do
+        return create_1(create_1(l, x, d, rl), rv, rd, rr);
       end else if (rl) then do
-        return create$1(create$1(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create$1(rl[--[[ r ]]3], rv, rd, rr));
+        return create_1(create_1(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create_1(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Map.bal"
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Map.bal"
       })
@@ -252,7 +252,7 @@ function bal$1(l, x, d, r) do
   end end  end 
 end end
 
-function add$1(x, data, m) do
+function add_1(x, data, m) do
   if (m) then do
     r = m[--[[ r ]]3];
     d = m[--[[ d ]]2];
@@ -272,18 +272,18 @@ function add$1(x, data, m) do
               };
       end end 
     end else if (c < 0) then do
-      ll = add$1(x, data, l);
+      ll = add_1(x, data, l);
       if (l == ll) then do
         return m;
       end else do
-        return bal$1(ll, v, d, r);
+        return bal_1(ll, v, d, r);
       end end 
     end else do
-      rr = add$1(x, data, r);
+      rr = add_1(x, data, r);
       if (r == rr) then do
         return m;
       end else do
-        return bal$1(l, v, d, rr);
+        return bal_1(l, v, d, rr);
       end end 
     end end  end 
   end else do
@@ -297,7 +297,7 @@ function add$1(x, data, m) do
   end end 
 end end
 
-function find$1(x, _param) do
+function find_1(x, _param) do
   while(true) do
     param = _param;
     if (param) then do
@@ -309,13 +309,13 @@ function find$1(x, _param) do
         ::continue:: ;
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
 
 s = List.fold_left((function (acc, param) do
-        return add$1(param[0], param[1], acc);
+        return add_1(param[0], param[1], acc);
       end end), --[[ Empty ]]0, --[[ :: ]]{
       --[[ tuple ]]{
         "10",
@@ -357,7 +357,7 @@ Mt.from_pair_suites("Map_find_test", --[[ :: ]]{
           "string",
           (function (param) do
               return --[[ Eq ]]Block.__(0, {
-                        find$1("10", s),
+                        find_1("10", s),
                         --[[ "a" ]]97
                       });
             end end)

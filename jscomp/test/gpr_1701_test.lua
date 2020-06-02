@@ -9,16 +9,16 @@ Foo = Caml_exceptions.create("Gpr_1701_test.Foo");
 
 function test(n) do
   if (n == 0) then do
-    error (Foo)
+    error(Foo)
   end
    end 
   xpcall(function() do
     return test(n - 1 | 0);
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Foo) then do
       return --[[ () ]]0;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -32,11 +32,11 @@ function read_lines(inc) do
     match;
     xpcall(function() do
       match = Pervasives.input_line(inc);
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.end_of_file) then do
         match = undefined;
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
     if (match ~= undefined) then do
@@ -58,11 +58,11 @@ function read_lines2(inc) do
     l;
     xpcall(function() do
       l = Pervasives.input_line(inc);
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.end_of_file) then do
         return List.rev(acc);
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
     _acc = --[[ :: ]]{
@@ -81,11 +81,11 @@ function read_lines3(inc) do
                   l,
                   acc
                 });
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.end_of_file) then do
         return List.rev(acc);
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
@@ -95,7 +95,7 @@ end end
 function fff(f, x) do
   xpcall(function() do
     return fff(f, x);
-  end end,function(exn) return do
+  end end,function(exn) do
     return x + 1 | 0;
   end end)
 end end

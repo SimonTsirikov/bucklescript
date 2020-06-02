@@ -10,13 +10,13 @@ function f0(x) do
         return x + 1 | 0;
       end end);
   end else do
-    error (Caml_builtin_exceptions.not_found)
+    error(Caml_builtin_exceptions.not_found)
   end end 
   return tmp(3);
 end end
 
 function f1(x) do
-  error (Caml_builtin_exceptions.not_found)
+  error(Caml_builtin_exceptions.not_found)
   return Curry._1(undefined, x);
 end end
 
@@ -42,7 +42,7 @@ function f3(x) do
           end end);end else 
      do end end end end end
     else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
       end end
       
   end

@@ -20,9 +20,9 @@ function __finally(v, action, f) do
   e;
   xpcall(function() do
     e = Curry._1(f, v);
-  end end,function(e$1) return do
+  end end,function(e_1) do
     Curry._1(action, v);
-    error (e$1)
+    error(e_1)
   end end)
   Curry._1(action, v);
   return e;
@@ -47,35 +47,35 @@ function is_pos_pow(n) do
     _c = 0;
     _n = n;
     while(true) do
-      n$1 = _n;
+      n_1 = _n;
       c = _c;
-      if (n$1 <= 0) then do
+      if (n_1 <= 0) then do
         return -2;
-      end else if (n$1 == 1) then do
+      end else if (n_1 == 1) then do
         return c;
-      end else if ((n$1 & 1) == 0) then do
-        _n = (n$1 >> 1);
+      end else if ((n_1 & 1) == 0) then do
+        _n = (n_1 >> 1);
         _c = c + 1 | 0;
         ::continue:: ;
       end else do
-        error (E)
+        error(E)
       end end  end  end 
     end;
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == E) then do
       return -1;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
 
 function failwithf(loc, fmt) do
   return Format.ksprintf((function (s) do
-                s$1 = loc .. s;
-                error ({
+                s_1 = loc .. s;
+                error({
                   Caml_builtin_exceptions.failure,
-                  s$1
+                  s_1
                 })
               end end), fmt);
 end end
@@ -86,7 +86,7 @@ end end
 
 function bad_argf(fmt) do
   return Format.ksprintf((function (x) do
-                error ({
+                error({
                   Arg.Bad,
                   x
                 })
@@ -102,10 +102,10 @@ function dump(r) do
         n = _n;
         acc = _acc;
         if (n ~= 0) then do
-          n$1 = n - 1 | 0;
-          _n = n$1;
+          n_1 = n - 1 | 0;
+          _n = n_1;
           _acc = --[[ :: ]]{
-            r[n$1],
+            r[n_1],
             acc
           };
           ::continue:: ;
@@ -154,18 +154,18 @@ function dump(r) do
       end else if (t == Obj.closure_tag) then do
         return "<closure>";
       end else if (t == Obj.object_tag) then do
-        fields$1 = get_fields(--[[ [] ]]0, s);
+        fields_1 = get_fields(--[[ [] ]]0, s);
         match;
-        if (fields$1) then do
-          match$1 = fields$1[1];
-          if (match$1) then do
+        if (fields_1) then do
+          match_1 = fields_1[1];
+          if (match_1) then do
             match = --[[ tuple ]]{
-              fields$1[0],
-              match$1[0],
-              match$1[1]
+              fields_1[0],
+              match_1[0],
+              match_1[1]
             };
           end else do
-            error ({
+            error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
                 "ext_pervasives_test.ml",
@@ -175,7 +175,7 @@ function dump(r) do
             })
           end end 
         end else do
-          error ({
+          error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
               "ext_pervasives_test.ml",
@@ -190,8 +190,8 @@ function dump(r) do
       end else if (t == Obj.forward_tag) then do
         return "<forward>";
       end else if (t < Obj.no_scan_tag) then do
-        fields$2 = get_fields(--[[ [] ]]0, s);
-        return "Tag" .. (String(t) .. (" (" .. (__String.concat(", ", List.map(dump, fields$2)) .. ")")));
+        fields_2 = get_fields(--[[ [] ]]0, s);
+        return "Tag" .. (String(t) .. (" (" .. (__String.concat(", ", List.map(dump, fields_2)) .. ")")));
       end else if (t == Obj.string_tag) then do
         return "\"" .. (__String.escaped(r) .. "\"");
       end else if (t == Obj.double_tag) then do
@@ -228,13 +228,13 @@ function dump(r) do
         return "<" .. (name .. ">");
       end end  end  end  end  end  end  end  end  end  end  end  end 
     end else do
-      fields$3 = get_fields(--[[ [] ]]0, s);
-      return "(" .. (__String.concat(", ", List.map(dump, fields$3)) .. ")");
+      fields_3 = get_fields(--[[ [] ]]0, s);
+      return "(" .. (__String.concat(", ", List.map(dump, fields_3)) .. ")");
     end end  end 
   end end 
 end end
 
-dump$1 = dump;
+dump_1 = dump;
 
 function pp_any(fmt, v) do
   return Curry._1(Format.fprintf(fmt, --[[ Format ]]{
@@ -252,7 +252,7 @@ function pp_any(fmt, v) do
                         })
                     }),
                   "@[%s@]"
-                }), dump$1(v));
+                }), dump_1(v));
 end end
 
 function hash_variant(s) do
@@ -275,7 +275,7 @@ exports.is_pos_pow = is_pos_pow;
 exports.failwithf = failwithf;
 exports.invalid_argf = invalid_argf;
 exports.bad_argf = bad_argf;
-exports.dump = dump$1;
+exports.dump = dump_1;
 exports.pp_any = pp_any;
 exports.hash_variant = hash_variant;
 --[[ Format Not a pure module ]]

@@ -35,13 +35,13 @@ function Make(Ord) do
         end else if (lr) then do
           return create(create(ll, lv, lr[0]), lr[1], create(lr[2], v, r));
         end else do
-          error ({
+          error({
             Caml_builtin_exceptions.invalid_argument,
             "Set.bal"
           })
         end end  end 
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Set.bal"
         })
@@ -56,13 +56,13 @@ function Make(Ord) do
         end else if (rl) then do
           return create(create(l, v, rl[0]), rl[1], create(rl[2], rv, rr));
         end else do
-          error ({
+          error({
             Caml_builtin_exceptions.invalid_argument,
             "Set.bal"
           })
         end end  end 
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Set.bal"
         })
@@ -151,7 +151,7 @@ function Make(Ord) do
           return param[1];
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -167,7 +167,7 @@ function Make(Ord) do
           return param[1];
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -180,7 +180,7 @@ function Make(Ord) do
         return param[2];
       end end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Set.remove_min_elt"
       })
@@ -228,11 +228,11 @@ function Make(Ord) do
                 join(match[2], v, r)
               };
       end else do
-        match$1 = split(x, r);
+        match_1 = split(x, r);
         return --[[ tuple ]]{
-                join(l, v, match$1[0]),
-                match$1[1],
-                match$1[2]
+                join(l, v, match_1[0]),
+                match_1[1],
+                match_1[2]
               };
       end end  end 
     end else do
@@ -300,8 +300,8 @@ function Make(Ord) do
         end else if (h1 == 1) then do
           return add(v1, s2);
         end else do
-          match$1 = split(v2, s1);
-          return join(union(match$1[0], s2[0]), v2, union(match$1[2], s2[2]));
+          match_1 = split(v2, s1);
+          return join(union(match_1[0], s2[0]), v2, union(match_1[2], s2[2]));
         end end  end 
       end else do
         return s1;
@@ -522,9 +522,9 @@ function Make(Ord) do
       lf = match[1];
       lt = match[0];
       pv = Curry._1(p, v);
-      match$1 = partition(p, param[2]);
-      rf = match$1[1];
-      rt = match$1[0];
+      match_1 = partition(p, param[2]);
+      rf = match_1[1];
+      rt = match_1[0];
       if (pv) then do
         return --[[ tuple ]]{
                 join(lt, v, rt),
@@ -582,7 +582,7 @@ function Make(Ord) do
           ::continue:: ;
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -632,10 +632,10 @@ function Make(Ord) do
              end end else 
          if ___conditional___ = 3 then do
             if (l) then do
-              match$1 = l[1];
-              if (match$1) then do
-                match$2 = match$1[1];
-                if (match$2) then do
+              match_1 = l[1];
+              if (match_1) then do
+                match_2 = match_1[1];
+                if (match_2) then do
                   return --[[ tuple ]]{
                           --[[ Node ]]{
                             --[[ Node ]]{
@@ -644,16 +644,16 @@ function Make(Ord) do
                               --[[ Empty ]]0,
                               1
                             },
-                            match$1[0],
+                            match_1[0],
                             --[[ Node ]]{
                               --[[ Empty ]]0,
-                              match$2[0],
+                              match_2[0],
                               --[[ Empty ]]0,
                               1
                             },
                             2
                           },
-                          match$2[1]
+                          match_2[1]
                         };
                 end
                  end 
@@ -667,16 +667,16 @@ function Make(Ord) do
           
       end
       nl = n / 2 | 0;
-      match$3 = sub(nl, l);
-      l$1 = match$3[1];
-      if (l$1) then do
-        match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
+      match_3 = sub(nl, l);
+      l_1 = match_3[1];
+      if (l_1) then do
+        match_4 = sub((n - nl | 0) - 1 | 0, l_1[1]);
         return --[[ tuple ]]{
-                create(match$3[0], l$1[0], match$4[0]),
-                match$4[1]
+                create(match_3[0], l_1[0], match_4[0]),
+                match_4[1]
               };
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.assert_failure,
           --[[ tuple ]]{
             "test_set.ml",
@@ -693,19 +693,19 @@ function Make(Ord) do
       match = l[1];
       x0 = l[0];
       if (match) then do
-        match$1 = match[1];
+        match_1 = match[1];
         x1 = match[0];
-        if (match$1) then do
-          match$2 = match$1[1];
-          x2 = match$1[0];
-          if (match$2) then do
-            match$3 = match$2[1];
-            x3 = match$2[0];
-            if (match$3) then do
-              if (match$3[1]) then do
+        if (match_1) then do
+          match_2 = match_1[1];
+          x2 = match_1[0];
+          if (match_2) then do
+            match_3 = match_2[1];
+            x3 = match_2[0];
+            if (match_3) then do
+              if (match_3[1]) then do
                 return of_sorted_list(List.sort_uniq(Ord.compare, l));
               end else do
-                return add(match$3[0], add(x3, add(x2, add(x1, singleton(x0)))));
+                return add(match_3[0], add(x3, add(x2, add(x1, singleton(x0)))));
               end end 
             end else do
               return add(x3, add(x2, add(x1, singleton(x0))));

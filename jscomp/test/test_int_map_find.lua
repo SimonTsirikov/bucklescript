@@ -38,13 +38,13 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Map.bal"
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Map.bal"
       })
@@ -60,13 +60,13 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Map.bal"
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Map.bal"
       })

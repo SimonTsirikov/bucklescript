@@ -201,13 +201,13 @@ vvv = Js_list.filter((function (x) do
 
 eq("File \"js_list_test.ml\", line 31, characters 7-14", Js_list.length(vvv), 10000);
 
-function f$1(x) do
+function f_1(x) do
   return Caml_int32.imul(x, 10);
 end end
 
 eq("File \"js_list_test.ml\", line 32, characters 7-14", true, Js_list.equal((function (x, y) do
             return x == y;
-          end end), vvv, Js_vector.toList(Js_vector.init(10000, f$1))));
+          end end), vvv, Js_vector.toList(Js_vector.init(10000, f_1))));
 
 Mt.from_pair_suites("Js_list_test", suites.contents);
 

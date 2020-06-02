@@ -27,11 +27,11 @@ function split(x, tree) do
               Set_gen.internal_join(match[2], v, r)
             };
     end else do
-      match$1 = split(x, r);
+      match_1 = split(x, r);
       return --[[ tuple ]]{
-              Set_gen.internal_join(l, v, match$1[0]),
-              match$1[1],
-              match$1[2]
+              Set_gen.internal_join(l, v, match_1[0]),
+              match_1[1],
+              match_1[2]
             };
     end end  end 
   end else do
@@ -83,8 +83,8 @@ function union(s1, s2) do
       end else if (h1 == 1) then do
         return add(v1, s2);
       end else do
-        match$1 = split(v2, s1);
-        return Set_gen.internal_join(union(match$1[0], s2[0]), v2, union(match$1[2], s2[2]));
+        match_1 = split(v2, s1);
+        return Set_gen.internal_join(union(match_1[0], s2[0]), v2, union(match_1[2], s2[2]));
       end end  end 
     end else do
       return s1;
@@ -240,7 +240,7 @@ function find(x, _tree) do
         ::continue:: ;
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -250,19 +250,19 @@ function of_list(l) do
     match = l[1];
     x0 = l[0];
     if (match) then do
-      match$1 = match[1];
+      match_1 = match[1];
       x1 = match[0];
-      if (match$1) then do
-        match$2 = match$1[1];
-        x2 = match$1[0];
-        if (match$2) then do
-          match$3 = match$2[1];
-          x3 = match$2[0];
-          if (match$3) then do
-            if (match$3[1]) then do
+      if (match_1) then do
+        match_2 = match_1[1];
+        x2 = match_1[0];
+        if (match_2) then do
+          match_3 = match_2[1];
+          x3 = match_2[0];
+          if (match_3) then do
+            if (match_3[1]) then do
               return Set_gen.of_sorted_list(List.sort_uniq(__String.compare, l));
             end else do
-              return add(match$3[0], add(x3, add(x2, add(x1, Set_gen.singleton(x0)))));
+              return add(match_3[0], add(x3, add(x2, add(x1, Set_gen.singleton(x0)))));
             end end 
           end else do
             return add(x3, add(x2, add(x1, Set_gen.singleton(x0))));

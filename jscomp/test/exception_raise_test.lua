@@ -22,7 +22,7 @@ function appf(g, x) do
   A = Caml_exceptions.create("A");
   xpcall(function() do
     return Curry._1(g, x);
-  end end,function(raw_exn) return do
+  end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn == Local) then do
       return 3;
@@ -33,11 +33,11 @@ function appf(g, x) do
     end else if (exn[0] == B) then do
       match = exn[1];
       if (match) then do
-        match$1 = match[1];
-        if (match$1) then do
-          match$2 = match$1[1];
-          if (match$2) then do
-            return match$2[0];
+        match_1 = match[1];
+        if (match_1) then do
+          match_2 = match_1[1];
+          if (match_2) then do
+            return match_2[0];
           end else do
             return 4;
           end end 
@@ -63,7 +63,7 @@ f;
 
 xpcall(function() do
   f = (function () {throw (new Error ("x"))} ());
-end end,function(raw_exn) return do
+end end,function(raw_exn) do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   f = exn[0] == A and exn[1] or 2;
 end end)
@@ -72,30 +72,30 @@ ff;
 
 xpcall(function() do
   ff = (function () {throw 3} ());
-end end,function(raw_exn$1) return do
-  exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-  ff = exn$1[0] == A and exn$1[1] or 2;
+end end,function(raw_exn_1) do
+  exn_1 = Caml_js_exceptions.internalToOCamlException(raw_exn_1);
+  ff = exn_1[0] == A and exn_1[1] or 2;
 end end)
 
 fff;
 
 xpcall(function() do
   fff = (function () {throw 2} ());
-end end,function(raw_exn$2) return do
-  exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
-  fff = exn$2[0] == A and exn$2[1] or 2;
+end end,function(raw_exn_2) do
+  exn_2 = Caml_js_exceptions.internalToOCamlException(raw_exn_2);
+  fff = exn_2[0] == A and exn_2[1] or 2;
 end end)
 
 a0;
 
 xpcall(function() do
   a0 = (function (){throw 2} ());
-end end,function(raw_exn$3) return do
-  exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
-  if (exn$3[0] == A or exn$3[0] == Js_exn.__Error) then do
-    a0 = exn$3[1];
+end end,function(raw_exn_3) do
+  exn_3 = Caml_js_exceptions.internalToOCamlException(raw_exn_3);
+  if (exn_3[0] == A or exn_3[0] == Js_exn.__Error) then do
+    a0 = exn_3[1];
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "exception_raise_test.ml",
@@ -110,7 +110,7 @@ a1;
 
 xpcall(function() do
   a1 = (function (){throw 2} ());
-end end,function(raw_e) return do
+end end,function(raw_e) do
   a1 = Caml_js_exceptions.internalToOCamlException(raw_e);
 end end)
 
@@ -118,8 +118,8 @@ a2;
 
 xpcall(function() do
   a2 = (function (){throw (new Error("x"))} ());
-end end,function(raw_e$1) return do
-  a2 = Caml_js_exceptions.internalToOCamlException(raw_e$1);
+end end,function(raw_e_1) do
+  a2 = Caml_js_exceptions.internalToOCamlException(raw_e_1);
 end end)
 
 suites = do
@@ -153,7 +153,7 @@ suites = do
                         2
                       });
             end else do
-              error ({
+              error({
                 Caml_builtin_exceptions.assert_failure,
                 --[[ tuple ]]{
                   "exception_raise_test.ml",
@@ -179,23 +179,23 @@ end end
 
 xpcall(function() do
   (function (_)dothrow 2end(--[[ () ]]0));
-end end,function(raw_e$2) return do
-  e = Caml_js_exceptions.internalToOCamlException(raw_e$2);
+end end,function(raw_e_2) do
+  e = Caml_js_exceptions.internalToOCamlException(raw_e_2);
   eq("File \"exception_raise_test.ml\", line 131, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e) ~= undefined, true);
 end end)
 
 xpcall(function() do
-  error (Caml_builtin_exceptions.not_found)
-end end,function(raw_e$3) return do
-  e$1 = Caml_js_exceptions.internalToOCamlException(raw_e$3);
-  eq("File \"exception_raise_test.ml\", line 138, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e$1) ~= undefined, false);
+  error(Caml_builtin_exceptions.not_found)
+end end,function(raw_e_3) do
+  e_1 = Caml_js_exceptions.internalToOCamlException(raw_e_3);
+  eq("File \"exception_raise_test.ml\", line 138, characters 7-14", Caml_js_exceptions.caml_as_js_exn(e_1) ~= undefined, false);
 end end)
 
 function fff0(x, g) do
   val;
   xpcall(function() do
     val = Curry._1(x, --[[ () ]]0);
-  end end,function(exn) return do
+  end end,function(exn) do
     return 1;
   end end)
   return Curry._1(g, --[[ () ]]0);
@@ -207,7 +207,7 @@ function input_lines(ic, _acc) do
     line;
     xpcall(function() do
       line = Pervasives.input_line(ic);
-    end end,function(exn) return do
+    end end,function(exn) do
       return List.rev(acc);
     end end)
     _acc = --[[ :: ]]{

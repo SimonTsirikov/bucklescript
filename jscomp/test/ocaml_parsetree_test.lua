@@ -50,7 +50,7 @@ bs_vscode;
 xpcall(function() do
   Caml_sys.caml_sys_getenv("BS_VSCODE");
   bs_vscode = true;
-end end,function(exn) return do
+end end,function(exn) do
   bs_vscode = false;
 end end)
 
@@ -63,7 +63,7 @@ Fatal_error = Caml_exceptions.create("Ocaml_parsetree_test.Misc.Fatal_error");
 function fatal_error(msg) do
   Pervasives.prerr_string(">> Fatal error: ");
   console.error(msg);
-  error (Fatal_error)
+  error(Fatal_error)
 end end
 
 function create_hashtable(size, init) do
@@ -188,7 +188,7 @@ function style_of_tag(s) do
         return cur_styles.contents.warning;end end end 
      do
     else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
       end end
       
   end
@@ -201,7 +201,7 @@ end;
 function set_color_tag_handling(ppf) do
   functions = Format.pp_get_formatter_tag_functions(ppf, --[[ () ]]0);
   partial_arg = functions.mark_open_tag;
-  partial_arg$1 = functions.mark_close_tag;
+  partial_arg_1 = functions.mark_close_tag;
   functions$prime_mark_open_tag = function (param) do
     or_else = partial_arg;
     s = param;
@@ -212,16 +212,16 @@ function set_color_tag_handling(ppf) do
       end else do
         return "";
       end end 
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return Curry._1(or_else, s);
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
   functions$prime_mark_close_tag = function (param) do
-    or_else = partial_arg$1;
+    or_else = partial_arg_1;
     s = param;
     xpcall(function() do
       style_of_tag(s);
@@ -233,11 +233,11 @@ function set_color_tag_handling(ppf) do
       end else do
         return "";
       end end 
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return Curry._1(or_else, s);
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
@@ -598,7 +598,7 @@ function letter(param) do
               };end end end 
      do
     else do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "warnings.ml",
@@ -660,25 +660,25 @@ function parse_opt(error, active, flags, s) do
   get_range = function (i) do
     match = get_num(0, i);
     n1 = match[1];
-    i$1 = match[0];
-    if ((i$1 + 2 | 0) < #s and Caml_string.get(s, i$1) == --[[ "." ]]46 and Caml_string.get(s, i$1 + 1 | 0) == --[[ "." ]]46) then do
-      match$1 = get_num(0, i$1 + 2 | 0);
-      n2 = match$1[1];
+    i_1 = match[0];
+    if ((i_1 + 2 | 0) < #s and Caml_string.get(s, i_1) == --[[ "." ]]46 and Caml_string.get(s, i_1 + 1 | 0) == --[[ "." ]]46) then do
+      match_1 = get_num(0, i_1 + 2 | 0);
+      n2 = match_1[1];
       if (n2 < n1) then do
-        error ({
+        error({
           Arg.Bad,
           "Ill-formed list of warnings"
         })
       end
        end 
       return --[[ tuple ]]{
-              match$1[0],
+              match_1[0],
               n1,
               n2
             };
     end else do
       return --[[ tuple ]]{
-              i$1,
+              i_1,
               n1,
               n1
             };
@@ -694,7 +694,7 @@ function parse_opt(error, active, flags, s) do
         if (c >= 65) then do
           if (c >= 97) then do
             if (c >= 123) then do
-              error ({
+              error({
                 Arg.Bad,
                 "Ill-formed list of warnings"
               })
@@ -705,7 +705,7 @@ function parse_opt(error, active, flags, s) do
             ::continue:: ;
           end else do
             if (c >= 91) then do
-              error ({
+              error({
                 Arg.Bad,
                 "Ill-formed list of warnings"
               })
@@ -719,7 +719,7 @@ function parse_opt(error, active, flags, s) do
           if (c >= 64) then do
             return loop_letter_num(set_all, i + 1 | 0);
           end else do
-            error ({
+            error({
               Arg.Bad,
               "Ill-formed list of warnings"
             })
@@ -730,7 +730,7 @@ function parse_opt(error, active, flags, s) do
              if ___conditional___ = 0 then do
                 return loop_letter_num(set, i + 1 | 0);end end end 
              if ___conditional___ = 1 then do
-                error ({
+                error({
                   Arg.Bad,
                   "Ill-formed list of warnings"
                 })end end end 
@@ -740,7 +740,7 @@ function parse_opt(error, active, flags, s) do
             
           end
         end else do
-          error ({
+          error({
             Arg.Bad,
             "Ill-formed list of warnings"
           })
@@ -750,7 +750,7 @@ function parse_opt(error, active, flags, s) do
   end end;
   loop_letter_num = function (myset, i) do
     if (i >= #s) then do
-      error ({
+      error({
         Arg.Bad,
         "Ill-formed list of warnings"
       })
@@ -760,7 +760,7 @@ function parse_opt(error, active, flags, s) do
     if (match >= 65) then do
       if (match >= 97) then do
         if (match >= 123) then do
-          error ({
+          error({
             Arg.Bad,
             "Ill-formed list of warnings"
           })
@@ -770,7 +770,7 @@ function parse_opt(error, active, flags, s) do
         return loop(i + 1 | 0);
       end else do
         if (match >= 91) then do
-          error ({
+          error({
             Arg.Bad,
             "Ill-formed list of warnings"
           })
@@ -781,17 +781,17 @@ function parse_opt(error, active, flags, s) do
       end end 
     end else do
       if (match > 57 or match < 48) then do
-        error ({
+        error({
           Arg.Bad,
           "Ill-formed list of warnings"
         })
       end
        end 
-      match$1 = get_range(i);
-      for n = match$1[1] , Caml_primitive.caml_int_min(match$1[2], 104) , 1 do
+      match_1 = get_range(i);
+      for n = match_1[1] , Caml_primitive.caml_int_min(match_1[2], 104) , 1 do
         Curry._1(myset, n);
       end
-      return loop(match$1[0]);
+      return loop(match_1[0]);
     end end 
   end end;
   return loop(0);
@@ -885,7 +885,7 @@ function message(param) do
               return "the method " .. (lab .. " is overridden.");
             end end 
           end else do
-            error ({
+            error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
                 "warnings.ml",
@@ -895,35 +895,35 @@ function message(param) do
             })
           end end end end end 
        if ___conditional___ = 3--[[ Partial_match ]] then do
-          s$1 = param[0];
-          if (s$1 == "") then do
+          s_1 = param[0];
+          if (s_1 == "") then do
             return "this pattern-matching is not exhaustive.";
           end else do
-            return "this pattern-matching is not exhaustive.\nHere is an example of a value that is not matched:\n" .. s$1;
+            return "this pattern-matching is not exhaustive.\nHere is an example of a value that is not matched:\n" .. s_1;
           end end end end end 
        if ___conditional___ = 4--[[ Non_closed_record_pattern ]] then do
           return "the following labels are not bound in this record pattern:\n" .. (param[0] .. "\nEither bind these labels explicitly or add '; _' to the pattern.");end end end 
        if ___conditional___ = 5--[[ Instance_variable_override ]] then do
-          match$1 = param[0];
-          if (match$1) then do
-            slist$1 = match$1[1];
-            lab$1 = match$1[0];
-            if (slist$1) then do
+          match_1 = param[0];
+          if (match_1) then do
+            slist_1 = match_1[1];
+            lab_1 = match_1[0];
+            if (slist_1) then do
               return __String.concat(" ", --[[ :: ]]{
                           "the following instance variables are overridden by the class",
                           --[[ :: ]]{
-                            lab$1,
+                            lab_1,
                             --[[ :: ]]{
                               ":\n ",
-                              slist$1
+                              slist_1
                             }
                           }
                         }) .. "\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)";
             end else do
-              return "the instance variable " .. (lab$1 .. " is overridden.\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)");
+              return "the instance variable " .. (lab_1 .. " is overridden.\nThe behaviour changed in ocaml 3.10 (previous behaviour was hiding.)");
             end end 
           end else do
-            error ({
+            error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
                 "warnings.ml",
@@ -1013,34 +1013,34 @@ function message(param) do
        if ___conditional___ = 20--[[ Unused_ancestor ]] then do
           return "unused ancestor variable " .. (param[0] .. ".");end end end 
        if ___conditional___ = 21--[[ Unused_constructor ]] then do
-          s$2 = param[0];
+          s_2 = param[0];
           if (param[1]) then do
-            return "constructor " .. (s$2 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
+            return "constructor " .. (s_2 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
           end else if (param[2]) then do
-            return "constructor " .. (s$2 .. " is never used to build values.\nIts type is exported as a private type.");
+            return "constructor " .. (s_2 .. " is never used to build values.\nIts type is exported as a private type.");
           end else do
-            return "unused constructor " .. (s$2 .. ".");
+            return "unused constructor " .. (s_2 .. ".");
           end end  end end end end 
        if ___conditional___ = 22--[[ Unused_extension ]] then do
-          s$3 = param[0];
+          s_3 = param[0];
           if (param[1]) then do
-            return "extension constructor " .. (s$3 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
+            return "extension constructor " .. (s_3 .. " is never used to build values.\n(However, this constructor appears in patterns.)");
           end else if (param[2]) then do
-            return "extension constructor " .. (s$3 .. " is never used to build values.\nIt is exported or rebound as a private extension.");
+            return "extension constructor " .. (s_3 .. " is never used to build values.\nIt is exported or rebound as a private extension.");
           end else do
-            return "unused extension constructor " .. (s$3 .. ".");
+            return "unused extension constructor " .. (s_3 .. ".");
           end end  end end end end 
        if ___conditional___ = 23--[[ Name_out_of_scope ]] then do
-          slist$2 = param[1];
+          slist_2 = param[1];
           ty = param[0];
-          if (slist$2 and not slist$2[1] and not param[2]) then do
-            return slist$2[0] .. (" was selected from type " .. (ty .. ".\nIt is not visible in the current scope, and will not \nbe selected if the type becomes unknown."));
+          if (slist_2 and not slist_2[1] and not param[2]) then do
+            return slist_2[0] .. (" was selected from type " .. (ty .. ".\nIt is not visible in the current scope, and will not \nbe selected if the type becomes unknown."));
           end
            end 
           if (param[2]) then do
-            return "this record of type " .. (ty .. (" contains fields that are \nnot visible in the current scope: " .. (__String.concat(" ", slist$2) .. ".\nThey will not be selected if the type becomes unknown.")));
+            return "this record of type " .. (ty .. (" contains fields that are \nnot visible in the current scope: " .. (__String.concat(" ", slist_2) .. ".\nThey will not be selected if the type becomes unknown.")));
           end else do
-            error ({
+            error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
                 "warnings.ml",
@@ -1050,15 +1050,15 @@ function message(param) do
             })
           end end end else 
        if ___conditional___ = 24--[[ Ambiguous_name ]] then do
-          slist$3 = param[0];
-          if (slist$3 and not slist$3[1] and not param[2]) then do
-            return slist$3[0] .. (" belongs to several types: " .. (__String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong."));
+          slist_3 = param[0];
+          if (slist_3 and not slist_3[1] and not param[2]) then do
+            return slist_3[0] .. (" belongs to several types: " .. (__String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong."));
           end
            end 
           if (param[2]) then do
             return "these field labels belong to several types: " .. (__String.concat(" ", param[1]) .. "\nThe first one was selected. Please disambiguate if this is wrong.");
           end else do
-            error ({
+            error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
                 "warnings.ml",
@@ -1288,7 +1288,7 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
   Format.pp_print_flush(ppf, --[[ () ]]0);
   pos0 = -lb.lex_abs_pos | 0;
   if (pos0 < 0) then do
-    error (Pervasives.Exit)
+    error(Pervasives.Exit)
   end
    end 
   lines = num_loc_lines.contents;
@@ -1299,7 +1299,7 @@ function highlight_terminfo(ppf, num_lines, lb, locs) do
      end 
   end
   if (lines >= (num_lines - 2 | 0)) then do
-    error (Pervasives.Exit)
+    error(Pervasives.Exit)
   end
    end 
   Caml_io.caml_ml_flush(Pervasives.stdout);
@@ -1340,7 +1340,7 @@ end end
 function highlight_dumb(ppf, lb, loc) do
   pos0 = -lb.lex_abs_pos | 0;
   if (pos0 < 0) then do
-    error (Pervasives.Exit)
+    error(Pervasives.Exit)
   end
    end 
   end_pos = (lb.lex_buffer_len - pos0 | 0) - 1 | 0;
@@ -1388,20 +1388,20 @@ function highlight_dumb(ppf, lb, loc) do
   Format.pp_print_string(ppf, "  ");
   line = 0;
   pos_at_bol = 0;
-  for pos$1 = 0 , end_pos , 1 do
-    c = Caml_bytes.get(lb.lex_buffer, pos$1 + pos0 | 0);
+  for pos_1 = 0 , end_pos , 1 do
+    c = Caml_bytes.get(lb.lex_buffer, pos_1 + pos0 | 0);
     if (c ~= 10) then do
       if (c ~= 13) then do
         if (line == line_start and line == line_end) then do
           Format.pp_print_char(ppf, c);
         end else if (line == line_start) then do
-          if (pos$1 < loc.loc_start.pos_cnum) then do
+          if (pos_1 < loc.loc_start.pos_cnum) then do
             Format.pp_print_char(ppf, --[[ "." ]]46);
           end else do
             Format.pp_print_char(ppf, c);
           end end 
         end else if (line == line_end) then do
-          if (pos$1 < loc.loc_end.pos_cnum) then do
+          if (pos_1 < loc.loc_end.pos_cnum) then do
             Format.pp_print_char(ppf, c);
           end else do
             Format.pp_print_char(ppf, --[[ "." ]]46);
@@ -1427,7 +1427,7 @@ function highlight_dumb(ppf, lb, loc) do
         for _i = pos_at_bol , loc.loc_start.pos_cnum - 1 | 0 , 1 do
           Format.pp_print_char(ppf, --[[ " " ]]32);
         end
-        for _i$1 = loc.loc_start.pos_cnum , loc.loc_end.pos_cnum - 1 | 0 , 1 do
+        for _i_1 = loc.loc_start.pos_cnum , loc.loc_end.pos_cnum - 1 | 0 , 1 do
           Format.pp_print_char(ppf, --[[ "^" ]]94);
         end
       end
@@ -1440,14 +1440,14 @@ function highlight_dumb(ppf, lb, loc) do
                 }),
               "@."
             });
-        if (pos$1 < loc.loc_end.pos_cnum) then do
+        if (pos_1 < loc.loc_end.pos_cnum) then do
           Format.pp_print_string(ppf, "  ");
         end
          end 
       end
        end 
       line = line + 1 | 0;
-      pos_at_bol = pos$1 + 1 | 0;
+      pos_at_bol = pos_1 + 1 | 0;
     end end 
   end
   return --[[ () ]]0;
@@ -1458,16 +1458,16 @@ function highlight_locations(ppf, locs) do
     match = status.contents;
     if (typeof match == "number") then do
       if (match ~= 0) then do
-        match$1 = input_lexbuf.contents;
-        if (match$1 ~= undefined) then do
+        match_1 = input_lexbuf.contents;
+        if (match_1 ~= undefined) then do
           norepeat;
           xpcall(function() do
             norepeat = Caml_sys.caml_sys_getenv("TERM") == "norepeat";
-          end end,function(exn) return do
+          end end,function(exn) do
             if (exn == Caml_builtin_exceptions.not_found) then do
               norepeat = false;
             end else do
-              error (exn)
+              error(exn)
             end end 
           end end)
           if (norepeat) then do
@@ -1475,13 +1475,13 @@ function highlight_locations(ppf, locs) do
           end else do
             loc1 = List.hd(locs);
             xpcall(function() do
-              highlight_dumb(ppf, match$1, loc1);
+              highlight_dumb(ppf, match_1, loc1);
               return true;
-            end end,function(exn$1) return do
-              if (exn$1 == Pervasives.Exit) then do
+            end end,function(exn_1) do
+              if (exn_1 == Pervasives.Exit) then do
                 return false;
               end else do
-                error (exn$1)
+                error(exn_1)
               end end 
             end end)
           end end 
@@ -1493,16 +1493,16 @@ function highlight_locations(ppf, locs) do
         ::continue:: ;
       end end 
     end else do
-      match$2 = input_lexbuf.contents;
-      if (match$2 ~= undefined) then do
+      match_2 = input_lexbuf.contents;
+      if (match_2 ~= undefined) then do
         xpcall(function() do
-          highlight_terminfo(ppf, match[0], match$2, locs);
+          highlight_terminfo(ppf, match[0], match_2, locs);
           return true;
-        end end,function(exn$2) return do
-          if (exn$2 == Pervasives.Exit) then do
+        end end,function(exn_2) do
+          if (exn_2 == Pervasives.Exit) then do
             return false;
           end else do
-            error (exn$2)
+            error(exn_2)
           end end 
         end end)
       end else do
@@ -1515,7 +1515,7 @@ end end
 function show_filename(file) do
   if (absname.contents) then do
     s = file;
-    s$1 = Curry._1(Filename.is_relative, s) and Filename.concat(Caml_sys.caml_sys_getcwd(--[[ () ]]0), s) or s;
+    s_1 = Curry._1(Filename.is_relative, s) and Filename.concat(Caml_sys.caml_sys_getcwd(--[[ () ]]0), s) or s;
     aux = function (_s) do
       while(true) do
         s = _s;
@@ -1533,7 +1533,7 @@ function show_filename(file) do
         end end  end  end 
       end;
     end end;
-    return aux(s$1);
+    return aux(s_1);
   end else do
     return file;
   end end 
@@ -1562,8 +1562,8 @@ function print_loc(ppf, loc) do
   match = get_pos_info(loc.loc_start);
   startchar = match[2];
   file = match[0];
-  startchar$1 = bs_vscode and startchar + 1 | 0 or startchar;
-  endchar = (loc.loc_end.pos_cnum - loc.loc_start.pos_cnum | 0) + startchar$1 | 0;
+  startchar_1 = bs_vscode and startchar + 1 | 0 or startchar;
+  endchar = (loc.loc_end.pos_cnum - loc.loc_start.pos_cnum | 0) + startchar_1 | 0;
   if (file == "//toplevel//") then do
     if (highlight_locations(ppf, --[[ :: ]]{
             loc,
@@ -1617,7 +1617,7 @@ function print_loc(ppf, loc) do
                 }),
               "%s@{<loc>%a%s%i"
             }), "File \"", print_filename, file, "\", line ", match[1]);
-    if (startchar$1 >= 0) then do
+    if (startchar_1 >= 0) then do
       Curry._4(Format.fprintf(ppf, --[[ Format ]]{
                 --[[ String ]]Block.__(2, {
                     --[[ No_padding ]]0,
@@ -1637,7 +1637,7 @@ function print_loc(ppf, loc) do
                       })
                   }),
                 "%s%i%s%i"
-              }), ", characters ", startchar$1, "-", endchar);
+              }), ", characters ", startchar_1, "-", endchar);
     end
      end 
     return Format.fprintf(ppf, --[[ Format ]]{
@@ -1650,7 +1650,7 @@ function print_loc(ppf, loc) do
   end end 
 end end
 
-function print$1(ppf, loc) do
+function print_1(ppf, loc) do
   Curry._1(Misc_Color.setup, color.contents);
   if (loc.loc_start.pos_fname == "//toplevel//" and highlight_locations(ppf, --[[ :: ]]{
           loc,
@@ -1686,10 +1686,10 @@ end end
 error_prefix = "Error";
 
 function print_error(ppf, loc) do
-  print$1(ppf, loc);
-  ppf$1 = ppf;
+  print_1(ppf, loc);
+  ppf_1 = ppf;
   Curry._1(Misc_Color.setup, color.contents);
-  Curry._1(Format.fprintf(ppf$1, --[[ Format ]]{
+  Curry._1(Format.fprintf(ppf_1, --[[ Format ]]{
             --[[ Formatting_gen ]]Block.__(18, {
                 --[[ Open_tag ]]Block.__(0, {--[[ Format ]]{
                       --[[ String_literal ]]Block.__(11, {
@@ -1717,7 +1717,7 @@ end end
 function default_warning_printer(loc, ppf, w) do
   if (is_active(w)) then do
     Curry._1(Misc_Color.setup, color.contents);
-    print$1(ppf, loc);
+    print_1(ppf, loc);
     return Curry._3(Format.fprintf(ppf, --[[ Format ]]{
                     --[[ Formatting_gen ]]Block.__(18, {
                         --[[ Open_tag ]]Block.__(0, {--[[ Format ]]{
@@ -1757,13 +1757,13 @@ formatter_for_warnings = do
 end;
 
 function prerr_warning(loc, w) do
-  loc$1 = loc;
+  loc_1 = loc;
   ppf = formatter_for_warnings.contents;
-  w$1 = w;
-  ppf$1 = ppf;
-  f = Curry._1(warning_printer.contents, loc$1);
-  arg = w$1;
-  out_functions = Format.pp_get_formatter_out_functions(ppf$1, --[[ () ]]0);
+  w_1 = w;
+  ppf_1 = ppf;
+  f = Curry._1(warning_printer.contents, loc_1);
+  arg = w_1;
+  out_functions = Format.pp_get_formatter_out_functions(ppf_1, --[[ () ]]0);
   out_string = function (str, start, len) do
     count = function (_i, _c) do
       while(true) do
@@ -1784,16 +1784,16 @@ function prerr_warning(loc, w) do
     num_loc_lines.contents = num_loc_lines.contents + count(start, 0) | 0;
     return Curry._3(out_functions.out_string, str, start, len);
   end end;
-  Format.pp_set_formatter_out_functions(ppf$1, do
+  Format.pp_set_formatter_out_functions(ppf_1, do
         out_string: out_string,
         out_flush: out_functions.out_flush,
         out_newline: out_functions.out_newline,
         out_spaces: out_functions.out_spaces,
         out_indent: out_functions.out_indent
       end);
-  Curry._2(f, ppf$1, arg);
-  Format.pp_print_flush(ppf$1, --[[ () ]]0);
-  return Format.pp_set_formatter_out_functions(ppf$1, out_functions);
+  Curry._2(f, ppf_1, arg);
+  Format.pp_print_flush(ppf_1, --[[ () ]]0);
+  return Format.pp_set_formatter_out_functions(ppf_1, out_functions);
 end end
 
 function print_phanton_error_prefix(ppf) do
@@ -1813,7 +1813,7 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
             if_highlight: if_highlight
           end;
   end end;
-  fmt$1 = fmt;
+  fmt_1 = fmt;
   buf = __Buffer.create(64);
   ppf = Format.formatter_of_buffer(buf);
   Curry._1(Misc_Color.set_color_tag_handling, ppf);
@@ -1824,7 +1824,7 @@ function errorf(locOpt, subOpt, if_highlightOpt, fmt) do
   return Format.kfprintf((function (param) do
                 Format.pp_print_flush(ppf, --[[ () ]]0);
                 return Curry._1(k, __Buffer.contents(buf));
-              end end), ppf, fmt$1);
+              end end), ppf, fmt_1);
 end end
 
 error_of_exn = do
@@ -1913,9 +1913,9 @@ end end
 function is_mocha(param) do
   match = __Array.to_list(Process.argv);
   if (match) then do
-    match$1 = match[1];
-    if (match$1) then do
-      exec = Path.basename(match$1[0]);
+    match_1 = match[1];
+    if (match_1) then do
+      exec = Path.basename(match_1[0]);
       if (exec == "mocha") then do
         return true;
       end else do
@@ -1970,12 +1970,12 @@ function from_pair_suites(name, suites) do
                                             return --[[ () ]]0;
                                           end end end end end 
                                        if ___conditional___ = 6--[[ ApproxThreshold ]] then do
-                                          b$1 = spec[2];
-                                          a$1 = spec[1];
-                                          if (close_enough(spec[0], a$1, b$1)) then do
+                                          b_1 = spec[2];
+                                          a_1 = spec[1];
+                                          if (close_enough(spec[0], a_1, b_1)) then do
                                             return 0;
                                           end else do
-                                            Assert.deepEqual(a$1, b$1);
+                                            Assert.deepEqual(a_1, b_1);
                                             return --[[ () ]]0;
                                           end end end end end 
                                        if ___conditional___ = 7--[[ ThrowAny ]] then do
@@ -1994,10 +1994,10 @@ function from_pair_suites(name, suites) do
             end end));
       return --[[ () ]]0;
     end else do
-      name$1 = name;
-      suites$1 = suites;
+      name_1 = name;
+      suites_1 = suites;
       console.log(--[[ tuple ]]{
-            name$1,
+            name_1,
             "testing"
           });
       return List.iter((function (param) do
@@ -2074,7 +2074,7 @@ function from_pair_suites(name, suites) do
                        do
                       
                     end
-                  end end), suites$1);
+                  end end), suites_1);
     end end 
   end else do
     return --[[ () ]]0;
@@ -2098,8 +2098,8 @@ function warn_bad_docstrings(param) do
                      if ___conditional___ = 1--[[ Info ]] then do
                         return --[[ () ]]0;end end end 
                      if ___conditional___ = 2--[[ Docs ]] then do
-                        match$1 = ds.ds_associated;
-                        if (match$1 >= 2) then do
+                        match_1 = ds.ds_associated;
+                        if (match_1 >= 2) then do
                           return prerr_warning(ds.ds_loc, --[[ Bad_docstring ]]Block.__(33, {false}));
                         end else do
                           return --[[ () ]]0;
@@ -2168,18 +2168,18 @@ end end
 
 function add_docs_attrs(docs, attrs) do
   match = docs.docs_pre;
-  attrs$1 = match ~= undefined and --[[ :: ]]{
+  attrs_1 = match ~= undefined and --[[ :: ]]{
       docs_attr(match),
       attrs
     } or attrs;
-  match$1 = docs.docs_post;
-  if (match$1 ~= undefined) then do
-    return Pervasives.$at(attrs$1, --[[ :: ]]{
-                docs_attr(match$1),
+  match_1 = docs.docs_post;
+  if (match_1 ~= undefined) then do
+    return Pervasives.$at(attrs_1, --[[ :: ]]{
+                docs_attr(match_1),
                 --[[ [] ]]0
               });
   end else do
-    return attrs$1;
+    return attrs_1;
   end end 
 end end
 
@@ -2307,11 +2307,11 @@ function get_pre_docs(pos) do
     dsl = Hashtbl.find(pre_table, pos);
     associate_docstrings(dsl);
     return get_docstring(false, dsl);
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -2319,11 +2319,11 @@ end end
 function mark_pre_docs(pos) do
   xpcall(function() do
     return associate_docstrings(Hashtbl.find(pre_table, pos));
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ () ]]0;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -2343,11 +2343,11 @@ function get_post_docs(pos) do
     dsl = Hashtbl.find(post_table, pos);
     associate_docstrings(dsl);
     return get_docstring(false, dsl);
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -2355,11 +2355,11 @@ end end
 function mark_post_docs(pos) do
   xpcall(function() do
     return associate_docstrings(Hashtbl.find(post_table, pos));
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ () ]]0;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -2368,11 +2368,11 @@ function get_info(pos) do
   xpcall(function() do
     dsl = Hashtbl.find(post_table, pos);
     return get_docstring(true, dsl);
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return ;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -2390,11 +2390,11 @@ end end
 function get_text(pos) do
   xpcall(function() do
     return get_docstrings(Hashtbl.find(floating_table, pos));
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ [] ]]0;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -2412,11 +2412,11 @@ end end
 function get_pre_extra_text(pos) do
   xpcall(function() do
     return get_docstrings(Hashtbl.find(pre_extra_table, pos));
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ [] ]]0;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -2434,11 +2434,11 @@ end end
 function get_post_extra_text(pos) do
   xpcall(function() do
     return get_docstrings(Hashtbl.find(post_extra_table, pos));
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return --[[ [] ]]0;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -2512,7 +2512,7 @@ function attr(d, a) do
         end;
 end end
 
-function mk$1(locOpt, attrsOpt, d) do
+function mk_1(locOpt, attrsOpt, d) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   return do
@@ -2522,7 +2522,7 @@ function mk$1(locOpt, attrsOpt, d) do
         end;
 end end
 
-function attr$1(d, a) do
+function attr_1(d, a) do
   return do
           ppat_desc: d.ppat_desc,
           ppat_loc: d.ppat_loc,
@@ -2533,7 +2533,7 @@ function attr$1(d, a) do
         end;
 end end
 
-function mk$2(locOpt, attrsOpt, d) do
+function mk_2(locOpt, attrsOpt, d) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   return do
@@ -2543,7 +2543,7 @@ function mk$2(locOpt, attrsOpt, d) do
         end;
 end end
 
-function attr$2(d, a) do
+function attr_2(d, a) do
   return do
           pexp_desc: d.pexp_desc,
           pexp_loc: d.pexp_loc,
@@ -2555,15 +2555,15 @@ function attr$2(d, a) do
 end end
 
 function ident(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_ident ]]Block.__(0, {a}));
+  return mk_2(loc, attrs, --[[ Pexp_ident ]]Block.__(0, {a}));
 end end
 
 function constant(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_constant ]]Block.__(1, {a}));
+  return mk_2(loc, attrs, --[[ Pexp_constant ]]Block.__(1, {a}));
 end end
 
 function let_(loc, attrs, a, b, c) do
-  return mk$2(loc, attrs, --[[ Pexp_let ]]Block.__(2, {
+  return mk_2(loc, attrs, --[[ Pexp_let ]]Block.__(2, {
                 a,
                 b,
                 c
@@ -2571,7 +2571,7 @@ function let_(loc, attrs, a, b, c) do
 end end
 
 function fun_(loc, attrs, a, b, c, d) do
-  return mk$2(loc, attrs, --[[ Pexp_fun ]]Block.__(4, {
+  return mk_2(loc, attrs, --[[ Pexp_fun ]]Block.__(4, {
                 a,
                 b,
                 c,
@@ -2580,64 +2580,64 @@ function fun_(loc, attrs, a, b, c, d) do
 end end
 
 function function_(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_function ]]Block.__(3, {a}));
+  return mk_2(loc, attrs, --[[ Pexp_function ]]Block.__(3, {a}));
 end end
 
 function apply(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_apply ]]Block.__(5, {
+  return mk_2(loc, attrs, --[[ Pexp_apply ]]Block.__(5, {
                 a,
                 b
               }));
 end end
 
 function match_(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_match ]]Block.__(6, {
+  return mk_2(loc, attrs, --[[ Pexp_match ]]Block.__(6, {
                 a,
                 b
               }));
 end end
 
 function try_(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_try ]]Block.__(7, {
+  return mk_2(loc, attrs, --[[ Pexp_try ]]Block.__(7, {
                 a,
                 b
               }));
 end end
 
 function tuple(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_tuple ]]Block.__(8, {a}));
+  return mk_2(loc, attrs, --[[ Pexp_tuple ]]Block.__(8, {a}));
 end end
 
 function construct(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_construct ]]Block.__(9, {
+  return mk_2(loc, attrs, --[[ Pexp_construct ]]Block.__(9, {
                 a,
                 b
               }));
 end end
 
 function variant(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_variant ]]Block.__(10, {
+  return mk_2(loc, attrs, --[[ Pexp_variant ]]Block.__(10, {
                 a,
                 b
               }));
 end end
 
 function record(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_record ]]Block.__(11, {
+  return mk_2(loc, attrs, --[[ Pexp_record ]]Block.__(11, {
                 a,
                 b
               }));
 end end
 
 function field(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_field ]]Block.__(12, {
+  return mk_2(loc, attrs, --[[ Pexp_field ]]Block.__(12, {
                 a,
                 b
               }));
 end end
 
 function setfield(loc, attrs, a, b, c) do
-  return mk$2(loc, attrs, --[[ Pexp_setfield ]]Block.__(13, {
+  return mk_2(loc, attrs, --[[ Pexp_setfield ]]Block.__(13, {
                 a,
                 b,
                 c
@@ -2645,11 +2645,11 @@ function setfield(loc, attrs, a, b, c) do
 end end
 
 function array(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_array ]]Block.__(14, {a}));
+  return mk_2(loc, attrs, --[[ Pexp_array ]]Block.__(14, {a}));
 end end
 
 function ifthenelse(loc, attrs, a, b, c) do
-  return mk$2(loc, attrs, --[[ Pexp_ifthenelse ]]Block.__(15, {
+  return mk_2(loc, attrs, --[[ Pexp_ifthenelse ]]Block.__(15, {
                 a,
                 b,
                 c
@@ -2657,21 +2657,21 @@ function ifthenelse(loc, attrs, a, b, c) do
 end end
 
 function sequence(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_sequence ]]Block.__(16, {
+  return mk_2(loc, attrs, --[[ Pexp_sequence ]]Block.__(16, {
                 a,
                 b
               }));
 end end
 
 function while_(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_while ]]Block.__(17, {
+  return mk_2(loc, attrs, --[[ Pexp_while ]]Block.__(17, {
                 a,
                 b
               }));
 end end
 
 function for_(loc, attrs, a, b, c, d, e) do
-  return mk$2(loc, attrs, --[[ Pexp_for ]]Block.__(18, {
+  return mk_2(loc, attrs, --[[ Pexp_for ]]Block.__(18, {
                 a,
                 b,
                 c,
@@ -2681,14 +2681,14 @@ function for_(loc, attrs, a, b, c, d, e) do
 end end
 
 function constraint_(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_constraint ]]Block.__(19, {
+  return mk_2(loc, attrs, --[[ Pexp_constraint ]]Block.__(19, {
                 a,
                 b
               }));
 end end
 
 function coerce(loc, attrs, a, b, c) do
-  return mk$2(loc, attrs, --[[ Pexp_coerce ]]Block.__(20, {
+  return mk_2(loc, attrs, --[[ Pexp_coerce ]]Block.__(20, {
                 a,
                 b,
                 c
@@ -2696,29 +2696,29 @@ function coerce(loc, attrs, a, b, c) do
 end end
 
 function send(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_send ]]Block.__(21, {
+  return mk_2(loc, attrs, --[[ Pexp_send ]]Block.__(21, {
                 a,
                 b
               }));
 end end
 
 function new_(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_new ]]Block.__(22, {a}));
+  return mk_2(loc, attrs, --[[ Pexp_new ]]Block.__(22, {a}));
 end end
 
 function setinstvar(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_setinstvar ]]Block.__(23, {
+  return mk_2(loc, attrs, --[[ Pexp_setinstvar ]]Block.__(23, {
                 a,
                 b
               }));
 end end
 
 function override(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_override ]]Block.__(24, {a}));
+  return mk_2(loc, attrs, --[[ Pexp_override ]]Block.__(24, {a}));
 end end
 
 function letmodule(loc, attrs, a, b, c) do
-  return mk$2(loc, attrs, --[[ Pexp_letmodule ]]Block.__(25, {
+  return mk_2(loc, attrs, --[[ Pexp_letmodule ]]Block.__(25, {
                 a,
                 b,
                 c
@@ -2726,37 +2726,37 @@ function letmodule(loc, attrs, a, b, c) do
 end end
 
 function assert_(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_assert ]]Block.__(26, {a}));
+  return mk_2(loc, attrs, --[[ Pexp_assert ]]Block.__(26, {a}));
 end end
 
 function lazy_(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_lazy ]]Block.__(27, {a}));
+  return mk_2(loc, attrs, --[[ Pexp_lazy ]]Block.__(27, {a}));
 end end
 
 function poly(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_poly ]]Block.__(28, {
+  return mk_2(loc, attrs, --[[ Pexp_poly ]]Block.__(28, {
                 a,
                 b
               }));
 end end
 
 function object_(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_object ]]Block.__(29, {a}));
+  return mk_2(loc, attrs, --[[ Pexp_object ]]Block.__(29, {a}));
 end end
 
 function newtype(loc, attrs, a, b) do
-  return mk$2(loc, attrs, --[[ Pexp_newtype ]]Block.__(30, {
+  return mk_2(loc, attrs, --[[ Pexp_newtype ]]Block.__(30, {
                 a,
                 b
               }));
 end end
 
 function pack(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_pack ]]Block.__(31, {a}));
+  return mk_2(loc, attrs, --[[ Pexp_pack ]]Block.__(31, {a}));
 end end
 
 function open_(loc, attrs, a, b, c) do
-  return mk$2(loc, attrs, --[[ Pexp_open ]]Block.__(32, {
+  return mk_2(loc, attrs, --[[ Pexp_open ]]Block.__(32, {
                 a,
                 b,
                 c
@@ -2764,7 +2764,7 @@ function open_(loc, attrs, a, b, c) do
 end end
 
 function extension(loc, attrs, a) do
-  return mk$2(loc, attrs, --[[ Pexp_extension ]]Block.__(33, {a}));
+  return mk_2(loc, attrs, --[[ Pexp_extension ]]Block.__(33, {a}));
 end end
 
 function __case(lhs, guard, rhs) do
@@ -2775,7 +2775,7 @@ function __case(lhs, guard, rhs) do
         end;
 end end
 
-function mk$3(locOpt, attrsOpt, d) do
+function mk_3(locOpt, attrsOpt, d) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   return do
@@ -2785,7 +2785,7 @@ function mk$3(locOpt, attrsOpt, d) do
         end;
 end end
 
-function attr$3(d, a) do
+function attr_3(d, a) do
   return do
           pmty_desc: d.pmty_desc,
           pmty_loc: d.pmty_loc,
@@ -2797,10 +2797,10 @@ function attr$3(d, a) do
 end end
 
 function alias(loc, attrs, a) do
-  return mk$3(loc, attrs, --[[ Pmty_alias ]]Block.__(6, {a}));
+  return mk_3(loc, attrs, --[[ Pmty_alias ]]Block.__(6, {a}));
 end end
 
-function mk$4(locOpt, attrsOpt, d) do
+function mk_4(locOpt, attrsOpt, d) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   return do
@@ -2810,7 +2810,7 @@ function mk$4(locOpt, attrsOpt, d) do
         end;
 end end
 
-function attr$4(d, a) do
+function attr_4(d, a) do
   return do
           pmod_desc: d.pmod_desc,
           pmod_loc: d.pmod_loc,
@@ -2821,7 +2821,7 @@ function attr$4(d, a) do
         end;
 end end
 
-function mk$5(locOpt, d) do
+function mk_5(locOpt, d) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   return do
           psig_desc: d,
@@ -2833,11 +2833,11 @@ function text(txt) do
   return List.map((function (ds) do
                 a = text_attr(ds);
                 loc = ds.ds_loc;
-                return mk$5(loc, --[[ Psig_attribute ]]Block.__(11, {a}));
+                return mk_5(loc, --[[ Psig_attribute ]]Block.__(11, {a}));
               end end), txt);
 end end
 
-function mk$6(locOpt, d) do
+function mk_6(locOpt, d) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   return do
           pstr_desc: d,
@@ -2845,15 +2845,15 @@ function mk$6(locOpt, d) do
         end;
 end end
 
-function text$1(txt) do
+function text_1(txt) do
   return List.map((function (ds) do
                 a = text_attr(ds);
                 loc = ds.ds_loc;
-                return mk$6(loc, --[[ Pstr_attribute ]]Block.__(13, {a}));
+                return mk_6(loc, --[[ Pstr_attribute ]]Block.__(13, {a}));
               end end), txt);
 end end
 
-function mk$7(locOpt, attrsOpt, d) do
+function mk_7(locOpt, attrsOpt, d) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   return do
@@ -2863,7 +2863,7 @@ function mk$7(locOpt, attrsOpt, d) do
         end;
 end end
 
-function attr$5(d, a) do
+function attr_5(d, a) do
   return do
           pcl_desc: d.pcl_desc,
           pcl_loc: d.pcl_loc,
@@ -2874,7 +2874,7 @@ function attr$5(d, a) do
         end;
 end end
 
-function mk$8(locOpt, attrsOpt, d) do
+function mk_8(locOpt, attrsOpt, d) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   return do
@@ -2884,7 +2884,7 @@ function mk$8(locOpt, attrsOpt, d) do
         end;
 end end
 
-function attr$6(d, a) do
+function attr_6(d, a) do
   return do
           pcty_desc: d.pcty_desc,
           pcty_loc: d.pcty_loc,
@@ -2895,7 +2895,7 @@ function attr$6(d, a) do
         end;
 end end
 
-function mk$9(locOpt, attrsOpt, docsOpt, d) do
+function mk_9(locOpt, attrsOpt, docsOpt, d) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   docs = docsOpt ~= undefined and docsOpt or empty_docs;
@@ -2907,11 +2907,11 @@ function mk$9(locOpt, attrsOpt, docsOpt, d) do
 end end
 
 function inherit_(loc, attrs, a) do
-  return mk$9(loc, attrs, undefined, --[[ Pctf_inherit ]]Block.__(0, {a}));
+  return mk_9(loc, attrs, undefined, --[[ Pctf_inherit ]]Block.__(0, {a}));
 end end
 
 function val_(loc, attrs, a, b, c, d) do
-  return mk$9(loc, attrs, undefined, --[[ Pctf_val ]]Block.__(1, {--[[ tuple ]]{
+  return mk_9(loc, attrs, undefined, --[[ Pctf_val ]]Block.__(1, {--[[ tuple ]]{
                   a,
                   b,
                   c,
@@ -2920,7 +2920,7 @@ function val_(loc, attrs, a, b, c, d) do
 end end
 
 function method_(loc, attrs, a, b, c, d) do
-  return mk$9(loc, attrs, undefined, --[[ Pctf_method ]]Block.__(2, {--[[ tuple ]]{
+  return mk_9(loc, attrs, undefined, --[[ Pctf_method ]]Block.__(2, {--[[ tuple ]]{
                   a,
                   b,
                   c,
@@ -2928,28 +2928,28 @@ function method_(loc, attrs, a, b, c, d) do
                 }}));
 end end
 
-function constraint_$1(loc, attrs, a, b) do
-  return mk$9(loc, attrs, undefined, --[[ Pctf_constraint ]]Block.__(3, {--[[ tuple ]]{
+function constraint__1(loc, attrs, a, b) do
+  return mk_9(loc, attrs, undefined, --[[ Pctf_constraint ]]Block.__(3, {--[[ tuple ]]{
                   a,
                   b
                 }}));
 end end
 
-function extension$1(loc, attrs, a) do
-  return mk$9(loc, attrs, undefined, --[[ Pctf_extension ]]Block.__(5, {a}));
+function extension_1(loc, attrs, a) do
+  return mk_9(loc, attrs, undefined, --[[ Pctf_extension ]]Block.__(5, {a}));
 end end
 
 function attribute(loc, a) do
-  return mk$9(loc, undefined, undefined, --[[ Pctf_attribute ]]Block.__(4, {a}));
+  return mk_9(loc, undefined, undefined, --[[ Pctf_attribute ]]Block.__(4, {a}));
 end end
 
-function text$2(txt) do
+function text_2(txt) do
   return List.map((function (ds) do
                 return attribute(ds.ds_loc, text_attr(ds));
               end end), txt);
 end end
 
-function attr$7(d, a) do
+function attr_7(d, a) do
   return do
           pctf_desc: d.pctf_desc,
           pctf_loc: d.pctf_loc,
@@ -2960,7 +2960,7 @@ function attr$7(d, a) do
         end;
 end end
 
-function mk$10(locOpt, attrsOpt, docsOpt, d) do
+function mk_10(locOpt, attrsOpt, docsOpt, d) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   docs = docsOpt ~= undefined and docsOpt or empty_docs;
@@ -2971,52 +2971,52 @@ function mk$10(locOpt, attrsOpt, docsOpt, d) do
         end;
 end end
 
-function inherit_$1(loc, attrs, a, b, c) do
-  return mk$10(loc, attrs, undefined, --[[ Pcf_inherit ]]Block.__(0, {
+function inherit__1(loc, attrs, a, b, c) do
+  return mk_10(loc, attrs, undefined, --[[ Pcf_inherit ]]Block.__(0, {
                 a,
                 b,
                 c
               }));
 end end
 
-function val_$1(loc, attrs, a, b, c) do
-  return mk$10(loc, attrs, undefined, --[[ Pcf_val ]]Block.__(1, {--[[ tuple ]]{
+function val__1(loc, attrs, a, b, c) do
+  return mk_10(loc, attrs, undefined, --[[ Pcf_val ]]Block.__(1, {--[[ tuple ]]{
                   a,
                   b,
                   c
                 }}));
 end end
 
-function method_$1(loc, attrs, a, b, c) do
-  return mk$10(loc, attrs, undefined, --[[ Pcf_method ]]Block.__(2, {--[[ tuple ]]{
+function method__1(loc, attrs, a, b, c) do
+  return mk_10(loc, attrs, undefined, --[[ Pcf_method ]]Block.__(2, {--[[ tuple ]]{
                   a,
                   b,
                   c
                 }}));
 end end
 
-function constraint_$2(loc, attrs, a, b) do
-  return mk$10(loc, attrs, undefined, --[[ Pcf_constraint ]]Block.__(3, {--[[ tuple ]]{
+function constraint__2(loc, attrs, a, b) do
+  return mk_10(loc, attrs, undefined, --[[ Pcf_constraint ]]Block.__(3, {--[[ tuple ]]{
                   a,
                   b
                 }}));
 end end
 
 function initializer_(loc, attrs, a) do
-  return mk$10(loc, attrs, undefined, --[[ Pcf_initializer ]]Block.__(4, {a}));
+  return mk_10(loc, attrs, undefined, --[[ Pcf_initializer ]]Block.__(4, {a}));
 end end
 
-function extension$2(loc, attrs, a) do
-  return mk$10(loc, attrs, undefined, --[[ Pcf_extension ]]Block.__(6, {a}));
+function extension_2(loc, attrs, a) do
+  return mk_10(loc, attrs, undefined, --[[ Pcf_extension ]]Block.__(6, {a}));
 end end
 
-function attribute$1(loc, a) do
-  return mk$10(loc, undefined, undefined, --[[ Pcf_attribute ]]Block.__(5, {a}));
+function attribute_1(loc, a) do
+  return mk_10(loc, undefined, undefined, --[[ Pcf_attribute ]]Block.__(5, {a}));
 end end
 
-function text$3(txt) do
+function text_3(txt) do
   return List.map((function (ds) do
-                return attribute$1(ds.ds_loc, text_attr(ds));
+                return attribute_1(ds.ds_loc, text_attr(ds));
               end end), txt);
 end end
 
@@ -3031,7 +3031,7 @@ function concrete(o, e) do
           });
 end end
 
-function attr$8(d, a) do
+function attr_8(d, a) do
   return do
           pcf_desc: d.pcf_desc,
           pcf_loc: d.pcf_loc,
@@ -3042,7 +3042,7 @@ function attr$8(d, a) do
         end;
 end end
 
-function mk$11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) do
+function mk_11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   docs = docsOpt ~= undefined and docsOpt or empty_docs;
@@ -3056,7 +3056,7 @@ function mk$11(locOpt, attrsOpt, docsOpt, primOpt, name, typ) do
         end;
 end end
 
-function mk$12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) do
+function mk_12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   docs = docsOpt ~= undefined and docsOpt or empty_docs;
@@ -3069,7 +3069,7 @@ function mk$12(locOpt, attrsOpt, docsOpt, textOpt, name, typ) do
         end;
 end end
 
-function mk$13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) do
+function mk_13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   docs = docsOpt ~= undefined and docsOpt or empty_docs;
@@ -3082,7 +3082,7 @@ function mk$13(locOpt, attrsOpt, docsOpt, textOpt, typ, name) do
         end;
 end end
 
-function mk$14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) do
+function mk_14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   docs = docsOpt ~= undefined and docsOpt or empty_docs;
@@ -3095,7 +3095,7 @@ function mk$14(locOpt, attrsOpt, docsOpt, textOpt, name, expr) do
         end;
 end end
 
-function mk$15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) do
+function mk_15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   docs = docsOpt ~= undefined and docsOpt or empty_docs;
@@ -3108,7 +3108,7 @@ function mk$15(locOpt, attrsOpt, docsOpt, overrideOpt, lid) do
         end;
 end end
 
-function mk$16(locOpt, attrsOpt, docsOpt, mexpr) do
+function mk_16(locOpt, attrsOpt, docsOpt, mexpr) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   docs = docsOpt ~= undefined and docsOpt or empty_docs;
@@ -3119,7 +3119,7 @@ function mk$16(locOpt, attrsOpt, docsOpt, mexpr) do
         end;
 end end
 
-function mk$17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) do
+function mk_17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   docs = docsOpt ~= undefined and docsOpt or empty_docs;
@@ -3132,7 +3132,7 @@ function mk$17(locOpt, attrsOpt, docsOpt, textOpt, pat, expr) do
         end;
 end end
 
-function mk$18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, expr) do
+function mk_18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, expr) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   docs = docsOpt ~= undefined and docsOpt or empty_docs;
@@ -3149,7 +3149,7 @@ function mk$18(locOpt, attrsOpt, docsOpt, textOpt, virtOpt, paramsOpt, name, exp
         end;
 end end
 
-function mk$19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt, privOpt, manifest, name) do
+function mk_19(locOpt, attrsOpt, docsOpt, textOpt, paramsOpt, cstrsOpt, kindOpt, privOpt, manifest, name) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   docs = docsOpt ~= undefined and docsOpt or empty_docs;
@@ -3184,7 +3184,7 @@ function constructor(locOpt, attrsOpt, infoOpt, argsOpt, res, name) do
         end;
 end end
 
-function field$1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) do
+function field_1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) do
   loc = locOpt ~= undefined and locOpt or default_loc.contents;
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   info = infoOpt ~= undefined and Caml_option.valFromOption(infoOpt) or undefined;
@@ -3198,7 +3198,7 @@ function field$1(locOpt, attrsOpt, infoOpt, mutOpt, name, typ) do
         end;
 end end
 
-function mk$20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) do
+function mk_20(attrsOpt, docsOpt, paramsOpt, privOpt, path, constructors) do
   attrs = attrsOpt ~= undefined and attrsOpt or --[[ [] ]]0;
   docs = docsOpt ~= undefined and docsOpt or empty_docs;
   params = paramsOpt ~= undefined and paramsOpt or --[[ [] ]]0;
@@ -3243,8 +3243,8 @@ function rebind(locOpt, attrsOpt, docsOpt, infoOpt, name, lid) do
 end end
 
 Ast_helper_Exp = do
-  mk: mk$2,
-  attr: attr$2,
+  mk: mk_2,
+  attr: attr_2,
   ident: ident,
   constant: constant,
   let_: let_,
@@ -3283,33 +3283,33 @@ Ast_helper_Exp = do
 end;
 
 Ast_helper_Ctf = do
-  mk: mk$9,
-  attr: attr$7,
+  mk: mk_9,
+  attr: attr_7,
   inherit_: inherit_,
   val_: val_,
   method_: method_,
-  constraint_: constraint_$1,
-  extension: extension$1,
+  constraint_: constraint__1,
+  extension: extension_1,
   attribute: attribute,
-  text: text$2
+  text: text_2
 end;
 
 Ast_helper_Cf = do
-  mk: mk$10,
-  attr: attr$8,
-  inherit_: inherit_$1,
-  val_: val_$1,
-  method_: method_$1,
-  constraint_: constraint_$2,
+  mk: mk_10,
+  attr: attr_8,
+  inherit_: inherit__1,
+  val_: val__1,
+  method_: method__1,
+  constraint_: constraint__2,
   initializer_: initializer_,
-  extension: extension$2,
-  attribute: attribute$1,
-  text: text$3,
+  extension: extension_2,
+  attribute: attribute_1,
+  text: text_3,
   virtual_: virtual_,
   concrete: concrete
 end;
 
-__Error$1 = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Error");
+__Error_1 = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Error");
 
 Escape_error = Caml_exceptions.create("Ocaml_parsetree_test.Syntaxerr.Escape_error");
 
@@ -3447,7 +3447,7 @@ function prepare_error(param) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == __Error$1) then do
+        if (param[0] == __Error_1) then do
           return prepare_error(param[1]);
         end
          end 
@@ -3458,7 +3458,7 @@ function mktyp(d) do
 end end
 
 function mkpat(d) do
-  return mk$1(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_1(symbol_rloc(--[[ () ]]0), undefined, d);
 end end
 
 function mkexp(d) do
@@ -3466,27 +3466,27 @@ function mkexp(d) do
 end end
 
 function mkmty(d) do
-  return mk$3(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_3(symbol_rloc(--[[ () ]]0), undefined, d);
 end end
 
 function mksig(d) do
-  return mk$5(symbol_rloc(--[[ () ]]0), d);
+  return mk_5(symbol_rloc(--[[ () ]]0), d);
 end end
 
 function mkmod(d) do
-  return mk$4(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_4(symbol_rloc(--[[ () ]]0), undefined, d);
 end end
 
 function mkstr(d) do
-  return mk$6(symbol_rloc(--[[ () ]]0), d);
+  return mk_6(symbol_rloc(--[[ () ]]0), d);
 end end
 
 function mkclass(d) do
-  return mk$7(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_7(symbol_rloc(--[[ () ]]0), undefined, d);
 end end
 
 function mkcty(d) do
-  return mk$8(symbol_rloc(--[[ () ]]0), undefined, d);
+  return mk_8(symbol_rloc(--[[ () ]]0), undefined, d);
 end end
 
 function mkctf(attrs, docs, d) do
@@ -3546,7 +3546,7 @@ function mkoperator(name, pos) do
 end end
 
 function mkpatvar(name, pos) do
-  return mk$1(rhs_loc(pos), undefined, --[[ Ppat_var ]]Block.__(0, {do
+  return mk_1(rhs_loc(pos), undefined, --[[ Ppat_var ]]Block.__(0, {do
                   txt: name,
                   loc: rhs_loc(pos)
                 end}));
@@ -3557,7 +3557,7 @@ function ghexp(d) do
 end end
 
 function ghpat(d) do
-  return mk$1(symbol_gloc(--[[ () ]]0), undefined, d);
+  return mk_1(symbol_gloc(--[[ () ]]0), undefined, d);
 end end
 
 function ghtyp(d) do
@@ -3602,7 +3602,7 @@ function mkexp_cons(consloc, args, loc) do
 end end
 
 function mkpat_cons(consloc, args, loc) do
-  return mk$1(loc, undefined, --[[ Ppat_construct ]]Block.__(5, {
+  return mk_1(loc, undefined, --[[ Ppat_construct ]]Block.__(5, {
                 do
                   txt: --[[ Lident ]]Block.__(0, {"::"}),
                   loc: consloc
@@ -3635,19 +3635,19 @@ function mktailexp(nilloc, param) do
                 loc_ghost: true
               end, arg, loc);
   end else do
-    loc_loc_start$1 = nilloc.loc_start;
-    loc_loc_end$1 = nilloc.loc_end;
-    loc$1 = do
-      loc_start: loc_loc_start$1,
-      loc_end: loc_loc_end$1,
+    loc_loc_start_1 = nilloc.loc_start;
+    loc_loc_end_1 = nilloc.loc_end;
+    loc_1 = do
+      loc_start: loc_loc_start_1,
+      loc_end: loc_loc_end_1,
       loc_ghost: true
     end;
     nil_txt = --[[ Lident ]]Block.__(0, {"[]"});
     nil = do
       txt: nil_txt,
-      loc: loc$1
+      loc: loc_1
     end;
-    return Curry._3(Ast_helper_Exp.mk, loc$1, undefined, --[[ Pexp_construct ]]Block.__(9, {
+    return Curry._3(Ast_helper_Exp.mk, loc_1, undefined, --[[ Pexp_construct ]]Block.__(9, {
                   nil,
                   undefined
                 }));
@@ -3665,7 +3665,7 @@ function mktailpat(nilloc, param) do
       loc_end: loc_loc_end,
       loc_ghost: true
     end;
-    arg = mk$1(loc, undefined, --[[ Ppat_tuple ]]Block.__(4, {--[[ :: ]]{
+    arg = mk_1(loc, undefined, --[[ Ppat_tuple ]]Block.__(4, {--[[ :: ]]{
               p1,
               --[[ :: ]]{
                 pat_pl,
@@ -3678,19 +3678,19 @@ function mktailpat(nilloc, param) do
                 loc_ghost: true
               end, arg, loc);
   end else do
-    loc_loc_start$1 = nilloc.loc_start;
-    loc_loc_end$1 = nilloc.loc_end;
-    loc$1 = do
-      loc_start: loc_loc_start$1,
-      loc_end: loc_loc_end$1,
+    loc_loc_start_1 = nilloc.loc_start;
+    loc_loc_end_1 = nilloc.loc_end;
+    loc_1 = do
+      loc_start: loc_loc_start_1,
+      loc_end: loc_loc_end_1,
       loc_ghost: true
     end;
     nil_txt = --[[ Lident ]]Block.__(0, {"[]"});
     nil = do
       txt: nil_txt,
-      loc: loc$1
+      loc: loc_1
     end;
-    return mk$1(loc$1, undefined, --[[ Ppat_construct ]]Block.__(5, {
+    return mk_1(loc_1, undefined, --[[ Ppat_construct ]]Block.__(5, {
                   nil,
                   undefined
                 }));
@@ -3730,7 +3730,7 @@ function mkexp_constraint(e, param) do
                   t2
                 }));
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "parser.mly",
@@ -3752,8 +3752,8 @@ function array_function(str, name) do
 end end
 
 function unclosed(opening_name, opening_num, closing_name, closing_num) do
-  error ({
-    __Error$1,
+  error({
+    __Error_1,
     --[[ Unclosed ]]Block.__(0, {
         rhs_loc(opening_num),
         opening_name,
@@ -3764,8 +3764,8 @@ function unclosed(opening_name, opening_num, closing_name, closing_num) do
 end end
 
 function expecting(pos, nonterm) do
-  error ({
-    __Error$1,
+  error({
+    __Error_1,
     --[[ Expecting ]]Block.__(1, {
         rhs_loc(pos),
         nonterm
@@ -3774,8 +3774,8 @@ function expecting(pos, nonterm) do
 end end
 
 function not_expecting(pos, nonterm) do
-  error ({
-    __Error$1,
+  error({
+    __Error_1,
     --[[ Not_expecting ]]Block.__(2, {
         rhs_loc(pos),
         nonterm
@@ -3826,8 +3826,8 @@ end end
 
 function check_variable(vl, loc, v) do
   if (List.mem(v, vl)) then do
-    error ({
-      __Error$1,
+    error({
+      __Error_1,
       --[[ Variable_in_scope ]]Block.__(4, {
           loc,
           v
@@ -3861,15 +3861,15 @@ function varify_constructors(var_names, t) do
             desc = --[[ Ptyp_tuple ]]Block.__(2, {List.map(loop, match[0])});end else 
          if ___conditional___ = 3--[[ Ptyp_constr ]] then do
             longident = match[0];
-            match$1 = longident.txt;
+            match_1 = longident.txt;
             exit = 0;
-            local ___conditional___=(match$1.tag | 0);
+            local ___conditional___=(match_1.tag | 0);
             do
                if ___conditional___ = 0--[[ Lident ]] then do
                   if (match[1]) then do
                     exit = 1;
                   end else do
-                    s = match$1[0];
+                    s = match_1[0];
                     if (List.mem(s, var_names)) then do
                       desc = --[[ Ptyp_var ]]Block.__(0, {s});
                     end else do
@@ -3929,21 +3929,21 @@ function varify_constructors(var_names, t) do
                 loop(match[1])
               });end else 
          if ___conditional___ = 9--[[ Ptyp_package ]] then do
-            match$2 = match[0];
+            match_2 = match[0];
             desc = --[[ Ptyp_package ]]Block.__(9, {--[[ tuple ]]{
-                  match$2[0],
+                  match_2[0],
                   List.map((function (param) do
                           return --[[ tuple ]]{
                                   param[0],
                                   loop(param[1])
                                 };
-                        end end), match$2[1])
+                        end end), match_2[1])
                 }});end else 
          if ___conditional___ = 10--[[ Ptyp_extension ]] then do
-            match$3 = match[0];
+            match_3 = match[0];
             desc = --[[ Ptyp_extension ]]Block.__(10, {--[[ tuple ]]{
-                  match$3[0],
-                  match$3[1]
+                  match_3[0],
+                  match_3[1]
                 }});end else 
          do end end end end end end end end end end end end
         
@@ -3975,14 +3975,14 @@ function wrap_type_annotation(newtypes, core_type, body) do
           body,
           core_type
         }));
-  exp$1 = List.fold_right((function (newtype, exp) do
+  exp_1 = List.fold_right((function (newtype, exp) do
           return mkexp(--[[ Pexp_newtype ]]Block.__(30, {
                         newtype,
                         exp
                       }));
         end end), newtypes, exp);
   return --[[ tuple ]]{
-          exp$1,
+          exp_1,
           ghtyp(--[[ Ptyp_poly ]]Block.__(8, {
                   newtypes,
                   varify_constructors(newtypes, core_type)
@@ -3995,7 +3995,7 @@ function wrap_exp_attrs(body, param) do
   body_pexp_desc = body.pexp_desc;
   body_pexp_loc = body.pexp_loc;
   body_pexp_attributes = Pervasives.$at(param[1], body.pexp_attributes);
-  body$1 = do
+  body_1 = do
     pexp_desc: body_pexp_desc,
     pexp_loc: body_pexp_loc,
     pexp_attributes: body_pexp_attributes
@@ -4004,18 +4004,18 @@ function wrap_exp_attrs(body, param) do
     return ghexp(--[[ Pexp_extension ]]Block.__(33, {--[[ tuple ]]{
                     ext,
                     --[[ PStr ]]Block.__(0, {--[[ :: ]]{
-                          mkstrexp(body$1, --[[ [] ]]0),
+                          mkstrexp(body_1, --[[ [] ]]0),
                           --[[ [] ]]0
                         }})
                   }}));
   end else do
-    return body$1;
+    return body_1;
   end end 
 end end
 
 function text_def(pos) do
   return --[[ :: ]]{
-          --[[ Ptop_def ]]Block.__(0, {text$1(get_text(Parsing.rhs_start_pos(pos)))}),
+          --[[ Ptop_def ]]Block.__(0, {text_1(get_text(Parsing.rhs_start_pos(pos)))}),
           --[[ [] ]]0
         };
 end end
@@ -4195,14 +4195,14 @@ yytransl_block = {
 
 yyact = {
   (function (param) do
-      error ({
+      error({
         Caml_builtin_exceptions.failure,
         "parser"
       })
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
-      return extra_text(text$1, 1, _1);
+      return extra_text(text_1, 1, _1);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
@@ -4210,18 +4210,18 @@ yyact = {
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
-      return --[[ Ptop_def ]]Block.__(0, {extra_text(text$1, 1, _1)});
+      return --[[ Ptop_def ]]Block.__(0, {extra_text(text_1, 1, _1)});
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 1);
     end end),
   (function (__caml_parser_env) do
-      error (Caml_builtin_exceptions.end_of_file)
+      error(Caml_builtin_exceptions.end_of_file)
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
+      return Pervasives.$at(text_1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
                   mkstrexp(_1, _2),
                   --[[ [] ]]0
                 });
@@ -4235,7 +4235,7 @@ yyact = {
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
+      return Pervasives.$at(text_1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
                   _1,
                   _2
                 });
@@ -4246,7 +4246,7 @@ yyact = {
       items = _1;
       return extra_text((function (txt) do
                     return --[[ :: ]]{
-                            --[[ Ptop_def ]]Block.__(0, {text$1(txt)}),
+                            --[[ Ptop_def ]]Block.__(0, {text_1(txt)}),
                             --[[ [] ]]0
                           };
                   end end), pos, items);
@@ -4384,7 +4384,7 @@ yyact = {
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
-      return mkmod(--[[ Pmod_structure ]]Block.__(1, {extra_text(text$1, 2, _2)}));
+      return mkmod(--[[ Pmod_structure ]]Block.__(1, {extra_text(text_1, 2, _2)}));
     end end),
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 1);
@@ -4487,7 +4487,7 @@ yyact = {
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return attr$4(_1, _2);
+      return attr_4(_1, _2);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
@@ -4498,7 +4498,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
       mark_rhs_docs(1, 2);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
+      return Pervasives.$at(text_1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
                   mkstrexp(_1, _2),
                   _3
                 });
@@ -4511,12 +4511,12 @@ yyact = {
     end end),
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), _2);
+      return Pervasives.$at(text_1(get_text(Parsing.rhs_start_pos(1))), _2);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return Pervasives.$at(text$1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
+      return Pervasives.$at(text_1(get_text(Parsing.rhs_start_pos(1))), --[[ :: ]]{
                   _1,
                   _2
                 });
@@ -4545,8 +4545,8 @@ yyact = {
       end end 
       if (exit == 1) then do
         if (lbs.lbs_attributes ~= --[[ [] ]]0) then do
-          error ({
-            __Error$1,
+          error({
+            __Error_1,
             --[[ Not_expecting ]]Block.__(2, {
                 lbs.lbs_loc,
                 "attributes"
@@ -4554,12 +4554,12 @@ yyact = {
           })
         end
          end 
-        bindings$1 = List.map((function (lb) do
-                return mk$17(lb.lb_loc, lb.lb_attributes, CamlinternalLazy.force(lb.lb_docs), CamlinternalLazy.force(lb.lb_text), lb.lb_pattern, lb.lb_expression);
+        bindings_1 = List.map((function (lb) do
+                return mk_17(lb.lb_loc, lb.lb_attributes, CamlinternalLazy.force(lb.lb_docs), CamlinternalLazy.force(lb.lb_text), lb.lb_pattern, lb.lb_expression);
               end end), bindings);
         str = mkstr(--[[ Pstr_value ]]Block.__(1, {
                 lbs.lbs_rec,
-                List.rev(bindings$1)
+                List.rev(bindings_1)
               }));
       end
        end 
@@ -4575,7 +4575,7 @@ yyact = {
             },
             --[[ [] ]]0
           });
-        return mk$6(symbol_gloc(--[[ () ]]0), d);
+        return mk_6(symbol_gloc(--[[ () ]]0), d);
       end else do
         return str;
       end end 
@@ -4640,7 +4640,7 @@ yyact = {
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$16(symbol_rloc(--[[ () ]]0), _3, symbol_docs(--[[ () ]]0), _2);
+      return mk_16(symbol_rloc(--[[ () ]]0), _3, symbol_docs(--[[ () ]]0), _2);
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -4666,7 +4666,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$14(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), undefined, do
+      return mk_14(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), undefined, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _3);
@@ -4690,7 +4690,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$14(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, do
+      return mk_14(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, do
                   txt: _3,
                   loc: rhs_loc(3)
                 end, _4);
@@ -4699,7 +4699,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$14(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), get_text(Parsing.symbol_start_pos(--[[ () ]]0)), do
+      return mk_14(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), get_text(Parsing.symbol_start_pos(--[[ () ]]0)), do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _3);
@@ -4756,7 +4756,7 @@ yyact = {
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return attr$3(_1, _2);
+      return attr_3(_1, _2);
     end end),
   (function (__caml_parser_env) do
       return --[[ [] ]]0;
@@ -4842,7 +4842,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$15(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), _2, do
+      return mk_15(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), _2, do
                   txt: _3,
                   loc: rhs_loc(3)
                 end);
@@ -4850,7 +4850,7 @@ yyact = {
   (function (__caml_parser_env) do
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       _3 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$16(symbol_rloc(--[[ () ]]0), _3, symbol_docs(--[[ () ]]0), _2);
+      return mk_16(symbol_rloc(--[[ () ]]0), _3, symbol_docs(--[[ () ]]0), _2);
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -4883,7 +4883,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 2);
       _3 = Parsing.peek_val(__caml_parser_env, 1);
       _4 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$12(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), undefined, do
+      return mk_12(symbol_rloc(--[[ () ]]0), _4, symbol_docs(--[[ () ]]0), undefined, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _3);
@@ -4892,7 +4892,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$12(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, do
+      return mk_12(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, alias(rhs_loc(4), undefined, do
@@ -4919,7 +4919,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 3);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$12(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), undefined, do
+      return mk_12(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), undefined, do
                   txt: _3,
                   loc: rhs_loc(3)
                 end, _5);
@@ -4928,7 +4928,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$12(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), get_text(Parsing.symbol_start_pos(--[[ () ]]0)), do
+      return mk_12(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), get_text(Parsing.symbol_start_pos(--[[ () ]]0)), do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _4);
@@ -4943,7 +4943,7 @@ yyact = {
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$13(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, _4, do
+      return mk_13(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, _4, do
                   txt: _3,
                   loc: rhs_loc(3)
                 end);
@@ -4969,7 +4969,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$18(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), undefined, _2, _3, do
+      return mk_18(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), undefined, _2, _3, do
                   txt: _4,
                   loc: rhs_loc(4)
                 end, _5);
@@ -4980,7 +4980,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$18(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), get_text(Parsing.symbol_start_pos(--[[ () ]]0)), _2, _3, do
+      return mk_18(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), get_text(Parsing.symbol_start_pos(--[[ () ]]0)), _2, _3, do
                   txt: _4,
                   loc: rhs_loc(4)
                 end, _5);
@@ -5053,8 +5053,8 @@ yyact = {
       body = _3;
       bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[[ [] ]]0) then do
-                error ({
-                  __Error$1,
+                error({
+                  __Error_1,
                   --[[ Not_expecting ]]Block.__(2, {
                       lb.lb_loc,
                       "item attribute"
@@ -5062,11 +5062,11 @@ yyact = {
                 })
               end
                end 
-              return mk$17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
+              return mk_17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
             end end), lbs.lbs_bindings);
       if (lbs.lbs_extension ~= undefined) then do
-        error ({
-          __Error$1,
+        error({
+          __Error_1,
           --[[ Not_expecting ]]Block.__(2, {
               lbs.lbs_loc,
               "extension"
@@ -5075,8 +5075,8 @@ yyact = {
       end
        end 
       if (lbs.lbs_attributes ~= --[[ [] ]]0) then do
-        error ({
-          __Error$1,
+        error({
+          __Error_1,
           --[[ Not_expecting ]]Block.__(2, {
               lbs.lbs_loc,
               "attributes"
@@ -5093,7 +5093,7 @@ yyact = {
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return attr$5(_1, _2);
+      return attr_5(_1, _2);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
@@ -5233,7 +5233,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       if (_1 == --[[ Override ]]0) then do
-        error (Escape_error)
+        error(Escape_error)
       end
        end 
       return --[[ tuple ]]{
@@ -5299,7 +5299,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       if (_1 == --[[ Override ]]0) then do
-        error (Escape_error)
+        error(Escape_error)
       end
        end 
       return --[[ tuple ]]{
@@ -5317,7 +5317,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
       if (_1 == --[[ Override ]]0) then do
-        error (Escape_error)
+        error(Escape_error)
       end
        end 
       return --[[ tuple ]]{
@@ -5467,7 +5467,7 @@ yyact = {
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return attr$6(_1, _2);
+      return attr_6(_1, _2);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
@@ -5605,7 +5605,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 3);
       _6 = Parsing.peek_val(__caml_parser_env, 1);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$18(symbol_rloc(--[[ () ]]0), _7, symbol_docs(--[[ () ]]0), undefined, _2, _3, do
+      return mk_18(symbol_rloc(--[[ () ]]0), _7, symbol_docs(--[[ () ]]0), undefined, _2, _3, do
                   txt: _4,
                   loc: rhs_loc(4)
                 end, _6);
@@ -5616,7 +5616,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 3);
       _6 = Parsing.peek_val(__caml_parser_env, 1);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$18(symbol_rloc(--[[ () ]]0), _7, symbol_docs(--[[ () ]]0), get_text(Parsing.symbol_start_pos(--[[ () ]]0)), _2, _3, do
+      return mk_18(symbol_rloc(--[[ () ]]0), _7, symbol_docs(--[[ () ]]0), get_text(Parsing.symbol_start_pos(--[[ () ]]0)), _2, _3, do
                   txt: _4,
                   loc: rhs_loc(4)
                 end, _6);
@@ -5642,7 +5642,7 @@ yyact = {
       _5 = Parsing.peek_val(__caml_parser_env, 3);
       _7 = Parsing.peek_val(__caml_parser_env, 1);
       _8 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$18(symbol_rloc(--[[ () ]]0), _8, symbol_docs(--[[ () ]]0), undefined, _3, _4, do
+      return mk_18(symbol_rloc(--[[ () ]]0), _8, symbol_docs(--[[ () ]]0), undefined, _3, _4, do
                   txt: _5,
                   loc: rhs_loc(5)
                 end, _7);
@@ -5653,7 +5653,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 3);
       _6 = Parsing.peek_val(__caml_parser_env, 1);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$18(symbol_rloc(--[[ () ]]0), _7, symbol_docs(--[[ () ]]0), get_text(Parsing.symbol_start_pos(--[[ () ]]0)), _2, _3, do
+      return mk_18(symbol_rloc(--[[ () ]]0), _7, symbol_docs(--[[ () ]]0), get_text(Parsing.symbol_start_pos(--[[ () ]]0)), _2, _3, do
                   txt: _4,
                   loc: rhs_loc(4)
                 end, _6);
@@ -5810,8 +5810,8 @@ yyact = {
       body = _3;
       bindings = List.map((function (lb) do
               if (lb.lb_attributes ~= --[[ [] ]]0) then do
-                error ({
-                  __Error$1,
+                error({
+                  __Error_1,
                   --[[ Not_expecting ]]Block.__(2, {
                       lb.lb_loc,
                       "item attribute"
@@ -5819,7 +5819,7 @@ yyact = {
                 })
               end
                end 
-              return mk$17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
+              return mk_17(lb.lb_loc, undefined, undefined, undefined, lb.lb_pattern, lb.lb_expression);
             end end), lbs.lbs_bindings);
       d_000 = lbs.lbs_rec;
       d_001 = List.rev(bindings);
@@ -5919,7 +5919,7 @@ yyact = {
   (function (__caml_parser_env) do
       Parsing.peek_val(__caml_parser_env, 3);
       Parsing.peek_val(__caml_parser_env, 2);
-      error (Escape_error)
+      error(Escape_error)
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
@@ -6127,17 +6127,17 @@ yyact = {
       do
          if ___conditional___ = "-" then do
             if (match.tag == --[[ Pexp_constant ]]1) then do
-              match$1 = match[0];
-              local ___conditional___=(match$1.tag | 0);
+              match_1 = match[0];
+              local ___conditional___=(match_1.tag | 0);
               do
                  if ___conditional___ = 0--[[ Const_int ]] then do
-                    return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_int ]]Block.__(0, {-match$1[0] | 0})}));end end end 
+                    return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_int ]]Block.__(0, {-match_1[0] | 0})}));end end end 
                  if ___conditional___ = 4--[[ Const_int32 ]] then do
-                    return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_int32 ]]Block.__(4, {-match$1[0] | 0})}));end end end 
+                    return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_int32 ]]Block.__(4, {-match_1[0] | 0})}));end end end 
                  if ___conditional___ = 5--[[ Const_int64 ]] then do
-                    return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_int64 ]]Block.__(5, {Caml_int64.neg(match$1[0])})}));end end end 
+                    return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_int64 ]]Block.__(5, {Caml_int64.neg(match_1[0])})}));end end end 
                  if ___conditional___ = 6--[[ Const_nativeint ]] then do
-                    return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_nativeint ]]Block.__(6, {-match$1[0]})}));end end end 
+                    return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_nativeint ]]Block.__(6, {-match_1[0]})}));end end end 
                  do
                 else do
                   exit = 2;
@@ -6155,9 +6155,9 @@ yyact = {
           
       end
       if (exit == 2 and match.tag == --[[ Pexp_constant ]]1) then do
-        match$2 = match[0];
-        if (match$2.tag == --[[ Const_float ]]3) then do
-          return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_float ]]Block.__(3, {neg_float_string(match$2[0])})}));
+        match_2 = match[0];
+        if (match_2.tag == --[[ Const_float ]]3) then do
+          return mkexp(--[[ Pexp_constant ]]Block.__(1, {--[[ Const_float ]]Block.__(3, {neg_float_string(match_2[0])})}));
         end
          end 
       end
@@ -6301,10 +6301,10 @@ yyact = {
         match = coords[1];
         c1 = coords[0];
         if (match) then do
-          match$1 = match[1];
+          match_1 = match[1];
           c2 = match[0];
-          if (match$1) then do
-            if (not match$1[1]) then do
+          if (match_1) then do
+            if (not match_1[1]) then do
               return mkexp(--[[ Pexp_apply ]]Block.__(5, {
                             ghexp(--[[ Pexp_ident ]]Block.__(0, {bigarray_function("Array3", set)})),
                             --[[ :: ]]{
@@ -6325,7 +6325,7 @@ yyact = {
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "",
-                                      match$1[0]
+                                      match_1[0]
                                     },
                                     --[[ :: ]]{
                                       --[[ tuple ]]{
@@ -6607,10 +6607,10 @@ yyact = {
         match = coords[1];
         c1 = coords[0];
         if (match) then do
-          match$1 = match[1];
+          match_1 = match[1];
           c2 = match[0];
-          if (match$1) then do
-            if (not match$1[1]) then do
+          if (match_1) then do
+            if (not match_1[1]) then do
               return mkexp(--[[ Pexp_apply ]]Block.__(5, {
                             ghexp(--[[ Pexp_ident ]]Block.__(0, {bigarray_function("Array3", get)})),
                             --[[ :: ]]{
@@ -6631,7 +6631,7 @@ yyact = {
                                   --[[ :: ]]{
                                     --[[ tuple ]]{
                                       "",
-                                      match$1[0]
+                                      match_1[0]
                                     },
                                     --[[ [] ]]0
                                   }
@@ -7321,10 +7321,10 @@ yyact = {
             };
     end end),
   (function (__caml_parser_env) do
-      error (Escape_error)
+      error(Escape_error)
     end end),
   (function (__caml_parser_env) do
-      error (Escape_error)
+      error(Escape_error)
     end end),
   (function (__caml_parser_env) do
       return Parsing.peek_val(__caml_parser_env, 0);
@@ -7421,7 +7421,7 @@ yyact = {
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 1);
       _2 = Parsing.peek_val(__caml_parser_env, 0);
-      return attr$1(_1, _2);
+      return attr_1(_1, _2);
     end end),
   (function (__caml_parser_env) do
       _1 = Parsing.peek_val(__caml_parser_env, 0);
@@ -7662,7 +7662,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$11(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, do
+      return mk_11(symbol_rloc(--[[ () ]]0), _5, symbol_docs(--[[ () ]]0), undefined, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _4);
@@ -7687,7 +7687,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 3);
       _6 = Parsing.peek_val(__caml_parser_env, 1);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$11(symbol_rloc(--[[ () ]]0), _7, symbol_docs(--[[ () ]]0), _6, do
+      return mk_11(symbol_rloc(--[[ () ]]0), _7, symbol_docs(--[[ () ]]0), _6, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _4);
@@ -7714,7 +7714,7 @@ yyact = {
       _5 = Parsing.peek_val(__caml_parser_env, 2);
       _6 = Parsing.peek_val(__caml_parser_env, 1);
       _7 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$19(symbol_rloc(--[[ () ]]0), add_nonrec(_2, _7, 2), symbol_docs(--[[ () ]]0), undefined, _3, List.rev(_6), _5[0], _5[1], _5[2], do
+      return mk_19(symbol_rloc(--[[ () ]]0), add_nonrec(_2, _7, 2), symbol_docs(--[[ () ]]0), undefined, _3, List.rev(_6), _5[0], _5[1], _5[2], do
                   txt: _4,
                   loc: rhs_loc(4)
                 end);
@@ -7725,7 +7725,7 @@ yyact = {
       _4 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 1);
       _6 = Parsing.peek_val(__caml_parser_env, 0);
-      return mk$19(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), get_text(Parsing.symbol_start_pos(--[[ () ]]0)), _2, List.rev(_5), _4[0], _4[1], _4[2], do
+      return mk_19(symbol_rloc(--[[ () ]]0), _6, symbol_docs(--[[ () ]]0), get_text(Parsing.symbol_start_pos(--[[ () ]]0)), _2, List.rev(_5), _4[0], _4[1], _4[2], do
                   txt: _3,
                   loc: rhs_loc(3)
                 end);
@@ -8037,7 +8037,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _4 = Parsing.peek_val(__caml_parser_env, 1);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return field$1(symbol_rloc(--[[ () ]]0), _5, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), _1, do
+      return field_1(symbol_rloc(--[[ () ]]0), _5, Caml_option.some(get_info(Parsing.symbol_end_pos(--[[ () ]]0))), _1, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _4);
@@ -8050,7 +8050,7 @@ yyact = {
       _7 = Parsing.peek_val(__caml_parser_env, 0);
       info_before_semi = get_info(Parsing.rhs_end_pos(5));
       info = info_before_semi ~= undefined and info_before_semi or get_info(Parsing.symbol_end_pos(--[[ () ]]0));
-      return field$1(symbol_rloc(--[[ () ]]0), Pervasives.$at(_5, _7), Caml_option.some(info), _1, do
+      return field_1(symbol_rloc(--[[ () ]]0), Pervasives.$at(_5, _7), Caml_option.some(info), _1, do
                   txt: _2,
                   loc: rhs_loc(2)
                 end, _4);
@@ -8066,7 +8066,7 @@ yyact = {
         not_expecting(2, "nonrec flag");
       end
        end 
-      return mk$20(_8, symbol_docs(--[[ () ]]0), _3, _6, do
+      return mk_20(_8, symbol_docs(--[[ () ]]0), _3, _6, do
                   txt: _4,
                   loc: rhs_loc(4)
                 end, List.rev(_7));
@@ -8082,7 +8082,7 @@ yyact = {
         not_expecting(2, "nonrec flag");
       end
        end 
-      return mk$20(_8, symbol_docs(--[[ () ]]0), _3, _6, do
+      return mk_20(_8, symbol_docs(--[[ () ]]0), _3, _6, do
                   txt: _4,
                   loc: rhs_loc(4)
                 end, List.rev(_7));
@@ -8222,7 +8222,7 @@ yyact = {
                   txt: _3,
                   loc: rhs_loc(3)
                 end,
-                mk$19(symbol_rloc(--[[ () ]]0), undefined, undefined, undefined, _2, List.rev(_6), undefined, _4, _5, do
+                mk_19(symbol_rloc(--[[ () ]]0), undefined, undefined, undefined, _2, List.rev(_6), undefined, _4, _5, do
                       txt: rhs,
                       loc: rhs_loc(3)
                     end)
@@ -8232,7 +8232,7 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 3);
       _3 = Parsing.peek_val(__caml_parser_env, 2);
       _5 = Parsing.peek_val(__caml_parser_env, 0);
-      return --[[ Pwith_typesubst ]]Block.__(2, {mk$19(symbol_rloc(--[[ () ]]0), undefined, undefined, undefined, _2, undefined, undefined, undefined, _5, do
+      return --[[ Pwith_typesubst ]]Block.__(2, {mk_19(symbol_rloc(--[[ () ]]0), undefined, undefined, undefined, _2, undefined, undefined, undefined, _5, do
                       txt: _3,
                       loc: rhs_loc(3)
                     end)});
@@ -8376,12 +8376,12 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       if (_2) then do
         if (_2[1]) then do
-          error (Parsing.Parse_error)
+          error(Parsing.Parse_error)
         end
          end 
         return _2[0];
       end else do
-        error (Parsing.Parse_error)
+        error(Parsing.Parse_error)
       end end 
     end end),
   (function (__caml_parser_env) do
@@ -8391,12 +8391,12 @@ yyact = {
       _2 = Parsing.peek_val(__caml_parser_env, 1);
       if (_2) then do
         if (_2[1]) then do
-          error (Parsing.Parse_error)
+          error(Parsing.Parse_error)
         end
          end 
         return _2[0];
       end else do
-        error (Parsing.Parse_error)
+        error(Parsing.Parse_error)
       end end 
     end end),
   (function (__caml_parser_env) do
@@ -9064,8 +9064,8 @@ yyact = {
                   p2
                 });
       end else do
-        error ({
-          __Error$1,
+        error({
+          __Error_1,
           --[[ Applicative_path ]]Block.__(3, {symbol_rloc(--[[ () ]]0)})
         })
       end end 
@@ -9534,43 +9534,43 @@ yyact = {
               });
     end end),
   (function (__caml_parser_env) do
-      error ({
+      error({
         Parsing.YYexit,
         Parsing.peek_val(__caml_parser_env, 0)
       })
     end end),
   (function (__caml_parser_env) do
-      error ({
+      error({
         Parsing.YYexit,
         Parsing.peek_val(__caml_parser_env, 0)
       })
     end end),
   (function (__caml_parser_env) do
-      error ({
+      error({
         Parsing.YYexit,
         Parsing.peek_val(__caml_parser_env, 0)
       })
     end end),
   (function (__caml_parser_env) do
-      error ({
+      error({
         Parsing.YYexit,
         Parsing.peek_val(__caml_parser_env, 0)
       })
     end end),
   (function (__caml_parser_env) do
-      error ({
+      error({
         Parsing.YYexit,
         Parsing.peek_val(__caml_parser_env, 0)
       })
     end end),
   (function (__caml_parser_env) do
-      error ({
+      error({
         Parsing.YYexit,
         Parsing.peek_val(__caml_parser_env, 0)
       })
     end end),
   (function (__caml_parser_env) do
-      error ({
+      error({
         Parsing.YYexit,
         Parsing.peek_val(__caml_parser_env, 0)
       })
@@ -9638,14 +9638,14 @@ function string_of_type_directive(x) do
   end
 end end
 
-__Error$2 = Caml_exceptions.create("Ocaml_parsetree_test.Lexer.Error");
+__Error_2 = Caml_exceptions.create("Ocaml_parsetree_test.Lexer.Error");
 
 function assert_same_type(lexbuf, x, y) do
   lhs = type_of_directive(x);
   rhs = type_of_directive(y);
   if (lhs ~= rhs) then do
-    error ({
-      __Error$2,
+    error({
+      __Error_2,
       --[[ Conditional_expr_expected_type ]]Block.__(7, {
           lhs,
           rhs
@@ -9670,11 +9670,11 @@ i;
 xpcall(function() do
   i = __String.rindex(Sys.ocaml_version, --[[ "+" ]]43);
   exit = 1;
-end end,function(exn$1) return do
-  if (exn$1 == Caml_builtin_exceptions.not_found) then do
+end end,function(exn_1) do
+  if (exn_1 == Caml_builtin_exceptions.not_found) then do
     tmp = "";
   end else do
-    error (exn$1)
+    error(exn_1)
   end end 
 end end)
 
@@ -9727,15 +9727,15 @@ function semantic_version_parse(str, start, last_index) do
     end;
   end end;
   match = aux(start, 0, last_index);
-  match$1 = aux(match[1], 0, last_index);
-  match$2 = aux(match$1[1], 0, last_index);
-  patch_end = match$2[1];
+  match_1 = aux(match[1], 0, last_index);
+  match_2 = aux(match_1[1], 0, last_index);
+  patch_end = match_2[1];
   additional = __String.sub(str, patch_end, (last_index - patch_end | 0) + 1 | 0);
   return --[[ tuple ]]{
           --[[ tuple ]]{
             match[0],
-            match$1[0],
-            match$2[0]
+            match_1[0],
+            match_2[0]
           },
           additional
         };
@@ -9745,11 +9745,11 @@ function defined(str) do
   val;
   xpcall(function() do
     val = Hashtbl.find(directive_built_in_values, str);
-  end end,function(exn) return do
+  end end,function(exn) do
     xpcall(function() do
       Caml_sys.caml_sys_getenv(str);
       return true;
-    end end,function(exn$1) return do
+    end end,function(exn_1) do
       return false;
     end end)
   end end)
@@ -9764,38 +9764,38 @@ function query(loc, str) do
   v;
   xpcall(function() do
     v = Hashtbl.find(directive_built_in_values, str);
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       exit = 0;
-      v$1;
+      v_1;
       xpcall(function() do
-        v$1 = Caml_sys.caml_sys_getenv(str);
+        v_1 = Caml_sys.caml_sys_getenv(str);
         exit = 2;
-      end end,function(exn$1) return do
-        if (exn$1 == Caml_builtin_exceptions.not_found) then do
+      end end,function(exn_1) do
+        if (exn_1 == Caml_builtin_exceptions.not_found) then do
           return --[[ Dir_bool ]]Block.__(0, {false});
         end else do
-          error (exn$1)
+          error(exn_1)
         end end 
       end end)
       if (exit == 2) then do
         xpcall(function() do
-          return --[[ Dir_bool ]]Block.__(0, {Pervasives.bool_of_string(v$1)});
-        end end,function(exn$2) return do
+          return --[[ Dir_bool ]]Block.__(0, {Pervasives.bool_of_string(v_1)});
+        end end,function(exn_2) do
           xpcall(function() do
-            return --[[ Dir_int ]]Block.__(2, {Caml_format.caml_int_of_string(v$1)});
-          end end,function(exn$3) return do
+            return --[[ Dir_int ]]Block.__(2, {Caml_format.caml_int_of_string(v_1)});
+          end end,function(exn_3) do
             xpcall(function() do
-              return --[[ Dir_float ]]Block.__(1, {Caml_format.caml_float_of_string(v$1)});
-            end end,function(exn$4) return do
-              return --[[ Dir_string ]]Block.__(3, {v$1});
+              return --[[ Dir_float ]]Block.__(1, {Caml_format.caml_float_of_string(v_1)});
+            end end,function(exn_4) do
+              return --[[ Dir_string ]]Block.__(3, {v_1});
             end end)
           end end)
         end end)
       end
        end 
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
   if (typeof v == "number") then do
@@ -9815,8 +9815,8 @@ function value_of_token(loc, t) do
           return --[[ Dir_bool ]]Block.__(0, {true});end end end 
        do
       else do
-        error ({
-          __Error$2,
+        error({
+          __Error_2,
           --[[ Unexpected_token_in_conditional ]]4,
           loc
         })
@@ -9836,8 +9836,8 @@ function value_of_token(loc, t) do
           return query(loc, t[0]);end end end 
        do
       else do
-        error ({
-          __Error$2,
+        error({
+          __Error_2,
           --[[ Unexpected_token_in_conditional ]]4,
           loc
         })
@@ -9864,8 +9864,8 @@ function directive_parse(token_with_comments, lexbuf) do
           local ___conditional___=(t);
           do
              if ___conditional___ = 25--[[ EOF ]] then do
-                error ({
-                  __Error$2,
+                error({
+                  __Error_2,
                   --[[ Unterminated_if ]]2,
                   curr(lexbuf)
                 })end end end 
@@ -9897,7 +9897,7 @@ function directive_parse(token_with_comments, lexbuf) do
   end end;
   push = function (e) do
     if (look_ahead.contents ~= undefined) then do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "lexer.mll",
@@ -9934,17 +9934,17 @@ function directive_parse(token_with_comments, lexbuf) do
               if (typeof lhs ~= "number" and lhs.tag == --[[ Dir_string ]]3) then do
                 curr_loc = curr(lexbuf);
                 rhs = value_of_token(curr_loc, token(--[[ () ]]0));
-                exit$1 = 0;
+                exit_1 = 0;
                 if (typeof rhs == "number" or rhs.tag ~= --[[ Dir_string ]]3) then do
-                  exit$1 = 3;
+                  exit_1 = 3;
                 end else do
                   loc = curr_loc;
-                  lhs$1 = lhs[0];
+                  lhs_1 = lhs[0];
                   str = rhs[0];
                   last_index = #str - 1 | 0;
                   if (last_index < 0) then do
-                    error ({
-                      __Error$2,
+                    error({
+                      __Error_2,
                       --[[ Illegal_semver ]]Block.__(6, {str}),
                       loc
                     })
@@ -9952,11 +9952,11 @@ function directive_parse(token_with_comments, lexbuf) do
                    end 
                   v = str.charCodeAt(0);
                   match;
-                  exit$2 = 0;
+                  exit_2 = 0;
                   if (v ~= 94) then do
                     if (v >= 63) then do
                       if (v ~= 126) then do
-                        exit$2 = 1;
+                        exit_2 = 1;
                       end else do
                         match = --[[ tuple ]]{
                           --[[ Approximate ]]-617782220,
@@ -9968,8 +9968,8 @@ function directive_parse(token_with_comments, lexbuf) do
                       do
                          if ___conditional___ = 0 then do
                             if (last_index == 0) then do
-                              error ({
-                                __Error$2,
+                              error({
+                                __Error_2,
                                 --[[ Illegal_semver ]]Block.__(6, {str}),
                                 loc
                               })
@@ -9983,11 +9983,11 @@ function directive_parse(token_with_comments, lexbuf) do
                                 semantic_version_parse(str, 1, last_index)
                               };end else 
                          if ___conditional___ = 1 then do
-                            exit$2 = 1;end else 
+                            exit_2 = 1;end else 
                          if ___conditional___ = 2 then do
                             if (last_index == 0) then do
-                              error ({
-                                __Error$2,
+                              error({
+                                __Error_2,
                                 --[[ Illegal_semver ]]Block.__(6, {str}),
                                 loc
                               })
@@ -10004,7 +10004,7 @@ function directive_parse(token_with_comments, lexbuf) do
                         
                       end
                     end else do
-                      exit$2 = 1;
+                      exit_2 = 1;
                     end end  end 
                   end else do
                     match = --[[ tuple ]]{
@@ -10012,7 +10012,7 @@ function directive_parse(token_with_comments, lexbuf) do
                       semantic_version_parse(str, 1, last_index)
                     };
                   end end 
-                  if (exit$2 == 1) then do
+                  if (exit_2 == 1) then do
                     match = --[[ tuple ]]{
                       --[[ Exact ]]172069535,
                       semantic_version_parse(str, 0, last_index)
@@ -10022,8 +10022,8 @@ function directive_parse(token_with_comments, lexbuf) do
                   version = match[1][0];
                   major = version[0];
                   pred = match[0];
-                  match$1 = semantic_version_parse(lhs$1, 0, #lhs$1 - 1 | 0);
-                  lversion = match$1[0];
+                  match_1 = semantic_version_parse(lhs_1, 0, #lhs_1 - 1 | 0);
+                  lversion = match_1[0];
                   l_major = lversion[0];
                   if (pred >= 17049) then do
                     if (pred >= 172069535) then do
@@ -10049,9 +10049,9 @@ function directive_parse(token_with_comments, lexbuf) do
                     return Caml_obj.caml_greaterequal(lversion, version);
                   end end  end 
                 end end 
-                if (exit$1 == 3) then do
-                  error ({
-                    __Error$2,
+                if (exit_1 == 3) then do
+                  error({
+                    __Error_2,
                     --[[ Conditional_expr_expected_type ]]Block.__(7, {
                         --[[ Dir_type_string ]]3,
                         type_of_directive(lhs)
@@ -10062,8 +10062,8 @@ function directive_parse(token_with_comments, lexbuf) do
                  end 
               end
                end 
-              error ({
-                __Error$2,
+              error({
+                __Error_2,
                 --[[ Conditional_expr_expected_type ]]Block.__(7, {
                     --[[ Dir_type_string ]]3,
                     type_of_directive(lhs)
@@ -10088,7 +10088,7 @@ function directive_parse(token_with_comments, lexbuf) do
     end end  end 
     if (exit == 1) then do
       f;
-      exit$3 = 0;
+      exit_3 = 0;
       if (typeof op == "number") then do
         local ___conditional___=(op);
         do
@@ -10100,7 +10100,7 @@ function directive_parse(token_with_comments, lexbuf) do
               f = Caml_obj.caml_lessthan;end else 
            do end end end end
           else do
-            exit$3 = 2;
+            exit_3 = 2;
             end end
             
         end
@@ -10113,15 +10113,15 @@ function directive_parse(token_with_comments, lexbuf) do
               f = Caml_obj.caml_notequal;end else 
            do end end end
           else do
-            exit$3 = 2;
+            exit_3 = 2;
             end end
             
         end
       end else do
-        exit$3 = 2;
+        exit_3 = 2;
       end end  end 
-      if (exit$3 == 2) then do
-        error ({
+      if (exit_3 == 2) then do
+        error({
           Caml_builtin_exceptions.assert_failure,
           --[[ tuple ]]{
             "lexer.mll",
@@ -10131,10 +10131,10 @@ function directive_parse(token_with_comments, lexbuf) do
         })
       end
        end 
-      curr_loc$1 = curr(lexbuf);
-      rhs$1 = value_of_token(curr_loc$1, token(--[[ () ]]0));
+      curr_loc_1 = curr(lexbuf);
+      rhs_1 = value_of_token(curr_loc_1, token(--[[ () ]]0));
       if (calc) then do
-        return Curry._2(f, lhs, assert_same_type(lexbuf, lhs, rhs$1));
+        return Curry._2(f, lhs, assert_same_type(lexbuf, lhs, rhs_1));
       end else do
         return true;
       end end 
@@ -10144,8 +10144,8 @@ function directive_parse(token_with_comments, lexbuf) do
   parse_and_aux = function (calc, v) do
     e = token(--[[ () ]]0);
     if (typeof e == "number" and e == 0) then do
-      calc$1 = calc and v;
-      b = parse_and_aux(calc$1, parse_relation(calc$1));
+      calc_1 = calc and v;
+      b = parse_and_aux(calc_1, parse_relation(calc_1));
       if (v) then do
         return b;
       end else do
@@ -10159,8 +10159,8 @@ function directive_parse(token_with_comments, lexbuf) do
   parse_or_aux = function (calc, v) do
     e = token(--[[ () ]]0);
     if (typeof e == "number" and e == 8) then do
-      calc$1 = calc and not v;
-      b = parse_or_aux(calc$1, parse_and_aux(calc$1, parse_relation(calc$1)));
+      calc_1 = calc and not v;
+      b = parse_or_aux(calc_1, parse_and_aux(calc_1, parse_relation(calc_1)));
       if (v) then do
         return true;
       end else do
@@ -10184,8 +10184,8 @@ function directive_parse(token_with_comments, lexbuf) do
             match = token(--[[ () ]]0);
             if (typeof match == "number") then do
               if (match ~= 81) then do
-                error ({
-                  __Error$2,
+                error({
+                  __Error_2,
                   --[[ Unterminated_paren_in_conditional ]]1,
                   curr(lexbuf)
                 })
@@ -10193,8 +10193,8 @@ function directive_parse(token_with_comments, lexbuf) do
                end 
               return v;
             end else do
-              error ({
-                __Error$2,
+              error({
+                __Error_2,
                 --[[ Unterminated_paren_in_conditional ]]1,
                 curr(lexbuf)
               })
@@ -10203,8 +10203,8 @@ function directive_parse(token_with_comments, lexbuf) do
             return true;end end end 
          do
         else do
-          error ({
-            __Error$2,
+          error({
+            __Error_2,
             --[[ Unexpected_token_in_conditional ]]4,
             curr_loc
           })
@@ -10216,8 +10216,8 @@ function directive_parse(token_with_comments, lexbuf) do
       do
          if ___conditional___ = 1--[[ FLOAT ]] then do
             return token_op(calc, (function (e) do
-                          error ({
-                            __Error$2,
+                          error({
+                            __Error_2,
                             --[[ Conditional_expr_expected_type ]]Block.__(7, {
                                 --[[ Dir_type_bool ]]0,
                                 --[[ Dir_type_float ]]1
@@ -10226,11 +10226,11 @@ function directive_parse(token_with_comments, lexbuf) do
                           })
                         end end), --[[ Dir_float ]]Block.__(1, {Caml_format.caml_float_of_string(curr_token[0])}));end end end 
          if ___conditional___ = 7--[[ INT ]] then do
-            v$1 = curr_token[0];
+            v_1 = curr_token[0];
             return token_op(calc, (function (e) do
                           push(e);
-                          return v$1 ~= 0;
-                        end end), --[[ Dir_int ]]Block.__(2, {v$1}));end end end 
+                          return v_1 ~= 0;
+                        end end), --[[ Dir_int ]]Block.__(2, {v_1}));end end end 
          if ___conditional___ = 11--[[ LIDENT ]] then do
             r = curr_token[0];
             local ___conditional___=(r);
@@ -10239,8 +10239,8 @@ function directive_parse(token_with_comments, lexbuf) do
                or ___conditional___ = "undefined"
                do end
               else do
-                error ({
-                  __Error$2,
+                error({
+                  __Error_2,
                   --[[ Unexpected_token_in_conditional ]]4,
                   curr_loc
                 })
@@ -10250,8 +10250,8 @@ function directive_parse(token_with_comments, lexbuf) do
             t = token(--[[ () ]]0);
             loc = curr(lexbuf);
             if (typeof t == "number") then do
-              error ({
-                __Error$2,
+              error({
+                __Error_2,
                 --[[ Unexpected_token_in_conditional ]]4,
                 loc
               })
@@ -10267,16 +10267,16 @@ function directive_parse(token_with_comments, lexbuf) do
                 return true;
               end end 
             end else do
-              error ({
-                __Error$2,
+              error({
+                __Error_2,
                 --[[ Unexpected_token_in_conditional ]]4,
                 loc
               })
             end end  end end else 
          if ___conditional___ = 16--[[ STRING ]] then do
             return token_op(calc, (function (e) do
-                          error ({
-                            __Error$2,
+                          error({
+                            __Error_2,
                             --[[ Conditional_expr_expected_type ]]Block.__(7, {
                                 --[[ Dir_type_bool ]]0,
                                 --[[ Dir_type_string ]]3
@@ -10293,8 +10293,8 @@ function directive_parse(token_with_comments, lexbuf) do
                           end
                            end 
                           ty = type_of_directive(value_v);
-                          error ({
-                            __Error$2,
+                          error({
+                            __Error_2,
                             --[[ Conditional_expr_expected_type ]]Block.__(7, {
                                 --[[ Dir_type_bool ]]0,
                                 ty
@@ -10304,8 +10304,8 @@ function directive_parse(token_with_comments, lexbuf) do
                         end end), value_v);end end end 
          do
         else do
-          error ({
-            __Error$2,
+          error({
+            __Error_2,
             --[[ Unexpected_token_in_conditional ]]4,
             curr_loc
           })
@@ -10318,8 +10318,8 @@ function directive_parse(token_with_comments, lexbuf) do
   match = token(--[[ () ]]0);
   if (typeof match == "number") then do
     if (match ~= 88) then do
-      error ({
-        __Error$2,
+      error({
+        __Error_2,
         --[[ Expect_hash_then_in_conditional ]]5,
         curr(lexbuf)
       })
@@ -10327,8 +10327,8 @@ function directive_parse(token_with_comments, lexbuf) do
      end 
     return v;
   end else do
-    error ({
-      __Error$2,
+    error({
+      __Error_2,
       --[[ Expect_hash_then_in_conditional ]]5,
       curr(lexbuf)
     })
@@ -10805,8 +10805,8 @@ function char_for_decimal_code(lexbuf, i) do
     if (comment_start_loc.contents ~= --[[ [] ]]0) then do
       return --[[ "x" ]]120;
     end else do
-      error ({
-        __Error$2,
+      error({
+        __Error_2,
         --[[ Illegal_escape ]]Block.__(1, {Lexing.lexeme(lexbuf)}),
         curr(lexbuf)
       })
@@ -10877,8 +10877,8 @@ function get_label_name(lexbuf) do
   s = Lexing.lexeme(lexbuf);
   name = __String.sub(s, 1, #s - 2 | 0);
   if (Hashtbl.mem(keyword_table, name)) then do
-    error ({
-      __Error$2,
+    error({
+      __Error_2,
       --[[ Keyword_as_label ]]Block.__(4, {name}),
       curr(lexbuf)
     })
@@ -11105,7 +11105,7 @@ function report_error(ppf, param) do
 end end
 
 register_error_of_exn((function (param) do
-        if (param[0] == __Error$2) then do
+        if (param[0] == __Error_2) then do
           return error_of_printer(param[2], report_error, param[1]);
         end
          end 
@@ -11127,214 +11127,214 @@ end;
 
 function token(lexbuf) do
   lexbuf.lex_mem = Caml_array.caml_make_vect(8, -1);
-  lexbuf$1 = lexbuf;
+  lexbuf_1 = lexbuf;
   ___ocaml_lex_state = 0;
   while(true) do
     __ocaml_lex_state = ___ocaml_lex_state;
-    __ocaml_lex_state$1 = Lexing.new_engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf$1);
-    local ___conditional___=(__ocaml_lex_state$1);
+    __ocaml_lex_state_1 = Lexing.new_engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf_1);
+    local ___conditional___=(__ocaml_lex_state_1);
     do
        if ___conditional___ = 0 then do
           if (not escaped_newlines.contents) then do
-            error ({
-              __Error$2,
-              --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 0)}),
-              curr(lexbuf$1)
+            error({
+              __Error_2,
+              --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf_1, 0)}),
+              curr(lexbuf_1)
             })
           end
            end 
-          update_loc(lexbuf$1, undefined, 1, false, 0);
-          return token(lexbuf$1);end end end 
+          update_loc(lexbuf_1, undefined, 1, false, 0);
+          return token(lexbuf_1);end end end 
        if ___conditional___ = 1 then do
-          update_loc(lexbuf$1, undefined, 1, false, 0);
+          update_loc(lexbuf_1, undefined, 1, false, 0);
           return --[[ EOL ]]100;end end end 
        if ___conditional___ = 2 then do
-          return token(lexbuf$1);end end end 
+          return token(lexbuf_1);end end end 
        if ___conditional___ = 3 then do
           return --[[ UNDERSCORE ]]94;end end end 
        if ___conditional___ = 4 then do
           return --[[ TILDE ]]89;end end end 
        if ___conditional___ = 5 then do
-          return --[[ LABEL ]]Block.__(10, {get_label_name(lexbuf$1)});end end end 
+          return --[[ LABEL ]]Block.__(10, {get_label_name(lexbuf_1)});end end end 
        if ___conditional___ = 6 then do
-          prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
-          return --[[ LABEL ]]Block.__(10, {get_label_name(lexbuf$1)});end end end 
+          prerr_warning(curr(lexbuf_1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
+          return --[[ LABEL ]]Block.__(10, {get_label_name(lexbuf_1)});end end end 
        if ___conditional___ = 7 then do
           return --[[ QUESTION ]]76;end end end 
        if ___conditional___ = 8 then do
-          return --[[ OPTLABEL ]]Block.__(13, {get_label_name(lexbuf$1)});end end end 
+          return --[[ OPTLABEL ]]Block.__(13, {get_label_name(lexbuf_1)});end end end 
        if ___conditional___ = 9 then do
-          prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
-          return --[[ OPTLABEL ]]Block.__(13, {get_label_name(lexbuf$1)});end end end 
+          prerr_warning(curr(lexbuf_1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
+          return --[[ OPTLABEL ]]Block.__(13, {get_label_name(lexbuf_1)});end end end 
        if ___conditional___ = 10 then do
-          s = Lexing.lexeme(lexbuf$1);
+          s = Lexing.lexeme(lexbuf_1);
           xpcall(function() do
             return Hashtbl.find(keyword_table, s);
-          end end,function(exn) return do
+          end end,function(exn) do
             if (exn == Caml_builtin_exceptions.not_found) then do
               return --[[ LIDENT ]]Block.__(11, {s});
             end else do
-              error (exn)
+              error(exn)
             end end 
           end end)end end end 
        if ___conditional___ = 11 then do
-          prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
-          return --[[ LIDENT ]]Block.__(11, {Lexing.lexeme(lexbuf$1)});end end end 
+          prerr_warning(curr(lexbuf_1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
+          return --[[ LIDENT ]]Block.__(11, {Lexing.lexeme(lexbuf_1)});end end end 
        if ___conditional___ = 12 then do
-          return --[[ UIDENT ]]Block.__(17, {Lexing.lexeme(lexbuf$1)});end end end 
+          return --[[ UIDENT ]]Block.__(17, {Lexing.lexeme(lexbuf_1)});end end end 
        if ___conditional___ = 13 then do
-          prerr_warning(curr(lexbuf$1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
-          return --[[ UIDENT ]]Block.__(17, {Lexing.lexeme(lexbuf$1)});end end end 
+          prerr_warning(curr(lexbuf_1), --[[ Deprecated ]]Block.__(0, {"ISO-Latin1 characters in identifiers"}));
+          return --[[ UIDENT ]]Block.__(17, {Lexing.lexeme(lexbuf_1)});end end end 
        if ___conditional___ = 14 then do
           xpcall(function() do
-            return --[[ INT ]]Block.__(7, {cvt_int_literal(Lexing.lexeme(lexbuf$1))});
-          end end,function(raw_exn) return do
-            exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
-            if (exn$1[0] == Caml_builtin_exceptions.failure) then do
-              error ({
-                __Error$2,
+            return --[[ INT ]]Block.__(7, {cvt_int_literal(Lexing.lexeme(lexbuf_1))});
+          end end,function(raw_exn) do
+            exn_1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
+            if (exn_1[0] == Caml_builtin_exceptions.failure) then do
+              error({
+                __Error_2,
                 --[[ Literal_overflow ]]Block.__(5, {"int"}),
-                curr(lexbuf$1)
+                curr(lexbuf_1)
               })
             end
              end 
-            error (exn$1)
+            error(exn_1)
           end end)end end end 
        if ___conditional___ = 15 then do
-          return --[[ FLOAT ]]Block.__(1, {remove_underscores(Lexing.lexeme(lexbuf$1))});end end end 
+          return --[[ FLOAT ]]Block.__(1, {remove_underscores(Lexing.lexeme(lexbuf_1))});end end end 
        if ___conditional___ = 16 then do
           xpcall(function() do
-            return --[[ INT32 ]]Block.__(8, {cvt_int32_literal(Lexing.lexeme(lexbuf$1))});
-          end end,function(raw_exn$1) return do
-            exn$2 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-            if (exn$2[0] == Caml_builtin_exceptions.failure) then do
-              error ({
-                __Error$2,
+            return --[[ INT32 ]]Block.__(8, {cvt_int32_literal(Lexing.lexeme(lexbuf_1))});
+          end end,function(raw_exn_1) do
+            exn_2 = Caml_js_exceptions.internalToOCamlException(raw_exn_1);
+            if (exn_2[0] == Caml_builtin_exceptions.failure) then do
+              error({
+                __Error_2,
                 --[[ Literal_overflow ]]Block.__(5, {"int32"}),
-                curr(lexbuf$1)
+                curr(lexbuf_1)
               })
             end
              end 
-            error (exn$2)
+            error(exn_2)
           end end)end end end 
        if ___conditional___ = 17 then do
           xpcall(function() do
-            return --[[ INT64 ]]Block.__(9, {cvt_int64_literal(Lexing.lexeme(lexbuf$1))});
-          end end,function(raw_exn$2) return do
-            exn$3 = Caml_js_exceptions.internalToOCamlException(raw_exn$2);
-            if (exn$3[0] == Caml_builtin_exceptions.failure) then do
-              error ({
-                __Error$2,
+            return --[[ INT64 ]]Block.__(9, {cvt_int64_literal(Lexing.lexeme(lexbuf_1))});
+          end end,function(raw_exn_2) do
+            exn_3 = Caml_js_exceptions.internalToOCamlException(raw_exn_2);
+            if (exn_3[0] == Caml_builtin_exceptions.failure) then do
+              error({
+                __Error_2,
                 --[[ Literal_overflow ]]Block.__(5, {"int64"}),
-                curr(lexbuf$1)
+                curr(lexbuf_1)
               })
             end
              end 
-            error (exn$3)
+            error(exn_3)
           end end)end end end 
        if ___conditional___ = 18 then do
           xpcall(function() do
-            return --[[ NATIVEINT ]]Block.__(12, {cvt_nativeint_literal(Lexing.lexeme(lexbuf$1))});
-          end end,function(raw_exn$3) return do
-            exn$4 = Caml_js_exceptions.internalToOCamlException(raw_exn$3);
-            if (exn$4[0] == Caml_builtin_exceptions.failure) then do
-              error ({
-                __Error$2,
+            return --[[ NATIVEINT ]]Block.__(12, {cvt_nativeint_literal(Lexing.lexeme(lexbuf_1))});
+          end end,function(raw_exn_3) do
+            exn_4 = Caml_js_exceptions.internalToOCamlException(raw_exn_3);
+            if (exn_4[0] == Caml_builtin_exceptions.failure) then do
+              error({
+                __Error_2,
                 --[[ Literal_overflow ]]Block.__(5, {"nativeint"}),
-                curr(lexbuf$1)
+                curr(lexbuf_1)
               })
             end
              end 
-            error (exn$4)
+            error(exn_4)
           end end)end end end 
        if ___conditional___ = 19 then do
           reset_string_buffer(--[[ () ]]0);
           is_in_string.contents = true;
-          string_start = lexbuf$1.lex_start_p;
-          string_start_loc.contents = curr(lexbuf$1);
-          string(lexbuf$1);
+          string_start = lexbuf_1.lex_start_p;
+          string_start_loc.contents = curr(lexbuf_1);
+          string(lexbuf_1);
           is_in_string.contents = false;
-          lexbuf$1.lex_start_p = string_start;
+          lexbuf_1.lex_start_p = string_start;
           return --[[ STRING ]]Block.__(16, {--[[ tuple ]]{
                       get_stored_string(--[[ () ]]0),
                       undefined
                     }});end end end 
        if ___conditional___ = 20 then do
           reset_string_buffer(--[[ () ]]0);
-          delim = Lexing.lexeme(lexbuf$1);
-          delim$1 = __String.sub(delim, 1, #delim - 2 | 0);
+          delim = Lexing.lexeme(lexbuf_1);
+          delim_1 = __String.sub(delim, 1, #delim - 2 | 0);
           is_in_string.contents = true;
-          string_start$1 = lexbuf$1.lex_start_p;
-          string_start_loc.contents = curr(lexbuf$1);
-          __ocaml_lex_quoted_string_rec(delim$1, lexbuf$1, 183);
+          string_start_1 = lexbuf_1.lex_start_p;
+          string_start_loc.contents = curr(lexbuf_1);
+          __ocaml_lex_quoted_string_rec(delim_1, lexbuf_1, 183);
           is_in_string.contents = false;
-          lexbuf$1.lex_start_p = string_start$1;
+          lexbuf_1.lex_start_p = string_start_1;
           return --[[ STRING ]]Block.__(16, {--[[ tuple ]]{
                       get_stored_string(--[[ () ]]0),
-                      delim$1
+                      delim_1
                     }});end end end 
        if ___conditional___ = 21 then do
-          update_loc(lexbuf$1, undefined, 1, false, 1);
-          return --[[ CHAR ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 1)});end end end 
+          update_loc(lexbuf_1, undefined, 1, false, 1);
+          return --[[ CHAR ]]Block.__(0, {Lexing.lexeme_char(lexbuf_1, 1)});end end end 
        if ___conditional___ = 22 then do
-          return --[[ CHAR ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 1)});end end end 
+          return --[[ CHAR ]]Block.__(0, {Lexing.lexeme_char(lexbuf_1, 1)});end end end 
        if ___conditional___ = 23 then do
-          return --[[ CHAR ]]Block.__(0, {char_for_backslash(Lexing.lexeme_char(lexbuf$1, 2))});end end end 
+          return --[[ CHAR ]]Block.__(0, {char_for_backslash(Lexing.lexeme_char(lexbuf_1, 2))});end end end 
        if ___conditional___ = 24 then do
-          return --[[ CHAR ]]Block.__(0, {char_for_decimal_code(lexbuf$1, 2)});end end end 
+          return --[[ CHAR ]]Block.__(0, {char_for_decimal_code(lexbuf_1, 2)});end end end 
        if ___conditional___ = 25 then do
-          return --[[ CHAR ]]Block.__(0, {char_for_hexadecimal_code(lexbuf$1, 3)});end end end 
+          return --[[ CHAR ]]Block.__(0, {char_for_hexadecimal_code(lexbuf_1, 3)});end end end 
        if ___conditional___ = 26 then do
-          l = Lexing.lexeme(lexbuf$1);
+          l = Lexing.lexeme(lexbuf_1);
           esc = __String.sub(l, 1, #l - 1 | 0);
-          error ({
-            __Error$2,
+          error({
+            __Error_2,
             --[[ Illegal_escape ]]Block.__(1, {esc}),
-            curr(lexbuf$1)
+            curr(lexbuf_1)
           })end end end 
        if ___conditional___ = 27 then do
-          match = with_comment_buffer(comment, lexbuf$1);
+          match = with_comment_buffer(comment, lexbuf_1);
           return --[[ COMMENT ]]Block.__(18, {--[[ tuple ]]{
                       match[0],
                       match[1]
                     }});end end end 
        if ___conditional___ = 28 then do
-          match$1 = with_comment_buffer(comment, lexbuf$1);
-          return --[[ DOCSTRING ]]Block.__(19, {docstring(match$1[0], match$1[1])});end end end 
+          match_1 = with_comment_buffer(comment, lexbuf_1);
+          return --[[ DOCSTRING ]]Block.__(19, {docstring(match_1[0], match_1[1])});end end end 
        if ___conditional___ = 29 then do
-          stars = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos);
-          match$2 = with_comment_buffer((function(stars)do
+          stars = Lexing.sub_lexeme(lexbuf_1, lexbuf_1.lex_start_pos, lexbuf_1.lex_curr_pos);
+          match_2 = with_comment_buffer((function(stars)do
               return function (lexbuf) do
                 store_string("*" .. stars);
                 return __ocaml_lex_comment_rec(lexbuf, 132);
               end end
-              end(stars)), lexbuf$1);
+              end(stars)), lexbuf_1);
           return --[[ COMMENT ]]Block.__(18, {--[[ tuple ]]{
-                      match$2[0],
-                      match$2[1]
+                      match_2[0],
+                      match_2[1]
                     }});end end end 
        if ___conditional___ = 30 then do
           if (print_warnings.contents) then do
-            prerr_warning(curr(lexbuf$1), --[[ Comment_start ]]0);
+            prerr_warning(curr(lexbuf_1), --[[ Comment_start ]]0);
           end
            end 
-          match$3 = with_comment_buffer(comment, lexbuf$1);
+          match_3 = with_comment_buffer(comment, lexbuf_1);
           return --[[ COMMENT ]]Block.__(18, {--[[ tuple ]]{
-                      match$3[0],
-                      match$3[1]
+                      match_3[0],
+                      match_3[1]
                     }});end end end 
        if ___conditional___ = 31 then do
-          stars$1 = Lexing.sub_lexeme(lexbuf$1, lexbuf$1.lex_start_pos, lexbuf$1.lex_curr_pos - 2 | 0);
+          stars_1 = Lexing.sub_lexeme(lexbuf_1, lexbuf_1.lex_start_pos, lexbuf_1.lex_curr_pos - 2 | 0);
           return --[[ COMMENT ]]Block.__(18, {--[[ tuple ]]{
-                      stars$1,
-                      curr(lexbuf$1)
+                      stars_1,
+                      curr(lexbuf_1)
                     }});end end end 
        if ___conditional___ = 32 then do
-          loc = curr(lexbuf$1);
+          loc = curr(lexbuf_1);
           prerr_warning(loc, --[[ Comment_not_end ]]1);
-          lexbuf$1.lex_curr_pos = lexbuf$1.lex_curr_pos - 1 | 0;
-          curpos = lexbuf$1.lex_curr_p;
-          lexbuf$1.lex_curr_p = do
+          lexbuf_1.lex_curr_pos = lexbuf_1.lex_curr_pos - 1 | 0;
+          curpos = lexbuf_1.lex_curr_p;
+          lexbuf_1.lex_curr_p = do
             pos_fname: curpos.pos_fname,
             pos_lnum: curpos.pos_lnum,
             pos_bol: curpos.pos_bol,
@@ -11342,10 +11342,10 @@ function token(lexbuf) do
           end;
           return --[[ STAR ]]86;end end end 
        if ___conditional___ = 33 then do
-          num = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), Caml_array.caml_array_get(lexbuf$1.lex_mem, 1));
-          name = Lexing.sub_lexeme_opt(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 3), Caml_array.caml_array_get(lexbuf$1.lex_mem, 2));
-          update_loc(lexbuf$1, name, Caml_format.caml_int_of_string(num), true, 0);
-          return token(lexbuf$1);end end end 
+          num = Lexing.sub_lexeme(lexbuf_1, Caml_array.caml_array_get(lexbuf_1.lex_mem, 0), Caml_array.caml_array_get(lexbuf_1.lex_mem, 1));
+          name = Lexing.sub_lexeme_opt(lexbuf_1, Caml_array.caml_array_get(lexbuf_1.lex_mem, 3), Caml_array.caml_array_get(lexbuf_1.lex_mem, 2));
+          update_loc(lexbuf_1, name, Caml_format.caml_int_of_string(num), true, 0);
+          return token(lexbuf_1);end end end 
        if ___conditional___ = 34 then do
           return --[[ SHARP ]]84;end end end 
        if ___conditional___ = 35 then do
@@ -11442,49 +11442,49 @@ function token(lexbuf) do
           return --[[ MINUSDOT ]]61;end end end 
        if ___conditional___ = 81
        or ___conditional___ = 82 then do
-          return --[[ PREFIXOP ]]Block.__(14, {Lexing.lexeme(lexbuf$1)});end end end 
+          return --[[ PREFIXOP ]]Block.__(14, {Lexing.lexeme(lexbuf_1)});end end end 
        if ___conditional___ = 83 then do
-          return --[[ INFIXOP0 ]]Block.__(2, {Lexing.lexeme(lexbuf$1)});end end end 
+          return --[[ INFIXOP0 ]]Block.__(2, {Lexing.lexeme(lexbuf_1)});end end end 
        if ___conditional___ = 84 then do
-          return --[[ INFIXOP1 ]]Block.__(3, {Lexing.lexeme(lexbuf$1)});end end end 
+          return --[[ INFIXOP1 ]]Block.__(3, {Lexing.lexeme(lexbuf_1)});end end end 
        if ___conditional___ = 85 then do
-          return --[[ INFIXOP2 ]]Block.__(4, {Lexing.lexeme(lexbuf$1)});end end end 
+          return --[[ INFIXOP2 ]]Block.__(4, {Lexing.lexeme(lexbuf_1)});end end end 
        if ___conditional___ = 86 then do
-          return --[[ INFIXOP4 ]]Block.__(6, {Lexing.lexeme(lexbuf$1)});end end end 
+          return --[[ INFIXOP4 ]]Block.__(6, {Lexing.lexeme(lexbuf_1)});end end end 
        if ___conditional___ = 87 then do
           return --[[ PERCENT ]]71;end end end 
        if ___conditional___ = 88 then do
-          return --[[ INFIXOP3 ]]Block.__(5, {Lexing.lexeme(lexbuf$1)});end end end 
+          return --[[ INFIXOP3 ]]Block.__(5, {Lexing.lexeme(lexbuf_1)});end end end 
        if ___conditional___ = 89 then do
-          return --[[ SHARPOP ]]Block.__(15, {Lexing.lexeme(lexbuf$1)});end end end 
+          return --[[ SHARPOP ]]Block.__(15, {Lexing.lexeme(lexbuf_1)});end end end 
        if ___conditional___ = 90 then do
           if (if_then_else.contents ~= --[[ Dir_out ]]2) then do
             if (if_then_else.contents == --[[ Dir_if_true ]]0) then do
-              error ({
-                __Error$2,
+              error({
+                __Error_2,
                 --[[ Unterminated_if ]]2,
-                curr(lexbuf$1)
+                curr(lexbuf_1)
               })
             end
              end 
-            error ({
-              __Error$2,
+            error({
+              __Error_2,
               --[[ Unterminated_else ]]3,
-              curr(lexbuf$1)
+              curr(lexbuf_1)
             })
           end else do
             return --[[ EOF ]]25;
           end end end end end 
        if ___conditional___ = 91 then do
-          error ({
-            __Error$2,
-            --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf$1, 0)}),
-            curr(lexbuf$1)
+          error({
+            __Error_2,
+            --[[ Illegal_character ]]Block.__(0, {Lexing.lexeme_char(lexbuf_1, 0)}),
+            curr(lexbuf_1)
           })end end end 
        do
       else do
-        Curry._1(lexbuf$1.refill_buff, lexbuf$1);
-        ___ocaml_lex_state = __ocaml_lex_state$1;
+        Curry._1(lexbuf_1.refill_buff, lexbuf_1);
+        ___ocaml_lex_state = __ocaml_lex_state_1;
         ::continue:: ;
         end end
         
@@ -11495,8 +11495,8 @@ end end
 function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
   while(true) do
     __ocaml_lex_state = ___ocaml_lex_state;
-    __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    local ___conditional___=(__ocaml_lex_state$1);
+    __ocaml_lex_state_1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
+    local ___conditional___=(__ocaml_lex_state_1);
     do
        if ___conditional___ = 0 then do
           update_loc(lexbuf, undefined, 1, false, 0);
@@ -11505,15 +11505,15 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
           ::continue:: ;end end end 
        if ___conditional___ = 1 then do
           is_in_string.contents = false;
-          error ({
-            __Error$2,
+          error({
+            __Error_2,
             --[[ Unterminated_string ]]0,
             string_start_loc.contents
           })end end end 
        if ___conditional___ = 2 then do
           edelim = Lexing.lexeme(lexbuf);
-          edelim$1 = __String.sub(edelim, 1, #edelim - 2 | 0);
-          if (delim == edelim$1) then do
+          edelim_1 = __String.sub(edelim, 1, #edelim - 2 | 0);
+          if (delim == edelim_1) then do
             return --[[ () ]]0;
           end else do
             store_string(Lexing.lexeme(lexbuf));
@@ -11527,7 +11527,7 @@ function __ocaml_lex_quoted_string_rec(delim, lexbuf, ___ocaml_lex_state) do
        do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
-        ___ocaml_lex_state = __ocaml_lex_state$1;
+        ___ocaml_lex_state = __ocaml_lex_state_1;
         ::continue:: ;
         end end
         
@@ -11537,60 +11537,60 @@ end end
 
 function string(lexbuf) do
   lexbuf.lex_mem = Caml_array.caml_make_vect(2, -1);
-  lexbuf$1 = lexbuf;
+  lexbuf_1 = lexbuf;
   ___ocaml_lex_state = 164;
   while(true) do
     __ocaml_lex_state = ___ocaml_lex_state;
-    __ocaml_lex_state$1 = Lexing.new_engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf$1);
-    local ___conditional___=(__ocaml_lex_state$1);
+    __ocaml_lex_state_1 = Lexing.new_engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf_1);
+    local ___conditional___=(__ocaml_lex_state_1);
     do
        if ___conditional___ = 0 then do
           return --[[ () ]]0;end end end 
        if ___conditional___ = 1 then do
-          space = Lexing.sub_lexeme(lexbuf$1, Caml_array.caml_array_get(lexbuf$1.lex_mem, 0), lexbuf$1.lex_curr_pos);
-          update_loc(lexbuf$1, undefined, 1, false, #space);
-          return string(lexbuf$1);end end end 
+          space = Lexing.sub_lexeme(lexbuf_1, Caml_array.caml_array_get(lexbuf_1.lex_mem, 0), lexbuf_1.lex_curr_pos);
+          update_loc(lexbuf_1, undefined, 1, false, #space);
+          return string(lexbuf_1);end end end 
        if ___conditional___ = 2 then do
-          store_string_char(char_for_backslash(Lexing.lexeme_char(lexbuf$1, 1)));
-          return string(lexbuf$1);end end end 
+          store_string_char(char_for_backslash(Lexing.lexeme_char(lexbuf_1, 1)));
+          return string(lexbuf_1);end end end 
        if ___conditional___ = 3 then do
-          store_string_char(char_for_decimal_code(lexbuf$1, 1));
-          return string(lexbuf$1);end end end 
+          store_string_char(char_for_decimal_code(lexbuf_1, 1));
+          return string(lexbuf_1);end end end 
        if ___conditional___ = 4 then do
-          store_string_char(char_for_hexadecimal_code(lexbuf$1, 2));
-          return string(lexbuf$1);end end end 
+          store_string_char(char_for_hexadecimal_code(lexbuf_1, 2));
+          return string(lexbuf_1);end end end 
        if ___conditional___ = 5 then do
           if (comment_start_loc.contents ~= --[[ [] ]]0) then do
-            return string(lexbuf$1);
+            return string(lexbuf_1);
           end else do
-            loc = curr(lexbuf$1);
+            loc = curr(lexbuf_1);
             prerr_warning(loc, --[[ Illegal_backslash ]]7);
-            store_string_char(Lexing.lexeme_char(lexbuf$1, 0));
-            store_string_char(Lexing.lexeme_char(lexbuf$1, 1));
-            return string(lexbuf$1);
+            store_string_char(Lexing.lexeme_char(lexbuf_1, 0));
+            store_string_char(Lexing.lexeme_char(lexbuf_1, 1));
+            return string(lexbuf_1);
           end end end end end 
        if ___conditional___ = 6 then do
           if (comment_start_loc.contents == --[[ [] ]]0) then do
-            prerr_warning(curr(lexbuf$1), --[[ Eol_in_string ]]14);
+            prerr_warning(curr(lexbuf_1), --[[ Eol_in_string ]]14);
           end
            end 
-          update_loc(lexbuf$1, undefined, 1, false, 0);
-          store_string(Lexing.lexeme(lexbuf$1));
-          return string(lexbuf$1);end end end 
+          update_loc(lexbuf_1, undefined, 1, false, 0);
+          store_string(Lexing.lexeme(lexbuf_1));
+          return string(lexbuf_1);end end end 
        if ___conditional___ = 7 then do
           is_in_string.contents = false;
-          error ({
-            __Error$2,
+          error({
+            __Error_2,
             --[[ Unterminated_string ]]0,
             string_start_loc.contents
           })end end end 
        if ___conditional___ = 8 then do
-          store_string_char(Lexing.lexeme_char(lexbuf$1, 0));
-          return string(lexbuf$1);end end end 
+          store_string_char(Lexing.lexeme_char(lexbuf_1, 0));
+          return string(lexbuf_1);end end end 
        do
       else do
-        Curry._1(lexbuf$1.refill_buff, lexbuf$1);
-        ___ocaml_lex_state = __ocaml_lex_state$1;
+        Curry._1(lexbuf_1.refill_buff, lexbuf_1);
+        ___ocaml_lex_state = __ocaml_lex_state_1;
         ::continue:: ;
         end end
         
@@ -11601,8 +11601,8 @@ end end
 function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
   while(true) do
     __ocaml_lex_state = ___ocaml_lex_state;
-    __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    local ___conditional___=(__ocaml_lex_state$1);
+    __ocaml_lex_state_1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
+    local ___conditional___=(__ocaml_lex_state_1);
     do
        if ___conditional___ = 0 then do
           comment_start_loc.contents = --[[ :: ]]{
@@ -11626,7 +11626,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
               return curr(lexbuf);
             end end 
           end else do
-            error ({
+            error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
                 "lexer.mll",
@@ -11641,29 +11641,29 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           is_in_string.contents = true;
           xpcall(function() do
             string(lexbuf);
-          end end,function(raw_exn) return do
+          end end,function(raw_exn) do
             exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-            if (exn[0] == __Error$2) then do
-              match$1 = exn[1];
-              if (typeof match$1 == "number") then do
-                if (match$1 ~= 0) then do
-                  error (exn)
+            if (exn[0] == __Error_2) then do
+              match_1 = exn[1];
+              if (typeof match_1 == "number") then do
+                if (match_1 ~= 0) then do
+                  error(exn)
                 end
                  end 
-                match$2 = comment_start_loc.contents;
-                if (match$2) then do
+                match_2 = comment_start_loc.contents;
+                if (match_2) then do
                   start = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[[ [] ]]0;
-                  error ({
-                    __Error$2,
+                  error({
+                    __Error_2,
                     --[[ Unterminated_string_in_comment ]]Block.__(3, {
                         start,
                         exn[2]
                       }),
-                    match$2[0]
+                    match_2[0]
                   })
                 end else do
-                  error ({
+                  error({
                     Caml_builtin_exceptions.assert_failure,
                     --[[ tuple ]]{
                       "lexer.mll",
@@ -11673,10 +11673,10 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                   })
                 end end 
               end else do
-                error (exn)
+                error(exn)
               end end 
             end else do
-              error (exn)
+              error(exn)
             end end 
           end end)
           is_in_string.contents = false;
@@ -11685,35 +11685,35 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           ::continue:: ;end end end 
        if ___conditional___ = 3 then do
           delim = Lexing.lexeme(lexbuf);
-          delim$1 = __String.sub(delim, 1, #delim - 2 | 0);
+          delim_1 = __String.sub(delim, 1, #delim - 2 | 0);
           string_start_loc.contents = curr(lexbuf);
           store_string(Lexing.lexeme(lexbuf));
           is_in_string.contents = true;
           xpcall(function() do
-            __ocaml_lex_quoted_string_rec(delim$1, lexbuf, 183);
-          end end,function(raw_exn$1) return do
-            exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-            if (exn$1[0] == __Error$2) then do
-              match$3 = exn$1[1];
-              if (typeof match$3 == "number") then do
-                if (match$3 ~= 0) then do
-                  error (exn$1)
+            __ocaml_lex_quoted_string_rec(delim_1, lexbuf, 183);
+          end end,function(raw_exn_1) do
+            exn_1 = Caml_js_exceptions.internalToOCamlException(raw_exn_1);
+            if (exn_1[0] == __Error_2) then do
+              match_3 = exn_1[1];
+              if (typeof match_3 == "number") then do
+                if (match_3 ~= 0) then do
+                  error(exn_1)
                 end
                  end 
-                match$4 = comment_start_loc.contents;
-                if (match$4) then do
-                  start$1 = List.hd(List.rev(comment_start_loc.contents));
+                match_4 = comment_start_loc.contents;
+                if (match_4) then do
+                  start_1 = List.hd(List.rev(comment_start_loc.contents));
                   comment_start_loc.contents = --[[ [] ]]0;
-                  error ({
-                    __Error$2,
+                  error({
+                    __Error_2,
                     --[[ Unterminated_string_in_comment ]]Block.__(3, {
-                        start$1,
-                        exn$1[2]
+                        start_1,
+                        exn_1[2]
                       }),
-                    match$4[0]
+                    match_4[0]
                   })
                 end else do
-                  error ({
+                  error({
                     Caml_builtin_exceptions.assert_failure,
                     --[[ tuple ]]{
                       "lexer.mll",
@@ -11723,15 +11723,15 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
                   })
                 end end 
               end else do
-                error (exn$1)
+                error(exn_1)
               end end 
             end else do
-              error (exn$1)
+              error(exn_1)
             end end 
           end end)
           is_in_string.contents = false;
           store_string_char(--[[ "|" ]]124);
-          store_string(delim$1);
+          store_string(delim_1);
           store_string_char(--[[ "}" ]]125);
           ___ocaml_lex_state = 132;
           ::continue:: ;end end end 
@@ -11741,17 +11741,17 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
           ___ocaml_lex_state = 132;
           ::continue:: ;end end end 
        if ___conditional___ = 10 then do
-          match$5 = comment_start_loc.contents;
-          if (match$5) then do
-            start$2 = List.hd(List.rev(comment_start_loc.contents));
+          match_5 = comment_start_loc.contents;
+          if (match_5) then do
+            start_2 = List.hd(List.rev(comment_start_loc.contents));
             comment_start_loc.contents = --[[ [] ]]0;
-            error ({
-              __Error$2,
-              --[[ Unterminated_comment ]]Block.__(2, {start$2}),
-              match$5[0]
+            error({
+              __Error_2,
+              --[[ Unterminated_comment ]]Block.__(2, {start_2}),
+              match_5[0]
             })
           end else do
-            error ({
+            error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
                 "lexer.mll",
@@ -11777,7 +11777,7 @@ function __ocaml_lex_comment_rec(lexbuf, ___ocaml_lex_state) do
        do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
-        ___ocaml_lex_state = __ocaml_lex_state$1;
+        ___ocaml_lex_state = __ocaml_lex_state_1;
         ::continue:: ;
         end end
         
@@ -11803,7 +11803,7 @@ function token_with_comments(lexbuf) do
   end end 
 end end
 
-function token$1(lexbuf) do
+function token_1(lexbuf) do
   post_pos = lexbuf.lex_curr_p;
   attach = function (lines, docs, pre_pos) do
     if (typeof docs == "number") then do
@@ -11825,13 +11825,13 @@ function token$1(lexbuf) do
         return set_pre_docstrings(pre_pos, b);
       end end 
     end else do
-      a$1 = docs[0];
+      a_1 = docs[0];
       if (lines >= 2) then do
-        set_post_docstrings(post_pos, List.rev(a$1));
-        return set_pre_extra_docstrings(pre_pos, List.rev(a$1));
+        set_post_docstrings(post_pos, List.rev(a_1));
+        return set_pre_extra_docstrings(pre_pos, List.rev(a_1));
       end else do
-        set_post_docstrings(post_pos, List.rev(a$1));
-        return set_pre_docstrings(pre_pos, a$1);
+        set_post_docstrings(post_pos, List.rev(a_1));
+        return set_pre_docstrings(pre_pos, a_1);
       end end 
     end end  end 
   end end;
@@ -11845,7 +11845,7 @@ function token$1(lexbuf) do
         do
            if ___conditional___ = 84--[[ SHARP ]] then do
               if (at_bol(lexbuf)) then do
-                lexbuf$1 = lexbuf;
+                lexbuf_1 = lexbuf;
                 cont = (function(lines,docs)do
                 return function cont(lexbuf) do
                   return loop(lines, docs, lexbuf);
@@ -11855,73 +11855,73 @@ function token$1(lexbuf) do
                   sharp_look_ahead.contents = token;
                   return --[[ SHARP ]]84;
                 end end;
-                if_then_else$1 = if_then_else.contents;
-                match = token_with_comments(lexbuf$1);
+                if_then_else_1 = if_then_else.contents;
+                match = token_with_comments(lexbuf_1);
                 if (typeof match == "number") then do
                   local ___conditional___=(match);
                   do
                      if ___conditional___ = 23--[[ ELSE ]] then do
-                        if (if_then_else$1 ~= 0) then do
-                          error ({
-                            __Error$2,
+                        if (if_then_else_1 ~= 0) then do
+                          error({
+                            __Error_2,
                             --[[ Unexpected_directive ]]6,
-                            curr(lexbuf$1)
+                            curr(lexbuf_1)
                           })
                         end
                          end end else 
                      if ___conditional___ = 24--[[ END ]] then do
-                        if (if_then_else$1 >= 2) then do
-                          error ({
-                            __Error$2,
+                        if (if_then_else_1 >= 2) then do
+                          error({
+                            __Error_2,
                             --[[ Unexpected_directive ]]6,
-                            curr(lexbuf$1)
+                            curr(lexbuf_1)
                           })
                         end
                          end 
                         if_then_else.contents = --[[ Dir_out ]]2;
-                        return Curry._1(cont, lexbuf$1);end end end 
+                        return Curry._1(cont, lexbuf_1);end end end 
                      if ___conditional___ = 37--[[ IF ]] then do
-                        if (if_then_else$1 >= 2) then do
-                          if (directive_parse(token_with_comments, lexbuf$1)) then do
+                        if (if_then_else_1 >= 2) then do
+                          if (directive_parse(token_with_comments, lexbuf_1)) then do
                             if_then_else.contents = --[[ Dir_if_true ]]0;
-                            return Curry._1(cont, lexbuf$1);
+                            return Curry._1(cont, lexbuf_1);
                           end else do
                             _param = --[[ () ]]0;
                             while(true) do
-                              token = token_with_comments(lexbuf$1);
+                              token = token_with_comments(lexbuf_1);
                               if (token == --[[ EOF ]]25) then do
-                                error ({
-                                  __Error$2,
+                                error({
+                                  __Error_2,
                                   --[[ Unterminated_if ]]2,
-                                  curr(lexbuf$1)
+                                  curr(lexbuf_1)
                                 })
                               end
                                end 
-                              if (token == --[[ SHARP ]]84 and at_bol(lexbuf$1)) then do
-                                token$1 = token_with_comments(lexbuf$1);
-                                if (typeof token$1 == "number") then do
-                                  switcher = token$1 - 23 | 0;
+                              if (token == --[[ SHARP ]]84 and at_bol(lexbuf_1)) then do
+                                token_1 = token_with_comments(lexbuf_1);
+                                if (typeof token_1 == "number") then do
+                                  switcher = token_1 - 23 | 0;
                                   if (switcher == 0 or switcher == 1) then do
                                     if (switcher ~= 0) then do
                                       if_then_else.contents = --[[ Dir_out ]]2;
-                                      return Curry._1(cont, lexbuf$1);
+                                      return Curry._1(cont, lexbuf_1);
                                     end else do
                                       if_then_else.contents = --[[ Dir_if_false ]]1;
-                                      return Curry._1(cont, lexbuf$1);
+                                      return Curry._1(cont, lexbuf_1);
                                     end end 
                                   end else if (switcher == 14) then do
-                                    error ({
-                                      __Error$2,
+                                    error({
+                                      __Error_2,
                                       --[[ Unexpected_directive ]]6,
-                                      curr(lexbuf$1)
+                                      curr(lexbuf_1)
                                     })
                                   end
                                    end  end 
                                 end
                                  end 
-                                if (is_elif(token$1) and directive_parse(token_with_comments, lexbuf$1)) then do
+                                if (is_elif(token_1) and directive_parse(token_with_comments, lexbuf_1)) then do
                                   if_then_else.contents = --[[ Dir_if_true ]]0;
-                                  return Curry._1(cont, lexbuf$1);
+                                  return Curry._1(cont, lexbuf_1);
                                 end else do
                                   _param = --[[ () ]]0;
                                   ::continue:: ;
@@ -11933,10 +11933,10 @@ function token$1(lexbuf) do
                             end;
                           end end 
                         end else do
-                          error ({
-                            __Error$2,
+                          error({
+                            __Error_2,
                             --[[ Unexpected_directive ]]6,
-                            curr(lexbuf$1)
+                            curr(lexbuf_1)
                           })
                         end end end end end 
                      do
@@ -11946,67 +11946,67 @@ function token$1(lexbuf) do
                       
                   end
                 end else if (match.tag == --[[ LIDENT ]]11 and match[0] == "elif") then do
-                  if (if_then_else$1 ~= 0) then do
-                    error ({
-                      __Error$2,
+                  if (if_then_else_1 ~= 0) then do
+                    error({
+                      __Error_2,
                       --[[ Unexpected_directive ]]6,
-                      curr(lexbuf$1)
+                      curr(lexbuf_1)
                     })
                   end
                    end 
                 end else do
                   return Curry._1(look_ahead, match);
                 end end  end 
-                if (if_then_else$1 ~= 0) then do
+                if (if_then_else_1 ~= 0) then do
                   return Curry._1(look_ahead, match);
                 end else do
                   _else_seen = match == --[[ ELSE ]]23;
                   while(true) do
                     else_seen = _else_seen;
-                    token$2 = token_with_comments(lexbuf$1);
-                    if (token$2 == --[[ EOF ]]25) then do
-                      error ({
-                        __Error$2,
+                    token_2 = token_with_comments(lexbuf_1);
+                    if (token_2 == --[[ EOF ]]25) then do
+                      error({
+                        __Error_2,
                         --[[ Unterminated_else ]]3,
-                        curr(lexbuf$1)
+                        curr(lexbuf_1)
                       })
                     end
                      end 
-                    if (token$2 == --[[ SHARP ]]84 and at_bol(lexbuf$1)) then do
-                      token$3 = token_with_comments(lexbuf$1);
-                      if (typeof token$3 == "number") then do
-                        switcher$1 = token$3 - 23 | 0;
-                        if (switcher$1 == 0 or switcher$1 == 1) then do
-                          if (switcher$1 ~= 0) then do
+                    if (token_2 == --[[ SHARP ]]84 and at_bol(lexbuf_1)) then do
+                      token_3 = token_with_comments(lexbuf_1);
+                      if (typeof token_3 == "number") then do
+                        switcher_1 = token_3 - 23 | 0;
+                        if (switcher_1 == 0 or switcher_1 == 1) then do
+                          if (switcher_1 ~= 0) then do
                             if_then_else.contents = --[[ Dir_out ]]2;
-                            return Curry._1(cont, lexbuf$1);
+                            return Curry._1(cont, lexbuf_1);
                           end else do
                             if (else_seen) then do
-                              error ({
-                                __Error$2,
+                              error({
+                                __Error_2,
                                 --[[ Unexpected_directive ]]6,
-                                curr(lexbuf$1)
+                                curr(lexbuf_1)
                               })
                             end
                              end 
                             _else_seen = true;
                             ::continue:: ;
                           end end 
-                        end else if (switcher$1 == 14) then do
-                          error ({
-                            __Error$2,
+                        end else if (switcher_1 == 14) then do
+                          error({
+                            __Error_2,
                             --[[ Unexpected_directive ]]6,
-                            curr(lexbuf$1)
+                            curr(lexbuf_1)
                           })
                         end
                          end  end 
                       end
                        end 
-                      if (else_seen and is_elif(token$3)) then do
-                        error ({
-                          __Error$2,
+                      if (else_seen and is_elif(token_3)) then do
+                        error({
+                          __Error_2,
                           --[[ Unexpected_directive ]]6,
-                          curr(lexbuf$1)
+                          curr(lexbuf_1)
                         })
                       end
                        end 
@@ -12031,13 +12031,13 @@ function token$1(lexbuf) do
         local ___conditional___=(tok.tag | 0);
         do
            if ___conditional___ = 18--[[ COMMENT ]] then do
-              match$1 = tok[0];
+              match_1 = tok[0];
               add_comment(--[[ tuple ]]{
-                    match$1[0],
-                    match$1[1]
+                    match_1[0],
+                    match_1[1]
                   });
-              lines$prime$1 = lines >= 2 and --[[ BlankLine ]]2 or --[[ NoLine ]]0;
-              _lines = lines$prime$1;
+              lines$prime_1 = lines >= 2 and --[[ BlankLine ]]2 or --[[ NoLine ]]0;
+              _lines = lines$prime_1;
               ::continue:: ;end end end 
            if ___conditional___ = 19--[[ DOCSTRING ]] then do
               doc = tok[0];
@@ -12075,9 +12075,9 @@ function token$1(lexbuf) do
                       }
                     });
               end else do
-                a$1 = docs[0];
+                a_1 = docs[0];
                 docs$prime = lines >= 2 and --[[ Before ]]Block.__(1, {
-                      a$1,
+                      a_1,
                       --[[ [] ]]0,
                       --[[ :: ]]{
                         doc,
@@ -12085,7 +12085,7 @@ function token$1(lexbuf) do
                       }
                     }) or --[[ After ]]Block.__(0, {--[[ :: ]]{
                         doc,
-                        a$1
+                        a_1
                       }});
               end end  end 
               _docs = docs$prime;
@@ -12110,7 +12110,7 @@ function token$1(lexbuf) do
   end end 
 end end
 
-function init$1(param) do
+function init_1(param) do
   sharp_look_ahead.contents = undefined;
   if_then_else.contents = --[[ Dir_out ]]2;
   is_in_string.contents = false;
@@ -12127,21 +12127,21 @@ end end
 function skip_phrase(lexbuf) do
   while(true) do
     xpcall(function() do
-      match = token$1(lexbuf);
+      match = token_1(lexbuf);
       if (typeof match == "number" and not (match ~= 25 and match ~= 83)) then do
         return --[[ () ]]0;
       end else do
         return skip_phrase(lexbuf);
       end end 
-    end end,function(raw_exn) return do
+    end end,function(raw_exn) do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
-      if (exn[0] == __Error$2) then do
+      if (exn[0] == __Error_2) then do
         tmp = exn[1];
         if (typeof tmp == "number") then do
           if (tmp == --[[ Unterminated_string ]]0) then do
             ::continue:: ;
           end else do
-            error (exn)
+            error(exn)
           end end 
         end else do
           local ___conditional___=(tmp.tag | 0);
@@ -12152,13 +12152,13 @@ function skip_phrase(lexbuf) do
                 ::continue:: ;end end end 
              do
             else do
-              error (exn)
+              error(exn)
               end end
               
           end
         end end 
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end;
@@ -12175,34 +12175,34 @@ end end
 function wrap(parsing_fun, lexbuf) do
   xpcall(function() do
     init(--[[ () ]]0);
-    init$1(--[[ () ]]0);
-    ast = Curry._2(parsing_fun, token$1, lexbuf);
+    init_1(--[[ () ]]0);
+    ast = Curry._2(parsing_fun, token_1, lexbuf);
     Parsing.clear_parser(--[[ () ]]0);
     warn_bad_docstrings(--[[ () ]]0);
     return ast;
-  end end,function(raw_err) return do
+  end end,function(raw_err) do
     err = Caml_js_exceptions.internalToOCamlException(raw_err);
-    if (err[0] == __Error$2) then do
+    if (err[0] == __Error_2) then do
       tmp = err[1];
       if (typeof tmp == "number") then do
-        error (err)
+        error(err)
       end else if (tmp.tag) then do
-        error (err)
+        error(err)
       end else if (input_name.contents == "//toplevel//") then do
         skip_phrase(lexbuf);
-        error (err)
+        error(err)
       end else do
-        error (err)
+        error(err)
       end end  end  end 
-    end else if (err[0] == __Error$1) then do
+    end else if (err[0] == __Error_1) then do
       if (input_name.contents == "//toplevel//") then do
         maybe_skip_phrase(lexbuf);
-        error (err)
+        error(err)
       end else do
-        error (err)
+        error(err)
       end end 
     end else if (err ~= Parsing.Parse_error and err ~= Escape_error) then do
-      error (err)
+      error(err)
     end
      end  end  end 
     loc = curr(lexbuf);
@@ -12210,8 +12210,8 @@ function wrap(parsing_fun, lexbuf) do
       maybe_skip_phrase(lexbuf);
     end
      end 
-    error ({
-      __Error$1,
+    error({
+      __Error_1,
       --[[ Other ]]Block.__(5, {loc})
     })
   end end)
@@ -12245,203 +12245,203 @@ end end
 match = wrap(implementation, Lexing.from_string("let v str = \n  str  \n  |> Lexing.from_string \n  |> Parse.implementation\n"));
 
 if (match) then do
-  match$1 = match[0].pstr_desc;
-  if (match$1.tag == --[[ Pstr_value ]]1 and not match$1[0]) then do
-    match$2 = match$1[1];
-    if (match$2) then do
-      match$3 = match$2[0];
-      match$4 = match$3.pvb_pat;
-      match$5 = match$4.ppat_desc;
-      if (typeof match$5 == "number" or match$5.tag) then do
+  match_1 = match[0].pstr_desc;
+  if (match_1.tag == --[[ Pstr_value ]]1 and not match_1[0]) then do
+    match_2 = match_1[1];
+    if (match_2) then do
+      match_3 = match_2[0];
+      match_4 = match_3.pvb_pat;
+      match_5 = match_4.ppat_desc;
+      if (typeof match_5 == "number" or match_5.tag) then do
         eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
       end else do
-        match$6 = match$5[0];
-        if (match$6.txt == "v") then do
-          match$7 = match$6.loc;
-          match$8 = match$7.loc_start;
-          if (match$8.pos_fname == "" and not (match$8.pos_lnum ~= 1 or match$8.pos_bol ~= 0 or match$8.pos_cnum ~= 4)) then do
-            match$9 = match$7.loc_end;
-            if (match$9.pos_fname == "" and not (match$9.pos_lnum ~= 1 or match$9.pos_bol ~= 0 or match$9.pos_cnum ~= 5 or match$7.loc_ghost)) then do
-              match$10 = match$4.ppat_loc;
-              match$11 = match$10.loc_start;
-              if (match$11.pos_fname == "" and not (match$11.pos_lnum ~= 1 or match$11.pos_bol ~= 0 or match$11.pos_cnum ~= 4)) then do
-                match$12 = match$10.loc_end;
-                if (match$12.pos_fname == "" and not (match$12.pos_lnum ~= 1 or match$12.pos_bol ~= 0 or match$12.pos_cnum ~= 5 or match$10.loc_ghost or match$4.ppat_attributes)) then do
-                  match$13 = match$3.pvb_expr;
-                  match$14 = match$13.pexp_desc;
-                  if (match$14.tag == --[[ Pexp_fun ]]4 and match$14[0] == "" and match$14[1] == undefined) then do
-                    match$15 = match$14[2];
-                    match$16 = match$15.ppat_desc;
-                    if (typeof match$16 == "number" or match$16.tag) then do
+        match_6 = match_5[0];
+        if (match_6.txt == "v") then do
+          match_7 = match_6.loc;
+          match_8 = match_7.loc_start;
+          if (match_8.pos_fname == "" and not (match_8.pos_lnum ~= 1 or match_8.pos_bol ~= 0 or match_8.pos_cnum ~= 4)) then do
+            match_9 = match_7.loc_end;
+            if (match_9.pos_fname == "" and not (match_9.pos_lnum ~= 1 or match_9.pos_bol ~= 0 or match_9.pos_cnum ~= 5 or match_7.loc_ghost)) then do
+              match_10 = match_4.ppat_loc;
+              match_11 = match_10.loc_start;
+              if (match_11.pos_fname == "" and not (match_11.pos_lnum ~= 1 or match_11.pos_bol ~= 0 or match_11.pos_cnum ~= 4)) then do
+                match_12 = match_10.loc_end;
+                if (match_12.pos_fname == "" and not (match_12.pos_lnum ~= 1 or match_12.pos_bol ~= 0 or match_12.pos_cnum ~= 5 or match_10.loc_ghost or match_4.ppat_attributes)) then do
+                  match_13 = match_3.pvb_expr;
+                  match_14 = match_13.pexp_desc;
+                  if (match_14.tag == --[[ Pexp_fun ]]4 and match_14[0] == "" and match_14[1] == undefined) then do
+                    match_15 = match_14[2];
+                    match_16 = match_15.ppat_desc;
+                    if (typeof match_16 == "number" or match_16.tag) then do
                       eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                     end else do
-                      match$17 = match$16[0];
-                      if (match$17.txt == "str") then do
-                        match$18 = match$17.loc;
-                        match$19 = match$18.loc_start;
-                        if (match$19.pos_fname == "" and not (match$19.pos_lnum ~= 1 or match$19.pos_bol ~= 0 or match$19.pos_cnum ~= 6)) then do
-                          match$20 = match$18.loc_end;
-                          if (match$20.pos_fname == "" and not (match$20.pos_lnum ~= 1 or match$20.pos_bol ~= 0 or match$20.pos_cnum ~= 9 or match$18.loc_ghost)) then do
-                            match$21 = match$15.ppat_loc;
-                            match$22 = match$21.loc_start;
-                            if (match$22.pos_fname == "" and not (match$22.pos_lnum ~= 1 or match$22.pos_bol ~= 0 or match$22.pos_cnum ~= 6)) then do
-                              match$23 = match$21.loc_end;
-                              if (match$23.pos_fname == "" and not (match$23.pos_lnum ~= 1 or match$23.pos_bol ~= 0 or match$23.pos_cnum ~= 9 or match$21.loc_ghost or match$15.ppat_attributes)) then do
-                                match$24 = match$14[3];
-                                match$25 = match$24.pexp_desc;
-                                if (match$25.tag == --[[ Pexp_apply ]]5) then do
-                                  match$26 = match$25[0];
-                                  match$27 = match$26.pexp_desc;
-                                  if (match$27.tag) then do
+                      match_17 = match_16[0];
+                      if (match_17.txt == "str") then do
+                        match_18 = match_17.loc;
+                        match_19 = match_18.loc_start;
+                        if (match_19.pos_fname == "" and not (match_19.pos_lnum ~= 1 or match_19.pos_bol ~= 0 or match_19.pos_cnum ~= 6)) then do
+                          match_20 = match_18.loc_end;
+                          if (match_20.pos_fname == "" and not (match_20.pos_lnum ~= 1 or match_20.pos_bol ~= 0 or match_20.pos_cnum ~= 9 or match_18.loc_ghost)) then do
+                            match_21 = match_15.ppat_loc;
+                            match_22 = match_21.loc_start;
+                            if (match_22.pos_fname == "" and not (match_22.pos_lnum ~= 1 or match_22.pos_bol ~= 0 or match_22.pos_cnum ~= 6)) then do
+                              match_23 = match_21.loc_end;
+                              if (match_23.pos_fname == "" and not (match_23.pos_lnum ~= 1 or match_23.pos_bol ~= 0 or match_23.pos_cnum ~= 9 or match_21.loc_ghost or match_15.ppat_attributes)) then do
+                                match_24 = match_14[3];
+                                match_25 = match_24.pexp_desc;
+                                if (match_25.tag == --[[ Pexp_apply ]]5) then do
+                                  match_26 = match_25[0];
+                                  match_27 = match_26.pexp_desc;
+                                  if (match_27.tag) then do
                                     eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                   end else do
-                                    match$28 = match$27[0];
-                                    match$29 = match$28.txt;
-                                    local ___conditional___=(match$29.tag | 0);
+                                    match_28 = match_27[0];
+                                    match_29 = match_28.txt;
+                                    local ___conditional___=(match_29.tag | 0);
                                     do
                                        if ___conditional___ = 0--[[ Lident ]] then do
-                                          if (match$29[0] == "|>") then do
-                                            match$30 = match$28.loc;
-                                            match$31 = match$30.loc_start;
-                                            if (match$31.pos_fname == "" and not (match$31.pos_lnum ~= 4 or match$31.pos_bol ~= 46 or match$31.pos_cnum ~= 48)) then do
-                                              match$32 = match$30.loc_end;
-                                              if (match$32.pos_fname == "" and not (match$32.pos_lnum ~= 4 or match$32.pos_bol ~= 46 or match$32.pos_cnum ~= 50 or match$30.loc_ghost)) then do
-                                                match$33 = match$26.pexp_loc;
-                                                match$34 = match$33.loc_start;
-                                                if (match$34.pos_fname == "" and not (match$34.pos_lnum ~= 4 or match$34.pos_bol ~= 46 or match$34.pos_cnum ~= 48)) then do
-                                                  match$35 = match$33.loc_end;
-                                                  if (match$35.pos_fname == "" and not (match$35.pos_lnum ~= 4 or match$35.pos_bol ~= 46 or match$35.pos_cnum ~= 50 or match$33.loc_ghost or match$26.pexp_attributes)) then do
-                                                    match$36 = match$25[1];
-                                                    if (match$36) then do
-                                                      match$37 = match$36[0];
-                                                      if (match$37[0] == "") then do
-                                                        match$38 = match$37[1];
-                                                        match$39 = match$38.pexp_desc;
-                                                        if (match$39.tag == --[[ Pexp_apply ]]5) then do
-                                                          match$40 = match$39[0];
-                                                          match$41 = match$40.pexp_desc;
-                                                          if (match$41.tag) then do
+                                          if (match_29[0] == "|>") then do
+                                            match_30 = match_28.loc;
+                                            match_31 = match_30.loc_start;
+                                            if (match_31.pos_fname == "" and not (match_31.pos_lnum ~= 4 or match_31.pos_bol ~= 46 or match_31.pos_cnum ~= 48)) then do
+                                              match_32 = match_30.loc_end;
+                                              if (match_32.pos_fname == "" and not (match_32.pos_lnum ~= 4 or match_32.pos_bol ~= 46 or match_32.pos_cnum ~= 50 or match_30.loc_ghost)) then do
+                                                match_33 = match_26.pexp_loc;
+                                                match_34 = match_33.loc_start;
+                                                if (match_34.pos_fname == "" and not (match_34.pos_lnum ~= 4 or match_34.pos_bol ~= 46 or match_34.pos_cnum ~= 48)) then do
+                                                  match_35 = match_33.loc_end;
+                                                  if (match_35.pos_fname == "" and not (match_35.pos_lnum ~= 4 or match_35.pos_bol ~= 46 or match_35.pos_cnum ~= 50 or match_33.loc_ghost or match_26.pexp_attributes)) then do
+                                                    match_36 = match_25[1];
+                                                    if (match_36) then do
+                                                      match_37 = match_36[0];
+                                                      if (match_37[0] == "") then do
+                                                        match_38 = match_37[1];
+                                                        match_39 = match_38.pexp_desc;
+                                                        if (match_39.tag == --[[ Pexp_apply ]]5) then do
+                                                          match_40 = match_39[0];
+                                                          match_41 = match_40.pexp_desc;
+                                                          if (match_41.tag) then do
                                                             eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                           end else do
-                                                            match$42 = match$41[0];
-                                                            match$43 = match$42.txt;
-                                                            local ___conditional___=(match$43.tag | 0);
+                                                            match_42 = match_41[0];
+                                                            match_43 = match_42.txt;
+                                                            local ___conditional___=(match_43.tag | 0);
                                                             do
                                                                if ___conditional___ = 0--[[ Lident ]] then do
-                                                                  if (match$43[0] == "|>") then do
-                                                                    match$44 = match$42.loc;
-                                                                    match$45 = match$44.loc_start;
-                                                                    if (match$45.pos_fname == "" and not (match$45.pos_lnum ~= 3 or match$45.pos_bol ~= 21 or match$45.pos_cnum ~= 23)) then do
-                                                                      match$46 = match$44.loc_end;
-                                                                      if (match$46.pos_fname == "" and not (match$46.pos_lnum ~= 3 or match$46.pos_bol ~= 21 or match$46.pos_cnum ~= 25 or match$44.loc_ghost)) then do
-                                                                        match$47 = match$40.pexp_loc;
-                                                                        match$48 = match$47.loc_start;
-                                                                        if (match$48.pos_fname == "" and not (match$48.pos_lnum ~= 3 or match$48.pos_bol ~= 21 or match$48.pos_cnum ~= 23)) then do
-                                                                          match$49 = match$47.loc_end;
-                                                                          if (match$49.pos_fname == "" and not (match$49.pos_lnum ~= 3 or match$49.pos_bol ~= 21 or match$49.pos_cnum ~= 25 or match$47.loc_ghost or match$40.pexp_attributes)) then do
-                                                                            match$50 = match$39[1];
-                                                                            if (match$50) then do
-                                                                              match$51 = match$50[0];
-                                                                              if (match$51[0] == "") then do
-                                                                                match$52 = match$51[1];
-                                                                                match$53 = match$52.pexp_desc;
-                                                                                if (match$53.tag) then do
+                                                                  if (match_43[0] == "|>") then do
+                                                                    match_44 = match_42.loc;
+                                                                    match_45 = match_44.loc_start;
+                                                                    if (match_45.pos_fname == "" and not (match_45.pos_lnum ~= 3 or match_45.pos_bol ~= 21 or match_45.pos_cnum ~= 23)) then do
+                                                                      match_46 = match_44.loc_end;
+                                                                      if (match_46.pos_fname == "" and not (match_46.pos_lnum ~= 3 or match_46.pos_bol ~= 21 or match_46.pos_cnum ~= 25 or match_44.loc_ghost)) then do
+                                                                        match_47 = match_40.pexp_loc;
+                                                                        match_48 = match_47.loc_start;
+                                                                        if (match_48.pos_fname == "" and not (match_48.pos_lnum ~= 3 or match_48.pos_bol ~= 21 or match_48.pos_cnum ~= 23)) then do
+                                                                          match_49 = match_47.loc_end;
+                                                                          if (match_49.pos_fname == "" and not (match_49.pos_lnum ~= 3 or match_49.pos_bol ~= 21 or match_49.pos_cnum ~= 25 or match_47.loc_ghost or match_40.pexp_attributes)) then do
+                                                                            match_50 = match_39[1];
+                                                                            if (match_50) then do
+                                                                              match_51 = match_50[0];
+                                                                              if (match_51[0] == "") then do
+                                                                                match_52 = match_51[1];
+                                                                                match_53 = match_52.pexp_desc;
+                                                                                if (match_53.tag) then do
                                                                                   eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                 end else do
-                                                                                  match$54 = match$53[0];
-                                                                                  match$55 = match$54.txt;
-                                                                                  local ___conditional___=(match$55.tag | 0);
+                                                                                  match_54 = match_53[0];
+                                                                                  match_55 = match_54.txt;
+                                                                                  local ___conditional___=(match_55.tag | 0);
                                                                                   do
                                                                                      if ___conditional___ = 0--[[ Lident ]] then do
-                                                                                        if (match$55[0] == "str") then do
-                                                                                          match$56 = match$54.loc;
-                                                                                          match$57 = match$56.loc_start;
-                                                                                          if (match$57.pos_fname == "" and not (match$57.pos_lnum ~= 2 or match$57.pos_bol ~= 13 or match$57.pos_cnum ~= 15)) then do
-                                                                                            match$58 = match$56.loc_end;
-                                                                                            if (match$58.pos_fname == "" and not (match$58.pos_lnum ~= 2 or match$58.pos_bol ~= 13 or match$58.pos_cnum ~= 18 or match$56.loc_ghost)) then do
-                                                                                              match$59 = match$52.pexp_loc;
-                                                                                              match$60 = match$59.loc_start;
-                                                                                              if (match$60.pos_fname == "" and not (match$60.pos_lnum ~= 2 or match$60.pos_bol ~= 13 or match$60.pos_cnum ~= 15)) then do
-                                                                                                match$61 = match$59.loc_end;
-                                                                                                if (match$61.pos_fname == "" and not (match$61.pos_lnum ~= 2 or match$61.pos_bol ~= 13 or match$61.pos_cnum ~= 18 or match$59.loc_ghost or match$52.pexp_attributes)) then do
-                                                                                                  match$62 = match$50[1];
-                                                                                                  if (match$62) then do
-                                                                                                    match$63 = match$62[0];
-                                                                                                    if (match$63[0] == "") then do
-                                                                                                      match$64 = match$63[1];
-                                                                                                      match$65 = match$64.pexp_desc;
-                                                                                                      if (match$65.tag) then do
+                                                                                        if (match_55[0] == "str") then do
+                                                                                          match_56 = match_54.loc;
+                                                                                          match_57 = match_56.loc_start;
+                                                                                          if (match_57.pos_fname == "" and not (match_57.pos_lnum ~= 2 or match_57.pos_bol ~= 13 or match_57.pos_cnum ~= 15)) then do
+                                                                                            match_58 = match_56.loc_end;
+                                                                                            if (match_58.pos_fname == "" and not (match_58.pos_lnum ~= 2 or match_58.pos_bol ~= 13 or match_58.pos_cnum ~= 18 or match_56.loc_ghost)) then do
+                                                                                              match_59 = match_52.pexp_loc;
+                                                                                              match_60 = match_59.loc_start;
+                                                                                              if (match_60.pos_fname == "" and not (match_60.pos_lnum ~= 2 or match_60.pos_bol ~= 13 or match_60.pos_cnum ~= 15)) then do
+                                                                                                match_61 = match_59.loc_end;
+                                                                                                if (match_61.pos_fname == "" and not (match_61.pos_lnum ~= 2 or match_61.pos_bol ~= 13 or match_61.pos_cnum ~= 18 or match_59.loc_ghost or match_52.pexp_attributes)) then do
+                                                                                                  match_62 = match_50[1];
+                                                                                                  if (match_62) then do
+                                                                                                    match_63 = match_62[0];
+                                                                                                    if (match_63[0] == "") then do
+                                                                                                      match_64 = match_63[1];
+                                                                                                      match_65 = match_64.pexp_desc;
+                                                                                                      if (match_65.tag) then do
                                                                                                         eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                                       end else do
-                                                                                                        match$66 = match$65[0];
-                                                                                                        match$67 = match$66.txt;
-                                                                                                        local ___conditional___=(match$67.tag | 0);
+                                                                                                        match_66 = match_65[0];
+                                                                                                        match_67 = match_66.txt;
+                                                                                                        local ___conditional___=(match_67.tag | 0);
                                                                                                         do
                                                                                                            if ___conditional___ = 1--[[ Ldot ]] then do
-                                                                                                              match$68 = match$67[0];
-                                                                                                              local ___conditional___=(match$68.tag | 0);
+                                                                                                              match_68 = match_67[0];
+                                                                                                              local ___conditional___=(match_68.tag | 0);
                                                                                                               do
                                                                                                                  if ___conditional___ = 0--[[ Lident ]] then do
-                                                                                                                    if (match$68[0] == "Lexing" and match$67[1] == "from_string") then do
-                                                                                                                      match$69 = match$66.loc;
-                                                                                                                      match$70 = match$69.loc_start;
-                                                                                                                      if (match$70.pos_fname == "" and not (match$70.pos_lnum ~= 3 or match$70.pos_bol ~= 21 or match$70.pos_cnum ~= 26)) then do
-                                                                                                                        match$71 = match$69.loc_end;
-                                                                                                                        if (match$71.pos_fname == "" and not (match$71.pos_lnum ~= 3 or match$71.pos_bol ~= 21 or match$71.pos_cnum ~= 44 or match$69.loc_ghost)) then do
-                                                                                                                          match$72 = match$64.pexp_loc;
-                                                                                                                          match$73 = match$72.loc_start;
-                                                                                                                          if (match$73.pos_fname == "" and not (match$73.pos_lnum ~= 3 or match$73.pos_bol ~= 21 or match$73.pos_cnum ~= 26)) then do
-                                                                                                                            match$74 = match$72.loc_end;
-                                                                                                                            if (match$74.pos_fname == "" and not (match$74.pos_lnum ~= 3 or match$74.pos_bol ~= 21 or match$74.pos_cnum ~= 44 or match$72.loc_ghost or match$64.pexp_attributes or match$62[1])) then do
-                                                                                                                              match$75 = match$38.pexp_loc;
-                                                                                                                              match$76 = match$75.loc_start;
-                                                                                                                              if (match$76.pos_fname == "" and not (match$76.pos_lnum ~= 2 or match$76.pos_bol ~= 13 or match$76.pos_cnum ~= 15)) then do
-                                                                                                                                match$77 = match$75.loc_end;
-                                                                                                                                if (match$77.pos_fname == "" and not (match$77.pos_lnum ~= 3 or match$77.pos_bol ~= 21 or match$77.pos_cnum ~= 44 or match$75.loc_ghost or match$38.pexp_attributes)) then do
-                                                                                                                                  match$78 = match$36[1];
-                                                                                                                                  if (match$78) then do
-                                                                                                                                    match$79 = match$78[0];
-                                                                                                                                    if (match$79[0] == "") then do
-                                                                                                                                      match$80 = match$79[1];
-                                                                                                                                      match$81 = match$80.pexp_desc;
-                                                                                                                                      if (match$81.tag) then do
+                                                                                                                    if (match_68[0] == "Lexing" and match_67[1] == "from_string") then do
+                                                                                                                      match_69 = match_66.loc;
+                                                                                                                      match_70 = match_69.loc_start;
+                                                                                                                      if (match_70.pos_fname == "" and not (match_70.pos_lnum ~= 3 or match_70.pos_bol ~= 21 or match_70.pos_cnum ~= 26)) then do
+                                                                                                                        match_71 = match_69.loc_end;
+                                                                                                                        if (match_71.pos_fname == "" and not (match_71.pos_lnum ~= 3 or match_71.pos_bol ~= 21 or match_71.pos_cnum ~= 44 or match_69.loc_ghost)) then do
+                                                                                                                          match_72 = match_64.pexp_loc;
+                                                                                                                          match_73 = match_72.loc_start;
+                                                                                                                          if (match_73.pos_fname == "" and not (match_73.pos_lnum ~= 3 or match_73.pos_bol ~= 21 or match_73.pos_cnum ~= 26)) then do
+                                                                                                                            match_74 = match_72.loc_end;
+                                                                                                                            if (match_74.pos_fname == "" and not (match_74.pos_lnum ~= 3 or match_74.pos_bol ~= 21 or match_74.pos_cnum ~= 44 or match_72.loc_ghost or match_64.pexp_attributes or match_62[1])) then do
+                                                                                                                              match_75 = match_38.pexp_loc;
+                                                                                                                              match_76 = match_75.loc_start;
+                                                                                                                              if (match_76.pos_fname == "" and not (match_76.pos_lnum ~= 2 or match_76.pos_bol ~= 13 or match_76.pos_cnum ~= 15)) then do
+                                                                                                                                match_77 = match_75.loc_end;
+                                                                                                                                if (match_77.pos_fname == "" and not (match_77.pos_lnum ~= 3 or match_77.pos_bol ~= 21 or match_77.pos_cnum ~= 44 or match_75.loc_ghost or match_38.pexp_attributes)) then do
+                                                                                                                                  match_78 = match_36[1];
+                                                                                                                                  if (match_78) then do
+                                                                                                                                    match_79 = match_78[0];
+                                                                                                                                    if (match_79[0] == "") then do
+                                                                                                                                      match_80 = match_79[1];
+                                                                                                                                      match_81 = match_80.pexp_desc;
+                                                                                                                                      if (match_81.tag) then do
                                                                                                                                         eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);
                                                                                                                                       end else do
-                                                                                                                                        match$82 = match$81[0];
-                                                                                                                                        match$83 = match$82.txt;
-                                                                                                                                        local ___conditional___=(match$83.tag | 0);
+                                                                                                                                        match_82 = match_81[0];
+                                                                                                                                        match_83 = match_82.txt;
+                                                                                                                                        local ___conditional___=(match_83.tag | 0);
                                                                                                                                         do
                                                                                                                                            if ___conditional___ = 1--[[ Ldot ]] then do
-                                                                                                                                              match$84 = match$83[0];
-                                                                                                                                              local ___conditional___=(match$84.tag | 0);
+                                                                                                                                              match_84 = match_83[0];
+                                                                                                                                              local ___conditional___=(match_84.tag | 0);
                                                                                                                                               do
                                                                                                                                                  if ___conditional___ = 0--[[ Lident ]] then do
-                                                                                                                                                    if (match$84[0] == "Parse" and match$83[1] == "implementation") then do
-                                                                                                                                                      match$85 = match$82.loc;
-                                                                                                                                                      match$86 = match$85.loc_start;
-                                                                                                                                                      if (match$86.pos_fname == "" and not (match$86.pos_lnum ~= 4 or match$86.pos_bol ~= 46 or match$86.pos_cnum ~= 51)) then do
-                                                                                                                                                        match$87 = match$85.loc_end;
-                                                                                                                                                        if (match$87.pos_fname == "" and not (match$87.pos_lnum ~= 4 or match$87.pos_bol ~= 46 or match$87.pos_cnum ~= 71 or match$85.loc_ghost)) then do
-                                                                                                                                                          match$88 = match$80.pexp_loc;
-                                                                                                                                                          match$89 = match$88.loc_start;
-                                                                                                                                                          if (match$89.pos_fname == "" and not (match$89.pos_lnum ~= 4 or match$89.pos_bol ~= 46 or match$89.pos_cnum ~= 51)) then do
-                                                                                                                                                            match$90 = match$88.loc_end;
-                                                                                                                                                            if (match$90.pos_fname == "" and not (match$90.pos_lnum ~= 4 or match$90.pos_bol ~= 46 or match$90.pos_cnum ~= 71 or match$88.loc_ghost or match$80.pexp_attributes or match$78[1])) then do
-                                                                                                                                                              match$91 = match$24.pexp_loc;
-                                                                                                                                                              match$92 = match$91.loc_start;
-                                                                                                                                                              if (match$92.pos_fname == "" and not (match$92.pos_lnum ~= 2 or match$92.pos_bol ~= 13 or match$92.pos_cnum ~= 15)) then do
-                                                                                                                                                                match$93 = match$91.loc_end;
-                                                                                                                                                                if (match$93.pos_fname == "" and not (match$93.pos_lnum ~= 4 or match$93.pos_bol ~= 46 or match$93.pos_cnum ~= 71 or match$91.loc_ghost or match$24.pexp_attributes)) then do
-                                                                                                                                                                  match$94 = match$13.pexp_loc;
-                                                                                                                                                                  match$95 = match$94.loc_start;
-                                                                                                                                                                  if (match$95.pos_fname == "" and not (match$95.pos_lnum ~= 1 or match$95.pos_bol ~= 0 or match$95.pos_cnum ~= 6)) then do
-                                                                                                                                                                    match$96 = match$94.loc_end;
-                                                                                                                                                                    if (match$96.pos_fname == "" and not (match$96.pos_lnum ~= 4 or match$96.pos_bol ~= 46 or match$96.pos_cnum ~= 71 or not (match$94.loc_ghost and not (match$13.pexp_attributes or match$3.pvb_attributes)))) then do
-                                                                                                                                                                      match$97 = match$3.pvb_loc;
-                                                                                                                                                                      match$98 = match$97.loc_start;
-                                                                                                                                                                      if (match$98.pos_fname == "" and not (match$98.pos_lnum ~= 1 or match$98.pos_bol ~= 0 or match$98.pos_cnum ~= 0)) then do
-                                                                                                                                                                        match$99 = match$97.loc_end;
-                                                                                                                                                                        if (match$99.pos_fname == "" and not (match$99.pos_lnum ~= 4 or match$99.pos_bol ~= 46 or match$99.pos_cnum ~= 71 or match$97.loc_ghost or match$2[1])) then do
+                                                                                                                                                    if (match_84[0] == "Parse" and match_83[1] == "implementation") then do
+                                                                                                                                                      match_85 = match_82.loc;
+                                                                                                                                                      match_86 = match_85.loc_start;
+                                                                                                                                                      if (match_86.pos_fname == "" and not (match_86.pos_lnum ~= 4 or match_86.pos_bol ~= 46 or match_86.pos_cnum ~= 51)) then do
+                                                                                                                                                        match_87 = match_85.loc_end;
+                                                                                                                                                        if (match_87.pos_fname == "" and not (match_87.pos_lnum ~= 4 or match_87.pos_bol ~= 46 or match_87.pos_cnum ~= 71 or match_85.loc_ghost)) then do
+                                                                                                                                                          match_88 = match_80.pexp_loc;
+                                                                                                                                                          match_89 = match_88.loc_start;
+                                                                                                                                                          if (match_89.pos_fname == "" and not (match_89.pos_lnum ~= 4 or match_89.pos_bol ~= 46 or match_89.pos_cnum ~= 51)) then do
+                                                                                                                                                            match_90 = match_88.loc_end;
+                                                                                                                                                            if (match_90.pos_fname == "" and not (match_90.pos_lnum ~= 4 or match_90.pos_bol ~= 46 or match_90.pos_cnum ~= 71 or match_88.loc_ghost or match_80.pexp_attributes or match_78[1])) then do
+                                                                                                                                                              match_91 = match_24.pexp_loc;
+                                                                                                                                                              match_92 = match_91.loc_start;
+                                                                                                                                                              if (match_92.pos_fname == "" and not (match_92.pos_lnum ~= 2 or match_92.pos_bol ~= 13 or match_92.pos_cnum ~= 15)) then do
+                                                                                                                                                                match_93 = match_91.loc_end;
+                                                                                                                                                                if (match_93.pos_fname == "" and not (match_93.pos_lnum ~= 4 or match_93.pos_bol ~= 46 or match_93.pos_cnum ~= 71 or match_91.loc_ghost or match_24.pexp_attributes)) then do
+                                                                                                                                                                  match_94 = match_13.pexp_loc;
+                                                                                                                                                                  match_95 = match_94.loc_start;
+                                                                                                                                                                  if (match_95.pos_fname == "" and not (match_95.pos_lnum ~= 1 or match_95.pos_bol ~= 0 or match_95.pos_cnum ~= 6)) then do
+                                                                                                                                                                    match_96 = match_94.loc_end;
+                                                                                                                                                                    if (match_96.pos_fname == "" and not (match_96.pos_lnum ~= 4 or match_96.pos_bol ~= 46 or match_96.pos_cnum ~= 71 or not (match_94.loc_ghost and not (match_13.pexp_attributes or match_3.pvb_attributes)))) then do
+                                                                                                                                                                      match_97 = match_3.pvb_loc;
+                                                                                                                                                                      match_98 = match_97.loc_start;
+                                                                                                                                                                      if (match_98.pos_fname == "" and not (match_98.pos_lnum ~= 1 or match_98.pos_bol ~= 0 or match_98.pos_cnum ~= 0)) then do
+                                                                                                                                                                        match_99 = match_97.loc_end;
+                                                                                                                                                                        if (match_99.pos_fname == "" and not (match_99.pos_lnum ~= 4 or match_99.pos_bol ~= 46 or match_99.pos_cnum ~= 71 or match_97.loc_ghost or match_2[1])) then do
                                                                                                                                                                           eq("File \"ocaml_parsetree_main_bspack.ml\", line 215, characters 10-17", true, true);
                                                                                                                                                                         end else do
                                                                                                                                                                           eq("File \"ocaml_parsetree_main_bspack.ml\", line 216, characters 12-19", true, false);

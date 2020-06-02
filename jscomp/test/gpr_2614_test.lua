@@ -62,7 +62,7 @@ end;
 
 match = u["xx-yy"];
 
-v$1 = match ~= undefined and match or 0;
+v_1 = match ~= undefined and match or 0;
 
 exports.b = b;
 exports.c = c;
@@ -73,5 +73,5 @@ exports.h2 = h2;
 exports.hh = hh;
 exports.hh2 = hh2;
 exports.u = u;
-exports.v = v$1;
+exports.v = v_1;
 --[[  Not a pure module ]]

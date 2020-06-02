@@ -2,8 +2,8 @@
 
 Curry = require "../../lib/js/curry";
 
-function u(x, x$1) do
-  return x$1 + x$1 | 0;
+function u(x, x_1) do
+  return x_1 + x_1 | 0;
 end end
 
 function f(g, x) do

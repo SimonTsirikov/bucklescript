@@ -13,7 +13,7 @@ function f(param) do
         return 1;end end end 
      do
     else do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "test_string.ml",

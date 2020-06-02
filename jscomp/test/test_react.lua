@@ -1,9 +1,9 @@
 --[['use strict';]]
 
 C = require "";
-C$1 = require "";
+C_1 = require "";
 Xxx = require "";
-C$2 = require "a";
+C_2 = require "a";
 React = require "r";
 ReactDom = require "react";
 
@@ -25,10 +25,10 @@ function f(param) do
   Xxx();
   Xxx.xx();
   Xxx.xxx();
-  C$2.x();
-  C$2.y();
-  C$1.x();
-  C$1.y();
+  C_2.x();
+  C_2.y();
+  C_1.x();
+  C_1.y();
   C.x();
   C.y();
   return --[[ () ]]0;

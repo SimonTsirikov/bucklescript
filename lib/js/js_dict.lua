@@ -31,11 +31,11 @@ end end
 function values(dict) do
   keys = Object.keys(dict);
   l = keys.length;
-  values$1 = new Array(l);
+  values_1 = new Array(l);
   for i = 0 , l - 1 | 0 , 1 do
-    values$1[i] = dict[keys[i]];
+    values_1[i] = dict[keys[i]];
   end
-  return values$1;
+  return values_1;
 end end
 
 function fromList(entries) do

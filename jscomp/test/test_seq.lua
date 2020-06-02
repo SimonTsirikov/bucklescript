@@ -25,13 +25,13 @@ function assoc3(x, _l) do
         ::continue:: ;
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
 
 function help_action(param) do
-  error ({
+  error({
     Stop,
     --[[ Unknown ]]Block.__(0, {"-help"})
   })
@@ -51,7 +51,7 @@ function add_help(speclist) do
   xpcall(function() do
     assoc3("-help", speclist);
     add1 = --[[ [] ]]0;
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       add1 = --[[ :: ]]{
         --[[ tuple ]]{
@@ -62,15 +62,15 @@ function add_help(speclist) do
         --[[ [] ]]0
       };
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
   add2;
   xpcall(function() do
     assoc3("--help", speclist);
     add2 = --[[ [] ]]0;
-  end end,function(exn$1) return do
-    if (exn$1 == Caml_builtin_exceptions.not_found) then do
+  end end,function(exn_1) do
+    if (exn_1 == Caml_builtin_exceptions.not_found) then do
       add2 = --[[ :: ]]{
         --[[ tuple ]]{
           "--help",
@@ -80,7 +80,7 @@ function add_help(speclist) do
         --[[ [] ]]0
       };
     end else do
-      error (exn$1)
+      error(exn_1)
     end end 
   end end)
   return Pervasives.$at(speclist, Pervasives.$at(add1, add2));

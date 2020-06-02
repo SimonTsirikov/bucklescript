@@ -36,9 +36,9 @@ match = typeof __filename == "undefined" and undefined or __filename;
 
 current_file = match ~= undefined and match or "<Not Node JS>";
 
-match$1 = typeof __dirname == "undefined" and undefined or __dirname;
+match_1 = typeof __dirname == "undefined" and undefined or __dirname;
 
-current_dir_name = match$1 ~= undefined and match$1 or "<Not Node Js>";
+current_dir_name = match_1 ~= undefined and match_1 or "<Not Node Js>";
 
 Fs.readFileSync(current_file, "utf8");
 
@@ -46,12 +46,12 @@ Fs.readdirSync(current_dir_name);
 
 pathobj = Path.parse(current_dir_name);
 
-match$2 = typeof module == "undefined" and undefined or module;
+match_2 = typeof module == "undefined" and undefined or module;
 
-if (match$2 ~= undefined) then do
+if (match_2 ~= undefined) then do
   console.log(--[[ tuple ]]{
-        match$2.id,
-        match$2.paths
+        match_2.id,
+        match_2.paths
       });
   eq("File \"fs_test.ml\", line 45, characters 7-14", --[[ tuple ]]{
         pathobj.name,

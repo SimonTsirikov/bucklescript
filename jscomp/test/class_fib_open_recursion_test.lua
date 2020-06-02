@@ -57,25 +57,25 @@ function memo_fib_init(__class) do
   cache = ids[1];
   inh = CamlinternalOO.inherits(__class, 0, 0, shared, fib, true);
   obj_init = inh[0];
-  calc$1 = inh[1];
+  calc_1 = inh[1];
   CamlinternalOO.set_method(__class, calc, (function (self$2, x) do
           xpcall(function() do
             return Hashtbl.find(self$2[cache], x);
-          end end,function(exn) return do
+          end end,function(exn) do
             if (exn == Caml_builtin_exceptions.not_found) then do
-              v = Curry._2(calc$1, self$2, x);
+              v = Curry._2(calc_1, self$2, x);
               Hashtbl.add(self$2[cache], x, v);
               return v;
             end else do
-              error (exn)
+              error(exn)
             end end 
           end end)
         end end));
   return (function (env, self) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[cache] = Hashtbl.create(undefined, 31);
-      Curry._1(obj_init, self$1);
-      return CamlinternalOO.run_initializers_opt(self, self$1, __class);
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[cache] = Hashtbl.create(undefined, 31);
+      Curry._1(obj_init, self_1);
+      return CamlinternalOO.run_initializers_opt(self, self_1, __class);
     end end);
 end end
 

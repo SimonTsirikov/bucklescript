@@ -88,29 +88,29 @@ x = randomRange(0, 100);
 
 u0 = Belt_Map.fromArray(x, Icmp);
 
-x$1 = randomRange(30, 120);
+x_1 = randomRange(30, 120);
 
-u1 = Belt_Map.fromArray(x$1, Icmp);
+u1 = Belt_Map.fromArray(x_1, Icmp);
 
-x$2 = Array_data_util.range(30, 100);
+x_2 = Array_data_util.range(30, 100);
 
-b("File \"bs_poly_map_test.ml\", line 48, characters 4-11", Belt_Set.eq(mergeInter(u0, u1), Belt_Set.fromArray(x$2, Icmp)));
+b("File \"bs_poly_map_test.ml\", line 48, characters 4-11", Belt_Set.eq(mergeInter(u0, u1), Belt_Set.fromArray(x_2, Icmp)));
 
-x$3 = Array_data_util.range(0, 120);
+x_3 = Array_data_util.range(0, 120);
 
-b("File \"bs_poly_map_test.ml\", line 49, characters 4-11", Belt_Set.eq(mergeUnion(u0, u1), Belt_Set.fromArray(x$3, Icmp)));
+b("File \"bs_poly_map_test.ml\", line 49, characters 4-11", Belt_Set.eq(mergeUnion(u0, u1), Belt_Set.fromArray(x_3, Icmp)));
 
-x$4 = Array_data_util.range(0, 29);
+x_4 = Array_data_util.range(0, 29);
 
-b("File \"bs_poly_map_test.ml\", line 50, characters 4-11", Belt_Set.eq(mergeDiff(u0, u1), Belt_Set.fromArray(x$4, Icmp)));
+b("File \"bs_poly_map_test.ml\", line 50, characters 4-11", Belt_Set.eq(mergeDiff(u0, u1), Belt_Set.fromArray(x_4, Icmp)));
 
-x$5 = Array_data_util.range(101, 120);
+x_5 = Array_data_util.range(101, 120);
 
-b("File \"bs_poly_map_test.ml\", line 51, characters 4-11", Belt_Set.eq(mergeDiff(u1, u0), Belt_Set.fromArray(x$5, Icmp)));
+b("File \"bs_poly_map_test.ml\", line 51, characters 4-11", Belt_Set.eq(mergeDiff(u1, u0), Belt_Set.fromArray(x_5, Icmp)));
 
-x$6 = randomRange(0, 10);
+x_6 = randomRange(0, 10);
 
-a0 = Belt_Map.fromArray(x$6, Icmp);
+a0 = Belt_Map.fromArray(x_6, Icmp);
 
 a1 = Belt_Map.set(a0, 3, 33);
 
@@ -174,21 +174,21 @@ a8 = Belt_Map.removeMany(a7, Array_data_util.randomRange(0, 100));
 
 b("File \"bs_poly_map_test.ml\", line 83, characters 4-11", Belt_MapDict.isEmpty(a8.data));
 
-x$7 = randomRange(0, 100);
+x_7 = randomRange(0, 100);
 
-u0$1 = Belt_Map.fromArray(x$7, Icmp);
+u0_1 = Belt_Map.fromArray(x_7, Icmp);
 
-u1$1 = Belt_Map.set(u0$1, 3, 32);
+u1_1 = Belt_Map.set(u0_1, 3, 32);
 
-eq("File \"bs_poly_map_test.ml\", line 90, characters 5-12", Belt_Map.get(u1$1, 3), 32);
+eq("File \"bs_poly_map_test.ml\", line 90, characters 5-12", Belt_Map.get(u1_1, 3), 32);
 
-eq("File \"bs_poly_map_test.ml\", line 91, characters 5-12", Belt_Map.get(u0$1, 3), 3);
+eq("File \"bs_poly_map_test.ml\", line 91, characters 5-12", Belt_Map.get(u0_1, 3), 3);
 
 function acc(m, is) do
   return Belt_Array.reduce(is, m, (function (a, i) do
                 m = a;
-                i$1 = i;
-                return Belt_Map.update(m, i$1, (function (n) do
+                i_1 = i;
+                return Belt_Map.update(m, i_1, (function (n) do
                               if (n ~= undefined) then do
                                 return n + 1 | 0;
                               end else do
@@ -205,14 +205,14 @@ end;
 
 m1 = acc(m, Belt_Array.concat(Array_data_util.randomRange(0, 20), Array_data_util.randomRange(10, 30)));
 
-x$8 = Belt_Array.makeBy(31, (function (i) do
+x_8 = Belt_Array.makeBy(31, (function (i) do
         return --[[ tuple ]]{
                 i,
                 i >= 10 and i <= 20 and 2 or 1
               };
       end end));
 
-b("File \"bs_poly_map_test.ml\", line 103, characters 4-11", Belt_Map.eq(m1, Belt_Map.fromArray(x$8, Icmp), (function (x, y) do
+b("File \"bs_poly_map_test.ml\", line 103, characters 4-11", Belt_Map.eq(m1, Belt_Map.fromArray(x_8, Icmp), (function (x, y) do
             return x == y;
           end end)));
 
@@ -228,14 +228,14 @@ v1 = Belt_Map.mergeMany(v0, Belt_Array.map(Array_data_util.randomRange(0, 10000)
                   };
           end end)));
 
-x$9 = Belt_Array.map(Array_data_util.randomRange(0, 10000), (function (x) do
+x_9 = Belt_Array.map(Array_data_util.randomRange(0, 10000), (function (x) do
         return --[[ tuple ]]{
                 x,
                 x
               };
       end end));
 
-v2 = Belt_Map.fromArray(x$9, Icmp);
+v2 = Belt_Map.fromArray(x_9, Icmp);
 
 b("File \"bs_poly_map_test.ml\", line 117, characters 4-11", Belt_Map.eq(v1, v2, (function (x, y) do
             return x == y;
@@ -257,19 +257,19 @@ match = Belt_Map.split(v3, 5000);
 
 pres = match[1];
 
-match$1 = match[0];
+match_1 = match[0];
 
-match$2 = Belt_Map.get(v3, 10);
+match_2 = Belt_Map.get(v3, 10);
 
-b("File \"bs_poly_map_test.ml\", line 126, characters 4-11", match$2 ~= undefined and match$2 == 11 or false);
+b("File \"bs_poly_map_test.ml\", line 126, characters 4-11", match_2 ~= undefined and match_2 == 11 or false);
 
-match$3 = Belt_Map.get(v3, -10);
+match_3 = Belt_Map.get(v3, -10);
 
-b("File \"bs_poly_map_test.ml\", line 127, characters 4-11", match$3 == undefined);
+b("File \"bs_poly_map_test.ml\", line 127, characters 4-11", match_3 == undefined);
 
-match$4 = Belt_Map.get(v4, -10);
+match_4 = Belt_Map.get(v4, -10);
 
-b("File \"bs_poly_map_test.ml\", line 128, characters 4-11", match$4 ~= undefined and match$4 == 0 or false);
+b("File \"bs_poly_map_test.ml\", line 128, characters 4-11", match_4 ~= undefined and match_4 == 0 or false);
 
 map = Belt_Map.remove(do
       cmp: Icmp.cmp,
@@ -278,45 +278,45 @@ map = Belt_Map.remove(do
 
 b("File \"bs_poly_map_test.ml\", line 129, characters 4-11", Belt_MapDict.isEmpty(map.data));
 
-map$1 = Belt_Map.removeMany(do
+map_1 = Belt_Map.removeMany(do
       cmp: Icmp.cmp,
       data: Belt_MapDict.empty
     end, {0});
 
-b("File \"bs_poly_map_test.ml\", line 130, characters 4-11", Belt_MapDict.isEmpty(map$1.data));
+b("File \"bs_poly_map_test.ml\", line 130, characters 4-11", Belt_MapDict.isEmpty(map_1.data));
 
 b("File \"bs_poly_map_test.ml\", line 131, characters 4-11", pres ~= undefined and pres == 5000 or false);
 
-b("File \"bs_poly_map_test.ml\", line 132, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match$1[0].data), Belt_Array.makeBy(5000, (function (i) do
+b("File \"bs_poly_map_test.ml\", line 132, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_1[0].data), Belt_Array.makeBy(5000, (function (i) do
                 return i;
-              end end)), (function (prim, prim$1) do
-            return prim == prim$1;
+              end end)), (function (prim, prim_1) do
+            return prim == prim_1;
           end end)));
 
-b("File \"bs_poly_map_test.ml\", line 133, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match$1[1].data), Belt_Array.makeBy(5000, (function (i) do
+b("File \"bs_poly_map_test.ml\", line 133, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_1[1].data), Belt_Array.makeBy(5000, (function (i) do
                 return 5001 + i | 0;
-              end end)), (function (prim, prim$1) do
-            return prim == prim$1;
+              end end)), (function (prim, prim_1) do
+            return prim == prim_1;
           end end)));
 
 v7 = Belt_Map.remove(v3, 5000);
 
-match$5 = Belt_Map.split(v7, 5000);
+match_5 = Belt_Map.split(v7, 5000);
 
-match$6 = match$5[0];
+match_6 = match_5[0];
 
-b("File \"bs_poly_map_test.ml\", line 137, characters 4-11", match$5[1] == undefined);
+b("File \"bs_poly_map_test.ml\", line 137, characters 4-11", match_5[1] == undefined);
 
-b("File \"bs_poly_map_test.ml\", line 138, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match$6[0].data), Belt_Array.makeBy(5000, (function (i) do
+b("File \"bs_poly_map_test.ml\", line 138, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_6[0].data), Belt_Array.makeBy(5000, (function (i) do
                 return i;
-              end end)), (function (prim, prim$1) do
-            return prim == prim$1;
+              end end)), (function (prim, prim_1) do
+            return prim == prim_1;
           end end)));
 
-b("File \"bs_poly_map_test.ml\", line 139, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match$6[1].data), Belt_Array.makeBy(5000, (function (i) do
+b("File \"bs_poly_map_test.ml\", line 139, characters 4-11", Belt_Array.eq(Belt_MapDict.keysToArray(match_6[1].data), Belt_Array.makeBy(5000, (function (i) do
                 return 5001 + i | 0;
-              end end)), (function (prim, prim$1) do
-            return prim == prim$1;
+              end end)), (function (prim, prim_1) do
+            return prim == prim_1;
           end end)));
 
 Mt.from_pair_suites("Bs_poly_map_test", suites.contents);

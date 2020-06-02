@@ -13,17 +13,17 @@ N = do
   Int: Int
 end;
 
-Int$1 = Caml_exceptions.create("Extensible_variant_test.Int");
+Int_1 = Caml_exceptions.create("Extensible_variant_test.Int");
 
 function to_int(x) do
   if (x[0] == Str) then do
     return -1;
   end else if (x[0] == Int) then do
     return x[1];
-  end else if (x[0] == Int$1) then do
+  end else if (x[0] == Int_1) then do
     return x[2];
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "extensible_variant_test.ml",
@@ -55,7 +55,7 @@ suites_001 = --[[ :: ]]{
         return --[[ Eq ]]Block.__(0, {
                   0,
                   to_int({
-                        Int$1,
+                        Int_1,
                         3,
                         0
                       })
@@ -88,7 +88,7 @@ Mt.from_pair_suites("Extensible_variant_test", suites);
 
 exports.Str = Str;
 exports.N = N;
-exports.Int = Int$1;
+exports.Int = Int_1;
 exports.to_int = to_int;
 exports.suites = suites;
 --[[  Not a pure module ]]

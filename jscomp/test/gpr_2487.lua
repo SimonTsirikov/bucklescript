@@ -10,8 +10,8 @@ b = Belt_Array.eq({
       1,
       2,
       3
-    }, (function (prim, prim$1) do
-        return prim == prim$1;
+    }, (function (prim, prim_1) do
+        return prim == prim_1;
       end end));
 
 A = --[[ alias ]]0;

@@ -3,7 +3,7 @@
 List = require "../../lib/js/list";
 Pervasives = require "../../lib/js/pervasives";
 
-Pervasives$1 = do
+Pervasives_1 = do
   invalid_arg: Pervasives.invalid_arg,
   failwith: Pervasives.failwith,
   Exit: Pervasives.Exit,
@@ -145,6 +145,6 @@ end;
 
 v = Pervasives.$at;
 
-exports.Pervasives = Pervasives$1;
+exports.Pervasives = Pervasives_1;
 exports.v = v;
 --[[ No side effect ]]

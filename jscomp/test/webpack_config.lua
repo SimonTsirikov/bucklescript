@@ -1,9 +1,9 @@
 --[['use strict';]]
 
 List = require "../../lib/js/list";
-List$1 = require "";
-List$2 = require "re";
-List$3 = require "re";
+List_1 = require "";
+List_2 = require "re";
+List_3 = require "re";
 Local = require "./l";
 WebpackConfigJs = require "../../../webpack.confi";
 WebpackMiddlewareConfigJs = require "../../../webpack.middleware.confi";
@@ -14,22 +14,22 @@ WebpackConfig = do
   configx: configx
 end;
 
-configx$1 = WebpackMiddlewareConfigJs;
+configx_1 = WebpackMiddlewareConfigJs;
 
 WebpackDevMiddlewareConfig = do
-  configx: configx$1
+  configx: configx_1
 end;
 
 function configX(prim) do
   return WebpackMiddlewareConfigJs.configX();
 end end
 
-function configX$1(prim) do
+function configX_1(prim) do
   return WebpackConfigJs.configX();
 end end
 
 U = do
-  configX: configX$1
+  configX: configX_1
 end;
 
 A = { };
@@ -39,25 +39,25 @@ B = { };
 function f(param) do
   return --[[ tuple ]]{
           (function (prim) do
-              List$3.ff();
+              List_3.ff();
               return --[[ () ]]0;
             end end),
           (function (prim) do
-              List$3.ff2();
+              List_3.ff2();
               return --[[ () ]]0;
             end end),
           (function (prim) do
-              List$2.ff();
+              List_2.ff();
               return --[[ () ]]0;
             end end),
           (function (prim) do
-              List$2.ff2();
+              List_2.ff2();
               return --[[ () ]]0;
             end end)
         };
 end end
 
-List$1.xx();
+List_1.xx();
 
 List.length(--[[ :: ]]{
       1,

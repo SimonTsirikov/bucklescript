@@ -27,7 +27,7 @@ function does_raise(f, q) do
   xpcall(function() do
     Curry._1(f, q);
     return false;
-  end end,function(exn) return do
+  end end,function(exn) do
     return true;
   end end)
 end end
@@ -40,7 +40,7 @@ end end
 q = Belt_MutableQueue.make(--[[ () ]]0);
 
 if (not (Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), {}) and q.length == 0)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -52,7 +52,7 @@ end
  end 
 
 if (not (Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q, 1), q)), {1}) and q.length == 1)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -67,7 +67,7 @@ if (not (Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q,
           1,
           2
         }) and q.length == 2)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -83,7 +83,7 @@ if (not (Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q,
           2,
           3
         }) and q.length == 3)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -100,7 +100,7 @@ if (not (Caml_obj.caml_equal(Belt_MutableQueue.toArray((Belt_MutableQueue.add(q,
           3,
           4
         }) and q.length == 4)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -112,7 +112,7 @@ end
  end 
 
 if (Belt_MutableQueue.popExn(q) ~= 1) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -128,7 +128,7 @@ if (not (Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), {
           3,
           4
         }) and q.length == 3)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -140,7 +140,7 @@ end
  end 
 
 if (Belt_MutableQueue.popExn(q) ~= 2) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -155,7 +155,7 @@ if (not (Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), {
           3,
           4
         }) and q.length == 2)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -167,7 +167,7 @@ end
  end 
 
 if (Belt_MutableQueue.popExn(q) ~= 3) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -179,7 +179,7 @@ end
  end 
 
 if (not (Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), {4}) and q.length == 1)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -191,7 +191,7 @@ end
  end 
 
 if (Belt_MutableQueue.popExn(q) ~= 4) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -203,7 +203,7 @@ end
  end 
 
 if (not (Caml_obj.caml_equal(Belt_MutableQueue.toArray(q), {}) and q.length == 0)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -215,7 +215,7 @@ end
  end 
 
 if (not does_raise(Belt_MutableQueue.popExn, q)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -226,10 +226,10 @@ if (not does_raise(Belt_MutableQueue.popExn, q)) then do
 end
  end 
 
-q$1 = Belt_MutableQueue.make(--[[ () ]]0);
+q_1 = Belt_MutableQueue.make(--[[ () ]]0);
 
-if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q$1, 1), q$1)) ~= 1) then do
-  error ({
+if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q_1, 1), q_1)) ~= 1) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -240,8 +240,8 @@ if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q$1, 1), q$1)) ~= 1) then do
 end
  end 
 
-if (not does_raise(Belt_MutableQueue.popExn, q$1)) then do
-  error ({
+if (not does_raise(Belt_MutableQueue.popExn, q_1)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -252,8 +252,8 @@ if (not does_raise(Belt_MutableQueue.popExn, q$1)) then do
 end
  end 
 
-if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q$1, 2), q$1)) ~= 2) then do
-  error ({
+if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q_1, 2), q_1)) ~= 2) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -264,8 +264,8 @@ if (Belt_MutableQueue.popExn((Belt_MutableQueue.add(q$1, 2), q$1)) ~= 2) then do
 end
  end 
 
-if (not does_raise(Belt_MutableQueue.popExn, q$1)) then do
-  error ({
+if (not does_raise(Belt_MutableQueue.popExn, q_1)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -276,8 +276,8 @@ if (not does_raise(Belt_MutableQueue.popExn, q$1)) then do
 end
  end 
 
-if (q$1.length ~= 0) then do
-  error ({
+if (q_1.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -288,10 +288,10 @@ if (q$1.length ~= 0) then do
 end
  end 
 
-q$2 = Belt_MutableQueue.make(--[[ () ]]0);
+q_2 = Belt_MutableQueue.make(--[[ () ]]0);
 
-if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 1), q$2)) ~= 1) then do
-  error ({
+if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q_2, 1), q_2)) ~= 1) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -302,8 +302,8 @@ if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 1), q$2)) ~= 1) then d
 end
  end 
 
-if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 2), q$2)) ~= 1) then do
-  error ({
+if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q_2, 2), q_2)) ~= 1) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -314,8 +314,8 @@ if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 2), q$2)) ~= 1) then d
 end
  end 
 
-if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 3), q$2)) ~= 1) then do
-  error ({
+if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q_2, 3), q_2)) ~= 1) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -326,8 +326,8 @@ if (Belt_MutableQueue.peekExn((Belt_MutableQueue.add(q$2, 3), q$2)) ~= 1) then d
 end
  end 
 
-if (Belt_MutableQueue.peekExn(q$2) ~= 1) then do
-  error ({
+if (Belt_MutableQueue.peekExn(q_2) ~= 1) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -338,8 +338,8 @@ if (Belt_MutableQueue.peekExn(q$2) ~= 1) then do
 end
  end 
 
-if (Belt_MutableQueue.popExn(q$2) ~= 1) then do
-  error ({
+if (Belt_MutableQueue.popExn(q_2) ~= 1) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -350,8 +350,8 @@ if (Belt_MutableQueue.popExn(q$2) ~= 1) then do
 end
  end 
 
-if (Belt_MutableQueue.peekExn(q$2) ~= 2) then do
-  error ({
+if (Belt_MutableQueue.peekExn(q_2) ~= 2) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -362,8 +362,8 @@ if (Belt_MutableQueue.peekExn(q$2) ~= 2) then do
 end
  end 
 
-if (Belt_MutableQueue.popExn(q$2) ~= 2) then do
-  error ({
+if (Belt_MutableQueue.popExn(q_2) ~= 2) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -374,8 +374,8 @@ if (Belt_MutableQueue.popExn(q$2) ~= 2) then do
 end
  end 
 
-if (Belt_MutableQueue.peekExn(q$2) ~= 3) then do
-  error ({
+if (Belt_MutableQueue.peekExn(q_2) ~= 3) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -386,8 +386,8 @@ if (Belt_MutableQueue.peekExn(q$2) ~= 3) then do
 end
  end 
 
-if (Belt_MutableQueue.popExn(q$2) ~= 3) then do
-  error ({
+if (Belt_MutableQueue.popExn(q_2) ~= 3) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -398,8 +398,8 @@ if (Belt_MutableQueue.popExn(q$2) ~= 3) then do
 end
  end 
 
-if (not does_raise(Belt_MutableQueue.peekExn, q$2)) then do
-  error ({
+if (not does_raise(Belt_MutableQueue.peekExn, q_2)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -410,8 +410,8 @@ if (not does_raise(Belt_MutableQueue.peekExn, q$2)) then do
 end
  end 
 
-if (not does_raise(Belt_MutableQueue.peekExn, q$2)) then do
-  error ({
+if (not does_raise(Belt_MutableQueue.peekExn, q_2)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -422,16 +422,16 @@ if (not does_raise(Belt_MutableQueue.peekExn, q$2)) then do
 end
  end 
 
-q$3 = Belt_MutableQueue.make(--[[ () ]]0);
+q_3 = Belt_MutableQueue.make(--[[ () ]]0);
 
 for i = 1 , 10 , 1 do
-  Belt_MutableQueue.add(q$3, i);
+  Belt_MutableQueue.add(q_3, i);
 end
 
-Belt_MutableQueue.clear(q$3);
+Belt_MutableQueue.clear(q_3);
 
-if (q$3.length ~= 0) then do
-  error ({
+if (q_3.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -442,8 +442,8 @@ if (q$3.length ~= 0) then do
 end
  end 
 
-if (not does_raise(Belt_MutableQueue.popExn, q$3)) then do
-  error ({
+if (not does_raise(Belt_MutableQueue.popExn, q_3)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -454,8 +454,8 @@ if (not does_raise(Belt_MutableQueue.popExn, q$3)) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(q$3, Belt_MutableQueue.make(--[[ () ]]0))) then do
-  error ({
+if (not Caml_obj.caml_equal(q_3, Belt_MutableQueue.make(--[[ () ]]0))) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -466,10 +466,10 @@ if (not Caml_obj.caml_equal(q$3, Belt_MutableQueue.make(--[[ () ]]0))) then do
 end
  end 
 
-Belt_MutableQueue.add(q$3, 42);
+Belt_MutableQueue.add(q_3, 42);
 
-if (Belt_MutableQueue.popExn(q$3) ~= 42) then do
-  error ({
+if (Belt_MutableQueue.popExn(q_3) ~= 42) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -482,8 +482,8 @@ end
 
 q1 = Belt_MutableQueue.make(--[[ () ]]0);
 
-for i$1 = 1 , 10 , 1 do
-  Belt_MutableQueue.add(q1, i$1);
+for i_1 = 1 , 10 , 1 do
+  Belt_MutableQueue.add(q1, i_1);
 end
 
 q2 = Belt_MutableQueue.copy(q1);
@@ -500,7 +500,7 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1), {
         9,
         10
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -523,7 +523,7 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2), {
         9,
         10
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -535,7 +535,7 @@ end
  end 
 
 if (q1.length ~= 10) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -547,7 +547,7 @@ end
  end 
 
 if (q2.length ~= 10) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -558,9 +558,9 @@ if (q2.length ~= 10) then do
 end
  end 
 
-for i$2 = 1 , 10 , 1 do
-  if (Belt_MutableQueue.popExn(q1) ~= i$2) then do
-    error ({
+for i_2 = 1 , 10 , 1 do
+  if (Belt_MutableQueue.popExn(q1) ~= i_2) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_queue_test.ml",
@@ -572,9 +572,9 @@ for i$2 = 1 , 10 , 1 do
    end 
 end
 
-for i$3 = 1 , 10 , 1 do
-  if (Belt_MutableQueue.popExn(q2) ~= i$3) then do
-    error ({
+for i_3 = 1 , 10 , 1 do
+  if (Belt_MutableQueue.popExn(q2) ~= i_3) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_queue_test.ml",
@@ -586,10 +586,10 @@ for i$3 = 1 , 10 , 1 do
    end 
 end
 
-q$4 = Belt_MutableQueue.make(--[[ () ]]0);
+q_4 = Belt_MutableQueue.make(--[[ () ]]0);
 
-if (q$4.length ~= 0) then do
-  error ({
+if (q_4.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -600,10 +600,10 @@ if (q$4.length ~= 0) then do
 end
  end 
 
-for i$4 = 1 , 10 , 1 do
-  Belt_MutableQueue.add(q$4, i$4);
-  if (q$4.length ~= i$4) then do
-    error ({
+for i_4 = 1 , 10 , 1 do
+  Belt_MutableQueue.add(q_4, i_4);
+  if (q_4.length ~= i_4) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_queue_test.ml",
@@ -613,8 +613,8 @@ for i$4 = 1 , 10 , 1 do
     })
   end
    end 
-  if (q$4.length == 0) then do
-    error ({
+  if (q_4.length == 0) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_queue_test.ml",
@@ -626,9 +626,9 @@ for i$4 = 1 , 10 , 1 do
    end 
 end
 
-for i$5 = 10 , 1 , -1 do
-  if (q$4.length ~= i$5) then do
-    error ({
+for i_5 = 10 , 1 , -1 do
+  if (q_4.length ~= i_5) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_queue_test.ml",
@@ -638,8 +638,8 @@ for i$5 = 10 , 1 , -1 do
     })
   end
    end 
-  if (q$4.length == 0) then do
-    error ({
+  if (q_4.length == 0) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_queue_test.ml",
@@ -649,11 +649,11 @@ for i$5 = 10 , 1 , -1 do
     })
   end
    end 
-  Belt_MutableQueue.popExn(q$4);
+  Belt_MutableQueue.popExn(q_4);
 end
 
-if (q$4.length ~= 0) then do
-  error ({
+if (q_4.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -664,8 +664,8 @@ if (q$4.length ~= 0) then do
 end
  end 
 
-if (q$4.length ~= 0) then do
-  error ({
+if (q_4.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -676,19 +676,19 @@ if (q$4.length ~= 0) then do
 end
  end 
 
-q$5 = Belt_MutableQueue.make(--[[ () ]]0);
+q_5 = Belt_MutableQueue.make(--[[ () ]]0);
 
-for i$6 = 1 , 10 , 1 do
-  Belt_MutableQueue.add(q$5, i$6);
+for i_6 = 1 , 10 , 1 do
+  Belt_MutableQueue.add(q_5, i_6);
 end
 
-i$7 = do
+i_7 = do
   contents: 1
 end;
 
-Belt_MutableQueue.forEach(q$5, (function (j) do
-        if (i$7.contents ~= j) then do
-          error ({
+Belt_MutableQueue.forEach(q_5, (function (j) do
+        if (i_7.contents ~= j) then do
+          error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
               "bs_queue_test.ml",
@@ -698,16 +698,16 @@ Belt_MutableQueue.forEach(q$5, (function (j) do
           })
         end
          end 
-        i$7.contents = i$7.contents + 1 | 0;
+        i_7.contents = i_7.contents + 1 | 0;
         return --[[ () ]]0;
       end end));
 
-q1$1 = Belt_MutableQueue.make(--[[ () ]]0);
+q1_1 = Belt_MutableQueue.make(--[[ () ]]0);
 
-q2$1 = Belt_MutableQueue.make(--[[ () ]]0);
+q2_1 = Belt_MutableQueue.make(--[[ () ]]0);
 
-if (q1$1.length ~= 0) then do
-  error ({
+if (q1_1.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -718,8 +718,8 @@ if (q1$1.length ~= 0) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$1), {})) then do
-  error ({
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1_1), {})) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -730,8 +730,8 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$1), {})) then do
 end
  end 
 
-if (q2$1.length ~= 0) then do
-  error ({
+if (q2_1.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -742,8 +742,8 @@ if (q2$1.length ~= 0) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$1), {})) then do
-  error ({
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2_1), {})) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -754,10 +754,10 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$1), {})) then do
 end
  end 
 
-Belt_MutableQueue.transfer(q1$1, q2$1);
+Belt_MutableQueue.transfer(q1_1, q2_1);
 
-if (q1$1.length ~= 0) then do
-  error ({
+if (q1_1.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -768,8 +768,8 @@ if (q1$1.length ~= 0) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$1), {})) then do
-  error ({
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1_1), {})) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -780,8 +780,8 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$1), {})) then do
 end
  end 
 
-if (q2$1.length ~= 0) then do
-  error ({
+if (q2_1.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -792,8 +792,8 @@ if (q2$1.length ~= 0) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$1), {})) then do
-  error ({
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2_1), {})) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -804,16 +804,16 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$1), {})) then do
 end
  end 
 
-q1$2 = Belt_MutableQueue.make(--[[ () ]]0);
+q1_2 = Belt_MutableQueue.make(--[[ () ]]0);
 
-q2$2 = Belt_MutableQueue.make(--[[ () ]]0);
+q2_2 = Belt_MutableQueue.make(--[[ () ]]0);
 
-for i$8 = 1 , 4 , 1 do
-  Belt_MutableQueue.add(q1$2, i$8);
+for i_8 = 1 , 4 , 1 do
+  Belt_MutableQueue.add(q1_2, i_8);
 end
 
-if (q1$2.length ~= 4) then do
-  error ({
+if (q1_2.length ~= 4) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -824,13 +824,13 @@ if (q1$2.length ~= 4) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$2), {
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1_2), {
         1,
         2,
         3,
         4
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -841,8 +841,8 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$2), {
 end
  end 
 
-if (q2$2.length ~= 0) then do
-  error ({
+if (q2_2.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -853,8 +853,8 @@ if (q2$2.length ~= 0) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$2), {})) then do
-  error ({
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2_2), {})) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -865,10 +865,10 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$2), {})) then do
 end
  end 
 
-Belt_MutableQueue.transfer(q1$2, q2$2);
+Belt_MutableQueue.transfer(q1_2, q2_2);
 
-if (q1$2.length ~= 0) then do
-  error ({
+if (q1_2.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -879,8 +879,8 @@ if (q1$2.length ~= 0) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$2), {})) then do
-  error ({
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1_2), {})) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -891,8 +891,8 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$2), {})) then do
 end
  end 
 
-if (q2$2.length ~= 4) then do
-  error ({
+if (q2_2.length ~= 4) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -903,13 +903,13 @@ if (q2$2.length ~= 4) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$2), {
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2_2), {
         1,
         2,
         3,
         4
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -920,16 +920,16 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$2), {
 end
  end 
 
-q1$3 = Belt_MutableQueue.make(--[[ () ]]0);
+q1_3 = Belt_MutableQueue.make(--[[ () ]]0);
 
-q2$3 = Belt_MutableQueue.make(--[[ () ]]0);
+q2_3 = Belt_MutableQueue.make(--[[ () ]]0);
 
-for i$9 = 5 , 8 , 1 do
-  Belt_MutableQueue.add(q2$3, i$9);
+for i_9 = 5 , 8 , 1 do
+  Belt_MutableQueue.add(q2_3, i_9);
 end
 
-if (q1$3.length ~= 0) then do
-  error ({
+if (q1_3.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -940,8 +940,8 @@ if (q1$3.length ~= 0) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$3), {})) then do
-  error ({
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1_3), {})) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -952,8 +952,8 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$3), {})) then do
 end
  end 
 
-if (q2$3.length ~= 4) then do
-  error ({
+if (q2_3.length ~= 4) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -964,13 +964,13 @@ if (q2$3.length ~= 4) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$3), {
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2_3), {
         5,
         6,
         7,
         8
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -981,10 +981,10 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$3), {
 end
  end 
 
-Belt_MutableQueue.transfer(q1$3, q2$3);
+Belt_MutableQueue.transfer(q1_3, q2_3);
 
-if (q1$3.length ~= 0) then do
-  error ({
+if (q1_3.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -995,8 +995,8 @@ if (q1$3.length ~= 0) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$3), {})) then do
-  error ({
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1_3), {})) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -1007,8 +1007,8 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$3), {})) then do
 end
  end 
 
-if (q2$3.length ~= 4) then do
-  error ({
+if (q2_3.length ~= 4) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -1019,13 +1019,13 @@ if (q2$3.length ~= 4) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$3), {
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2_3), {
         5,
         6,
         7,
         8
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -1036,20 +1036,20 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$3), {
 end
  end 
 
-q1$4 = Belt_MutableQueue.make(--[[ () ]]0);
+q1_4 = Belt_MutableQueue.make(--[[ () ]]0);
 
-q2$4 = Belt_MutableQueue.make(--[[ () ]]0);
+q2_4 = Belt_MutableQueue.make(--[[ () ]]0);
 
-for i$10 = 1 , 4 , 1 do
-  Belt_MutableQueue.add(q1$4, i$10);
+for i_10 = 1 , 4 , 1 do
+  Belt_MutableQueue.add(q1_4, i_10);
 end
 
-for i$11 = 5 , 8 , 1 do
-  Belt_MutableQueue.add(q2$4, i$11);
+for i_11 = 5 , 8 , 1 do
+  Belt_MutableQueue.add(q2_4, i_11);
 end
 
-if (q1$4.length ~= 4) then do
-  error ({
+if (q1_4.length ~= 4) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -1060,13 +1060,13 @@ if (q1$4.length ~= 4) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$4), {
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1_4), {
         1,
         2,
         3,
         4
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -1077,8 +1077,8 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$4), {
 end
  end 
 
-if (q2$4.length ~= 4) then do
-  error ({
+if (q2_4.length ~= 4) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -1089,13 +1089,13 @@ if (q2$4.length ~= 4) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$4), {
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2_4), {
         5,
         6,
         7,
         8
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -1106,10 +1106,10 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$4), {
 end
  end 
 
-Belt_MutableQueue.transfer(q1$4, q2$4);
+Belt_MutableQueue.transfer(q1_4, q2_4);
 
-if (q1$4.length ~= 0) then do
-  error ({
+if (q1_4.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -1120,8 +1120,8 @@ if (q1$4.length ~= 0) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1$4), {})) then do
-  error ({
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q1_4), {})) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -1143,8 +1143,8 @@ v = {
   4
 };
 
-if (q2$4.length ~= 8) then do
-  error ({
+if (q2_4.length ~= 8) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -1155,8 +1155,8 @@ if (q2$4.length ~= 8) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$4), v)) then do
-  error ({
+if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2_4), v)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -1167,12 +1167,12 @@ if (not Caml_obj.caml_equal(Belt_MutableQueue.toArray(q2$4), v)) then do
 end
  end 
 
-if (Belt_MutableQueue.reduce(q2$4, 0, (function (x, y) do
+if (Belt_MutableQueue.reduce(q2_4, 0, (function (x, y) do
           return x - y | 0;
         end end)) ~= Belt_Array.reduce(v, 0, (function (x, y) do
           return x - y | 0;
         end end))) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "bs_queue_test.ml",
@@ -1185,33 +1185,33 @@ end
 
 console.log("OK");
 
-q$6 = Belt_MutableQueue.fromArray({
+q_6 = Belt_MutableQueue.fromArray({
       1,
       2,
       3,
       4
     });
 
-q1$5 = Belt_MutableQueue.map(q$6, (function (x) do
+q1_5 = Belt_MutableQueue.map(q_6, (function (x) do
         return x - 1 | 0;
       end end));
 
-eq("File \"bs_queue_test.ml\", line 154, characters 5-12", Belt_MutableQueue.toArray(q1$5), {
+eq("File \"bs_queue_test.ml\", line 154, characters 5-12", Belt_MutableQueue.toArray(q1_5), {
       0,
       1,
       2,
       3
     });
 
-q$7 = Belt_MutableQueue.fromArray({});
+q_7 = Belt_MutableQueue.fromArray({});
 
-b("File \"bs_queue_test.ml\", line 155, characters 4-11", q$7.length == 0);
+b("File \"bs_queue_test.ml\", line 155, characters 4-11", q_7.length == 0);
 
-q$8 = Belt_MutableQueue.map(Belt_MutableQueue.fromArray({}), (function (x) do
+q_8 = Belt_MutableQueue.map(Belt_MutableQueue.fromArray({}), (function (x) do
         return x + 1 | 0;
       end end));
 
-b("File \"bs_queue_test.ml\", line 156, characters 4-11", q$8.length == 0);
+b("File \"bs_queue_test.ml\", line 156, characters 4-11", q_8.length == 0);
 
 Mt.from_pair_suites("Bs_queue_test", suites.contents);
 

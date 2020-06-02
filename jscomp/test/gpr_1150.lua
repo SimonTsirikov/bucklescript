@@ -4,53 +4,53 @@ Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(children) do
   if (children) then do
-    children$1 = children[1];
+    children_1 = children[1];
     a0 = children[0];
-    if (children$1) then do
-      children$2 = children$1[1];
-      a1 = children$1[0];
-      if (children$2) then do
-        children$3 = children$2[1];
-        a2 = children$2[0];
-        if (children$3) then do
-          children$4 = children$3[1];
-          a3 = children$3[0];
-          if (children$4) then do
-            children$5 = children$4[1];
-            a4 = children$4[0];
-            if (children$5) then do
-              children$6 = children$5[1];
-              a5 = children$5[0];
-              if (children$6) then do
-                children$7 = children$6[1];
-                a6 = children$6[0];
-                if (children$7) then do
-                  children$8 = children$7[1];
-                  a7 = children$7[0];
-                  if (children$8) then do
-                    children$9 = children$8[1];
-                    a8 = children$8[0];
-                    if (children$9) then do
-                      children$10 = children$9[1];
-                      a9 = children$9[0];
-                      if (children$10) then do
-                        children$11 = children$10[1];
-                        a10 = children$10[0];
-                        if (children$11) then do
-                          children$12 = children$11[1];
-                          a11 = children$11[0];
-                          if (children$12) then do
-                            children$13 = children$12[1];
-                            a12 = children$12[0];
-                            if (children$13) then do
-                              children$14 = children$13[1];
-                              a13 = children$13[0];
-                              if (children$14) then do
-                                children$15 = children$14[1];
-                                a14 = children$14[0];
-                                if (children$15) then do
-                                  if (children$15[1]) then do
-                                    error ({
+    if (children_1) then do
+      children_2 = children_1[1];
+      a1 = children_1[0];
+      if (children_2) then do
+        children_3 = children_2[1];
+        a2 = children_2[0];
+        if (children_3) then do
+          children_4 = children_3[1];
+          a3 = children_3[0];
+          if (children_4) then do
+            children_5 = children_4[1];
+            a4 = children_4[0];
+            if (children_5) then do
+              children_6 = children_5[1];
+              a5 = children_5[0];
+              if (children_6) then do
+                children_7 = children_6[1];
+                a6 = children_6[0];
+                if (children_7) then do
+                  children_8 = children_7[1];
+                  a7 = children_7[0];
+                  if (children_8) then do
+                    children_9 = children_8[1];
+                    a8 = children_8[0];
+                    if (children_9) then do
+                      children_10 = children_9[1];
+                      a9 = children_9[0];
+                      if (children_10) then do
+                        children_11 = children_10[1];
+                        a10 = children_10[0];
+                        if (children_11) then do
+                          children_12 = children_11[1];
+                          a11 = children_11[0];
+                          if (children_12) then do
+                            children_13 = children_12[1];
+                            a12 = children_12[0];
+                            if (children_13) then do
+                              children_14 = children_13[1];
+                              a13 = children_13[0];
+                              if (children_14) then do
+                                children_15 = children_14[1];
+                                a14 = children_14[0];
+                                if (children_15) then do
+                                  if (children_15[1]) then do
+                                    error({
                                       Caml_builtin_exceptions.assert_failure,
                                       --[[ tuple ]]{
                                         "gpr_1150.ml",
@@ -76,7 +76,7 @@ function f(children) do
                                           a12,
                                           a13,
                                           a14,
-                                          children$15[0]
+                                          children_15[0]
                                         };
                                 end else do
                                   return {

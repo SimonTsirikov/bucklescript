@@ -21,16 +21,16 @@ v = {
     1,
     2,
     3
-  }.map((function (param, param$1) do
-        return f(param)(param$1);
+  }.map((function (param, param_1) do
+        return f(param)(param_1);
       end end));
 
 vv = {
     1,
     2,
     3
-  }.map((function (prim, prim$1) do
-        return prim + prim$1 | 0;
+  }.map((function (prim, prim_1) do
+        return prim + prim_1 | 0;
       end end));
 
 hh = {

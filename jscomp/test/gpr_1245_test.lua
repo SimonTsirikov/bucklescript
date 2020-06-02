@@ -41,11 +41,11 @@ function a1(f) do
   E = Caml_exceptions.create("E");
   xpcall(function() do
     return Curry._1(f, --[[ () ]]0);
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == E) then do
       return 1;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end

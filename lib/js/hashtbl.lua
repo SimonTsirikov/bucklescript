@@ -111,7 +111,7 @@ function copy_bucketlist(param) do
           if (prec) then do
             prec[--[[ next ]]2] = r;
           end else do
-            error ({
+            error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
                 "hashtbl.ml",
@@ -169,7 +169,7 @@ function resize(indexfun, h) do
           key = cell[--[[ key ]]0];
           data = cell[--[[ data ]]1];
           next = cell[--[[ next ]]2];
-          cell$1 = inplace and cell or --[[ Cons ]]{
+          cell_1 = inplace and cell or --[[ Cons ]]{
               --[[ key ]]key,
               --[[ data ]]data,
               --[[ next : Empty ]]0
@@ -177,11 +177,11 @@ function resize(indexfun, h) do
           nidx = Curry._2(indexfun, h, key);
           match = Caml_array.caml_array_get(ndata_tail, nidx);
           if (match) then do
-            match[--[[ next ]]2] = cell$1;
+            match[--[[ next ]]2] = cell_1;
           end else do
-            Caml_array.caml_array_set(ndata, nidx, cell$1);
+            Caml_array.caml_array_set(ndata, nidx, cell_1);
           end end 
-          Caml_array.caml_array_set(ndata_tail, nidx, cell$1);
+          Caml_array.caml_array_set(ndata_tail, nidx, cell_1);
           _cell = next;
           ::continue:: ;
         end else do
@@ -193,8 +193,8 @@ function resize(indexfun, h) do
       insert_bucket(Caml_array.caml_array_get(odata, i));
     end
     if (inplace) then do
-      for i$1 = 0 , nsize - 1 | 0 , 1 do
-        match = Caml_array.caml_array_get(ndata_tail, i$1);
+      for i_1 = 0 , nsize - 1 | 0 , 1 do
+        match = Caml_array.caml_array_get(ndata_tail, i_1);
         if (match) then do
           match[--[[ next ]]2] = --[[ Empty ]]0;
         end
@@ -231,9 +231,9 @@ end end
 
 function remove(h, key) do
   i = key_index(h, key);
-  h$1 = h;
-  i$1 = i;
-  key$1 = key;
+  h_1 = h;
+  i_1 = i;
+  key_1 = key;
   _prec = --[[ Empty ]]0;
   _c = Caml_array.caml_array_get(h.data, i);
   while(true) do
@@ -242,13 +242,13 @@ function remove(h, key) do
     if (c) then do
       k = c[--[[ key ]]0];
       next = c[--[[ next ]]2];
-      if (Caml_obj.caml_equal(k, key$1)) then do
-        h$1.size = h$1.size - 1 | 0;
+      if (Caml_obj.caml_equal(k, key_1)) then do
+        h_1.size = h_1.size - 1 | 0;
         if (prec) then do
           prec[--[[ next ]]2] = next;
           return --[[ () ]]0;
         end else do
-          return Caml_array.caml_array_set(h$1.data, i$1, next);
+          return Caml_array.caml_array_set(h_1.data, i_1, next);
         end end 
       end else do
         _c = next;
@@ -282,7 +282,7 @@ function find(h, key) do
         if (Caml_obj.caml_equal(key, k3)) then do
           return d3;
         end else do
-          key$1 = key;
+          key_1 = key;
           _param = next3;
           while(true) do
             param = _param;
@@ -290,25 +290,25 @@ function find(h, key) do
               k = param[--[[ key ]]0];
               data = param[--[[ data ]]1];
               next = param[--[[ next ]]2];
-              if (Caml_obj.caml_equal(key$1, k)) then do
+              if (Caml_obj.caml_equal(key_1, k)) then do
                 return data;
               end else do
                 _param = next;
                 ::continue:: ;
               end end 
             end else do
-              error (Caml_builtin_exceptions.not_found)
+              error(Caml_builtin_exceptions.not_found)
             end end 
           end;
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end  end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end  end 
   end else do
-    error (Caml_builtin_exceptions.not_found)
+    error(Caml_builtin_exceptions.not_found)
   end end 
 end end
 
@@ -333,7 +333,7 @@ function find_opt(h, key) do
         if (Caml_obj.caml_equal(key, k3)) then do
           return Caml_option.some(d3);
         end else do
-          key$1 = key;
+          key_1 = key;
           _param = next3;
           while(true) do
             param = _param;
@@ -341,7 +341,7 @@ function find_opt(h, key) do
               k = param[--[[ key ]]0];
               data = param[--[[ data ]]1];
               next = param[--[[ next ]]2];
-              if (Caml_obj.caml_equal(key$1, k)) then do
+              if (Caml_obj.caml_equal(key_1, k)) then do
                 return Caml_option.some(data);
               end else do
                 _param = next;
@@ -477,12 +477,12 @@ function iter(f, h) do
     end else do
       return flip_ongoing_traversal(h);
     end end 
-  end end,function(exn) return do
+  end end,function(exn) do
     if (old_trav) then do
-      error (exn)
+      error(exn)
     end else do
       flip_ongoing_traversal(h);
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -532,12 +532,12 @@ function filter_map_inplace(f, h) do
       filter_map_inplace_bucket(f, h, i, --[[ Empty ]]0, Caml_array.caml_array_get(h.data, i));
     end
     return --[[ () ]]0;
-  end end,function(exn) return do
+  end end,function(exn) do
     if (old_trav) then do
-      error (exn)
+      error(exn)
     end else do
       flip_ongoing_traversal(h);
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -575,12 +575,12 @@ function fold(f, h, init) do
     end
      end 
     return accu;
-  end end,function(exn) return do
+  end end,function(exn) do
     if (old_trav) then do
-      error (exn)
+      error(exn)
     end else do
       flip_ongoing_traversal(h);
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -638,9 +638,9 @@ function MakeSeeded(H) do
   end end;
   remove = function (h, key) do
     i = key_index(h, key);
-    h$1 = h;
-    i$1 = i;
-    key$1 = key;
+    h_1 = h;
+    i_1 = i;
+    key_1 = key;
     _prec = --[[ Empty ]]0;
     _c = Caml_array.caml_array_get(h.data, i);
     while(true) do
@@ -649,13 +649,13 @@ function MakeSeeded(H) do
       if (c) then do
         k = c[--[[ key ]]0];
         next = c[--[[ next ]]2];
-        if (Curry._2(H.equal, k, key$1)) then do
-          h$1.size = h$1.size - 1 | 0;
+        if (Curry._2(H.equal, k, key_1)) then do
+          h_1.size = h_1.size - 1 | 0;
           if (prec) then do
             prec[--[[ next ]]2] = next;
             return --[[ () ]]0;
           end else do
-            return Caml_array.caml_array_set(h$1.data, i$1, next);
+            return Caml_array.caml_array_set(h_1.data, i_1, next);
           end end 
         end else do
           _c = next;
@@ -688,7 +688,7 @@ function MakeSeeded(H) do
           if (Curry._2(H.equal, key, k3)) then do
             return d3;
           end else do
-            key$1 = key;
+            key_1 = key;
             _param = next3;
             while(true) do
               param = _param;
@@ -696,25 +696,25 @@ function MakeSeeded(H) do
                 k = param[--[[ key ]]0];
                 data = param[--[[ data ]]1];
                 next = param[--[[ next ]]2];
-                if (Curry._2(H.equal, key$1, k)) then do
+                if (Curry._2(H.equal, key_1, k)) then do
                   return data;
                 end else do
                   _param = next;
                   ::continue:: ;
                 end end 
               end else do
-                error (Caml_builtin_exceptions.not_found)
+                error(Caml_builtin_exceptions.not_found)
               end end 
             end;
           end end 
         end else do
-          error (Caml_builtin_exceptions.not_found)
+          error(Caml_builtin_exceptions.not_found)
         end end  end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end  end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end end;
   find_opt = function (h, key) do
@@ -738,7 +738,7 @@ function MakeSeeded(H) do
           if (Curry._2(H.equal, key, k3)) then do
             return Caml_option.some(d3);
           end else do
-            key$1 = key;
+            key_1 = key;
             _param = next3;
             while(true) do
               param = _param;
@@ -746,7 +746,7 @@ function MakeSeeded(H) do
                 k = param[--[[ key ]]0];
                 data = param[--[[ data ]]1];
                 next = param[--[[ next ]]2];
-                if (Curry._2(H.equal, key$1, k)) then do
+                if (Curry._2(H.equal, key_1, k)) then do
                   return Caml_option.some(data);
                 end else do
                   _param = next;
@@ -888,9 +888,9 @@ function Make(H) do
   end end;
   remove = function (h, key) do
     i = key_index(h, key);
-    h$1 = h;
-    i$1 = i;
-    key$1 = key;
+    h_1 = h;
+    i_1 = i;
+    key_1 = key;
     _prec = --[[ Empty ]]0;
     _c = Caml_array.caml_array_get(h.data, i);
     while(true) do
@@ -899,13 +899,13 @@ function Make(H) do
       if (c) then do
         k = c[--[[ key ]]0];
         next = c[--[[ next ]]2];
-        if (Curry._2(equal, k, key$1)) then do
-          h$1.size = h$1.size - 1 | 0;
+        if (Curry._2(equal, k, key_1)) then do
+          h_1.size = h_1.size - 1 | 0;
           if (prec) then do
             prec[--[[ next ]]2] = next;
             return --[[ () ]]0;
           end else do
-            return Caml_array.caml_array_set(h$1.data, i$1, next);
+            return Caml_array.caml_array_set(h_1.data, i_1, next);
           end end 
         end else do
           _c = next;
@@ -938,7 +938,7 @@ function Make(H) do
           if (Curry._2(equal, key, k3)) then do
             return d3;
           end else do
-            key$1 = key;
+            key_1 = key;
             _param = next3;
             while(true) do
               param = _param;
@@ -946,25 +946,25 @@ function Make(H) do
                 k = param[--[[ key ]]0];
                 data = param[--[[ data ]]1];
                 next = param[--[[ next ]]2];
-                if (Curry._2(equal, key$1, k)) then do
+                if (Curry._2(equal, key_1, k)) then do
                   return data;
                 end else do
                   _param = next;
                   ::continue:: ;
                 end end 
               end else do
-                error (Caml_builtin_exceptions.not_found)
+                error(Caml_builtin_exceptions.not_found)
               end end 
             end;
           end end 
         end else do
-          error (Caml_builtin_exceptions.not_found)
+          error(Caml_builtin_exceptions.not_found)
         end end  end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end  end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end end;
   find_opt = function (h, key) do
@@ -988,7 +988,7 @@ function Make(H) do
           if (Curry._2(equal, key, k3)) then do
             return Caml_option.some(d3);
           end else do
-            key$1 = key;
+            key_1 = key;
             _param = next3;
             while(true) do
               param = _param;
@@ -996,7 +996,7 @@ function Make(H) do
                 k = param[--[[ key ]]0];
                 data = param[--[[ data ]]1];
                 next = param[--[[ next ]]2];
-                if (Curry._2(equal, key$1, k)) then do
+                if (Curry._2(equal, key_1, k)) then do
                   return Caml_option.some(data);
                 end else do
                   _param = next;
@@ -1096,11 +1096,11 @@ function Make(H) do
       end end 
     end;
   end end;
-  create$1 = function (sz) do
+  create_1 = function (sz) do
     return create(false, sz);
   end end;
   return do
-          create: create$1,
+          create: create_1,
           clear: clear,
           reset: reset,
           copy: copy,

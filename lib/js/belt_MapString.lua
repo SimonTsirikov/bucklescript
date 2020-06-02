@@ -41,8 +41,8 @@ function updateU(t, x, f) do
             vr = do
               contents: r.value
             end;
-            r$1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
-            return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r$1);
+            r_1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
+            return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r_1);
           end else do
             return l;
           end end 
@@ -51,29 +51,29 @@ function updateU(t, x, f) do
         end end 
       end end 
     end else do
-      l$1 = t.left;
-      r$2 = t.right;
+      l_1 = t.left;
+      r_2 = t.right;
       v = t.value;
       if (x < k) then do
-        ll = updateU(l$1, x, f);
-        if (l$1 == ll) then do
+        ll = updateU(l_1, x, f);
+        if (l_1 == ll) then do
           return t;
         end else do
-          return Belt_internalAVLtree.bal(ll, k, v, r$2);
+          return Belt_internalAVLtree.bal(ll, k, v, r_2);
         end end 
       end else do
-        rr = updateU(r$2, x, f);
-        if (r$2 == rr) then do
+        rr = updateU(r_2, x, f);
+        if (r_2 == rr) then do
           return t;
         end else do
-          return Belt_internalAVLtree.bal(l$1, k, v, rr);
+          return Belt_internalAVLtree.bal(l_1, k, v, rr);
         end end 
       end end 
     end end 
   end else do
-    match$1 = f(undefined);
-    if (match$1 ~= undefined) then do
-      return Belt_internalAVLtree.singleton(x, Caml_option.valFromOption(match$1));
+    match_1 = f(undefined);
+    if (match_1 ~= undefined) then do
+      return Belt_internalAVLtree.singleton(x, Caml_option.valFromOption(match_1));
     end else do
       return t;
     end end 
@@ -97,8 +97,8 @@ function removeAux(n, x) do
         vr = do
           contents: r.value
         end;
-        r$1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
-        return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r$1);
+        r_1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
+        return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r_1);
       end else do
         return l;
       end end 
@@ -138,13 +138,13 @@ function removeMany(t, keys) do
     _t = t;
     xs = keys;
     _i = 0;
-    len$1 = len;
+    len_1 = len;
     while(true) do
       i = _i;
-      t$1 = _t;
-      if (i < len$1) then do
+      t_1 = _t;
+      if (i < len_1) then do
         ele = xs[i];
-        u = removeAux(t$1, ele);
+        u = removeAux(t_1, ele);
         if (u ~= nil) then do
           _i = i + 1 | 0;
           _t = u;
@@ -153,7 +153,7 @@ function removeMany(t, keys) do
           return u;
         end end 
       end else do
-        return t$1;
+        return t_1;
       end end 
     end;
   end else do

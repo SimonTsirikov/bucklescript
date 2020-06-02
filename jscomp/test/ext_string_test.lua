@@ -161,13 +161,13 @@ end end
 function check_any_suffix_case_then_chop(s, suffixes) do
   _suffixes = suffixes;
   while(true) do
-    suffixes$1 = _suffixes;
-    if (suffixes$1) then do
-      id = ends_with_index(s, suffixes$1[0]);
+    suffixes_1 = _suffixes;
+    if (suffixes_1) then do
+      id = ends_with_index(s, suffixes_1[0]);
       if (id >= 0) then do
         return __String.sub(s, 0, id);
       end else do
-        _suffixes = suffixes$1[1];
+        _suffixes = suffixes_1[1];
         ::continue:: ;
       end end 
     end else do
@@ -229,7 +229,7 @@ end end
 function for_all_range(s, start, finish, p) do
   len = #s;
   if (start < 0 or finish >= len) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Ext_string_test.for_all_range"
     })
@@ -284,17 +284,17 @@ function find(startOpt, sub, s) do
   xpcall(function() do
     while((i + n | 0) <= s_len) do
       if (unsafe_is_sub(sub, 0, s, i, n)) then do
-        error (Local_exit)
+        error(Local_exit)
       end
        end 
       i = i + 1 | 0;
     end;
     return -1;
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Local_exit) then do
       return i;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -306,7 +306,7 @@ end end
 function non_overlap_count(sub, s) do
   sub_len = #sub;
   if (#sub == 0) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Ext_string_test.non_overlap_count"
     })
@@ -334,17 +334,17 @@ function rfind(sub, s) do
   xpcall(function() do
     while(i >= 0) do
       if (unsafe_is_sub(sub, 0, s, i, n)) then do
-        error (Local_exit)
+        error(Local_exit)
       end
        end 
       i = i - 1 | 0;
     end;
     return -1;
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Local_exit) then do
       return i;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -352,10 +352,10 @@ end end
 function tail_from(s, x) do
   len = #s;
   if (x > len) then do
-    s$1 = "Ext_string_test.tail_from " .. (s .. (" : " .. String(x)));
-    error ({
+    s_1 = "Ext_string_test.tail_from " .. (s .. (" : " .. String(x)));
+    error({
       Caml_builtin_exceptions.invalid_argument,
-      s$1
+      s_1
     })
   end else do
     return __String.sub(s, x, len - x | 0);
@@ -365,15 +365,15 @@ end end
 function digits_of_str(s, offset, x) do
   _i = 0;
   _acc = 0;
-  s$1 = s;
-  x$1 = x;
+  s_1 = s;
+  x_1 = x;
   while(true) do
     acc = _acc;
     i = _i;
-    if (i >= x$1) then do
+    if (i >= x_1) then do
       return acc;
     end else do
-      _acc = (Caml_int32.imul(10, acc) + Caml_string.get(s$1, offset + i | 0) | 0) - 48 | 0;
+      _acc = (Caml_int32.imul(10, acc) + Caml_string.get(s_1, offset + i | 0) | 0) - 48 | 0;
       _i = i + 1 | 0;
       ::continue:: ;
     end end 
@@ -580,7 +580,7 @@ end end
 function no_char(x, ch, i, len) do
   str_len = #x;
   if (i < 0 or i >= str_len or len >= str_len) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Ext_string_test.no_char"
     })
@@ -645,9 +645,9 @@ function concat_array(sep, s) do
       hd_len = #hd;
       Caml_bytes.caml_blit_string(hd, 0, target, 0, hd_len);
       current_offset = hd_len;
-      for i$1 = 1 , s_len - 1 | 0 , 1 do
+      for i_1 = 1 , s_len - 1 | 0 , 1 do
         Caml_bytes.caml_blit_string(sep, 0, target, current_offset, sep_len);
-        cur = s[i$1];
+        cur = s[i_1];
         cur_len = #cur;
         new_off_set = current_offset + sep_len | 0;
         Caml_bytes.caml_blit_string(cur, 0, target, new_off_set, cur_len);

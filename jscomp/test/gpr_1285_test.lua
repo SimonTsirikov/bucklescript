@@ -37,7 +37,7 @@ class_tables = --[[ Cons ]]{
   0
 };
 
-class_tables$1 = --[[ Cons ]]{
+class_tables_1 = --[[ Cons ]]{
   0,
   0,
   0
@@ -49,27 +49,27 @@ function step1(param) do
     env = CamlinternalOO.new_variable(__class, "");
     step2 = CamlinternalOO.get_method_label(__class, "step2");
     CamlinternalOO.set_method(__class, step2, (function (self$1) do
-            if (not class_tables$1[0]) then do
+            if (not class_tables_1[0]) then do
               __class = CamlinternalOO.create_table({"step3"});
               env = CamlinternalOO.new_variable(__class, "");
               step3 = CamlinternalOO.get_method_label(__class, "step3");
               CamlinternalOO.set_method(__class, step3, (function (self$2) do
                       return 33;
                     end end));
-              env_init = function (env$1) do
+              env_init = function (env_1) do
                 self = CamlinternalOO.create_object_opt(0, __class);
-                self[env] = env$1;
+                self[env] = env_1;
                 return self;
               end end;
               CamlinternalOO.init_class(__class);
-              class_tables$1[0] = env_init;
+              class_tables_1[0] = env_init;
             end
              end 
-            return Curry._1(class_tables$1[0], 0);
+            return Curry._1(class_tables_1[0], 0);
           end end));
-    env_init = function (env$1) do
+    env_init = function (env_1) do
       self = CamlinternalOO.create_object_opt(0, __class);
-      self[env] = env$1;
+      self[env] = env_1;
       return self;
     end end;
     CamlinternalOO.init_class(__class);
@@ -81,9 +81,9 @@ end end
 
 tmp = step1(--[[ () ]]0);
 
-tmp$1 = Caml_oo_curry.js1(68057958, 1, tmp);
+tmp_1 = Caml_oo_curry.js1(68057958, 1, tmp);
 
-x = Caml_oo_curry.js1(68057959, 2, tmp$1);
+x = Caml_oo_curry.js1(68057959, 2, tmp_1);
 
 eq("File \"gpr_1285_test.ml\", line 20, characters 5-12", x, 33);
 

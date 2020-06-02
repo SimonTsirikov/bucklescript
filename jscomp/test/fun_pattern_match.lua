@@ -8,8 +8,8 @@ function f(param, v) do
   return ((((param.x0 + param.x1 | 0) + param.x2 | 0) + param.x3 | 0) + param.x4 | 0) + v | 0;
 end end
 
-function f2(param, param$1) do
-  return (((((param.x0 + param.x1 | 0) + param.x2 | 0) + param.x3 | 0) + param.x4 | 0) + param$1.a | 0) + param$1.b | 0;
+function f2(param, param_1) do
+  return (((((param.x0 + param.x1 | 0) + param.x2 | 0) + param.x3 | 0) + param.x4 | 0) + param_1.a | 0) + param_1.b | 0;
 end end
 
 function f3(param) do
@@ -17,7 +17,7 @@ function f3(param) do
   return (function (param) do
       rhs = param.rank;
       if (typeof lhs == "number") then do
-        error ({
+        error({
           Caml_builtin_exceptions.assert_failure,
           --[[ tuple ]]{
             "fun_pattern_match.ml",
@@ -28,7 +28,7 @@ function f3(param) do
       end
        end 
       if (typeof rhs == "number") then do
-        error ({
+        error({
           Caml_builtin_exceptions.assert_failure,
           --[[ tuple ]]{
             "fun_pattern_match.ml",
@@ -47,7 +47,7 @@ function f4(param) do
   return (function (param) do
       rhs = param.rank;
       if (typeof lhs == "number") then do
-        error ({
+        error({
           Caml_builtin_exceptions.assert_failure,
           --[[ tuple ]]{
             "fun_pattern_match.ml",
@@ -58,7 +58,7 @@ function f4(param) do
       end
        end 
       if (typeof rhs == "number") then do
-        error ({
+        error({
           Caml_builtin_exceptions.assert_failure,
           --[[ tuple ]]{
             "fun_pattern_match.ml",

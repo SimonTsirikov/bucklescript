@@ -43,7 +43,7 @@ function bufferize(f) do
             end end),
           (function (x) do
               if (buf.contents ~= undefined) then do
-                error ({
+                error({
                   Caml_builtin_exceptions.assert_failure,
                   --[[ tuple ]]{
                     "qcc.ml",
@@ -102,7 +102,7 @@ end end
 
 function symstr(n) do
   if (n >= syms.contents) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "qcc.ml",
@@ -157,16 +157,16 @@ function skip(_param) do
         if (ch ~= 47 or peekch(--[[ () ]]0) ~= --[[ "*" ]]42) then do
           return ch;
         end else do
-          _param$1 = (Curry._1(getch, --[[ () ]]0), --[[ () ]]0);
+          _param_1 = (Curry._1(getch, --[[ () ]]0), --[[ () ]]0);
           while(true) do
             match = Curry._1(getch, --[[ () ]]0);
             if (match ~= 42) then do
-              _param$1 = --[[ () ]]0;
+              _param_1 = --[[ () ]]0;
               ::continue:: ;
             end else if (peekch(--[[ () ]]0) == --[[ "/" ]]47) then do
               return skip((Curry._1(getch, --[[ () ]]0), --[[ () ]]0));
             end else do
-              _param$1 = --[[ () ]]0;
+              _param_1 = --[[ () ]]0;
               ::continue:: ;
             end end  end 
           end;
@@ -195,11 +195,11 @@ function next(param) do
   match;
   xpcall(function() do
     match = skip(--[[ () ]]0);
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.end_of_file) then do
       match = undefined;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
   if (match ~= undefined) then do
@@ -210,8 +210,8 @@ function next(param) do
           _n = c - 48 | 0;
           while(true) do
             n = _n;
-            match$1 = peekch(--[[ () ]]0);
-            if (match$1 > 57 or match$1 < 48) then do
+            match_1 = peekch(--[[ () ]]0);
+            if (match_1 > 57 or match_1 < 48) then do
               return --[[ ILit ]]Block.__(1, {n});
             end else do
               _n = (Caml_int32.imul(10, n) + Curry._1(getch, --[[ () ]]0) | 0) - 48 | 0;
@@ -224,7 +224,7 @@ function next(param) do
         ch = getq(--[[ () ]]0);
         qt = Curry._1(getch, --[[ () ]]0);
         if (qt ~= --[[ "'" ]]39) then do
-          error ({
+          error({
             Caml_builtin_exceptions.failure,
             "syntax error"
           })
@@ -238,8 +238,8 @@ function next(param) do
       _e = gpos.contents;
       while(true) do
         e = _e;
-        match$2 = peekch(--[[ () ]]0);
-        if (match$2 ~= 34) then do
+        match_2 = peekch(--[[ () ]]0);
+        if (match_2 ~= 34) then do
           glo[e] = getq(--[[ () ]]0);
           _e = e + 1 | 0;
           ::continue:: ;
@@ -254,22 +254,22 @@ function next(param) do
       end;
     end end 
     if (isid(c)) then do
-      _n$1 = 0;
+      _n_1 = 0;
       _ch = c;
       while(true) do
-        ch$1 = _ch;
-        n$1 = _n$1;
-        s[n$1] = ch$1;
+        ch_1 = _ch;
+        n_1 = _n_1;
+        s[n_1] = ch_1;
         if (isid(peekch(--[[ () ]]0))) then do
           _ch = Curry._1(getch, --[[ () ]]0);
-          _n$1 = n$1 + 1 | 0;
+          _n_1 = n_1 + 1 | 0;
           ::continue:: ;
         end else do
-          return --[[ Sym ]]Block.__(3, {addsym(Bytes.to_string(Bytes.sub(s, 0, n$1 + 1 | 0)))});
+          return --[[ Sym ]]Block.__(3, {addsym(Bytes.to_string(Bytes.sub(s, 0, n_1 + 1 | 0)))});
         end end 
       end;
     end else do
-      ch$2 = c;
+      ch_2 = c;
       _param = --[[ :: ]]{
         "++",
         --[[ :: ]]{
@@ -302,18 +302,18 @@ function next(param) do
         }
       };
       while(true) do
-        param$1 = _param;
-        if (param$1) then do
-          lop = param$1[0];
-          if (Caml_string.get(lop, 0) == ch$2 and Caml_string.get(lop, 1) == peekch(--[[ () ]]0)) then do
+        param_1 = _param;
+        if (param_1) then do
+          lop = param_1[0];
+          if (Caml_string.get(lop, 0) == ch_2 and Caml_string.get(lop, 1) == peekch(--[[ () ]]0)) then do
             Curry._1(getch, --[[ () ]]0);
             return --[[ Op ]]Block.__(0, {lop});
           end else do
-            _param = param$1[1];
+            _param = param_1[1];
             ::continue:: ;
           end end 
         end else do
-          return --[[ Op ]]Block.__(0, {Caml_bytes.bytes_to_string(Bytes.make(1, ch$2))});
+          return --[[ Op ]]Block.__(0, {Caml_bytes.bytes_to_string(Bytes.make(1, ch_2))});
         end end 
       end;
     end end 
@@ -322,14 +322,14 @@ function next(param) do
   end end 
 end end
 
-match$1 = bufferize(next);
+match_1 = bufferize(next);
 
-unnext = match$1[1];
+unnext = match_1[1];
 
-next$1 = match$1[0];
+next_1 = match_1[0];
 
 function nextis(t) do
-  nt = Curry._1(next$1, --[[ () ]]0);
+  nt = Curry._1(next_1, --[[ () ]]0);
   Curry._1(unnext, nt);
   return Caml_obj.caml_equal(t, nt);
 end end
@@ -366,7 +366,7 @@ end end
 
 function patch(rel, loc, n) do
   if (n >= 0) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "qcc.ml",
@@ -799,7 +799,7 @@ function binary(stk, lvl) do
     foldtst = function (_loc) do
       while(true) do
         loc = _loc;
-        t = Curry._1(next$1, --[[ () ]]0);
+        t = Curry._1(next_1, --[[ () ]]0);
         if (t.tag or lvlof(t[0]) ~= lvl) then do
           Curry._1(unnext, t);
           return loc;
@@ -815,7 +815,7 @@ function binary(stk, lvl) do
     if (lvl < 8) then do
       _param = --[[ () ]]0;
       while(true) do
-        t = Curry._1(next$1, --[[ () ]]0);
+        t = Curry._1(next_1, --[[ () ]]0);
         if (t.tag) then do
           return Curry._1(unnext, t);
         end else do
@@ -846,7 +846,7 @@ function binary(stk, lvl) do
 end end
 
 function unary(stk) do
-  match = Curry._1(next$1, --[[ () ]]0);
+  match = Curry._1(next_1, --[[ () ]]0);
   local ___conditional___=(match.tag | 0);
   do
      if ___conditional___ = 0--[[ Op ]] then do
@@ -858,14 +858,14 @@ function unary(stk) do
               return patchlval(--[[ () ]]0);end end end 
            if ___conditional___ = "(" then do
               expr(stk);
-              Curry._1(next$1, --[[ () ]]0);
+              Curry._1(next_1, --[[ () ]]0);
               return postfix(stk);end end end 
            if ___conditional___ = "*" then do
-              Curry._1(next$1, --[[ () ]]0);
-              t = Curry._1(next$1, --[[ () ]]0);
-              match$1;
+              Curry._1(next_1, --[[ () ]]0);
+              t = Curry._1(next_1, --[[ () ]]0);
+              match_1;
               if (Caml_obj.caml_equal(t, tokint)) then do
-                match$1 = Caml_obj.caml_equal(Curry._1(next$1, --[[ () ]]0), --[[ Op ]]Block.__(0, {"*"})) and --[[ tuple ]]{
+                match_1 = Caml_obj.caml_equal(Curry._1(next_1, --[[ () ]]0), --[[ Op ]]Block.__(0, {"*"})) and --[[ tuple ]]{
                     --[[ Int ]]0,
                     1
                   } or --[[ tuple ]]{
@@ -873,21 +873,21 @@ function unary(stk) do
                     5
                   };
               end else if (Caml_obj.caml_equal(t, tokchar)) then do
-                match$1 = --[[ tuple ]]{
+                match_1 = --[[ tuple ]]{
                   --[[ Chr ]]1,
                   2
                 };
               end else do
-                error ({
+                error({
                   Caml_builtin_exceptions.failure,
                   "[cast] expected"
                 })
               end end  end 
-              for k = 1 , match$1[1] , 1 do
-                Curry._1(next$1, --[[ () ]]0);
+              for k = 1 , match_1[1] , 1 do
+                Curry._1(next_1, --[[ () ]]0);
               end
               unary(stk);
-              return read(match$1[0]);end end end 
+              return read(match_1[0]);end end end 
            do
           else do
             unops = --[[ :: ]]{
@@ -927,7 +927,7 @@ function unary(stk) do
                           }),
                         "unknown operator %s"
                       }), o);
-              error ({
+              error({
                 Caml_builtin_exceptions.failure,
                 s
               })
@@ -952,7 +952,7 @@ function unary(stk) do
         if (List.mem_assoc(i, stk)) then do
           l = List.assoc(i, stk);
           if (l <= -256) then do
-            error ({
+            error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
                 "qcc.ml",
@@ -986,7 +986,7 @@ function unary(stk) do
 end end
 
 function postfix(stk) do
-  t = Curry._1(next$1, --[[ () ]]0);
+  t = Curry._1(next_1, --[[ () ]]0);
   if (t.tag) then do
     return Curry._1(unnext, t);
   end else do
@@ -999,13 +999,13 @@ function postfix(stk) do
               rl = _rl;
               l = _l;
               if (nextis(--[[ Op ]]Block.__(0, {")"}))) then do
-                Curry._1(next$1, --[[ () ]]0);
+                Curry._1(next_1, --[[ () ]]0);
                 return List.iter(pop, l);
               end else do
                 expr(stk);
                 push(0);
                 if (nextis(--[[ Op ]]Block.__(0, {","}))) then do
-                  Curry._1(next$1, --[[ () ]]0);
+                  Curry._1(next_1, --[[ () ]]0);
                 end
                  end 
                 _rl = List.tl(rl);
@@ -1107,7 +1107,7 @@ function expr(stk) do
   binary(stk, 10);
   _param = --[[ () ]]0;
   while(true) do
-    t = Curry._1(next$1, --[[ () ]]0);
+    t = Curry._1(next_1, --[[ () ]]0);
     if (t.tag or t[0] ~= "=") then do
       return Curry._1(unnext, t);
     end else do
@@ -1131,7 +1131,7 @@ function decl(g, _n, _stk) do
   while(true) do
     stk = _stk;
     n = _n;
-    t = Curry._1(next$1, --[[ () ]]0);
+    t = Curry._1(next_1, --[[ () ]]0);
     if (Caml_obj.caml_equal(t, tokint)) then do
       top = stk and stk[0][1] or 0;
       vars = (function(top)do
@@ -1140,7 +1140,7 @@ function decl(g, _n, _stk) do
           stk = _stk;
           n = _n;
           while(nextis(--[[ Op ]]Block.__(0, {"*"}))) do
-            Curry._1(next$1, --[[ () ]]0);
+            Curry._1(next_1, --[[ () ]]0);
           end;
           if (nextis(--[[ Op ]]Block.__(0, {";"}))) then do
             return --[[ tuple ]]{
@@ -1148,7 +1148,7 @@ function decl(g, _n, _stk) do
                     stk
                   };
           end else do
-            match = Curry._1(next$1, --[[ () ]]0);
+            match = Curry._1(next_1, --[[ () ]]0);
             if (match.tag == --[[ Sym ]]3) then do
               s = match[0];
               n$prime = n + 1 | 0;
@@ -1156,7 +1156,7 @@ function decl(g, _n, _stk) do
               if (g) then do
                 glo = Caml_array.caml_array_get(globs, s);
                 if (glo.va >= 0) then do
-                  error ({
+                  error({
                     Caml_builtin_exceptions.failure,
                     "symbol defined twice"
                   })
@@ -1179,7 +1179,7 @@ function decl(g, _n, _stk) do
                 };
               end end 
               if (nextis(--[[ Op ]]Block.__(0, {","}))) then do
-                Curry._1(next$1, --[[ () ]]0);
+                Curry._1(next_1, --[[ () ]]0);
                 _stk = stk$prime;
                 _n = n$prime;
                 ::continue:: ;
@@ -1190,7 +1190,7 @@ function decl(g, _n, _stk) do
                       };
               end end 
             end else do
-              error ({
+              error({
                 Caml_builtin_exceptions.failure,
                 "[var] expected in [decl]"
               })
@@ -1200,7 +1200,7 @@ function decl(g, _n, _stk) do
       end end
       end(top));
       match = vars(0, stk);
-      Curry._1(next$1, --[[ () ]]0);
+      Curry._1(next_1, --[[ () ]]0);
       if (dbg.contents) then do
         Curry._1(Printf.eprintf(--[[ Format ]]{
                   --[[ String_literal ]]Block.__(11, {
@@ -1226,7 +1226,7 @@ function decl(g, _n, _stk) do
       Curry._1(unnext, t);
       if (not g and n ~= 0) then do
         if ((n << 3) >= 256) then do
-          error ({
+          error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
               "qcc.ml",
@@ -1259,29 +1259,29 @@ end;
 
 function stmt(brk, stk) do
   pexpr = function (stk) do
-    Curry._1(next$1, --[[ () ]]0);
+    Curry._1(next_1, --[[ () ]]0);
     expr(stk);
-    Curry._1(next$1, --[[ () ]]0);
+    Curry._1(next_1, --[[ () ]]0);
     return --[[ () ]]0;
   end end;
-  t = Curry._1(next$1, --[[ () ]]0);
+  t = Curry._1(next_1, --[[ () ]]0);
   if (Caml_obj.caml_equal(t, tokif)) then do
     pexpr(stk);
     loc = test(0, 0);
     stmt(brk, stk);
-    loc$1;
+    loc_1;
     if (nextis(tokelse)) then do
-      Curry._1(next$1, --[[ () ]]0);
+      Curry._1(next_1, --[[ () ]]0);
       out(233);
       l = opos.contents;
       le(32, 0);
       patch(true, loc, opos.contents);
       stmt(brk, stk);
-      loc$1 = l;
+      loc_1 = l;
     end else do
-      loc$1 = loc;
+      loc_1 = loc;
     end end 
-    return patch(true, loc$1, opos.contents);
+    return patch(true, loc_1, opos.contents);
   end else if (Caml_obj.caml_equal(t, tokwhile) or Caml_obj.caml_equal(t, tokfor)) then do
     bl = do
       contents: 0
@@ -1289,20 +1289,20 @@ function stmt(brk, stk) do
     ba = align.contents;
     match;
     if (Caml_obj.caml_equal(t, tokwhile)) then do
-      loc$2 = opos.contents;
+      loc_2 = opos.contents;
       pexpr(stk);
       bl.contents = test(0, 0);
       match = --[[ tuple ]]{
         0,
-        loc$2
+        loc_2
       };
     end else do
-      Curry._1(next$1, --[[ () ]]0);
+      Curry._1(next_1, --[[ () ]]0);
       if (not nextis(--[[ Op ]]Block.__(0, {";"}))) then do
         expr(stk);
       end
        end 
-      Curry._1(next$1, --[[ () ]]0);
+      Curry._1(next_1, --[[ () ]]0);
       top = opos.contents;
       if (nextis(--[[ Op ]]Block.__(0, {";"}))) then do
         bl.contents = 0;
@@ -1310,13 +1310,13 @@ function stmt(brk, stk) do
         expr(stk);
         bl.contents = test(0, 0);
       end end 
-      Curry._1(next$1, --[[ () ]]0);
+      Curry._1(next_1, --[[ () ]]0);
       out(233);
       bdy = opos.contents;
       le(32, 0);
       itr = opos.contents;
       expr(stk);
-      Curry._1(next$1, --[[ () ]]0);
+      Curry._1(next_1, --[[ () ]]0);
       out(233);
       le(32, (top - opos.contents | 0) - 4 | 0);
       match = --[[ tuple ]]{
@@ -1337,18 +1337,18 @@ function stmt(brk, stk) do
       expr(stk);
     end
      end 
-    Curry._1(next$1, --[[ () ]]0);
+    Curry._1(next_1, --[[ () ]]0);
     out(233);
-    loc$3 = opos.contents;
+    loc_3 = opos.contents;
     le(32, retl.contents);
-    retl.contents = loc$3;
+    retl.contents = loc_3;
     return --[[ () ]]0;
   end else if (Caml_obj.caml_equal(t, tokbreak)) then do
-    Curry._1(next$1, --[[ () ]]0);
+    Curry._1(next_1, --[[ () ]]0);
     brkl = brk[0];
     n = align.contents - brk[1] | 0;
     if (n < 0) then do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "qcc.ml",
@@ -1364,9 +1364,9 @@ function stmt(brk, stk) do
     end
      end 
     out(233);
-    loc$4 = opos.contents;
+    loc_4 = opos.contents;
     le(32, brkl.contents);
-    brkl.contents = loc$4;
+    brkl.contents = loc_4;
     return --[[ () ]]0;
   end else if (not t.tag) then do
     local ___conditional___=(t[0]);
@@ -1384,7 +1384,7 @@ function stmt(brk, stk) do
    end  end  end  end  end 
   Curry._1(unnext, t);
   expr(stk);
-  Curry._1(next$1, --[[ () ]]0);
+  Curry._1(next_1, --[[ () ]]0);
   return --[[ () ]]0;
 end end
 
@@ -1395,7 +1395,7 @@ function block(brk, stk) do
   while(not nextis(--[[ Op ]]Block.__(0, {"}"}))) do
     stmt(brk, stk$prime);
   end;
-  Curry._1(next$1, --[[ () ]]0);
+  Curry._1(next_1, --[[ () ]]0);
   if (n ~= 0) then do
     out(4752324);
     out((n << 3));
@@ -1415,12 +1415,12 @@ function top(_param) do
       _param = --[[ () ]]0;
       ::continue:: ;
     end else do
-      match = Curry._1(next$1, --[[ () ]]0);
+      match = Curry._1(next_1, --[[ () ]]0);
       if (match.tag == --[[ Sym ]]3) then do
         f = match[0];
         g = Caml_array.caml_array_get(globs, f);
         if (g.va >= 0) then do
-          error ({
+          error({
             Caml_builtin_exceptions.failure,
             "symbol defined twice"
           })
@@ -1435,21 +1435,21 @@ function top(_param) do
             stk = _stk;
             n = _n;
             regs = _regs;
-            match = Curry._1(next$1, --[[ () ]]0);
+            match = Curry._1(next_1, --[[ () ]]0);
             local ___conditional___=(match.tag | 0);
             do
                if ___conditional___ = 0--[[ Op ]] then do
                   if (match[0] == ")") then do
                     return stk;
                   end else do
-                    error ({
+                    error({
                       Caml_builtin_exceptions.failure,
                       "[var] or ) expected"
                     })
                   end end end end end 
                if ___conditional___ = 1--[[ ILit ]]
                or ___conditional___ = 2--[[ SLit ]] then do
-                  error ({
+                  error({
                     Caml_builtin_exceptions.failure,
                     "[var] or ) expected"
                   })end end end 
@@ -1457,7 +1457,7 @@ function top(_param) do
                   r = List.hd(regs);
                   push(r);
                   if (nextis(--[[ Op ]]Block.__(0, {","}))) then do
-                    Curry._1(next$1, --[[ () ]]0);
+                    Curry._1(next_1, --[[ () ]]0);
                   end
                    end 
                   stk$prime_000 = --[[ tuple ]]{
@@ -1477,7 +1477,7 @@ function top(_param) do
             end
           end;
         end end;
-        Curry._1(next$1, --[[ () ]]0);
+        Curry._1(next_1, --[[ () ]]0);
         align.contents = 0;
         out(85);
         out(4753893);
@@ -1500,7 +1500,7 @@ function top(_param) do
                 }
               }
             }, 1, --[[ [] ]]0);
-        while(Caml_obj.caml_notequal(Curry._1(next$1, --[[ () ]]0), --[[ Op ]]Block.__(0, {"{"}))) do
+        while(Caml_obj.caml_notequal(Curry._1(next_1, --[[ () ]]0), --[[ Op ]]Block.__(0, {"{"}))) do
           
         end;
         retl.contents = 0;
@@ -1531,7 +1531,7 @@ function top(_param) do
         _param = --[[ () ]]0;
         ::continue:: ;
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.failure,
           "[decl] or [fun] expected"
         })
@@ -1654,7 +1654,7 @@ function elfgen(outf) do
     contents: 39
   end;
   opos.contents = opos.contents + 24 | 0;
-  itr((function (param, sl, param$1) do
+  itr((function (param, sl, param_1) do
           le(32, n.contents);
           le(32, 16);
           le(64, 0);
@@ -1663,16 +1663,16 @@ function elfgen(outf) do
           return --[[ () ]]0;
         end end));
   rel = opos.contents;
-  n$1 = do
+  n_1 = do
     contents: 1
   end;
-  itr((function (param, param$1, l) do
+  itr((function (param, param_1, l) do
           genrel = function (_l) do
             while(true) do
               l = _l;
               if (l ~= 0) then do
                 le(64, va(l));
-                le(64, 1 + (n$1.contents << 32) | 0);
+                le(64, 1 + (n_1.contents << 32) | 0);
                 le(64, 0);
                 _l = get32(l);
                 ::continue:: ;
@@ -1682,15 +1682,15 @@ function elfgen(outf) do
             end;
           end end;
           genrel(l);
-          n$1.contents = n$1.contents + 1 | 0;
+          n_1.contents = n_1.contents + 1 | 0;
           return --[[ () ]]0;
         end end));
   hash = opos.contents;
-  n$2 = ((rel - symtab | 0) / 24 | 0) - 1 | 0;
+  n_2 = ((rel - symtab | 0) / 24 | 0) - 1 | 0;
   le(32, 1);
-  le(32, n$2 + 1 | 0);
-  le(32, n$2 > 0 and 1 or 0);
-  for i = 1 , n$2 , 1 do
+  le(32, n_2 + 1 | 0);
+  le(32, n_2 > 0 and 1 or 0);
+  for i = 1 , n_2 , 1 do
     le(32, i);
   end
   le(32, 0);
@@ -1764,7 +1764,7 @@ function elfgen(outf) do
   elfphdr(1, 0, tend + off | 0, 2097152);
   elfphdr(2, dyn + off | 0, tend - dyn | 0, 8);
   if (opos.contents ~= 232) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "qcc.ml",
@@ -1874,7 +1874,7 @@ function main(param) do
      if ___conditional___ = "-lex" then do
         _param = --[[ () ]]0;
         while(true) do
-          tok = Curry._1(next$1, --[[ () ]]0);
+          tok = Curry._1(next_1, --[[ () ]]0);
           if (tok.tag) then do
             ppsym(tok);
             _param = --[[ () ]]0;
@@ -1925,7 +1925,7 @@ exports.glo = glo;
 exports.gpos = gpos;
 exports.base = base;
 exports.textoff = textoff;
-exports.next = next$1;
+exports.next = next_1;
 exports.unnext = unnext;
 exports.nextis = nextis;
 exports.obuf = obuf;

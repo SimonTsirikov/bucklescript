@@ -56,7 +56,7 @@ T1 = do
   queue_1: queue_1
 end;
 
-function to_array$1(q) do
+function to_array_1(q) do
   v = Caml_array.caml_make_vect(q.length, 0);
   Queue_402.fold((function (i, e) do
           Caml_array.caml_array_set(v, i, e);
@@ -65,7 +65,7 @@ function to_array$1(q) do
   return v;
 end end
 
-function queue_1$1(x) do
+function queue_1_1(x) do
   q = do
     length: 0,
     tail: undefined
@@ -73,12 +73,12 @@ function queue_1$1(x) do
   __Array.iter((function (x) do
           return Queue_402.add(x, q);
         end end), x);
-  return to_array$1(q);
+  return to_array_1(q);
 end end
 
 T2 = do
-  to_array: to_array$1,
-  queue_1: queue_1$1
+  to_array: to_array_1,
+  queue_1: queue_1_1
 end;
 
 suites_000 = --[[ tuple ]]{
@@ -109,7 +109,7 @@ suites_001 = --[[ :: ]]{
         };
         return --[[ Eq ]]Block.__(0, {
                   x,
-                  queue_1$1(x)
+                  queue_1_1(x)
                 });
       end end)
   },

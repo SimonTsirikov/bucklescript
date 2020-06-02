@@ -321,9 +321,9 @@ function partitionSharedU(n, p) do
     lf = match[1];
     lt = match[0];
     pv = p(value);
-    match$1 = partitionSharedU(n.right, p);
-    rf = match$1[1];
-    rt = match$1[0];
+    match_1 = partitionSharedU(n.right, p);
+    rf = match_1[1];
+    rt = match_1[0];
     if (pv) then do
       return --[[ tuple ]]{
               joinShared(lt, value, rt),
@@ -392,7 +392,7 @@ function checkInvariantInternal(_v) do
       r = v.right;
       diff = treeHeight(l) - treeHeight(r) | 0;
       if (not (diff <= 2 and diff >= -2)) then do
-        error (new Error("File \"belt_internalAVLset.ml\", line 304, characters 6-12"))
+        error(new Error("File \"belt_internalAVLset.ml\", line 304, characters 6-12"))
       end
        end 
       checkInvariantInternal(l);
@@ -439,9 +439,9 @@ function fillArrayWithPartition(_n, cursor, arr, p) do
       arr[c] = v;
       cursor.forward = c + 1 | 0;
     end else do
-      c$1 = cursor.backward;
-      arr[c$1] = v;
-      cursor.backward = c$1 - 1 | 0;
+      c_1 = cursor.backward;
+      arr[c_1] = v;
+      cursor.backward = c_1 - 1 | 0;
     end end 
     if (r ~= nil) then do
       _n = r;
@@ -499,13 +499,13 @@ function fromSortedArrayRevAux(arr, off, len) do
                 right: nil
               end;end end end 
      if ___conditional___ = 3 then do
-        x0$1 = arr[off];
-        x1$1 = arr[off - 1 | 0];
+        x0_1 = arr[off];
+        x1_1 = arr[off - 1 | 0];
         x2 = arr[off - 2 | 0];
         return do
-                value: x1$1,
+                value: x1_1,
                 height: 2,
-                left: singleton(x0$1),
+                left: singleton(x0_1),
                 right: singleton(x2)
               end;end end end 
      do
@@ -537,13 +537,13 @@ function fromSortedArrayAux(arr, off, len) do
                 right: nil
               end;end end end 
      if ___conditional___ = 3 then do
-        x0$1 = arr[off];
-        x1$1 = arr[off + 1 | 0];
+        x0_1 = arr[off];
+        x1_1 = arr[off + 1 | 0];
         x2 = arr[off + 2 | 0];
         return do
-                value: x1$1,
+                value: x1_1,
                 height: 2,
-                left: singleton(x0$1),
+                left: singleton(x0_1),
                 right: singleton(x2)
               end;end end end 
      do
@@ -648,20 +648,20 @@ function has(_t, x, cmp) do
   end;
 end end
 
-function cmp(s1, s2, cmp$1) do
+function cmp(s1, s2, cmp_1) do
   len1 = size(s1);
   len2 = size(s2);
   if (len1 == len2) then do
     _e1 = stackAllLeft(s1, --[[ [] ]]0);
     _e2 = stackAllLeft(s2, --[[ [] ]]0);
-    cmp$2 = cmp$1;
+    cmp_2 = cmp_1;
     while(true) do
       e2 = _e2;
       e1 = _e1;
       if (e1 and e2) then do
         h2 = e2[0];
         h1 = e1[0];
-        c = cmp$2(h1.value, h2.value);
+        c = cmp_2(h1.value, h2.value);
         if (c == 0) then do
           _e2 = stackAllLeft(h2.right, e2[1]);
           _e1 = stackAllLeft(h1.right, e1[1]);
@@ -776,7 +776,7 @@ function getExn(_n, x, cmp) do
         ::continue:: ;
       end end 
     end else do
-      error (new Error("getExn0"))
+      error(new Error("getExn0"))
     end end 
   end;
 end end

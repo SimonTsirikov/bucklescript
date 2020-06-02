@@ -7,12 +7,12 @@ Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(param) do
-  error (Caml_builtin_exceptions.not_found)
+  error(Caml_builtin_exceptions.not_found)
 end end
 
 function assert_f(x) do
   if (x <= 3) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "exception_value_test.ml",
@@ -26,7 +26,7 @@ function assert_f(x) do
 end end
 
 function hh(param) do
-  error (Caml_builtin_exceptions.not_found)
+  error(Caml_builtin_exceptions.not_found)
 end end
 
 A = Caml_exceptions.create("Exception_value_test.A");
@@ -43,11 +43,11 @@ u = {
 function test_not_found(f, param) do
   xpcall(function() do
     return Curry._1(f, --[[ () ]]0);
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return 2;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -55,13 +55,13 @@ end end
 function test_js_error2(param) do
   xpcall(function() do
     return JSON.parse(" {\"x\" : }");
-  end end,function(raw_e) return do
+  end end,function(raw_e) do
     e = Caml_js_exceptions.internalToOCamlException(raw_e);
     if (e[0] == Js_exn.__Error) then do
       console.log(e[1].stack);
-      error (e)
+      error(e)
     end else do
-      error (e)
+      error(e)
     end end 
   end end)
 end end
@@ -70,7 +70,7 @@ function test_js_error3(param) do
   xpcall(function() do
     JSON.parse(" {\"x\"}");
     return 1;
-  end end,function(e) return do
+  end end,function(e) do
     return 0;
   end end)
 end end

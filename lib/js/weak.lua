@@ -14,7 +14,7 @@ Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function fill(ar, ofs, len, x) do
   if (ofs < 0 or len < 0 or (ofs + len | 0) > #ar) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Weak.fill"
     })
@@ -32,11 +32,11 @@ function Make(H) do
     return (h & Pervasives.max_int) % #t.table;
   end end;
   create = function (sz) do
-    sz$1 = sz < 7 and 7 or sz;
-    sz$2 = sz$1 > Sys.max_array_length and Sys.max_array_length or sz$1;
+    sz_1 = sz < 7 and 7 or sz;
+    sz_2 = sz_1 > Sys.max_array_length and Sys.max_array_length or sz_1;
     return do
-            table: Caml_array.caml_make_vect(sz$2, emptybucket),
-            hashes: Caml_array.caml_make_vect(sz$2, {}),
+            table: Caml_array.caml_make_vect(sz_2, emptybucket),
+            hashes: Caml_array.caml_make_vect(sz_2, {}),
             limit: 7,
             oversize: 0,
             rover: 0
@@ -52,10 +52,10 @@ function Make(H) do
     return --[[ () ]]0;
   end end;
   fold = function (f, t, init) do
-    return __Array.fold_right((function (param, param$1) do
+    return __Array.fold_right((function (param, param_1) do
                   _i = 0;
                   b = param;
-                  _accu = param$1;
+                  _accu = param_1;
                   while(true) do
                     accu = _accu;
                     i = _i;
@@ -98,10 +98,10 @@ function Make(H) do
                 end end), t.table);
   end end;
   iter_weak = function (f, t) do
-    return __Array.iteri((function (param, param$1) do
+    return __Array.iteri((function (param, param_1) do
                   _i = 0;
                   j = param;
-                  b = param$1;
+                  b = param_1;
                   while(true) do
                     i = _i;
                     if (i >= #b) then do
@@ -133,8 +133,8 @@ function Make(H) do
     end;
   end end;
   count = function (t) do
-    return __Array.fold_right((function (param, param$1) do
-                  return count_bucket(0, param, param$1);
+    return __Array.fold_right((function (param, param_1) do
+                  return count_bucket(0, param, param_1);
                 end end), t.table, 0);
   end end;
   next_sz = function (n) do
@@ -200,7 +200,7 @@ function Make(H) do
       if (i >= sz) then do
         newsz = Caml_primitive.caml_int_min((Caml_int32.imul(3, sz) / 2 | 0) + 3 | 0, Sys.max_array_length - 0 | 0);
         if (newsz <= sz) then do
-          error ({
+          error({
             Caml_builtin_exceptions.failure,
             "Weak.Make: hash bucket cannot grow more"
           })
@@ -216,14 +216,14 @@ function Make(H) do
         Caml_array.caml_array_set(t.hashes, index, newhashes);
         if (sz <= t.limit and newsz > t.limit) then do
           t.oversize = t.oversize + 1 | 0;
-          for _i$1 = 0 , 2 , 1 do
+          for _i_1 = 0 , 2 , 1 do
             test_shrink_bucket(t);
           end
         end
          end 
         if (t.oversize > (#t.table >> 1)) then do
-          t$1 = t;
-          oldlen = #t$1.table;
+          t_1 = t;
+          oldlen = #t_1.table;
           newlen = next_sz(oldlen);
           if (newlen > oldlen) then do
             newt = create(newlen);
@@ -236,16 +236,16 @@ function Make(H) do
               return add_aux(newt, setter, undefined, h, get_index(newt, h));
             end end
             end(newt));
-            iter_weak(add_weak, t$1);
-            t$1.table = newt.table;
-            t$1.hashes = newt.hashes;
-            t$1.limit = newt.limit;
-            t$1.oversize = newt.oversize;
-            t$1.rover = t$1.rover % #newt.table;
+            iter_weak(add_weak, t_1);
+            t_1.table = newt.table;
+            t_1.hashes = newt.hashes;
+            t_1.limit = newt.limit;
+            t_1.oversize = newt.oversize;
+            t_1.rover = t_1.rover % #newt.table;
             return --[[ () ]]0;
           end else do
-            t$1.limit = Pervasives.max_int;
-            t$1.oversize = 0;
+            t_1.limit = Pervasives.max_int;
+            t_1.oversize = 0;
             return --[[ () ]]0;
           end end 
         end else do
@@ -279,9 +279,9 @@ function Make(H) do
         match = Caml_weak.caml_weak_get_copy(bucket, i);
         if (match ~= undefined) then do
           if (Curry._2(H.equal, Caml_option.valFromOption(match), d)) then do
-            match$1 = Caml_weak.caml_weak_get(bucket, i);
-            if (match$1 ~= undefined) then do
-              return Caml_option.valFromOption(match$1);
+            match_1 = Caml_weak.caml_weak_get(bucket, i);
+            if (match_1 ~= undefined) then do
+              return Caml_option.valFromOption(match_1);
             end else do
               _i = i + 1 | 0;
               ::continue:: ;
@@ -308,7 +308,7 @@ function Make(H) do
   end end;
   find = function (t, d) do
     return find_or(t, d, (function (_h, _index) do
-                  error (Caml_builtin_exceptions.not_found)
+                  error(Caml_builtin_exceptions.not_found)
                 end end));
   end end;
   find_opt = function (t, d) do
@@ -404,10 +404,10 @@ function Make(H) do
         match = Caml_weak.caml_weak_get_copy(bucket, i);
         if (match ~= undefined) then do
           if (Curry._2(H.equal, Caml_option.valFromOption(match), d)) then do
-            match$1 = Caml_weak.caml_weak_get(bucket, i);
-            if (match$1 ~= undefined) then do
+            match_1 = Caml_weak.caml_weak_get(bucket, i);
+            if (match_1 ~= undefined) then do
               _accu = --[[ :: ]]{
-                Caml_option.valFromOption(match$1),
+                Caml_option.valFromOption(match_1),
                 accu
               };
               _i = i + 1 | 0;
@@ -436,8 +436,8 @@ function Make(H) do
             return #prim;
           end end), t.table);
     __Array.sort(Caml_primitive.caml_int_compare, lens);
-    totlen = __Array.fold_left((function (prim, prim$1) do
-            return prim + prim$1 | 0;
+    totlen = __Array.fold_left((function (prim, prim_1) do
+            return prim + prim_1 | 0;
           end end), 0, lens);
     return --[[ tuple ]]{
             len,

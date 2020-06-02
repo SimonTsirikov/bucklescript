@@ -2,7 +2,7 @@
 
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
-error ({
+error({
   Caml_builtin_exceptions.match_failure,
   --[[ tuple ]]{
     "gpr_2474.ml",

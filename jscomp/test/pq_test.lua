@@ -65,7 +65,7 @@ function remove_top(param) do
       return left;
     end end 
   end else do
-    error (Queue_is_empty)
+    error(Queue_is_empty)
   end end 
 end end
 
@@ -77,7 +77,7 @@ function extract(queue) do
             remove_top(queue)
           };
   end else do
-    error (Queue_is_empty)
+    error(Queue_is_empty)
   end end 
 end end
 

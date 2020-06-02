@@ -30,7 +30,7 @@ end end
 function caml_obj_truncate(x, new_size) do
   len = #x | 0;
   if (new_size <= 0 or new_size > len) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Obj.truncate"
     })
@@ -82,7 +82,7 @@ function caml_compare(_a, _b) do
              end end else 
          if ___conditional___ = "function" then do
             if (b_type == "function") then do
-              error ({
+              error({
                 Caml_builtin_exceptions.invalid_argument,
                 "compare: functional value"
               })
@@ -165,7 +165,7 @@ function caml_compare(_a, _b) do
               return Caml_primitive.caml_int_compare(a[1], b[1]);
             end else do
               if (tag_a == 251) then do
-                error ({
+                error({
                   Caml_builtin_exceptions.invalid_argument,
                   "equal: abstract value"
                 })
@@ -182,8 +182,8 @@ function caml_compare(_a, _b) do
                 len_b = #b | 0;
                 if (len_a == len_b) then do
                   if (Array.isArray(a)) then do
-                    a$1 = a;
-                    b$1 = b;
+                    a_1 = a;
+                    b_1 = b;
                     _i = 0;
                     same_length = len_a;
                     while(true) do
@@ -191,7 +191,7 @@ function caml_compare(_a, _b) do
                       if (i == same_length) then do
                         return 0;
                       end else do
-                        res = caml_compare(a$1[i], b$1[i]);
+                        res = caml_compare(a_1[i], b_1[i]);
                         if (res ~= 0) then do
                           return res;
                         end else do
@@ -203,8 +203,8 @@ function caml_compare(_a, _b) do
                   end else if ((a instanceof Date && b instanceof Date)) then do
                     return (a - b);
                   end else do
-                    a$2 = a;
-                    b$2 = b;
+                    a_2 = a;
+                    b_2 = b;
                     min_key_lhs = do
                       contents: undefined
                     end;
@@ -227,8 +227,8 @@ function caml_compare(_a, _b) do
                       end end 
                     end end;
                     partial_arg = --[[ tuple ]]{
-                      a$2,
-                      b$2,
+                      a_2,
+                      b_2,
                       min_key_rhs
                     };
                     do_key_a = (function(partial_arg)do
@@ -236,66 +236,66 @@ function caml_compare(_a, _b) do
                       return do_key(partial_arg, param);
                     end end
                     end(partial_arg));
-                    partial_arg$1 = --[[ tuple ]]{
-                      b$2,
-                      a$2,
+                    partial_arg_1 = --[[ tuple ]]{
+                      b_2,
+                      a_2,
                       min_key_lhs
                     };
-                    do_key_b = (function(partial_arg$1)do
+                    do_key_b = (function(partial_arg_1)do
                     return function do_key_b(param) do
-                      return do_key(partial_arg$1, param);
+                      return do_key(partial_arg_1, param);
                     end end
-                    end(partial_arg$1));
-                    for_in(a$2, do_key_a);
-                    for_in(b$2, do_key_b);
+                    end(partial_arg_1));
+                    for_in(a_2, do_key_a);
+                    for_in(b_2, do_key_b);
                     match = min_key_lhs.contents;
-                    match$1 = min_key_rhs.contents;
+                    match_1 = min_key_rhs.contents;
                     if (match ~= undefined) then do
-                      if (match$1 ~= undefined) then do
-                        return Caml_primitive.caml_string_compare(match, match$1);
+                      if (match_1 ~= undefined) then do
+                        return Caml_primitive.caml_string_compare(match, match_1);
                       end else do
                         return -1;
                       end end 
-                    end else if (match$1 ~= undefined) then do
+                    end else if (match_1 ~= undefined) then do
                       return 1;
                     end else do
                       return 0;
                     end end  end 
                   end end  end 
                 end else if (len_a < len_b) then do
-                  a$3 = a;
-                  b$3 = b;
-                  _i$1 = 0;
+                  a_3 = a;
+                  b_3 = b;
+                  _i_1 = 0;
                   short_length = len_a;
                   while(true) do
-                    i$1 = _i$1;
-                    if (i$1 == short_length) then do
+                    i_1 = _i_1;
+                    if (i_1 == short_length) then do
                       return -1;
                     end else do
-                      res$1 = caml_compare(a$3[i$1], b$3[i$1]);
-                      if (res$1 ~= 0) then do
-                        return res$1;
+                      res_1 = caml_compare(a_3[i_1], b_3[i_1]);
+                      if (res_1 ~= 0) then do
+                        return res_1;
                       end else do
-                        _i$1 = i$1 + 1 | 0;
+                        _i_1 = i_1 + 1 | 0;
                         ::continue:: ;
                       end end 
                     end end 
                   end;
                 end else do
-                  a$4 = a;
-                  b$4 = b;
-                  _i$2 = 0;
-                  short_length$1 = len_b;
+                  a_4 = a;
+                  b_4 = b;
+                  _i_2 = 0;
+                  short_length_1 = len_b;
                   while(true) do
-                    i$2 = _i$2;
-                    if (i$2 == short_length$1) then do
+                    i_2 = _i_2;
+                    if (i_2 == short_length_1) then do
                       return 1;
                     end else do
-                      res$2 = caml_compare(a$4[i$2], b$4[i$2]);
-                      if (res$2 ~= 0) then do
-                        return res$2;
+                      res_2 = caml_compare(a_4[i_2], b_4[i_2]);
+                      if (res_2 ~= 0) then do
+                        return res_2;
                       end else do
-                        _i$2 = i$2 + 1 | 0;
+                        _i_2 = i_2 + 1 | 0;
                         ::continue:: ;
                       end end 
                     end end 
@@ -324,7 +324,7 @@ function caml_equal(_a, _b) do
       end else do
         b_type = typeof b;
         if (a_type == "function" or b_type == "function") then do
-          error ({
+          error({
             Caml_builtin_exceptions.invalid_argument,
             "equal: functional value"
           })
@@ -345,7 +345,7 @@ function caml_equal(_a, _b) do
             return a[1] == b[1];
           end else do
             if (tag_a == 251) then do
-              error ({
+              error({
                 Caml_builtin_exceptions.invalid_argument,
                 "equal: abstract value"
               })
@@ -360,15 +360,15 @@ function caml_equal(_a, _b) do
               len_b = #b | 0;
               if (len_a == len_b) then do
                 if (Array.isArray(a)) then do
-                  a$1 = a;
-                  b$1 = b;
+                  a_1 = a;
+                  b_1 = b;
                   _i = 0;
                   same_length = len_a;
                   while(true) do
                     i = _i;
                     if (i == same_length) then do
                       return true;
-                    end else if (caml_equal(a$1[i], b$1[i])) then do
+                    end else if (caml_equal(a_1[i], b_1[i])) then do
                       _i = i + 1 | 0;
                       ::continue:: ;
                     end else do
@@ -378,34 +378,34 @@ function caml_equal(_a, _b) do
                 end else if ((a instanceof Date && b instanceof Date)) then do
                   return not (a > b or a < b);
                 end else do
-                  a$2 = a;
-                  b$2 = b;
+                  a_2 = a;
+                  b_2 = b;
                   result = do
                     contents: true
                   end;
-                  do_key_a = (function(b$2,result)do
+                  do_key_a = (function(b_2,result)do
                   return function do_key_a(key) do
-                    if (b$2.hasOwnProperty(key)) then do
+                    if (b_2.hasOwnProperty(key)) then do
                       return 0;
                     end else do
                       result.contents = false;
                       return --[[ () ]]0;
                     end end 
                   end end
-                  end(b$2,result));
-                  do_key_b = (function(a$2,b$2,result)do
+                  end(b_2,result));
+                  do_key_b = (function(a_2,b_2,result)do
                   return function do_key_b(key) do
-                    if (not a$2.hasOwnProperty(key) or not caml_equal(b$2[key], a$2[key])) then do
+                    if (not a_2.hasOwnProperty(key) or not caml_equal(b_2[key], a_2[key])) then do
                       result.contents = false;
                       return --[[ () ]]0;
                     end else do
                       return 0;
                     end end 
                   end end
-                  end(a$2,b$2,result));
-                  for_in(a$2, do_key_a);
+                  end(a_2,b_2,result));
+                  for_in(a_2, do_key_a);
                   if (result.contents) then do
-                    for_in(b$2, do_key_b);
+                    for_in(b_2, do_key_b);
                   end
                    end 
                   return result.contents;
@@ -481,8 +481,8 @@ function caml_max(x, y) do
   end end 
 end end
 
-function caml_obj_set_tag(prim, prim$1) do
-  prim.tag = prim$1;
+function caml_obj_set_tag(prim, prim_1) do
+  prim.tag = prim_1;
   return --[[ () ]]0;
 end end
 

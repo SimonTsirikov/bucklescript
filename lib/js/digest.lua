@@ -19,7 +19,7 @@ end end
 
 function substring(str, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#str - len | 0)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Digest.substring"
     })
@@ -37,9 +37,9 @@ function file(filename) do
   d;
   xpcall(function() do
     d = Caml_external_polyfill.resolve("caml_md5_chan")(ic, -1);
-  end end,function(e) return do
+  end end,function(e) do
     Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
-    error (e)
+    error(e)
   end end)
   Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
   return d;
@@ -59,7 +59,7 @@ end end
 
 function to_hex(d) do
   if (#d ~= 16) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Digest.to_hex"
     })
@@ -76,7 +76,7 @@ end end
 
 function from_hex(s) do
   if (#s ~= 32) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Digest.from_hex"
     })
@@ -86,7 +86,7 @@ function from_hex(s) do
     if (c >= 65) then do
       if (c >= 97) then do
         if (c >= 103) then do
-          error ({
+          error({
             Caml_builtin_exceptions.invalid_argument,
             "Digest.from_hex"
           })
@@ -95,7 +95,7 @@ function from_hex(s) do
         return (c - --[[ "a" ]]97 | 0) + 10 | 0;
       end else do
         if (c >= 71) then do
-          error ({
+          error({
             Caml_builtin_exceptions.invalid_argument,
             "Digest.from_hex"
           })
@@ -105,7 +105,7 @@ function from_hex(s) do
       end end 
     end else do
       if (c > 57 or c < 48) then do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Digest.from_hex"
         })

@@ -4,7 +4,7 @@ Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function get(s, i) do
   if (i < 0 or i >= #s) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "index out of bounds"
     })
@@ -26,7 +26,7 @@ end end
 
 function caml_create_bytes(len) do
   if (len < 0) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "String.create"
     })
@@ -42,24 +42,24 @@ end end
 function caml_blit_bytes(s1, i1, s2, i2, len) do
   if (len > 0) then do
     if (s1 == s2) then do
-      s1$1 = s1;
-      i1$1 = i1;
-      i2$1 = i2;
-      len$1 = len;
-      if (i1$1 < i2$1) then do
-        range_a = (#s1$1 - i2$1 | 0) - 1 | 0;
-        range_b = len$1 - 1 | 0;
+      s1_1 = s1;
+      i1_1 = i1;
+      i2_1 = i2;
+      len_1 = len;
+      if (i1_1 < i2_1) then do
+        range_a = (#s1_1 - i2_1 | 0) - 1 | 0;
+        range_b = len_1 - 1 | 0;
         range = range_a > range_b and range_b or range_a;
         for j = range , 0 , -1 do
-          s1$1[i2$1 + j | 0] = s1$1[i1$1 + j | 0];
+          s1_1[i2_1 + j | 0] = s1_1[i1_1 + j | 0];
         end
         return --[[ () ]]0;
-      end else if (i1$1 > i2$1) then do
-        range_a$1 = (#s1$1 - i1$1 | 0) - 1 | 0;
-        range_b$1 = len$1 - 1 | 0;
-        range$1 = range_a$1 > range_b$1 and range_b$1 or range_a$1;
-        for k = 0 , range$1 , 1 do
-          s1$1[i2$1 + k | 0] = s1$1[i1$1 + k | 0];
+      end else if (i1_1 > i2_1) then do
+        range_a_1 = (#s1_1 - i1_1 | 0) - 1 | 0;
+        range_b_1 = len_1 - 1 | 0;
+        range_1 = range_a_1 > range_b_1 and range_b_1 or range_a_1;
+        for k = 0 , range_1 , 1 do
+          s1_1[i2_1 + k | 0] = s1_1[i1_1 + k | 0];
         end
         return --[[ () ]]0;
       end else do
@@ -73,11 +73,11 @@ function caml_blit_bytes(s1, i1, s2, i2, len) do
         end
         return --[[ () ]]0;
       end else do
-        for i$1 = 0 , off1 - 1 | 0 , 1 do
-          s2[i2 + i$1 | 0] = s1[i1 + i$1 | 0];
+        for i_1 = 0 , off1 - 1 | 0 , 1 do
+          s2[i2 + i_1 | 0] = s1[i1 + i_1 | 0];
         end
-        for i$2 = off1 , len - 1 | 0 , 1 do
-          s2[i2 + i$2 | 0] = --[[ "\000" ]]0;
+        for i_2 = off1 , len - 1 | 0 , 1 do
+          s2[i2 + i_2 | 0] = --[[ "\000" ]]0;
         end
         return --[[ () ]]0;
       end end 
@@ -118,11 +118,11 @@ function caml_blit_string(s1, i1, s2, i2, len) do
       end
       return --[[ () ]]0;
     end else do
-      for i$1 = 0 , off1 - 1 | 0 , 1 do
-        s2[i2 + i$1 | 0] = s1.charCodeAt(i1 + i$1 | 0);
+      for i_1 = 0 , off1 - 1 | 0 , 1 do
+        s2[i2 + i_1 | 0] = s1.charCodeAt(i1 + i_1 | 0);
       end
-      for i$2 = off1 , len - 1 | 0 , 1 do
-        s2[i2 + i$2 | 0] = --[[ "\000" ]]0;
+      for i_2 = off1 , len - 1 | 0 , 1 do
+        s2[i2 + i_2 | 0] = --[[ "\000" ]]0;
       end
       return --[[ () ]]0;
     end end 

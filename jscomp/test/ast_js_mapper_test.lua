@@ -41,12 +41,12 @@ tFromJs(do
 
 function searchForSureExists(xs, k) do
   _i = 0;
-  xs$1 = xs;
-  k$1 = k;
+  xs_1 = xs;
+  k_1 = k;
   while(true) do
     i = _i;
-    match = xs$1[i];
-    if (match[0] == k$1) then do
+    match = xs_1[i];
+    if (match[0] == k_1) then do
       return match[1];
     end else do
       _i = i + 1 | 0;
@@ -70,7 +70,7 @@ function aFromJs(param) do
   return Js_mapperRt.fromIntAssert(4, jsMapperConstantArray, param);
 end end
 
-jsMapperConstantArray$1 = {
+jsMapperConstantArray_1 = {
   --[[ tuple ]]{
     21902,
     "b0"
@@ -90,11 +90,11 @@ jsMapperConstantArray$1 = {
 };
 
 function bToJs(param) do
-  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray$1);
+  return Js_mapperRt.binarySearch(4, param, jsMapperConstantArray_1);
 end end
 
 function bFromJs(param) do
-  return Js_mapperRt.revSearchAssert(4, jsMapperConstantArray$1, param);
+  return Js_mapperRt.revSearchAssert(4, jsMapperConstantArray_1, param);
 end end
 
 bToJs(--[[ b0 ]]21902);

@@ -17,7 +17,7 @@ function succ(u) do
     return 57344;
   end else do
     if (u == 1114111) then do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "U+10FFFF has no successor"
       })
@@ -32,7 +32,7 @@ function pred(u) do
     return 55295;
   end else do
     if (u == 0) then do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "U+0000 has no predecessor"
       })
@@ -57,7 +57,7 @@ function of_int(i) do
     return i;
   end else do
     s = err_not_sv(i);
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       s
     })
@@ -75,7 +75,7 @@ end end
 function to_char(u) do
   if (u > 255) then do
     s = err_not_latin1(u);
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       s
     })
@@ -88,8 +88,8 @@ function unsafe_to_char(prim) do
   return prim;
 end end
 
-function equal(prim, prim$1) do
-  return prim == prim$1;
+function equal(prim, prim_1) do
+  return prim == prim_1;
 end end
 
 compare = Caml_primitive.caml_int_compare;

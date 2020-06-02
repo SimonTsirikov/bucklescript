@@ -36,13 +36,13 @@ function Make(funarg) do
         end else if (lr) then do
           return create(create(ll, lv, lr[--[[ l ]]0]), lr[--[[ v ]]1], create(lr[--[[ r ]]2], v, r));
         end else do
-          error ({
+          error({
             Caml_builtin_exceptions.invalid_argument,
             "Set.bal"
           })
         end end  end 
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Set.bal"
         })
@@ -57,13 +57,13 @@ function Make(funarg) do
         end else if (rl) then do
           return create(create(l, v, rl[--[[ l ]]0]), rl[--[[ v ]]1], create(rl[--[[ r ]]2], rv, rr));
         end else do
-          error ({
+          error({
             Caml_builtin_exceptions.invalid_argument,
             "Set.bal"
           })
         end end  end 
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Set.bal"
         })
@@ -162,7 +162,7 @@ function Make(funarg) do
           return param[--[[ v ]]1];
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -194,7 +194,7 @@ function Make(funarg) do
           return param[--[[ v ]]1];
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -223,7 +223,7 @@ function Make(funarg) do
         return param[--[[ r ]]2];
       end end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Set.remove_min_elt"
       })
@@ -260,11 +260,11 @@ function Make(funarg) do
                 join(match[2], v, r)
               };
       end else do
-        match$1 = split(x, r);
+        match_1 = split(x, r);
         return --[[ tuple ]]{
-                join(l, v, match$1[0]),
-                match$1[1],
-                match$1[2]
+                join(l, v, match_1[0]),
+                match_1[1],
+                match_1[2]
               };
       end end  end 
     end else do
@@ -352,8 +352,8 @@ function Make(funarg) do
         end else if (h1 == 1) then do
           return add(v1, s2);
         end else do
-          match$1 = split(v2, s1);
-          return join(union(match$1[0], s2[--[[ l ]]0]), v2, union(match$1[2], s2[--[[ r ]]2]));
+          match_1 = split(v2, s1);
+          return join(union(match_1[0], s2[--[[ l ]]0]), v2, union(match_1[2], s2[--[[ r ]]2]));
         end end  end 
       end else do
         return s1;
@@ -579,9 +579,9 @@ function Make(funarg) do
       lf = match[1];
       lt = match[0];
       pv = Curry._1(p, v);
-      match$1 = partition(p, param[--[[ r ]]2]);
-      rf = match$1[1];
-      rt = match$1[0];
+      match_1 = partition(p, param[--[[ r ]]2]);
+      rf = match_1[1];
+      rt = match_1[0];
       if (pv) then do
         return --[[ tuple ]]{
                 join(lt, v, rt),
@@ -639,7 +639,7 @@ function Make(funarg) do
           ::continue:: ;
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -650,19 +650,19 @@ function Make(funarg) do
         v = param[--[[ v ]]1];
         if (Curry._1(f, v)) then do
           _v0 = v;
-          f$1 = f;
-          _param$1 = param[--[[ l ]]0];
+          f_1 = f;
+          _param_1 = param[--[[ l ]]0];
           while(true) do
-            param$1 = _param$1;
+            param_1 = _param_1;
             v0 = _v0;
-            if (param$1) then do
-              v$1 = param$1[--[[ v ]]1];
-              if (Curry._1(f$1, v$1)) then do
-                _param$1 = param$1[--[[ l ]]0];
-                _v0 = v$1;
+            if (param_1) then do
+              v_1 = param_1[--[[ v ]]1];
+              if (Curry._1(f_1, v_1)) then do
+                _param_1 = param_1[--[[ l ]]0];
+                _v0 = v_1;
                 ::continue:: ;
               end else do
-                _param$1 = param$1[--[[ r ]]2];
+                _param_1 = param_1[--[[ r ]]2];
                 ::continue:: ;
               end end 
             end else do
@@ -674,7 +674,7 @@ function Make(funarg) do
           ::continue:: ;
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -685,19 +685,19 @@ function Make(funarg) do
         v = param[--[[ v ]]1];
         if (Curry._1(f, v)) then do
           _v0 = v;
-          f$1 = f;
-          _param$1 = param[--[[ l ]]0];
+          f_1 = f;
+          _param_1 = param[--[[ l ]]0];
           while(true) do
-            param$1 = _param$1;
+            param_1 = _param_1;
             v0 = _v0;
-            if (param$1) then do
-              v$1 = param$1[--[[ v ]]1];
-              if (Curry._1(f$1, v$1)) then do
-                _param$1 = param$1[--[[ l ]]0];
-                _v0 = v$1;
+            if (param_1) then do
+              v_1 = param_1[--[[ v ]]1];
+              if (Curry._1(f_1, v_1)) then do
+                _param_1 = param_1[--[[ l ]]0];
+                _v0 = v_1;
                 ::continue:: ;
               end else do
-                _param$1 = param$1[--[[ r ]]2];
+                _param_1 = param_1[--[[ r ]]2];
                 ::continue:: ;
               end end 
             end else do
@@ -720,19 +720,19 @@ function Make(funarg) do
         v = param[--[[ v ]]1];
         if (Curry._1(f, v)) then do
           _v0 = v;
-          f$1 = f;
-          _param$1 = param[--[[ r ]]2];
+          f_1 = f;
+          _param_1 = param[--[[ r ]]2];
           while(true) do
-            param$1 = _param$1;
+            param_1 = _param_1;
             v0 = _v0;
-            if (param$1) then do
-              v$1 = param$1[--[[ v ]]1];
-              if (Curry._1(f$1, v$1)) then do
-                _param$1 = param$1[--[[ r ]]2];
-                _v0 = v$1;
+            if (param_1) then do
+              v_1 = param_1[--[[ v ]]1];
+              if (Curry._1(f_1, v_1)) then do
+                _param_1 = param_1[--[[ r ]]2];
+                _v0 = v_1;
                 ::continue:: ;
               end else do
-                _param$1 = param$1[--[[ l ]]0];
+                _param_1 = param_1[--[[ l ]]0];
                 ::continue:: ;
               end end 
             end else do
@@ -744,7 +744,7 @@ function Make(funarg) do
           ::continue:: ;
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
@@ -755,19 +755,19 @@ function Make(funarg) do
         v = param[--[[ v ]]1];
         if (Curry._1(f, v)) then do
           _v0 = v;
-          f$1 = f;
-          _param$1 = param[--[[ r ]]2];
+          f_1 = f;
+          _param_1 = param[--[[ r ]]2];
           while(true) do
-            param$1 = _param$1;
+            param_1 = _param_1;
             v0 = _v0;
-            if (param$1) then do
-              v$1 = param$1[--[[ v ]]1];
-              if (Curry._1(f$1, v$1)) then do
-                _param$1 = param$1[--[[ r ]]2];
-                _v0 = v$1;
+            if (param_1) then do
+              v_1 = param_1[--[[ v ]]1];
+              if (Curry._1(f_1, v_1)) then do
+                _param_1 = param_1[--[[ r ]]2];
+                _v0 = v_1;
                 ::continue:: ;
               end else do
-                _param$1 = param$1[--[[ l ]]0];
+                _param_1 = param_1[--[[ l ]]0];
                 ::continue:: ;
               end end 
             end else do
@@ -811,13 +811,13 @@ function Make(funarg) do
       if (l == l$prime and v == v$prime and r == r$prime) then do
         return t;
       end else do
-        l$1 = l$prime;
-        v$1 = v$prime;
-        r$1 = r$prime;
-        if ((l$1 == --[[ Empty ]]0 or Curry._2(funarg.compare, max_elt(l$1), v$1) < 0) and (r$1 == --[[ Empty ]]0 or Curry._2(funarg.compare, v$1, min_elt(r$1)) < 0)) then do
-          return join(l$1, v$1, r$1);
+        l_1 = l$prime;
+        v_1 = v$prime;
+        r_1 = r$prime;
+        if ((l_1 == --[[ Empty ]]0 or Curry._2(funarg.compare, max_elt(l_1), v_1) < 0) and (r_1 == --[[ Empty ]]0 or Curry._2(funarg.compare, v_1, min_elt(r_1)) < 0)) then do
+          return join(l_1, v_1, r_1);
         end else do
-          return union(l$1, add(v$1, r$1));
+          return union(l_1, add(v_1, r_1));
         end end 
       end end 
     end else do
@@ -829,17 +829,17 @@ function Make(funarg) do
       match = l[1];
       x0 = l[0];
       if (match) then do
-        match$1 = match[1];
+        match_1 = match[1];
         x1 = match[0];
-        if (match$1) then do
-          match$2 = match$1[1];
-          x2 = match$1[0];
-          if (match$2) then do
-            match$3 = match$2[1];
-            x3 = match$2[0];
-            if (match$3) then do
-              if (match$3[1]) then do
-                l$1 = List.sort_uniq(funarg.compare, l);
+        if (match_1) then do
+          match_2 = match_1[1];
+          x2 = match_1[0];
+          if (match_2) then do
+            match_3 = match_2[1];
+            x3 = match_2[0];
+            if (match_3) then do
+              if (match_3[1]) then do
+                l_1 = List.sort_uniq(funarg.compare, l);
                 sub = function (n, l) do
                   local ___conditional___=(n);
                   do
@@ -885,10 +885,10 @@ function Make(funarg) do
                          end end else 
                      if ___conditional___ = 3 then do
                         if (l) then do
-                          match$1 = l[1];
-                          if (match$1) then do
-                            match$2 = match$1[1];
-                            if (match$2) then do
+                          match_1 = l[1];
+                          if (match_1) then do
+                            match_2 = match_1[1];
+                            if (match_2) then do
                               return --[[ tuple ]]{
                                       --[[ Node ]]{
                                         --[[ l : Node ]]{
@@ -897,16 +897,16 @@ function Make(funarg) do
                                           --[[ r : Empty ]]0,
                                           --[[ h ]]1
                                         },
-                                        --[[ v ]]match$1[0],
+                                        --[[ v ]]match_1[0],
                                         --[[ r : Node ]]{
                                           --[[ l : Empty ]]0,
-                                          --[[ v ]]match$2[0],
+                                          --[[ v ]]match_2[0],
                                           --[[ r : Empty ]]0,
                                           --[[ h ]]1
                                         },
                                         --[[ h ]]2
                                       },
-                                      match$2[1]
+                                      match_2[1]
                                     };
                             end
                              end 
@@ -920,16 +920,16 @@ function Make(funarg) do
                       
                   end
                   nl = n / 2 | 0;
-                  match$3 = sub(nl, l);
-                  l$1 = match$3[1];
-                  if (l$1) then do
-                    match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
+                  match_3 = sub(nl, l);
+                  l_1 = match_3[1];
+                  if (l_1) then do
+                    match_4 = sub((n - nl | 0) - 1 | 0, l_1[1]);
                     return --[[ tuple ]]{
-                            create(match$3[0], l$1[0], match$4[0]),
-                            match$4[1]
+                            create(match_3[0], l_1[0], match_4[0]),
+                            match_4[1]
                           };
                   end else do
-                    error ({
+                    error({
                       Caml_builtin_exceptions.assert_failure,
                       --[[ tuple ]]{
                         "set.ml",
@@ -939,9 +939,9 @@ function Make(funarg) do
                     })
                   end end 
                 end end;
-                return sub(List.length(l$1), l$1)[0];
+                return sub(List.length(l_1), l_1)[0];
               end else do
-                return add(match$3[0], add(x3, add(x2, add(x1, singleton(x0)))));
+                return add(match_3[0], add(x3, add(x2, add(x1, singleton(x0)))));
               end end 
             end else do
               return add(x3, add(x2, add(x1, singleton(x0))));

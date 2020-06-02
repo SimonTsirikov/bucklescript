@@ -17,8 +17,8 @@ function eq(loc, x, y) do
   return Mt.eq_suites(test_id, suites, loc, x, y);
 end end
 
-function b(param, param$1) do
-  return Mt.bool_suites(test_id, suites, param, param$1);
+function b(param, param_1) do
+  return Mt.bool_suites(test_id, suites, param, param_1);
 end end
 
 function f(x, y) do

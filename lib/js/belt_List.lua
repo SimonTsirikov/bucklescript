@@ -16,7 +16,7 @@ function headExn(x) do
   if (x) then do
     return x[0];
   end else do
-    error (new Error("headExn"))
+    error(new Error("headExn"))
   end end 
 end end
 
@@ -31,7 +31,7 @@ function tailExn(x) do
   if (x) then do
     return x[1];
   end else do
-    error (new Error("tailExn"))
+    error(new Error("tailExn"))
   end end 
 end end
 
@@ -49,14 +49,14 @@ function get(x, n) do
     _x = x;
     _n = n;
     while(true) do
-      n$1 = _n;
-      x$1 = _x;
-      if (x$1) then do
-        if (n$1 == 0) then do
-          return Caml_option.some(x$1[0]);
+      n_1 = _n;
+      x_1 = _x;
+      if (x_1) then do
+        if (n_1 == 0) then do
+          return Caml_option.some(x_1[0]);
         end else do
-          _n = n$1 - 1 | 0;
-          _x = x$1[1];
+          _n = n_1 - 1 | 0;
+          _x = x_1[1];
           ::continue:: ;
         end end 
       end else do
@@ -68,24 +68,24 @@ end end
 
 function getExn(x, n) do
   if (n < 0) then do
-    error (new Error("getExn"))
+    error(new Error("getExn"))
   end
    end 
   _x = x;
   _n = n;
   while(true) do
-    n$1 = _n;
-    x$1 = _x;
-    if (x$1) then do
-      if (n$1 == 0) then do
-        return x$1[0];
+    n_1 = _n;
+    x_1 = _x;
+    if (x_1) then do
+      if (n_1 == 0) then do
+        return x_1[0];
       end else do
-        _n = n$1 - 1 | 0;
-        _x = x$1[1];
+        _n = n_1 - 1 | 0;
+        _x = x_1[1];
         ::continue:: ;
       end end 
     end else do
-      error (new Error("getExn"))
+      error(new Error("getExn"))
     end end 
   end;
 end end
@@ -397,12 +397,12 @@ function takeAux(_n, _cell, _prec) do
     if (n == 0) then do
       return true;
     end else if (cell) then do
-      cell$1 = --[[ :: ]]{
+      cell_1 = --[[ :: ]]{
         cell[0],
         --[[ [] ]]0
       };
-      prec[1] = cell$1;
-      _prec = cell$1;
+      prec[1] = cell_1;
+      _prec = cell_1;
       _cell = cell[1];
       _n = n - 1 | 0;
       ::continue:: ;
@@ -420,12 +420,12 @@ function splitAtAux(_n, _cell, _prec) do
     if (n == 0) then do
       return cell;
     end else if (cell) then do
-      cell$1 = --[[ :: ]]{
+      cell_1 = --[[ :: ]]{
         cell[0],
         --[[ [] ]]0
       };
-      prec[1] = cell$1;
-      _prec = cell$1;
+      prec[1] = cell_1;
+      _prec = cell_1;
       _cell = cell[1];
       _n = n - 1 | 0;
       ::continue:: ;
@@ -463,12 +463,12 @@ function drop(lst, n) do
     _l = lst;
     _n = n;
     while(true) do
-      n$1 = _n;
+      n_1 = _n;
       l = _l;
-      if (n$1 == 0) then do
+      if (n_1 == 0) then do
         return l;
       end else if (l) then do
-        _n = n$1 - 1 | 0;
+        _n = n_1 - 1 | 0;
         _l = l[1];
         ::continue:: ;
       end else do
@@ -607,12 +607,12 @@ function make(n, v) do
     cur = headX;
     i = 1;
     while(i < n) do
-      v$1 = --[[ :: ]]{
+      v_1 = --[[ :: ]]{
         v,
         --[[ [] ]]0
       };
-      cur[1] = v$1;
-      cur = v$1;
+      cur[1] = v_1;
+      cur = v_1;
       i = i + 1 | 0;
     end;
     return headX;
@@ -651,7 +651,7 @@ function fillAux(arr, _i, _x) do
 end end
 
 function fromArray(a) do
-  a$1 = a;
+  a_1 = a;
   _i = #a - 1 | 0;
   _res = --[[ [] ]]0;
   while(true) do
@@ -661,7 +661,7 @@ function fromArray(a) do
       return res;
     end else do
       _res = --[[ :: ]]{
-        a$1[i],
+        a_1[i],
         res
       };
       _i = i - 1 | 0;
@@ -745,9 +745,9 @@ function concatMany(xs) do
   len = #xs;
   if (len ~= 1) then do
     if (len ~= 0) then do
-      len$1 = #xs;
-      v = xs[len$1 - 1 | 0];
-      for i = len$1 - 2 | 0 , 0 , -1 do
+      len_1 = #xs;
+      v = xs[len_1 - 1 | 0];
+      for i = len_1 - 2 | 0 , 0 , -1 do
         v = concat(xs[i], v);
       end
       return v;
@@ -760,7 +760,7 @@ function concatMany(xs) do
 end end
 
 function mapReverseU(l, f) do
-  f$1 = f;
+  f_1 = f;
   _accu = --[[ [] ]]0;
   _xs = l;
   while(true) do
@@ -769,7 +769,7 @@ function mapReverseU(l, f) do
     if (xs) then do
       _xs = xs[1];
       _accu = --[[ :: ]]{
-        f$1(xs[0]),
+        f_1(xs[0]),
         accu
       };
       ::continue:: ;
@@ -803,12 +803,12 @@ end end
 function forEachWithIndexU(l, f) do
   _xs = l;
   _i = 0;
-  f$1 = f;
+  f_1 = f;
   while(true) do
     i = _i;
     xs = _xs;
     if (xs) then do
-      f$1(i, xs[0]);
+      f_1(i, xs[0]);
       _i = i + 1 | 0;
       _xs = xs[1];
       ::continue:: ;
@@ -864,19 +864,19 @@ end end
 function reduceWithIndexU(l, acc, f) do
   _l = l;
   _acc = acc;
-  f$1 = f;
+  f_1 = f;
   _i = 0;
   while(true) do
     i = _i;
-    acc$1 = _acc;
-    l$1 = _l;
-    if (l$1) then do
+    acc_1 = _acc;
+    l_1 = _l;
+    if (l_1) then do
       _i = i + 1 | 0;
-      _acc = f$1(acc$1, l$1[0], i);
-      _l = l$1[1];
+      _acc = f_1(acc_1, l_1[0], i);
+      _l = l_1[1];
       ::continue:: ;
     end else do
-      return acc$1;
+      return acc_1;
     end end 
   end;
 end end
@@ -889,18 +889,18 @@ function mapReverse2U(l1, l2, f) do
   _l1 = l1;
   _l2 = l2;
   _accu = --[[ [] ]]0;
-  f$1 = f;
+  f_1 = f;
   while(true) do
     accu = _accu;
-    l2$1 = _l2;
-    l1$1 = _l1;
-    if (l1$1 and l2$1) then do
+    l2_1 = _l2;
+    l1_1 = _l1;
+    if (l1_1 and l2_1) then do
       _accu = --[[ :: ]]{
-        f$1(l1$1[0], l2$1[0]),
+        f_1(l1_1[0], l2_1[0]),
         accu
       };
-      _l2 = l2$1[1];
-      _l1 = l1$1[1];
+      _l2 = l2_1[1];
+      _l1 = l1_1[1];
       ::continue:: ;
     end else do
       return accu;
@@ -1322,20 +1322,20 @@ end end
 
 function keepWithIndexU(xs, p) do
   _xs = xs;
-  p$1 = p;
+  p_1 = p;
   _i = 0;
   while(true) do
     i = _i;
-    xs$1 = _xs;
-    if (xs$1) then do
-      t = xs$1[1];
-      h = xs$1[0];
-      if (p$1(h, i)) then do
+    xs_1 = _xs;
+    if (xs_1) then do
+      t = xs_1[1];
+      h = xs_1[0];
+      if (p_1(h, i)) then do
         cell = --[[ :: ]]{
           h,
           --[[ [] ]]0
         };
-        copyAuxWithFilterIndex(p$1, t, cell, i + 1 | 0);
+        copyAuxWithFilterIndex(p_1, t, cell, i + 1 | 0);
         return cell;
       end else do
         _i = i + 1 | 0;

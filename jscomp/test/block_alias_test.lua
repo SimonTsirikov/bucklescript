@@ -21,14 +21,14 @@ function b(loc, x) do
   return Mt.bool_suites(test_id, suites, loc, x);
 end end
 
-Block$1 = { };
+Block_1 = { };
 
 v0 = --[[ A ]]Block.__(1, {
     0,
     1
   });
 
-Block$2 = { };
+Block_2 = { };
 
 v1 = --[[ A ]]Block.__(1, {
     0,
@@ -36,16 +36,16 @@ v1 = --[[ A ]]Block.__(1, {
   });
 
 N = do
-  Block: Block$2,
+  Block: Block_2,
   v1: v1
 end;
 
-Caml_obj$1 = { };
+Caml_obj_1 = { };
 
-List$1 = { };
+List_1 = { };
 
 V = do
-  List: List$1
+  List: List_1
 end;
 
 f = Caml_obj.caml_equal;
@@ -73,10 +73,10 @@ exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.b = b;
-exports.Block = Block$1;
+exports.Block = Block_1;
 exports.v0 = v0;
 exports.N = N;
-exports.Caml_obj = Caml_obj$1;
+exports.Caml_obj = Caml_obj_1;
 exports.V = V;
 exports.f = f;
 exports.h = h;

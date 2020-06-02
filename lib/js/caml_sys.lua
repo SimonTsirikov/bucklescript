@@ -4,14 +4,14 @@ Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function caml_sys_getenv(s) do
   if (typeof process == "undefined" or process.env == undefined) then do
-    error (Caml_builtin_exceptions.not_found)
+    error(Caml_builtin_exceptions.not_found)
   end
    end 
   match = process.env[s];
   if (match ~= undefined) then do
     return match;
   end else do
-    error (Caml_builtin_exceptions.not_found)
+    error(Caml_builtin_exceptions.not_found)
   end end 
 end end
 
@@ -78,14 +78,14 @@ function caml_sys_exit(exit_code) do
 end end
 
 function caml_sys_is_directory(_s) do
-  error ({
+  error({
     Caml_builtin_exceptions.failure,
     "caml_sys_is_directory not implemented"
   })
 end end
 
 function caml_sys_file_exists(_s) do
-  error ({
+  error({
     Caml_builtin_exceptions.failure,
     "caml_sys_file_exists not implemented"
   })

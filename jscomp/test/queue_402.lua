@@ -30,20 +30,20 @@ function add(x, q) do
   end else do
     tail = q.tail;
     head = tail.next;
-    cell$1 = do
+    cell_1 = do
       content: x,
       next: head
     end;
     q.length = q.length + 1 | 0;
-    tail.next = cell$1;
-    q.tail = cell$1;
+    tail.next = cell_1;
+    q.tail = cell_1;
     return --[[ () ]]0;
   end end 
 end end
 
 function peek(q) do
   if (q.length == 0) then do
-    error (Empty)
+    error(Empty)
   end
    end 
   return q.tail.next.content;
@@ -51,7 +51,7 @@ end end
 
 function take(q) do
   if (q.length == 0) then do
-    error (Empty)
+    error(Empty)
   end
    end 
   q.length = q.length - 1 | 0;
@@ -78,7 +78,7 @@ function copy(q) do
           content: tail.content,
           next: tail$prime
         end);
-    copy$1 = function (_prev, _cell) do
+    copy_1 = function (_prev, _cell) do
       while(true) do
         cell = _cell;
         prev = _prev;
@@ -96,7 +96,7 @@ function copy(q) do
         end end 
       end;
     end end;
-    copy$1(tail$prime, tail.next);
+    copy_1(tail$prime, tail.next);
     return do
             length: q.length,
             tail: tail$prime
@@ -140,13 +140,13 @@ function fold(f, accu, q) do
     _cell = tail.next;
     while(true) do
       cell = _cell;
-      accu$1 = _accu;
-      accu$2 = Curry._2(f, accu$1, cell.content);
+      accu_1 = _accu;
+      accu_2 = Curry._2(f, accu_1, cell.content);
       if (cell == tail) then do
-        return accu$2;
+        return accu_2;
       end else do
         _cell = cell.next;
-        _accu = accu$2;
+        _accu = accu_2;
         ::continue:: ;
       end end 
     end;

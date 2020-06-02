@@ -87,16 +87,16 @@ end end
 function split(m, e) do
   cmp = m.cmp;
   match = Belt_SetDict.split(m.data, e, cmp);
-  match$1 = match[0];
+  match_1 = match[0];
   return --[[ tuple ]]{
           --[[ tuple ]]{
             do
               cmp: cmp,
-              data: match$1[0]
+              data: match_1[0]
             end,
             do
               cmp: cmp,
-              data: match$1[1]
+              data: match_1[1]
             end
           },
           match[1]
@@ -115,8 +115,8 @@ function isEmpty(m) do
 end end
 
 function cmp(m, n) do
-  cmp$1 = m.cmp;
-  return Belt_SetDict.cmp(m.data, n.data, cmp$1);
+  cmp_1 = m.cmp;
+  return Belt_SetDict.cmp(m.data, n.data, cmp_1);
 end end
 
 function eq(m, n) do

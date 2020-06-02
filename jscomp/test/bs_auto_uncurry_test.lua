@@ -90,8 +90,8 @@ eq("File \"bs_auto_uncurry_test.ml\", line 40, characters 7-14", {
         1,
         2,
         3
-      }.reduce((function (prim, prim$1) do
-            return prim + prim$1 | 0;
+      }.reduce((function (prim, prim_1) do
+            return prim + prim_1 | 0;
           end end), 0), 6);
 
 eq("File \"bs_auto_uncurry_test.ml\", line 44, characters 7-14", {

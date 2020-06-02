@@ -14,7 +14,7 @@ xpcall(function() do
         end end), (function (x) do
           return x + 2 | 0;
         end end));
-end end,function(raw_exn) return do
+end end,function(raw_exn) do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   function_equal_test = exn[0] == Caml_builtin_exceptions.invalid_argument and exn[1] == "equal: functional value" and true or false;
 end end)

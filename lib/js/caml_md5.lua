@@ -2,8 +2,8 @@
 
 
 function cmn(q, a, b, x, s, t) do
-  a$1 = ((a + q | 0) + x | 0) + t | 0;
-  return ((a$1 << s) | (a$1 >>> (32 - s | 0)) | 0) + b | 0;
+  a_1 = ((a + q | 0) + x | 0) + t | 0;
+  return ((a_1 << s) | (a_1 >>> (32 - s | 0)) | 0) + b | 0;
 end end
 
 function f(a, b, c, d, x, s, t) do
@@ -125,8 +125,8 @@ md5blk = {
 };
 
 function caml_md5_string(s, start, len) do
-  s$1 = s.slice(start, len);
-  n = #s$1;
+  s_1 = s.slice(start, len);
+  n = #s_1;
   state[0] = 1732584193;
   state[1] = -271733879;
   state[2] = -1732584194;
@@ -135,27 +135,27 @@ function caml_md5_string(s, start, len) do
     md5blk[i] = 0;
   end
   i_end = n / 64 | 0;
-  for i$1 = 1 , i_end , 1 do
+  for i_1 = 1 , i_end , 1 do
     for j = 0 , 15 , 1 do
-      k = ((i$1 << 6) - 64 | 0) + (j << 2) | 0;
-      md5blk[j] = ((s$1.charCodeAt(k) + (s$1.charCodeAt(k + 1 | 0) << 8) | 0) + (s$1.charCodeAt(k + 2 | 0) << 16) | 0) + (s$1.charCodeAt(k + 3 | 0) << 24) | 0;
+      k = ((i_1 << 6) - 64 | 0) + (j << 2) | 0;
+      md5blk[j] = ((s_1.charCodeAt(k) + (s_1.charCodeAt(k + 1 | 0) << 8) | 0) + (s_1.charCodeAt(k + 2 | 0) << 16) | 0) + (s_1.charCodeAt(k + 3 | 0) << 24) | 0;
     end
     cycle(state, md5blk);
   end
-  s_tail = s$1.slice((i_end << 6));
+  s_tail = s_1.slice((i_end << 6));
   for kk = 0 , 15 , 1 do
     md5blk[kk] = 0;
   end
-  i_end$1 = #s_tail - 1 | 0;
-  for i$2 = 0 , i_end$1 , 1 do
-    md5blk[i$2 / 4 | 0] = md5blk[i$2 / 4 | 0] | (s_tail.charCodeAt(i$2) << (i$2 % 4 << 3));
+  i_end_1 = #s_tail - 1 | 0;
+  for i_2 = 0 , i_end_1 , 1 do
+    md5blk[i_2 / 4 | 0] = md5blk[i_2 / 4 | 0] | (s_tail.charCodeAt(i_2) << (i_2 % 4 << 3));
   end
-  i$3 = i_end$1 + 1 | 0;
-  md5blk[i$3 / 4 | 0] = md5blk[i$3 / 4 | 0] | (128 << (i$3 % 4 << 3));
-  if (i$3 > 55) then do
+  i_3 = i_end_1 + 1 | 0;
+  md5blk[i_3 / 4 | 0] = md5blk[i_3 / 4 | 0] | (128 << (i_3 % 4 << 3));
+  if (i_3 > 55) then do
     cycle(state, md5blk);
-    for i$4 = 0 , 15 , 1 do
-      md5blk[i$4] = 0;
+    for i_4 = 0 , 15 , 1 do
+      md5blk[i_4] = 0;
     end
   end
    end 

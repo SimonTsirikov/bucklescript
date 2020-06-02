@@ -51,9 +51,9 @@ function bench(param) do
   for i = 0 , 1000000 , 1 do
     Belt_HashMap.set(empty, i, i);
   end
-  for i$1 = 0 , 1000000 , 1 do
-    if (not Belt_HashMap.has(empty, i$1)) then do
-      error ({
+  for i_1 = 0 , 1000000 , 1 do
+    if (not Belt_HashMap.has(empty, i_1)) then do
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "bs_hashtbl_string_test.ml",
@@ -72,9 +72,9 @@ function bench2(m) do
   for i = 0 , 1000000 , 1 do
     Belt_HashMap.set(empty, String(i), i);
   end
-  for i$1 = 0 , 1000000 , 1 do
-    if (not Belt_HashMap.has(empty, String(i$1))) then do
-      error ({
+  for i_1 = 0 , 1000000 , 1 do
+    if (not Belt_HashMap.has(empty, String(i_1))) then do
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "bs_hashtbl_string_test.ml",
@@ -85,13 +85,13 @@ function bench2(m) do
     end
      end 
   end
-  for i$2 = 0 , 1000000 , 1 do
-    Belt_HashMap.remove(empty, String(i$2));
+  for i_2 = 0 , 1000000 , 1 do
+    Belt_HashMap.remove(empty, String(i_2));
   end
   if (empty.size == 0) then do
     return 0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_hashtbl_string_test.ml",
@@ -112,9 +112,9 @@ function bench3(m) do
   for i = 0 , 1000000 , 1 do
     table = Belt_MapDict.set(table, String(i), i, cmp);
   end
-  for i$1 = 0 , 1000000 , 1 do
-    if (not Belt_MapDict.has(table, String(i$1), cmp)) then do
-      error ({
+  for i_1 = 0 , 1000000 , 1 do
+    if (not Belt_MapDict.has(table, String(i_1), cmp)) then do
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "bs_hashtbl_string_test.ml",
@@ -125,13 +125,13 @@ function bench3(m) do
     end
      end 
   end
-  for i$2 = 0 , 1000000 , 1 do
-    table = Belt_MapDict.remove(table, String(i$2), cmp);
+  for i_2 = 0 , 1000000 , 1 do
+    table = Belt_MapDict.remove(table, String(i_2), cmp);
   end
   if (Belt_MapDict.size(table) == 0) then do
     return 0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_hashtbl_string_test.ml",
@@ -149,9 +149,9 @@ function bench4(param) do
   for i = 0 , 1000000 , 1 do
     Belt_HashMapString.set(table, String(i), i);
   end
-  for i$1 = 0 , 1000000 , 1 do
-    if (not Belt_HashMapString.has(table, String(i$1))) then do
-      error ({
+  for i_1 = 0 , 1000000 , 1 do
+    if (not Belt_HashMapString.has(table, String(i_1))) then do
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "bs_hashtbl_string_test.ml",
@@ -162,13 +162,13 @@ function bench4(param) do
     end
      end 
   end
-  for i$2 = 0 , 1000000 , 1 do
-    Belt_HashMapString.remove(table, String(i$2));
+  for i_2 = 0 , 1000000 , 1 do
+    Belt_HashMapString.remove(table, String(i_2));
   end
   if (Belt_HashMapString.isEmpty(table)) then do
     return 0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_hashtbl_string_test.ml",
@@ -187,9 +187,9 @@ function bench5(param) do
   end
   console.timeEnd("test/bs_hashtbl_string_test.ml 133");
   console.time("test/bs_hashtbl_string_test.ml 137");
-  for i$1 = 0 , 1000000 , 1 do
-    if (not Belt_HashMap.has(table, i$1)) then do
-      error ({
+  for i_1 = 0 , 1000000 , 1 do
+    if (not Belt_HashMap.has(table, i_1)) then do
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "bs_hashtbl_string_test.ml",
@@ -202,14 +202,14 @@ function bench5(param) do
   end
   console.timeEnd("test/bs_hashtbl_string_test.ml 137");
   console.time("test/bs_hashtbl_string_test.ml 141");
-  for i$2 = 0 , 1000000 , 1 do
-    Belt_HashMap.remove(table, i$2);
+  for i_2 = 0 , 1000000 , 1 do
+    Belt_HashMap.remove(table, i_2);
   end
   console.timeEnd("test/bs_hashtbl_string_test.ml 141");
   if (Belt_HashMap.isEmpty(table)) then do
     return 0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_hashtbl_string_test.ml",
@@ -225,9 +225,9 @@ function bench6(param) do
   for i = 0 , 1000000 , 1 do
     Belt_HashMapInt.set(table, i, i);
   end
-  for i$1 = 0 , 1000000 , 1 do
-    if (not Belt_HashMapInt.has(table, i$1)) then do
-      error ({
+  for i_1 = 0 , 1000000 , 1 do
+    if (not Belt_HashMapInt.has(table, i_1)) then do
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "bs_hashtbl_string_test.ml",
@@ -238,13 +238,13 @@ function bench6(param) do
     end
      end 
   end
-  for i$2 = 0 , 1000000 , 1 do
-    Belt_HashMapInt.remove(table, i$2);
+  for i_2 = 0 , 1000000 , 1 do
+    Belt_HashMapInt.remove(table, i_2);
   end
   if (table.size == 0) then do
     return 0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_hashtbl_string_test.ml",
@@ -261,9 +261,9 @@ function bench7(param) do
   for i = 0 , 1000000 , 1 do
     Belt_HashSetInt.add(table, i);
   end
-  for i$1 = 0 , 1000000 , 1 do
-    if (not Belt_HashSetInt.has(table, i$1)) then do
-      error ({
+  for i_1 = 0 , 1000000 , 1 do
+    if (not Belt_HashSetInt.has(table, i_1)) then do
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "bs_hashtbl_string_test.ml",
@@ -274,13 +274,13 @@ function bench7(param) do
     end
      end 
   end
-  for i$2 = 0 , 1000000 , 1 do
-    Belt_HashSetInt.remove(table, i$2);
+  for i_2 = 0 , 1000000 , 1 do
+    Belt_HashSetInt.remove(table, i_2);
   end
   if (table.size == 0) then do
     return 0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_hashtbl_string_test.ml",

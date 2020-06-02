@@ -16,11 +16,11 @@ end end
 function Test($star) do
   console.log("no inline");
   u = --[[ A ]]Block.__(0, {3});
-  Block$1 = { };
+  Block_1 = { };
   b = eq_A(--[[ A ]]Block.__(0, {3}), u);
   return do
           u: u,
-          Block: Block$1,
+          Block: Block_1,
           y: 32,
           b: b
         end;
@@ -28,10 +28,10 @@ end end
 
 function Test2($star) do
   console.log("no inline");
-  Block$1 = { };
+  Block_1 = { };
   b = eq_A(--[[ A ]]Block.__(0, {3}), --[[ A ]]Block.__(0, {3}));
   return do
-          Block: Block$1,
+          Block: Block_1,
           y: 32,
           b: b
         end;
@@ -44,18 +44,18 @@ end end
 
 function Test3($star) do
   f = Caml_obj.caml_equal;
-  Caml_obj$1 = { };
+  Caml_obj_1 = { };
   return do
           f: f,
-          Caml_obj: Caml_obj$1
+          Caml_obj: Caml_obj_1
         end;
 end end
 
 function Test4($star) do
-  Caml_obj$1 = { };
+  Caml_obj_1 = { };
   f = Caml_obj.caml_equal;
   return do
-          Caml_obj: Caml_obj$1,
+          Caml_obj: Caml_obj_1,
           f: f
         end;
 end end
@@ -64,20 +64,20 @@ function Test5($star) do
   f = function (x) do
     return Caml_option.some(x);
   end end;
-  Caml_option$1 = { };
+  Caml_option_1 = { };
   return do
           f: f,
-          Caml_option: Caml_option$1
+          Caml_option: Caml_option_1
         end;
 end end
 
 function Test6($star) do
-  Caml_option$1 = { };
+  Caml_option_1 = { };
   f = function (x) do
     return Caml_option.some(x);
   end end;
   return do
-          Caml_option: Caml_option$1,
+          Caml_option: Caml_option_1,
           f: f
         end;
 end end
@@ -90,12 +90,12 @@ function Test7($star) do
 end end
 
 function Test8($star) do
-  Curry$1 = { };
+  Curry_1 = { };
   f = function (x) do
     return Curry._1(x, 1);
   end end;
   return do
-          Curry: Curry$1,
+          Curry: Curry_1,
           f: f
         end;
 end end
@@ -104,10 +104,10 @@ function Test9($star) do
   f = function (x) do
     return Curry._1(x, 1);
   end end;
-  Curry$1 = { };
+  Curry_1 = { };
   return do
           f: f,
-          Curry: Curry$1
+          Curry: Curry_1
         end;
 end end
 

@@ -46,7 +46,7 @@ yynames_block = "NUMERAL\0IDENT\0";
 
 yyact = {
   (function (param) do
-      error ({
+      error({
         Caml_builtin_exceptions.failure,
         "parser"
       })
@@ -102,7 +102,7 @@ yyact = {
       return Parsing.peek_val(__caml_parser_env, 1);
     end end),
   (function (__caml_parser_env) do
-      error ({
+      error({
         Parsing.YYexit,
         Parsing.peek_val(__caml_parser_env, 0)
       })

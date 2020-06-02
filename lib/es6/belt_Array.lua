@@ -14,7 +14,7 @@ end end
 
 function getExn(arr, i) do
   if (not (i >= 0 and i < #arr)) then do
-    error (new Error("File \"belt_Array.ml\", line 25, characters 6-12"))
+    error(new Error("File \"belt_Array.ml\", line 25, characters 6-12"))
   end
    end 
   return arr[i];
@@ -31,7 +31,7 @@ end end
 
 function setExn(arr, i, v) do
   if (not (i >= 0 and i < #arr)) then do
-    error (new Error("File \"belt_Array.ml\", line 31, characters 4-10"))
+    error(new Error("File \"belt_Array.ml\", line 31, characters 4-10"))
   end
    end 
   arr[i] = v;
@@ -61,11 +61,11 @@ end end
 
 function reverseInPlace(xs) do
   len = #xs;
-  xs$1 = xs;
+  xs_1 = xs;
   ofs = 0;
-  len$1 = len;
-  for i = 0 , (len$1 / 2 | 0) - 1 | 0 , 1 do
-    swapUnsafe(xs$1, ofs + i | 0, ((ofs + len$1 | 0) - i | 0) - 1 | 0);
+  len_1 = len;
+  for i = 0 , (len_1 / 2 | 0) - 1 | 0 , 1 do
+    swapUnsafe(xs_1, ofs + i | 0, ((ofs + len_1 | 0) - i | 0) - 1 | 0);
   end
   return --[[ () ]]0;
 end end
@@ -182,8 +182,8 @@ function concat(a1, a2) do
   for i = 0 , l1 - 1 | 0 , 1 do
     a1a2[i] = a1[i];
   end
-  for i$1 = 0 , l2 - 1 | 0 , 1 do
-    a1a2[l1 + i$1 | 0] = a2[i$1];
+  for i_1 = 0 , l2 - 1 | 0 , 1 do
+    a1a2[l1 + i_1 | 0] = a2[i_1];
   end
   return a1a2;
 end end
@@ -263,8 +263,8 @@ function blitUnsafe(a1, srcofs1, a2, srcofs2, blitLength) do
     end
     return --[[ () ]]0;
   end else do
-    for j$1 = blitLength - 1 | 0 , 0 , -1 do
-      a2[j$1 + srcofs2 | 0] = a1[j$1 + srcofs1 | 0];
+    for j_1 = blitLength - 1 | 0 , 0 , -1 do
+      a2[j_1 + srcofs2 | 0] = a1[j_1 + srcofs1 | 0];
     end
     return --[[ () ]]0;
   end end 
@@ -282,8 +282,8 @@ function blit(a1, ofs1, a2, ofs2, len) do
     end
     return --[[ () ]]0;
   end else do
-    for j$1 = blitLength - 1 | 0 , 0 , -1 do
-      a2[j$1 + srcofs2 | 0] = a1[j$1 + srcofs1 | 0];
+    for j_1 = blitLength - 1 | 0 , 0 , -1 do
+      a2[j_1 + srcofs2 | 0] = a1[j_1 + srcofs1 | 0];
     end
     return --[[ () ]]0;
   end end 
@@ -487,15 +487,15 @@ end end
 
 function everyU(arr, b) do
   len = #arr;
-  arr$1 = arr;
+  arr_1 = arr;
   _i = 0;
-  b$1 = b;
-  len$1 = len;
+  b_1 = b;
+  len_1 = len;
   while(true) do
     i = _i;
-    if (i == len$1) then do
+    if (i == len_1) then do
       return true;
-    end else if (b$1(arr$1[i])) then do
+    end else if (b_1(arr_1[i])) then do
       _i = i + 1 | 0;
       ::continue:: ;
     end else do
@@ -510,15 +510,15 @@ end end
 
 function someU(arr, b) do
   len = #arr;
-  arr$1 = arr;
+  arr_1 = arr;
   _i = 0;
-  b$1 = b;
-  len$1 = len;
+  b_1 = b;
+  len_1 = len;
   while(true) do
     i = _i;
-    if (i == len$1) then do
+    if (i == len_1) then do
       return false;
-    end else if (b$1(arr$1[i])) then do
+    end else if (b_1(arr_1[i])) then do
       return true;
     end else do
       _i = i + 1 | 0;
@@ -557,13 +557,13 @@ function some2U(a, b, p) do
   arr1 = a;
   arr2 = b;
   _i = 0;
-  b$1 = p;
+  b_1 = p;
   len = Caml_primitive.caml_int_min(#a, #b);
   while(true) do
     i = _i;
     if (i == len) then do
       return false;
-    end else if (b$1(arr1[i], arr2[i])) then do
+    end else if (b_1(arr1[i], arr2[i])) then do
       return true;
     end else do
       _i = i + 1 | 0;
@@ -601,14 +601,14 @@ function cmpU(a, b, p) do
     arr1 = a;
     arr2 = b;
     _i = 0;
-    b$1 = p;
+    b_1 = p;
     len = lena;
     while(true) do
       i = _i;
       if (i == len) then do
         return 0;
       end else do
-        c = b$1(arr1[i], arr2[i]);
+        c = b_1(arr1[i], arr2[i]);
         if (c == 0) then do
           _i = i + 1 | 0;
           ::continue:: ;

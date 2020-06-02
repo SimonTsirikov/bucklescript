@@ -41,7 +41,7 @@ function handler(e) do
     console.log("hi");
     return Promise.resolve(0);
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "promise_catch_test.ml",
@@ -76,7 +76,7 @@ val;
 xpcall(function() do
   val = JSON.parse(" 1. +  ");
   exit = 1;
-end end,function(raw_e) return do
+end end,function(raw_e) do
   e = Caml_js_exceptions.internalToOCamlException(raw_e);
   eq("File \"promise_catch_test.ml\", line 36, characters 7-14", true, Js_option.isSomeValue((function (xxx, y) do
               return xxx == y;
@@ -84,7 +84,7 @@ end end,function(raw_e) return do
 end end)
 
 if (exit == 1) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "promise_catch_test.ml",

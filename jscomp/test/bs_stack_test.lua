@@ -12,19 +12,19 @@ function inOrder(v) do
   end;
   q = Belt_MutableQueue.make(--[[ () ]]0);
   while(current ~= undefined) do
-    v$1 = current;
-    Belt_MutableStack.push(s, v$1);
-    current = v$1.left;
+    v_1 = current;
+    Belt_MutableStack.push(s, v_1);
+    current = v_1.left;
   end;
   while(s.root ~= nil) do
     current = Belt_MutableStack.popUndefined(s);
-    v$2 = current;
-    Belt_MutableQueue.add(q, v$2.value);
-    current = v$2.right;
+    v_2 = current;
+    Belt_MutableQueue.add(q, v_2.value);
+    current = v_2.right;
     while(current ~= undefined) do
-      v$3 = current;
-      Belt_MutableStack.push(s, v$3);
-      current = v$3.left;
+      v_3 = current;
+      Belt_MutableStack.push(s, v_3);
+      current = v_3.left;
     end;
   end;
   return Belt_MutableQueue.toArray(q);
@@ -37,9 +37,9 @@ function inOrder3(v) do
   end;
   q = Belt_MutableQueue.make(--[[ () ]]0);
   while(current ~= undefined) do
-    v$1 = current;
-    Belt_MutableStack.push(s, v$1);
-    current = v$1.left;
+    v_1 = current;
+    Belt_MutableStack.push(s, v_1);
+    current = v_1.left;
   end;
   Belt_MutableStack.dynamicPopIter(s, (function (popped) do
           Belt_MutableQueue.add(q, popped.value);
@@ -63,9 +63,9 @@ function inOrder2(v) do
   q = Belt_MutableQueue.make(--[[ () ]]0);
   while(todo) do
     if (cursor ~= undefined) then do
-      v$1 = cursor;
-      Belt_MutableStack.push(s, v$1);
-      cursor = v$1.left;
+      v_1 = cursor;
+      Belt_MutableStack.push(s, v_1);
+      cursor = v_1.left;
     end else if (s.root ~= nil) then do
       cursor = Belt_MutableStack.popUndefined(s);
       current = cursor;

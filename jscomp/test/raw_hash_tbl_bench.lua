@@ -8,9 +8,9 @@ function bench(param) do
   for i = 0 , 1000000 , 1 do
     Hashtbl.add(table, i, i);
   end
-  for i$1 = 0 , 1000000 , 1 do
-    if (not Hashtbl.mem(table, i$1)) then do
-      error ({
+  for i_1 = 0 , 1000000 , 1 do
+    if (not Hashtbl.mem(table, i_1)) then do
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "raw_hash_tbl_bench.ml",
@@ -21,8 +21,8 @@ function bench(param) do
     end
      end 
   end
-  for i$2 = 0 , 1000000 , 1 do
-    Hashtbl.remove(table, i$2);
+  for i_2 = 0 , 1000000 , 1 do
+    Hashtbl.remove(table, i_2);
   end
   return --[[ () ]]0;
 end end

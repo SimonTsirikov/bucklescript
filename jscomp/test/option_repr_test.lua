@@ -111,7 +111,7 @@ length_10_id = Belt_List.makeBy(10, (function (x) do
         return x;
       end end));
 
-function f13$1(param) do
+function f13_1(param) do
   return Caml_obj.caml_equal(Belt_List.take(length_10_id, 8), --[[ :: ]]{
               1,
               --[[ :: ]]{
@@ -185,7 +185,7 @@ b("File \"option_repr_test.ml\", line 121, characters 5-12", Belt_List.every(xs,
             return x;
           end end)));
 
-xs_000$1 = ltx(Caml_option.some(undefined), 3);
+xs_000_1 = ltx(Caml_option.some(undefined), 3);
 
 xs_001 = --[[ :: ]]{
   ltx(Caml_option.some(undefined), Caml_option.some(Caml_option.some(undefined))),
@@ -221,18 +221,18 @@ xs_001 = --[[ :: ]]{
   }
 };
 
-xs$1 = --[[ :: ]]{
-  xs_000$1,
+xs_1 = --[[ :: ]]{
+  xs_000_1,
   xs_001
 };
 
-b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs$1, (function (x) do
+b("File \"option_repr_test.ml\", line 127, characters 5-12", Belt_List.every(xs_1, (function (x) do
             return x;
           end end)));
 
-xs_000$2 = eqx(undefined, undefined);
+xs_000_2 = eqx(undefined, undefined);
 
-xs_001$1 = --[[ :: ]]{
+xs_001_1 = --[[ :: ]]{
   neqx(undefined, nil),
   --[[ :: ]]{
     eqx(Caml_option.some(undefined), Caml_option.some(undefined)),
@@ -246,12 +246,12 @@ xs_001$1 = --[[ :: ]]{
   }
 };
 
-xs$2 = --[[ :: ]]{
-  xs_000$2,
-  xs_001$1
+xs_2 = --[[ :: ]]{
+  xs_000_2,
+  xs_001_1
 };
 
-b("File \"option_repr_test.ml\", line 143, characters 5-12", Belt_List.every(xs$2, (function (x) do
+b("File \"option_repr_test.ml\", line 143, characters 5-12", Belt_List.every(xs_2, (function (x) do
             return x;
           end end)));
 
@@ -304,7 +304,7 @@ exports.f12 = f12;
 exports.N = N;
 exports.length_8_id = length_8_id;
 exports.length_10_id = length_10_id;
-exports.f13 = f13$1;
+exports.f13 = f13_1;
 exports.none_arg = none_arg;
 exports.ltx = ltx;
 exports.gtx = gtx;

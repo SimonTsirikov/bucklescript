@@ -68,7 +68,7 @@ function tl_exn(x) do
   if (x) then do
     return x[--[[ next ]]1];
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "recursive_records_test.ml",
@@ -81,9 +81,9 @@ end end
 
 eq("File \"recursive_records_test.ml\", line 56, characters 6-13", (hd(rec_cell2) + hd(tl_exn(rec_cell2)) | 0) + hd(tl_exn(tl_exn(rec_cell2))) | 0, 9);
 
-rec_cell2$1 = f2(3);
+rec_cell2_1 = f2(3);
 
-eq("File \"recursive_records_test.ml\", line 60, characters 5-12", (hd(rec_cell2$1) + hd(tl_exn(rec_cell2$1)) | 0) + hd(tl_exn(tl_exn(rec_cell2$1))) | 0, 9);
+eq("File \"recursive_records_test.ml\", line 60, characters 5-12", (hd(rec_cell2_1) + hd(tl_exn(rec_cell2_1)) | 0) + hd(tl_exn(tl_exn(rec_cell2_1))) | 0, 9);
 
 rec_cell3 = {};
 
@@ -102,9 +102,9 @@ end end
 
 eq("File \"recursive_records_test.ml\", line 74, characters 5-12", (List.hd(rec_cell3) + List.hd(List.tl(rec_cell3)) | 0) + List.hd(List.tl(List.tl(rec_cell3))) | 0, 9);
 
-rec_cell3$1 = f3(3);
+rec_cell3_1 = f3(3);
 
-eq("File \"recursive_records_test.ml\", line 77, characters 5-12", (List.hd(rec_cell3$1) + List.hd(List.tl(rec_cell3$1)) | 0) + List.hd(List.tl(List.tl(rec_cell3$1))) | 0, 9);
+eq("File \"recursive_records_test.ml\", line 77, characters 5-12", (List.hd(rec_cell3_1) + List.hd(List.tl(rec_cell3_1)) | 0) + List.hd(List.tl(List.tl(rec_cell3_1))) | 0, 9);
 
 Mt.from_pair_suites("recursive_records_test.ml", suites.contents);
 

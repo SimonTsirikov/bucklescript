@@ -10,7 +10,7 @@ function getExn(f) do
   if (f ~= nil) then do
     return f;
   end else do
-    error (new Error("Js.Null.getExn"))
+    error(new Error("Js.Null.getExn"))
   end end 
 end end
 

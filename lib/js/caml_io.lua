@@ -43,18 +43,18 @@ function caml_ml_flush(oc) do
 end end
 
 function caml_ml_output(oc, str, offset, len) do
-  str$1 = offset == 0 and len == #str and str or str.slice(offset, len);
+  str_1 = offset == 0 and len == #str and str or str.slice(offset, len);
   if (((typeof process !== "undefined") && process.stdout && process.stdout.write) and oc == stdout) then do
-    return process.stdout.write(str$1);
+    return process.stdout.write(str_1);
   end else do
-    id = str$1.lastIndexOf("\n");
+    id = str_1.lastIndexOf("\n");
     if (id < 0) then do
-      oc.buffer = oc.buffer .. str$1;
+      oc.buffer = oc.buffer .. str_1;
       return --[[ () ]]0;
     end else do
-      oc.buffer = oc.buffer .. str$1.slice(0, id + 1 | 0);
+      oc.buffer = oc.buffer .. str_1.slice(0, id + 1 | 0);
       caml_ml_flush(oc);
-      oc.buffer = oc.buffer .. str$1.slice(id + 1 | 0);
+      oc.buffer = oc.buffer .. str_1.slice(id + 1 | 0);
       return --[[ () ]]0;
     end end 
   end end 

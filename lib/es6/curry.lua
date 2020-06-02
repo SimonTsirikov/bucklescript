@@ -36,24 +36,24 @@ function curry_1(o, a0, arity) do
             return o(a0, param);
           end end);end end end 
      if ___conditional___ = 3 then do
-        return (function (param, param$1) do
-            return o(a0, param, param$1);
+        return (function (param, param_1) do
+            return o(a0, param, param_1);
           end end);end end end 
      if ___conditional___ = 4 then do
-        return (function (param, param$1, param$2) do
-            return o(a0, param, param$1, param$2);
+        return (function (param, param_1, param_2) do
+            return o(a0, param, param_1, param_2);
           end end);end end end 
      if ___conditional___ = 5 then do
-        return (function (param, param$1, param$2, param$3) do
-            return o(a0, param, param$1, param$2, param$3);
+        return (function (param, param_1, param_2, param_3) do
+            return o(a0, param, param_1, param_2, param_3);
           end end);end end end 
      if ___conditional___ = 6 then do
-        return (function (param, param$1, param$2, param$3, param$4) do
-            return o(a0, param, param$1, param$2, param$3, param$4);
+        return (function (param, param_1, param_2, param_3, param_4) do
+            return o(a0, param, param_1, param_2, param_3, param_4);
           end end);end end end 
      if ___conditional___ = 7 then do
-        return (function (param, param$1, param$2, param$3, param$4, param$5) do
-            return o(a0, param, param$1, param$2, param$3, param$4, param$5);
+        return (function (param, param_1, param_2, param_3, param_4, param_5) do
+            return o(a0, param, param_1, param_2, param_3, param_4, param_5);
           end end);end end end 
      do
     else do
@@ -95,20 +95,20 @@ function curry_2(o, a0, a1, arity) do
             return o(a0, a1, param);
           end end);end end end 
      if ___conditional___ = 4 then do
-        return (function (param, param$1) do
-            return o(a0, a1, param, param$1);
+        return (function (param, param_1) do
+            return o(a0, a1, param, param_1);
           end end);end end end 
      if ___conditional___ = 5 then do
-        return (function (param, param$1, param$2) do
-            return o(a0, a1, param, param$1, param$2);
+        return (function (param, param_1, param_2) do
+            return o(a0, a1, param, param_1, param_2);
           end end);end end end 
      if ___conditional___ = 6 then do
-        return (function (param, param$1, param$2, param$3) do
-            return o(a0, a1, param, param$1, param$2, param$3);
+        return (function (param, param_1, param_2, param_3) do
+            return o(a0, a1, param, param_1, param_2, param_3);
           end end);end end end 
      if ___conditional___ = 7 then do
-        return (function (param, param$1, param$2, param$3, param$4) do
-            return o(a0, a1, param, param$1, param$2, param$3, param$4);
+        return (function (param, param_1, param_2, param_3, param_4) do
+            return o(a0, a1, param, param_1, param_2, param_3, param_4);
           end end);end end end 
      do
     else do
@@ -158,16 +158,16 @@ function curry_3(o, a0, a1, a2, arity) do
             return o(a0, a1, a2, param);
           end end);end end end 
      if ___conditional___ = 5 then do
-        return (function (param, param$1) do
-            return o(a0, a1, a2, param, param$1);
+        return (function (param, param_1) do
+            return o(a0, a1, a2, param, param_1);
           end end);end end end 
      if ___conditional___ = 6 then do
-        return (function (param, param$1, param$2) do
-            return o(a0, a1, a2, param, param$1, param$2);
+        return (function (param, param_1, param_2) do
+            return o(a0, a1, a2, param, param_1, param_2);
           end end);end end end 
      if ___conditional___ = 7 then do
-        return (function (param, param$1, param$2, param$3) do
-            return o(a0, a1, a2, param, param$1, param$2, param$3);
+        return (function (param, param_1, param_2, param_3) do
+            return o(a0, a1, a2, param, param_1, param_2, param_3);
           end end);end end end 
      do
     else do
@@ -224,12 +224,12 @@ function curry_4(o, a0, a1, a2, a3, arity) do
             return o(a0, a1, a2, a3, param);
           end end);end end end 
      if ___conditional___ = 6 then do
-        return (function (param, param$1) do
-            return o(a0, a1, a2, a3, param, param$1);
+        return (function (param, param_1) do
+            return o(a0, a1, a2, a3, param, param_1);
           end end);end end end 
      if ___conditional___ = 7 then do
-        return (function (param, param$1, param$2) do
-            return o(a0, a1, a2, a3, param, param$1, param$2);
+        return (function (param, param_1, param_2) do
+            return o(a0, a1, a2, a3, param, param_1, param_2);
           end end);end end end 
      do
     else do
@@ -294,8 +294,8 @@ function curry_5(o, a0, a1, a2, a3, a4, arity) do
             return o(a0, a1, a2, a3, a4, param);
           end end);end end end 
      if ___conditional___ = 7 then do
-        return (function (param, param$1) do
-            return o(a0, a1, a2, a3, a4, param, param$1);
+        return (function (param, param_1) do
+            return o(a0, a1, a2, a3, a4, param, param_1);
           end end);end end end 
      do
     else do

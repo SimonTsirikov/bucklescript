@@ -23,7 +23,7 @@ function for_3(x) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param_1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x , 1 do
@@ -45,7 +45,7 @@ function for_4(x) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param_1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x , 1 do
@@ -68,7 +68,7 @@ function for_5(x, u) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param_1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x , 1 do
@@ -90,7 +90,7 @@ function for_6(x, u) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param_1) do
           return --[[ () ]]0;
         end end), x);
   v4 = do

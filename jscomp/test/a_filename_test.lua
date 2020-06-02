@@ -30,8 +30,8 @@ function eq(loc, x, y) do
   return --[[ () ]]0;
 end end
 
-function test(param, param$1) do
-  return Ext_filename_test.node_relative_path(true, param, param$1);
+function test(param, param_1) do
+  return Ext_filename_test.node_relative_path(true, param, param_1);
 end end
 
 eq("File \"a_filename_test.ml\", line 10, characters 5-12", --[[ tuple ]]{

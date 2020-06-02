@@ -31,9 +31,9 @@ function removeMutateAux(nt, x, cmp) do
       return nt;
     end end 
   end else do
-    match$1 = nt.right;
-    if (match$1 ~= nil) then do
-      nt.right = removeMutateAux(match$1, x, cmp);
+    match_1 = nt.right;
+    if (match_1 ~= nil) then do
+      nt.right = removeMutateAux(match_1, x, cmp);
       return Belt_internalAVLtree.balMutate(nt);
     end else do
       return nt;
@@ -118,20 +118,20 @@ function updateDone(t, x, f, cmp) do
         end end  end 
       end end 
     end else do
-      l$1 = t.left;
-      r$1 = t.right;
+      l_1 = t.left;
+      r_1 = t.right;
       if (c < 0) then do
-        ll = updateDone(l$1, x, f, cmp);
+        ll = updateDone(l_1, x, f, cmp);
         t.left = ll;
       end else do
-        t.right = updateDone(r$1, x, f, cmp);
+        t.right = updateDone(r_1, x, f, cmp);
       end end 
       return Belt_internalAVLtree.balMutate(t);
     end end 
   end else do
-    match$1 = f(undefined);
-    if (match$1 ~= undefined) then do
-      return Belt_internalAVLtree.singleton(x, Caml_option.valFromOption(match$1));
+    match_1 = f(undefined);
+    if (match_1 ~= undefined) then do
+      return Belt_internalAVLtree.singleton(x, Caml_option.valFromOption(match_1));
     end else do
       return t;
     end end 
@@ -262,8 +262,8 @@ function cmpU(m1, m2, cmp) do
   return Belt_internalAVLtree.cmpU(m1.data, m2.data, m1.cmp, cmp);
 end end
 
-function cmp(m1, m2, cmp$1) do
-  return cmpU(m1, m2, Curry.__2(cmp$1));
+function cmp(m1, m2, cmp_1) do
+  return cmpU(m1, m2, Curry.__2(cmp_1));
 end end
 
 function eqU(m1, m2, cmp) do

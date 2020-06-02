@@ -44,7 +44,7 @@ function min_elt(_param) do
         return param[1];
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -61,7 +61,7 @@ function max_elt(_param) do
         return param[1];
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -205,12 +205,12 @@ function check_height_and_diff(param) do
     hl = check_height_and_diff(param[0]);
     hr = check_height_and_diff(param[2]);
     if (h ~= (max_int_2(hl, hr) + 1 | 0)) then do
-      error (Height_invariant_broken)
+      error(Height_invariant_broken)
     end
      end 
     diff = Pervasives.abs(hl - hr | 0);
     if (diff > 2) then do
-      error (Height_diff_borken)
+      error(Height_diff_borken)
     end
      end 
     return h;
@@ -248,7 +248,7 @@ function internal_bal(l, v, r) do
       end else if (lr) then do
         return create(create(ll, lv, lr[0]), lr[1], create(lr[2], v, r));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.assert_failure,
           --[[ tuple ]]{
             "set_gen.ml",
@@ -258,7 +258,7 @@ function internal_bal(l, v, r) do
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "set_gen.ml",
@@ -277,7 +277,7 @@ function internal_bal(l, v, r) do
       end else if (rl) then do
         return create(create(l, v, rl[0]), rl[1], create(rl[2], rv, rr));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.assert_failure,
           --[[ tuple ]]{
             "set_gen.ml",
@@ -287,7 +287,7 @@ function internal_bal(l, v, r) do
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "set_gen.ml",
@@ -315,7 +315,7 @@ function remove_min_elt(param) do
       return param[2];
     end end 
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Set.remove_min_elt"
     })
@@ -414,9 +414,9 @@ function partition(p, param) do
     lf = match[1];
     lt = match[0];
     pv = Curry._1(p, v);
-    match$1 = partition(p, param[2]);
-    rf = match$1[1];
-    rt = match$1[0];
+    match_1 = partition(p, param[2]);
+    rf = match_1[1];
+    rt = match_1[0];
     if (pv) then do
       return --[[ tuple ]]{
               internal_join(lt, v, rt),
@@ -482,10 +482,10 @@ function of_sorted_list(l) do
            end end else 
        if ___conditional___ = 3 then do
           if (l) then do
-            match$1 = l[1];
-            if (match$1) then do
-              match$2 = match$1[1];
-              if (match$2) then do
+            match_1 = l[1];
+            if (match_1) then do
+              match_2 = match_1[1];
+              if (match_2) then do
                 return --[[ tuple ]]{
                         --[[ Node ]]{
                           --[[ Node ]]{
@@ -494,16 +494,16 @@ function of_sorted_list(l) do
                             --[[ Empty ]]0,
                             1
                           },
-                          match$1[0],
+                          match_1[0],
                           --[[ Node ]]{
                             --[[ Empty ]]0,
-                            match$2[0],
+                            match_2[0],
                             --[[ Empty ]]0,
                             1
                           },
                           2
                         },
-                        match$2[1]
+                        match_2[1]
                       };
               end
                end 
@@ -517,16 +517,16 @@ function of_sorted_list(l) do
         
     end
     nl = n / 2 | 0;
-    match$3 = sub(nl, l);
-    l$1 = match$3[1];
-    if (l$1) then do
-      match$4 = sub((n - nl | 0) - 1 | 0, l$1[1]);
+    match_3 = sub(nl, l);
+    l_1 = match_3[1];
+    if (l_1) then do
+      match_4 = sub((n - nl | 0) - 1 | 0, l_1[1]);
       return --[[ tuple ]]{
-              create(match$3[0], l$1[0], match$4[0]),
-              match$4[1]
+              create(match_3[0], l_1[0], match_4[0]),
+              match_4[1]
             };
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "set_gen.ml",
@@ -552,12 +552,12 @@ function of_sorted_array(l) do
               1
             };
     end else if (n == 2) then do
-      x0$1 = l[start];
+      x0_1 = l[start];
       x1 = l[start + 1 | 0];
       return --[[ Node ]]{
               --[[ Node ]]{
                 --[[ Empty ]]0,
-                x0$1,
+                x0_1,
                 --[[ Empty ]]0,
                 1
               },
@@ -566,17 +566,17 @@ function of_sorted_array(l) do
               2
             };
     end else if (n == 3) then do
-      x0$2 = l[start];
-      x1$1 = l[start + 1 | 0];
+      x0_2 = l[start];
+      x1_1 = l[start + 1 | 0];
       x2 = l[start + 2 | 0];
       return --[[ Node ]]{
               --[[ Node ]]{
                 --[[ Empty ]]0,
-                x0$2,
+                x0_2,
                 --[[ Empty ]]0,
                 1
               },
-              x1$1,
+              x1_1,
               --[[ Node ]]{
                 --[[ Empty ]]0,
                 x2,
@@ -605,9 +605,9 @@ function is_ordered(cmp, tree) do
       match = is_ordered_min_max(tree[0]);
       if (typeof match == "number") then do
         if (match >= 50834029) then do
-          match$1 = is_ordered_min_max(r);
-          if (typeof match$1 == "number") then do
-            if (match$1 >= 50834029) then do
+          match_1 = is_ordered_min_max(r);
+          if (typeof match_1 == "number") then do
+            if (match_1 >= 50834029) then do
               return --[[ `V ]]{
                       86,
                       --[[ tuple ]]{
@@ -619,13 +619,13 @@ function is_ordered(cmp, tree) do
               return --[[ No ]]17505;
             end end 
           end else do
-            match$2 = match$1[1];
-            if (Curry._2(cmp, v, match$2[0]) < 0) then do
+            match_2 = match_1[1];
+            if (Curry._2(cmp, v, match_2[0]) < 0) then do
               return --[[ `V ]]{
                       86,
                       --[[ tuple ]]{
                         v,
-                        match$2[1]
+                        match_2[1]
                       }
                     };
             end else do
@@ -636,12 +636,12 @@ function is_ordered(cmp, tree) do
           return --[[ No ]]17505;
         end end 
       end else do
-        match$3 = match[1];
-        max_v = match$3[1];
-        min_v = match$3[0];
-        match$4 = is_ordered_min_max(r);
-        if (typeof match$4 == "number") then do
-          if (match$4 >= 50834029 and Curry._2(cmp, max_v, v) < 0) then do
+        match_3 = match[1];
+        max_v = match_3[1];
+        min_v = match_3[0];
+        match_4 = is_ordered_min_max(r);
+        if (typeof match_4 == "number") then do
+          if (match_4 >= 50834029 and Curry._2(cmp, max_v, v) < 0) then do
             return --[[ `V ]]{
                     86,
                     --[[ tuple ]]{
@@ -653,13 +653,13 @@ function is_ordered(cmp, tree) do
             return --[[ No ]]17505;
           end end 
         end else do
-          match$5 = match$4[1];
-          if (Curry._2(cmp, max_v, match$5[0]) < 0) then do
+          match_5 = match_4[1];
+          if (Curry._2(cmp, max_v, match_5[0]) < 0) then do
             return --[[ `V ]]{
                     86,
                     --[[ tuple ]]{
                       min_v,
-                      match$5[1]
+                      match_5[1]
                     }
                   };
           end else do

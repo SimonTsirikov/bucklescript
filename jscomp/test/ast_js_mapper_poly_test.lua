@@ -87,7 +87,7 @@ eq("File \"ast_js_mapper_poly_test.ml\", line 29, characters 5-12", __Array.map(
       "x"
     });
 
-jsMapperConstantArray$1 = {
+jsMapperConstantArray_1 = {
   0,
   3,
   4,
@@ -95,11 +95,11 @@ jsMapperConstantArray$1 = {
 };
 
 function vToJs(param) do
-  return jsMapperConstantArray$1[param];
+  return jsMapperConstantArray_1[param];
 end end
 
 function vFromJs(param) do
-  return Js_mapperRt.fromInt(4, jsMapperConstantArray$1, param);
+  return Js_mapperRt.fromInt(4, jsMapperConstantArray_1, param);
 end end
 
 function eqV(x, y) do

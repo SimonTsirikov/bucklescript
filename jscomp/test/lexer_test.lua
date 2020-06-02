@@ -43,7 +43,7 @@ function from_tokens(lst) do
         l.contents = match[1];
         return match[0];
       end else do
-        error (Caml_builtin_exceptions.end_of_file)
+        error(Caml_builtin_exceptions.end_of_file)
       end end 
     end end);
 end end

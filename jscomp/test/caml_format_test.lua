@@ -167,7 +167,7 @@ pairs = {
   }
 };
 
-pairs$1 = {
+pairs_1 = {
   --[[ tuple ]]{
     3232,
     "32_32.0"
@@ -261,7 +261,7 @@ suites = Pervasives.$at(from_of_string(of_string), Pervasives.$at(--[[ :: ]]{
                                                 });
                                       end end)
                                   };
-                          end end), pairs$1))))));
+                          end end), pairs_1))))));
 
 function ff(param) do
   return Caml_format.caml_format_int("%32d", param);
@@ -377,8 +377,8 @@ formatter_suites_001 = --[[ :: ]]{
                                       })
                                   }),
                                 "%S %03d %L %a"
-                              })), "32", 33, 33, "a", 33, 3, (function (param, param$1) do
-                          return Format.pp_print_list(undefined, Format.pp_print_int, param, param$1);
+                              })), "32", 33, 33, "a", 33, 3, (function (param, param_1) do
+                          return Format.pp_print_list(undefined, Format.pp_print_int, param, param_1);
                         end end), --[[ :: ]]{
                         1,
                         --[[ :: ]]{

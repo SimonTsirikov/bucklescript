@@ -13,12 +13,12 @@ function some(x) do
     return block;
   end else if (x ~= nil and x[0] == undefinedHeader) then do
     nid = x[1] + 1 | 0;
-    block$1 = --[[ tuple ]]{
+    block_1 = --[[ tuple ]]{
       undefinedHeader,
       nid
     };
-    block$1.tag = 256;
-    return block$1;
+    block_1.tag = 256;
+    return block_1;
   end else do
     return x;
   end end  end 

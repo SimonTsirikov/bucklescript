@@ -59,7 +59,7 @@ end;
 
 v = do
   contents: (function (param) do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "rec_value_test.ml",
@@ -126,11 +126,11 @@ function even(n) do
   if (n == 0) then do
     return true;
   end else do
-    n$1 = n - 1 | 0;
-    if (n$1 == 1) then do
+    n_1 = n - 1 | 0;
+    if (n_1 == 1) then do
       return true;
     end else do
-      return even(n$1 - 1 | 0);
+      return even(n_1 - 1 | 0);
     end end 
   end end 
 end end
@@ -243,7 +243,7 @@ suites_001 = --[[ :: ]]{
           if (match) then do
             tmp = match[0];
           end else do
-            error ({
+            error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
                 "rec_value_test.ml",
@@ -253,7 +253,7 @@ suites_001 = --[[ :: ]]{
             })
           end end 
         end else do
-          error ({
+          error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
               "rec_value_test.ml",
@@ -382,7 +382,7 @@ suites_001 = --[[ :: ]]{
                     "File \"rec_value_test.ml\", line 129, characters 2-9",
                     (function (param) do
                         if (rec_variant_b.tag) then do
-                          error ({
+                          error({
                             Caml_builtin_exceptions.assert_failure,
                             --[[ tuple ]]{
                               "rec_value_test.ml",
@@ -408,7 +408,7 @@ suites_001 = --[[ :: ]]{
                                       rec_variant_b
                                     });
                           end else do
-                            error ({
+                            error({
                               Caml_builtin_exceptions.assert_failure,
                               --[[ tuple ]]{
                                 "rec_value_test.ml",
@@ -453,7 +453,7 @@ fake_inline_inlie2 = fake_inline_minus(3);
 
 Mt.from_pair_suites("Rec_value_test", suites);
 
-v$1 = 3;
+v_1 = 3;
 
 exports.x = x;
 exports.a = a;
@@ -475,7 +475,7 @@ exports.fake_y = fake_y;
 exports.fake_z = fake_z;
 exports.fake_z2 = fake_z2;
 exports.fake_y2 = fake_y2;
-exports.v = v$1;
+exports.v = v_1;
 exports.rec_variant_b = rec_variant_b;
 exports.rec_variant_a = rec_variant_a;
 exports.suites = suites;

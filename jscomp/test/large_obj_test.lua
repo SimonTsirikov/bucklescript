@@ -29,7 +29,7 @@ shared = {
   "get19"
 };
 
-shared$1 = {
+shared_1 = {
   "get9",
   "get8",
   "get7",
@@ -52,7 +52,7 @@ shared$1 = {
   "get0"
 };
 
-shared$2 = {
+shared_2 = {
   "field0",
   "field1",
   "field2",
@@ -157,7 +157,7 @@ shared$2 = {
 
 __class = CamlinternalOO.create_table(shared);
 
-ids = CamlinternalOO.new_methods_variables(__class, shared$1, shared$2);
+ids = CamlinternalOO.new_methods_variables(__class, shared_1, shared_2);
 
 get9 = ids[0];
 
@@ -592,7 +592,7 @@ CamlinternalOO.init_class(__class);
 raw_object = obj_init(0);
 
 if (Caml_oo_curry.js1(291536124, 1, raw_object) ~= 34) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "large_obj_test.ml",
@@ -605,7 +605,7 @@ end
 
 function raw_class_init(__class) do
   value = CamlinternalOO.new_variable(__class, "");
-  ids = CamlinternalOO.new_methods_variables(__class, shared$1, shared$2);
+  ids = CamlinternalOO.new_methods_variables(__class, shared_1, shared_2);
   get9 = ids[0];
   get8 = ids[1];
   get7 = ids[2];
@@ -808,110 +808,110 @@ function raw_class_init(__class) do
             return self$2[field19] + 19 | 0;
           end end)
       });
-  return (function (env, self, value$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[value] = value$1;
-      self$1[field0] = 0;
-      self$1[field1] = (value$1 << 0);
-      self$1[field2] = (value$1 << 1);
-      self$1[field3] = Caml_int32.imul(3, value$1);
-      self$1[field4] = (value$1 << 2);
-      self$1[field5] = Caml_int32.imul(5, value$1);
-      self$1[field6] = Caml_int32.imul(6, value$1);
-      self$1[field7] = Caml_int32.imul(7, value$1);
-      self$1[field8] = (value$1 << 3);
-      self$1[field9] = Caml_int32.imul(9, value$1);
-      self$1[field10] = Caml_int32.imul(10, value$1);
-      self$1[field11] = Caml_int32.imul(11, value$1);
-      self$1[field12] = Caml_int32.imul(12, value$1);
-      self$1[field13] = Caml_int32.imul(13, value$1);
-      self$1[field14] = Caml_int32.imul(14, value$1);
-      self$1[field15] = Caml_int32.imul(15, value$1);
-      self$1[field16] = (value$1 << 4);
-      self$1[field17] = Caml_int32.imul(17, value$1);
-      self$1[field18] = Caml_int32.imul(18, value$1);
-      self$1[field19] = Caml_int32.imul(19, value$1);
-      self$1[field20] = Caml_int32.imul(20, value$1);
-      self$1[field21] = Caml_int32.imul(21, value$1);
-      self$1[field22] = Caml_int32.imul(22, value$1);
-      self$1[field23] = Caml_int32.imul(23, value$1);
-      self$1[field24] = Caml_int32.imul(24, value$1);
-      self$1[field25] = Caml_int32.imul(25, value$1);
-      self$1[field26] = Caml_int32.imul(26, value$1);
-      self$1[field27] = Caml_int32.imul(27, value$1);
-      self$1[field28] = Caml_int32.imul(28, value$1);
-      self$1[field29] = Caml_int32.imul(29, value$1);
-      self$1[field30] = Caml_int32.imul(30, value$1);
-      self$1[field31] = Caml_int32.imul(31, value$1);
-      self$1[field32] = (value$1 << 5);
-      self$1[field33] = Caml_int32.imul(33, value$1);
-      self$1[field34] = Caml_int32.imul(34, value$1);
-      self$1[field35] = Caml_int32.imul(35, value$1);
-      self$1[field36] = Caml_int32.imul(36, value$1);
-      self$1[field37] = Caml_int32.imul(37, value$1);
-      self$1[field38] = Caml_int32.imul(38, value$1);
-      self$1[field39] = Caml_int32.imul(39, value$1);
-      self$1[field40] = Caml_int32.imul(40, value$1);
-      self$1[field41] = Caml_int32.imul(41, value$1);
-      self$1[field42] = Caml_int32.imul(42, value$1);
-      self$1[field43] = Caml_int32.imul(43, value$1);
-      self$1[field44] = Caml_int32.imul(44, value$1);
-      self$1[field45] = Caml_int32.imul(45, value$1);
-      self$1[field46] = Caml_int32.imul(46, value$1);
-      self$1[field47] = Caml_int32.imul(47, value$1);
-      self$1[field48] = Caml_int32.imul(48, value$1);
-      self$1[field49] = Caml_int32.imul(49, value$1);
-      self$1[field50] = Caml_int32.imul(50, value$1);
-      self$1[field51] = Caml_int32.imul(51, value$1);
-      self$1[field52] = Caml_int32.imul(52, value$1);
-      self$1[field53] = Caml_int32.imul(53, value$1);
-      self$1[field54] = Caml_int32.imul(54, value$1);
-      self$1[field55] = Caml_int32.imul(55, value$1);
-      self$1[field56] = Caml_int32.imul(56, value$1);
-      self$1[field57] = Caml_int32.imul(57, value$1);
-      self$1[field58] = Caml_int32.imul(58, value$1);
-      self$1[field59] = Caml_int32.imul(59, value$1);
-      self$1[field60] = Caml_int32.imul(60, value$1);
-      self$1[field61] = Caml_int32.imul(61, value$1);
-      self$1[field62] = Caml_int32.imul(62, value$1);
-      self$1[field63] = Caml_int32.imul(63, value$1);
-      self$1[field64] = (value$1 << 6);
-      self$1[field65] = Caml_int32.imul(65, value$1);
-      self$1[field66] = Caml_int32.imul(66, value$1);
-      self$1[field67] = Caml_int32.imul(67, value$1);
-      self$1[field68] = Caml_int32.imul(68, value$1);
-      self$1[field69] = Caml_int32.imul(69, value$1);
-      self$1[field70] = Caml_int32.imul(70, value$1);
-      self$1[field71] = Caml_int32.imul(71, value$1);
-      self$1[field72] = Caml_int32.imul(72, value$1);
-      self$1[field73] = Caml_int32.imul(73, value$1);
-      self$1[field74] = Caml_int32.imul(74, value$1);
-      self$1[field75] = Caml_int32.imul(75, value$1);
-      self$1[field76] = Caml_int32.imul(76, value$1);
-      self$1[field77] = Caml_int32.imul(77, value$1);
-      self$1[field78] = Caml_int32.imul(78, value$1);
-      self$1[field79] = Caml_int32.imul(79, value$1);
-      self$1[field80] = Caml_int32.imul(80, value$1);
-      self$1[field81] = Caml_int32.imul(81, value$1);
-      self$1[field82] = Caml_int32.imul(82, value$1);
-      self$1[field83] = Caml_int32.imul(83, value$1);
-      self$1[field84] = Caml_int32.imul(84, value$1);
-      self$1[field85] = Caml_int32.imul(85, value$1);
-      self$1[field86] = Caml_int32.imul(86, value$1);
-      self$1[field87] = Caml_int32.imul(87, value$1);
-      self$1[field88] = Caml_int32.imul(88, value$1);
-      self$1[field89] = Caml_int32.imul(89, value$1);
-      self$1[field90] = Caml_int32.imul(90, value$1);
-      self$1[field91] = Caml_int32.imul(91, value$1);
-      self$1[field92] = Caml_int32.imul(92, value$1);
-      self$1[field93] = Caml_int32.imul(93, value$1);
-      self$1[field94] = Caml_int32.imul(94, value$1);
-      self$1[field95] = Caml_int32.imul(95, value$1);
-      self$1[field96] = Caml_int32.imul(96, value$1);
-      self$1[field97] = Caml_int32.imul(97, value$1);
-      self$1[field98] = Caml_int32.imul(98, value$1);
-      self$1[field99] = Caml_int32.imul(99, value$1);
-      return self$1;
+  return (function (env, self, value_1) do
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[value] = value_1;
+      self_1[field0] = 0;
+      self_1[field1] = (value_1 << 0);
+      self_1[field2] = (value_1 << 1);
+      self_1[field3] = Caml_int32.imul(3, value_1);
+      self_1[field4] = (value_1 << 2);
+      self_1[field5] = Caml_int32.imul(5, value_1);
+      self_1[field6] = Caml_int32.imul(6, value_1);
+      self_1[field7] = Caml_int32.imul(7, value_1);
+      self_1[field8] = (value_1 << 3);
+      self_1[field9] = Caml_int32.imul(9, value_1);
+      self_1[field10] = Caml_int32.imul(10, value_1);
+      self_1[field11] = Caml_int32.imul(11, value_1);
+      self_1[field12] = Caml_int32.imul(12, value_1);
+      self_1[field13] = Caml_int32.imul(13, value_1);
+      self_1[field14] = Caml_int32.imul(14, value_1);
+      self_1[field15] = Caml_int32.imul(15, value_1);
+      self_1[field16] = (value_1 << 4);
+      self_1[field17] = Caml_int32.imul(17, value_1);
+      self_1[field18] = Caml_int32.imul(18, value_1);
+      self_1[field19] = Caml_int32.imul(19, value_1);
+      self_1[field20] = Caml_int32.imul(20, value_1);
+      self_1[field21] = Caml_int32.imul(21, value_1);
+      self_1[field22] = Caml_int32.imul(22, value_1);
+      self_1[field23] = Caml_int32.imul(23, value_1);
+      self_1[field24] = Caml_int32.imul(24, value_1);
+      self_1[field25] = Caml_int32.imul(25, value_1);
+      self_1[field26] = Caml_int32.imul(26, value_1);
+      self_1[field27] = Caml_int32.imul(27, value_1);
+      self_1[field28] = Caml_int32.imul(28, value_1);
+      self_1[field29] = Caml_int32.imul(29, value_1);
+      self_1[field30] = Caml_int32.imul(30, value_1);
+      self_1[field31] = Caml_int32.imul(31, value_1);
+      self_1[field32] = (value_1 << 5);
+      self_1[field33] = Caml_int32.imul(33, value_1);
+      self_1[field34] = Caml_int32.imul(34, value_1);
+      self_1[field35] = Caml_int32.imul(35, value_1);
+      self_1[field36] = Caml_int32.imul(36, value_1);
+      self_1[field37] = Caml_int32.imul(37, value_1);
+      self_1[field38] = Caml_int32.imul(38, value_1);
+      self_1[field39] = Caml_int32.imul(39, value_1);
+      self_1[field40] = Caml_int32.imul(40, value_1);
+      self_1[field41] = Caml_int32.imul(41, value_1);
+      self_1[field42] = Caml_int32.imul(42, value_1);
+      self_1[field43] = Caml_int32.imul(43, value_1);
+      self_1[field44] = Caml_int32.imul(44, value_1);
+      self_1[field45] = Caml_int32.imul(45, value_1);
+      self_1[field46] = Caml_int32.imul(46, value_1);
+      self_1[field47] = Caml_int32.imul(47, value_1);
+      self_1[field48] = Caml_int32.imul(48, value_1);
+      self_1[field49] = Caml_int32.imul(49, value_1);
+      self_1[field50] = Caml_int32.imul(50, value_1);
+      self_1[field51] = Caml_int32.imul(51, value_1);
+      self_1[field52] = Caml_int32.imul(52, value_1);
+      self_1[field53] = Caml_int32.imul(53, value_1);
+      self_1[field54] = Caml_int32.imul(54, value_1);
+      self_1[field55] = Caml_int32.imul(55, value_1);
+      self_1[field56] = Caml_int32.imul(56, value_1);
+      self_1[field57] = Caml_int32.imul(57, value_1);
+      self_1[field58] = Caml_int32.imul(58, value_1);
+      self_1[field59] = Caml_int32.imul(59, value_1);
+      self_1[field60] = Caml_int32.imul(60, value_1);
+      self_1[field61] = Caml_int32.imul(61, value_1);
+      self_1[field62] = Caml_int32.imul(62, value_1);
+      self_1[field63] = Caml_int32.imul(63, value_1);
+      self_1[field64] = (value_1 << 6);
+      self_1[field65] = Caml_int32.imul(65, value_1);
+      self_1[field66] = Caml_int32.imul(66, value_1);
+      self_1[field67] = Caml_int32.imul(67, value_1);
+      self_1[field68] = Caml_int32.imul(68, value_1);
+      self_1[field69] = Caml_int32.imul(69, value_1);
+      self_1[field70] = Caml_int32.imul(70, value_1);
+      self_1[field71] = Caml_int32.imul(71, value_1);
+      self_1[field72] = Caml_int32.imul(72, value_1);
+      self_1[field73] = Caml_int32.imul(73, value_1);
+      self_1[field74] = Caml_int32.imul(74, value_1);
+      self_1[field75] = Caml_int32.imul(75, value_1);
+      self_1[field76] = Caml_int32.imul(76, value_1);
+      self_1[field77] = Caml_int32.imul(77, value_1);
+      self_1[field78] = Caml_int32.imul(78, value_1);
+      self_1[field79] = Caml_int32.imul(79, value_1);
+      self_1[field80] = Caml_int32.imul(80, value_1);
+      self_1[field81] = Caml_int32.imul(81, value_1);
+      self_1[field82] = Caml_int32.imul(82, value_1);
+      self_1[field83] = Caml_int32.imul(83, value_1);
+      self_1[field84] = Caml_int32.imul(84, value_1);
+      self_1[field85] = Caml_int32.imul(85, value_1);
+      self_1[field86] = Caml_int32.imul(86, value_1);
+      self_1[field87] = Caml_int32.imul(87, value_1);
+      self_1[field88] = Caml_int32.imul(88, value_1);
+      self_1[field89] = Caml_int32.imul(89, value_1);
+      self_1[field90] = Caml_int32.imul(90, value_1);
+      self_1[field91] = Caml_int32.imul(91, value_1);
+      self_1[field92] = Caml_int32.imul(92, value_1);
+      self_1[field93] = Caml_int32.imul(93, value_1);
+      self_1[field94] = Caml_int32.imul(94, value_1);
+      self_1[field95] = Caml_int32.imul(95, value_1);
+      self_1[field96] = Caml_int32.imul(96, value_1);
+      self_1[field97] = Caml_int32.imul(97, value_1);
+      self_1[field98] = Caml_int32.imul(98, value_1);
+      self_1[field99] = Caml_int32.imul(99, value_1);
+      return self_1;
     end end);
 end end
 
@@ -920,7 +920,7 @@ raw_class = CamlinternalOO.make_class(shared, raw_class_init);
 v = Curry._2(raw_class[0], 0, 3);
 
 if (Caml_oo_curry.js1(291536121, 2, v) ~= 56) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "large_obj_test.ml",

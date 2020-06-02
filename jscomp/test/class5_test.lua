@@ -13,9 +13,9 @@ shared = {
   "empty"
 };
 
-shared$1 = {"x"};
+shared_1 = {"x"};
 
-shared$2 = {
+shared_2 = {
   "move",
   "get_x"
 };
@@ -51,7 +51,7 @@ function printable_point_init(__class) do
         "print",
         "move",
         "get_x"
-      }, shared$1);
+      }, shared_1);
   print = ids[0];
   move = ids[1];
   get_x = ids[2];
@@ -71,11 +71,11 @@ function printable_point_init(__class) do
             return String(Curry._1(self$1[0][get_x], self$1));
           end end)
       });
-  return (function (env, self, x_init$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[x_init] = x_init$1;
-      self$1[x] = x_init$1;
-      return self$1;
+  return (function (env, self, x_init_1) do
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[x_init] = x_init_1;
+      self_1[x] = x_init_1;
+      return self_1;
     end end);
 end end
 
@@ -94,27 +94,27 @@ function printable_colored_point_init(__class) do
       }, {"c"});
   print = ids[0];
   color = ids[1];
-  c$1 = ids[2];
+  c_1 = ids[2];
   CamlinternalOO.set_method(__class, color, (function (self$2) do
-          return self$2[c$1];
+          return self$2[c_1];
         end end));
-  inh = CamlinternalOO.inherits(__class, shared$1, 0, {
+  inh = CamlinternalOO.inherits(__class, shared_1, 0, {
         "get_x",
         "move",
         "print"
       }, printable_point, true);
   obj_init = inh[0];
-  print$1 = inh[4];
+  print_1 = inh[4];
   CamlinternalOO.set_method(__class, print, (function (self$2) do
-          return "(" .. (Curry._1(print$1, self$2) .. (", " .. (Curry._1(self$2[0][color], self$2) .. ")")));
+          return "(" .. (Curry._1(print_1, self$2) .. (", " .. (Curry._1(self$2[0][color], self$2) .. ")")));
         end end));
-  return (function (env, self, y$1, c$2) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[c] = c$2;
-      self$1[y] = y$1;
-      self$1[c$1] = c$2;
-      Curry._2(obj_init, self$1, y$1);
-      return CamlinternalOO.run_initializers_opt(self, self$1, __class);
+  return (function (env, self, y_1, c_2) do
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[c] = c_2;
+      self_1[y] = y_1;
+      self_1[c_1] = c_2;
+      Curry._2(obj_init, self_1, y_1);
+      return CamlinternalOO.run_initializers_opt(self, self_1, __class);
     end end);
 end end
 
@@ -134,7 +134,7 @@ function ref_init(__class) do
   ids = CamlinternalOO.new_methods_variables(__class, {
         "set",
         "get"
-      }, shared$1);
+      }, shared_1);
   set = ids[0];
   get = ids[1];
   x = ids[2];
@@ -149,11 +149,11 @@ function ref_init(__class) do
             return --[[ () ]]0;
           end end)
       });
-  return (function (env, self, x_init$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[x_init] = x_init$1;
-      self$1[x] = x_init$1;
-      return self$1;
+  return (function (env, self, x_init_1) do
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[x_init] = x_init_1;
+      self_1[x] = x_init_1;
+      return self_1;
     end end);
 end end
 
@@ -185,10 +185,10 @@ function intlist_init(__class) do
             return List.fold_left(f, accu, self$4[l]);
           end end)
       });
-  return (function (env, self, l$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[l] = l$1;
-      return self$1;
+  return (function (env, self, l_1) do
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[l] = l_1;
+      return self_1;
     end end);
 end end
 
@@ -224,16 +224,16 @@ function intlist2_init(__class) do
             return List.fold_left(f, accu, self$5[l]);
           end end)
       });
-  return (function (env, self, l$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[l] = l$1;
-      return self$1;
+  return (function (env, self, l_1) do
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[l] = l_1;
+      return self_1;
     end end);
 end end
 
 intlist2 = CamlinternalOO.make_class(shared, intlist2_init);
 
-l$1 = Curry._2(intlist2[0], 0, --[[ :: ]]{
+l_1 = Curry._2(intlist2[0], 0, --[[ :: ]]{
       1,
       --[[ :: ]]{
         2,
@@ -248,17 +248,17 @@ eq("File \"class5_test.ml\", line 67, characters 5-12", --[[ tuple ]]{
       6,
       "1 2 3 "
     }, --[[ tuple ]]{
-      Caml_oo_curry.js3(-1010803711, 5, l$1, (function (x, y) do
+      Caml_oo_curry.js3(-1010803711, 5, l_1, (function (x, y) do
               return x + y | 0;
             end end), 0),
-      Caml_oo_curry.js3(-1010803711, 6, l$1, (function (s, x) do
+      Caml_oo_curry.js3(-1010803711, 6, l_1, (function (s, x) do
               return s .. (String(x) .. " ");
             end end), "")
     });
 
 function point_init(__class) do
   x_init = CamlinternalOO.new_variable(__class, "");
-  ids = CamlinternalOO.new_methods_variables(__class, shared$2, shared$1);
+  ids = CamlinternalOO.new_methods_variables(__class, shared_2, shared_1);
   move = ids[0];
   get_x = ids[1];
   x = ids[2];
@@ -273,33 +273,33 @@ function point_init(__class) do
             return --[[ () ]]0;
           end end)
       });
-  return (function (env, self, x_init$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[x_init] = x_init$1;
-      self$1[x] = x_init$1;
-      return self$1;
+  return (function (env, self, x_init_1) do
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[x_init] = x_init_1;
+      self_1[x] = x_init_1;
+      return self_1;
     end end);
 end end
 
-point = CamlinternalOO.make_class(shared$2, point_init);
+point = CamlinternalOO.make_class(shared_2, point_init);
 
 function distance_point_init(__class) do
   x = CamlinternalOO.new_variable(__class, "");
   distance = CamlinternalOO.get_method_label(__class, "distance");
-  inh = CamlinternalOO.inherits(__class, shared$1, 0, {
+  inh = CamlinternalOO.inherits(__class, shared_1, 0, {
         "get_x",
         "move"
       }, point, true);
   obj_init = inh[0];
-  x$1 = inh[1];
+  x_1 = inh[1];
   CamlinternalOO.set_method(__class, distance, (function (self$7, other) do
-          return Pervasives.abs(Caml_oo_curry.js1(291546447, 7, other) - self$7[x$1] | 0);
+          return Pervasives.abs(Caml_oo_curry.js1(291546447, 7, other) - self$7[x_1] | 0);
         end end));
-  return (function (env, self, x$2) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[x] = x$2;
-      Curry._2(obj_init, self$1, x$2);
-      return CamlinternalOO.run_initializers_opt(self, self$1, __class);
+  return (function (env, self, x_2) do
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[x] = x_2;
+      Curry._2(obj_init, self_1, x_2);
+      return CamlinternalOO.run_initializers_opt(self, self_1, __class);
     end end);
 end end
 
@@ -309,11 +309,11 @@ distance_point = CamlinternalOO.make_class({
       "get_x"
     }, distance_point_init);
 
-p$1 = Curry._2(distance_point[0], 0, 3);
+p_1 = Curry._2(distance_point[0], 0, 3);
 
-a = Caml_oo_curry.js2(-335965387, 8, p$1, Curry._2(point[0], 0, 8));
+a = Caml_oo_curry.js2(-335965387, 8, p_1, Curry._2(point[0], 0, 8));
 
-b = Caml_oo_curry.js2(-335965387, 9, p$1, Curry._3(printable_colored_point[0], 0, 1, "blue"));
+b = Caml_oo_curry.js2(-335965387, 9, p_1, Curry._3(printable_colored_point[0], 0, 1, "blue"));
 
 eq("File \"class5_test.ml\", line 94, characters 5-12", --[[ tuple ]]{
       5,
@@ -335,7 +335,7 @@ exports.ref = ref;
 exports.v = v;
 exports.intlist = intlist;
 exports.intlist2 = intlist2;
-exports.l = l$1;
+exports.l = l_1;
 exports.point = point;
 exports.distance_point = distance_point;
 exports.a = a;

@@ -60,11 +60,11 @@ for i = 0 , 100000 , 1 do
   data = Belt_MapDict.set(data, i, i, m_dict.cmp);
 end
 
-data$1 = data;
+data_1 = data;
 
 newm = do
   cmp: m_dict.cmp,
-  data: data$1
+  data: data_1
 end;
 
 console.log(newm);
@@ -78,17 +78,17 @@ v = do
   data: Belt_SetDict.empty
 end;
 
-m_dict$1 = Belt_Map.getId(m);
+m_dict_1 = Belt_Map.getId(m);
 
-cmp = m_dict$1.cmp;
+cmp = m_dict_1.cmp;
 
-data$2 = v.data;
+data_2 = v.data;
 
-for i$1 = 0 , 100000 , 1 do
-  data$2 = Belt_SetDict.add(data$2, i$1, cmp);
+for i_1 = 0 , 100000 , 1 do
+  data_2 = Belt_SetDict.add(data_2, i_1, cmp);
 end
 
-console.log(data$2);
+console.log(data_2);
 
 function f(param) do
   return Belt_Map.fromArray(param, Icmp);
@@ -114,9 +114,9 @@ b("File \"bs_map_set_dict_test.ml\", line 77, characters 4-11", Belt_Array.every
                         x,
                         x
                       };
-              end end)), (function (param, param$1) do
-            if (param[0] == param$1[0]) then do
-              return param[1] == param$1[1];
+              end end)), (function (param, param_1) do
+            if (param[0] == param_1[0]) then do
+              return param[1] == param_1[1];
             end else do
               return false;
             end end 
@@ -127,9 +127,9 @@ b("File \"bs_map_set_dict_test.ml\", line 82, characters 4-11", Belt_List.every2
                             x,
                             x
                           };
-                  end end))), (function (param, param$1) do
-            if (param[0] == param$1[0]) then do
-              return param[1] == param$1[1];
+                  end end))), (function (param, param_1) do
+            if (param[0] == param_1[0]) then do
+              return param[1] == param_1[1];
             end else do
               return false;
             end end 

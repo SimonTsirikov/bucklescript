@@ -8,13 +8,13 @@ CamlinternalOO = require "../../lib/js/camlinternalOO";
 
 shared = {"x"};
 
-shared$1 = {
+shared_1 = {
   "move",
   "get_x"
 };
 
 function point_init(__class) do
-  ids = CamlinternalOO.new_methods_variables(__class, shared$1, shared);
+  ids = CamlinternalOO.new_methods_variables(__class, shared_1, shared);
   move = ids[0];
   get_x = ids[1];
   x = ids[2];
@@ -30,13 +30,13 @@ function point_init(__class) do
           end end)
       });
   return (function (env, self) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[x] = 0;
-      return self$1;
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[x] = 0;
+      return self_1;
     end end);
 end end
 
-point = CamlinternalOO.make_class(shared$1, point_init);
+point = CamlinternalOO.make_class(shared_1, point_init);
 
 p = Curry._1(point[0], 0);
 
@@ -51,7 +51,7 @@ x0 = do
 end;
 
 function point2_init(__class) do
-  ids = CamlinternalOO.new_methods_variables(__class, shared$1, shared);
+  ids = CamlinternalOO.new_methods_variables(__class, shared_1, shared);
   move = ids[0];
   get_x = ids[1];
   x = ids[2];
@@ -67,22 +67,22 @@ function point2_init(__class) do
           end end)
       });
   return (function (env, self) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
       x0.contents = x0.contents + 1 | 0;
-      self$1[x] = x0.contents;
-      return self$1;
+      self_1[x] = x0.contents;
+      return self_1;
     end end);
 end end
 
-point2 = CamlinternalOO.make_class(shared$1, point2_init);
+point2 = CamlinternalOO.make_class(shared_1, point2_init);
 
 tmp = Curry._1(point2[0], 0);
 
 one = Caml_oo_curry.js1(291546447, 4, tmp);
 
-tmp$1 = Curry._1(point2[0], 0);
+tmp_1 = Curry._1(point2[0], 0);
 
-two = Caml_oo_curry.js1(291546447, 5, tmp$1);
+two = Caml_oo_curry.js1(291546447, 5, tmp_1);
 
 u = do
   x: 3,

@@ -47,9 +47,9 @@ function F2(X, Y) do
 end end
 
 M = do
-  F: (function (funarg, funarg$1) do
+  F: (function (funarg, funarg_1) do
       sheep = function (x) do
-        return 1 + Curry._1(funarg$1.foo, Curry._1(funarg.foo, x)) | 0;
+        return 1 + Curry._1(funarg_1.foo, Curry._1(funarg.foo, x)) | 0;
       end end;
       return do
               sheep: sheep

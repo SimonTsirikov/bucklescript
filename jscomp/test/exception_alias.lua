@@ -13,7 +13,7 @@ b = List.length(--[[ :: ]]{
       }
     });
 
-List$1 = do
+List_1 = do
   compare_lengths: List.compare_lengths,
   compare_length_with: List.compare_length_with,
   cons: List.cons,
@@ -85,5 +85,5 @@ exports.a2 = a2;
 exports.a3 = a3;
 exports.a4 = a4;
 exports.a5 = a5;
-exports.List = List$1;
+exports.List = List_1;
 --[[ b Not a pure module ]]

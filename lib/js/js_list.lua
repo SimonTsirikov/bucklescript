@@ -51,14 +51,14 @@ function nth(l, n) do
     _l = l;
     _n = n;
     while(true) do
-      n$1 = _n;
-      l$1 = _l;
-      if (l$1) then do
-        if (n$1 == 0) then do
-          return Caml_option.some(l$1[0]);
+      n_1 = _n;
+      l_1 = _l;
+      if (l_1) then do
+        if (n_1 == 0) then do
+          return Caml_option.some(l_1[0]);
         end else do
-          _n = n$1 - 1 | 0;
-          _l = l$1[1];
+          _n = n_1 - 1 | 0;
+          _l = l_1[1];
           ::continue:: ;
         end end 
       end else do
@@ -129,13 +129,13 @@ end end
 
 function iteri(f, l) do
   _i = 0;
-  f$1 = f;
+  f_1 = f;
   _param = l;
   while(true) do
     param = _param;
     i = _i;
     if (param) then do
-      f$1(i, param[0]);
+      f_1(i, param[0]);
       _param = param[1];
       _i = i + 1 | 0;
       ::continue:: ;
@@ -194,11 +194,11 @@ function flatten(lx) do
   _acc = --[[ [] ]]0;
   _lx = lx;
   while(true) do
-    lx$1 = _lx;
+    lx_1 = _lx;
     acc = _acc;
-    if (lx$1) then do
-      _lx = lx$1[1];
-      _acc = revAppend(lx$1[0], acc);
+    if (lx_1) then do
+      _lx = lx_1[1];
+      _acc = revAppend(lx_1[0], acc);
       ::continue:: ;
     end else do
       return revAppend(acc, --[[ [] ]]0);
@@ -262,15 +262,15 @@ function filterMap(f, xs) do
 end end
 
 function countBy(f, xs) do
-  f$1 = f;
+  f_1 = f;
   _acc = 0;
   _xs = xs;
   while(true) do
-    xs$1 = _xs;
+    xs_1 = _xs;
     acc = _acc;
-    if (xs$1) then do
-      _xs = xs$1[1];
-      _acc = f$1(xs$1[0]) and acc + 1 | 0 or acc;
+    if (xs_1) then do
+      _xs = xs_1[1];
+      _acc = f_1(xs_1[0]) and acc + 1 | 0 or acc;
       ::continue:: ;
     end else do
       return acc;

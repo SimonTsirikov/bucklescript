@@ -4,7 +4,7 @@ Curry = require "../../lib/js/curry";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function peek_queue(param) do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "format_regression.ml",
@@ -15,7 +15,7 @@ function peek_queue(param) do
 end end
 
 function int_of_size(param) do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "format_regression.ml",
@@ -26,7 +26,7 @@ function int_of_size(param) do
 end end
 
 function take_queue(param) do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "format_regression.ml",
@@ -36,8 +36,8 @@ function take_queue(param) do
   })
 end end
 
-function format_pp_token(param, param$1) do
-  error ({
+function format_pp_token(param, param_1) do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "format_regression.ml",
@@ -51,12 +51,12 @@ function advance_loop(state) do
   while(true) do
     match = peek_queue(state.pp_queue);
     size = match.elem_size;
-    size$1 = int_of_size(size);
-    if (size$1 < 0 and (state.pp_right_total - state.pp_left_total | 0) < state.pp_space_left) then do
+    size_1 = int_of_size(size);
+    if (size_1 < 0 and (state.pp_right_total - state.pp_left_total | 0) < state.pp_space_left) then do
       return 0;
     end else do
       take_queue(state.pp_queue);
-      Curry._1(format_pp_token(state, size$1 < 0 and 1000000010 or size$1), match.token);
+      Curry._1(format_pp_token(state, size_1 < 0 and 1000000010 or size_1), match.token);
       state.pp_left_total = match.length + state.pp_left_total | 0;
       ::continue:: ;
     end end 

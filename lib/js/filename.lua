@@ -31,16 +31,16 @@ function generic_basename(is_dir_sep, current_dir_name, name) do
         _n = n - 1 | 0;
         ::continue:: ;
       end else do
-        _n$1 = n;
+        _n_1 = n;
         p = n + 1 | 0;
         while(true) do
-          n$1 = _n$1;
-          if (n$1 < 0) then do
+          n_1 = _n_1;
+          if (n_1 < 0) then do
             return __String.sub(name, 0, p);
-          end else if (Curry._2(is_dir_sep, name, n$1)) then do
-            return __String.sub(name, n$1 + 1 | 0, (p - n$1 | 0) - 1 | 0);
+          end else if (Curry._2(is_dir_sep, name, n_1)) then do
+            return __String.sub(name, n_1 + 1 | 0, (p - n_1 | 0) - 1 | 0);
           end else do
-            _n$1 = n$1 - 1 | 0;
+            _n_1 = n_1 - 1 | 0;
             ::continue:: ;
           end end  end 
         end;
@@ -62,26 +62,26 @@ function generic_dirname(is_dir_sep, current_dir_name, name) do
         _n = n - 1 | 0;
         ::continue:: ;
       end else do
-        _n$1 = n;
+        _n_1 = n;
         while(true) do
-          n$1 = _n$1;
-          if (n$1 < 0) then do
+          n_1 = _n_1;
+          if (n_1 < 0) then do
             return current_dir_name;
-          end else if (Curry._2(is_dir_sep, name, n$1)) then do
-            _n$2 = n$1;
+          end else if (Curry._2(is_dir_sep, name, n_1)) then do
+            _n_2 = n_1;
             while(true) do
-              n$2 = _n$2;
-              if (n$2 < 0) then do
+              n_2 = _n_2;
+              if (n_2 < 0) then do
                 return __String.sub(name, 0, 1);
-              end else if (Curry._2(is_dir_sep, name, n$2)) then do
-                _n$2 = n$2 - 1 | 0;
+              end else if (Curry._2(is_dir_sep, name, n_2)) then do
+                _n_2 = n_2 - 1 | 0;
                 ::continue:: ;
               end else do
-                return __String.sub(name, 0, n$2 + 1 | 0);
+                return __String.sub(name, 0, n_2 + 1 | 0);
               end end  end 
             end;
           end else do
-            _n$1 = n$1 - 1 | 0;
+            _n_1 = n_1 - 1 | 0;
             ::continue:: ;
           end end  end 
         end;
@@ -128,11 +128,11 @@ temp_dir_name;
 
 xpcall(function() do
   temp_dir_name = Caml_sys.caml_sys_getenv("TMPDIR");
-end end,function(exn) return do
+end end,function(exn) do
   if (exn == Caml_builtin_exceptions.not_found) then do
     temp_dir_name = "/tmp";
   end else do
-    error (exn)
+    error(exn)
   end end 
 end end)
 
@@ -161,9 +161,9 @@ function dirname(param) do
   return generic_dirname(is_dir_sep, current_dir_name, param);
 end end
 
-current_dir_name$1 = ".";
+current_dir_name_1 = ".";
 
-function is_dir_sep$1(s, i) do
+function is_dir_sep_1(s, i) do
   c = Caml_string.get(s, i);
   if (c == --[[ "/" ]]47 or c == --[[ "\\" ]]92) then do
     return true;
@@ -172,7 +172,7 @@ function is_dir_sep$1(s, i) do
   end end 
 end end
 
-function is_relative$1(n) do
+function is_relative_1(n) do
   if ((#n < 1 or Caml_string.get(n, 0) ~= --[[ "/" ]]47) and (#n < 1 or Caml_string.get(n, 0) ~= --[[ "\\" ]]92)) then do
     if (#n < 2) then do
       return true;
@@ -184,8 +184,8 @@ function is_relative$1(n) do
   end end 
 end end
 
-function is_implicit$1(n) do
-  if (is_relative$1(n) and (#n < 2 or __String.sub(n, 0, 2) ~= "./") and (#n < 2 or __String.sub(n, 0, 2) ~= ".\\") and (#n < 3 or __String.sub(n, 0, 3) ~= "../")) then do
+function is_implicit_1(n) do
+  if (is_relative_1(n) and (#n < 2 or __String.sub(n, 0, 2) ~= "./") and (#n < 2 or __String.sub(n, 0, 2) ~= ".\\") and (#n < 3 or __String.sub(n, 0, 3) ~= "../")) then do
     if (#n < 3) then do
       return true;
     end else do
@@ -196,7 +196,7 @@ function is_implicit$1(n) do
   end end 
 end end
 
-function check_suffix$1(name, suff) do
+function check_suffix_1(name, suff) do
   if (#name >= #suff) then do
     s = __String.sub(name, #name - #suff | 0, #suff);
     return Caml_bytes.bytes_to_string(Bytes.lowercase_ascii(Caml_bytes.bytes_of_string(s))) == Caml_bytes.bytes_to_string(Bytes.lowercase_ascii(Caml_bytes.bytes_of_string(suff)));
@@ -205,19 +205,19 @@ function check_suffix$1(name, suff) do
   end end 
 end end
 
-temp_dir_name$1;
+temp_dir_name_1;
 
 xpcall(function() do
-  temp_dir_name$1 = Caml_sys.caml_sys_getenv("TEMP");
-end end,function(exn$1) return do
-  if (exn$1 == Caml_builtin_exceptions.not_found) then do
-    temp_dir_name$1 = ".";
+  temp_dir_name_1 = Caml_sys.caml_sys_getenv("TEMP");
+end end,function(exn_1) do
+  if (exn_1 == Caml_builtin_exceptions.not_found) then do
+    temp_dir_name_1 = ".";
   end else do
-    error (exn$1)
+    error(exn_1)
   end end 
 end end)
 
-function quote$1(s) do
+function quote_1(s) do
   l = #s;
   b = __Buffer.create(l + 20 | 0);
   __Buffer.add_char(b, --[[ "\"" ]]34);
@@ -234,28 +234,28 @@ function quote$1(s) do
           ::continue:: ;
         end else do
           _n = 0;
-          _i$1 = i;
+          _i_1 = i;
           while(true) do
-            i$1 = _i$1;
+            i_1 = _i_1;
             n = _n;
-            if (i$1 == l) then do
+            if (i_1 == l) then do
               __Buffer.add_char(b, --[[ "\"" ]]34);
               return add_bs(n);
             end else do
-              match = Caml_string.get(s, i$1);
+              match = Caml_string.get(s, i_1);
               if (match ~= 34) then do
                 if (match ~= 92) then do
                   add_bs(n);
-                  return loop(i$1);
+                  return loop(i_1);
                 end else do
-                  _i$1 = i$1 + 1 | 0;
+                  _i_1 = i_1 + 1 | 0;
                   _n = n + 1 | 0;
                   ::continue:: ;
                 end end 
               end else do
                 add_bs((n << 1) + 1 | 0);
                 __Buffer.add_char(b, --[[ "\"" ]]34);
-                return loop(i$1 + 1 | 0);
+                return loop(i_1 + 1 | 0);
               end end 
             end end 
           end;
@@ -302,25 +302,25 @@ function drive_and_path(s) do
   end end 
 end end
 
-function dirname$1(s) do
+function dirname_1(s) do
   match = drive_and_path(s);
-  dir = generic_dirname(is_dir_sep$1, current_dir_name$1, match[1]);
+  dir = generic_dirname(is_dir_sep_1, current_dir_name_1, match[1]);
   return match[0] .. dir;
 end end
 
-function basename$1(s) do
+function basename_1(s) do
   match = drive_and_path(s);
-  return generic_basename(is_dir_sep$1, current_dir_name$1, match[1]);
+  return generic_basename(is_dir_sep_1, current_dir_name_1, match[1]);
 end end
 
-current_dir_name$2 = ".";
+current_dir_name_2 = ".";
 
-function basename$2(param) do
-  return generic_basename(is_dir_sep$1, current_dir_name$2, param);
+function basename_2(param) do
+  return generic_basename(is_dir_sep_1, current_dir_name_2, param);
 end end
 
-function dirname$2(param) do
-  return generic_dirname(is_dir_sep$1, current_dir_name$2, param);
+function dirname_2(param) do
+  return generic_dirname(is_dir_sep_1, current_dir_name_2, param);
 end end
 
 match;
@@ -329,31 +329,31 @@ local ___conditional___=(Sys.os_type);
 do
    if ___conditional___ = "Cygwin" then do
       match = --[[ tuple ]]{
-        current_dir_name$2,
+        current_dir_name_2,
         "..",
         "/",
-        is_dir_sep$1,
-        is_relative$1,
-        is_implicit$1,
-        check_suffix$1,
+        is_dir_sep_1,
+        is_relative_1,
+        is_implicit_1,
+        check_suffix_1,
         temp_dir_name,
         quote,
-        basename$2,
-        dirname$2
+        basename_2,
+        dirname_2
       };end else 
    if ___conditional___ = "Win32" then do
       match = --[[ tuple ]]{
-        current_dir_name$1,
+        current_dir_name_1,
         "..",
         "\\",
-        is_dir_sep$1,
-        is_relative$1,
-        is_implicit$1,
-        check_suffix$1,
-        temp_dir_name$1,
-        quote$1,
-        basename$1,
-        dirname$1
+        is_dir_sep_1,
+        is_relative_1,
+        is_implicit_1,
+        check_suffix_1,
+        temp_dir_name_1,
+        quote_1,
+        basename_1,
+        dirname_1
       };end else 
    do end end end
   else do
@@ -374,15 +374,15 @@ do
     
 end
 
-temp_dir_name$2 = match[7];
+temp_dir_name_2 = match[7];
 
-is_dir_sep$2 = match[3];
+is_dir_sep_2 = match[3];
 
 dir_sep = match[2];
 
 function concat(dirname, filename) do
   l = #dirname;
-  if (l == 0 or Curry._2(is_dir_sep$2, dirname, l - 1 | 0)) then do
+  if (l == 0 or Curry._2(is_dir_sep_2, dirname, l - 1 | 0)) then do
     return dirname .. filename;
   end else do
     return dirname .. (dir_sep .. filename);
@@ -392,7 +392,7 @@ end end
 function chop_suffix(name, suff) do
   n = #name - #suff | 0;
   if (n < 0) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Filename.chop_suffix"
     })
@@ -405,17 +405,17 @@ function extension_len(name) do
   _i = #name - 1 | 0;
   while(true) do
     i = _i;
-    if (i < 0 or Curry._2(is_dir_sep$2, name, i)) then do
+    if (i < 0 or Curry._2(is_dir_sep_2, name, i)) then do
       return 0;
     end else if (Caml_string.get(name, i) == --[[ "." ]]46) then do
       i0 = i;
-      _i$1 = i - 1 | 0;
+      _i_1 = i - 1 | 0;
       while(true) do
-        i$1 = _i$1;
-        if (i$1 < 0 or Curry._2(is_dir_sep$2, name, i$1)) then do
+        i_1 = _i_1;
+        if (i_1 < 0 or Curry._2(is_dir_sep_2, name, i_1)) then do
           return 0;
-        end else if (Caml_string.get(name, i$1) == --[[ "." ]]46) then do
-          _i$1 = i$1 - 1 | 0;
+        end else if (Caml_string.get(name, i_1) == --[[ "." ]]46) then do
+          _i_1 = i_1 - 1 | 0;
           ::continue:: ;
         end else do
           return #name - i0 | 0;
@@ -440,7 +440,7 @@ end end
 function chop_extension(name) do
   l = extension_len(name);
   if (l == 0) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Filename.chop_extension"
     })
@@ -485,7 +485,7 @@ function temp_file_name(temp_dir, prefix, suffix) do
 end end
 
 current_temp_dir_name = do
-  contents: temp_dir_name$2
+  contents: temp_dir_name_2
 end;
 
 function set_temp_dir_name(s) do
@@ -515,17 +515,17 @@ function temp_file(temp_dirOpt, prefix, suffix) do
                 }
               }, 384));
       return name;
-    end end,function(raw_e) return do
+    end end,function(raw_e) do
       e = Caml_js_exceptions.internalToOCamlException(raw_e);
       if (e[0] == Caml_builtin_exceptions.sys_error) then do
         if (counter >= 1000) then do
-          error (e)
+          error(e)
         end
          end 
         _counter = counter + 1 | 0;
         ::continue:: ;
       end else do
-        error (e)
+        error(e)
       end end 
     end end)
   end;
@@ -556,55 +556,55 @@ function open_temp_file(modeOpt, permsOpt, temp_dirOpt, prefix, suffix) do
                     }
                   }, perms, name)
             };
-    end end,function(raw_e) return do
+    end end,function(raw_e) do
       e = Caml_js_exceptions.internalToOCamlException(raw_e);
       if (e[0] == Caml_builtin_exceptions.sys_error) then do
         if (counter >= 1000) then do
-          error (e)
+          error(e)
         end
          end 
         _counter = counter + 1 | 0;
         ::continue:: ;
       end else do
-        error (e)
+        error(e)
       end end 
     end end)
   end;
 end end
 
-current_dir_name$3 = match[0];
+current_dir_name_3 = match[0];
 
 parent_dir_name = match[1];
 
-is_relative$2 = match[4];
+is_relative_2 = match[4];
 
-is_implicit$2 = match[5];
+is_implicit_2 = match[5];
 
-check_suffix$2 = match[6];
+check_suffix_2 = match[6];
 
-basename$3 = match[9];
+basename_3 = match[9];
 
-dirname$3 = match[10];
+dirname_3 = match[10];
 
-quote$2 = match[8];
+quote_2 = match[8];
 
-exports.current_dir_name = current_dir_name$3;
+exports.current_dir_name = current_dir_name_3;
 exports.parent_dir_name = parent_dir_name;
 exports.dir_sep = dir_sep;
 exports.concat = concat;
-exports.is_relative = is_relative$2;
-exports.is_implicit = is_implicit$2;
-exports.check_suffix = check_suffix$2;
+exports.is_relative = is_relative_2;
+exports.is_implicit = is_implicit_2;
+exports.check_suffix = check_suffix_2;
 exports.chop_suffix = chop_suffix;
 exports.extension = extension;
 exports.remove_extension = remove_extension;
 exports.chop_extension = chop_extension;
-exports.basename = basename$3;
-exports.dirname = dirname$3;
+exports.basename = basename_3;
+exports.dirname = dirname_3;
 exports.temp_file = temp_file;
 exports.open_temp_file = open_temp_file;
 exports.get_temp_dir_name = get_temp_dir_name;
 exports.set_temp_dir_name = set_temp_dir_name;
-exports.temp_dir_name = temp_dir_name$2;
-exports.quote = quote$2;
+exports.temp_dir_name = temp_dir_name_2;
+exports.quote = quote_2;
 --[[ match Not a pure module ]]

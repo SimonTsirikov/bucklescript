@@ -1,8 +1,8 @@
 --[['use strict';]]
 
 
-function x(prim, prim$1) do
-  return prim % prim$1;
+function x(prim, prim_1) do
+  return prim % prim_1;
 end end
 
 exports.x = x;

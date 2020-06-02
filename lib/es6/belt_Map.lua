@@ -66,16 +66,16 @@ end end
 function split(m, x) do
   cmp = m.cmp;
   match = Belt_MapDict.split(m.data, x, cmp);
-  match$1 = match[0];
+  match_1 = match[0];
   return --[[ tuple ]]{
           --[[ tuple ]]{
             do
               cmp: cmp,
-              data: match$1[0]
+              data: match_1[0]
             end,
             do
               cmp: cmp,
-              data: match$1[1]
+              data: match_1[1]
             end
           },
           match[1]

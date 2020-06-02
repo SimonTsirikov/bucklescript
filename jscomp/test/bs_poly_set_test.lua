@@ -193,26 +193,26 @@ end;
 
 b("File \"bs_poly_set_test.ml\", line 89, characters 4-11", Belt_SetDict.minimum(m.data) == undefined);
 
-m$1 = do
+m_1 = do
   cmp: IntCmp.cmp,
   data: Belt_SetDict.empty
 end;
 
-b("File \"bs_poly_set_test.ml\", line 90, characters 4-11", Belt_SetDict.maximum(m$1.data) == undefined);
+b("File \"bs_poly_set_test.ml\", line 90, characters 4-11", Belt_SetDict.maximum(m_1.data) == undefined);
 
-m$2 = do
+m_2 = do
   cmp: IntCmp.cmp,
   data: Belt_SetDict.empty
 end;
 
-b("File \"bs_poly_set_test.ml\", line 91, characters 4-11", Belt_SetDict.minUndefined(m$2.data) == undefined);
+b("File \"bs_poly_set_test.ml\", line 91, characters 4-11", Belt_SetDict.minUndefined(m_2.data) == undefined);
 
-m$3 = do
+m_3 = do
   cmp: IntCmp.cmp,
   data: Belt_SetDict.empty
 end;
 
-b("File \"bs_poly_set_test.ml\", line 92, characters 4-11", Belt_SetDict.maxUndefined(m$3.data) == undefined);
+b("File \"bs_poly_set_test.ml\", line 92, characters 4-11", Belt_SetDict.maxUndefined(m_3.data) == undefined);
 
 function testIterToList(xs) do
   v = do
@@ -242,45 +242,45 @@ function testIterToList2(xs) do
   return Belt_List.reverse(v.contents);
 end end
 
-u0$1 = Belt_Set.fromArray(Array_data_util.randomRange(0, 20), IntCmp);
+u0_1 = Belt_Set.fromArray(Array_data_util.randomRange(0, 20), IntCmp);
 
-u1$1 = Belt_Set.remove(u0$1, 17);
+u1_1 = Belt_Set.remove(u0_1, 17);
 
-u2$1 = Belt_Set.add(u1$1, 33);
+u2_1 = Belt_Set.add(u1_1, 33);
 
-b("File \"bs_poly_set_test.ml\", line 109, characters 4-11", Belt_List.every2(testIterToList(u0$1), Belt_List.makeBy(21, (function (i) do
+b("File \"bs_poly_set_test.ml\", line 109, characters 4-11", Belt_List.every2(testIterToList(u0_1), Belt_List.makeBy(21, (function (i) do
                 return i;
               end end)), (function (x, y) do
             return x == y;
           end end)));
 
-b("File \"bs_poly_set_test.ml\", line 110, characters 4-11", Belt_List.every2(testIterToList2(u0$1), Belt_List.makeBy(21, (function (i) do
+b("File \"bs_poly_set_test.ml\", line 110, characters 4-11", Belt_List.every2(testIterToList2(u0_1), Belt_List.makeBy(21, (function (i) do
                 return i;
               end end)), (function (x, y) do
             return x == y;
           end end)));
 
-b("File \"bs_poly_set_test.ml\", line 111, characters 4-11", Belt_List.every2(testIterToList(u0$1), Belt_SetDict.toList(u0$1.data), (function (x, y) do
+b("File \"bs_poly_set_test.ml\", line 111, characters 4-11", Belt_List.every2(testIterToList(u0_1), Belt_SetDict.toList(u0_1.data), (function (x, y) do
             return x == y;
           end end)));
 
-b("File \"bs_poly_set_test.ml\", line 112, characters 4-11", Belt_Set.some(u0$1, (function (x) do
+b("File \"bs_poly_set_test.ml\", line 112, characters 4-11", Belt_Set.some(u0_1, (function (x) do
             return x == 17;
           end end)));
 
-b("File \"bs_poly_set_test.ml\", line 113, characters 4-11", not Belt_Set.some(u1$1, (function (x) do
+b("File \"bs_poly_set_test.ml\", line 113, characters 4-11", not Belt_Set.some(u1_1, (function (x) do
             return x == 17;
           end end)));
 
-b("File \"bs_poly_set_test.ml\", line 114, characters 4-11", Belt_Set.every(u0$1, (function (x) do
+b("File \"bs_poly_set_test.ml\", line 114, characters 4-11", Belt_Set.every(u0_1, (function (x) do
             return x < 24;
           end end)));
 
-b("File \"bs_poly_set_test.ml\", line 115, characters 4-11", Belt_SetDict.every(u0$1.data, (function (x) do
+b("File \"bs_poly_set_test.ml\", line 115, characters 4-11", Belt_SetDict.every(u0_1.data, (function (x) do
             return x < 24;
           end end)));
 
-b("File \"bs_poly_set_test.ml\", line 116, characters 4-11", not Belt_Set.every(u2$1, (function (x) do
+b("File \"bs_poly_set_test.ml\", line 116, characters 4-11", not Belt_Set.every(u2_1, (function (x) do
             return x < 24;
           end end)));
 
@@ -292,9 +292,9 @@ b("File \"bs_poly_set_test.ml\", line 117, characters 4-11", not Belt_Set.every(
             return x == 2;
           end end)));
 
-b("File \"bs_poly_set_test.ml\", line 118, characters 4-11", Belt_Set.cmp(u1$1, u0$1) < 0);
+b("File \"bs_poly_set_test.ml\", line 118, characters 4-11", Belt_Set.cmp(u1_1, u0_1) < 0);
 
-b("File \"bs_poly_set_test.ml\", line 119, characters 4-11", Belt_Set.cmp(u0$1, u1$1) > 0);
+b("File \"bs_poly_set_test.ml\", line 119, characters 4-11", Belt_Set.cmp(u0_1, u1_1) > 0);
 
 a0 = Belt_Set.fromArray(Array_data_util.randomRange(0, 1000), IntCmp);
 
@@ -336,31 +336,31 @@ eq("File \"bs_poly_set_test.ml\", line 135, characters 5-12", Belt_SetDict.size(
 
 b("File \"bs_poly_set_test.ml\", line 136, characters 4-11", not Belt_SetDict.isEmpty(a0.data));
 
-match$1 = Belt_Set.split(a0, 200);
+match_1 = Belt_Set.split(a0, 200);
 
-match$2 = match$1[0];
+match_2 = match_1[0];
 
-b("File \"bs_poly_set_test.ml\", line 138, characters 4-11", match$1[1]);
+b("File \"bs_poly_set_test.ml\", line 138, characters 4-11", match_1[1]);
 
-eq("File \"bs_poly_set_test.ml\", line 139, characters 5-12", Belt_SetDict.toArray(match$2[0].data), Belt_Array.makeBy(200, (function (i) do
+eq("File \"bs_poly_set_test.ml\", line 139, characters 5-12", Belt_SetDict.toArray(match_2[0].data), Belt_Array.makeBy(200, (function (i) do
             return i;
           end end)));
 
-eq("File \"bs_poly_set_test.ml\", line 140, characters 5-12", Belt_SetDict.toList(match$2[1].data), Belt_List.makeBy(800, (function (i) do
+eq("File \"bs_poly_set_test.ml\", line 140, characters 5-12", Belt_SetDict.toList(match_2[1].data), Belt_List.makeBy(800, (function (i) do
             return i + 201 | 0;
           end end)));
 
 a7 = Belt_Set.remove(a0, 200);
 
-match$3 = Belt_Set.split(a7, 200);
+match_3 = Belt_Set.split(a7, 200);
 
-match$4 = match$3[0];
+match_4 = match_3[0];
 
-a9 = match$4[1];
+a9 = match_4[1];
 
-a8 = match$4[0];
+a8 = match_4[0];
 
-b("File \"bs_poly_set_test.ml\", line 143, characters 4-11", not match$3[1]);
+b("File \"bs_poly_set_test.ml\", line 143, characters 4-11", not match_3[1]);
 
 eq("File \"bs_poly_set_test.ml\", line 144, characters 5-12", Belt_SetDict.toArray(a8.data), Belt_Array.makeBy(200, (function (i) do
             return i;
@@ -395,24 +395,24 @@ Belt_List.forEach(--[[ :: ]]{
 
 a = Belt_Set.fromArray({}, IntCmp);
 
-m$4 = Belt_Set.keep(a, (function (x) do
+m_4 = Belt_Set.keep(a, (function (x) do
         return x % 2 == 0;
       end end));
 
-b("File \"bs_poly_set_test.ml\", line 153, characters 4-11", Belt_SetDict.isEmpty(m$4.data));
+b("File \"bs_poly_set_test.ml\", line 153, characters 4-11", Belt_SetDict.isEmpty(m_4.data));
 
-match$5 = Belt_Set.split(do
+match_5 = Belt_Set.split(do
       cmp: IntCmp.cmp,
       data: Belt_SetDict.empty
     end, 0);
 
-match$6 = match$5[0];
+match_6 = match_5[0];
 
-b("File \"bs_poly_set_test.ml\", line 157, characters 4-11", Belt_SetDict.isEmpty(match$6[0].data));
+b("File \"bs_poly_set_test.ml\", line 157, characters 4-11", Belt_SetDict.isEmpty(match_6[0].data));
 
-b("File \"bs_poly_set_test.ml\", line 158, characters 4-11", Belt_SetDict.isEmpty(match$6[1].data));
+b("File \"bs_poly_set_test.ml\", line 158, characters 4-11", Belt_SetDict.isEmpty(match_6[1].data));
 
-b("File \"bs_poly_set_test.ml\", line 159, characters 4-11", not match$5[1]);
+b("File \"bs_poly_set_test.ml\", line 159, characters 4-11", not match_5[1]);
 
 Mt.from_pair_suites("Bs_poly_set_test", suites.contents);
 

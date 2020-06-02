@@ -107,9 +107,9 @@ function test_raises_exc_p(pred, f, x) do
     Curry._1(f, x);
     print_failure_test_succeed(--[[ () ]]0);
     return false;
-  end end,function(raw_x) return do
-    x$1 = Caml_js_exceptions.internalToOCamlException(raw_x);
-    if (Curry._1(pred, x$1)) then do
+  end end,function(raw_x) do
+    x_1 = Caml_js_exceptions.internalToOCamlException(raw_x);
+    if (Curry._1(pred, x_1)) then do
       return true;
     end else do
       print_failure_test_fail(--[[ () ]]0);
@@ -127,23 +127,23 @@ function test_raises_some_exc(f) do
 end end
 
 function test_raises_this_exc(exc) do
-  return (function (param, param$1) do
+  return (function (param, param_1) do
       return test_raises_exc_p((function (x) do
                     return Caml_obj.caml_equal(x, exc);
-                  end end), param, param$1);
+                  end end), param, param_1);
     end end);
 end end
 
 function failure_test(f, x, s) do
-  s$1 = s;
-  f$1 = f;
-  x$1 = x;
+  s_1 = s;
+  f_1 = f;
+  x_1 = x;
   return test_raises_exc_p((function (x) do
                 return Caml_obj.caml_equal(x, {
                             Caml_builtin_exceptions.failure,
-                            s$1
+                            s_1
                           });
-              end end), f$1, x$1);
+              end end), f_1, x_1);
 end end
 
 function scan_failure_test(f, x) do

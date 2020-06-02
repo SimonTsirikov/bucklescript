@@ -20,16 +20,16 @@ function generic_basename(is_dir_sep, current_dir_name, name) do
         _n = n - 1 | 0;
         ::continue:: ;
       end else do
-        _n$1 = n;
+        _n_1 = n;
         p = n + 1 | 0;
         while(true) do
-          n$1 = _n$1;
-          if (n$1 < 0) then do
+          n_1 = _n_1;
+          if (n_1 < 0) then do
             return __String.sub(name, 0, p);
-          end else if (Curry._2(is_dir_sep, name, n$1)) then do
-            return __String.sub(name, n$1 + 1 | 0, (p - n$1 | 0) - 1 | 0);
+          end else if (Curry._2(is_dir_sep, name, n_1)) then do
+            return __String.sub(name, n_1 + 1 | 0, (p - n_1 | 0) - 1 | 0);
           end else do
-            _n$1 = n$1 - 1 | 0;
+            _n_1 = n_1 - 1 | 0;
             ::continue:: ;
           end end  end 
         end;

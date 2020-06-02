@@ -318,7 +318,7 @@ function allocated_bytes(param) do
   return (match[0] + match[2] - match[1]) * 4;
 end end
 
-function finalise_last(param, param$1) do
+function finalise_last(param, param_1) do
   return --[[ () ]]0;
 end end
 

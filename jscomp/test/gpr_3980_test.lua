@@ -7,7 +7,7 @@ match = 1;
 
 if (match ~= undefined) then do
   if (match ~= 1) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "gpr_3980_test.ml",
@@ -17,10 +17,10 @@ if (match ~= undefined) then do
     })
   end
    end 
-  match$1 = 1;
-  if (match$1 ~= 1) then do
-    if (match$1 ~= 2) then do
-      error ({
+  match_1 = 1;
+  if (match_1 ~= 1) then do
+    if (match_1 ~= 2) then do
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "gpr_3980_test.ml",
@@ -37,7 +37,7 @@ if (match ~= undefined) then do
   end
    end 
 end else do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "gpr_3980_test.ml",

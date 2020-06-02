@@ -38,8 +38,8 @@ function f2(x) do
     z = 33;
     y = z + 4 | 0;
   end else do
-    z$1 = 33;
-    y = z$1 + 3 | 0;
+    z_1 = 33;
+    y = z_1 + 3 | 0;
   end end 
   return y + 32 | 0;
 end end

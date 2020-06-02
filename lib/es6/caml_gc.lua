@@ -33,7 +33,7 @@ function caml_gc_compaction(param) do
   return --[[ () ]]0;
 end end
 
-function caml_final_register(param, param$1) do
+function caml_final_register(param, param_1) do
   return --[[ () ]]0;
 end end
 

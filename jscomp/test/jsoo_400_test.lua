@@ -8,7 +8,7 @@ function u(param) do
   n;
   xpcall(function() do
     n = 3;
-  end end,function(exn) return do
+  end end,function(exn) do
     return 42;
   end end)
   return Caml_int32.div(3, 0);

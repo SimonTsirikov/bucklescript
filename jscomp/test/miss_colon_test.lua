@@ -51,14 +51,14 @@ function $star$colon(_f, _g) do
     g = _g;
     f = _f;
     exit = 0;
-    exit$1 = 0;
+    exit_1 = 0;
     if (f.tag) then do
-      exit$1 = 3;
+      exit_1 = 3;
     end else do
       n = f[0];
       if (g.tag) then do
         if (n ~= 0) then do
-          exit$1 = 3;
+          exit_1 = 3;
         end else do
           return --[[ Int ]]Block.__(0, {0});
         end end 
@@ -66,7 +66,7 @@ function $star$colon(_f, _g) do
         return --[[ Int ]]Block.__(0, {Caml_int32.imul(n, g[0])});
       end end 
     end end 
-    if (exit$1 == 3) then do
+    if (exit_1 == 3) then do
       if (g.tag or g[0] ~= 0) then do
         exit = 2;
       end else do

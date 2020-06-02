@@ -17,14 +17,14 @@ function to_list(v) do
 end end
 
 function v(param) do
-  v$1 = do
+  v_1 = do
     c: --[[ [] ]]0,
     len: 0
   end;
-  Stack.push(3, v$1);
-  Stack.push(4, v$1);
-  Stack.push(1, v$1);
-  return to_list(v$1);
+  Stack.push(3, v_1);
+  Stack.push(4, v_1);
+  Stack.push(1, v_1);
+  return to_list(v_1);
 end end
 
 suites_000 = --[[ tuple ]]{

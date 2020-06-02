@@ -36,10 +36,10 @@ function h34(x) do
   return Curry._1(x(1, 2, 3), 4);
 end end
 
-function ocaml_run(param, param$1) do
+function ocaml_run(param, param_1) do
   return (function (x, y, z) do
               return (x + y | 0) + z | 0;
-            end end)(1, param, param$1);
+            end end)(1, param, param_1);
 end end
 
 function a0() do

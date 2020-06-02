@@ -96,7 +96,7 @@ v2 = --[[ A0 ]]Block.__(0, {
     --[[ x22 ]]9
   });
 
-function get_x0$1(x) do
+function get_x0_1(x) do
   if (x.tag) then do
     return ;
   end else do
@@ -114,7 +114,7 @@ function f2(x) do
   end end 
 end end
 
-eq("File \"large_record_duplication_test.ml\", line 194, characters 6-13", get_x0$1(f2(v2)), 1);
+eq("File \"large_record_duplication_test.ml\", line 194, characters 6-13", get_x0_1(f2(v2)), 1);
 
 A0 = Caml_exceptions.create("Large_record_duplication_test.A0");
 
@@ -128,7 +128,7 @@ function f3(x) do
   end end 
 end end
 
-function get_x0$2(x) do
+function get_x0_2(x) do
   if (x[0] == A0) then do
     return x[--[[ x0 ]]1];
   end
@@ -162,11 +162,11 @@ v3 = {
   --[[ x22 ]]9
 };
 
-eq("File \"large_record_duplication_test.ml\", line 260, characters 6-13", get_x0$2(f3(v3)), 1);
+eq("File \"large_record_duplication_test.ml\", line 260, characters 6-13", get_x0_2(f3(v3)), 1);
 
-eq("File \"large_record_duplication_test.ml\", line 261, characters 6-13", get_x0$2(v3), 9);
+eq("File \"large_record_duplication_test.ml\", line 261, characters 6-13", get_x0_2(v3), 9);
 
-eq("File \"large_record_duplication_test.ml\", line 262, characters 6-13", get_x0$2(Caml_builtin_exceptions.not_found), undefined);
+eq("File \"large_record_duplication_test.ml\", line 262, characters 6-13", get_x0_2(Caml_builtin_exceptions.not_found), undefined);
 
 Mt.from_pair_suites("Large_record_duplication_test", suites.contents);
 
@@ -207,6 +207,6 @@ exports.v2 = v2;
 exports.f2 = f2;
 exports.A0 = A0;
 exports.f3 = f3;
-exports.get_x0 = get_x0$2;
+exports.get_x0 = get_x0_2;
 exports.v3 = v3;
 --[[  Not a pure module ]]

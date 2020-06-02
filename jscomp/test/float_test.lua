@@ -20,14 +20,14 @@ suites = do
 end;
 
 function eq(loc) do
-  return (function (param, param$1) do
-      return Mt_global.collect_eq(test_id, suites, loc, param, param$1);
+  return (function (param, param_1) do
+      return Mt_global.collect_eq(test_id, suites, loc, param, param_1);
     end end);
 end end
 
 function approx(loc) do
-  return (function (param, param$1) do
-      return Mt_global.collect_approx(test_id, suites, loc, param, param$1);
+  return (function (param, param_1) do
+      return Mt_global.collect_approx(test_id, suites, loc, param, param_1);
     end end);
 end end
 
@@ -38,9 +38,9 @@ epsilon_float = Caml_int64.float_of_bits(--[[ int64 ]]{
 
 match = Caml_float.caml_frexp_float(12.0);
 
-match$1 = Caml_float.caml_frexp_float(0);
+match_1 = Caml_float.caml_frexp_float(0);
 
-match$2 = Caml_float.caml_frexp_float(-12.0);
+match_2 = Caml_float.caml_frexp_float(-12.0);
 
 results = __Array.append({
       --[[ tuple ]]{
@@ -97,11 +97,11 @@ results = __Array.append({
       }
     }, {
       --[[ tuple ]]{
-        match$1[0],
+        match_1[0],
         0
       },
       --[[ tuple ]]{
-        match$1[1],
+        match_1[1],
         0
       },
       --[[ tuple ]]{
@@ -113,11 +113,11 @@ results = __Array.append({
         4
       },
       --[[ tuple ]]{
-        match$2[0],
+        match_2[0],
         -0.75
       },
       --[[ tuple ]]{
-        match$2[1],
+        match_2[1],
         4
       }
     });
@@ -155,36 +155,36 @@ param = Pervasives.classify_float(3);
 
 Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 47, characters 5-12", param, --[[ FP_normal ]]0);
 
-param$1 = Caml_float.caml_modf_float(-3.125);
+param_1 = Caml_float.caml_modf_float(-3.125);
 
-Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 48, characters 5-12", param$1, --[[ tuple ]]{
+Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 48, characters 5-12", param_1, --[[ tuple ]]{
       -0.125,
       -3
     });
 
-match$3 = Caml_float.caml_modf_float(Number.NaN);
+match_3 = Caml_float.caml_modf_float(Number.NaN);
 
-param_000 = isNaN(match$3[0]);
+param_000 = isNaN(match_3[0]);
 
-param_001 = isNaN(match$3[1]);
+param_001 = isNaN(match_3[1]);
 
-param$2 = --[[ tuple ]]{
+param_2 = --[[ tuple ]]{
   param_000,
   param_001
 };
 
-Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 49, characters 5-12", param$2, --[[ tuple ]]{
+Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 49, characters 5-12", param_2, --[[ tuple ]]{
       true,
       true
     });
 
-param$3 = {
+param_3 = {
   -1,
   1,
   1
 };
 
-param$4 = __Array.map((function (x) do
+param_4 = __Array.map((function (x) do
         if (x > 0) then do
           return 1;
         end else if (x < 0) then do
@@ -209,37 +209,37 @@ param$4 = __Array.map((function (x) do
           }
         }));
 
-Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 52, characters 5-12", param$4, param$3);
+Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 52, characters 5-12", param_4, param_3);
 
-param$5 = Caml_float.caml_copysign_float(-3, 0);
+param_5 = Caml_float.caml_copysign_float(-3, 0);
 
-Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 56, characters 5-12", param$5, 3);
+Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 56, characters 5-12", param_5, 3);
 
-param$6 = Caml_float.caml_copysign_float(3, 0);
+param_6 = Caml_float.caml_copysign_float(3, 0);
 
-Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 57, characters 5-12", param$6, 3);
+Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 57, characters 5-12", param_6, 3);
 
-param$7 = Math.log10(10);
+param_7 = Math.log10(10);
 
-Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 58, characters 5-12", param$7, 1);
+Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 58, characters 5-12", param_7, 1);
 
-param$8 = Caml_float.caml_expm1_float(0);
+param_8 = Caml_float.caml_expm1_float(0);
 
-Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 59, characters 5-12", param$8, 0);
+Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 59, characters 5-12", param_8, 0);
 
-param$9 = Number("3.0");
+param_9 = Number("3.0");
 
-Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 60, characters 5-12", param$9, 3.0);
+Mt_global.collect_eq(test_id, suites, "File \"float_test.ml\", line 60, characters 5-12", param_9, 3.0);
 
-param$10 = Caml_float.caml_expm1_float(2);
+param_10 = Caml_float.caml_expm1_float(2);
 
-Mt_global.collect_approx(test_id, suites, "File \"float_test.ml\", line 61, characters 9-16", param$10, 6.38905609893065);
+Mt_global.collect_approx(test_id, suites, "File \"float_test.ml\", line 61, characters 9-16", param_10, 6.38905609893065);
 
-match$4 = Caml_float.caml_modf_float(32.3);
+match_4 = Caml_float.caml_modf_float(32.3);
 
-b = match$4[1];
+b = match_4[1];
 
-a = match$4[0];
+a = match_4[0];
 
 Mt.from_pair_suites("Float_test", Pervasives.$at(--[[ :: ]]{
           --[[ tuple ]]{

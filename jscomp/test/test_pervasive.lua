@@ -3,7 +3,7 @@
 List = require "../../lib/js/list";
 Pervasives = require "../../lib/js/pervasives";
 
-Pervasives$1 = do
+Pervasives_1 = do
   length: List.length,
   compare_lengths: List.compare_lengths,
   compare_length_with: List.compare_length_with,
@@ -163,8 +163,8 @@ function a4(prim) do
   return Math.asin(prim);
 end end
 
-function a5(prim, prim$1) do
-  return Math.atan2(prim, prim$1);
+function a5(prim, prim_1) do
+  return Math.atan2(prim, prim_1);
 end end
 
 function a6(prim) do
@@ -215,13 +215,13 @@ function a17(prim) do
   return Math.log1p(prim);
 end end
 
-function a18(prim, prim$1) do
-  return Math.pow(prim, prim$1);
+function a18(prim, prim_1) do
+  return Math.pow(prim, prim_1);
 end end
 
 f = Pervasives.$at;
 
-exports.Pervasives = Pervasives$1;
+exports.Pervasives = Pervasives_1;
 exports.f = f;
 exports.a0 = a0;
 exports.a1 = a1;

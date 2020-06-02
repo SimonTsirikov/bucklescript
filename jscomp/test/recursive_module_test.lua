@@ -77,14 +77,14 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
       fact: fact
     end);
 
-fact$1 = M.fact;
+fact_1 = M.fact;
 
 Fact = do
   M: M,
-  fact: fact$1
+  fact: fact_1
 end;
 
-eq("File \"recursive_module_test.ml\", line 30, characters 5-12", 120, Curry._1(fact$1, 5));
+eq("File \"recursive_module_test.ml\", line 30, characters 5-12", 120, Curry._1(fact_1, 5));
 
 add(--[[ tuple ]]{
       "File \"recursive_module_test.ml\", line 34, characters 7-14",

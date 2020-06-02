@@ -49,13 +49,13 @@ function bal(l, x, d, r) do
       end else if (lr) then do
         return create(create(ll, lv, ld, lr[--[[ l ]]0]), lr[--[[ v ]]1], lr[--[[ d ]]2], create(lr[--[[ r ]]3], x, d, r));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Map.bal"
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Map.bal"
       })
@@ -71,13 +71,13 @@ function bal(l, x, d, r) do
       end else if (rl) then do
         return create(create(l, x, d, rl[--[[ l ]]0]), rl[--[[ v ]]1], rl[--[[ d ]]2], create(rl[--[[ r ]]3], rv, rd, rr));
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Map.bal"
         })
       end end  end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Map.bal"
       })
@@ -158,7 +158,7 @@ function find(x, _param) do
         ::continue:: ;
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -171,21 +171,21 @@ function find_first(f, _param) do
       if (Curry._1(f, v)) then do
         _v0 = v;
         _d0 = param[--[[ d ]]2];
-        f$1 = f;
-        _param$1 = param[--[[ l ]]0];
+        f_1 = f;
+        _param_1 = param[--[[ l ]]0];
         while(true) do
-          param$1 = _param$1;
+          param_1 = _param_1;
           d0 = _d0;
           v0 = _v0;
-          if (param$1) then do
-            v$1 = param$1[--[[ v ]]1];
-            if (Curry._1(f$1, v$1)) then do
-              _param$1 = param$1[--[[ l ]]0];
-              _d0 = param$1[--[[ d ]]2];
-              _v0 = v$1;
+          if (param_1) then do
+            v_1 = param_1[--[[ v ]]1];
+            if (Curry._1(f_1, v_1)) then do
+              _param_1 = param_1[--[[ l ]]0];
+              _d0 = param_1[--[[ d ]]2];
+              _v0 = v_1;
               ::continue:: ;
             end else do
-              _param$1 = param$1[--[[ r ]]3];
+              _param_1 = param_1[--[[ r ]]3];
               ::continue:: ;
             end end 
           end else do
@@ -200,7 +200,7 @@ function find_first(f, _param) do
         ::continue:: ;
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -213,21 +213,21 @@ function find_first_opt(f, _param) do
       if (Curry._1(f, v)) then do
         _v0 = v;
         _d0 = param[--[[ d ]]2];
-        f$1 = f;
-        _param$1 = param[--[[ l ]]0];
+        f_1 = f;
+        _param_1 = param[--[[ l ]]0];
         while(true) do
-          param$1 = _param$1;
+          param_1 = _param_1;
           d0 = _d0;
           v0 = _v0;
-          if (param$1) then do
-            v$1 = param$1[--[[ v ]]1];
-            if (Curry._1(f$1, v$1)) then do
-              _param$1 = param$1[--[[ l ]]0];
-              _d0 = param$1[--[[ d ]]2];
-              _v0 = v$1;
+          if (param_1) then do
+            v_1 = param_1[--[[ v ]]1];
+            if (Curry._1(f_1, v_1)) then do
+              _param_1 = param_1[--[[ l ]]0];
+              _d0 = param_1[--[[ d ]]2];
+              _v0 = v_1;
               ::continue:: ;
             end else do
-              _param$1 = param$1[--[[ r ]]3];
+              _param_1 = param_1[--[[ r ]]3];
               ::continue:: ;
             end end 
           end else do
@@ -255,21 +255,21 @@ function find_last(f, _param) do
       if (Curry._1(f, v)) then do
         _v0 = v;
         _d0 = param[--[[ d ]]2];
-        f$1 = f;
-        _param$1 = param[--[[ r ]]3];
+        f_1 = f;
+        _param_1 = param[--[[ r ]]3];
         while(true) do
-          param$1 = _param$1;
+          param_1 = _param_1;
           d0 = _d0;
           v0 = _v0;
-          if (param$1) then do
-            v$1 = param$1[--[[ v ]]1];
-            if (Curry._1(f$1, v$1)) then do
-              _param$1 = param$1[--[[ r ]]3];
-              _d0 = param$1[--[[ d ]]2];
-              _v0 = v$1;
+          if (param_1) then do
+            v_1 = param_1[--[[ v ]]1];
+            if (Curry._1(f_1, v_1)) then do
+              _param_1 = param_1[--[[ r ]]3];
+              _d0 = param_1[--[[ d ]]2];
+              _v0 = v_1;
               ::continue:: ;
             end else do
-              _param$1 = param$1[--[[ l ]]0];
+              _param_1 = param_1[--[[ l ]]0];
               ::continue:: ;
             end end 
           end else do
@@ -284,7 +284,7 @@ function find_last(f, _param) do
         ::continue:: ;
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -297,21 +297,21 @@ function find_last_opt(f, _param) do
       if (Curry._1(f, v)) then do
         _v0 = v;
         _d0 = param[--[[ d ]]2];
-        f$1 = f;
-        _param$1 = param[--[[ r ]]3];
+        f_1 = f;
+        _param_1 = param[--[[ r ]]3];
         while(true) do
-          param$1 = _param$1;
+          param_1 = _param_1;
           d0 = _d0;
           v0 = _v0;
-          if (param$1) then do
-            v$1 = param$1[--[[ v ]]1];
-            if (Curry._1(f$1, v$1)) then do
-              _param$1 = param$1[--[[ r ]]3];
-              _d0 = param$1[--[[ d ]]2];
-              _v0 = v$1;
+          if (param_1) then do
+            v_1 = param_1[--[[ v ]]1];
+            if (Curry._1(f_1, v_1)) then do
+              _param_1 = param_1[--[[ r ]]3];
+              _d0 = param_1[--[[ d ]]2];
+              _v0 = v_1;
               ::continue:: ;
             end else do
-              _param$1 = param$1[--[[ l ]]0];
+              _param_1 = param_1[--[[ l ]]0];
               ::continue:: ;
             end end 
           end else do
@@ -380,7 +380,7 @@ function min_binding(_param) do
               };
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -420,7 +420,7 @@ function max_binding(_param) do
               };
       end end 
     end else do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end end 
   end;
 end end
@@ -454,7 +454,7 @@ function remove_min_binding(param) do
       return param[--[[ r ]]3];
     end end 
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Map.remove_min_elt"
     })
@@ -544,12 +544,12 @@ function update(x, f, m) do
       end end 
     end end  end 
   end else do
-    match$1 = Curry._1(f, undefined);
-    if (match$1 ~= undefined) then do
+    match_1 = Curry._1(f, undefined);
+    if (match_1 ~= undefined) then do
       return --[[ Node ]]{
               --[[ l : Empty ]]0,
               --[[ v ]]x,
-              --[[ d ]]Caml_option.valFromOption(match$1),
+              --[[ d ]]Caml_option.valFromOption(match_1),
               --[[ r : Empty ]]0,
               --[[ h ]]1
             };
@@ -732,11 +732,11 @@ function split(x, param) do
               join(match[2], v, d, r)
             };
     end else do
-      match$1 = split(x, r);
+      match_1 = split(x, r);
       return --[[ tuple ]]{
-              join(l, v, d, match$1[0]),
-              match$1[1],
-              match$1[2]
+              join(l, v, d, match_1[0]),
+              match_1[1],
+              match_1[2]
             };
     end end  end 
   end else do
@@ -748,12 +748,12 @@ function split(x, param) do
   end end 
 end end
 
-function merge$1(f, s1, s2) do
+function merge_1(f, s1, s2) do
   if (s1) then do
     v1 = s1[--[[ v ]]1];
     if (s1[--[[ h ]]4] >= height(s2)) then do
       match = split(v1, s2);
-      return concat_or_join(merge$1(f, s1[--[[ l ]]0], match[0]), v1, Curry._3(f, v1, Caml_option.some(s1[--[[ d ]]2]), match[1]), merge$1(f, s1[--[[ r ]]3], match[2]));
+      return concat_or_join(merge_1(f, s1[--[[ l ]]0], match[0]), v1, Curry._3(f, v1, Caml_option.some(s1[--[[ d ]]2]), match[1]), merge_1(f, s1[--[[ r ]]3], match[2]));
     end
      end 
   end else if (not s2) then do
@@ -762,10 +762,10 @@ function merge$1(f, s1, s2) do
    end  end 
   if (s2) then do
     v2 = s2[--[[ v ]]1];
-    match$1 = split(v2, s1);
-    return concat_or_join(merge$1(f, match$1[0], s2[--[[ l ]]0]), v2, Curry._3(f, v2, match$1[1], Caml_option.some(s2[--[[ d ]]2])), merge$1(f, match$1[2], s2[--[[ r ]]3]));
+    match_1 = split(v2, s1);
+    return concat_or_join(merge_1(f, match_1[0], s2[--[[ l ]]0]), v2, Curry._3(f, v2, match_1[1], Caml_option.some(s2[--[[ d ]]2])), merge_1(f, match_1[2], s2[--[[ r ]]3]));
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "map.ml",
@@ -785,23 +785,23 @@ function union(f, s1, s2) do
       v1 = s1[--[[ v ]]1];
       if (s1[--[[ h ]]4] >= s2[--[[ h ]]4]) then do
         match = split(v1, s2);
-        d2$1 = match[1];
+        d2_1 = match[1];
         l = union(f, s1[--[[ l ]]0], match[0]);
         r = union(f, s1[--[[ r ]]3], match[2]);
-        if (d2$1 ~= undefined) then do
-          return concat_or_join(l, v1, Curry._3(f, v1, d1, Caml_option.valFromOption(d2$1)), r);
+        if (d2_1 ~= undefined) then do
+          return concat_or_join(l, v1, Curry._3(f, v1, d1, Caml_option.valFromOption(d2_1)), r);
         end else do
           return join(l, v1, d1, r);
         end end 
       end else do
-        match$1 = split(v2, s1);
-        d1$1 = match$1[1];
-        l$1 = union(f, match$1[0], s2[--[[ l ]]0]);
-        r$1 = union(f, match$1[2], s2[--[[ r ]]3]);
-        if (d1$1 ~= undefined) then do
-          return concat_or_join(l$1, v2, Curry._3(f, v2, Caml_option.valFromOption(d1$1), d2), r$1);
+        match_1 = split(v2, s1);
+        d1_1 = match_1[1];
+        l_1 = union(f, match_1[0], s2[--[[ l ]]0]);
+        r_1 = union(f, match_1[2], s2[--[[ r ]]3]);
+        if (d1_1 ~= undefined) then do
+          return concat_or_join(l_1, v2, Curry._3(f, v2, Caml_option.valFromOption(d1_1), d2), r_1);
         end else do
-          return join(l$1, v2, d2, r$1);
+          return join(l_1, v2, d2, r_1);
         end end 
       end end 
     end else do
@@ -843,9 +843,9 @@ function partition(p, param) do
     lf = match[1];
     lt = match[0];
     pvd = Curry._2(p, v, d);
-    match$1 = partition(p, param[--[[ r ]]3]);
-    rf = match$1[1];
-    rt = match$1[0];
+    match_1 = partition(p, param[--[[ r ]]3]);
+    rf = match_1[1];
+    rt = match_1[0];
     if (pvd) then do
       return --[[ tuple ]]{
               join(lt, v, d, rt),
@@ -896,9 +896,9 @@ function compare(cmp, m1, m2) do
         if (c ~= 0) then do
           return c;
         end else do
-          c$1 = Curry._2(cmp, e1[1], e2[1]);
-          if (c$1 ~= 0) then do
-            return c$1;
+          c_1 = Curry._2(cmp, e1[1], e2[1]);
+          if (c_1 ~= 0) then do
+            return c_1;
           end else do
             _e2 = cons_enum(e2[2], e2[3]);
             _e1 = cons_enum(e1[2], e1[3]);
@@ -983,7 +983,7 @@ exports.add = add;
 exports.update = update;
 exports.singleton = singleton;
 exports.remove = remove;
-exports.merge = merge$1;
+exports.merge = merge_1;
 exports.union = union;
 exports.compare = compare;
 exports.equal = equal;

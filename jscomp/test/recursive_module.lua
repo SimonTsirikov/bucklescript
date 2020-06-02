@@ -24,8 +24,8 @@ function eq(loc, x, y) do
 end end
 
 Xx = do
-  f: (function (prim, prim$1) do
-      return Caml_external_polyfill.resolve("hfiehi")(prim, prim$1);
+  f: (function (prim, prim_1) do
+      return Caml_external_polyfill.resolve("hfiehi")(prim, prim_1);
     end end)
 end;
 
@@ -72,7 +72,7 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
       a: a
     end);
 
-a$1 = Caml_obj.caml_lazy_make((function (param) do
+a_1 = Caml_obj.caml_lazy_make((function (param) do
         return CamlinternalLazy.force(Inta.a) + 1 | 0;
       end end));
 
@@ -80,24 +80,24 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
           }}}), Intb, do
-      a: a$1
+      a: a_1
     end);
 
 tmp;
 
 xpcall(function() do
   tmp = CamlinternalLazy.force(Intb.a);
-end end,function(exn) return do
+end end,function(exn) do
   if (exn == Lazy.Undefined) then do
     tmp = -1;
   end else do
-    error (exn)
+    error(exn)
   end end 
 end end)
 
 eq("File \"recursive_module.ml\", line 41, characters 3-10", -1, tmp);
 
-Inta$1 = Caml_module.init_mod(--[[ tuple ]]{
+Inta_1 = Caml_module.init_mod(--[[ tuple ]]{
       "recursive_module.ml",
       48,
       8
@@ -106,7 +106,7 @@ Inta$1 = Caml_module.init_mod(--[[ tuple ]]{
             "a"
           }}}));
 
-Intb$1 = Caml_module.init_mod(--[[ tuple ]]{
+Intb_1 = Caml_module.init_mod(--[[ tuple ]]{
       "recursive_module.ml",
       53,
       8
@@ -115,46 +115,46 @@ Intb$1 = Caml_module.init_mod(--[[ tuple ]]{
             "a"
           }}}));
 
-a$2 = Caml_obj.caml_lazy_make((function (param) do
-        return CamlinternalLazy.force(Intb$1.a) + 1 | 0;
+a_2 = Caml_obj.caml_lazy_make((function (param) do
+        return CamlinternalLazy.force(Intb_1.a) + 1 | 0;
       end end));
 
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          }}}), Inta$1, do
-      a: a$2
+          }}}), Inta_1, do
+      a: a_2
     end);
 
 Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Lazy ]]1,
             "a"
-          }}}), Intb$1, do
+          }}}), Intb_1, do
       a: 2
     end);
 
 A = do
-  Inta: Inta$1,
-  Intb: Intb$1
+  Inta: Inta_1,
+  Intb: Intb_1
 end;
 
-eq("File \"recursive_module.ml\", line 58, characters 6-13", CamlinternalLazy.force(Inta$1.a), 3);
+eq("File \"recursive_module.ml\", line 58, characters 6-13", CamlinternalLazy.force(Inta_1.a), 3);
 
-tmp$1;
+tmp_1;
 
 xpcall(function() do
   Curry._1(Int3.u, 3);
-  tmp$1 = 3;
-end end,function(raw_exn) return do
-  exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
-  if (exn$1[0] == Caml_builtin_exceptions.undefined_recursive_module) then do
-    tmp$1 = 4;
+  tmp_1 = 3;
+end end,function(raw_exn) do
+  exn_1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
+  if (exn_1[0] == Caml_builtin_exceptions.undefined_recursive_module) then do
+    tmp_1 = 4;
   end else do
-    error (exn$1)
+    error(exn_1)
   end end 
 end end)
 
-eq("File \"recursive_module.ml\", line 60, characters 6-13", 4, tmp$1);
+eq("File \"recursive_module.ml\", line 60, characters 6-13", 4, tmp_1);
 
 Mt.from_pair_suites("Recursive_module", suites.contents);
 

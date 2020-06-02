@@ -7,13 +7,13 @@ function binarySearch(upper, id, array) do
   xs = array;
   k = id;
   while(true) do
-    upper$1 = _upper;
+    upper_1 = _upper;
     lower = _lower;
-    if (lower >= upper$1) then do
-      error (new Error("binarySearchAux"))
+    if (lower >= upper_1) then do
+      error(new Error("binarySearchAux"))
     end
      end 
-    mid = (lower + upper$1 | 0) / 2 | 0;
+    mid = (lower + upper_1 | 0) / 2 | 0;
     match = xs[mid];
     i = match[0];
     if (i == k) then do
@@ -30,12 +30,12 @@ end end
 
 function revSearch(len, array, x) do
   _i = 0;
-  len$1 = len;
+  len_1 = len;
   xs = array;
   k = x;
   while(true) do
     i = _i;
-    if (i == len$1) then do
+    if (i == len_1) then do
       return ;
     end else do
       match = xs[i];
@@ -50,14 +50,14 @@ function revSearch(len, array, x) do
 end end
 
 function revSearchAssert(len, array, x) do
-  len$1 = len;
+  len_1 = len;
   _i = 0;
   xs = array;
   k = x;
   while(true) do
     i = _i;
-    if (i >= len$1) then do
-      error (new Error("File \"js_mapperRt.ml\", line 63, characters 4-10"))
+    if (i >= len_1) then do
+      error(new Error("File \"js_mapperRt.ml\", line 63, characters 4-10"))
     end
      end 
     match = xs[i];
@@ -75,17 +75,17 @@ function toInt(i, xs) do
 end end
 
 function fromInt(len, xs, __enum) do
-  __enum$1 = __enum;
+  __enum_1 = __enum;
   _i = 0;
-  len$1 = len;
-  xs$1 = xs;
+  len_1 = len;
+  xs_1 = xs;
   while(true) do
     i = _i;
-    if (i == len$1) then do
+    if (i == len_1) then do
       return ;
     end else do
-      k = xs$1[i];
-      if (k == __enum$1) then do
+      k = xs_1[i];
+      if (k == __enum_1) then do
         return i;
       end else do
         _i = i + 1 | 0;
@@ -96,18 +96,18 @@ function fromInt(len, xs, __enum) do
 end end
 
 function fromIntAssert(len, xs, __enum) do
-  len$1 = len;
-  __enum$1 = __enum;
+  len_1 = len;
+  __enum_1 = __enum;
   _i = 0;
-  xs$1 = xs;
+  xs_1 = xs;
   while(true) do
     i = _i;
-    if (i >= len$1) then do
-      error (new Error("File \"js_mapperRt.ml\", line 87, characters 4-10"))
+    if (i >= len_1) then do
+      error(new Error("File \"js_mapperRt.ml\", line 87, characters 4-10"))
     end
      end 
-    k = xs$1[i];
-    if (k == __enum$1) then do
+    k = xs_1[i];
+    if (k == __enum_1) then do
       return i;
     end else do
       _i = i + 1 | 0;

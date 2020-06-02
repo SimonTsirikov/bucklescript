@@ -12,9 +12,9 @@ caml_int32_bits_of_float = (function(x){
 function caml_modf_float(x) do
   if (isFinite(x)) then do
     neg = 1 / x < 0;
-    x$1 = Math.abs(x);
-    i = Math.floor(x$1);
-    f = x$1 - i;
+    x_1 = Math.abs(x);
+    i = Math.floor(x_1);
+    f = x_1 - i;
     if (neg) then do
       return --[[ tuple ]]{
               -f,
@@ -86,12 +86,12 @@ function caml_frexp_float(x) do
 end end
 
 function caml_copysign_float(x, y) do
-  x$1 = Math.abs(x);
-  y$1 = y == 0 and 1 / y or y;
-  if (y$1 < 0) then do
-    return -x$1;
+  x_1 = Math.abs(x);
+  y_1 = y == 0 and 1 / y or y;
+  if (y_1 < 0) then do
+    return -x_1;
   end else do
-    return x$1;
+    return x_1;
   end end 
 end end
 

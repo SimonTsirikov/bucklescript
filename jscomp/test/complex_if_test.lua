@@ -39,8 +39,8 @@ function escaped(s) do
   end else do
     s$prime = Caml_bytes.caml_create_bytes(n);
     n = 0;
-    for i$1 = 0 , #s - 1 | 0 , 1 do
-      c = s[i$1];
+    for i_1 = 0 , #s - 1 | 0 , 1 do
+      c = s[i_1];
       exit = 0;
       if (c >= 35) then do
         if (c ~= 92) then do

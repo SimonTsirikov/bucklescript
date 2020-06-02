@@ -7,21 +7,21 @@ function rotl32(x, n) do
 end end
 
 function caml_hash_mix_int(h, d) do
-  d$1 = d;
-  d$1 = Caml_int32.imul(d$1, 3432918353);
-  d$1 = rotl32(d$1, 15);
-  d$1 = Caml_int32.imul(d$1, 461845907);
-  h$1 = h ^ d$1;
-  h$1 = rotl32(h$1, 13);
-  return (h$1 + (h$1 << 2) | 0) + 3864292196 | 0;
+  d_1 = d;
+  d_1 = Caml_int32.imul(d_1, 3432918353);
+  d_1 = rotl32(d_1, 15);
+  d_1 = Caml_int32.imul(d_1, 461845907);
+  h_1 = h ^ d_1;
+  h_1 = rotl32(h_1, 13);
+  return (h_1 + (h_1 << 2) | 0) + 3864292196 | 0;
 end end
 
 function caml_hash_final_mix(h) do
-  h$1 = h ^ (h >>> 16);
-  h$1 = Caml_int32.imul(h$1, 2246822507);
-  h$1 = h$1 ^ (h$1 >>> 13);
-  h$1 = Caml_int32.imul(h$1, 3266489909);
-  return h$1 ^ (h$1 >>> 16);
+  h_1 = h ^ (h >>> 16);
+  h_1 = Caml_int32.imul(h_1, 2246822507);
+  h_1 = h_1 ^ (h_1 >>> 13);
+  h_1 = Caml_int32.imul(h_1, 3266489909);
+  return h_1 ^ (h_1 >>> 16);
 end end
 
 function caml_hash_mix_string(h, s) do
@@ -35,10 +35,10 @@ function caml_hash_mix_string(h, s) do
   end
   modulo = len & 3;
   if (modulo ~= 0) then do
-    w$1 = modulo == 3 and (s.charCodeAt(len - 1 | 0) << 16) | (s.charCodeAt(len - 2 | 0) << 8) | s.charCodeAt(len - 3 | 0) or (
+    w_1 = modulo == 3 and (s.charCodeAt(len - 1 | 0) << 16) | (s.charCodeAt(len - 2 | 0) << 8) | s.charCodeAt(len - 3 | 0) or (
         modulo == 2 and (s.charCodeAt(len - 1 | 0) << 8) | s.charCodeAt(len - 2 | 0) or s.charCodeAt(len - 1 | 0)
       );
-    hash = caml_hash_mix_int(hash, w$1);
+    hash = caml_hash_mix_int(hash, w_1);
   end
    end 
   hash = hash ^ len;

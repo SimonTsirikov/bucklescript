@@ -34,15 +34,15 @@ end end
 function everyByU(s, f, step, p) do
   if (step > 0) then do
     _s = s;
-    f$1 = f;
-    step$1 = step;
-    p$1 = p;
+    f_1 = f;
+    step_1 = step;
+    p_1 = p;
     while(true) do
-      s$1 = _s;
-      if (s$1 > f$1) then do
+      s_1 = _s;
+      if (s_1 > f_1) then do
         return true;
-      end else if (p$1(s$1)) then do
-        _s = s$1 + step$1 | 0;
+      end else if (p_1(s_1)) then do
+        _s = s_1 + step_1 | 0;
         ::continue:: ;
       end else do
         return false;
@@ -78,17 +78,17 @@ end end
 function someByU(s, f, step, p) do
   if (step > 0) then do
     _s = s;
-    f$1 = f;
-    step$1 = step;
-    p$1 = p;
+    f_1 = f;
+    step_1 = step;
+    p_1 = p;
     while(true) do
-      s$1 = _s;
-      if (s$1 > f$1) then do
+      s_1 = _s;
+      if (s_1 > f_1) then do
         return false;
-      end else if (p$1(s$1)) then do
+      end else if (p_1(s_1)) then do
         return true;
       end else do
-        _s = s$1 + step$1 | 0;
+        _s = s_1 + step_1 | 0;
         ::continue:: ;
       end end  end 
     end;

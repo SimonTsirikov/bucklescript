@@ -16,8 +16,8 @@ Caml_module.update_mod(--[[ Module ]]Block.__(0, {{--[[ tuple ]]{
             --[[ Function ]]0,
             "add"
           }}}), Point, do
-      add: (function (prim, prim$1) do
-          return prim.add(prim$1);
+      add: (function (prim, prim_1) do
+          return prim.add(prim_1);
         end end)
     end);
 

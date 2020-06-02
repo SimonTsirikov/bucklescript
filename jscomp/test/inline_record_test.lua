@@ -33,12 +33,12 @@ v1 = --[[ A1 ]]Block.__(1, {--[[ more : :: ]]{
 
 function f(x) do
   if (x.tag) then do
-    return List.fold_left((function (prim, prim$1) do
-                  return prim + prim$1 | 0;
+    return List.fold_left((function (prim, prim_1) do
+                  return prim + prim_1 | 0;
                 end end), 0, x[--[[ more ]]0]);
   end else do
-    return List.fold_left((function (prim, prim$1) do
-                  return prim + prim$1 | 0;
+    return List.fold_left((function (prim, prim_1) do
+                  return prim + prim_1 | 0;
                 end end), x[--[[ lbl ]]0], x[--[[ more ]]1]);
   end end 
 end end
@@ -64,7 +64,7 @@ tmp;
 if (A0 == A0) then do
   tmp = 3;
 end else do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "inline_record_test.ml",
@@ -99,10 +99,10 @@ for i = 0 , 10 , 1 do
   ff(v5);
 end
 
-tmp$1;
+tmp_1;
 
 if (v4.tag) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "inline_record_test.ml",
@@ -111,17 +111,17 @@ if (v4.tag) then do
     }
   })
 end else do
-  tmp$1 = v4[--[[ x ]]0];
+  tmp_1 = v4[--[[ x ]]0];
 end end 
 
-eq("File \"inline_record_test.ml\", line 69, characters 6-13", tmp$1, 11);
+eq("File \"inline_record_test.ml\", line 69, characters 6-13", tmp_1, 11);
 
-tmp$2;
+tmp_2;
 
 if (v5.tag) then do
-  tmp$2 = v5[--[[ z ]]0];
+  tmp_2 = v5[--[[ z ]]0];
 end else do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "inline_record_test.ml",
@@ -131,7 +131,7 @@ end else do
   })
 end end 
 
-eq("File \"inline_record_test.ml\", line 71, characters 6-13", tmp$2, 22);
+eq("File \"inline_record_test.ml\", line 71, characters 6-13", tmp_2, 22);
 
 A4 = Caml_exceptions.create("Inline_record_test.A4");
 
@@ -152,16 +152,16 @@ function ff0(x) do
   end end 
 end end
 
-for i$1 = 0 , 10 , 1 do
+for i_1 = 0 , 10 , 1 do
   ff0(v6);
 end
 
-tmp$3;
+tmp_3;
 
 if (v6[0] == A4) then do
-  tmp$3 = v6[--[[ x ]]1];
+  tmp_3 = v6[--[[ x ]]1];
 end else do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "inline_record_test.ml",
@@ -171,7 +171,7 @@ end else do
   })
 end end 
 
-eq("File \"inline_record_test.ml\", line 87, characters 6-13", tmp$3, 11);
+eq("File \"inline_record_test.ml\", line 87, characters 6-13", tmp_3, 11);
 
 function ff1(x) do
   if (x) then do

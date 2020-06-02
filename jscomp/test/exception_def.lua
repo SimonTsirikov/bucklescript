@@ -6,10 +6,10 @@ Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 A = Caml_exceptions.create("Exception_def.A");
 
-A$1 = Caml_exceptions.create("Exception_def.U.A");
+A_1 = Caml_exceptions.create("Exception_def.U.A");
 
 U = do
-  A: A$1
+  A: A_1
 end;
 
 H = { };

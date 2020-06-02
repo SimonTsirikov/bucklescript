@@ -18,7 +18,7 @@ end end
 
 function assertions(param) do
   if (not bool_equal(true, true)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "test_bool_equal.ml",
@@ -29,7 +29,7 @@ function assertions(param) do
   end
    end 
   if (not bool_equal(false, false)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "test_bool_equal.ml",
@@ -40,7 +40,7 @@ function assertions(param) do
   end
    end 
   if (bool_equal(true, false)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "test_bool_equal.ml",
@@ -51,7 +51,7 @@ function assertions(param) do
   end
    end 
   if (bool_equal(false, true)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "test_bool_equal.ml",

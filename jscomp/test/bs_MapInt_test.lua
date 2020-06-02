@@ -6,7 +6,7 @@ function should(b) do
   if (b) then do
     return 0;
   end else do
-    error (new Error("IMPOSSIBLE"))
+    error(new Error("IMPOSSIBLE"))
   end end 
 end end
 
@@ -15,11 +15,11 @@ function test(param) do
   for i = 0 , 999999 , 1 do
     m = Belt_MapInt.set(m, i, i);
   end
-  for i$1 = 0 , 999999 , 1 do
-    should(Belt_MapInt.get(m, i$1) ~= undefined);
+  for i_1 = 0 , 999999 , 1 do
+    should(Belt_MapInt.get(m, i_1) ~= undefined);
   end
-  for i$2 = 0 , 999999 , 1 do
-    m = Belt_MapInt.remove(m, i$2);
+  for i_2 = 0 , 999999 , 1 do
+    m = Belt_MapInt.remove(m, i_2);
   end
   return should(Belt_MapInt.isEmpty(m));
 end end

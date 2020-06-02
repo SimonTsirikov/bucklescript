@@ -60,7 +60,7 @@ function peekExn(q) do
   if (match ~= nil) then do
     return match.content;
   end else do
-    error (new Error("Belt.Queue.Empty"))
+    error(new Error("Belt.Queue.Empty"))
   end end 
 end end
 
@@ -93,7 +93,7 @@ function popExn(q) do
       return match.content;
     end end 
   end else do
-    error (new Error("Empty"))
+    error(new Error("Empty"))
   end end 
 end end
 
@@ -153,12 +153,12 @@ function mapU(q, f) do
   end;
   _prev = __null;
   _cell = q.first;
-  f$1 = f;
+  f_1 = f;
   while(true) do
     cell = _cell;
     prev = _prev;
     if (cell ~= nil) then do
-      content = f$1(cell.content);
+      content = f_1(cell.content);
       res = do
         content: content,
         next: __null
@@ -192,11 +192,11 @@ end end
 
 function forEachU(q, f) do
   _cell = q.first;
-  f$1 = f;
+  f_1 = f;
   while(true) do
     cell = _cell;
     if (cell ~= nil) then do
-      f$1(cell.content);
+      f_1(cell.content);
       _cell = cell.next;
       ::continue:: ;
     end else do
@@ -210,19 +210,19 @@ function forEach(q, f) do
 end end
 
 function reduceU(q, accu, f) do
-  f$1 = f;
+  f_1 = f;
   _accu = accu;
   _cell = q.first;
   while(true) do
     cell = _cell;
-    accu$1 = _accu;
+    accu_1 = _accu;
     if (cell ~= nil) then do
-      accu$2 = f$1(accu$1, cell.content);
+      accu_2 = f_1(accu_1, cell.content);
       _cell = cell.next;
-      _accu = accu$2;
+      _accu = accu_2;
       ::continue:: ;
     end else do
-      return accu$1;
+      return accu_1;
     end end 
   end;
 end end

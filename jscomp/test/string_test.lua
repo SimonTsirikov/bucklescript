@@ -68,14 +68,14 @@ function rev_split_by_char(c, s) do
                     s$prime,
                     l
                   });
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ :: ]]{
                 __String.sub(s, i, #s - i | 0),
                 l
               };
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
@@ -94,27 +94,27 @@ function xsplit(delim, s) do
         i$prime;
         xpcall(function() do
           i$prime = __String.rindex_from(s, i - 1 | 0, delim);
-        end end,function(exn) return do
+        end end,function(exn) do
           if (exn == Caml_builtin_exceptions.not_found) then do
             return --[[ :: ]]{
                     __String.sub(s, 0, i),
                     l
                   };
           end else do
-            error (exn)
+            error(exn)
           end end 
         end end)
         l_000 = __String.sub(s, i$prime + 1 | 0, (i - i$prime | 0) - 1 | 0);
-        l$1 = --[[ :: ]]{
+        l_1 = --[[ :: ]]{
           l_000,
           l
         };
-        l$2 = i$prime == 0 and --[[ :: ]]{
+        l_2 = i$prime == 0 and --[[ :: ]]{
             "",
-            l$1
-          } or l$1;
+            l_1
+          } or l_1;
         _i = i$prime;
-        _l = l$2;
+        _l = l_2;
         ::continue:: ;
       end else do
         return l;

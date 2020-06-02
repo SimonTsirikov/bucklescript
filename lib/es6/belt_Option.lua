@@ -19,7 +19,7 @@ function getExn(param) do
   if (param ~= undefined) then do
     return Caml_option.valFromOption(param);
   end else do
-    error (new Error("getExn"))
+    error(new Error("getExn"))
   end end 
 end end
 

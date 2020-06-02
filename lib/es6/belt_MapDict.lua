@@ -44,8 +44,8 @@ function updateU(t, newK, f, cmp) do
             vr = do
               contents: r.value
             end;
-            r$1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
-            return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r$1);
+            r_1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
+            return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r_1);
           end else do
             return l;
           end end 
@@ -54,29 +54,29 @@ function updateU(t, newK, f, cmp) do
         end end 
       end end 
     end else do
-      l$1 = t.left;
-      r$2 = t.right;
+      l_1 = t.left;
+      r_2 = t.right;
       v = t.value;
       if (c < 0) then do
-        ll = updateU(l$1, newK, f, cmp);
-        if (l$1 == ll) then do
+        ll = updateU(l_1, newK, f, cmp);
+        if (l_1 == ll) then do
           return t;
         end else do
-          return Belt_internalAVLtree.bal(ll, k, v, r$2);
+          return Belt_internalAVLtree.bal(ll, k, v, r_2);
         end end 
       end else do
-        rr = updateU(r$2, newK, f, cmp);
-        if (r$2 == rr) then do
+        rr = updateU(r_2, newK, f, cmp);
+        if (r_2 == rr) then do
           return t;
         end else do
-          return Belt_internalAVLtree.bal(l$1, k, v, rr);
+          return Belt_internalAVLtree.bal(l_1, k, v, rr);
         end end 
       end end 
     end end 
   end else do
-    match$1 = f(undefined);
-    if (match$1 ~= undefined) then do
-      return Belt_internalAVLtree.singleton(newK, Caml_option.valFromOption(match$1));
+    match_1 = f(undefined);
+    if (match_1 ~= undefined) then do
+      return Belt_internalAVLtree.singleton(newK, Caml_option.valFromOption(match_1));
     end else do
       return t;
     end end 
@@ -101,8 +101,8 @@ function removeAux0(n, x, cmp) do
         vr = do
           contents: r.value
         end;
-        r$1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
-        return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r$1);
+        r_1 = Belt_internalAVLtree.removeMinAuxWithRef(r, kr, vr);
+        return Belt_internalAVLtree.bal(l, kr.contents, vr.contents, r_1);
       end else do
         return l;
       end end 
@@ -176,10 +176,10 @@ function splitAuxPivot(n, x, pres, cmp) do
             };
     end end 
   end else if (r ~= nil) then do
-    match$1 = splitAuxPivot(r, x, pres, cmp);
+    match_1 = splitAuxPivot(r, x, pres, cmp);
     return --[[ tuple ]]{
-            Belt_internalAVLtree.join(l, v, d, match$1[0]),
-            match$1[1]
+            Belt_internalAVLtree.join(l, v, d, match_1[0]),
+            match_1[1]
           };
   end else do
     return --[[ tuple ]]{
@@ -222,25 +222,25 @@ function mergeU(s1, s2, f, cmp) do
           contents: undefined
         end;
         match = splitAuxPivot(s2, v1, d2, cmp);
-        d2$1 = d2.contents;
+        d2_1 = d2.contents;
         newLeft = mergeU(l1, match[0], f, cmp);
-        newD = f(v1, Caml_option.some(d1), d2$1);
+        newD = f(v1, Caml_option.some(d1), d2_1);
         newRight = mergeU(r1, match[1], f, cmp);
         return Belt_internalAVLtree.concatOrJoin(newLeft, v1, newD, newRight);
       end else do
         l2 = s2.left;
         v2 = s2.key;
-        d2$2 = s2.value;
+        d2_2 = s2.value;
         r2 = s2.right;
-        d1$1 = do
+        d1_1 = do
           contents: undefined
         end;
-        match$1 = splitAuxPivot(s1, v2, d1$1, cmp);
-        d1$2 = d1$1.contents;
-        newLeft$1 = mergeU(match$1[0], l2, f, cmp);
-        newD$1 = f(v2, d1$2, Caml_option.some(d2$2));
-        newRight$1 = mergeU(match$1[1], r2, f, cmp);
-        return Belt_internalAVLtree.concatOrJoin(newLeft$1, v2, newD$1, newRight$1);
+        match_1 = splitAuxPivot(s1, v2, d1_1, cmp);
+        d1_2 = d1_1.contents;
+        newLeft_1 = mergeU(match_1[0], l2, f, cmp);
+        newD_1 = f(v2, d1_2, Caml_option.some(d2_2));
+        newRight_1 = mergeU(match_1[1], r2, f, cmp);
+        return Belt_internalAVLtree.concatOrJoin(newLeft_1, v2, newD_1, newRight_1);
       end end 
     end else do
       return Belt_internalAVLtree.keepMapU(s1, (function (k, v) do
@@ -266,14 +266,14 @@ function removeMany(t, keys, cmp) do
     _t = t;
     xs = keys;
     _i = 0;
-    len$1 = len;
-    cmp$1 = cmp;
+    len_1 = len;
+    cmp_1 = cmp;
     while(true) do
       i = _i;
-      t$1 = _t;
-      if (i < len$1) then do
+      t_1 = _t;
+      if (i < len_1) then do
         ele = xs[i];
-        u = removeAux0(t$1, ele, cmp$1);
+        u = removeAux0(t_1, ele, cmp_1);
         if (u ~= nil) then do
           _i = i + 1 | 0;
           _t = u;
@@ -282,7 +282,7 @@ function removeMany(t, keys, cmp) do
           return u;
         end end 
       end else do
-        return t$1;
+        return t_1;
       end end 
     end;
   end else do

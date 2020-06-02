@@ -14,14 +14,14 @@ Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 CamlinternalFormatBasics = require "../../lib/js/camlinternalFormatBasics";
 
 function failwith(s) do
-  error ({
+  error({
     Caml_builtin_exceptions.failure,
     s
   })
 end end
 
 function invalid_arg(s) do
-  error ({
+  error({
     Caml_builtin_exceptions.invalid_argument,
     s
   })
@@ -100,7 +100,7 @@ end end
 
 function char_of_int(n) do
   if (n < 0 or n > 255) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "char_of_int"
     })
@@ -126,7 +126,7 @@ function bool_of_string(param) do
         return true;end end end 
      do
     else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "bool_of_string"
       })
@@ -225,14 +225,14 @@ end end
 function flush_all(param) do
   _param = Caml_io.caml_ml_out_channels_list(--[[ () ]]0);
   while(true) do
-    param$1 = _param;
-    if (param$1) then do
+    param_1 = _param;
+    if (param_1) then do
       xpcall(function() do
-        Caml_io.caml_ml_flush(param$1[0]);
-      end end,function(exn) return do
+        Caml_io.caml_ml_flush(param_1[0]);
+      end end,function(exn) do
         
       end end)
-      _param = param$1[1];
+      _param = param_1[1];
       ::continue:: ;
     end else do
       return --[[ () ]]0;
@@ -250,7 +250,7 @@ end end
 
 function output(oc, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "output"
     })
@@ -261,7 +261,7 @@ end end
 
 function output_substring(oc, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "output_substring"
     })
@@ -282,12 +282,12 @@ end end
 function close_out_noerr(oc) do
   xpcall(function() do
     Caml_io.caml_ml_flush(oc);
-  end end,function(exn) return do
+  end end,function(exn) do
     
   end end)
   xpcall(function() do
     return Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
-  end end,function(exn$1) return do
+  end end,function(exn_1) do
     return --[[ () ]]0;
   end end)
 end end
@@ -318,7 +318,7 @@ end end
 
 function input(ic, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "input"
     })
@@ -336,7 +336,7 @@ function unsafe_really_input(ic, s, _ofs, _len) do
     end else do
       r = Caml_external_polyfill.resolve("caml_ml_input")(ic, s, ofs, len);
       if (r == 0) then do
-        error (Caml_builtin_exceptions.end_of_file)
+        error(Caml_builtin_exceptions.end_of_file)
       end
        end 
       _len = len - r | 0;
@@ -348,7 +348,7 @@ end end
 
 function really_input(ic, s, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#s - len | 0)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "really_input"
     })
@@ -390,15 +390,15 @@ function input_line(chan) do
       if (accu) then do
         return build_result(Caml_bytes.caml_create_bytes(len), len, accu);
       end else do
-        error (Caml_builtin_exceptions.end_of_file)
+        error(Caml_builtin_exceptions.end_of_file)
       end end 
     end else if (n > 0) then do
       res = Caml_bytes.caml_create_bytes(n - 1 | 0);
       Caml_external_polyfill.resolve("caml_ml_input")(chan, res, 0, n - 1 | 0);
       Caml_external_polyfill.resolve("caml_ml_input_char")(chan);
       if (accu) then do
-        len$1 = (len + n | 0) - 1 | 0;
-        return build_result(Caml_bytes.caml_create_bytes(len$1), len$1, --[[ :: ]]{
+        len_1 = (len + n | 0) - 1 | 0;
+        return build_result(Caml_bytes.caml_create_bytes(len_1), len_1, --[[ :: ]]{
                     res,
                     accu
                   });
@@ -421,7 +421,7 @@ end end
 function close_in_noerr(ic) do
   xpcall(function() do
     return Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
-  end end,function(exn) return do
+  end end,function(exn) do
     return --[[ () ]]0;
   end end)
 end end
@@ -507,10 +507,10 @@ function string_of_format(param) do
   return param[1];
 end end
 
-function $caret$caret(param, param$1) do
+function $caret$caret(param, param_1) do
   return --[[ Format ]]{
-          CamlinternalFormatBasics.concat_fmt(param[0], param$1[0]),
-          $caret(param[1], $caret("%,", param$1[1]))
+          CamlinternalFormatBasics.concat_fmt(param[0], param_1[0]),
+          $caret(param[1], $caret("%,", param_1[1]))
         };
 end end
 

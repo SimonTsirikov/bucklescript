@@ -11,7 +11,7 @@ function for_3(x) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param_1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x - 1 | 0 , 1 do
@@ -33,7 +33,7 @@ function for_4(x) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param_1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x - 1 | 0 , 1 do
@@ -56,7 +56,7 @@ function for_5(x, u) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param_1) do
           return --[[ () ]]0;
         end end), x);
   for i = 0 , #x - 1 | 0 , 1 do
@@ -78,7 +78,7 @@ function for_6(x, u) do
   v = do
     contents: 0
   end;
-  arr = __Array.map((function (param, param$1) do
+  arr = __Array.map((function (param, param_1) do
           return --[[ () ]]0;
         end end), x);
   v4 = do
@@ -196,26 +196,26 @@ function for_9(param) do
           return --[[ () ]]0;
         end end));
   for i = 0 , 1 , 1 do
-    v$1 = do
+    v_1 = do
       contents: 0
     end;
-    v$1.contents = v$1.contents + i | 0;
-    (function(v$1)do
+    v_1.contents = v_1.contents + i | 0;
+    (function(v_1)do
     for j = 0 , 1 , 1 do
-      v$1.contents = v$1.contents + 1 | 0;
-      collect(v$1.contents);
+      v_1.contents = v_1.contents + 1 | 0;
+      collect(v_1.contents);
       Caml_array.caml_array_set(arr, (i << 1) + j | 0, (function (param) do
-              vv.contents = vv.contents + v$1.contents | 0;
+              vv.contents = vv.contents + v_1.contents | 0;
               return --[[ () ]]0;
             end end));
     end
-    end(v$1));
-    Caml_array.caml_array_set(arr2, i, (function(v$1)do
+    end(v_1));
+    Caml_array.caml_array_set(arr2, i, (function(v_1)do
         return function (param) do
-          vv2.contents = vv2.contents + v$1.contents | 0;
+          vv2.contents = vv2.contents + v_1.contents | 0;
           return --[[ () ]]0;
         end end
-        end(v$1)));
+        end(v_1)));
   end
   __Array.iter((function (f) do
           return Curry._1(f, --[[ () ]]0);

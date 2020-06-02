@@ -8,13 +8,13 @@ hh;
 
 xpcall(function() do
   hh = Caml_string.get("ghsogh", -3);
-end end,function(raw_exn) return do
+end end,function(raw_exn) do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
     console.log(exn[1]);
     hh = --[[ "a" ]]97;
   end else do
-    error (exn)
+    error(exn)
   end end 
 end end)
 

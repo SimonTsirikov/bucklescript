@@ -18,20 +18,20 @@ suites = do
 end;
 
 function eq(f) do
-  return (function (param, param$1) do
-      return Mt_global.collect_eq(id, suites, f, param, param$1);
+  return (function (param, param_1) do
+      return Mt_global.collect_eq(id, suites, f, param, param_1);
     end end);
 end end
 
 function neq(f) do
-  return (function (param, param$1) do
-      return Mt_global.collect_neq(id, suites, f, param, param$1);
+  return (function (param, param_1) do
+      return Mt_global.collect_neq(id, suites, f, param, param_1);
     end end);
 end end
 
 function approx(f) do
-  return (function (param, param$1) do
-      return Mt_global.collect_approx(id, suites, f, param, param$1);
+  return (function (param, param_1) do
+      return Mt_global.collect_approx(id, suites, f, param, param_1);
     end end);
 end end
 
@@ -41,9 +41,9 @@ param = Random.__int(1000);
 
 Random.self_init(--[[ () ]]0);
 
-param$1 = Random.__int(10000);
+param_1 = Random.__int(10000);
 
-Mt_global.collect_neq(id, suites, "File \"random_test.ml\", line 12, characters 6-13", param$1, param);
+Mt_global.collect_neq(id, suites, "File \"random_test.ml\", line 12, characters 6-13", param_1, param);
 
 Random.init(0);
 
@@ -53,7 +53,7 @@ for i = 0 , 9 , 1 do
   Caml_array.caml_array_set(v, i, Random.bool(--[[ () ]]0));
 end
 
-param$2 = {
+param_2 = {
   true,
   true,
   true,
@@ -66,7 +66,7 @@ param$2 = {
   false
 };
 
-Mt_global.collect_eq(id, suites, "File \"random_test.ml\", line 26, characters 5-12", v, param$2);
+Mt_global.collect_eq(id, suites, "File \"random_test.ml\", line 26, characters 5-12", v, param_2);
 
 f = Random.int64(Int64.max_int);
 

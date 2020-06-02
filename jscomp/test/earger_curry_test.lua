@@ -8,48 +8,48 @@ Pervasives = require "../../lib/js/pervasives";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function map(f, a) do
-  f$1 = Curry.__1(f);
-  a$1 = a;
-  l = #a$1;
+  f_1 = Curry.__1(f);
+  a_1 = a;
+  l = #a_1;
   if (l == 0) then do
     return {};
   end else do
-    r = Caml_array.caml_make_vect(l, f$1(a$1[0]));
+    r = Caml_array.caml_make_vect(l, f_1(a_1[0]));
     for i = 1 , l - 1 | 0 , 1 do
-      r[i] = f$1(a$1[i]);
+      r[i] = f_1(a_1[i]);
     end
     return r;
   end end 
 end end
 
 function init(l, f) do
-  l$1 = l;
-  f$1 = Curry.__1(f);
-  if (l$1 == 0) then do
+  l_1 = l;
+  f_1 = Curry.__1(f);
+  if (l_1 == 0) then do
     return {};
   end else do
-    if (l$1 < 0) then do
-      error ({
+    if (l_1 < 0) then do
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Array.init"
       })
     end
      end 
-    res = Caml_array.caml_make_vect(l$1, f$1(0));
-    for i = 1 , l$1 - 1 | 0 , 1 do
-      res[i] = f$1(i);
+    res = Caml_array.caml_make_vect(l_1, f_1(0));
+    for i = 1 , l_1 - 1 | 0 , 1 do
+      res[i] = f_1(i);
     end
     return res;
   end end 
 end end
 
 function fold_left(f, x, a) do
-  f$1 = Curry.__2(f);
-  x$1 = x;
-  a$1 = a;
-  r = x$1;
-  for i = 0 , #a$1 - 1 | 0 , 1 do
-    r = f$1(r, a$1[i]);
+  f_1 = Curry.__2(f);
+  x_1 = x;
+  a_1 = a;
+  r = x_1;
+  for i = 0 , #a_1 - 1 | 0 , 1 do
+    r = f_1(r, a_1[i]);
   end
   return r;
 end end
@@ -61,8 +61,8 @@ function f2(param) do
   b = map((function (i) do
           return i + i - 1;
         end end), arr);
-  v = fold_left((function (prim, prim$1) do
-          return prim + prim$1;
+  v = fold_left((function (prim, prim_1) do
+          return prim + prim_1;
         end end), 0, b);
   console.log(Pervasives.string_of_float(v));
   return --[[ () ]]0;
@@ -122,9 +122,9 @@ function f(x) do
   v.contents = v.contents + 1 | 0;
   partial_arg = 2;
   v.contents = v.contents + 1 | 0;
-  partial_arg$1 = 1;
-  return (function (param, param$1) do
-      return add5(x, partial_arg$1, partial_arg, param, param$1);
+  partial_arg_1 = 1;
+  return (function (param, param_1) do
+      return add5(x, partial_arg_1, partial_arg, param, param_1);
     end end);
 end end
 
@@ -132,9 +132,9 @@ function g(x) do
   v.contents = v.contents + 1 | 0;
   partial_arg = 2;
   v.contents = v.contents + 1 | 0;
-  partial_arg$1 = 1;
-  u = function (param, param$1) do
-    return add5(x, partial_arg$1, partial_arg, param, param$1);
+  partial_arg_1 = 1;
+  u = function (param, param_1) do
+    return add5(x, partial_arg_1, partial_arg, param, param_1);
   end end;
   all_v.contents = --[[ :: ]]{
     v.contents,

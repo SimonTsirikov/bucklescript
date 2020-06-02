@@ -32,7 +32,7 @@ end end
 
 function aFromJs(param) do
   if (not (param <= 2 and 0 <= param)) then do
-    error (new Error("ASSERT FAILURE"))
+    error(new Error("ASSERT FAILURE"))
   end
    end 
   return param - 0 | 0;
@@ -52,7 +52,7 @@ function bFromJs(param) do
   return Js_mapperRt.fromIntAssert(3, jsMapperConstantArray, param);
 end end
 
-jsMapperConstantArray$1 = {
+jsMapperConstantArray_1 = {
   --[[ tuple ]]{
     22125,
     "c0"
@@ -68,11 +68,11 @@ jsMapperConstantArray$1 = {
 };
 
 function cToJs(param) do
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$1);
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray_1);
 end end
 
 function cFromJs(param) do
-  return Js_mapperRt.revSearchAssert(3, jsMapperConstantArray$1, param);
+  return Js_mapperRt.revSearchAssert(3, jsMapperConstantArray_1, param);
 end end
 
 __throw("File \"ast_mapper_defensive_test.ml\", line 28, characters 16-23", (function (param) do

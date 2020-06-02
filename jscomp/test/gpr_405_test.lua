@@ -14,11 +14,11 @@ function Make(funarg) do
   find_default = function (htbl, x) do
     xpcall(function() do
       return Curry._2(H.find, htbl, x);
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return false;
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
@@ -35,7 +35,7 @@ function Make(funarg) do
     end;
     step2 = function (top, rest_of_stack) do
       if (find_default(already_processed, top)) then do
-        error ({
+        error({
           Caml_builtin_exceptions.assert_failure,
           --[[ tuple ]]{
             "gpr_405_test.ml",
@@ -46,7 +46,7 @@ function Make(funarg) do
       end
        end 
       if (find_default(on_the_stack, top)) then do
-        error ({
+        error({
           Caml_builtin_exceptions.assert_failure,
           --[[ tuple ]]{
             "gpr_405_test.ml",
@@ -65,47 +65,47 @@ function Make(funarg) do
       _top = top;
       _rest_of_stack = rest_of_stack;
       while(true) do
-        rest_of_stack$1 = _rest_of_stack;
-        top$1 = _top;
+        rest_of_stack_1 = _rest_of_stack;
+        top_1 = _top;
         successors = _successors;
         if (successors) then do
           successor = successors[0];
           if (find_default(already_processed, successor)) then do
             x = find_default(on_the_stack, successor) and Curry._2(H.find, n_labels, successor) or Curry._2(H.find, l_labels, successor);
-            Curry._3(H.add, l_labels, top$1, Caml_primitive.caml_int_max(Curry._2(H.find, l_labels, top$1), x));
+            Curry._3(H.add, l_labels, top_1, Caml_primitive.caml_int_max(Curry._2(H.find, l_labels, top_1), x));
             _successors = successors[1];
             ::continue:: ;
           end else do
             return step2(successor, --[[ :: ]]{
                         --[[ tuple ]]{
-                          top$1,
+                          top_1,
                           successors
                         },
-                        rest_of_stack$1
+                        rest_of_stack_1
                       });
           end end 
         end else do
-          if (Curry._2(H.find, l_labels, top$1) == Curry._2(H.find, n_labels, top$1)) then do
+          if (Curry._2(H.find, l_labels, top_1) == Curry._2(H.find, n_labels, top_1)) then do
             cut_set.contents = --[[ :: ]]{
-              top$1,
+              top_1,
               cut_set.contents
             };
-            Curry._3(H.add, l_labels, top$1, 0);
+            Curry._3(H.add, l_labels, top_1, 0);
           end
            end 
-          if (Curry._2(H.find, l_labels, top$1) > Curry._2(H.find, n_labels, top$1)) then do
-            error ({
+          if (Curry._2(H.find, l_labels, top_1) > Curry._2(H.find, n_labels, top_1)) then do
+            error({
               Caml_builtin_exceptions.invalid_argument,
               "Graph.Mincut: graph not reducible"
             })
           end
            end 
-          if (rest_of_stack$1) then do
-            match = rest_of_stack$1[0];
+          if (rest_of_stack_1) then do
+            match = rest_of_stack_1[0];
             new_top = match[0];
-            Curry._3(H.add, on_the_stack, top$1, false);
-            Curry._3(H.add, l_labels, new_top, Caml_primitive.caml_int_max(Curry._2(H.find, l_labels, top$1), Curry._2(H.find, l_labels, new_top)));
-            _rest_of_stack = rest_of_stack$1[1];
+            Curry._3(H.add, on_the_stack, top_1, false);
+            Curry._3(H.add, l_labels, new_top, Caml_primitive.caml_int_max(Curry._2(H.find, l_labels, top_1), Curry._2(H.find, l_labels, new_top)));
+            _rest_of_stack = rest_of_stack_1[1];
             _top = new_top;
             _successors = match[1];
             ::continue:: ;

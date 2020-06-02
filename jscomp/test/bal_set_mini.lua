@@ -177,15 +177,15 @@ for i = 0 , 100000 , 1 do
   v = add(i, v);
 end
 
-for i$1 = 0 , 100000 , 1 do
-  if (not mem(i$1, v)) then do
+for i_1 = 0 , 100000 , 1 do
+  if (not mem(i_1, v)) then do
     console.log("impossible");
   end
    end 
 end
 
-for i$2 = 0 , 100000 , 1 do
-  v = remove(i$2, v);
+for i_2 = 0 , 100000 , 1 do
+  v = remove(i_2, v);
 end
 
 match = v;

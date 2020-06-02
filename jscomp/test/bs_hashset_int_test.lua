@@ -53,25 +53,25 @@ eq("File \"bs_hashset_int_test.ml\", line 23, characters 5-12", Belt_HashSetInt.
 
 eq("File \"bs_hashset_int_test.ml\", line 24, characters 5-12", sum2(v), 6825);
 
-u$1 = Belt_Array.concat(Array_data_util.randomRange(0, 100000), Array_data_util.randomRange(0, 100));
+u_1 = Belt_Array.concat(Array_data_util.randomRange(0, 100000), Array_data_util.randomRange(0, 100));
 
-v$1 = Belt_internalBucketsType.make(--[[ () ]]0, --[[ () ]]0, 40);
+v_1 = Belt_internalBucketsType.make(--[[ () ]]0, --[[ () ]]0, 40);
 
-Belt_HashSetInt.mergeMany(v$1, u$1);
+Belt_HashSetInt.mergeMany(v_1, u_1);
 
-eq("File \"bs_hashset_int_test.ml\", line 30, characters 5-12", v$1.size, 100001);
+eq("File \"bs_hashset_int_test.ml\", line 30, characters 5-12", v_1.size, 100001);
 
 for i = 0 , 1000 , 1 do
-  Belt_HashSetInt.remove(v$1, i);
+  Belt_HashSetInt.remove(v_1, i);
 end
 
-eq("File \"bs_hashset_int_test.ml\", line 34, characters 5-12", v$1.size, 99000);
+eq("File \"bs_hashset_int_test.ml\", line 34, characters 5-12", v_1.size, 99000);
 
-for i$1 = 0 , 2000 , 1 do
-  Belt_HashSetInt.remove(v$1, i$1);
+for i_1 = 0 , 2000 , 1 do
+  Belt_HashSetInt.remove(v_1, i_1);
 end
 
-eq("File \"bs_hashset_int_test.ml\", line 38, characters 5-12", v$1.size, 98000);
+eq("File \"bs_hashset_int_test.ml\", line 38, characters 5-12", v_1.size, 98000);
 
 u0 = Belt_HashSetInt.fromArray(Array_data_util.randomRange(0, 100000));
 
@@ -79,12 +79,12 @@ u1 = Belt_HashSetInt.copy(u0);
 
 eq("File \"bs_hashset_int_test.ml\", line 46, characters 5-12", Belt_HashSetInt.toArray(u0), Belt_HashSetInt.toArray(u1));
 
-for i$2 = 0 , 2000 , 1 do
-  Belt_HashSetInt.remove(u1, i$2);
+for i_2 = 0 , 2000 , 1 do
+  Belt_HashSetInt.remove(u1, i_2);
 end
 
-for i$3 = 0 , 1000 , 1 do
-  Belt_HashSetInt.remove(u0, i$3);
+for i_3 = 0 , 1000 , 1 do
+  Belt_HashSetInt.remove(u0, i_3);
 end
 
 v0 = Belt_Array.concat(Array_data_util.range(0, 1000), Belt_HashSetInt.toArray(u0));

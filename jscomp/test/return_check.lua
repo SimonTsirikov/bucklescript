@@ -18,7 +18,7 @@ function f_undefined(xs, i) do
   if (match ~= undefined) then do
     return match;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "return_check.ml",
@@ -60,7 +60,7 @@ function f_null(xs, i) do
   if (match ~= nil) then do
     return match;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "return_check.ml",
@@ -74,7 +74,7 @@ end end
 function f_null_undefined(xs, i) do
   match = xs[i];
   if (match == nil) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "return_check.ml",

@@ -542,9 +542,9 @@ function partitionSharedU(n, p) do
     lf = match[1];
     lt = match[0];
     pvd = p(key, value);
-    match$1 = partitionSharedU(n.right, p);
-    rf = match$1[1];
-    rt = match$1[0];
+    match_1 = partitionSharedU(n.right, p);
+    rf = match_1[1];
+    rt = match_1[0];
     if (pvd) then do
       return --[[ tuple ]]{
               join(lt, key, value, rt),
@@ -620,7 +620,7 @@ function checkInvariantInternal(_v) do
       r = v.right;
       diff = treeHeight(l) - treeHeight(r) | 0;
       if (not (diff <= 2 and diff >= -2)) then do
-        error (new Error("File \"belt_internalAVLtree.ml\", line 385, characters 6-12"))
+        error(new Error("File \"belt_internalAVLtree.ml\", line 385, characters 6-12"))
       end
        end 
       checkInvariantInternal(l);
@@ -738,36 +738,36 @@ function fromSortedArrayRevAux(arr, off, len) do
      if ___conditional___ = 2 then do
         match_000 = arr[off];
         match_001 = arr[off - 1 | 0];
-        match$1 = match_001;
-        match$2 = match_000;
+        match_1 = match_001;
+        match_2 = match_000;
         return do
-                key: match$1[0],
-                value: match$1[1],
+                key: match_1[0],
+                value: match_1[1],
                 height: 2,
-                left: singleton(match$2[0], match$2[1]),
+                left: singleton(match_2[0], match_2[1]),
                 right: nil
               end;end end end 
      if ___conditional___ = 3 then do
-        match_000$1 = arr[off];
-        match_001$1 = arr[off - 1 | 0];
+        match_000_1 = arr[off];
+        match_001_1 = arr[off - 1 | 0];
         match_002 = arr[off - 2 | 0];
-        match$3 = match_002;
-        match$4 = match_001$1;
-        match$5 = match_000$1;
+        match_3 = match_002;
+        match_4 = match_001_1;
+        match_5 = match_000_1;
         return do
-                key: match$4[0],
-                value: match$4[1],
+                key: match_4[0],
+                value: match_4[1],
                 height: 2,
-                left: singleton(match$5[0], match$5[1]),
-                right: singleton(match$3[0], match$3[1])
+                left: singleton(match_5[0], match_5[1]),
+                right: singleton(match_3[0], match_3[1])
               end;end end end 
      do
     else do
       nl = len / 2 | 0;
       left = fromSortedArrayRevAux(arr, off, nl);
-      match$6 = arr[off - nl | 0];
+      match_6 = arr[off - nl | 0];
       right = fromSortedArrayRevAux(arr, (off - nl | 0) - 1 | 0, (len - nl | 0) - 1 | 0);
-      return create(left, match$6[0], match$6[1], right);
+      return create(left, match_6[0], match_6[1], right);
       end end
       
   end
@@ -784,36 +784,36 @@ function fromSortedArrayAux(arr, off, len) do
      if ___conditional___ = 2 then do
         match_000 = arr[off];
         match_001 = arr[off + 1 | 0];
-        match$1 = match_001;
-        match$2 = match_000;
+        match_1 = match_001;
+        match_2 = match_000;
         return do
-                key: match$1[0],
-                value: match$1[1],
+                key: match_1[0],
+                value: match_1[1],
                 height: 2,
-                left: singleton(match$2[0], match$2[1]),
+                left: singleton(match_2[0], match_2[1]),
                 right: nil
               end;end end end 
      if ___conditional___ = 3 then do
-        match_000$1 = arr[off];
-        match_001$1 = arr[off + 1 | 0];
+        match_000_1 = arr[off];
+        match_001_1 = arr[off + 1 | 0];
         match_002 = arr[off + 2 | 0];
-        match$3 = match_002;
-        match$4 = match_001$1;
-        match$5 = match_000$1;
+        match_3 = match_002;
+        match_4 = match_001_1;
+        match_5 = match_000_1;
         return do
-                key: match$4[0],
-                value: match$4[1],
+                key: match_4[0],
+                value: match_4[1],
                 height: 2,
-                left: singleton(match$5[0], match$5[1]),
-                right: singleton(match$3[0], match$3[1])
+                left: singleton(match_5[0], match_5[1]),
+                right: singleton(match_3[0], match_3[1])
               end;end end end 
      do
     else do
       nl = len / 2 | 0;
       left = fromSortedArrayAux(arr, off, nl);
-      match$6 = arr[off + nl | 0];
+      match_6 = arr[off + nl | 0];
       right = fromSortedArrayAux(arr, (off + nl | 0) + 1 | 0, (len - nl | 0) - 1 | 0);
-      return create(left, match$6[0], match$6[1], right);
+      return create(left, match_6[0], match_6[1], right);
       end end
       
   end
@@ -829,17 +829,17 @@ function cmpU(s1, s2, kcmp, vcmp) do
   if (len1 == len2) then do
     _e1 = stackAllLeft(s1, --[[ [] ]]0);
     _e2 = stackAllLeft(s2, --[[ [] ]]0);
-    kcmp$1 = kcmp;
-    vcmp$1 = vcmp;
+    kcmp_1 = kcmp;
+    vcmp_1 = vcmp;
     while(true) do
       e2 = _e2;
       e1 = _e1;
       if (e1 and e2) then do
         h2 = e2[0];
         h1 = e1[0];
-        c = kcmp$1(h1.key, h2.key);
+        c = kcmp_1(h1.key, h2.key);
         if (c == 0) then do
-          cx = vcmp$1(h1.value, h2.value);
+          cx = vcmp_1(h1.value, h2.value);
           if (cx == 0) then do
             _e2 = stackAllLeft(h2.right, e2[1]);
             _e1 = stackAllLeft(h1.right, e1[1]);
@@ -871,15 +871,15 @@ function eqU(s1, s2, kcmp, veq) do
   if (len1 == len2) then do
     _e1 = stackAllLeft(s1, --[[ [] ]]0);
     _e2 = stackAllLeft(s2, --[[ [] ]]0);
-    kcmp$1 = kcmp;
-    veq$1 = veq;
+    kcmp_1 = kcmp;
+    veq_1 = veq;
     while(true) do
       e2 = _e2;
       e1 = _e1;
       if (e1 and e2) then do
         h2 = e2[0];
         h1 = e1[0];
-        if (kcmp$1(h1.key, h2.key) == 0 and veq$1(h1.value, h2.value)) then do
+        if (kcmp_1(h1.key, h2.key) == 0 and veq_1(h1.value, h2.value)) then do
           _e2 = stackAllLeft(h2.right, e2[1]);
           _e1 = stackAllLeft(h1.right, e1[1]);
           ::continue:: ;
@@ -948,7 +948,7 @@ function getExn(_n, x, cmp) do
         ::continue:: ;
       end end 
     end else do
-      error (new Error("getExn0"))
+      error(new Error("getExn0"))
     end end 
   end;
 end end
@@ -1101,8 +1101,8 @@ function fromArray(xs, cmp) do
   if (len == 0) then do
     return nil;
   end else do
-    next = Belt_SortArray.strictlySortedLengthU(xs, (function (param, param$1) do
-            return cmp(param[0], param$1[0]) < 0;
+    next = Belt_SortArray.strictlySortedLengthU(xs, (function (param, param_1) do
+            return cmp(param[0], param_1[0]) < 0;
           end end));
     result;
     if (next >= 0) then do

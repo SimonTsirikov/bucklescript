@@ -48,19 +48,19 @@ function utf8_decode(strm) do
                 match = Stream.peek(strm);
                 if (match ~= undefined) then do
                   Stream.junk(strm);
-                  match$1 = classify(match);
-                  if (typeof match$1 == "number") then do
-                    error ({
+                  match_1 = classify(match);
+                  if (typeof match_1 == "number") then do
+                    error({
                       Stream.__Error,
                       "Invalid byte"
                     })
                   end else do
-                    local ___conditional___=(match$1.tag | 0);
+                    local ___conditional___=(match_1.tag | 0);
                     do
                        if ___conditional___ = 0--[[ Single ]] then do
-                          return Stream.icons(match$1[0], utf8_decode(strm));end end end 
+                          return Stream.icons(match_1[0], utf8_decode(strm));end end end 
                        if ___conditional___ = 1--[[ Cont ]] then do
-                          error ({
+                          error({
                             Stream.__Error,
                             "Unexpected continuation byte"
                           })end end end 
@@ -74,7 +74,7 @@ function utf8_decode(strm) do
                               end else do
                                 match = classify(Stream.next(strm));
                                 if (typeof match == "number") then do
-                                  error ({
+                                  error({
                                     Stream.__Error,
                                     "Continuation byte expected"
                                   })
@@ -83,7 +83,7 @@ function utf8_decode(strm) do
                                   _n = n - 1 | 0;
                                   ::continue:: ;
                                 end else do
-                                  error ({
+                                  error({
                                     Stream.__Error,
                                     "Continuation byte expected"
                                   })
@@ -91,7 +91,7 @@ function utf8_decode(strm) do
                               end end 
                             end;
                           end end;
-                          return Stream.icons(follow(strm, match$1[0], match$1[1]), utf8_decode(strm));end end end 
+                          return Stream.icons(follow(strm, match_1[0], match_1[1]), utf8_decode(strm));end end end 
                        do
                       
                     end
@@ -120,10 +120,10 @@ function utf8_list(s) do
 end end
 
 function decode(bytes, offset) do
-  offset$1 = offset;
-  match = classify(Caml_bytes.get(bytes, offset$1));
+  offset_1 = offset;
+  match = classify(Caml_bytes.get(bytes, offset_1));
   if (typeof match == "number") then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "decode"
     })
@@ -133,40 +133,40 @@ function decode(bytes, offset) do
        if ___conditional___ = 0--[[ Single ]] then do
           return --[[ tuple ]]{
                   match[0],
-                  offset$1 + 1 | 0
+                  offset_1 + 1 | 0
                 };end end end 
        if ___conditional___ = 1--[[ Cont ]] then do
-          error ({
+          error({
             Caml_builtin_exceptions.invalid_argument,
             "decode"
           })end end end 
        if ___conditional___ = 2--[[ Leading ]] then do
           _n = match[0];
           _c = match[1];
-          _offset = offset$1 + 1 | 0;
+          _offset = offset_1 + 1 | 0;
           while(true) do
-            offset$2 = _offset;
+            offset_2 = _offset;
             c = _c;
             n = _n;
             if (n == 0) then do
               return --[[ tuple ]]{
                       c,
-                      offset$2
+                      offset_2
                     };
             end else do
-              match$1 = classify(Caml_bytes.get(bytes, offset$2));
-              if (typeof match$1 == "number") then do
-                error ({
+              match_1 = classify(Caml_bytes.get(bytes, offset_2));
+              if (typeof match_1 == "number") then do
+                error({
                   Caml_builtin_exceptions.invalid_argument,
                   "decode"
                 })
-              end else if (match$1.tag == --[[ Cont ]]1) then do
-                _offset = offset$2 + 1 | 0;
-                _c = (c << 6) | match$1[0] & 63;
+              end else if (match_1.tag == --[[ Cont ]]1) then do
+                _offset = offset_2 + 1 | 0;
+                _c = (c << 6) | match_1[0] & 63;
                 _n = n - 1 | 0;
                 ::continue:: ;
               end else do
-                error ({
+                error({
                   Caml_builtin_exceptions.invalid_argument,
                   "decode"
                 })
@@ -233,8 +233,8 @@ end end
 List.iter((function (param) do
         return eq("File \"utf8_decode_test.ml\", line 107, characters 7-14", --[[ tuple ]]{
                     true,
-                    eq_list((function (prim, prim$1) do
-                            return prim == prim$1;
+                    eq_list((function (prim, prim_1) do
+                            return prim == prim_1;
                           end end), to_list(utf8_decode(Stream.of_string(param[0]))), param[1])
                   });
       end end), --[[ :: ]]{

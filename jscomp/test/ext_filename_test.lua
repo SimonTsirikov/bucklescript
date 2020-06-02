@@ -39,8 +39,8 @@ function path_as_directory(x) do
 end end
 
 function absolute_path(s) do
-  s$1 = s;
-  s$2 = Curry._1(Filename.is_relative, s$1) and Filename.concat(CamlinternalLazy.force(cwd), s$1) or s$1;
+  s_1 = s;
+  s_2 = Curry._1(Filename.is_relative, s_1) and Filename.concat(CamlinternalLazy.force(cwd), s_1) or s_1;
   aux = function (_s) do
     while(true) do
       s = _s;
@@ -58,14 +58,14 @@ function absolute_path(s) do
       end end  end  end 
     end;
   end end;
-  return aux(s$2);
+  return aux(s_2);
 end end
 
 function chop_extension(locOpt, name) do
   loc = locOpt ~= undefined and locOpt or "";
   xpcall(function() do
     return Filename.chop_extension(name);
-  end end,function(raw_exn) return do
+  end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
       return Curry._2(Format.ksprintf(Pervasives.invalid_arg, --[[ Format ]]{
@@ -88,7 +88,7 @@ function chop_extension(locOpt, name) do
                       "Filename.chop_extension ( %s : %s )"
                     }), loc, name);
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -96,12 +96,12 @@ end end
 function chop_extension_if_any(fname) do
   xpcall(function() do
     return Filename.chop_extension(fname);
-  end end,function(raw_exn) return do
+  end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.invalid_argument) then do
       return fname;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -221,8 +221,8 @@ function find_package_json_dir(cwd) do
 end end
 
 package_dir = Caml_obj.caml_lazy_make((function (param) do
-        cwd$1 = CamlinternalLazy.force(cwd);
-        return find_root_filename(cwd$1, Test_literals.bsconfig_json);
+        cwd_1 = CamlinternalLazy.force(cwd);
+        return find_root_filename(cwd_1, Test_literals.bsconfig_json);
       end end));
 
 function module_name_of_file(file) do
@@ -252,15 +252,15 @@ function split_aux(p) do
   _acc = --[[ [] ]]0;
   while(true) do
     acc = _acc;
-    p$1 = _p;
-    dir = Curry._1(Filename.dirname, p$1);
-    if (dir == p$1) then do
+    p_1 = _p;
+    dir = Curry._1(Filename.dirname, p_1);
+    if (dir == p_1) then do
       return --[[ tuple ]]{
               dir,
               acc
             };
     end else do
-      new_path = Curry._1(Filename.basename, p$1);
+      new_path = Curry._1(Filename.basename, p_1);
       if (new_path == Filename.dir_sep) then do
         _p = dir;
         ::continue:: ;
@@ -278,13 +278,13 @@ end end
 
 function rel_normalized_absolute_path(from, to_) do
   match = split_aux(from);
-  match$1 = split_aux(to_);
-  root2 = match$1[0];
+  match_1 = split_aux(to_);
+  root2 = match_1[0];
   if (match[0] ~= root2) then do
     return root2;
   end else do
     _xss = match[1];
-    _yss = match$1[1];
+    _yss = match_1[1];
     while(true) do
       yss = _yss;
       xss = _xss;
@@ -355,11 +355,11 @@ function normalize_absolute_path(x) do
     _acc = rev_paths[0];
     _rev_paths = rev_paths[1];
     while(true) do
-      rev_paths$1 = _rev_paths;
+      rev_paths_1 = _rev_paths;
       acc = _acc;
-      if (rev_paths$1) then do
-        _rev_paths = rev_paths$1[1];
-        _acc = Filename.concat(rev_paths$1[0], acc);
+      if (rev_paths_1) then do
+        _rev_paths = rev_paths_1[1];
+        _acc = Filename.concat(rev_paths_1[0], acc);
         ::continue:: ;
       end else do
         return Filename.concat(root, acc);
@@ -389,7 +389,7 @@ end else if (Sys.win32 or false) then do
   simple_convert_node_path_to_os_path = Ext_string_test.replace_slash_backward;
 end else do
   s = "Unknown OS : " .. Sys.os_type;
-  error ({
+  error({
     Caml_builtin_exceptions.failure,
     s
   })

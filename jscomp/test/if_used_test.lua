@@ -25,11 +25,11 @@ function point_init(__class) do
             return --[[ () ]]0;
           end end)
       });
-  return (function (env, self, x_init$1) do
-      self$1 = CamlinternalOO.create_object_opt(self, __class);
-      self$1[x_init] = x_init$1;
-      self$1[x] = x_init$1;
-      return self$1;
+  return (function (env, self, x_init_1) do
+      self_1 = CamlinternalOO.create_object_opt(self, __class);
+      self_1[x_init] = x_init_1;
+      self_1[x] = x_init_1;
+      return self_1;
     end end);
 end end
 

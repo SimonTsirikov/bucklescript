@@ -16,77 +16,77 @@ function f(h) do
     end end);
 end end
 
-f((function (prim, prim$1) do
-        return prim + prim$1 | 0;
+f((function (prim, prim_1) do
+        return prim + prim_1 | 0;
       end end));
 
-f((function (prim, prim$1) do
-        return prim + prim$1 | 0;
+f((function (prim, prim_1) do
+        return prim + prim_1 | 0;
       end end));
 
 a = v.contents;
 
-v$1 = do
+v_1 = do
   contents: 3
 end;
 
-function f$1(h) do
-  v$1.contents = v$1.contents + 1 | 0;
+function f_1(h) do
+  v_1.contents = v_1.contents + 1 | 0;
   partial_arg = 3;
   return (function (param) do
       return Curry._2(h, partial_arg, param);
     end end);
 end end
 
-f$1((function (prim, prim$1) do
-        return prim + prim$1 | 0;
+f_1((function (prim, prim_1) do
+        return prim + prim_1 | 0;
       end end));
 
-f$1((function (prim, prim$1) do
-        return prim + prim$1 | 0;
+f_1((function (prim, prim_1) do
+        return prim + prim_1 | 0;
       end end));
 
-b = v$1.contents;
+b = v_1.contents;
 
-v$2 = do
+v_2 = do
   contents: 3
 end;
 
-function f$2(h) do
-  return Curry._2(h, 2, (v$2.contents = v$2.contents + 1 | 0, 3));
+function f_2(h) do
+  return Curry._2(h, 2, (v_2.contents = v_2.contents + 1 | 0, 3));
 end end
 
-f$2((function (prim, prim$1) do
-        return prim + prim$1 | 0;
+f_2((function (prim, prim_1) do
+        return prim + prim_1 | 0;
       end end));
 
-f$2((function (prim, prim$1) do
-        return prim + prim$1 | 0;
+f_2((function (prim, prim_1) do
+        return prim + prim_1 | 0;
       end end));
 
-c = v$2.contents;
+c = v_2.contents;
 
-v$3 = do
+v_3 = do
   contents: 3
 end;
 
-function f$3(h, g) do
-  v$3.contents = v$3.contents + 1 | 0;
+function f_3(h, g) do
+  v_3.contents = v_3.contents + 1 | 0;
   partial_arg = 9;
   return (function (param) do
       return Curry._2(h, partial_arg, param);
     end end);
 end end
 
-f$3((function (prim, prim$1) do
-        return prim + prim$1 | 0;
+f_3((function (prim, prim_1) do
+        return prim + prim_1 | 0;
       end end), 3);
 
-f$3((function (prim, prim$1) do
-        return prim + prim$1 | 0;
+f_3((function (prim, prim_1) do
+        return prim + prim_1 | 0;
       end end), 3);
 
-d = v$3.contents;
+d = v_3.contents;
 
 Mt.from_pair_suites("Pr_regression_test", --[[ :: ]]{
       --[[ tuple ]]{

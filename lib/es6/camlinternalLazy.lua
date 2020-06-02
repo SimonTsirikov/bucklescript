@@ -8,7 +8,7 @@ import * as Caml_exceptions from "./caml_exceptions.lua";
 Undefined = Caml_exceptions.create("CamlinternalLazy.Undefined");
 
 function raise_undefined(param) do
-  error (Undefined)
+  error(Undefined)
 end end
 
 function force_lazy_block(blk) do
@@ -19,11 +19,11 @@ function force_lazy_block(blk) do
     blk[0] = result;
     Caml_obj.caml_obj_set_tag(blk, Obj.forward_tag);
     return result;
-  end end,function(e) return do
+  end end,function(e) do
     blk[0] = (function (param) do
-        error (e)
+        error(e)
       end end);
-    error (e)
+    error(e)
   end end)
 end end
 

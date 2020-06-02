@@ -94,18 +94,18 @@ idx(--[[ b ]]98);
 
 idx(--[[ c ]]99);
 
-jsMapperConstantArray$1 = {
+jsMapperConstantArray_1 = {
   0,
   3,
   4
 };
 
 function aToJs(param) do
-  return jsMapperConstantArray$1[param];
+  return jsMapperConstantArray_1[param];
 end end
 
 function aFromJs(param) do
-  return Js_mapperRt.fromIntAssert(3, jsMapperConstantArray$1, param);
+  return Js_mapperRt.fromIntAssert(3, jsMapperConstantArray_1, param);
 end end
 
 function id(x) do
@@ -128,7 +128,7 @@ end end
 
 function bFromJs(param) do
   if (not (param <= 3 and 0 <= param)) then do
-    error (new Error("ASSERT FAILURE"))
+    error(new Error("ASSERT FAILURE"))
   end
    end 
   return param - 0 | 0;
@@ -156,7 +156,7 @@ end end
 
 function cFromJs(param) do
   if (not (param <= 6 and 3 <= param)) then do
-    error (new Error("ASSERT FAILURE"))
+    error(new Error("ASSERT FAILURE"))
   end
    end 
   return param - 3 | 0;
@@ -182,7 +182,7 @@ end end
 
 function hFromJs(param) do
   if (not (param <= 1 and 0 <= param)) then do
-    error (new Error("ASSERT FAILURE"))
+    error(new Error("ASSERT FAILURE"))
   end
    end 
   return param - 0 | 0;

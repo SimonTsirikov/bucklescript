@@ -33,16 +33,16 @@ end end
 y;
 
 xpcall(function() do
-  error ({
+  error({
     Caml_builtin_exceptions.failure,
     "boo"
   })
-end end,function(raw_exn) return do
+end end,function(raw_exn) do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   if (exn[0] == Caml_builtin_exceptions.failure) then do
     y = exn[1];
   end else do
-    error (exn)
+    error(exn)
   end end 
 end end)
 
@@ -51,16 +51,16 @@ x;
 exit = 0;
 
 xpcall(function() do
-  error ({
+  error({
     Caml_builtin_exceptions.failure,
     "boo"
   })
-end end,function(raw_exn$1) return do
-  exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn$1);
-  if (exn$1[0] == Caml_builtin_exceptions.failure) then do
-    x = exn$1[1];
+end end,function(raw_exn_1) do
+  exn_1 = Caml_js_exceptions.internalToOCamlException(raw_exn_1);
+  if (exn_1[0] == Caml_builtin_exceptions.failure) then do
+    x = exn_1[1];
   end else do
-    error (exn$1)
+    error(exn_1)
   end end 
 end end)
 

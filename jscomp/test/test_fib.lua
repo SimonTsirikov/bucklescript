@@ -26,13 +26,13 @@ end
 
 sum = v;
 
-v$1 = 0;
+v_1 = 0;
 
-for i$1 = 10 , 0 , -1 do
-  v$1 = v$1 + i$1 | 0;
+for i_1 = 10 , 0 , -1 do
+  v_1 = v_1 + i_1 | 0;
 end
 
-sumdown = v$1;
+sumdown = v_1;
 
 function cons(x, y) do
   return --[[ Cons ]]{
@@ -75,11 +75,11 @@ function fib3(n) do
   _b = 1;
   _n = n;
   while(true) do
-    n$1 = _n;
+    n_1 = _n;
     b = _b;
     a = _a;
-    if (n$1 > 0) then do
-      _n = n$1 - 1 | 0;
+    if (n_1 > 0) then do
+      _n = n_1 - 1 | 0;
       _b = a + b | 0;
       _a = b;
       ::continue:: ;

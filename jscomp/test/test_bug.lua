@@ -38,13 +38,13 @@ function escaped(s) do
   end else do
     s$prime = Caml_bytes.caml_create_bytes(n);
     n = 0;
-    for i$1 = 0 , #s - 1 | 0 , 1 do
-      c$1 = s[i$1];
-      exit$1 = 0;
-      switcher = c$1 - 34 | 0;
+    for i_1 = 0 , #s - 1 | 0 , 1 do
+      c_1 = s[i_1];
+      exit_1 = 0;
+      switcher = c_1 - 34 | 0;
       if (switcher > 58 or switcher < 0) then do
         if (switcher >= -20) then do
-          exit$1 = 1;
+          exit_1 = 1;
         end else do
           local ___conditional___=(switcher + 34 | 0);
           do
@@ -70,7 +70,7 @@ function escaped(s) do
              or ___conditional___ = 7
              or ___conditional___ = 11
              or ___conditional___ = 12 then do
-                exit$1 = 1;end else 
+                exit_1 = 1;end else 
              if ___conditional___ = 13 then do
                 s$prime[n] = --[[ "\\" ]]92;
                 n = n + 1 | 0;
@@ -82,21 +82,21 @@ function escaped(s) do
       end else if (switcher > 57 or switcher < 1) then do
         s$prime[n] = --[[ "\\" ]]92;
         n = n + 1 | 0;
-        s$prime[n] = c$1;
+        s$prime[n] = c_1;
       end else do
-        exit$1 = 1;
+        exit_1 = 1;
       end end  end 
-      if (exit$1 == 1) then do
-        if (Caml_char.caml_is_printable(c$1)) then do
-          s$prime[n] = c$1;
+      if (exit_1 == 1) then do
+        if (Caml_char.caml_is_printable(c_1)) then do
+          s$prime[n] = c_1;
         end else do
           s$prime[n] = --[[ "\\" ]]92;
           n = n + 1 | 0;
-          s$prime[n] = 48 + (c$1 / 100 | 0) | 0;
+          s$prime[n] = 48 + (c_1 / 100 | 0) | 0;
           n = n + 1 | 0;
-          s$prime[n] = 48 + (c$1 / 10 | 0) % 10 | 0;
+          s$prime[n] = 48 + (c_1 / 10 | 0) % 10 | 0;
           n = n + 1 | 0;
-          s$prime[n] = 48 + c$1 % 10 | 0;
+          s$prime[n] = 48 + c_1 % 10 | 0;
         end end 
       end
        end 

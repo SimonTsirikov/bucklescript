@@ -44,7 +44,7 @@ eq("File \"sprintf_reg_test.ml\", line 8, characters 5-12", --[[ tuple ]]{
       "%s."
     });
 
-s$1 = Curry._2(Printf.sprintf(--[[ Format ]]{
+s_1 = Curry._2(Printf.sprintf(--[[ Format ]]{
           --[[ Int ]]Block.__(4, {
               --[[ Int_i ]]3,
               --[[ No_padding ]]0,
@@ -71,7 +71,7 @@ s$1 = Curry._2(Printf.sprintf(--[[ Format ]]{
     });
 
 eq("File \"sprintf_reg_test.ml\", line 14, characters 5-12", --[[ tuple ]]{
-      s$1,
+      s_1,
       "1 %s"
     });
 

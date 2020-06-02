@@ -18,7 +18,7 @@ end end
 match = {1};
 
 if (#match ~= 1) then do
-  error ({
+  error({
     Caml_builtin_exceptions.match_failure,
     --[[ tuple ]]{
       "gpr_3595_test.ml",

@@ -6,7 +6,7 @@ Block = require "../../lib/js/block";
 Caml_array = require "../../lib/js/caml_array";
 
 function f(param) do
-  f$1 = function (_acc, _n) do
+  f_1 = function (_acc, _n) do
     while(true) do
       n = _n;
       acc = _acc;
@@ -21,7 +21,7 @@ function f(param) do
   end end;
   v = Caml_array.caml_make_vect(10, 0);
   for i = 0 , 9 , 1 do
-    Caml_array.caml_array_set(v, i, f$1(0, i));
+    Caml_array.caml_array_set(v, i, f_1(0, i));
   end
   return v;
 end end

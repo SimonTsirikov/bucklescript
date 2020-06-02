@@ -36,8 +36,8 @@ function foo(f) do
 end end
 
 foo((function (param) do
-        return (function (param$1) do
-            return Gpr_1423_nav.busted(param, "a2", param$1);
+        return (function (param_1) do
+            return Gpr_1423_nav.busted(param, "a2", param_1);
           end end);
       end end));
 
@@ -46,8 +46,8 @@ function foo2(f) do
 end end
 
 eq("File \"gpr_1423_app_test.ml\", line 18, characters 7-14", Curry._1((function (param) do
-              return (function (param$1) do
-                  return Gpr_1423_nav.busted(param, "a2", param$1);
+              return (function (param_1) do
+                  return Gpr_1423_nav.busted(param, "a2", param_1);
                 end end);
             end end)("a1"), --[[ () ]]0), "a1a2");
 

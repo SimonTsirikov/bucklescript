@@ -68,8 +68,8 @@ eq("File \"exn_error_pattern.ml\", line 37, characters 5-12", f({
 tmp;
 
 xpcall(function() do
-  error (new Error("x"))
-end end,function(raw_e) return do
+  error(new Error("x"))
+end end,function(raw_e) do
   tmp = Caml_js_exceptions.internalToOCamlException(raw_e);
 end end)
 

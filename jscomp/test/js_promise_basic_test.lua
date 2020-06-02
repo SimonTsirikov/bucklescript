@@ -37,7 +37,7 @@ function assert_bool(b) do
   if (b) then do
     return --[[ () ]]0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Assertion Failure."
     })
@@ -45,7 +45,7 @@ function assert_bool(b) do
 end end
 
 function fail(param) do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "js_promise_basic_test.ml",
@@ -78,7 +78,7 @@ function assertIsNotFound(x) do
   if (match ~= undefined) then do
     return h;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "js_promise_basic_test.ml",
@@ -139,7 +139,7 @@ function orElseRejectedRejectTest(param) do
                 if (match ~= undefined) then do
                   return h;
                 end else do
-                  error ({
+                  error({
                     Caml_builtin_exceptions.assert_failure,
                     --[[ tuple ]]{
                       "js_promise_basic_test.ml",
@@ -291,8 +291,8 @@ Mt.from_pair_suites("Js_promise_basic_test", suites.contents);
 
 twop = Promise.resolve(2);
 
-function then_(prim, prim$1) do
-  return prim$1.then(Curry.__1(prim));
+function then_(prim, prim_1) do
+  return prim_1.then(Curry.__1(prim));
 end end
 
 function re(prim) do

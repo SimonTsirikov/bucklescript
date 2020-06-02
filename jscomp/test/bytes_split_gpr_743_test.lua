@@ -55,21 +55,21 @@ eq("File \"bytes_split_gpr_743_test.ml\", line 17, characters 5-12", --[[ tuple 
       res
     });
 
-b$1 = {
+b_1 = {
   0,
   0,
   0
 };
 
-b$1[0] = --[[ "a" ]]97;
+b_1[0] = --[[ "a" ]]97;
 
-b$1[1] = --[[ "b" ]]98;
+b_1[1] = --[[ "b" ]]98;
 
-b$1[2] = --[[ "c" ]]99;
+b_1[2] = --[[ "c" ]]99;
 
-Bytes.blit(b$1, 1, b$1, 0, 2);
+Bytes.blit(b_1, 1, b_1, 0, 2);
 
-res2 = Caml_bytes.bytes_to_string(b$1);
+res2 = Caml_bytes.bytes_to_string(b_1);
 
 console.log(res2);
 

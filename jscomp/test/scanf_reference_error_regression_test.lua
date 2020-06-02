@@ -33,9 +33,9 @@ function scan_rest(ib, accu) do
                 if (param == "]") then do
                   return accu;
                 end else do
-                  ib$1 = ib;
-                  accu$1 = accu;
-                  return Curry._1(Scanf.bscanf(ib$1, --[[ Format ]]{
+                  ib_1 = ib;
+                  accu_1 = accu;
+                  return Curry._1(Scanf.bscanf(ib_1, --[[ Format ]]{
                                   --[[ Char_literal ]]Block.__(12, {
                                       --[[ " " ]]32,
                                       --[[ Int ]]Block.__(4, {
@@ -50,12 +50,12 @@ function scan_rest(ib, accu) do
                                     }),
                                   " %i "
                                 }), (function (i) do
-                                ib$2 = ib$1;
-                                accu$2 = --[[ :: ]]{
+                                ib_2 = ib_1;
+                                accu_2 = --[[ :: ]]{
                                   i,
-                                  accu$1
+                                  accu_1
                                 };
-                                return Curry._1(Scanf.bscanf(ib$2, --[[ Format ]]{
+                                return Curry._1(Scanf.bscanf(ib_2, --[[ Format ]]{
                                                 --[[ Scan_char_set ]]Block.__(20, {
                                                     1,
                                                     "\0\0\0\0\0\0\0\b\0\0\0 \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0",
@@ -66,9 +66,9 @@ function scan_rest(ib, accu) do
                                               local ___conditional___=(param);
                                               do
                                                  if ___conditional___ = ";" then do
-                                                    return scan_rest(ib$2, accu$2);end end end 
+                                                    return scan_rest(ib_2, accu_2);end end end 
                                                  if ___conditional___ = "]" then do
-                                                    return accu$2;end end end 
+                                                    return accu_2;end end end 
                                                  do
                                                 else do
                                                   s = Printf.sprintf(--[[ Format ]]{
@@ -78,7 +78,7 @@ function scan_rest(ib, accu) do
                                                           }),
                                                         "scan_int_list"
                                                       });
-                                                  error ({
+                                                  error({
                                                     Caml_builtin_exceptions.failure,
                                                     s
                                                   })

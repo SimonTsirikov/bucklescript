@@ -26,7 +26,7 @@ end end
 function save_and_close(time, t) do
   return if_spacetime_enabled((function (param) do
                 if (t.closed) then do
-                  error ({
+                  error({
                     Caml_builtin_exceptions.failure,
                     "Series is closed"
                   })
@@ -52,7 +52,7 @@ function take(time, param) do
   closed = param.closed;
   return if_spacetime_enabled((function (param) do
                 if (closed) then do
-                  error ({
+                  error({
                     Caml_builtin_exceptions.failure,
                     "Series is closed"
                   })

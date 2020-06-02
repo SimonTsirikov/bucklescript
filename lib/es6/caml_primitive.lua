@@ -85,8 +85,8 @@ function caml_bytes_equal(s1, s2) do
   len1 = #s1;
   len2 = #s2;
   if (len1 == len2) then do
-    s1$1 = s1;
-    s2$1 = s2;
+    s1_1 = s1;
+    s2_1 = s2;
     _off = 0;
     len = len1;
     while(true) do
@@ -94,8 +94,8 @@ function caml_bytes_equal(s1, s2) do
       if (off == len) then do
         return true;
       end else do
-        a = s1$1[off];
-        b = s2$1[off];
+        a = s1_1[off];
+        b = s2_1[off];
         if (a == b) then do
           _off = off + 1 | 0;
           ::continue:: ;

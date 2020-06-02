@@ -124,7 +124,7 @@ function array(cmp, arr) do
         i = lo + 1 | 0;
         j = hi - 1 | 0;
         if (not Curry._2(cmp, pivot, arr[hi]) or not Curry._2(cmp, arr[lo], pivot)) then do
-          error ({
+          error({
             Caml_builtin_exceptions.invalid_argument,
             "Sort.array"
           })

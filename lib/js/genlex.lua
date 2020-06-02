@@ -53,11 +53,11 @@ function make_lexer(keywords) do
   ident_or_keyword = function (id) do
     xpcall(function() do
       return Hashtbl.find(kwd_table, id);
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
         return --[[ Ident ]]Block.__(1, {id});
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
@@ -65,15 +65,15 @@ function make_lexer(keywords) do
     s = Caml_bytes.bytes_to_string(Bytes.make(1, c));
     xpcall(function() do
       return Hashtbl.find(kwd_table, s);
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
-        error ({
+        error({
           Stream.__Error,
           "Illegal character " .. s
         })
       end
        end 
-      error (exn)
+      error(exn)
     end end)
   end end;
   next_token = function (strm__) do
@@ -104,68 +104,68 @@ function make_lexer(keywords) do
                     return --[[ String ]]Block.__(4, {string(strm__)});end end end 
                  if ___conditional___ = 39 then do
                     Stream.junk(strm__);
-                    c$1;
+                    c_1;
                     xpcall(function() do
-                      c$1 = __char(strm__);
-                    end end,function(exn) return do
+                      c_1 = __char(strm__);
+                    end end,function(exn) do
                       if (exn == Stream.Failure) then do
-                        error ({
+                        error({
                           Stream.__Error,
                           ""
                         })
                       end
                        end 
-                      error (exn)
+                      error(exn)
                     end end)
-                    match$1 = Stream.peek(strm__);
-                    if (match$1 ~= undefined) then do
-                      if (match$1 ~= 39) then do
-                        error ({
+                    match_1 = Stream.peek(strm__);
+                    if (match_1 ~= undefined) then do
+                      if (match_1 ~= 39) then do
+                        error({
                           Stream.__Error,
                           ""
                         })
                       end
                        end 
                       Stream.junk(strm__);
-                      return --[[ Char ]]Block.__(5, {c$1});
+                      return --[[ Char ]]Block.__(5, {c_1});
                     end else do
-                      error ({
+                      error({
                         Stream.__Error,
                         ""
                       })
                     end end end end end 
                  if ___conditional___ = 40 then do
                     Stream.junk(strm__);
-                    strm__$1 = strm__;
-                    match$2 = Stream.peek(strm__$1);
-                    if (match$2 == 42) then do
-                      Stream.junk(strm__$1);
-                      comment(strm__$1);
-                      return next_token(strm__$1);
+                    strm___1 = strm__;
+                    match_2 = Stream.peek(strm___1);
+                    if (match_2 == 42) then do
+                      Stream.junk(strm___1);
+                      comment(strm___1);
+                      return next_token(strm___1);
                     end else do
                       return keyword_or_error(--[[ "(" ]]40);
                     end end end end end 
                  if ___conditional___ = 45 then do
                     Stream.junk(strm__);
-                    strm__$2 = strm__;
-                    match$3 = Stream.peek(strm__$2);
-                    if (match$3 ~= undefined) then do
-                      c$2 = match$3;
-                      if (c$2 > 57 or c$2 < 48) then do
+                    strm___2 = strm__;
+                    match_3 = Stream.peek(strm___2);
+                    if (match_3 ~= undefined) then do
+                      c_2 = match_3;
+                      if (c_2 > 57 or c_2 < 48) then do
                         reset_buffer(--[[ () ]]0);
                         store(--[[ "-" ]]45);
-                        return ident2(strm__$2);
+                        return ident2(strm___2);
                       end else do
-                        Stream.junk(strm__$2);
+                        Stream.junk(strm___2);
                         reset_buffer(--[[ () ]]0);
                         store(--[[ "-" ]]45);
-                        store(c$2);
-                        return number(strm__$2);
+                        store(c_2);
+                        return number(strm___2);
                       end end 
                     end else do
                       reset_buffer(--[[ () ]]0);
                       store(--[[ "-" ]]45);
-                      return ident2(strm__$2);
+                      return ident2(strm___2);
                     end end end end end 
                  if ___conditional___ = 48
                  or ___conditional___ = 49
@@ -264,33 +264,33 @@ function make_lexer(keywords) do
               Stream.junk(strm__);
               reset_buffer(--[[ () ]]0);
               store(c);
-              strm__$3 = strm__;
+              strm___3 = strm__;
               while(true) do
-                match$4 = Stream.peek(strm__$3);
-                if (match$4 ~= undefined) then do
-                  c$3 = match$4;
-                  if (c$3 >= 91) then do
-                    switcher$1 = c$3 - 95 | 0;
-                    if (switcher$1 > 27 or switcher$1 < 0) then do
-                      if (switcher$1 < 97) then do
+                match_4 = Stream.peek(strm___3);
+                if (match_4 ~= undefined) then do
+                  c_3 = match_4;
+                  if (c_3 >= 91) then do
+                    switcher_1 = c_3 - 95 | 0;
+                    if (switcher_1 > 27 or switcher_1 < 0) then do
+                      if (switcher_1 < 97) then do
                         return ident_or_keyword(get_string(--[[ () ]]0));
                       end
                        end 
-                    end else if (switcher$1 == 1) then do
+                    end else if (switcher_1 == 1) then do
                       return ident_or_keyword(get_string(--[[ () ]]0));
                     end
                      end  end 
-                  end else if (c$3 >= 48) then do
-                    if (not (c$3 > 64 or c$3 < 58)) then do
+                  end else if (c_3 >= 48) then do
+                    if (not (c_3 > 64 or c_3 < 58)) then do
                       return ident_or_keyword(get_string(--[[ () ]]0));
                     end
                      end 
-                  end else if (c$3 ~= 39) then do
+                  end else if (c_3 ~= 39) then do
                     return ident_or_keyword(get_string(--[[ () ]]0));
                   end
                    end  end  end 
-                  Stream.junk(strm__$3);
-                  store(c$3);
+                  Stream.junk(strm___3);
+                  store(c_3);
                   ::continue:: ;
                 end else do
                   return ident_or_keyword(get_string(--[[ () ]]0));
@@ -407,23 +407,23 @@ function make_lexer(keywords) do
         end else do
           Stream.junk(strm__);
           store(--[[ "." ]]46);
-          strm__$1 = strm__;
+          strm___1 = strm__;
           while(true) do
-            match$1 = Stream.peek(strm__$1);
-            if (match$1 ~= undefined) then do
-              c$1 = match$1;
-              switcher = c$1 - 69 | 0;
+            match_1 = Stream.peek(strm___1);
+            if (match_1 ~= undefined) then do
+              c_1 = match_1;
+              switcher = c_1 - 69 | 0;
               if (switcher > 32 or switcher < 0) then do
                 if ((switcher + 21 >>> 0) <= 9) then do
-                  Stream.junk(strm__$1);
-                  store(c$1);
+                  Stream.junk(strm___1);
+                  store(c_1);
                   ::continue:: ;
                 end
                  end 
               end else if (switcher > 31 or switcher < 1) then do
-                Stream.junk(strm__$1);
+                Stream.junk(strm___1);
                 store(--[[ "E" ]]69);
-                return exponent_part(strm__$1);
+                return exponent_part(strm___1);
               end
                end  end 
             end
@@ -479,27 +479,27 @@ function make_lexer(keywords) do
             store(c);
             ::continue:: ;
           end else do
-            c$1;
+            c_1;
             xpcall(function() do
-              c$1 = __escape(strm__);
-            end end,function(exn) return do
+              c_1 = __escape(strm__);
+            end end,function(exn) do
               if (exn == Stream.Failure) then do
-                error ({
+                error({
                   Stream.__Error,
                   ""
                 })
               end
                end 
-              error (exn)
+              error(exn)
             end end)
-            store(c$1);
+            store(c_1);
             ::continue:: ;
           end end 
         end else do
           return get_string(--[[ () ]]0);
         end end 
       end else do
-        error (Stream.Failure)
+        error(Stream.Failure)
       end end 
     end;
   end end;
@@ -513,19 +513,19 @@ function make_lexer(keywords) do
       end else do
         xpcall(function() do
           return __escape(strm__);
-        end end,function(exn) return do
+        end end,function(exn) do
           if (exn == Stream.Failure) then do
-            error ({
+            error({
               Stream.__Error,
               ""
             })
           end
            end 
-          error (exn)
+          error(exn)
         end end)
       end end 
     end else do
-      error (Stream.Failure)
+      error(Stream.Failure)
     end end 
   end end;
   __escape = function (strm__) do
@@ -560,22 +560,22 @@ function make_lexer(keywords) do
       end else do
         Stream.junk(strm__);
         if (c1 >= 48) then do
-          match$1 = Stream.peek(strm__);
-          if (match$1 ~= undefined) then do
-            c2 = match$1;
+          match_1 = Stream.peek(strm__);
+          if (match_1 ~= undefined) then do
+            c2 = match_1;
             if (c2 > 57 or c2 < 48) then do
-              error ({
+              error({
                 Stream.__Error,
                 ""
               })
             end
              end 
             Stream.junk(strm__);
-            match$2 = Stream.peek(strm__);
-            if (match$2 ~= undefined) then do
-              c3 = match$2;
+            match_2 = Stream.peek(strm__);
+            if (match_2 ~= undefined) then do
+              c3 = match_2;
               if (c3 > 57 or c3 < 48) then do
-                error ({
+                error({
                   Stream.__Error,
                   ""
                 })
@@ -584,13 +584,13 @@ function make_lexer(keywords) do
               Stream.junk(strm__);
               return Char.chr((Caml_int32.imul(c1 - 48 | 0, 100) + Caml_int32.imul(c2 - 48 | 0, 10) | 0) + (c3 - 48 | 0) | 0);
             end else do
-              error ({
+              error({
                 Stream.__Error,
                 ""
               })
             end end 
           end else do
-            error ({
+            error({
               Stream.__Error,
               ""
             })
@@ -600,7 +600,7 @@ function make_lexer(keywords) do
         end end 
       end end 
     end else do
-      error (Stream.Failure)
+      error(Stream.Failure)
     end end 
   end end;
   comment = function (strm__) do
@@ -611,34 +611,34 @@ function make_lexer(keywords) do
         do
            if ___conditional___ = 40 then do
               Stream.junk(strm__);
-              strm__$1 = strm__;
-              match$1 = Stream.peek(strm__$1);
-              if (match$1 ~= undefined) then do
-                if (match$1 ~= 42) then do
-                  Stream.junk(strm__$1);
-                  return comment(strm__$1);
+              strm___1 = strm__;
+              match_1 = Stream.peek(strm___1);
+              if (match_1 ~= undefined) then do
+                if (match_1 ~= 42) then do
+                  Stream.junk(strm___1);
+                  return comment(strm___1);
                 end else do
-                  Stream.junk(strm__$1);
-                  comment(strm__$1);
-                  return comment(strm__$1);
+                  Stream.junk(strm___1);
+                  comment(strm___1);
+                  return comment(strm___1);
                 end end 
               end else do
-                error (Stream.Failure)
+                error(Stream.Failure)
               end end end end end 
            if ___conditional___ = 41 then do
               Stream.junk(strm__);
               ::continue:: ;end end end 
            if ___conditional___ = 42 then do
               Stream.junk(strm__);
-              strm__$2 = strm__;
+              strm___2 = strm__;
               while(true) do
-                match$2 = Stream.peek(strm__$2);
-                if (match$2 ~= undefined) then do
-                  match$3 = match$2;
-                  Stream.junk(strm__$2);
-                  if (match$3 ~= 41) then do
-                    if (match$3 ~= 42) then do
-                      return comment(strm__$2);
+                match_2 = Stream.peek(strm___2);
+                if (match_2 ~= undefined) then do
+                  match_3 = match_2;
+                  Stream.junk(strm___2);
+                  if (match_3 ~= 41) then do
+                    if (match_3 ~= 42) then do
+                      return comment(strm___2);
                     end else do
                       ::continue:: ;
                     end end 
@@ -646,7 +646,7 @@ function make_lexer(keywords) do
                     return --[[ () ]]0;
                   end end 
                 end else do
-                  error (Stream.Failure)
+                  error(Stream.Failure)
                 end end 
               end;end end end 
            do
@@ -657,7 +657,7 @@ function make_lexer(keywords) do
             
         end
       end else do
-        error (Stream.Failure)
+        error(Stream.Failure)
       end end 
     end;
   end end;

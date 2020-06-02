@@ -177,7 +177,7 @@ function f11(x) do
   if (typeof x == "number") then do
     return 2;
   end else if (x.tag) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "adt_optimize_test.ml",

@@ -38,11 +38,11 @@ function does_raise(f, q) do
   xpcall(function() do
     Curry._1(f, q);
     return false;
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Queue.Empty) then do
       return true;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -54,7 +54,7 @@ q = do
 end;
 
 if (not (to_list(q) == --[[ [] ]]0 and q.length == 0)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -71,7 +71,7 @@ if (not (Caml_obj.caml_equal(to_list(q), --[[ :: ]]{
           1,
           --[[ [] ]]0
         }) and q.length == 1)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -91,7 +91,7 @@ if (not (Caml_obj.caml_equal(to_list(q), --[[ :: ]]{
             --[[ [] ]]0
           }
         }) and q.length == 2)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -114,7 +114,7 @@ if (not (Caml_obj.caml_equal(to_list(q), --[[ :: ]]{
             }
           }
         }) and q.length == 3)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -140,7 +140,7 @@ if (not (Caml_obj.caml_equal(to_list(q), --[[ :: ]]{
             }
           }
         }) and q.length == 4)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -152,7 +152,7 @@ end
  end 
 
 if (Queue.take(q) ~= 1) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -173,7 +173,7 @@ if (not (Caml_obj.caml_equal(to_list(q), --[[ :: ]]{
             }
           }
         }) and q.length == 3)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -185,7 +185,7 @@ end
  end 
 
 if (Queue.take(q) ~= 2) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -203,7 +203,7 @@ if (not (Caml_obj.caml_equal(to_list(q), --[[ :: ]]{
             --[[ [] ]]0
           }
         }) and q.length == 2)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -215,7 +215,7 @@ end
  end 
 
 if (Queue.take(q) ~= 3) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -230,7 +230,7 @@ if (not (Caml_obj.caml_equal(to_list(q), --[[ :: ]]{
           4,
           --[[ [] ]]0
         }) and q.length == 1)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -242,7 +242,7 @@ end
  end 
 
 if (Queue.take(q) ~= 4) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -254,7 +254,7 @@ end
  end 
 
 if (not (to_list(q) == --[[ [] ]]0 and q.length == 0)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -266,7 +266,7 @@ end
  end 
 
 if (not does_raise(Queue.take, q)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -277,16 +277,16 @@ if (not does_raise(Queue.take, q)) then do
 end
  end 
 
-q$1 = do
+q_1 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
-Queue.add(1, q$1);
+Queue.add(1, q_1);
 
-if (Queue.take(q$1) ~= 1) then do
-  error ({
+if (Queue.take(q_1) ~= 1) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -297,8 +297,8 @@ if (Queue.take(q$1) ~= 1) then do
 end
  end 
 
-if (not does_raise(Queue.take, q$1)) then do
-  error ({
+if (not does_raise(Queue.take, q_1)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -309,10 +309,10 @@ if (not does_raise(Queue.take, q$1)) then do
 end
  end 
 
-Queue.add(2, q$1);
+Queue.add(2, q_1);
 
-if (Queue.take(q$1) ~= 2) then do
-  error ({
+if (Queue.take(q_1) ~= 2) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -323,8 +323,8 @@ if (Queue.take(q$1) ~= 2) then do
 end
  end 
 
-if (not does_raise(Queue.take, q$1)) then do
-  error ({
+if (not does_raise(Queue.take, q_1)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -335,8 +335,8 @@ if (not does_raise(Queue.take, q$1)) then do
 end
  end 
 
-if (q$1.length ~= 0) then do
-  error ({
+if (q_1.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -347,16 +347,16 @@ if (q$1.length ~= 0) then do
 end
  end 
 
-q$2 = do
+q_2 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
-Queue.add(1, q$2);
+Queue.add(1, q_2);
 
-if (Queue.peek(q$2) ~= 1) then do
-  error ({
+if (Queue.peek(q_2) ~= 1) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -367,10 +367,10 @@ if (Queue.peek(q$2) ~= 1) then do
 end
  end 
 
-Queue.add(2, q$2);
+Queue.add(2, q_2);
 
-if (Queue.peek(q$2) ~= 1) then do
-  error ({
+if (Queue.peek(q_2) ~= 1) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -381,10 +381,10 @@ if (Queue.peek(q$2) ~= 1) then do
 end
  end 
 
-Queue.add(3, q$2);
+Queue.add(3, q_2);
 
-if (Queue.peek(q$2) ~= 1) then do
-  error ({
+if (Queue.peek(q_2) ~= 1) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -395,8 +395,8 @@ if (Queue.peek(q$2) ~= 1) then do
 end
  end 
 
-if (Queue.peek(q$2) ~= 1) then do
-  error ({
+if (Queue.peek(q_2) ~= 1) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -407,8 +407,8 @@ if (Queue.peek(q$2) ~= 1) then do
 end
  end 
 
-if (Queue.take(q$2) ~= 1) then do
-  error ({
+if (Queue.take(q_2) ~= 1) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -419,8 +419,8 @@ if (Queue.take(q$2) ~= 1) then do
 end
  end 
 
-if (Queue.peek(q$2) ~= 2) then do
-  error ({
+if (Queue.peek(q_2) ~= 2) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -431,8 +431,8 @@ if (Queue.peek(q$2) ~= 2) then do
 end
  end 
 
-if (Queue.take(q$2) ~= 2) then do
-  error ({
+if (Queue.take(q_2) ~= 2) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -443,8 +443,8 @@ if (Queue.take(q$2) ~= 2) then do
 end
  end 
 
-if (Queue.peek(q$2) ~= 3) then do
-  error ({
+if (Queue.peek(q_2) ~= 3) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -455,8 +455,8 @@ if (Queue.peek(q$2) ~= 3) then do
 end
  end 
 
-if (Queue.take(q$2) ~= 3) then do
-  error ({
+if (Queue.take(q_2) ~= 3) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -467,8 +467,8 @@ if (Queue.take(q$2) ~= 3) then do
 end
  end 
 
-if (not does_raise(Queue.peek, q$2)) then do
-  error ({
+if (not does_raise(Queue.peek, q_2)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -479,8 +479,8 @@ if (not does_raise(Queue.peek, q$2)) then do
 end
  end 
 
-if (not does_raise(Queue.peek, q$2)) then do
-  error ({
+if (not does_raise(Queue.peek, q_2)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -491,20 +491,20 @@ if (not does_raise(Queue.peek, q$2)) then do
 end
  end 
 
-q$3 = do
+q_3 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
 for i = 1 , 10 , 1 do
-  Queue.add(i, q$3);
+  Queue.add(i, q_3);
 end
 
-Queue.clear(q$3);
+Queue.clear(q_3);
 
-if (q$3.length ~= 0) then do
-  error ({
+if (q_3.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -515,8 +515,8 @@ if (q$3.length ~= 0) then do
 end
  end 
 
-if (not does_raise(Queue.take, q$3)) then do
-  error ({
+if (not does_raise(Queue.take, q_3)) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -527,12 +527,12 @@ if (not does_raise(Queue.take, q$3)) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(q$3, do
+if (not Caml_obj.caml_equal(q_3, do
         length: 0,
         first: --[[ Nil ]]0,
         last: --[[ Nil ]]0
       end)) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -543,10 +543,10 @@ if (not Caml_obj.caml_equal(q$3, do
 end
  end 
 
-Queue.add(42, q$3);
+Queue.add(42, q_3);
 
-if (Queue.take(q$3) ~= 42) then do
-  error ({
+if (Queue.take(q_3) ~= 42) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -563,8 +563,8 @@ q1 = do
   last: --[[ Nil ]]0
 end;
 
-for i$1 = 1 , 10 , 1 do
-  Queue.add(i$1, q1);
+for i_1 = 1 , 10 , 1 do
+  Queue.add(i_1, q1);
 end
 
 q2 = Queue.copy(q1);
@@ -600,7 +600,7 @@ if (not Caml_obj.caml_equal(to_list(q1), --[[ :: ]]{
           }
         }
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -642,7 +642,7 @@ if (not Caml_obj.caml_equal(to_list(q2), --[[ :: ]]{
           }
         }
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -654,7 +654,7 @@ end
  end 
 
 if (q1.length ~= 10) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -666,7 +666,7 @@ end
  end 
 
 if (q2.length ~= 10) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -677,9 +677,9 @@ if (q2.length ~= 10) then do
 end
  end 
 
-for i$2 = 1 , 10 , 1 do
-  if (Queue.take(q1) ~= i$2) then do
-    error ({
+for i_2 = 1 , 10 , 1 do
+  if (Queue.take(q1) ~= i_2) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "libqueue_test.ml",
@@ -691,9 +691,9 @@ for i$2 = 1 , 10 , 1 do
    end 
 end
 
-for i$3 = 1 , 10 , 1 do
-  if (Queue.take(q2) ~= i$3) then do
-    error ({
+for i_3 = 1 , 10 , 1 do
+  if (Queue.take(q2) ~= i_3) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "libqueue_test.ml",
@@ -705,14 +705,14 @@ for i$3 = 1 , 10 , 1 do
    end 
 end
 
-q$4 = do
+q_4 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
-if (q$4.length ~= 0) then do
-  error ({
+if (q_4.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -723,10 +723,10 @@ if (q$4.length ~= 0) then do
 end
  end 
 
-for i$4 = 1 , 10 , 1 do
-  Queue.add(i$4, q$4);
-  if (q$4.length ~= i$4) then do
-    error ({
+for i_4 = 1 , 10 , 1 do
+  Queue.add(i_4, q_4);
+  if (q_4.length ~= i_4) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "libqueue_test.ml",
@@ -736,8 +736,8 @@ for i$4 = 1 , 10 , 1 do
     })
   end
    end 
-  if (q$4.length == 0) then do
-    error ({
+  if (q_4.length == 0) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "libqueue_test.ml",
@@ -749,9 +749,9 @@ for i$4 = 1 , 10 , 1 do
    end 
 end
 
-for i$5 = 10 , 1 , -1 do
-  if (q$4.length ~= i$5) then do
-    error ({
+for i_5 = 10 , 1 , -1 do
+  if (q_4.length ~= i_5) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "libqueue_test.ml",
@@ -761,8 +761,8 @@ for i$5 = 10 , 1 , -1 do
     })
   end
    end 
-  if (q$4.length == 0) then do
-    error ({
+  if (q_4.length == 0) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "libqueue_test.ml",
@@ -772,11 +772,11 @@ for i$5 = 10 , 1 , -1 do
     })
   end
    end 
-  Queue.take(q$4);
+  Queue.take(q_4);
 end
 
-if (q$4.length ~= 0) then do
-  error ({
+if (q_4.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -787,8 +787,8 @@ if (q$4.length ~= 0) then do
 end
  end 
 
-if (q$4.length ~= 0) then do
-  error ({
+if (q_4.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -799,23 +799,23 @@ if (q$4.length ~= 0) then do
 end
  end 
 
-q$5 = do
+q_5 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
-for i$6 = 1 , 10 , 1 do
-  Queue.add(i$6, q$5);
+for i_6 = 1 , 10 , 1 do
+  Queue.add(i_6, q_5);
 end
 
-i$7 = do
+i_7 = do
   contents: 1
 end;
 
 Queue.iter((function (j) do
-        if (i$7.contents ~= j) then do
-          error ({
+        if (i_7.contents ~= j) then do
+          error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
               "libqueue_test.ml",
@@ -825,24 +825,24 @@ Queue.iter((function (j) do
           })
         end
          end 
-        i$7.contents = i$7.contents + 1 | 0;
+        i_7.contents = i_7.contents + 1 | 0;
         return --[[ () ]]0;
-      end end), q$5);
+      end end), q_5);
 
-q1$1 = do
+q1_1 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
-q2$1 = do
+q2_1 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
-if (q1$1.length ~= 0) then do
-  error ({
+if (q1_1.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -853,8 +853,8 @@ if (q1$1.length ~= 0) then do
 end
  end 
 
-if (to_list(q1$1) ~= --[[ [] ]]0) then do
-  error ({
+if (to_list(q1_1) ~= --[[ [] ]]0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -865,8 +865,8 @@ if (to_list(q1$1) ~= --[[ [] ]]0) then do
 end
  end 
 
-if (q2$1.length ~= 0) then do
-  error ({
+if (q2_1.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -877,8 +877,8 @@ if (q2$1.length ~= 0) then do
 end
  end 
 
-if (to_list(q2$1) ~= --[[ [] ]]0) then do
-  error ({
+if (to_list(q2_1) ~= --[[ [] ]]0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -889,10 +889,10 @@ if (to_list(q2$1) ~= --[[ [] ]]0) then do
 end
  end 
 
-Queue.transfer(q1$1, q2$1);
+Queue.transfer(q1_1, q2_1);
 
-if (q1$1.length ~= 0) then do
-  error ({
+if (q1_1.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -903,8 +903,8 @@ if (q1$1.length ~= 0) then do
 end
  end 
 
-if (to_list(q1$1) ~= --[[ [] ]]0) then do
-  error ({
+if (to_list(q1_1) ~= --[[ [] ]]0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -915,8 +915,8 @@ if (to_list(q1$1) ~= --[[ [] ]]0) then do
 end
  end 
 
-if (q2$1.length ~= 0) then do
-  error ({
+if (q2_1.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -927,8 +927,8 @@ if (q2$1.length ~= 0) then do
 end
  end 
 
-if (to_list(q2$1) ~= --[[ [] ]]0) then do
-  error ({
+if (to_list(q2_1) ~= --[[ [] ]]0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -939,24 +939,24 @@ if (to_list(q2$1) ~= --[[ [] ]]0) then do
 end
  end 
 
-q1$2 = do
+q1_2 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
-q2$2 = do
+q2_2 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
-for i$8 = 1 , 4 , 1 do
-  Queue.add(i$8, q1$2);
+for i_8 = 1 , 4 , 1 do
+  Queue.add(i_8, q1_2);
 end
 
-if (q1$2.length ~= 4) then do
-  error ({
+if (q1_2.length ~= 4) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -967,7 +967,7 @@ if (q1$2.length ~= 4) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(to_list(q1$2), --[[ :: ]]{
+if (not Caml_obj.caml_equal(to_list(q1_2), --[[ :: ]]{
         1,
         --[[ :: ]]{
           2,
@@ -980,7 +980,7 @@ if (not Caml_obj.caml_equal(to_list(q1$2), --[[ :: ]]{
           }
         }
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -991,8 +991,8 @@ if (not Caml_obj.caml_equal(to_list(q1$2), --[[ :: ]]{
 end
  end 
 
-if (q2$2.length ~= 0) then do
-  error ({
+if (q2_2.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1003,8 +1003,8 @@ if (q2$2.length ~= 0) then do
 end
  end 
 
-if (to_list(q2$2) ~= --[[ [] ]]0) then do
-  error ({
+if (to_list(q2_2) ~= --[[ [] ]]0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1015,10 +1015,10 @@ if (to_list(q2$2) ~= --[[ [] ]]0) then do
 end
  end 
 
-Queue.transfer(q1$2, q2$2);
+Queue.transfer(q1_2, q2_2);
 
-if (q1$2.length ~= 0) then do
-  error ({
+if (q1_2.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1029,8 +1029,8 @@ if (q1$2.length ~= 0) then do
 end
  end 
 
-if (to_list(q1$2) ~= --[[ [] ]]0) then do
-  error ({
+if (to_list(q1_2) ~= --[[ [] ]]0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1041,8 +1041,8 @@ if (to_list(q1$2) ~= --[[ [] ]]0) then do
 end
  end 
 
-if (q2$2.length ~= 4) then do
-  error ({
+if (q2_2.length ~= 4) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1053,7 +1053,7 @@ if (q2$2.length ~= 4) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(to_list(q2$2), --[[ :: ]]{
+if (not Caml_obj.caml_equal(to_list(q2_2), --[[ :: ]]{
         1,
         --[[ :: ]]{
           2,
@@ -1066,7 +1066,7 @@ if (not Caml_obj.caml_equal(to_list(q2$2), --[[ :: ]]{
           }
         }
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1077,24 +1077,24 @@ if (not Caml_obj.caml_equal(to_list(q2$2), --[[ :: ]]{
 end
  end 
 
-q1$3 = do
+q1_3 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
-q2$3 = do
+q2_3 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
-for i$9 = 5 , 8 , 1 do
-  Queue.add(i$9, q2$3);
+for i_9 = 5 , 8 , 1 do
+  Queue.add(i_9, q2_3);
 end
 
-if (q1$3.length ~= 0) then do
-  error ({
+if (q1_3.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1105,8 +1105,8 @@ if (q1$3.length ~= 0) then do
 end
  end 
 
-if (to_list(q1$3) ~= --[[ [] ]]0) then do
-  error ({
+if (to_list(q1_3) ~= --[[ [] ]]0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1117,8 +1117,8 @@ if (to_list(q1$3) ~= --[[ [] ]]0) then do
 end
  end 
 
-if (q2$3.length ~= 4) then do
-  error ({
+if (q2_3.length ~= 4) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1129,7 +1129,7 @@ if (q2$3.length ~= 4) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(to_list(q2$3), --[[ :: ]]{
+if (not Caml_obj.caml_equal(to_list(q2_3), --[[ :: ]]{
         5,
         --[[ :: ]]{
           6,
@@ -1142,7 +1142,7 @@ if (not Caml_obj.caml_equal(to_list(q2$3), --[[ :: ]]{
           }
         }
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1153,10 +1153,10 @@ if (not Caml_obj.caml_equal(to_list(q2$3), --[[ :: ]]{
 end
  end 
 
-Queue.transfer(q1$3, q2$3);
+Queue.transfer(q1_3, q2_3);
 
-if (q1$3.length ~= 0) then do
-  error ({
+if (q1_3.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1167,8 +1167,8 @@ if (q1$3.length ~= 0) then do
 end
  end 
 
-if (to_list(q1$3) ~= --[[ [] ]]0) then do
-  error ({
+if (to_list(q1_3) ~= --[[ [] ]]0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1179,8 +1179,8 @@ if (to_list(q1$3) ~= --[[ [] ]]0) then do
 end
  end 
 
-if (q2$3.length ~= 4) then do
-  error ({
+if (q2_3.length ~= 4) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1191,7 +1191,7 @@ if (q2$3.length ~= 4) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(to_list(q2$3), --[[ :: ]]{
+if (not Caml_obj.caml_equal(to_list(q2_3), --[[ :: ]]{
         5,
         --[[ :: ]]{
           6,
@@ -1204,7 +1204,7 @@ if (not Caml_obj.caml_equal(to_list(q2$3), --[[ :: ]]{
           }
         }
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1215,28 +1215,28 @@ if (not Caml_obj.caml_equal(to_list(q2$3), --[[ :: ]]{
 end
  end 
 
-q1$4 = do
+q1_4 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
-q2$4 = do
+q2_4 = do
   length: 0,
   first: --[[ Nil ]]0,
   last: --[[ Nil ]]0
 end;
 
-for i$10 = 1 , 4 , 1 do
-  Queue.add(i$10, q1$4);
+for i_10 = 1 , 4 , 1 do
+  Queue.add(i_10, q1_4);
 end
 
-for i$11 = 5 , 8 , 1 do
-  Queue.add(i$11, q2$4);
+for i_11 = 5 , 8 , 1 do
+  Queue.add(i_11, q2_4);
 end
 
-if (q1$4.length ~= 4) then do
-  error ({
+if (q1_4.length ~= 4) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1247,7 +1247,7 @@ if (q1$4.length ~= 4) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(to_list(q1$4), --[[ :: ]]{
+if (not Caml_obj.caml_equal(to_list(q1_4), --[[ :: ]]{
         1,
         --[[ :: ]]{
           2,
@@ -1260,7 +1260,7 @@ if (not Caml_obj.caml_equal(to_list(q1$4), --[[ :: ]]{
           }
         }
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1271,8 +1271,8 @@ if (not Caml_obj.caml_equal(to_list(q1$4), --[[ :: ]]{
 end
  end 
 
-if (q2$4.length ~= 4) then do
-  error ({
+if (q2_4.length ~= 4) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1283,7 +1283,7 @@ if (q2$4.length ~= 4) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(to_list(q2$4), --[[ :: ]]{
+if (not Caml_obj.caml_equal(to_list(q2_4), --[[ :: ]]{
         5,
         --[[ :: ]]{
           6,
@@ -1296,7 +1296,7 @@ if (not Caml_obj.caml_equal(to_list(q2$4), --[[ :: ]]{
           }
         }
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1307,10 +1307,10 @@ if (not Caml_obj.caml_equal(to_list(q2$4), --[[ :: ]]{
 end
  end 
 
-Queue.transfer(q1$4, q2$4);
+Queue.transfer(q1_4, q2_4);
 
-if (q1$4.length ~= 0) then do
-  error ({
+if (q1_4.length ~= 0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1321,8 +1321,8 @@ if (q1$4.length ~= 0) then do
 end
  end 
 
-if (to_list(q1$4) ~= --[[ [] ]]0) then do
-  error ({
+if (to_list(q1_4) ~= --[[ [] ]]0) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1333,8 +1333,8 @@ if (to_list(q1$4) ~= --[[ [] ]]0) then do
 end
  end 
 
-if (q2$4.length ~= 8) then do
-  error ({
+if (q2_4.length ~= 8) then do
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",
@@ -1345,7 +1345,7 @@ if (q2$4.length ~= 8) then do
 end
  end 
 
-if (not Caml_obj.caml_equal(to_list(q2$4), --[[ :: ]]{
+if (not Caml_obj.caml_equal(to_list(q2_4), --[[ :: ]]{
         5,
         --[[ :: ]]{
           6,
@@ -1370,7 +1370,7 @@ if (not Caml_obj.caml_equal(to_list(q2$4), --[[ :: ]]{
           }
         }
       })) then do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "libqueue_test.ml",

@@ -26,7 +26,7 @@ function getExn(x) do
   if (x ~= undefined) then do
     return Caml_option.valFromOption(x);
   end else do
-    error (new Error("getExn"))
+    error(new Error("getExn"))
   end end 
 end end
 
@@ -66,9 +66,9 @@ end end
 
 function filter(f, x) do
   if (x ~= undefined) then do
-    x$1 = Caml_option.valFromOption(x);
-    if (f(x$1)) then do
-      return Caml_option.some(x$1);
+    x_1 = Caml_option.valFromOption(x);
+    if (f(x_1)) then do
+      return Caml_option.some(x_1);
     end else do
       return ;
     end end 

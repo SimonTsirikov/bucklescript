@@ -5,7 +5,7 @@ Curry = require "./curry";
 
 function getExn(param) do
   if (param.tag) then do
-    error (new Error("getExn"))
+    error(new Error("getExn"))
   end else do
     return param[0];
   end end 

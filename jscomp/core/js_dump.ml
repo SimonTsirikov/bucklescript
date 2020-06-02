@@ -1298,7 +1298,6 @@ and statement_desc top cxt f (s : J.statement_desc) : cxt =
               cxt_))
   | Throw e ->
     P.string f L.throw;
-    P.space f ;
     P.paren f  (fun _ ->
         let cxt = expression ~level:0 cxt f e in
         cxt)
@@ -1336,8 +1335,6 @@ and statement_desc top cxt f (s : J.statement_desc) : cxt =
             P.string f L.lparen;
             let cxt = Ext_pp_scope.ident cxt f i in
               P.string f L.rparen;
-              P.space f;
-              P.string f L.return;
               P.space f;
               let cxt = block cxt f b in
                 P.space f;

@@ -40,9 +40,9 @@ eq("File \"caml_sys_poly_fill_test.ml\", line 11, characters 5-12", "X", (Node_p
 
 Node_process.putEnvVar("Caml_sys_poly_fill_test", "Y");
 
-v$1 = Caml_sys.caml_sys_getenv("Caml_sys_poly_fill_test");
+v_1 = Caml_sys.caml_sys_getenv("Caml_sys_poly_fill_test");
 
-eq("File \"caml_sys_poly_fill_test.ml\", line 17, characters 5-12", "Y", (Node_process.deleteEnvVar("Caml_sys_poly_fill_test"), v$1));
+eq("File \"caml_sys_poly_fill_test.ml\", line 17, characters 5-12", "Y", (Node_process.deleteEnvVar("Caml_sys_poly_fill_test"), v_1));
 
 Node_process.deleteEnvVar("Caml_sys_poly_fill_test");
 
@@ -50,11 +50,11 @@ tmp;
 
 xpcall(function() do
   tmp = Caml_sys.caml_sys_getenv("Caml_sys_poly_fill_test");
-end end,function(exn) return do
+end end,function(exn) do
   if (exn == Caml_builtin_exceptions.not_found) then do
     tmp = "Z";
   end else do
-    error (exn)
+    error(exn)
   end end 
 end end)
 

@@ -16,9 +16,9 @@ end end
 
 function f(xOpt, y) do
   x = xOpt ~= undefined and xOpt or 3;
-  xOpt$1 = x + 2 | 0;
-  console.log(xOpt$1);
-  return xOpt$1 + y | 0;
+  xOpt_1 = x + 2 | 0;
+  console.log(xOpt_1);
+  return xOpt_1 + y | 0;
 end end
 
 console.log(f(undefined, 2));

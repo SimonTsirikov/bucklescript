@@ -3,7 +3,7 @@
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(param) do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "noassert.ml",

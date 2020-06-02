@@ -29,13 +29,13 @@ function test0(_n) do
   while(true) do
     n = _n;
     if (n == 0) then do
-      _n$1 = n;
+      _n_1 = n;
       while(true) do
-        n$1 = _n$1;
-        if (n$1 == 0) then do
-          return test2(n$1) + 2 | 0;
+        n_1 = _n_1;
+        if (n_1 == 0) then do
+          return test2(n_1) + 2 | 0;
         end else do
-          _n$1 = n$1 - 1 | 0;
+          _n_1 = n_1 - 1 | 0;
           ::continue:: ;
         end end 
       end;

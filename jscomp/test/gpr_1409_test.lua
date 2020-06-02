@@ -109,14 +109,14 @@ function test5(f, x) do
   tmp = do
     hi: 2
   end;
-  tmp$1 = Curry._1(f, x);
-  if (tmp$1 ~= undefined) then do
-    tmp.open = Caml_option.valFromOption(tmp$1);
+  tmp_1 = Curry._1(f, x);
+  if (tmp_1 ~= undefined) then do
+    tmp.open = Caml_option.valFromOption(tmp_1);
   end
    end 
-  tmp$2 = Curry._1(f, x);
-  if (tmp$2 ~= undefined) then do
-    tmp.xx = Caml_option.valFromOption(tmp$2);
+  tmp_2 = Curry._1(f, x);
+  if (tmp_2 ~= undefined) then do
+    tmp.xx = Caml_option.valFromOption(tmp_2);
   end
    end 
   return tmp;
@@ -124,20 +124,20 @@ end end
 
 function test6(f, x) do
   console.log("no inline");
-  x$1 = do
+  x_1 = do
     contents: 3
   end;
   tmp = do
     hi: 2
   end;
-  tmp$1 = (x$1.contents = x$1.contents + 1 | 0, x$1.contents);
-  if (tmp$1 ~= undefined) then do
-    tmp.open = Caml_option.valFromOption(tmp$1);
+  tmp_1 = (x_1.contents = x_1.contents + 1 | 0, x_1.contents);
+  if (tmp_1 ~= undefined) then do
+    tmp.open = Caml_option.valFromOption(tmp_1);
   end
    end 
-  tmp$2 = f(x$1);
-  if (tmp$2 ~= undefined) then do
-    tmp.xx = Caml_option.valFromOption(tmp$2);
+  tmp_2 = f(x_1);
+  if (tmp_2 ~= undefined) then do
+    tmp.xx = Caml_option.valFromOption(tmp_2);
   end
    end 
   return tmp;

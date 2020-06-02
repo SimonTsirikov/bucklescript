@@ -115,7 +115,7 @@ Test_null = do
   f11: f11
 end;
 
-function f1$1(x) do
+function f1_1(x) do
   if (x ~= undefined) then do
     return x + 1 | 0;
   end else do
@@ -123,7 +123,7 @@ function f1$1(x) do
   end end 
 end end
 
-function f2$1(x) do
+function f2_1(x) do
   if (x ~= undefined) then do
     return x + 1 | 0;
   end else do
@@ -131,7 +131,7 @@ function f2$1(x) do
   end end 
 end end
 
-function f5$1(h, x) do
+function f5_1(h, x) do
   u = Curry._1(h, 32);
   if (u ~= undefined) then do
     return u + 1 | 0;
@@ -140,7 +140,7 @@ function f5$1(h, x) do
   end end 
 end end
 
-function f4$1(h, x) do
+function f4_1(h, x) do
   u = Curry._1(h, 32);
   v = 32 + x | 0;
   if (u ~= undefined) then do
@@ -150,15 +150,15 @@ function f4$1(h, x) do
   end end 
 end end
 
-function f6$1(x, y) do
+function f6_1(x, y) do
   return x == y;
 end end
 
-function f7$1(x) do
+function f7_1(x) do
   return x;
 end end
 
-function f8$1(x) do
+function f8_1(x) do
   if (x ~= undefined) then do
     if (x ~= undefined) then do
       return 0;
@@ -170,9 +170,9 @@ function f8$1(x) do
   end end 
 end end
 
-u$1 = f8$1(undefined);
+u_1 = f8_1(undefined);
 
-function f9$1(x) do
+function f9_1(x) do
   if (x == undefined) then do
     return ;
   end else do
@@ -180,27 +180,27 @@ function f9$1(x) do
   end end 
 end end
 
-function f10$1(x) do
+function f10_1(x) do
   return x == undefined;
 end end
 
-f11$1 = false;
+f11_1 = false;
 
 Test_def = do
-  f1: f1$1,
-  f2: f2$1,
-  f5: f5$1,
-  f4: f4$1,
-  f6: f6$1,
-  f7: f7$1,
-  f8: f8$1,
-  u: u$1,
-  f9: f9$1,
-  f10: f10$1,
-  f11: f11$1
+  f1: f1_1,
+  f2: f2_1,
+  f5: f5_1,
+  f4: f4_1,
+  f6: f6_1,
+  f7: f7_1,
+  f8: f8_1,
+  u: u_1,
+  f9: f9_1,
+  f10: f10_1,
+  f11: f11_1
 end;
 
-function f1$2(x) do
+function f1_2(x) do
   if (x == nil) then do
     return 3;
   end else do
@@ -208,7 +208,7 @@ function f1$2(x) do
   end end 
 end end
 
-function f2$2(x) do
+function f2_2(x) do
   if (x == nil) then do
     return 3;
   end else do
@@ -216,7 +216,7 @@ function f2$2(x) do
   end end 
 end end
 
-function f5$2(h, x) do
+function f5_2(h, x) do
   u = Curry._1(h, 32);
   if (u == nil) then do
     return 3;
@@ -225,7 +225,7 @@ function f5$2(h, x) do
   end end 
 end end
 
-function f4$2(h, x) do
+function f4_2(h, x) do
   u = Curry._1(h, 32);
   v = 32 + x | 0;
   if (u == nil) then do
@@ -235,15 +235,15 @@ function f4$2(h, x) do
   end end 
 end end
 
-function f6$2(x, y) do
+function f6_2(x, y) do
   return x == y;
 end end
 
-function f7$2(x) do
+function f7_2(x) do
   return x;
 end end
 
-function f8$2(x) do
+function f8_2(x) do
   if (x == nil) then do
     return 2;
   end else if (x == nil) then do
@@ -253,9 +253,9 @@ function f8$2(x) do
   end end  end 
 end end
 
-u$2 = f8$2(undefined);
+u_2 = f8_2(undefined);
 
-function f9$2(x) do
+function f9_2(x) do
   if (x == nil) then do
     return ;
   end else do
@@ -263,39 +263,39 @@ function f9$2(x) do
   end end 
 end end
 
-function f10$2(x) do
+function f10_2(x) do
   return x == nil;
 end end
 
-f11$2 = false;
+f11_2 = false;
 
 Test_null_def = do
-  f1: f1$2,
-  f2: f2$2,
-  f5: f5$2,
-  f4: f4$2,
-  f6: f6$2,
-  f7: f7$2,
-  f8: f8$2,
-  u: u$2,
-  f9: f9$2,
-  f10: f10$2,
-  f11: f11$2
+  f1: f1_2,
+  f2: f2_2,
+  f5: f5_2,
+  f4: f4_2,
+  f6: f6_2,
+  f7: f7_2,
+  f8: f8_2,
+  u: u_2,
+  f9: f9_2,
+  f10: f10_2,
+  f11: f11_2
 end;
 
-eq("File \"test_zero_nullable.ml\", line 227, characters 7-14", f1$2(0), 1);
+eq("File \"test_zero_nullable.ml\", line 227, characters 7-14", f1_2(0), 1);
 
-eq("File \"test_zero_nullable.ml\", line 228, characters 7-14", f1$2(null), 3);
+eq("File \"test_zero_nullable.ml\", line 228, characters 7-14", f1_2(null), 3);
 
-eq("File \"test_zero_nullable.ml\", line 229, characters 7-14", f1$2(undefined), 3);
+eq("File \"test_zero_nullable.ml\", line 229, characters 7-14", f1_2(undefined), 3);
 
 eq("File \"test_zero_nullable.ml\", line 231, characters 7-14", f1(0), 1);
 
 eq("File \"test_zero_nullable.ml\", line 232, characters 7-14", f1(null), 3);
 
-eq("File \"test_zero_nullable.ml\", line 234, characters 7-14", f1$1(0), 1);
+eq("File \"test_zero_nullable.ml\", line 234, characters 7-14", f1_1(0), 1);
 
-eq("File \"test_zero_nullable.ml\", line 235, characters 7-14", f1$1(undefined), 3);
+eq("File \"test_zero_nullable.ml\", line 235, characters 7-14", f1_1(undefined), 3);
 
 Mt.from_pair_suites("Test_zero_nullable", suites.contents);
 

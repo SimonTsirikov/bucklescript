@@ -133,10 +133,10 @@ function set_method(table, label, element) do
   method_count.contents = method_count.contents + 1 | 0;
   if (Belt_MapInt.getExn(table.methods_by_label, label)) then do
     array = table;
-    label$1 = label;
-    element$1 = element;
-    resize(array, label$1 + 1 | 0);
-    return Caml_array.caml_array_set(array.methods, label$1, element$1);
+    label_1 = label;
+    element_1 = element;
+    resize(array, label_1 + 1 | 0);
+    return Caml_array.caml_array_set(array.methods, label_1, element_1);
   end else do
     table.hidden_meths = --[[ :: ]]{
       --[[ tuple ]]{
@@ -152,11 +152,11 @@ end end
 function get_method(table, label) do
   xpcall(function() do
     return List.assoc(label, table.hidden_meths);
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return Caml_array.caml_array_get(table.methods, label);
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -170,15 +170,15 @@ function to_list(arr) do
 end end
 
 function narrow(table, vars, virt_meths, concr_meths) do
-  vars$1 = to_list(vars);
-  virt_meths$1 = to_list(virt_meths);
-  concr_meths$1 = to_list(concr_meths);
+  vars_1 = to_list(vars);
+  virt_meths_1 = to_list(virt_meths);
+  concr_meths_1 = to_list(concr_meths);
   virt_meth_labs = List.map((function (param) do
           return get_method_label(table, param);
-        end end), virt_meths$1);
+        end end), virt_meths_1);
   concr_meth_labs = List.map((function (param) do
           return get_method_label(table, param);
-        end end), concr_meths$1);
+        end end), concr_meths_1);
   table.previous_states = --[[ :: ]]{
     --[[ tuple ]]{
       table.methods_by_name,
@@ -186,12 +186,12 @@ function narrow(table, vars, virt_meths, concr_meths) do
       table.hidden_meths,
       table.vars,
       virt_meth_labs,
-      vars$1
+      vars_1
     },
     table.previous_states
   };
   table.vars = Belt_MapString.reduceU(table.vars, Belt_MapString.empty, (function (tvars, lab, info) do
-          if (List.mem(lab, vars$1)) then do
+          if (List.mem(lab, vars_1)) then do
             return Belt_MapString.set(tvars, lab, info);
           end else do
             return tvars;
@@ -207,12 +207,12 @@ function narrow(table, vars, virt_meths, concr_meths) do
           by_name.contents = Belt_MapString.set(by_name.contents, met, label);
           by_label.contents = Belt_MapInt.set(by_label.contents, label, Belt_MapInt.getWithDefault(table.methods_by_label, label, true));
           return --[[ () ]]0;
-        end end), concr_meths$1, concr_meth_labs);
+        end end), concr_meths_1, concr_meth_labs);
   List.iter2((function (met, label) do
           by_name.contents = Belt_MapString.set(by_name.contents, met, label);
           by_label.contents = Belt_MapInt.set(by_label.contents, label, false);
           return --[[ () ]]0;
-        end end), virt_meths$1, virt_meth_labs);
+        end end), virt_meths_1, virt_meth_labs);
   table.methods_by_name = by_name.contents;
   table.methods_by_label = by_label.contents;
   table.hidden_meths = List.fold_right((function (met, hm) do
@@ -279,15 +279,15 @@ function to_array(arr) do
 end end
 
 function new_methods_variables(table, meths, vals) do
-  meths$1 = to_array(meths);
-  nmeths = #meths$1;
+  meths_1 = to_array(meths);
+  nmeths = #meths_1;
   nvals = #vals;
   res = Caml_array.caml_make_vect(nmeths + nvals | 0, 0);
   for i = 0 , nmeths - 1 | 0 , 1 do
-    Caml_array.caml_array_set(res, i, get_method_label(table, Caml_array.caml_array_get(meths$1, i)));
+    Caml_array.caml_array_set(res, i, get_method_label(table, Caml_array.caml_array_get(meths_1, i)));
   end
-  for i$1 = 0 , nvals - 1 | 0 , 1 do
-    Caml_array.caml_array_set(res, i$1 + nmeths | 0, new_variable(table, Caml_array.caml_array_get(vals, i$1)));
+  for i_1 = 0 , nvals - 1 | 0 , 1 do
+    Caml_array.caml_array_set(res, i_1 + nmeths | 0, new_variable(table, Caml_array.caml_array_get(vals, i_1)));
   end
   return res;
 end end
@@ -440,7 +440,7 @@ function set_data(tables, v) do
     tables[--[[ data ]]1] = v;
     return --[[ () ]]0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "camlinternalOO.ml",
@@ -456,7 +456,7 @@ function set_next(tables, v) do
     tables[--[[ next ]]2] = v;
     return --[[ () ]]0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "camlinternalOO.ml",
@@ -471,7 +471,7 @@ function get_key(param) do
   if (param) then do
     return param[--[[ key ]]0];
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "camlinternalOO.ml",
@@ -486,7 +486,7 @@ function get_data(param) do
   if (param) then do
     return param[--[[ data ]]1];
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "camlinternalOO.ml",
@@ -501,7 +501,7 @@ function get_next(param) do
   if (param) then do
     return param[--[[ next ]]2];
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "camlinternalOO.ml",
@@ -537,13 +537,13 @@ function lookup_keys(i, keys, tables) do
     key = Caml_array.caml_array_get(keys, i);
     _tables = tables;
     while(true) do
-      tables$1 = _tables;
-      if (get_key(tables$1) == key) then do
-        tables_data = get_data(tables$1);
+      tables_1 = _tables;
+      if (get_key(tables_1) == key) then do
+        tables_data = get_data(tables_1);
         if (tables_data) then do
           return lookup_keys(i - 1 | 0, keys, tables_data);
         end else do
-          error ({
+          error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
               "camlinternalOO.ml",
@@ -553,18 +553,18 @@ function lookup_keys(i, keys, tables) do
           })
         end end 
       end else do
-        next = get_next(tables$1);
+        next = get_next(tables_1);
         if (next) then do
           _tables = next;
           ::continue:: ;
         end else do
-          next$1 = --[[ Cons ]]{
+          next_1 = --[[ Cons ]]{
             --[[ key ]]key,
             --[[ data : Empty ]]0,
             --[[ next : Empty ]]0
           };
-          set_next(tables$1, next$1);
-          return build_path(i - 1 | 0, keys, next$1);
+          set_next(tables_1, next_1);
+          return build_path(i - 1 | 0, keys, next_1);
         end end 
       end end 
     end;
@@ -582,9 +582,9 @@ end end
 
 function new_cache(table) do
   n = new_method(table);
-  n$1 = n % 2 == 0 or n > (2 + ((Caml_array.caml_array_get(table.methods, 1) << 4) / 32 | 0) | 0) and n or new_method(table);
-  Caml_array.caml_array_set(table.methods, n$1, 0);
-  return n$1;
+  n_1 = n % 2 == 0 or n > (2 + ((Caml_array.caml_array_get(table.methods, 1) << 4) / 32 | 0) | 0) and n or new_method(table);
+  Caml_array.caml_array_set(table.methods, n_1, 0);
+  return n_1;
 end end
 
 function method_impl(table, i, arr) do
@@ -608,198 +608,198 @@ function method_impl(table, i, arr) do
             end end);end end end 
        if ___conditional___ = 2--[[ GetEnv ]] then do
           e = next(--[[ () ]]0);
-          n$1 = next(--[[ () ]]0);
-          e$1 = e;
-          n$2 = n$1;
+          n_1 = next(--[[ () ]]0);
+          e_1 = e;
+          n_2 = n_1;
           return (function (obj) do
-              return obj[e$1][n$2];
+              return obj[e_1][n_2];
             end end);end end end 
        if ___conditional___ = 3--[[ GetMeth ]] then do
-          n$3 = next(--[[ () ]]0);
+          n_3 = next(--[[ () ]]0);
           return (function (obj) do
-              return Curry._1(obj[0][n$3], obj);
+              return Curry._1(obj[0][n_3], obj);
             end end);end end end 
        if ___conditional___ = 4--[[ SetVar ]] then do
-          n$4 = next(--[[ () ]]0);
+          n_4 = next(--[[ () ]]0);
           return (function (obj, x) do
-              obj[n$4] = x;
+              obj[n_4] = x;
               return --[[ () ]]0;
             end end);end end end 
        if ___conditional___ = 5--[[ AppConst ]] then do
           f = next(--[[ () ]]0);
-          x$1 = next(--[[ () ]]0);
+          x_1 = next(--[[ () ]]0);
           return (function (_obj) do
-              return Curry._1(f, x$1);
+              return Curry._1(f, x_1);
             end end);end end end 
        if ___conditional___ = 6--[[ AppVar ]] then do
-          f$1 = next(--[[ () ]]0);
-          n$5 = next(--[[ () ]]0);
+          f_1 = next(--[[ () ]]0);
+          n_5 = next(--[[ () ]]0);
           return (function (obj) do
-              return Curry._1(f$1, obj[n$5]);
+              return Curry._1(f_1, obj[n_5]);
             end end);end end end 
        if ___conditional___ = 7--[[ AppEnv ]] then do
-          f$2 = next(--[[ () ]]0);
-          e$2 = next(--[[ () ]]0);
-          n$6 = next(--[[ () ]]0);
-          f$3 = f$2;
-          e$3 = e$2;
-          n$7 = n$6;
+          f_2 = next(--[[ () ]]0);
+          e_2 = next(--[[ () ]]0);
+          n_6 = next(--[[ () ]]0);
+          f_3 = f_2;
+          e_3 = e_2;
+          n_7 = n_6;
           return (function (obj) do
-              return Curry._1(f$3, obj[e$3][n$7]);
+              return Curry._1(f_3, obj[e_3][n_7]);
             end end);end end end 
        if ___conditional___ = 8--[[ AppMeth ]] then do
-          f$4 = next(--[[ () ]]0);
-          n$8 = next(--[[ () ]]0);
-          f$5 = f$4;
-          n$9 = n$8;
+          f_4 = next(--[[ () ]]0);
+          n_8 = next(--[[ () ]]0);
+          f_5 = f_4;
+          n_9 = n_8;
           return (function (obj) do
-              return Curry._1(f$5, Curry._1(obj[0][n$9], obj));
+              return Curry._1(f_5, Curry._1(obj[0][n_9], obj));
             end end);end end end 
        if ___conditional___ = 9--[[ AppConstConst ]] then do
-          f$6 = next(--[[ () ]]0);
-          x$2 = next(--[[ () ]]0);
+          f_6 = next(--[[ () ]]0);
+          x_2 = next(--[[ () ]]0);
           y = next(--[[ () ]]0);
           return (function (_obj) do
-              return Curry._2(f$6, x$2, y);
+              return Curry._2(f_6, x_2, y);
             end end);end end end 
        if ___conditional___ = 10--[[ AppConstVar ]] then do
-          f$7 = next(--[[ () ]]0);
-          x$3 = next(--[[ () ]]0);
-          n$10 = next(--[[ () ]]0);
-          f$8 = f$7;
-          x$4 = x$3;
-          n$11 = n$10;
+          f_7 = next(--[[ () ]]0);
+          x_3 = next(--[[ () ]]0);
+          n_10 = next(--[[ () ]]0);
+          f_8 = f_7;
+          x_4 = x_3;
+          n_11 = n_10;
           return (function (obj) do
-              return Curry._2(f$8, x$4, obj[n$11]);
+              return Curry._2(f_8, x_4, obj[n_11]);
             end end);end end end 
        if ___conditional___ = 11--[[ AppConstEnv ]] then do
-          f$9 = next(--[[ () ]]0);
-          x$5 = next(--[[ () ]]0);
-          e$4 = next(--[[ () ]]0);
-          n$12 = next(--[[ () ]]0);
-          f$10 = f$9;
-          x$6 = x$5;
-          e$5 = e$4;
-          n$13 = n$12;
+          f_9 = next(--[[ () ]]0);
+          x_5 = next(--[[ () ]]0);
+          e_4 = next(--[[ () ]]0);
+          n_12 = next(--[[ () ]]0);
+          f_10 = f_9;
+          x_6 = x_5;
+          e_5 = e_4;
+          n_13 = n_12;
           return (function (obj) do
-              return Curry._2(f$10, x$6, obj[e$5][n$13]);
+              return Curry._2(f_10, x_6, obj[e_5][n_13]);
             end end);end end end 
        if ___conditional___ = 12--[[ AppConstMeth ]] then do
-          f$11 = next(--[[ () ]]0);
-          x$7 = next(--[[ () ]]0);
-          n$14 = next(--[[ () ]]0);
-          f$12 = f$11;
-          x$8 = x$7;
-          n$15 = n$14;
+          f_11 = next(--[[ () ]]0);
+          x_7 = next(--[[ () ]]0);
+          n_14 = next(--[[ () ]]0);
+          f_12 = f_11;
+          x_8 = x_7;
+          n_15 = n_14;
           return (function (obj) do
-              return Curry._2(f$12, x$8, Curry._1(obj[0][n$15], obj));
+              return Curry._2(f_12, x_8, Curry._1(obj[0][n_15], obj));
             end end);end end end 
        if ___conditional___ = 13--[[ AppVarConst ]] then do
-          f$13 = next(--[[ () ]]0);
-          n$16 = next(--[[ () ]]0);
-          x$9 = next(--[[ () ]]0);
-          f$14 = f$13;
-          n$17 = n$16;
-          x$10 = x$9;
+          f_13 = next(--[[ () ]]0);
+          n_16 = next(--[[ () ]]0);
+          x_9 = next(--[[ () ]]0);
+          f_14 = f_13;
+          n_17 = n_16;
+          x_10 = x_9;
           return (function (obj) do
-              return Curry._2(f$14, obj[n$17], x$10);
+              return Curry._2(f_14, obj[n_17], x_10);
             end end);end end end 
        if ___conditional___ = 14--[[ AppEnvConst ]] then do
-          f$15 = next(--[[ () ]]0);
-          e$6 = next(--[[ () ]]0);
-          n$18 = next(--[[ () ]]0);
-          x$11 = next(--[[ () ]]0);
-          f$16 = f$15;
-          e$7 = e$6;
-          n$19 = n$18;
-          x$12 = x$11;
+          f_15 = next(--[[ () ]]0);
+          e_6 = next(--[[ () ]]0);
+          n_18 = next(--[[ () ]]0);
+          x_11 = next(--[[ () ]]0);
+          f_16 = f_15;
+          e_7 = e_6;
+          n_19 = n_18;
+          x_12 = x_11;
           return (function (obj) do
-              return Curry._2(f$16, obj[e$7][n$19], x$12);
+              return Curry._2(f_16, obj[e_7][n_19], x_12);
             end end);end end end 
        if ___conditional___ = 15--[[ AppMethConst ]] then do
-          f$17 = next(--[[ () ]]0);
-          n$20 = next(--[[ () ]]0);
-          x$13 = next(--[[ () ]]0);
-          f$18 = f$17;
-          n$21 = n$20;
-          x$14 = x$13;
+          f_17 = next(--[[ () ]]0);
+          n_20 = next(--[[ () ]]0);
+          x_13 = next(--[[ () ]]0);
+          f_18 = f_17;
+          n_21 = n_20;
+          x_14 = x_13;
           return (function (obj) do
-              return Curry._2(f$18, Curry._1(obj[0][n$21], obj), x$14);
+              return Curry._2(f_18, Curry._1(obj[0][n_21], obj), x_14);
             end end);end end end 
        if ___conditional___ = 16--[[ MethAppConst ]] then do
-          n$22 = next(--[[ () ]]0);
-          x$15 = next(--[[ () ]]0);
-          n$23 = n$22;
-          x$16 = x$15;
+          n_22 = next(--[[ () ]]0);
+          x_15 = next(--[[ () ]]0);
+          n_23 = n_22;
+          x_16 = x_15;
           return (function (obj) do
-              return Curry._2(obj[0][n$23], obj, x$16);
+              return Curry._2(obj[0][n_23], obj, x_16);
             end end);end end end 
        if ___conditional___ = 17--[[ MethAppVar ]] then do
-          n$24 = next(--[[ () ]]0);
+          n_24 = next(--[[ () ]]0);
           m = next(--[[ () ]]0);
-          n$25 = n$24;
-          m$1 = m;
+          n_25 = n_24;
+          m_1 = m;
           return (function (obj) do
-              return Curry._2(obj[0][n$25], obj, obj[m$1]);
+              return Curry._2(obj[0][n_25], obj, obj[m_1]);
             end end);end end end 
        if ___conditional___ = 18--[[ MethAppEnv ]] then do
-          n$26 = next(--[[ () ]]0);
-          e$8 = next(--[[ () ]]0);
-          m$2 = next(--[[ () ]]0);
-          n$27 = n$26;
-          e$9 = e$8;
-          m$3 = m$2;
+          n_26 = next(--[[ () ]]0);
+          e_8 = next(--[[ () ]]0);
+          m_2 = next(--[[ () ]]0);
+          n_27 = n_26;
+          e_9 = e_8;
+          m_3 = m_2;
           return (function (obj) do
-              return Curry._2(obj[0][n$27], obj, obj[e$9][m$3]);
+              return Curry._2(obj[0][n_27], obj, obj[e_9][m_3]);
             end end);end end end 
        if ___conditional___ = 19--[[ MethAppMeth ]] then do
-          n$28 = next(--[[ () ]]0);
-          m$4 = next(--[[ () ]]0);
-          n$29 = n$28;
-          m$5 = m$4;
+          n_28 = next(--[[ () ]]0);
+          m_4 = next(--[[ () ]]0);
+          n_29 = n_28;
+          m_5 = m_4;
           return (function (obj) do
-              return Curry._2(obj[0][n$29], obj, Curry._1(obj[0][m$5], obj));
+              return Curry._2(obj[0][n_29], obj, Curry._1(obj[0][m_5], obj));
             end end);end end end 
        if ___conditional___ = 20--[[ SendConst ]] then do
-          m$6 = next(--[[ () ]]0);
-          x$17 = next(--[[ () ]]0);
-          m$7 = m$6;
-          x$18 = x$17;
+          m_6 = next(--[[ () ]]0);
+          x_17 = next(--[[ () ]]0);
+          m_7 = m_6;
+          x_18 = x_17;
           new_cache(table);
           return (function (obj) do
-              return Curry._1(Curry._3(Caml_oo.caml_get_public_method, x$18, m$7, 1), x$18);
+              return Curry._1(Curry._3(Caml_oo.caml_get_public_method, x_18, m_7, 1), x_18);
             end end);end end end 
        if ___conditional___ = 21--[[ SendVar ]] then do
-          m$8 = next(--[[ () ]]0);
-          n$30 = next(--[[ () ]]0);
-          m$9 = m$8;
-          n$31 = n$30;
+          m_8 = next(--[[ () ]]0);
+          n_30 = next(--[[ () ]]0);
+          m_9 = m_8;
+          n_31 = n_30;
           new_cache(table);
           return (function (obj) do
-              tmp = obj[n$31];
-              return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m$9, 2), tmp);
+              tmp = obj[n_31];
+              return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m_9, 2), tmp);
             end end);end end end 
        if ___conditional___ = 22--[[ SendEnv ]] then do
-          m$10 = next(--[[ () ]]0);
-          e$10 = next(--[[ () ]]0);
-          n$32 = next(--[[ () ]]0);
-          m$11 = m$10;
-          e$11 = e$10;
-          n$33 = n$32;
+          m_10 = next(--[[ () ]]0);
+          e_10 = next(--[[ () ]]0);
+          n_32 = next(--[[ () ]]0);
+          m_11 = m_10;
+          e_11 = e_10;
+          n_33 = n_32;
           new_cache(table);
           return (function (obj) do
-              tmp = obj[e$11][n$33];
-              return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m$11, 3), tmp);
+              tmp = obj[e_11][n_33];
+              return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m_11, 3), tmp);
             end end);end end end 
        if ___conditional___ = 23--[[ SendMeth ]] then do
-          m$12 = next(--[[ () ]]0);
-          n$34 = next(--[[ () ]]0);
-          m$13 = m$12;
-          n$35 = n$34;
+          m_12 = next(--[[ () ]]0);
+          n_34 = next(--[[ () ]]0);
+          m_13 = m_12;
+          n_35 = n_34;
           new_cache(table);
           return (function (obj) do
-              tmp = Curry._1(obj[0][n$35], obj);
-              return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m$13, 4), tmp);
+              tmp = Curry._1(obj[0][n_35], obj);
+              return Curry._1(Curry._3(Caml_oo.caml_get_public_method, tmp, m_13, 4), tmp);
             end end);end end end 
        do
       

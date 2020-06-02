@@ -11,7 +11,7 @@ shared = {
   "hello"
 };
 
-shared$1 = {
+shared_1 = {
   "hi",
   "add"
 };
@@ -39,21 +39,21 @@ CamlinternalOO.init_class(__class);
 
 vv = CamlinternalOO.create_object_opt(0, __class);
 
-__class$1 = CamlinternalOO.create_table({
+__class_1 = CamlinternalOO.create_table({
       "x",
       "y"
     });
 
-ids$1 = CamlinternalOO.get_method_labels(__class$1, {
+ids_1 = CamlinternalOO.get_method_labels(__class_1, {
       "y",
       "x"
     });
 
-y = ids$1[0];
+y = ids_1[0];
 
-x = ids$1[1];
+x = ids_1[1];
 
-CamlinternalOO.set_methods(__class$1, {
+CamlinternalOO.set_methods(__class_1, {
       x,
       (function (self$2) do
           return 3;
@@ -64,34 +64,34 @@ CamlinternalOO.set_methods(__class$1, {
         end end)
     });
 
-CamlinternalOO.init_class(__class$1);
+CamlinternalOO.init_class(__class_1);
 
-v = CamlinternalOO.create_object_opt(0, __class$1);
+v = CamlinternalOO.create_object_opt(0, __class_1);
 
-__class$2 = CamlinternalOO.create_table({
+__class_2 = CamlinternalOO.create_table({
       "hi",
       "id1",
       "id2",
       "hello"
     });
 
-ids$2 = CamlinternalOO.get_method_labels(__class$2, {
+ids_2 = CamlinternalOO.get_method_labels(__class_2, {
       "id2",
       "id1",
       "hi",
       "hello"
     });
 
-id2 = ids$2[0];
+id2 = ids_2[0];
 
-id1 = ids$2[1];
+id1 = ids_2[1];
 
-hi$1 = ids$2[2];
+hi_1 = ids_2[2];
 
-hello$1 = ids$2[3];
+hello_1 = ids_2[3];
 
-CamlinternalOO.set_methods(__class$2, {
-      hi$1,
+CamlinternalOO.set_methods(__class_2, {
+      hi_1,
       (function (self$3, v, z) do
           return v + z | 0;
         end end),
@@ -103,62 +103,62 @@ CamlinternalOO.set_methods(__class$2, {
       (function (self$3) do
           return 4;
         end end),
-      hello$1,
+      hello_1,
       (function (self$3, v) do
           return v;
         end end)
     });
 
-CamlinternalOO.init_class(__class$2);
+CamlinternalOO.init_class(__class_2);
 
-u = CamlinternalOO.create_object_opt(0, __class$2);
+u = CamlinternalOO.create_object_opt(0, __class_2);
 
-__class$3 = CamlinternalOO.create_table({"id"});
+__class_3 = CamlinternalOO.create_table({"id"});
 
-id = CamlinternalOO.get_method_label(__class$3, "id");
+id = CamlinternalOO.get_method_label(__class_3, "id");
 
-CamlinternalOO.set_method(__class$3, id, (function (self$4) do
+CamlinternalOO.set_method(__class_3, id, (function (self$4) do
         return "uu";
       end end));
 
-CamlinternalOO.init_class(__class$3);
+CamlinternalOO.init_class(__class_3);
 
-uu = CamlinternalOO.create_object_opt(0, __class$3);
+uu = CamlinternalOO.create_object_opt(0, __class_3);
 
-__class$4 = CamlinternalOO.create_table({"add"});
+__class_4 = CamlinternalOO.create_table({"add"});
 
-add = CamlinternalOO.get_method_label(__class$4, "add");
+add = CamlinternalOO.get_method_label(__class_4, "add");
 
-CamlinternalOO.set_method(__class$4, add, (function (self$5, x, y) do
+CamlinternalOO.set_method(__class_4, add, (function (self$5, x, y) do
         return x + y | 0;
       end end));
 
-CamlinternalOO.init_class(__class$4);
+CamlinternalOO.init_class(__class_4);
 
-uuu = CamlinternalOO.create_object_opt(0, __class$4);
+uuu = CamlinternalOO.create_object_opt(0, __class_4);
 
-__class$5 = CamlinternalOO.create_table(shared$1);
+__class_5 = CamlinternalOO.create_table(shared_1);
 
-ids$3 = CamlinternalOO.get_method_labels(__class$5, shared$1);
+ids_3 = CamlinternalOO.get_method_labels(__class_5, shared_1);
 
-hi$2 = ids$3[0];
+hi_2 = ids_3[0];
 
-add$1 = ids$3[1];
+add_1 = ids_3[1];
 
-CamlinternalOO.set_methods(__class$5, {
-      add$1,
+CamlinternalOO.set_methods(__class_5, {
+      add_1,
       (function (self$6, x, y) do
           return x + y | 0;
         end end),
-      hi$2,
+      hi_2,
       (function (self$6, x) do
-          return Curry._3(self$6[0][add$1], self$6, x, 32);
+          return Curry._3(self$6[0][add_1], self$6, x, 32);
         end end)
     });
 
-CamlinternalOO.init_class(__class$5);
+CamlinternalOO.init_class(__class_5);
 
-vvvv = CamlinternalOO.create_object_opt(0, __class$5);
+vvvv = CamlinternalOO.create_object_opt(0, __class_5);
 
 suites_000 = --[[ tuple ]]{
   "single_obj",

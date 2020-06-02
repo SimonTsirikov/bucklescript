@@ -37,9 +37,9 @@ function compare(context, state, _a, _b) do
     da;
     nb;
     db;
-    exit$1 = 0;
-    exit$2 = 0;
-    exit$3 = 0;
+    exit_1 = 0;
+    exit_2 = 0;
+    exit_3 = 0;
     local ___conditional___=(a.tag | 0);
     do
        if ___conditional___ = 0--[[ Val ]] then do
@@ -48,11 +48,11 @@ function compare(context, state, _a, _b) do
              if ___conditional___ = 0--[[ Val ]] then do
                 return 111;end end end 
              if ___conditional___ = 1--[[ Neg ]] then do
-                exit$3 = 5;end else 
+                exit_3 = 5;end else 
              if ___conditional___ = 2--[[ Sum ]] then do
-                exit$2 = 4;end else 
+                exit_2 = 4;end else 
              if ___conditional___ = 4--[[ Frac ]] then do
-                error ({
+                error({
                   Caml_builtin_exceptions.assert_failure,
                   --[[ tuple ]]{
                     "gpr_1698_test.ml",
@@ -71,12 +71,12 @@ function compare(context, state, _a, _b) do
           ::continue:: ;end end end 
        if ___conditional___ = 2--[[ Sum ]]
        or ___conditional___ = 3--[[ Pow ]] then do
-          exit$3 = 5;end else 
+          exit_3 = 5;end else 
        if ___conditional___ = 4--[[ Frac ]] then do
           local ___conditional___=(b.tag | 0);
           do
              if ___conditional___ = 0--[[ Val ]] then do
-                error ({
+                error({
                   Caml_builtin_exceptions.assert_failure,
                   --[[ tuple ]]{
                     "gpr_1698_test.ml",
@@ -85,9 +85,9 @@ function compare(context, state, _a, _b) do
                   }
                 })end end end 
              if ___conditional___ = 1--[[ Neg ]] then do
-                exit$3 = 5;end else 
+                exit_3 = 5;end else 
              if ___conditional___ = 2--[[ Sum ]] then do
-                exit$2 = 4;end else 
+                exit_2 = 4;end else 
              if ___conditional___ = 4--[[ Frac ]] then do
                 na = a[0];
                 da = a[1];
@@ -104,9 +104,9 @@ function compare(context, state, _a, _b) do
           local ___conditional___=(b.tag | 0);
           do
              if ___conditional___ = 1--[[ Neg ]] then do
-                exit$3 = 5;end else 
+                exit_3 = 5;end else 
              if ___conditional___ = 2--[[ Sum ]] then do
-                exit$2 = 4;end else 
+                exit_2 = 4;end else 
              if ___conditional___ = 5--[[ Gcd ]] then do
                 na = a[0];
                 da = a[1];
@@ -115,33 +115,33 @@ function compare(context, state, _a, _b) do
                 exit = 2;end else 
              do end end end end
             else do
-              exit$1 = 3;
+              exit_1 = 3;
               end end
               
           endend else 
        do end end end end
       
     end
-    if (exit$3 == 5) then do
+    if (exit_3 == 5) then do
       if (b.tag == --[[ Neg ]]1) then do
         _b = b[0];
         ::continue:: ;
       end else if (a.tag == --[[ Sum ]]2 and is_number(b)) then do
         return 1;
       end else do
-        exit$2 = 4;
+        exit_2 = 4;
       end end  end 
     end
      end 
-    if (exit$2 == 4) then do
+    if (exit_2 == 4) then do
       if (b.tag == --[[ Sum ]]2 and is_number(a)) then do
         return -1;
       end else do
-        exit$1 = 3;
+        exit_1 = 3;
       end end 
     end
      end 
-    if (exit$1 == 3) then do
+    if (exit_1 == 3) then do
       local ___conditional___=(a.tag | 0);
       do
          if ___conditional___ = 2--[[ Sum ]] then do

@@ -32,11 +32,11 @@ function f(param) do
   match = param[2].contents;
   if (match ~= undefined) then do
     CamlinternalLazy.force(param[1]);
-    match$1 = param[2].contents;
-    if (match$1 ~= undefined) then do
+    match_1 = param[2].contents;
+    if (match_1 ~= undefined) then do
       return 1;
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.match_failure,
         --[[ tuple ]]{
           "lazy_test.ml",
@@ -72,12 +72,12 @@ xpcall(function() do
         set_false,
         s
       });
-end end,function(raw_exn) return do
+end end,function(raw_exn) do
   exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
   if (exn[0] == Caml_builtin_exceptions.match_failure) then do
     h = 2;
   end else do
-    error (exn)
+    error(exn)
   end end 
 end end)
 
@@ -85,12 +85,12 @@ u_v = do
   contents: 0
 end;
 
-u$1 = Caml_obj.caml_lazy_make((function (param) do
+u_1 = Caml_obj.caml_lazy_make((function (param) do
         u_v.contents = 2;
         return --[[ () ]]0;
       end end));
 
-CamlinternalLazy.force(u$1);
+CamlinternalLazy.force(u_1);
 
 exotic = CamlinternalLazy.force;
 
@@ -115,12 +115,12 @@ f006 = Caml_obj.caml_lazy_make((function (param) do
       end end));
 
 f007 = Caml_obj.caml_lazy_make((function (param) do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end));
 
 f008 = Caml_obj.caml_lazy_make((function (param) do
         console.log("hi");
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end));
 
 Mt.from_pair_suites("Lazy_test", --[[ :: ]]{
@@ -214,7 +214,7 @@ exports.set_true = set_true;
 exports.set_false = set_false;
 exports.h = h;
 exports.u_v = u_v;
-exports.u = u$1;
+exports.u = u_1;
 exports.exotic = exotic;
 exports.l_from_fun = l_from_fun;
 exports.forward_test = forward_test;

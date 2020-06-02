@@ -34,10 +34,10 @@ function fill(arr, _i, _l) do
     i = _i;
     if (l) then do
       x = l[0];
-      l$1 = #x;
+      l_1 = #x;
       k = i;
       j = 0;
-      while(j < l$1) do
+      while(j < l_1) do
         arr[k] = x[j];
         k = k + 1 | 0;
         j = j + 1 | 0;
@@ -60,7 +60,7 @@ end end
 
 function caml_array_set(xs, index, newval) do
   if (index < 0 or index >= #xs) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "index out of bounds"
     })
@@ -72,7 +72,7 @@ end end
 
 function caml_array_get(xs, index) do
   if (index < 0 or index >= #xs) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "index out of bounds"
     })
@@ -104,8 +104,8 @@ function caml_array_blit(a1, i1, a2, i2, len) do
     end
     return --[[ () ]]0;
   end else do
-    for j$1 = len - 1 | 0 , 0 , -1 do
-      a2[j$1 + i2 | 0] = a1[j$1 + i1 | 0];
+    for j_1 = len - 1 | 0 , 0 , -1 do
+      a2[j_1 + i2 | 0] = a1[j_1 + i1 | 0];
     end
     return --[[ () ]]0;
   end end 

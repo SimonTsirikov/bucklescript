@@ -94,7 +94,7 @@ function get_lines(fname) do
             end end));
     end;
     return List.rev(l.contents);
-  end end,function(raw_exn) return do
+  end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Scanf.Scan_failure) then do
       s = Curry._2(Printf.sprintf(--[[ Format ]]{
@@ -113,12 +113,12 @@ function get_lines(fname) do
                   }),
                 "in file %s, %s"
               }), fname, exn[1]);
-      error ({
+      error({
         Caml_builtin_exceptions.failure,
         s
       })
     end else if (exn == Caml_builtin_exceptions.end_of_file) then do
-      s$1 = Curry._1(Printf.sprintf(--[[ Format ]]{
+      s_1 = Curry._1(Printf.sprintf(--[[ Format ]]{
                 --[[ String_literal ]]Block.__(11, {
                     "in file ",
                     --[[ String ]]Block.__(2, {
@@ -131,12 +131,12 @@ function get_lines(fname) do
                   }),
                 "in file %s, unexpected end of file"
               }), fname);
-      error ({
+      error({
         Caml_builtin_exceptions.failure,
-        s$1
+        s_1
       })
     end else do
-      error (exn)
+      error(exn)
     end end  end 
   end end)
 end end
@@ -158,8 +158,8 @@ function add_digest_ib(ob, ib) do
   output_line_digest = function (s) do
     __Buffer.add_string(ob, s);
     __Buffer.add_char(ob, --[[ "#" ]]35);
-    s$1 = Digest.to_hex(Digest.string(s));
-    __Buffer.add_string(ob, Caml_bytes.bytes_to_string(Bytes.uppercase(Caml_bytes.bytes_of_string(s$1))));
+    s_1 = Digest.to_hex(Digest.string(s));
+    __Buffer.add_string(ob, Caml_bytes.bytes_to_string(Bytes.uppercase(Caml_bytes.bytes_of_string(s_1))));
     return __Buffer.add_char(ob, --[[ "\n" ]]10);
   end end;
   xpcall(function() do
@@ -167,11 +167,11 @@ function add_digest_ib(ob, ib) do
       scan_line(ib, output_line_digest);
     end;
     return --[[ () ]]0;
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.end_of_file) then do
       return --[[ () ]]0;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end

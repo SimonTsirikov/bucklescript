@@ -14,7 +14,7 @@ function M(S) do
         end;
 end end
 
-function fff(param, param$1) do
+function fff(param, param_1) do
   return 3;
 end end
 

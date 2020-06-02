@@ -11,9 +11,9 @@ function bench(param) do
   end
   console.timeEnd("test/bs_rbset_int_bench.ml 7");
   console.time("test/bs_rbset_int_bench.ml 11");
-  for i$1 = 0 , 1000000 , 1 do
-    if (not Rbset.mem(i$1, data)) then do
-      error ({
+  for i_1 = 0 , 1000000 , 1 do
+    if (not Rbset.mem(i_1, data)) then do
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "bs_rbset_int_bench.ml",
@@ -26,14 +26,14 @@ function bench(param) do
   end
   console.timeEnd("test/bs_rbset_int_bench.ml 11");
   console.time("test/bs_rbset_int_bench.ml 14");
-  for i$2 = 0 , 1000000 , 1 do
-    data = Rbset.remove(i$2, data);
+  for i_2 = 0 , 1000000 , 1 do
+    data = Rbset.remove(i_2, data);
   end
   console.timeEnd("test/bs_rbset_int_bench.ml 14");
   if (Rbset.cardinal(data) == 0) then do
     return 0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bs_rbset_int_bench.ml",

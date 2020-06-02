@@ -147,7 +147,7 @@ console.timeEnd("test/bs_sort_test.ml 84");
 
 b("File \"bs_sort_test.ml\", line 85, characters 4-11", Belt_SortArray.isSorted(u1, cmp));
 
-u$1 = {
+u_1 = {
   --[[ tuple ]]{
     1,
     "a"
@@ -162,8 +162,8 @@ u$1 = {
   }
 };
 
-eq("File \"bs_sort_test.ml\", line 90, characters 5-12", Belt_SortArray.stableSortBy(u$1, (function (param, param$1) do
-            return param[0] - param$1[0] | 0;
+eq("File \"bs_sort_test.ml\", line 90, characters 5-12", Belt_SortArray.stableSortBy(u_1, (function (param, param_1) do
+            return param[0] - param_1[0] | 0;
           end end)), {
       --[[ tuple ]]{
         1,
@@ -179,7 +179,7 @@ eq("File \"bs_sort_test.ml\", line 90, characters 5-12", Belt_SortArray.stableSo
       }
     });
 
-u$2 = {
+u_2 = {
   --[[ tuple ]]{
     1,
     "b"
@@ -198,8 +198,8 @@ u$2 = {
   }
 };
 
-eq("File \"bs_sort_test.ml\", line 96, characters 5-12", Belt_SortArray.stableSortBy(u$2, (function (param, param$1) do
-            return param[0] - param$1[0] | 0;
+eq("File \"bs_sort_test.ml\", line 96, characters 5-12", Belt_SortArray.stableSortBy(u_2, (function (param, param_1) do
+            return param[0] - param_1[0] | 0;
           end end)), {
       --[[ tuple ]]{
         1,
@@ -219,7 +219,7 @@ eq("File \"bs_sort_test.ml\", line 96, characters 5-12", Belt_SortArray.stableSo
       }
     });
 
-u$3 = {
+u_3 = {
   --[[ tuple ]]{
     1,
     "c"
@@ -246,8 +246,8 @@ u$3 = {
   }
 };
 
-eq("File \"bs_sort_test.ml\", line 102, characters 5-12", Belt_SortArray.stableSortBy(u$3, (function (param, param$1) do
-            return param[0] - param$1[0] | 0;
+eq("File \"bs_sort_test.ml\", line 102, characters 5-12", Belt_SortArray.stableSortBy(u_3, (function (param, param_1) do
+            return param[0] - param_1[0] | 0;
           end end)), {
       --[[ tuple ]]{
         1,

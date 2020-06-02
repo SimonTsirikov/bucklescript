@@ -55,17 +55,17 @@ function caml_hash(count, _limit, seed, obj) do
     push_back(queue, obj);
     num = num - 1 | 0;
     while(queue.length ~= 0 and num > 0) do
-      obj$1 = unsafe_pop(queue);
-      if (typeof obj$1 == "number") then do
-        u$1 = obj$1 | 0;
-        hash = Caml_hash_primitive.caml_hash_mix_int(hash, (u$1 + u$1 | 0) + 1 | 0);
+      obj_1 = unsafe_pop(queue);
+      if (typeof obj_1 == "number") then do
+        u_1 = obj_1 | 0;
+        hash = Caml_hash_primitive.caml_hash_mix_int(hash, (u_1 + u_1 | 0) + 1 | 0);
         num = num - 1 | 0;
-      end else if (typeof obj$1 == "string") then do
-        hash = Caml_hash_primitive.caml_hash_mix_string(hash, obj$1);
+      end else if (typeof obj_1 == "string") then do
+        hash = Caml_hash_primitive.caml_hash_mix_string(hash, obj_1);
         num = num - 1 | 0;
-      end else if (typeof obj$1 ~= "boolean" and typeof obj$1 ~= "undefined") then do
-        if (typeof obj$1 == "symbol") then do
-          error ({
+      end else if (typeof obj_1 ~= "boolean" and typeof obj_1 ~= "undefined") then do
+        if (typeof obj_1 == "symbol") then do
+          error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
               "caml_hash.ml",
@@ -75,19 +75,19 @@ function caml_hash(count, _limit, seed, obj) do
           })
         end
          end 
-        if (typeof obj$1 ~= "function") then do
-          size = obj$1.length;
+        if (typeof obj_1 ~= "function") then do
+          size = obj_1.length;
           if (size ~= undefined) then do
-            obj_tag = obj$1.tag | 0;
+            obj_tag = obj_1.tag | 0;
             tag = (size << 10) | obj_tag;
             if (tag == 248) then do
-              hash = Caml_hash_primitive.caml_hash_mix_int(hash, obj$1[1]);
+              hash = Caml_hash_primitive.caml_hash_mix_int(hash, obj_1[1]);
             end else do
               hash = Caml_hash_primitive.caml_hash_mix_int(hash, tag);
               v = size - 1 | 0;
               block = v < num and v or num;
               for i = 0 , block , 1 do
-                push_back(queue, obj$1[i]);
+                push_back(queue, obj_1[i]);
               end
             end end 
           end

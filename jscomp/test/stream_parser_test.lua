@@ -17,11 +17,11 @@ function parse(token) do
     first: --[[ Nil ]]0,
     last: --[[ Nil ]]0
   end;
-  token$1 = function (param) do
+  token_1 = function (param) do
     if (look_ahead.length == 0) then do
       xpcall(function() do
         return Curry._1(token, --[[ () ]]0);
-      end end,function(exn) return do
+      end end,function(exn) do
         return --[[ Kwd ]]Block.__(0, {"=="});
       end end)
     end else do
@@ -29,29 +29,29 @@ function parse(token) do
     end end 
   end end;
   parse_atom = function (param) do
-    e = token$1(--[[ () ]]0);
+    e = token_1(--[[ () ]]0);
     local ___conditional___=(e.tag | 0);
     do
        if ___conditional___ = 0--[[ Kwd ]] then do
           if (e[0] == "(") then do
             v = parse_expr_aux(parse_term_aux(parse_atom(--[[ () ]]0)));
-            match = token$1(--[[ () ]]0);
+            match = token_1(--[[ () ]]0);
             if (match.tag) then do
-              error ({
+              error({
                 Parse_error,
                 "Unbalanced parens"
               })
             end else if (match[0] == ")") then do
               return v;
             end else do
-              error ({
+              error({
                 Parse_error,
                 "Unbalanced parens"
               })
             end end  end 
           end else do
             Queue.push(e, look_ahead);
-            error ({
+            error({
               Parse_error,
               "unexpected token"
             })
@@ -61,7 +61,7 @@ function parse(token) do
        do
       else do
         Queue.push(e, look_ahead);
-        error ({
+        error({
           Parse_error,
           "unexpected token"
         })
@@ -70,7 +70,7 @@ function parse(token) do
     end
   end end;
   parse_term_aux = function (e1) do
-    e = token$1(--[[ () ]]0);
+    e = token_1(--[[ () ]]0);
     if (e.tag) then do
       Queue.push(e, look_ahead);
       return e1;
@@ -91,7 +91,7 @@ function parse(token) do
     end end 
   end end;
   parse_expr_aux = function (e1) do
-    e = token$1(--[[ () ]]0);
+    e = token_1(--[[ () ]]0);
     if (e.tag) then do
       Queue.push(e, look_ahead);
       return e1;
@@ -156,11 +156,11 @@ function l_parse(token) do
     first: --[[ Nil ]]0,
     last: --[[ Nil ]]0
   end;
-  token$1 = function (param) do
+  token_1 = function (param) do
     if (look_ahead.length == 0) then do
       xpcall(function() do
         return Curry._1(token, --[[ () ]]0);
-      end end,function(exn) return do
+      end end,function(exn) do
         return --[[ Kwd ]]Block.__(0, {"=="});
       end end)
     end else do
@@ -170,7 +170,7 @@ function l_parse(token) do
   parse_f_aux = function (_a) do
     while(true) do
       a = _a;
-      t = token$1(--[[ () ]]0);
+      t = token_1(--[[ () ]]0);
       if (t.tag) then do
         Queue.push(t, look_ahead);
         return a;
@@ -194,28 +194,28 @@ function l_parse(token) do
     end;
   end end;
   parse_f = function (param) do
-    t = token$1(--[[ () ]]0);
+    t = token_1(--[[ () ]]0);
     local ___conditional___=(t.tag | 0);
     do
        if ___conditional___ = 0--[[ Kwd ]] then do
           if (t[0] == "(") then do
             v = parse_t_aux(parse_f_aux(parse_f(--[[ () ]]0)));
-            t$1 = token$1(--[[ () ]]0);
-            if (t$1.tag) then do
-              error ({
+            t_1 = token_1(--[[ () ]]0);
+            if (t_1.tag) then do
+              error({
                 Parse_error,
                 "Unbalanced )"
               })
-            end else if (t$1[0] == ")") then do
+            end else if (t_1[0] == ")") then do
               return v;
             end else do
-              error ({
+              error({
                 Parse_error,
                 "Unbalanced )"
               })
             end end  end 
           end else do
-            error ({
+            error({
               Parse_error,
               "Unexpected token"
             })
@@ -224,7 +224,7 @@ function l_parse(token) do
           return t[0];end end end 
        do
       else do
-        error ({
+        error({
           Parse_error,
           "Unexpected token"
         })
@@ -235,7 +235,7 @@ function l_parse(token) do
   parse_t_aux = function (_a) do
     while(true) do
       a = _a;
-      t = token$1(--[[ () ]]0);
+      t = token_1(--[[ () ]]0);
       if (t.tag) then do
         Queue.push(t, look_ahead);
         return a;

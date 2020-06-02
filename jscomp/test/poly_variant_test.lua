@@ -101,7 +101,7 @@ function read(name) do
   return Fs.readFileSync(name, "utf8");
 end end
 
-function read$1(name) do
+function read_1(name) do
   return Fs.readFileSync(name, "utf8");
 end end
 
@@ -137,9 +137,9 @@ eq("File \"poly_variant_test.ml\", line 143, characters 5-12", 3, p_is_int_test(
 
 Mt.from_pair_suites("Poly_variant_test", suites.contents);
 
-function on2(prim, prim$1) do
+function on2(prim, prim_1) do
   prim.on2((function () do
-            local ___conditional___=(prim$1[0]);
+            local ___conditional___=(prim_1[0]);
             do
                if ___conditional___ = -944564236 then do
                   return "line";end end end 
@@ -148,11 +148,11 @@ function on2(prim, prim$1) do
                do
               
             end
-          end end)(), prim$1[1]);
+          end end)(), prim_1[1]);
   return --[[ () ]]0;
 end end
 
-readN = read$1;
+readN = read_1;
 
 exports.uu = uu;
 exports.vv = vv;

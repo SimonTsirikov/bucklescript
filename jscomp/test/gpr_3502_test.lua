@@ -18,10 +18,10 @@ language = "a";
 
 shortName = "a";
 
-name$1 = 2;
+name_1 = 2;
 
 exports.Language = Language;
 exports.language = language;
 exports.shortName = shortName;
-exports.name = name$1;
+exports.name = name_1;
 --[[ No side effect ]]

@@ -2,11 +2,11 @@
 
 
 function fromString(i) do
-  i$1 = parseFloat(i);
-  if (isNaN(i$1)) then do
+  i_1 = parseFloat(i);
+  if (isNaN(i_1)) then do
     return ;
   end else do
-    return i$1;
+    return i_1;
   end end 
 end end
 

@@ -17,11 +17,11 @@ function even2(n) do
   if (n == 0) then do
     return true;
   end else do
-    n$1 = n - 1 | 0;
-    if (n$1 == 1) then do
+    n_1 = n - 1 | 0;
+    if (n_1 == 1) then do
       return true;
     end else do
-      return even2(n$1 - 1 | 0);
+      return even2(n_1 - 1 | 0);
     end end 
   end end 
 end end

@@ -9,12 +9,12 @@ import * as Caml_string from "./caml_string.lua";
 import * as Caml_builtin_exceptions from "./caml_builtin_exceptions.lua";
 
 function create(n) do
-  n$1 = n < 1 and 1 or n;
-  s = Caml_bytes.caml_create_bytes(n$1);
+  n_1 = n < 1 and 1 or n;
+  s = Caml_bytes.caml_create_bytes(n_1);
   return do
           buffer: s,
           position: 0,
-          length: n$1,
+          length: n_1,
           initial_buffer: s
         end;
 end end
@@ -29,7 +29,7 @@ end end
 
 function sub(b, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (b.position - len | 0)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Buffer.sub"
     })
@@ -40,7 +40,7 @@ end end
 
 function blit(src, srcoff, dst, dstoff, len) do
   if (len < 0 or srcoff < 0 or srcoff > (src.position - len | 0) or dstoff < 0 or dstoff > (#dst - len | 0)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Buffer.blit"
     })
@@ -51,7 +51,7 @@ end end
 
 function nth(b, ofs) do
   if (ofs < 0 or ofs >= b.position) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Buffer.nth"
     })
@@ -101,9 +101,9 @@ function add_char(b, c) do
 end end
 
 function add_utf_8_uchar(b, u) do
-  u$1 = u;
-  if (u$1 < 0) then do
-    error ({
+  u_1 = u;
+  if (u_1 < 0) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "buffer.ml",
@@ -113,43 +113,43 @@ function add_utf_8_uchar(b, u) do
     })
   end
    end 
-  if (u$1 <= 127) then do
-    return add_char(b, u$1);
-  end else if (u$1 <= 2047) then do
+  if (u_1 <= 127) then do
+    return add_char(b, u_1);
+  end else if (u_1 <= 2047) then do
     pos = b.position;
     if ((pos + 2 | 0) > b.length) then do
       resize(b, 2);
     end
      end 
-    b.buffer[pos] = 192 | (u$1 >>> 6);
-    b.buffer[pos + 1 | 0] = 128 | u$1 & 63;
+    b.buffer[pos] = 192 | (u_1 >>> 6);
+    b.buffer[pos + 1 | 0] = 128 | u_1 & 63;
     b.position = pos + 2 | 0;
     return --[[ () ]]0;
-  end else if (u$1 <= 65535) then do
-    pos$1 = b.position;
-    if ((pos$1 + 3 | 0) > b.length) then do
+  end else if (u_1 <= 65535) then do
+    pos_1 = b.position;
+    if ((pos_1 + 3 | 0) > b.length) then do
       resize(b, 3);
     end
      end 
-    b.buffer[pos$1] = 224 | (u$1 >>> 12);
-    b.buffer[pos$1 + 1 | 0] = 128 | (u$1 >>> 6) & 63;
-    b.buffer[pos$1 + 2 | 0] = 128 | u$1 & 63;
-    b.position = pos$1 + 3 | 0;
+    b.buffer[pos_1] = 224 | (u_1 >>> 12);
+    b.buffer[pos_1 + 1 | 0] = 128 | (u_1 >>> 6) & 63;
+    b.buffer[pos_1 + 2 | 0] = 128 | u_1 & 63;
+    b.position = pos_1 + 3 | 0;
     return --[[ () ]]0;
-  end else if (u$1 <= 1114111) then do
-    pos$2 = b.position;
-    if ((pos$2 + 4 | 0) > b.length) then do
+  end else if (u_1 <= 1114111) then do
+    pos_2 = b.position;
+    if ((pos_2 + 4 | 0) > b.length) then do
       resize(b, 4);
     end
      end 
-    b.buffer[pos$2] = 240 | (u$1 >>> 18);
-    b.buffer[pos$2 + 1 | 0] = 128 | (u$1 >>> 12) & 63;
-    b.buffer[pos$2 + 2 | 0] = 128 | (u$1 >>> 6) & 63;
-    b.buffer[pos$2 + 3 | 0] = 128 | u$1 & 63;
-    b.position = pos$2 + 4 | 0;
+    b.buffer[pos_2] = 240 | (u_1 >>> 18);
+    b.buffer[pos_2 + 1 | 0] = 128 | (u_1 >>> 12) & 63;
+    b.buffer[pos_2 + 2 | 0] = 128 | (u_1 >>> 6) & 63;
+    b.buffer[pos_2 + 3 | 0] = 128 | u_1 & 63;
+    b.position = pos_2 + 4 | 0;
     return --[[ () ]]0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "buffer.ml",
@@ -161,9 +161,9 @@ function add_utf_8_uchar(b, u) do
 end end
 
 function add_utf_16be_uchar(b, u) do
-  u$1 = u;
-  if (u$1 < 0) then do
-    error ({
+  u_1 = u;
+  if (u_1 < 0) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "buffer.ml",
@@ -173,33 +173,33 @@ function add_utf_16be_uchar(b, u) do
     })
   end
    end 
-  if (u$1 <= 65535) then do
+  if (u_1 <= 65535) then do
     pos = b.position;
     if ((pos + 2 | 0) > b.length) then do
       resize(b, 2);
     end
      end 
-    b.buffer[pos] = (u$1 >>> 8);
-    b.buffer[pos + 1 | 0] = u$1 & 255;
+    b.buffer[pos] = (u_1 >>> 8);
+    b.buffer[pos + 1 | 0] = u_1 & 255;
     b.position = pos + 2 | 0;
     return --[[ () ]]0;
-  end else if (u$1 <= 1114111) then do
-    u$prime = u$1 - 65536 | 0;
+  end else if (u_1 <= 1114111) then do
+    u$prime = u_1 - 65536 | 0;
     hi = 55296 | (u$prime >>> 10);
     lo = 56320 | u$prime & 1023;
-    pos$1 = b.position;
-    if ((pos$1 + 4 | 0) > b.length) then do
+    pos_1 = b.position;
+    if ((pos_1 + 4 | 0) > b.length) then do
       resize(b, 4);
     end
      end 
-    b.buffer[pos$1] = (hi >>> 8);
-    b.buffer[pos$1 + 1 | 0] = hi & 255;
-    b.buffer[pos$1 + 2 | 0] = (lo >>> 8);
-    b.buffer[pos$1 + 3 | 0] = lo & 255;
-    b.position = pos$1 + 4 | 0;
+    b.buffer[pos_1] = (hi >>> 8);
+    b.buffer[pos_1 + 1 | 0] = hi & 255;
+    b.buffer[pos_1 + 2 | 0] = (lo >>> 8);
+    b.buffer[pos_1 + 3 | 0] = lo & 255;
+    b.position = pos_1 + 4 | 0;
     return --[[ () ]]0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "buffer.ml",
@@ -211,9 +211,9 @@ function add_utf_16be_uchar(b, u) do
 end end
 
 function add_utf_16le_uchar(b, u) do
-  u$1 = u;
-  if (u$1 < 0) then do
-    error ({
+  u_1 = u;
+  if (u_1 < 0) then do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "buffer.ml",
@@ -223,33 +223,33 @@ function add_utf_16le_uchar(b, u) do
     })
   end
    end 
-  if (u$1 <= 65535) then do
+  if (u_1 <= 65535) then do
     pos = b.position;
     if ((pos + 2 | 0) > b.length) then do
       resize(b, 2);
     end
      end 
-    b.buffer[pos] = u$1 & 255;
-    b.buffer[pos + 1 | 0] = (u$1 >>> 8);
+    b.buffer[pos] = u_1 & 255;
+    b.buffer[pos + 1 | 0] = (u_1 >>> 8);
     b.position = pos + 2 | 0;
     return --[[ () ]]0;
-  end else if (u$1 <= 1114111) then do
-    u$prime = u$1 - 65536 | 0;
+  end else if (u_1 <= 1114111) then do
+    u$prime = u_1 - 65536 | 0;
     hi = 55296 | (u$prime >>> 10);
     lo = 56320 | u$prime & 1023;
-    pos$1 = b.position;
-    if ((pos$1 + 4 | 0) > b.length) then do
+    pos_1 = b.position;
+    if ((pos_1 + 4 | 0) > b.length) then do
       resize(b, 4);
     end
      end 
-    b.buffer[pos$1] = hi & 255;
-    b.buffer[pos$1 + 1 | 0] = (hi >>> 8);
-    b.buffer[pos$1 + 2 | 0] = lo & 255;
-    b.buffer[pos$1 + 3 | 0] = (lo >>> 8);
-    b.position = pos$1 + 4 | 0;
+    b.buffer[pos_1] = hi & 255;
+    b.buffer[pos_1 + 1 | 0] = (hi >>> 8);
+    b.buffer[pos_1 + 2 | 0] = lo & 255;
+    b.buffer[pos_1 + 3 | 0] = (lo >>> 8);
+    b.position = pos_1 + 4 | 0;
     return --[[ () ]]0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "buffer.ml",
@@ -262,7 +262,7 @@ end end
 
 function add_substring(b, s, offset, len) do
   if (offset < 0 or len < 0 or offset > (#s - len | 0)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Buffer.add_substring/add_subbytes"
     })
@@ -304,7 +304,7 @@ end end
 
 function add_channel(b, ic, len) do
   if (len < 0) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Buffer.add_channel"
     })
@@ -314,19 +314,19 @@ function add_channel(b, ic, len) do
     resize(b, len);
   end
    end 
-  b$1 = b;
-  ic$1 = ic;
+  b_1 = b;
+  ic_1 = ic;
   _len = len;
   while(true) do
-    len$1 = _len;
-    if (len$1 > 0) then do
-      n = Pervasives.input(ic$1, b$1.buffer, b$1.position, len$1);
-      b$1.position = b$1.position + n | 0;
+    len_1 = _len;
+    if (len_1 > 0) then do
+      n = Pervasives.input(ic_1, b_1.buffer, b_1.position, len_1);
+      b_1.position = b_1.position + n | 0;
       if (n == 0) then do
-        error (Caml_builtin_exceptions.end_of_file)
+        error(Caml_builtin_exceptions.end_of_file)
       end
        end 
-      _len = len$1 - n | 0;
+      _len = len_1 - n | 0;
       ::continue:: ;
     end else do
       return 0;
@@ -341,7 +341,7 @@ end end
 function closing(param) do
   if (param ~= 40) then do
     if (param ~= 123) then do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "buffer.ml",
@@ -363,21 +363,21 @@ function advance_to_closing(opening, closing, k, s, start) do
   lim = #s;
   while(true) do
     i = _i;
-    k$1 = _k;
+    k_1 = _k;
     if (i >= lim) then do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end
      end 
     if (Caml_string.get(s, i) == opening) then do
       _i = i + 1 | 0;
-      _k = k$1 + 1 | 0;
+      _k = k_1 + 1 | 0;
       ::continue:: ;
     end else if (Caml_string.get(s, i) == closing) then do
-      if (k$1 == 0) then do
+      if (k_1 == 0) then do
         return i;
       end else do
         _i = i + 1 | 0;
-        _k = k$1 - 1 | 0;
+        _k = k_1 - 1 | 0;
         ::continue:: ;
       end end 
     end else do
@@ -423,7 +423,7 @@ end end
 
 function find_ident(s, start, lim) do
   if (start >= lim) then do
-    error (Caml_builtin_exceptions.not_found)
+    error(Caml_builtin_exceptions.not_found)
   end
    end 
   c = Caml_string.get(s, start);
@@ -436,10 +436,10 @@ function find_ident(s, start, lim) do
   end
    end 
   new_start = start + 1 | 0;
-  stop$1 = advance_to_closing(c, closing(c), 0, s, new_start);
+  stop_1 = advance_to_closing(c, closing(c), 0, s, new_start);
   return --[[ tuple ]]{
-          __String.sub(s, new_start, (stop$1 - start | 0) - 1 | 0),
-          stop$1 + 1 | 0
+          __String.sub(s, new_start, (stop_1 - start | 0) - 1 | 0),
+          stop_1 + 1 | 0
         };
 end end
 
@@ -492,7 +492,7 @@ end end
 
 function truncate(b, len) do
   if (len < 0 or len > b.position) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Buffer.truncate"
     })

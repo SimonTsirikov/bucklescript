@@ -29,9 +29,9 @@ function remove0(nt, x, cmp) do
       return nt;
     end end 
   end else do
-    match$1 = nt.right;
-    if (match$1 ~= nil) then do
-      nt.right = remove0(match$1, x, cmp);
+    match_1 = nt.right;
+    if (match_1 ~= nil) then do
+      nt.right = remove0(match_1, x, cmp);
       return Belt_internalAVLset.balMutate(nt);
     end else do
       return nt;
@@ -111,9 +111,9 @@ function removeCheck0(nt, x, removed, cmp) do
       return nt;
     end end 
   end else do
-    match$1 = nt.right;
-    if (match$1 ~= nil) then do
-      nt.right = removeCheck0(match$1, x, removed, cmp);
+    match_1 = nt.right;
+    if (match_1 ~= nil) then do
+      nt.right = removeCheck0(match_1, x, removed, cmp);
       return Belt_internalAVLset.balMutate(nt);
     end else do
       return nt;
@@ -383,15 +383,15 @@ end end
 function intersect(a, b) do
   cmp = a.cmp;
   match = a.data;
-  match$1 = b.data;
+  match_1 = b.data;
   if (match ~= nil) then do
-    if (match$1 ~= nil) then do
+    if (match_1 ~= nil) then do
       sizea = Belt_internalAVLset.lengthNode(match);
-      sizeb = Belt_internalAVLset.lengthNode(match$1);
+      sizeb = Belt_internalAVLset.lengthNode(match_1);
       totalSize = sizea + sizeb | 0;
       tmp = new Array(totalSize);
       Belt_internalAVLset.fillArray(match, 0, tmp);
-      Belt_internalAVLset.fillArray(match$1, sizea, tmp);
+      Belt_internalAVLset.fillArray(match_1, sizea, tmp);
       if (cmp(tmp[sizea - 1 | 0], tmp[sizea]) < 0 or cmp(tmp[totalSize - 1 | 0], tmp[0]) < 0) then do
         return do
                 cmp: cmp,

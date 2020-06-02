@@ -8,9 +8,9 @@ end end
 
 function MakeComparable(M) do
   cmp = M.cmp;
-  cmp$1 = Curry.__2(cmp);
+  cmp_1 = Curry.__2(cmp);
   return do
-          cmp: cmp$1
+          cmp: cmp_1
         end;
 end end
 
@@ -21,9 +21,9 @@ function comparableU(cmp) do
 end end
 
 function comparable(cmp) do
-  cmp$1 = Curry.__2(cmp);
+  cmp_1 = Curry.__2(cmp);
   return do
-          cmp: cmp$1
+          cmp: cmp_1
         end;
 end end
 
@@ -33,12 +33,12 @@ end end
 
 function MakeHashable(M) do
   hash = M.hash;
-  hash$1 = Curry.__1(hash);
+  hash_1 = Curry.__1(hash);
   eq = M.eq;
-  eq$1 = Curry.__2(eq);
+  eq_1 = Curry.__2(eq);
   return do
-          hash: hash$1,
-          eq: eq$1
+          hash: hash_1,
+          eq: eq_1
         end;
 end end
 
@@ -50,11 +50,11 @@ function hashableU(hash, eq) do
 end end
 
 function hashable(hash, eq) do
-  hash$1 = Curry.__1(hash);
-  eq$1 = Curry.__2(eq);
+  hash_1 = Curry.__1(hash);
+  eq_1 = Curry.__2(eq);
   return do
-          hash: hash$1,
-          eq: eq$1
+          hash: hash_1,
+          eq: eq_1
         end;
 end end
 

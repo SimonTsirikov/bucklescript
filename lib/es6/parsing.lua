@@ -91,7 +91,7 @@ function yyparse(tables, start, lexer, lexbuf) do
             _cmd = --[[ Token_read ]]1;
             ::continue:: ;end end end 
          if ___conditional___ = 1--[[ Raise_parse_error ]] then do
-            error (Parse_error)end end end 
+            error(Parse_error)end end end 
          if ___conditional___ = 2--[[ Grow_stacks_1 ]] then do
             grow_stacks(--[[ () ]]0);
             _arg = --[[ () ]]0;
@@ -103,24 +103,24 @@ function yyparse(tables, start, lexer, lexbuf) do
             _cmd = --[[ Stacks_grown_2 ]]3;
             ::continue:: ;end end end 
          if ___conditional___ = 4--[[ Compute_semantic_action ]] then do
-            match$1;
+            match_1;
             xpcall(function() do
-              match$1 = --[[ tuple ]]{
+              match_1 = --[[ tuple ]]{
                 --[[ Semantic_action_computed ]]4,
                 Curry._1(Caml_array.caml_array_get(tables.actions, env.rule_number), env)
               };
-            end end,function(exn) return do
+            end end,function(exn) do
               if (exn == Parse_error) then do
-                match$1 = --[[ tuple ]]{
+                match_1 = --[[ tuple ]]{
                   --[[ Error_detected ]]5,
                   --[[ () ]]0
                 };
               end else do
-                error (exn)
+                error(exn)
               end end 
             end end)
-            _arg = match$1[1];
-            _cmd = match$1[0];
+            _arg = match_1[1];
+            _cmd = match_1[0];
             ::continue:: ;end end end 
          if ___conditional___ = 5--[[ Call_error_function ]] then do
             Curry._1(tables.error_function, "syntax error");
@@ -131,8 +131,8 @@ function yyparse(tables, start, lexer, lexbuf) do
         
       end
     end;
-  end end,function(raw_exn) return do
-    exn$1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
+  end end,function(raw_exn) do
+    exn_1 = Caml_js_exceptions.internalToOCamlException(raw_exn);
     curr_char = env.curr_char;
     env.asp = init_asp;
     env.sp = init_sp;
@@ -141,8 +141,8 @@ function yyparse(tables, start, lexer, lexbuf) do
     env.curr_char = init_curr_char;
     env.lval = init_lval;
     env.errflag = init_errflag;
-    if (exn$1[0] == YYexit) then do
-      return exn$1[1];
+    if (exn_1[0] == YYexit) then do
+      return exn_1[1];
     end else do
       current_lookahead_fun.contents = (function (tok) do
           if (typeof tok ~= "number") then do
@@ -151,7 +151,7 @@ function yyparse(tables, start, lexer, lexbuf) do
             return Caml_array.caml_array_get(tables.transl_const, tok) == curr_char;
           end end 
         end end);
-      error (exn$1)
+      error(exn_1)
     end end 
   end end)
 end end

@@ -68,19 +68,19 @@ function set(h, key, value) do
     h.size = h.size + 1 | 0;
   end end 
   if (h.size > (buckets_len << 1)) then do
-    h$1 = h;
-    odata = h$1.buckets;
+    h_1 = h;
+    odata = h_1.buckets;
     osize = #odata;
     nsize = (osize << 1);
     if (nsize >= osize) then do
-      h_buckets$1 = new Array(nsize);
+      h_buckets_1 = new Array(nsize);
       ndata_tail = new Array(nsize);
-      h$1.buckets = h_buckets$1;
-      for i$1 = 0 , osize - 1 | 0 , 1 do
-        copyBucketReHash(h_buckets$1, ndata_tail, odata[i$1]);
+      h_1.buckets = h_buckets_1;
+      for i_1 = 0 , osize - 1 | 0 , 1 do
+        copyBucketReHash(h_buckets_1, ndata_tail, odata[i_1]);
       end
-      for i$2 = 0 , nsize - 1 | 0 , 1 do
-        match = ndata_tail[i$2];
+      for i_2 = 0 , nsize - 1 | 0 , 1 do
+        match = ndata_tail[i_2];
         if (match ~= undefined) then do
           match.next = undefined;
         end
@@ -105,8 +105,8 @@ function remove(h, key) do
       h.size = h.size - 1 | 0;
       return --[[ () ]]0;
     end else do
-      h$1 = h;
-      key$1 = key;
+      h_1 = h;
+      key_1 = key;
       _prec = bucket;
       _buckets = bucket.next;
       while(true) do
@@ -114,9 +114,9 @@ function remove(h, key) do
         prec = _prec;
         if (buckets ~= undefined) then do
           cell_next = buckets.next;
-          if (buckets.key == key$1) then do
+          if (buckets.key == key_1) then do
             prec.next = cell_next;
-            h$1.size = h$1.size - 1 | 0;
+            h_1.size = h_1.size - 1 | 0;
             return --[[ () ]]0;
           end else do
             _buckets = cell_next;
@@ -141,22 +141,22 @@ function get(h, key) do
     if (key == match.key) then do
       return Caml_option.some(match.value);
     end else do
-      match$1 = match.next;
-      if (match$1 ~= undefined) then do
-        if (key == match$1.key) then do
-          return Caml_option.some(match$1.value);
+      match_1 = match.next;
+      if (match_1 ~= undefined) then do
+        if (key == match_1.key) then do
+          return Caml_option.some(match_1.value);
         end else do
-          match$2 = match$1.next;
-          if (match$2 ~= undefined) then do
-            if (key == match$2.key) then do
-              return Caml_option.some(match$2.value);
+          match_2 = match_1.next;
+          if (match_2 ~= undefined) then do
+            if (key == match_2.key) then do
+              return Caml_option.some(match_2.value);
             end else do
-              key$1 = key;
-              _buckets = match$2.next;
+              key_1 = key;
+              _buckets = match_2.next;
               while(true) do
                 buckets = _buckets;
                 if (buckets ~= undefined) then do
-                  if (key$1 == buckets.key) then do
+                  if (key_1 == buckets.key) then do
                     return Caml_option.some(buckets.value);
                   end else do
                     _buckets = buckets.next;
@@ -184,11 +184,11 @@ function has(h, key) do
   nid = Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_string(0, key)) & (#h_buckets - 1 | 0);
   bucket = h_buckets[nid];
   if (bucket ~= undefined) then do
-    key$1 = key;
+    key_1 = key;
     _cell = bucket;
     while(true) do
       cell = _cell;
-      if (cell.key == key$1) then do
+      if (cell.key == key_1) then do
         return true;
       end else do
         match = cell.next;

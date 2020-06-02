@@ -25,8 +25,8 @@ end;
 function __ocaml_lex_token_rec(l, lexbuf, ___ocaml_lex_state) do
   while(true) do
     __ocaml_lex_state = ___ocaml_lex_state;
-    __ocaml_lex_state$1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
-    local ___conditional___=(__ocaml_lex_state$1);
+    __ocaml_lex_state_1 = Lexing.engine(__ocaml_lex_tables, __ocaml_lex_state, lexbuf);
+    local ___conditional___=(__ocaml_lex_state_1);
     do
        if ___conditional___ = 0 then do
           Curry._1(l, "new line");
@@ -71,7 +71,7 @@ function __ocaml_lex_token_rec(l, lexbuf, ___ocaml_lex_state) do
        do
       else do
         Curry._1(lexbuf.refill_buff, lexbuf);
-        ___ocaml_lex_state = __ocaml_lex_state$1;
+        ___ocaml_lex_state = __ocaml_lex_state_1;
         ::continue:: ;
         end end
         

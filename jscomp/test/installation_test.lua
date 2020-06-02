@@ -45,8 +45,8 @@ if (match ~= undefined) then do
           encoding: "utf8"
         end);
     exit = 1;
-  end end,function(e) return do
-    error ({
+  end end,function(e) do
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "installation_test.ml",
@@ -65,7 +65,7 @@ if (match ~= undefined) then do
   end
    end 
 end else do
-  error ({
+  error({
     Caml_builtin_exceptions.assert_failure,
     --[[ tuple ]]{
       "installation_test.ml",

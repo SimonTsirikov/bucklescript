@@ -214,13 +214,13 @@ function filter_map2(f, _xs, _ys) do
           ::continue:: ;
         end end 
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Ext_list_test.filter_map2"
         })
       end end 
     end else if (ys) then do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Ext_list_test.filter_map2"
       })
@@ -253,13 +253,13 @@ function filter_map2i(f, xs, ys) do
             ::continue:: ;
           end end 
         end else do
-          error ({
+          error({
             Caml_builtin_exceptions.invalid_argument,
             "Ext_list_test.filter_map2i"
           })
         end end 
       end else if (ys) then do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Ext_list_test.filter_map2i"
         })
@@ -293,24 +293,24 @@ function flat_map2(f, lx, ly) do
   _lx = lx;
   _ly = ly;
   while(true) do
-    ly$1 = _ly;
-    lx$1 = _lx;
+    ly_1 = _ly;
+    lx_1 = _lx;
     acc = _acc;
-    if (lx$1) then do
-      if (ly$1) then do
-        _ly = ly$1[1];
-        _lx = lx$1[1];
-        _acc = List.rev_append(Curry._2(f, lx$1[0], ly$1[0]), acc);
+    if (lx_1) then do
+      if (ly_1) then do
+        _ly = ly_1[1];
+        _lx = lx_1[1];
+        _acc = List.rev_append(Curry._2(f, lx_1[0], ly_1[0]), acc);
         ::continue:: ;
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Ext_list_test.flat_map2"
         })
       end end 
     end else do
-      if (ly$1) then do
-        error ({
+      if (ly_1) then do
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Ext_list_test.flat_map2"
         })
@@ -345,9 +345,9 @@ end end
 
 function map2_last(f, l1, l2) do
   if (l1) then do
-    l1$1 = l1[1];
+    l1_1 = l1[1];
     u = l1[0];
-    if (not l1$1) then do
+    if (not l1_1) then do
       if (l2) then do
         if (not l2[1]) then do
           return --[[ :: ]]{
@@ -357,7 +357,7 @@ function map2_last(f, l1, l2) do
         end
          end 
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "List.map2_last"
         })
@@ -368,16 +368,16 @@ function map2_last(f, l1, l2) do
       r = Curry._3(f, false, u, l2[0]);
       return --[[ :: ]]{
               r,
-              map2_last(f, l1$1, l2[1])
+              map2_last(f, l1_1, l2[1])
             };
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "List.map2_last"
       })
     end end 
   end else if (l2) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "List.map2_last"
     })
@@ -388,13 +388,13 @@ end end
 
 function map_last(f, l1) do
   if (l1) then do
-    l1$1 = l1[1];
+    l1_1 = l1[1];
     u = l1[0];
-    if (l1$1) then do
+    if (l1_1) then do
       r = Curry._2(f, false, u);
       return --[[ :: ]]{
               r,
-              map_last(f, l1$1)
+              map_last(f, l1_1)
             };
     end else do
       return --[[ :: ]]{
@@ -409,16 +409,16 @@ end end
 
 function fold_right2_last(f, l1, l2, accu) do
   if (l1) then do
-    l1$1 = l1[1];
+    l1_1 = l1[1];
     last1 = l1[0];
-    if (not l1$1) then do
+    if (not l1_1) then do
       if (l2) then do
         if (not l2[1]) then do
           return Curry._4(f, true, last1, l2[0], accu);
         end
          end 
       end else do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "List.fold_right2"
         })
@@ -426,16 +426,16 @@ function fold_right2_last(f, l1, l2, accu) do
     end
      end 
     if (l2) then do
-      return Curry._4(f, false, last1, l2[0], fold_right2_last(f, l1$1, l2[1], accu));
+      return Curry._4(f, false, last1, l2[0], fold_right2_last(f, l1_1, l2[1], accu));
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "List.fold_right2"
       })
     end end 
   end else do
     if (l2) then do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "List.fold_right2"
       })
@@ -453,7 +453,7 @@ function take(n, l) do
   arr = __Array.of_list(l);
   arr_length = #arr;
   if (arr_length < n) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Ext_list_test.take"
     })
@@ -523,26 +523,26 @@ function exclude_tail(x) do
   _acc = --[[ [] ]]0;
   _x = x;
   while(true) do
-    x$1 = _x;
+    x_1 = _x;
     acc = _acc;
-    if (x$1) then do
-      ys = x$1[1];
-      x$2 = x$1[0];
+    if (x_1) then do
+      ys = x_1[1];
+      x_2 = x_1[0];
       if (ys) then do
         _x = ys;
         _acc = --[[ :: ]]{
-          x$2,
+          x_2,
           acc
         };
         ::continue:: ;
       end else do
         return --[[ tuple ]]{
-                x$2,
+                x_2,
                 List.rev(acc)
               };
       end end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Ext_list_test.exclude_tail"
       })
@@ -596,7 +596,7 @@ function drop(_n, _h) do
     h = _h;
     n = _n;
     if (n < 0) then do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Ext_list_test.drop"
       })
@@ -606,7 +606,7 @@ function drop(_n, _h) do
       return h;
     end else do
       if (h == --[[ [] ]]0) then do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Ext_list_test.drop"
         })
@@ -757,12 +757,12 @@ function split_map(f, xs) do
   _cs = --[[ [] ]]0;
   _xs = xs;
   while(true) do
-    xs$1 = _xs;
+    xs_1 = _xs;
     cs = _cs;
     bs = _bs;
-    if (xs$1) then do
-      match = Curry._1(f, xs$1[0]);
-      _xs = xs$1[1];
+    if (xs_1) then do
+      match = Curry._1(f, xs_1[0]);
+      _xs = xs_1[1];
       _cs = --[[ :: ]]{
         match[1],
         cs
@@ -788,7 +788,7 @@ function reduce_from_right(fn, lst) do
                   return Curry._2(fn, y, x);
                 end end), match[0], match[1]);
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Ext_list_test.reduce"
     })
@@ -799,7 +799,7 @@ function reduce_from_left(fn, lst) do
   if (lst) then do
     return List.fold_left(fn, lst[0], lst[1]);
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Ext_list_test.reduce_from_left"
     })
@@ -817,7 +817,7 @@ function ref_top(x) do
   if (match) then do
     return match[0];
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Ext_list_test.ref_top"
     })
@@ -847,7 +847,7 @@ function ref_pop(refs) do
     refs.contents = match[1];
     return match[0];
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Ext_list_test.ref_pop"
     })
@@ -858,13 +858,13 @@ function rev_except_last(xs) do
   _acc = --[[ [] ]]0;
   _xs = xs;
   while(true) do
-    xs$1 = _xs;
+    xs_1 = _xs;
     acc = _acc;
-    if (xs$1) then do
-      xs$2 = xs$1[1];
-      x = xs$1[0];
-      if (xs$2) then do
-        _xs = xs$2;
+    if (xs_1) then do
+      xs_2 = xs_1[1];
+      x = xs_1[0];
+      if (xs_2) then do
+        _xs = xs_2;
         _acc = --[[ :: ]]{
           x,
           acc
@@ -877,7 +877,7 @@ function rev_except_last(xs) do
               };
       end end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Ext_list_test.rev_except_last"
       })
@@ -903,7 +903,7 @@ function last(_xs) do
         return xs[0];
       end end 
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Ext_list_test.last"
       })
@@ -925,7 +925,7 @@ function assoc_by_string(def, k, _lst) do
     end else if (def ~= undefined) then do
       return Caml_option.valFromOption(def);
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "ext_list_test.ml",
@@ -951,7 +951,7 @@ function assoc_by_int(def, k, _lst) do
     end else if (def ~= undefined) then do
       return Caml_option.valFromOption(def);
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "ext_list_test.ml",

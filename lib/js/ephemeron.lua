@@ -105,7 +105,7 @@ function MakeSeeded(H) do
   prng = Caml_obj.caml_lazy_make((function (param) do
           return Random.State.make_self_init(--[[ () ]]0);
         end end));
-  create$1 = function (randomOpt, initial_size) do
+  create_1 = function (randomOpt, initial_size) do
     random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
     s = power_2_above(16, initial_size);
     seed = random and Random.State.bits(CamlinternalLazy.force(prng)) or 0;
@@ -268,23 +268,23 @@ function MakeSeeded(H) do
   end end;
   find = function (h, key) do
     hkey = Curry._2(hash, h.seed, key);
-    key$1 = key;
-    hkey$1 = hkey;
+    key_1 = key;
+    hkey_1 = hkey;
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
       param = _param;
       if (param) then do
         rest = param[2];
         c = param[1];
-        if (hkey$1 == param[0]) then do
-          match = equal(c, key$1);
+        if (hkey_1 == param[0]) then do
+          match = equal(c, key_1);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
           end else do
-            match$1 = get_data(c);
-            if (match$1 ~= undefined) then do
-              return Caml_option.valFromOption(match$1);
+            match_1 = get_data(c);
+            if (match_1 ~= undefined) then do
+              return Caml_option.valFromOption(match_1);
             end else do
               _param = rest;
               ::continue:: ;
@@ -295,22 +295,22 @@ function MakeSeeded(H) do
           ::continue:: ;
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
   find_opt = function (h, key) do
     hkey = Curry._2(hash, h.seed, key);
-    key$1 = key;
-    hkey$1 = hkey;
+    key_1 = key;
+    hkey_1 = hkey;
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
       param = _param;
       if (param) then do
         rest = param[2];
         c = param[1];
-        if (hkey$1 == param[0]) then do
-          match = equal(c, key$1);
+        if (hkey_1 == param[0]) then do
+          match = equal(c, key_1);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
@@ -346,10 +346,10 @@ function MakeSeeded(H) do
               _param = rest;
               ::continue:: ;
             end else do
-              match$1 = get_data(c);
-              if (match$1 ~= undefined) then do
+              match_1 = get_data(c);
+              if (match_1 ~= undefined) then do
                 return --[[ :: ]]{
-                        Caml_option.valFromOption(match$1),
+                        Caml_option.valFromOption(match_1),
                         find_in_bucket(rest)
                       };
               end else do
@@ -392,10 +392,10 @@ function MakeSeeded(H) do
             ::continue:: ;
           end end 
         end else do
-          error (Caml_builtin_exceptions.not_found)
+          error(Caml_builtin_exceptions.not_found)
         end end 
       end;
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
         container = create(key, info);
         Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
@@ -410,7 +410,7 @@ function MakeSeeded(H) do
           return 0;
         end end 
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
@@ -445,10 +445,10 @@ function MakeSeeded(H) do
         if (param) then do
           c = param[1];
           match = get_key(c);
-          match$1 = get_data(c);
+          match_1 = get_data(c);
           if (match ~= undefined) then do
-            if (match$1 ~= undefined) then do
-              Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1));
+            if (match_1 ~= undefined) then do
+              Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1));
             end
              end 
           end
@@ -474,9 +474,9 @@ function MakeSeeded(H) do
         if (b) then do
           c = b[1];
           match = get_key(c);
-          match$1 = get_data(c);
-          accu$1 = match ~= undefined and match$1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1), accu) or accu;
-          _accu = accu$1;
+          match_1 = get_data(c);
+          accu_1 = match ~= undefined and match_1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
+          _accu = accu_1;
           _b = b[2];
           ::continue:: ;
         end else do
@@ -499,13 +499,13 @@ function MakeSeeded(H) do
           rest = param[2];
           c = param[1];
           match = get_key(c);
-          match$1 = get_data(c);
+          match_1 = get_data(c);
           if (match ~= undefined) then do
-            if (match$1 ~= undefined) then do
+            if (match_1 ~= undefined) then do
               k = Caml_option.valFromOption(match);
-              match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
-              if (match$2 ~= undefined) then do
-                set_key_data(c, k, Caml_option.valFromOption(match$2));
+              match_2 = Curry._2(f, k, Caml_option.valFromOption(match_1));
+              if (match_2 ~= undefined) then do
+                set_key_data(c, k, Caml_option.valFromOption(match_2));
                 return --[[ Cons ]]{
                         param[0],
                         c,
@@ -606,7 +606,7 @@ function MakeSeeded(H) do
           end;
   end end;
   return do
-          create: create$1,
+          create: create_1,
           clear: clear,
           reset: reset,
           copy: copy,
@@ -638,7 +638,7 @@ function Make(H) do
     set_key(c, k);
     return c;
   end end;
-  equal$1 = function (c, k) do
+  equal_1 = function (c, k) do
     match = Obj.Ephemeron.get_key(c, 0);
     if (match ~= undefined) then do
       if (Curry._2(equal, k, Caml_option.valFromOption(match))) then do
@@ -785,7 +785,7 @@ function Make(H) do
           c = param[1];
           hk = param[0];
           if (hkey == hk) then do
-            match = equal$1(c, key);
+            match = equal_1(c, key);
             local ___conditional___=(match);
             do
                if ___conditional___ = 0--[[ ETrue ]] then do
@@ -821,23 +821,23 @@ function Make(H) do
   end end;
   find = function (h, key) do
     hkey = hash(h.seed, key);
-    key$1 = key;
-    hkey$1 = hkey;
+    key_1 = key;
+    hkey_1 = hkey;
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
       param = _param;
       if (param) then do
         rest = param[2];
         c = param[1];
-        if (hkey$1 == param[0]) then do
-          match = equal$1(c, key$1);
+        if (hkey_1 == param[0]) then do
+          match = equal_1(c, key_1);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
           end else do
-            match$1 = get_data(c);
-            if (match$1 ~= undefined) then do
-              return Caml_option.valFromOption(match$1);
+            match_1 = get_data(c);
+            if (match_1 ~= undefined) then do
+              return Caml_option.valFromOption(match_1);
             end else do
               _param = rest;
               ::continue:: ;
@@ -848,22 +848,22 @@ function Make(H) do
           ::continue:: ;
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
   find_opt = function (h, key) do
     hkey = hash(h.seed, key);
-    key$1 = key;
-    hkey$1 = hkey;
+    key_1 = key;
+    hkey_1 = hkey;
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
       param = _param;
       if (param) then do
         rest = param[2];
         c = param[1];
-        if (hkey$1 == param[0]) then do
-          match = equal$1(c, key$1);
+        if (hkey_1 == param[0]) then do
+          match = equal_1(c, key_1);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
@@ -894,15 +894,15 @@ function Make(H) do
           rest = param[2];
           c = param[1];
           if (hkey == param[0]) then do
-            match = equal$1(c, key);
+            match = equal_1(c, key);
             if (match ~= 0) then do
               _param = rest;
               ::continue:: ;
             end else do
-              match$1 = get_data(c);
-              if (match$1 ~= undefined) then do
+              match_1 = get_data(c);
+              if (match_1 ~= undefined) then do
                 return --[[ :: ]]{
-                        Caml_option.valFromOption(match$1),
+                        Caml_option.valFromOption(match_1),
                         find_in_bucket(rest)
                       };
               end else do
@@ -933,7 +933,7 @@ function Make(H) do
           next = param[2];
           c = param[1];
           if (hkey == param[0]) then do
-            match = equal$1(c, key);
+            match = equal_1(c, key);
             if (match ~= 0) then do
               _param = next;
               ::continue:: ;
@@ -945,10 +945,10 @@ function Make(H) do
             ::continue:: ;
           end end 
         end else do
-          error (Caml_builtin_exceptions.not_found)
+          error(Caml_builtin_exceptions.not_found)
         end end 
       end;
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
         container = create(key, info);
         Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
@@ -963,7 +963,7 @@ function Make(H) do
           return 0;
         end end 
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
@@ -975,7 +975,7 @@ function Make(H) do
       if (param) then do
         rest = param[2];
         if (param[0] == hkey) then do
-          match = equal$1(param[1], key);
+          match = equal_1(param[1], key);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
@@ -998,10 +998,10 @@ function Make(H) do
         if (param) then do
           c = param[1];
           match = get_key(c);
-          match$1 = get_data(c);
+          match_1 = get_data(c);
           if (match ~= undefined) then do
-            if (match$1 ~= undefined) then do
-              Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1));
+            if (match_1 ~= undefined) then do
+              Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1));
             end
              end 
           end
@@ -1027,9 +1027,9 @@ function Make(H) do
         if (b) then do
           c = b[1];
           match = get_key(c);
-          match$1 = get_data(c);
-          accu$1 = match ~= undefined and match$1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1), accu) or accu;
-          _accu = accu$1;
+          match_1 = get_data(c);
+          accu_1 = match ~= undefined and match_1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
+          _accu = accu_1;
           _b = b[2];
           ::continue:: ;
         end else do
@@ -1052,13 +1052,13 @@ function Make(H) do
           rest = param[2];
           c = param[1];
           match = get_key(c);
-          match$1 = get_data(c);
+          match_1 = get_data(c);
           if (match ~= undefined) then do
-            if (match$1 ~= undefined) then do
+            if (match_1 ~= undefined) then do
               k = Caml_option.valFromOption(match);
-              match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
-              if (match$2 ~= undefined) then do
-                set_key_data(c, k, Caml_option.valFromOption(match$2));
+              match_2 = Curry._2(f, k, Caml_option.valFromOption(match_1));
+              if (match_2 ~= undefined) then do
+                set_key_data(c, k, Caml_option.valFromOption(match_2));
                 return --[[ Cons ]]{
                         param[0],
                         c,
@@ -1158,7 +1158,7 @@ function Make(H) do
             bucket_histogram: histo
           end;
   end end;
-  create$1 = function (sz) do
+  create_1 = function (sz) do
     randomOpt = false;
     initial_size = sz;
     random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
@@ -1172,7 +1172,7 @@ function Make(H) do
           end;
   end end;
   return do
-          create: create$1,
+          create: create_1,
           clear: clear,
           reset: reset,
           copy: copy,
@@ -1193,7 +1193,7 @@ function Make(H) do
         end;
 end end
 
-function create$1(param) do
+function create_1(param) do
   return Obj.Ephemeron.create(2);
 end end
 
@@ -1249,31 +1249,31 @@ function blit_key12(t1, t2) do
   return Obj.Ephemeron.blit_key(t1, 0, t2, 0, 2);
 end end
 
-function get_data$1(t) do
+function get_data_1(t) do
   return Obj.Ephemeron.get_data(t);
 end end
 
-function get_data_copy$1(t) do
+function get_data_copy_1(t) do
   return Obj.Ephemeron.get_data_copy(t);
 end end
 
-function set_data$1(t, d) do
+function set_data_1(t, d) do
   return Obj.Ephemeron.set_data(t, d);
 end end
 
-function unset_data$1(t) do
+function unset_data_1(t) do
   return Obj.Ephemeron.unset_data(t);
 end end
 
-function check_data$1(t) do
+function check_data_1(t) do
   return Obj.Ephemeron.check_data(t);
 end end
 
-function blit_data$1(t1, t2) do
+function blit_data_1(t1, t2) do
   return Obj.Ephemeron.blit_data(t1, t2);
 end end
 
-function MakeSeeded$1(H1, H2) do
+function MakeSeeded_1(H1, H2) do
   create = function (param, d) do
     c = Obj.Ephemeron.create(2);
     Obj.Ephemeron.set_data(c, d);
@@ -1286,9 +1286,9 @@ function MakeSeeded$1(H1, H2) do
   end end;
   equal = function (c, param) do
     match = Obj.Ephemeron.get_key(c, 0);
-    match$1 = Obj.Ephemeron.get_key(c, 1);
-    if (match ~= undefined and match$1 ~= undefined) then do
-      if (Curry._2(H1.equal, param[0], Caml_option.valFromOption(match)) and Curry._2(H2.equal, param[1], Caml_option.valFromOption(match$1))) then do
+    match_1 = Obj.Ephemeron.get_key(c, 1);
+    if (match ~= undefined and match_1 ~= undefined) then do
+      if (Curry._2(H1.equal, param[0], Caml_option.valFromOption(match)) and Curry._2(H2.equal, param[1], Caml_option.valFromOption(match_1))) then do
         return --[[ ETrue ]]0;
       end else do
         return --[[ EFalse ]]1;
@@ -1299,11 +1299,11 @@ function MakeSeeded$1(H1, H2) do
   end end;
   get_key = function (c) do
     match = Obj.Ephemeron.get_key(c, 0);
-    match$1 = Obj.Ephemeron.get_key(c, 1);
-    if (match ~= undefined and match$1 ~= undefined) then do
+    match_1 = Obj.Ephemeron.get_key(c, 1);
+    if (match ~= undefined and match_1 ~= undefined) then do
       return --[[ tuple ]]{
               Caml_option.valFromOption(match),
-              Caml_option.valFromOption(match$1)
+              Caml_option.valFromOption(match_1)
             };
     end
      end 
@@ -1335,7 +1335,7 @@ function MakeSeeded$1(H1, H2) do
   prng = Caml_obj.caml_lazy_make((function (param) do
           return Random.State.make_self_init(--[[ () ]]0);
         end end));
-  create$1 = function (randomOpt, initial_size) do
+  create_1 = function (randomOpt, initial_size) do
     random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
     s = power_2_above(16, initial_size);
     seed = random and Random.State.bits(CamlinternalLazy.force(prng)) or 0;
@@ -1498,23 +1498,23 @@ function MakeSeeded$1(H1, H2) do
   end end;
   find = function (h, key) do
     hkey = hash(h.seed, key);
-    key$1 = key;
-    hkey$1 = hkey;
+    key_1 = key;
+    hkey_1 = hkey;
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
       param = _param;
       if (param) then do
         rest = param[2];
         c = param[1];
-        if (hkey$1 == param[0]) then do
-          match = equal(c, key$1);
+        if (hkey_1 == param[0]) then do
+          match = equal(c, key_1);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
           end else do
-            match$1 = get_data$1(c);
-            if (match$1 ~= undefined) then do
-              return Caml_option.valFromOption(match$1);
+            match_1 = get_data_1(c);
+            if (match_1 ~= undefined) then do
+              return Caml_option.valFromOption(match_1);
             end else do
               _param = rest;
               ::continue:: ;
@@ -1525,27 +1525,27 @@ function MakeSeeded$1(H1, H2) do
           ::continue:: ;
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
   find_opt = function (h, key) do
     hkey = hash(h.seed, key);
-    key$1 = key;
-    hkey$1 = hkey;
+    key_1 = key;
+    hkey_1 = hkey;
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
       param = _param;
       if (param) then do
         rest = param[2];
         c = param[1];
-        if (hkey$1 == param[0]) then do
-          match = equal(c, key$1);
+        if (hkey_1 == param[0]) then do
+          match = equal(c, key_1);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
           end else do
-            d = get_data$1(c);
+            d = get_data_1(c);
             if (d ~= undefined) then do
               return d;
             end else do
@@ -1576,10 +1576,10 @@ function MakeSeeded$1(H1, H2) do
               _param = rest;
               ::continue:: ;
             end else do
-              match$1 = get_data$1(c);
-              if (match$1 ~= undefined) then do
+              match_1 = get_data_1(c);
+              if (match_1 ~= undefined) then do
                 return --[[ :: ]]{
-                        Caml_option.valFromOption(match$1),
+                        Caml_option.valFromOption(match_1),
                         find_in_bucket(rest)
                       };
               end else do
@@ -1622,10 +1622,10 @@ function MakeSeeded$1(H1, H2) do
             ::continue:: ;
           end end 
         end else do
-          error (Caml_builtin_exceptions.not_found)
+          error(Caml_builtin_exceptions.not_found)
         end end 
       end;
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
         container = create(key, info);
         Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
@@ -1640,7 +1640,7 @@ function MakeSeeded$1(H1, H2) do
           return 0;
         end end 
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
@@ -1675,10 +1675,10 @@ function MakeSeeded$1(H1, H2) do
         if (param) then do
           c = param[1];
           match = get_key(c);
-          match$1 = get_data$1(c);
+          match_1 = get_data_1(c);
           if (match ~= undefined) then do
-            if (match$1 ~= undefined) then do
-              Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1));
+            if (match_1 ~= undefined) then do
+              Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1));
             end
              end 
           end
@@ -1704,9 +1704,9 @@ function MakeSeeded$1(H1, H2) do
         if (b) then do
           c = b[1];
           match = get_key(c);
-          match$1 = get_data$1(c);
-          accu$1 = match ~= undefined and match$1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1), accu) or accu;
-          _accu = accu$1;
+          match_1 = get_data_1(c);
+          accu_1 = match ~= undefined and match_1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
+          _accu = accu_1;
           _b = b[2];
           ::continue:: ;
         end else do
@@ -1729,13 +1729,13 @@ function MakeSeeded$1(H1, H2) do
           rest = param[2];
           c = param[1];
           match = get_key(c);
-          match$1 = get_data$1(c);
+          match_1 = get_data_1(c);
           if (match ~= undefined) then do
-            if (match$1 ~= undefined) then do
+            if (match_1 ~= undefined) then do
               k = Caml_option.valFromOption(match);
-              match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
-              if (match$2 ~= undefined) then do
-                set_key_data(c, k, Caml_option.valFromOption(match$2));
+              match_2 = Curry._2(f, k, Caml_option.valFromOption(match_1));
+              if (match_2 ~= undefined) then do
+                set_key_data(c, k, Caml_option.valFromOption(match_2));
                 return --[[ Cons ]]{
                         param[0],
                         c,
@@ -1836,7 +1836,7 @@ function MakeSeeded$1(H1, H2) do
           end;
   end end;
   return do
-          create: create$1,
+          create: create_1,
           clear: clear,
           reset: reset,
           copy: copy,
@@ -1857,12 +1857,12 @@ function MakeSeeded$1(H1, H2) do
         end;
 end end
 
-function Make$1(H1, H2) do
+function Make_1(H1, H2) do
   hash = function (_seed, x) do
     return Curry._1(H1.hash, x);
   end end;
   partial_arg_equal = H1.equal;
-  hash$1 = function (_seed, x) do
+  hash_1 = function (_seed, x) do
     return Curry._1(H2.hash, x);
   end end;
   include = (function (param) do
@@ -1873,14 +1873,14 @@ function Make$1(H1, H2) do
           set_key2(c, param[1]);
           return c;
         end end;
-        hash$2 = function (seed, param$1) do
-          return Curry._2(hash, seed, param$1[0]) + Caml_int32.imul(Curry._2(param.hash, seed, param$1[1]), 65599) | 0;
+        hash_2 = function (seed, param_1) do
+          return Curry._2(hash, seed, param_1[0]) + Caml_int32.imul(Curry._2(param.hash, seed, param_1[1]), 65599) | 0;
         end end;
-        equal = function (c, param$1) do
+        equal = function (c, param_1) do
           match = Obj.Ephemeron.get_key(c, 0);
-          match$1 = Obj.Ephemeron.get_key(c, 1);
-          if (match ~= undefined and match$1 ~= undefined) then do
-            if (Curry._2(partial_arg_equal, param$1[0], Caml_option.valFromOption(match)) and Curry._2(param.equal, param$1[1], Caml_option.valFromOption(match$1))) then do
+          match_1 = Obj.Ephemeron.get_key(c, 1);
+          if (match ~= undefined and match_1 ~= undefined) then do
+            if (Curry._2(partial_arg_equal, param_1[0], Caml_option.valFromOption(match)) and Curry._2(param.equal, param_1[1], Caml_option.valFromOption(match_1))) then do
               return --[[ ETrue ]]0;
             end else do
               return --[[ EFalse ]]1;
@@ -1891,11 +1891,11 @@ function Make$1(H1, H2) do
         end end;
         get_key = function (c) do
           match = Obj.Ephemeron.get_key(c, 0);
-          match$1 = Obj.Ephemeron.get_key(c, 1);
-          if (match ~= undefined and match$1 ~= undefined) then do
+          match_1 = Obj.Ephemeron.get_key(c, 1);
+          if (match ~= undefined and match_1 ~= undefined) then do
             return --[[ tuple ]]{
                     Caml_option.valFromOption(match),
-                    Caml_option.valFromOption(match$1)
+                    Caml_option.valFromOption(match_1)
                   };
           end
            end 
@@ -1927,7 +1927,7 @@ function Make$1(H1, H2) do
         prng = Caml_obj.caml_lazy_make((function (param) do
                 return Random.State.make_self_init(--[[ () ]]0);
               end end));
-        create$1 = function (randomOpt, initial_size) do
+        create_1 = function (randomOpt, initial_size) do
           random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
           s = power_2_above(16, initial_size);
           seed = random and Random.State.bits(CamlinternalLazy.force(prng)) or 0;
@@ -2027,7 +2027,7 @@ function Make$1(H1, H2) do
           end end 
         end end;
         add = function (h, key, info) do
-          hkey = Curry._2(hash$2, h.seed, key);
+          hkey = Curry._2(hash_2, h.seed, key);
           i = key_index(h, hkey);
           container = Curry._2(create, key, info);
           bucket_002 = Caml_array.caml_array_get(h.data, i);
@@ -2045,7 +2045,7 @@ function Make$1(H1, H2) do
           end end 
         end end;
         remove = function (h, key) do
-          hkey = Curry._2(hash$2, h.seed, key);
+          hkey = Curry._2(hash_2, h.seed, key);
           remove_bucket = function (_param) do
             while(true) do
               param = _param;
@@ -2089,24 +2089,24 @@ function Make$1(H1, H2) do
           return Caml_array.caml_array_set(h.data, i, remove_bucket(Caml_array.caml_array_get(h.data, i)));
         end end;
         find = function (h, key) do
-          hkey = Curry._2(hash$2, h.seed, key);
-          key$1 = key;
-          hkey$1 = hkey;
+          hkey = Curry._2(hash_2, h.seed, key);
+          key_1 = key;
+          hkey_1 = hkey;
           _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
           while(true) do
             param = _param;
             if (param) then do
               rest = param[2];
               c = param[1];
-              if (hkey$1 == param[0]) then do
-                match = Curry._2(equal, c, key$1);
+              if (hkey_1 == param[0]) then do
+                match = Curry._2(equal, c, key_1);
                 if (match ~= 0) then do
                   _param = rest;
                   ::continue:: ;
                 end else do
-                  match$1 = Curry._1(get_data$1, c);
-                  if (match$1 ~= undefined) then do
-                    return Caml_option.valFromOption(match$1);
+                  match_1 = Curry._1(get_data_1, c);
+                  if (match_1 ~= undefined) then do
+                    return Caml_option.valFromOption(match_1);
                   end else do
                     _param = rest;
                     ::continue:: ;
@@ -2117,27 +2117,27 @@ function Make$1(H1, H2) do
                 ::continue:: ;
               end end 
             end else do
-              error (Caml_builtin_exceptions.not_found)
+              error(Caml_builtin_exceptions.not_found)
             end end 
           end;
         end end;
         find_opt = function (h, key) do
-          hkey = Curry._2(hash$2, h.seed, key);
-          key$1 = key;
-          hkey$1 = hkey;
+          hkey = Curry._2(hash_2, h.seed, key);
+          key_1 = key;
+          hkey_1 = hkey;
           _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
           while(true) do
             param = _param;
             if (param) then do
               rest = param[2];
               c = param[1];
-              if (hkey$1 == param[0]) then do
-                match = Curry._2(equal, c, key$1);
+              if (hkey_1 == param[0]) then do
+                match = Curry._2(equal, c, key_1);
                 if (match ~= 0) then do
                   _param = rest;
                   ::continue:: ;
                 end else do
-                  d = Curry._1(get_data$1, c);
+                  d = Curry._1(get_data_1, c);
                   if (d ~= undefined) then do
                     return d;
                   end else do
@@ -2155,7 +2155,7 @@ function Make$1(H1, H2) do
           end;
         end end;
         find_all = function (h, key) do
-          hkey = Curry._2(hash$2, h.seed, key);
+          hkey = Curry._2(hash_2, h.seed, key);
           find_in_bucket = function (_param) do
             while(true) do
               param = _param;
@@ -2168,10 +2168,10 @@ function Make$1(H1, H2) do
                     _param = rest;
                     ::continue:: ;
                   end else do
-                    match$1 = Curry._1(get_data$1, c);
-                    if (match$1 ~= undefined) then do
+                    match_1 = Curry._1(get_data_1, c);
+                    if (match_1 ~= undefined) then do
                       return --[[ :: ]]{
-                              Caml_option.valFromOption(match$1),
+                              Caml_option.valFromOption(match_1),
                               find_in_bucket(rest)
                             };
                     end else do
@@ -2191,7 +2191,7 @@ function Make$1(H1, H2) do
           return find_in_bucket(Caml_array.caml_array_get(h.data, key_index(h, hkey)));
         end end;
         replace = function (h, key, info) do
-          hkey = Curry._2(hash$2, h.seed, key);
+          hkey = Curry._2(hash_2, h.seed, key);
           i = key_index(h, hkey);
           l = Caml_array.caml_array_get(h.data, i);
           xpcall(function() do
@@ -2214,10 +2214,10 @@ function Make$1(H1, H2) do
                   ::continue:: ;
                 end end 
               end else do
-                error (Caml_builtin_exceptions.not_found)
+                error(Caml_builtin_exceptions.not_found)
               end end 
             end;
-          end end,function(exn) return do
+          end end,function(exn) do
             if (exn == Caml_builtin_exceptions.not_found) then do
               container = Curry._2(create, key, info);
               Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
@@ -2232,12 +2232,12 @@ function Make$1(H1, H2) do
                 return 0;
               end end 
             end else do
-              error (exn)
+              error(exn)
             end end 
           end end)
         end end;
         mem = function (h, key) do
-          hkey = Curry._2(hash$2, h.seed, key);
+          hkey = Curry._2(hash_2, h.seed, key);
           _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
           while(true) do
             param = _param;
@@ -2267,10 +2267,10 @@ function Make$1(H1, H2) do
               if (param) then do
                 c = param[1];
                 match = Curry._1(get_key, c);
-                match$1 = Curry._1(get_data$1, c);
+                match_1 = Curry._1(get_data_1, c);
                 if (match ~= undefined) then do
-                  if (match$1 ~= undefined) then do
-                    Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1));
+                  if (match_1 ~= undefined) then do
+                    Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1));
                   end
                    end 
                 end
@@ -2296,9 +2296,9 @@ function Make$1(H1, H2) do
               if (b) then do
                 c = b[1];
                 match = Curry._1(get_key, c);
-                match$1 = Curry._1(get_data$1, c);
-                accu$1 = match ~= undefined and match$1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1), accu) or accu;
-                _accu = accu$1;
+                match_1 = Curry._1(get_data_1, c);
+                accu_1 = match ~= undefined and match_1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
+                _accu = accu_1;
                 _b = b[2];
                 ::continue:: ;
               end else do
@@ -2321,13 +2321,13 @@ function Make$1(H1, H2) do
                 rest = param[2];
                 c = param[1];
                 match = Curry._1(get_key, c);
-                match$1 = Curry._1(get_data$1, c);
+                match_1 = Curry._1(get_data_1, c);
                 if (match ~= undefined) then do
-                  if (match$1 ~= undefined) then do
+                  if (match_1 ~= undefined) then do
                     k = Caml_option.valFromOption(match);
-                    match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
-                    if (match$2 ~= undefined) then do
-                      Curry._3(set_key_data, c, k, Caml_option.valFromOption(match$2));
+                    match_2 = Curry._2(f, k, Caml_option.valFromOption(match_1));
+                    if (match_2 ~= undefined) then do
+                      Curry._3(set_key_data, c, k, Caml_option.valFromOption(match_2));
                       return --[[ Cons ]]{
                               param[0],
                               c,
@@ -2428,7 +2428,7 @@ function Make$1(H1, H2) do
                 end;
         end end;
         return do
-                create: create$1,
+                create: create_1,
                 clear: clear,
                 reset: reset,
                 copy: copy,
@@ -2449,14 +2449,14 @@ function Make$1(H1, H2) do
               end;
       end end)(do
         equal: H2.equal,
-        hash: hash$1
+        hash: hash_1
       end);
   create = include.create;
-  create$1 = function (sz) do
+  create_1 = function (sz) do
     return Curry._2(create, false, sz);
   end end;
   return do
-          create: create$1,
+          create: create_1,
           clear: include.clear,
           reset: include.reset,
           copy: include.copy,
@@ -2477,64 +2477,64 @@ function Make$1(H1, H2) do
         end;
 end end
 
-function create$2(n) do
+function create_2(n) do
   return Obj.Ephemeron.create(n);
 end end
 
-function get_key$1(t, n) do
+function get_key_1(t, n) do
   return Obj.Ephemeron.get_key(t, n);
 end end
 
-function get_key_copy$1(t, n) do
+function get_key_copy_1(t, n) do
   return Obj.Ephemeron.get_key_copy(t, n);
 end end
 
-function set_key$1(t, n, k) do
+function set_key_1(t, n, k) do
   return Obj.Ephemeron.set_key(t, n, k);
 end end
 
-function unset_key$1(t, n) do
+function unset_key_1(t, n) do
   return Obj.Ephemeron.unset_key(t, n);
 end end
 
-function check_key$1(t, n) do
+function check_key_1(t, n) do
   return Obj.Ephemeron.check_key(t, n);
 end end
 
-function blit_key$1(t1, o1, t2, o2, l) do
+function blit_key_1(t1, o1, t2, o2, l) do
   return Obj.Ephemeron.blit_key(t1, o1, t2, o2, l);
 end end
 
-function get_data$2(t) do
+function get_data_2(t) do
   return Obj.Ephemeron.get_data(t);
 end end
 
-function get_data_copy$2(t) do
+function get_data_copy_2(t) do
   return Obj.Ephemeron.get_data_copy(t);
 end end
 
-function set_data$2(t, d) do
+function set_data_2(t, d) do
   return Obj.Ephemeron.set_data(t, d);
 end end
 
-function unset_data$2(t) do
+function unset_data_2(t) do
   return Obj.Ephemeron.unset_data(t);
 end end
 
-function check_data$2(t) do
+function check_data_2(t) do
   return Obj.Ephemeron.check_data(t);
 end end
 
-function blit_data$2(t1, t2) do
+function blit_data_2(t1, t2) do
   return Obj.Ephemeron.blit_data(t1, t2);
 end end
 
-function MakeSeeded$2(H) do
+function MakeSeeded_2(H) do
   create = function (k, d) do
     c = Obj.Ephemeron.create(#k);
     Obj.Ephemeron.set_data(c, d);
     for i = 0 , #k - 1 | 0 , 1 do
-      set_key$1(c, i, Caml_array.caml_array_get(k, i));
+      set_key_1(c, i, Caml_array.caml_array_get(k, i));
     end
     return c;
   end end;
@@ -2551,17 +2551,17 @@ function MakeSeeded$2(H) do
     if (len ~= len$prime) then do
       return --[[ EFalse ]]1;
     end else do
-      k$1 = k;
-      c$1 = c;
+      k_1 = k;
+      c_1 = c;
       _i = len - 1 | 0;
       while(true) do
         i = _i;
         if (i < 0) then do
           return --[[ ETrue ]]0;
         end else do
-          match = Obj.Ephemeron.get_key(c$1, i);
+          match = Obj.Ephemeron.get_key(c_1, i);
           if (match ~= undefined) then do
-            if (Curry._2(H.equal, Caml_array.caml_array_get(k$1, i), Caml_option.valFromOption(match))) then do
+            if (Curry._2(H.equal, Caml_array.caml_array_get(k_1, i), Caml_option.valFromOption(match))) then do
               _i = i - 1 | 0;
               ::continue:: ;
             end else do
@@ -2582,16 +2582,16 @@ function MakeSeeded$2(H) do
       match = Obj.Ephemeron.get_key(c, 0);
       if (match ~= undefined) then do
         a = Caml_array.caml_make_vect(len, Caml_option.valFromOption(match));
-        a$1 = a;
+        a_1 = a;
         _i = len - 1 | 0;
         while(true) do
           i = _i;
           if (i < 1) then do
-            return a$1;
+            return a_1;
           end else do
-            match$1 = Obj.Ephemeron.get_key(c, i);
-            if (match$1 ~= undefined) then do
-              Caml_array.caml_array_set(a$1, i, Caml_option.valFromOption(match$1));
+            match_1 = Obj.Ephemeron.get_key(c, i);
+            if (match_1 ~= undefined) then do
+              Caml_array.caml_array_set(a_1, i, Caml_option.valFromOption(match_1));
               _i = i - 1 | 0;
               ::continue:: ;
             end else do
@@ -2607,18 +2607,18 @@ function MakeSeeded$2(H) do
   set_key_data = function (c, k, d) do
     Obj.Ephemeron.unset_data(c);
     for i = 0 , #k - 1 | 0 , 1 do
-      set_key$1(c, i, Caml_array.caml_array_get(k, i));
+      set_key_1(c, i, Caml_array.caml_array_get(k, i));
     end
     return Obj.Ephemeron.set_data(c, d);
   end end;
   check_key = function (c) do
-    c$1 = c;
+    c_1 = c;
     _i = Obj.Ephemeron.length(c) - 1 | 0;
     while(true) do
       i = _i;
       if (i < 0) then do
         return true;
-      end else if (Obj.Ephemeron.check_key(c$1, i)) then do
+      end else if (Obj.Ephemeron.check_key(c_1, i)) then do
         _i = i - 1 | 0;
         ::continue:: ;
       end else do
@@ -2640,7 +2640,7 @@ function MakeSeeded$2(H) do
   prng = Caml_obj.caml_lazy_make((function (param) do
           return Random.State.make_self_init(--[[ () ]]0);
         end end));
-  create$1 = function (randomOpt, initial_size) do
+  create_1 = function (randomOpt, initial_size) do
     random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
     s = power_2_above(16, initial_size);
     seed = random and Random.State.bits(CamlinternalLazy.force(prng)) or 0;
@@ -2803,23 +2803,23 @@ function MakeSeeded$2(H) do
   end end;
   find = function (h, key) do
     hkey = hash(h.seed, key);
-    key$1 = key;
-    hkey$1 = hkey;
+    key_1 = key;
+    hkey_1 = hkey;
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
       param = _param;
       if (param) then do
         rest = param[2];
         c = param[1];
-        if (hkey$1 == param[0]) then do
-          match = equal(c, key$1);
+        if (hkey_1 == param[0]) then do
+          match = equal(c, key_1);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
           end else do
-            match$1 = get_data$2(c);
-            if (match$1 ~= undefined) then do
-              return Caml_option.valFromOption(match$1);
+            match_1 = get_data_2(c);
+            if (match_1 ~= undefined) then do
+              return Caml_option.valFromOption(match_1);
             end else do
               _param = rest;
               ::continue:: ;
@@ -2830,27 +2830,27 @@ function MakeSeeded$2(H) do
           ::continue:: ;
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
   find_opt = function (h, key) do
     hkey = hash(h.seed, key);
-    key$1 = key;
-    hkey$1 = hkey;
+    key_1 = key;
+    hkey_1 = hkey;
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
       param = _param;
       if (param) then do
         rest = param[2];
         c = param[1];
-        if (hkey$1 == param[0]) then do
-          match = equal(c, key$1);
+        if (hkey_1 == param[0]) then do
+          match = equal(c, key_1);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
           end else do
-            d = get_data$2(c);
+            d = get_data_2(c);
             if (d ~= undefined) then do
               return d;
             end else do
@@ -2881,10 +2881,10 @@ function MakeSeeded$2(H) do
               _param = rest;
               ::continue:: ;
             end else do
-              match$1 = get_data$2(c);
-              if (match$1 ~= undefined) then do
+              match_1 = get_data_2(c);
+              if (match_1 ~= undefined) then do
                 return --[[ :: ]]{
-                        Caml_option.valFromOption(match$1),
+                        Caml_option.valFromOption(match_1),
                         find_in_bucket(rest)
                       };
               end else do
@@ -2927,10 +2927,10 @@ function MakeSeeded$2(H) do
             ::continue:: ;
           end end 
         end else do
-          error (Caml_builtin_exceptions.not_found)
+          error(Caml_builtin_exceptions.not_found)
         end end 
       end;
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
         container = create(key, info);
         Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
@@ -2945,7 +2945,7 @@ function MakeSeeded$2(H) do
           return 0;
         end end 
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
@@ -2980,10 +2980,10 @@ function MakeSeeded$2(H) do
         if (param) then do
           c = param[1];
           match = get_key(c);
-          match$1 = get_data$2(c);
+          match_1 = get_data_2(c);
           if (match ~= undefined) then do
-            if (match$1 ~= undefined) then do
-              Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1));
+            if (match_1 ~= undefined) then do
+              Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1));
             end
              end 
           end
@@ -3009,9 +3009,9 @@ function MakeSeeded$2(H) do
         if (b) then do
           c = b[1];
           match = get_key(c);
-          match$1 = get_data$2(c);
-          accu$1 = match ~= undefined and match$1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1), accu) or accu;
-          _accu = accu$1;
+          match_1 = get_data_2(c);
+          accu_1 = match ~= undefined and match_1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
+          _accu = accu_1;
           _b = b[2];
           ::continue:: ;
         end else do
@@ -3034,13 +3034,13 @@ function MakeSeeded$2(H) do
           rest = param[2];
           c = param[1];
           match = get_key(c);
-          match$1 = get_data$2(c);
+          match_1 = get_data_2(c);
           if (match ~= undefined) then do
-            if (match$1 ~= undefined) then do
+            if (match_1 ~= undefined) then do
               k = Caml_option.valFromOption(match);
-              match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
-              if (match$2 ~= undefined) then do
-                set_key_data(c, k, Caml_option.valFromOption(match$2));
+              match_2 = Curry._2(f, k, Caml_option.valFromOption(match_1));
+              if (match_2 ~= undefined) then do
+                set_key_data(c, k, Caml_option.valFromOption(match_2));
                 return --[[ Cons ]]{
                         param[0],
                         c,
@@ -3141,7 +3141,7 @@ function MakeSeeded$2(H) do
           end;
   end end;
   return do
-          create: create$1,
+          create: create_1,
           clear: clear,
           reset: reset,
           copy: copy,
@@ -3162,13 +3162,13 @@ function MakeSeeded$2(H) do
         end;
 end end
 
-function Make$2(H) do
+function Make_2(H) do
   equal = H.equal;
   create = function (k, d) do
     c = Obj.Ephemeron.create(#k);
     Obj.Ephemeron.set_data(c, d);
     for i = 0 , #k - 1 | 0 , 1 do
-      set_key$1(c, i, Caml_array.caml_array_get(k, i));
+      set_key_1(c, i, Caml_array.caml_array_get(k, i));
     end
     return c;
   end end;
@@ -3179,23 +3179,23 @@ function Make$2(H) do
     end
     return h;
   end end;
-  equal$1 = function (c, k) do
+  equal_1 = function (c, k) do
     len = #k;
     len$prime = Obj.Ephemeron.length(c);
     if (len ~= len$prime) then do
       return --[[ EFalse ]]1;
     end else do
-      k$1 = k;
-      c$1 = c;
+      k_1 = k;
+      c_1 = c;
       _i = len - 1 | 0;
       while(true) do
         i = _i;
         if (i < 0) then do
           return --[[ ETrue ]]0;
         end else do
-          match = Obj.Ephemeron.get_key(c$1, i);
+          match = Obj.Ephemeron.get_key(c_1, i);
           if (match ~= undefined) then do
-            if (Curry._2(equal, Caml_array.caml_array_get(k$1, i), Caml_option.valFromOption(match))) then do
+            if (Curry._2(equal, Caml_array.caml_array_get(k_1, i), Caml_option.valFromOption(match))) then do
               _i = i - 1 | 0;
               ::continue:: ;
             end else do
@@ -3216,16 +3216,16 @@ function Make$2(H) do
       match = Obj.Ephemeron.get_key(c, 0);
       if (match ~= undefined) then do
         a = Caml_array.caml_make_vect(len, Caml_option.valFromOption(match));
-        a$1 = a;
+        a_1 = a;
         _i = len - 1 | 0;
         while(true) do
           i = _i;
           if (i < 1) then do
-            return a$1;
+            return a_1;
           end else do
-            match$1 = Obj.Ephemeron.get_key(c, i);
-            if (match$1 ~= undefined) then do
-              Caml_array.caml_array_set(a$1, i, Caml_option.valFromOption(match$1));
+            match_1 = Obj.Ephemeron.get_key(c, i);
+            if (match_1 ~= undefined) then do
+              Caml_array.caml_array_set(a_1, i, Caml_option.valFromOption(match_1));
               _i = i - 1 | 0;
               ::continue:: ;
             end else do
@@ -3241,18 +3241,18 @@ function Make$2(H) do
   set_key_data = function (c, k, d) do
     Obj.Ephemeron.unset_data(c);
     for i = 0 , #k - 1 | 0 , 1 do
-      set_key$1(c, i, Caml_array.caml_array_get(k, i));
+      set_key_1(c, i, Caml_array.caml_array_get(k, i));
     end
     return Obj.Ephemeron.set_data(c, d);
   end end;
   check_key = function (c) do
-    c$1 = c;
+    c_1 = c;
     _i = Obj.Ephemeron.length(c) - 1 | 0;
     while(true) do
       i = _i;
       if (i < 0) then do
         return true;
-      end else if (Obj.Ephemeron.check_key(c$1, i)) then do
+      end else if (Obj.Ephemeron.check_key(c_1, i)) then do
         _i = i - 1 | 0;
         ::continue:: ;
       end else do
@@ -3390,7 +3390,7 @@ function Make$2(H) do
           c = param[1];
           hk = param[0];
           if (hkey == hk) then do
-            match = equal$1(c, key);
+            match = equal_1(c, key);
             local ___conditional___=(match);
             do
                if ___conditional___ = 0--[[ ETrue ]] then do
@@ -3426,23 +3426,23 @@ function Make$2(H) do
   end end;
   find = function (h, key) do
     hkey = hash(h.seed, key);
-    key$1 = key;
-    hkey$1 = hkey;
+    key_1 = key;
+    hkey_1 = hkey;
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
       param = _param;
       if (param) then do
         rest = param[2];
         c = param[1];
-        if (hkey$1 == param[0]) then do
-          match = equal$1(c, key$1);
+        if (hkey_1 == param[0]) then do
+          match = equal_1(c, key_1);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
           end else do
-            match$1 = get_data$2(c);
-            if (match$1 ~= undefined) then do
-              return Caml_option.valFromOption(match$1);
+            match_1 = get_data_2(c);
+            if (match_1 ~= undefined) then do
+              return Caml_option.valFromOption(match_1);
             end else do
               _param = rest;
               ::continue:: ;
@@ -3453,27 +3453,27 @@ function Make$2(H) do
           ::continue:: ;
         end end 
       end else do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end end 
     end;
   end end;
   find_opt = function (h, key) do
     hkey = hash(h.seed, key);
-    key$1 = key;
-    hkey$1 = hkey;
+    key_1 = key;
+    hkey_1 = hkey;
     _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
     while(true) do
       param = _param;
       if (param) then do
         rest = param[2];
         c = param[1];
-        if (hkey$1 == param[0]) then do
-          match = equal$1(c, key$1);
+        if (hkey_1 == param[0]) then do
+          match = equal_1(c, key_1);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
           end else do
-            d = get_data$2(c);
+            d = get_data_2(c);
             if (d ~= undefined) then do
               return d;
             end else do
@@ -3499,15 +3499,15 @@ function Make$2(H) do
           rest = param[2];
           c = param[1];
           if (hkey == param[0]) then do
-            match = equal$1(c, key);
+            match = equal_1(c, key);
             if (match ~= 0) then do
               _param = rest;
               ::continue:: ;
             end else do
-              match$1 = get_data$2(c);
-              if (match$1 ~= undefined) then do
+              match_1 = get_data_2(c);
+              if (match_1 ~= undefined) then do
                 return --[[ :: ]]{
-                        Caml_option.valFromOption(match$1),
+                        Caml_option.valFromOption(match_1),
                         find_in_bucket(rest)
                       };
               end else do
@@ -3538,7 +3538,7 @@ function Make$2(H) do
           next = param[2];
           c = param[1];
           if (hkey == param[0]) then do
-            match = equal$1(c, key);
+            match = equal_1(c, key);
             if (match ~= 0) then do
               _param = next;
               ::continue:: ;
@@ -3550,10 +3550,10 @@ function Make$2(H) do
             ::continue:: ;
           end end 
         end else do
-          error (Caml_builtin_exceptions.not_found)
+          error(Caml_builtin_exceptions.not_found)
         end end 
       end;
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Caml_builtin_exceptions.not_found) then do
         container = create(key, info);
         Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
@@ -3568,7 +3568,7 @@ function Make$2(H) do
           return 0;
         end end 
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
@@ -3580,7 +3580,7 @@ function Make$2(H) do
       if (param) then do
         rest = param[2];
         if (param[0] == hkey) then do
-          match = equal$1(param[1], key);
+          match = equal_1(param[1], key);
           if (match ~= 0) then do
             _param = rest;
             ::continue:: ;
@@ -3603,10 +3603,10 @@ function Make$2(H) do
         if (param) then do
           c = param[1];
           match = get_key(c);
-          match$1 = get_data$2(c);
+          match_1 = get_data_2(c);
           if (match ~= undefined) then do
-            if (match$1 ~= undefined) then do
-              Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1));
+            if (match_1 ~= undefined) then do
+              Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1));
             end
              end 
           end
@@ -3632,9 +3632,9 @@ function Make$2(H) do
         if (b) then do
           c = b[1];
           match = get_key(c);
-          match$1 = get_data$2(c);
-          accu$1 = match ~= undefined and match$1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1), accu) or accu;
-          _accu = accu$1;
+          match_1 = get_data_2(c);
+          accu_1 = match ~= undefined and match_1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
+          _accu = accu_1;
           _b = b[2];
           ::continue:: ;
         end else do
@@ -3657,13 +3657,13 @@ function Make$2(H) do
           rest = param[2];
           c = param[1];
           match = get_key(c);
-          match$1 = get_data$2(c);
+          match_1 = get_data_2(c);
           if (match ~= undefined) then do
-            if (match$1 ~= undefined) then do
+            if (match_1 ~= undefined) then do
               k = Caml_option.valFromOption(match);
-              match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
-              if (match$2 ~= undefined) then do
-                set_key_data(c, k, Caml_option.valFromOption(match$2));
+              match_2 = Curry._2(f, k, Caml_option.valFromOption(match_1));
+              if (match_2 ~= undefined) then do
+                set_key_data(c, k, Caml_option.valFromOption(match_2));
                 return --[[ Cons ]]{
                         param[0],
                         c,
@@ -3763,7 +3763,7 @@ function Make$2(H) do
             bucket_histogram: histo
           end;
   end end;
-  create$1 = function (sz) do
+  create_1 = function (sz) do
     randomOpt = false;
     initial_size = sz;
     random = randomOpt ~= undefined and randomOpt or Hashtbl.is_randomized(--[[ () ]]0);
@@ -3777,7 +3777,7 @@ function Make$2(H) do
           end;
   end end;
   return do
-          create: create$1,
+          create: create_1,
           clear: clear,
           reset: reset,
           copy: copy,
@@ -3817,7 +3817,7 @@ K1 = do
 end;
 
 K2 = do
-  create: create$1,
+  create: create_1,
   get_key1: get_key1,
   get_key1_copy: get_key1_copy,
   set_key1: set_key1,
@@ -3831,32 +3831,32 @@ K2 = do
   blit_key1: blit_key1,
   blit_key2: blit_key2,
   blit_key12: blit_key12,
-  get_data: get_data$1,
-  get_data_copy: get_data_copy$1,
-  set_data: set_data$1,
-  unset_data: unset_data$1,
-  check_data: check_data$1,
-  blit_data: blit_data$1,
-  Make: Make$1,
-  MakeSeeded: MakeSeeded$1
+  get_data: get_data_1,
+  get_data_copy: get_data_copy_1,
+  set_data: set_data_1,
+  unset_data: unset_data_1,
+  check_data: check_data_1,
+  blit_data: blit_data_1,
+  Make: Make_1,
+  MakeSeeded: MakeSeeded_1
 end;
 
 Kn = do
-  create: create$2,
-  get_key: get_key$1,
-  get_key_copy: get_key_copy$1,
-  set_key: set_key$1,
-  unset_key: unset_key$1,
-  check_key: check_key$1,
-  blit_key: blit_key$1,
-  get_data: get_data$2,
-  get_data_copy: get_data_copy$2,
-  set_data: set_data$2,
-  unset_data: unset_data$2,
-  check_data: check_data$2,
-  blit_data: blit_data$2,
-  Make: Make$2,
-  MakeSeeded: MakeSeeded$2
+  create: create_2,
+  get_key: get_key_1,
+  get_key_copy: get_key_copy_1,
+  set_key: set_key_1,
+  unset_key: unset_key_1,
+  check_key: check_key_1,
+  blit_key: blit_key_1,
+  get_data: get_data_2,
+  get_data_copy: get_data_copy_2,
+  set_data: set_data_2,
+  unset_data: unset_data_2,
+  check_data: check_data_2,
+  blit_data: blit_data_2,
+  Make: Make_2,
+  MakeSeeded: MakeSeeded_2
 end;
 
 GenHashTable = do
@@ -4047,23 +4047,23 @@ GenHashTable = do
       end end;
       find = function (h, key) do
         hkey = Curry._2(H.hash, h.seed, key);
-        key$1 = key;
-        hkey$1 = hkey;
+        key_1 = key;
+        hkey_1 = hkey;
         _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
         while(true) do
           param = _param;
           if (param) then do
             rest = param[2];
             c = param[1];
-            if (hkey$1 == param[0]) then do
-              match = Curry._2(H.equal, c, key$1);
+            if (hkey_1 == param[0]) then do
+              match = Curry._2(H.equal, c, key_1);
               if (match ~= 0) then do
                 _param = rest;
                 ::continue:: ;
               end else do
-                match$1 = Curry._1(H.get_data, c);
-                if (match$1 ~= undefined) then do
-                  return Caml_option.valFromOption(match$1);
+                match_1 = Curry._1(H.get_data, c);
+                if (match_1 ~= undefined) then do
+                  return Caml_option.valFromOption(match_1);
                 end else do
                   _param = rest;
                   ::continue:: ;
@@ -4074,22 +4074,22 @@ GenHashTable = do
               ::continue:: ;
             end end 
           end else do
-            error (Caml_builtin_exceptions.not_found)
+            error(Caml_builtin_exceptions.not_found)
           end end 
         end;
       end end;
       find_opt = function (h, key) do
         hkey = Curry._2(H.hash, h.seed, key);
-        key$1 = key;
-        hkey$1 = hkey;
+        key_1 = key;
+        hkey_1 = hkey;
         _param = Caml_array.caml_array_get(h.data, key_index(h, hkey));
         while(true) do
           param = _param;
           if (param) then do
             rest = param[2];
             c = param[1];
-            if (hkey$1 == param[0]) then do
-              match = Curry._2(H.equal, c, key$1);
+            if (hkey_1 == param[0]) then do
+              match = Curry._2(H.equal, c, key_1);
               if (match ~= 0) then do
                 _param = rest;
                 ::continue:: ;
@@ -4125,10 +4125,10 @@ GenHashTable = do
                   _param = rest;
                   ::continue:: ;
                 end else do
-                  match$1 = Curry._1(H.get_data, c);
-                  if (match$1 ~= undefined) then do
+                  match_1 = Curry._1(H.get_data, c);
+                  if (match_1 ~= undefined) then do
                     return --[[ :: ]]{
-                            Caml_option.valFromOption(match$1),
+                            Caml_option.valFromOption(match_1),
                             find_in_bucket(rest)
                           };
                   end else do
@@ -4171,10 +4171,10 @@ GenHashTable = do
                 ::continue:: ;
               end end 
             end else do
-              error (Caml_builtin_exceptions.not_found)
+              error(Caml_builtin_exceptions.not_found)
             end end 
           end;
-        end end,function(exn) return do
+        end end,function(exn) do
           if (exn == Caml_builtin_exceptions.not_found) then do
             container = Curry._2(H.create, key, info);
             Caml_array.caml_array_set(h.data, i, --[[ Cons ]]{
@@ -4189,7 +4189,7 @@ GenHashTable = do
               return 0;
             end end 
           end else do
-            error (exn)
+            error(exn)
           end end 
         end end)
       end end;
@@ -4224,10 +4224,10 @@ GenHashTable = do
             if (param) then do
               c = param[1];
               match = Curry._1(H.get_key, c);
-              match$1 = Curry._1(H.get_data, c);
+              match_1 = Curry._1(H.get_data, c);
               if (match ~= undefined) then do
-                if (match$1 ~= undefined) then do
-                  Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1));
+                if (match_1 ~= undefined) then do
+                  Curry._2(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1));
                 end
                  end 
               end
@@ -4253,9 +4253,9 @@ GenHashTable = do
             if (b) then do
               c = b[1];
               match = Curry._1(H.get_key, c);
-              match$1 = Curry._1(H.get_data, c);
-              accu$1 = match ~= undefined and match$1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match$1), accu) or accu;
-              _accu = accu$1;
+              match_1 = Curry._1(H.get_data, c);
+              accu_1 = match ~= undefined and match_1 ~= undefined and Curry._3(f, Caml_option.valFromOption(match), Caml_option.valFromOption(match_1), accu) or accu;
+              _accu = accu_1;
               _b = b[2];
               ::continue:: ;
             end else do
@@ -4278,13 +4278,13 @@ GenHashTable = do
               rest = param[2];
               c = param[1];
               match = Curry._1(H.get_key, c);
-              match$1 = Curry._1(H.get_data, c);
+              match_1 = Curry._1(H.get_data, c);
               if (match ~= undefined) then do
-                if (match$1 ~= undefined) then do
+                if (match_1 ~= undefined) then do
                   k = Caml_option.valFromOption(match);
-                  match$2 = Curry._2(f, k, Caml_option.valFromOption(match$1));
-                  if (match$2 ~= undefined) then do
-                    Curry._3(H.set_key_data, c, k, Caml_option.valFromOption(match$2));
+                  match_2 = Curry._2(f, k, Caml_option.valFromOption(match_1));
+                  if (match_2 ~= undefined) then do
+                    Curry._3(H.set_key_data, c, k, Caml_option.valFromOption(match_2));
                     return --[[ Cons ]]{
                             param[0],
                             c,

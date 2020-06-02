@@ -14,7 +14,7 @@ function find_package_json(_dir) do
     end else do
       new_dir = Path.dirname(dir);
       if (new_dir == dir) then do
-        error (Caml_builtin_exceptions.not_found)
+        error(Caml_builtin_exceptions.not_found)
       end
        end 
       _dir = new_dir;

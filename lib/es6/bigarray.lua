@@ -76,7 +76,7 @@ function set(arr) do
     end end);
 end end
 
-function size_in_bytes$1(arr) do
+function size_in_bytes_1(arr) do
   return kind_size_in_bytes(Caml_external_polyfill.resolve("caml_ba_kind")(arr));
 end end
 
@@ -86,11 +86,11 @@ function of_value(kind, layout, v) do
   return a;
 end end
 
-function create$1(kind, layout, dim) do
+function create_1(kind, layout, dim) do
   return Caml_external_polyfill.resolve("caml_ba_create")(kind, layout, {dim});
 end end
 
-function size_in_bytes$2(arr) do
+function size_in_bytes_2(arr) do
   return Caml_int32.imul(kind_size_in_bytes(Caml_external_polyfill.resolve("caml_ba_kind")(arr)), Caml_external_polyfill.resolve("caml_ba_dim_1")(arr));
 end end
 
@@ -100,7 +100,7 @@ function slice(a, n) do
 end end
 
 function of_array(kind, layout, data) do
-  ba = create$1(kind, layout, #data);
+  ba = create_1(kind, layout, #data);
   ofs = layout and 1 or 0;
   for i = 0 , #data - 1 | 0 , 1 do
     Caml_external_polyfill.resolve("caml_ba_set_1")(ba, i + ofs | 0, Caml_array.caml_array_get(data, i));
@@ -108,18 +108,18 @@ function of_array(kind, layout, data) do
   return ba;
 end end
 
-function map_file$1(fd, pos, kind, layout, shared, dim) do
+function map_file_1(fd, pos, kind, layout, shared, dim) do
   return map_file(fd, pos, kind, layout, shared, {dim});
 end end
 
-function create$2(kind, layout, dim1, dim2) do
+function create_2(kind, layout, dim1, dim2) do
   return Caml_external_polyfill.resolve("caml_ba_create")(kind, layout, {
               dim1,
               dim2
             });
 end end
 
-function size_in_bytes$3(arr) do
+function size_in_bytes_3(arr) do
   return Caml_int32.imul(Caml_int32.imul(kind_size_in_bytes(Caml_external_polyfill.resolve("caml_ba_kind")(arr)), Caml_external_polyfill.resolve("caml_ba_dim_1")(arr)), Caml_external_polyfill.resolve("caml_ba_dim_2")(arr));
 end end
 
@@ -131,15 +131,15 @@ function slice_right(a, n) do
   return Caml_external_polyfill.resolve("caml_ba_slice")(a, {n});
 end end
 
-function of_array$1(kind, layout, data) do
+function of_array_1(kind, layout, data) do
   dim1 = #data;
   dim2 = dim1 == 0 and 0 or #Caml_array.caml_array_get(data, 0);
-  ba = create$2(kind, layout, dim1, dim2);
+  ba = create_2(kind, layout, dim1, dim2);
   ofs = layout and 1 or 0;
   for i = 0 , dim1 - 1 | 0 , 1 do
     row = Caml_array.caml_array_get(data, i);
     if (#row ~= dim2) then do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Bigarray.Array2.of_array: non-rectangular data"
       })
@@ -152,14 +152,14 @@ function of_array$1(kind, layout, data) do
   return ba;
 end end
 
-function map_file$2(fd, pos, kind, layout, shared, dim1, dim2) do
+function map_file_2(fd, pos, kind, layout, shared, dim1, dim2) do
   return map_file(fd, pos, kind, layout, shared, {
               dim1,
               dim2
             });
 end end
 
-function create$3(kind, layout, dim1, dim2, dim3) do
+function create_3(kind, layout, dim1, dim2, dim3) do
   return Caml_external_polyfill.resolve("caml_ba_create")(kind, layout, {
               dim1,
               dim2,
@@ -167,7 +167,7 @@ function create$3(kind, layout, dim1, dim2, dim3) do
             });
 end end
 
-function size_in_bytes$4(arr) do
+function size_in_bytes_4(arr) do
   return Caml_int32.imul(Caml_int32.imul(Caml_int32.imul(kind_size_in_bytes(Caml_external_polyfill.resolve("caml_ba_kind")(arr)), Caml_external_polyfill.resolve("caml_ba_dim_1")(arr)), Caml_external_polyfill.resolve("caml_ba_dim_2")(arr)), Caml_external_polyfill.resolve("caml_ba_dim_3")(arr));
 end end
 
@@ -193,16 +193,16 @@ function slice_right_2(a, n) do
   return Caml_external_polyfill.resolve("caml_ba_slice")(a, {n});
 end end
 
-function of_array$2(kind, layout, data) do
+function of_array_2(kind, layout, data) do
   dim1 = #data;
   dim2 = dim1 == 0 and 0 or #Caml_array.caml_array_get(data, 0);
   dim3 = dim2 == 0 and 0 or #Caml_array.caml_array_get(Caml_array.caml_array_get(data, 0), 0);
-  ba = create$3(kind, layout, dim1, dim2, dim3);
+  ba = create_3(kind, layout, dim1, dim2, dim3);
   ofs = layout and 1 or 0;
   for i = 0 , dim1 - 1 | 0 , 1 do
     row = Caml_array.caml_array_get(data, i);
     if (#row ~= dim2) then do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Bigarray.Array3.of_array: non-cubic data"
       })
@@ -211,7 +211,7 @@ function of_array$2(kind, layout, data) do
     for j = 0 , dim2 - 1 | 0 , 1 do
       col = Caml_array.caml_array_get(row, j);
       if (#col ~= dim3) then do
-        error ({
+        error({
           Caml_builtin_exceptions.invalid_argument,
           "Bigarray.Array3.of_array: non-cubic data"
         })
@@ -225,7 +225,7 @@ function of_array$2(kind, layout, data) do
   return ba;
 end end
 
-function map_file$3(fd, pos, kind, layout, shared, dim1, dim2, dim3) do
+function map_file_3(fd, pos, kind, layout, shared, dim1, dim2, dim3) do
   return map_file(fd, pos, kind, layout, shared, {
               dim1,
               dim2,
@@ -237,7 +237,7 @@ function array0_of_genarray(a) do
   if (Caml_external_polyfill.resolve("caml_ba_num_dims")(a) == 0) then do
     return a;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Bigarray.array0_of_genarray"
     })
@@ -248,7 +248,7 @@ function array1_of_genarray(a) do
   if (Caml_external_polyfill.resolve("caml_ba_num_dims")(a) == 1) then do
     return a;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Bigarray.array1_of_genarray"
     })
@@ -259,7 +259,7 @@ function array2_of_genarray(a) do
   if (Caml_external_polyfill.resolve("caml_ba_num_dims")(a) == 2) then do
     return a;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Bigarray.array2_of_genarray"
     })
@@ -270,7 +270,7 @@ function array3_of_genarray(a) do
   if (Caml_external_polyfill.resolve("caml_ba_num_dims")(a) == 3) then do
     return a;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Bigarray.array3_of_genarray"
     })
@@ -330,64 +330,64 @@ c_layout = --[[ C_layout ]]0;
 
 fortran_layout = --[[ Fortran_layout ]]1;
 
-function Array0_change_layout(prim, prim$1) do
-  return Caml_external_polyfill.resolve("caml_ba_change_layout")(prim, prim$1);
+function Array0_change_layout(prim, prim_1) do
+  return Caml_external_polyfill.resolve("caml_ba_change_layout")(prim, prim_1);
 end end
 
 Array0 = do
   create: create,
   change_layout: Array0_change_layout,
-  size_in_bytes: size_in_bytes$1,
+  size_in_bytes: size_in_bytes_1,
   get: get,
   set: set,
   of_value: of_value
 end;
 
-function Array1_change_layout(prim, prim$1) do
-  return Caml_external_polyfill.resolve("caml_ba_change_layout")(prim, prim$1);
+function Array1_change_layout(prim, prim_1) do
+  return Caml_external_polyfill.resolve("caml_ba_change_layout")(prim, prim_1);
 end end
 
 Array1 = do
-  create: create$1,
+  create: create_1,
   change_layout: Array1_change_layout,
-  size_in_bytes: size_in_bytes$2,
+  size_in_bytes: size_in_bytes_2,
   slice: slice,
   of_array: of_array,
-  map_file: map_file$1
+  map_file: map_file_1
 end;
 
-function Array2_change_layout(prim, prim$1) do
-  return Caml_external_polyfill.resolve("caml_ba_change_layout")(prim, prim$1);
+function Array2_change_layout(prim, prim_1) do
+  return Caml_external_polyfill.resolve("caml_ba_change_layout")(prim, prim_1);
 end end
 
 Array2 = do
-  create: create$2,
+  create: create_2,
   change_layout: Array2_change_layout,
-  size_in_bytes: size_in_bytes$3,
+  size_in_bytes: size_in_bytes_3,
   slice_left: slice_left,
   slice_right: slice_right,
-  of_array: of_array$1,
-  map_file: map_file$2
+  of_array: of_array_1,
+  map_file: map_file_2
 end;
 
-function Array3_change_layout(prim, prim$1) do
-  return Caml_external_polyfill.resolve("caml_ba_change_layout")(prim, prim$1);
+function Array3_change_layout(prim, prim_1) do
+  return Caml_external_polyfill.resolve("caml_ba_change_layout")(prim, prim_1);
 end end
 
 Array3 = do
-  create: create$3,
+  create: create_3,
   change_layout: Array3_change_layout,
-  size_in_bytes: size_in_bytes$4,
+  size_in_bytes: size_in_bytes_4,
   slice_left_1: slice_left_1,
   slice_right_1: slice_right_1,
   slice_left_2: slice_left_2,
   slice_right_2: slice_right_2,
-  of_array: of_array$2,
-  map_file: map_file$3
+  of_array: of_array_2,
+  map_file: map_file_3
 end;
 
-function reshape(prim, prim$1) do
-  return Caml_external_polyfill.resolve("caml_ba_reshape")(prim, prim$1);
+function reshape(prim, prim_1) do
+  return Caml_external_polyfill.resolve("caml_ba_reshape")(prim, prim_1);
 end end
 
 export do

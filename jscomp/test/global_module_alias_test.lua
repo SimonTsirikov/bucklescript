@@ -127,9 +127,9 @@ eq("File \"global_module_alias_test.ml\", line 92, characters 5-12", Curry._1(V.
 
 eq("File \"global_module_alias_test.ml\", line 93, characters 5-12", v.contents, 15);
 
-H$1 = f(--[[ () ]]0);
+H_1 = f(--[[ () ]]0);
 
-eq("File \"global_module_alias_test.ml\", line 95, characters 5-12", Curry._1(H$1.length, --[[ :: ]]{
+eq("File \"global_module_alias_test.ml\", line 95, characters 5-12", Curry._1(H_1.length, --[[ :: ]]{
           1,
           --[[ :: ]]{
             2,

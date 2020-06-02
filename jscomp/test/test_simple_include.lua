@@ -13,13 +13,13 @@ N = do
   v: v
 end;
 
-v$1 = do
+v_1 = do
   contents: 32
 end;
 
 NN = do
   a: 3,
-  v: v$1
+  v: v_1
 end;
 
 make_float = __Array.make_float;

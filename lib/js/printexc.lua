@@ -156,7 +156,7 @@ function to_string(x) do
       match;
       xpcall(function() do
         match = Curry._1(param[0], x);
-      end end,function(exn) return do
+      end end,function(exn) do
         match = undefined;
       end end)
       if (match ~= undefined) then do
@@ -170,17 +170,17 @@ function to_string(x) do
     end else if (x == Caml_builtin_exceptions.stack_overflow) then do
       return "Stack overflow";
     end else if (x[0] == Caml_builtin_exceptions.match_failure) then do
-      match$1 = x[1];
-      __char = match$1[2];
-      return Curry._5(Printf.sprintf(locfmt), match$1[0], match$1[1], __char, __char + 5 | 0, "Pattern matching failed");
+      match_1 = x[1];
+      __char = match_1[2];
+      return Curry._5(Printf.sprintf(locfmt), match_1[0], match_1[1], __char, __char + 5 | 0, "Pattern matching failed");
     end else if (x[0] == Caml_builtin_exceptions.assert_failure) then do
-      match$2 = x[1];
-      __char$1 = match$2[2];
-      return Curry._5(Printf.sprintf(locfmt), match$2[0], match$2[1], __char$1, __char$1 + 6 | 0, "Assertion failed");
+      match_2 = x[1];
+      __char_1 = match_2[2];
+      return Curry._5(Printf.sprintf(locfmt), match_2[0], match_2[1], __char_1, __char_1 + 6 | 0, "Assertion failed");
     end else if (x[0] == Caml_builtin_exceptions.undefined_recursive_module) then do
-      match$3 = x[1];
-      __char$2 = match$3[2];
-      return Curry._5(Printf.sprintf(locfmt), match$3[0], match$3[1], __char$2, __char$2 + 6 | 0, "Undefined recursive module");
+      match_3 = x[1];
+      __char_2 = match_3[2];
+      return Curry._5(Printf.sprintf(locfmt), match_3[0], match_3[1], __char_2, __char_2 + 6 | 0, "Undefined recursive module");
     end else if ((x.tag | 0) ~= 0) then do
       return x[0];
     end else do
@@ -193,7 +193,7 @@ end end
 function print(fct, arg) do
   xpcall(function() do
     return Curry._1(fct, arg);
-  end end,function(raw_x) return do
+  end end,function(raw_x) do
     x = Caml_js_exceptions.internalToOCamlException(raw_x);
     Curry._1(Printf.eprintf(--[[ Format ]]{
               --[[ String_literal ]]Block.__(11, {
@@ -209,14 +209,14 @@ function print(fct, arg) do
               "Uncaught exception: %s\n"
             }), to_string(x));
     Caml_io.caml_ml_flush(Pervasives.stderr);
-    error (x)
+    error(x)
   end end)
 end end
 
 function __catch(fct, arg) do
   xpcall(function() do
     return Curry._1(fct, arg);
-  end end,function(raw_x) return do
+  end end,function(raw_x) do
     x = Caml_js_exceptions.internalToOCamlException(raw_x);
     Caml_io.caml_ml_flush(Pervasives.stdout);
     Curry._1(Printf.eprintf(--[[ Format ]]{
@@ -237,7 +237,7 @@ function __catch(fct, arg) do
 end end
 
 function convert_raw_backtrace_slot(param) do
-  error ({
+  error({
     Caml_builtin_exceptions.failure,
     "convert_raw_backtrace_slot not implemented"
   })
@@ -246,12 +246,12 @@ end end
 function convert_raw_backtrace(bt) do
   xpcall(function() do
     return --[[ () ]]0;
-  end end,function(raw_exn) return do
+  end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == Caml_builtin_exceptions.failure) then do
       return ;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -333,14 +333,14 @@ function format_backtrace_slot(pos, slot) do
 end end
 
 function print_raw_backtrace(outchan, raw_backtrace) do
-  outchan$1 = outchan;
+  outchan_1 = outchan;
   backtrace = convert_raw_backtrace(raw_backtrace);
   if (backtrace ~= undefined) then do
     a = backtrace;
     for i = 0 , #a - 1 | 0 , 1 do
       match = format_backtrace_slot(i, Caml_array.caml_array_get(a, i));
       if (match ~= undefined) then do
-        Curry._1(Printf.fprintf(outchan$1, --[[ Format ]]{
+        Curry._1(Printf.fprintf(outchan_1, --[[ Format ]]{
                   --[[ String ]]Block.__(2, {
                       --[[ No_padding ]]0,
                       --[[ Char_literal ]]Block.__(12, {
@@ -355,7 +355,7 @@ function print_raw_backtrace(outchan, raw_backtrace) do
     end
     return --[[ () ]]0;
   end else do
-    return Printf.fprintf(outchan$1, --[[ Format ]]{
+    return Printf.fprintf(outchan_1, --[[ Format ]]{
                 --[[ String_literal ]]Block.__(11, {
                     "(Program not linked with -g, cannot print stack backtrace)\n",
                     --[[ End_of_format ]]0
@@ -522,8 +522,8 @@ function raw_backtrace_length(prim) do
   return Caml_external_polyfill.resolve("caml_raw_backtrace_length")(prim);
 end end
 
-function get_raw_backtrace_slot(prim, prim$1) do
-  return Caml_external_polyfill.resolve("caml_raw_backtrace_slot")(prim, prim$1);
+function get_raw_backtrace_slot(prim, prim_1) do
+  return Caml_external_polyfill.resolve("caml_raw_backtrace_slot")(prim, prim_1);
 end end
 
 function get_raw_backtrace_next_slot(prim) do

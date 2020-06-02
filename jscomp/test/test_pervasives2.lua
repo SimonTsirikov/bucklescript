@@ -4,7 +4,7 @@ List = require "../../lib/js/list";
 Stack = require "../../lib/js/stack";
 Pervasives = require "../../lib/js/pervasives";
 
-List$1 = do
+List_1 = do
   length: List.length,
   compare_lengths: List.compare_lengths,
   compare_length_with: List.compare_length_with,
@@ -249,7 +249,7 @@ ff = List.length;
 
 fff = Pervasives.$at;
 
-exports.List = List$1;
+exports.List = List_1;
 exports.U = U;
 exports.f = f;
 exports.ff = ff;

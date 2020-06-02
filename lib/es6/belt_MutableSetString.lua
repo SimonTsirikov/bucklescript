@@ -29,9 +29,9 @@ function remove0(nt, x) do
       return nt;
     end end 
   end else do
-    match$1 = nt.right;
-    if (match$1 ~= nil) then do
-      nt.right = remove0(match$1, x);
+    match_1 = nt.right;
+    if (match_1 ~= nil) then do
+      nt.right = remove0(match_1, x);
       return Belt_internalAVLset.balMutate(nt);
     end else do
       return nt;
@@ -110,9 +110,9 @@ function removeCheck0(nt, x, removed) do
       return nt;
     end end 
   end else do
-    match$1 = nt.right;
-    if (match$1 ~= nil) then do
-      nt.right = removeCheck0(match$1, x, removed);
+    match_1 = nt.right;
+    if (match_1 ~= nil) then do
+      nt.right = removeCheck0(match_1, x, removed);
       return Belt_internalAVLset.balMutate(nt);
     end else do
       return nt;
@@ -366,16 +366,16 @@ function subset(a, b) do
 end end
 
 function intersect(dataa, datab) do
-  dataa$1 = dataa.data;
-  datab$1 = datab.data;
-  if (dataa$1 ~= nil) then do
-    if (datab$1 ~= nil) then do
-      sizea = Belt_internalAVLset.lengthNode(dataa$1);
-      sizeb = Belt_internalAVLset.lengthNode(datab$1);
+  dataa_1 = dataa.data;
+  datab_1 = datab.data;
+  if (dataa_1 ~= nil) then do
+    if (datab_1 ~= nil) then do
+      sizea = Belt_internalAVLset.lengthNode(dataa_1);
+      sizeb = Belt_internalAVLset.lengthNode(datab_1);
       totalSize = sizea + sizeb | 0;
       tmp = new Array(totalSize);
-      Belt_internalAVLset.fillArray(dataa$1, 0, tmp);
-      Belt_internalAVLset.fillArray(datab$1, sizea, tmp);
+      Belt_internalAVLset.fillArray(dataa_1, 0, tmp);
+      Belt_internalAVLset.fillArray(datab_1, sizea, tmp);
       if (tmp[sizea - 1 | 0] < tmp[sizea] or tmp[totalSize - 1 | 0] < tmp[0]) then do
         return do
                 data: nil
@@ -400,19 +400,19 @@ function intersect(dataa, datab) do
 end end
 
 function diff(dataa, datab) do
-  dataa$1 = dataa.data;
-  datab$1 = datab.data;
-  if (dataa$1 ~= nil) then do
-    if (datab$1 ~= nil) then do
-      sizea = Belt_internalAVLset.lengthNode(dataa$1);
-      sizeb = Belt_internalAVLset.lengthNode(datab$1);
+  dataa_1 = dataa.data;
+  datab_1 = datab.data;
+  if (dataa_1 ~= nil) then do
+    if (datab_1 ~= nil) then do
+      sizea = Belt_internalAVLset.lengthNode(dataa_1);
+      sizeb = Belt_internalAVLset.lengthNode(datab_1);
       totalSize = sizea + sizeb | 0;
       tmp = new Array(totalSize);
-      Belt_internalAVLset.fillArray(dataa$1, 0, tmp);
-      Belt_internalAVLset.fillArray(datab$1, sizea, tmp);
+      Belt_internalAVLset.fillArray(dataa_1, 0, tmp);
+      Belt_internalAVLset.fillArray(datab_1, sizea, tmp);
       if (tmp[sizea - 1 | 0] < tmp[sizea] or tmp[totalSize - 1 | 0] < tmp[0]) then do
         return do
-                data: Belt_internalAVLset.copy(dataa$1)
+                data: Belt_internalAVLset.copy(dataa_1)
               end;
       end else do
         tmp2 = new Array(sizea);
@@ -423,7 +423,7 @@ function diff(dataa, datab) do
       end end 
     end else do
       return do
-              data: Belt_internalAVLset.copy(dataa$1)
+              data: Belt_internalAVLset.copy(dataa_1)
             end;
     end end 
   end else do
@@ -434,16 +434,16 @@ function diff(dataa, datab) do
 end end
 
 function union(dataa, datab) do
-  dataa$1 = dataa.data;
-  datab$1 = datab.data;
-  if (dataa$1 ~= nil) then do
-    if (datab$1 ~= nil) then do
-      sizea = Belt_internalAVLset.lengthNode(dataa$1);
-      sizeb = Belt_internalAVLset.lengthNode(datab$1);
+  dataa_1 = dataa.data;
+  datab_1 = datab.data;
+  if (dataa_1 ~= nil) then do
+    if (datab_1 ~= nil) then do
+      sizea = Belt_internalAVLset.lengthNode(dataa_1);
+      sizeb = Belt_internalAVLset.lengthNode(datab_1);
       totalSize = sizea + sizeb | 0;
       tmp = new Array(totalSize);
-      Belt_internalAVLset.fillArray(dataa$1, 0, tmp);
-      Belt_internalAVLset.fillArray(datab$1, sizea, tmp);
+      Belt_internalAVLset.fillArray(dataa_1, 0, tmp);
+      Belt_internalAVLset.fillArray(datab_1, sizea, tmp);
       if (tmp[sizea - 1 | 0] < tmp[sizea]) then do
         return do
                 data: Belt_internalAVLset.fromSortedArrayAux(tmp, 0, totalSize)
@@ -457,12 +457,12 @@ function union(dataa, datab) do
       end end 
     end else do
       return do
-              data: Belt_internalAVLset.copy(dataa$1)
+              data: Belt_internalAVLset.copy(dataa_1)
             end;
     end end 
   end else do
     return do
-            data: Belt_internalAVLset.copy(datab$1)
+            data: Belt_internalAVLset.copy(datab_1)
           end;
   end end 
 end end

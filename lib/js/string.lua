@@ -26,7 +26,7 @@ function ensure_ge(x, y) do
   if (x >= y) then do
     return x;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "String.concat"
     })
@@ -164,7 +164,7 @@ function index_rec(s, lim, _i, c) do
   while(true) do
     i = _i;
     if (i >= lim) then do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end
      end 
     if (s.charCodeAt(i) == c) then do
@@ -201,7 +201,7 @@ end end
 function index_from(s, i, c) do
   l = #s;
   if (i < 0 or i > l) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "String.index_from / Bytes.index_from"
     })
@@ -213,7 +213,7 @@ end end
 function index_from_opt(s, i, c) do
   l = #s;
   if (i < 0 or i > l) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "String.index_from_opt / Bytes.index_from_opt"
     })
@@ -226,7 +226,7 @@ function rindex_rec(s, _i, c) do
   while(true) do
     i = _i;
     if (i < 0) then do
-      error (Caml_builtin_exceptions.not_found)
+      error(Caml_builtin_exceptions.not_found)
     end
      end 
     if (s.charCodeAt(i) == c) then do
@@ -244,7 +244,7 @@ end end
 
 function rindex_from(s, i, c) do
   if (i < -1 or i >= #s) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "String.rindex_from / Bytes.rindex_from"
     })
@@ -273,7 +273,7 @@ end end
 
 function rindex_from_opt(s, i, c) do
   if (i < -1 or i >= #s) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "String.rindex_from_opt / Bytes.rindex_from_opt"
     })
@@ -285,7 +285,7 @@ end end
 function contains_from(s, i, c) do
   l = #s;
   if (i < 0 or i > l) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "String.contains_from / Bytes.contains_from"
     })
@@ -294,11 +294,11 @@ function contains_from(s, i, c) do
   xpcall(function() do
     index_rec(s, l, i, c);
     return true;
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return false;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -309,7 +309,7 @@ end end
 
 function rcontains_from(s, i, c) do
   if (i < 0 or i >= #s) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "String.rcontains_from / Bytes.rcontains_from"
     })
@@ -318,11 +318,11 @@ function rcontains_from(s, i, c) do
   xpcall(function() do
     rindex_rec(s, i, c);
     return true;
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Caml_builtin_exceptions.not_found) then do
       return false;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -384,8 +384,8 @@ fill = Bytes.fill;
 
 blit = Bytes.blit_string;
 
-function equal(prim, prim$1) do
-  return prim == prim$1;
+function equal(prim, prim_1) do
+  return prim == prim_1;
 end end
 
 exports.make = make;

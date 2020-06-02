@@ -74,10 +74,10 @@ function size(s) do
     while(true) do
       acc = _acc;
       x = _x;
-      match$1 = x.tail;
-      if (match$1 ~= nil) then do
+      match_1 = x.tail;
+      if (match_1 ~= nil) then do
         _acc = acc + 1 | 0;
-        _x = match$1;
+        _x = match_1;
         ::continue:: ;
       end else do
         return acc + 1 | 0;
@@ -90,12 +90,12 @@ end end
 
 function forEachU(s, f) do
   _s = s.root;
-  f$1 = f;
+  f_1 = f;
   while(true) do
-    s$1 = _s;
-    if (s$1 ~= nil) then do
-      f$1(s$1.head);
-      _s = s$1.tail;
+    s_1 = _s;
+    if (s_1 ~= nil) then do
+      f_1(s_1.head);
+      _s = s_1.tail;
       ::continue:: ;
     end else do
       return --[[ () ]]0;

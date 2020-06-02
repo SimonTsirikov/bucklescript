@@ -11,16 +11,16 @@ function f(param) do
           a = match[0];
           return a - a | 0;
         end else do
-          a$1 = match[0];
-          return a$1 + a$1 | 0;
+          a_1 = match[0];
+          return a_1 + a_1 | 0;
         end end end end end 
      if ___conditional___ = 1--[[ B ]]
      or ___conditional___ = 2--[[ C ]]
      do
     
   end
-  a$2 = param[0][0];
-  return Caml_int32.imul(a$2, a$2);
+  a_2 = param[0][0];
+  return Caml_int32.imul(a_2, a_2);
 end end
 
 function ff(c) do

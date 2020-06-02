@@ -14,8 +14,8 @@ Mt.from_pair_suites("Print_alpha_test", --[[ :: ]]{
         "File \"print_alpha_test.ml\", line 15, characters 4-11",
         (function (param) do
             return --[[ Eq ]]Block.__(0, {
-                      f((function (prim, prim$1) do
-                                return prim + prim$1 | 0;
+                      f((function (prim, prim_1) do
+                                return prim + prim_1 | 0;
                               end end), --[[ () ]]0)(1, 2),
                       3
                     });

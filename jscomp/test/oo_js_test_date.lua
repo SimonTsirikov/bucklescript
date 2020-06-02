@@ -6,11 +6,11 @@ Block = require "../../lib/js/block";
 d = new Date(2016, 2);
 
 function d2(param) do
-  return (function (param$1, param$2) do
+  return (function (param_1, param_2) do
       prim = param;
-      prim$1 = 2;
-      prim$2 = param$1;
-      return new Date(prim, prim$1, prim$2);
+      prim_1 = 2;
+      prim_2 = param_1;
+      return new Date(prim, prim_1, prim_2);
     end end);
 end end
 

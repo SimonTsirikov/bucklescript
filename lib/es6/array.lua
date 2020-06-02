@@ -16,7 +16,7 @@ function init(l, f) do
     return {};
   end else do
     if (l < 0) then do
-      error ({
+      error({
         Caml_builtin_exceptions.invalid_argument,
         "Array.init"
       })
@@ -60,7 +60,7 @@ end end
 
 function sub(a, ofs, len) do
   if (ofs < 0 or len < 0 or ofs > (#a - len | 0)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Array.sub"
     })
@@ -71,7 +71,7 @@ end end
 
 function fill(a, ofs, len, v) do
   if (ofs < 0 or len < 0 or ofs > (#a - len | 0)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Array.fill"
     })
@@ -85,7 +85,7 @@ end end
 
 function blit(a1, ofs1, a2, ofs2, len) do
   if (len < 0 or ofs1 < 0 or ofs1 > (#a1 - len | 0) or ofs2 < 0 or ofs2 > (#a2 - len | 0)) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Array.blit"
     })
@@ -103,7 +103,7 @@ end end
 
 function iter2(f, a, b) do
   if (#a ~= #b) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Array.iter2: arrays must have the same length"
     })
@@ -132,7 +132,7 @@ function map2(f, a, b) do
   la = #a;
   lb = #b;
   if (la ~= lb) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Array.map2: arrays must have the same length"
     })
@@ -325,7 +325,7 @@ function sort(cmp, a) do
     end else if (i31 < l) then do
       return i31;
     end else do
-      error ({
+      error({
         Bottom,
         i
       })
@@ -333,46 +333,46 @@ function sort(cmp, a) do
   end end;
   trickle = function (l, i, e) do
     xpcall(function() do
-      l$1 = l;
+      l_1 = l;
       _i = i;
-      e$1 = e;
+      e_1 = e;
       while(true) do
-        i$1 = _i;
-        j = maxson(l$1, i$1);
-        if (Curry._2(cmp, Caml_array.caml_array_get(a, j), e$1) > 0) then do
-          Caml_array.caml_array_set(a, i$1, Caml_array.caml_array_get(a, j));
+        i_1 = _i;
+        j = maxson(l_1, i_1);
+        if (Curry._2(cmp, Caml_array.caml_array_get(a, j), e_1) > 0) then do
+          Caml_array.caml_array_set(a, i_1, Caml_array.caml_array_get(a, j));
           _i = j;
           ::continue:: ;
         end else do
-          return Caml_array.caml_array_set(a, i$1, e$1);
+          return Caml_array.caml_array_set(a, i_1, e_1);
         end end 
       end;
-    end end,function(raw_exn) return do
+    end end,function(raw_exn) do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Bottom) then do
         return Caml_array.caml_array_set(a, exn[1], e);
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
   bubble = function (l, i) do
     xpcall(function() do
-      l$1 = l;
+      l_1 = l;
       _i = i;
       while(true) do
-        i$1 = _i;
-        j = maxson(l$1, i$1);
-        Caml_array.caml_array_set(a, i$1, Caml_array.caml_array_get(a, j));
+        i_1 = _i;
+        j = maxson(l_1, i_1);
+        Caml_array.caml_array_set(a, i_1, Caml_array.caml_array_get(a, j));
         _i = j;
         ::continue:: ;
       end;
-    end end,function(raw_exn) return do
+    end end,function(raw_exn) do
       exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
       if (exn[0] == Bottom) then do
         return exn[1];
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end;
@@ -381,7 +381,7 @@ function sort(cmp, a) do
       i = _i;
       father = (i - 1 | 0) / 3 | 0;
       if (i == father) then do
-        error ({
+        error({
           Caml_builtin_exceptions.assert_failure,
           --[[ tuple ]]{
             "array.ml",
@@ -408,15 +408,15 @@ function sort(cmp, a) do
   for i = ((l + 1 | 0) / 3 | 0) - 1 | 0 , 0 , -1 do
     trickle(l, i, Caml_array.caml_array_get(a, i));
   end
-  for i$1 = l - 1 | 0 , 2 , -1 do
-    e = Caml_array.caml_array_get(a, i$1);
-    Caml_array.caml_array_set(a, i$1, Caml_array.caml_array_get(a, 0));
-    trickleup(bubble(i$1, 0), e);
+  for i_1 = l - 1 | 0 , 2 , -1 do
+    e = Caml_array.caml_array_get(a, i_1);
+    Caml_array.caml_array_set(a, i_1, Caml_array.caml_array_get(a, 0));
+    trickleup(bubble(i_1, 0), e);
   end
   if (l > 1) then do
-    e$1 = Caml_array.caml_array_get(a, 1);
+    e_1 = Caml_array.caml_array_get(a, 1);
     Caml_array.caml_array_set(a, 1, Caml_array.caml_array_get(a, 0));
-    return Caml_array.caml_array_set(a, 0, e$1);
+    return Caml_array.caml_array_set(a, 0, e_1);
   end else do
     return 0;
   end end 
@@ -439,22 +439,22 @@ function stable_sort(cmp, a) do
       i1 = _i1;
       if (Curry._2(cmp, s1, s2) <= 0) then do
         Caml_array.caml_array_set(dst, d, s1);
-        i1$1 = i1 + 1 | 0;
-        if (i1$1 < src1r) then do
+        i1_1 = i1 + 1 | 0;
+        if (i1_1 < src1r) then do
           _d = d + 1 | 0;
-          _s1 = Caml_array.caml_array_get(a, i1$1);
-          _i1 = i1$1;
+          _s1 = Caml_array.caml_array_get(a, i1_1);
+          _i1 = i1_1;
           ::continue:: ;
         end else do
           return blit(src2, i2, dst, d + 1 | 0, src2r - i2 | 0);
         end end 
       end else do
         Caml_array.caml_array_set(dst, d, s2);
-        i2$1 = i2 + 1 | 0;
-        if (i2$1 < src2r) then do
+        i2_1 = i2 + 1 | 0;
+        if (i2_1 < src2r) then do
           _d = d + 1 | 0;
-          _s2 = Caml_array.caml_array_get(src2, i2$1);
-          _i2 = i2$1;
+          _s2 = Caml_array.caml_array_get(src2, i2_1);
+          _i2 = i2_1;
           ::continue:: ;
         end else do
           return blit(a, i1, dst, d + 1 | 0, src1r - i1 | 0);

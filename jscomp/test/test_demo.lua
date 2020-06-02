@@ -61,12 +61,12 @@ x = (function (z) do
       return u + z | 0;
     end end)(6);
 
-u$1 = 7;
+u_1 = 7;
 
 function v(param) do
   xx = 6;
   yy = param;
-  return (xx + yy | 0) + u$1 | 0;
+  return (xx + yy | 0) + u_1 | 0;
 end end
 
 nil = --[[ Nil ]]0;

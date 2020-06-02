@@ -20,7 +20,7 @@ H = Gpr_3566_test.Test({ });
 
 eq("File \"gpr_3566_drive_test.ml\", line 8, characters 5-12", H.b, true);
 
-Caml_option$1 = { };
+Caml_option_1 = { };
 
 function f(x) do
   return Caml_option.some(x);
@@ -32,6 +32,6 @@ exports.suites = suites;
 exports.test_id = test_id;
 exports.eq = eq;
 exports.H = H;
-exports.Caml_option = Caml_option$1;
+exports.Caml_option = Caml_option_1;
 exports.f = f;
 --[[ H Not a pure module ]]

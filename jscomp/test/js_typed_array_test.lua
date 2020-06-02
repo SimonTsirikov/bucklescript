@@ -14,8 +14,8 @@ function via(make, f, arr) do
 end end
 
 function viaInt8(f, arr) do
-  return (function (param, param$1) do
-      return Array.from(Curry._1(param, new Int8Array(param$1)));
+  return (function (param, param_1) do
+      return Array.from(Curry._1(param, new Int8Array(param_1)));
     end end);
 end end
 

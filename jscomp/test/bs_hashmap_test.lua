@@ -38,8 +38,8 @@ Y = Belt_Id.hashable(hash, eq);
 
 empty = Belt_internalBucketsType.make(Y.hash, Y.eq, 30);
 
-function add(prim, prim$1) do
-  return prim + prim$1 | 0;
+function add(prim, prim_1) do
+  return prim + prim_1 | 0;
 end end
 
 Belt_HashMap.mergeMany(empty, {
@@ -75,28 +75,28 @@ eqx("File \"bs_hashmap_test.ml\", line 41, characters 6-13", xx.size, 91);
 
 eqx("File \"bs_hashmap_test.ml\", line 42, characters 6-13", Belt_SortArray.stableSortBy(Belt_HashMap.keysToArray(xx), cmp), Array_data_util.range(30, 120));
 
-u$1 = Belt_Array.concat(Array_data_util.randomRange(0, 100000), Array_data_util.randomRange(0, 100));
+u_1 = Belt_Array.concat(Array_data_util.randomRange(0, 100000), Array_data_util.randomRange(0, 100));
 
-v$1 = Belt_internalBucketsType.make(Y.hash, Y.eq, 40);
+v_1 = Belt_internalBucketsType.make(Y.hash, Y.eq, 40);
 
-Belt_HashMap.mergeMany(v$1, Belt_Array.zip(u$1, u$1));
+Belt_HashMap.mergeMany(v_1, Belt_Array.zip(u_1, u_1));
 
-eqx("File \"bs_hashmap_test.ml\", line 48, characters 6-13", v$1.size, 100001);
+eqx("File \"bs_hashmap_test.ml\", line 48, characters 6-13", v_1.size, 100001);
 
 for i = 0 , 1000 , 1 do
-  Belt_HashMap.remove(v$1, i);
+  Belt_HashMap.remove(v_1, i);
 end
 
-eqx("File \"bs_hashmap_test.ml\", line 52, characters 6-13", v$1.size, 99000);
+eqx("File \"bs_hashmap_test.ml\", line 52, characters 6-13", v_1.size, 99000);
 
-for i$1 = 0 , 2000 , 1 do
-  Belt_HashMap.remove(v$1, i$1);
+for i_1 = 0 , 2000 , 1 do
+  Belt_HashMap.remove(v_1, i_1);
 end
 
-eqx("File \"bs_hashmap_test.ml\", line 56, characters 6-13", v$1.size, 98000);
+eqx("File \"bs_hashmap_test.ml\", line 56, characters 6-13", v_1.size, 98000);
 
 b("File \"bs_hashmap_test.ml\", line 57, characters 4-11", Belt_Array.every(Array_data_util.range(2001, 100000), (function (x) do
-            return Belt_HashMap.has(v$1, x);
+            return Belt_HashMap.has(v_1, x);
           end end)));
 
 Mt.from_pair_suites("Bs_hashmap_test", suites.contents);

@@ -14,7 +14,7 @@ function getExn(f) do
   if (f ~= undefined) then do
     return f;
   end else do
-    error (new Error("Js.Undefined.getExn"))
+    error(new Error("Js.Undefined.getExn"))
   end end 
 end end
 

@@ -22,7 +22,7 @@ for i = 1 , 2 , 1 do
     end else if (i == n) then do
       return 0;
     end else do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "gpr_858_unit2_test.ml",

@@ -27,7 +27,7 @@ function f(param) do
   xpcall(function() do
     for i = 0 , 200 , 1 do
       if (i == 10) then do
-        error ({
+        error({
           A,
           0
         })
@@ -35,12 +35,12 @@ function f(param) do
        end 
     end
     return --[[ () ]]0;
-  end end,function(raw_exn) return do
+  end end,function(raw_exn) do
     exn = Caml_js_exceptions.internalToOCamlException(raw_exn);
     if (exn[0] == A) then do
       return --[[ () ]]0;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end

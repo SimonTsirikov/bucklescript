@@ -165,12 +165,12 @@ function map_opt(f, l) do
   _acc = --[[ [] ]]0;
   _l = l;
   while(true) do
-    l$1 = _l;
+    l_1 = _l;
     acc = _acc;
-    if (l$1) then do
-      match = Curry._1(f, l$1[0]);
+    if (l_1) then do
+      match = Curry._1(f, l_1[0]);
       if (match ~= undefined) then do
-        _l = l$1[1];
+        _l = l_1[1];
         _acc = --[[ :: ]]{
           Caml_option.valFromOption(match),
           acc
@@ -187,12 +187,12 @@ end end
 
 function list_any(f, e) do
   if (e[0] >= 848054398) then do
-    f$1 = f;
+    f_1 = f;
     _l = e[1];
     while(true) do
       l = _l;
       if (l) then do
-        res = Curry._1(f$1, l[0]);
+        res = Curry._1(f_1, l[0]);
         if (res ~= undefined) then do
           return res;
         end else do
@@ -209,7 +209,7 @@ end end
 
 function list_all(f, e) do
   if (e[0] >= 848054398) then do
-    f$1 = f;
+    f_1 = f;
     _acc = --[[ [] ]]0;
     _l = e[1];
     while(true) do
@@ -217,7 +217,7 @@ function list_all(f, e) do
       acc = _acc;
       if (l) then do
         tl = l[1];
-        match = Curry._1(f$1, l[0]);
+        match = Curry._1(f_1, l[0]);
         _l = tl;
         if (match ~= undefined) then do
           _acc = --[[ :: ]]{
@@ -243,7 +243,7 @@ function _try_atom(e, f) do
   end else do
     xpcall(function() do
       return Caml_option.some(Curry._1(f, e[1]));
-    end end,function(exn) return do
+    end end,function(exn) do
       return ;
     end end)
   end end 
@@ -273,11 +273,11 @@ function to_pair(e) do
   end else do
     match = e[1];
     if (match) then do
-      match$1 = match[1];
-      if (match$1 and not match$1[1]) then do
+      match_1 = match[1];
+      if (match_1 and not match_1[1]) then do
         return --[[ tuple ]]{
                 match[0],
-                match$1[0]
+                match_1[0]
               };
       end else do
         return ;
@@ -308,14 +308,14 @@ function to_triple(e) do
   end else do
     match = e[1];
     if (match) then do
-      match$1 = match[1];
-      if (match$1) then do
-        match$2 = match$1[1];
-        if (match$2 and not match$2[1]) then do
+      match_1 = match[1];
+      if (match_1) then do
+        match_2 = match_1[1];
+        if (match_2 and not match_2[1]) then do
           return --[[ tuple ]]{
                   match[0],
-                  match$1[0],
-                  match$2[0]
+                  match_1[0],
+                  match_2[0]
                 };
         end else do
           return ;
@@ -363,7 +363,7 @@ end end
 
 function get_field(name, e) do
   if (e[0] >= 848054398) then do
-    name$1 = name;
+    name_1 = name;
     _l = e[1];
     while(true) do
       l = _l;
@@ -376,23 +376,23 @@ function get_field(name, e) do
           _l = l[1];
           ::continue:: ;
         end else do
-          match$1 = match[1];
-          if (match$1) then do
-            match$2 = match$1[0];
-            if (typeof match$2 == "number") then do
+          match_1 = match[1];
+          if (match_1) then do
+            match_2 = match_1[0];
+            if (typeof match_2 == "number") then do
               _l = l[1];
               ::continue:: ;
-            end else if (match$2[0] ~= 726615281) then do
+            end else if (match_2[0] ~= 726615281) then do
               _l = l[1];
               ::continue:: ;
             end else do
-              match$3 = match$1[1];
-              if (match$3) then do
-                if (match$3[1]) then do
+              match_3 = match_1[1];
+              if (match_3) then do
+                if (match_3[1]) then do
                   _l = l[1];
                   ::continue:: ;
-                end else if (Caml_obj.caml_equal(name$1, match$2[1])) then do
-                  return match$3[0];
+                end else if (Caml_obj.caml_equal(name_1, match_2[1])) then do
+                  return match_3[0];
                 end else do
                   _l = l[1];
                   ::continue:: ;
@@ -431,17 +431,17 @@ function _get_field_list(name, _l) do
         _l = l[1];
         ::continue:: ;
       end else do
-        match$1 = match[1];
-        if (match$1) then do
-          match$2 = match$1[0];
-          if (typeof match$2 == "number") then do
+        match_1 = match[1];
+        if (match_1) then do
+          match_2 = match_1[0];
+          if (typeof match_2 == "number") then do
             _l = l[1];
             ::continue:: ;
-          end else if (match$2[0] ~= 726615281) then do
+          end else if (match_2[0] ~= 726615281) then do
             _l = l[1];
             ::continue:: ;
-          end else if (Caml_obj.caml_equal(name, match$2[1])) then do
-            return match$1[1];
+          end else if (Caml_obj.caml_equal(name, match_2[1])) then do
+            return match_1[1];
           end else do
             _l = l[1];
             ::continue:: ;
@@ -485,11 +485,11 @@ function get_variant(l, e) do
   if (e[0] >= 848054398) then do
     match = e[1];
     if (match) then do
-      match$1 = match[0];
-      if (typeof match$1 == "number" or match$1[0] ~= 726615281) then do
+      match_1 = match[0];
+      if (typeof match_1 == "number" or match_1[0] ~= 726615281) then do
         return ;
       end else do
-        return _get_variant(match$1[1], match[1], l);
+        return _get_variant(match_1[1], match[1], l);
       end end 
     end else do
       return ;
@@ -503,7 +503,7 @@ function get_exn(e) do
   if (e ~= undefined) then do
     return Caml_option.valFromOption(e);
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.failure,
       "CCSexp.Traverse.get_exn"
     })

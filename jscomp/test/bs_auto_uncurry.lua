@@ -3,7 +3,7 @@
 Curry = require "../../lib/js/curry";
 Caml_splice_call = require "../../lib/js/caml_splice_call";
 
-Curry$1 = { };
+Curry_1 = { };
 
 Block = { };
 
@@ -80,26 +80,26 @@ function add3(x, y, z) do
 end end
 
 function h2(x) do
-  return ff(x, (function (prim, prim$1) do
-                return prim + prim$1 | 0;
+  return ff(x, (function (prim, prim_1) do
+                return prim + prim_1 | 0;
               end end));
 end end
 
 function h3(x) do
-  return ff(x, (function (param, param$1) do
-                return add3(1, param, param$1);
+  return ff(x, (function (param, param_1) do
+                return add3(1, param, param_1);
               end end));
 end end
 
 function h4(x) do
-  return ff1(x, 3, (function (param, param$1) do
-                return add3(1, param, param$1);
+  return ff1(x, 3, (function (param, param_1) do
+                return add3(1, param, param_1);
               end end));
 end end
 
 function h5(x) do
-  return ff2(x, "3", (function (param, param$1) do
-                return add3(2, param, param$1);
+  return ff2(x, "3", (function (param, param_1) do
+                return add3(2, param, param_1);
               end end));
 end end
 
@@ -133,7 +133,7 @@ function hh(xs) do
     end end);
 end end
 
-exports.Curry = Curry$1;
+exports.Curry = Curry_1;
 exports.Block = Block;
 exports.xbs = xbs;
 exports.f = f;

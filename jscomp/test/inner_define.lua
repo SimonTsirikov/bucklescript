@@ -13,11 +13,11 @@ function f1(param) do
   return --[[ () ]]0;
 end end
 
-function f2(param, param$1) do
+function f2(param, param_1) do
   return --[[ () ]]0;
 end end
 
-function f3(param, param$1, param$2) do
+function f3(param, param_1, param_2) do
   return --[[ () ]]0;
 end end
 
@@ -27,17 +27,17 @@ N0 = do
   f3: f3
 end;
 
-function f2$1(param, param$1) do
+function f2_1(param, param_1) do
   return --[[ () ]]0;
 end end
 
-function f3$1(param, param$1, param$2) do
+function f3_1(param, param_1, param_2) do
   return --[[ () ]]0;
 end end
 
 N1 = do
-  f2: f2$1,
-  f3: f3$1
+  f2: f2_1,
+  f3: f3_1
 end;
 
 exports.N = N;

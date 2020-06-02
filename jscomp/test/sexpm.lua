@@ -26,7 +26,7 @@ function _with_in(filename, f) do
     x = Curry._1(f, ic);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
     return x;
-  end end,function(raw_e) return do
+  end end,function(raw_e) do
     e = Caml_js_exceptions.internalToOCamlException(raw_e);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(ic);
     return --[[ `Error ]]{
@@ -46,10 +46,10 @@ function _must_escape(s) do
           if (c ~= 92) then do
             exit = 1;
           end else do
-            error (Pervasives.Exit)
+            error(Pervasives.Exit)
           end end 
         end else do
-          error (Pervasives.Exit)
+          error(Pervasives.Exit)
         end end 
       end else if (c >= 11) then do
         if (c >= 32) then do
@@ -66,7 +66,7 @@ function _must_escape(s) do
              or ___conditional___ = 2
              or ___conditional___ = 8
              or ___conditional___ = 9 then do
-                error (Pervasives.Exit)end end end 
+                error(Pervasives.Exit)end end end 
              do end
             
           end
@@ -75,22 +75,22 @@ function _must_escape(s) do
         end end 
       end else do
         if (c >= 9) then do
-          error (Pervasives.Exit)
+          error(Pervasives.Exit)
         end
          end 
         exit = 1;
       end end  end 
       if (exit == 1 and c > 127) then do
-        error (Pervasives.Exit)
+        error(Pervasives.Exit)
       end
        end 
     end
     return false;
-  end end,function(exn) return do
+  end end,function(exn) do
     if (exn == Pervasives.Exit) then do
       return true;
     end else do
-      error (exn)
+      error(exn)
     end end 
   end end)
 end end
@@ -307,23 +307,23 @@ function to_chan(oc, t) do
 end end
 
 function to_file_seq(filename, seq) do
-  filename$1 = filename;
+  filename_1 = filename;
   f = function (oc) do
     return Curry._1(seq, (function (t) do
                   to_chan(oc, t);
                   return Caml_io.caml_ml_output_char(oc, --[[ "\n" ]]10);
                 end end));
   end end;
-  oc = Pervasives.open_out(filename$1);
+  oc = Pervasives.open_out(filename_1);
   xpcall(function() do
     x = Curry._1(f, oc);
     Caml_io.caml_ml_flush(oc);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
     return x;
-  end end,function(e) return do
+  end end,function(e) do
     Caml_io.caml_ml_flush(oc);
     Caml_external_polyfill.resolve("caml_ml_close_channel")(oc);
-    error (e)
+    error(e)
   end end)
 end end
 
@@ -348,9 +348,9 @@ end;
 
 function make(bufsizeOpt, refill) do
   bufsize = bufsizeOpt ~= undefined and bufsizeOpt or 1024;
-  bufsize$1 = Caml_primitive.caml_int_min(bufsize > 16 and bufsize or 16, Sys.max_string_length);
+  bufsize_1 = Caml_primitive.caml_int_min(bufsize > 16 and bufsize or 16, Sys.max_string_length);
   return do
-          buf: Caml_bytes.caml_create_bytes(bufsize$1),
+          buf: Caml_bytes.caml_create_bytes(bufsize_1),
           refill: refill,
           atom: __Buffer.create(32),
           i: 0,
@@ -381,7 +381,7 @@ end end
 
 function _get(t) do
   if (t.i >= t.len) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "sexpm.ml",
@@ -483,7 +483,7 @@ function expr_starting_with(c, k, t) do
       end
        end 
     end else do
-      return skip_comment((function (param, param$1) do
+      return skip_comment((function (param, param_1) do
                     return expr(k, t);
                   end end), t);
     end end 
@@ -492,7 +492,7 @@ function expr_starting_with(c, k, t) do
       local ___conditional___=(c - 32 | 0);
       do
          if ___conditional___ = 0 then do
-            error ({
+            error({
               Caml_builtin_exceptions.assert_failure,
               --[[ tuple ]]{
                 "sexpm.ml",
@@ -524,7 +524,7 @@ function expr_starting_with(c, k, t) do
     end
      end 
   end else if (c >= 9) then do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "sexpm.ml",
@@ -891,8 +891,8 @@ function parse_string(s) do
 end end
 
 function parse_chan(bufsize, ic) do
-  d = make(bufsize, (function (param, param$1, param$2) do
-          return Pervasives.input(ic, param, param$1, param$2);
+  d = make(bufsize, (function (param, param_1, param_2) do
+          return Pervasives.input(ic, param, param_1, param_2);
         end end));
   res = next(d);
   if (typeof res == "number") then do
@@ -906,8 +906,8 @@ function parse_chan(bufsize, ic) do
 end end
 
 function parse_chan_gen(bufsize, ic) do
-  d = make(bufsize, (function (param, param$1, param$2) do
-          return Pervasives.input(ic, param, param$1, param$2);
+  d = make(bufsize, (function (param, param_1, param_2) do
+          return Pervasives.input(ic, param, param_1, param_2);
         end end));
   return (function (param) do
       e = next(d);
@@ -920,8 +920,8 @@ function parse_chan_gen(bufsize, ic) do
 end end
 
 function parse_chan_list(bufsize, ic) do
-  d = make(bufsize, (function (param, param$1, param$2) do
-          return Pervasives.input(ic, param, param$1, param$2);
+  d = make(bufsize, (function (param, param_1, param_2) do
+          return Pervasives.input(ic, param, param_1, param_2);
         end end));
   _acc = --[[ [] ]]0;
   while(true) do
@@ -960,9 +960,9 @@ function MakeDecode(funarg) do
   $great$great$eq = funarg.$great$great$eq;
   make = function (bufsizeOpt, refill) do
     bufsize = bufsizeOpt ~= undefined and bufsizeOpt or 1024;
-    bufsize$1 = Caml_primitive.caml_int_min(bufsize > 16 and bufsize or 16, Sys.max_string_length);
+    bufsize_1 = Caml_primitive.caml_int_min(bufsize > 16 and bufsize or 16, Sys.max_string_length);
     return do
-            buf: Caml_bytes.caml_create_bytes(bufsize$1),
+            buf: Caml_bytes.caml_create_bytes(bufsize_1),
             refill: refill,
             atom: __Buffer.create(32),
             i: 0,
@@ -991,7 +991,7 @@ function MakeDecode(funarg) do
   end end;
   _get = function (t) do
     if (t.i >= t.len) then do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "sexpm.ml",
@@ -1089,7 +1089,7 @@ function MakeDecode(funarg) do
         end
          end 
       end else do
-        return skip_comment((function (param, param$1) do
+        return skip_comment((function (param, param_1) do
                       return expr(k, t);
                     end end), t);
       end end 
@@ -1098,7 +1098,7 @@ function MakeDecode(funarg) do
         local ___conditional___=(c - 32 | 0);
         do
            if ___conditional___ = 0 then do
-              error ({
+              error({
                 Caml_builtin_exceptions.assert_failure,
                 --[[ tuple ]]{
                   "sexpm.ml",
@@ -1130,7 +1130,7 @@ function MakeDecode(funarg) do
       end
        end 
     end else if (c >= 9) then do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "sexpm.ml",

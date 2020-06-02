@@ -29,17 +29,17 @@ function strictlySortedLength(xs) do
     x0 = xs[0];
     x1 = xs[1];
     if (x0 < x1) then do
-      xs$1 = xs;
+      xs_1 = xs;
       _prec = x1;
       _acc = 2;
-      len$1 = len;
+      len_1 = len;
       while(true) do
         acc = _acc;
         prec = _prec;
-        if (acc >= len$1) then do
+        if (acc >= len_1) then do
           return acc;
         end else do
-          v = xs$1[acc];
+          v = xs_1[acc];
           if (prec < v) then do
             _acc = acc + 1 | 0;
             _prec = v;
@@ -62,14 +62,14 @@ function isSorted(a) do
   if (len == 0) then do
     return true;
   end else do
-    a$1 = a;
+    a_1 = a;
     _i = 0;
     last_bound = len - 1 | 0;
     while(true) do
       i = _i;
       if (i == last_bound) then do
         return true;
-      end else if (a$1[i] <= a$1[i + 1 | 0]) then do
+      end else if (a_1[i] <= a_1[i + 1 | 0]) then do
         _i = i + 1 | 0;
         ::continue:: ;
       end else do
@@ -95,22 +95,22 @@ function merge(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
     i1 = _i1;
     if (s1 <= s2) then do
       dst[d] = s1;
-      i1$1 = i1 + 1 | 0;
-      if (i1$1 < src1r) then do
+      i1_1 = i1 + 1 | 0;
+      if (i1_1 < src1r) then do
         _d = d + 1 | 0;
-        _s1 = src[i1$1];
-        _i1 = i1$1;
+        _s1 = src[i1_1];
+        _i1 = i1_1;
         ::continue:: ;
       end else do
         return Belt_Array.blitUnsafe(src2, i2, dst, d + 1 | 0, src2r - i2 | 0);
       end end 
     end else do
       dst[d] = s2;
-      i2$1 = i2 + 1 | 0;
-      if (i2$1 < src2r) then do
+      i2_1 = i2 + 1 | 0;
+      if (i2_1 < src2r) then do
         _d = d + 1 | 0;
-        _s2 = src2[i2$1];
-        _i2 = i2$1;
+        _s2 = src2[i2_1];
+        _i2 = i2_1;
         ::continue:: ;
       end else do
         return Belt_Array.blitUnsafe(src, i1, dst, d + 1 | 0, src1r - i1 | 0);
@@ -135,48 +135,48 @@ function union(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
     i1 = _i1;
     if (s1 < s2) then do
       dst[d] = s1;
-      i1$1 = i1 + 1 | 0;
-      d$1 = d + 1 | 0;
-      if (i1$1 < src1r) then do
-        _d = d$1;
-        _s1 = src[i1$1];
-        _i1 = i1$1;
+      i1_1 = i1 + 1 | 0;
+      d_1 = d + 1 | 0;
+      if (i1_1 < src1r) then do
+        _d = d_1;
+        _s1 = src[i1_1];
+        _i1 = i1_1;
         ::continue:: ;
       end else do
-        Belt_Array.blitUnsafe(src2, i2, dst, d$1, src2r - i2 | 0);
-        return (d$1 + src2r | 0) - i2 | 0;
+        Belt_Array.blitUnsafe(src2, i2, dst, d_1, src2r - i2 | 0);
+        return (d_1 + src2r | 0) - i2 | 0;
       end end 
     end else if (s1 == s2) then do
       dst[d] = s1;
-      i1$2 = i1 + 1 | 0;
-      i2$1 = i2 + 1 | 0;
-      d$2 = d + 1 | 0;
-      if (i1$2 < src1r and i2$1 < src2r) then do
-        _d = d$2;
-        _s2 = src2[i2$1];
-        _i2 = i2$1;
-        _s1 = src[i1$2];
-        _i1 = i1$2;
+      i1_2 = i1 + 1 | 0;
+      i2_1 = i2 + 1 | 0;
+      d_2 = d + 1 | 0;
+      if (i1_2 < src1r and i2_1 < src2r) then do
+        _d = d_2;
+        _s2 = src2[i2_1];
+        _i2 = i2_1;
+        _s1 = src[i1_2];
+        _i1 = i1_2;
         ::continue:: ;
-      end else if (i1$2 == src1r) then do
-        Belt_Array.blitUnsafe(src2, i2$1, dst, d$2, src2r - i2$1 | 0);
-        return (d$2 + src2r | 0) - i2$1 | 0;
+      end else if (i1_2 == src1r) then do
+        Belt_Array.blitUnsafe(src2, i2_1, dst, d_2, src2r - i2_1 | 0);
+        return (d_2 + src2r | 0) - i2_1 | 0;
       end else do
-        Belt_Array.blitUnsafe(src, i1$2, dst, d$2, src1r - i1$2 | 0);
-        return (d$2 + src1r | 0) - i1$2 | 0;
+        Belt_Array.blitUnsafe(src, i1_2, dst, d_2, src1r - i1_2 | 0);
+        return (d_2 + src1r | 0) - i1_2 | 0;
       end end  end 
     end else do
       dst[d] = s2;
-      i2$2 = i2 + 1 | 0;
-      d$3 = d + 1 | 0;
-      if (i2$2 < src2r) then do
-        _d = d$3;
-        _s2 = src2[i2$2];
-        _i2 = i2$2;
+      i2_2 = i2 + 1 | 0;
+      d_3 = d + 1 | 0;
+      if (i2_2 < src2r) then do
+        _d = d_3;
+        _s2 = src2[i2_2];
+        _i2 = i2_2;
         ::continue:: ;
       end else do
-        Belt_Array.blitUnsafe(src, i1, dst, d$3, src1r - i1 | 0);
-        return (d$3 + src1r | 0) - i1 | 0;
+        Belt_Array.blitUnsafe(src, i1, dst, d_3, src1r - i1 | 0);
+        return (d_3 + src1r | 0) - i1 | 0;
       end end 
     end end  end 
   end;
@@ -197,34 +197,34 @@ function intersect(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) d
     s1 = _s1;
     i1 = _i1;
     if (s1 < s2) then do
-      i1$1 = i1 + 1 | 0;
-      if (i1$1 < src1r) then do
-        _s1 = src[i1$1];
-        _i1 = i1$1;
+      i1_1 = i1 + 1 | 0;
+      if (i1_1 < src1r) then do
+        _s1 = src[i1_1];
+        _i1 = i1_1;
         ::continue:: ;
       end else do
         return d;
       end end 
     end else if (s1 == s2) then do
       dst[d] = s1;
-      i1$2 = i1 + 1 | 0;
-      i2$1 = i2 + 1 | 0;
-      d$1 = d + 1 | 0;
-      if (i1$2 < src1r and i2$1 < src2r) then do
-        _d = d$1;
-        _s2 = src2[i2$1];
-        _i2 = i2$1;
-        _s1 = src[i1$2];
-        _i1 = i1$2;
+      i1_2 = i1 + 1 | 0;
+      i2_1 = i2 + 1 | 0;
+      d_1 = d + 1 | 0;
+      if (i1_2 < src1r and i2_1 < src2r) then do
+        _d = d_1;
+        _s2 = src2[i2_1];
+        _i2 = i2_1;
+        _s1 = src[i1_2];
+        _i1 = i1_2;
         ::continue:: ;
       end else do
-        return d$1;
+        return d_1;
       end end 
     end else do
-      i2$2 = i2 + 1 | 0;
-      if (i2$2 < src2r) then do
-        _s2 = src2[i2$2];
-        _i2 = i2$2;
+      i2_2 = i2 + 1 | 0;
+      if (i2_2 < src2r) then do
+        _s2 = src2[i2_2];
+        _i2 = i2_2;
         ::continue:: ;
       end else do
         return d;
@@ -249,36 +249,36 @@ function diff(src, src1ofs, src1len, src2, src2ofs, src2len, dst, dstofs) do
     i1 = _i1;
     if (s1 < s2) then do
       dst[d] = s1;
-      d$1 = d + 1 | 0;
-      i1$1 = i1 + 1 | 0;
-      if (i1$1 < src1r) then do
-        _d = d$1;
-        _s1 = src[i1$1];
-        _i1 = i1$1;
+      d_1 = d + 1 | 0;
+      i1_1 = i1 + 1 | 0;
+      if (i1_1 < src1r) then do
+        _d = d_1;
+        _s1 = src[i1_1];
+        _i1 = i1_1;
         ::continue:: ;
       end else do
-        return d$1;
+        return d_1;
       end end 
     end else if (s1 == s2) then do
-      i1$2 = i1 + 1 | 0;
-      i2$1 = i2 + 1 | 0;
-      if (i1$2 < src1r and i2$1 < src2r) then do
-        _s2 = src2[i2$1];
-        _i2 = i2$1;
-        _s1 = src[i1$2];
-        _i1 = i1$2;
+      i1_2 = i1 + 1 | 0;
+      i2_1 = i2 + 1 | 0;
+      if (i1_2 < src1r and i2_1 < src2r) then do
+        _s2 = src2[i2_1];
+        _i2 = i2_1;
+        _s1 = src[i1_2];
+        _i1 = i1_2;
         ::continue:: ;
-      end else if (i1$2 == src1r) then do
+      end else if (i1_2 == src1r) then do
         return d;
       end else do
-        Belt_Array.blitUnsafe(src, i1$2, dst, d, src1r - i1$2 | 0);
-        return (d + src1r | 0) - i1$2 | 0;
+        Belt_Array.blitUnsafe(src, i1_2, dst, d, src1r - i1_2 | 0);
+        return (d + src1r | 0) - i1_2 | 0;
       end end  end 
     end else do
-      i2$2 = i2 + 1 | 0;
-      if (i2$2 < src2r) then do
-        _s2 = src2[i2$2];
-        _i2 = i2$2;
+      i2_2 = i2 + 1 | 0;
+      if (i2_2 < src2r) then do
+        _s2 = src2[i2_2];
+        _i2 = i2_2;
         ::continue:: ;
       end else do
         Belt_Array.blitUnsafe(src, i1, dst, d, src1r - i1 | 0);
@@ -349,30 +349,30 @@ function binarySearch(sorted, key) do
         arr = sorted;
         _lo = 0;
         _hi = len - 1 | 0;
-        key$1 = key;
+        key_1 = key;
         while(true) do
-          hi$1 = _hi;
-          lo$1 = _lo;
-          mid = (lo$1 + hi$1 | 0) / 2 | 0;
+          hi_1 = _hi;
+          lo_1 = _lo;
+          mid = (lo_1 + hi_1 | 0) / 2 | 0;
           midVal = arr[mid];
-          if (key$1 == midVal) then do
+          if (key_1 == midVal) then do
             return mid;
-          end else if (key$1 < midVal) then do
-            if (hi$1 == mid) then do
-              if (arr[lo$1] == key$1) then do
-                return lo$1;
+          end else if (key_1 < midVal) then do
+            if (hi_1 == mid) then do
+              if (arr[lo_1] == key_1) then do
+                return lo_1;
               end else do
-                return -(hi$1 + 1 | 0) | 0;
+                return -(hi_1 + 1 | 0) | 0;
               end end 
             end else do
               _hi = mid;
               ::continue:: ;
             end end 
-          end else if (lo$1 == mid) then do
-            if (arr[hi$1] == key$1) then do
-              return hi$1;
+          end else if (lo_1 == mid) then do
+            if (arr[hi_1] == key_1) then do
+              return hi_1;
             end else do
-              return -(hi$1 + 1 | 0) | 0;
+              return -(hi_1 + 1 | 0) | 0;
             end end 
           end else do
             _lo = mid;

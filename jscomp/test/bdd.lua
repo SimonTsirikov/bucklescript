@@ -61,7 +61,7 @@ function resize(newSize) do
       if (bucket) then do
         n = bucket[0];
         if (typeof n == "number") then do
-          error ({
+          error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
               "bdd.ml",
@@ -101,10 +101,10 @@ function insert(idl, idh, v, ind, bucket, newNode) do
     return --[[ () ]]0;
   end else do
     resize((sz_1.contents + sz_1.contents | 0) + 2 | 0);
-    ind$1 = hashVal(idl, idh, v) & sz_1.contents;
-    return Caml_array.caml_array_set(htab.contents, ind$1, --[[ :: ]]{
+    ind_1 = hashVal(idl, idh, v) & sz_1.contents;
+    return Caml_array.caml_array_set(htab.contents, ind_1, --[[ :: ]]{
                 newNode,
-                Caml_array.caml_array_get(htab.contents, ind$1)
+                Caml_array.caml_array_get(htab.contents, ind_1)
               });
   end end 
 end end
@@ -131,7 +131,7 @@ function mkNode(low, v, high) do
       if (b) then do
         n = b[0];
         if (typeof n == "number") then do
-          error ({
+          error({
             Caml_builtin_exceptions.assert_failure,
             --[[ tuple ]]{
               "bdd.ml",
@@ -149,14 +149,14 @@ function mkNode(low, v, high) do
         end end 
       end else do
         n_002 = (nodeC.contents = nodeC.contents + 1 | 0, nodeC.contents);
-        n$1 = --[[ Node ]]{
+        n_1 = --[[ Node ]]{
           low,
           v,
           n_002,
           high
         };
-        insert(getId(low), getId(high), v, ind, bucket, n$1);
-        return n$1;
+        insert(getId(low), getId(high), v, ind, bucket, n_1);
+        return n_1;
       end end 
     end;
   end end 
@@ -384,7 +384,7 @@ function main(param) do
   if (succeeded) then do
     return 0;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.assert_failure,
       --[[ tuple ]]{
         "bdd.ml",

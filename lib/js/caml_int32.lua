@@ -4,7 +4,7 @@ Caml_builtin_exceptions = require "./caml_builtin_exceptions";
 
 function div(x, y) do
   if (y == 0) then do
-    error (Caml_builtin_exceptions.division_by_zero)
+    error(Caml_builtin_exceptions.division_by_zero)
   end
    end 
   return x / y | 0;
@@ -12,7 +12,7 @@ end end
 
 function mod_(x, y) do
   if (y == 0) then do
-    error (Caml_builtin_exceptions.division_by_zero)
+    error(Caml_builtin_exceptions.division_by_zero)
   end
    end 
   return x % y;

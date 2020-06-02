@@ -30,7 +30,7 @@ function extension_constructor(x) do
   if (typeof slot ~= "number" and slot.tag == 248) then do
     name = slot[0];
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Obj.extension_constructor"
     })
@@ -38,7 +38,7 @@ function extension_constructor(x) do
   if (name.tag == 252) then do
     return slot;
   end else do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Obj.extension_constructor"
     })
@@ -95,28 +95,28 @@ function Ephemeron_create(prim) do
   return Caml_external_polyfill.resolve("caml_ephe_create")(prim);
 end end
 
-function Ephemeron_get_key(prim, prim$1) do
-  return Caml_external_polyfill.resolve("caml_ephe_get_key")(prim, prim$1);
+function Ephemeron_get_key(prim, prim_1) do
+  return Caml_external_polyfill.resolve("caml_ephe_get_key")(prim, prim_1);
 end end
 
-function Ephemeron_get_key_copy(prim, prim$1) do
-  return Caml_external_polyfill.resolve("caml_ephe_get_key_copy")(prim, prim$1);
+function Ephemeron_get_key_copy(prim, prim_1) do
+  return Caml_external_polyfill.resolve("caml_ephe_get_key_copy")(prim, prim_1);
 end end
 
-function Ephemeron_set_key(prim, prim$1, prim$2) do
-  return Caml_external_polyfill.resolve("caml_ephe_set_key")(prim, prim$1, prim$2);
+function Ephemeron_set_key(prim, prim_1, prim_2) do
+  return Caml_external_polyfill.resolve("caml_ephe_set_key")(prim, prim_1, prim_2);
 end end
 
-function Ephemeron_unset_key(prim, prim$1) do
-  return Caml_external_polyfill.resolve("caml_ephe_unset_key")(prim, prim$1);
+function Ephemeron_unset_key(prim, prim_1) do
+  return Caml_external_polyfill.resolve("caml_ephe_unset_key")(prim, prim_1);
 end end
 
-function Ephemeron_check_key(prim, prim$1) do
-  return Caml_external_polyfill.resolve("caml_ephe_check_key")(prim, prim$1);
+function Ephemeron_check_key(prim, prim_1) do
+  return Caml_external_polyfill.resolve("caml_ephe_check_key")(prim, prim_1);
 end end
 
-function Ephemeron_blit_key(prim, prim$1, prim$2, prim$3, prim$4) do
-  return Caml_external_polyfill.resolve("caml_ephe_blit_key")(prim, prim$1, prim$2, prim$3, prim$4);
+function Ephemeron_blit_key(prim, prim_1, prim_2, prim_3, prim_4) do
+  return Caml_external_polyfill.resolve("caml_ephe_blit_key")(prim, prim_1, prim_2, prim_3, prim_4);
 end end
 
 function Ephemeron_get_data(prim) do
@@ -127,8 +127,8 @@ function Ephemeron_get_data_copy(prim) do
   return Caml_external_polyfill.resolve("caml_ephe_get_data_copy")(prim);
 end end
 
-function Ephemeron_set_data(prim, prim$1) do
-  return Caml_external_polyfill.resolve("caml_ephe_set_data")(prim, prim$1);
+function Ephemeron_set_data(prim, prim_1) do
+  return Caml_external_polyfill.resolve("caml_ephe_set_data")(prim, prim_1);
 end end
 
 function Ephemeron_unset_data(prim) do
@@ -139,8 +139,8 @@ function Ephemeron_check_data(prim) do
   return Caml_external_polyfill.resolve("caml_ephe_check_data")(prim);
 end end
 
-function Ephemeron_blit_data(prim, prim$1) do
-  return Caml_external_polyfill.resolve("caml_ephe_blit_data")(prim, prim$1);
+function Ephemeron_blit_data(prim, prim_1) do
+  return Caml_external_polyfill.resolve("caml_ephe_blit_data")(prim, prim_1);
 end end
 
 Ephemeron = do

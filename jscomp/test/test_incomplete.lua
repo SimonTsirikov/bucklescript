@@ -4,7 +4,7 @@ Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";
 
 function f(x) do
   if (x > 3 or x < 1) then do
-    error ({
+    error({
       Caml_builtin_exceptions.match_failure,
       --[[ tuple ]]{
         "test_incomplete.ml",

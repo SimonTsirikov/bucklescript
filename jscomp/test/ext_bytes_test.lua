@@ -45,8 +45,8 @@ function escaped(s) do
   end else do
     s$prime = Caml_bytes.caml_create_bytes(n);
     n = 0;
-    for i$1 = 0 , #s - 1 | 0 , 1 do
-      c = s[i$1];
+    for i_1 = 0 , #s - 1 | 0 , 1 do
+      c = s[i_1];
       exit = 0;
       if (c >= 35) then do
         if (c ~= 92) then do
@@ -133,16 +133,16 @@ function starts_with(xs, prefix, p) do
     xpcall(function() do
       for i = 0 , len2 - 1 | 0 , 1 do
         if (not Curry._2(p, Caml_bytes.get(xs, i), Caml_bytes.get(prefix, i))) then do
-          error (H)
+          error(H)
         end
          end 
       end
       return true;
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == H) then do
         return false;
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
   end end 
@@ -154,21 +154,21 @@ Bytes.blit(a, 5, a, 10, 10);
 
 eq("File \"ext_bytes_test.ml\", line 96, characters 7-14", a, Bytes.of_string("\0\x01\x02\x03\x04\x05\x06\x07\b\t\x05\x06\x07\b\t\n\x0b\f\r\x0e\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"));
 
-a$1 = Bytes.init(100, Char.chr);
+a_1 = Bytes.init(100, Char.chr);
 
-Bytes.blit(a$1, 10, a$1, 5, 10);
+Bytes.blit(a_1, 10, a_1, 5, 10);
 
-eq("File \"ext_bytes_test.ml\", line 102, characters 7-14", a$1, Bytes.of_string("\0\x01\x02\x03\x04\n\x0b\f\r\x0e\x0f\x10\x11\x12\x13\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"));
+eq("File \"ext_bytes_test.ml\", line 102, characters 7-14", a_1, Bytes.of_string("\0\x01\x02\x03\x04\n\x0b\f\r\x0e\x0f\x10\x11\x12\x13\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abc"));
 
 f = Char.chr;
 
-a$2 = Caml_bytes.bytes_to_string(Bytes.init(100, f));
+a_2 = Caml_bytes.bytes_to_string(Bytes.init(100, f));
 
 b = Bytes.init(100, (function (i) do
         return --[[ "\000" ]]0;
       end end));
 
-Bytes.blit_string(a$2, 10, b, 5, 10);
+Bytes.blit_string(a_2, 10, b, 5, 10);
 
 eq("File \"ext_bytes_test.ml\", line 109, characters 7-14", b, Bytes.of_string("\0\0\0\0\0\n\x0b\f\r\x0e\x0f\x10\x11\x12\x13\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"));
 

@@ -25,18 +25,18 @@ function full_init(s, seed) do
   extract = function (d) do
     return ((Caml_string.get(d, 0) + (Caml_string.get(d, 1) << 8) | 0) + (Caml_string.get(d, 2) << 16) | 0) + (Caml_string.get(d, 3) << 24) | 0;
   end end;
-  seed$1 = #seed == 0 and {0} or seed;
-  l = #seed$1;
+  seed_1 = #seed == 0 and {0} or seed;
+  l = #seed_1;
   for i = 0 , 54 , 1 do
     Caml_array.caml_array_set(s.st, i, i);
   end
   accu = "x";
-  for i$1 = 0 , 54 + (
+  for i_1 = 0 , 54 + (
     55 > l and 55 or l
   ) | 0 , 1 do
-    j = i$1 % 55;
-    k = i$1 % l;
-    accu = combine(accu, Caml_array.caml_array_get(seed$1, k));
+    j = i_1 % 55;
+    k = i_1 % l;
+    accu = combine(accu, Caml_array.caml_array_get(seed_1, k));
     Caml_array.caml_array_set(s.st, j, (Caml_array.caml_array_get(s.st, j) ^ extract(accu)) & 1073741823);
   end
   s.idx = 0;
@@ -76,16 +76,16 @@ end end
 
 function __int(s, bound) do
   if (bound > 1073741823 or bound <= 0) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Random.int"
     })
   end
    end 
-  s$1 = s;
+  s_1 = s;
   n = bound;
   while(true) do
-    r = bits(s$1);
+    r = bits(s_1);
     v = r % n;
     if ((r - v | 0) > ((1073741823 - n | 0) + 1 | 0)) then do
       ::continue:: ;
@@ -97,17 +97,17 @@ end end
 
 function int32(s, bound) do
   if (bound <= 0) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Random.int32"
     })
   end
    end 
-  s$1 = s;
+  s_1 = s;
   n = bound;
   while(true) do
-    b1 = bits(s$1);
-    b2 = ((bits(s$1) & 1) << 30);
+    b1 = bits(s_1);
+    b2 = ((bits(s_1) & 1) << 30);
     r = b1 | b2;
     v = r % n;
     if ((r - v | 0) > ((Int32.max_int - n | 0) + 1 | 0)) then do
@@ -123,18 +123,18 @@ function int64(s, bound) do
           --[[ hi ]]0,
           --[[ lo ]]0
         })) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Random.int64"
     })
   end
    end 
-  s$1 = s;
+  s_1 = s;
   n = bound;
   while(true) do
-    b1 = Caml_int64.of_int32(bits(s$1));
-    b2 = Caml_int64.lsl_(Caml_int64.of_int32(bits(s$1)), 30);
-    b3 = Caml_int64.lsl_(Caml_int64.of_int32(bits(s$1) & 7), 60);
+    b1 = Caml_int64.of_int32(bits(s_1));
+    b2 = Caml_int64.lsl_(Caml_int64.of_int32(bits(s_1)), 30);
+    b3 = Caml_int64.lsl_(Caml_int64.of_int32(bits(s_1) & 7), 60);
     r = Caml_int64.or_(b1, Caml_int64.or_(b2, b3));
     v = Caml_int64.mod_(r, n);
     if (Caml_int64.gt(Caml_int64.sub(r, v), Caml_int64.add(Caml_int64.sub(Int64.max_int, n), --[[ int64 ]]{
@@ -227,35 +227,35 @@ __default = do
   idx: 0
 end;
 
-function bits$1(param) do
+function bits_1(param) do
   return bits(__default);
 end end
 
-function __int$1(bound) do
+function __int_1(bound) do
   return __int(__default, bound);
 end end
 
-function int32$1(bound) do
+function int32_1(bound) do
   return int32(__default, bound);
 end end
 
-function nativeint$1(bound) do
+function nativeint_1(bound) do
   return Curry._2(nativeint, __default, bound);
 end end
 
-function int64$1(bound) do
+function int64_1(bound) do
   return int64(__default, bound);
 end end
 
-function __float$1(scale) do
+function __float_1(scale) do
   return rawfloat(__default) * scale;
 end end
 
-function bool$1(param) do
+function bool_1(param) do
   return bool(__default);
 end end
 
-function full_init$1(seed) do
+function full_init_1(seed) do
   return full_init(__default, seed);
 end end
 
@@ -264,7 +264,7 @@ function init(seed) do
 end end
 
 function self_init(param) do
-  return full_init$1(Caml_sys.caml_sys_random_seed(--[[ () ]]0));
+  return full_init_1(Caml_sys.caml_sys_random_seed(--[[ () ]]0));
 end end
 
 function get_state(param) do
@@ -289,15 +289,15 @@ State = do
 end;
 
 exports.init = init;
-exports.full_init = full_init$1;
+exports.full_init = full_init_1;
 exports.self_init = self_init;
-exports.bits = bits$1;
-exports.__int = __int$1;
-exports.int32 = int32$1;
-exports.nativeint = nativeint$1;
-exports.int64 = int64$1;
-exports.__float = __float$1;
-exports.bool = bool$1;
+exports.bits = bits_1;
+exports.__int = __int_1;
+exports.int32 = int32_1;
+exports.nativeint = nativeint_1;
+exports.int64 = int64_1;
+exports.__float = __float_1;
+exports.bool = bool_1;
 exports.State = State;
 exports.get_state = get_state;
 exports.set_state = set_state;

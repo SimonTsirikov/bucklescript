@@ -25,7 +25,7 @@ function ff(x) do
         return --[[ c ]]99;end end end 
      do
     else do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "bb.ml",
@@ -50,7 +50,7 @@ function test(x) do
         match = --[[ c ]]99;end else 
      do end end end end
     else do
-      error ({
+      error({
         Caml_builtin_exceptions.assert_failure,
         --[[ tuple ]]{
           "bb.ml",

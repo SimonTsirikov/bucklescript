@@ -35,18 +35,18 @@ function remove(h, key) do
       h_buckets[i] = next_cell;
       return --[[ () ]]0;
     end else if (next_cell ~= undefined) then do
-      eq$1 = eq;
-      h$1 = h;
-      key$1 = key;
+      eq_1 = eq;
+      h_1 = h;
+      key_1 = key;
       _prec = l;
       _cell = next_cell;
       while(true) do
         cell = _cell;
         prec = _prec;
         cell_next = cell.next;
-        if (eq$1(cell.key, key$1)) then do
+        if (eq_1(cell.key, key_1)) then do
           prec.next = cell_next;
-          h$1.size = h$1.size - 1 | 0;
+          h_1.size = h_1.size - 1 | 0;
           return --[[ () ]]0;
         end else if (cell_next ~= undefined) then do
           _cell = cell_next;
@@ -101,20 +101,20 @@ function add0(h, key, hash, eq) do
     end;
   end end 
   if (h.size > (buckets_len << 1)) then do
-    hash$1 = hash;
-    h$1 = h;
-    odata = h$1.buckets;
+    hash_1 = hash;
+    h_1 = h;
+    odata = h_1.buckets;
     osize = #odata;
     nsize = (osize << 1);
     if (nsize >= osize) then do
-      h_buckets$1 = new Array(nsize);
+      h_buckets_1 = new Array(nsize);
       ndata_tail = new Array(nsize);
-      h$1.buckets = h_buckets$1;
-      for i$1 = 0 , osize - 1 | 0 , 1 do
-        copyBucket(hash$1, h_buckets$1, ndata_tail, odata[i$1]);
+      h_1.buckets = h_buckets_1;
+      for i_1 = 0 , osize - 1 | 0 , 1 do
+        copyBucket(hash_1, h_buckets_1, ndata_tail, odata[i_1]);
       end
-      for i$2 = 0 , nsize - 1 | 0 , 1 do
-        match = ndata_tail[i$2];
+      for i_2 = 0 , nsize - 1 | 0 , 1 do
+        match = ndata_tail[i_2];
         if (match ~= undefined) then do
           match.next = undefined;
         end
@@ -139,12 +139,12 @@ function has(h, key) do
   nid = h.hash(key) & (#h_buckets - 1 | 0);
   bucket = h_buckets[nid];
   if (bucket ~= undefined) then do
-    eq$1 = eq;
-    key$1 = key;
+    eq_1 = eq;
+    key_1 = key;
     _cell = bucket;
     while(true) do
       cell = _cell;
-      if (eq$1(cell.key, key$1)) then do
+      if (eq_1(cell.key, key_1)) then do
         return true;
       end else do
         match = cell.next;

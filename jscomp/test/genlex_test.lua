@@ -39,11 +39,11 @@ function to_list(s) do
     v;
     xpcall(function() do
       v = Stream.next(s);
-    end end,function(exn) return do
+    end end,function(exn) do
       if (exn == Stream.Failure) then do
         return List.rev(acc);
       end else do
-        error (exn)
+        error(exn)
       end end 
     end end)
     _acc = --[[ :: ]]{

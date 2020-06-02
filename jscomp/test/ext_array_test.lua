@@ -114,7 +114,7 @@ end end
 
 function range(from, to_) do
   if (from > to_) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Ext_array_test.range"
     })
@@ -128,7 +128,7 @@ end end
 function map2i(f, a, b) do
   len = #a;
   if (len ~= #b) then do
-    error ({
+    error({
       Caml_builtin_exceptions.invalid_argument,
       "Ext_array_test.map2i"
     })
@@ -223,10 +223,10 @@ end end
 function find_with_index(arr, cmp, v) do
   len = #arr;
   _i = 0;
-  len$1 = len;
+  len_1 = len;
   while(true) do
     i = _i;
-    if (i >= len$1) then do
+    if (i >= len_1) then do
       return -1;
     end else if (Curry._2(cmp, arr[i], v)) then do
       return i;

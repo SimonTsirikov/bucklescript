@@ -10,7 +10,7 @@ function scanf_bad_input(ib, x) do
   if (x[0] == Scan_failure or x[0] == Caml_builtin_exceptions.failure) then do
     s = x[1];
   end else do
-    error (x)
+    error(x)
   end end 
   for i = 0 , 100 , 1 do
     console.log(s);

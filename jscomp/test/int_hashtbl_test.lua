@@ -12,8 +12,8 @@ function f(H) do
   tbl = Curry._1(H.create, 17);
   Curry._3(H.add, tbl, 1, --[[ "1" ]]49);
   Curry._3(H.add, tbl, 2, --[[ "2" ]]50);
-  return List.sort((function (param, param$1) do
-                return Caml_primitive.caml_int_compare(param[0], param$1[0]);
+  return List.sort((function (param, param_1) do
+                return Caml_primitive.caml_int_compare(param[0], param_1[0]);
               end end), Curry._3(H.fold, (function (k, v, acc) do
                     return --[[ :: ]]{
                             --[[ tuple ]]{
@@ -30,8 +30,8 @@ function g(H, count) do
   for i = 0 , count , 1 do
     Curry._3(H.replace, tbl, (i << 1), String(i));
   end
-  for i$1 = 0 , count , 1 do
-    Curry._3(H.replace, tbl, (i$1 << 1), String(i$1));
+  for i_1 = 0 , count , 1 do
+    Curry._3(H.replace, tbl, (i_1 << 1), String(i_1));
   end
   v = Curry._3(H.fold, (function (k, v, acc) do
           return --[[ :: ]]{
@@ -42,8 +42,8 @@ function g(H, count) do
                   acc
                 };
         end end), tbl, --[[ [] ]]0);
-  return __Array.of_list(List.sort((function (param, param$1) do
-                    return Caml_primitive.caml_int_compare(param[0], param$1[0]);
+  return __Array.of_list(List.sort((function (param, param_1) do
+                    return Caml_primitive.caml_int_compare(param[0], param_1[0]);
                   end end), v));
 end end
 

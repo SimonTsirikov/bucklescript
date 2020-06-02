@@ -162,10 +162,10 @@ function ffff(x) do
         match[1]
       });
   console.log(x.getGADT);
-  match$1 = x.getGADT2;
-  console.log(match$1[0], match$1[1]);
-  match$2 = x[0];
-  console.log(match$2[0], match$2[1]);
+  match_1 = x.getGADT2;
+  console.log(match_1[0], match_1[1]);
+  match_2 = x[0];
+  console.log(match_2[0], match_2[1]);
   x[0] = --[[ tuple ]]{
     1,
     "x"

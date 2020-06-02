@@ -50,11 +50,11 @@ function div(x, y) do
             im: (x.im - r * x.re) / d
           end;
   end else do
-    r$1 = y.re / y.im;
-    d$1 = y.im + r$1 * y.re;
+    r_1 = y.re / y.im;
+    d_1 = y.im + r_1 * y.re;
     return do
-            re: (r$1 * x.re + x.im) / d$1,
-            im: (r$1 * x.im - x.re) / d$1
+            re: (r_1 * x.re + x.im) / d_1,
+            im: (r_1 * x.im - x.re) / d_1
           end;
   end end 
 end end
@@ -78,8 +78,8 @@ function norm(x) do
     q = i / r;
     return r * Math.sqrt(1.0 + q * q);
   end else do
-    q$1 = r / i;
-    return i * Math.sqrt(1.0 + q$1 * q$1);
+    q_1 = r / i;
+    return i * Math.sqrt(1.0 + q_1 * q_1);
   end end  end  end 
 end end
 
@@ -108,8 +108,8 @@ function sqrt(x) do
       q = i / r;
       w = Math.sqrt(r) * Math.sqrt(0.5 * (1.0 + Math.sqrt(1.0 + q * q)));
     end else do
-      q$1 = r / i;
-      w = Math.sqrt(i) * Math.sqrt(0.5 * (q$1 + Math.sqrt(1.0 + q$1 * q$1)));
+      q_1 = r / i;
+      w = Math.sqrt(i) * Math.sqrt(0.5 * (q_1 + Math.sqrt(1.0 + q_1 * q_1)));
     end end 
     if (x.re >= 0.0) then do
       return do
