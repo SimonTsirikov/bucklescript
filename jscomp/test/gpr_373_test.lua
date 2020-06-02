@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 overflow_dec_i32_number = 272872590;

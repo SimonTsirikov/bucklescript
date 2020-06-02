@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Js_int = require "./js_int";
 

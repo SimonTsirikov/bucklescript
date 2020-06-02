@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 List = require "./list";
 Caml_exceptions = require "./caml_exceptions";

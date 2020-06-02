@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Mt = require "./mt";
 Caml_option = require "../../lib/js/caml_option";

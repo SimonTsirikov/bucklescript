@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Js_dict = require "./js_dict";
 Process = require "pro";

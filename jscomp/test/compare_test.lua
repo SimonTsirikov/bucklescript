@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function compare(x, y) do

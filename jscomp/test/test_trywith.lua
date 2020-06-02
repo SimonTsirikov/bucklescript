@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Curry = require "../../lib/js/curry";
 Caml_js_exceptions = require "../../lib/js/caml_js_exceptions";

@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function get_uint8(str, off) do

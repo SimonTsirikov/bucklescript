@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Curry = require "./curry";
 __Buffer = require "./buffer";

@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_format = require "./caml_format";
 Caml_primitive = require "./caml_primitive";

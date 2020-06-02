@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Curry = require "../../lib/js/curry";
 Js_exn = require "../../lib/js/js_exn";

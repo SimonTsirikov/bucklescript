@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Curry = require "./curry";
 Belt_SortArrayInt = require "./belt_SortArrayInt";

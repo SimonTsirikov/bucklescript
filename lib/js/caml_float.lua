@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 caml_int32_float_of_bits = (function(x){

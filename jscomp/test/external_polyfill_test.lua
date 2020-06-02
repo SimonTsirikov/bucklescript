@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Mt = require "./mt";
 Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";

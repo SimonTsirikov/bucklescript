@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function busted(a1, a2, param) do

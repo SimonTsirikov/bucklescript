@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Mt = require "./mt";
 Belt_Id = require "../../lib/js/belt_Id";

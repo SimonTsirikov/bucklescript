@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Bytes = require "../../lib/js/bytes";
 Caml_char = require "../../lib/js/caml_char";

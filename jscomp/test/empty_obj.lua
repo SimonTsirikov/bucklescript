@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 CamlinternalOO = require "../../lib/js/camlinternalOO";
 

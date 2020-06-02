@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 __Map = require "./map";
 __Set = require "./set";

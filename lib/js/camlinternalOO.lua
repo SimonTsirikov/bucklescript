@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Obj = require "./obj";
 List = require "./list";

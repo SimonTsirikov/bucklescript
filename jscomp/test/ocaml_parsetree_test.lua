@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Arg = require "../../lib/js/arg";
 Sys = require "../../lib/js/sys";

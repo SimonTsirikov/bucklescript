@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Side_effect = require "./side_effect";
 

@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function binarySearch(upper, id, array) do

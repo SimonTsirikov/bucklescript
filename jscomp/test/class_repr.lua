@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Oo = require "../../lib/js/oo";
 Curry = require "../../lib/js/curry";

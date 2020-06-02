@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function hi2(xx, yy, zz) do

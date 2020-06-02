@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Gpr_3852_effect = require "./gpr_3852_effect";
 

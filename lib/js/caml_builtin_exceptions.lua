@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 out_of_memory = --[[ tuple ]]{

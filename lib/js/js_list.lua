@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Js_vector = require "./js_vector";
 Caml_option = require "./caml_option";

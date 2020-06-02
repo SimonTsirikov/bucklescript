@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Curry = require "./curry";
 Caml_builtin_exceptions = require "./caml_builtin_exceptions";

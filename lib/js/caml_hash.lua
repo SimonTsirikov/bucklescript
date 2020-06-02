@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_hash_primitive = require "./caml_hash_primitive";
 Caml_builtin_exceptions = require "./caml_builtin_exceptions";

@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 C = require "";
 C_1 = require "";

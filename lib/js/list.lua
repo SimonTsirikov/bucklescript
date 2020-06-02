@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Curry = require "./curry";
 Caml_obj = require "./caml_obj";

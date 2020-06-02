@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Foo_class = require "xx/foo_c";
 

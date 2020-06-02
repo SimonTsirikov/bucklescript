@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 U = require "";
 VV = require "";

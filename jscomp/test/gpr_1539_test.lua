@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Block = require "../../lib/js/block";
 Caml_module = require "../../lib/js/caml_module";

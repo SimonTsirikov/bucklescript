@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Belt_SetInt = require "../../lib/js/belt_SetInt";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";

@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 __Array = require "../../lib/js/array";
 Block = require "../../lib/js/block";

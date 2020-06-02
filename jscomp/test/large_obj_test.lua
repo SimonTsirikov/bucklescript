@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Curry = require "../../lib/js/curry";
 Caml_int32 = require "../../lib/js/caml_int32";

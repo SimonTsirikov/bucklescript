@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Belt_MapInt = require "../../lib/js/belt_MapInt";
 

@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function t_error3(param_0) do

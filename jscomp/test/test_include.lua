@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 List = require "../../lib/js/list";
 __String = require "../../lib/js/string";

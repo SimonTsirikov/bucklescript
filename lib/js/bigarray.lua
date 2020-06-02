@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Sys = require "./sys";
 __Array = require "./array";

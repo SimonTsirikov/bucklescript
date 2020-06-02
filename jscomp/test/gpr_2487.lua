@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Belt_Array = require "../../lib/js/belt_Array";
 

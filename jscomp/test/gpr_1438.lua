@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function actionKey(key, a, b, c, d, e) do

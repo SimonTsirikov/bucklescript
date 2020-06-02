@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function isfree(id, _param) do

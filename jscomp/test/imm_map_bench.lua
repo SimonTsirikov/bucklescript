@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Immutable = require "immut";
 Belt_Array = require "../../lib/js/belt_Array";

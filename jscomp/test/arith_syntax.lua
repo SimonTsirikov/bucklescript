@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Pervasives = require "../../lib/js/pervasives";
 

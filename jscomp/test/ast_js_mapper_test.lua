@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Js_mapperRt = require "../../lib/js/js_mapperRt";
 

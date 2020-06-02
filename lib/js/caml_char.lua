@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function caml_is_printable(c) do

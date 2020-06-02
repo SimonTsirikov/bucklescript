@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Vscode = require "vs";
 SomeEs6Module = require "some-es6-mo";

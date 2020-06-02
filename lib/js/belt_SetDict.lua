@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Belt_internalAVLset = require "./belt_internalAVLset";
 

@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Block = require "../../lib/js/block";
 Belt_Result = require "../../lib/js/belt_Result";

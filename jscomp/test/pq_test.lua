@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_exceptions = require "../../lib/js/caml_exceptions";
 

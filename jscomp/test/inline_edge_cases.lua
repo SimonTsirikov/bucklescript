@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function test3(_n) do

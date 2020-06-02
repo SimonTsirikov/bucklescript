@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_obj = require "./caml_obj";
 Caml_array = require "./caml_array";

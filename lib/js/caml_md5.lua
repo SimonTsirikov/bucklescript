@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function cmn(q, a, b, x, s, t) do

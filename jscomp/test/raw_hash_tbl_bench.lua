@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Hashtbl = require "../../lib/js/hashtbl";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";

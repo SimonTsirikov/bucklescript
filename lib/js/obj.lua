@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Marshal = require "./marshal";
 Caml_array = require "./caml_array";

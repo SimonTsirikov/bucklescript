@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Block = require "./block";
 Caml_primitive = require "./caml_primitive";

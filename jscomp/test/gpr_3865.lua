@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Gpr_3865_foo = require "./gpr_3865_foo";
 

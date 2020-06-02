@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Belt_Id = require "../../lib/js/belt_Id";
 Hashtbl = require "../../lib/js/hashtbl";

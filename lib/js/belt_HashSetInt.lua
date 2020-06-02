@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_hash_primitive = require "./caml_hash_primitive";
 Belt_internalSetBuckets = require "./belt_internalSetBuckets";

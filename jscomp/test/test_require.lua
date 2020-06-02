@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 match = typeof require == "undefined" and undefined or require;

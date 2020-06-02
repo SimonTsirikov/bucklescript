@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Block = require "../../lib/js/block";
 Parsing = require "../../lib/js/parsing";

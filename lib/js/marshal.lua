@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_bytes = require "./caml_bytes";
 Caml_external_polyfill = require "./caml_external_polyfill";

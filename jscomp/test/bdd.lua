@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_array = require "../../lib/js/caml_array";
 Caml_int32 = require "../../lib/js/caml_int32";

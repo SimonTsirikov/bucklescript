@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function bla(foo, bar, baz) do

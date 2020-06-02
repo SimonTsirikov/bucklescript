@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Js_exn = require "../../lib/js/js_exn";
 Caml_option = require "../../lib/js/caml_option";

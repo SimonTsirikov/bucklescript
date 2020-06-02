@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function small_float_array(x) do

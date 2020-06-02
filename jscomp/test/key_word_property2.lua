@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Export_keyword = require "./export_keyword";
 

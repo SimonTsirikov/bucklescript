@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function a(a0, a1, a2, a3, a4) do

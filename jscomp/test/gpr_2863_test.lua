@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Belt_MutableSetInt = require "../../lib/js/belt_MutableSetInt";
 

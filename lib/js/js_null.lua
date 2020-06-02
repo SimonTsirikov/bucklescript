@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_option = require "./caml_option";
 

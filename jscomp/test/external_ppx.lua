@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 External_ppxGen = require "./external_ppx";
 

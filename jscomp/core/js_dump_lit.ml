@@ -74,7 +74,7 @@ let define = "define"
 let break = "break"
 let continue = "::continue::"
 let switch = "switch"
-let strict_directive = "--[['use strict';]]"
+let strict_directive = "console.log = print;"
 let true_ = "true"
 let false_ = "false"
 

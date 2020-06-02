@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 __String = require "../../lib/js/string";
 

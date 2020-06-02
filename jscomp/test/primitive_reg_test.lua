@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function x(prim, prim_1) do

@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Belt_internalSetBuckets = require "./belt_internalSetBuckets";
 Belt_internalBucketsType = require "./belt_internalBucketsType";

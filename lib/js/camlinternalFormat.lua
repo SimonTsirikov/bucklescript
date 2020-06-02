@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Char = require "./char";
 Block = require "./block";

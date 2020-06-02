@@ -2,7 +2,7 @@
  * copyright 
 */
 // hello
---[['use strict';]]
+console.log = print;
 
 List = require "../../lib/js/list";
 

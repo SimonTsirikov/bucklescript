@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 setter_suffix = "#=";

@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 console.log("Side_effect");

@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_gc = require "./caml_gc";
 Caml_io = require "./caml_io";

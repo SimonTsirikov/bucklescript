@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 function caml_int_compare(x, y) do

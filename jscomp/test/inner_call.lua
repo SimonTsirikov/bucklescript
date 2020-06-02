@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Inner_define = require "./inner_define";
 

@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_external_polyfill = require "../../lib/js/caml_external_polyfill";
 Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions";

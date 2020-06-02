@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_oo_curry = require "../../lib/js/caml_oo_curry";
 CamlinternalOO = require "../../lib/js/camlinternalOO";

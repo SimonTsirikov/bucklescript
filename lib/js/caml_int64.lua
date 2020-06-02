@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_int32 = require "./caml_int32";
 Caml_utils = require "./caml_utils";

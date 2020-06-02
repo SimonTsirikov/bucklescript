@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 Caml_utils = require "../../lib/js/caml_utils";
 

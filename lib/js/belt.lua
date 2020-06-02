@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 
 Id = --[[ alias ]]0;

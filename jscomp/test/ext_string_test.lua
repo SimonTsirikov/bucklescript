@@ -1,4 +1,4 @@
---[['use strict';]]
+console.log = print;
 
 List = require "../../lib/js/list";
 Bytes = require "../../lib/js/bytes";
