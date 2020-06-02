@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Caml_obj = require("./caml_obj.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_obj = require "./caml_obj.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function init_mod(loc, shape) do
   undef_module = function (param) do

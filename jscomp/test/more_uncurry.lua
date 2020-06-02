@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function f(x, y, param) do

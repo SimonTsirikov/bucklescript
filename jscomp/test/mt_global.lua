@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("../../lib/js/block.lua");
+Block = require "../../lib/js/block.lua";
 
 function collect_eq(test_id, suites, loc, x, y) do
   test_id.contents = test_id.contents + 1 | 0;

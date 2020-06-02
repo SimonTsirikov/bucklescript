@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Bytes = require("./bytes.lua");
+Bytes = require "./bytes.lua";
 
 make = Bytes.make;
 

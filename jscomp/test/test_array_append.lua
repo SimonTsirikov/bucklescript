@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-$$Array = require("../../lib/js/array.lua");
+$$Array = require "../../lib/js/array.lua";
 
 const_v = $$Array.append([
       1,

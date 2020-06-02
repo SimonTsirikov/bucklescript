@@ -1,24 +1,24 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-List = require("../../lib/js/list.lua");
-Block = require("../../lib/js/block.lua");
-Bytes = require("../../lib/js/bytes.lua");
-Curry = require("../../lib/js/curry.lua");
-Scanf = require("../../lib/js/scanf.lua");
-$$Buffer = require("../../lib/js/buffer.lua");
-Printf = require("../../lib/js/printf.lua");
-$$String = require("../../lib/js/string.lua");
-Testing = require("./testing.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Mt_global = require("./mt_global.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Caml_int64 = require("../../lib/js/caml_int64.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_format = require("../../lib/js/caml_format.lua");
-Caml_string = require("../../lib/js/caml_string.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Mt = require "./mt.lua";
+List = require "../../lib/js/list.lua";
+Block = require "../../lib/js/block.lua";
+Bytes = require "../../lib/js/bytes.lua";
+Curry = require "../../lib/js/curry.lua";
+Scanf = require "../../lib/js/scanf.lua";
+$$Buffer = require "../../lib/js/buffer.lua";
+Printf = require "../../lib/js/printf.lua";
+$$String = require "../../lib/js/string.lua";
+Testing = require "./testing.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Mt_global = require "./mt_global.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Caml_int64 = require "../../lib/js/caml_int64.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_format = require "../../lib/js/caml_format.lua";
+Caml_string = require "../../lib/js/caml_string.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 suites = do
   contents: --[[ [] ]]0

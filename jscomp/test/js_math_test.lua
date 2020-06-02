@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Js_math = require("../../lib/js/js_math.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Js_math = require "../../lib/js/js_math.lua";
 
 suites_000 = --[[ tuple ]][
   "_E",

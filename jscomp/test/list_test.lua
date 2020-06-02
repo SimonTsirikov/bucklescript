@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-List = require("../../lib/js/list.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
+Mt = require "./mt.lua";
+List = require "../../lib/js/list.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
 
 list_suites_000 = --[[ tuple ]][
   "length",

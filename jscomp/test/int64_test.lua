@@ -1,16 +1,16 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Int32 = require("../../lib/js/int32.lua");
-Int64 = require("../../lib/js/int64.lua");
-Format = require("../../lib/js/format.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_int64 = require("../../lib/js/caml_int64.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Ext_array_test = require("./ext_array_test.lua");
+Mt = require "./mt.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Int32 = require "../../lib/js/int32.lua";
+Int64 = require "../../lib/js/int64.lua";
+Format = require "../../lib/js/format.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_int64 = require "../../lib/js/caml_int64.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Ext_array_test = require "./ext_array_test.lua";
 
 function f(u, v) do
   return u > v;

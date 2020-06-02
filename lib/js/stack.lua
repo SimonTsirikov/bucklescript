@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-List = require("./list.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
+List = require "./list.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
 
 Empty = Caml_exceptions.create("Stack.Empty");
 

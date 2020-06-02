@@ -1,16 +1,16 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Printf = require("../../lib/js/printf.lua");
-Random = require("../../lib/js/random.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_int32 = require("../../lib/js/caml_int32.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Printf = require "../../lib/js/printf.lua";
+Random = require "../../lib/js/random.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_int32 = require "../../lib/js/caml_int32.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 Actors = { };
 

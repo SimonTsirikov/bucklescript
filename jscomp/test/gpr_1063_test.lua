@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function bla(foo, bar, baz) do

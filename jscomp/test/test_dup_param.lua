@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function f(x, x$1) do

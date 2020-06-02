@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Fs = require("fs");
-Path = require("path");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Fs = require "fs";
+Path = require "path";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 package_json = "package.json";
 

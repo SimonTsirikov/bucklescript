@@ -1,13 +1,13 @@
-'use strict';
+--[['use strict';]]
 
-Char = require("./char.lua");
-$$String = require("./string.lua");
-Caml_md5 = require("./caml_md5.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Pervasives = require("./pervasives.lua");
-Caml_string = require("./caml_string.lua");
-Caml_external_polyfill = require("./caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Char = require "./char.lua";
+$$String = require "./string.lua";
+Caml_md5 = require "./caml_md5.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Pervasives = require "./pervasives.lua";
+Caml_string = require "./caml_string.lua";
+Caml_external_polyfill = require "./caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function string(str) do
   return Caml_md5.caml_md5_string(str, 0, #str);

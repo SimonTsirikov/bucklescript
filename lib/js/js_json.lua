@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("./block.lua");
-Caml_option = require("./caml_option.lua");
+Block = require "./block.lua";
+Caml_option = require "./caml_option.lua";
 
 function classify(x) do
   ty = typeof x;

@@ -1,12 +1,12 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-List$1 = require("List");
-List$2 = require("reactV");
-List$3 = require("reactX");
-Local = require("./local");
-WebpackConfigJs = require("../../../webpack.config.js");
-WebpackMiddlewareConfigJs = require("../../../webpack.middleware.config.js");
+List = require "../../lib/js/list.lua";
+List$1 = require "List";
+List$2 = require "reactV";
+List$3 = require "reactX";
+Local = require "./local";
+WebpackConfigJs = require "../../../webpack.config.js";
+WebpackMiddlewareConfigJs = require "../../../webpack.middleware.config.js";
 
 configx = WebpackConfigJs;
 

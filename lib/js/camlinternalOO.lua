@@ -1,18 +1,18 @@
-'use strict';
+--[['use strict';]]
 
-Obj = require("./obj.lua");
-List = require("./list.lua");
-$$Array = require("./array.lua");
-Curry = require("./curry.lua");
-Caml_oo = require("./caml_oo.lua");
-Caml_obj = require("./caml_obj.lua");
-Caml_array = require("./caml_array.lua");
-Caml_int32 = require("./caml_int32.lua");
-Belt_MapInt = require("./belt_MapInt.lua");
-Caml_string = require("./caml_string.lua");
-Belt_MapString = require("./belt_MapString.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Obj = require "./obj.lua";
+List = require "./list.lua";
+$$Array = require "./array.lua";
+Curry = require "./curry.lua";
+Caml_oo = require "./caml_oo.lua";
+Caml_obj = require "./caml_obj.lua";
+Caml_array = require "./caml_array.lua";
+Caml_int32 = require "./caml_int32.lua";
+Belt_MapInt = require "./belt_MapInt.lua";
+Caml_string = require "./caml_string.lua";
+Belt_MapString = require "./belt_MapString.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function copy(o) do
   return Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(o));

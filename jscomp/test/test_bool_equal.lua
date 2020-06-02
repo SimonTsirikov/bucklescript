@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function bool_equal(x, y) do
   if (x) then do

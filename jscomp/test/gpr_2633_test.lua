@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("../../lib/js/curry.lua");
+Curry = require "../../lib/js/curry.lua";
 
 function on1(foo, $$event) do
   foo.on((function () do

@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Belt_Array = require("./belt_Array.lua");
-Caml_option = require("./caml_option.lua");
-Belt_SortArray = require("./belt_SortArray.lua");
+Curry = require "./curry.lua";
+Belt_Array = require "./belt_Array.lua";
+Caml_option = require "./caml_option.lua";
+Belt_SortArray = require "./belt_SortArray.lua";
 
 function head(x) do
   if (x) then do

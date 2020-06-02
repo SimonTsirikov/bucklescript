@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("../../lib/js/curry.lua");
-CamlinternalOO = require("../../lib/js/camlinternalOO.lua");
+Curry = require "../../lib/js/curry.lua";
+CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
 
 shared = [
   "move",

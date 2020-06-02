@@ -1,12 +1,12 @@
-'use strict';
+--[['use strict';]]
 
-Bytes = require("./bytes.lua");
-Curry = require("./curry.lua");
-Caml_array = require("./caml_array.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Caml_lexer = require("./caml_lexer.lua");
-Pervasives = require("./pervasives.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Bytes = require "./bytes.lua";
+Curry = require "./curry.lua";
+Caml_array = require "./caml_array.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Caml_lexer = require "./caml_lexer.lua";
+Pervasives = require "./pervasives.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function engine(tbl, state, buf) do
   result = Caml_lexer.caml_lex_engine(tbl, state, buf);

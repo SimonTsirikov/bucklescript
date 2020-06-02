@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
 function insert(queue, prio, elt) do
   if (queue) then do

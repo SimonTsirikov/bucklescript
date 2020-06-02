@@ -1,11 +1,11 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-$$Array = require("../../lib/js/array.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+$$Array = require "../../lib/js/array.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function reverse_range(a, i, len) do
   if (len == 0) then do

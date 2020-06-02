@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Int32 = require("../../lib/js/int32.lua");
-Caml_int32 = require("../../lib/js/caml_int32.lua");
-Caml_string = require("../../lib/js/caml_string.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Int32 = require "../../lib/js/int32.lua";
+Caml_int32 = require "../../lib/js/caml_int32.lua";
+Caml_string = require "../../lib/js/caml_string.lua";
 
 function hash_variant(s) do
   accu = 0;

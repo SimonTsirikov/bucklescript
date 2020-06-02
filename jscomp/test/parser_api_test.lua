@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Parser_api = require("./parser_api.lua");
+Mt = require "./mt.lua";
+Parser_api = require "./parser_api.lua";
 
 suites = do
   contents: --[[ [] ]]0

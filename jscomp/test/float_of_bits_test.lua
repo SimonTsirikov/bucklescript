@@ -1,14 +1,14 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-List = require("../../lib/js/list.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Printf = require("../../lib/js/printf.lua");
-Caml_float = require("../../lib/js/caml_float.lua");
-Caml_int64 = require("../../lib/js/caml_int64.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
+Mt = require "./mt.lua";
+List = require "../../lib/js/list.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Printf = require "../../lib/js/printf.lua";
+Caml_float = require "../../lib/js/caml_float.lua";
+Caml_int64 = require "../../lib/js/caml_int64.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
 
 one_float = --[[ int64 ]][
   --[[ hi ]]1072693248,

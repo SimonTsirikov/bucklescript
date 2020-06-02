@@ -1,11 +1,11 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-$$Array = require("../../lib/js/array.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
-Ext_string_test = require("./ext_string_test.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+$$Array = require "../../lib/js/array.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
+Ext_string_test = require "./ext_string_test.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function filter_map(f, _xs) do
   while(true) do

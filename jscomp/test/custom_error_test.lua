@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Js_exn = require("../../lib/js/js_exn.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
+Js_exn = require "../../lib/js/js_exn.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
 
 function test_js_error(param) do
   e;

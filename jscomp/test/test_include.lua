@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-$$String = require("../../lib/js/string.lua");
-Test_order = require("./test_order.lua");
+List = require "../../lib/js/list.lua";
+$$String = require "../../lib/js/string.lua";
+Test_order = require "./test_order.lua";
 
 function Make(U) do
   compare = U.compare;

@@ -1,20 +1,20 @@
-'use strict';
+--[['use strict';]]
 
-List = require("./list.lua");
-Block = require("./block.lua");
-Bytes = require("./bytes.lua");
-Curry = require("./curry.lua");
-$$Buffer = require("./buffer.lua");
-$$String = require("./string.lua");
-Caml_io = require("./caml_io.lua");
-Caml_obj = require("./caml_obj.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Pervasives = require("./pervasives.lua");
-Caml_string = require("./caml_string.lua");
-Caml_primitive = require("./caml_primitive.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
-CamlinternalFormat = require("./camlinternalFormat.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+List = require "./list.lua";
+Block = require "./block.lua";
+Bytes = require "./bytes.lua";
+Curry = require "./curry.lua";
+$$Buffer = require "./buffer.lua";
+$$String = require "./string.lua";
+Caml_io = require "./caml_io.lua";
+Caml_obj = require "./caml_obj.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Pervasives = require "./pervasives.lua";
+Caml_string = require "./caml_string.lua";
+Caml_primitive = require "./caml_primitive.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
+CamlinternalFormat = require "./camlinternalFormat.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function add_queue(x, q) do
   c = --[[ Cons ]][

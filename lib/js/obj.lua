@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Marshal = require("./marshal.lua");
-Caml_array = require("./caml_array.lua");
-Caml_external_polyfill = require("./caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Marshal = require "./marshal.lua";
+Caml_array = require "./caml_array.lua";
+Caml_external_polyfill = require "./caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function is_block(a) do
   return typeof a ~= "number";

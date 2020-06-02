@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("../../lib/js/curry.lua");
+Curry = require "../../lib/js/curry.lua";
 
 function O(X) do
   cow = function (x) do

@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Hashtbl = require("../../lib/js/hashtbl.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Hashtbl = require "../../lib/js/hashtbl.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function bench(param) do
   table = Hashtbl.create(undefined, 1000000);

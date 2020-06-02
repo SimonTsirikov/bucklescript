@@ -1,16 +1,16 @@
-'use strict';
+--[['use strict';]]
 
-Sys = require("./sys.lua");
-$$Array = require("./array.lua");
-Curry = require("./curry.lua");
-Caml_obj = require("./caml_obj.lua");
-Caml_weak = require("./caml_weak.lua");
-Caml_array = require("./caml_array.lua");
-Caml_int32 = require("./caml_int32.lua");
-Pervasives = require("./pervasives.lua");
-Caml_option = require("./caml_option.lua");
-Caml_primitive = require("./caml_primitive.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Sys = require "./sys.lua";
+$$Array = require "./array.lua";
+Curry = require "./curry.lua";
+Caml_obj = require "./caml_obj.lua";
+Caml_weak = require "./caml_weak.lua";
+Caml_array = require "./caml_array.lua";
+Caml_int32 = require "./caml_int32.lua";
+Pervasives = require "./pervasives.lua";
+Caml_option = require "./caml_option.lua";
+Caml_primitive = require "./caml_primitive.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function fill(ar, ofs, len, x) do
   if (ofs < 0 or len < 0 or (ofs + len | 0) > #ar) then do

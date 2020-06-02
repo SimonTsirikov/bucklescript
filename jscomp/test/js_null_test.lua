@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Js_null = require("../../lib/js/js_null.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Js_null = require "../../lib/js/js_null.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
 
 suites_000 = --[[ tuple ]][
   "toOption - empty",

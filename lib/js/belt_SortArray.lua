@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Belt_Array = require("./belt_Array.lua");
+Curry = require "./curry.lua";
+Belt_Array = require "./belt_Array.lua";
 
 function sortedLengthAuxMore(xs, _prec, _acc, len, lt) do
   while(true) do

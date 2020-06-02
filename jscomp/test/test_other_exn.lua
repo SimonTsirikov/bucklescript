@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function Make($star) do

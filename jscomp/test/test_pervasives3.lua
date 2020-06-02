@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
+List = require "../../lib/js/list.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
 
 Pervasives$1 = do
   invalid_arg: Pervasives.invalid_arg,

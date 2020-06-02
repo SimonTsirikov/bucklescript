@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Caml_option = require("./caml_option.lua");
+Curry = require "./curry.lua";
+Caml_option = require "./caml_option.lua";
 
 function forEachU(opt, f) do
   if (opt ~= undefined) then do

@@ -1,11 +1,11 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 Bad = Caml_exceptions.create("Test_seq.Bad");
 

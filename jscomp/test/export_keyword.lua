@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 $$case = 3;

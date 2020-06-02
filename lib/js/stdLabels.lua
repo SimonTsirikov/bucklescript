@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 $$Array = --[[ alias ]]0;

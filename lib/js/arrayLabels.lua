@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-$$Array = require("./array.lua");
+$$Array = require "./array.lua";
 
 init = $$Array.init;
 

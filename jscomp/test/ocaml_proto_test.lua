@@ -1,26 +1,26 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Char = require("../../lib/js/char.lua");
-List = require("../../lib/js/list.lua");
-Block = require("../../lib/js/block.lua");
-Bytes = require("../../lib/js/bytes.lua");
-Curry = require("../../lib/js/curry.lua");
-Lexing = require("../../lib/js/lexing.lua");
-Printf = require("../../lib/js/printf.lua");
-$$String = require("../../lib/js/string.lua");
-Parsing = require("../../lib/js/parsing.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Filename = require("../../lib/js/filename.lua");
-Printexc = require("../../lib/js/printexc.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_format = require("../../lib/js/caml_format.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
-Caml_string = require("../../lib/js/caml_string.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Mt = require "./mt.lua";
+Char = require "../../lib/js/char.lua";
+List = require "../../lib/js/list.lua";
+Block = require "../../lib/js/block.lua";
+Bytes = require "../../lib/js/bytes.lua";
+Curry = require "../../lib/js/curry.lua";
+Lexing = require "../../lib/js/lexing.lua";
+Printf = require "../../lib/js/printf.lua";
+$$String = require "../../lib/js/string.lua";
+Parsing = require "../../lib/js/parsing.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Filename = require "../../lib/js/filename.lua";
+Printexc = require "../../lib/js/printexc.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_format = require "../../lib/js/caml_format.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
+Caml_string = require "../../lib/js/caml_string.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function field(optionsOpt, label, number, type_, name) do
   options = optionsOpt ~= undefined and optionsOpt or --[[ [] ]]0;

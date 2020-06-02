@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
 
 function f(b, x, _n) do
   while(true) do

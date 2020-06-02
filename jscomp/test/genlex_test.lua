@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-List = require("../../lib/js/list.lua");
-Block = require("../../lib/js/block.lua");
-Genlex = require("../../lib/js/genlex.lua");
-Stream = require("../../lib/js/stream.lua");
+Mt = require "./mt.lua";
+List = require "../../lib/js/list.lua";
+Block = require "../../lib/js/block.lua";
+Genlex = require "../../lib/js/genlex.lua";
+Stream = require "../../lib/js/stream.lua";
 
 lexer = Genlex.make_lexer(--[[ :: ]][
       "+",

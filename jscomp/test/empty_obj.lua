@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-CamlinternalOO = require("../../lib/js/camlinternalOO.lua");
+CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
 
 $$class = CamlinternalOO.create_table(0);
 

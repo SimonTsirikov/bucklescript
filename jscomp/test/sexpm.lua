@@ -1,24 +1,24 @@
-'use strict';
+--[['use strict';]]
 
-Sys = require("../../lib/js/sys.lua");
-Char = require("../../lib/js/char.lua");
-List = require("../../lib/js/list.lua");
-Block = require("../../lib/js/block.lua");
-Bytes = require("../../lib/js/bytes.lua");
-Curry = require("../../lib/js/curry.lua");
-$$Buffer = require("../../lib/js/buffer.lua");
-Format = require("../../lib/js/format.lua");
-Printf = require("../../lib/js/printf.lua");
-$$String = require("../../lib/js/string.lua");
-Caml_io = require("../../lib/js/caml_io.lua");
-Printexc = require("../../lib/js/printexc.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Caml_int32 = require("../../lib/js/caml_int32.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
-Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Sys = require "../../lib/js/sys.lua";
+Char = require "../../lib/js/char.lua";
+List = require "../../lib/js/list.lua";
+Block = require "../../lib/js/block.lua";
+Bytes = require "../../lib/js/bytes.lua";
+Curry = require "../../lib/js/curry.lua";
+$$Buffer = require "../../lib/js/buffer.lua";
+Format = require "../../lib/js/format.lua";
+Printf = require "../../lib/js/printf.lua";
+$$String = require "../../lib/js/string.lua";
+Caml_io = require "../../lib/js/caml_io.lua";
+Printexc = require "../../lib/js/printexc.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Caml_int32 = require "../../lib/js/caml_int32.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function _with_in(filename, f) do
   ic = Pervasives.open_in_bin(filename);

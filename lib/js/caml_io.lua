@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
+Curry = require "./curry.lua";
 
 stdout = do
   buffer: "",

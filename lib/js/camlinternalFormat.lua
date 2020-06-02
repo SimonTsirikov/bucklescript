@@ -1,23 +1,23 @@
-'use strict';
+--[['use strict';]]
 
-Char = require("./char.lua");
-Block = require("./block.lua");
-Bytes = require("./bytes.lua");
-Curry = require("./curry.lua");
-$$Buffer = require("./buffer.lua");
-$$String = require("./string.lua");
-Caml_io = require("./caml_io.lua");
-Caml_obj = require("./caml_obj.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Caml_int32 = require("./caml_int32.lua");
-Pervasives = require("./pervasives.lua");
-Caml_format = require("./caml_format.lua");
-Caml_string = require("./caml_string.lua");
-Caml_primitive = require("./caml_primitive.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
-Caml_js_exceptions = require("./caml_js_exceptions.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
-CamlinternalFormatBasics = require("./camlinternalFormatBasics.lua");
+Char = require "./char.lua";
+Block = require "./block.lua";
+Bytes = require "./bytes.lua";
+Curry = require "./curry.lua";
+$$Buffer = require "./buffer.lua";
+$$String = require "./string.lua";
+Caml_io = require "./caml_io.lua";
+Caml_obj = require "./caml_obj.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Caml_int32 = require "./caml_int32.lua";
+Pervasives = require "./pervasives.lua";
+Caml_format = require "./caml_format.lua";
+Caml_string = require "./caml_string.lua";
+Caml_primitive = require "./caml_primitive.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
+Caml_js_exceptions = require "./caml_js_exceptions.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+CamlinternalFormatBasics = require "./camlinternalFormatBasics.lua";
 
 function create_char_set(param) do
   return Bytes.make(32, --[[ "\000" ]]0);

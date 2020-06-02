@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_oo_curry = require("../../lib/js/caml_oo_curry.lua");
+Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
 
 function f(x) do
   x.height = 3;

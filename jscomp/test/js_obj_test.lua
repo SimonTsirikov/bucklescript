@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_oo_curry = require("../../lib/js/caml_oo_curry.lua");
-CamlinternalOO = require("../../lib/js/camlinternalOO.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
+CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
 
 function f(u) do
   return Caml_oo_curry.js2(5740587, 1, u, 32);

@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-$$String = require("./string.lua");
+$$String = require "./string.lua";
 
 make = $$String.make;
 

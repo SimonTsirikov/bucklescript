@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Gpr_3852_effect = require("./gpr_3852_effect.lua");
+Gpr_3852_effect = require "./gpr_3852_effect.lua";
 
 A = Gpr_3852_effect;
 

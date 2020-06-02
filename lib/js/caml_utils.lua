@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 repeat = (function(count,self){

@@ -1,12 +1,12 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Belt_Array = require("../../lib/js/belt_Array.lua");
-Belt_Range = require("../../lib/js/belt_Range.lua");
-Belt_SortArray = require("../../lib/js/belt_SortArray.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Array_data_util = require("./array_data_util.lua");
-Belt_SortArrayInt = require("../../lib/js/belt_SortArrayInt.lua");
+Mt = require "./mt.lua";
+Belt_Array = require "../../lib/js/belt_Array.lua";
+Belt_Range = require "../../lib/js/belt_Range.lua";
+Belt_SortArray = require "../../lib/js/belt_SortArray.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Array_data_util = require "./array_data_util.lua";
+Belt_SortArrayInt = require "../../lib/js/belt_SortArrayInt.lua";
 
 suites = do
   contents: --[[ [] ]]0

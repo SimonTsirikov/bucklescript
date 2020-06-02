@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Caml_format = require("./caml_format.lua");
-Caml_primitive = require("./caml_primitive.lua");
-Caml_js_exceptions = require("./caml_js_exceptions.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_format = require "./caml_format.lua";
+Caml_primitive = require "./caml_primitive.lua";
+Caml_js_exceptions = require "./caml_js_exceptions.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function succ(n) do
   return n + 1 | 0;

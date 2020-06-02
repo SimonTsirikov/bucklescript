@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Js_mapperRt = require("../../lib/js/js_mapperRt.lua");
+Mt = require "./mt.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Js_mapperRt = require "../../lib/js/js_mapperRt.lua";
 
 suites = do
   contents: --[[ [] ]]0

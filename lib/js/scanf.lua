@@ -1,22 +1,22 @@
-'use strict';
+--[['use strict';]]
 
-List = require("./list.lua");
-Block = require("./block.lua");
-Curry = require("./curry.lua");
-$$Buffer = require("./buffer.lua");
-Printf = require("./printf.lua");
-$$String = require("./string.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Caml_int32 = require("./caml_int32.lua");
-Pervasives = require("./pervasives.lua");
-Caml_format = require("./caml_format.lua");
-Caml_string = require("./caml_string.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
-Caml_js_exceptions = require("./caml_js_exceptions.lua");
-CamlinternalFormat = require("./camlinternalFormat.lua");
-Caml_external_polyfill = require("./caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
-CamlinternalFormatBasics = require("./camlinternalFormatBasics.lua");
+List = require "./list.lua";
+Block = require "./block.lua";
+Curry = require "./curry.lua";
+$$Buffer = require "./buffer.lua";
+Printf = require "./printf.lua";
+$$String = require "./string.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Caml_int32 = require "./caml_int32.lua";
+Pervasives = require "./pervasives.lua";
+Caml_format = require "./caml_format.lua";
+Caml_string = require "./caml_string.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
+Caml_js_exceptions = require "./caml_js_exceptions.lua";
+CamlinternalFormat = require "./camlinternalFormat.lua";
+Caml_external_polyfill = require "./caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+CamlinternalFormatBasics = require "./camlinternalFormatBasics.lua";
 
 function next_char(ib) do
   try do

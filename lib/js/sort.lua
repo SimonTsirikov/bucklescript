@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Curry = require "./curry.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function merge(order, l1, l2) do
   if (l1) then do

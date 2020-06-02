@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("../../lib/js/block.lua");
+Block = require "../../lib/js/block.lua";
 
 function f(x) do
   return x;

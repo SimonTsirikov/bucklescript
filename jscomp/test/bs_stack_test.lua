@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Caml_option = require("../../lib/js/caml_option.lua");
-Js_undefined = require("../../lib/js/js_undefined.lua");
-Belt_MutableQueue = require("../../lib/js/belt_MutableQueue.lua");
-Belt_MutableStack = require("../../lib/js/belt_MutableStack.lua");
+Caml_option = require "../../lib/js/caml_option.lua";
+Js_undefined = require "../../lib/js/js_undefined.lua";
+Belt_MutableQueue = require "../../lib/js/belt_MutableQueue.lua";
+Belt_MutableStack = require "../../lib/js/belt_MutableStack.lua";
 
 function inOrder(v) do
   current = v;

@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("../../lib/js/curry.lua");
+Curry = require "../../lib/js/curry.lua";
 
 function fib(n) do
   if (n == 0 or n == 1) then do

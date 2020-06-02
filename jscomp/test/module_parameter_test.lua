@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-$$String = require("../../lib/js/string.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+$$String = require "../../lib/js/string.lua";
 
 function u(v) do
   return v;

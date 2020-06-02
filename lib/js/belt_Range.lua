@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
+Curry = require "./curry.lua";
 
 function forEachU(s, f, action) do
   for i = s , f , 1 do

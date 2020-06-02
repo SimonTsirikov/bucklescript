@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Caml_oo_curry = require("../../lib/js/caml_oo_curry.lua");
-CamlinternalOO = require("../../lib/js/camlinternalOO.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
+CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 shared = ["add"];
 

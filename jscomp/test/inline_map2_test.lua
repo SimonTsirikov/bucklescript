@@ -1,12 +1,12 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-List = require("../../lib/js/list.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Mt = require "./mt.lua";
+List = require "../../lib/js/list.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function Make(Ord) do
   height = function (param) do

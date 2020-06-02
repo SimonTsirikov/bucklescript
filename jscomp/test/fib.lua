@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function fib(n) do

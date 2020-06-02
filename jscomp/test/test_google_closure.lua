@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-$$Array = require("../../lib/js/array.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
+$$Array = require "../../lib/js/array.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
 
 function f(a, b, param) do
   return a + b | 0;

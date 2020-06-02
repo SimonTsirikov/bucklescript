@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
+Mt = require "./mt.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
 
 suites = do
   contents: --[[ [] ]]0

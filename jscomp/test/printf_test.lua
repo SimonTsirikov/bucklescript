@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Format = require("../../lib/js/format.lua");
-Printf = require("../../lib/js/printf.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Format = require "../../lib/js/format.lua";
+Printf = require "../../lib/js/printf.lua";
 
 function print_pair(fmt, param) do
   return Curry._2(Format.fprintf(fmt, --[[ Format ]][

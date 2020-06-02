@@ -1,15 +1,15 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Bytes = require("../../lib/js/bytes.lua");
-Curry = require("../../lib/js/curry.lua");
-$$String = require("../../lib/js/string.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Caml_int32 = require("../../lib/js/caml_int32.lua");
-Caml_string = require("../../lib/js/caml_string.lua");
-Ext_bytes_test = require("./ext_bytes_test.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+Bytes = require "../../lib/js/bytes.lua";
+Curry = require "../../lib/js/curry.lua";
+$$String = require "../../lib/js/string.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Caml_int32 = require "../../lib/js/caml_int32.lua";
+Caml_string = require "../../lib/js/caml_string.lua";
+Ext_bytes_test = require "./ext_bytes_test.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function split_by(keep_emptyOpt, is_delim, str) do
   keep_empty = keep_emptyOpt ~= undefined and keep_emptyOpt or false;

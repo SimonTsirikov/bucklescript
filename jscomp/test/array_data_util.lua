@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Belt_Array = require("../../lib/js/belt_Array.lua");
+Belt_Array = require "../../lib/js/belt_Array.lua";
 
 function range(i, j) do
   return Belt_Array.makeBy((j - i | 0) + 1 | 0, (function (k) do

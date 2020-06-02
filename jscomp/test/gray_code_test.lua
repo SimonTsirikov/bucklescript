@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Bytes = require("../../lib/js/bytes.lua");
+Bytes = require "../../lib/js/bytes.lua";
 
 function gray_encode(b) do
   return b ^ (b >>> 1);

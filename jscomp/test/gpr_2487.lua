@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Belt_Array = require("../../lib/js/belt_Array.lua");
+Belt_Array = require "../../lib/js/belt_Array.lua";
 
 b = Belt_Array.eq([
       1,

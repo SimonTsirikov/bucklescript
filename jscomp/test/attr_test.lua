@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function u(x, y) do

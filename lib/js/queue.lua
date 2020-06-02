@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
+Curry = require "./curry.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
 
 Empty = Caml_exceptions.create("Queue.Empty");
 

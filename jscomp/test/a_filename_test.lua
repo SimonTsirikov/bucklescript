@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Ext_filename_test = require("./ext_filename_test.lua");
+Mt = require "./mt.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Ext_filename_test = require "./ext_filename_test.lua";
 
 suites = do
   contents: --[[ [] ]]0

@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
 Custom_inline = Caml_exceptions.create("Test_literal.Custom_inline");
 

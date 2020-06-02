@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Belt_Array = require("./belt_Array.lua");
-Caml_option = require("./caml_option.lua");
+Curry = require "./curry.lua";
+Belt_Array = require "./belt_Array.lua";
+Caml_option = require "./caml_option.lua";
 
 function copyAuxCont(_c, _prec) do
   while(true) do

@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("../../lib/js/curry.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
+Curry = require "../../lib/js/curry.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
 
 function f(_n, _acc) do
   while(true) do

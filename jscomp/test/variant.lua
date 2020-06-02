@@ -1,11 +1,11 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function foo(param) do
   if (typeof param == "number") then do

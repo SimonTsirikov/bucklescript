@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("./block.lua");
-Curry = require("./curry.lua");
+Block = require "./block.lua";
+Curry = require "./curry.lua";
 
 function getExn(param) do
   if (param.tag) then do

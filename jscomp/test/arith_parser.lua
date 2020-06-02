@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("../../lib/js/block.lua");
-Parsing = require("../../lib/js/parsing.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Block = require "../../lib/js/block.lua";
+Parsing = require "../../lib/js/parsing.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 yytransl_const = [
   259,

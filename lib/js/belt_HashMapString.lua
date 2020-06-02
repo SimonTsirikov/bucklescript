@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Caml_option = require("./caml_option.lua");
-Caml_hash_primitive = require("./caml_hash_primitive.lua");
-Belt_internalBuckets = require("./belt_internalBuckets.lua");
-Belt_internalBucketsType = require("./belt_internalBucketsType.lua");
+Caml_option = require "./caml_option.lua";
+Caml_hash_primitive = require "./caml_hash_primitive.lua";
+Belt_internalBuckets = require "./belt_internalBuckets.lua";
+Belt_internalBucketsType = require "./belt_internalBucketsType.lua";
 
 function copyBucketReHash(h_buckets, ndata_tail, _old_bucket) do
   while(true) do

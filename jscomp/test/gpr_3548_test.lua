@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Js_mapperRt = require("../../lib/js/js_mapperRt.lua");
+Js_mapperRt = require "../../lib/js/js_mapperRt.lua";
 
 jsMapperConstantArray = [
   --[[ tuple ]][

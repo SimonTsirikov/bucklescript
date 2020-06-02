@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Caml_option = require("./caml_option.lua");
-Belt_SortArray = require("./belt_SortArray.lua");
+Curry = require "./curry.lua";
+Caml_option = require "./caml_option.lua";
+Belt_SortArray = require "./belt_SortArray.lua";
 
 function treeHeight(n) do
   if (n ~= null) then do

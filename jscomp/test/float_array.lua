@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function small_float_array(x) do

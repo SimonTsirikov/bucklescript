@@ -1,11 +1,11 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Curry = require("../../lib/js/curry.lua");
-$$String = require("../../lib/js/string.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+Curry = require "../../lib/js/curry.lua";
+$$String = require "../../lib/js/string.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function height(param) do
   if (param) then do

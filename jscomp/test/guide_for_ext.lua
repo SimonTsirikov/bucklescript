@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function mk(param) do

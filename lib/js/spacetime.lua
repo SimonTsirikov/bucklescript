@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-Caml_gc = require("./caml_gc.lua");
-Caml_io = require("./caml_io.lua");
-Pervasives = require("./pervasives.lua");
-Caml_external_polyfill = require("./caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_gc = require "./caml_gc.lua";
+Caml_io = require "./caml_io.lua";
+Pervasives = require "./pervasives.lua";
+Caml_external_polyfill = require "./caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function if_spacetime_enabled(f) do
   return --[[ () ]]0;

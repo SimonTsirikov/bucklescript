@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 out_of_memory = --[[ tuple ]][

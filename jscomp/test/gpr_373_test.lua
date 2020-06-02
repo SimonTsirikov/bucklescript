@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 overflow_dec_i32_number = 272872590;

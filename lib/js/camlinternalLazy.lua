@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Obj = require("./obj.lua");
-Curry = require("./curry.lua");
-Caml_obj = require("./caml_obj.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
+Obj = require "./obj.lua";
+Curry = require "./curry.lua";
+Caml_obj = require "./caml_obj.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
 
 Undefined = Caml_exceptions.create("CamlinternalLazy.Undefined");
 

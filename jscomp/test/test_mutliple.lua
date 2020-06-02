@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
+List = require "../../lib/js/list.lua";
 
 f = List.length(--[[ [] ]]0);
 

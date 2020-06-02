@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Format = require("../../lib/js/format.lua");
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Format = require "../../lib/js/format.lua";
 
 Curry._1(Format.fprintf(Format.std_formatter, --[[ Format ]][
           --[[ Int ]]Block.__(4, [

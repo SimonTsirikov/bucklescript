@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function_equal_test;
 

@@ -1,12 +1,12 @@
-'use strict';
+--[['use strict';]]
 
-Bytes = require("./bytes.lua");
-Curry = require("./curry.lua");
-$$String = require("./string.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Pervasives = require("./pervasives.lua");
-Caml_string = require("./caml_string.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Bytes = require "./bytes.lua";
+Curry = require "./curry.lua";
+$$String = require "./string.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Pervasives = require "./pervasives.lua";
+Caml_string = require "./caml_string.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function create(n) do
   n$1 = n < 1 and 1 or n;

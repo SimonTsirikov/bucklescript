@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("../../lib/js/curry.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
+Curry = require "../../lib/js/curry.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
 x = do
   contents: 1

@@ -1,14 +1,14 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-$$Buffer = require("../../lib/js/buffer.lua");
-Format = require("../../lib/js/format.lua");
-Mt_global = require("./mt_global.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Float_array = require("./float_array.lua");
+Mt = require "./mt.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+$$Buffer = require "../../lib/js/buffer.lua";
+Format = require "../../lib/js/format.lua";
+Mt_global = require "./mt_global.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Float_array = require "./float_array.lua";
 
 buf = $$Buffer.create(50);
 

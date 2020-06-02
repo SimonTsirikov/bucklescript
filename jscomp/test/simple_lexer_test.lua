@@ -1,11 +1,11 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Bytes = require("../../lib/js/bytes.lua");
-Curry = require("../../lib/js/curry.lua");
-Lexing = require("../../lib/js/lexing.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Bytes = require "../../lib/js/bytes.lua";
+Curry = require "../../lib/js/curry.lua";
+Lexing = require "../../lib/js/lexing.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
 
 __ocaml_lex_tables = do
   lex_base: "\0\0\xfd\xff\xfe\xff\0\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\x04\0\x01\0\x04\0\x03\0\0\0\x06\0\0\0\xff\xff",

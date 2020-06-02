@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Caml_string = require("../../lib/js/caml_string.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Caml_string = require "../../lib/js/caml_string.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 hh;
 

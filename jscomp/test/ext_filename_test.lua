@@ -1,24 +1,24 @@
-'use strict';
+--[['use strict';]]
 
-Sys = require("../../lib/js/sys.lua");
-List = require("../../lib/js/list.lua");
-Block = require("../../lib/js/block.lua");
-Bytes = require("../../lib/js/bytes.lua");
-Curry = require("../../lib/js/curry.lua");
-Format = require("../../lib/js/format.lua");
-$$String = require("../../lib/js/string.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_sys = require("../../lib/js/caml_sys.lua");
-Filename = require("../../lib/js/filename.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Test_literals = require("./test_literals.lua");
-Ext_string_test = require("./ext_string_test.lua");
-CamlinternalLazy = require("../../lib/js/camlinternalLazy.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
-Ext_pervasives_test = require("./ext_pervasives_test.lua");
-Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Sys = require "../../lib/js/sys.lua";
+List = require "../../lib/js/list.lua";
+Block = require "../../lib/js/block.lua";
+Bytes = require "../../lib/js/bytes.lua";
+Curry = require "../../lib/js/curry.lua";
+Format = require "../../lib/js/format.lua";
+$$String = require "../../lib/js/string.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_sys = require "../../lib/js/caml_sys.lua";
+Filename = require "../../lib/js/filename.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Test_literals = require "./test_literals.lua";
+Ext_string_test = require "./ext_string_test.lua";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Ext_pervasives_test = require "./ext_pervasives_test.lua";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 node_sep = "/";
 

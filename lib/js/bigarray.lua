@@ -1,11 +1,11 @@
-'use strict';
+--[['use strict';]]
 
-Sys = require("./sys.lua");
-$$Array = require("./array.lua");
-Caml_array = require("./caml_array.lua");
-Caml_int32 = require("./caml_int32.lua");
-Caml_external_polyfill = require("./caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Sys = require "./sys.lua";
+$$Array = require "./array.lua";
+Caml_array = require "./caml_array.lua";
+Caml_int32 = require "./caml_int32.lua";
+Caml_external_polyfill = require "./caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function kind_size_in_bytes(param) do
   local ___conditional___=(param);

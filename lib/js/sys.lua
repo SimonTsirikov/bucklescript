@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Caml_sys = require("./caml_sys.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
+Caml_sys = require "./caml_sys.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
 
 match = Caml_sys.caml_sys_get_argv(--[[ () ]]0);
 

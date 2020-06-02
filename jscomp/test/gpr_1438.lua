@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function actionKey(key, a, b, c, d, e) do

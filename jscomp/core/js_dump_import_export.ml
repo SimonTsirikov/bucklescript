@@ -106,8 +106,8 @@ let requires require_lit cxt f (modules : (Ident.t * string) list ) =
       P.string f L.eq;
       P.space f;
       P.string f require_lit;
-      P.paren_group f 0 @@ (fun _ ->
-          Js_dump_string.pp_string f file  );
+      P.space f;
+      Js_dump_string.pp_string f file;
       P.string f L.semi;
       P.newline f ;
     ) ;

@@ -1,22 +1,22 @@
-'use strict';
+--[['use strict';]]
 
-Sys = require("./sys.lua");
-Block = require("./block.lua");
-Bytes = require("./bytes.lua");
-Curry = require("./curry.lua");
-$$Buffer = require("./buffer.lua");
-Printf = require("./printf.lua");
-Random = require("./random.lua");
-$$String = require("./string.lua");
-Caml_obj = require("./caml_obj.lua");
-Caml_sys = require("./caml_sys.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Pervasives = require("./pervasives.lua");
-Caml_string = require("./caml_string.lua");
-CamlinternalLazy = require("./camlinternalLazy.lua");
-Caml_js_exceptions = require("./caml_js_exceptions.lua");
-Caml_external_polyfill = require("./caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Sys = require "./sys.lua";
+Block = require "./block.lua";
+Bytes = require "./bytes.lua";
+Curry = require "./curry.lua";
+$$Buffer = require "./buffer.lua";
+Printf = require "./printf.lua";
+Random = require "./random.lua";
+$$String = require "./string.lua";
+Caml_obj = require "./caml_obj.lua";
+Caml_sys = require "./caml_sys.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Pervasives = require "./pervasives.lua";
+Caml_string = require "./caml_string.lua";
+CamlinternalLazy = require "./camlinternalLazy.lua";
+Caml_js_exceptions = require "./caml_js_exceptions.lua";
+Caml_external_polyfill = require "./caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function generic_basename(is_dir_sep, current_dir_name, name) do
   if (name == "") then do

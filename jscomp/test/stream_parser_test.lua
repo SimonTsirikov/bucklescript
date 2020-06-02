@@ -1,13 +1,13 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Queue = require("../../lib/js/queue.lua");
-Genlex = require("../../lib/js/genlex.lua");
-Stream = require("../../lib/js/stream.lua");
-Caml_int32 = require("../../lib/js/caml_int32.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Queue = require "../../lib/js/queue.lua";
+Genlex = require "../../lib/js/genlex.lua";
+Stream = require "../../lib/js/stream.lua";
+Caml_int32 = require "../../lib/js/caml_int32.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
 Parse_error = Caml_exceptions.create("Stream_parser_test.Parse_error");
 

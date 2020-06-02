@@ -1,14 +1,14 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-$$Buffer = require("../../lib/js/buffer.lua");
-Printf = require("../../lib/js/printf.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_int64 = require("../../lib/js/caml_int64.lua");
-Caml_format = require("../../lib/js/caml_format.lua");
-CamlinternalLazy = require("../../lib/js/camlinternalLazy.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+$$Buffer = require "../../lib/js/buffer.lua";
+Printf = require "../../lib/js/printf.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_int64 = require "../../lib/js/caml_int64.lua";
+Caml_format = require "../../lib/js/caml_format.lua";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
 
 n0 = --[[ int64 ]][
   --[[ hi ]]0,

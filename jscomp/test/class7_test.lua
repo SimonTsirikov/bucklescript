@@ -1,14 +1,14 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Oo = require("../../lib/js/oo.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
-Caml_oo_curry = require("../../lib/js/caml_oo_curry.lua");
-CamlinternalOO = require("../../lib/js/camlinternalOO.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
+Mt = require "./mt.lua";
+Oo = require "../../lib/js/oo.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
+Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
+CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
 shared = ["window"];
 

@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Format = require("../../lib/js/format.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
+Format = require "../../lib/js/format.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
 v = do
   a: 3,

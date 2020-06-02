@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
 A = Caml_exceptions.create("Rebind_module.A");
 

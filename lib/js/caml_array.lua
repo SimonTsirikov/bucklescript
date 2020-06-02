@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function caml_array_sub(x, offset, len) do
   result = new Array(len);

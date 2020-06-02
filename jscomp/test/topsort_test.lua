@@ -1,15 +1,15 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Curry = require("../../lib/js/curry.lua");
-$$String = require("../../lib/js/string.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+Curry = require "../../lib/js/curry.lua";
+$$String = require "../../lib/js/string.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 graph = --[[ :: ]][
   --[[ tuple ]][

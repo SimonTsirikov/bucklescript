@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
 
 function date(param) do
   return new Date("1976-03-08T12:34:56.789+01:23");

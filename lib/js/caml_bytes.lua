@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function get(s, i) do
   if (i < 0 or i >= #s) then do

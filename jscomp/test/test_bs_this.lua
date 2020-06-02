@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function uux_this(x, y) do

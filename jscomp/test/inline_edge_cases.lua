@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function test3(_n) do

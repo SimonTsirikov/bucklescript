@@ -1,16 +1,16 @@
-'use strict';
+--[['use strict';]]
 
-Belt_Id = require("../../lib/js/belt_Id.lua");
-Hashtbl = require("../../lib/js/hashtbl.lua");
-Belt_HashMap = require("../../lib/js/belt_HashMap.lua");
-Belt_MapDict = require("../../lib/js/belt_MapDict.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Belt_HashMapInt = require("../../lib/js/belt_HashMapInt.lua");
-Belt_HashSetInt = require("../../lib/js/belt_HashSetInt.lua");
-Belt_HashMapString = require("../../lib/js/belt_HashMapString.lua");
-Caml_hash_primitive = require("../../lib/js/caml_hash_primitive.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
-Belt_internalBucketsType = require("../../lib/js/belt_internalBucketsType.lua");
+Belt_Id = require "../../lib/js/belt_Id.lua";
+Hashtbl = require "../../lib/js/hashtbl.lua";
+Belt_HashMap = require "../../lib/js/belt_HashMap.lua";
+Belt_MapDict = require "../../lib/js/belt_MapDict.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Belt_HashMapInt = require "../../lib/js/belt_HashMapInt.lua";
+Belt_HashSetInt = require "../../lib/js/belt_HashSetInt.lua";
+Belt_HashMapString = require "../../lib/js/belt_HashMapString.lua";
+Caml_hash_primitive = require "../../lib/js/caml_hash_primitive.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+Belt_internalBucketsType = require "../../lib/js/belt_internalBucketsType.lua";
 
 function hash_string(s) do
   return Caml_hash_primitive.caml_hash_final_mix(Caml_hash_primitive.caml_hash_mix_string(0, s));

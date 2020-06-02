@@ -1,12 +1,12 @@
-'use strict';
+--[['use strict';]]
 
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Format = require("../../lib/js/format.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Format = require "../../lib/js/format.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function sub(_tr, _k) do
   while(true) do

@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Gpr_3865_foo = require("./gpr_3865_foo.lua");
+Gpr_3865_foo = require "./gpr_3865_foo.lua";
 
 B = Gpr_3865_foo;
 

@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Belt_internalAVLset = require("./belt_internalAVLset.lua");
-Belt_internalSetInt = require("./belt_internalSetInt.lua");
+Belt_internalAVLset = require "./belt_internalAVLset.lua";
+Belt_internalSetInt = require "./belt_internalSetInt.lua";
 
 function add(t, x) do
   if (t ~= null) then do

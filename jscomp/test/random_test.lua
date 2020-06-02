@@ -1,13 +1,13 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Int64 = require("../../lib/js/int64.lua");
-Printf = require("../../lib/js/printf.lua");
-Random = require("../../lib/js/random.lua");
-Mt_global = require("./mt_global.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Int64 = require "../../lib/js/int64.lua";
+Printf = require "../../lib/js/printf.lua";
+Random = require "../../lib/js/random.lua";
+Mt_global = require "./mt_global.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
 
 id = do
   contents: 0

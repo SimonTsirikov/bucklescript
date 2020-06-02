@@ -1,11 +1,11 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Caml_obj = require("./caml_obj.lua");
-Caml_array = require("./caml_array.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
-Caml_js_exceptions = require("./caml_js_exceptions.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Curry = require "./curry.lua";
+Caml_obj = require "./caml_obj.lua";
+Caml_array = require "./caml_array.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
+Caml_js_exceptions = require "./caml_js_exceptions.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 make_float = Caml_array.caml_make_float_vect;
 

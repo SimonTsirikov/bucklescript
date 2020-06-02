@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function caml_sys_getenv(s) do
   if (typeof process == "undefined" or process.env == undefined) then do

@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Js_option = require("../../lib/js/js_option.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Js_option = require "../../lib/js/js_option.lua";
 
 function simpleEq(a, b) do
   return a == b;

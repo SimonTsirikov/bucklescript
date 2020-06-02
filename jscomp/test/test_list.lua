@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function length_aux(_len, _param) do
   while(true) do

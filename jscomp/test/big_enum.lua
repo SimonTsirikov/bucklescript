@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function to_enum(param) do

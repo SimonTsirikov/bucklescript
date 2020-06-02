@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function height(param) do
   if (param) then do

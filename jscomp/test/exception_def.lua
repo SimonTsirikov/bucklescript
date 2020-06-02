@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Printexc = require("../../lib/js/printexc.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Printexc = require "../../lib/js/printexc.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 A = Caml_exceptions.create("Exception_def.A");
 

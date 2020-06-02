@@ -1,15 +1,15 @@
-'use strict';
+--[['use strict';]]
 
-Char = require("./char.lua");
-List = require("./list.lua");
-Block = require("./block.lua");
-Bytes = require("./bytes.lua");
-Stream = require("./stream.lua");
-Hashtbl = require("./hashtbl.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Caml_int32 = require("./caml_int32.lua");
-Caml_format = require("./caml_format.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Char = require "./char.lua";
+List = require "./list.lua";
+Block = require "./block.lua";
+Bytes = require "./bytes.lua";
+Stream = require "./stream.lua";
+Hashtbl = require "./hashtbl.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Caml_int32 = require "./caml_int32.lua";
+Caml_format = require "./caml_format.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 initial_buffer = Caml_bytes.caml_create_bytes(32);
 

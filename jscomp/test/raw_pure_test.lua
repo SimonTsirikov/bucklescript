@@ -2,9 +2,9 @@
  * copyright 
 */
 // hello
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
+List = require "../../lib/js/list.lua";
 
 x0 = null;
 

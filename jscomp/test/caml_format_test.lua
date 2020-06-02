@@ -1,16 +1,16 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Int64 = require("../../lib/js/int64.lua");
-$$Buffer = require("../../lib/js/buffer.lua");
-Format = require("../../lib/js/format.lua");
-Printf = require("../../lib/js/printf.lua");
-Caml_int64 = require("../../lib/js/caml_int64.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_format = require("../../lib/js/caml_format.lua");
+Mt = require "./mt.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Int64 = require "../../lib/js/int64.lua";
+$$Buffer = require "../../lib/js/buffer.lua";
+Format = require "../../lib/js/format.lua";
+Printf = require "../../lib/js/printf.lua";
+Caml_int64 = require "../../lib/js/caml_int64.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_format = require "../../lib/js/caml_format.lua";
 
 of_string = [
   --[[ tuple ]][

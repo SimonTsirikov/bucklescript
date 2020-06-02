@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-$$Promise = require("./promise.lua");
+$$Promise = require "./promise.lua";
 
 v = $$Promise.f;
 

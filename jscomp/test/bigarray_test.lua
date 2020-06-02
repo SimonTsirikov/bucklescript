@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Caml_int32 = require("../../lib/js/caml_int32.lua");
-Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.lua");
+Caml_int32 = require "../../lib/js/caml_int32.lua";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
 
 function sum(v) do
   result = 0;

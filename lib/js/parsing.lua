@@ -1,13 +1,13 @@
-'use strict';
+--[['use strict';]]
 
-$$Array = require("./array.lua");
-Curry = require("./curry.lua");
-Lexing = require("./lexing.lua");
-Caml_obj = require("./caml_obj.lua");
-Caml_array = require("./caml_array.lua");
-Caml_parser = require("./caml_parser.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
-Caml_js_exceptions = require("./caml_js_exceptions.lua");
+$$Array = require "./array.lua";
+Curry = require "./curry.lua";
+Lexing = require "./lexing.lua";
+Caml_obj = require "./caml_obj.lua";
+Caml_array = require "./caml_array.lua";
+Caml_parser = require "./caml_parser.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
+Caml_js_exceptions = require "./caml_js_exceptions.lua";
 
 YYexit = Caml_exceptions.create("Parsing.YYexit");
 

@@ -1,12 +1,12 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-List = require("../../lib/js/list.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_oo_curry = require("../../lib/js/caml_oo_curry.lua");
-CamlinternalOO = require("../../lib/js/camlinternalOO.lua");
+Mt = require "./mt.lua";
+List = require "../../lib/js/list.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
+CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
 
 shared = [
   "fold",

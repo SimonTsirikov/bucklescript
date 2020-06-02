@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
 
 function tst(param) do
   for i = console.log("hi"), 0 , console.log("hello"), 3 , 1 do

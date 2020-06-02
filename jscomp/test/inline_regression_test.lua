@@ -1,11 +1,11 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-$$String = require("../../lib/js/string.lua");
-Filename = require("../../lib/js/filename.lua");
-Caml_string = require("../../lib/js/caml_string.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+$$String = require "../../lib/js/string.lua";
+Filename = require "../../lib/js/filename.lua";
+Caml_string = require "../../lib/js/caml_string.lua";
 
 function generic_basename(is_dir_sep, current_dir_name, name) do
   if (name == "") then do

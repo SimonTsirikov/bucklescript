@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_int64 = require("../../lib/js/caml_int64.lua");
+Mt = require "./mt.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_int64 = require "../../lib/js/caml_int64.lua";
 
 aa = Caml_obj.caml_equal_null;
 

@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function str_equal(x, y) do

@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 x = 272872590;

@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-$$Buffer = require("../../lib/js/buffer.lua");
+$$Buffer = require "../../lib/js/buffer.lua";
 
 foo = $$Buffer.contents;
 

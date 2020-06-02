@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-String_set = require("./string_set.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+String_set = require "./string_set.lua";
 
 suites = do
   contents: --[[ [] ]]0

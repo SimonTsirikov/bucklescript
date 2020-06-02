@@ -1,16 +1,16 @@
-'use strict';
+--[['use strict';]]
 
-$$Array = require("./array.lua");
-Curry = require("./curry.lua");
-Random = require("./random.lua");
-Caml_obj = require("./caml_obj.lua");
-Caml_hash = require("./caml_hash.lua");
-Caml_array = require("./caml_array.lua");
-Pervasives = require("./pervasives.lua");
-Caml_option = require("./caml_option.lua");
-Caml_primitive = require("./caml_primitive.lua");
-CamlinternalLazy = require("./camlinternalLazy.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+$$Array = require "./array.lua";
+Curry = require "./curry.lua";
+Random = require "./random.lua";
+Caml_obj = require "./caml_obj.lua";
+Caml_hash = require "./caml_hash.lua";
+Caml_array = require "./caml_array.lua";
+Pervasives = require "./pervasives.lua";
+Caml_option = require "./caml_option.lua";
+Caml_primitive = require "./caml_primitive.lua";
+CamlinternalLazy = require "./camlinternalLazy.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function hash(x) do
   return Caml_hash.caml_hash(10, 100, 0, x);

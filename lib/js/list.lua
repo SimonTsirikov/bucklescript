@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Caml_obj = require("./caml_obj.lua");
-Pervasives = require("./pervasives.lua");
-Caml_option = require("./caml_option.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Curry = require "./curry.lua";
+Caml_obj = require "./caml_obj.lua";
+Pervasives = require "./pervasives.lua";
+Caml_option = require "./caml_option.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function length(l) do
   _len = 0;

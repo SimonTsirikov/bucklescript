@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function f(_x, _y) do

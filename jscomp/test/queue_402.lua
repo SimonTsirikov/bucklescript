@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("../../lib/js/curry.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
+Curry = require "../../lib/js/curry.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
 Empty = Caml_exceptions.create("Queue_402.Empty");
 

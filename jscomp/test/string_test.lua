@@ -1,13 +1,13 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-List = require("../../lib/js/list.lua");
-Block = require("../../lib/js/block.lua");
-Bytes = require("../../lib/js/bytes.lua");
-$$String = require("../../lib/js/string.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Ext_string_test = require("./ext_string_test.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Mt = require "./mt.lua";
+List = require "../../lib/js/list.lua";
+Block = require "../../lib/js/block.lua";
+Bytes = require "../../lib/js/bytes.lua";
+$$String = require "../../lib/js/string.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Ext_string_test = require "./ext_string_test.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function ff(x) do
   a;

@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Caml_obj = require("../../lib/js/caml_obj.lua");
-CamlinternalLazy = require("../../lib/js/camlinternalLazy.lua");
+Caml_obj = require "../../lib/js/caml_obj.lua";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
 
 function fix(param) do
   return --[[ Fix ]][Caml_obj.caml_lazy_make((function (param) do

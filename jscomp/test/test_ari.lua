@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-U = require("U");
-VV = require("VV");
-List = require("../../lib/js/list.lua");
-Curry = require("../../lib/js/curry.lua");
+U = require "U";
+VV = require "VV";
+List = require "../../lib/js/list.lua";
+Curry = require "../../lib/js/curry.lua";
 
 function f(x) do
   return (function (param) do

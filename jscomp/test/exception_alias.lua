@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 a0 = Caml_builtin_exceptions.not_found;
 

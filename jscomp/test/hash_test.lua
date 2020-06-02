@@ -1,12 +1,12 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Char = require("../../lib/js/char.lua");
-$$Array = require("../../lib/js/array.lua");
-Bytes = require("../../lib/js/bytes.lua");
-Hashtbl = require("../../lib/js/hashtbl.lua");
-Mt_global = require("./mt_global.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
+Mt = require "./mt.lua";
+Char = require "../../lib/js/char.lua";
+$$Array = require "../../lib/js/array.lua";
+Bytes = require "../../lib/js/bytes.lua";
+Hashtbl = require "../../lib/js/hashtbl.lua";
+Mt_global = require "./mt_global.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
 
 suites = do
   contents: --[[ [] ]]0

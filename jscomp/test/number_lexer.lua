@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("../../lib/js/curry.lua");
-Lexing = require("../../lib/js/lexing.lua");
+Curry = require "../../lib/js/curry.lua";
+Lexing = require "../../lib/js/lexing.lua";
 
 function l(prim) do
   console.log(prim);

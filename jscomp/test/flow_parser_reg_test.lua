@@ -1,32 +1,32 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Fs = require("fs");
-Sys = require("../../lib/js/sys.lua");
-Char = require("../../lib/js/char.lua");
-List = require("../../lib/js/list.lua");
-Path = require("path");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Queue = require("../../lib/js/queue.lua");
-$$Buffer = require("../../lib/js/buffer.lua");
-Lexing = require("../../lib/js/lexing.lua");
-Printf = require("../../lib/js/printf.lua");
-$$String = require("../../lib/js/string.lua");
-Hashtbl = require("../../lib/js/hashtbl.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Filename = require("../../lib/js/filename.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_format = require("../../lib/js/caml_format.lua");
-Caml_module = require("../../lib/js/caml_module.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Mt = require "./mt.lua";
+Fs = require "fs";
+Sys = require "../../lib/js/sys.lua";
+Char = require "../../lib/js/char.lua";
+List = require "../../lib/js/list.lua";
+Path = require "path";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Queue = require "../../lib/js/queue.lua";
+$$Buffer = require "../../lib/js/buffer.lua";
+Lexing = require "../../lib/js/lexing.lua";
+Printf = require "../../lib/js/printf.lua";
+$$String = require "../../lib/js/string.lua";
+Hashtbl = require "../../lib/js/hashtbl.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Filename = require "../../lib/js/filename.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_format = require "../../lib/js/caml_format.lua";
+Caml_module = require "../../lib/js/caml_module.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 none = do
   source: undefined,

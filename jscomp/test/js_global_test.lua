@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
 
 suites_000 = --[[ tuple ]][
   "setTimeout/clearTimeout sanity check",

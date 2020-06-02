@@ -1,12 +1,12 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-List = require("../../lib/js/list.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Stream = require("../../lib/js/stream.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Mt = require "./mt.lua";
+List = require "../../lib/js/list.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Stream = require "../../lib/js/stream.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function classify(chr) do
   if ((chr & 128) == 0) then do

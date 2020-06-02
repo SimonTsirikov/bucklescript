@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Complex = require("../../lib/js/complex.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Complex = require "../../lib/js/complex.lua";
 
 suites_000 = --[[ tuple ]][
   "basic_add",

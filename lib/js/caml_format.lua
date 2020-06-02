@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Caml_int32 = require("./caml_int32.lua");
-Caml_int64 = require("./caml_int64.lua");
-Caml_utils = require("./caml_utils.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_int32 = require "./caml_int32.lua";
+Caml_int64 = require "./caml_int64.lua";
+Caml_utils = require "./caml_utils.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function parse_digit(c) do
   if (c >= 65) then do

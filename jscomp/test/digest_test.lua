@@ -1,16 +1,16 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Bytes = require("../../lib/js/bytes.lua");
-Curry = require("../../lib/js/curry.lua");
-Digest = require("../../lib/js/digest.lua");
-Printf = require("../../lib/js/printf.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Ext_array_test = require("./ext_array_test.lua");
+Mt = require "./mt.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Bytes = require "../../lib/js/bytes.lua";
+Curry = require "../../lib/js/curry.lua";
+Digest = require "../../lib/js/digest.lua";
+Printf = require "../../lib/js/printf.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Ext_array_test = require "./ext_array_test.lua";
 
 function f(x) do
   return Digest.to_hex(Digest.string(x));

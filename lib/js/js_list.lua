@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Js_vector = require("./js_vector.lua");
-Caml_option = require("./caml_option.lua");
+Js_vector = require "./js_vector.lua";
+Caml_option = require "./caml_option.lua";
 
 function length(l) do
   _len = 0;

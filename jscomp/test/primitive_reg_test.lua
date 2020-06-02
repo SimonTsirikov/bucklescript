@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function x(prim, prim$1) do

@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function tailcall(x) do

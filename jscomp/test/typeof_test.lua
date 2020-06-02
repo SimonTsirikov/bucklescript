@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Js_types = require("../../lib/js/js_types.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Js_types = require "../../lib/js/js_types.lua";
 
 function string_or_number(x) do
   ty = Js_types.classify(x);

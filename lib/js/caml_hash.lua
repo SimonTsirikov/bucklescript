@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Caml_hash_primitive = require("./caml_hash_primitive.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_hash_primitive = require "./caml_hash_primitive.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function push_back(q, v) do
   cell = do

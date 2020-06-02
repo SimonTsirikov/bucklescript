@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-$$Map = require("./map.lua");
-$$Set = require("./set.lua");
-Hashtbl = require("./hashtbl.lua");
+$$Map = require "./map.lua";
+$$Set = require "./set.lua";
+Hashtbl = require "./hashtbl.lua";
 
 Hashtbl$1 = Hashtbl;
 

@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Curry = require("../../lib/js/curry.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+Curry = require "../../lib/js/curry.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function cons_enum(_s, _e) do
   while(true) do

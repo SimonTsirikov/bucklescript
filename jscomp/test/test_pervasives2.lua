@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Stack = require("../../lib/js/stack.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
+List = require "../../lib/js/list.lua";
+Stack = require "../../lib/js/stack.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
 
 List$1 = do
   length: List.length,

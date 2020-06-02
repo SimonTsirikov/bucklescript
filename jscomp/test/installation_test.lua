@@ -1,12 +1,12 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Fs = require("fs");
-Path = require("path");
-Block = require("../../lib/js/block.lua");
-Child_process = require("child_process");
-App_root_finder = require("./app_root_finder.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Mt = require "./mt.lua";
+Fs = require "fs";
+Path = require "path";
+Block = require "../../lib/js/block.lua";
+Child_process = require "child_process";
+App_root_finder = require "./app_root_finder.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 suites = do
   contents: --[[ [] ]]0

@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Curry = require("../../lib/js/curry.lua");
+List = require "../../lib/js/list.lua";
+Curry = require "../../lib/js/curry.lua";
 
 function from_pair_suites(name, suites) do
   console.log(--[[ tuple ]][

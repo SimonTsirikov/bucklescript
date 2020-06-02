@@ -1,11 +1,11 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-List = require("../../lib/js/list.lua");
-Curry = require("../../lib/js/curry.lua");
-Stack = require("../../lib/js/stack.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Mt_global = require("./mt_global.lua");
+Mt = require "./mt.lua";
+List = require "../../lib/js/list.lua";
+Curry = require "../../lib/js/curry.lua";
+Stack = require "../../lib/js/stack.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Mt_global = require "./mt_global.lua";
 
 suites = do
   contents: --[[ [] ]]0

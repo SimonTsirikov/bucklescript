@@ -1,12 +1,12 @@
-'use strict';
+--[['use strict';]]
 
-Oo = require("../../lib/js/oo.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_oo_curry = require("../../lib/js/caml_oo_curry.lua");
-CamlinternalOO = require("../../lib/js/camlinternalOO.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Oo = require "../../lib/js/oo.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
+CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 shared = ["x"];
 

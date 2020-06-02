@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Export_keyword = require("./export_keyword.lua");
+Export_keyword = require "./export_keyword.lua";
 
 function test2(v) do
   return do

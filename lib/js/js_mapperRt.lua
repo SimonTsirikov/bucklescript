@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function binarySearch(upper, id, array) do

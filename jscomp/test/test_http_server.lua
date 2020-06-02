@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Http = require("http");
+Http = require "http";
 
 hostname = "127.0.0.1";
 

@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Caml_array = require("./caml_array.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_array = require "./caml_array.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 caml_methods_cache = Caml_array.caml_make_vect(1000, 0);
 

@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function t_error3(param_0) do

@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Rbset = require("./rbset.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Rbset = require "./rbset.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function bench(param) do
   data = --[[ Empty ]]0;

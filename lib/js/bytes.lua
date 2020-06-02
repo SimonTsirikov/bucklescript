@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-Char = require("./char.lua");
-Curry = require("./curry.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Caml_primitive = require("./caml_primitive.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Char = require "./char.lua";
+Curry = require "./curry.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Caml_primitive = require "./caml_primitive.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function make(n, c) do
   s = Caml_bytes.caml_create_bytes(n);

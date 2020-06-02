@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Caml_int32 = require("./caml_int32.lua");
-Caml_utils = require("./caml_utils.lua");
-Caml_primitive = require("./caml_primitive.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_int32 = require "./caml_int32.lua";
+Caml_utils = require "./caml_utils.lua";
+Caml_primitive = require "./caml_primitive.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 min_int = --[[ Int64 ]][
   --[[ hi ]]-2147483648,

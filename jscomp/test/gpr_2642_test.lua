@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function isfree(id, _param) do

@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function hi2(xx, yy, zz) do

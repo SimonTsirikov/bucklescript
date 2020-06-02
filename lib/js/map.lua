@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Caml_option = require("./caml_option.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Curry = require "./curry.lua";
+Caml_option = require "./caml_option.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function Make(funarg) do
   height = function (param) do

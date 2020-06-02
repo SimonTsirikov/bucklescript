@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-Bytes = require("./bytes.lua");
-Curry = require("./curry.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Caml_primitive = require("./caml_primitive.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Bytes = require "./bytes.lua";
+Curry = require "./curry.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Caml_primitive = require "./caml_primitive.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function make(n, c) do
   return Caml_bytes.bytes_to_string(Bytes.make(n, c));

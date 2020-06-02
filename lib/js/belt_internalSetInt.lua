@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Belt_SortArrayInt = require("./belt_SortArrayInt.lua");
-Belt_internalAVLset = require("./belt_internalAVLset.lua");
+Belt_SortArrayInt = require "./belt_SortArrayInt.lua";
+Belt_internalAVLset = require "./belt_internalAVLset.lua";
 
 function has(_t, x) do
   while(true) do

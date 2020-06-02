@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Caml_option = require("./caml_option.lua");
-Belt_internalAVLtree = require("./belt_internalAVLtree.lua");
+Curry = require "./curry.lua";
+Caml_option = require "./caml_option.lua";
+Belt_internalAVLtree = require "./belt_internalAVLtree.lua";
 
 function removeMutateAux(nt, x, cmp) do
   k = nt.key;

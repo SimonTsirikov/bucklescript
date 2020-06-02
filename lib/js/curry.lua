@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_array = require("./caml_array.lua");
+Caml_array = require "./caml_array.lua";
 
 function app(_f, _args) do
   while(true) do

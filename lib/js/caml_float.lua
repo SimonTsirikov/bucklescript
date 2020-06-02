@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 caml_int32_float_of_bits = (function(x){

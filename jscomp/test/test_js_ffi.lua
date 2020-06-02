@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-$$String = require("../../lib/js/string.lua");
+$$String = require "../../lib/js/string.lua";
 
 function v(u) do
   t(do

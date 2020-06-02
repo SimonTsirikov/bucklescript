@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Sys = require("../../lib/js/sys.lua");
+Sys = require "../../lib/js/sys.lua";
 
 is_windows_or_cygwin = Sys.win32 or false;
 

@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Caml_oo = require("./caml_oo.lua");
+Curry = require "./curry.lua";
+Caml_oo = require "./caml_oo.lua";
 
 function js(label, cacheid, obj, args) do
   meth = Caml_oo.caml_get_public_method(obj, label, cacheid);

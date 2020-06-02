@@ -1,11 +1,11 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
-Caml_int32 = require("../../lib/js/caml_int32.lua");
+List = require "../../lib/js/list.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
+Caml_int32 = require "../../lib/js/caml_int32.lua";
 
 function for_3(x) do
   v = do

@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Test_common = require("./test_common.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Test_common = require "./test_common.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 Local = Caml_exceptions.create("Test_exception.Local");
 

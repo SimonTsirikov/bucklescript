@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Belt_MutableSetInt = require("../../lib/js/belt_MutableSetInt.lua");
+Belt_MutableSetInt = require "../../lib/js/belt_MutableSetInt.lua";
 
 mySet = do
   data: null

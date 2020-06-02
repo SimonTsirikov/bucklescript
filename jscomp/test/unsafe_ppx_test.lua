@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Ffi_js_test = require("./ffi_js_test.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Ffi_js_test = require "./ffi_js_test.lua";
 
 x = "\x01\x02\x03";
 

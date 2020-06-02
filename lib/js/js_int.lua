@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function equal(x, y) do

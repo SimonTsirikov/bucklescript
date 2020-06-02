@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function map(f, param) do

@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Foo_class = require("xx/foo_class");
+Foo_class = require "xx/foo_class";
 
 function f(param) do
   return new Foo_class(3);

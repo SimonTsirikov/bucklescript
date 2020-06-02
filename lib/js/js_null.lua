@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_option = require("./caml_option.lua");
+Caml_option = require "./caml_option.lua";
 
 function test(x) do
   return x == null;

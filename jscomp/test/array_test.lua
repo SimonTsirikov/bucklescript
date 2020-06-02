@@ -1,14 +1,14 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-List = require("../../lib/js/list.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
+Mt = require "./mt.lua";
+List = require "../../lib/js/list.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
 
 function starts_with(xs, prefix, p) do
   H = Caml_exceptions.create("H");

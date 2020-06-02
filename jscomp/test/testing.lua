@@ -1,14 +1,14 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Scanf = require("../../lib/js/scanf.lua");
-Printf = require("../../lib/js/printf.lua");
-Caml_io = require("../../lib/js/caml_io.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Scanf = require "../../lib/js/scanf.lua";
+Printf = require "../../lib/js/printf.lua";
+Caml_io = require "../../lib/js/caml_io.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 all_tests_ok = do
   contents: true

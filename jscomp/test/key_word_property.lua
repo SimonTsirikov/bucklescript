@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Vscode = require("vscode");
-SomeEs6Module = require("some-es6-module");
+Vscode = require "vscode";
+SomeEs6Module = require "some-es6-module";
 
 $$default = SomeEs6Module.default;
 

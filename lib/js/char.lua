@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Caml_bytes = require("./caml_bytes.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_bytes = require "./caml_bytes.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function chr(n) do
   if (n < 0 or n > 255) then do

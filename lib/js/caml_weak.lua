@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Caml_obj = require("./caml_obj.lua");
-Caml_array = require("./caml_array.lua");
-Caml_option = require("./caml_option.lua");
+Caml_obj = require "./caml_obj.lua";
+Caml_array = require "./caml_array.lua";
+Caml_option = require "./caml_option.lua";
 
 function caml_weak_create(n) do
   return new Array(n);

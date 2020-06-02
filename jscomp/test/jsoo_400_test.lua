@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Caml_int32 = require("../../lib/js/caml_int32.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Caml_int32 = require "../../lib/js/caml_int32.lua";
 
 function u(param) do
   n;

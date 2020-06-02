@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
+Mt = require "./mt.lua";
 
 suites = do
   contents: --[[ [] ]]0

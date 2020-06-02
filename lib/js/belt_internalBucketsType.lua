@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function power_2_above(_x, n) do

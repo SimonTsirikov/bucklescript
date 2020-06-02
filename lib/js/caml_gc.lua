@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function caml_gc_counters(param) do

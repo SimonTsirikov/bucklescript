@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function f0(x) do

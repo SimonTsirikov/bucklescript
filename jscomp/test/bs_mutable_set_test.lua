@@ -1,14 +1,14 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Belt_List = require("../../lib/js/belt_List.lua");
-Belt_Array = require("../../lib/js/belt_Array.lua");
-Belt_Range = require("../../lib/js/belt_Range.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
-Array_data_util = require("./array_data_util.lua");
-Belt_MutableSetInt = require("../../lib/js/belt_MutableSetInt.lua");
-Belt_internalAVLset = require("../../lib/js/belt_internalAVLset.lua");
-Belt_internalSetInt = require("../../lib/js/belt_internalSetInt.lua");
+Mt = require "./mt.lua";
+Belt_List = require "../../lib/js/belt_List.lua";
+Belt_Array = require "../../lib/js/belt_Array.lua";
+Belt_Range = require "../../lib/js/belt_Range.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
+Array_data_util = require "./array_data_util.lua";
+Belt_MutableSetInt = require "../../lib/js/belt_MutableSetInt.lua";
+Belt_internalAVLset = require "../../lib/js/belt_internalAVLset.lua";
+Belt_internalSetInt = require "../../lib/js/belt_internalSetInt.lua";
 
 suites = do
   contents: --[[ [] ]]0

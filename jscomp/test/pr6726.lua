@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function get_uint8(str, off) do

@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function div(x, y) do
   if (y == 0) then do

@@ -1,26 +1,26 @@
-'use strict';
+--[['use strict';]]
 
-Sys = require("./sys.lua");
-List = require("./list.lua");
-$$Array = require("./array.lua");
-Block = require("./block.lua");
-Curry = require("./curry.lua");
-Printf = require("./printf.lua");
-$$String = require("./string.lua");
-Caml_io = require("./caml_io.lua");
-Hashtbl = require("./hashtbl.lua");
-Callback = require("./callback.lua");
-Caml_sys = require("./caml_sys.lua");
-Filename = require("./filename.lua");
-Printexc = require("./printexc.lua");
-Caml_array = require("./caml_array.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Pervasives = require("./pervasives.lua");
-Caml_format = require("./caml_format.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
-Caml_js_exceptions = require("./caml_js_exceptions.lua");
-Caml_external_polyfill = require("./caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Sys = require "./sys.lua";
+List = require "./list.lua";
+$$Array = require "./array.lua";
+Block = require "./block.lua";
+Curry = require "./curry.lua";
+Printf = require "./printf.lua";
+$$String = require "./string.lua";
+Caml_io = require "./caml_io.lua";
+Hashtbl = require "./hashtbl.lua";
+Callback = require "./callback.lua";
+Caml_sys = require "./caml_sys.lua";
+Filename = require "./filename.lua";
+Printexc = require "./printexc.lua";
+Caml_array = require "./caml_array.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Pervasives = require "./pervasives.lua";
+Caml_format = require "./caml_format.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
+Caml_js_exceptions = require "./caml_js_exceptions.lua";
+Caml_external_polyfill = require "./caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 Unix_error = Caml_exceptions.create("Unix.Unix_error");
 

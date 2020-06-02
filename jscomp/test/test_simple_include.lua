@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-$$Array = require("../../lib/js/array.lua");
+$$Array = require "../../lib/js/array.lua";
 
 v = do
   contents: 32

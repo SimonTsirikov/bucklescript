@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-CamlinternalOO = require("./camlinternalOO.lua");
+CamlinternalOO = require "./camlinternalOO.lua";
 
 copy = CamlinternalOO.copy;
 

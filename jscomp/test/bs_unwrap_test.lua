@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("../../lib/js/curry.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
+Curry = require "../../lib/js/curry.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
 
 console.log(--[[ tuple ]][
       "hello world",

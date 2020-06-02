@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-$$Array = require("../../lib/js/array.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
+$$Array = require "../../lib/js/array.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
 
 v = Caml_array.caml_make_vect(6, 5);
 

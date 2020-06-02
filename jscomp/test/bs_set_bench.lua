@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Belt_SetInt = require("../../lib/js/belt_SetInt.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Belt_SetInt = require "../../lib/js/belt_SetInt.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function bench(param) do
   data = Belt_SetInt.empty;

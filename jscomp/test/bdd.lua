@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Caml_array = require("../../lib/js/caml_array.lua");
-Caml_int32 = require("../../lib/js/caml_int32.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Caml_array = require "../../lib/js/caml_array.lua";
+Caml_int32 = require "../../lib/js/caml_int32.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function $$eval(_bdd, vars) do
   while(true) do

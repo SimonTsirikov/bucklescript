@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Belt_MapInt = require("../../lib/js/belt_MapInt.lua");
+Belt_MapInt = require "../../lib/js/belt_MapInt.lua";
 
 function should(b) do
   if (b) then do

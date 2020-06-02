@@ -1,18 +1,18 @@
-'use strict';
+--[['use strict';]]
 
-Obj = require("./obj.lua");
-Sys = require("./sys.lua");
-$$Array = require("./array.lua");
-Curry = require("./curry.lua");
-Random = require("./random.lua");
-Hashtbl = require("./hashtbl.lua");
-Caml_obj = require("./caml_obj.lua");
-Caml_array = require("./caml_array.lua");
-Caml_int32 = require("./caml_int32.lua");
-Caml_option = require("./caml_option.lua");
-Caml_primitive = require("./caml_primitive.lua");
-CamlinternalLazy = require("./camlinternalLazy.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Obj = require "./obj.lua";
+Sys = require "./sys.lua";
+$$Array = require "./array.lua";
+Curry = require "./curry.lua";
+Random = require "./random.lua";
+Hashtbl = require "./hashtbl.lua";
+Caml_obj = require "./caml_obj.lua";
+Caml_array = require "./caml_array.lua";
+Caml_int32 = require "./caml_int32.lua";
+Caml_option = require "./caml_option.lua";
+Caml_primitive = require "./caml_primitive.lua";
+CamlinternalLazy = require "./camlinternalLazy.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function create(param) do
   return Obj.Ephemeron.create(1);

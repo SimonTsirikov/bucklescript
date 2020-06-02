@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 h = x(3);

@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Bytes = require("../../lib/js/bytes.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Bytes = require "../../lib/js/bytes.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
 
 function fib(n) do
   if (n ~= 1 and n ~= 23) then do

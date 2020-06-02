@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function caml_int_compare(x, y) do

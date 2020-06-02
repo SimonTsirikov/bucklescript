@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 Foo = Caml_exceptions.create("Gpr_1701_test.Foo");
 

@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Immutable = require("immutable");
-Belt_Array = require("../../lib/js/belt_Array.lua");
-Belt_MapInt = require("../../lib/js/belt_MapInt.lua");
+Immutable = require "immutable";
+Belt_Array = require "../../lib/js/belt_Array.lua";
+Belt_MapInt = require "../../lib/js/belt_MapInt.lua";
 
 empty = new Immutable.OrderedMap();
 

@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
+Mt = require "./mt.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
 
 function f(param) do
   f$1 = function (_acc, _n) do

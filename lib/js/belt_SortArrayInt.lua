@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Belt_Array = require("./belt_Array.lua");
+Belt_Array = require "./belt_Array.lua";
 
 function sortedLengthAuxMore(xs, _prec, _acc, len) do
   while(true) do

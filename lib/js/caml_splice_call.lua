@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 spliceApply = (function(fn,args){

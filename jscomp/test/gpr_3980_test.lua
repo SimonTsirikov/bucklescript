@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Js_math = require("../../lib/js/js_math.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Js_math = require "../../lib/js/js_math.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 match = 1;
 

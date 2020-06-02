@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function f(resp) do

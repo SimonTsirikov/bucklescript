@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Caml_string = require("../../lib/js/caml_string.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Caml_string = require "../../lib/js/caml_string.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function f(param) do
   local ___conditional___=(param);

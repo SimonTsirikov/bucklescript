@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function treeHeight(n) do

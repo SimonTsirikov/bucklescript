@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Js_mapperRt = require("../../lib/js/js_mapperRt.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Js_mapperRt = require "../../lib/js/js_mapperRt.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 jsMapperConstantArray = [
   --[[ tuple ]][

@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Caml_option = require("./caml_option.lua");
-Belt_internalBuckets = require("./belt_internalBuckets.lua");
-Belt_internalBucketsType = require("./belt_internalBucketsType.lua");
+Caml_option = require "./caml_option.lua";
+Belt_internalBuckets = require "./belt_internalBuckets.lua";
+Belt_internalBucketsType = require "./belt_internalBucketsType.lua";
 
 function size(prim) do
   return prim.size;

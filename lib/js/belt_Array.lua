@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Js_math = require("./js_math.lua");
-Caml_option = require("./caml_option.lua");
-Caml_primitive = require("./caml_primitive.lua");
+Curry = require "./curry.lua";
+Js_math = require "./js_math.lua";
+Caml_option = require "./caml_option.lua";
+Caml_primitive = require "./caml_primitive.lua";
 
 function get(arr, i) do
   if (i >= 0 and i < #arr) then do

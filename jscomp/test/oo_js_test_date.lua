@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
 
 d = new Date(2016, 2);
 

@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("../../lib/js/curry.lua");
-Hashtbl = require("../../lib/js/hashtbl.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Curry = require "../../lib/js/curry.lua";
+Hashtbl = require "../../lib/js/hashtbl.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function Make(funarg) do
   $$let = funarg.V;

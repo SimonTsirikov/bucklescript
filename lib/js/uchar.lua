@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Caml_format = require("./caml_format.lua");
-Caml_primitive = require("./caml_primitive.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_format = require "./caml_format.lua";
+Caml_primitive = require "./caml_primitive.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function err_not_sv(i) do
   return Caml_format.caml_format_int("%X", i) .. " is not an Unicode scalar value";

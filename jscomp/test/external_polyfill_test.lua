@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.lua");
+Mt = require "./mt.lua";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
 
 suites = do
   contents: --[[ [] ]]0

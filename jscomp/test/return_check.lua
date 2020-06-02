@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Caml_option = require("../../lib/js/caml_option.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Caml_option = require "../../lib/js/caml_option.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function test(dom) do
   elem = dom.getElementById("haha");

@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("../../lib/js/block.lua");
-Caml_module = require("../../lib/js/caml_module.lua");
+Block = require "../../lib/js/block.lua";
+Caml_module = require "../../lib/js/caml_module.lua";
 
 Point = Caml_module.init_mod(--[[ tuple ]][
       "gpr_1539_test.ml",

@@ -1,11 +1,11 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-$$Array = require("../../lib/js/array.lua");
-$$String = require("../../lib/js/string.lua");
-Set_gen = require("./set_gen.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+$$Array = require "../../lib/js/array.lua";
+$$String = require "../../lib/js/string.lua";
+Set_gen = require "./set_gen.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function split(x, tree) do
   if (tree) then do

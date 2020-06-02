@@ -1,17 +1,17 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("../../lib/js/curry.lua");
-Caml_io = require("../../lib/js/caml_io.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_sys = require("../../lib/js/caml_sys.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Caml_int64 = require("../../lib/js/caml_int64.lua");
-Caml_format = require("../../lib/js/caml_format.lua");
-Caml_string = require("../../lib/js/caml_string.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
-CamlinternalFormatBasics = require("../../lib/js/camlinternalFormatBasics.lua");
+Curry = require "../../lib/js/curry.lua";
+Caml_io = require "../../lib/js/caml_io.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_sys = require "../../lib/js/caml_sys.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Caml_int64 = require "../../lib/js/caml_int64.lua";
+Caml_format = require "../../lib/js/caml_format.lua";
+Caml_string = require "../../lib/js/caml_string.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
+CamlinternalFormatBasics = require "../../lib/js/camlinternalFormatBasics.lua";
 
 function failwith(s) do
   throw [

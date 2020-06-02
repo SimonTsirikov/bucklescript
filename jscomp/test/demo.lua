@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-UI = require("@ui");
-Curry = require("../../lib/js/curry.lua");
-BUI = require("@blp/ui");
-Runtime = require("@runtime");
+UI = require "@ui";
+Curry = require "../../lib/js/curry.lua";
+BUI = require "@blp/ui";
+Runtime = require "@runtime";
 
 data = [
   do

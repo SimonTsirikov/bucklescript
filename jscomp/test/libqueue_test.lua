@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Curry = require("../../lib/js/curry.lua");
-Queue = require("../../lib/js/queue.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+Curry = require "../../lib/js/curry.lua";
+Queue = require "../../lib/js/queue.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function to_list(q) do
   return List.rev(Queue.fold((function (l, x) do

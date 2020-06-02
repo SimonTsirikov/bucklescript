@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_char = require("../../lib/js/caml_char.lua");
+Caml_char = require "../../lib/js/caml_char.lua";
 
 v = Caml_char.caml_is_printable(--[[ "a" ]]97);
 

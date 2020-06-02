@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Belt_internalSetBuckets = require("./belt_internalSetBuckets.lua");
-Belt_internalBucketsType = require("./belt_internalBucketsType.lua");
+Belt_internalSetBuckets = require "./belt_internalSetBuckets.lua";
+Belt_internalBucketsType = require "./belt_internalBucketsType.lua";
 
 function copyBucket(hash, h_buckets, ndata_tail, _old_bucket) do
   while(true) do

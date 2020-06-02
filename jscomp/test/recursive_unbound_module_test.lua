@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("../../lib/js/block.lua");
-Caml_module = require("../../lib/js/caml_module.lua");
+Block = require "../../lib/js/block.lua";
+Caml_module = require "../../lib/js/caml_module.lua";
 
 function Make(X) do
   f = function (param) do

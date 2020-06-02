@@ -1,19 +1,19 @@
-'use strict';
+--[['use strict';]]
 
-Obj = require("../../lib/js/obj.lua");
-Sys = require("../../lib/js/sys.lua");
-List = require("../../lib/js/list.lua");
-$$Array = require("../../lib/js/array.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_oo = require("../../lib/js/caml_oo.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
-Caml_int32 = require("../../lib/js/caml_int32.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
-Caml_string = require("../../lib/js/caml_string.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Obj = require "../../lib/js/obj.lua";
+Sys = require "../../lib/js/sys.lua";
+List = require "../../lib/js/list.lua";
+$$Array = require "../../lib/js/array.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_oo = require "../../lib/js/caml_oo.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
+Caml_int32 = require "../../lib/js/caml_int32.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
+Caml_string = require "../../lib/js/caml_string.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function copy(o) do
   return Caml_exceptions.caml_set_oo_id(Caml_obj.caml_obj_dup(o));

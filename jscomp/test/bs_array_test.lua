@@ -1,16 +1,16 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Js_list = require("../../lib/js/js_list.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Belt_List = require("../../lib/js/belt_List.lua");
-Js_vector = require("../../lib/js/js_vector.lua");
-Belt_Array = require("../../lib/js/belt_Array.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Mt = require "./mt.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Js_list = require "../../lib/js/js_list.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Belt_List = require "../../lib/js/belt_List.lua";
+Js_vector = require "../../lib/js/js_vector.lua";
+Belt_Array = require "../../lib/js/belt_Array.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 suites = do
   contents: --[[ [] ]]0

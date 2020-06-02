@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("./block.lua");
-Caml_primitive = require("./caml_primitive.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Block = require "./block.lua";
+Caml_primitive = require "./caml_primitive.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 for_in = (function(o,foo){
         for (var x in o) { foo(x) }});

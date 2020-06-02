@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Curry = require("../../lib/js/curry.lua");
-Offset = require("./offset.lua");
-Mt_global = require("./mt_global.lua");
+Mt = require "./mt.lua";
+Curry = require "../../lib/js/curry.lua";
+Offset = require "./offset.lua";
+Mt_global = require "./mt_global.lua";
 
 count = do
   contents: 0

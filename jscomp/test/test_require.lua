@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 match = typeof require == "undefined" and undefined or require;

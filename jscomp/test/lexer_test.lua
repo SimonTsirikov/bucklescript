@@ -1,15 +1,15 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-List = require("../../lib/js/list.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Lexing = require("../../lib/js/lexing.lua");
-Arith_lexer = require("./arith_lexer.lua");
-Arith_parser = require("./arith_parser.lua");
-Arith_syntax = require("./arith_syntax.lua");
-Number_lexer = require("./number_lexer.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Mt = require "./mt.lua";
+List = require "../../lib/js/list.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Lexing = require "../../lib/js/lexing.lua";
+Arith_lexer = require "./arith_lexer.lua";
+Arith_parser = require "./arith_parser.lua";
+Arith_syntax = require "./arith_syntax.lua";
+Number_lexer = require "./number_lexer.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function get_tokens(lex, str) do
   buf = Lexing.from_string(str);

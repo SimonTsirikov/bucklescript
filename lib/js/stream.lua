@@ -1,16 +1,16 @@
-'use strict';
+--[['use strict';]]
 
-List = require("./list.lua");
-Block = require("./block.lua");
-Curry = require("./curry.lua");
-Caml_obj = require("./caml_obj.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Pervasives = require("./pervasives.lua");
-Caml_option = require("./caml_option.lua");
-Caml_string = require("./caml_string.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
-CamlinternalLazy = require("./camlinternalLazy.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+List = require "./list.lua";
+Block = require "./block.lua";
+Curry = require "./curry.lua";
+Caml_obj = require "./caml_obj.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Pervasives = require "./pervasives.lua";
+Caml_option = require "./caml_option.lua";
+Caml_string = require "./caml_string.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
+CamlinternalLazy = require "./camlinternalLazy.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 Failure = Caml_exceptions.create("Stream.Failure");
 

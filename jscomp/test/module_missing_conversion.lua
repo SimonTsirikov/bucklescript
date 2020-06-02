@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-$$Array = require("../../lib/js/array.lua");
-Curry = require("../../lib/js/curry.lua");
-$$String = require("../../lib/js/string.lua");
-MoreLabels = require("../../lib/js/moreLabels.lua");
+$$Array = require "../../lib/js/array.lua";
+Curry = require "../../lib/js/curry.lua";
+$$String = require "../../lib/js/string.lua";
+MoreLabels = require "../../lib/js/moreLabels.lua";
 
 function f(x) do
   return x;

@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function busted(a1, a2, param) do

@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Inner_define = require("./inner_define.lua");
+Inner_define = require "./inner_define.lua";
 
 console.log(Inner_define.N.add(1, 2));
 

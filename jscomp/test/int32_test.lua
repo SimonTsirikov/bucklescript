@@ -1,15 +1,15 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Int32 = require("../../lib/js/int32.lua");
-Format = require("../../lib/js/format.lua");
-Caml_float = require("../../lib/js/caml_float.lua");
-Caml_int32 = require("../../lib/js/caml_int32.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Ext_array_test = require("./ext_array_test.lua");
+Mt = require "./mt.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Int32 = require "../../lib/js/int32.lua";
+Format = require "../../lib/js/format.lua";
+Caml_float = require "../../lib/js/caml_float.lua";
+Caml_int32 = require "../../lib/js/caml_int32.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Ext_array_test = require "./ext_array_test.lua";
 
 function f(x) do
   return --[[ tuple ]][

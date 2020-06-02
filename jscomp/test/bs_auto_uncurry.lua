@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("../../lib/js/curry.lua");
-Caml_splice_call = require("../../lib/js/caml_splice_call.lua");
+Curry = require "../../lib/js/curry.lua";
+Caml_splice_call = require "../../lib/js/caml_splice_call.lua";
 
 Curry$1 = { };
 

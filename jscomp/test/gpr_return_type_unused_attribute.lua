@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 v = mk(2);

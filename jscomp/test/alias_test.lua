@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 a10 = "hello world";

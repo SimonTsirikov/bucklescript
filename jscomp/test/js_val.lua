@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-X = require("x");
+X = require "x";
 
 h = u;
 

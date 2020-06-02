@@ -1,16 +1,16 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Caml_io = require("./caml_io.lua");
-Caml_sys = require("./caml_sys.lua");
-Caml_bytes = require("./caml_bytes.lua");
-Caml_format = require("./caml_format.lua");
-Caml_string = require("./caml_string.lua");
-Caml_exceptions = require("./caml_exceptions.lua");
-Caml_js_exceptions = require("./caml_js_exceptions.lua");
-Caml_external_polyfill = require("./caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
-CamlinternalFormatBasics = require("./camlinternalFormatBasics.lua");
+Curry = require "./curry.lua";
+Caml_io = require "./caml_io.lua";
+Caml_sys = require "./caml_sys.lua";
+Caml_bytes = require "./caml_bytes.lua";
+Caml_format = require "./caml_format.lua";
+Caml_string = require "./caml_string.lua";
+Caml_exceptions = require "./caml_exceptions.lua";
+Caml_js_exceptions = require "./caml_js_exceptions.lua";
+Caml_external_polyfill = require "./caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
+CamlinternalFormatBasics = require "./camlinternalFormatBasics.lua";
 
 function failwith(s) do
   throw [

@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Caml_oo_curry = require("../../lib/js/caml_oo_curry.lua");
-CamlinternalOO = require("../../lib/js/camlinternalOO.lua");
+Caml_oo_curry = require "../../lib/js/caml_oo_curry.lua";
+CamlinternalOO = require "../../lib/js/camlinternalOO.lua";
 
 function f(o) do
   return Caml_oo_curry.js4(23297, 1, o, 1, 2, 3);

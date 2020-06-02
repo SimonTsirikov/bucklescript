@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_js_exceptions = require("./caml_js_exceptions.lua");
+Caml_js_exceptions = require "./caml_js_exceptions.lua";
 
 function raiseError(str) do
   throw new Error(str);

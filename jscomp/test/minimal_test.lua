@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 fake_y = --[[ :: ]][

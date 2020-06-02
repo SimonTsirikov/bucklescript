@@ -1,13 +1,13 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-List = require("../../lib/js/list.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Hashtbl = require("../../lib/js/hashtbl.lua");
-MoreLabels = require("../../lib/js/moreLabels.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
+Mt = require "./mt.lua";
+List = require "../../lib/js/list.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Hashtbl = require "../../lib/js/hashtbl.lua";
+MoreLabels = require "../../lib/js/moreLabels.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
 
 function to_list(tbl) do
   return Hashtbl.fold((function (k, v, acc) do

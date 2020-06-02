@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 function f(x) do
   if (x ~= 98) then do

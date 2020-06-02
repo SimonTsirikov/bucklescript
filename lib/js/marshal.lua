@@ -1,8 +1,8 @@
-'use strict';
+--[['use strict';]]
 
-Caml_bytes = require("./caml_bytes.lua");
-Caml_external_polyfill = require("./caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_bytes = require "./caml_bytes.lua";
+Caml_external_polyfill = require "./caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function to_buffer(buff, ofs, len, v, flags) do
   if (ofs < 0 or len < 0 or ofs > (#buff - len | 0)) then do

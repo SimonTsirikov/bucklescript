@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 Scan_failure = Caml_exceptions.create("Test_static_catch_ident.Scan_failure");
 

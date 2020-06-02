@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function filterInPlace(p, a) do

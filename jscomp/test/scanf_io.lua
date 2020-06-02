@@ -1,20 +1,20 @@
-'use strict';
+--[['use strict';]]
 
-List = require("../../lib/js/list.lua");
-Block = require("../../lib/js/block.lua");
-Bytes = require("../../lib/js/bytes.lua");
-Curry = require("../../lib/js/curry.lua");
-Scanf = require("../../lib/js/scanf.lua");
-$$Buffer = require("../../lib/js/buffer.lua");
-Digest = require("../../lib/js/digest.lua");
-Printf = require("../../lib/js/printf.lua");
-Caml_io = require("../../lib/js/caml_io.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
-Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+List = require "../../lib/js/list.lua";
+Block = require "../../lib/js/block.lua";
+Bytes = require "../../lib/js/bytes.lua";
+Curry = require "../../lib/js/curry.lua";
+Scanf = require "../../lib/js/scanf.lua";
+$$Buffer = require "../../lib/js/buffer.lua";
+Digest = require "../../lib/js/digest.lua";
+Printf = require "../../lib/js/printf.lua";
+Caml_io = require "../../lib/js/caml_io.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 tscanf_data_file = "tscanf_data";
 

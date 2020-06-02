@@ -1,10 +1,10 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Caml_option = require("./caml_option.lua");
-Belt_SortArray = require("./belt_SortArray.lua");
-Caml_primitive = require("./caml_primitive.lua");
-Belt_internalAVLtree = require("./belt_internalAVLtree.lua");
+Curry = require "./curry.lua";
+Caml_option = require "./caml_option.lua";
+Belt_SortArray = require "./belt_SortArray.lua";
+Caml_primitive = require "./caml_primitive.lua";
+Belt_internalAVLtree = require "./belt_internalAVLtree.lua";
 
 function add(t, x, data) do
   if (t ~= null) then do

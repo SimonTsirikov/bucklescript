@@ -1,7 +1,7 @@
-'use strict';
+--[['use strict';]]
 
-Block = require("../../lib/js/block.lua");
-Caml_int32 = require("../../lib/js/caml_int32.lua");
+Block = require "../../lib/js/block.lua";
+Caml_int32 = require "../../lib/js/caml_int32.lua";
 
 function $plus$colon(_f, _g) do
   while(true) do

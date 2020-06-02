@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Obj = require("./obj.lua");
-Block = require("./block.lua");
-Caml_obj = require("./caml_obj.lua");
-CamlinternalLazy = require("./camlinternalLazy.lua");
+Obj = require "./obj.lua";
+Block = require "./block.lua";
+Caml_obj = require "./caml_obj.lua";
+CamlinternalLazy = require "./camlinternalLazy.lua";
 
 function from_fun(f) do
   x = --[[ obj_block ]]Block.__(Obj.lazy_tag, [0]);

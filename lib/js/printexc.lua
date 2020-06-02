@@ -1,16 +1,16 @@
-'use strict';
+--[['use strict';]]
 
-Obj = require("./obj.lua");
-Block = require("./block.lua");
-Curry = require("./curry.lua");
-$$Buffer = require("./buffer.lua");
-Printf = require("./printf.lua");
-Caml_io = require("./caml_io.lua");
-Caml_array = require("./caml_array.lua");
-Pervasives = require("./pervasives.lua");
-Caml_js_exceptions = require("./caml_js_exceptions.lua");
-Caml_external_polyfill = require("./caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Obj = require "./obj.lua";
+Block = require "./block.lua";
+Curry = require "./curry.lua";
+$$Buffer = require "./buffer.lua";
+Printf = require "./printf.lua";
+Caml_io = require "./caml_io.lua";
+Caml_array = require "./caml_array.lua";
+Pervasives = require "./pervasives.lua";
+Caml_js_exceptions = require "./caml_js_exceptions.lua";
+Caml_external_polyfill = require "./caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 printers = do
   contents: --[[ [] ]]0

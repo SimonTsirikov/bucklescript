@@ -1,16 +1,16 @@
-'use strict';
+--[['use strict';]]
 
-$$Array = require("./array.lua");
-Curry = require("./curry.lua");
-Int32 = require("./int32.lua");
-Int64 = require("./int64.lua");
-Digest = require("./digest.lua");
-Caml_sys = require("./caml_sys.lua");
-Nativeint = require("./nativeint.lua");
-Caml_array = require("./caml_array.lua");
-Caml_int64 = require("./caml_int64.lua");
-Caml_string = require("./caml_string.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+$$Array = require "./array.lua";
+Curry = require "./curry.lua";
+Int32 = require "./int32.lua";
+Int64 = require "./int64.lua";
+Digest = require "./digest.lua";
+Caml_sys = require "./caml_sys.lua";
+Nativeint = require "./nativeint.lua";
+Caml_array = require "./caml_array.lua";
+Caml_int64 = require "./caml_int64.lua";
+Caml_string = require "./caml_string.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function assign(st1, st2) do
   $$Array.blit(st2.st, 0, st1.st, 0, 55);

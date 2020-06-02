@@ -1,4 +1,4 @@
-'use strict';
+--[['use strict';]]
 
 
 function compare(x, y) do

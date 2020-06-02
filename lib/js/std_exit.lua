@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Pervasives = require("./pervasives.lua");
+Pervasives = require "./pervasives.lua";
 
 Pervasives.do_at_exit(--[[ () ]]0);
 

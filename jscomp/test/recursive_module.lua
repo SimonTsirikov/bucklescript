@@ -1,15 +1,15 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Lazy = require("../../lib/js/lazy.lua");
-Block = require("../../lib/js/block.lua");
-Curry = require("../../lib/js/curry.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_module = require("../../lib/js/caml_module.lua");
-CamlinternalLazy = require("../../lib/js/camlinternalLazy.lua");
-Caml_js_exceptions = require("../../lib/js/caml_js_exceptions.lua");
-Caml_external_polyfill = require("../../lib/js/caml_external_polyfill.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Mt = require "./mt.lua";
+Lazy = require "../../lib/js/lazy.lua";
+Block = require "../../lib/js/block.lua";
+Curry = require "../../lib/js/curry.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_module = require "../../lib/js/caml_module.lua";
+CamlinternalLazy = require "../../lib/js/camlinternalLazy.lua";
+Caml_js_exceptions = require "../../lib/js/caml_js_exceptions.lua";
+Caml_external_polyfill = require "../../lib/js/caml_external_polyfill.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 suites = do
   contents: --[[ [] ]]0

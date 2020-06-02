@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Caml_int64 = require("./caml_int64.lua");
-Caml_format = require("./caml_format.lua");
-Caml_js_exceptions = require("./caml_js_exceptions.lua");
-Caml_builtin_exceptions = require("./caml_builtin_exceptions.lua");
+Caml_int64 = require "./caml_int64.lua";
+Caml_format = require "./caml_format.lua";
+Caml_js_exceptions = require "./caml_js_exceptions.lua";
+Caml_builtin_exceptions = require "./caml_builtin_exceptions.lua";
 
 function succ(n) do
   return Caml_int64.add(n, --[[ int64 ]][

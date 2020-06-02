@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-Caml_option = require("./caml_option.lua");
+Caml_option = require "./caml_option.lua";
 
 function get(dict, k) do
   if ((k in dict)) then do

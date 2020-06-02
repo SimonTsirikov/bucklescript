@@ -1,9 +1,9 @@
-'use strict';
+--[['use strict';]]
 
-Curry = require("./curry.lua");
-Belt_internalAVLset = require("./belt_internalAVLset.lua");
-Belt_SortArrayString = require("./belt_SortArrayString.lua");
-Belt_internalSetString = require("./belt_internalSetString.lua");
+Curry = require "./curry.lua";
+Belt_internalAVLset = require "./belt_internalAVLset.lua";
+Belt_SortArrayString = require "./belt_SortArrayString.lua";
+Belt_internalSetString = require "./belt_internalSetString.lua";
 
 function remove0(nt, x) do
   k = nt.value;

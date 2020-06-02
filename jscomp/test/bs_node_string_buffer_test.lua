@@ -1,6 +1,6 @@
-'use strict';
+--[['use strict';]]
 
-$$Node = require("../../lib/js/node.lua");
+$$Node = require "../../lib/js/node.lua";
 
 function f(str) do
   match = $$Node.test(str);

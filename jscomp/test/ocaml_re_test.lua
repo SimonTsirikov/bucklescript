@@ -1,25 +1,25 @@
-'use strict';
+--[['use strict';]]
 
-Mt = require("./mt.lua");
-Char = require("../../lib/js/char.lua");
-List = require("../../lib/js/list.lua");
-$$Array = require("../../lib/js/array.lua");
-Block = require("../../lib/js/block.lua");
-Bytes = require("../../lib/js/bytes.lua");
-Curry = require("../../lib/js/curry.lua");
-Format = require("../../lib/js/format.lua");
-$$String = require("../../lib/js/string.lua");
-Hashtbl = require("../../lib/js/hashtbl.lua");
-Caml_obj = require("../../lib/js/caml_obj.lua");
-Caml_array = require("../../lib/js/caml_array.lua");
-Caml_bytes = require("../../lib/js/caml_bytes.lua");
-Caml_int32 = require("../../lib/js/caml_int32.lua");
-Pervasives = require("../../lib/js/pervasives.lua");
-Caml_option = require("../../lib/js/caml_option.lua");
-Caml_string = require("../../lib/js/caml_string.lua");
-Caml_primitive = require("../../lib/js/caml_primitive.lua");
-Caml_exceptions = require("../../lib/js/caml_exceptions.lua");
-Caml_builtin_exceptions = require("../../lib/js/caml_builtin_exceptions.lua");
+Mt = require "./mt.lua";
+Char = require "../../lib/js/char.lua";
+List = require "../../lib/js/list.lua";
+$$Array = require "../../lib/js/array.lua";
+Block = require "../../lib/js/block.lua";
+Bytes = require "../../lib/js/bytes.lua";
+Curry = require "../../lib/js/curry.lua";
+Format = require "../../lib/js/format.lua";
+$$String = require "../../lib/js/string.lua";
+Hashtbl = require "../../lib/js/hashtbl.lua";
+Caml_obj = require "../../lib/js/caml_obj.lua";
+Caml_array = require "../../lib/js/caml_array.lua";
+Caml_bytes = require "../../lib/js/caml_bytes.lua";
+Caml_int32 = require "../../lib/js/caml_int32.lua";
+Pervasives = require "../../lib/js/pervasives.lua";
+Caml_option = require "../../lib/js/caml_option.lua";
+Caml_string = require "../../lib/js/caml_string.lua";
+Caml_primitive = require "../../lib/js/caml_primitive.lua";
+Caml_exceptions = require "../../lib/js/caml_exceptions.lua";
+Caml_builtin_exceptions = require "../../lib/js/caml_builtin_exceptions.lua";
 
 suites = do
   contents: --[[ [] ]]0
